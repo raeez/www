@@ -1,4 +1,4 @@
-# www
+# raeez.com:www.git/README.md
 
 # todo
 - unify website theme across ghost / mit
