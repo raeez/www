@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sudo apt-get install update && sudo apt-get upgrade
+sudo apt-get install nginx vim zsh docker
+sudo usermod -aG docker root
+
+
+# sudo service docker restart
+
+git clone http;
