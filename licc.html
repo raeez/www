@@ -13,13 +13,13 @@
         gtag('config', 'G-JP8T5J8M28');
     </script>
 
-    <title>Special Economic Zones in a Box — Raeez Lorgat</title>
+    <title>The Laboratory for Incentivization, Coordination and Cooperation — Raeez Lorgat</title>
 
     <!-- SEO Meta -->
-    <meta name="description" content="A comprehensive framework for deploying turnkey Special Economic Zone infrastructure combining regulatory, physical, and digital components.">
+    <meta name="description" content="LICC is a private research institute dedicated to Coordination Science—the rigorous study of how agents align actions, beliefs, and resources to achieve collective outcomes across scales.">
     <meta name="author" content="Raeez Lorgat">
-    <meta property="og:title" content="Special Economic Zones in a Box">
-    <meta property="og:description" content="from proof scale to proof of network — Raeez Lorgat">
+    <meta property="og:title" content="The Laboratory for Incentivization, Coordination and Cooperation (LICC)">
+    <meta property="og:description" content="A Research Institute for Coordination Science — Raeez Lorgat">
     <meta property="og:type" content="article">
 
     <!-- Typography: EB Garamond variable font -->
@@ -329,10 +329,10 @@
         <a href="index.html" class="back-link">Raeez Lorgat</a>
 
         <header class="article-header">
-            <h1 class="article-title">Special Economic Zones in a Box</h1>
-            <p class="article-subtitle">From Proof of Scale to Proof of Network</p>
+            <h1 class="article-title">The Laboratory for Incentivization, Coordination and Cooperation</h1>
+            <p class="article-subtitle">A Research Institute for Coordination Science</p>
             <p class="article-meta">
-                Momentum Capital — 2025 — <a href="https://docs.google.com/document/d/1oTfyWyjEgBjWSw30W4BLQa029pMGJ7ciFDUzn4fUjj4" target="_blank" rel="noopener">View on Google Docs</a>
+                July 2025 — <a href="https://docs.google.com/document/d/1eGnq8WpcdjS5TbD4U87v4HaN5YBgSwjKvXwerrXMIFY" target="_blank" rel="noopener">View on Google Docs</a>
             </p>
         </header>
 
@@ -346,7 +346,7 @@
     </article>
 
     <script>
-        const GOOGLE_DOC_ID = '1oTfyWyjEgBjWSw30W4BLQa029pMGJ7ciFDUzn4fUjj4';
+        const GOOGLE_DOC_ID = '1eGnq8WpcdjS5TbD4U87v4HaN5YBgSwjKvXwerrXMIFY';
 
         // Your deployed Google Apps Script URL (same one used for other articles)
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwap-GYIRky-iOioo_7IaA0VvW8t_i1lXNesPlLT-hcGsJxQUeb93YR_t466iVw8wpdBQ/exec';
@@ -395,12 +395,13 @@
 
             elements.forEach(el => {
                 const text = el.textContent.trim().toUpperCase();
-                if (skipCount < 5) {
-                    // Skip title and subtitle that we show in header
-                    if (text.includes('SPECIAL ECONOMIC ZONES IN A BOX') ||
-                        text.includes('SEZ IN A BOX') ||
-                        text.includes('TURNKEY') ||
-                        text.includes('MOMENTUM CAPITAL')) {
+                if (skipCount < 6) {
+                    // Skip title, subtitle, author that we show in header
+                    if (text.includes('LABORATORY FOR INCENTIVIZATION') ||
+                        text.includes('COORDINATION AND COOPERATION') ||
+                        text.includes('LICC') ||
+                        text.includes('RESEARCH INSTITUTE FOR COORDINATION SCIENCE') ||
+                        text.includes('RAEEZ LORGAT, MANAGING PARTNER')) {
                         el.remove();
                         skipCount++;
                     }
