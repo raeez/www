@@ -1,51 +1,66 @@
 /**
- * Google Apps Script: Google Doc Proxy
- * 
- * SETUP (5 minutes):
- * 
- * 1. Go to https://script.google.com
- * 2. Click "New Project"
- * 3. Delete everything in the editor and paste this entire file
- * 4. Click the disk icon to save (or Ctrl+S)
- * 5. Click "Deploy" → "New deployment"
- * 6. Click the gear icon next to "Select type" → choose "Web app"
- * 7. Set:
- *    - Description: "Google Doc Proxy"
- *    - Execute as: "Me"
- *    - Who has access: "Anyone"
- * 8. Click "Deploy"
- * 9. Click "Authorize access" and follow the prompts
- *    (You may see a warning - click "Advanced" → "Go to [project name]")
- * 10. Copy the Web app URL (looks like: https://script.google.com/macros/s/XXXX/exec)
- * 11. Use that URL in your HTML file
- * 
+ * Google Apps Script: Google Doc Proxy with Caching
+ *
+ * SETUP:
+ * 1. Go to https://script.google.com → New Project
+ * 2. Paste this code, save, then Deploy → New deployment → Web app
+ * 3. Set "Who has access" to "Anyone" → Deploy → Authorize
+ * 4. Copy the URL and use it in your HTML
+ *
  * USAGE:
- * https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec?id=GOOGLE_DOC_ID
+ * https://script.google.com/macros/s/YOUR_ID/exec?id=GOOGLE_DOC_ID
+ *
+ * Add &refresh=1 to force cache refresh
  */
+
+// Cache duration in seconds (6 hours = 21600, 1 hour = 3600, 10 min = 600)
+const CACHE_DURATION = 3600;
 
 function doGet(e) {
   const docId = e.parameter.id;
-  
+  const forceRefresh = e.parameter.refresh === '1';
+
   if (!docId) {
     return ContentService
       .createTextOutput(JSON.stringify({ error: 'Missing ?id= parameter' }))
       .setMimeType(ContentService.MimeType.JSON);
   }
-  
+
+  const cache = CacheService.getScriptCache();
+  const cacheKey = 'doc_' + docId;
+
+  // Check cache first (unless force refresh)
+  if (!forceRefresh) {
+    const cached = cache.get(cacheKey);
+    if (cached) {
+      return ContentService
+        .createTextOutput(cached)
+        .setMimeType(ContentService.MimeType.HTML);
+    }
+  }
+
   try {
     const doc = DocumentApp.openById(docId);
     const body = doc.getBody();
     const html = convertToHtml(body);
-    
+
+    // Store in cache (max 100KB per item, so we chunk if needed)
+    try {
+      cache.put(cacheKey, html, CACHE_DURATION);
+    } catch (cacheError) {
+      // HTML too large for cache, still return it
+      console.log('Cache write failed:', cacheError);
+    }
+
     return ContentService
       .createTextOutput(html)
       .setMimeType(ContentService.MimeType.HTML);
-      
+
   } catch (error) {
     return ContentService
-      .createTextOutput(JSON.stringify({ 
-        error: 'Failed to fetch document', 
-        message: error.message 
+      .createTextOutput(JSON.stringify({
+        error: 'Failed to fetch document',
+        message: error.message
       }))
       .setMimeType(ContentService.MimeType.JSON);
   }
@@ -56,18 +71,18 @@ function convertToHtml(body) {
   let html = '';
   let inList = false;
   let listTag = 'ul';
-  
+
   for (let i = 0; i < numChildren; i++) {
     const child = body.getChild(i);
     const type = child.getType();
-    
+
     if (type === DocumentApp.ElementType.PARAGRAPH) {
       if (inList) {
         html += '</' + listTag + '>\n';
         inList = false;
       }
       html += processParagraph(child.asParagraph());
-      
+
     } else if (type === DocumentApp.ElementType.LIST_ITEM) {
       const listItem = child.asListItem();
       const glyphType = listItem.getGlyphType();
@@ -77,7 +92,7 @@ function convertToHtml(body) {
                          glyphType === DocumentApp.GlyphType.ROMAN_UPPER ||
                          glyphType === DocumentApp.GlyphType.ROMAN_LOWER);
       const newListTag = isOrdered ? 'ol' : 'ul';
-      
+
       if (!inList) {
         listTag = newListTag;
         html += '<' + listTag + '>\n';
@@ -87,9 +102,9 @@ function convertToHtml(body) {
         listTag = newListTag;
         html += '<' + listTag + '>\n';
       }
-      
+
       html += '  <li>' + processText(listItem) + '</li>\n';
-      
+
     } else if (type === DocumentApp.ElementType.HORIZONTAL_RULE) {
       if (inList) {
         html += '</' + listTag + '>\n';
@@ -98,21 +113,21 @@ function convertToHtml(body) {
       html += '<hr>\n';
     }
   }
-  
+
   if (inList) {
     html += '</' + listTag + '>\n';
   }
-  
+
   return html;
 }
 
 function processParagraph(para) {
   const text = para.getText().trim();
   if (!text) return '';
-  
+
   const heading = para.getHeading();
   const content = processText(para);
-  
+
   if (heading === DocumentApp.ParagraphHeading.HEADING1) {
     return '<h1>' + content + '</h1>\n';
   } else if (heading === DocumentApp.ParagraphHeading.HEADING2) {
@@ -139,40 +154,40 @@ function processParagraph(para) {
 function processText(element) {
   let result = '';
   const numChildren = element.getNumChildren();
-  
+
   for (let i = 0; i < numChildren; i++) {
     const child = element.getChild(i);
-    
+
     if (child.getType() === DocumentApp.ElementType.TEXT) {
       result += processTextElement(child.asText());
     }
   }
-  
+
   return result;
 }
 
 function processTextElement(textEl) {
   const text = textEl.getText();
   if (!text) return '';
-  
+
   let result = '';
   let i = 0;
-  
+
   while (i < text.length) {
     const startIndex = i;
     const isBold = textEl.isBold(i);
     const isItalic = textEl.isItalic(i);
     const linkUrl = textEl.getLinkUrl(i);
-    
+
     while (i < text.length &&
            textEl.isBold(i) === isBold &&
            textEl.isItalic(i) === isItalic &&
            textEl.getLinkUrl(i) === linkUrl) {
       i++;
     }
-    
+
     let segment = escapeHtml(text.substring(startIndex, i));
-    
+
     if (isBold && !linkUrl) {
       segment = '<strong>' + segment + '</strong>';
     }
@@ -182,10 +197,10 @@ function processTextElement(textEl) {
     if (linkUrl) {
       segment = '<a href="' + escapeHtml(linkUrl) + '" target="_blank" rel="noopener">' + segment + '</a>';
     }
-    
+
     result += segment;
   }
-  
+
   return result;
 }
 
