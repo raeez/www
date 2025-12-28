@@ -37,8 +37,8 @@
         gtag('config', 'G-JP8T5J8M28');
     </script>
 
-    <!-- Adobe Fonts: Garamond Pro -->
-    <link rel="stylesheet" href="https://use.typekit.net/YOUR_KIT_ID.css">
+    <!-- Adobe Fonts: Garamond Premier Pro -->
+    <link rel="stylesheet" href="https://use.typekit.net/zlu2quo.css">
 
     <!-- Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,7 +53,7 @@
         }
 
         :root {
-            --serif: 'adobe-garamond-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
+            --serif: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
             --mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
 
             --scale-ratio: 1.333;
@@ -85,7 +85,7 @@
             --ink-tertiary: #a8a29e;
             --ink-ghost: #d6d3d1;
             --paper: #fefdfb;
-            --paper-alt: #fafaf9;
+            --paper-alt: #f7f6f4;
 
             --optical-edge: -0.05em;
             --kern-tight: -0.02em;
@@ -346,7 +346,106 @@
             letter-spacing: 0.5em;
         }
 
-        /* Footer */
+        /* ════════════════════════════════════════════
+           Table of Contents
+           ════════════════════════════════════════════ */
+        .toc {
+            margin: var(--space-molecule) 0 var(--space-ecosystem);
+            padding: var(--space-organism);
+            background: var(--paper-alt);
+            border-radius: 6px;
+            max-width: var(--measure-narrow);
+        }
+
+        .toc-title {
+            font-size: var(--text-small) !important;
+            font-weight: 500 !important;
+            letter-spacing: var(--kern-ultra);
+            text-transform: uppercase;
+            color: var(--ink-tertiary);
+            margin: 0 0 var(--space-molecule) 0 !important;
+            padding: 0;
+        }
+
+        .toc-list {
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: var(--text-small);
+        }
+
+        .toc-list li {
+            margin: 0 !important;
+            padding: 0;
+        }
+
+        .toc-list a {
+            display: block;
+            padding: calc(var(--space-quantum) * 1.25) 0;
+            text-decoration: none !important;
+            color: var(--ink);
+            border-bottom: 1px solid transparent;
+            transition: color 150ms ease, padding-left 150ms ease;
+            line-height: var(--line-height-tight);
+        }
+
+        .toc-list li:not(:last-child) a {
+            border-bottom-color: var(--ink-ghost);
+        }
+
+        .toc-list a:hover {
+            color: var(--ink);
+            padding-left: var(--space-atom);
+        }
+
+        /* Part/Chapter level - bold, full width */
+        .toc-level-0 a {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: var(--text-tiny);
+            letter-spacing: var(--kern-loose);
+            padding-top: var(--space-atom);
+            padding-bottom: var(--space-atom);
+            color: var(--ink);
+        }
+
+        /* Section level (1.1, 2.3, etc.) */
+        .toc-level-1 a {
+            padding-left: var(--space-atom);
+            color: var(--ink-secondary);
+        }
+
+        .toc-level-1 a:hover {
+            padding-left: calc(var(--space-atom) + var(--space-quantum));
+        }
+
+        /* Subsection level (1.1.1, 2.3.4, etc.) */
+        .toc-level-2 a {
+            padding-left: var(--space-molecule);
+            color: var(--ink-tertiary);
+            font-size: calc(var(--text-small) * 0.95);
+        }
+
+        .toc-level-2 a:hover {
+            padding-left: calc(var(--space-molecule) + var(--space-quantum));
+            color: var(--ink-secondary);
+        }
+
+        /* Sub-subsection level (1.1.1.1, etc.) */
+        .toc-level-3 a {
+            padding-left: var(--space-organism);
+            color: var(--ink-tertiary);
+            font-size: calc(var(--text-small) * 0.9);
+        }
+
+        .toc-level-3 a:hover {
+            padding-left: calc(var(--space-organism) + var(--space-quantum));
+            color: var(--ink-secondary);
+        }
+
+        /* ════════════════════════════════════════════
+           Footer
+           ════════════════════════════════════════════ */
         .article-footer {
             margin-top: var(--space-ecosystem);
             padding-top: var(--space-organism);
@@ -376,7 +475,9 @@
             color: var(--ink-secondary);
         }
 
-        /* Responsive */
+        /* ════════════════════════════════════════════
+           Responsive
+           ════════════════════════════════════════════ */
         @media (max-width: 640px) {
             .container {
                 padding: var(--space-ecosystem) var(--space-atom) var(--space-organism);
@@ -385,9 +486,19 @@
             .article-title {
                 font-size: var(--text-xlarge);
             }
+
+            .toc {
+                padding: var(--space-molecule);
+            }
+
+            .toc-level-1 a { padding-left: var(--space-quantum); }
+            .toc-level-2 a { padding-left: var(--space-atom); }
+            .toc-level-3 a { padding-left: var(--space-molecule); }
         }
 
-        /* Print */
+        /* ════════════════════════════════════════════
+           Print
+           ════════════════════════════════════════════ */
         @media print {
             .back-nav,
             .article-footer-nav {
@@ -402,71 +513,26 @@
             body {
                 background: white;
             }
+
+            .toc {
+                background: none;
+                border: 1px solid #ddd;
+            }
         }
 
-        /* Selection */
+        /* ════════════════════════════════════════════
+           Selection & Focus
+           ════════════════════════════════════════════ */
         ::selection {
             background: var(--ink);
             color: var(--paper);
         }
 
-        /* Focus */
         a:focus-visible {
             outline: 2px solid var(--ink-secondary);
             outline-offset: 4px;
             border-radius: 2px;
         }
-
-        /* Table of Contents */
-        .toc {
-            margin: var(--space-organism) 0 var(--space-ecosystem);
-            padding: var(--space-organism);
-            background: var(--paper-alt);
-            border-radius: 4px;
-        }
-
-        .toc-title {
-            font-size: var(--text-large) !important;
-            margin-bottom: var(--space-molecule) !important;
-            margin-top: 0 !important;
-        }
-
-        .toc-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .toc-list li {
-            margin: 0;
-            border-bottom: 1px solid var(--ink-ghost);
-        }
-
-        .toc-list li:last-child {
-            border-bottom: none;
-        }
-
-        .toc-list a {
-            display: block;
-            padding: calc(var(--space-atom) * 0.75) 0;
-            text-decoration: none;
-            color: var(--ink);
-            transition: padding-left 150ms ease, background 150ms ease;
-        }
-
-        .toc-list a:hover {
-            padding-left: var(--space-atom);
-            background: var(--paper);
-        }
-
-        /* Hierarchy indentation */
-        .toc-level-1 a { padding-left: var(--space-molecule); }
-        .toc-level-2 a { padding-left: var(--space-organism); }
-        .toc-level-3 a { padding-left: var(--space-ecosystem); font-size: var(--text-small); }
-
-        .toc-level-1 a:hover { padding-left: calc(var(--space-molecule) + var(--space-atom)); }
-        .toc-level-2 a:hover { padding-left: calc(var(--space-organism) + var(--space-atom)); }
-        .toc-level-3 a:hover { padding-left: calc(var(--space-ecosystem) + var(--space-atom)); }
     </style>
 </head>
 <body>

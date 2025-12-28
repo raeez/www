@@ -2,9 +2,9 @@
 
 /**
  * Static Site Generator for Raeez's Research Papers
- *
+ * 
  * Fetches content from Google Docs and generates beautiful static HTML.
- *
+ * 
  * Usage:
  *   npm run build              # Build all documents from cache/network
  *   npm run build -- smart-assets   # Build single document
@@ -41,7 +41,7 @@ function httpsGet(url, options = {}) {
         reject(new Error('Too many redirects'));
         return;
       }
-
+      
       https.get(requestUrl, {
         headers: {
           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
@@ -53,18 +53,18 @@ function httpsGet(url, options = {}) {
           makeRequest(response.headers.location, redirectCount + 1);
           return;
         }
-
+        
         if (response.statusCode !== 200) {
           reject(new Error(`HTTP ${response.statusCode}`));
           return;
         }
-
+        
         let data = '';
         response.on('data', chunk => data += chunk);
         response.on('end', () => resolve(data));
       }).on('error', reject).on('timeout', () => reject(new Error('Request timeout')));
     };
-
+    
     makeRequest(url);
   });
 }
@@ -75,14 +75,14 @@ function httpsGet(url, options = {}) {
 async function fetchViaAppsScript(docId) {
   const url = `${APPS_SCRIPT_URL}?id=${docId}`;
   console.log(`  Fetching via Apps Script...`);
-
+  
   const data = await httpsGet(url);
-
+  
   // Check for error response
   if (data.startsWith('{') && data.includes('error')) {
     throw new Error('Apps Script returned an error');
   }
-
+  
   return data;
 }
 
@@ -102,19 +102,19 @@ async function getDocContent(doc, options = {}) {
   const cacheFile = path.join(CACHE_DIR, `${doc.id}.html`);
   const forceRefresh = options.force || false;
   const useAppsScript = options.appsScript || false;
-
+  
   // Check cache
   if (!forceRefresh && fs.existsSync(cacheFile)) {
     const stats = fs.statSync(cacheFile);
     const age = Date.now() - stats.mtimeMs;
     const maxAge = 24 * 60 * 60 * 1000; // 24 hours
-
+    
     if (age < maxAge) {
       console.log(`  Using cached content (${Math.round(age / 60000)} min old)`);
       return fs.readFileSync(cacheFile, 'utf8');
     }
   }
-
+  
   // Fetch fresh content
   let data;
   try {
@@ -137,11 +137,11 @@ async function getDocContent(doc, options = {}) {
     }
     throw error;
   }
-
+  
   // Save to cache
   fs.writeFileSync(cacheFile, data);
   console.log(`  Cached to ${path.basename(cacheFile)}`);
-
+  
   return data;
 }
 
@@ -150,63 +150,75 @@ async function getDocContent(doc, options = {}) {
  */
 function wrapTableOfContents(container, contentDoc) {
   // Find TOC heading
-  const headings = container.querySelectorAll('h1, h2, h3');
+  const headings = container.querySelectorAll('h1, h2, h3, p');
   let tocHeading = null;
-
+  
   for (const h of headings) {
-    if (h.textContent.trim().toUpperCase().includes('TABLE OF CONTENTS') ||
-        h.textContent.trim().toUpperCase() === 'CONTENTS') {
+    const text = h.textContent.trim().toUpperCase();
+    if (text === 'TABLE OF CONTENTS' || text === 'CONTENTS') {
       tocHeading = h;
       break;
     }
   }
-
+  
   if (!tocHeading) return;
-
+  
   // Collect TOC entries (paragraphs with internal links following the heading)
   const tocEntries = [];
   let sibling = tocHeading.nextElementSibling;
-
+  
   while (sibling) {
     const link = sibling.querySelector('a[href^="#"]');
     if (!link) break; // End of TOC
     tocEntries.push(sibling);
     sibling = sibling.nextElementSibling;
   }
-
+  
   if (tocEntries.length === 0) return;
-
+  
   // Create TOC wrapper
   const tocNav = contentDoc.createElement('nav');
   tocNav.className = 'toc';
   tocNav.setAttribute('aria-label', 'Table of Contents');
-
-  // Move heading into nav
-  tocHeading.className = 'toc-title';
-  tocNav.appendChild(tocHeading.cloneNode(true));
-
+  
+  // Create title
+  const tocTitle = contentDoc.createElement('h2');
+  tocTitle.className = 'toc-title';
+  tocTitle.textContent = 'Contents';
+  tocNav.appendChild(tocTitle);
+  
   // Create list
   const tocList = contentDoc.createElement('ul');
   tocList.className = 'toc-list';
-
+  
   tocEntries.forEach(entry => {
     const li = contentDoc.createElement('li');
     const link = entry.querySelector('a');
+    if (!link) return;
+    
     const text = link.textContent.trim();
-
+    
     // Detect indentation level from numbering (1.1, 1.1.1, etc.)
-    const match = text.match(/^(\d+\.)+/);
+    const match = text.match(/^(\d+\.)+\d*/);
     if (match) {
-      const depth = (match[0].match(/\./g) || []).length;
-      li.className = `toc-level-${Math.min(depth, 3)}`;
+      const dots = (match[0].match(/\./g) || []).length;
+      li.className = `toc-level-${Math.min(dots, 3)}`;
+    } else if (text.match(/^(PART|CHAPTER|SECTION|APPENDIX)/i)) {
+      li.className = 'toc-level-0';
     }
-
-    li.appendChild(link.cloneNode(true));
+    
+    // Clone the link
+    const newLink = link.cloneNode(true);
+    li.appendChild(newLink);
     tocList.appendChild(li);
+    
+    // Remove original entry
     entry.remove();
   });
-
+  
   tocNav.appendChild(tocList);
+  
+  // Replace TOC heading with the new nav
   tocHeading.replaceWith(tocNav);
 }
 
@@ -216,27 +228,27 @@ function wrapTableOfContents(container, contentDoc) {
 function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
   const dom = new JSDOM(rawHtml);
   const doc = dom.window.document;
-
+  
   // Remove Google Docs cruft
   doc.querySelectorAll('style, script, meta, link').forEach(el => el.remove());
-
+  
   // Get the body content
   const body = doc.body;
   if (!body) return '';
-
+  
   // Parse content
   const contentDom = new JSDOM(`<div id="content">${body.innerHTML}</div>`);
   const contentDoc = contentDom.window.document;
   const container = contentDoc.getElementById('content');
-
+  
   // Remove elements matching filter patterns (already in header)
   const elements = container.querySelectorAll('p, h1, h2, h3, h4, span');
   let skipCount = 0;
   const maxSkip = filterPatterns.length + 3;
-
+  
   elements.forEach(el => {
     if (skipCount >= maxSkip) return;
-
+    
     const text = el.textContent.trim().toUpperCase();
     for (const pattern of filterPatterns) {
       if (text.includes(pattern.toUpperCase())) {
@@ -250,22 +262,20 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
       }
     }
   });
-
-  // Wrap Table of Contents
+  
+  // Wrap Table of Contents before cleaning (needs structure intact)
   wrapTableOfContents(container, contentDoc);
-
-
+  
   // Clean up styles and classes
   container.querySelectorAll('*').forEach(el => {
     el.removeAttribute('class');
-      // Preserve IDs on headings (for TOC links)
-    //
+    
+    // Preserve IDs on headings (for TOC links)
     const tagName = el.tagName.toLowerCase();
     if (!['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tagName)) {
       el.removeAttribute('id');
     }
-
-
+    
     const style = el.getAttribute('style');
     if (style) {
       const keepStyles = [];
@@ -279,7 +289,29 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
       }
     }
   });
-
+  
+  // Re-add TOC classes after the general class removal
+  const tocNav = container.querySelector('nav[aria-label="Table of Contents"]');
+  if (tocNav) {
+    tocNav.className = 'toc';
+    const tocTitle = tocNav.querySelector('h2');
+    if (tocTitle) tocTitle.className = 'toc-title';
+    const tocList = tocNav.querySelector('ul');
+    if (tocList) tocList.className = 'toc-list';
+    
+    // Re-apply level classes to list items
+    tocList.querySelectorAll('li').forEach((li, idx) => {
+      const text = li.textContent.trim();
+      const match = text.match(/^(\d+\.)+\d*/);
+      if (match) {
+        const dots = (match[0].match(/\./g) || []).length;
+        li.className = `toc-level-${Math.min(dots, 3)}`;
+      } else if (text.match(/^(PART|CHAPTER|SECTION|APPENDIX)/i)) {
+        li.className = 'toc-level-0';
+      }
+    });
+  }
+  
   // Unwrap meaningless spans
   container.querySelectorAll('span').forEach(span => {
     const style = span.getAttribute('style') || '';
@@ -288,27 +320,27 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
       span.replaceWith(text);
     }
   });
-
+  
   // Remove empty paragraphs
   container.querySelectorAll('p').forEach(p => {
     if (p.textContent.trim() === '' && p.querySelectorAll('img').length === 0) {
       p.remove();
     }
   });
-
+  
   // Convert <b> to <strong>, <i> to <em>
   container.querySelectorAll('b').forEach(b => {
     const strong = contentDoc.createElement('strong');
     strong.innerHTML = b.innerHTML;
     b.replaceWith(strong);
   });
-
+  
   container.querySelectorAll('i').forEach(i => {
     const em = contentDoc.createElement('em');
     em.innerHTML = i.innerHTML;
     i.replaceWith(em);
   });
-
+  
   // Clean list items
   container.querySelectorAll('li').forEach(li => {
     li.querySelectorAll('span').forEach(span => {
@@ -321,7 +353,7 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
       }
     });
   });
-
+  
   // Clean tables
   container.querySelectorAll('table').forEach(table => {
     table.removeAttribute('style');
@@ -329,7 +361,7 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
       cell.removeAttribute('style');
     });
   });
-
+  
   // Get cleaned HTML and do final regex cleanups
   let cleanedHtml = container.innerHTML
     .replace(/<span[^>]*>\s*<\/span>/gi, '')
@@ -338,7 +370,7 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
     .replace(/\s{2,}/g, ' ')
     .replace(/<p[^>]*>\s*<\/p>/gi, '')
     .replace(/>\s+</g, '>\n<');
-
+  
   return cleanedHtml;
 }
 
@@ -370,24 +402,24 @@ function applyTemplate(doc, content) {
  */
 async function buildDocument(doc, options = {}) {
   console.log(`\n📄 ${doc.slug}`);
-
+  
   try {
     // Get content (cached or fresh)
     const rawHtml = await getDocContent(doc, options);
-
+    
     // Clean and transform
     console.log(`  Cleaning HTML...`);
     const cleanedContent = cleanGoogleDocsHtml(rawHtml, doc.filterPatterns || []);
-
+    
     // Apply template
     console.log(`  Applying template...`);
     const finalHtml = applyTemplate(doc, cleanedContent);
-
+    
     // Write output
     const outputPath = path.join(OUTPUT_DIR, `${doc.slug}.html`);
     fs.writeFileSync(outputPath, finalHtml);
     console.log(`  ✓ dist/${doc.slug}.html`);
-
+    
     return true;
   } catch (error) {
     console.error(`  ✗ Error: ${error.message}`);
@@ -403,20 +435,20 @@ async function buildAll(options = {}) {
   console.log('║   Raeez.com Static Site Generator         ║');
   console.log('╚═══════════════════════════════════════════╝');
   console.log(`\nBuilding ${docs.length} documents...`);
-
+  
   let success = 0;
   let failed = 0;
-
+  
   for (const doc of docs) {
     const result = await buildDocument(doc, options);
     if (result) success++;
     else failed++;
   }
-
+  
   console.log('\n════════════════════════════════════════════');
   console.log(`  ✓ ${success} built   ✗ ${failed} failed`);
   console.log('════════════════════════════════════════════\n');
-
+  
   return failed === 0;
 }
 
@@ -428,10 +460,10 @@ async function fetchAll(options = {}) {
   console.log('║   Fetching Google Docs Content            ║');
   console.log('╚═══════════════════════════════════════════╝');
   console.log(`\nFetching ${docs.length} documents...\n`);
-
+  
   let success = 0;
   let failed = 0;
-
+  
   for (const doc of docs) {
     console.log(`📥 ${doc.slug}`);
     try {
@@ -442,7 +474,7 @@ async function fetchAll(options = {}) {
       failed++;
     }
   }
-
+  
   console.log('\n════════════════════════════════════════════');
   console.log(`  ✓ ${success} fetched   ✗ ${failed} failed`);
   console.log('════════════════════════════════════════════\n');
@@ -453,39 +485,39 @@ async function fetchAll(options = {}) {
  */
 async function main() {
   const args = process.argv.slice(2);
-
+  
   // Parse flags
   const force = args.includes('--force');
   const appsScript = args.includes('--apps-script');
   const fetchOnly = args.includes('--fetch');
-
+  
   // Get non-flag arguments
   const positional = args.filter(a => !a.startsWith('--'));
-
+  
   if (force) {
     console.log('Clearing cache...');
     fs.rmSync(CACHE_DIR, { recursive: true, force: true });
     fs.mkdirSync(CACHE_DIR, { recursive: true });
   }
-
+  
   if (fetchOnly) {
     // Just fetch, don't build
     await fetchAll({ appsScript });
     return;
   }
-
+  
   if (positional.length > 0) {
     // Build specific document
     const slug = positional[0];
     const doc = docs.find(d => d.slug === slug);
-
+    
     if (!doc) {
       console.error(`Document not found: ${slug}`);
       console.log('\nAvailable documents:');
       docs.forEach(d => console.log(`  - ${d.slug}`));
       process.exit(1);
     }
-
+    
     const success = await buildDocument(doc, { force, appsScript });
     process.exit(success ? 0 : 1);
   } else {
