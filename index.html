@@ -36,6 +36,8 @@
 
         :root {
             --serif: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
+            --serif-display: 'garamond-premier-pro-display', 'garamond-premier-pro', 'EB Garamond', Garamond, serif;
+            --serif-caption: 'garamond-premier-pro-caption', 'garamond-premier-pro', 'EB Garamond', Garamond, serif;
             --mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
 
             /* Type Scale: Perfect Fourth (1.333) */
@@ -46,8 +48,9 @@
 
             /* Baseline Grid: 8px */
             --baseline: 8px;
-            --line-height-tight: 1.35;
-            --line-height-base: 1.618;
+            --line-height-tight: 1.3;
+            --line-height-base: 1.55;
+            --line-height-loose: 1.7;
 
             /* Spacing Scale: Fibonacci-inspired */
             --space-xs: calc(var(--baseline) * 1);    /*  8px */
@@ -62,19 +65,21 @@
             --measure-base: 640px;
             --gutter: calc(var(--baseline) * 3);
 
-            /* Colors */
+            /* Colors — refined for better hierarchy */
             --ink: #1a1917;
-            --ink-secondary: #57534e;
-            --ink-tertiary: #a8a29e;
-            --ink-ghost: #d6d3d1;
+            --ink-secondary: #4a4744;
+            --ink-tertiary: #8a8580;
+            --ink-ghost: #bab5b0;
+            --ink-whisper: #d6d3d1;
             --paper: #fefdfb;
-            --paper-alt: #fafaf9;
+            --paper-alt: #f9f8f6;
 
             /* Optical Adjustments */
-            --optical-edge: -0.05em;
-            --kern-tight: -0.02em;
-            --kern-loose: 0.015em;
-            --kern-ultra: 0.12em;
+            --optical-edge: -0.03em;
+            --kern-tight: -0.015em;
+            --kern-normal: 0;
+            --kern-loose: 0.02em;
+            --kern-caps: 0.06em;
         }
 
         html {
@@ -88,13 +93,21 @@
             font-family: var(--serif);
             font-size: var(--text-base);
             font-weight: 400;
-            font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1, "pnum" 1;
+            /* Full OpenType feature deployment */
+            font-feature-settings: 
+                "kern" 1,  /* Kerning */
+                "liga" 1,  /* Standard ligatures: fi, fl, ff, ffi, ffl */
+                "calt" 1,  /* Contextual alternates */
+                "onum" 1,  /* Old-style figures */
+                "pnum" 1,  /* Proportional figures */
+                "dlig" 1;  /* Discretionary ligatures: ct, st */
             line-height: var(--line-height-base);
             color: var(--ink);
             background: var(--paper);
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
         }
 
         /* ════════════════════════════════════════════
@@ -130,10 +143,12 @@
            Header Typography
            ════════════════════════════════════════════ */
         .name {
-            font-size: var(--text-tiny);
-            font-weight: 500;
-            letter-spacing: var(--kern-ultra);
-            text-transform: uppercase;
+            font-size: var(--text-base);
+            font-weight: 400;
+            /* True small caps from the font, not fake uppercase */
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1;
+            letter-spacing: var(--kern-caps);
             color: var(--ink);
             margin-bottom: var(--space-xs);
             margin-left: var(--optical-edge);
@@ -144,28 +159,37 @@
             font-style: italic;
             color: var(--ink-tertiary);
             margin-bottom: var(--space-md);
+            letter-spacing: 0.005em;
         }
 
         /* ════════════════════════════════════════════
            Bio Section
            ════════════════════════════════════════════ */
         .bio {
-            font-size: calc(var(--text-base) * 0.95);
-            line-height: var(--line-height-base);
+            font-size: var(--text-base);
+            line-height: var(--line-height-loose);
             color: var(--ink);
             margin-bottom: var(--space-lg);
             max-width: var(--measure-narrow);
             hyphens: auto;
             hyphenate-limit-chars: 6 3 2;
             hyphenate-limit-lines: 2;
+            text-align: left;
         }
 
         .bio p {
             margin-bottom: var(--space-md);
+            text-indent: 0;
         }
 
         .bio p:last-child {
             margin-bottom: 0;
+        }
+
+        /* First letter subtle emphasis */
+        .bio p:first-of-type::first-letter {
+            font-size: 1.05em;
+            font-weight: 500;
         }
 
         /* ════════════════════════════════════════════
@@ -190,22 +214,25 @@
         }
 
         .photo-caption {
+            font-family: var(--serif-caption);
             font-size: var(--text-small);
             color: var(--ink-tertiary);
             font-style: italic;
             margin-bottom: var(--space-md);
-            line-height: 1.5;
+            line-height: 1.45;
+            letter-spacing: 0.005em;
         }
 
         /* ════════════════════════════════════════════
            Section Headers
            ════════════════════════════════════════════ */
         .section-header {
-            font-size: var(--text-tiny);
-            font-weight: 500;
-            letter-spacing: var(--kern-ultra);
-            text-transform: uppercase;
-            color: var(--ink);
+            font-size: var(--text-small);
+            font-weight: 400;
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1;
+            letter-spacing: var(--kern-caps);
+            color: var(--ink-secondary);
             margin-top: var(--space-lg);
             margin-bottom: var(--space-md);
             margin-left: var(--optical-edge);
@@ -248,7 +275,7 @@
         }
         
         .project-item:hover .content a {
-            color: #000;
+            text-decoration-color: var(--ink-tertiary);
         }
 
         /* Items with subtitles need slightly more bottom space */
@@ -257,30 +284,37 @@
         }
 
         .year {
-            font-size: var(--text-tiny);
+            font-size: var(--text-small);
             font-weight: 400;
+            /* Tabular lining figures for dates */
             font-feature-settings: "tnum" 1, "lnum" 1;
             color: var(--ink-ghost);
-            letter-spacing: var(--kern-loose);
+            letter-spacing: var(--kern-normal);
             white-space: nowrap;
+            transition: color 150ms ease;
         }
 
         .content {
-            font-size: calc(var(--text-base) * 0.95);
+            font-size: var(--text-base);
             line-height: var(--line-height-tight);
         }
 
         .content a {
             color: var(--ink);
-            text-decoration: none;
-            background: linear-gradient(var(--ink-tertiary), var(--ink-tertiary)) 0 100% / 100% 1px no-repeat;
-            transition: color 150ms ease, background 150ms ease;
+            /* Refined underline: skip descenders, use appropriate thickness */
+            text-decoration: underline;
+            text-decoration-color: var(--ink-whisper);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.15em;
+            text-decoration-skip-ink: auto;
+            transition: text-decoration-color 150ms ease, color 150ms ease;
             cursor: pointer;
         }
 
         .content a:hover {
-            color: #000;
-            background: linear-gradient(#000, #000) 0 100% / 100% 2px no-repeat;
+            color: var(--ink);
+            text-decoration-color: var(--ink);
+            text-decoration-thickness: 1.5px;
         }
 
         .subtitle {
@@ -289,20 +323,23 @@
             color: var(--ink-tertiary);
             margin-top: var(--space-xs);
             font-style: italic;
-            line-height: 1.4;
+            line-height: 1.45;
         }
 
         .subtitle a {
             color: var(--ink-tertiary);
-            text-decoration: none;
-            background: linear-gradient(var(--ink-ghost), var(--ink-ghost)) 0 100% / 100% 1px no-repeat;
-            transition: color 150ms ease, background 150ms ease;
+            text-decoration: underline;
+            text-decoration-color: var(--ink-whisper);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.12em;
+            text-decoration-skip-ink: auto;
+            transition: color 150ms ease, text-decoration-color 150ms ease;
             cursor: pointer;
         }
 
         .subtitle a:hover {
             color: var(--ink-secondary);
-            background: linear-gradient(var(--ink-secondary), var(--ink-secondary)) 0 100% / 100% 1px no-repeat;
+            text-decoration-color: var(--ink-secondary);
         }
 
         .subtitle code {
@@ -320,15 +357,18 @@
            ════════════════════════════════════════════ */
         .bio a {
             color: var(--ink);
-            text-decoration: none;
-            background: linear-gradient(var(--ink-tertiary), var(--ink-tertiary)) 0 100% / 100% 1px no-repeat;
-            transition: color 150ms ease, background 150ms ease;
+            text-decoration: underline;
+            text-decoration-color: var(--ink-whisper);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.15em;
+            text-decoration-skip-ink: auto;
+            transition: text-decoration-color 150ms ease;
             cursor: pointer;
         }
 
         .bio a:hover {
-            color: #000;
-            background: linear-gradient(#000, #000) 0 100% / 100% 2px no-repeat;
+            text-decoration-color: var(--ink);
+            text-decoration-thickness: 1.5px;
         }
 
         a:focus-visible {
