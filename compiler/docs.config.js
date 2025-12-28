@@ -1,6 +1,6 @@
 /**
  * Document Configuration
- * 
+ *
  * Each document has:
  * - id: Google Doc ID
  * - slug: Output filename (without .html)
@@ -76,6 +76,9 @@ module.exports = [
     description: 'The complete open-source stack for building and operating Special Economic Zones.',
     filterPatterns: [
       'MOMENTUM OPEN SOURCE SEZ STACK',
+      'THE MOMENTUM OPEN SOURCE SEZ STACK',
+      'DECEMBER 2025',
+      'RAEEZ LORGAT',
       'TECHNICAL SPECIFICATION',
       'PROGRAMMABLE JURISDICTIONAL',
       'VERSION',
@@ -113,6 +116,7 @@ module.exports = [
     description: 'A strategic specification for buildings as autonomous economic entities.',
     filterPatterns: [
       'SMART BUILDINGS',
+      'OCTOBER 28, 2025',
       'PROGRAMMABLE BUILT ENVIRONMENT',
       'OPERATING SYSTEM',
       'JAN BUNGE',
