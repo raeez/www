@@ -94,7 +94,7 @@
             font-size: var(--text-base);
             font-weight: 400;
             /* Full OpenType feature deployment */
-            font-feature-settings: 
+            font-feature-settings:
                 "kern" 1,  /* Kerning */
                 "liga" 1,  /* Standard ligatures: fi, fl, ff, ffi, ffl */
                 "calt" 1,  /* Contextual alternates */
@@ -169,7 +169,7 @@
             font-size: var(--text-base);
             line-height: var(--line-height-loose);
             color: var(--ink);
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-md);
             max-width: var(--measure-narrow);
             hyphens: auto;
             hyphenate-limit-chars: 6 3 2;
@@ -231,16 +231,21 @@
             font-weight: 400;
             font-variant-caps: small-caps;
             font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1;
-            letter-spacing: var(--kern-caps);
-            color: var(--ink-secondary);
+            letter-spacing: 0.08em;
+            color: var(--ink-tertiary);
             margin-top: var(--space-lg);
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-sm);
             margin-left: var(--optical-edge);
         }
 
-        /* First section header after roles list needs more space */
+        /* First section header after bio needs less top margin */
+        .bio + .section-header {
+            margin-top: var(--space-md);
+        }
+
+        /* Subsequent sections maintain rhythm */
         .roles-list + .section-header {
-            margin-top: var(--space-xl);
+            margin-top: var(--space-lg);
         }
 
         /* ════════════════════════════════════════════
@@ -252,11 +257,12 @@
 
         .project-item {
             display: grid;
-            grid-template-columns: 4.5rem 1fr;
+            grid-template-columns: 4rem 1fr;
             gap: var(--space-sm);
             align-items: baseline;
+            padding-top: var(--space-xs);
             padding-bottom: var(--space-sm);
-            margin-bottom: var(--space-xs);
+            margin-bottom: 0;
             cursor: pointer;
             border-radius: 4px;
             margin-left: calc(-1 * var(--space-sm));
@@ -264,23 +270,23 @@
             padding-right: var(--space-sm);
             transition: transform 150ms ease, background-color 150ms ease;
         }
-        
+
         .project-item:hover {
-            transform: translateX(6px);
+            transform: translateX(4px);
             background-color: var(--paper-alt);
         }
-        
+
         .project-item:hover .year {
-            color: var(--ink-secondary);
+            color: var(--ink);
         }
-        
+
         .project-item:hover .content a {
             text-decoration-color: var(--ink-tertiary);
         }
 
         /* Items with subtitles need slightly more bottom space */
         .project-item:has(.subtitle) {
-            padding-bottom: calc(var(--space-sm) + var(--space-xs));
+            padding-bottom: var(--space-sm);
         }
 
         .year {
@@ -288,15 +294,15 @@
             font-weight: 400;
             /* Tabular lining figures for dates */
             font-feature-settings: "tnum" 1, "lnum" 1;
-            color: var(--ink-ghost);
-            letter-spacing: var(--kern-normal);
+            color: var(--ink-tertiary);
+            letter-spacing: 0.01em;
             white-space: nowrap;
             transition: color 150ms ease;
         }
 
         .content {
             font-size: var(--text-base);
-            line-height: var(--line-height-tight);
+            line-height: 1.4;
         }
 
         .content a {
@@ -436,29 +442,6 @@
             .project-item { page-break-inside: avoid; }
         }
 
-        /* ════════════════════════════════════════════
-           Interactions
-           ════════════════════════════════════════════ */
-        .project-item {
-            cursor: pointer;
-            border-radius: 4px;
-            margin-left: calc(-1 * var(--space-sm));
-            padding-left: var(--space-sm);
-            transition: transform 150ms ease, background-color 150ms ease;
-        }
-        
-        .project-item:hover {
-            transform: translateX(6px);
-            background-color: var(--paper-alt);
-        }
-        
-        .project-item:hover .year {
-            color: var(--ink-secondary);
-        }
-        
-        .project-item:hover .content a {
-            color: #000;
-        }
     </style>
 </head>
 <body>
@@ -487,6 +470,8 @@
         <p>Now I'm building <a href="https://mass.inc">Mass</a>—programmable jurisdiction infrastructure that turns incorporation, compliance, and banking into APIs. Mass is the operating system for a <a href="https://raeez.com/smart-assets.html">new kind of decentralized network</a>, live across the US, Cayman, BVI and the Special Economic Zone Próspera ZEDE on the island of <a href="https://en.wikipedia.org/wiki/Roat%C3%A1n">Roatán, Honduras</a>. In 2026 and beyond we're expanding into Abu Dhabi, Dubai, Kazakhstan, Korea, Indonesia and China.</p>
     </div>
 
+    <h2 class="section-header">Experience</h2>
+
     <ul class="project-list roles-list">
         <li class="project-item">
             <span class="year">2025–</span>
@@ -512,7 +497,7 @@
         <li class="project-item">
             <span class="year">2025</span>
             <span class="content">
-                <a href="sez-stack.html">Open Source SEZ Legal Stack</a>
+                <a href="sez-stack.html">Open Source Special Economic Zone Legal, Fiscal & Regulatory Stack</a>
                 <span class="subtitle"><a href="https://github.com/momentum-sez/stack"><code>momentum-sez/stack</code> public github repository</a></span>
             </span>
         </li>
