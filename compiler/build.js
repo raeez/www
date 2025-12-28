@@ -146,35 +146,119 @@ async function getDocContent(doc, options = {}) {
 }
 
 /**
+ * Check if an element looks like a TOC entry
+ * - Has an internal anchor link (href starts with #)
+ * - Text ends with a number (page number)
+ * - Is relatively short (not a content paragraph)
+ */
+function isTocEntry(element) {
+  const link = element.querySelector('a[href^="#"]');
+  if (!link) return false;
+  
+  const text = element.textContent.trim();
+  
+  // Must end with a number (page number)
+  if (!/\d+\s*$/.test(text)) return false;
+  
+  // Should be relatively short (TOC entries are typically under 120 chars)
+  if (text.length > 120) return false;
+  
+  // Should not be a very long paragraph
+  const words = text.split(/\s+/).length;
+  if (words > 20) return false;
+  
+  return true;
+}
+
+/**
+ * Check if text matches a TOC heading pattern
+ */
+function isTocHeading(text) {
+  const normalized = text.trim().toLowerCase().replace(/[:\s]+$/, '');
+  return normalized === 'table of contents' || 
+         normalized === 'contents' ||
+         normalized === 'toc';
+}
+
+/**
  * Detect and wrap Table of Contents in a styled container
+ * Handles multiple cases:
+ * 1. Explicit TOC heading followed by links
+ * 2. No heading, but consecutive TOC-like entries (links ending with page numbers)
  */
 function wrapTableOfContents(container, contentDoc) {
-  // Find TOC heading
-  const headings = container.querySelectorAll('h1, h2, h3, p');
-  let tocHeading = null;
+  const allElements = Array.from(container.querySelectorAll('h1, h2, h3, h4, h5, h6, p'));
   
-  for (const h of headings) {
-    const text = h.textContent.trim().toUpperCase();
-    if (text === 'TABLE OF CONTENTS' || text === 'CONTENTS') {
-      tocHeading = h;
+  let tocHeading = null;
+  let tocHeadingIndex = -1;
+  let tocEntries = [];
+  
+  // Strategy 1: Look for explicit TOC heading
+  for (let i = 0; i < allElements.length; i++) {
+    const el = allElements[i];
+    if (isTocHeading(el.textContent)) {
+      tocHeading = el;
+      tocHeadingIndex = i;
       break;
     }
   }
   
-  if (!tocHeading) return;
-  
-  // Collect TOC entries (paragraphs with internal links following the heading)
-  const tocEntries = [];
-  let sibling = tocHeading.nextElementSibling;
-  
-  while (sibling) {
-    const link = sibling.querySelector('a[href^="#"]');
-    if (!link) break; // End of TOC
-    tocEntries.push(sibling);
-    sibling = sibling.nextElementSibling;
+  // If we found a heading, collect entries after it
+  if (tocHeading) {
+    for (let i = tocHeadingIndex + 1; i < allElements.length; i++) {
+      const el = allElements[i];
+      if (isTocEntry(el)) {
+        tocEntries.push(el);
+      } else if (tocEntries.length > 0) {
+        // Stop when we hit non-TOC content after finding some entries
+        break;
+      }
+      // Skip non-TOC elements before first entry (like blank paragraphs)
+    }
   }
   
-  if (tocEntries.length === 0) return;
+  // Strategy 2: No heading found - look for consecutive TOC entries
+  if (!tocHeading || tocEntries.length === 0) {
+    let consecutiveEntries = [];
+    let bestRun = [];
+    let bestRunStart = -1;
+    let currentRunStart = -1;
+    
+    for (let i = 0; i < allElements.length; i++) {
+      const el = allElements[i];
+      
+      if (isTocEntry(el)) {
+        if (consecutiveEntries.length === 0) {
+          currentRunStart = i;
+        }
+        consecutiveEntries.push(el);
+      } else {
+        // End of a run - check if it's the best one
+        if (consecutiveEntries.length >= 3 && consecutiveEntries.length > bestRun.length) {
+          bestRun = [...consecutiveEntries];
+          bestRunStart = currentRunStart;
+        }
+        consecutiveEntries = [];
+        currentRunStart = -1;
+      }
+    }
+    
+    // Check final run
+    if (consecutiveEntries.length >= 3 && consecutiveEntries.length > bestRun.length) {
+      bestRun = consecutiveEntries;
+      bestRunStart = currentRunStart;
+    }
+    
+    // Use the best run if we found one
+    if (bestRun.length >= 3) {
+      tocEntries = bestRun;
+      tocHeading = null; // We'll create one
+      tocHeadingIndex = bestRunStart;
+    }
+  }
+  
+  // Need at least 3 entries to consider it a TOC
+  if (tocEntries.length < 3) return;
   
   // Create TOC wrapper
   const tocNav = contentDoc.createElement('nav');
@@ -198,28 +282,43 @@ function wrapTableOfContents(container, contentDoc) {
     
     const text = link.textContent.trim();
     
-    // Detect indentation level from numbering (1.1, 1.1.1, etc.)
-    const match = text.match(/^(\d+\.)+\d*/);
-    if (match) {
-      const dots = (match[0].match(/\./g) || []).length;
+    // Detect indentation level from numbering patterns
+    // "1.1" = level 1, "1.1.1" = level 2, etc.
+    const dotMatch = text.match(/^(\d+\.)+\d*/);
+    // "1)" or "2)" format = level 0
+    const parenMatch = text.match(/^\d+\)/);
+    // "Part I:" or "Chapter 1:" format = level 0
+    const partMatch = text.match(/^(PART|CHAPTER|SECTION|APPENDIX|PILLAR)\s*\d*/i);
+    
+    if (dotMatch) {
+      const dots = (dotMatch[0].match(/\./g) || []).length;
       li.className = `toc-level-${Math.min(dots, 3)}`;
-    } else if (text.match(/^(PART|CHAPTER|SECTION|APPENDIX)/i)) {
+    } else if (partMatch) {
+      li.className = 'toc-level-0';
+    } else if (parenMatch) {
       li.className = 'toc-level-0';
     }
+    // Default: no class (base level)
     
     // Clone the link
     const newLink = link.cloneNode(true);
     li.appendChild(newLink);
     tocList.appendChild(li);
-    
-    // Remove original entry
-    entry.remove();
   });
   
   tocNav.appendChild(tocList);
   
-  // Replace TOC heading with the new nav
-  tocHeading.replaceWith(tocNav);
+  // Insert the TOC nav and remove old elements
+  if (tocHeading) {
+    // Replace the heading with our new nav
+    tocHeading.replaceWith(tocNav);
+  } else {
+    // Insert before the first TOC entry
+    tocEntries[0].parentNode.insertBefore(tocNav, tocEntries[0]);
+  }
+  
+  // Remove the original TOC entries
+  tocEntries.forEach(entry => entry.remove());
 }
 
 /**
@@ -263,12 +362,21 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
     }
   });
   
-  // Wrap Table of Contents before cleaning (needs structure intact)
+  // Wrap Table of Contents (before cleaning removes structure)
   wrapTableOfContents(container, contentDoc);
   
   // Clean up styles and classes
   container.querySelectorAll('*').forEach(el => {
-    el.removeAttribute('class');
+    // Preserve TOC classes
+    const className = el.className;
+    const isTocElement = className && (
+      className.includes('toc') || 
+      className.includes('toc-')
+    );
+    
+    if (!isTocElement) {
+      el.removeAttribute('class');
+    }
     
     // Preserve IDs on headings (for TOC links)
     const tagName = el.tagName.toLowerCase();
@@ -289,28 +397,6 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
       }
     }
   });
-  
-  // Re-add TOC classes after the general class removal
-  const tocNav = container.querySelector('nav[aria-label="Table of Contents"]');
-  if (tocNav) {
-    tocNav.className = 'toc';
-    const tocTitle = tocNav.querySelector('h2');
-    if (tocTitle) tocTitle.className = 'toc-title';
-    const tocList = tocNav.querySelector('ul');
-    if (tocList) tocList.className = 'toc-list';
-    
-    // Re-apply level classes to list items
-    tocList.querySelectorAll('li').forEach((li, idx) => {
-      const text = li.textContent.trim();
-      const match = text.match(/^(\d+\.)+\d*/);
-      if (match) {
-        const dots = (match[0].match(/\./g) || []).length;
-        li.className = `toc-level-${Math.min(dots, 3)}`;
-      } else if (text.match(/^(PART|CHAPTER|SECTION|APPENDIX)/i)) {
-        li.className = 'toc-level-0';
-      }
-    });
-  }
   
   // Unwrap meaningless spans
   container.querySelectorAll('span').forEach(span => {
