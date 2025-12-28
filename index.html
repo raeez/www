@@ -38,26 +38,31 @@
             --serif: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
             --mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
 
+            /* Type Scale: Perfect Fourth (1.333) */
             --scale-ratio: 1.333;
             --text-base: clamp(19px, 2.1vw, 22px);
             --text-small: calc(var(--text-base) / var(--scale-ratio));
             --text-tiny: calc(var(--text-small) / var(--scale-ratio));
 
+            /* Baseline Grid: 8px */
             --baseline: 8px;
             --line-height-tight: 1.35;
             --line-height-base: 1.618;
 
-            --space-quantum: var(--baseline);
-            --space-atom: calc(var(--space-quantum) * 2);
-            --space-molecule: calc(var(--space-quantum) * 3);
-            --space-organism: calc(var(--space-quantum) * 5);
-            --space-ecosystem: calc(var(--space-quantum) * 8);
-            --space-universe: calc(var(--space-quantum) * 13);
+            /* Spacing Scale: Fibonacci-inspired */
+            --space-xs: calc(var(--baseline) * 1);    /*  8px */
+            --space-sm: calc(var(--baseline) * 2);    /* 16px */
+            --space-md: calc(var(--baseline) * 3);    /* 24px */
+            --space-lg: calc(var(--baseline) * 5);    /* 40px */
+            --space-xl: calc(var(--baseline) * 8);    /* 64px */
+            --space-2xl: calc(var(--baseline) * 13);  /* 104px */
 
+            /* Measures */
             --measure-narrow: 580px;
             --measure-base: 640px;
-            --gutter: calc(var(--space-atom) * 1.618);
+            --gutter: calc(var(--baseline) * 3);
 
+            /* Colors */
             --ink: #1a1917;
             --ink-secondary: #57534e;
             --ink-tertiary: #a8a29e;
@@ -65,6 +70,7 @@
             --paper: #fefdfb;
             --paper-alt: #fafaf9;
 
+            /* Optical Adjustments */
             --optical-edge: -0.05em;
             --kern-tight: -0.02em;
             --kern-loose: 0.015em;
@@ -91,19 +97,24 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* ════════════════════════════════════════════
+           Layout
+           ════════════════════════════════════════════ */
         .container {
             max-width: calc(var(--measure-base) + var(--baseline) * 14);
             margin: 0 auto;
-            padding: var(--space-universe) var(--gutter) var(--space-ecosystem);
+            padding: var(--space-2xl) var(--gutter) var(--space-xl);
             padding-left: calc(var(--baseline) * 20);
             position: relative;
         }
 
-        /* Profile Image */
+        /* ════════════════════════════════════════════
+           Profile Image
+           ════════════════════════════════════════════ */
         .profile-image {
             position: absolute;
             left: calc(var(--gutter) * 1.2);
-            top: var(--space-universe);
+            top: var(--space-2xl);
             width: calc(var(--baseline) * 12);
             height: calc(var(--baseline) * 12);
             border-radius: 50%;
@@ -115,14 +126,16 @@
                 0 4px 8px rgba(0,0,0,0.02);
         }
 
-        /* Typography */
+        /* ════════════════════════════════════════════
+           Header Typography
+           ════════════════════════════════════════════ */
         .name {
             font-size: var(--text-tiny);
             font-weight: 500;
             letter-spacing: var(--kern-ultra);
             text-transform: uppercase;
             color: var(--ink);
-            margin-bottom: var(--space-atom);
+            margin-bottom: var(--space-xs);
             margin-left: var(--optical-edge);
         }
 
@@ -130,14 +143,17 @@
             font-size: var(--text-small);
             font-style: italic;
             color: var(--ink-tertiary);
-            margin-bottom: var(--space-organism);
+            margin-bottom: var(--space-lg);
         }
 
+        /* ════════════════════════════════════════════
+           Bio Section
+           ════════════════════════════════════════════ */
         .bio {
             font-size: calc(var(--text-base) * 0.95);
             line-height: var(--line-height-base);
             color: var(--ink);
-            margin-bottom: var(--space-ecosystem);
+            margin-bottom: var(--space-lg);
             max-width: var(--measure-narrow);
             hyphens: auto;
             hyphenate-limit-chars: 6 3 2;
@@ -145,25 +161,64 @@
         }
 
         .bio p {
-            margin-bottom: var(--space-molecule);
+            margin-bottom: var(--space-md);
         }
 
         .bio p:last-child {
             margin-bottom: 0;
         }
 
+        /* ════════════════════════════════════════════
+           Photo Grid
+           ════════════════════════════════════════════ */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-md) 0 var(--space-xs);
+        }
+
+        .photo-grid.single {
+            grid-template-columns: 1fr;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            filter: contrast(1.02);
+        }
+
+        .photo-caption {
+            font-size: var(--text-small);
+            color: var(--ink-tertiary);
+            font-style: italic;
+            margin-bottom: var(--space-md);
+            line-height: 1.5;
+        }
+
+        /* ════════════════════════════════════════════
+           Section Headers
+           ════════════════════════════════════════════ */
         .section-header {
             font-size: var(--text-tiny);
             font-weight: 500;
             letter-spacing: var(--kern-ultra);
             text-transform: uppercase;
             color: var(--ink);
-            margin-top: var(--space-ecosystem);
-            margin-bottom: var(--space-molecule);
+            margin-top: var(--space-lg);
+            margin-bottom: var(--space-md);
             margin-left: var(--optical-edge);
         }
 
-        /* Lists */
+        /* First section header after roles list needs more space */
+        .roles-list + .section-header {
+            margin-top: var(--space-xl);
+        }
+
+        /* ════════════════════════════════════════════
+           Project Lists
+           ════════════════════════════════════════════ */
         .project-list {
             list-style: none;
         }
@@ -171,9 +226,15 @@
         .project-item {
             display: grid;
             grid-template-columns: 4.5rem 1fr;
-            gap: var(--space-atom);
+            gap: var(--space-sm);
             align-items: baseline;
-            margin-bottom: calc(var(--baseline) * 1.5);
+            padding-bottom: var(--space-sm);
+            margin-bottom: var(--space-xs);
+        }
+
+        /* Items with subtitles need slightly more bottom space */
+        .project-item:has(.subtitle) {
+            padding-bottom: calc(var(--space-sm) + var(--space-xs));
         }
 
         .year {
@@ -208,8 +269,9 @@
             display: block;
             font-size: var(--text-small);
             color: var(--ink-tertiary);
-            margin-top: calc(var(--baseline) * 0.5);
+            margin-top: var(--space-xs);
             font-style: italic;
+            line-height: 1.4;
         }
 
         .subtitle a {
@@ -235,53 +297,21 @@
             font-style: italic;
         }
 
-        /* Responsive */
-        @media (max-width: 640px) {
-            .container {
-                padding-left: var(--gutter);
-                padding-right: var(--gutter);
-            }
-
-            .profile-image {
-                position: relative;
-                left: auto;
-                top: auto;
-                margin-bottom: var(--space-organism);
-            }
-
-            .project-item {
-                grid-template-columns: 1fr;
-                gap: calc(var(--baseline) * 0.5);
-            }
-
-            .year {
-                color: var(--ink-tertiary);
-            }
+        /* ════════════════════════════════════════════
+           Links
+           ════════════════════════════════════════════ */
+        .bio a {
+            color: var(--ink);
+            text-decoration: none;
+            background-image: linear-gradient(var(--ink-ghost), var(--ink-ghost));
+            background-size: 100% 1px;
+            background-position: 0 100%;
+            background-repeat: no-repeat;
+            transition: background-size 200ms ease;
         }
 
-        /* Print */
-        @media print {
-            :root {
-                --ink: #000;
-                --paper: #fff;
-            }
-
-            body { font-size: 11pt; line-height: 1.4; }
-            .container { max-width: 100%; padding: 0; }
-            .profile-image { display: none; }
-            a { background: none; border-bottom: 0.5pt solid #ddd; }
-            .section-header { page-break-after: avoid; }
-            .project-item { page-break-inside: avoid; }
-        }
-
-        /* Interactions */
-        @media (hover: hover) {
-            .project-item {
-                transition: transform 100ms ease;
-            }
-            .project-item:hover {
-                transform: translateX(2px);
-            }
+        .bio a:hover {
+            background-size: 100% 2px;
         }
 
         a:focus-visible {
@@ -295,31 +325,63 @@
             color: var(--paper);
         }
 
+        /* ════════════════════════════════════════════
+           Responsive
+           ════════════════════════════════════════════ */
+        @media (max-width: 640px) {
+            .container {
+                padding: var(--space-xl) var(--gutter) var(--space-lg);
+                padding-left: var(--gutter);
+            }
 
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 16px;
+            .profile-image {
+                position: relative;
+                left: auto;
+                top: auto;
+                margin-bottom: var(--space-lg);
+            }
+
+            .project-item {
+                grid-template-columns: 1fr;
+                gap: var(--space-xs);
+            }
+
+            .year {
+                color: var(--ink-tertiary);
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .photo-grid.single {
-            grid-template-columns: 1fr;
+        /* ════════════════════════════════════════════
+           Print
+           ════════════════════════════════════════════ */
+        @media print {
+            :root {
+                --ink: #000;
+                --paper: #fff;
+            }
+
+            body { font-size: 11pt; line-height: 1.4; }
+            .container { max-width: 100%; padding: 0; }
+            .profile-image { display: none; }
+            a { background: none !important; border-bottom: 0.5pt solid #ddd; }
+            .section-header { page-break-after: avoid; }
+            .project-item { page-break-inside: avoid; }
         }
 
-        .photo-grid img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            filter: contrast(1.02);
-        }
-
-        .photo-caption {
-            font-size: var(--text-small);
-            color: var(--ink-tertiary);
-            font-style: italic;
-            margin-bottom: 48px;
-            line-height: 1.5;
+        /* ════════════════════════════════════════════
+           Interactions
+           ════════════════════════════════════════════ */
+        @media (hover: hover) {
+            .project-item {
+                transition: transform 100ms ease;
+            }
+            .project-item:hover {
+                transform: translateX(2px);
+            }
         }
     </style>
 </head>
@@ -336,25 +398,23 @@
     <p class="epigraph">"The universe is written in the language of mathematics." — Galileo</p>
 
     <div class="bio">
-      <p>In 2009 <a href="https://raeez.com/devfinance.html">I dropped out of MIT</a> to help build the payments infrastructure that became <a href="https://stripe.com">Stripe</a>. We cold-called banks and wrote the code that would eventually process hundreds of billions of dollars.</p>
+        <p>In 2009 <a href="https://raeez.com/devfinance.html">I dropped out of MIT</a> to help build the payments infrastructure that became <a href="https://stripe.com">Stripe</a>. We cold-called banks and wrote the code that would eventually process hundreds of billions of dollars.</p>
 
         <div class="photo-grid">
             <img src="IMG_1975.JPG" alt="Late night coding, 2010">
             <img src="IMG_1976.JPG" alt="The apartment office">
         </div>
-        <p class="photo-caption">
-            /dev/finance inc. office at 701 Webster Street, Palo Alto, CA circa 2010.
-        </p>
+        <p class="photo-caption">/dev/finance inc. office at 701 Webster Street, Palo Alto, CA circa 2010.</p>
 
         <p>After Stripe, I returned to the mathematics and physics that had occupied me since childhood—spending a decade at MIT and the <a href="https://perimeterinstitute.ca">Perimeter Institute for Theoretical Physics</a> working on <a href="https://en.wikipedia.org/wiki/Arithmetic_geometry">arithmetic geometry</a>, <a href="https://en.wikipedia.org/wiki/Factorization_algebra">factorization algebras</a>, and the geometry of <a href="https://en.wikipedia.org/wiki/Quantum_field_theory">quantum field theory</a>. The mathematics I study—how local structures compose into global ones—shapes how I think about institutional design.</p>
 
         <p>Now I'm building <a href="https://mass.inc">Mass</a>—programmable jurisdiction infrastructure that turns incorporation, compliance, and banking into APIs. Mass is the operating system for a <a href="https://raeez.com/smart-assets.html">new kind of decentralized network</a>, live across the US, Cayman, BVI and the Special Economic Zone Próspera ZEDE on the island of <a href="https://en.wikipedia.org/wiki/Roat%C3%A1n">Roatán, Honduras</a>. In 2026 and beyond we're expanding into Abu Dhabi, Dubai, Kazakhstan, Korea, Indonesia and China.</p>
     </div>
 
-    <ul class="project-list">
+    <ul class="project-list roles-list">
         <li class="project-item">
             <span class="year">2025–</span>
-            <span class="content"><a href="https://momentum.inc">Founder & Managing Partner of Momentum— bootstrapping novel post-blockchain decentralized networks</a></span>
+            <span class="content"><a href="https://momentum.inc">Founder & Managing Partner of Momentum—bootstrapping novel post-blockchain decentralized networks</a></span>
         </li>
         <li class="project-item">
             <span class="year">2024–</span>

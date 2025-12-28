@@ -365,6 +365,29 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
   // Wrap Table of Contents (before cleaning removes structure)
   wrapTableOfContents(container, contentDoc);
   
+  // Convert styled spans to semantic elements BEFORE stripping styles
+  // Google Docs uses spans with inline styles for formatting
+  container.querySelectorAll('span').forEach(span => {
+    const style = span.getAttribute('style') || '';
+    
+    // Check for italic
+    if (style.includes('font-style:italic') || style.includes('font-style: italic')) {
+      const em = contentDoc.createElement('em');
+      em.innerHTML = span.innerHTML;
+      span.replaceWith(em);
+      return;
+    }
+    
+    // Check for bold
+    if (style.includes('font-weight:700') || style.includes('font-weight:bold') ||
+        style.includes('font-weight: 700') || style.includes('font-weight: bold')) {
+      const strong = contentDoc.createElement('strong');
+      strong.innerHTML = span.innerHTML;
+      span.replaceWith(strong);
+      return;
+    }
+  });
+  
   // Clean up styles and classes
   container.querySelectorAll('*').forEach(el => {
     // Preserve TOC classes
@@ -446,6 +469,25 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
     table.querySelectorAll('td, th').forEach(cell => {
       cell.removeAttribute('style');
     });
+  });
+  
+  // Remove leading <hr> elements (the header already provides separation)
+  while (container.firstElementChild && container.firstElementChild.tagName === 'HR') {
+    container.firstElementChild.remove();
+  }
+  
+  // Remove <hr> immediately after TOC (redundant visual break)
+  const toc = container.querySelector('.toc');
+  if (toc && toc.nextElementSibling && toc.nextElementSibling.tagName === 'HR') {
+    toc.nextElementSibling.remove();
+  }
+  
+  // Collapse consecutive <hr> elements into one
+  const hrs = container.querySelectorAll('hr');
+  hrs.forEach(hr => {
+    while (hr.nextElementSibling && hr.nextElementSibling.tagName === 'HR') {
+      hr.nextElementSibling.remove();
+    }
   });
   
   // Get cleaned HTML and do final regex cleanups
