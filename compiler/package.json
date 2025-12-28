@@ -1,0 +1,36 @@
+{
+  "name": "raeez-site",
+  "version": "1.0.0",
+  "description": "Static site generator for Raeez Lorgat's research papers",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "build:force": "node build.js --force",
+    "build:one": "node build.js",
+    "fetch": "node build.js --fetch",
+    "fetch:apps-script": "node build.js --fetch --apps-script",
+    "clean": "rm -rf dist .cache",
+    "serve": "npx serve dist -l 3000",
+    "dev": "npm run build && npm run serve",
+    "deploy": "npm run build && npx vercel --prod dist",
+    "deploy:preview": "npm run build && npx vercel dist"
+  },
+  "keywords": [
+    "static-site",
+    "google-docs",
+    "research",
+    "whitepapers"
+  ],
+  "author": "Raeez Lorgat",
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^24.0.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0",
+    "vercel": "^33.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

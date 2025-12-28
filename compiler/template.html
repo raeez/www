@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} — Raeez Lorgat</title>
+
+    <!-- SEO -->
+    <meta name="description" content="{{description}}">
+    <meta name="author" content="Raeez Lorgat">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://raeez.com/{{slug}}.html">
+
+    <!-- Structured data for LLMs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "headline": "{{title}}",
+        "author": {
+            "@type": "Person",
+            "name": "Raeez Lorgat",
+            "url": "https://raeez.com"
+        },
+        "description": "{{description}}"
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JP8T5J8M28');
+    </script>
+
+    <!-- Adobe Fonts: Garamond Pro -->
+    <link rel="stylesheet" href="https://use.typekit.net/YOUR_KIT_ID.css">
+
+    <!-- Fallback -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --serif: 'adobe-garamond-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
+            --mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+
+            --scale-ratio: 1.333;
+            --text-base: clamp(19px, 2.1vw, 22px);
+            --text-small: calc(var(--text-base) / var(--scale-ratio));
+            --text-tiny: calc(var(--text-small) / var(--scale-ratio));
+            --text-large: calc(var(--text-base) * var(--scale-ratio));
+            --text-xlarge: calc(var(--text-large) * var(--scale-ratio));
+            --text-xxlarge: calc(var(--text-xlarge) * var(--scale-ratio));
+
+            --baseline: 8px;
+            --line-height-tight: 1.25;
+            --line-height-base: 1.618;
+            --line-height-loose: 1.75;
+
+            --space-quantum: var(--baseline);
+            --space-atom: calc(var(--space-quantum) * 2);
+            --space-molecule: calc(var(--space-quantum) * 3);
+            --space-organism: calc(var(--space-quantum) * 5);
+            --space-ecosystem: calc(var(--space-quantum) * 8);
+            --space-universe: calc(var(--space-quantum) * 13);
+
+            --measure-narrow: 580px;
+            --measure-base: 640px;
+            --measure-wide: 720px;
+
+            --ink: #1a1917;
+            --ink-secondary: #57534e;
+            --ink-tertiary: #a8a29e;
+            --ink-ghost: #d6d3d1;
+            --paper: #fefdfb;
+            --paper-alt: #fafaf9;
+
+            --optical-edge: -0.05em;
+            --kern-tight: -0.02em;
+            --kern-loose: 0.015em;
+            --kern-ultra: 0.12em;
+        }
+
+        html {
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+            hanging-punctuation: first last;
+        }
+
+        body {
+            font-family: var(--serif);
+            font-size: var(--text-base);
+            font-weight: 400;
+            font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1, "pnum" 1;
+            line-height: var(--line-height-base);
+            color: var(--ink);
+            background: var(--paper);
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: var(--measure-base);
+            margin: 0 auto;
+            padding: var(--space-universe) var(--space-molecule) var(--space-ecosystem);
+        }
+
+        /* Back navigation */
+        .back-nav {
+            font-size: var(--text-tiny);
+            font-weight: 500;
+            letter-spacing: var(--kern-ultra);
+            text-transform: uppercase;
+            margin-bottom: var(--space-ecosystem);
+        }
+
+        .back-nav a {
+            color: var(--ink-tertiary);
+            text-decoration: none;
+            transition: color 200ms ease;
+        }
+
+        .back-nav a:hover {
+            color: var(--ink);
+        }
+
+        /* Article Header */
+        .article-header {
+            margin-bottom: var(--space-ecosystem);
+            padding-bottom: var(--space-organism);
+            border-bottom: 1px solid var(--ink-ghost);
+        }
+
+        .article-title {
+            font-size: var(--text-xxlarge);
+            font-weight: 400;
+            letter-spacing: var(--kern-tight);
+            line-height: var(--line-height-tight);
+            margin-bottom: var(--space-molecule);
+            margin-left: var(--optical-edge);
+        }
+
+        .article-subtitle {
+            font-size: var(--text-large);
+            font-weight: 400;
+            font-style: italic;
+            line-height: var(--line-height-base);
+            color: var(--ink-secondary);
+            max-width: var(--measure-narrow);
+        }
+
+        .article-meta {
+            font-size: var(--text-small);
+            color: var(--ink-tertiary);
+            margin-top: var(--space-molecule);
+        }
+
+        .article-meta a {
+            color: var(--ink-secondary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--ink-ghost);
+            transition: border-color 200ms ease;
+        }
+
+        .article-meta a:hover {
+            border-color: var(--ink-secondary);
+        }
+
+        /* Article Body */
+        .article-body {
+            font-variant-ligatures: common-ligatures;
+        }
+
+        .article-body p {
+            margin-bottom: var(--space-molecule);
+            max-width: var(--measure-base);
+            hyphens: auto;
+            hyphenate-limit-chars: 6 3 2;
+            hyphenate-limit-lines: 2;
+        }
+
+        .article-body h1 {
+            font-size: var(--text-xlarge);
+            font-weight: 600;
+            letter-spacing: var(--kern-tight);
+            line-height: var(--line-height-tight);
+            margin-top: var(--space-universe);
+            margin-bottom: var(--space-molecule);
+            margin-left: var(--optical-edge);
+        }
+
+        .article-body h2 {
+            font-size: var(--text-large);
+            font-weight: 600;
+            letter-spacing: var(--kern-tight);
+            line-height: var(--line-height-tight);
+            margin-top: var(--space-ecosystem);
+            margin-bottom: var(--space-molecule);
+            margin-left: var(--optical-edge);
+        }
+
+        .article-body h3 {
+            font-size: var(--text-base);
+            font-weight: 600;
+            line-height: var(--line-height-tight);
+            margin-top: var(--space-organism);
+            margin-bottom: var(--space-atom);
+        }
+
+        .article-body h4 {
+            font-size: var(--text-base);
+            font-weight: 600;
+            font-style: italic;
+            line-height: var(--line-height-tight);
+            margin-top: var(--space-organism);
+            margin-bottom: var(--space-atom);
+        }
+
+        /* Links */
+        .article-body a {
+            color: var(--ink);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.15em;
+            text-decoration-color: var(--ink-ghost);
+            transition: text-decoration-color 200ms ease;
+        }
+
+        .article-body a:hover {
+            text-decoration-color: var(--ink);
+        }
+
+        .article-body strong {
+            font-weight: 600;
+        }
+
+        .article-body em {
+            font-style: italic;
+        }
+
+        /* Block Quote */
+        .article-body blockquote {
+            margin: var(--space-organism) 0;
+            padding-left: var(--space-molecule);
+            border-left: 2px solid var(--ink-ghost);
+            font-style: italic;
+            color: var(--ink-secondary);
+        }
+
+        /* Code */
+        code {
+            font-family: var(--mono);
+            font-size: 0.75em;
+            letter-spacing: -0.02em;
+            background: var(--paper-alt);
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+            color: var(--ink-secondary);
+        }
+
+        pre {
+            background: var(--ink);
+            color: var(--paper);
+            padding: var(--space-molecule);
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: var(--space-organism) 0;
+            font-size: var(--text-small);
+            line-height: var(--line-height-base);
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            font-size: inherit;
+            color: inherit;
+        }
+
+        /* Lists */
+        .article-body ul,
+        .article-body ol {
+            margin: var(--space-molecule) 0;
+            padding-left: var(--space-molecule);
+        }
+
+        .article-body li {
+            margin-bottom: var(--space-atom);
+        }
+
+        .article-body li::marker {
+            color: var(--ink-tertiary);
+        }
+
+        /* Tables */
+        .article-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-organism) 0;
+            font-size: var(--text-small);
+        }
+
+        .article-body th,
+        .article-body td {
+            padding: var(--space-atom) var(--space-molecule);
+            text-align: left;
+            border-bottom: 1px solid var(--ink-ghost);
+        }
+
+        .article-body th {
+            font-weight: 600;
+            background: var(--paper-alt);
+        }
+
+        /* Images */
+        .article-body img {
+            max-width: 100%;
+            height: auto;
+            margin: var(--space-organism) 0;
+            border-radius: 4px;
+        }
+
+        /* Section Break */
+        .article-body hr {
+            border: none;
+            text-align: center;
+            margin: var(--space-ecosystem) 0;
+        }
+
+        .article-body hr::before {
+            content: '· · ·';
+            color: var(--ink-tertiary);
+            letter-spacing: 0.5em;
+        }
+
+        /* Footer */
+        .article-footer {
+            margin-top: var(--space-ecosystem);
+            padding-top: var(--space-organism);
+            border-top: 1px solid var(--ink-ghost);
+            font-size: var(--text-small);
+            color: var(--ink-tertiary);
+        }
+
+        .article-footer-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-molecule);
+        }
+
+        .article-footer-nav a {
+            color: var(--ink-secondary);
+            text-decoration: none;
+            transition: color 200ms ease;
+        }
+
+        .article-footer-nav a:hover {
+            color: var(--ink);
+        }
+
+        .author-byline {
+            font-style: italic;
+            color: var(--ink-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container {
+                padding: var(--space-ecosystem) var(--space-atom) var(--space-organism);
+            }
+
+            .article-title {
+                font-size: var(--text-xlarge);
+            }
+        }
+
+        /* Print */
+        @media print {
+            .back-nav,
+            .article-footer-nav {
+                display: none;
+            }
+
+            .container {
+                padding: 0;
+                max-width: 100%;
+            }
+
+            body {
+                background: white;
+            }
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        /* Focus */
+        a:focus-visible {
+            outline: 2px solid var(--ink-secondary);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            margin: var(--space-organism) 0 var(--space-ecosystem);
+            padding: var(--space-organism);
+            background: var(--paper-alt);
+            border-radius: 4px;
+        }
+
+        .toc-title {
+            font-size: var(--text-large) !important;
+            margin-bottom: var(--space-molecule) !important;
+            margin-top: 0 !important;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin: 0;
+            border-bottom: 1px solid var(--ink-ghost);
+        }
+
+        .toc-list li:last-child {
+            border-bottom: none;
+        }
+
+        .toc-list a {
+            display: block;
+            padding: calc(var(--space-atom) * 0.75) 0;
+            text-decoration: none;
+            color: var(--ink);
+            transition: padding-left 150ms ease, background 150ms ease;
+        }
+
+        .toc-list a:hover {
+            padding-left: var(--space-atom);
+            background: var(--paper);
+        }
+
+        /* Hierarchy indentation */
+        .toc-level-1 a { padding-left: var(--space-molecule); }
+        .toc-level-2 a { padding-left: var(--space-organism); }
+        .toc-level-3 a { padding-left: var(--space-ecosystem); font-size: var(--text-small); }
+
+        .toc-level-1 a:hover { padding-left: calc(var(--space-molecule) + var(--space-atom)); }
+        .toc-level-2 a:hover { padding-left: calc(var(--space-organism) + var(--space-atom)); }
+        .toc-level-3 a:hover { padding-left: calc(var(--space-ecosystem) + var(--space-atom)); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="back-nav">
+            <a href="/">← Raeez Lorgat</a>
+        </nav>
+
+        <article>
+            <header class="article-header">
+                <h1 class="article-title">{{title}}</h1>
+                <p class="article-subtitle">{{subtitle}}</p>
+                <p class="article-meta">{{metaHtml}}</p>
+            </header>
+
+            <div class="article-body">
+{{content}}
+            </div>
+
+            <footer class="article-footer">
+                <p class="author-byline"><strong>Raeez Lorgat</strong>, Managing Partner at Momentum</p>
+                <nav class="article-footer-nav">
+                    <a href="/">← All Papers</a>
+                </nav>
+            </footer>
+        </article>
+    </div>
+</body>
+</html>
