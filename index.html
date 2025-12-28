@@ -6,7 +6,7 @@
     <title>Raeez Lorgat</title>
 
     <!-- SEO -->
-    <meta name="description" content="Mathematician and founder. Building Mass—programmable jurisdiction infrastructure. Research fellow at Perimeter Institute.">
+    <meta name="description" content="South African mathematician. Stripe founding team. Now building Mass—programmable jurisdiction infrastructure.">
     <meta name="author" content="Raeez Lorgat">
     <link rel="canonical" href="https://raeez.com">
 
@@ -19,8 +19,8 @@
         gtag('config', 'G-JP8T5J8M28');
     </script>
 
-    <!-- Adobe Fonts: Garamond Pro -->
-    <link rel="stylesheet" href="https://use.typekit.net/YOUR_KIT_ID.css">
+    <!-- Adobe Fonts: Garamond Premier Pro -->
+    <link rel="stylesheet" href="https://use.typekit.net/zlu2quo.css">
 
     <!-- Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +35,7 @@
         }
 
         :root {
-            --serif: 'adobe-garamond-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
+            --serif: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
             --mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
 
             --scale-ratio: 1.333;
@@ -190,72 +190,55 @@
             line-height: var(--line-height-tight);
         }
 
-        /* Links */
-        a {
-            color: inherit;
+        .content a {
+            color: var(--ink);
             text-decoration: none;
-            background-image: linear-gradient(
-                to bottom,
-                transparent 0%,
-                transparent calc(100% - 1px),
-                var(--ink-ghost) calc(100% - 1px),
-                var(--ink-ghost) 100%
-            );
-            background-size: 100% 100%;
-            transition: background-size 200ms ease, color 200ms ease;
+            background-image: linear-gradient(var(--ink-ghost), var(--ink-ghost));
+            background-size: 100% 1px;
+            background-position: 0 100%;
+            background-repeat: no-repeat;
+            transition: background-size 200ms ease;
         }
 
-        a:hover {
-            color: var(--ink);
+        .content a:hover {
             background-size: 100% 2px;
         }
 
         .subtitle {
             display: block;
-            margin-top: calc(var(--baseline) * 0.75);
-            font-size: calc(var(--text-base) * 0.85);
-            color: var(--ink-secondary);
-            font-style: italic;
+            font-size: var(--text-small);
+            color: var(--ink-tertiary);
+            margin-top: calc(var(--baseline) * 0.5);
         }
 
-        /* Code */
-        code {
+        .subtitle a {
+            color: var(--ink-tertiary);
+            text-decoration: none;
+            background-image: linear-gradient(var(--ink-ghost), var(--ink-ghost));
+            background-size: 100% 1px;
+            background-position: 0 100%;
+            background-repeat: no-repeat;
+        }
+
+        .subtitle a:hover {
+            color: var(--ink-secondary);
+        }
+
+        .subtitle code {
             font-family: var(--mono);
-            font-size: 0.75em;
+            font-size: 0.85em;
             letter-spacing: -0.02em;
-            background: var(--paper-alt);
-            padding: 0.15em 0.35em;
-            border-radius: 3px;
-            color: var(--ink-secondary);
         }
 
-        a code {
-            background: transparent;
-            padding: 0;
-        }
-
-        a:hover code {
-            color: var(--ink);
-        }
-
-        /* Math */
         .math {
             font-style: italic;
-            letter-spacing: var(--kern-loose);
         }
 
         /* Responsive */
-        @media (max-width: 680px) {
-            :root {
-                --text-base: 19px;
-                --space-universe: calc(var(--space-quantum) * 8);
-                --space-ecosystem: calc(var(--space-quantum) * 6);
-            }
-
+        @media (max-width: 640px) {
             .container {
                 padding-left: var(--gutter);
                 padding-right: var(--gutter);
-                padding-top: calc(var(--baseline) * 16);
             }
 
             .profile-image {
@@ -325,25 +308,29 @@
     <p class="epigraph">"The universe is written in the language of mathematics." — Galileo</p>
 
     <div class="bio">
-        <p>I'm a South African mathematician who <a href="devfinance.html">dropped out of MIT to help build payments infrastructure at Stripe</a>. Now I'm building <a href="https://mass.inc">Mass</a>—programmable jurisdiction infrastructure that turns incorporation, compliance, and banking into APIs for governments. Mass is critical infrastructure bootstrapping a <a href="https://docs.google.com/document/d/1RW1DNRaVieee3NvW4BUf1m6pYGr0jcPo9HHlnZdrLqM/edit?tab=t.0">novel kind of decentralized network</a>, today live across the US, Cayman, BVI and the Special Economic Zone in Prospera, Honduras. In 2026 and beyond we're expanding into Abu Dhabi and Dubai's free zones, Kazakhstan, Korea, Indonesia and China.</p>
+      <p>In 2009 <a href="https://raeez.com/devfinance.html">I dropped out of MIT</a> to help build the payments infrastructure that became <a href="https://stripe.com">Stripe</a>. We cold-called banks and wrote the code that would eventually process hundreds of billions of dollars.</p>
 
-        <p>I hold a research fellowship at the <a href="https://perimeterinstitute.ca">Perimeter Institute for Theoretical Physics</a> working at the intersection of <a href="https://en.wikipedia.org/wiki/Arithmetic_geometry">arithmetic</a> and <a href="https://en.wikipedia.org/wiki/Enumerative_geometry">enumerative geometry</a>, <a href="https://en.wikipedia.org/wiki/Factorization_algebra">factorization algebras</a>, and the geometry of <a href="https://en.wikipedia.org/wiki/Quantum_field_theory">quantum field theory</a>. The mathematics I study—how local structures compose into global ones—shapes how I think about institutional design.</p>
+        <p>After Stripe, I returned to the mathematics and physics that had occupied me since childhood—spending a decade at MIT and the <a href="https://perimeterinstitute.ca">Perimeter Institute for Theoretical Physics</a> working on <a href="https://en.wikipedia.org/wiki/Arithmetic_geometry">arithmetic geometry</a>, <a href="https://en.wikipedia.org/wiki/Factorization_algebra">factorization algebras</a>, and the geometry of <a href="https://en.wikipedia.org/wiki/Quantum_field_theory">quantum field theory</a>. The mathematics I study—how local structures compose into global ones—shapes how I think about institutional design.</p>
 
-        <p>At sixteen, I had <a href="https://en.wikipedia.org/wiki/Meanings_of_minor-planet_names:_23001%E2%80%9324000">minor planet 23122 Lorgat named after me</a>.</p>
+        <p>Now I'm building <a href="https://mass.inc">Mass</a>—programmable jurisdiction infrastructure that turns incorporation, compliance, and banking into APIs. Mass is the operating system for a <a href="https://raeez.com/smart-assets.html">new kind of decentralized network</a>, liveu across the US, Cayman, BVI and the Special Economic Zone Próspera ZEDE on the island of <a href="https://en.wikipedia.org/wiki/Roat%C3%A1n">Roatán, Honduras</a>. In 2026 and beyond we're expanding into Abu Dhabi, Dubai, Kazakhstan, Korea, Indonesia and China.</p>
     </div>
 
     <ul class="project-list">
         <li class="project-item">
             <span class="year">2025–</span>
-            <span class="content"><a href="https://mass.inc">Founder & CEO of Mass—Jurisdictional Operating System supporting a novel Decentralized Network</a></span>
+            <span class="content"><a href="https://momentum.inc">Founder & Managing Partner of Momentum—the fund bootstrapping post-blockchain decentralized network economies</a></span>
         </li>
         <li class="project-item">
-            <span class="year">2025–</span>
-            <span class="content"><a href="https://momentum.inc">Managing Partner of Momentum—Ecosystem fund accelerating Mass' growth</a></span>
+            <span class="year">2024–</span>
+            <span class="content"><a href="https://mass.inc">Founder & CEO of Mass—Jurisdictional Operating System</a></span>
         </li>
         <li class="project-item">
-            <span class="year">2019–</span>
-            <span class="content"><a href="https://perimeterinstitute.ca">Research fellow at Perimeter Institute—Research on geometric representation theory, arithmetic and algebraic geometry and quantum field theory</a></span>
+            <span class="year">2014–</span>
+            <span class="content"><a href="https://perimeterinstitute.ca">Teaching assistant at MIT & Research fellow at Perimeter Institute—Geometric representation theory, arithmetic geometry, QFT</a></span>
+        </li>
+        <li class="project-item">
+            <span class="year">2009–11</span>
+            <span class="content"><a href="devfinance.html">Founding team at /dev/finance inc.—built /dev/payments, API-driven payment rails for internet businesses</a></span>
         </li>
     </ul>
 
