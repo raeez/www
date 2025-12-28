@@ -143,7 +143,7 @@
             font-size: var(--text-small);
             font-style: italic;
             color: var(--ink-tertiary);
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-md);
         }
 
         /* ════════════════════════════════════════════
@@ -230,6 +230,25 @@
             align-items: baseline;
             padding-bottom: var(--space-sm);
             margin-bottom: var(--space-xs);
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: calc(-1 * var(--space-sm));
+            padding-left: var(--space-sm);
+            padding-right: var(--space-sm);
+            transition: transform 150ms ease, background-color 150ms ease;
+        }
+        
+        .project-item:hover {
+            transform: translateX(6px);
+            background-color: var(--paper-alt);
+        }
+        
+        .project-item:hover .year {
+            color: var(--ink-secondary);
+        }
+        
+        .project-item:hover .content a {
+            color: #000;
         }
 
         /* Items with subtitles need slightly more bottom space */
@@ -254,15 +273,14 @@
         .content a {
             color: var(--ink);
             text-decoration: none;
-            background-image: linear-gradient(var(--ink-ghost), var(--ink-ghost));
-            background-size: 100% 1px;
-            background-position: 0 100%;
-            background-repeat: no-repeat;
-            transition: background-size 200ms ease;
+            background: linear-gradient(var(--ink-tertiary), var(--ink-tertiary)) 0 100% / 100% 1px no-repeat;
+            transition: color 150ms ease, background 150ms ease;
+            cursor: pointer;
         }
 
         .content a:hover {
-            background-size: 100% 2px;
+            color: #000;
+            background: linear-gradient(#000, #000) 0 100% / 100% 2px no-repeat;
         }
 
         .subtitle {
@@ -277,14 +295,14 @@
         .subtitle a {
             color: var(--ink-tertiary);
             text-decoration: none;
-            background-image: linear-gradient(var(--ink-ghost), var(--ink-ghost));
-            background-size: 100% 1px;
-            background-position: 0 100%;
-            background-repeat: no-repeat;
+            background: linear-gradient(var(--ink-ghost), var(--ink-ghost)) 0 100% / 100% 1px no-repeat;
+            transition: color 150ms ease, background 150ms ease;
+            cursor: pointer;
         }
 
         .subtitle a:hover {
             color: var(--ink-secondary);
+            background: linear-gradient(var(--ink-secondary), var(--ink-secondary)) 0 100% / 100% 1px no-repeat;
         }
 
         .subtitle code {
@@ -303,15 +321,14 @@
         .bio a {
             color: var(--ink);
             text-decoration: none;
-            background-image: linear-gradient(var(--ink-ghost), var(--ink-ghost));
-            background-size: 100% 1px;
-            background-position: 0 100%;
-            background-repeat: no-repeat;
-            transition: background-size 200ms ease;
+            background: linear-gradient(var(--ink-tertiary), var(--ink-tertiary)) 0 100% / 100% 1px no-repeat;
+            transition: color 150ms ease, background 150ms ease;
+            cursor: pointer;
         }
 
         .bio a:hover {
-            background-size: 100% 2px;
+            color: #000;
+            background: linear-gradient(#000, #000) 0 100% / 100% 2px no-repeat;
         }
 
         a:focus-visible {
@@ -344,6 +361,13 @@
             .project-item {
                 grid-template-columns: 1fr;
                 gap: var(--space-xs);
+                margin-left: 0;
+                padding-left: var(--space-xs);
+                padding-right: var(--space-xs);
+            }
+
+            .project-item:hover {
+                transform: none;
             }
 
             .year {
@@ -375,13 +399,25 @@
         /* ════════════════════════════════════════════
            Interactions
            ════════════════════════════════════════════ */
-        @media (hover: hover) {
-            .project-item {
-                transition: transform 100ms ease;
-            }
-            .project-item:hover {
-                transform: translateX(2px);
-            }
+        .project-item {
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: calc(-1 * var(--space-sm));
+            padding-left: var(--space-sm);
+            transition: transform 150ms ease, background-color 150ms ease;
+        }
+        
+        .project-item:hover {
+            transform: translateX(6px);
+            background-color: var(--paper-alt);
+        }
+        
+        .project-item:hover .year {
+            color: var(--ink-secondary);
+        }
+        
+        .project-item:hover .content a {
+            color: #000;
         }
     </style>
 </head>
