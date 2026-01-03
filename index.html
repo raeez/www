@@ -133,7 +133,7 @@
             font-size: var(--text-base);
             font-style: italic;
             color: var(--ink-secondary);
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-sm);
             line-height: var(--line-height-base);
         }
 
@@ -141,7 +141,8 @@
             list-style: none;
             font-size: var(--text-small);
             color: var(--ink-secondary);
-            margin-bottom: var(--space-lg);
+            margin-top: var(--space-sm);
+            margin-bottom: var(--space-md);
             padding-left: 0;
             line-height: var(--line-height-base);
         }
@@ -360,7 +361,7 @@
         ::selection { background: var(--ink); color: var(--paper); }
 
         .contact {
-            margin-top: calc(var(--space-xl) + var(--space-sm));
+            margin-top: var(--space-2xl);
             padding-top: var(--space-lg);
             padding-bottom: var(--space-lg);
             font-size: var(--text-small);
@@ -370,22 +371,30 @@
             border-top: 1px solid var(--ink-whisper);
         }
 
-        .contact > a { color: var(--ink-tertiary); text-decoration: none; transition: color 150ms ease; }
+        .contact > a {
+            color: var(--ink-tertiary);
+            text-decoration: none;
+            transition: color 150ms ease;
+            letter-spacing: 0.01em;
+        }
         .contact > a:hover { color: var(--ink); }
-        .contact .social { display: flex; align-items: center; gap: 0.35em; }
+        .contact .social { display: flex; align-items: center; gap: 0.5em; }
 
         .contact .icon-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 2em;
-            height: 2em;
+            width: 2.2em;
+            height: 2.2em;
             color: var(--ink-ghost);
-            transition: color 150ms ease;
-            border-radius: 3px;
+            transition: color 150ms ease, background-color 150ms ease;
+            border-radius: 4px;
         }
 
-        .contact .icon-link:hover { color: var(--ink); }
+        .contact .icon-link:hover {
+            color: var(--ink);
+            background-color: var(--paper-alt);
+        }
         .contact .icon-link svg { display: block; }
 
         .subsection-label {
@@ -401,13 +410,14 @@
         @media (max-width: 640px) {
             .container { padding: var(--space-xl) var(--gutter) var(--space-lg); padding-left: var(--gutter); }
             .profile-image { position: relative; left: auto; top: auto; margin-bottom: var(--space-lg); }
-            .nav-links { gap: var(--space-md); margin-bottom: var(--space-md); }
+            .nav-links { gap: var(--space-md); margin-bottom: var(--space-md); flex-wrap: wrap; }
             .project-item { grid-template-columns: 1fr; gap: var(--space-xs); margin-left: 0; padding-left: var(--space-xs); padding-right: var(--space-xs); }
             .project-item:hover { transform: none; }
             .year { color: var(--ink-tertiary); }
             .photo-grid { grid-template-columns: 1fr; }
             .testimonial { padding: var(--space-sm) var(--space-md); margin: var(--space-md) 0; }
             .testimonial blockquote { font-size: var(--text-small); }
+            .contact { flex-direction: column; gap: var(--space-md); text-align: center; }
         }
 
         @media print {
@@ -435,11 +445,11 @@
 
     <p class="concept-line">Building programmable institutions—starting with a new decentralized network of jurisdictions where assets carry compliance.</p>
 
-    <ul class="proof-strip">
+    <!--<ul class="proof-strip">
         <li>Built early Stripe payment rails (cold-called banks; code now processes hundreds of billions)</li>
         <li>10 years MIT + Perimeter Institute—arithmetic geometry, quantum field theory</li>
         <li>Intel ISEF winner; minor planet 23122 Lorgat</li>
-    </ul>
+    </ul>-->
 
     <nav class="nav-links">
         <a href="beauty.html">Beauty</a>
@@ -457,8 +467,8 @@
         <p>At MIT I met <a href="https://en.wikipedia.org/wiki/Patrick_Collison">Patrick Collison</a>. Freshman year we bounced between California and Massachusetts, and <a href="https://raeez.com/devfinance.html">ended one week flying up the Pacific coast in a small plane we’d pilot ourselves</a>—Patrick’s first international trip, my first flight ever.</p>
 
         <div class="photo-grid">
-            <img src="https://mass-finance.github.io/raeez/IMG_1987.JPG" alt="In the cockpit">
-            <img src="https://mass-finance.github.io/raeez/IMG_1989.JPG" alt="In the cockpit">
+            <img src="https://raeez.com/IMG_1987.JPG" alt="In the cockpit">
+            <img src="https://raeez.com/IMG_1989.JPG" alt="In the cockpit">
         </div>
         <p class="photo-caption">Palo Alto to Vancouver, 2009. Patrick's first international flight. My first flight ever.</p>
 
@@ -466,8 +476,8 @@
         <p>I dropped out with the Collison brothers and moved into an apartment in Palo Alto. We built Stripe. We cold-called banks and wrote the code that would process hundreds of billions of dollars a year.</p>
 
         <div class="photo-grid">
-            <img src="https://mass-finance.github.io/raeez/IMG_1976.JPG" alt="701 Webster Street">
-            <img src="https://mass-finance.github.io/raeez/IMG_1978.JPG" alt="701 Webster Street">
+            <img src="https://raeez.com/IMG_1976.JPG" alt="701 Webster Street">
+            <img src="https://raeez.com/IMG_1978.JPG" alt="701 Webster Street">
         </div>
         <p class="photo-caption">701 Webster Street, Palo Alto. Standing desks made of IKEA parts. We all programmed using the Dvorak-QWERTY keyboard.</p>
 
@@ -479,9 +489,9 @@
 
         <p>Stripe showed me the real problem: not payments, but the exponential friction of global compliance. To solve it, I needed an approach that didn't exist yet. I spent a decade at <a href="https://math.mit.edu">MIT</a> and the <a href="https://perimeterinstitute.ca">Perimeter Institute for Theoretical Physics</a> studying <a href="https://en.wikipedia.org/wiki/Arithmetic_geometry">arithmetic geometry</a>, <a href="https://en.wikipedia.org/wiki/Factorization_algebra">factorization algebras</a>, and the geometry of <a href="https://en.wikipedia.org/wiki/Quantum_field_theory">quantum field theory</a>—the mathematics of how local structures compose into global ones. Now I'm deploying it.</p>
 
-        <p><a href="mass.html">Mass</a> is a new kind of decentralized network where the nodes are sovereign jurisdictions. The Mass realizes an operating system for jurisdictions—automated incorporation, compliance, banking as APIs. Assets carry their own compliance and can move between competing sovereigns. Live across the US, Cayman, BVI, and <a href="https://prospera.hn">Próspera</a> in <a href="https://en.wikipedia.org/wiki/Honduras">Honduras</a>. We crossed $1B in 2025.</p>
+        <p><a href="mass.html">Mass</a> is a new kind of decentralized network where the nodes are sovereign jurisdictions. Mass realizes an operating system for jurisdictions—automated incorporation, structuring, compliance, banking and legal operations as APIs. Assets carry their own compliance and can move fluidly between competing sovereigns. Live across the US, Cayman, BVI, and the Special Economic Zone <a href="https://prospera.hn">Próspera ZEDE</a> in <a href="https://en.wikipedia.org/wiki/Honduras">Honduras</a>. We crossed $1B in 2025.</p>
 
-        <p><a href="https://momentum.inc">Momentum</a> is the fund building this ecosystem. In January 2026, I'm moving our HQ to Abu Dhabi.</p>
+        <p><a href="https://momentum.inc">Momentum</a> is the fund building this ecosystem headquartered on Saadiyat Beach in Abu Dhabi.</p>
     </div>
 
     <h2 class="section-header">Selected Work</h2>
@@ -588,7 +598,7 @@
     </ul>
 
     <footer class="contact">
-        <a href="/cdn-cgi/l/email-protection#fe8c9f9b9b84be9391939b908a8b93d097909d"><span class="__cf_email__" data-cfemail="82f0e3e7e7f8c2efedefe7ecf6f7efacebece1">[email&#160;protected]</span></a>
+        <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>
         <nav class="social" aria-label="Social links">
             <a href="https://x.com/raeez" aria-label="X (Twitter)" class="icon-link">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -602,4 +612,11 @@
             </a>
             <a href="https://www.linkedin.com/in/raeez-lorgat/" aria-label="LinkedIn" class="icon-link">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.27
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+        </nav>
+    </footer>
+</div>
+</body>
+</html>
