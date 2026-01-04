@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Experience — Raeez Lorgat</title>
 
+    <!-- SEO -->
     <meta name="description" content="Professional experience: Momentum, Mass, Stripe, MIT, Perimeter Institute.">
     <meta name="author" content="Raeez Lorgat">
     <link rel="canonical" href="https://raeez.com/experience.html">
     <link rel="alternate" type="application/atom+xml" title="Raeez Lorgat" href="https://raeez.com/feed.xml">
 
+    <!-- Open Graph -->
+    <meta property="og:title" content="Experience — Raeez Lorgat">
+    <meta property="og:description" content="Professional experience: Momentum, Mass, Stripe, MIT, Perimeter Institute.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://raeez.com/experience.html">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -18,7 +26,10 @@
         gtag('config', 'G-JP8T5J8M28');
     </script>
 
+    <!-- Adobe Fonts: Garamond Premier Pro (all optical sizes) -->
     <link rel="stylesheet" href="https://use.typekit.net/zlu2quo.css">
+
+    <!-- Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
@@ -27,13 +38,16 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
+            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', 'Baskerville', Garamond, serif;
             --font-display: 'garamond-premier-pro-display', var(--font-text);
             --font-caption: 'garamond-premier-pro-caption', var(--font-text);
+            --font-subhead: 'garamond-premier-pro-subhead', var(--font-text);
+            --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
 
-            --text-base: clamp(18px, 1.125rem + 0.2vw, 21px);
+            --text-base: clamp(18px, 1.125rem + 0.25vw, 21px);
             --text-sm: calc(var(--text-base) / 1.333);
             --text-xs: calc(var(--text-sm) / 1.333);
+            --text-lg: calc(var(--text-base) * 1.333);
 
             --baseline: 8px;
             --leading-tight: 1.2;
@@ -43,7 +57,6 @@
             --space-1: calc(var(--baseline) * 1);
             --space-2: calc(var(--baseline) * 2);
             --space-3: calc(var(--baseline) * 3);
-            --space-4: calc(var(--baseline) * 4);
             --space-5: calc(var(--baseline) * 5);
             --space-6: calc(var(--baseline) * 6);
             --space-8: calc(var(--baseline) * 8);
@@ -62,7 +75,6 @@
             --paper: #fefdfb;
             --paper-tint: #f5f3f0;
 
-            --kern-snug: -0.01em;
             --kern-wide: 0.04em;
             --kern-caps: 0.08em;
             --optical-margin: -0.03em;
@@ -85,7 +97,7 @@
             color: var(--ink);
             background: var(--paper);
             text-rendering: optimizeLegibility;
-            font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "onum" 1, "pnum" 1, "dlig" 1;
+            font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "dlig" 1, "onum" 1, "pnum" 1;
             font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
             font-variant-numeric: oldstyle-nums proportional-nums;
             font-kerning: normal;
@@ -101,9 +113,9 @@
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            margin-bottom: var(--space-6);
             flex-wrap: wrap;
-            gap: var(--space-2);
+            gap: var(--space-2) var(--space-5);
+            margin-bottom: var(--space-5);
         }
 
         .back-link {
@@ -143,11 +155,12 @@
             font-family: var(--font-text);
             font-size: var(--text-base);
             font-weight: 400;
-            margin-bottom: var(--space-5);
-            margin-left: var(--optical-margin);
-            letter-spacing: var(--kern-caps);
             font-variant-caps: small-caps;
             font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-caps);
+            color: var(--ink);
+            margin-bottom: var(--space-6);
+            margin-left: var(--optical-margin);
         }
 
         .project-list { list-style: none; }
@@ -157,30 +170,23 @@
             grid-template-columns: 5.5rem 1fr;
             gap: var(--space-3);
             align-items: baseline;
-            padding: var(--space-2) var(--space-2);
-            margin-bottom: var(--space-1);
+            padding: var(--space-2);
             margin-left: calc(-1 * var(--space-2));
+            margin-bottom: var(--space-1);
             border-radius: 3px;
-            cursor: pointer;
-            transition: transform 180ms ease, background-color 180ms ease;
+            transition: background-color 180ms ease;
         }
 
-        .project-item:hover {
-            transform: translateX(4px);
-            background-color: var(--paper-tint);
-        }
-
-        .project-item:hover .year { color: var(--ink); }
-        .project-item:hover .content a { text-decoration-color: var(--ink-faint); }
+        .project-item:hover { background-color: var(--paper-tint); }
 
         .year {
             font-family: var(--font-caption);
             font-size: var(--text-sm);
             font-weight: 400;
-            color: var(--ink-faint);
-            white-space: nowrap;
-            transition: color 180ms ease;
             font-feature-settings: "tnum" 1, "lnum" 1;
+            color: var(--ink-faint);
+            letter-spacing: 0.01em;
+            white-space: nowrap;
         }
 
         .content {
@@ -198,9 +204,7 @@
             transition: text-decoration-color 180ms ease;
         }
 
-        .content a:hover {
-            text-decoration-color: var(--ink);
-        }
+        .content a:hover { text-decoration-color: var(--ink-muted); }
 
         .subtitle {
             display: block;
@@ -238,12 +242,7 @@
             font-size: var(--text-sm);
         }
 
-        .footer a {
-            color: var(--ink-faint);
-            text-decoration: none;
-            transition: color 180ms ease;
-        }
-
+        .footer a { color: var(--ink-faint); text-decoration: none; transition: color 180ms ease; }
         .footer a:hover { color: var(--ink); }
 
         .social { display: flex; align-items: center; gap: 0.375em; }
@@ -263,31 +262,14 @@
         .icon-link svg { display: block; }
 
         ::selection { background: var(--ink); color: var(--paper); }
-
-        a:focus-visible {
-            outline: 2px solid var(--ink-muted);
-            outline-offset: 3px;
-            border-radius: 2px;
-        }
+        a:focus-visible { outline: 2px solid var(--ink-muted); outline-offset: 3px; border-radius: 2px; }
 
         @media (max-width: 680px) {
             :root { --text-base: clamp(17px, 1rem + 0.2vw, 19px); }
             .container { padding: var(--space-6) var(--gutter) var(--space-5); }
-            .header { flex-direction: column; align-items: flex-start; }
-            .project-item {
-                grid-template-columns: 1fr;
-                gap: var(--space-1);
-                margin-left: 0;
-                padding-left: var(--space-1);
-                padding-right: var(--space-1);
-            }
-            .project-item:hover { transform: none; }
-            .footer {
-                flex-direction: column;
-                gap: var(--space-3);
-                text-align: center;
-                margin-top: var(--space-8);
-            }
+            .header { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+            .project-item { grid-template-columns: 1fr; gap: var(--space-1); }
+            .footer { flex-direction: column; gap: var(--space-3); text-align: center; margin-top: var(--space-8); }
         }
 
         @media (max-width: 400px) {
@@ -295,6 +277,8 @@
             .container { padding: var(--space-5) var(--space-2) var(--space-4); }
             nav { gap: var(--space-1) var(--space-2); }
         }
+
+        @media (min-width: 1200px) { .container { padding-top: var(--space-13); } }
 
         @media print {
             :root { --ink: #000; --paper: #fff; }
@@ -317,11 +301,11 @@
     <header class="header">
         <a href="index.html" class="back-link">← Raeez Lorgat</a>
         <nav>
+            <a href="about.html">About</a>
             <a href="mass.html">Mass</a>
             <a href="writing.html">Writing</a>
             <a href="experience.html" class="active">Experience</a>
             <a href="beauty.html">Beauty</a>
-            <a href="devfinance.html">/dev/finance</a>
         </nav>
     </header>
 
@@ -330,37 +314,43 @@
     <ul class="project-list">
         <li class="project-item">
             <span class="year">2025–</span>
-            <span class="content"><a href="https://momentum.inc">Managing Partner, Momentum</a>
+            <span class="content">
+                <a href="https://momentum.inc">Managing Partner, Momentum</a>
                 <span class="subtitle">Investment fund incubating programmable institutions. Next: Abu Dhabi, Dubai, Kazakhstan, China.</span>
             </span>
         </li>
         <li class="project-item">
             <span class="year">2024–</span>
-            <span class="content"><a href="https://mass.inc">Founder & CEO, Mass</a>
+            <span class="content">
+                <a href="https://mass.inc">Founder & CEO, Mass</a>
                 <span class="subtitle">Jurisdictional operating system—live across US, Cayman, BVI, Próspera</span>
             </span>
         </li>
         <li class="project-item">
             <span class="year">2020–23</span>
-            <span class="content"><a href="https://instagram.com/personagallerynyc">Founder, Persona</a>
+            <span class="content">
+                <a href="https://instagram.com/personagallerynyc">Founder, Persona</a>
                 <span class="subtitle">Art community and gallery-studio, New York City</span>
             </span>
         </li>
         <li class="project-item">
             <span class="year">2014–24</span>
-            <span class="content">Teaching Assistant at <a href="https://math.mit.edu">MIT</a>, Research Fellow at <a href="https://perimeterinstitute.ca">Perimeter Institute</a>
+            <span class="content">
+                Teaching Assistant at <a href="https://math.mit.edu">MIT</a>, Research Fellow at <a href="https://perimeterinstitute.ca">Perimeter Institute</a>
                 <span class="subtitle">Geometric representation theory, arithmetic geometry, quantum field theory</span>
             </span>
         </li>
         <li class="project-item">
             <span class="year">2010–12</span>
-            <span class="content"><a href="https://stripe.com">Early Stripe</a>
+            <span class="content">
+                <a href="https://stripe.com">Early Stripe</a>
                 <span class="subtitle">Payment rails, bank integrations, API infrastructure</span>
             </span>
         </li>
         <li class="project-item">
             <span class="year">2009–11</span>
-            <span class="content"><a href="devfinance.html">Founding Team, /dev/finance inc.</a>
+            <span class="content">
+                <a href="devfinance.html">Founding Team, /dev/finance inc.</a>
                 <span class="subtitle">Built /dev/payments—API-driven payment rails for internet businesses</span>
             </span>
         </li>

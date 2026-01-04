@@ -2,14 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Raeez Lorgat</title>
 
     <!-- SEO -->
-    <meta name="description" content="South African mathematician. Stripe founding team. Building programmable sovereignty infrastructure.">
+    <meta name="description" content="Building operating systems for sovereignty. South African mathematician. Stripe founding team.">
     <meta name="author" content="Raeez Lorgat">
     <link rel="canonical" href="https://raeez.com">
     <link rel="alternate" type="application/atom+xml" title="Raeez Lorgat" href="https://raeez.com/feed.xml">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Raeez Lorgat">
+    <meta property="og:description" content="Building operating systems for sovereignty. South African mathematician. Stripe founding team.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://raeez.com">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
@@ -20,7 +26,7 @@
         gtag('config', 'G-JP8T5J8M28');
     </script>
 
-    <!-- Adobe Fonts: Garamond Premier Pro -->
+    <!-- Adobe Fonts: Garamond Premier Pro (all optical sizes) -->
     <link rel="stylesheet" href="https://use.typekit.net/zlu2quo.css">
 
     <!-- Fallback -->
@@ -29,52 +35,47 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
     <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --serif: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
-            --serif-display: 'garamond-premier-pro-display', 'garamond-premier-pro', 'EB Garamond', Garamond, serif;
-            --serif-caption: 'garamond-premier-pro-caption', 'garamond-premier-pro', 'EB Garamond', Garamond, serif;
-            --mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
+            --font-display: 'garamond-premier-pro-display', var(--font-text);
+            --font-caption: 'garamond-premier-pro-caption', var(--font-text);
+            --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
 
-            --scale-ratio: 1.333;
-            --text-base: clamp(19px, 2.1vw, 22px);
-            --text-small: calc(var(--text-base) / var(--scale-ratio));
-            --text-tiny: calc(var(--text-small) / var(--scale-ratio));
+            --text-base: clamp(18px, 1.125rem + 0.2vw, 21px);
+            --text-sm: calc(var(--text-base) / 1.333);
+            --text-lg: calc(var(--text-base) * 1.333);
 
             --baseline: 8px;
-            --line-height-tight: 1.3;
-            --line-height-base: 1.55;
-            --line-height-loose: 1.7;
+            --leading-relaxed: 1.618;
+            --leading-snug: 1.35;
 
-            --space-xs: calc(var(--baseline) * 1);
-            --space-sm: calc(var(--baseline) * 2);
-            --space-md: calc(var(--baseline) * 3);
-            --space-lg: calc(var(--baseline) * 5);
-            --space-xl: calc(var(--baseline) * 8);
-            --space-2xl: calc(var(--baseline) * 13);
+            --space-1: calc(var(--baseline) * 1);
+            --space-2: calc(var(--baseline) * 2);
+            --space-3: calc(var(--baseline) * 3);
+            --space-5: calc(var(--baseline) * 5);
+            --space-6: calc(var(--baseline) * 6);
+            --space-8: calc(var(--baseline) * 8);
+            --space-10: calc(var(--baseline) * 10);
+            --space-13: calc(var(--baseline) * 13);
 
-            --measure-narrow: 580px;
-            --measure-base: 640px;
-            --gutter: calc(var(--baseline) * 3);
+            --measure: 65ch;
+            --gutter: clamp(16px, 4vw, 24px);
 
             --ink: #1a1917;
-            --ink-secondary: #4a4744;
-            --ink-tertiary: #8a8580;
-            --ink-ghost: #bab5b0;
-            --ink-whisper: #d6d3d1;
+            --ink-muted: #4a4744;
+            --ink-faint: #8a8580;
+            --ink-ghost: #b5b0ab;
+            --ink-whisper: #d4d0cc;
+            --ink-hint: #e8e5e2;
             --paper: #fefdfb;
-            --paper-alt: #f9f8f6;
+            --paper-tint: #f5f3f0;
 
-            --optical-edge: -0.03em;
-            --kern-tight: -0.015em;
-            --kern-normal: 0;
-            --kern-loose: 0.02em;
-            --kern-caps: 0.06em;
+            --kern-wide: 0.04em;
+            --kern-caps: 0.08em;
+            --kern-snug: -0.01em;
+            --optical-margin: -0.03em;
         }
 
         html {
@@ -82,522 +83,253 @@
             -webkit-text-size-adjust: 100%;
             scroll-behavior: smooth;
             hanging-punctuation: first last;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: var(--serif);
+            font-family: var(--font-text);
             font-size: var(--text-base);
             font-weight: 400;
-            font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1, "pnum" 1, "dlig" 1;
-            line-height: var(--line-height-base);
+            line-height: var(--leading-relaxed);
             color: var(--ink);
             background: var(--paper);
             text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 
+                "kern" 1, "liga" 1, "clig" 1, "calt" 1,
+                "onum" 1, "pnum" 1, "dlig" 1;
             font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+            font-variant-numeric: oldstyle-nums proportional-nums;
+            font-kerning: normal;
         }
 
         .container {
-            max-width: calc(var(--measure-base) + var(--baseline) * 14);
-            margin: 0 auto;
-            padding: var(--space-2xl) var(--gutter) var(--space-xl);
-            padding-left: calc(var(--baseline) * 20);
-            position: relative;
+            max-width: calc(var(--measure) + var(--space-8));
+            margin-inline: auto;
+            padding: var(--space-10) var(--gutter) var(--space-8);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-2);
         }
 
         .profile-image {
-            position: absolute;
-            left: calc(var(--gutter) * 1.2);
-            top: var(--space-2xl);
-            width: calc(var(--baseline) * 12);
-            height: calc(var(--baseline) * 12);
+            width: calc(var(--baseline) * 10);
+            height: calc(var(--baseline) * 10);
             border-radius: 50%;
             object-fit: cover;
-            filter: grayscale(0.1) contrast(1.05);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.03), 0 4px 8px rgba(0,0,0,0.02);
+            filter: grayscale(0.05) contrast(1.02);
+            flex-shrink: 0;
+        }
+
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
         }
 
         .name {
+            font-family: var(--font-text);
             font-size: var(--text-base);
             font-weight: 400;
-            font-variant-caps: small-caps;
-            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1;
+            margin: 0;
             letter-spacing: var(--kern-caps);
             color: var(--ink);
-            margin-bottom: var(--space-sm);
-            margin-left: var(--optical-edge);
-        }
-
-        .concept-line {
-            font-size: var(--text-base);
-            font-style: italic;
-            color: var(--ink-secondary);
-            margin-bottom: var(--space-sm);
-            line-height: var(--line-height-base);
-        }
-
-        .proof-strip {
-            list-style: none;
-            font-size: var(--text-small);
-            color: var(--ink-secondary);
-            margin-top: var(--space-sm);
-            margin-bottom: var(--space-md);
-            padding-left: 0;
-            line-height: var(--line-height-base);
-        }
-
-        .proof-strip li {
-            position: relative;
-            padding-left: 1.2em;
-            margin-bottom: var(--space-xs);
-        }
-
-        .proof-strip li::before {
-            content: "·";
-            position: absolute;
-            left: 0;
-            color: var(--ink-ghost);
-            font-weight: 600;
-        }
-
-        .bio {
-            font-size: var(--text-base);
-            line-height: var(--line-height-loose);
-            color: var(--ink);
-            margin-bottom: var(--space-md);
-            max-width: var(--measure-narrow);
-            hyphens: auto;
-            hyphenate-limit-chars: 6 3 2;
-            hyphenate-limit-lines: 2;
-            text-align: left;
-        }
-
-        .bio p { margin-bottom: var(--space-md); text-indent: 0; }
-        .bio p:last-child { margin-bottom: 0; }
-        .bio p:first-of-type::first-letter { font-size: 1.05em; font-weight: 500; }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-sm);
-            margin: var(--space-md) 0 calc(var(--space-xs) + 4px);
-        }
-
-        .photo-grid.single { grid-template-columns: 1fr; max-width: 320px; }
-        .photo-grid img {
-            width: 100%;
-            height: 100%;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            border-radius: 3px;
-            filter: contrast(1.02);
-        }
-
-        .photo-caption {
-            font-family: var(--serif-caption);
-            font-size: var(--text-small);
-            color: var(--ink-tertiary);
-            font-style: italic;
-            margin-bottom: var(--space-md);
-            line-height: 1.45;
-            letter-spacing: 0.005em;
-        }
-
-        .section-header {
-            font-size: var(--text-small);
-            font-weight: 400;
+            margin-left: var(--optical-margin);
             font-variant-caps: small-caps;
-            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1;
-            letter-spacing: 0.08em;
-            color: var(--ink-tertiary);
-            margin-top: var(--space-lg);
-            margin-bottom: var(--space-sm);
-            margin-left: var(--optical-edge);
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
         }
 
-        .bio + .section-header { margin-top: var(--space-md); }
-        .roles-list + .section-header { margin-top: var(--space-lg); }
-
-        .project-list { list-style: none; }
-
-        .project-item {
-            display: grid;
-            grid-template-columns: 5.5rem 1fr;
-            gap: var(--space-md);
-            align-items: baseline;
-            padding-top: calc(var(--space-sm));
-            padding-bottom: calc(var(--space-sm));
-            margin-bottom: var(--space-xs);
-            cursor: pointer;
-            border-radius: 3px;
-            margin-left: calc(-1 * var(--space-sm));
-            padding-left: var(--space-sm);
-            padding-right: var(--space-sm);
-            transition: transform 150ms ease, background-color 150ms ease;
-        }
-
-        .nav-links {
+        nav {
             display: flex;
-            gap: var(--space-lg);
-            margin-bottom: var(--space-lg);
-            font-size: var(--text-small);
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
         }
 
-        .nav-links a {
-            color: var(--ink-secondary);
+        nav a {
+            color: var(--ink-faint);
             text-decoration: none;
+            transition: color 180ms ease;
+            letter-spacing: var(--kern-wide);
             font-variant-caps: small-caps;
-            font-feature-settings: "smcp" 1, "kern" 1;
-            letter-spacing: 0.04em;
-            transition: color 150ms ease;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
         }
 
-        .nav-links a:hover {
-            color: var(--ink);
-        }
+        nav a:hover { color: var(--ink); }
 
-        .testimonial {
-            margin: var(--space-lg) 0;
-            padding: var(--space-md) var(--space-lg);
-            border-left: 2px solid var(--ink-whisper);
-            background: var(--paper-alt);
-            border-radius: 0 3px 3px 0;
-        }
-
-        .testimonial blockquote {
+        .tagline {
+            font-family: var(--font-text);
             font-size: var(--text-base);
             font-style: italic;
-            color: var(--ink-secondary);
-            line-height: var(--line-height-loose);
-            margin-bottom: var(--space-sm);
+            color: var(--ink-muted);
+            margin-top: var(--space-5);
+            margin-bottom: var(--space-6);
+            letter-spacing: var(--kern-snug);
+            font-feature-settings: "kern" 1, "liga" 1, "dlig" 1, "calt" 1, "onum" 1;
         }
 
-        .testimonial cite {
-            font-size: var(--text-small);
-            color: var(--ink-tertiary);
-            font-style: normal;
+        .beats {
+            margin-top: var(--space-6);
+            line-height: 1.9;
         }
 
-        .testimonial cite a {
-            color: var(--ink-tertiary);
-            text-decoration: underline;
-            text-decoration-color: var(--ink-whisper);
-            text-underline-offset: 0.12em;
+        .beats p {
+            margin-bottom: var(--space-1);
+            max-width: var(--measure);
         }
 
-        .testimonial cite a:hover {
-            color: var(--ink-secondary);
-            text-decoration-color: var(--ink-secondary);
-        }
-
-        .project-item:hover { transform: translateX(4px); background-color: var(--paper-alt); }
-        .project-item:hover .year { color: var(--ink); }
-        .project-item:hover .content a { text-decoration-color: var(--ink-tertiary); }
-        .project-item:has(.subtitle) { padding-bottom: var(--space-sm); }
-
-        .year {
-            font-size: var(--text-small);
-            font-weight: 400;
-            font-feature-settings: "tnum" 1, "lnum" 1;
-            color: var(--ink-tertiary);
-            letter-spacing: 0.01em;
-            white-space: nowrap;
-            transition: color 150ms ease;
-        }
-
-        .content { font-size: var(--text-base); line-height: 1.4; }
-
-        .content a {
+        .beats a {
             color: var(--ink);
             text-decoration: underline;
             text-decoration-color: var(--ink-whisper);
             text-decoration-thickness: 1px;
             text-underline-offset: 0.15em;
-            text-decoration-skip-ink: auto;
-            transition: text-decoration-color 150ms ease, color 150ms ease;
-            cursor: pointer;
+            transition: text-decoration-color 180ms ease;
         }
 
-        .content a:hover { color: var(--ink); text-decoration-color: var(--ink); text-decoration-thickness: 1.5px; }
+        .beats a:hover { text-decoration-color: var(--ink-muted); }
 
-        .subtitle {
-            display: block;
-            font-size: var(--text-small);
-            color: var(--ink-tertiary);
-            margin-top: var(--space-xs);
-            font-style: italic;
-            line-height: 1.45;
+        .highlight {
+            font-weight: 500;
+            font-feature-settings: "kern" 1, "liga" 1, "lnum" 1;
         }
 
-        .subtitle a {
-            color: var(--ink-tertiary);
-            text-decoration: underline;
-            text-decoration-color: var(--ink-whisper);
-            text-decoration-thickness: 1px;
-            text-underline-offset: 0.12em;
-            text-decoration-skip-ink: auto;
-            transition: color 150ms ease, text-decoration-color 150ms ease;
-            cursor: pointer;
-        }
-
-        .subtitle a:hover { color: var(--ink-secondary); text-decoration-color: var(--ink-secondary); }
-        .subtitle code { font-family: var(--mono); font-size: 0.75em; letter-spacing: -0.02em; }
-        .math { font-style: italic; }
-
-        .bio a {
-            color: var(--ink);
-            text-decoration: underline;
-            text-decoration-color: var(--ink-whisper);
-            text-decoration-thickness: 1px;
-            text-underline-offset: 0.15em;
-            text-decoration-skip-ink: auto;
-            transition: text-decoration-color 150ms ease;
-            cursor: pointer;
-        }
-
-        .bio a:hover { text-decoration-color: var(--ink); text-decoration-thickness: 1.5px; }
-        a:focus-visible { outline: 2px solid var(--ink-secondary); outline-offset: 4px; border-radius: 2px; }
-        ::selection { background: var(--ink); color: var(--paper); }
-
-        .contact {
-            margin-top: var(--space-2xl);
-            padding-top: var(--space-lg);
-            padding-bottom: var(--space-lg);
-            font-size: var(--text-small);
+        .footer {
+            margin-top: var(--space-13);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--ink-hint);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-top: 1px solid var(--ink-whisper);
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
         }
 
-        .contact > a {
-            color: var(--ink-tertiary);
+        .footer a {
+            color: var(--ink-faint);
             text-decoration: none;
-            transition: color 150ms ease;
-            letter-spacing: 0.01em;
+            transition: color 180ms ease;
         }
-        .contact > a:hover { color: var(--ink); }
-        .contact .social { display: flex; align-items: center; gap: 0.5em; }
 
-        .contact .icon-link {
+        .footer a:hover { color: var(--ink); }
+
+        .social { display: flex; align-items: center; gap: 0.375em; }
+
+        .icon-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 2.2em;
-            height: 2.2em;
+            width: 2.25em;
+            height: 2.25em;
             color: var(--ink-ghost);
-            transition: color 150ms ease, background-color 150ms ease;
+            transition: color 180ms ease, background-color 180ms ease;
             border-radius: 4px;
         }
 
-        .contact .icon-link:hover {
+        .icon-link:hover {
             color: var(--ink);
-            background-color: var(--paper-alt);
-        }
-        .contact .icon-link svg { display: block; }
-
-        .subsection-label {
-            font-size: var(--text-tiny);
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--ink-ghost);
-            margin-top: calc(var(--space-md) + 4px);
-            margin-bottom: calc(var(--space-xs) - 2px);
+            background-color: var(--paper-tint);
         }
 
-        @media (max-width: 640px) {
-            .container { padding: var(--space-xl) var(--gutter) var(--space-lg); padding-left: var(--gutter); }
-            .profile-image { position: relative; left: auto; top: auto; margin-bottom: var(--space-lg); }
-            .nav-links { gap: var(--space-md); margin-bottom: var(--space-md); flex-wrap: wrap; }
-            .project-item { grid-template-columns: 1fr; gap: var(--space-xs); margin-left: 0; padding-left: var(--space-xs); padding-right: var(--space-xs); }
-            .project-item:hover { transform: none; }
-            .year { color: var(--ink-tertiary); }
-            .photo-grid { grid-template-columns: 1fr; }
-            .testimonial { padding: var(--space-sm) var(--space-md); margin: var(--space-md) 0; }
-            .testimonial blockquote { font-size: var(--text-small); }
-            .contact { flex-direction: column; gap: var(--space-md); text-align: center; }
+        .icon-link svg { display: block; }
+
+        ::selection { background: var(--ink); color: var(--paper); }
+
+        a:focus-visible {
+            outline: 2px solid var(--ink-muted);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 680px) {
+            :root { --text-base: clamp(17px, 1rem + 0.2vw, 19px); }
+
+            .container { padding: var(--space-6) var(--gutter) var(--space-5); }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-2);
+            }
+
+            .profile-image {
+                width: calc(var(--baseline) * 9);
+                height: calc(var(--baseline) * 9);
+            }
+
+            .tagline {
+                margin-top: var(--space-4);
+                margin-bottom: var(--space-5);
+            }
+
+            .beats { margin-top: var(--space-5); }
+
+            .footer {
+                flex-direction: column;
+                gap: var(--space-3);
+                text-align: center;
+                margin-top: var(--space-8);
+            }
+        }
+
+        @media (max-width: 400px) {
+            :root { --text-base: 16px; }
+            .container { padding: var(--space-5) var(--space-2) var(--space-4); }
+            nav { gap: var(--space-1) var(--space-2); }
+        }
+
+        @media (min-width: 1200px) {
+            .container { padding-top: var(--space-13); }
         }
 
         @media print {
             :root { --ink: #000; --paper: #fff; }
             body { font-size: 11pt; line-height: 1.4; }
             .container { max-width: 100%; padding: 0; }
-            .profile-image { display: none; }
-            a { background: none !important; border-bottom: 0.5pt solid #ddd; }
-            .section-header { page-break-after: avoid; }
-            .project-item { page-break-inside: avoid; }
-            .contact { margin-top: 2em; }
-            .contact a { border-bottom: none; }
+            nav, .social { display: none; }
+            a { text-decoration: none; color: var(--ink); }
+        }
+
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(var(--gutter), env(safe-area-inset-left));
+                padding-right: max(var(--gutter), env(safe-area-inset-right));
+            }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <img src="https://mass-finance.github.io/raeez/76.jpeg"
-         alt="Raeez Lorgat"
-         class="profile-image"
-         loading="eager"
-         decoding="async">
-
-    <h1 class="name">Raeez Lorgat</h1>
-
-    <p class="concept-line">Building Operating Systems for Soverign Nations</p>
-
-    <!--<ul class="proof-strip">
-        <li>Built early Stripe payment rails (cold-called banks; code now processes hundreds of billions)</li>
-        <li>10 years MIT + Perimeter Institute—arithmetic geometry, quantum field theory</li>
-        <li>Intel ISEF winner; minor planet 23122 Lorgat</li>
-    </ul>-->
-
-    <nav class="nav-links">
-        <a href="beauty.html">Beauty</a>
-        <a href="devfinance.html">/dev/finance</a>
-        <a href="experience.html">Experience</a>
-        <a href="mass.html">Mass</a>
-    </nav>
-
-    <div class="bio">
-        <p>In 1994, apartheid fell. My family left South Africa for the UK. I learned early: institutions are just agreements—and agreements can be rewritten.</p>
-
-        <p>As a teen I built <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">raytracers</a> and <a href="https://en.wikipedia.org/wiki/Game_engine#3D_game_engines">game engines</a> and short films, chasing geometry not because it was useful, <a href="https://raeez.com/beauty.html">but because it was beautiful</a>. In 2007 I won Intel ISEF. <a href="https://www.ll.mit.edu">MIT's Lincoln Laboratory</a> named <a href="https://en.wikipedia.org/wiki/Minor_planet">minor planet</a> <a href="https://www.spacereference.org/asteroid/23122-lorgat-2000-au52">23122 Lorgat</a> after me. MIT followed.</p>
-
-
-        <p>At MIT I met <a href="https://en.wikipedia.org/wiki/Patrick_Collison">Patrick Collison</a>. Freshman year we bounced between California and Massachusetts, and <a href="https://raeez.com/devfinance.html">ended one week flying up the Pacific coast in a small plane we’d pilot ourselves</a>—Patrick’s first international trip, my first flight ever.</p>
-
-        <div class="photo-grid">
-            <img src="https://raeez.com/IMG_1987.JPG" alt="In the cockpit">
-            <img src="https://raeez.com/IMG_1989.JPG" alt="In the cockpit">
+    <header class="header">
+        <img src="https://mass-finance.github.io/raeez/76.jpeg" alt="Raeez Lorgat" class="profile-image">
+        <div class="header-text">
+            <h1 class="name">Raeez Lorgat</h1>
+            <nav>
+                <a href="about.html">About</a>
+                <a href="mass.html">Mass</a>
+                <a href="writing.html">Writing</a>
+                <a href="experience.html">Experience</a>
+                <a href="beauty.html">Beauty</a>
+            </nav>
         </div>
-        <p class="photo-caption">Palo Alto to Vancouver, 2009. Patrick's first international flight. My first flight ever.</p>
+    </header>
 
+    <p class="tagline">Building operating systems for sovereignty</p>
 
-        <p>I dropped out with the Collison brothers and moved into an apartment in Palo Alto. We built Stripe. We cold-called banks and wrote the code that would process hundreds of billions of dollars a year.</p>
+    <main class="beats">
+        <p>In 1994, apartheid fell. I learned institutions are just agreements.</p>
+        <p>In 2007, <a href="https://www.ll.mit.edu">MIT Lincoln Lab</a> named <a href="https://www.spacereference.org/asteroid/23122-lorgat-2000-au52">asteroid 23122 Lorgat</a> after me.</p>
+        <p>In 2009, we built <a href="https://stripe.com">Stripe</a>.</p>
+        <p>I spent a decade studying <a href="beauty.html">beautiful mathematics</a>.</p>
+        <p>Then I built <a href="mass.html">Mass</a>. <span class="highlight">$1B in 2025.</span></p>
+    </main>
 
-        <div class="photo-grid">
-            <img src="https://raeez.com/IMG_1976.JPG" alt="701 Webster Street">
-            <img src="https://raeez.com/IMG_1978.JPG" alt="701 Webster Street">
-        </div>
-        <p class="photo-caption">701 Webster Street, Palo Alto. Standing desks made of IKEA parts. We all programmed using the Dvorak-QWERTY keyboard.</p>
-
-        <!--<div class="testimonial">
-            <blockquote>"Lorgat is an extraordinarily talented individual. When he joined Stripe in 2010, he struck me as extraordinary in his genuine curiosity, his energy, and commitment to learning. His exceptionally broad knowledge and wide range of curiosity make him just as capable as any of the top business minds working in the American technology industry today."</blockquote>
-            <cite>— <a href="https://en.wikipedia.org/wiki/Patrick_Collison">Patrick Collison</a>, CEO of Stripe, in a 2022 letter</cite>
-        </div>-->
-
-
-        <p>Stripe showed me the real problem: not payments, but the exponential friction of global compliance. To solve it, I needed an approach that didn't exist yet. I spent a decade at <a href="https://math.mit.edu">MIT</a> and the <a href="https://perimeterinstitute.ca">Perimeter Institute for Theoretical Physics</a> studying <a href="https://en.wikipedia.org/wiki/Arithmetic_geometry">arithmetic geometry</a>, <a href="https://en.wikipedia.org/wiki/Factorization_algebra">factorization algebras</a>, and the geometry of <a href="https://en.wikipedia.org/wiki/Quantum_field_theory">quantum field theory</a>—the mathematics of how local structures compose into global ones. Now I'm deploying it.</p>
-
-        <p><a href="mass.html">Mass</a> is a new kind of decentralized network where the nodes are sovereign jurisdictions. Mass realizes an operating system for jurisdictions—automated incorporation, structuring, compliance, banking and legal operations as APIs. Assets carry their own compliance and can move fluidly between competing sovereigns. Live across the US, Cayman, BVI, and the Special Economic Zone <a href="https://prospera.hn">Próspera ZEDE</a> in <a href="https://en.wikipedia.org/wiki/Honduras">Honduras</a>. We crossed $1B in 2025.</p>
-
-        <p><a href="https://momentum.inc">Momentum</a> is the fund building this ecosystem headquartered on Saadiyat Beach in Abu Dhabi.</p>
-    </div>
-
-    <h2 class="section-header">Selected Work</h2>
-
-    <p class="subsection-label">Infrastructure</p>
-    <ul class="project-list">
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content">
-                <a href="sez-stack.html">Open Source Special Economic Zone Legal, Fiscal & Regulatory Stack</a>
-                <span class="subtitle"><a href="https://github.com/momentum-sez/stack"><code>momentum-sez/stack</code> public github repository</a></span>
-            </span>
-        </li>
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content">
-                <a href="competitive-topologies.html">Competitive Topologies & The Monopoly Problem: Why Democratic Institutions Need Competition</a>
-                <span class="subtitle"><a href="https://www.nytimes.com/2025/11/11/opinion/ai-democracy-government-authoritarianism.html">a response to Eric Schmidt and Andrew Sorota's "This is No Way to Rule a Country"</a></span>
-            </span>
-        </li>
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content"><a href="smart-assets.html">Smart Assets</a>
-                <span class="subtitle">Programmable primitive on a novel decentralized network embedding compliance, identity, and operational intelligence directly into assets</span>
-            </span>
-        </li>
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content"><a href="sez-in-a-box.html">Special Economic Zones in a Box</a>
-                <span class="subtitle">From proof of scale to proof of network</span>
-            </span>
-        </li>
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content"><a href="licc.html">The Laboratory for Incentivization, Coordination and Cooperation (LICC)</a></span>
-        </li>
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content"><a href="moxie.html">Moxie</a>
-                <span class="subtitle">Programmable loyalty and rewards for large-distribution brands</span>
-            </span>
-        </li>
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content"><a href="momentum-monograph.html">Momentum: Incubating Ecosystems</a></span>
-        </li>
-    </ul>
-
-    <p class="subsection-label">Built Environment</p>
-    <ul class="project-list">
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content"><a href="smart-buildings.html">Smart Buildings</a>
-                <span class="subtitle">Towards a programmable built environment operating system</span>
-            </span>
-        </li>
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content"><a href="prefabricated-construction.html">Prefabricated Construction Methodologies</a></span>
-        </li>
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content"><a href="archai.html">Archai</a>
-                <span class="subtitle">Scalable primitives for land and community infrastructure ownership</span>
-            </span>
-        </li>
-    </ul>
-
-    <p class="subsection-label">Mathematics</p>
-    <ul class="project-list">
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content"><a href="https://tinyurl.com/mr368bkn">A<sub>∞</sub> Chiral Algebras and Chiral Hochschild Cohomology in 3D Holomorphic–Topological Quantum Field Theory</a></span>
-        </li>
-        <li class="project-item">
-            <span class="year">2025</span>
-            <span class="content"><a href="https://tinyurl.com/55hsc5ky">Chiral Duality in the presence of Quantum Corrections: Geometric Realizations via Configuration Spaces</a></span>
-        </li>
-        <li class="project-item">
-            <span class="year">2020</span>
-            <span class="content">
-                <a href="https://github.com/raeez/igusa-cusp-form/blob/master/raeez.lorgat.automorphic-corrections.pdf">Automorphic Corrections: A Borcherds Lift of the Weak Jacobi Form <span class="math">φ</span><sub>0,1</sub>, Generalized Borcherds-Kac-Moody Superalgebras and the Igusa Cusp Form</a>
-                <span class="subtitle"><a href="https://github.com/raeez/igusa-cusp-form/blob/master/raeez.lorgat.automorphic-corrections-presentation.pdf">Slides with example CY3 geometries categorifying Automorphic forms</a></span>
-            </span>
-        </li>
-        <li class="project-item">
-            <span class="year">2018</span>
-            <span class="content"><a href="https://github.com/raeez/topological-strings/blob/master/out/main.pdf">Some calculations concerning the topological string</a></span>
-        </li>
-        <li class="project-item">
-            <span class="year">2017</span>
-            <span class="content">
-                <a href="https://github.com/raeez/etingof-dmod/blob/master/out/etingof-dmod.pdf">Algebraic D-Modules</a>
-                <span class="subtitle"><a href="https://math.mit.edu/~etingof/18.769.html">Lecture notes on MIT 18.769 (Pavel Etingof)</a></span>
-            </span>
-        </li>
-        <li class="project-item">
-            <span class="year">2017</span>
-            <span class="content">
-                <a href="https://www.cip.ifi.lmu.de/~grinberg/algebra/etingof-lie.pdf">Infinite Dimensional Lie Algebras</a>
-                <span class="subtitle"><a href="https://math.mit.edu/~etingof/18.747.html">Lecture notes on MIT course 18.747 taught by Pavel Etingof</a></span>
-            </span>
-        </li>
-    </ul>
-
-    <footer class="contact">
+    <footer class="footer">
         <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>
         <nav class="social" aria-label="Social links">
             <a href="https://x.com/raeez" aria-label="X (Twitter)" class="icon-link">

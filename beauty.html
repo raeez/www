@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Beauty — Raeez Lorgat</title>
 
+    <!-- SEO -->
     <meta name="description" content="On the aesthetic origins of a life in mathematics and infrastructure.">
     <meta name="author" content="Raeez Lorgat">
     <link rel="canonical" href="https://raeez.com/beauty.html">
     <link rel="alternate" type="application/atom+xml" title="Raeez Lorgat" href="https://raeez.com/feed.xml">
 
+    <!-- Open Graph -->
+    <meta property="og:title" content="Beauty — Raeez Lorgat">
+    <meta property="og:description" content="On the aesthetic origins of a life in mathematics and infrastructure.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://raeez.com/beauty.html">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -18,7 +26,10 @@
         gtag('config', 'G-JP8T5J8M28');
     </script>
 
+    <!-- Adobe Fonts: Garamond Premier Pro (all optical sizes) -->
     <link rel="stylesheet" href="https://use.typekit.net/zlu2quo.css">
+
+    <!-- Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
@@ -27,29 +38,34 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
+            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', 'Baskerville', Garamond, serif;
             --font-display: 'garamond-premier-pro-display', var(--font-text);
             --font-caption: 'garamond-premier-pro-caption', var(--font-text);
+            --font-subhead: 'garamond-premier-pro-subhead', var(--font-text);
+            --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
 
-            --text-base: clamp(18px, 1.125rem + 0.2vw, 21px);
+            --text-base: clamp(18px, 1.125rem + 0.25vw, 21px);
             --text-sm: calc(var(--text-base) / 1.333);
+            --text-xs: calc(var(--text-sm) / 1.333);
+            --text-lg: calc(var(--text-base) * 1.333);
 
             --baseline: 8px;
+            --leading-tight: 1.2;
             --leading-snug: 1.35;
             --leading-relaxed: 1.618;
-            --leading-loose: 1.75;
+            --leading-loose: 1.8;
 
             --space-1: calc(var(--baseline) * 1);
             --space-2: calc(var(--baseline) * 2);
             --space-3: calc(var(--baseline) * 3);
-            --space-4: calc(var(--baseline) * 4);
             --space-5: calc(var(--baseline) * 5);
             --space-6: calc(var(--baseline) * 6);
             --space-8: calc(var(--baseline) * 8);
             --space-10: calc(var(--baseline) * 10);
             --space-13: calc(var(--baseline) * 13);
 
-            --measure: 55ch;
+            --measure: 65ch;
+            --measure-narrow: 55ch;
             --gutter: clamp(16px, 4vw, 24px);
 
             --ink: #1a1917;
@@ -61,7 +77,6 @@
             --paper: #fefdfb;
             --paper-tint: #f5f3f0;
 
-            --kern-snug: -0.01em;
             --kern-wide: 0.04em;
             --kern-caps: 0.08em;
             --optical-margin: -0.03em;
@@ -80,17 +95,14 @@
             font-family: var(--font-text);
             font-size: var(--text-base);
             font-weight: 400;
-            line-height: var(--leading-loose);
+            line-height: var(--leading-relaxed);
             color: var(--ink);
             background: var(--paper);
             text-rendering: optimizeLegibility;
-            font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "onum" 1, "pnum" 1, "dlig" 1;
+            font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "dlig" 1, "onum" 1, "pnum" 1;
             font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
             font-variant-numeric: oldstyle-nums proportional-nums;
             font-kerning: normal;
-            hyphens: auto;
-            hyphenate-limit-chars: 6 3 2;
-            hyphenate-limit-lines: 2;
         }
 
         .container {
@@ -103,9 +115,9 @@
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            margin-bottom: var(--space-6);
             flex-wrap: wrap;
-            gap: var(--space-2);
+            gap: var(--space-2) var(--space-5);
+            margin-bottom: var(--space-5);
         }
 
         .back-link {
@@ -145,20 +157,22 @@
             font-family: var(--font-text);
             font-size: var(--text-base);
             font-weight: 400;
-            margin-bottom: var(--space-5);
-            margin-left: var(--optical-margin);
-            letter-spacing: var(--kern-caps);
             font-variant-caps: small-caps;
             font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-caps);
+            color: var(--ink);
+            margin-bottom: var(--space-6);
+            margin-left: var(--optical-margin);
         }
 
-        .essay {
-            max-width: var(--measure);
-        }
+        .essay { max-width: var(--measure-narrow); }
 
         .essay p {
             margin-bottom: var(--space-3);
-            text-indent: 0;
+            hyphens: auto;
+            hyphenate-limit-chars: 6 3 2;
+            hyphenate-limit-lines: 2;
+            line-height: var(--leading-relaxed);
         }
 
         .essay p:first-of-type::first-letter {
@@ -181,7 +195,7 @@
         .photo-grid {
             display: grid;
             gap: var(--space-2);
-            margin: var(--space-5) 0;
+            margin: var(--space-5) 0 var(--space-2);
         }
 
         .photo-grid.grid-2 { grid-template-columns: repeat(2, 1fr); }
@@ -190,10 +204,9 @@
         .photo-grid img {
             width: 100%;
             height: 100%;
-            aspect-ratio: 4 / 3;
             object-fit: cover;
             border-radius: 2px;
-            filter: contrast(1.02);
+            aspect-ratio: 4 / 3;
         }
 
         .photo-caption {
@@ -201,7 +214,6 @@
             font-size: var(--text-sm);
             color: var(--ink-faint);
             font-style: italic;
-            margin-top: calc(-1 * var(--space-1));
             margin-bottom: var(--space-5);
             line-height: var(--leading-snug);
             font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
@@ -211,17 +223,22 @@
             color: var(--ink-faint);
             text-decoration: underline;
             text-decoration-color: var(--ink-whisper);
-            transition: color 180ms ease;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.12em;
+            transition: color 180ms ease, text-decoration-color 180ms ease;
         }
 
-        .photo-caption a:hover { color: var(--ink-muted); }
+        .photo-caption a:hover {
+            color: var(--ink-muted);
+            text-decoration-color: var(--ink-muted);
+        }
 
         .separator {
-            width: 2em;
-            height: 1px;
-            background: var(--ink-whisper);
-            margin: var(--space-6) 0;
             border: none;
+            height: 1px;
+            background: var(--ink-hint);
+            margin: var(--space-6) 0;
+            max-width: 4rem;
         }
 
         .epigraph {
@@ -234,6 +251,7 @@
             color: var(--ink-muted);
             line-height: 1.9;
             margin-bottom: var(--space-2);
+            font-feature-settings: "kern" 1, "liga" 1, "dlig" 1, "onum" 1;
         }
 
         .epigraph .attribution {
@@ -241,7 +259,6 @@
             font-size: var(--text-sm);
             font-style: normal;
             color: var(--ink-faint);
-            letter-spacing: 0.01em;
         }
 
         .epigraph .attribution cite { font-style: italic; }
@@ -257,12 +274,7 @@
             font-size: var(--text-sm);
         }
 
-        .footer a {
-            color: var(--ink-faint);
-            text-decoration: none;
-            transition: color 180ms ease;
-        }
-
+        .footer a { color: var(--ink-faint); text-decoration: none; transition: color 180ms ease; }
         .footer a:hover { color: var(--ink); }
 
         .social { display: flex; align-items: center; gap: 0.375em; }
@@ -282,26 +294,14 @@
         .icon-link svg { display: block; }
 
         ::selection { background: var(--ink); color: var(--paper); }
-
-        a:focus-visible {
-            outline: 2px solid var(--ink-muted);
-            outline-offset: 3px;
-            border-radius: 2px;
-        }
+        a:focus-visible { outline: 2px solid var(--ink-muted); outline-offset: 3px; border-radius: 2px; }
 
         @media (max-width: 680px) {
             :root { --text-base: clamp(17px, 1rem + 0.2vw, 19px); }
             .container { padding: var(--space-6) var(--gutter) var(--space-5); }
-            .header { flex-direction: column; align-items: flex-start; }
-            .photo-grid.grid-2x2 { grid-template-columns: 1fr; }
-            .photo-grid.grid-2 { grid-template-columns: 1fr; }
-            .photo-grid img { aspect-ratio: 3 / 2; }
-            .footer {
-                flex-direction: column;
-                gap: var(--space-3);
-                text-align: center;
-                margin-top: var(--space-8);
-            }
+            .header { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+            .photo-grid.grid-2, .photo-grid.grid-2x2 { grid-template-columns: 1fr; }
+            .footer { flex-direction: column; gap: var(--space-3); text-align: center; margin-top: var(--space-8); }
         }
 
         @media (max-width: 400px) {
@@ -309,6 +309,8 @@
             .container { padding: var(--space-5) var(--space-2) var(--space-4); }
             nav { gap: var(--space-1) var(--space-2); }
         }
+
+        @media (min-width: 1200px) { .container { padding-top: var(--space-13); } }
 
         @media print {
             :root { --ink: #000; --paper: #fff; }
@@ -331,17 +333,17 @@
     <header class="header">
         <a href="index.html" class="back-link">← Raeez Lorgat</a>
         <nav>
+            <a href="about.html">About</a>
             <a href="mass.html">Mass</a>
             <a href="writing.html">Writing</a>
             <a href="experience.html">Experience</a>
             <a href="beauty.html" class="active">Beauty</a>
-            <a href="devfinance.html">/dev/finance</a>
         </nav>
     </header>
 
     <h1 class="page-title">Beauty</h1>
 
-    <div class="essay">
+    <article class="essay">
         <p>I started programming at eleven. Not because I cared about corporations, or money, or career—I wanted to build worlds. Visual stories with their own lore, their own languages, their own fashion, their own color palettes. Virtually none were realistic. That was the point.</p>
 
         <p>By fourteen I was building <a href="https://en.wikipedia.org/wiki/Tile-based_video_game">tiling map-makers</a>, <a href="https://en.wikipedia.org/wiki/Isometric_video_game_graphics">isometric engines</a>, primitive scripting languages to animate characters through scenes I'd sketched the night before. My father refused to pay for continuous internet—we had dialup, metered by the minute—so I taught myself from books. The public library. <a href="https://www.exclusivebooks.co.za">Exclusive Books</a> in Cavendish Square, Cape Town, where I'd convinced my mother to buy me an 800-page volume on 3D graphics programming.</p>
@@ -395,7 +397,7 @@
             </p>
             <p class="attribution">— T.S. Eliot, <cite>Little Gidding</cite></p>
         </blockquote>
-    </div>
+    </article>
 
     <footer class="footer">
         <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>

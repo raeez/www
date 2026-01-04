@@ -35,56 +35,39 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
     <style>
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           RESET
-           ═══════════════════════════════════════════════════════════════════════════════ */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           DESIGN TOKENS — ELITE TYPOGRAPHY SYSTEM
-           ═══════════════════════════════════════════════════════════════════════════════ */
         :root {
-            /* Font Stacks — Garamond Premier Pro optical sizes */
-            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
+            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', 'Baskerville', Garamond, serif;
             --font-display: 'garamond-premier-pro-display', var(--font-text);
             --font-caption: 'garamond-premier-pro-caption', var(--font-text);
             --font-subhead: 'garamond-premier-pro-subhead', var(--font-text);
             --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
 
-            /* Modular Scale — Perfect Fourth (1.333) */
-            --text-base: clamp(18px, 1.125rem + 0.2vw, 21px);
+            --text-base: clamp(18px, 1.125rem + 0.25vw, 21px);
             --text-sm: calc(var(--text-base) / 1.333);
             --text-xs: calc(var(--text-sm) / 1.333);
             --text-lg: calc(var(--text-base) * 1.333);
 
-            /* Baseline Grid */
             --baseline: 8px;
-
-            /* Line Heights */
             --leading-tight: 1.2;
             --leading-snug: 1.35;
-            --leading-normal: 1.5;
             --leading-relaxed: 1.618;
 
-            /* Spacing */
             --space-1: calc(var(--baseline) * 1);
             --space-2: calc(var(--baseline) * 2);
             --space-3: calc(var(--baseline) * 3);
-            --space-4: calc(var(--baseline) * 4);
             --space-5: calc(var(--baseline) * 5);
             --space-6: calc(var(--baseline) * 6);
             --space-8: calc(var(--baseline) * 8);
             --space-10: calc(var(--baseline) * 10);
             --space-13: calc(var(--baseline) * 13);
 
-            /* Measure */
             --measure: 65ch;
             --gutter: clamp(16px, 4vw, 24px);
 
-            /* Colors */
             --ink: #1a1917;
             --ink-muted: #4a4744;
-            --ink-subtle: #6a6662;
             --ink-faint: #8a8580;
             --ink-ghost: #b5b0ab;
             --ink-whisper: #d4d0cc;
@@ -92,18 +75,11 @@
             --paper: #fefdfb;
             --paper-tint: #f5f3f0;
 
-            /* Kerning */
-            --kern-tight: -0.02em;
-            --kern-snug: -0.01em;
-            --kern-loose: 0.015em;
             --kern-wide: 0.04em;
             --kern-caps: 0.08em;
             --optical-margin: -0.03em;
         }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           BASE TYPOGRAPHY
-           ═══════════════════════════════════════════════════════════════════════════════ */
         html {
             font-size: 100%;
             -webkit-text-size-adjust: 100%;
@@ -121,34 +97,24 @@
             color: var(--ink);
             background: var(--paper);
             text-rendering: optimizeLegibility;
-
-            /* OpenType Magic */
-            font-feature-settings: 
-                "kern" 1, "liga" 1, "clig" 1, "calt" 1,
-                "onum" 1, "pnum" 1, "dlig" 1;
+            font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "dlig" 1, "onum" 1, "pnum" 1;
             font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
             font-variant-numeric: oldstyle-nums proportional-nums;
             font-kerning: normal;
         }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           LAYOUT
-           ═══════════════════════════════════════════════════════════════════════════════ */
         .container {
             max-width: calc(var(--measure) + var(--space-8));
             margin-inline: auto;
             padding: var(--space-10) var(--gutter) var(--space-8);
         }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           HEADER
-           ═══════════════════════════════════════════════════════════════════════════════ */
         .header {
             display: flex;
             align-items: baseline;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: var(--space-2) var(--space-4);
+            gap: var(--space-2) var(--space-5);
             margin-bottom: var(--space-5);
         }
 
@@ -185,9 +151,6 @@
         nav a:hover { color: var(--ink); }
         nav a.active { color: var(--ink); }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           PAGE TITLE
-           ═══════════════════════════════════════════════════════════════════════════════ */
         .page-title {
             font-family: var(--font-text);
             font-size: var(--text-base);
@@ -200,9 +163,6 @@
             margin-left: var(--optical-margin);
         }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           SECTION LABELS
-           ═══════════════════════════════════════════════════════════════════════════════ */
         .section-label {
             font-family: var(--font-caption);
             font-size: var(--text-xs);
@@ -216,9 +176,6 @@
 
         .section-label:first-of-type { margin-top: 0; }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           PROJECT LIST
-           ═══════════════════════════════════════════════════════════════════════════════ */
         .project-list { list-style: none; }
 
         .project-item {
@@ -226,7 +183,7 @@
             grid-template-columns: 4.5rem 1fr;
             gap: var(--space-3);
             align-items: baseline;
-            padding: var(--space-2) var(--space-2);
+            padding: var(--space-2);
             margin-left: calc(-1 * var(--space-2));
             margin-bottom: var(--space-1);
             border-radius: 3px;
@@ -260,9 +217,7 @@
             transition: text-decoration-color 180ms ease;
         }
 
-        .content a:hover {
-            text-decoration-color: var(--ink-muted);
-        }
+        .content a:hover { text-decoration-color: var(--ink-muted); }
 
         .subtitle {
             display: block;
@@ -298,9 +253,6 @@
 
         .math { font-style: italic; }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           FOOTER
-           ═══════════════════════════════════════════════════════════════════════════════ */
         .footer {
             margin-top: var(--space-13);
             padding-top: var(--space-5);
@@ -312,12 +264,7 @@
             font-size: var(--text-sm);
         }
 
-        .footer a {
-            color: var(--ink-faint);
-            text-decoration: none;
-            transition: color 180ms ease;
-        }
-
+        .footer a { color: var(--ink-faint); text-decoration: none; transition: color 180ms ease; }
         .footer a:hover { color: var(--ink); }
 
         .social { display: flex; align-items: center; gap: 0.375em; }
@@ -333,49 +280,18 @@
             border-radius: 4px;
         }
 
-        .icon-link:hover {
-            color: var(--ink);
-            background-color: var(--paper-tint);
-        }
-
+        .icon-link:hover { color: var(--ink); background-color: var(--paper-tint); }
         .icon-link svg { display: block; }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           UTILITIES
-           ═══════════════════════════════════════════════════════════════════════════════ */
         ::selection { background: var(--ink); color: var(--paper); }
+        a:focus-visible { outline: 2px solid var(--ink-muted); outline-offset: 3px; border-radius: 2px; }
 
-        a:focus-visible {
-            outline: 2px solid var(--ink-muted);
-            outline-offset: 3px;
-            border-radius: 2px;
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           MOBILE
-           ═══════════════════════════════════════════════════════════════════════════════ */
         @media (max-width: 680px) {
             :root { --text-base: clamp(17px, 1rem + 0.2vw, 19px); }
-
             .container { padding: var(--space-6) var(--gutter) var(--space-5); }
-
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--space-2);
-            }
-
-            .project-item {
-                grid-template-columns: 1fr;
-                gap: var(--space-1);
-            }
-
-            .footer {
-                flex-direction: column;
-                gap: var(--space-3);
-                text-align: center;
-                margin-top: var(--space-8);
-            }
+            .header { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+            .project-item { grid-template-columns: 1fr; gap: var(--space-1); }
+            .footer { flex-direction: column; gap: var(--space-3); text-align: center; margin-top: var(--space-8); }
         }
 
         @media (max-width: 400px) {
@@ -384,13 +300,8 @@
             nav { gap: var(--space-1) var(--space-2); }
         }
 
-        @media (min-width: 1200px) {
-            .container { padding-top: var(--space-13); }
-        }
+        @media (min-width: 1200px) { .container { padding-top: var(--space-13); } }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           PRINT
-           ═══════════════════════════════════════════════════════════════════════════════ */
         @media print {
             :root { --ink: #000; --paper: #fff; }
             body { font-size: 11pt; line-height: 1.4; }
@@ -399,7 +310,6 @@
             a { text-decoration: none; color: var(--ink); }
         }
 
-        /* Safe area insets */
         @supports (padding: max(0px)) {
             .container {
                 padding-left: max(var(--gutter), env(safe-area-inset-left));
@@ -413,11 +323,11 @@
     <header class="header">
         <a href="index.html" class="back-link">← Raeez Lorgat</a>
         <nav>
+            <a href="about.html">About</a>
             <a href="mass.html">Mass</a>
             <a href="writing.html" class="active">Writing</a>
             <a href="experience.html">Experience</a>
             <a href="beauty.html">Beauty</a>
-            <a href="devfinance.html">/dev/finance</a>
         </nav>
     </header>
 
