@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Raeez Lorgat</title>
-  <subtitle>Essays on programmable sovereignty, institutional design, and mathematics</subtitle>
+  <subtitle>Building operating systems for sovereignty</subtitle>
   <link href="https://raeez.com/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://raeez.com" rel="alternate" type="text/html"/>
   <id>https://raeez.com/</id>
@@ -12,6 +12,10 @@
     <uri>https://raeez.com</uri>
   </author>
   <rights>© 2025 Raeez Lorgat</rights>
+  <icon>https://raeez.com/favicon.ico</icon>
+  <generator>Static Site</generator>
+
+  <!-- Infrastructure -->
 
   <entry>
     <title>Open Source Special Economic Zone Legal, Fiscal &amp; Regulatory Stack</title>
@@ -20,7 +24,8 @@
     <published>2025-12-01T00:00:00Z</published>
     <updated>2025-12-01T00:00:00Z</updated>
     <summary>Open source legal, fiscal, and regulatory infrastructure for special economic zones. Companion to the momentum-sez/stack public GitHub repository.</summary>
-    <category term="infrastructure"/>
+    <category term="infrastructure" label="Infrastructure"/>
+    <content type="html">&lt;p&gt;Open source legal, fiscal, and regulatory infrastructure for special economic zones.&lt;/p&gt;&lt;p&gt;Repository: &lt;a href="https://github.com/momentum-sez/stack"&gt;momentum-sez/stack&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 
   <entry>
@@ -30,7 +35,8 @@
     <published>2025-11-15T00:00:00Z</published>
     <updated>2025-11-15T00:00:00Z</updated>
     <summary>A response to Eric Schmidt and Andrew Sorota's "This is No Way to Rule a Country" on why democratic institutions require competitive pressure.</summary>
-    <category term="infrastructure"/>
+    <category term="infrastructure" label="Infrastructure"/>
+    <content type="html">&lt;p&gt;A response to &lt;a href="https://www.nytimes.com/2025/11/11/opinion/ai-democracy-government-authoritarianism.html"&gt;Eric Schmidt and Andrew Sorota's "This is No Way to Rule a Country"&lt;/a&gt; on why democratic institutions require competitive pressure.&lt;/p&gt;</content>
   </entry>
 
   <entry>
@@ -40,7 +46,8 @@
     <published>2025-10-01T00:00:00Z</published>
     <updated>2025-10-01T00:00:00Z</updated>
     <summary>Programmable primitive on a novel decentralized network embedding compliance, identity, and operational intelligence directly into assets.</summary>
-    <category term="infrastructure"/>
+    <category term="infrastructure" label="Infrastructure"/>
+    <content type="html">&lt;p&gt;Programmable primitive on a novel decentralized network embedding compliance, identity, and operational intelligence directly into assets.&lt;/p&gt;</content>
   </entry>
 
   <entry>
@@ -50,7 +57,8 @@
     <published>2025-09-15T00:00:00Z</published>
     <updated>2025-09-15T00:00:00Z</updated>
     <summary>From proof of scale to proof of network.</summary>
-    <category term="infrastructure"/>
+    <category term="infrastructure" label="Infrastructure"/>
+    <content type="html">&lt;p&gt;From proof of scale to proof of network.&lt;/p&gt;</content>
   </entry>
 
   <entry>
@@ -60,7 +68,8 @@
     <published>2025-09-01T00:00:00Z</published>
     <updated>2025-09-01T00:00:00Z</updated>
     <summary>Research laboratory for mechanism design and coordination problems.</summary>
-    <category term="infrastructure"/>
+    <category term="infrastructure" label="Infrastructure"/>
+    <content type="html">&lt;p&gt;Research laboratory for mechanism design and coordination problems.&lt;/p&gt;</content>
   </entry>
 
   <entry>
@@ -70,7 +79,8 @@
     <published>2025-08-15T00:00:00Z</published>
     <updated>2025-08-15T00:00:00Z</updated>
     <summary>Programmable loyalty and rewards for large-distribution brands.</summary>
-    <category term="infrastructure"/>
+    <category term="infrastructure" label="Infrastructure"/>
+    <content type="html">&lt;p&gt;Programmable loyalty and rewards for large-distribution brands.&lt;/p&gt;</content>
   </entry>
 
   <entry>
@@ -80,8 +90,11 @@
     <published>2025-08-01T00:00:00Z</published>
     <updated>2025-08-01T00:00:00Z</updated>
     <summary>Investment thesis and methodology for incubating programmable institutions.</summary>
-    <category term="infrastructure"/>
+    <category term="infrastructure" label="Infrastructure"/>
+    <content type="html">&lt;p&gt;Investment thesis and methodology for incubating programmable institutions.&lt;/p&gt;</content>
   </entry>
+
+  <!-- Built Environment -->
 
   <entry>
     <title>Smart Buildings</title>
@@ -90,7 +103,8 @@
     <published>2025-07-15T00:00:00Z</published>
     <updated>2025-07-15T00:00:00Z</updated>
     <summary>Towards a programmable built environment operating system.</summary>
-    <category term="built-environment"/>
+    <category term="built-environment" label="Built Environment"/>
+    <content type="html">&lt;p&gt;Towards a programmable built environment operating system.&lt;/p&gt;</content>
   </entry>
 
   <entry>
@@ -100,7 +114,8 @@
     <published>2025-07-01T00:00:00Z</published>
     <updated>2025-07-01T00:00:00Z</updated>
     <summary>Analysis of modern prefabrication techniques and their application to rapid infrastructure deployment.</summary>
-    <category term="built-environment"/>
+    <category term="built-environment" label="Built Environment"/>
+    <content type="html">&lt;p&gt;Analysis of modern prefabrication techniques and their application to rapid infrastructure deployment.&lt;/p&gt;</content>
   </entry>
 
   <entry>
@@ -110,8 +125,79 @@
     <published>2025-06-15T00:00:00Z</published>
     <updated>2025-06-15T00:00:00Z</updated>
     <summary>Scalable primitives for land and community infrastructure ownership.</summary>
-    <category term="built-environment"/>
+    <category term="built-environment" label="Built Environment"/>
+    <content type="html">&lt;p&gt;Scalable primitives for land and community infrastructure ownership.&lt;/p&gt;</content>
   </entry>
+
+  <!-- Mathematics -->
+
+  <entry>
+    <title>A∞ Chiral Algebras and Chiral Hochschild Cohomology in 3D Holomorphic–Topological Quantum Field Theory</title>
+    <link href="https://tinyurl.com/mr368bkn" rel="alternate" type="text/html"/>
+    <id>https://raeez.com/chiral-algebras-2025</id>
+    <published>2025-05-01T00:00:00Z</published>
+    <updated>2025-05-01T00:00:00Z</updated>
+    <summary>Mathematical physics research on chiral algebras and their role in 3D holomorphic-topological quantum field theory.</summary>
+    <category term="mathematics" label="Mathematics"/>
+    <content type="html">&lt;p&gt;Research on A∞ chiral algebras and chiral Hochschild cohomology in the context of 3D holomorphic-topological quantum field theory.&lt;/p&gt;</content>
+  </entry>
+
+  <entry>
+    <title>Chiral Duality in the presence of Quantum Corrections: Geometric Realizations via Configuration Spaces</title>
+    <link href="https://tinyurl.com/55hsc5ky" rel="alternate" type="text/html"/>
+    <id>https://raeez.com/chiral-duality-2025</id>
+    <published>2025-04-01T00:00:00Z</published>
+    <updated>2025-04-01T00:00:00Z</updated>
+    <summary>Geometric realizations of chiral duality through configuration spaces.</summary>
+    <category term="mathematics" label="Mathematics"/>
+    <content type="html">&lt;p&gt;Geometric realizations of chiral duality in the presence of quantum corrections through configuration spaces.&lt;/p&gt;</content>
+  </entry>
+
+  <entry>
+    <title>Automorphic Corrections: A Borcherds Lift of the Weak Jacobi Form φ₀,₁</title>
+    <link href="https://github.com/raeez/igusa-cusp-form/blob/master/raeez.lorgat.automorphic-corrections.pdf" rel="alternate" type="text/html"/>
+    <id>https://raeez.com/automorphic-corrections-2020</id>
+    <published>2020-06-01T00:00:00Z</published>
+    <updated>2020-06-01T00:00:00Z</updated>
+    <summary>Generalized Borcherds-Kac-Moody Superalgebras and the Igusa Cusp Form. Includes slides with example CY3 geometries categorifying Automorphic forms.</summary>
+    <category term="mathematics" label="Mathematics"/>
+    <content type="html">&lt;p&gt;Research on automorphic corrections via Borcherds lifts. &lt;a href="https://github.com/raeez/igusa-cusp-form/blob/master/raeez.lorgat.automorphic-corrections-presentation.pdf"&gt;Presentation slides&lt;/a&gt; with example CY3 geometries categorifying Automorphic forms.&lt;/p&gt;</content>
+  </entry>
+
+  <entry>
+    <title>Some calculations concerning the topological string</title>
+    <link href="https://github.com/raeez/topological-strings/blob/master/out/main.pdf" rel="alternate" type="text/html"/>
+    <id>https://raeez.com/topological-strings-2018</id>
+    <published>2018-12-01T00:00:00Z</published>
+    <updated>2018-12-01T00:00:00Z</updated>
+    <summary>Calculations in topological string theory.</summary>
+    <category term="mathematics" label="Mathematics"/>
+    <content type="html">&lt;p&gt;Calculations in topological string theory.&lt;/p&gt;</content>
+  </entry>
+
+  <entry>
+    <title>Algebraic D-Modules</title>
+    <link href="https://github.com/raeez/etingof-dmod/blob/master/out/etingof-dmod.pdf" rel="alternate" type="text/html"/>
+    <id>https://raeez.com/dmod-2017</id>
+    <published>2017-12-01T00:00:00Z</published>
+    <updated>2017-12-01T00:00:00Z</updated>
+    <summary>Lecture notes on MIT 18.769 (Pavel Etingof).</summary>
+    <category term="mathematics" label="Mathematics"/>
+    <content type="html">&lt;p&gt;Lecture notes on algebraic D-modules from &lt;a href="https://math.mit.edu/~etingof/18.769.html"&gt;MIT 18.769&lt;/a&gt; taught by Pavel Etingof.&lt;/p&gt;</content>
+  </entry>
+
+  <entry>
+    <title>Infinite Dimensional Lie Algebras</title>
+    <link href="https://www.cip.ifi.lmu.de/~grinberg/algebra/etingof-lie.pdf" rel="alternate" type="text/html"/>
+    <id>https://raeez.com/lie-algebras-2017</id>
+    <published>2017-06-01T00:00:00Z</published>
+    <updated>2017-06-01T00:00:00Z</updated>
+    <summary>Lecture notes on MIT course 18.747 taught by Pavel Etingof.</summary>
+    <category term="mathematics" label="Mathematics"/>
+    <content type="html">&lt;p&gt;Lecture notes on infinite dimensional Lie algebras from &lt;a href="https://math.mit.edu/~etingof/18.747.html"&gt;MIT 18.747&lt;/a&gt; taught by Pavel Etingof.&lt;/p&gt;</content>
+  </entry>
+
+  <!-- Personal / Essays -->
 
   <entry>
     <title>Beauty</title>
@@ -119,8 +205,9 @@
     <id>https://raeez.com/beauty.html</id>
     <published>2025-01-01T00:00:00Z</published>
     <updated>2025-01-01T00:00:00Z</updated>
-    <summary>On learning mathematics because it was beautiful, from childhood raytracers to factorization algebras.</summary>
-    <category term="personal"/>
+    <summary>On learning mathematics because it was beautiful—not useful, beautiful. From childhood raytracers to factorization algebras.</summary>
+    <category term="personal" label="Personal"/>
+    <content type="html">&lt;p&gt;On learning mathematics because it was beautiful—not useful, beautiful. The mathematics of how local structures compose into global ones.&lt;/p&gt;</content>
   </entry>
 
   <entry>
@@ -130,7 +217,8 @@
     <published>2025-01-01T00:00:00Z</published>
     <updated>2025-01-01T00:00:00Z</updated>
     <summary>The story of dropping out of MIT, flying up the Pacific coast with Patrick Collison, and building the payments infrastructure that became Stripe.</summary>
-    <category term="personal"/>
+    <category term="personal" label="Personal"/>
+    <content type="html">&lt;p&gt;The origin story of Stripe, from a two-bedroom apartment at 701 Webster Street, Palo Alto. Cold-calling banks and writing the code that would process hundreds of billions of dollars a year.&lt;/p&gt;</content>
   </entry>
 
 </feed>

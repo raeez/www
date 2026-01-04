@@ -216,7 +216,6 @@
             line-height: var(--line-height-tight);
             margin-top: var(--space-2xl);
             margin-bottom: var(--space-md);
-            margin-left: var(--optical-edge);
         }
 
         .article-body h2 {
@@ -225,28 +224,16 @@
             letter-spacing: var(--kern-tight);
             line-height: var(--line-height-tight);
             margin-top: var(--space-xl);
-            margin-bottom: var(--space-md);
-            margin-left: var(--optical-edge);
+            margin-bottom: var(--space-sm);
         }
 
         .article-body h3 {
             font-size: var(--text-base);
             font-weight: 600;
-            line-height: var(--line-height-tight);
             margin-top: var(--space-lg);
             margin-bottom: var(--space-sm);
         }
 
-        .article-body h4 {
-            font-size: var(--text-base);
-            font-weight: 600;
-            font-style: italic;
-            line-height: var(--line-height-tight);
-            margin-top: var(--space-lg);
-            margin-bottom: var(--space-sm);
-        }
-
-        /* Links */
         .article-body a {
             color: var(--ink);
             text-decoration: underline;
@@ -255,209 +242,97 @@
             text-underline-offset: 0.15em;
             text-decoration-skip-ink: auto;
             transition: text-decoration-color 150ms ease;
-            cursor: pointer;
         }
 
         .article-body a:hover {
             text-decoration-color: var(--ink);
         }
 
-        .article-body strong {
-            font-weight: 600;
-        }
-
-        .article-body em {
-            font-style: italic;
-        }
-
-        /* Block Quote */
-        .article-body blockquote {
-            margin: var(--space-lg) 0;
-            padding-left: var(--space-md);
-            border-left: 2px solid var(--ink-ghost);
-            font-style: italic;
-            color: var(--ink-secondary);
-        }
-
-        /* Code */
-        code {
-            font-family: var(--mono);
-            font-size: 0.8em;
-            letter-spacing: -0.02em;
-            background: var(--paper-alt);
-            padding: 0.15em 0.35em;
-            border-radius: 3px;
-        }
-
-        pre {
-            font-family: var(--mono);
-            font-size: var(--text-small);
-            line-height: 1.5;
-            background: var(--paper-alt);
-            padding: var(--space-md);
-            border-radius: 4px;
-            overflow-x: auto;
-            margin: var(--space-lg) 0;
-        }
-
-        pre code {
-            background: none;
-            padding: 0;
-            border-radius: 0;
-        }
-
-        /* Lists */
         .article-body ul,
         .article-body ol {
-            margin: var(--space-md) 0;
+            margin-bottom: var(--space-md);
             padding-left: 1.5em;
             max-width: var(--measure-base);
         }
 
         .article-body li {
             margin-bottom: var(--space-xs);
-            line-height: var(--line-height-base);
+            line-height: var(--line-height-loose);
         }
 
-        .article-body li::marker {
-            color: var(--ink-tertiary);
-        }
-
-        /* Tables */
-        .article-body table {
-            width: 100%;
-            border-collapse: collapse;
+        .article-body blockquote {
             margin: var(--space-lg) 0;
-            font-size: var(--text-small);
+            padding-left: var(--space-md);
+            border-left: 2px solid var(--ink-whisper);
+            font-style: italic;
+            color: var(--ink-secondary);
         }
 
-        .article-body th,
-        .article-body td {
-            padding: var(--space-sm) var(--space-md);
-            border-bottom: 1px solid var(--ink-whisper);
-            text-align: left;
-        }
-
-        .article-body th {
-            font-weight: 600;
+        .article-body code {
+            font-family: var(--mono);
+            font-size: 0.9em;
             background: var(--paper-alt);
+            padding: 0.1em 0.3em;
+            border-radius: 2px;
         }
 
-        /* Images */
-        .article-body img {
-            max-width: 100%;
-            height: auto;
+        .article-body pre {
+            margin: var(--space-md) 0;
+            padding: var(--space-md);
+            background: var(--paper-alt);
             border-radius: 4px;
-            margin: var(--space-lg) 0;
+            overflow-x: auto;
+            font-family: var(--mono);
+            font-size: var(--text-small);
+            line-height: 1.5;
         }
 
-        /* Horizontal Rule - Section Break */
-        .article-body hr {
-            border: none;
-            text-align: center;
-            margin: var(--space-lg) 0;
-        }
-
-        .article-body hr::before {
-            content: '· · ·';
-            color: var(--ink-ghost);
-            letter-spacing: 0.5em;
+        .article-body pre code {
+            background: none;
+            padding: 0;
         }
 
         /* ════════════════════════════════════════════
            Table of Contents
            ════════════════════════════════════════════ */
         .toc {
-            margin: var(--space-md) 0 var(--space-xl);
-            padding: var(--space-lg);
             background: var(--paper-alt);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
             border-radius: 4px;
         }
 
         .toc-title {
             font-size: var(--text-small);
-            font-weight: 400;
             font-variant-caps: small-caps;
-            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1;
-            letter-spacing: 0.08em;
+            font-feature-settings: "smcp" 1, "c2sc" 1;
+            letter-spacing: var(--kern-caps);
             color: var(--ink-tertiary);
-            margin-bottom: var(--space-md);
-            margin-left: 0;
-        }
-
-        .toc-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .toc-list li {
             margin-bottom: var(--space-sm);
-            border-bottom: 1px solid var(--ink-whisper);
-            padding-bottom: var(--space-sm);
         }
 
-        .toc-list li:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-bottom: 0;
+        .toc ol {
+            list-style: decimal;
+            padding-left: 1.5em;
+            font-size: var(--text-small);
         }
 
-        .toc-list a {
-            color: var(--ink);
+        .toc li {
+            margin-bottom: var(--space-xs);
+        }
+
+        .toc a {
+            color: var(--ink-secondary);
             text-decoration: none;
-            font-size: var(--text-small);
-            display: block;
-            transition: padding-left 150ms ease, color 150ms ease;
+            transition: color 150ms ease;
         }
 
-        .toc-list a:hover {
-            padding-left: var(--space-sm);
-            color: var(--ink-secondary);
-        }
-
-        /* Part/Chapter level */
-        .toc-level-0 a {
-            font-weight: 600;
-            font-size: var(--text-base);
-        }
-
-        /* Section level */
-        .toc-level-1 a {
-            padding-left: var(--space-sm);
-            font-size: var(--text-small);
-        }
-
-        .toc-level-1 a:hover {
-            padding-left: calc(var(--space-sm) + var(--space-xs));
-        }
-
-        /* Subsection level */
-        .toc-level-2 a {
-            padding-left: var(--space-md);
-            color: var(--ink-tertiary);
-            font-size: calc(var(--text-small) * 0.95);
-        }
-
-        .toc-level-2 a:hover {
-            padding-left: calc(var(--space-md) + var(--space-xs));
-            color: var(--ink-secondary);
-        }
-
-        /* Sub-subsection level */
-        .toc-level-3 a {
-            padding-left: var(--space-lg);
-            color: var(--ink-tertiary);
-            font-size: calc(var(--text-small) * 0.9);
-        }
-
-        .toc-level-3 a:hover {
-            padding-left: calc(var(--space-lg) + var(--space-xs));
-            color: var(--ink-secondary);
+        .toc a:hover {
+            color: var(--ink);
         }
 
         /* ════════════════════════════════════════════
-           Footer / Contact
+           Article Footer
            ════════════════════════════════════════════ */
         .article-footer {
             margin-top: var(--space-xl);
@@ -638,7 +513,7 @@
 <body>
     <div class="container">
         <nav class="back-nav">
-            <a href="/">← Raeez Lorgat</a>
+            <a href="writing.html">← Writing</a>
         </nav>
 
         <article>
@@ -746,7 +621,7 @@
             <footer class="article-footer">
                 <p class="author-byline"><strong>Raeez Lorgat</strong>, Managing Partner at Momentum</p>
                 <nav class="footer-nav">
-                    <a href="/">← All Papers</a>
+                    <a href="writing.html">← All Writing</a>
                 </nav>
             </footer>
 
@@ -774,4 +649,3 @@
     </div>
 </body>
 </html>
-              
