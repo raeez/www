@@ -4,6 +4,7 @@
  * Static Site Generator for Raeez's Research Papers
  * 
  * Fetches content from Google Docs and generates beautiful static HTML.
+ * Also generates an Atom feed (feed.xml) for RSS syndication.
  * 
  * Usage:
  *   npm run build              # Build all documents from cache/network
@@ -23,6 +24,18 @@ const template = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8');
 
 const OUTPUT_DIR = path.join(__dirname, 'dist');
 const CACHE_DIR = path.join(__dirname, '.cache');
+
+// Site metadata for feed
+const SITE_CONFIG = {
+  title: 'Raeez Lorgat',
+  subtitle: 'Building operating systems for sovereignty',
+  url: 'https://raeez.com',
+  author: {
+    name: 'Raeez Lorgat',
+    email: 'raeez@momentum.inc',
+    uri: 'https://raeez.com'
+  }
+};
 
 // Apps Script URL (your existing one)
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwap-GYIRky-iOioo_7IaA0VvW8t_i1lXNesPlLT-hcGsJxQUeb93YR_t466iVw8wpdBQ/exec';
@@ -272,120 +285,72 @@ function wrapTableOfContents(container, contentDoc) {
   tocNav.appendChild(tocTitle);
   
   // Create list
-  const tocList = contentDoc.createElement('ul');
+  const tocList = contentDoc.createElement('ol');
   tocList.className = 'toc-list';
   
   tocEntries.forEach(entry => {
     const li = contentDoc.createElement('li');
-    const link = entry.querySelector('a');
-    if (!link) return;
+    li.className = 'toc-item';
     
-    const text = link.textContent.trim();
-    
-    // Detect indentation level from numbering patterns
-    // "1.1" = level 1, "1.1.1" = level 2, etc.
-    const dotMatch = text.match(/^(\d+\.)+\d*/);
-    // "1)" or "2)" format = level 0
-    const parenMatch = text.match(/^\d+\)/);
-    // "Part I:" or "Chapter 1:" format = level 0
-    const partMatch = text.match(/^(PART|CHAPTER|SECTION|APPENDIX|PILLAR)\s*\d*/i);
-    
-    if (dotMatch) {
-      const dots = (dotMatch[0].match(/\./g) || []).length;
-      li.className = `toc-level-${Math.min(dots, 3)}`;
-    } else if (partMatch) {
-      li.className = 'toc-level-0';
-    } else if (parenMatch) {
-      li.className = 'toc-level-0';
+    // Extract the link and clean up
+    const link = entry.querySelector('a[href^="#"]');
+    if (link) {
+      const newLink = contentDoc.createElement('a');
+      newLink.href = link.href;
+      
+      // Get text without page number
+      let text = entry.textContent.trim();
+      text = text.replace(/\s*\d+\s*$/, '').trim();
+      newLink.textContent = text;
+      
+      li.appendChild(newLink);
+    } else {
+      li.textContent = entry.textContent.replace(/\s*\d+\s*$/, '').trim();
     }
-    // Default: no class (base level)
     
-    // Clone the link
-    const newLink = link.cloneNode(true);
-    li.appendChild(newLink);
     tocList.appendChild(li);
   });
   
   tocNav.appendChild(tocList);
   
-  // Insert the TOC nav and remove old elements
-  if (tocHeading) {
-    // Replace the heading with our new nav
-    tocHeading.replaceWith(tocNav);
-  } else {
-    // Insert before the first TOC entry
-    tocEntries[0].parentNode.insertBefore(tocNav, tocEntries[0]);
-  }
+  // Insert TOC and remove original elements
+  const firstEntry = tocEntries[0];
+  firstEntry.parentElement.insertBefore(tocNav, firstEntry);
   
-  // Remove the original TOC entries
+  // Remove original TOC elements
+  if (tocHeading) tocHeading.remove();
   tocEntries.forEach(entry => entry.remove());
 }
 
 /**
- * Clean and transform Google Docs HTML into clean article content
+ * Clean and transform Google Docs HTML to clean, semantic HTML
  */
-function cleanGoogleDocsHtml(rawHtml, filterPatterns) {
-  const dom = new JSDOM(rawHtml);
-  const doc = dom.window.document;
+function cleanGoogleDocsHtml(rawHtml, filterPatterns = []) {
+  const { document: contentDoc } = new JSDOM(rawHtml).window;
   
-  // Remove Google Docs cruft
-  doc.querySelectorAll('style, script, meta, link').forEach(el => el.remove());
-  
-  // Get the body content
-  const body = doc.body;
+  // Get body content
+  const body = contentDoc.body;
   if (!body) return '';
   
-  // Parse content
-  const contentDom = new JSDOM(`<div id="content">${body.innerHTML}</div>`);
-  const contentDoc = contentDom.window.document;
-  const container = contentDoc.getElementById('content');
+  // Create a clean container
+  const container = contentDoc.createElement('div');
+  container.innerHTML = body.innerHTML;
   
-  // Remove elements matching filter patterns (already in header)
-  const elements = container.querySelectorAll('p, h1, h2, h3, h4, span');
-  let skipCount = 0;
-  const maxSkip = filterPatterns.length + 3;
-  
-  elements.forEach(el => {
-    if (skipCount >= maxSkip) return;
-    
-    const text = el.textContent.trim().toUpperCase();
-    for (const pattern of filterPatterns) {
-      if (text.includes(pattern.toUpperCase())) {
-        const parent = el.parentElement;
-        el.remove();
-        if (parent && parent.textContent.trim() === '') {
-          parent.remove();
-        }
-        skipCount++;
-        break;
-      }
-    }
-  });
-  
-  // Wrap Table of Contents (before cleaning removes structure)
+  // First, detect and wrap TOC
   wrapTableOfContents(container, contentDoc);
   
-  // Convert styled spans to semantic elements BEFORE stripping styles
-  // Google Docs uses spans with inline styles for formatting
-  container.querySelectorAll('span').forEach(span => {
-    const style = span.getAttribute('style') || '';
-    
-    // Check for italic
-    if (style.includes('font-style:italic') || style.includes('font-style: italic')) {
-      const em = contentDoc.createElement('em');
-      em.innerHTML = span.innerHTML;
-      span.replaceWith(em);
-      return;
-    }
-    
-    // Check for bold
-    if (style.includes('font-weight:700') || style.includes('font-weight:bold') ||
-        style.includes('font-weight: 700') || style.includes('font-weight: bold')) {
-      const strong = contentDoc.createElement('strong');
-      strong.innerHTML = span.innerHTML;
-      span.replaceWith(strong);
-      return;
-    }
+  // Filter out specified patterns from non-TOC content
+  filterPatterns.forEach(pattern => {
+    const regex = new RegExp(pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    container.querySelectorAll('p, h1, h2, h3, h4, h5, h6').forEach(el => {
+      // Skip TOC elements
+      if (el.closest('.toc')) return;
+      
+      const text = el.textContent.trim();
+      if (regex.test(text) && text.length < 200) {
+        el.remove();
+      }
+    });
   });
   
   // Clean up styles and classes
@@ -526,6 +491,124 @@ function applyTemplate(doc, content) {
 }
 
 /**
+ * Escape XML special characters
+ */
+function escapeXml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+/**
+ * Parse date from doc.meta string
+ * Handles formats like "August 2025", "v0.35 — October 2025", "Version 0.4.0 — December 2025"
+ */
+function parseDateFromMeta(meta) {
+  const months = {
+    'january': '01', 'february': '02', 'march': '03', 'april': '04',
+    'may': '05', 'june': '06', 'july': '07', 'august': '08',
+    'september': '09', 'october': '10', 'november': '11', 'december': '12'
+  };
+  
+  // Match patterns like "Month YYYY" or "Month, YYYY"
+  const monthYearMatch = meta.match(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\s*,?\s*(\d{4})\b/i);
+  
+  if (monthYearMatch) {
+    const month = months[monthYearMatch[1].toLowerCase()];
+    const year = monthYearMatch[2];
+    return `${year}-${month}-15T00:00:00Z`; // Use middle of month
+  }
+  
+  // Fallback to current date
+  return new Date().toISOString();
+}
+
+/**
+ * Determine category based on document slug/content
+ */
+function getDocCategory(doc) {
+  const slug = doc.slug.toLowerCase();
+  
+  if (['smart-buildings', 'prefabricated-construction', 'archai'].includes(slug)) {
+    return { term: 'built-environment', label: 'Built Environment' };
+  }
+  
+  // Default to infrastructure for most docs
+  return { term: 'infrastructure', label: 'Infrastructure' };
+}
+
+/**
+ * Generate Atom feed XML
+ */
+function generateAtomFeed(builtDocs) {
+  const now = new Date().toISOString();
+  
+  // Sort docs by date (newest first)
+  const sortedDocs = [...builtDocs].sort((a, b) => {
+    const dateA = new Date(parseDateFromMeta(a.meta));
+    const dateB = new Date(parseDateFromMeta(b.meta));
+    return dateB - dateA;
+  });
+  
+  // Get most recent update time
+  const lastUpdated = sortedDocs.length > 0 
+    ? parseDateFromMeta(sortedDocs[0].meta)
+    : now;
+  
+  let feed = `<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>${escapeXml(SITE_CONFIG.title)}</title>
+  <subtitle>${escapeXml(SITE_CONFIG.subtitle)}</subtitle>
+  <link href="${SITE_CONFIG.url}/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="${SITE_CONFIG.url}" rel="alternate" type="text/html"/>
+  <id>${SITE_CONFIG.url}/</id>
+  <updated>${lastUpdated}</updated>
+  <author>
+    <name>${escapeXml(SITE_CONFIG.author.name)}</name>
+    <email>${SITE_CONFIG.author.email}</email>
+    <uri>${SITE_CONFIG.author.uri}</uri>
+  </author>
+  <rights>© ${new Date().getFullYear()} ${escapeXml(SITE_CONFIG.author.name)}</rights>
+  <icon>${SITE_CONFIG.url}/favicon.ico</icon>
+  <generator>Raeez Site Builder</generator>
+`;
+
+  // Add entries for each document
+  sortedDocs.forEach(doc => {
+    const publishDate = parseDateFromMeta(doc.meta);
+    const category = getDocCategory(doc);
+    const docUrl = `${SITE_CONFIG.url}/${doc.slug}.html`;
+    
+    // Build subtitle for content
+    let contentHtml = `<p>${escapeXml(doc.description)}</p>`;
+    if (doc.metaLink) {
+      contentHtml += `<p><a href="${escapeXml(doc.metaLink.url)}">${escapeXml(doc.metaLink.text)}</a></p>`;
+    }
+    
+    feed += `
+  <entry>
+    <title>${escapeXml(doc.title)}</title>
+    <link href="${docUrl}" rel="alternate" type="text/html"/>
+    <id>${docUrl}</id>
+    <published>${publishDate}</published>
+    <updated>${publishDate}</updated>
+    <summary>${escapeXml(doc.description)}</summary>
+    <category term="${category.term}" label="${category.label}"/>
+    <content type="html">&lt;p&gt;&lt;em&gt;${escapeXml(doc.subtitle)}&lt;/em&gt;&lt;/p&gt;${contentHtml}</content>
+  </entry>
+`;
+  });
+
+  feed += `</feed>
+`;
+
+  return feed;
+}
+
+/**
  * Build a single document
  */
 async function buildDocument(doc, options = {}) {
@@ -566,11 +649,27 @@ async function buildAll(options = {}) {
   
   let success = 0;
   let failed = 0;
+  const builtDocs = [];
   
   for (const doc of docs) {
     const result = await buildDocument(doc, options);
-    if (result) success++;
-    else failed++;
+    if (result) {
+      success++;
+      builtDocs.push(doc);
+    } else {
+      failed++;
+    }
+  }
+  
+  // Generate Atom feed
+  console.log('\n📡 Generating Atom feed...');
+  try {
+    const feedXml = generateAtomFeed(builtDocs);
+    const feedPath = path.join(OUTPUT_DIR, 'feed.xml');
+    fs.writeFileSync(feedPath, feedXml);
+    console.log(`  ✓ dist/feed.xml (${builtDocs.length} entries)`);
+  } catch (error) {
+    console.error(`  ✗ Feed generation failed: ${error.message}`);
   }
   
   console.log('\n════════════════════════════════════════════');
@@ -647,6 +746,14 @@ async function main() {
     }
     
     const success = await buildDocument(doc, { force, appsScript });
+    
+    // Still regenerate feed even for single doc builds
+    console.log('\n📡 Regenerating Atom feed...');
+    const feedXml = generateAtomFeed(docs);
+    const feedPath = path.join(OUTPUT_DIR, 'feed.xml');
+    fs.writeFileSync(feedPath, feedXml);
+    console.log(`  ✓ dist/feed.xml`);
+    
     process.exit(success ? 0 : 1);
   } else {
     // Build all
