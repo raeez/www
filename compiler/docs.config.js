@@ -1,17 +1,17 @@
 /**
  * Document configuration for Raeez's Google Docs-based research papers
- * 
+ *
  * Each entry defines a Google Doc to be fetched, cleaned, and published as HTML.
  */
 
 module.exports = [
   {
-    id: '1EL3zIJlKUVMsJxQR8hB5kZZbvZKIr8G9CxyVl6nEyPo',
+    id: '1RW1DNRaVieee3NvW4BUf1m6pYGr0jcPo9HHlnZdrLqM',
     slug: 'smart-assets',
     title: 'Smart Assets',
     subtitle: 'Programmable primitive on a novel decentralized network embedding compliance, identity, and operational intelligence directly into assets',
     description: 'Foundational architecture for assets that carry their compliance context across jurisdictions, enabling jurisdictional decentralization at software speed.',
-    meta: 'Version 0.4.0 — December 2025',
+    meta: 'Version 0.4.38 — December 2025',
     filterPatterns: []
   },
   {
@@ -24,7 +24,7 @@ module.exports = [
     filterPatterns: []
   },
   {
-    id: '1tN2xnUw3r-CG9QAr8hQRYFDHF6NhzK2IlsRk7lTuqWI',
+    id: '18c076KBHJZLo-HZSI8rZM5l5xgzPJ_J1HHMHzafMg2Y',
     slug: 'sez-stack',
     title: 'Open Source Special Economic Zone Legal, Fiscal & Regulatory Stack',
     subtitle: 'Machine-readable law enabling programmable jurisdictions',
@@ -37,7 +37,7 @@ module.exports = [
     filterPatterns: []
   },
   {
-    id: '1p8VQjvZ2zYsKxKW3FDNjxHF4TrQmL8vJdGbN9sX1kMo',
+    id: '1nNZcgk4zH0-aKP_Sea5dqrS56nzRsYxNBUvqOuAHX5Y',
     slug: 'competitive-topologies',
     title: 'Competitive Topologies & The Monopoly Problem: Why Democratic Institutions Need Competition',
     subtitle: 'A response to Eric Schmidt and Andrew Sorota\'s "This is No Way to Rule a Country"',
@@ -50,7 +50,7 @@ module.exports = [
     filterPatterns: []
   },
   {
-    id: '1FjZ4kN2mXsYrPq7TvLwHgB9cDxEaO8nU6iKpM5sQtWe',
+    id: '170dFcQSTIIXgQYSaiL8BJYL8Az_Cj4llPrvU9OjB1DI',
     slug: 'momentum-monograph',
     title: 'Momentum: Incubating Ecosystems',
     subtitle: 'The venture studio model for programmable institutions',
@@ -59,7 +59,7 @@ module.exports = [
     filterPatterns: []
   },
   {
-    id: '1K3mNpQwXvY2tZsBfRcLgHj8DxE9aO5nU7iKpM6sQtWr',
+    id: '1eGnq8WpcdjS5TbD4U87v4HaN5YBgSwjKvXwerrXMIFY',
     slug: 'licc',
     title: 'MIT-MBZUAI Laboratory for Incentivization, Coordination and Cooperation (LICC)',
     subtitle: 'Comprehensive founding blueprint for dual-institution research laboratory',
@@ -68,7 +68,7 @@ module.exports = [
     filterPatterns: []
   },
   {
-    id: '1M4oQsUyZ3aXvCfTgRkNhJ9EyF0bP6oV8jLqN7tRuXs',
+    id: '1G4qUdBcrrabR50oqOvCk2uqI7mWh371ykvx92bILPL4',
     slug: 'smart-buildings',
     title: 'Smart Buildings',
     subtitle: 'Towards a programmable built environment operating system',
@@ -77,7 +77,7 @@ module.exports = [
     filterPatterns: []
   },
   {
-    id: '1N5pRtVzA4bYwDgUhSlOiK0FzG1cQ7pW9kMrO8uSvYt',
+    id: '1c4luYj4edBCkVnW47JojjDK_3m8a20wX-2fPztIAF8Q',
     slug: 'prefabricated-construction',
     title: 'Prefabricated Construction Methodologies',
     subtitle: 'Manufacturing revolution in built environment',
@@ -86,7 +86,7 @@ module.exports = [
     filterPatterns: []
   },
   {
-    id: '1O6qSuWaB5cZxEhViTmPjL1GaH2dR8qX0lNsP9vTwZu',
+    id: '12TriV64rqMidmlzEXU5HdvbhpX_Fu4bNq5UUo7-125I',
     slug: 'archai',
     title: 'Archai',
     subtitle: 'Scalable primitives for land and community infrastructure ownership',
