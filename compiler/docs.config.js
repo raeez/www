@@ -15,7 +15,7 @@ module.exports = [
     filterPatterns: []
   },
   {
-    id: '1TvgOgU8E1LctM8k_dqu85tDklktGLVJdrWT-MBDXlQI',
+    id: '1oTfyWyjEgBjWSw30W4BLQa029pMGJ7ciFDUzn4fUjj4',
     slug: 'sez-in-a-box',
     title: 'Special Economic Zones in a Box',
     subtitle: 'From proof of scale to proof of network',
