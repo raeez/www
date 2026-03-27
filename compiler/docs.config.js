@@ -26,14 +26,10 @@ module.exports = [
   {
     id: '18c076KBHJZLo-HZSI8rZM5l5xgzPJ_J1HHMHzafMg2Y',
     slug: 'sez-stack',
-    title: 'Open Source Special Economic Zone Legal, Fiscal & Regulatory Stack',
+    title: 'Special Economic Zone Legal, Fiscal & Regulatory Stack',
     subtitle: 'Machine-readable law enabling programmable jurisdictions',
-    description: 'The first open-source legislative framework using Akoma Ntoso XML, enabling jurisdictions to fork, customize, and deploy complete legal infrastructure.',
+    description: 'A legislative framework using Akoma Ntoso XML, enabling jurisdictions to fork, customize, and deploy complete legal infrastructure.',
     meta: 'Version 2.1 — November 2025',
-    metaLink: {
-      url: 'https://github.com/momentum-sez/stack',
-      text: 'momentum-sez/stack public github repository'
-    },
     filterPatterns: []
   },
   {
