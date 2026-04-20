@@ -609,11 +609,11 @@
 
 <h1 id="thesis">The Thesis</h1>
 
-<p>A single UFC pay-per-view generates over $100M in gross revenue. The economic activity around that event&mdash;prediction, speculation, merchandise, engagement&mdash;exceeds the purse by an order of magnitude. None of it accrues to a programmable instrument the fighter or the brand controls.</p>
+<p>A single marquee combat sports pay-per-view generates over $100M in gross revenue. The economic activity around that event&mdash;prediction, speculation, merchandise, engagement&mdash;exceeds the purse by an order of magnitude. None of it accrues to a programmable instrument the athlete or the brand controls.</p>
 
 <p>The same is true for musicians, athletes, creators, franchises, and every brand with a measurable audience. Licensed merchandise and services generate over $350 billion annually. The programmable infrastructure to unify this value does not exist.</p>
 
-<p>Existing infrastructure fails at every layer. Polymarket settles predictions sequentially on a general-purpose chain&mdash;when a UFC fight ends, thousands of positions need simultaneous resolution, not a queue. Chiliz and Socios launched fan tokens with no real utility, no coupling to the events that drive engagement, and thin liquidity. Prediction markets and spot trading exist on separate platforms with separate collateral. Capital sits idle between events. The fan experience is terrible.</p>
+<p>Existing infrastructure fails at every layer. Polymarket settles predictions sequentially on a general-purpose chain&mdash;when a major event ends, thousands of positions need simultaneous resolution, not a queue. Chiliz and Socios launched fan tokens with no real utility, no coupling to the events that drive engagement, and thin liquidity. Prediction markets and spot trading exist on separate platforms with separate collateral. Capital sits idle between events. The fan experience is terrible.</p>
 
 <p>Moxie is a purpose-built Layer 1 blockchain that unifies brand tokens, prediction markets, and cross-margined clearing into a single deterministic protocol. It makes every brand with a measurable audience into a market, and makes the protocol invisible to the fan.</p>
 
@@ -643,7 +643,7 @@
 
 <h1 id="coupling">Belief&ndash;Price Coupling</h1>
 
-<p>This is the core innovation. In every existing system, prediction markets and spot markets are separate instruments. A trader who correctly predicts a UFC fight outcome captures value in one instrument; the brand token that represents engagement with the fighter sits in another, unaffected. Information doesn&rsquo;t flow between them.</p>
+<p>This is the core innovation. In every existing system, prediction markets and spot markets are separate instruments. A trader who correctly predicts a match outcome captures value in one instrument; the brand token that represents engagement with the athlete sits in another, unaffected. Information doesn&rsquo;t flow between them.</p>
 
 <p>We couple them at the protocol level through the PW-AMM (Prediction-Weighted Automated Market Maker). When prediction market activity reveals new information about a brand&rsquo;s future&mdash;a fighter is likely to win, a musician&rsquo;s album is trending, a team is on a winning streak&mdash;the spot price of the brand token adjusts automatically.</p>
 
@@ -661,7 +661,7 @@
 
 <h2>Temporal Multiplexing</h2>
 
-<p>A UFC event lasts 6 hours but existing platforms lock capital for weeks around it. Moxie schedules collateral across events in time. When an event ends and positions settle, the freed collateral is immediately available for the next event. One pool of capital backs an entire season.</p>
+<p>A combat sports card lasts 6 hours but existing platforms lock capital for weeks around it. Moxie schedules collateral across events in time. When an event ends and positions settle, the freed collateral is immediately available for the next event. One pool of capital backs an entire season.</p>
 
 <p>The temporal collateral FSM tracks positions across four states: spot, prediction, ephemeral, and free. Conservation is enforced at every state transition. The protocol knows which capital is committed to which event at which time, and releases it the moment the obligation resolves.</p>
 
@@ -681,7 +681,7 @@
 
 <h2>Hub Routing</h2>
 
-<p>Cross-brand swaps decompose into two legs through the MOXIE hub token. $FIGHT&rarr;$CITY becomes $FIGHT&rarr;$MOXIE&rarr;$CITY. Both legs execute atomically&mdash;both complete or neither does. Intermediate MOXIE tokens never touch the trader&rsquo;s account. The router scores venues and selects optimal paths automatically.</p>
+<p>Cross-brand swaps decompose into two legs through the MOXIE hub token. $BRAND&rarr;$OTHER becomes $BRAND&rarr;$MOXIE&rarr;$OTHER. Both legs execute atomically&mdash;both complete or neither does. Intermediate MOXIE tokens never touch the trader&rsquo;s account. The router scores venues and selects optimal paths automatically.</p>
 
 <h2>VRF-Powered Drops</h2>
 
@@ -689,7 +689,7 @@
 
 <h2>Portfolio Margin</h2>
 
-<p>The clearinghouse computes margin across spot positions, prediction positions, LP positions, and ephemeral positions simultaneously. Correlation discounts apply between positions in the same brand. A long spot position in $FIGHT partially offsets the risk of a short prediction position on the same fighter. The protocol captures these relationships natively.</p>
+<p>The clearinghouse computes margin across spot positions, prediction positions, LP positions, and ephemeral positions simultaneously. Correlation discounts apply between positions in the same brand. A long spot position in a brand token partially offsets the risk of a short prediction position on the same athlete. The protocol captures these relationships natively.</p>
 
 <hr>
 
@@ -697,7 +697,7 @@
 
 <p>The protocol is invisible to the fan.</p>
 
-<p>The consumer application is a PlayStation OS-grade interface built in TypeScript and React. When a user enters a brand space, the entire atmosphere transforms&mdash;background imagery, accent colors, glass tinting, emotional tone. The UFC space feels like a UFC product. Manchester City feels like a Man City product. Moxie is the connective tissue between brand universes, not the universe itself.</p>
+<p>The consumer application is a PlayStation OS-grade interface built in TypeScript and React. When a user enters a brand space, the entire atmosphere transforms&mdash;background imagery, accent colors, glass tinting, emotional tone. A combat sports space feels like a combat sports product. A football club space feels like that club&rsquo;s product. Moxie is the connective tissue between brand universes, not the universe itself.</p>
 
 <p>The design language is frosted glass over dynamic backgrounds. Five z-layers of glassmorphism with increasing blur and opacity. Brand color propagates through glass tinting, not surface painting. Typography at display scale&mdash;numbers (odds, prices, countdowns) are the largest elements on any screen.</p>
 
@@ -712,7 +712,7 @@
     <li><strong>Operator Portal</strong>&mdash;brand management dashboard for IP holders to configure drops, create prediction markets, monitor engagement, and manage community</li>
 </ul>
 
-<p>A 19-year-old UFC fan in Lagos and a hedge fund PM in Greenwich both use this platform. The architecture serves both without compromising either.</p>
+<p>A 19-year-old combat sports fan in Lagos and a hedge fund PM in Greenwich both use this platform. The architecture serves both without compromising either.</p>
 
 <hr>
 
@@ -724,7 +724,7 @@
 
 <p>We run a 5-node testnet producing blocks through MoxieBFT consensus. The consumer frontend renders over the live chain. All 33 native transaction types are exercisable through dedicated RPC endpoints. 26,000 lines of TypeScript power the application layer.</p>
 
-<p>The engineering is not the hard part. The hard part is making something a UFC fan in Lagos uses without knowing or caring that it&rsquo;s a blockchain.</p>
+<p>The engineering is not the hard part. The hard part is making something a combat sports fan in Lagos uses without knowing or caring that it&rsquo;s a blockchain.</p>
 
 <hr>
 
@@ -732,7 +732,7 @@
 
 <p>Licensed merchandise and services generate over $350 billion annually. No programmable instrument unifies the trading, prediction, and engagement value around this IP. Every brand with a measurable audience&mdash;combat sports, music, motorsport, esports, creators&mdash;is an addressable market.</p>
 
-<p>The go-to-market begins with combat sports. The UFC operates 40+ events per year, each a natural catalyst for prediction market volume, brand token activity, and engagement drops. Fighter tokens accrue value from outcomes. Capital recycles between events automatically. The unit economics are compelling: each event is a monetization surface, and temporal multiplexing means one pool of capital can back all of them.</p>
+<p>The go-to-market begins with combat sports. Major promotions operate 40+ events per year, each a natural catalyst for prediction market volume, brand token activity, and engagement drops. Athlete tokens accrue value from outcomes. Capital recycles between events automatically. The unit economics are compelling: each event is a monetization surface, and temporal multiplexing means one pool of capital can back all of them.</p>
 
 <p>Music follows. Album drops, festival appearances, streaming milestones. Artist tokens capture engagement that streaming platforms count but never monetize. Motorsport offers 23 Formula 1 races with the highest per-event capital efficiency. Esports delivers 200+ major events per year&mdash;the highest event frequency, lowest duration, ideal for temporal multiplexing.</p>
 

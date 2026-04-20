@@ -127,7 +127,6 @@ raeez-site/
 ├── .cache/           # Cached Google Docs HTML (gitignored)
 └── dist/             # Generated static files (gitignored)
     ├── smart-assets.html
-    ├── momentum-monograph.html
     └── ...
 ```
 

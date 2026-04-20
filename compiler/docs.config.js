@@ -46,15 +46,6 @@ module.exports = [
     filterPatterns: []
   },
   {
-    id: '170dFcQSTIIXgQYSaiL8BJYL8Az_Cj4llPrvU9OjB1DI',
-    slug: 'momentum-monograph',
-    title: 'Momentum: Incubating Ecosystems',
-    subtitle: 'The venture studio model for programmable institutions',
-    description: 'How Momentum builds interconnected companies spanning financial infrastructure, regulatory primitives, and jurisdictional services.',
-    meta: 'August 2025',
-    filterPatterns: []
-  },
-  {
     id: '1eGnq8WpcdjS5TbD4U87v4HaN5YBgSwjKvXwerrXMIFY',
     slug: 'licc',
     title: 'MIT-MBZUAI Laboratory for Incentivization, Coordination and Cooperation (LICC)',
