@@ -24,7 +24,7 @@ npm install
 npm run build
 
 # Build a single document
-npm run build:one smart-assets
+npm run build:one sez-in-a-box
 
 # Force rebuild (clear cache)
 npm run build:force
@@ -126,7 +126,7 @@ raeez-site/
 ├── README.md
 ├── .cache/           # Cached Google Docs HTML (gitignored)
 └── dist/             # Generated static files (gitignored)
-    ├── smart-assets.html
+    ├── sez-in-a-box.html
     └── ...
 ```
 

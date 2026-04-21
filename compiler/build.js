@@ -18,7 +18,7 @@
  * 
  * Usage:
  *   npm run build              # Build all documents from cache/network
- *   npm run build -- smart-assets   # Build single document
+ *   npm run build -- sez-in-a-box  # Build single document
  *   npm run build:force        # Clear cache and rebuild
  *   npm run fetch              # Fetch fresh content from Google Docs
  *   npm run fetch:apps-script  # Fetch via Apps Script (slower but reliable)

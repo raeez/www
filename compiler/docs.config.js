@@ -6,43 +6,12 @@
 
 module.exports = [
   {
-    id: '1RW1DNRaVieee3NvW4BUf1m6pYGr0jcPo9HHlnZdrLqM',
-    slug: 'smart-assets',
-    title: 'Smart Assets',
-    subtitle: 'Programmable primitive on a novel decentralized network embedding compliance, identity, and operational intelligence directly into assets',
-    description: 'Foundational architecture for assets that carry their compliance context across jurisdictions, enabling jurisdictional decentralization at software speed.',
-    meta: 'Version 0.4.38 — December 2025',
-    filterPatterns: []
-  },
-  {
     id: '1oTfyWyjEgBjWSw30W4BLQa029pMGJ7ciFDUzn4fUjj4',
     slug: 'sez-in-a-box',
     title: 'Special Economic Zones in a Box',
     subtitle: 'From proof of scale to proof of network',
     description: 'How programmable institutions enable rapid SEZ deployment through open-source legal infrastructure and network effects.',
     meta: 'v0.35 — October 2025',
-    filterPatterns: []
-  },
-  {
-    id: '18c076KBHJZLo-HZSI8rZM5l5xgzPJ_J1HHMHzafMg2Y',
-    slug: 'sez-stack',
-    title: 'Special Economic Zone Legal, Fiscal & Regulatory Stack',
-    subtitle: 'Machine-readable law enabling programmable jurisdictions',
-    description: 'A legislative framework using Akoma Ntoso XML, enabling jurisdictions to fork, customize, and deploy complete legal infrastructure.',
-    meta: 'Version 2.1 — November 2025',
-    filterPatterns: []
-  },
-  {
-    id: '1nNZcgk4zH0-aKP_Sea5dqrS56nzRsYxNBUvqOuAHX5Y',
-    slug: 'competitive-topologies',
-    title: 'Competitive Topologies & The Monopoly Problem: Why Democratic Institutions Need Competition',
-    subtitle: 'A response to Eric Schmidt and Andrew Sorota\'s "This is No Way to Rule a Country"',
-    description: 'How jurisdictional competition strengthens democratic institutions rather than undermining them, and why AI governance requires regulatory markets.',
-    meta: 'November 2025',
-    metaLink: {
-      url: 'https://www.nytimes.com/2025/11/11/opinion/ai-democracy-government-authoritarianism.html',
-      text: 'Original NYT Opinion piece'
-    },
     filterPatterns: []
   },
   {
