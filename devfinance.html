@@ -135,11 +135,13 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Garamond, serif;
+            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', 'Baskerville', Garamond, serif;
             --font-display: 'garamond-premier-pro-display', var(--font-text);
             --font-caption: 'garamond-premier-pro-caption', var(--font-text);
+            --font-subhead: 'garamond-premier-pro-subhead', var(--font-text);
+            --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
 
-            --text-base: clamp(18px, 1.125rem + 0.2vw, 21px);
+            --text-base: clamp(18px, 1.125rem + 0.25vw, 21px);
             --text-sm: calc(var(--text-base) / 1.333);
             --text-lg: calc(var(--text-base) * 1.333);
             --text-xl: calc(var(--text-lg) * 1.333);
@@ -160,7 +162,7 @@
             --space-10: calc(var(--baseline) * 10);
             --space-13: calc(var(--baseline) * 13);
 
-            --measure: 60ch;
+            --measure: 65ch;
             --gutter: clamp(16px, 4vw, 24px);
 
             --ink: #1a1917;
@@ -206,7 +208,7 @@
         }
 
         .container {
-            max-width: calc(var(--measure) + var(--space-10));
+            max-width: calc(var(--measure) + var(--space-8));
             margin-inline: auto;
             padding: var(--space-10) var(--gutter) var(--space-8);
         }
@@ -215,9 +217,9 @@
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            margin-bottom: var(--space-6);
             flex-wrap: wrap;
-            gap: var(--space-2);
+            gap: var(--space-2) var(--space-5);
+            margin-bottom: var(--space-5);
         }
 
         .back-link {
@@ -233,7 +235,7 @@
 
         .back-link:hover { color: var(--ink); }
 
-        nav.main-nav {
+        nav {
             display: flex;
             flex-wrap: wrap;
             gap: var(--space-2);
@@ -241,7 +243,7 @@
             font-size: var(--text-sm);
         }
 
-        nav.main-nav a {
+        nav a {
             color: var(--ink-faint);
             text-decoration: none;
             transition: color 180ms ease;
@@ -250,18 +252,20 @@
             font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
         }
 
-        nav.main-nav a:hover { color: var(--ink); }
-        nav.main-nav a.active { color: var(--ink); }
+        nav a:hover { color: var(--ink); }
+        nav a.active { color: var(--ink); }
 
         .article-header { margin-bottom: var(--space-4); }
 
-        .article-title {
-            font-family: var(--font-display);
-            font-size: var(--text-xl);
+        .page-title {
+            font-family: var(--font-text);
+            font-size: var(--text-base);
             font-weight: 400;
-            letter-spacing: var(--kern-tight);
-            line-height: var(--leading-tight);
-            margin-bottom: var(--space-1);
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-caps);
+            color: var(--ink);
+            margin-bottom: var(--space-2);
             margin-left: var(--optical-margin);
         }
 
@@ -439,7 +443,7 @@
         @media (max-width: 400px) {
             :root { --text-base: 16px; }
             .container { padding: var(--space-5) var(--space-2) var(--space-4); }
-            nav.main-nav { gap: var(--space-1) var(--space-2); }
+            nav { gap: var(--space-1) var(--space-2); }
         }
 
         @media print {
@@ -462,18 +466,19 @@
     <div class="container">
         <header class="header">
             <a href="index.html" class="back-link">← Raeez Lorgat</a>
-            <nav class="main-nav">
+            <nav>
+                <a href="about.html">About</a>
                 <a href="mass.html">Mass</a>
                 <a href="writing.html">Writing</a>
                 <a href="experience.html">Experience</a>
-                <a href="beauty.html">Beauty</a>
                 <a href="devfinance.html" class="active">/dev/finance</a>
+                <a href="beauty.html">Beauty</a>
             </nav>
         </header>
 
         <article>
             <header class="article-header">
-                <h1 class="article-title">/dev/finance inc.</h1>
+                <h1 class="page-title">/dev/finance inc.</h1>
                 <p class="article-subtitle">Palo Alto, 2009–2011</p>
             </header>
 
