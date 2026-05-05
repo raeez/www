@@ -587,8 +587,8 @@
         <article>
             <header class="article-header">
                 <h1 class="article-title">Moxie</h1>
-                <p class="article-subtitle">Event-contingent clearing</p>
-                <p class="article-meta">March 2026 &mdash; <a href="https://momentum.inc/moxie.html">Momentum</a></p>
+                <p class="article-subtitle">A clearing-and-settlement substrate for claims and their derivatives</p>
+                <p class="article-meta">May 2026 &mdash; <a href="https://momentum.inc/moxie.html">Momentum</a></p>
             </header>
 
             <div class="article-body">
@@ -609,13 +609,13 @@
 
 <h1 id="thesis">The Thesis</h1>
 
-<p>A single marquee combat sports pay-per-view generates over $100M in gross revenue. The economic activity around that event&mdash;prediction, speculation, merchandise, engagement&mdash;exceeds the purse by an order of magnitude. None of it accrues to a programmable instrument the athlete or the brand controls.</p>
+<p>The unified field theory of finance, the watchword of the top quartile, is that the value of any asset is a probability-weighted discounted future cash flow. You can print it on a t-shirt. Equity is a claim on residual earnings. A bond is a claim on principal and coupons at known timings. A derivative is a claim constructed from claims. A sukuk is a claim on Sharia-permissible asset usage. A tokenized real-world asset is a claim on an off-chain cash flow. Parametric insurance is a contingent claim on adverse outcomes. A sports prediction is a contingent claim on an event outcome. An intellectual-property royalty is a claim on usage cash. Every tradeable instrument reduces, to first order, to a probability-weighted discounted future cash flow &mdash; a claim. The universal primitive of finance is the claim.</p>
 
-<p>The same is true for musicians, athletes, creators, franchises, and every brand with a measurable audience. Licensed merchandise and services generate over $350 billion annually. The programmable infrastructure to unify this value does not exist.</p>
+<p>Existing infrastructure clears each claim family on a separate substrate. Equities clear at central securities depositories. Derivatives clear at central counterparties. Prediction events clear at sequenced general-purpose chains. Sukuk clear at institutional channels with no retail pathway and no sub-day settlement. Tokenized real-world assets clear at a handful of permissioned platforms with single-jurisdiction wrappers. Brand and IP licensing barely clears at all. The result is parallel compliance regimes, parallel settlement assets, parallel margin pools, and parallel reliance frameworks &mdash; with no formal interaction between them. Capital that could net across claim families sits idle in each.</p>
 
-<p>Existing infrastructure fails at every layer. Polymarket settles predictions sequentially on a general-purpose chain&mdash;when a major event ends, thousands of positions need simultaneous resolution, not a queue. Chiliz and Socios launched fan tokens with no real utility, no coupling to the events that drive engagement, and thin liquidity. Prediction markets and spot trading exist on separate platforms with separate collateral. Capital sits idle between events. The fan experience is terrible.</p>
+<p>Moxie is a clearing-and-settlement substrate for the universal primitive. Every claim family compiles into one kernel grammar &mdash; admissible obligation transition over legal profile, authority envelope, instrument manifest, obligation graph, compliance attestation, risk reservation, evidence envelope, execution certificate, settlement job, receipt proof, release/recovery authorization, and reliance envelope. Claim-class differentiation is supplied by a TemplatePack registry, not by parallel chains. Pricing fuses three inputs: intrinsic discounted cash flow, the meet-composed compliance constraint surface across the 23-domain compliance tensor, and an adversarial counterparty-belief layer &mdash; the operationalization of the strategic observation that quantitative finance is a deterministic system in which every market inefficiency is a counterparty's strategic error. The clearing program is part of consensus, not an off-chain or post-trade calculation.</p>
 
-<p>Moxie is a purpose-built Layer 1 blockchain that unifies brand tokens, prediction markets, and cross-margined clearing into a single deterministic protocol. It makes every brand with a measurable audience into a market, and makes the protocol invisible to the fan.</p>
+<p>Sports and other event-contingent markets are one product family in this taxonomy, not the boundary of the protocol. They were the first family the substrate was built against. They are the demonstration that the substrate works under the hardest correlation, latency, and oracle conditions. They are not where the substrate ends.</p>
 
 <hr>
 
@@ -718,29 +718,29 @@
 
 <h1 id="proof">Proof of Work</h1>
 
-<p>This is not a roadmap. We built it.</p>
+<p>This is not a roadmap. The substrate is built.</p>
 
-<p>The L1 kernel is 114,000 lines of Rust across 17 crates. 1,822 tests pass with zero failures. A 533-page whitepaper specifies every equation, and we wrote a corresponding test fixture for each one. The specification and the implementation are locked in bidirectional conformance&mdash;if one changes, the other must follow or the build breaks. 52 fixture suites containing hundreds of golden test vectors verify that the Rust implementation matches the executable Python specification to 18 decimal places of fixed-point precision.</p>
+<p>One kernel grammar admits every claim family. The 23-domain compliance tensor composes by pointwise meet on the Applicable fragment &mdash; a commutative idempotent monoid; the algebra is mechanically verified across three independent provers. The five certified pricing primitives &mdash; the discrete convex parimutuel call auction, its continuous lift on a measure space under a fixed Kolmogorov-Nagumo generator, the logarithmic market scoring rule for event-binary claims, request-for-quote dispatch for bilateral institutional flow, and continuous order books for high-frequency families &mdash; are dispatched per TemplatePack inside consensus, not above it. The clearinghouse runs inside consensus. Mark-to-market happens at the phase boundary of every block. Liquidation cascades are deterministic and execute in the same block as the triggering price movement. Conservation of value is verified after every block, summed across account balances, clearinghouse deposits, AMM reserves, and reserve funds; if the invariant fails, the block is invalid.</p>
 
-<p>We run a 5-node testnet producing blocks through MoxieBFT consensus. The consumer frontend renders over the live chain. All 33 native transaction types are exercisable through dedicated RPC endpoints. 26,000 lines of TypeScript power the application layer.</p>
+<p>The bound research suite is canonical for the math. Each formal claim has a corresponding test fixture; specification and implementation are locked in bidirectional conformance. The substrate runs on a multi-node testnet producing blocks through MoxieBFT consensus, with an event-collect phase prepended to the standard pipeline so that evidence resolution lands before any trading executes against it. An encrypted mempool with threshold decryption eliminates front-running and sandwich attacks. The pairing with a sovereign issuance kernel is wired in code: every state-mutating call preflights through a typed compliance preflight before admission to the order book.</p>
 
-<p>The engineering is not the hard part. The hard part is making something a combat sports fan in Lagos uses without knowing or caring that it&rsquo;s a blockchain.</p>
+<p>The engineering is not the hard part. The hard part is letting an institutional bond trustee, a sukuk SSB, an insurance reinsurer, a parimutuel operator, an IP rights-holder, and a sports prediction market all rely on the same receipt for the legal purpose each has named &mdash; and using one substrate, with one settlement asset hub, one risk model, one evidence grammar, and one reliance envelope, to do all of that.</p>
 
 <hr>
 
 <h1 id="market">The Market</h1>
 
-<p>Licensed merchandise and services generate over $350 billion annually. No programmable instrument unifies the trading, prediction, and engagement value around this IP. Every brand with a measurable audience&mdash;combat sports, music, motorsport, esports, creators&mdash;is an addressable market.</p>
+<p>The peer set is the broader institutional clearing-and-settlement substrate, not a single venue. Central securities depositories. Central counterparties. Dematerialized-note registries. Regulated electronic trading platforms. Tokenized-real-world-asset platforms operated by the largest banks. Regulated DLT market infrastructures resident under CSDR. The on-chain derivatives venues that target individual claim families on a single chain.</p>
 
-<p>The go-to-market begins with combat sports. Major promotions operate 40+ events per year, each a natural catalyst for prediction market volume, brand token activity, and engagement drops. Athlete tokens accrue value from outcomes. Capital recycles between events automatically. The unit economics are compelling: each event is a monetization surface, and temporal multiplexing means one pool of capital can back all of them.</p>
+<p>The first product family Moxie was built against is event-contingent markets &mdash; sports, parimutuel, prediction. They are the demonstration that the substrate works under the hardest correlation, latency, and oracle conditions. The substrate clears them at consensus, with cross-margining across spot, prediction, liquidity, and ephemeral positions, and with capital that recycles temporally across events rather than locking up between them.</p>
 
-<p>Music follows. Album drops, festival appearances, streaming milestones. Artist tokens capture engagement that streaming platforms count but never monetize. Motorsport offers 23 Formula 1 races with the highest per-event capital efficiency. Esports delivers 200+ major events per year&mdash;the highest event frequency, lowest duration, ideal for temporal multiplexing.</p>
+<p>The second is institutional fixed income, exemplified by sports-club senior-secured bonds distributed to qualified-investor LPs through a regulated pathway. The third is Sharia-compliant instruments, with the 23-domain tensor's Sharia coordinate gating per-instrument admission rather than venue-wide contamination. The fourth is intellectual-property royalties, with revenue-linked notes and licensing options compiled into the same kernel grammar. Equity, derivatives, real-world-asset receivables, and parametric insurance follow as TemplatePack instances.</p>
 
-<p>The endgame is a protocol that makes every brand with a measurable audience into a programmable market&mdash;with clearing, settlement, prediction, and fan engagement unified in a single system that the fan never knows exists.</p>
+<p>The endgame is a substrate that clears the universal primitive of finance under composed sovereign admissibility, with one settlement asset hub, one cross-margin regime, one evidence grammar, one reliance envelope, and one strategic-pricing layer. The fan, the trustee, the SSB, the reinsurer, the LP, and the institutional risk officer each see a different surface; the substrate underneath is one.</p>
 
 <hr>
 
-<p>Moxie is a <a href="https://momentum.inc">Momentum</a> company. If you are a brand exploring programmable engagement, or an engineer who wants to work on infrastructure that will clear billions in notional value across prediction markets, reach out: <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>.</p>
+<p>Moxie is a <a href="https://momentum.inc">Momentum</a> company. If you are an institutional counterparty &mdash; trustee, custodian, regulator, reinsurer, league, exchange, market-maker, LP &mdash; or an engineer who wants to work on infrastructure that clears claims across jurisdictions under one kernel grammar, reach out: <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>.</p>
 
             </div>
 
