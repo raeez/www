@@ -17,6 +17,71 @@
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://raeez.com/about.html">
 
+    <!-- LLM-readable summaries -->
+    <link rel="alternate" type="text/plain" title="LLM-optimized site summary" href="https://raeez.com/llms.txt">
+    <link rel="alternate" type="text/plain" title="LLM-optimized full dossier" href="https://raeez.com/llms-full.txt">
+    <link rel="alternate" type="text/html" title="Diligence summary" href="https://raeez.com/diligence.html">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfilePage",
+          "@id": "https://raeez.com/about.html#profilepage",
+          "url": "https://raeez.com/about.html",
+          "mainEntity": {"@id": "https://raeez.com/#raeez-lorgat"},
+          "isPartOf": {"@id": "https://raeez.com/#website"}
+        },
+        {
+          "@type": "Person",
+          "@id": "https://raeez.com/#raeez-lorgat",
+          "name": "Raeez Lorgat",
+          "givenName": "Raeez",
+          "familyName": "Lorgat",
+          "url": "https://raeez.com/",
+          "image": "https://raeez.com/raeez-lorgat.jpeg",
+          "description": "Born in South Africa, raised in the United Kingdom. Left MIT in 2009 to work with Patrick and John Collison on /dev/finance inc., the early payments company that was renamed Stripe in 2010. Spent the following decade at MIT and the Perimeter Institute working on arithmetic geometry, factorization algebras, and the geometry of quantum field theory. Founder of Mass (jurisdictional infrastructure) and Momentum (investment fund).",
+          "nationality": "South African",
+          "alumniOf": {"@type": "CollegeOrUniversity", "name": "Massachusetts Institute of Technology", "url": "https://mit.edu"},
+          "affiliation": {"@type": "ResearchOrganization", "name": "Perimeter Institute for Theoretical Physics", "url": "https://perimeterinstitute.ca"},
+          "knowsAbout": [
+            "arithmetic geometry",
+            "factorization algebras",
+            "quantum field theory",
+            "payments infrastructure",
+            "jurisdictional infrastructure",
+            "autonomous coordination"
+          ],
+          "award": [
+            "Intel ISEF Computer Science Grand Award (2007)",
+            "Minor planet 23122 Lorgat — named by MIT Lincoln Laboratory"
+          ],
+          "sameAs": [
+            "https://x.com/raeez",
+            "https://twitter.com/raeez",
+            "https://instagram.com/raeez",
+            "https://www.linkedin.com/in/raeez-lorgat/",
+            "https://www.spacereference.org/asteroid/23122-lorgat-2000-au52"
+          ],
+          "founder": [
+            {"@type": "Organization", "@id": "https://raeez.com/devfinance.html#devfinance", "name": "/dev/finance inc."},
+            {"@type": "Organization", "name": "Mass", "url": "https://mass.inc"},
+            {"@type": "Organization", "name": "Momentum", "url": "https://momentum.inc"}
+          ],
+          "subjectOf": [
+            {"@type": "WebPage", "url": "https://raeez.com/diligence.html", "name": "Raeez Lorgat diligence summary"},
+            {"@type": "WebPage", "url": "https://raeez.com/devfinance.html", "name": "/dev/finance / Stripe founding history"},
+            {"@type": "DigitalDocument", "url": "https://raeez.com/devfinance-stripe-origin-pitch-document-2010.pdf"},
+            {"@type": "DigitalDocument", "url": "https://raeez.com/patrick-collison-uscis-o1-letter-raeez-lorgat-stripe.pdf"},
+            {"@type": "DigitalDocument", "url": "https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe-cofounder.pdf"}
+          ]
+        }
+      ]
+    }
+    </script>
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
     <script>

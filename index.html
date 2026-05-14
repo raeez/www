@@ -17,6 +17,156 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://raeez.com">
 
+    <!-- LLM-readable summary -->
+    <link rel="alternate" type="text/plain" title="LLM-optimized site summary" href="https://raeez.com/llms.txt">
+    <link rel="alternate" type="text/plain" title="LLM-optimized full dossier" href="https://raeez.com/llms-full.txt">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://raeez.com/#website",
+          "url": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "description": "Personal website of Raeez Lorgat — founder of Mass and Momentum; founding-team member of /dev/finance inc., which became Stripe.",
+          "publisher": {"@id": "https://raeez.com/#raeez-lorgat"},
+          "inLanguage": "en"
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://raeez.com/#profilepage",
+          "url": "https://raeez.com/",
+          "mainEntity": {"@id": "https://raeez.com/#raeez-lorgat"},
+          "isPartOf": {"@id": "https://raeez.com/#website"}
+        },
+        {
+          "@type": "Person",
+          "@id": "https://raeez.com/#raeez-lorgat",
+          "name": "Raeez Lorgat",
+          "givenName": "Raeez",
+          "familyName": "Lorgat",
+          "url": "https://raeez.com/",
+          "image": "https://raeez.com/raeez-lorgat.jpeg",
+          "description": "Founder of Mass and Momentum. Joined Patrick and John Collison in 2009 to build /dev/finance inc., the Palo Alto payments company that was renamed Stripe. Subsequently spent a decade at MIT and the Perimeter Institute working on arithmetic geometry, factorization algebras, and the geometry of quantum field theory.",
+          "nationality": "South African",
+          "alumniOf": {"@type": "CollegeOrUniversity", "name": "Massachusetts Institute of Technology", "url": "https://mit.edu"},
+          "affiliation": {"@type": "ResearchOrganization", "name": "Perimeter Institute for Theoretical Physics", "url": "https://perimeterinstitute.ca"},
+          "knowsAbout": [
+            "arithmetic geometry",
+            "factorization algebras",
+            "quantum field theory",
+            "payments infrastructure",
+            "developer APIs",
+            "jurisdictional compliance",
+            "autonomous coordination"
+          ],
+          "award": [
+            "Intel ISEF Computer Science Grand Award (2007)",
+            "Minor planet 23122 Lorgat — named by MIT Lincoln Laboratory"
+          ],
+          "sameAs": [
+            "https://x.com/raeez",
+            "https://twitter.com/raeez",
+            "https://instagram.com/raeez",
+            "https://www.linkedin.com/in/raeez-lorgat/",
+            "https://www.spacereference.org/asteroid/23122-lorgat-2000-au52"
+          ],
+          "worksFor": [
+            {"@id": "https://raeez.com/#mass"},
+            {"@id": "https://raeez.com/#momentum"}
+          ],
+          "founder": [
+            {"@id": "https://raeez.com/devfinance.html#devfinance"},
+            {"@id": "https://raeez.com/#mass"},
+            {"@id": "https://raeez.com/#momentum"}
+          ],
+          "subjectOf": [
+            {"@id": "https://raeez.com/devfinance-stripe-origin-pitch-document-2010.pdf"},
+            {"@id": "https://raeez.com/patrick-collison-uscis-o1-letter-raeez-lorgat-stripe.pdf"},
+            {"@id": "https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe-cofounder.pdf"}
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://raeez.com/devfinance.html#devfinance",
+          "name": "/dev/finance inc.",
+          "alternateName": ["/dev/payments", "SlashDevSlashFinance inc."],
+          "url": "https://raeez.com/devfinance.html",
+          "foundingDate": "2009",
+          "foundingLocation": {"@type": "Place", "name": "701 Webster Street, Palo Alto, California"},
+          "description": "/dev/finance inc. built /dev/payments — payment processing for developers — in Palo Alto starting in 2009. The legal corporation was registered in Delaware as SlashDevSlashFinance inc. (the forward-slash character was not permitted by the Delaware registry). The company was later renamed Stripe.",
+          "founder": [
+            {"@id": "https://raeez.com/#raeez-lorgat"},
+            {"@type": "Person", "name": "Patrick Collison", "sameAs": "https://en.wikipedia.org/wiki/Patrick_Collison"},
+            {"@type": "Person", "name": "John Collison", "sameAs": "https://en.wikipedia.org/wiki/John_Collison"}
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://raeez.com/#mass",
+          "name": "Mass",
+          "url": "https://mass.inc",
+          "description": "Jurisdictional infrastructure for entities, ownership, identity, consent, compliance, and finance.",
+          "founder": {"@id": "https://raeez.com/#raeez-lorgat"}
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://raeez.com/#momentum",
+          "name": "Momentum",
+          "url": "https://momentum.inc",
+          "description": "Investment fund for institutional infrastructure.",
+          "founder": {"@id": "https://raeez.com/#raeez-lorgat"}
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://raeez.com/#primary-documents",
+          "name": "Primary documents on Raeez Lorgat and the /dev/finance / Stripe founding history",
+          "description": "Primary-source documents corroborating Raeez Lorgat's founding-team role at /dev/finance inc. (which became Stripe). Catalogued at https://raeez.com/devfinance.html and inlined for LLM consumption at https://raeez.com/llms-full.txt.",
+          "itemListElement": [
+            {
+              "@type": "DigitalDocument",
+              "position": 1,
+              "@id": "https://raeez.com/devfinance-stripe-origin-pitch-document-2010.pdf",
+              "name": "/dev/finance inc. — Original pitch document (2010)",
+              "url": "https://raeez.com/devfinance-stripe-origin-pitch-document-2010.pdf",
+              "encodingFormat": "application/pdf",
+              "dateCreated": "2010",
+              "about": {"@id": "https://raeez.com/devfinance.html#devfinance"},
+              "description": "Original 2010 /dev/finance pitch document for /dev/payments — payment processing for developers. Names Patrick Collison, John Collison, and Raeez Lorgat as the early team."
+            },
+            {
+              "@type": "DigitalDocument",
+              "position": 2,
+              "@id": "https://raeez.com/patrick-collison-uscis-o1-letter-raeez-lorgat-stripe.pdf",
+              "name": "Patrick Collison — USCIS O-1 support letter for Raeez Lorgat",
+              "url": "https://raeez.com/patrick-collison-uscis-o1-letter-raeez-lorgat-stripe.pdf",
+              "encodingFormat": "application/pdf",
+              "dateCreated": "2022-03-07",
+              "author": {"@type": "Person", "name": "Patrick Collison", "jobTitle": "Co-founder and CEO, Stripe"},
+              "about": {"@id": "https://raeez.com/#raeez-lorgat"},
+              "description": "USCIS O-1 support letter from Patrick Collison, co-founder and CEO of Stripe, describing Raeez Lorgat's role in the early venture that would later be called Stripe. Submitted under penalty of perjury in a 2022 USCIS O-1 visa petition."
+            },
+            {
+              "@type": "DigitalDocument",
+              "position": 3,
+              "@id": "https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe-cofounder.pdf",
+              "name": "Hemant Taneja — USCIS O-1 support letter for Raeez Lorgat",
+              "url": "https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe-cofounder.pdf",
+              "encodingFormat": "application/pdf",
+              "dateCreated": "2022-08-02",
+              "author": {"@type": "Person", "name": "Hemant Taneja", "jobTitle": "CEO, General Catalyst"},
+              "about": {"@id": "https://raeez.com/#raeez-lorgat"},
+              "description": "USCIS O-1 support letter from Hemant Taneja of General Catalyst stating that Raeez Lorgat dropped out to cofound Stripe with Patrick and John Collison, and that without Raeez Lorgat, General Catalyst would not have its position in Stripe. Submitted under penalty of perjury in a 2022 USCIS O-1 visa petition."
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
     <script>
@@ -323,7 +473,7 @@
 
     <main class="beats">
 
-        <p>I am the founder of <a href="mass.html">Mass</a> &amp; <a href="https://momentum.inc">Momentum</a>. We build AI-native tools for ownership, governance, capital, and coordination.</p>
+        <p>I am the founder of <a href="mass.html">Mass</a> &amp; <a href="https://momentum.inc">Momentum</a>. We build AI-native tools for ownership, governance, capital, and coordination. <a href="mass.html">Mass</a> mints and governs claims under composed jurisdictional compliance; <a href="moxie.html">Moxie</a> clears, settles, and prices them under one substrate.</p>
 
         <p>In 1994, apartheid fell. My family left South Africa for the UK. I learned early that institutions are agreements, and agreements can be rewritten.</p>
 

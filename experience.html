@@ -17,6 +17,85 @@
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://raeez.com/experience.html">
 
+    <!-- LLM-readable summaries -->
+    <link rel="alternate" type="text/plain" title="LLM-optimized site summary" href="https://raeez.com/llms.txt">
+    <link rel="alternate" type="text/plain" title="LLM-optimized full dossier" href="https://raeez.com/llms-full.txt">
+    <link rel="alternate" type="text/html" title="Diligence summary" href="https://raeez.com/diligence.html">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfilePage",
+          "@id": "https://raeez.com/experience.html#profilepage",
+          "url": "https://raeez.com/experience.html",
+          "mainEntity": {"@id": "https://raeez.com/#raeez-lorgat"},
+          "isPartOf": {"@id": "https://raeez.com/#website"}
+        },
+        {
+          "@type": "Person",
+          "@id": "https://raeez.com/#raeez-lorgat",
+          "name": "Raeez Lorgat",
+          "url": "https://raeez.com/",
+          "image": "https://raeez.com/raeez-lorgat.jpeg",
+          "description": "Founder of Mass and Momentum. Founding-team member of /dev/finance inc. (which became Stripe). Former Perimeter Institute mathematical physics researcher.",
+          "nationality": "South African",
+          "alumniOf": {"@type": "CollegeOrUniversity", "name": "Massachusetts Institute of Technology"},
+          "affiliation": {"@type": "ResearchOrganization", "name": "Perimeter Institute for Theoretical Physics"},
+          "sameAs": [
+            "https://x.com/raeez",
+            "https://instagram.com/raeez",
+            "https://www.linkedin.com/in/raeez-lorgat/"
+          ],
+          "hasOccupation": [
+            {
+              "@type": "Role",
+              "roleName": "Managing Partner",
+              "startDate": "2025",
+              "memberOf": {"@type": "Organization", "name": "Momentum", "url": "https://momentum.inc", "description": "Investment fund for institutional infrastructure."}
+            },
+            {
+              "@type": "Role",
+              "roleName": "Founder and CEO",
+              "startDate": "2024",
+              "memberOf": {"@type": "Organization", "name": "Mass", "url": "https://mass.inc", "description": "Jurisdictional infrastructure for entities, ownership, identity, consent, and compliance."}
+            },
+            {
+              "@type": "Role",
+              "roleName": "Founder",
+              "startDate": "2020",
+              "endDate": "2023",
+              "memberOf": {"@type": "Organization", "name": "Persona", "url": "https://instagram.com/personagallerynyc", "description": "Art community and gallery-studio in New York City."}
+            },
+            {
+              "@type": "Role",
+              "roleName": "Teaching Assistant and Research Fellow",
+              "startDate": "2014",
+              "endDate": "2024",
+              "memberOf": [
+                {"@type": "CollegeOrUniversity", "name": "Massachusetts Institute of Technology"},
+                {"@type": "ResearchOrganization", "name": "Perimeter Institute for Theoretical Physics"}
+              ]
+            },
+            {
+              "@type": "Role",
+              "roleName": "Founding Team",
+              "startDate": "2009",
+              "endDate": "2011",
+              "memberOf": {"@type": "Organization", "@id": "https://raeez.com/devfinance.html#devfinance", "name": "/dev/finance inc.", "alternateName": ["/dev/payments", "SlashDevSlashFinance inc."], "description": "Internet payment APIs. Renamed Stripe in 2010."}
+            }
+          ],
+          "subjectOf": [
+            {"@type": "WebPage", "url": "https://raeez.com/diligence.html", "name": "Raeez Lorgat diligence summary"},
+            {"@type": "WebPage", "url": "https://raeez.com/devfinance.html", "name": "/dev/finance / Stripe founding history"}
+          ]
+        }
+      ]
+    }
+    </script>
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
     <script>

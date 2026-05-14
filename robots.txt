@@ -1,4 +1,78 @@
+# raeez.com — permissive crawl and AI access policy
+# This site is intentionally indexed and intentionally readable by AI agents
+# for due-diligence purposes. See https://raeez.com/diligence.html.
+
 User-agent: *
+Allow: /
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl (training source for many LLMs)
+User-agent: CCBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Meta
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# xAI
+User-agent: xAI
 Allow: /
 
 Sitemap: https://raeez.com/sitemap.xml
