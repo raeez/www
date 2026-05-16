@@ -108,9 +108,9 @@ founding history.
 
 ### Document 3 — Hemant Taneja USCIS O-1 support letter (August 2, 2022)
 
-- **URL:** https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe-cofounder.pdf
-- **HTML transcript:** https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe-cofounder.html
-- **Markdown transcript:** https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe-cofounder.md
+- **URL:** https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe.pdf
+- **HTML transcript:** https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe.html
+- **Markdown transcript:** https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe.md
 - **SHA-256:** `40868a31da581f626288e25b01468470c62c7a9b34a79a90912aefc1a1bf83fa`
 - **Date:** Tuesday August 2, 2022
 - **Author:** Hemant Taneja, General Catalyst
