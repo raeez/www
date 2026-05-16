@@ -60,6 +60,12 @@ This packet supports the following specific claims:
 6. **Raeez Lorgat reached out to General Catalyst for the Stripe
    investment**, per Taneja: "It is no exaggeration that without Raeez
    Lorgat, General Catalyst would not have its position in Stripe today."
+7. **Raeez Lorgat held an executed Restricted Stock Purchase Agreement
+   with HGSC, Inc.**, one of Stripe's prior corporate names per standard
+   corporate-records databases (PitchBook lists Stripe's prior legal
+   names as DevPayments, HGSC, and SlashDevSlashFinance). The agreement
+   is dated January 10, 2011 and is signed by Patrick Collison as CEO of
+   HGSC, Inc.
 
 This packet does **not** claim that Stripe's current public newsroom or
 leadership pages list Raeez Lorgat as one of Stripe's public executive
@@ -79,7 +85,8 @@ founding history.
 | Patrick invited Raeez into the venture | Patrick Collison 2022 USCIS letter (on Stripe letterhead) | "I invited him to join us in working on the then new business venture which would later come to be called Stripe"; "When he joined Stripe in 2010" | Immigration support letter, not a Stripe press release; submitted under penalty of perjury |
 | General Catalyst was approached by Raeez | Hemant Taneja 2022 USCIS letter (on General Catalyst letterhead) | "After he dropped out to cofound Stripe with Patrick and John Collison, he reached out to me for investment in their new company. It is no exaggeration that without Raeez Lorgat, General Catalyst would not have its position in Stripe today." | Immigration support letter; named third-party testimony under penalty of perjury |
 | Public Stripe pages list Patrick and John | Stripe newsroom | Establishes why a reader may see what appears to be a public-record mismatch | Not a complete historical roster; describes current executive leadership |
-| Entity chain /dev/finance → SlashDevSlashFinance → Stripe | Commercial corporate-records databases (e.g., PitchBook) | Stripe's prior legal names are catalogued | Third-party corroboration; available via subscription |
+| Entity chain /dev/finance → SlashDevSlashFinance → HGSC → Stripe | Commercial corporate-records databases (e.g., PitchBook) | Stripe's prior legal names are catalogued: DevPayments, HGSC, SlashDevSlashFinance | Third-party corroboration; available via subscription |
+| Raeez held HGSC Inc. (Stripe predecessor) equity signed by Patrick | HGSC, Inc. Restricted Stock Purchase Agreement, January 10, 2011, signed by Patrick Collison as CEO | Executed Stripe-predecessor equity grant. Patrick's signature here matches the signature on the 2022 USCIS O-1 letter | PDF is redacted for financial economics; legal terms, signatures, dates, entity name, and the Attachment A assignment of software code in the "devpayments" GitHub account are visible |
 
 ---
 
@@ -116,6 +123,18 @@ founding history.
 - **Author:** Hemant Taneja, General Catalyst
 - **Letterhead:** General Catalyst
 - **Establishes:** Hemant came to know Raeez at MIT while teaching an entrepreneurship course. Raeez dropped out to cofound Stripe with Patrick and John Collison. Raeez reached out to Hemant for investment in the new company. Without Raeez, General Catalyst would not have its position in Stripe. Raeez's responsibilities at Stripe included fundraising, documentation, customer/investor communication, and software. Raeez was 19 at the time. After Stripe, Raeez held research fellowships at the Perimeter Institute and Foresight Institute. Letter submitted under penalty of perjury to USCIS.
+
+### Document 4 — HGSC, Inc. Restricted Stock Purchase Agreement (January 10, 2011)
+
+- **URL:** https://raeez.com/hgsc-inc-restricted-stock-purchase-agreement-raeez-lorgat-stripe.pdf
+- **SHA-256:** `792de93dbd85900780cbee1f80ca181ce281d670ad2cbc32c98e9377e49b698c`
+- **Date:** January 10, 2011
+- **Counterparty:** HGSC, Inc., a Delaware corporation
+- **Signatory:** Patrick Collison, CEO of HGSC, Inc.
+- **Recipient:** Raeez Lorgat (Purchaser)
+- **Address on the agreement:** 701 Webster Street, Palo Alto, CA, 94301 (same address named in the /dev/finance narrative)
+- **Establishes:** Raeez Lorgat held an executed Restricted Stock Purchase Agreement with HGSC, Inc., signed by Patrick Collison. HGSC, Inc. is documented as one of Stripe's prior corporate names — standard commercial corporate-records databases including PitchBook list Stripe's prior legal names as DevPayments, HGSC, and SlashDevSlashFinance. The RSPA is therefore a Stripe-predecessor equity grant. Patrick Collison's signature on this 2011 agreement is visibly the same signature as on the 2022 USCIS O-1 letter (Document 2).
+- **Redactions:** Financial economics redacted (share count, par value, price per share, aggregate purchase price, vesting share count). **Not redacted** and remains visible on the PDF: entity name "HGSC, Inc."; agreement date; both signatures; Patrick Collison's title "CEO"; the Palo Alto address; the Exhibit A Bill of Sale text; the Attachment A assignment of software code in the company's "devpayments" GitHub account; and standard RSPA legal terms (Section 83(b) election, repurchase option, change-of-control acceleration, lock-up, ROFR, escrow, arbitration).
 
 ---
 
