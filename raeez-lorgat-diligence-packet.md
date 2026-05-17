@@ -3,7 +3,7 @@
 **Subject:** Raeez Lorgat
 **Site:** https://raeez.com
 **Contact:** raeez@momentum.inc
-**Last updated:** 2026-05-15
+**Last updated:** 2026-05-17
 
 This file is a self-contained, single-fetch diligence packet for Raeez Lorgat,
 designed to settle the most common due-diligence questions without requiring
@@ -66,6 +66,19 @@ This packet supports the following specific claims:
    names as DevPayments, HGSC, and SlashDevSlashFinance). The agreement
    is dated January 10, 2011 and is signed by Patrick Collison as CEO of
    HGSC, Inc.
+8. **Raeez Lorgat described himself contemporaneously to MIT on
+   September 8, 2010** as having co-founded /DEV/FINANCE INC. with
+   Patrick Collison and John Collison. The September 8, 2010 letter
+   from Raeez Lorgat to Arnold Henderson, Associate Dean and Director
+   S³ at MIT, on /DEV/FINANCE INC. letterhead, uses the exact wording
+   *"a business venture I have co-founded with Patrick Collison (a
+   fellow MIT undergraduate) and John Collison (a Harvard
+   Undergraduate)"* and names Sequoia (with Mike Moritz as the
+   representative partner), Peter Thiel, and Paul Buchheit as 2010
+   investors — all independently and publicly documented as early
+   Stripe investors. This is the earliest contemporaneous,
+   self-authored evidence in this packet, predating the 2022 USCIS
+   letters by twelve years.
 
 This packet does **not** claim that Stripe's current public newsroom or
 leadership pages list Raeez Lorgat as one of Stripe's public executive
@@ -80,6 +93,7 @@ founding history.
 
 | Claim | Best evidence | What it establishes | Caveat |
 |---|---|---|---|
+| Raeez Lorgat contemporaneously described himself, in his own hand to MIT, as co-founder of /dev/finance with Patrick and John Collison | September 8, 2010 MIT withdrawal letter on /DEV/FINANCE INC. letterhead | "a business venture I have co-founded with Patrick Collison (a fellow MIT undergraduate) and John Collison (a Harvard Undergraduate)"; names Sequoia (Mike Moritz), Peter Thiel, and Paul Buchheit as 2010 investors | Contemporaneous self-attestation to an institutional recipient that maintains records; written twelve years before the 2022 USCIS letters and predating Stripe's rename |
 | Raeez was on the /dev/finance team | 2010 /dev/finance pitch document | Team section names Patrick Collison, John Collison, and Raeez Lorgat with substantive bios | Self-hosted historical document; SHA-256 hash published |
 | /dev/payments was the product | 2010 pitch document | Describes /dev/payments as /dev/finance inc.'s "flagship product" with ~12 early merchants | Historical naming predates Stripe brand |
 | Patrick invited Raeez into the venture | Patrick Collison 2022 USCIS letter (on Stripe letterhead) | "I invited him to join us in working on the then new business venture which would later come to be called Stripe"; "When he joined Stripe in 2010" | Immigration support letter, not a Stripe press release; submitted under penalty of perjury |
@@ -123,6 +137,20 @@ founding history.
 - **Author:** Hemant Taneja, General Catalyst
 - **Letterhead:** General Catalyst
 - **Establishes:** Hemant came to know Raeez at MIT while teaching an entrepreneurship course. Raeez dropped out to cofound Stripe with Patrick and John Collison. Raeez reached out to Hemant for investment in the new company. Without Raeez, General Catalyst would not have its position in Stripe. Raeez's responsibilities at Stripe included fundraising, documentation, customer/investor communication, and software. Raeez was 19 at the time. After Stripe, Raeez held research fellowships at the Perimeter Institute and Foresight Institute. Letter submitted under penalty of perjury to USCIS.
+
+### Document 5 — Raeez Lorgat MIT withdrawal letter (September 8, 2010)
+
+- **URL:** https://raeez.com/raeez-lorgat-mit-withdrawal-letter-stripe-2010.pdf
+- **HTML transcript:** https://raeez.com/raeez-lorgat-mit-withdrawal-letter-stripe-2010.html
+- **Markdown transcript:** https://raeez.com/raeez-lorgat-mit-withdrawal-letter-stripe-2010.md
+- **SHA-256:** `c466762a632dc49141d1d6ed4b0678642a1ccbb4a738f71b9de626530a287c12`
+- **Date:** September 8, 2010
+- **Author:** Raeez Lorgat (signed in own hand)
+- **Recipient:** Arnold Henderson, Associate Dean and Director S³, Massachusetts Institute of Technology
+- **Letterhead:** /DEV/FINANCE INC. · 701 Webster Street · Palo Alto, California, 94301 · T 617-470-5156 · raeez@devpayments.com · www.devpayments.com
+- **Establishes:** Raeez Lorgat petitioned MIT for withdrawal effective the fall semester of his Junior year (MIT class of 2012), in his own signed contemporaneous words describing the venture as *"a business venture I have co-founded with Patrick Collison (a fellow MIT undergraduate) and John Collison (a Harvard Undergraduate)."* Names the venture as **/DEV/FINANCE INC.** and the first product as **/DEV/PAYMENTS**. Names the 2010 investor stack: **Sequoia** (lead, with **Mike Moritz** as representative partner), and angels including **Peter Thiel** (founder/CEO of PayPal) and **Paul Buchheit** (creator of Gmail at Google, founder of FriendFeed) — all three independently and publicly documented as early Stripe investors. The letterhead address (701 Webster Street, Palo Alto, CA 94301) matches the address on the January 10, 2011 HGSC, Inc. Restricted Stock Purchase Agreement (Document 4). Raeez Lorgat's signature on this 2010 letter visibly matches the Raeez-side signature on the 2011 HGSC, Inc. agreement.
+- **Why this document matters:** This is the earliest contemporaneous, self-authored document on raeez.com supporting Raeez Lorgat's founding-team role at the venture that would be renamed Stripe. The other primary documents are either contemporaneous but third-party-authored (the 2010 pitch document is a team artifact), contemporaneous but corporate-instrument form (the 2011 HGSC RSPA records the equity grant), or self-authored but retrospective (the 2022 USCIS O-1 letters were written twelve years after the events they describe). The September 8, 2010 MIT letter is **both contemporaneous and self-authored**, on /DEV/FINANCE INC. letterhead, written to a named MIT dean at an institution that maintains records, twelve years before any audience for revisionist history existed.
+- **Independent verification path:** MIT's Office of Student Support Services (S³, formerly under Arnold Henderson) maintains its own record of receipt for this letter. The 2010 investor stack named in the letter (Sequoia/Moritz, Thiel, Buchheit) is independently documented in commercial corporate-records databases and the public press.
 
 ### Document 4 — HGSC, Inc. Restricted Stock Purchase Agreement (January 10, 2011)
 
@@ -170,6 +198,74 @@ founding history.
 - The exact title used internally and externally — "cofounder," "founding
   team member," or "founding engineer" — may have varied across documents
   and time. The primary documents above are the authoritative record.
+
+---
+
+## Full text — Raeez Lorgat MIT withdrawal letter (September 8, 2010)
+
+*Letter on /DEV/FINANCE INC. letterhead: 701 Webster Street, Palo Alto,
+California, 94301 · T 617-470-5156 · raeez@devpayments.com ·
+www.devpayments.com.*
+
+> September 8, 2010
+>
+> Arnold Henderson
+> Associate Dean and Director S³
+> Massachusetts Institute of Technology
+>
+> Dear Arnold,
+>
+> I am writing to inform you that I—Raeez Lorgat, MIT class of 2012—would
+> like to voluntarily withdraw from the institute effective starting the
+> fall semester of my Junior year. My decision to withdraw from the
+> institute is primarily driven by an opportunity identified in a business
+> venture I have co-founded with Patrick Collison (a fellow MIT
+> undergraduate) and John Collison (a Harvard Undergraduate) in the
+> course of my undergraduate studies thus far. The venture,
+> /DEV/FINANCE INC., has drawn high expectations both from a working
+> satisfied customer base and the Silicon Valley venture community. All
+> indication shows that /DEV/FINANCE INC is poised for rapid growth.
+>
+> /DEV/FINANCE INC is a financial services and technology company. It's
+> first product, /DEV/PAYMENTS, focuses on changing the core concept of
+> the traditional 'merchant account', a financial product enabling the
+> processing of debit and credit card transactions within a given
+> business (known as a merchant). By iterating over the traditional
+> financial product as serviced by financial institutions today,
+> /DEV/PAYMENTS is able to offer a modern and relevant alternative to
+> payment processing solutions in existence today, where the focus is on
+> servicing software developers and their products. /DEV/FINANCE INC has
+> successfully raised rounds of funding from top-flight Silicon Valley
+> venture capital firms, as well as a host of angel-investors. Sequoia
+> led the last round as the largest institutional investor (with Mike
+> Moritz as the representative partner), and notable angels include
+> Peter Thiel (founder and CEO of PayPal, Paul Buchheit (creator of
+> gmail at google, founder of friendfeed) and many others.
+>
+> My request is driven by the realization that in pursuing due diligence
+> with /DEV/FINANCE INC, I will be unable to commit the time necessary
+> to pursue my undergraduate studies. The decision to take time away
+> from my undergraduate education was not an easy one to make, but after
+> review of council from friends, family, colleagues and investors — I
+> have reached the conclusion that the petitioned course of action is
+> the correct choice for me to take.
+>
+> I have completed two years of my undergraduate education and would
+> henceforth like to petition to take another period of up to 2 years
+> away from the Institute, with a re-evaluation at the end of the 1st
+> and 2nd year. The next 2 years will sufficiently give me the room to
+> evaluate the business' full potential, after which I intend to return
+> to the institute and resume my undergraduate education—at that point
+> bringing with me real-world experience and education I'd be unable to
+> obtain at this time at the Institute.
+>
+> Sincerely yours,
+>
+> *[signed]*
+>
+> Raeez Lorgat
+>
+> /DEV/FINANCE INC. · 701 Webster Street · Palo Alto, California, 94301
 
 ---
 
