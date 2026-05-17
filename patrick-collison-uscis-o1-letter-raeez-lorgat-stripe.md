@@ -88,7 +88,7 @@
   Institute for Theoretical Physics.
 - The letter is on Stripe corporate letterhead at 510 Townsend St., San
   Francisco, CA 94103, signed by Patrick Collison as CEO of Stripe.
-- The letter is submitted under penalty of perjury as evidence in support of
+- The letter is submitted in support of
   Raeez Lorgat's O-1 visa petition before USCIS.
 
 ## Caveats

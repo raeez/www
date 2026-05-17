@@ -24,8 +24,9 @@ in 2008–09. In 2007 he won the Computer Science Grand Award at the Intel
 International Science and Engineering Fair (ISEF); MIT Lincoln Laboratory
 named minor planet 23122 Lorgat in recognition.
 
-In 2010, he left MIT to work with Patrick and John Collison on
-**/dev/finance inc.**, an early developer-payments company headquartered at
+In 2010, he dropped out of MIT to co-found **/dev/finance inc.** with
+Patrick and John Collison — an early developer-payments company
+headquartered at
 701 Webster Street, Palo Alto. /dev/finance built /dev/payments — "payment
 processing for developers." The legal Delaware entity was registered as
 SlashDevSlashFinance inc. because the forward-slash character was not
@@ -96,8 +97,8 @@ founding history.
 | Raeez Lorgat contemporaneously described himself, in his own hand to MIT, as co-founder of /dev/finance with Patrick and John Collison | September 8, 2010 MIT withdrawal letter on /DEV/FINANCE INC. letterhead | "a business venture I have co-founded with Patrick Collison (a fellow MIT undergraduate) and John Collison (a Harvard Undergraduate)"; names Sequoia (Mike Moritz), Peter Thiel, and Paul Buchheit as 2010 investors | Contemporaneous self-attestation to an institutional recipient that maintains records; written twelve years before the 2022 USCIS letters and predating Stripe's rename |
 | Raeez was on the /dev/finance team | 2010 /dev/finance pitch document | Team section names Patrick Collison, John Collison, and Raeez Lorgat with substantive bios | Self-hosted historical document |
 | /dev/payments was the product | 2010 pitch document | Describes /dev/payments as /dev/finance inc.'s "flagship product" with ~12 early merchants | Historical naming predates Stripe brand |
-| Patrick invited Raeez into the venture | Patrick Collison 2022 USCIS letter (on Stripe letterhead) | "I invited him to join us in working on the then new business venture which would later come to be called Stripe"; "When he joined Stripe in 2010" | Immigration support letter, not a Stripe press release; submitted under penalty of perjury |
-| General Catalyst was approached by Raeez | Hemant Taneja 2022 USCIS letter (on General Catalyst letterhead) | "After he dropped out to cofound Stripe with Patrick and John Collison, he reached out to me for investment in their new company. It is no exaggeration that without Raeez Lorgat, General Catalyst would not have its position in Stripe today." | Immigration support letter; named third-party testimony under penalty of perjury |
+| Patrick invited Raeez into the venture | Patrick Collison 2022 USCIS letter (on Stripe letterhead) | "I invited him to join us in working on the then new business venture which would later come to be called Stripe"; "When he joined Stripe in 2010" | Submitted in support of a 2022 USCIS O-1 visa petition |
+| General Catalyst was approached by Raeez | Hemant Taneja 2022 USCIS letter (on General Catalyst letterhead) | "After he dropped out to cofound Stripe with Patrick and John Collison, he reached out to me for investment in their new company. It is no exaggeration that without Raeez Lorgat, General Catalyst would not have its position in Stripe today." | Submitted in support of a 2022 USCIS O-1 visa petition |
 | Public Stripe pages list Patrick and John | Stripe newsroom | Establishes why a reader may see what appears to be a public-record mismatch | Not a complete historical roster; describes current executive leadership |
 | Entity chain /dev/finance → SlashDevSlashFinance → HGSC → Stripe | Commercial corporate-records databases (e.g., PitchBook) | Stripe's prior legal names are catalogued: DevPayments, HGSC, SlashDevSlashFinance | Third-party corroboration; available via subscription |
 | Raeez held HGSC Inc. (Stripe predecessor) equity signed by Patrick | HGSC, Inc. Restricted Stock Purchase Agreement, January 10, 2011, signed by Patrick Collison as CEO | Executed Stripe-predecessor equity grant. Patrick's signature here matches the signature on the 2022 USCIS O-1 letter | PDF is redacted for financial economics; legal terms, signatures, dates, entity name, and the Attachment A assignment of software code in the "devpayments" GitHub account are visible |
@@ -123,7 +124,7 @@ founding history.
 - **Date:** March 7, 2022
 - **Author:** Patrick Collison, Co-founder and CEO of Stripe
 - **Letterhead:** Stripe · 510 Townsend St. · San Francisco, CA 94103
-- **Establishes:** Patrick and Raeez met at MIT. Patrick invited Raeez to join the then-new business venture that would later be called Stripe. Raeez joined Stripe in 2010. Patrick worked very closely with Raeez. After Stripe, Raeez went on to be a research fellow at Perimeter Institute. Letter submitted under penalty of perjury to USCIS.
+- **Establishes:** Patrick and Raeez met at MIT. Patrick invited Raeez to join the then-new business venture that would later be called Stripe. Raeez joined Stripe in 2010. Patrick worked very closely with Raeez. After Stripe, Raeez went on to be a research fellow at Perimeter Institute. Submitted in support of a 2022 USCIS O-1 visa petition.
 
 ### Document 3 — Hemant Taneja USCIS O-1 support letter (August 2, 2022)
 
@@ -133,7 +134,7 @@ founding history.
 - **Date:** Tuesday August 2, 2022
 - **Author:** Hemant Taneja, General Catalyst
 - **Letterhead:** General Catalyst
-- **Establishes:** Hemant came to know Raeez at MIT while teaching an entrepreneurship course. Raeez dropped out to cofound Stripe with Patrick and John Collison. Raeez reached out to Hemant for investment in the new company. Without Raeez, General Catalyst would not have its position in Stripe. Raeez's responsibilities at Stripe included fundraising, documentation, customer/investor communication, and software. Raeez was 19 at the time. After Stripe, Raeez held research fellowships at the Perimeter Institute and Foresight Institute. Letter submitted under penalty of perjury to USCIS.
+- **Establishes:** Hemant came to know Raeez at MIT while teaching an entrepreneurship course. Raeez dropped out to cofound Stripe with Patrick and John Collison. Raeez reached out to Hemant for investment in the new company. Without Raeez, General Catalyst would not have its position in Stripe. Raeez's responsibilities at Stripe included fundraising, documentation, customer/investor communication, and software. Raeez was 19 at the time. After Stripe, Raeez held research fellowships at the Perimeter Institute and Foresight Institute. Submitted in support of a 2022 USCIS O-1 visa petition.
 
 ### Document 5 — Raeez Lorgat MIT withdrawal letter (September 8, 2010)
 
@@ -164,8 +165,7 @@ founding history.
 ## How to verify independently
 
 1. **Email Patrick Collison or Hemant Taneja directly.** Both are publicly
-   reachable. Both signed letters under penalty of perjury and are available
-   to confirm or qualify their letters in 2026.
+   reachable and available to confirm or qualify their 2022 letters.
 2. **Search commercial corporate-records databases.** PitchBook and similar
    services list Stripe's prior legal names, including the
    /dev/finance → SlashDevSlashFinance → Stripe chain.
@@ -177,10 +177,9 @@ founding history.
 
 ## Public-record caveats
 
-- The two letters from Patrick Collison and Hemant Taneja are **immigration
-  support letters**, prepared in 2022 as evidence for a USCIS O-1 visa
-  petition. They were submitted under penalty of perjury, which is a serious
-  legal standard. They are not Stripe corporate documents or press releases.
+- The two letters from Patrick Collison and Hemant Taneja were submitted
+  in support of a 2022 USCIS O-1 visa petition. They are not Stripe
+  corporate documents or press releases.
 - Stripe's current public newsroom and leadership pages list Patrick Collison
   (Co-founder and CEO) and John Collison (Co-founder and President). This
   packet does not contradict that — it documents the earlier /dev/finance

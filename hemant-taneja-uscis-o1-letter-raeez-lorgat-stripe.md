@@ -104,7 +104,7 @@
 - Raeez was 19 years old at the time of dropping out.
 - After Stripe, Raeez held research fellowships at the Perimeter Institute for
   Theoretical Physics and the Foresight Institute.
-- The letter is submitted under penalty of perjury as evidence in support of
+- The letter is submitted in support of
   Raeez Lorgat's O-1 visa petition before USCIS.
 
 ## Caveats
