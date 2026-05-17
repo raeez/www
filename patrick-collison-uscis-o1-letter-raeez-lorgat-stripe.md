@@ -8,7 +8,6 @@
 **Letterhead:** Stripe, Inc.
 **Return address:** Stripe · 510 Townsend St. · San Francisco, CA 94103
 **Original PDF:** https://raeez.com/patrick-collison-uscis-o1-letter-raeez-lorgat-stripe.pdf
-**SHA-256 of PDF:** `3e9f0c4ff7ca8ff72b2b86b2a181b376263cd4d9a8159e785c176ad7f52cec2d`
 
 ## Transcript
 

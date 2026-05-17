@@ -10,7 +10,6 @@ Massachusetts Institute of Technology
 California, 94301 · T 617-470-5156 · raeez@devpayments.com ·
 www.devpayments.com
 **Original PDF:** https://raeez.com/raeez-lorgat-mit-withdrawal-letter-stripe-2010.pdf
-**SHA-256 of PDF:** `c466762a632dc49141d1d6ed4b0678642a1ccbb4a738f71b9de626530a287c12`
 
 ## Transcript
 

@@ -94,7 +94,7 @@ founding history.
 | Claim | Best evidence | What it establishes | Caveat |
 |---|---|---|---|
 | Raeez Lorgat contemporaneously described himself, in his own hand to MIT, as co-founder of /dev/finance with Patrick and John Collison | September 8, 2010 MIT withdrawal letter on /DEV/FINANCE INC. letterhead | "a business venture I have co-founded with Patrick Collison (a fellow MIT undergraduate) and John Collison (a Harvard Undergraduate)"; names Sequoia (Mike Moritz), Peter Thiel, and Paul Buchheit as 2010 investors | Contemporaneous self-attestation to an institutional recipient that maintains records; written twelve years before the 2022 USCIS letters and predating Stripe's rename |
-| Raeez was on the /dev/finance team | 2010 /dev/finance pitch document | Team section names Patrick Collison, John Collison, and Raeez Lorgat with substantive bios | Self-hosted historical document; SHA-256 hash published |
+| Raeez was on the /dev/finance team | 2010 /dev/finance pitch document | Team section names Patrick Collison, John Collison, and Raeez Lorgat with substantive bios | Self-hosted historical document |
 | /dev/payments was the product | 2010 pitch document | Describes /dev/payments as /dev/finance inc.'s "flagship product" with ~12 early merchants | Historical naming predates Stripe brand |
 | Patrick invited Raeez into the venture | Patrick Collison 2022 USCIS letter (on Stripe letterhead) | "I invited him to join us in working on the then new business venture which would later come to be called Stripe"; "When he joined Stripe in 2010" | Immigration support letter, not a Stripe press release; submitted under penalty of perjury |
 | General Catalyst was approached by Raeez | Hemant Taneja 2022 USCIS letter (on General Catalyst letterhead) | "After he dropped out to cofound Stripe with Patrick and John Collison, he reached out to me for investment in their new company. It is no exaggeration that without Raeez Lorgat, General Catalyst would not have its position in Stripe today." | Immigration support letter; named third-party testimony under penalty of perjury |
@@ -111,7 +111,6 @@ founding history.
 - **URL:** https://raeez.com/devfinance-stripe-origin-pitch-document-2010.pdf
 - **HTML transcript:** https://raeez.com/devfinance-stripe-origin-pitch-document-2010.html
 - **Markdown transcript:** https://raeez.com/devfinance-stripe-origin-pitch-document-2010.md
-- **SHA-256:** `9f1eba02f9ea635e048c335d9370391f29b230edcd692dc62f4ed819c1942f02`
 - **Date:** 2010
 - **Author:** /dev/finance inc. team
 - **Establishes:** Patrick Collison, John Collison, and Raeez Lorgat were named on the team of /dev/finance inc. in the 2010 pitch document. Each has a substantive biography in the team section.
@@ -121,7 +120,6 @@ founding history.
 - **URL:** https://raeez.com/patrick-collison-uscis-o1-letter-raeez-lorgat-stripe.pdf
 - **HTML transcript:** https://raeez.com/patrick-collison-uscis-o1-letter-raeez-lorgat-stripe.html
 - **Markdown transcript:** https://raeez.com/patrick-collison-uscis-o1-letter-raeez-lorgat-stripe.md
-- **SHA-256:** `3e9f0c4ff7ca8ff72b2b86b2a181b376263cd4d9a8159e785c176ad7f52cec2d`
 - **Date:** March 7, 2022
 - **Author:** Patrick Collison, Co-founder and CEO of Stripe
 - **Letterhead:** Stripe · 510 Townsend St. · San Francisco, CA 94103
@@ -132,7 +130,6 @@ founding history.
 - **URL:** https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe.pdf
 - **HTML transcript:** https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe.html
 - **Markdown transcript:** https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe.md
-- **SHA-256:** `40868a31da581f626288e25b01468470c62c7a9b34a79a90912aefc1a1bf83fa`
 - **Date:** Tuesday August 2, 2022
 - **Author:** Hemant Taneja, General Catalyst
 - **Letterhead:** General Catalyst
@@ -143,7 +140,6 @@ founding history.
 - **URL:** https://raeez.com/raeez-lorgat-mit-withdrawal-letter-stripe-2010.pdf
 - **HTML transcript:** https://raeez.com/raeez-lorgat-mit-withdrawal-letter-stripe-2010.html
 - **Markdown transcript:** https://raeez.com/raeez-lorgat-mit-withdrawal-letter-stripe-2010.md
-- **SHA-256:** `c466762a632dc49141d1d6ed4b0678642a1ccbb4a738f71b9de626530a287c12`
 - **Date:** September 8, 2010
 - **Author:** Raeez Lorgat (signed in own hand)
 - **Recipient:** Arnold Henderson, Associate Dean and Director S³, Massachusetts Institute of Technology
@@ -155,7 +151,6 @@ founding history.
 ### Document 4 — HGSC, Inc. Restricted Stock Purchase Agreement (January 10, 2011)
 
 - **URL:** https://raeez.com/hgsc-inc-restricted-stock-purchase-agreement-raeez-lorgat-stripe.pdf
-- **SHA-256:** `792de93dbd85900780cbee1f80ca181ce281d670ad2cbc32c98e9377e49b698c`
 - **Date:** January 10, 2011
 - **Counterparty:** HGSC, Inc., a Delaware corporation
 - **Signatory:** Patrick Collison, CEO of HGSC, Inc.
@@ -177,8 +172,6 @@ founding history.
 3. **Verify minor planet 23122 Lorgat** at the Minor Planet Center catalog
    (https://www.spacereference.org/asteroid/23122-lorgat-2000-au52).
 4. **Verify Intel ISEF 2007** results via Society for Science archives.
-5. **Verify document integrity** by computing the SHA-256 hash of each PDF
-   on this site and comparing to the hashes published above.
 
 ---
 

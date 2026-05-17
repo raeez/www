@@ -7,7 +7,6 @@
 **Petitioner:** Raeez Lorgat
 **Letterhead:** General Catalyst
 **Original PDF:** https://raeez.com/hemant-taneja-uscis-o1-letter-raeez-lorgat-stripe.pdf
-**SHA-256 of PDF:** `40868a31da581f626288e25b01468470c62c7a9b34a79a90912aefc1a1bf83fa`
 
 ## Transcript
 

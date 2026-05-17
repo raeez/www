@@ -5,7 +5,6 @@
 **Date:** 2010
 **Subject:** /dev/payments — finance for developers, by developers
 **Original PDF:** https://raeez.com/devfinance-stripe-origin-pitch-document-2010.pdf
-**SHA-256 of PDF:** `9f1eba02f9ea635e048c335d9370391f29b230edcd692dc62f4ed819c1942f02`
 
 ## Transcript
 
