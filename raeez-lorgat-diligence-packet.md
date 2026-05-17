@@ -24,7 +24,7 @@ in 2008–09. In 2007 he won the Computer Science Grand Award at the Intel
 International Science and Engineering Fair (ISEF); MIT Lincoln Laboratory
 named minor planet 23122 Lorgat in recognition.
 
-In 2009, he left MIT to work with Patrick and John Collison on
+In 2010, he left MIT to work with Patrick and John Collison on
 **/dev/finance inc.**, an early developer-payments company headquartered at
 701 Webster Street, Palo Alto. /dev/finance built /dev/payments — "payment
 processing for developers." The legal Delaware entity was registered as
@@ -46,7 +46,7 @@ City (2020–2023), and now leads **Mass** and **Momentum**.
 
 This packet supports the following specific claims:
 
-1. **Raeez Lorgat was a member of the early /dev/finance team** from 2009,
+1. **Raeez Lorgat was a member of the early /dev/finance team** from 2010,
    alongside Patrick Collison and John Collison.
 2. **/dev/finance inc. built /dev/payments**, the payments API product
    later renamed Stripe.
