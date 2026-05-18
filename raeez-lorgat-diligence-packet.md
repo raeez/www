@@ -81,12 +81,11 @@ This packet supports the following specific claims:
    self-authored evidence in this packet, predating the 2022 USCIS
    letters by twelve years.
 
-This packet does **not** claim that Stripe's current public newsroom or
-leadership pages list Raeez Lorgat as one of Stripe's public executive
-cofounders. Stripe's public leadership today is Patrick Collison (Co-founder
-and CEO) and John Collison (Co-founder and President). This is correct and
-not in dispute. This packet concerns the earlier /dev/finance / Stripe
-founding history.
+The public memory of a company is always simpler than the company
+itself. Stripe's current materials identify Patrick and John Collison
+as the company's cofounders. This packet records the earlier
+/dev/finance / /dev/payments period — the company that became Stripe,
+before that public memory stabilized.
 
 ---
 
@@ -175,21 +174,19 @@ founding history.
 
 ---
 
-## Public-record caveats
+## Note on the public record
 
-- The two letters from Patrick Collison and Hemant Taneja were submitted
-  in support of a 2022 USCIS O-1 visa petition. They are not Stripe
-  corporate documents or press releases.
-- Stripe's current public newsroom and leadership pages list Patrick Collison
-  (Co-founder and CEO) and John Collison (Co-founder and President). This
-  packet does not contradict that — it documents the earlier /dev/finance
-  founding history.
+The public memory of a company is always simpler than the company
+itself. Stripe's current materials identify Patrick and John Collison
+as the company's cofounders. This packet records the earlier
+/dev/finance / /dev/payments period — the company that became Stripe,
+before that public memory stabilized.
+
+- The 2022 letters from Patrick Collison and Hemant Taneja were submitted
+  in support of a 2022 USCIS O-1 visa petition.
 - Patrick Collison's letter describes Raeez as having been "invited to join
   the venture." Patrick's letter does not use the literal word "cofounder."
 - Hemant Taneja's letter does use the word "cofound" explicitly.
-- The exact title used internally and externally — "cofounder," "founding
-  team member," or "founding engineer" — may have varied across documents
-  and time. The primary documents above are the authoritative record.
 
 ---
 
