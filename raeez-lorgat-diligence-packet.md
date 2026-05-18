@@ -151,8 +151,7 @@ before that public memory stabilized.
 - **Recipient:** Arnold Henderson, Associate Dean and Director S³, Massachusetts Institute of Technology
 - **Letterhead:** /DEV/FINANCE INC. · 701 Webster Street · Palo Alto, California, 94301 · T 617-470-5156 · raeez@devpayments.com · www.devpayments.com
 - **Establishes:** Raeez Lorgat petitioned MIT for withdrawal effective the fall semester of his Junior year (MIT class of 2012), in his own signed contemporaneous words describing the venture as *"a business venture I have co-founded with Patrick Collison (a fellow MIT undergraduate) and John Collison (a Harvard Undergraduate)."* Names the venture as **/DEV/FINANCE INC.** and the first product as **/DEV/PAYMENTS**. Names the 2010 investor stack: **Sequoia** (lead, with **Mike Moritz** as representative partner), and angels including **Peter Thiel** (founder/CEO of PayPal) and **Paul Buchheit** (creator of Gmail at Google, founder of FriendFeed) — all three independently and publicly documented as early Stripe investors. The letterhead address (701 Webster Street, Palo Alto, CA 94301) matches the address on the January 10, 2011 HGSC, Inc. Restricted Stock Purchase Agreement (Document 4). Raeez Lorgat's signature on this 2010 letter visibly matches the Raeez-side signature on the 2011 HGSC, Inc. agreement.
-- **Why this document matters:** This is the earliest contemporaneous, self-authored document on raeez.com supporting Raeez Lorgat's founding-team role at the venture that would be renamed Stripe. The other primary documents are either contemporaneous but third-party-authored (the 2010 pitch document is a team artifact), contemporaneous but corporate-instrument form (the 2011 HGSC RSPA records the equity grant), or self-authored but retrospective (the 2022 USCIS O-1 letters were written twelve years after the events they describe). The September 8, 2010 MIT letter is **both contemporaneous and self-authored**, on /DEV/FINANCE INC. letterhead, written to a named MIT dean at an institution that maintains records, twelve years before any audience for revisionist history existed.
-- **Independent verification path:** MIT's Office of Student Support Services (S³, formerly under Arnold Henderson) maintains its own record of receipt for this letter. The 2010 investor stack named in the letter (Sequoia/Moritz, Thiel, Buchheit) is independently documented in commercial corporate-records databases and the public press.
+- **Why this document matters:** This is the earliest contemporaneous, self-authored document in the set — Raeez Lorgat's own words to a named MIT dean, on /DEV/FINANCE INC. letterhead, twelve years before the 2022 USCIS letters.
 
 ### Document 4 — HGSC, Inc. Restricted Stock Purchase Agreement (January 10, 2011)
 
@@ -164,19 +163,6 @@ before that public memory stabilized.
 - **Address on the agreement:** 701 Webster Street, Palo Alto, CA, 94301 (same address named in the /dev/finance narrative)
 - **Establishes:** Raeez Lorgat held an executed Restricted Stock Purchase Agreement with HGSC, Inc., signed by Patrick Collison. HGSC, Inc. is documented as one of Stripe's prior corporate names — standard commercial corporate-records databases including PitchBook list Stripe's prior legal names as DevPayments, HGSC, and SlashDevSlashFinance. The RSPA is therefore a Stripe-predecessor equity grant. Patrick Collison's signature on this 2011 agreement is visibly the same signature as on the 2022 USCIS O-1 letter (Document 2).
 - **Redactions:** Financial economics redacted (share count, par value, price per share, aggregate purchase price, vesting share count). **Not redacted** and remains visible on the PDF: entity name "HGSC, Inc."; agreement date; both signatures; Patrick Collison's title "CEO"; the Palo Alto address; the Exhibit A Bill of Sale text; the Attachment A assignment of software code in the company's "devpayments" GitHub account; and standard RSPA legal terms (Section 83(b) election, repurchase option, change-of-control acceleration, lock-up, ROFR, escrow, arbitration).
-
----
-
-## How to verify independently
-
-1. **Email Patrick Collison or Hemant Taneja directly.** Both are publicly
-   reachable and available to confirm or qualify their 2022 letters.
-2. **Search commercial corporate-records databases.** PitchBook and similar
-   services list Stripe's prior legal names, including the
-   /dev/finance → SlashDevSlashFinance → Stripe chain.
-3. **Verify minor planet 23122 Lorgat** at the Minor Planet Center catalog
-   (https://www.spacereference.org/asteroid/23122-lorgat-2000-au52).
-4. **Verify Intel ISEF 2007** results via Society for Science archives.
 
 ---
 
