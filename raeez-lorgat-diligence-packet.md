@@ -5,10 +5,16 @@
 **Contact:** raeez@momentum.inc
 **Last updated:** 2026-05-17
 
-This file is a self-contained, single-fetch diligence packet for Raeez Lorgat,
-designed to settle the most common due-diligence questions without requiring
-the reader to navigate the site. The same content is available as a plain-text
-file at https://raeez.com/raeez-lorgat-diligence-packet.txt and as an HTML
+For a long time I kept the internet at a distance. I did not maintain a
+public résumé. I did not annotate my own history. I built, studied,
+disappeared into mathematics, and let the work live where it lived.
+
+That stopped working once I began building Mass and Momentum —
+institutions for ownership, governance, capital, and coordination.
+Institutions require provenance. This packet is part of the record.
+
+The same content is available as a plain-text file at
+https://raeez.com/raeez-lorgat-diligence-packet.txt and as an HTML
 summary at https://raeez.com/diligence.html.
 
 ---
