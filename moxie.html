@@ -6,10 +6,10 @@
     <title>Moxie — Raeez Lorgat</title>
 
     <!-- SEO -->
-    <meta name="description" content="Event-contingent clearing.">
+    <meta name="description" content="A clearing and settlement layer for claims and their derivatives.">
     <meta name="author" content="Raeez Lorgat">
     <meta property="og:title" content="Moxie">
-    <meta property="og:description" content="Event-contingent clearing.">
+    <meta property="og:description" content="A clearing and settlement layer for claims and their derivatives.">
     <meta property="og:type" content="article">
     <link rel="canonical" href="https://raeez.com/moxie.html">
     <link rel="alternate" type="application/atom+xml" title="Raeez Lorgat" href="https://raeez.com/feed.xml">
@@ -25,7 +25,7 @@
             "name": "Raeez Lorgat",
             "url": "https://raeez.com"
         },
-        "description": "Event-contingent clearing."
+        "description": "A clearing and settlement layer for claims and their derivatives."
     }
     </script>
 
@@ -587,7 +587,7 @@
         <article>
             <header class="article-header">
                 <h1 class="article-title">Moxie</h1>
-                <p class="article-subtitle">A clearing-and-settlement substrate for claims and their derivatives</p>
+                <p class="article-subtitle">A clearing and settlement layer for claims and their derivatives</p>
                 <p class="article-meta">May 2026 &mdash; <a href="https://momentum.inc/moxie.html">Momentum</a></p>
             </header>
 
@@ -597,11 +597,11 @@
     <p class="toc-title">Contents</p>
     <ol class="toc-list">
         <li class="toc-item"><a href="#thesis">The Thesis</a></li>
+        <li class="toc-item"><a href="#layers">Three Layers</a></li>
         <li class="toc-item"><a href="#protocol">The Protocol</a></li>
-        <li class="toc-item"><a href="#coupling">Belief&ndash;Price Coupling</a></li>
-        <li class="toc-item"><a href="#clearing">Cross-Margined Clearing</a></li>
-        <li class="toc-item"><a href="#flywheel">The Economic Flywheel</a></li>
-        <li class="toc-item"><a href="#application">The Application</a></li>
+        <li class="toc-item"><a href="#pricing">Pricing</a></li>
+        <li class="toc-item"><a href="#clearing">Clearing</a></li>
+        <li class="toc-item"><a href="#families">Claim Families</a></li>
         <li class="toc-item"><a href="#proof">Proof of Work</a></li>
         <li class="toc-item"><a href="#market">The Market</a></li>
     </ol>
@@ -613,9 +613,21 @@
 
 <p>Existing infrastructure clears each claim family on a separate substrate. Equities clear at central securities depositories. Derivatives clear at central counterparties. Prediction events clear at sequenced general-purpose chains. Sukuk clear at institutional channels with no retail pathway and no sub-day settlement. Tokenized real-world assets clear at a handful of permissioned platforms with single-jurisdiction wrappers. Brand and intellectual-property licensing barely clears at all. The result is parallel compliance regimes, parallel settlement assets, parallel margin pools, and parallel reliance frameworks &mdash; with no formal interaction between them. Capital that could net across claim families sits idle in each.</p>
 
-<p>Moxie is a clearing-and-settlement substrate for the universal primitive. Every claim family compiles into one kernel grammar &mdash; admissible obligation transition over legal profile, authority envelope, instrument manifest, obligation graph, compliance attestation, risk reservation, evidence envelope, execution certificate, settlement job, receipt proof, release and recovery authorization, and reliance envelope. Claim-class differentiation is supplied by a TemplatePack registry, not by parallel chains. Pricing fuses three inputs: intrinsic discounted cash flow, the meet-composed compliance constraint surface across the 23-domain compliance tensor, and an adversarial counterparty-belief model &mdash; the operationalization of the strategic observation that quantitative finance is a deterministic system in which every market inefficiency is a counterparty's strategic error. The clearing program is part of consensus, not an off-chain or post-trade calculation.</p>
+<p>Moxie is a clearing and settlement layer for that primitive. Every claim family compiles into one kernel grammar rather than onto a separate chain, with claim-class differentiation supplied by a TemplatePack registry. Pricing fuses three inputs: the intrinsic discounted cash flow of the claim; the meet-composed compliance constraint surface across a 23-domain compliance tensor, which is a pricing input through the holder set it determines and not merely an admissibility filter; and an adversarial counterparty model &mdash; the operationalization of a single observation, that a market is a strategic system in which every inefficiency is some counterparty's error. The clearing program runs inside consensus, not as an off-chain or post-trade calculation.</p>
 
-<p>Sports and other event-contingent markets are one product family in this taxonomy, not the boundary of the protocol. They were the first family the substrate was built against. They are the demonstration that the substrate works under the hardest correlation, latency, and oracle conditions. They are not where the substrate ends.</p>
+<p>Sports and other event-contingent markets are one product family in this taxonomy, not the boundary of the protocol. They were the first family the substrate was built against, under the hardest correlation, latency, and oracle conditions a clearing layer faces. They are not where it ends.</p>
+
+<hr>
+
+<h1 id="layers">Three Layers</h1>
+
+<p>The architecture keeps three things separate that most systems collapse into one. Collapsing them is what forces a new chain for every product.</p>
+
+<p>The <strong>conceptual</strong> primitive is the claim: a future cash flow with a probability distribution over its timing and amount, together with the terms that define the payoff, the authority that may issue or amend it, the evidence that resolves its state, and the rulebook that governs who may hold it. This is the layer a regulator, a trustee, or a counterparty reasons about.</p>
+
+<p>The <strong>protocol</strong> primitive is the admissible obligation transition: a state change in a claim&rsquo;s lifecycle that moves economic authority &mdash; issuance, attestation, transfer, margin update, netting, settlement, amendment, dispute, recovery, release, or revocation. A transition is admissible only when its authority, evidence, compliance attestation, reserved risk, execution certificate, settlement instruction, receipt, and reliance rulebook all validate together. The transition, not a prose description of the asset, is what consensus commits &mdash; so an invalid state cannot masquerade as a tradeable claim.</p>
+
+<p>The <strong>product</strong> primitive is the TemplatePack: the rulebook and machine-readable parameters for a claim family &mdash; authority, evidence, eligible holders, settlement asset, risk model, dispute path, recovery path, reporting, and reliance. A new product family adds a TemplatePack and a lowering into admissible transitions. It does not add a new root transaction type, a new settlement grammar, or a new compliance model.</p>
 
 <hr>
 
@@ -623,96 +635,45 @@
 
 <p>Moxie is not a smart contract on someone else&rsquo;s chain. It is a sovereign Layer 1 with consensus, execution, and clearing designed as a single system.</p>
 
-<p>The block executor runs three deterministic phases in fixed order. Phase 1 resolves oracle outcomes and settles expired predictions. Phase 2 executes all trading&mdash;AMM swaps, order book matching, margin enforcement&mdash;against the freshly resolved state. Phase 3 processes everything else: transfers, staking, governance, EVM calls. This ordering is not a convention. It is enforced at the protocol level. No reordering is possible.</p>
+<p>The block executor runs three deterministic phases in fixed order. Phase 1 resolves attested outcomes and settles the claims that depend on them. Phase 2 clears all trading &mdash; order books, automated market makers, convex batch auctions, margin enforcement &mdash; against the freshly resolved state. Phase 3 processes everything else: transfers, staking, governance, EVM calls. The ordering is enforced at the protocol level; no reordering is possible.</p>
 
-<p>Conservation of value is verified after every block. The sum of all account balances, clearinghouse deposits, AMM reserves, and insurance fund positions must equal total supply. If it doesn&rsquo;t, the block is invalid. This invariant is not aspirational&mdash;it is checked by every validator on every block.</p>
-
-<p>The protocol supports 33 native transaction types spanning the full lifecycle of IP token economies: brand token creation, AMM liquidity provision, prediction market minting and trading, oracle attestation, ephemeral market creation, VRF-powered drops, graduation voting, hub routing, and EVM smart contract calls. All 33 types have dedicated RPC endpoints, test coverage, and fixture conformance against the whitepaper specification.</p>
+<p>Conservation of value is checked after every block. The sum of account balances, clearinghouse deposits, market-maker reserves, and reserve-fund positions must equal total supply. If it does not, the block is invalid &mdash; verified by every validator, not asserted in documentation.</p>
 
 <h2>MoxieBFT Consensus</h2>
 
-<p>Extended HotStuff with an EVENT-COLLECT phase prepended to the standard pipeline. Five consensus phases: Idle &rarr; Proposing &rarr; Event-Collecting &rarr; Voting &rarr; Committing. The event-collect phase gathers oracle attestations before block finalization, ensuring that resolution data is available before any trading executes against it.</p>
+<p>HotStuff extended with an event-collect phase prepended to the standard pipeline: idle, proposing, event-collecting, voting, committing. The event-collect phase gathers oracle attestations before a block is finalized, so resolution evidence lands before any trade executes against it. Message complexity stays linear in the size of the validator set.</p>
 
-<p>An encrypted mempool eliminates front-running and sandwich attacks. Transactions are encrypted with the validator set&rsquo;s threshold public key. Validators collectively decrypt only at block execution time. The proposer never sees plaintext transaction content before commitment.</p>
-
-<h2>Five-Stage Market Lifecycle</h2>
-
-<p>Every brand token progresses through five market stages&mdash;from bonding curve bootstrap through equilibrium AMM, hybrid AMM+CLOB, full professional order book, to cross-listed external venues. Transitions are governed by volume thresholds and time-weighted metrics, not manual intervention. Rollback is possible if volume declines. The infrastructure upgrades as the market matures.</p>
+<p>An encrypted mempool removes front-running and sandwich attacks. Transactions are encrypted to the validator set&rsquo;s threshold public key and collectively decrypted only at execution time; the proposer never sees plaintext before commitment.</p>
 
 <hr>
 
-<h1 id="coupling">Belief&ndash;Price Coupling</h1>
+<h1 id="pricing">Pricing</h1>
 
-<p>This is the core innovation. In every existing system, prediction markets and spot markets are separate instruments. A trader who correctly predicts a match outcome captures value in one instrument; the brand token that represents engagement with the athlete sits in another, unaffected. Information doesn&rsquo;t flow between them.</p>
+<p>A cash-flow formula is not a price. Moxie composes three inputs into one. The first is intrinsic value: the probability-weighted discounted cash-flow surface of the claim. The second is the admissible holder set &mdash; compliance, jurisdiction, custody, tax, Sharia, securities, and insurance constraints determine who may hold or transfer the claim, which changes its liquidity and therefore its price. The compliance surface is a pricing input, not only a yes-or-no filter. The third is counterparty state: inventory, beliefs, incentives, and hidden short-volatility exposure move executable prices even when the cash-flow model is unchanged. Moxie expresses this as a pairwise maximum-entropy model over participant belief states rather than assuming it away.</p>
 
-<p>We couple them at the protocol level through the PW-AMM (Prediction-Weighted Automated Market Maker). When prediction market activity reveals new information about a brand&rsquo;s future&mdash;a fighter is likely to win, a musician&rsquo;s album is trending, a team is on a winning streak&mdash;the spot price of the brand token adjusts automatically.</p>
+<p>No single matching mechanism is treated as universal. The pricing layer dispatches by claim family: request-for-quote for bilateral institutional claims, continuous order books for liquid standardized claims, a logarithmic market scoring rule for event-binary claims, a convex parimutuel call auction for pooled contingent states, and a continuous convex-potential market maker for streamed inventory. The claim grammar is universal; the execution adapter is selected by TemplatePack.</p>
 
-<p>The coupling multiplier modifies the AMM&rsquo;s invariant curve in real time, bounded to prevent runaway amplification. The intensity and bounds are parameterized in the whitepaper specification and enforced by every validator. The spot price becomes responsive to prediction outcomes without manual oracle intervention.</p>
-
-<p>When traders buy shares in a fight outcome, the prediction market updates beliefs, beliefs update the coupling factor, the coupling factor reprices the spot token, and the clearinghouse recalculates margin requirements. All four steps execute atomically in a single block.</p>
+<p>For the event-contingent family, belief and price are coupled directly. When a prediction market revises the probability of an outcome, a bounded multiplier reprices the corresponding spot claim inside the same block, and the clearinghouse recomputes margin against the new price atomically. This coupling is the mechanism for one family &mdash; not the definition of the protocol.</p>
 
 <hr>
 
-<h1 id="clearing">Cross-Margined Clearing</h1>
+<h1 id="clearing">Clearing</h1>
 
-<p>A single clearinghouse nets every position&mdash;spot, prediction, liquidity, ephemeral. Portfolio margin computed across all dimensions simultaneously. Cross-margining reduces collateral requirements significantly compared to isolated margin, because correlated positions offset each other.</p>
+<p>One clearinghouse nets every position a holder carries, across claim families rather than within a single product. Portfolio margin is computed over the whole book at once, so correlated positions offset and the collateral a holder must post falls below the sum of isolated margins.</p>
 
-<p>The clearinghouse runs <em>inside</em> consensus, not on top of it. Mark-to-market happens at the Phase 1&rarr;Phase 2 boundary of every block. Liquidation cascades are deterministic and executed in the same block as the triggering price movement. There is no settlement delay. There is no counterparty risk beyond the block boundary.</p>
+<p>The clearinghouse runs <em>inside</em> consensus, not on top of it. Mark-to-market happens at the phase boundary of every block. Liquidation cascades are deterministic and execute in the same block as the price movement that triggers them. There is no settlement delay, and no counterparty risk is carried past the block boundary.</p>
 
-<h2>Temporal Multiplexing</h2>
-
-<p>A combat sports card lasts 6 hours but existing platforms lock capital for weeks around it. Moxie schedules collateral across events in time. When an event ends and positions settle, the freed collateral is immediately available for the next event. One pool of capital backs an entire season.</p>
-
-<p>The temporal collateral FSM tracks positions across four states: spot, prediction, ephemeral, and free. Conservation is enforced at every state transition. The protocol knows which capital is committed to which event at which time, and releases it the moment the obligation resolves.</p>
+<p>Collateral is also scheduled in time. A contingent event resolves in hours, but isolated systems lock capital around it for weeks. Moxie tracks which capital backs which obligation at which time and frees it the moment the obligation settles, so one pool of capital backs a sequence of events rather than one. Conservation is enforced at every state transition.</p>
 
 <hr>
 
-<h1 id="flywheel">The Economic Flywheel</h1>
+<h1 id="families">Claim Families</h1>
 
-<p>Five components compose the full economic engine. All five are implemented.</p>
+<p>Nine first-tier families compile into the same grammar, each through its own TemplatePack: fixed income; equity and revenue share; structured derivatives; insurance and reinsurance; Sharia-compliant instruments; real-world assets; event and parimutuel claims; loyalty and engagement; and intellectual-property royalties. Each pack supplies the authority, evidence, risk, settlement, dispute, recovery, and reliance rules its family requires. A block can settle a Sharia-compliant sukuk and a non-compliant parimutuel contract at the same time, because gating is done at the instrument and holder level, not by contaminating a venue.</p>
 
-<h2>Ephemeral Markets</h2>
+<p>The division of labour with the issuance layer is what makes this hold. <a href="mass.html">Mass</a> mints and governs claims &mdash; entity formation, legal authority, jurisdictional state, compliance composition, and rulebook authoring. Moxie clears them &mdash; pricing, matching, risk reservation, settlement, receipts, release and recovery, and reliance binding. A market cannot rewrite the entity or jurisdictional facts that make a claim valid; a jurisdictional kernel does not run a market maker. The bridge between them is the admitted transition: Mass supplies authority and rule state, Moxie supplies execution, reservation, settlement, and evidence of the result.</p>
 
-<p>Sub-event micro-markets that live for minutes. &ldquo;Will there be a knockdown in Round 3?&rdquo; Auto-creates before the round, auto-resolves when it ends, auto-settles in the same block. The protocol supports 10,000 ephemeral markets per day at a 4-hour average lifespan. Capital recycles between rounds, not between events.</p>
-
-<h2>Graduation Funnel</h2>
-
-<p>Not every brand needs to be anointed by the platform. Standalone prediction markets can prove demand organically. When a standalone market meets five qualification criteria&mdash;volume, participation, time, resolution quality, and community engagement&mdash;it can graduate into a full brand token with its own AMM pool, CLOB market, and PW-AMM coupling. Positions are preserved through promotion. The coupling multiplier warms up linearly over 43,200 blocks. Organic brand creation, bottoms-up.</p>
-
-<h2>Hub Routing</h2>
-
-<p>Cross-brand swaps decompose into two legs through the MOXIE hub token. $BRAND&rarr;$OTHER becomes $BRAND&rarr;$MOXIE&rarr;$OTHER. Both legs execute atomically&mdash;both complete or neither does. Intermediate MOXIE tokens never touch the trader&rsquo;s account. The router scores venues and selects optimal paths automatically.</p>
-
-<h2>VRF-Powered Drops</h2>
-
-<p>Verifiable random selection with five-layer Sybil resistance: minimum stake threshold, account age (43,200 blocks minimum), transaction history (5+ transactions), win cooldown (14,400 blocks), and logarithmic weight dampening for large holders. Every selection is reproducible from the VRF seed. No favoritism is possible.</p>
-
-<h2>Portfolio Margin</h2>
-
-<p>The clearinghouse computes margin across spot positions, prediction positions, LP positions, and ephemeral positions simultaneously. Correlation discounts apply between positions in the same brand. A long spot position in a brand token partially offsets the risk of a short prediction position on the same athlete. The protocol captures these relationships natively.</p>
-
-<hr>
-
-<h1 id="application">The Application</h1>
-
-<p>The protocol is invisible to the fan.</p>
-
-<p>The consumer application is a PlayStation OS-grade interface built in TypeScript and React. When a user enters a brand space, the entire atmosphere transforms&mdash;background imagery, accent colors, glass tinting, emotional tone. A combat sports space feels like a combat sports product. A football club space feels like that club&rsquo;s product. Moxie is the connective tissue between brand universes, not the universe itself.</p>
-
-<p>The design language is frosted glass over dynamic backgrounds. Five z-layers of glassmorphism with increasing blur and opacity. Brand color propagates through glass tinting, not surface painting. Typography at display scale&mdash;numbers (odds, prices, countdowns) are the largest elements on any screen.</p>
-
-<p>The vocabulary is fan-native. &ldquo;Points&rdquo; not &ldquo;tokens.&rdquo; &ldquo;Enter&rdquo; not &ldquo;stake.&rdquo; &ldquo;My Account&rdquo; not &ldquo;wallet.&rdquo; No gas fees visible to the user. No transaction hashes. No blockchain vocabulary anywhere in the consumer experience.</p>
-
-<p>Four application surfaces share the design system and backend but present distinct experiences:</p>
-
-<ul>
-    <li><strong>Fan Mode</strong>&mdash;cinematic, low-density, entertainment-first. Brand discovery, prediction participation, drop entry, leaderboard competition</li>
-    <li><strong>Pro Mode</strong>&mdash;high-density trading terminal with keyboard shortcuts, TradingView charts, order book visualization, and sub-second order entry</li>
-    <li><strong>Community Mode</strong>&mdash;reputation-gated contributor tools that unlock progressively as users accumulate tier status</li>
-    <li><strong>Operator Portal</strong>&mdash;brand management dashboard for IP holders to configure drops, create prediction markets, monitor engagement, and manage community</li>
-</ul>
-
-<p>A 19-year-old combat sports fan in Lagos and a hedge fund PM in Greenwich both use this platform. The architecture serves both without compromising either.</p>
+<p>The substrate is invisible to the people who use it. An operator builds its own surface on top &mdash; a fan application, an institutional terminal, a treasury console &mdash; over one settlement asset hub, one risk model, one evidence grammar, and one reliance envelope. The nineteen-year-old entering a prediction and the institutional risk officer margining a book touch the same substrate and never see it.</p>
 
 <hr>
 
