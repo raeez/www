@@ -23,3 +23,7 @@ All seven articles and the writing index passed at 1400, 1024, 768, 480, and 375
 ## Scope boundary
 
 This is source-conversion and publication verification, not a mathematical proof review. Bibliography text is preserved without new outbound destinations: several cited technical sections are newer than their public HTML editions, and *Institutional Linking and Realization* has no confirmed public HTML destination. That technical-publication dependency remains separate from these seven source-faithful articles. Source copies, build controls, and these verification records are excluded from the website.
+
+## Live publication
+
+GitHub Pages completed content commit `17a3c1b0cf8bcd58bed9a97d3fecff6c20968edb` at 20:37:46 UTC on 8 September 2026 (9 September in Jakarta). Live checks matched all seven article SHA-256 digests, plus the stylesheet and four indexes, to the committed files. All seven PDF counterparts and 25 source, build-control, and verification URLs returned 404. `live-results.json` retains the check time, response types, byte counts, and digests. The existing large Atom feed produced a GitHub size warning; publication succeeded, and its earlier embedded content was preserved.
