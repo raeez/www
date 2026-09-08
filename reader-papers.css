@@ -1,0 +1,39 @@
+/* Article typography comes from the existing site template. */
+.article-body math[display="block"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-block: var(--space-2);
+  margin-block: var(--space-3);
+}
+.article-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.article-body dt {
+  font-weight: 600;
+  margin-top: var(--space-3);
+}
+.article-body dd {
+  margin-top: var(--space-1);
+}
+.article-body [id] { scroll-margin-top: var(--space-3); }
+.reading-sequence {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+  border-top: 1px solid var(--ink-hint);
+  margin-top: var(--space-8);
+  padding-top: var(--space-3);
+  font-size: var(--text-sm);
+}
+.reading-sequence a {
+  color: var(--ink-muted);
+  text-underline-offset: 0.15em;
+  max-width: 30ch;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
