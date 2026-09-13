@@ -3,3 +3,6 @@
 *.zip
 *~
 Archive.zip
+
+# Nested lane worktrees are checkouts of this repository, never source.
+.worktrees/
