@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Moxie — Raeez Lorgat</title>
@@ -30,7 +28,7 @@
     </script>
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -43,621 +41,70 @@
 
     <!-- Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;display=swap" rel="stylesheet">
 
-    <style>
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           RESET & BOX MODEL
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           DESIGN TOKENS — ELITE TYPOGRAPHY SYSTEM
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        :root {
-            /* ─── Font Stacks with Optical Sizes ─── */
-            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', 'Baskerville', Garamond, serif;
-            --font-display: 'garamond-premier-pro-display', var(--font-text);
-            --font-caption: 'garamond-premier-pro-caption', var(--font-text);
-            --font-subhead: 'garamond-premier-pro-subhead', var(--font-text);
-            --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
-
-            /* ─── Modular Scale: Perfect Fourth (1.333) ─── */
-            --text-base: clamp(18px, 1.125rem + 0.25vw, 21px);
-            --text-sm: calc(var(--text-base) / 1.333);
-            --text-xs: calc(var(--text-sm) / 1.333);
-            --text-lg: calc(var(--text-base) * 1.333);
-            --text-xl: calc(var(--text-lg) * 1.333);
-            --text-2xl: calc(var(--text-xl) * 1.333);
-
-            /* ─── Baseline Grid ─── */
-            --baseline: 8px;
-
-            /* ─── Line Heights ─── */
-            --leading-tight: 1.2;
-            --leading-snug: 1.35;
-            --leading-normal: 1.5;
-            --leading-relaxed: 1.618;
-            --leading-loose: 1.8;
-
-            /* ─── Spacing Scale (baseline multiples) ─── */
-            --space-1: calc(var(--baseline) * 1);
-            --space-2: calc(var(--baseline) * 2);
-            --space-3: calc(var(--baseline) * 3);
-            --space-4: calc(var(--baseline) * 4);
-            --space-5: calc(var(--baseline) * 5);
-            --space-6: calc(var(--baseline) * 6);
-            --space-8: calc(var(--baseline) * 8);
-            --space-10: calc(var(--baseline) * 10);
-            --space-13: calc(var(--baseline) * 13);
-
-            /* ─── Measure (line length) ─── */
-            --measure: 65ch;
-            --measure-narrow: 55ch;
-            --measure-wide: 75ch;
-            --gutter: clamp(16px, 4vw, 24px);
-
-            /* ─── Color Palette ─── */
-            --ink: #1a1917;
-            --ink-muted: #4a4744;
-            --ink-subtle: #6a6662;
-            --ink-faint: #8a8580;
-            --ink-ghost: #b5b0ab;
-            --ink-whisper: #d4d0cc;
-            --ink-hint: #e8e5e2;
-            --paper: #fefdfb;
-            --paper-tint: #f5f3f0;
-
-            /* ─── Kerning & Tracking ─── */
-            --kern-tight: -0.02em;
-            --kern-snug: -0.01em;
-            --kern-normal: 0;
-            --kern-loose: 0.015em;
-            --kern-wide: 0.04em;
-            --kern-caps: 0.08em;
-            --optical-margin: -0.03em;
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           BASE TYPOGRAPHY
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        html {
-            font-size: 100%;
-            -webkit-text-size-adjust: 100%;
-            scroll-behavior: smooth;
-            hanging-punctuation: first last;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: var(--font-text);
-            font-size: var(--text-base);
-            font-weight: 400;
-            line-height: var(--leading-relaxed);
-            color: var(--ink);
-            background: var(--paper);
-            text-rendering: optimizeLegibility;
-
-            font-feature-settings:
-                "kern" 1,
-                "liga" 1,
-                "clig" 1,
-                "calt" 1,
-                "dlig" 1,
-                "onum" 1,
-                "pnum" 1;
-
-            font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
-            font-variant-numeric: oldstyle-nums proportional-nums;
-            font-kerning: normal;
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           LAYOUT
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        .container {
-            max-width: calc(var(--measure) + var(--space-8));
-            margin-inline: auto;
-            padding: var(--space-10) var(--gutter) var(--space-8);
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           BACK NAVIGATION
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        .back-nav {
-            margin-bottom: var(--space-8);
-        }
-
-        .back-nav a {
-            font-family: var(--font-caption);
-            font-size: var(--text-sm);
-            font-variant-caps: small-caps;
-            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
-            letter-spacing: var(--kern-wide);
-            color: var(--ink-faint);
-            text-decoration: none;
-            transition: color 180ms ease;
-        }
-
-        .back-nav a:hover { color: var(--ink); }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           ARTICLE HEADER
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        .article-header {
-            margin-bottom: var(--space-6);
-            padding-bottom: var(--space-5);
-            border-bottom: 1px solid var(--ink-hint);
-        }
-
-        .article-title {
-            font-family: var(--font-display);
-            font-size: var(--text-2xl);
-            font-weight: 400;
-            letter-spacing: var(--kern-tight);
-            line-height: var(--leading-tight);
-            margin-bottom: var(--space-3);
-            margin-left: var(--optical-margin);
-        }
-
-        .article-subtitle {
-            font-size: var(--text-lg);
-            font-weight: 400;
-            font-style: italic;
-            line-height: var(--leading-snug);
-            color: var(--ink-muted);
-            max-width: var(--measure-narrow);
-            font-feature-settings: "kern" 1, "liga" 1, "dlig" 1, "onum" 1;
-        }
-
-        .article-meta {
-            font-family: var(--font-caption);
-            font-size: var(--text-sm);
-            color: var(--ink-faint);
-            margin-top: var(--space-3);
-        }
-
-        .article-meta a {
-            color: var(--ink-muted);
-            text-decoration: underline;
-            text-decoration-color: var(--ink-whisper);
-            text-decoration-thickness: 1px;
-            text-underline-offset: 0.12em;
-            transition: text-decoration-color 180ms ease;
-        }
-
-        .article-meta a:hover { text-decoration-color: var(--ink-muted); }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           ARTICLE BODY
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        .article-body {
-            font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
-        }
-
-        .article-body p {
-            margin-bottom: var(--space-3);
-            max-width: var(--measure);
-            line-height: var(--leading-loose);
-            hyphens: auto;
-            hyphenate-limit-chars: 6 3 2;
-            hyphenate-limit-lines: 2;
-        }
-
-        .article-body h1 {
-            font-family: var(--font-subhead);
-            font-size: var(--text-xl);
-            font-weight: 600;
-            letter-spacing: var(--kern-tight);
-            line-height: var(--leading-tight);
-            margin-top: var(--space-10);
-            margin-bottom: var(--space-3);
-            margin-left: var(--optical-margin);
-        }
-
-        .article-body h2 {
-            font-family: var(--font-subhead);
-            font-size: var(--text-lg);
-            font-weight: 600;
-            letter-spacing: var(--kern-snug);
-            line-height: var(--leading-snug);
-            margin-top: var(--space-8);
-            margin-bottom: var(--space-3);
-            margin-left: var(--optical-margin);
-        }
-
-        .article-body h3 {
-            font-size: var(--text-base);
-            font-weight: 600;
-            line-height: var(--leading-snug);
-            margin-top: var(--space-6);
-            margin-bottom: var(--space-2);
-        }
-
-        .article-body a {
-            color: var(--ink);
-            text-decoration: underline;
-            text-decoration-color: var(--ink-whisper);
-            text-decoration-thickness: 1px;
-            text-underline-offset: 0.15em;
-            text-decoration-skip-ink: auto;
-            transition: text-decoration-color 180ms ease;
-        }
-
-        .article-body a:hover { text-decoration-color: var(--ink-muted); }
-
-        .article-body ul, .article-body ol {
-            margin-bottom: var(--space-3);
-            margin-left: var(--space-5);
-            max-width: var(--measure);
-        }
-
-        .article-body li {
-            margin-bottom: var(--space-1);
-            line-height: var(--leading-relaxed);
-        }
-
-        .article-body blockquote {
-            margin: var(--space-5) 0;
-            padding-left: var(--space-3);
-            border-left: 2px solid var(--ink-hint);
-            font-style: italic;
-            color: var(--ink-muted);
-        }
-
-        .article-body hr {
-            border: none;
-            height: 1px;
-            background: var(--ink-hint);
-            margin: var(--space-8) 0;
-            max-width: 4rem;
-        }
-
-        .article-body table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: var(--space-5) 0;
-            font-size: var(--text-sm);
-        }
-
-        .article-body th, .article-body td {
-            padding: var(--space-2);
-            border-bottom: 1px solid var(--ink-hint);
-            text-align: left;
-            vertical-align: top;
-        }
-
-        .article-body th {
-            font-weight: 600;
-            font-variant-caps: small-caps;
-            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1;
-            letter-spacing: var(--kern-wide);
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           STAT GRID
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-4);
-            margin: var(--space-6) 0;
-            padding: var(--space-5) 0;
-            border-top: 1px solid var(--ink-hint);
-            border-bottom: 1px solid var(--ink-hint);
-        }
-
-        .stat-grid .stat {
-            text-align: center;
-        }
-
-        .stat-grid .stat-number {
-            font-family: var(--font-display);
-            font-size: var(--text-xl);
-            font-weight: 400;
-            letter-spacing: var(--kern-tight);
-            line-height: 1;
-            margin-bottom: var(--space-1);
-            font-feature-settings: "tnum" 1, "lnum" 1;
-        }
-
-        .stat-grid .stat-label {
-            font-family: var(--font-caption);
-            font-size: var(--text-xs);
-            color: var(--ink-faint);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           TABLE OF CONTENTS
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        .toc {
-            margin: var(--space-6) 0;
-            padding: var(--space-5);
-            background: var(--paper-tint);
-            border-radius: 3px;
-        }
-
-        .toc-title {
-            font-family: var(--font-caption);
-            font-size: var(--text-xs);
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--ink-ghost);
-            margin-bottom: var(--space-3);
-        }
-
-        .toc-list {
-            list-style: none;
-            counter-reset: toc-counter;
-        }
-
-        .toc-item {
-            counter-increment: toc-counter;
-            margin-bottom: var(--space-1);
-        }
-
-        .toc-item::before {
-            content: counter(toc-counter) ".";
-            font-family: var(--font-caption);
-            font-size: var(--text-sm);
-            color: var(--ink-ghost);
-            margin-right: var(--space-1);
-            font-feature-settings: "tnum" 1, "lnum" 1;
-        }
-
-        .toc-item a {
-            font-size: var(--text-sm);
-            color: var(--ink-muted);
-            text-decoration: none;
-            transition: color 180ms ease;
-        }
-
-        .toc-item a:hover { color: var(--ink); }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           ARTICLE FOOTER
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        .article-footer {
-            margin-top: var(--space-10);
-            padding-top: var(--space-5);
-            padding-bottom: var(--space-5);
-            border-top: 1px solid var(--ink-hint);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .author-byline {
-            font-family: var(--font-caption);
-            font-size: var(--text-sm);
-            font-style: italic;
-            color: var(--ink-muted);
-        }
-
-        .author-byline strong {
-            font-style: normal;
-            font-weight: 600;
-        }
-
-        .footer-nav a {
-            font-family: var(--font-caption);
-            font-size: var(--text-sm);
-            font-variant-caps: small-caps;
-            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
-            letter-spacing: var(--kern-wide);
-            color: var(--ink-faint);
-            text-decoration: none;
-            transition: color 180ms ease;
-        }
-
-        .footer-nav a:hover { color: var(--ink); }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           CONTACT FOOTER
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        .contact-footer {
-            margin-top: var(--space-10);
-            padding-top: var(--space-5);
-            border-top: 1px solid var(--ink-hint);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-family: var(--font-caption);
-            font-size: var(--text-sm);
-        }
-
-        .contact-footer > a {
-            color: var(--ink-faint);
-            text-decoration: none;
-            transition: color 180ms ease;
-        }
-
-        .contact-footer > a:hover { color: var(--ink); }
-
-        .contact-footer .social {
-            display: flex;
-            align-items: center;
-            gap: 0.375em;
-        }
-
-        .contact-footer .icon-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.25em;
-            height: 2.25em;
-            color: var(--ink-ghost);
-            transition: color 180ms ease, background-color 180ms ease;
-            border-radius: 4px;
-        }
-
-        .contact-footer .icon-link:hover {
-            color: var(--ink);
-            background-color: var(--paper-tint);
-        }
-
-        .contact-footer .icon-link svg { display: block; }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           UTILITIES
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        ::selection { background: var(--ink); color: var(--paper); }
-
-        a:focus-visible {
-            outline: 2px solid var(--ink-muted);
-            outline-offset: 3px;
-            border-radius: 2px;
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           RESPONSIVE
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        @media (max-width: 680px) {
-            :root { --text-base: clamp(17px, 1rem + 0.2vw, 19px); }
-
-            .container { padding: var(--space-6) var(--gutter) var(--space-5); }
-
-            .article-title { font-size: var(--text-xl); }
-            .article-subtitle { font-size: var(--text-base); }
-            .article-body h1 { font-size: var(--text-lg); }
-            .article-body h2 { font-size: calc(var(--text-base) * 1.1); }
-
-            .toc { padding: var(--space-3); }
-
-            .stat-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--space-3);
-            }
-
-            .article-footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--space-2);
-            }
-
-            .contact-footer {
-                flex-direction: column;
-                gap: var(--space-3);
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 400px) {
-            :root { --text-base: 16px; }
-            .container { padding: var(--space-5) var(--space-2) var(--space-4); }
-        }
-
-        @media (min-width: 1200px) {
-            .container { padding-top: var(--space-13); }
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════════════
-           PRINT
-           ═══════════════════════════════════════════════════════════════════════════════ */
-        @media print {
-            :root { --ink: #000; --paper: #fff; }
-            body { font-size: 11pt; line-height: 1.4; }
-            .container { max-width: 100%; padding: 0; }
-            .back-nav, .contact-footer { display: none; }
-            a { text-decoration: none !important; color: var(--ink) !important; }
-            .article-body h1, .article-body h2 { page-break-after: avoid; }
-            .toc { page-break-after: always; }
-        }
-
-        /* Safe area insets for notched devices */
-        @supports (padding: max(0px)) {
-            .container {
-                padding-left: max(var(--gutter), env(safe-area-inset-left));
-                padding-right: max(var(--gutter), env(safe-area-inset-right));
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <nav class="back-nav">
-            <a href="writing.html">&larr; Writing</a>
-        </nav>
-
-        <article>
-            <header class="article-header">
+<link rel="stylesheet" href="writing.css"><link rel="stylesheet" href="article.css"></head>
+<body><a class="skip-link" href="#main">Skip to article</a><header class="site-header"><a class="site-name" href="index.html">Raeez Lorgat</a><nav class="site-nav" aria-label="Main navigation"><a href="devfinance.html">About</a><a href="mass.html">Mass</a><a href="writing.html" aria-current="page">Writing</a><a href="experience.html">Experience</a><a href="beauty.html">Beauty</a></nav></header><main id="main" class="reader-main"><article><header class="article-header">
                 <h1 class="article-title">Moxie</h1>
                 <p class="article-subtitle">A clearing and settlement layer for claims and their derivatives</p>
-                <p class="article-meta">May 2026 &mdash; <a href="https://momentum.inc/moxie.html">Momentum</a></p>
-            </header>
+                <p class="article-meta">May 2026 — <a href="https://momentum.inc/moxie.html">Momentum</a></p>
+            </header><div class="article-body">
 
-            <div class="article-body">
+<details class="reader-contents"><summary>On this page</summary><nav aria-label="On this page"><ol><li><a href="#thesis">The Thesis</a></li><li><a href="#layers">Three Layers</a></li><li><a href="#protocol">The Protocol</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#clearing">Clearing</a></li><li><a href="#families">Claim Families</a></li><li><a href="#proof">Proof of Work</a></li><li><a href="#market">The Market</a></li></ol></nav></details>
 
-<nav class="toc" aria-label="Contents">
-    <p class="toc-title">Contents</p>
-    <ol class="toc-list">
-        <li class="toc-item"><a href="#thesis">The Thesis</a></li>
-        <li class="toc-item"><a href="#layers">Three Layers</a></li>
-        <li class="toc-item"><a href="#protocol">The Protocol</a></li>
-        <li class="toc-item"><a href="#pricing">Pricing</a></li>
-        <li class="toc-item"><a href="#clearing">Clearing</a></li>
-        <li class="toc-item"><a href="#families">Claim Families</a></li>
-        <li class="toc-item"><a href="#proof">Proof of Work</a></li>
-        <li class="toc-item"><a href="#market">The Market</a></li>
-    </ol>
-</nav>
+<h2 id="thesis">The Thesis</h2>
 
-<h1 id="thesis">The Thesis</h1>
+<p>The watchword of the top quartile of finance is a single equation. The value of any asset is its probability-weighted discounted future cash flow. Equity is a claim on residual earnings. A bond is a claim on principal and coupons at known timings. A derivative is a claim constructed from claims. A sukuk is a claim on Sharia-permissible asset usage. A tokenized real-world asset is a claim on an off-chain cash flow. Parametric insurance is a contingent claim on adverse outcomes. A sports prediction is a contingent claim on an event outcome. An intellectual-property royalty is a claim on usage cash. Every tradeable instrument reduces, to first order, to a probability-weighted discounted future cash flow — a claim. The universal primitive of finance is the claim.</p>
 
-<p>The watchword of the top quartile of finance is a single equation. The value of any asset is its probability-weighted discounted future cash flow. Equity is a claim on residual earnings. A bond is a claim on principal and coupons at known timings. A derivative is a claim constructed from claims. A sukuk is a claim on Sharia-permissible asset usage. A tokenized real-world asset is a claim on an off-chain cash flow. Parametric insurance is a contingent claim on adverse outcomes. A sports prediction is a contingent claim on an event outcome. An intellectual-property royalty is a claim on usage cash. Every tradeable instrument reduces, to first order, to a probability-weighted discounted future cash flow &mdash; a claim. The universal primitive of finance is the claim.</p>
+<p>Existing infrastructure clears each claim family on a separate substrate. Equities clear at central securities depositories. Derivatives clear at central counterparties. Prediction events clear at sequenced general-purpose chains. Sukuk clear at institutional channels with no retail pathway and no sub-day settlement. Tokenized real-world assets clear at a handful of permissioned platforms with single-jurisdiction wrappers. Brand and intellectual-property licensing barely clears at all. The result is parallel compliance regimes, parallel settlement assets, parallel margin pools, and parallel reliance frameworks — with no formal interaction between them. Capital that could net across claim families sits idle in each.</p>
 
-<p>Existing infrastructure clears each claim family on a separate substrate. Equities clear at central securities depositories. Derivatives clear at central counterparties. Prediction events clear at sequenced general-purpose chains. Sukuk clear at institutional channels with no retail pathway and no sub-day settlement. Tokenized real-world assets clear at a handful of permissioned platforms with single-jurisdiction wrappers. Brand and intellectual-property licensing barely clears at all. The result is parallel compliance regimes, parallel settlement assets, parallel margin pools, and parallel reliance frameworks &mdash; with no formal interaction between them. Capital that could net across claim families sits idle in each.</p>
-
-<p>Moxie is a clearing and settlement layer for that primitive. Every claim family compiles into one clearing grammar rather than onto a separate chain, with claim-class differentiation supplied by a TemplatePack registry. Pricing fuses three inputs: the intrinsic discounted cash flow of the claim; the composed compliance surface across 23 regulatory domains, which sets who may hold the claim and therefore its price, not merely whether a trade is allowed; and an adversarial counterparty model &mdash; the operationalization of a single observation, that a market is a strategic system in which every inefficiency is some counterparty's error. The clearing program runs inside consensus, not as an off-chain or post-trade calculation.</p>
+<p>Moxie is a clearing and settlement layer for that primitive. Every claim family compiles into one clearing grammar rather than onto a separate chain, with claim-class differentiation supplied by a TemplatePack registry. Pricing fuses three inputs: the intrinsic discounted cash flow of the claim; the composed compliance surface across 23 regulatory domains, which sets who may hold the claim and therefore its price, not merely whether a trade is allowed; and an adversarial counterparty model — the operationalization of a single observation, that a market is a strategic system in which every inefficiency is some counterparty's error. The clearing program runs inside consensus, not as an off-chain or post-trade calculation.</p>
 
 <p>Sports and other event-contingent markets are one product family in this taxonomy, not the boundary of the protocol. They were the first family the substrate was built against, under the hardest correlation, latency, and oracle conditions a clearing layer faces. They are not where it ends.</p>
 
 <hr>
 
-<h1 id="layers">Three Layers</h1>
+<h2 id="layers">Three Layers</h2>
 
 <p>The architecture keeps three things separate that most systems collapse into one. Collapsing them is what forces a new chain for every product.</p>
 
 <p>The <strong>conceptual</strong> primitive is the claim: a future cash flow with a probability distribution over its timing and amount, together with the terms that define the payoff, the authority that may issue or amend it, the evidence that resolves its state, and the rulebook that governs who may hold it. This is the layer a regulator, a trustee, or a counterparty reasons about.</p>
 
-<p>The <strong>protocol</strong> primitive is the admissible obligation transition: a state change in a claim&rsquo;s lifecycle that moves economic authority &mdash; issuance, attestation, transfer, margin update, netting, settlement, amendment, dispute, recovery, release, or revocation. A transition is admissible only when its authority, evidence, compliance attestation, reserved risk, execution certificate, settlement instruction, receipt, and reliance rulebook all validate together. The transition, not a prose description of the asset, is what consensus commits &mdash; so an invalid state cannot masquerade as a tradeable claim.</p>
+<p>The <strong>protocol</strong> primitive is the admissible obligation transition: a state change in a claim’s lifecycle that moves economic authority — issuance, attestation, transfer, margin update, netting, settlement, amendment, dispute, recovery, release, or revocation. A transition is admissible only when its authority, evidence, compliance attestation, reserved risk, execution certificate, settlement instruction, receipt, and reliance rulebook all validate together. The transition, not a prose description of the asset, is what consensus commits — so an invalid state cannot masquerade as a tradeable claim.</p>
 
-<p>The <strong>product</strong> primitive is the TemplatePack: the rulebook and machine-readable parameters for a claim family &mdash; authority, evidence, eligible holders, settlement asset, risk model, dispute path, recovery path, reporting, and reliance. A new product family adds a TemplatePack and a lowering into admissible transitions. It does not add a new root transaction type, a new settlement grammar, or a new compliance model.</p>
+<p>The <strong>product</strong> primitive is the TemplatePack: the rulebook and machine-readable parameters for a claim family — authority, evidence, eligible holders, settlement asset, risk model, dispute path, recovery path, reporting, and reliance. A new product family adds a TemplatePack and a lowering into admissible transitions. It does not add a new root transaction type, a new settlement grammar, or a new compliance model.</p>
 
 <hr>
 
-<h1 id="protocol">The Protocol</h1>
+<h2 id="protocol">The Protocol</h2>
 
-<p>Moxie is not a smart contract on someone else&rsquo;s chain. It is a sovereign Layer 1 with consensus, execution, and clearing designed as a single system.</p>
+<p>Moxie is not a smart contract on someone else’s chain. It is a sovereign Layer 1 with consensus, execution, and clearing designed as a single system.</p>
 
-<p>The block executor runs three deterministic phases in fixed order. Phase 1 resolves attested outcomes and settles the claims that depend on them. Phase 2 clears all trading &mdash; order books, automated market makers, convex batch auctions, margin enforcement &mdash; against the freshly resolved state. Phase 3 processes everything else: transfers, staking, governance, EVM calls. The ordering is enforced at the protocol level; no reordering is possible.</p>
+<p>The block executor runs three deterministic phases in fixed order. Phase 1 resolves attested outcomes and settles the claims that depend on them. Phase 2 clears all trading — order books, automated market makers, convex batch auctions, margin enforcement — against the freshly resolved state. Phase 3 processes everything else: transfers, staking, governance, EVM calls. The ordering is enforced at the protocol level; no reordering is possible.</p>
 
-<p>Conservation of value is checked after every block. The sum of account balances, clearinghouse deposits, market-maker reserves, and reserve-fund positions must equal total supply. If it does not, the block is invalid &mdash; verified by every validator, not asserted in documentation.</p>
+<p>Conservation of value is checked after every block. The sum of account balances, clearinghouse deposits, market-maker reserves, and reserve-fund positions must equal total supply. If it does not, the block is invalid — verified by every validator, not asserted in documentation.</p>
 
-<h2>MoxieBFT Consensus</h2>
+<h3 id="moxiebft-consensus">MoxieBFT Consensus</h3>
 
 <p>HotStuff extended with an event-collect phase prepended to the standard pipeline: idle, proposing, event-collecting, voting, committing. The event-collect phase gathers oracle attestations before a block is finalized, so resolution evidence lands before any trade executes against it. Message complexity stays linear in the size of the validator set.</p>
 
-<p>An encrypted mempool removes front-running and sandwich attacks. Transactions are encrypted to the validator set&rsquo;s threshold public key and collectively decrypted only at execution time; the proposer never sees plaintext before commitment.</p>
+<p>An encrypted mempool removes front-running and sandwich attacks. Transactions are encrypted to the validator set’s threshold public key and collectively decrypted only at execution time; the proposer never sees plaintext before commitment.</p>
 
 <hr>
 
-<h1 id="pricing">Pricing</h1>
+<h2 id="pricing">Pricing</h2>
 
-<p>A cash-flow formula is not a price. Moxie composes three inputs into one. The first is intrinsic value: the probability-weighted discounted cash-flow surface of the claim. The second is the admissible holder set &mdash; compliance, jurisdiction, custody, tax, Sharia, securities, and insurance constraints determine who may hold or transfer the claim, which changes its liquidity and therefore its price. The compliance surface is a pricing input, not only a yes-or-no filter. The third is counterparty state: inventory, beliefs, incentives, and hidden short-volatility exposure move executable prices even when the cash-flow model is unchanged. Moxie models this explicitly rather than assuming it away.</p>
+<p>A cash-flow formula is not a price. Moxie composes three inputs into one. The first is intrinsic value: the probability-weighted discounted cash-flow surface of the claim. The second is the admissible holder set — compliance, jurisdiction, custody, tax, Sharia, securities, and insurance constraints determine who may hold or transfer the claim, which changes its liquidity and therefore its price. The compliance surface is a pricing input, not only a yes-or-no filter. The third is counterparty state: inventory, beliefs, incentives, and hidden short-volatility exposure move executable prices even when the cash-flow model is unchanged. Moxie models this explicitly rather than assuming it away.</p>
 
 <p>No single matching mechanism is treated as universal. The pricing layer dispatches by claim family: request-for-quote for bilateral institutional claims, order books for liquid standardized claims, a market-scoring rule for yes/no event claims, a batch auction for pooled contingent claims, and a continuous market maker for streamed inventory. The claim grammar is universal; the matching mechanism is selected per family.</p>
 
-<p>For the event-contingent family, belief and price are coupled directly. When a prediction market revises the probability of an outcome, a bounded multiplier reprices the corresponding spot claim inside the same block, and the clearinghouse recomputes margin against the new price atomically. This coupling is the mechanism for one family &mdash; not the definition of the protocol.</p>
+<p>For the event-contingent family, belief and price are coupled directly. When a prediction market revises the probability of an outcome, a bounded multiplier reprices the corresponding spot claim inside the same block, and the clearinghouse recomputes margin against the new price atomically. This coupling is the mechanism for one family — not the definition of the protocol.</p>
 
 <hr>
 
-<h1 id="clearing">Clearing</h1>
+<h2 id="clearing">Clearing</h2>
 
 <p>One clearinghouse nets every position a holder carries, across claim families rather than within a single product. Portfolio margin is computed over the whole book at once, so correlated positions offset and the collateral a holder must post falls below the sum of isolated margins.</p>
 
@@ -667,33 +114,33 @@
 
 <hr>
 
-<h1 id="families">Claim Families</h1>
+<h2 id="families">Claim Families</h2>
 
 <p>Nine first-tier families compile into the same grammar, each through its own TemplatePack: fixed income; equity and revenue share; structured derivatives; insurance and reinsurance; Sharia-compliant instruments; real-world assets; event and parimutuel claims; loyalty and engagement; and intellectual-property royalties. Each pack supplies the authority, evidence, risk, settlement, dispute, recovery, and reliance rules its family requires. A block can settle a Sharia-compliant sukuk and a non-compliant parimutuel contract at the same time, because gating is done at the instrument and holder level, not by contaminating a venue.</p>
 
-<p>The division of labour with the issuance platform is what makes this hold. <a href="mass.html">Mass</a> mints and governs claims &mdash; entity formation, legal authority, jurisdictional state, compliance composition, and rulebook authoring. Moxie clears them &mdash; pricing, matching, risk reservation, settlement, receipts, release and recovery, and reliance binding. A market cannot rewrite the entity or jurisdictional facts that make a claim valid; a jurisdictional substrate does not run a market maker. The bridge between them is the admitted transition: Mass supplies authority and rule state, Moxie supplies execution, reservation, settlement, and evidence of the result.</p>
+<p>The division of labour with the issuance platform is what makes this hold. <a href="mass.html">Mass</a> mints and governs claims — entity formation, legal authority, jurisdictional state, compliance composition, and rulebook authoring. Moxie clears them — pricing, matching, risk reservation, settlement, receipts, release and recovery, and reliance binding. A market cannot rewrite the entity or jurisdictional facts that make a claim valid; a jurisdictional substrate does not run a market maker. The bridge between them is the admitted transition: Mass supplies authority and rule state, Moxie supplies execution, reservation, settlement, and evidence of the result.</p>
 
-<p>The substrate is invisible to the people who use it. An operator builds its own surface on top &mdash; a fan application, an institutional terminal, a treasury console &mdash; over one settlement asset hub, one risk model, one evidence grammar, and one reliance envelope. The nineteen-year-old entering a prediction and the institutional risk officer margining a book touch the same substrate and never see it.</p>
+<p>The substrate is invisible to the people who use it. An operator builds its own surface on top — a fan application, an institutional terminal, a treasury console — over one settlement asset hub, one risk model, one evidence grammar, and one reliance envelope. The nineteen-year-old entering a prediction and the institutional risk officer margining a book touch the same substrate and never see it.</p>
 
 <hr>
 
-<h1 id="proof">Proof of Work</h1>
+<h2 id="proof">Proof of Work</h2>
 
 <p>This is not a roadmap. The substrate is built.</p>
 
-<p>One clearing grammar admits every claim family. Compliance composes across all 23 regulatory domains &mdash; the strictest applicable rule wins &mdash; and that composition is rigorously verified. Five certified pricing mechanisms, spanning batch auctions for pooled contingent claims, request-for-quote for bilateral institutional flow, and order books for high-frequency families, are dispatched per claim family inside consensus rather than bolted on afterward. The clearinghouse runs inside consensus. Mark-to-market happens at the boundary of every block. Liquidation cascades are deterministic and execute in the same block as the price movement that triggers them. After every block the system verifies that value is conserved &mdash; account balances, clearinghouse deposits, market-maker reserves, and reserve funds must sum to total supply, or the block is invalid.</p>
+<p>One clearing grammar admits every claim family. Compliance composes across all 23 regulatory domains — the strictest applicable rule wins — and that composition is rigorously verified. Five certified pricing mechanisms, spanning batch auctions for pooled contingent claims, request-for-quote for bilateral institutional flow, and order books for high-frequency families, are dispatched per claim family inside consensus rather than bolted on afterward. The clearinghouse runs inside consensus. Mark-to-market happens at the boundary of every block. Liquidation cascades are deterministic and execute in the same block as the price movement that triggers them. After every block the system verifies that value is conserved — account balances, clearinghouse deposits, market-maker reserves, and reserve funds must sum to total supply, or the block is invalid.</p>
 
 <p>The bound research suite is canonical for the math. Each formal claim has a matching test, and specification and implementation are kept in lockstep. The substrate runs on a multi-node testnet producing blocks through MoxieBFT consensus, with an event-collect phase prepended to the pipeline so that evidence resolution lands before any trade executes against it. An encrypted mempool eliminates front-running and sandwich attacks. The pairing with the sovereign issuance platform is wired in code: every state-changing transaction is checked for compliance before it reaches the order book.</p>
 
-<p>The engineering is not the hard part. The hard part is letting an institutional bond trustee, a sukuk Sharia supervisory board, an insurance reinsurer, a parimutuel operator, an intellectual-property rights-holder, and a sports prediction market all rely on the same receipt for the legal purpose each has named &mdash; and using one substrate, with one settlement asset hub, one risk model, one evidence grammar, and one reliance envelope, to do all of that.</p>
+<p>The engineering is not the hard part. The hard part is letting an institutional bond trustee, a sukuk Sharia supervisory board, an insurance reinsurer, a parimutuel operator, an intellectual-property rights-holder, and a sports prediction market all rely on the same receipt for the legal purpose each has named — and using one substrate, with one settlement asset hub, one risk model, one evidence grammar, and one reliance envelope, to do all of that.</p>
 
 <hr>
 
-<h1 id="market">The Market</h1>
+<h2 id="market">The Market</h2>
 
 <p>The peer set is the broader institutional clearing-and-settlement substrate, not a single venue. Central securities depositories. Central counterparties. Dematerialized-note registries. Regulated electronic trading platforms. Tokenized-real-world-asset platforms operated by the largest banks. Regulated DLT market infrastructures resident under CSDR. The on-chain derivatives venues that target individual claim families on a single chain.</p>
 
-<p>The first product family Moxie was built against is event-contingent markets &mdash; sports, parimutuel, prediction. They are the demonstration that the substrate works under the hardest correlation, latency, and oracle conditions. The substrate clears them at consensus, with cross-margining across spot, prediction, liquidity, and ephemeral positions, and with capital that recycles temporally across events rather than locking up between them.</p>
+<p>The first product family Moxie was built against is event-contingent markets — sports, parimutuel, prediction. They are the demonstration that the substrate works under the hardest correlation, latency, and oracle conditions. The substrate clears them at consensus, with cross-margining across spot, prediction, liquidity, and ephemeral positions, and with capital that recycles temporally across events rather than locking up between them.</p>
 
 <p>The second is institutional fixed income, exemplified by sports-club senior-secured bonds distributed to qualified-investor LPs through a regulated pathway. The third is Sharia-compliant instruments, with the 23-domain tensor's Sharia coordinate gating per-instrument admission rather than venue-wide contamination. The fourth is intellectual-property royalties, with revenue-linked notes and licensing options compiled into the same clearing grammar. Equity, derivatives, real-world-asset receivables, and parametric insurance follow as TemplatePack instances.</p>
 
@@ -701,38 +148,6 @@
 
 <hr>
 
-<p>Moxie is a <a href="https://momentum.inc">Momentum</a> company. If you are an institutional counterparty &mdash; trustee, custodian, regulator, reinsurer, league, exchange, market-maker, LP &mdash; or an engineer who wants to work on infrastructure that clears claims across jurisdictions under one clearing grammar, reach out: <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>.</p>
+<p>Moxie is a <a href="https://momentum.inc">Momentum</a> company. If you are an institutional counterparty — trustee, custodian, regulator, reinsurer, league, exchange, market-maker, LP — or an engineer who wants to work on infrastructure that clears claims across jurisdictions under one clearing grammar, reach out: <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>.</p>
 
-            </div>
-
-            <footer class="article-footer">
-                <p class="author-byline"><strong>Raeez Lorgat</strong>, Managing Partner at Momentum</p>
-                <nav class="footer-nav">
-                    <a href="writing.html">&larr; All Writing</a>
-                </nav>
-            </footer>
-
-            <footer class="contact-footer">
-                <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>
-                <nav class="social" aria-label="Social links">
-                    <a href="https://x.com/raeez" aria-label="X (Twitter)" class="icon-link">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </a>
-                    <a href="https://instagram.com/raeez" aria-label="Instagram" class="icon-link">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/raeez-lorgat/" aria-label="LinkedIn" class="icon-link">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                    </a>
-                </nav>
-            </footer>
-        </article>
-    </div>
-</body>
-</html>
+            </div><footer class="article-footer"><a href="writing.html">← All writing</a><a href="#main">Back to top ↑</a></footer></article></main><footer class="site-footer"><a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a><nav aria-label="Elsewhere"><a href="feed.xml">Feed</a><a href="https://x.com/raeez">X</a><a href="https://instagram.com/raeez">Instagram</a></nav></footer></body></html>
