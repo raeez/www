@@ -437,7 +437,6 @@ For any questions about this packet or to request additional documentation:
 
 - Email: raeez@momentum.inc
 - Website: https://raeez.com
-- LinkedIn: https://www.linkedin.com/in/raeez-lorgat/
 - X (Twitter): https://x.com/raeez
 
 ---
