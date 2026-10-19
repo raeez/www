@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Programmable Institutions — Momentum</title>
@@ -30,7 +28,7 @@
     </script>
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -43,359 +41,17 @@
 
     <!-- Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;display=swap" rel="stylesheet">
 
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
-            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', 'Baskerville', Garamond, serif;
-            --font-display: 'garamond-premier-pro-display', var(--font-text);
-            --font-caption: 'garamond-premier-pro-caption', var(--font-text);
-            --font-subhead: 'garamond-premier-pro-subhead', var(--font-text);
-            --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
-
-            --text-base: clamp(18px, 1.125rem + 0.25vw, 21px);
-            --text-sm: calc(var(--text-base) / 1.333);
-            --text-xs: calc(var(--text-sm) / 1.333);
-            --text-lg: calc(var(--text-base) * 1.333);
-            --text-xl: calc(var(--text-lg) * 1.333);
-            --text-2xl: calc(var(--text-xl) * 1.333);
-
-            --baseline: 8px;
-
-            --leading-tight: 1.2;
-            --leading-snug: 1.35;
-            --leading-normal: 1.5;
-            --leading-relaxed: 1.618;
-            --leading-loose: 1.8;
-
-            --space-1: calc(var(--baseline) * 1);
-            --space-2: calc(var(--baseline) * 2);
-            --space-3: calc(var(--baseline) * 3);
-            --space-4: calc(var(--baseline) * 4);
-            --space-5: calc(var(--baseline) * 5);
-            --space-6: calc(var(--baseline) * 6);
-            --space-8: calc(var(--baseline) * 8);
-            --space-10: calc(var(--baseline) * 10);
-            --space-13: calc(var(--baseline) * 13);
-
-            --measure: 65ch;
-            --measure-narrow: 55ch;
-            --measure-wide: 75ch;
-            --gutter: clamp(16px, 4vw, 24px);
-
-            --ink: #1a1917;
-            --ink-muted: #4a4744;
-            --ink-subtle: #6a6662;
-            --ink-faint: #8a8580;
-            --ink-ghost: #b5b0ab;
-            --ink-whisper: #d4d0cc;
-            --ink-hint: #e8e5e2;
-            --paper: #fefdfb;
-            --paper-tint: #f5f3f0;
-
-            --kern-tight: -0.02em;
-            --kern-snug: -0.01em;
-            --kern-normal: 0;
-            --kern-loose: 0.015em;
-            --kern-wide: 0.04em;
-            --kern-caps: 0.08em;
-            --optical-margin: -0.03em;
-        }
-
-        html {
-            font-size: 100%;
-            -webkit-text-size-adjust: 100%;
-            scroll-behavior: smooth;
-            hanging-punctuation: first last;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: var(--font-text);
-            font-size: var(--text-base);
-            font-weight: 400;
-            line-height: var(--leading-relaxed);
-            color: var(--ink);
-            background: var(--paper);
-            text-rendering: optimizeLegibility;
-            font-feature-settings:
-                "kern" 1, "liga" 1, "clig" 1, "calt" 1, "dlig" 1, "onum" 1, "pnum" 1;
-            font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
-            font-variant-numeric: oldstyle-nums proportional-nums;
-            font-kerning: normal;
-        }
-
-        .container {
-            max-width: calc(var(--measure) + var(--space-8));
-            margin-inline: auto;
-            padding: var(--space-10) var(--gutter) var(--space-8);
-        }
-
-        .back-nav {
-            margin-bottom: var(--space-8);
-        }
-
-        .back-nav a {
-            font-family: var(--font-caption);
-            font-size: var(--text-sm);
-            color: var(--ink-faint);
-            text-decoration: none;
-            transition: color 180ms ease;
-            font-variant-caps: small-caps;
-            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
-            letter-spacing: var(--kern-wide);
-        }
-
-        .back-nav a:hover { color: var(--ink); }
-
-        .article-header {
-            margin-bottom: var(--space-8);
-        }
-
-        .article-title {
-            font-family: var(--font-display);
-            font-size: var(--text-2xl);
-            font-weight: 400;
-            line-height: var(--leading-snug);
-            margin-bottom: var(--space-2);
-            letter-spacing: var(--kern-tight);
-            margin-left: var(--optical-margin);
-        }
-
-        .article-subtitle {
-            font-family: var(--font-text);
-            font-size: var(--text-lg);
-            font-style: italic;
-            color: var(--ink-muted);
-            line-height: var(--leading-normal);
-            letter-spacing: var(--kern-snug);
-            margin-bottom: var(--space-2);
-        }
-
-        .article-meta {
-            font-family: var(--font-caption);
-            font-size: var(--text-sm);
-            color: var(--ink-faint);
-            font-variant-caps: small-caps;
-            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
-            letter-spacing: var(--kern-wide);
-        }
-
-        .article-body {
-            max-width: var(--measure);
-        }
-
-        .article-body p {
-            margin-bottom: var(--space-3);
-        }
-
-        .article-body h1 {
-            font-family: var(--font-subhead);
-            font-size: var(--text-xl);
-            font-weight: 400;
-            line-height: var(--leading-snug);
-            margin-top: var(--space-8);
-            margin-bottom: var(--space-3);
-            letter-spacing: var(--kern-snug);
-            margin-left: var(--optical-margin);
-        }
-
-        .article-body h2 {
-            font-family: var(--font-text);
-            font-size: var(--text-lg);
-            font-weight: 500;
-            line-height: var(--leading-snug);
-            margin-top: var(--space-6);
-            margin-bottom: var(--space-3);
-            letter-spacing: var(--kern-snug);
-        }
-
-        .article-body strong {
-            font-weight: 600;
-            letter-spacing: var(--kern-snug);
-        }
-
-        .article-body em {
-            font-style: italic;
-        }
-
-        .article-body a {
-            color: var(--ink);
-            text-decoration: underline;
-            text-decoration-color: var(--ink-whisper);
-            text-decoration-thickness: 1px;
-            text-underline-offset: 0.15em;
-            transition: text-decoration-color 180ms ease;
-        }
-
-        .article-body a:hover {
-            text-decoration-color: var(--ink-muted);
-        }
-
-        .article-body ul {
-            margin-bottom: var(--space-4);
-            padding-left: var(--space-5);
-        }
-
-        .article-body li {
-            margin-bottom: var(--space-2);
-        }
-
-        .article-body hr {
-            border: none;
-            border-top: 1px solid var(--ink-hint);
-            margin: var(--space-6) 0;
-        }
-
-        .article-footer {
-            margin-top: var(--space-10);
-            padding-top: var(--space-5);
-            border-top: 1px solid var(--ink-hint);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .author-byline {
-            font-family: var(--font-text);
-            font-size: var(--text-sm);
-            font-style: italic;
-            color: var(--ink-muted);
-        }
-
-        .author-byline strong {
-            font-style: normal;
-            font-weight: 600;
-        }
-
-        .footer-nav a {
-            font-family: var(--font-caption);
-            font-size: var(--text-sm);
-            font-variant-caps: small-caps;
-            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
-            letter-spacing: var(--kern-wide);
-            color: var(--ink-faint);
-            text-decoration: none;
-            transition: color 180ms ease;
-        }
-
-        .footer-nav a:hover { color: var(--ink); }
-
-        .contact-footer {
-            margin-top: var(--space-10);
-            padding-top: var(--space-5);
-            border-top: 1px solid var(--ink-hint);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-family: var(--font-caption);
-            font-size: var(--text-sm);
-        }
-
-        .contact-footer > a {
-            color: var(--ink-faint);
-            text-decoration: none;
-            transition: color 180ms ease;
-        }
-
-        .contact-footer > a:hover { color: var(--ink); }
-
-        .contact-footer .social {
-            display: flex;
-            align-items: center;
-            gap: 0.375em;
-        }
-
-        .contact-footer .icon-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.25em;
-            height: 2.25em;
-            color: var(--ink-ghost);
-            transition: color 180ms ease, background-color 180ms ease;
-            border-radius: 4px;
-        }
-
-        .contact-footer .icon-link:hover {
-            color: var(--ink);
-            background-color: var(--paper-tint);
-        }
-
-        .contact-footer .icon-link svg { display: block; }
-
-        ::selection { background: var(--ink); color: var(--paper); }
-
-        a:focus-visible {
-            outline: 2px solid var(--ink-muted);
-            outline-offset: 3px;
-            border-radius: 2px;
-        }
-
-        @media (max-width: 680px) {
-            :root { --text-base: clamp(17px, 1rem + 0.2vw, 19px); }
-            .container { padding: var(--space-6) var(--gutter) var(--space-5); }
-            .article-title { font-size: var(--text-xl); }
-            .article-subtitle { font-size: var(--text-base); }
-            .article-body h1 { font-size: var(--text-lg); }
-            .article-body h2 { font-size: calc(var(--text-base) * 1.1); }
-            .article-footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--space-2);
-            }
-            .contact-footer {
-                flex-direction: column;
-                gap: var(--space-3);
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 400px) {
-            :root { --text-base: 16px; }
-            .container { padding: var(--space-5) var(--space-2) var(--space-4); }
-        }
-
-        @media (min-width: 1200px) {
-            .container { padding-top: var(--space-13); }
-        }
-
-        @media print {
-            :root { --ink: #000; --paper: #fff; }
-            body { font-size: 11pt; line-height: 1.4; }
-            .container { max-width: 100%; padding: 0; }
-            .back-nav, .contact-footer { display: none; }
-            a { text-decoration: none !important; color: var(--ink) !important; }
-            .article-body h1, .article-body h2 { page-break-after: avoid; }
-        }
-
-        @supports (padding: max(0px)) {
-            .container {
-                padding-left: max(var(--gutter), env(safe-area-inset-left));
-                padding-right: max(var(--gutter), env(safe-area-inset-right));
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <nav class="back-nav">
-            <a href="https://momentum.inc">← Home</a>
-        </nav>
-
-        <article>
-            <header class="article-header">
+<link rel="stylesheet" href="writing.css"><link rel="stylesheet" href="article.css"></head>
+<body><a class="skip-link" href="#main">Skip to article</a><header class="site-header"><a class="site-name" href="index.html">Raeez Lorgat</a><nav class="site-nav" aria-label="Main navigation"><a href="devfinance.html">About</a><a href="mass.html">Mass</a><a href="writing.html" aria-current="page">Writing</a><a href="experience.html">Experience</a><a href="beauty.html">Beauty</a></nav></header><main id="main" class="reader-main"><article><header class="article-header">
                 <h1 class="article-title">Programmable Institutions</h1>
                 <p class="article-subtitle">The founding essay</p>
                 <p class="article-meta">Raeez Lorgat • January 2026 • version 1.0</p>
-            </header>
-
-            <div class="article-body">
-                <h1>The Hidden Architecture of Economic Activity</h1>
+            </header><div class="article-body"><details class="reader-contents"><summary>On this page</summary><nav aria-label="On this page"><ol><li><a href="#the-hidden-architecture-of-economic-activity">The Hidden Architecture of Economic Activity</a></li><li><a href="#from-passive-infrastructure-to-active-primitives">From Passive Infrastructure to Active Primitives</a></li><li><a href="#the-five-primitives">The Five Primitives</a></li><li><a href="#the-sibling-primitive-programmable-claims">The Sibling Primitive: Programmable Claims</a></li><li><a href="#jurisdictional-decentralization">Jurisdictional Decentralization</a></li><li><a href="#the-compliance-context-revolution">The Compliance Context Revolution</a></li><li><a href="#from-proof-of-scale-to-proof-of-network">From Proof of Scale to Proof of Network</a></li><li><a href="#implementation-architecture">Implementation Architecture</a></li><li><a href="#the-momentum-thesis">The Momentum Thesis</a></li><li><a href="#the-path-forward">The Path Forward</a><ol><li><a href="#further-reading">Further Reading</a></li></ol></li></ol></nav></details>
+                <h2 id="the-hidden-architecture-of-economic-activity">The Hidden Architecture of Economic Activity</h2>
 
                 <p>Every economic transaction exists within institutional context. A share purchase requires functioning equity markets, enforceable property rights, identity verification systems, regulatory compliance, dispute resolution mechanisms, and banking infrastructure. These institutions—the courts, regulators, exchanges, clearinghouses, and registries that enable commerce—form the invisible architecture supporting economic activity.</p>
 
@@ -407,7 +63,7 @@
 
                 <p><strong>Programmable institutions invert this model.</strong></p>
 
-                <h1>From Passive Infrastructure to Active Primitives</h1>
+                <h2 id="from-passive-infrastructure-to-active-primitives">From Passive Infrastructure to Active Primitives</h2>
 
                 <p>Traditional institutions are passive infrastructure. A court exists as a building with judges. A registry exists as a database with clerks. These institutions operate through episodic interaction: periodic filings, scheduled audits, manual verification. Between interactions, they remain dormant.</p>
 
@@ -417,7 +73,7 @@
 
                 <p>Similarly, programmable institutions move intelligence from regulatory bodies to regulated entities. A <strong>Smart Asset</strong> carries its ownership history, compliance attestations, transfer restrictions, and regulatory context as intrinsic properties rather than external annotations. When such an asset moves between jurisdictions, it doesn't require manual verification at each border—it proves its own legitimacy through cryptographically unforgeable attestations.</p>
 
-                <h1>The Five Primitives</h1>
+                <h2 id="the-five-primitives">The Five Primitives</h2>
 
                 <p>Programmable institutions operate through five fundamental primitives that parallel the basic elements of any economic system:</p>
 
@@ -433,13 +89,13 @@
 
                 <p>These five primitives are sufficient to construct any economic institution. Corporate governance, regulatory compliance, cross-border trade, capital markets, property rights—all reduce to combinations of these elements. By making the primitives programmable, we make institutions themselves programmable.</p>
 
-                <h1>The Sibling Primitive: Programmable Claims</h1>
+                <h2 id="the-sibling-primitive-programmable-claims">The Sibling Primitive: Programmable Claims</h2>
 
                 <p>Institutions exist to issue, govern, and adjudicate <strong>claims</strong>. A claim is a future cash flow with a probability distribution over its timing and amount. The unifying lens of finance is that the value of any asset is the probability-weighted discounted future cash flow it represents. Equity is a claim on residual earnings. Debt is a claim on principal and coupon at scheduled times. Sukuk is a claim on Sharia-permissible asset usage. Parametric insurance is a contingent claim on adverse-event cash flow. Tokenised real-world assets are claims on off-chain cash flow. Sports prediction, parimutuel pools, and other event-contingent contracts are contingent claims on outcome cash. Options, futures, and swaps are claims constructed from claims.</p>
 
                 <p>Programmable institutions and programmable claims are sibling primitives. Institutions issue claims; programmable institutions issue programmable claims; programmable claims require a programmable substrate that can clear, settle, price, and bind reliance to them under composed jurisdictional compliance. Mass mints and governs the claims; <a href="moxie.html">Moxie</a> clears them. The two surfaces fit together as an issuance and clearing pair, with claim-class differentiation supplied by a TemplatePack registry rather than by parallel chains, exchanges, or settlement models.</p>
 
-                <h1>Jurisdictional Decentralization</h1>
+                <h2 id="jurisdictional-decentralization">Jurisdictional Decentralization</h2>
 
                 <p>The most profound implication of programmable institutions is <strong>jurisdictional decentralization</strong>—the transition from geographic monopolies to competitive regulatory markets.</p>
 
@@ -453,7 +109,7 @@
 
                 <p>Smart Assets achieve jurisdictional decentralization. The asset itself is sovereign, capable of selecting among competing regulatory environments based on encoded preferences. This doesn't mean escaping regulation—it means accessing competitive regulatory markets where jurisdictions must earn asset domicile through service quality.</p>
 
-                <h1>The Compliance Context Revolution</h1>
+                <h2 id="the-compliance-context-revolution">The Compliance Context Revolution</h2>
 
                 <p>Traditional compliance operates through <strong>fragmented verification.</strong> Each institution the asset touches performs independent compliance checks using incomplete information. A bank verifies customer identity. A broker verifies securities ownership. An exchange verifies trading eligibility. A custodian verifies transfer authority. Each verification is expensive, duplicative, and potentially contradictory.</p>
 
@@ -465,7 +121,7 @@
 
                 <p>The compliance cost curve inverts from exponential to logarithmic. Initial setup costs are higher—building the programmable infrastructure requires sophisticated engineering. But marginal compliance costs approach zero. Each additional transaction leverages existing attestations. Each additional jurisdiction integrates programmatically. Each additional regulation updates through code rather than manual processes.</p>
 
-                <h1>From Proof of Scale to Proof of Network</h1>
+                <h2 id="from-proof-of-scale-to-proof-of-network">From Proof of Scale to Proof of Network</h2>
 
                 <p>Traditional venture capital seeks <strong>proof of scale</strong>: companies that can grow exponentially within single markets. A payment processor scales by acquiring merchants. A social network scales by acquiring users. A marketplace scales by increasing transaction volume. Success is measured in market share within defined categories.</p>
 
@@ -477,7 +133,7 @@
 
                 <p>This creates <strong>compounding network effects.</strong> Each new jurisdiction integrating Mass adds a node to the corridor network, raising the platform's value to claim issuers. Each new claim family compiled into Moxie's TemplatePack registry deepens the cross-margining surface, raising the substrate's capital efficiency. Each new HomeOS building contributes to the collective intelligence layer improving operations globally. Success isn't measured by dominance within categories but by density of interconnections across domains.</p>
 
-                <h1>Implementation Architecture</h1>
+                <h2 id="implementation-architecture">Implementation Architecture</h2>
 
                 <p>Programmable institutions require integration across three layers:</p>
 
@@ -489,7 +145,7 @@
 
                 <p>These layers integrate through standardized APIs and protocols. Jurisdictions implementing the SEZ Stack gain automatic interoperability with Smart Assets using Mass primitives. Assets issued on Mass gain automatic access to any jurisdiction running compatible infrastructure. The network effect emerges from standardization rather than centralization.</p>
 
-                <h1>The Momentum Thesis</h1>
+                <h2 id="the-momentum-thesis">The Momentum Thesis</h2>
 
                 <p>Momentum invests in the primitives enabling programmable institutions across four integrated ecosystems:</p>
 
@@ -505,7 +161,7 @@
 
                 <p>Each ecosystem reinforces the others through shared primitives and network effects. Mass provides jurisdictional infrastructure for BTCY treasury operations. Moxie clears intellectual-property and revenue claims issued by entities incorporated via Mass, alongside the rest of the claim taxonomy. HomeOS buildings generate operational data improving Mass attestation streams. Lombard provides yield for Mass-managed treasuries. The portfolio operates as an integrated network rather than a collection of independent companies.</p>
 
-                <h1>The Path Forward</h1>
+                <h2 id="the-path-forward">The Path Forward</h2>
 
                 <p>Programmable institutions represent fundamental reimagining of economic infrastructure rather than incremental improvement of existing systems. The transition will be gradual, driven by jurisdictions seeking competitive advantages and enterprises seeking efficiency gains.</p>
 
@@ -519,43 +175,11 @@
 
                 <hr>
 
-                <h2>Further Reading</h2>
+                <h3 id="further-reading">Further Reading</h3>
 
                 <ul>
                     <li><a href="https://raeez.com/sez-in-a-box.html">Special Economic Zones in a Box</a> — From proof of scale to proof of network</li>
                     <li><a href="https://raeez.com/smart-buildings.html">Smart Buildings</a> — Programmable built environment operating system</li>
                     <li><a href="https://raeez.com/licc.html">The Laboratory for Incentivization, Coordination and Cooperation</a> — Research foundations for coordination science</li>
                 </ul>
-            </div>
-
-            <footer class="article-footer">
-                <p class="author-byline"><strong>Raeez Lorgat</strong>, Managing Partner at Momentum</p>
-                <nav class="footer-nav">
-                    <a href="https://momentum.inc">← Home</a>
-                </nav>
-            </footer>
-
-            <footer class="contact-footer">
-                <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>
-                <nav class="social" aria-label="Social links">
-                    <a href="https://x.com/raeez" aria-label="X (Twitter)" class="icon-link">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </a>
-                    <a href="https://instagram.com/raeez" aria-label="Instagram" class="icon-link">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/raeez-lorgat/" aria-label="LinkedIn" class="icon-link">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                    </a>
-                </nav>
-            </footer>
-        </article>
-    </div>
-</body>
-</html>
+            </div><footer class="article-footer"><a href="writing.html">← All writing</a><a href="#main">Back to top ↑</a></footer></article></main><footer class="site-footer"><a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a><nav aria-label="Elsewhere"><a href="feed.xml">Feed</a><a href="https://x.com/raeez">X</a><a href="https://instagram.com/raeez">Instagram</a></nav></footer></body></html>

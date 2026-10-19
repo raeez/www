@@ -7,7 +7,7 @@
  * Generates comprehensive Atom feed (feed.xml) with ALL site content.
  * 
  * Feed Features (beyond IndieWeb POSSE):
- * - Full HTML content in entries (not just summaries)
+ * - Summaries with links to complete source articles
  * - All static and generated pages included
  * - Rich metadata extraction from HTML
  * - Intelligent categorization and tagging
@@ -29,6 +29,8 @@ const path = require('path');
 const https = require('https');
 const { JSDOM } = require('jsdom');
 const crypto = require('crypto');
+const { normalizeArticle } = require('./reader');
+const { composeCover } = require('./covers');
 
 const docs = require('./docs.config.js');
 const template = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8');
@@ -64,10 +66,6 @@ const SITE_CONFIG = {
 
 // Apps Script URL (your existing one)
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwap-GYIRky-iOioo_7IaA0VvW8t_i1lXNesPlLT-hcGsJxQUeb93YR_t466iVw8wpdBQ/exec';
-
-// Ensure directories exist
-if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
 
 /**
  * Escape XML special characters
@@ -348,11 +346,7 @@ function cleanGoogleDocsHtml(rawHtml, filterPatterns = []) {
     });
   });
   
-  // Clean up Google Docs artifacts
-  body.querySelectorAll('[id^="h."], [id^="id."]').forEach(el => {
-    el.removeAttribute('id');
-  });
-  
+  // Keep imported heading and footnote targets: existing links depend on them.
   // Wrap TOC
   wrapTableOfContents(body, doc);
   
@@ -369,13 +363,14 @@ function applyTemplate(doc, content) {
     metaHtml += ` <a href="${doc.metaLink.url}">${doc.metaLink.text}</a>`;
   }
   
-  return template
+  const html = template
     .replace(/\{\{title\}\}/g, doc.title)
     .replace(/\{\{subtitle\}\}/g, doc.subtitle || '')
     .replace(/\{\{description\}\}/g, doc.description)
     .replace(/\{\{slug\}\}/g, doc.slug)
     .replace(/\{\{metaHtml\}\}/g, metaHtml)
-    .replace(/\{\{content\}\}/g, content);
+    .replace(/\{\{content\}\}/g, () => normalizeArticle(content, { title: doc.title }));
+  return composeCover(html, doc.slug);
 }
 
 /**
@@ -683,17 +678,8 @@ function generateComprehensiveAtomFeed(allContent) {
       }
     });
     
-    // Full content (beyond basic POSSE)
-    if (entry.content) {
-      const contentHtml = `<div class="feed-content">
-  <p><em>${escapeXml(entry.subtitle || entry.description || '')}</em></p>
-  ${entry.content}
-  <hr/>
-  <p><a href="${entryUrl}">Read the full article on raeez.com →</a></p>
-</div>`;
-      
-      feed += `    <content type="html"><![CDATA[${contentHtml}]]></content>\n`;
-    }
+    // Keep the feed compact; each entry links to its complete source article.
+    feed += `    <content type="html">${escapeXml(`<p><a href="${entryUrl}">Read the complete article</a></p>`)}</content>\n`;
     
     // Media attachments
     if (entry.images && entry.images.length > 0) {
@@ -746,7 +732,13 @@ async function buildDocument(doc, options = {}) {
     const cleanedContent = cleanGoogleDocsHtml(rawHtml, doc.filterPatterns || []);
     
     console.log(`  Applying template...`);
-    const finalHtml = applyTemplate(doc, cleanedContent);
+    const extracted = extractEmbeddedImages(cleanedContent, doc.slug);
+    for (const asset of extracted.assets) {
+      const destination = path.join(OUTPUT_DIR, asset.relativePath);
+      fs.mkdirSync(path.dirname(destination), { recursive: true });
+      fs.writeFileSync(destination, asset.bytes);
+    }
+    const finalHtml = applyTemplate(doc, extracted.html);
     
     const outputPath = path.join(OUTPUT_DIR, `${doc.slug}.html`);
     fs.writeFileSync(outputPath, finalHtml);
@@ -756,6 +748,38 @@ async function buildDocument(doc, options = {}) {
   } catch (error) {
     console.error(`  ✗ Error: ${error.message}`);
     return false;
+  }
+}
+
+/** Extract embedded raster files without changing their source bytes. */
+function extractEmbeddedImages(content, slug) {
+  if (!/^[a-z0-9-]+$/i.test(slug)) throw new Error(`Invalid article slug: ${slug}`);
+  const dom = new JSDOM(`<body>${content}</body>`);
+  const assets = new Map();
+  dom.window.document.querySelectorAll('img[src^="data:image/"]').forEach(image => {
+    const match = image.getAttribute('src').match(/^data:image\/(png|jpe?g|webp);base64,([a-z0-9+/=\s]+)$/i);
+    if (!match) return;
+    const encoded = match[2].replace(/\s/g, '');
+    const bytes = Buffer.from(encoded, 'base64');
+    if (bytes.toString('base64').replace(/=+$/, '') !== encoded.replace(/=+$/, '')) {
+      throw new Error(`Invalid embedded image in ${slug}`);
+    }
+    const extension = /^jpe?g$/i.test(match[1]) ? 'jpg' : match[1].toLowerCase();
+    const digest = crypto.createHash('sha256').update(bytes).digest('hex').slice(0, 12);
+    const relativePath = `assets/writing/${slug}/${digest}.${extension}`;
+    assets.set(relativePath, { relativePath, bytes });
+    image.setAttribute('src', relativePath);
+    image.setAttribute('loading', 'lazy');
+    image.setAttribute('decoding', 'async');
+  });
+  const html = dom.window.document.body.innerHTML;
+  dom.window.close();
+  return { html, assets: [...assets.values()] };
+}
+
+function copySharedAssets() {
+  for (const filename of ['writing.css', 'article.css']) {
+    fs.copyFileSync(path.join(__dirname, '..', filename), path.join(OUTPUT_DIR, filename));
   }
 }
 
@@ -770,6 +794,7 @@ async function buildAll(options = {}) {
   
   let success = 0;
   let failed = 0;
+  let feedFailed = false;
   
   for (const doc of docs) {
     const result = await buildDocument(doc, options);
@@ -798,21 +823,22 @@ async function buildAll(options = {}) {
     
     console.log(`   ✓ dist/feed.xml (${allContent.length} entries)`);
     console.log('   Features:');
-    console.log('     • Full HTML content in entries');
+    console.log('     • Summaries and complete-article links');
     console.log('     • All static and generated pages');
     console.log('     • Rich metadata and categorization');
     console.log('     • Related content discovery');
     console.log('     • Media enclosures');
     console.log('     • Content versioning via hashes');
   } catch (error) {
+    feedFailed = true;
     console.error(`  ✗ Feed generation failed: ${error.message}`);
   }
   
   console.log('\n════════════════════════════════════════════');
-  console.log('  Build complete!');
+  console.log(failed || feedFailed ? '  Build failed.' : '  Build complete!');
   console.log('════════════════════════════════════════════\n');
   
-  return failed === 0;
+  return failed === 0 && !feedFailed;
 }
 
 /**
@@ -847,6 +873,8 @@ async function fetchAll(options = {}) {
  * Main entry point
  */
 async function main() {
+  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  fs.mkdirSync(CACHE_DIR, { recursive: true });
   const args = process.argv.slice(2);
   
   // Parse flags
@@ -868,6 +896,8 @@ async function main() {
     return;
   }
   
+  copySharedAssets();
+
   if (positional.length > 0) {
     // Build specific document
     const slug = positional[0];
@@ -898,7 +928,11 @@ async function main() {
   }
 }
 
-main().catch(err => {
-  console.error('Fatal error:', err);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch(err => {
+    console.error('Fatal error:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = { cleanGoogleDocsHtml, applyTemplate, extractMetadataFromHtml, generateComprehensiveAtomFeed, extractEmbeddedImages };

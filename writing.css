@@ -1,0 +1,149 @@
+/* Typography and navigation shared by the writing index and its articles. */
+*, *::before, *::after { box-sizing: border-box; }
+:root {
+  --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', Baskerville, Georgia, serif;
+  --font-display: 'garamond-premier-pro-display', var(--font-text);
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ink: #252923;
+  --muted: #62665d;
+  --accent: #355843;
+  --paper: #faf9f5;
+  --tint: #f0f0e8;
+  --rule: #d8dbcf;
+}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 21px/1.55 var(--font-text);
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; text-underline-offset: .18em; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent); }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+::selection { background: #dce5d5; }
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  z-index: 10;
+  padding: 10px 16px;
+  background: var(--paper);
+  transform: translateY(-180%);
+  font: 14px/1.5 var(--font-ui);
+}
+.skip-link:focus { transform: none; }
+.site-header, .site-footer {
+  width: min(100% - 64px, 1040px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.site-header { padding-block: 30px 24px; border-bottom: 1px solid var(--rule); }
+.site-name { font-size: 23px; text-decoration: none; white-space: nowrap; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+.site-nav a {
+  display: inline-block;
+  padding-block: 7px;
+  font: 12px/1.5 var(--font-ui);
+  color: var(--muted);
+  text-decoration: none;
+}
+.site-nav a[aria-current='page'] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
+.site-footer {
+  margin-top: 88px;
+  padding-block: 26px 38px;
+  border-top: 1px solid var(--rule);
+  font: 12px/1.6 var(--font-ui);
+  color: var(--muted);
+}
+.site-footer a { text-decoration: none; padding-block: 8px; }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: 20px; }
+.writing-main { width: min(100% - 64px, 940px); margin: 74px auto 0; }
+.writing-intro { max-width: 700px; }
+.eyebrow, .section-kicker {
+  margin: 0 0 15px;
+  font: 11px/1.5 var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+.writing-intro h1 {
+  margin: 0 0 12px;
+  font: 400 clamp(54px, 7vw, 78px)/1.03 var(--font-display);
+  letter-spacing: -.035em;
+}
+.writing-intro > p:last-child { margin: 0; font-size: 25px; line-height: 1.4; color: var(--muted); }
+.featured-writing { margin-top: 52px; padding-top: 22px; border-top: 1px solid var(--ink); }
+.featured-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; }
+.featured-entry { padding: 0 28px 12px 0; }
+.featured-entry + .featured-entry { padding-left: 32px; border-left: 1px solid var(--rule); }
+.featured-entry h2 { margin: 8px 0 10px; font: 400 34px/1.1 var(--font-display); letter-spacing: -.015em; }
+.featured-entry h2 a { text-decoration: none; }
+.featured-entry h2 a:hover { text-decoration: underline; }
+.featured-entry p { margin: 0 0 16px; color: var(--muted); font-size: 20px; }
+.entry-meta { font: 11px/1.6 var(--font-ui); color: var(--muted); }
+.read-link { font: 12px/1.5 var(--font-ui); color: var(--accent); }
+.writing-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 25px;
+  margin: 42px 0 4px;
+  padding: 19px 0;
+  border-block: 1px solid var(--rule);
+  font: 12px/1.5 var(--font-ui);
+}
+.writing-topics a { padding-block: 6px; text-decoration: none; color: var(--muted); }
+.writing-topics a:hover { color: var(--ink); text-decoration: underline; }
+.writing-section {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 45px;
+  padding: 36px 0 26px;
+  border-bottom: 1px solid var(--rule);
+  scroll-margin-top: 24px;
+}
+.writing-section h2 { margin: 2px 0 0; font: 400 23px/1.2 var(--font-display); }
+.writing-list { list-style: none; margin: 0; padding: 0; }
+.writing-entry { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 22px; padding: 0 0 24px; }
+.writing-entry:last-child { padding-bottom: 0; }
+.entry-title { margin: 0; font-size: 23px; line-height: 1.25; font-weight: 400; }
+.entry-title a { text-decoration: none; }
+.entry-title a:hover { text-decoration: underline; }
+.entry-description { margin: 5px 0 0; font-size: 18px; line-height: 1.35; color: var(--muted); }
+.writing-entry > .entry-meta { padding-top: 6px; min-width: 60px; text-align: right; }
+.entry-format { display: block; margin-top: 2px; }
+.unavailable { color: var(--muted); }
+.section-note { margin: 0 0 23px; color: var(--muted); font-size: 17px; }
+@media (max-width: 720px) {
+  .site-header, .site-footer, .writing-main { width: calc(100% - 40px); }
+  .site-header { align-items: flex-start; flex-direction: column; gap: 8px; padding-block: 22px 16px; }
+  .site-nav { gap: 4px 22px; }
+  .writing-main { margin-top: 44px; }
+  .writing-intro > p:last-child { font-size: 23px; }
+  .featured-writing { margin-top: 34px; }
+  .featured-grid { grid-template-columns: 1fr; gap: 26px; }
+  .featured-entry { padding: 0; }
+  .featured-entry + .featured-entry { padding: 25px 0 0; border-left: 0; border-top: 1px solid var(--rule); }
+  .featured-entry h2 { font-size: 32px; }
+  .writing-topics { gap: 6px 22px; margin-top: 32px; }
+  .writing-section { grid-template-columns: 1fr; gap: 25px; padding-block: 30px; }
+  .writing-section h2 { font-size: 27px; }
+  .entry-title { font-size: 23px; }
+  .writing-entry { gap: 10px 14px; padding-bottom: 25px; }
+  .site-footer { flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  body { background: white; color: black; }
+  .site-header, .site-footer, .skip-link, .writing-topics { display: none; }
+  .writing-main { width: 100%; margin: 0; }
+  .writing-section, .featured-entry { break-inside: avoid; }
+}
