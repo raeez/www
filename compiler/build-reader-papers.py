@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the seven retained Markdown papers through the site's article template."""
+"""Render the seven maintained Markdown papers through the site's article template."""
 import argparse
 import hashlib
 from html import escape
@@ -34,6 +34,9 @@ def render(paper, previous, following, config):
     raw = source.read_bytes()
     if hashlib.sha256(raw).hexdigest() != paper['source_sha256']:
         raise ValueError(f"Source changed: {source.name}")
+    tex_source = source.with_suffix('.tex')
+    if hashlib.sha256(tex_source.read_bytes()).hexdigest() != paper['tex_sha256']:
+        raise ValueError(f"TeX source changed: {tex_source.name}")
     heading, markdown = raw.decode().split('\n', 1)
     if heading != '# ' + paper['title']:
         raise ValueError(f"Source title mismatch: {source.name}")
@@ -85,9 +88,14 @@ def render(paper, previous, following, config):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--check', action='store_true', help='Verify checked-in HTML against retained sources')
+    parser.add_argument('--check', action='store_true', help='Verify checked-in HTML against maintained sources')
     args = parser.parse_args()
     config = json.loads((ROOT / 'compiler/reader-papers.json').read_text())
+    archive = ROOT / config['archive_directory']
+    manifest = json.loads((ROOT / config['archive_manifest']).read_text())
+    for filename, expected in manifest.items():
+        if hashlib.sha256((archive / filename).read_bytes()).hexdigest() != expected:
+            raise ValueError(f'Archived source changed: {filename}')
     papers = config['papers']
     if len(papers) != 7 or len({p['slug'] for p in papers}) != 7:
         raise ValueError('Expected seven distinct papers')

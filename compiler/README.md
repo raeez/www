@@ -1,11 +1,48 @@
-# Raeez.com Static Site Generator
+# Raeez.com local article builds
 
-A build system that fetches research papers from Google Docs and generates beautifully typeset static HTML using Adobe Garamond Pro.
+## Maintained sources
+
+The root HTML essays are maintained locally. The five public entries in `docs.config.js` use `localHtml` paths, so a build copies those pages into `dist/`. Their Google Docs identifiers record their historical source routes. The remote documents have not been checked for current content or modification dates.
+
+The seven reader essays and guides use paired Markdown and TeX sources in `content/reader-papers/`. Edit both formats, review the changed claims, and update their hashes in `compiler/reader-papers.json` before building:
+
+```bash
+python3 compiler/build-reader-papers.py
+python3 compiler/build-reader-papers.py --check
+```
+
+Run these commands from the repository root. The builder checks the archived source hashes in `references/reader-paper-snapshot.json` before rendering. Keep `materials/raw/2026-09-09-accessible-papers/` unchanged. See `references/source-provenance.md` for the source history.
+
+The root `feed.xml` contains full articles and seven reader-paper summary entries. The nine author-essay entries contain their maintained full text. Synchronize only existing full-article entries, preserving the seven summaries and publication dates:
+
+```bash
+python3 compiler/sync-article-feed.py --updated 2026-10-22T00:00:00Z licc sez-in-a-box smart-buildings prefabricated-construction archai moxie
+python3 compiler/sync-article-feed.py --check licc sez-in-a-box smart-buildings prefabricated-construction archai moxie
+```
+
+Use the actual editorial date for `--updated`. The legacy feed generated in `dist/` discovers only pages in that directory; it is not a replacement for the root feed.
+
+## Author essays
+
+Nine author essays use Markdown in `content/author-essays/` and metadata in `compiler/author-essays.json`. The builder verifies each maintained source, its archived input, and the unchanged article template before rendering:
+
+```bash
+python3 compiler/build-author-essays.py
+python3 compiler/build-author-essays.py --check
+```
+
+An optional slug limits the command to one essay. After an edit, synchronize that full-text feed entry with `python3 compiler/sync-article-feed.py --updated <actual-ISO-timestamp> <slug>` and check it with `python3 compiler/sync-article-feed.py --check <slug>`. The pages use the existing article template and `reader-papers.css`; neither file is changed by the build. Original month-only dates remain month-only. An exact publication date is recorded only when the source establishes one.
+
+`licc-blueprint.html` is excluded from GitHub Pages and from the public compiler configuration. Its exact adopted edition remains in excluded source custody under `materials/raw/2026-10-22-private-planning/`. It previously appeared at a public URL and in the feed; this curation withdraws that public route while retaining `licc.html` as the public project essay.
+
+## Historical Google Docs importer
+
+Entries without a `localHtml` path use the Google Docs importer and the article template. Explicit fetch commands update the local import cache; they do not change maintained root HTML.
 
 ## Architecture
 
 ```
-Google Docs (source of truth)
+Maintained root HTML (`localHtml`) or configured Google Docs import
        ↓
    Build Script (on-demand)
        ↓
@@ -20,13 +57,13 @@ Google Docs (source of truth)
 # Install dependencies
 npm install
 
-# Build all documents
+# Build configured documents locally
 npm run build
 
 # Build a single document
 npm run build:one sez-in-a-box
 
-# Force rebuild (clear cache)
+# Clear the import cache and build
 npm run build:force
 
 # Preview locally
@@ -153,11 +190,11 @@ Each page includes:
 
 ## Workflow
 
-1. **Edit in Google Docs** — Your source of truth
-2. **Run build** — `npm run build` when ready to publish
-3. **Deploy** — `npm run deploy` or push to GitHub
+1. Edit the maintained root HTML for entries with `localHtml`.
+2. Run the local build and inspect its output.
+3. Deploy only with current publication authorization.
 
-The build takes ~2-3 seconds per document on first run (cached thereafter).
+The build time depends on the source route and article size.
 
 ## Troubleshooting
 
@@ -166,8 +203,8 @@ The build takes ~2-3 seconds per document on first run (cached thereafter).
 - Verify the doc ID in `docs.config.js`
 
 ### Content not updating
-- Run `npm run build:force` to clear cache
-- Or delete `.cache/` manually
+- Check the configured `localHtml` source first.
+- For an entry that imports Google Docs, use `npm run build:force` to clear the import cache.
 
 ### Styling issues
 - Check Adobe Fonts kit ID is correct
