@@ -20,9 +20,9 @@ module.exports = [
     slug: 'licc',
     localHtml: '../licc.html',
     title: 'LICC',
-    subtitle: 'A proposal for coordination science',
-    description: 'Proposal for a laboratory studying incentives, coordination, and cooperation.',
-    meta: 'December 2025 · Project proposal',
+    subtitle: 'The Laboratory for Incentivization, Coordination and Cooperation',
+    description: 'A private, nonprofit research institute for coordination science.',
+    meta: '2025',
     filterPatterns: []
   },
   {
