@@ -1,0 +1,25 @@
+{
+  "source_patch": "/Users/raeez/centcom-worktrees/writing-20261022-raeez-sez/QA-responsive-repairs.patch",
+  "source_handoff": "/Users/raeez/centcom-worktrees/writing-20261022-raeez-sez/QA-REPAIR-HANDOFF.md",
+  "scope": "Only three owned matching pages; Mass omitted. Source reports13 inspected screenshots and24 viewportchecks across its fourpages; this website worktree was not rendered.",
+  "files": [
+    {
+      "path": "archai.html",
+      "before_sha256": "f3d3c3fd7789489cd99ab96aeb03d2e5ffc5c92437c48064999915304212cf84",
+      "after_sha256": "49c00d5a821753d12f51861ffeb01b44b98588a8cd7db5175267c4b349186a1a",
+      "non_css_bytes_unchanged": true
+    },
+    {
+      "path": "licc-blueprint.html",
+      "before_sha256": "a6afce65667f6330b0d1bb149ed0f5382f29832007ffcaea9847385e0fab96d2",
+      "after_sha256": "583a5042b75b92790328325c7beca0b5e2c25993d2afbb7fc8cf25dfe6bbfa05",
+      "non_css_bytes_unchanged": true
+    },
+    {
+      "path": "prefabricated-construction.html",
+      "before_sha256": "ca82bb6e5fc277a25372e5be659bd7bdd225b1e13a9e0b7b51c666e62239f5fd",
+      "after_sha256": "ada89af3e0b2769cc890fcecb8d791a5c68f0a93b092f41fb0d5c2a6b288f029",
+      "non_css_bytes_unchanged": true
+    }
+  ]
+}
