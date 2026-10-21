@@ -1,0 +1,62 @@
+{
+  "verified_at": "2026-10-21T22:56:57.245693+00:00",
+  "builds": {
+    "raeez/www": {
+      "status": "built",
+      "commit": "f01933acc51b6428673e93a39a0a36fe2cae47da"
+    },
+    "momentum-sez/momentum-research": {
+      "status": "built",
+      "commit": "f8e909424fc4ab280836ab3a07c44576bde53aa0"
+    }
+  },
+  "http_checks": [
+    {
+      "url": "https://raeez.com/writing.html",
+      "status": 200,
+      "reviewed_copy_and_styles_match": true
+    },
+    {
+      "url": "https://raeez.com/programmable-institutions.html",
+      "status": 200,
+      "reviewed_copy_and_styles_match": true
+    },
+    {
+      "url": "https://raeez.com/llms.txt",
+      "status": 200,
+      "reviewed_copy_and_styles_match": true
+    },
+    {
+      "url": "https://research.momentum.inc/",
+      "status": 200,
+      "reviewed_copy_and_styles_match": true
+    },
+    {
+      "url": "https://research.momentum.inc/programme.html",
+      "status": 200,
+      "reviewed_copy_and_styles_match": true
+    },
+    {
+      "url": "https://raeez.com/materials/raw/2026-10-22-writing-navigation-correction/writing-before.png",
+      "status": 404,
+      "excluded": true
+    },
+    {
+      "url": "https://raeez.com/materials/raw/2026-10-22-writing-navigation-correction/composition-before.png",
+      "status": 404,
+      "excluded": true
+    }
+  ],
+  "visual_observations": [
+    "Live Writing desktop at default 1342 px: correct subject heading and ordered articles, original typography intact.",
+    "Live Writing at 375 px: upper catalogue and lower Science, Mathematics, formal-paper route and footer fit without clipping.",
+    "Temporary viewport override reset."
+  ],
+  "static_checks": [
+    "23 local articles preserved once; titles match destination H1s.",
+    "Years descend within each subject group.",
+    "Index CSS/navigation, PI body/CSS, Mathematics section unchanged.",
+    "Programme rebuilt with Make and cross-site navigation validation passes.",
+    "Feed and sitemap parse; existing publication dates and entries retained."
+  ]
+}
