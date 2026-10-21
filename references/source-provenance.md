@@ -57,3 +57,7 @@ The public feed contains twenty-two entries: fifteen full articles and seven rea
 The principal authorized retaining *LICC Blueprint* as private planning material. Its exact adopted edition is preserved in `materials/raw/2026-10-22-private-planning/licc-blueprint.html`, SHA-256 `583a5042b75b92790328325c7beca0b5e2c25993d2afbb7fc8cf25dfe6bbfa05`. The root file is unchanged from that edition but excluded from GitHub Pages, the public compiler, feed, and catalogue. This withdrawal does not erase its prior public availability.
 
 `materials/processed/2026-10-22-curation/` records the final catalogue, source custody, metadata changes, focused final deletions, validation, and handoff. The build continues to use the exact existing article template and stylesheet.
+
+## Writing navigation correction — 22 October 2026
+
+The principal’s 22 October screenshot and instruction remove Beauty and /dev/finance inc. from the main Writing list because both are already in navigation. The screenshot is preserved at `materials/raw/2026-10-22-writing-navigation-correction/writing-before.png`, SHA-256 `3e8f9d2dcfef84e91c7538be1abaa046b51b64dd82114506c545cad60b986921`. The six remaining selected essays and all navigation links, article pages, feed entries, sitemap URLs, styles, and typography are retained. The corresponding Writing list in `llms.txt` follows the same correction.
