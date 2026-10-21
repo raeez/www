@@ -2,5 +2,34 @@
   "authority": "Principal states LICC is an institution he is founding, 22 October 2026.",
   "correction": "Classify the LICC and Sensoria documents as institutional projects. Use the full LICC name. Remove the added proposal wrapper label.",
   "preservation": "LICC article body and styles, Writing styles and navigation unchanged.",
-  "feed": "LICC subtitle and description synchronized; publication timestamp preserved; editorial update 2026-10-21T23:01:46Z"
+  "feed": "LICC subtitle and description synchronized; publication timestamp preserved; editorial update 2026-10-21T23:01:46Z",
+  "verified_at": "2026-10-21T23:09:53.759117+00:00",
+  "production_commit": "d3223a8818dcf8dcce37756eda32d7d3934bd1ba",
+  "pages_status": "built",
+  "live_checks": [
+    {
+      "url": "https://raeez.com/writing.html",
+      "status": 200,
+      "copy_and_styles_verified": true
+    },
+    {
+      "url": "https://raeez.com/licc.html",
+      "status": 200,
+      "copy_and_styles_verified": true
+    },
+    {
+      "url": "https://raeez.com/llms.txt",
+      "status": 200,
+      "copy_and_styles_verified": true
+    }
+  ],
+  "visual_checks": [
+    "Desktop Writing shows Institutional projects with Sensoria and LICC, full LICC name fits.",
+    "LICC header at 375 px shows full name, institutional source title and founding document without clipping.",
+    "Temporary viewport override reset."
+  ],
+  "feed_categories": [
+    "institutional-projects",
+    "research"
+  ]
 }
