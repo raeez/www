@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sensoria — Raeez Lorgat</title>
+
+    <!-- SEO -->
+    <meta name="description" content="A research commons for consciousness.">
+    <meta name="author" content="Raeez Lorgat">
+    <meta property="og:title" content="Sensoria">
+    <meta property="og:description" content="A research commons for consciousness.">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://raeez.com/sensoria.html">
+    <link rel="alternate" type="application/atom+xml" title="Raeez Lorgat" href="https://raeez.com/feed.xml">
+
+    <!-- Structured data for LLMs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "headline": "Sensoria",
+        "author": {
+            "@type": "Person",
+            "name": "Raeez Lorgat",
+            "url": "https://raeez.com"
+        },
+        "description": "A research commons for consciousness."
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JP8T5J8M28');
+    </script>
+
+    <!-- Adobe Fonts: Garamond Premier Pro (all optical sizes) -->
+    <link rel="stylesheet" href="https://use.typekit.net/zlu2quo.css">
+
+    <!-- Fallback -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', 'Baskerville', Garamond, serif;
+            --font-display: 'garamond-premier-pro-display', var(--font-text);
+            --font-caption: 'garamond-premier-pro-caption', var(--font-text);
+            --font-subhead: 'garamond-premier-pro-subhead', var(--font-text);
+            --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+
+            --text-base: clamp(18px, 1.125rem + 0.25vw, 21px);
+            --text-sm: calc(var(--text-base) / 1.333);
+            --text-xs: calc(var(--text-sm) / 1.333);
+            --text-lg: calc(var(--text-base) * 1.333);
+            --text-xl: calc(var(--text-lg) * 1.333);
+            --text-2xl: calc(var(--text-xl) * 1.333);
+
+            --baseline: 8px;
+
+            --leading-tight: 1.2;
+            --leading-snug: 1.35;
+            --leading-normal: 1.5;
+            --leading-relaxed: 1.618;
+            --leading-loose: 1.8;
+
+            --space-1: calc(var(--baseline) * 1);
+            --space-2: calc(var(--baseline) * 2);
+            --space-3: calc(var(--baseline) * 3);
+            --space-4: calc(var(--baseline) * 4);
+            --space-5: calc(var(--baseline) * 5);
+            --space-6: calc(var(--baseline) * 6);
+            --space-8: calc(var(--baseline) * 8);
+            --space-10: calc(var(--baseline) * 10);
+            --space-13: calc(var(--baseline) * 13);
+
+            --measure: 65ch;
+            --measure-narrow: 55ch;
+            --measure-wide: 75ch;
+            --gutter: clamp(16px, 4vw, 24px);
+
+            --ink: #1a1917;
+            --ink-muted: #4a4744;
+            --ink-subtle: #6a6662;
+            --ink-faint: #8a8580;
+            --ink-ghost: #b5b0ab;
+            --ink-whisper: #d4d0cc;
+            --ink-hint: #e8e5e2;
+            --paper: #fefdfb;
+            --paper-tint: #f5f3f0;
+
+            --kern-tight: -0.02em;
+            --kern-snug: -0.01em;
+            --kern-normal: 0;
+            --kern-loose: 0.015em;
+            --kern-wide: 0.04em;
+            --kern-caps: 0.08em;
+            --optical-margin: -0.03em;
+        }
+
+        html {
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+            hanging-punctuation: first last;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-text);
+            font-size: var(--text-base);
+            font-weight: 400;
+            line-height: var(--leading-relaxed);
+            color: var(--ink);
+            background: var(--paper);
+            text-rendering: optimizeLegibility;
+            font-feature-settings:
+                "kern" 1, "liga" 1, "clig" 1, "calt" 1, "dlig" 1, "onum" 1, "pnum" 1;
+            font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+            font-variant-numeric: oldstyle-nums proportional-nums;
+            font-kerning: normal;
+        }
+
+        .container {
+            max-width: calc(var(--measure) + var(--space-8));
+            margin-inline: auto;
+            padding: var(--space-10) var(--gutter) var(--space-8);
+        }
+
+        .back-nav {
+            margin-bottom: var(--space-8);
+        }
+
+        .back-nav a {
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            color: var(--ink-faint);
+            text-decoration: none;
+            transition: color 180ms ease;
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-wide);
+        }
+
+        .back-nav a:hover { color: var(--ink); }
+
+        .article-header {
+            margin-bottom: var(--space-8);
+        }
+
+        .article-title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            line-height: var(--leading-snug);
+            margin-bottom: var(--space-2);
+            letter-spacing: var(--kern-tight);
+            margin-left: var(--optical-margin);
+        }
+
+        .article-subtitle {
+            font-family: var(--font-text);
+            font-size: var(--text-lg);
+            font-style: italic;
+            color: var(--ink-muted);
+            line-height: var(--leading-normal);
+            letter-spacing: var(--kern-snug);
+            margin-bottom: var(--space-2);
+        }
+
+        .article-meta {
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            color: var(--ink-faint);
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-wide);
+        }
+
+        .article-body {
+            max-width: var(--measure);
+        }
+
+        .article-body p {
+            margin-bottom: var(--space-3);
+        }
+
+        .article-body h1 {
+            font-family: var(--font-subhead);
+            font-size: var(--text-xl);
+            font-weight: 400;
+            line-height: var(--leading-snug);
+            margin-top: var(--space-8);
+            margin-bottom: var(--space-3);
+            letter-spacing: var(--kern-snug);
+            margin-left: var(--optical-margin);
+        }
+
+        .article-body h2 {
+            font-family: var(--font-text);
+            font-size: var(--text-lg);
+            font-weight: 500;
+            line-height: var(--leading-snug);
+            margin-top: var(--space-6);
+            margin-bottom: var(--space-3);
+            letter-spacing: var(--kern-snug);
+        }
+
+        .article-body strong {
+            font-weight: 600;
+            letter-spacing: var(--kern-snug);
+        }
+
+        .article-body em {
+            font-style: italic;
+        }
+
+        .article-body a {
+            color: var(--ink);
+            text-decoration: underline;
+            text-decoration-color: var(--ink-whisper);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.15em;
+            transition: text-decoration-color 180ms ease;
+        }
+
+        .article-body a:hover {
+            text-decoration-color: var(--ink-muted);
+        }
+
+        .article-body ul {
+            margin-bottom: var(--space-4);
+            padding-left: var(--space-5);
+        }
+
+        .article-body li {
+            margin-bottom: var(--space-2);
+        }
+
+        .article-body hr {
+            border: none;
+            border-top: 1px solid var(--ink-hint);
+            margin: var(--space-6) 0;
+        }
+
+        .article-footer {
+            margin-top: var(--space-10);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--ink-hint);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .author-byline {
+            font-family: var(--font-text);
+            font-size: var(--text-sm);
+            font-style: italic;
+            color: var(--ink-muted);
+        }
+
+        .author-byline strong {
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .footer-nav a {
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-wide);
+            color: var(--ink-faint);
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .footer-nav a:hover { color: var(--ink); }
+
+        .contact-footer {
+            margin-top: var(--space-10);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--ink-hint);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+        }
+
+        .contact-footer > a {
+            color: var(--ink-faint);
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .contact-footer > a:hover { color: var(--ink); }
+
+        .contact-footer .social {
+            display: flex;
+            align-items: center;
+            gap: 0.375em;
+        }
+
+        .contact-footer .icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.25em;
+            height: 2.25em;
+            color: var(--ink-ghost);
+            transition: color 180ms ease, background-color 180ms ease;
+            border-radius: 4px;
+        }
+
+        .contact-footer .icon-link:hover {
+            color: var(--ink);
+            background-color: var(--paper-tint);
+        }
+
+        .contact-footer .icon-link svg { display: block; }
+
+        ::selection { background: var(--ink); color: var(--paper); }
+
+        a:focus-visible {
+            outline: 2px solid var(--ink-muted);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 680px) {
+            :root { --text-base: clamp(17px, 1rem + 0.2vw, 19px); }
+            .container { padding: var(--space-6) var(--gutter) var(--space-5); }
+            .article-title { font-size: var(--text-xl); }
+            .article-subtitle { font-size: var(--text-base); }
+            .article-body h1 { font-size: var(--text-lg); }
+            .article-body h2 { font-size: calc(var(--text-base) * 1.1); }
+            .article-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-2);
+            }
+            .contact-footer {
+                flex-direction: column;
+                gap: var(--space-3);
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            :root { --text-base: 16px; }
+            .container { padding: var(--space-5) var(--space-2) var(--space-4); }
+        }
+
+        @media (min-width: 1200px) {
+            .container { padding-top: var(--space-13); }
+        }
+
+        @media print {
+            :root { --ink: #000; --paper: #fff; }
+            body { font-size: 11pt; line-height: 1.4; }
+            .container { max-width: 100%; padding: 0; }
+            .back-nav, .contact-footer { display: none; }
+            a { text-decoration: none !important; color: var(--ink) !important; }
+            .article-body h1, .article-body h2 { page-break-after: avoid; }
+        }
+
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(var(--gutter), env(safe-area-inset-left));
+                padding-right: max(var(--gutter), env(safe-area-inset-right));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="back-nav">
+            <a href="writing.html">← Writing</a>
+        </nav>
+
+        <article>
+            <header class="article-header">
+                <h1 class="article-title">Sensoria</h1>
+                <p class="article-subtitle">A research commons for consciousness</p>
+                <p class="article-meta">January 2026</p>
+            </header>
+
+            <div class="article-body">
+                <p><em>We mapped the genome to understand the body. Now we must map lived experience so each person’s hard-won insight improves the protocols available to the next. That accumulated knowledge can help people suffer less, act with greater agency, and go further.</em></p>
+
+                <h1>The Measurement Problem</h1>
+
+                <p>A meditation practitioner sits for ten years, accumulating thousands of hours of practice. They report profound shifts in well-being, focus, and emotional regulation. Yet they cannot demonstrate these changes objectively, share their methodology precisely, or reliably replicate their results. Their insights cannot contribute to collective knowledge in ways that advance the field.</p>
+
+                <p>The same pattern repeats across consciousness interventions: psychedelic therapy, breathwork, neurofeedback, and contemplative practice. Individual practitioners achieve genuine transformation, but the field accumulates no knowledge and science makes no progress. The next practitioner starts from zero.</p>
+
+                <p>Consciousness research needs better infrastructure for its existing participants. There are millions of meditation practitioners, thousands of psychedelic therapists, and hundreds of neurofeedback clinics. Their practical knowledge is lost because no infrastructure records it systematically.</p>
+
+                <p>Consciousness research lacks funding, and practices vary in rigor despite their efficacy. Its fundamental problem is architectural: <strong>consciousness research operates without infrastructure for systematic data collection, protocol distribution, and knowledge accumulation.</strong></p>
+
+                <p>The internet lets billions exchange information instantly, while blockchains let strangers transact without intermediaries. Machine learning infrastructure enables algorithms to improve through data exposure. Research into understanding and optimizing human consciousness still relies on anecdotes, guru-disciple relationships, and isolated academic studies that rarely replicate.</p>
+
+                <h1>From Subjective to Systemic</h1>
+
+                <p>Individual physicians accumulated clinical experience long before medicine advanced systematically. That advance required infrastructure for systematic data collection, controlled trials, peer review, and protocol replication. The infrastructure allowed knowledge to accumulate beyond an individual physician’s practice.</p>
+
+                <p>Consciousness research requires analogous infrastructure. Existing clinical trials address different questions, while meditation apps scale distribution without accumulating knowledge. Research needs a way to turn subjective experience into objective protocols, individual practice into collective datasets, and isolated insights into systematic knowledge.</p>
+
+                <p>Sensoria provides this infrastructure through three integrated layers:</p>
+
+                <p><strong>1. Network Layer</strong> — A decentralized coordination network connects consciousness practitioners, researchers, and protocol designers. Meditation apps operate as consumer products, and academic institutions as credentialing bodies. Sensoria instead operates as a research commons where participants contribute to collective knowledge while retaining ownership of their data.</p>
+
+                <p><strong>2. Data Layer</strong> — A cryptographically secured data DAO holds all research data in zero-knowledge encrypted form. Practitioners control access to their individual data, and researchers can analyze aggregate patterns without accessing individual records. The DAO preserves data beyond any single institution’s lifespan, with privacy guarantees impossible in traditional research settings.</p>
+
+                <p><strong>3. Protocol Layer</strong> — A distribution system for consciousness intervention protocols enables systematic experimentation, A/B testing, and iterative refinement. Protocols are versioned, attributed, and trackable. Practitioners receive them as structured programs with built-in measurement frameworks, and aggregate analysis of outcomes guides further improvements.</p>
+
+                <h1>How It Works</h1>
+
+                <p>A practitioner joins Sensoria through any participating community, retreat center, or research institution. They receive a cryptographic identity that controls their data and lets them contribute to scientific knowledge anonymously.</p>
+
+                <p>They select a consciousness intervention protocol. A practitioner might choose a meditation sequence developed by contemplative neuroscience researchers or a breathwork pattern optimized through systematic experimentation. Another option might be a psychedelic integration framework refined across hundreds of therapeutic sessions. Each protocol specifies what to track, when to track it, and how to report subjectively experienced effects.</p>
+
+                <p>As they practice, the DAO receives their data. Practitioners retain control: they decide what researchers can access, what questions their data answers, and which studies they contribute to. They can grant access for specific analyses while maintaining anonymity.</p>
+
+                <p>Researchers propose studies to the network, and protocol designers propose interventions. Both gain access to aggregate data only when practitioners opt in. In traditional research, institutions own the data. In Sensoria, practitioners collectively own the data commons, and researchers provide analysis services.</p>
+
+                <h1>How Protocols Improve</h1>
+
+                <p>Traditional consciousness research faces a cold start problem: researchers need data to design studies, but generating data requires completed studies. This creates decade-long timelines. Research requires extensive grant writing, institutional review board approval, and recruitment campaigns before data collection, analysis, publication, and replication.</p>
+
+                <p>In Sensoria, more practitioners generate more data, which enables better protocols. Those protocols attract more practitioners, so each increase in participation supports the next.</p>
+
+                <p>Traditional studies are discrete events, with years between data collection and results. Sensoria supports continuous experimentation: protocols improve incrementally, practitioners benefit immediately, and researchers gain ongoing access to systematically collected data.</p>
+
+                <p>Early protocols may be crude: meditation sequences, basic breathwork patterns, and simple cognitive exercises. Systematic data collection allows researchers to refine them. They can ask which sequences work for which populations, which breathwork patterns produce which effects, and which exercises transfer from controlled settings to daily life.</p>
+
+                <p>Distributed experimentation answers these questions through thousands of practitioners testing variations simultaneously. They generate comparative data impossible in laboratory settings. For the first time, consciousness intervention protocols can be optimized at software speed.</p>
+
+                <h1>Research Advantages</h1>
+
+                <p>The most comprehensive, systematically collected dataset on consciousness interventions gives its holder control over the frontier of human performance optimization. This is not a winner-take-all market: consciousness research requires diverse approaches, multiple methodologies, and varied cultural contexts. Data advantages compound through network effects.</p>
+
+                <p>The dataset supports research in three ways:</p>
+
+                <p><strong>Scale</strong> — Traditional consciousness research studies involve dozens of participants. Well-funded studies might reach hundreds. Sensoria's network effects enable studies involving thousands of practitioners simultaneously, generating statistical power impossible through traditional research funding.</p>
+
+                <p><strong>Longitudinal Depth</strong> — Academic studies track participants for weeks or months. Sensoria tracks practice over years, capturing long-term effects, sustained benefits, and iterative refinement that short-term studies miss entirely.</p>
+
+                <p><strong>Ecological Validity</strong> — Laboratory research controls for confounds at the cost of real-world applicability. Sensoria collects data from practice in daily life to measure what works in those conditions.</p>
+
+                <p>Sensoria’s growing dataset makes questions answerable that would require decades of traditional research. Researchers can compare meditation traditions, optimize psychedelic integration protocols, and personalize interventions based on individual variation.</p>
+
+                <h1>Governance and Mission Protection</h1>
+
+                <p>Data advantages raise the question of who controls the research. Consciousness research is vulnerable to commercial interests seeking to monetize human transformation and institutional interests seeking to control access to altered states. Traditional funding imposes conditions: pharmaceutical companies expect patentable drugs, universities own researchers’ intellectual property, and government agencies require security clearances for certain psychedelic research.</p>
+
+                <p>Sensoria operates as a nonprofit steward of a decentralized network to prevent this capture. The Data DAO ensures that no single entity can sell, privatize, or restrict the data. Practitioners retain ownership, and researchers gain access through community consent. All protocols are open source by default, so protocol designers can build on prior work without permission.</p>
+
+                <p>Governance uses stacked democracy: different decisions require approval from different stakeholders. Practitioners approve protocol changes because those changes affect their practices. Researchers approve data access policies because they understand research ethics. DAO token holders approve network policies because they have an interest in long-term sustainability.</p>
+
+                <p>This governance structure prevents the deterioration that ended previous consciousness research networks. Esalen Institute pioneered the field in the 1960s, then became a retreat center rather than a research institution. The Multidisciplinary Association for Psychedelic Studies (MAPS) has advanced psychedelic therapy through traditional pharmaceutical development pathways, subject to their constraints. Academic consciousness research produces papers without accumulating knowledge systematically.</p>
+
+                <p>Sensoria’s structure preserves data, access to protocols, and network operations even if founding organizations fail. Research takes decades and requires institutions that remain stable across generations.</p>
+
+                <h1>Implementation Through Special Economic Zones</h1>
+
+                <p>Consciousness research faces several regulatory constraints. Psychedelic substances remain Schedule I in most jurisdictions despite mounting evidence for therapeutic efficacy. Meditation research lacks standardized regulatory frameworks. Neurofeedback equipment faces medical device regulations. Traditional institutional review boards operate too slowly for the rapid experimentation Sensoria enables.</p>
+
+                <p>Regulatory innovation through special economic zones addresses these constraints. Portugal's decriminalization framework creates space for psychedelic research under medical supervision. The Netherlands' progressive drug policy enables comparative studies. Certain Swiss cantons permit licensed psychedelic therapy. These jurisdictions provide legal frameworks for research that remains impossible in more restrictive environments.</p>
+
+                <p>Sensoria operates through partnerships with consciousness research centers in these jurisdictions. The Portugal center focuses on psychedelic therapy research. The Netherlands facility specializes in phenomenological methods. Swiss partnerships enable brain imaging studies. Each operates within its local legal framework while contributing to the global Sensoria dataset.</p>
+
+                <p>Sensoria provides infrastructure. It does not conduct research or operate facilities. Local research institutions conduct studies using Sensoria’s protocols and contribute data to its DAO. This division preserves jurisdictional compliance while allowing knowledge to accumulate globally.</p>
+
+                <p>Regulatory frameworks are evolving rapidly as psychedelic research resumes, meditation becomes mainstream, and neuroscience advances. Sensoria’s decentralized architecture keeps research operating through policy changes in any single jurisdiction. Data persists in the DAO, and protocols remain accessible globally, so the network can adapt without institutional restructuring.</p>
+
+                <h1>Why Now</h1>
+
+                <p>Three independent trends make Sensoria possible and necessary in 2026:</p>
+
+                <p><strong>The Mental Health Crisis</strong> — Depression, anxiety, and addiction rates have reached epidemic levels. Traditional treatments show declining efficacy. Practitioners and patients increasingly turn to alternative approaches—meditation, psychedelics, somatic practices—that lack systematic research infrastructure. Demand for these approaches is large and growing.</p>
+
+                <p><strong>The Psychedelic Renaissance</strong> — After decades of prohibition, psychedelic research is resuming at major institutions. MDMA-assisted therapy approaches FDA approval. Psilocybin shows promise for treatment-resistant depression. Ketamine clinics proliferate. Research still follows traditional pharmaceutical pathways designed for molecular interventions. That infrastructure does not serve consciousness practices.</p>
+
+                <p><strong>Cryptographic Infrastructure Maturity</strong> — Zero-knowledge proofs, decentralized storage, privacy-preserving computation, and DAO governance have evolved from theoretical concepts to production-ready tools. Five years ago, technology could not support Sensoria’s architecture, particularly analysis of aggregate data without access to individual records. Existing protocols now make it straightforward to implement.</p>
+
+                <p>Demand, regulatory openings, and available technology make it possible to build the infrastructure now. It can connect practitioners, researchers, and protocols that would otherwise remain isolated and ineffective.</p>
+
+                <h1>The Path Forward</h1>
+
+                <p>Sensoria launches through a phased rollout that prioritizes research quality over growth metrics:</p>
+
+                <p><strong>Phase 1: Research Institution Partnerships (Year 1)</strong> — Establish core partnerships with consciousness research centers in Portugal, Netherlands, and Switzerland. Deploy Data DAO infrastructure. Create initial protocol library covering meditation, breathwork, and somatic practices. Recruit founding practitioner cohort of 1,000 participants.</p>
+
+                <p><strong>Phase 2: Protocol Distribution Expansion (Years 2-3)</strong> — Scale to 10,000+ practitioners across multiple modalities. Publish first comparative studies using Sensoria dataset. Expand protocol library through community contributions. Establish integration with retreat centers and therapeutic practices.</p>
+
+                <p><strong>Phase 3: Scientific Publication and Academic Integration (Years 3-5)</strong> — Produce peer-reviewed publications demonstrating Sensoria’s research capabilities. Partner with universities for doctoral research using Sensoria infrastructure. Achieve recognition as legitimate research methodology by academic institutions.</p>
+
+                <p>As a nonprofit research commons, Sensoria measures success by research impact: papers published, protocols improved, and questions answered. User growth and revenue are not its measures of success. The goal is systematic science built from individual experience, with the authenticity and accessibility that make consciousness practices valuable.</p>
+
+                <hr>
+
+                <h2>Further Information</h2>
+
+                <ul>
+                    <li><a href="https://sensoria.events">Sensoria Events</a> — Current retreat schedule and program information</li>
+                    <li><a href="programmable-institutions.html">Programmable Institutions</a> — The broader architectural framework</li>
+                </ul>
+            </div>
+
+            <footer class="article-footer">
+                <p class="author-byline"><strong>Raeez Lorgat</strong>, Managing Partner at Momentum</p>
+                <nav class="footer-nav">
+                    <a href="writing.html">← All Writing</a>
+                </nav>
+            </footer>
+
+            <footer class="contact-footer">
+                <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>
+                <nav class="social" aria-label="Social links">
+                    <a href="https://x.com/raeez" aria-label="X (Twitter)" class="icon-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/raeez" aria-label="Instagram" class="icon-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </nav>
+            </footer>
+        </article>
+    </div>
+</body>
+</html>

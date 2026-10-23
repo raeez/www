@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Programmable Institutions — Momentum</title>
+
+    <!-- SEO -->
+    <meta name="description" content="The founding essay.">
+    <meta name="author" content="Raeez Lorgat">
+    <meta property="og:title" content="Programmable Institutions">
+    <meta property="og:description" content="The founding essay.">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://momentum.inc/programmable-institutions.html">
+    <link rel="alternate" type="application/atom+xml" title="Raeez Lorgat" href="https://momentum.inc/feed.xml">
+
+    <!-- Structured data for LLMs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "headline": "Programmable Institutions",
+        "author": {
+            "@type": "Company",
+            "name": "Momentum",
+            "url": "https://momentum.inc"
+        },
+        "description": "The founding essay."
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JP8T5J8M28');
+    </script>
+
+    <!-- Adobe Fonts: Garamond Premier Pro (all optical sizes) -->
+    <link rel="stylesheet" href="https://use.typekit.net/zlu2quo.css">
+
+    <!-- Fallback -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', 'Baskerville', Garamond, serif;
+            --font-display: 'garamond-premier-pro-display', var(--font-text);
+            --font-caption: 'garamond-premier-pro-caption', var(--font-text);
+            --font-subhead: 'garamond-premier-pro-subhead', var(--font-text);
+            --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+
+            --text-base: clamp(18px, 1.125rem + 0.25vw, 21px);
+            --text-sm: calc(var(--text-base) / 1.333);
+            --text-xs: calc(var(--text-sm) / 1.333);
+            --text-lg: calc(var(--text-base) * 1.333);
+            --text-xl: calc(var(--text-lg) * 1.333);
+            --text-2xl: calc(var(--text-xl) * 1.333);
+
+            --baseline: 8px;
+
+            --leading-tight: 1.2;
+            --leading-snug: 1.35;
+            --leading-normal: 1.5;
+            --leading-relaxed: 1.618;
+            --leading-loose: 1.8;
+
+            --space-1: calc(var(--baseline) * 1);
+            --space-2: calc(var(--baseline) * 2);
+            --space-3: calc(var(--baseline) * 3);
+            --space-4: calc(var(--baseline) * 4);
+            --space-5: calc(var(--baseline) * 5);
+            --space-6: calc(var(--baseline) * 6);
+            --space-8: calc(var(--baseline) * 8);
+            --space-10: calc(var(--baseline) * 10);
+            --space-13: calc(var(--baseline) * 13);
+
+            --measure: 65ch;
+            --measure-narrow: 55ch;
+            --measure-wide: 75ch;
+            --gutter: clamp(16px, 4vw, 24px);
+
+            --ink: #1a1917;
+            --ink-muted: #4a4744;
+            --ink-subtle: #6a6662;
+            --ink-faint: #8a8580;
+            --ink-ghost: #b5b0ab;
+            --ink-whisper: #d4d0cc;
+            --ink-hint: #e8e5e2;
+            --paper: #fefdfb;
+            --paper-tint: #f5f3f0;
+
+            --kern-tight: -0.02em;
+            --kern-snug: -0.01em;
+            --kern-normal: 0;
+            --kern-loose: 0.015em;
+            --kern-wide: 0.04em;
+            --kern-caps: 0.08em;
+            --optical-margin: -0.03em;
+        }
+
+        html {
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+            hanging-punctuation: first last;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-text);
+            font-size: var(--text-base);
+            font-weight: 400;
+            line-height: var(--leading-relaxed);
+            color: var(--ink);
+            background: var(--paper);
+            text-rendering: optimizeLegibility;
+            font-feature-settings:
+                "kern" 1, "liga" 1, "clig" 1, "calt" 1, "dlig" 1, "onum" 1, "pnum" 1;
+            font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+            font-variant-numeric: oldstyle-nums proportional-nums;
+            font-kerning: normal;
+        }
+
+        .container {
+            max-width: calc(var(--measure) + var(--space-8));
+            margin-inline: auto;
+            padding: var(--space-10) var(--gutter) var(--space-8);
+        }
+
+        .back-nav {
+            margin-bottom: var(--space-8);
+        }
+
+        .back-nav a {
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            color: var(--ink-faint);
+            text-decoration: none;
+            transition: color 180ms ease;
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-wide);
+        }
+
+        .back-nav a:hover { color: var(--ink); }
+
+        .article-header {
+            margin-bottom: var(--space-8);
+        }
+
+        .article-title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            line-height: var(--leading-snug);
+            margin-bottom: var(--space-2);
+            letter-spacing: var(--kern-tight);
+            margin-left: var(--optical-margin);
+        }
+
+        .article-subtitle {
+            font-family: var(--font-text);
+            font-size: var(--text-lg);
+            font-style: italic;
+            color: var(--ink-muted);
+            line-height: var(--leading-normal);
+            letter-spacing: var(--kern-snug);
+            margin-bottom: var(--space-2);
+        }
+
+        .article-meta {
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            color: var(--ink-faint);
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-wide);
+        }
+
+        .article-body {
+            max-width: var(--measure);
+        }
+
+        .article-body p {
+            margin-bottom: var(--space-3);
+        }
+
+        .article-body h1 {
+            font-family: var(--font-subhead);
+            font-size: var(--text-xl);
+            font-weight: 400;
+            line-height: var(--leading-snug);
+            margin-top: var(--space-8);
+            margin-bottom: var(--space-3);
+            letter-spacing: var(--kern-snug);
+            margin-left: var(--optical-margin);
+        }
+
+        .article-body h2 {
+            font-family: var(--font-text);
+            font-size: var(--text-lg);
+            font-weight: 500;
+            line-height: var(--leading-snug);
+            margin-top: var(--space-6);
+            margin-bottom: var(--space-3);
+            letter-spacing: var(--kern-snug);
+        }
+
+        .article-body strong {
+            font-weight: 600;
+            letter-spacing: var(--kern-snug);
+        }
+
+        .article-body em {
+            font-style: italic;
+        }
+
+        .article-body a {
+            color: var(--ink);
+            text-decoration: underline;
+            text-decoration-color: var(--ink-whisper);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.15em;
+            transition: text-decoration-color 180ms ease;
+        }
+
+        .article-body a:hover {
+            text-decoration-color: var(--ink-muted);
+        }
+
+        .article-body ul {
+            margin-bottom: var(--space-4);
+            padding-left: var(--space-5);
+        }
+
+        .article-body li {
+            margin-bottom: var(--space-2);
+        }
+
+        .article-body hr {
+            border: none;
+            border-top: 1px solid var(--ink-hint);
+            margin: var(--space-6) 0;
+        }
+
+        .article-footer {
+            margin-top: var(--space-10);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--ink-hint);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .author-byline {
+            font-family: var(--font-text);
+            font-size: var(--text-sm);
+            font-style: italic;
+            color: var(--ink-muted);
+        }
+
+        .author-byline strong {
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .footer-nav a {
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-wide);
+            color: var(--ink-faint);
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .footer-nav a:hover { color: var(--ink); }
+
+        .contact-footer {
+            margin-top: var(--space-10);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--ink-hint);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+        }
+
+        .contact-footer > a {
+            color: var(--ink-faint);
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .contact-footer > a:hover { color: var(--ink); }
+
+        .contact-footer .social {
+            display: flex;
+            align-items: center;
+            gap: 0.375em;
+        }
+
+        .contact-footer .icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.25em;
+            height: 2.25em;
+            color: var(--ink-ghost);
+            transition: color 180ms ease, background-color 180ms ease;
+            border-radius: 4px;
+        }
+
+        .contact-footer .icon-link:hover {
+            color: var(--ink);
+            background-color: var(--paper-tint);
+        }
+
+        .contact-footer .icon-link svg { display: block; }
+
+        ::selection { background: var(--ink); color: var(--paper); }
+
+        a:focus-visible {
+            outline: 2px solid var(--ink-muted);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 680px) {
+            :root { --text-base: clamp(17px, 1rem + 0.2vw, 19px); }
+            .container { padding: var(--space-6) var(--gutter) var(--space-5); }
+            .article-title { font-size: var(--text-xl); }
+            .article-subtitle { font-size: var(--text-base); }
+            .article-body h1 { font-size: var(--text-lg); }
+            .article-body h2 { font-size: calc(var(--text-base) * 1.1); }
+            .article-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-2);
+            }
+            .contact-footer {
+                flex-direction: column;
+                gap: var(--space-3);
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            :root { --text-base: 16px; }
+            .container { padding: var(--space-5) var(--space-2) var(--space-4); }
+        }
+
+        @media (min-width: 1200px) {
+            .container { padding-top: var(--space-13); }
+        }
+
+        @media print {
+            :root { --ink: #000; --paper: #fff; }
+            body { font-size: 11pt; line-height: 1.4; }
+            .container { max-width: 100%; padding: 0; }
+            .back-nav, .contact-footer { display: none; }
+            a { text-decoration: none !important; color: var(--ink) !important; }
+            .article-body h1, .article-body h2 { page-break-after: avoid; }
+        }
+
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(var(--gutter), env(safe-area-inset-left));
+                padding-right: max(var(--gutter), env(safe-area-inset-right));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="back-nav">
+            <a href="https://momentum.inc">← Home</a>
+        </nav>
+
+        <article>
+            <header class="article-header">
+                <h1 class="article-title">Programmable Institutions</h1>
+                <p class="article-subtitle">The founding essay</p>
+                <p class="article-meta">Raeez Lorgat • January 2026</p>
+            </header>
+
+            <div class="article-body">
+                <h1>The Institutions Behind Economic Activity</h1>
+
+                <p>A share purchase requires functioning equity markets, enforceable property rights, identity verification, regulatory compliance, dispute resolution, and banking infrastructure. Every economic transaction depends on institutions. Courts, regulators, exchanges, clearinghouses, and registries enable commerce.</p>
+
+                <p>Traditional institutions operate through fixed procedures, manual verification, periodic audits, and human intermediaries. Their fragmentation across jurisdictions causes compliance costs to grow exponentially as economic activity crosses borders. Friction and switching costs lock participants into jurisdictions, limiting competition on service quality.</p>
+
+                <p>This rigidity creates the defining constraint on 21st century economic growth: <strong>compliance costs scale faster than transaction volumes.</strong> A company operating in one jurisdiction might spend 2% of revenue on compliance. In ten jurisdictions, the same company spends 40-60%, compared with the 20% an additive calculation would suggest. Regulatory requirements compound multiplicatively. Cross-border finance, international trade, and global capital deployment all face these exponential costs.</p>
+
+                <p>Lower switching costs concentrate economic activity in established financial centers, regardless of service quality. Jurisdictions compete by locking participants in. Innovation stalls because building new institutional infrastructure costs more than most startups can capture.</p>
+
+                <p><strong>Programmable institutions change how these functions operate.</strong></p>
+
+                <h1>Institutions That Operate Continuously</h1>
+
+                <p>A traditional court operates through a building and judges, while a registry uses a database and clerks. These institutions act at intervals through periodic filings, scheduled audits, and manual verification. Between interactions, they remain dormant.</p>
+
+                <p>Programmable institutions embed their functions directly into the assets and entities they govern and operate continuously. They carry their compliance context with them, removing the need for external verification at each transaction. They migrate across jurisdictions while maintaining regulatory integrity.</p>
+
+                <p>The shift from mainframe computing to distributed systems offers a parallel. Mainframes centralized computation in large facilities that required specialized expertise. Personal computers and cloud infrastructure distributed computational capacity to edge devices and application layers, moving intelligence to the endpoints.</p>
+
+                <p>Programmable institutions similarly move intelligence from regulatory bodies to regulated entities. A <strong>Smart Asset</strong> carries its ownership history, compliance attestations, transfer restrictions, and regulatory context as intrinsic properties. When it moves between jurisdictions, it proves its legitimacy through cryptographically unforgeable attestations, without manual verification at each border.</p>
+
+                <h1>The Five Primitives</h1>
+
+                <p>Programmable institutions use five primitives that correspond to the basic elements of an economic system:</p>
+
+                <p><strong>1. Entities</strong> are the actors in the system. Traditional entities (corporations, partnerships, trusts) exist only in documents and registries. They cannot act independently, prove their own existence, or interact programmatically. Programmable entities are smart assets that autonomously hold assets, execute transactions, enforce rules, and demonstrate compliance.</p>
+
+                <p><strong>2. Ownership</strong> maps control rights to assets. Traditional ownership records sit in disconnected registries that are delayed, inaccurate, and often contradictory. Cap tables diverge from reality, share certificates can be forged, and documented transfer restrictions go unenforced.</p>
+
+                <p>Programmable ownership is on-chain, real-time, and immutable. The ledger is the reality. Tokens cannot be counterfeited, and restrictions execute automatically.</p>
+
+                <p><strong>3. Financial Instruments</strong> transfer and store value. Traditional instruments (shares, bonds, derivatives) are passive records that require external systems for every operation. Programmable instruments execute their own obligations. A bond automatically calculates interest, enforces covenants through code, and manages restructuring algorithmically. An option exercises itself when encoded conditions hold.</p>
+
+                <p><strong>4. Identity</strong> verifies and attests to participants. Traditional identity verification happens at intervals through centralized authorities with access to complete personal information. Programmable identity uses progressive attestations, so participants prove only what each transaction requires. These attestations accumulate into reputational capital without centralized databases.</p>
+
+                <p><strong>5. Consent</strong> is the mechanism for agreements and approvals. Traditional consent requires physical signatures, notarization, and legal interpretation. Programmable consent uses cryptographic signatures with unambiguous semantics. Multi-party agreements execute automatically once all required signatures arrive. Transparent on-chain voting replaces opaque shareholder meetings for governance.</p>
+
+                <p>These five primitives suffice to construct any economic institution. Corporate governance, regulatory compliance, cross-border trade, capital markets, and property rights all combine these elements. Making the primitives programmable makes institutions programmable.</p>
+
+                <h1>The Sibling Primitive: Programmable Claims</h1>
+
+                <p>Institutions exist to issue, govern, and adjudicate <strong>claims</strong>. A claim is a future cash flow with a probability distribution over its timing and amount. The value of any asset is the probability-weighted discounted future cash flow it represents.</p>
+
+                <p>Equity claims residual earnings, while debt claims principal and coupon at scheduled times. Sukuk claims Sharia-permissible asset usage. Parametric insurance claims cash flow contingent on adverse events, and tokenized real-world assets claim off-chain cash flow. Sports prediction, parimutuel pools, and other event-contingent contracts claim cash contingent on outcomes. Options, futures, and swaps are claims constructed from claims.</p>
+
+                <p>Institutions issue claims, and programmable institutions issue programmable claims. The two are sibling primitives. Programmable claims need a system that clears, settles, prices, and binds reliance to them under combined jurisdictional compliance requirements. Mass mints and governs the claims, while <a href="moxie.html">Moxie</a> clears them. A TemplatePack registry supplies the rules that distinguish claim classes within this issuance and clearing pair, without requiring parallel chains, exchanges, or settlement models.</p>
+
+                <h1>Implementation Architecture</h1>
+
+                <p>These programmable institutions require integration across three layers:</p>
+
+                <p><strong>Layer 1: Legal Infrastructure.</strong> Machine-readable law using standards like Akoma Ntoso lets jurisdictions express regulations as code. The Open Source SEZ Stack provides modular legal frameworks that jurisdictions can fork, customize, and deploy. These interoperable frameworks let Smart Assets compute compliance across jurisdictions.</p>
+
+                <p><strong>Layer 2: Identity and Attestation.</strong> Progressive identity verification uses cryptographic attestations to prove necessary attributes without revealing complete information. Commercial transactions might require proof of accredited investor status without revealing net worth. International transfers might require proof of sanctions screening without revealing transaction history.</p>
+
+                <p><strong>Layer 3: Smart Asset Architecture.</strong> Assets embed their compliance context, operational logic, and regulatory intelligence. A tokenized security contains its transfer restrictions, ownership history, governance rights, and regulatory classifications as intrinsic properties. Migration between jurisdictions requires recomputing compliance against the new regulatory code while preserving the asset&rsquo;s identity and history.</p>
+
+                <p>These layers integrate through standardized APIs and protocols. Jurisdictions implementing the SEZ Stack gain automatic interoperability with Smart Assets using Mass primitives. Assets issued on Mass gain automatic access to any jurisdiction running compatible infrastructure. Standardization produces the network effect.</p>
+
+                <h1>Jurisdictional Decentralization</h1>
+
+                <p>Compatible infrastructure enables <strong>jurisdictional decentralization</strong>: the transition from geographic monopolies to competitive regulatory markets.</p>
+
+                <p>Traditional jurisdictions exercise monopoly power over economic activity within their territory. A company incorporated in Delaware must comply with Delaware law regardless of service quality. Moving to a better jurisdiction requires expensive restructuring and often triggers significant tax events. This creates lock-in effects that reduce competitive pressure on jurisdictions to improve.</p>
+
+                <p>Programmable institutions enable assets to migrate between jurisdictions automatically based on service quality. A Smart Asset can re-domicile from Jurisdiction A to Jurisdiction B in hours rather than months, provided both jurisdictions run compatible infrastructure. Transfer restrictions, ownership records, and compliance attestations migrate with the asset. The asset's identity remains stable even as its regulatory environment changes.</p>
+
+                <p>Good service attracts assets, while poor service triggers outflows. Jurisdictions must therefore compete on regulatory clarity, dispute resolution efficiency, banking infrastructure, and tax treatment.</p>
+
+                <p><strong>Ledger decentralization</strong> and <strong>jurisdictional decentralization</strong> describe different forms of control. Blockchain technology decentralizes the ledger: no single party controls the transaction record. Blockchain-based assets typically remain subject to single-jurisdiction regulation. An ERC-20 token might exist on a decentralized ledger while its issuer remains fully subject to SEC jurisdiction.</p>
+
+                <p>Smart Assets achieve jurisdictional decentralization. The asset itself is sovereign and can select among competing regulatory environments according to encoded preferences. It remains regulated, while jurisdictions must earn its domicile through service quality.</p>
+
+                <h1>Continuous Compliance</h1>
+
+                <p>Traditional compliance uses <strong>fragmented verification.</strong> Each institution that handles an asset independently checks compliance using incomplete information. The bank verifies customer identity, while the broker verifies securities ownership. The exchange checks trading eligibility, and the custodian checks transfer authority. These expensive checks duplicate work and can contradict each other.</p>
+
+                <p>Fragmentation compounds costs. Additional jurisdictions multiply the compliance burden, and intermediaries add verification overhead. A new regulation requires updates across multiple disconnected systems. Costs grow exponentially.</p>
+
+                <p>Programmable institutions enable <strong>continuous compliance</strong> through attestation streams. Smart Assets maintain compliance records that update in real time. An ownership-transfer record identifies the new owner and attests that their identity meets the required verification standards. It also records compliance with applicable securities laws and completion of all required regulatory notifications.</p>
+
+                <p>The asset carries this information as unforgeable digital attestations, independent of external databases that might be incomplete or outdated. Any party interacting with it can verify its compliance status cryptographically, without separate systems or manual documentation.</p>
+
+                <p>Compliance costs then grow logarithmically instead of exponentially. Initial setup costs are higher because the programmable infrastructure requires sophisticated engineering, but marginal compliance costs approach zero. New transactions use existing attestations, jurisdictions integrate programmatically, and regulatory changes propagate through code.</p>
+
+                <h1>From Proof of Scale to Proof of Network</h1>
+
+                <p>Traditional venture capital seeks <strong>proof of scale</strong>: companies that can grow exponentially within single markets. Payment processors acquire merchants, social networks acquire users, and marketplaces increase transaction volume. Market share within a defined category measures success.</p>
+
+                <p>Programmable institutions require <strong>proof of network</strong>: ecosystems that compound through connections across multiple domains. Connected programmable institutions become infrastructure.</p>
+
+                <p>Mass, Moxie, and HomeOS connect issuance, clearing, and the built environment. Mass is the sovereign issuance platform: it lets entities incorporate, establish banking, manage compliance across jurisdictions, and issue programmable claims. It mints and governs those claims under combined requirements from 23 compliance domains. The claims include equity, debt, sukuk, structured derivatives, real-world-asset receivables, parametric insurance, intellectual-property royalties, parimutuel pools, and event-contingent contracts.</p>
+
+                <p>Moxie is the universal clearing and settlement system for claims and derivatives. It clears, settles, prices, and binds reliance to claims under one clearing grammar. A TemplatePack registry supplies the rules that distinguish claim classes, without requiring parallel chains, exchanges, or settlement models. HomeOS, the built environment operating system, lets those same entities deploy physical infrastructure that operates as Smart Assets.</p>
+
+                <p>An entertainment company uses Mass to incorporate efficiently and issue intellectual-property-revenue claims under the combined compliance requirements of its harbor set. Moxie clears and settles those claims under one clearing grammar, while the company uses HomeOS to deploy smart venues. Each system reinforces the others. Operational data from the buildings informs intelligent-asset valuation, and institutional capital in the cleared claims funds facility development. The jurisdictional infrastructure enables cross-border expansion.</p>
+
+                <p>These connections create <strong>compounding network effects.</strong> Each jurisdiction that integrates Mass joins the corridor network as a new deployment and raises the platform&rsquo;s value to claim issuers. A new claim family in Moxie&rsquo;s TemplatePack registry expands cross-margining and increases capital efficiency. New HomeOS buildings contribute to shared intelligence that improves operations globally. Success is measured by the density of connections across domains, rather than dominance within a category.</p>
+
+                <h1>The Momentum Thesis</h1>
+
+                <p>Momentum invests in these institutional primitives across four integrated ecosystems:</p>
+
+                <ul>
+                    <li><strong>Digital Economic Infrastructure</strong> combines Mass, the sovereign issuance platform, with Moxie, the universal clearing system for claims and derivatives, and the SEZ Stack. Together, they issue and clear programmable claims under combined jurisdictional compliance requirements.</li>
+
+                    <li><strong>Bitcoin DeFi Stack</strong> (Lombard Finance, BTCY, Yield Basis, BitStock) enables Bitcoin to function as productive capital through native yield generation and institutional financial instruments.</li>
+
+                    <li><strong>Built Environment</strong> (HomeOS, Babylon, Broad Group partnership) makes physical infrastructure programmable through Smart Assets with embedded compliance and operational intelligence.</li>
+
+                    <li><strong>Research and Governance</strong> (LICC, Sensoria, Global Arbitration Court) develops the theoretical foundations and dispute resolution mechanisms supporting programmable institution deployment.</li>
+                </ul>
+
+                <p>Each ecosystem reinforces the others through shared primitives and network effects. Mass provides jurisdictional infrastructure for BTCY treasury operations. Moxie clears intellectual-property and revenue claims issued by entities incorporated via Mass, alongside the rest of the claim taxonomy. HomeOS buildings generate operational data improving Mass attestation streams. Lombard provides yield for Mass-managed treasuries. The companies operate as an integrated network.</p>
+
+                <h1>The Path Forward</h1>
+
+                <p>Programmable institutions fundamentally change economic infrastructure. Adoption will be gradual as jurisdictions seek competitive advantages and enterprises seek efficiency gains.</p>
+
+                <p>Early adoption concentrates in special economic zones and financial free zones that permit regulatory experimentation. Deployments there demonstrate greater efficiency than traditional infrastructure. Their success pressures mainstream jurisdictions to adopt the same systems as the competitive disadvantages grow.</p>
+
+                <p>The transition will take years rather than decades. Mass approaches mainnet launch with government partnerships generating immediate deployment opportunities. Moxie clears claims and their derivatives at consensus, with sports and other event-contingent markets as the first product family demonstrating the substrate. HomeOS deploys first smart buildings through Broad Group manufacturing partnerships.</p>
+
+                <p>The opportunity is to build the infrastructure that enables this transition. Every successful platform begins with fragmentation, consolidates around interoperable standards, and develops winner-take-most dynamics through network effects. Programmable institutions are entering consolidation. The companies building the standards, government partnerships, and technical infrastructure will capture disproportionate value.</p>
+
+                <p><em>This is the work of Momentum.</em></p>
+
+                <hr>
+
+                <h2>Further Reading</h2>
+
+                <ul>
+                    <li><a href="https://raeez.com/sez-in-a-box.html">Special Economic Zones in a Box</a> — From proof of scale to proof of network</li>
+                    <li><a href="https://raeez.com/smart-buildings.html">Smart Buildings</a> — Programmable built environment operating system</li>
+                    <li><a href="https://raeez.com/licc.html">The Laboratory for Incentivization, Coordination and Cooperation</a> — Research foundations for coordination science</li>
+                </ul>
+            </div>
+
+            <footer class="article-footer">
+                <p class="author-byline"><strong>Raeez Lorgat</strong>, Managing Partner at Momentum</p>
+                <nav class="footer-nav">
+                    <a href="https://momentum.inc">← Home</a>
+                </nav>
+            </footer>
+
+            <footer class="contact-footer">
+                <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>
+                <nav class="social" aria-label="Social links">
+                    <a href="https://x.com/raeez" aria-label="X (Twitter)" class="icon-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/raeez" aria-label="Instagram" class="icon-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </nav>
+            </footer>
+        </article>
+    </div>
+</body>
+</html>
