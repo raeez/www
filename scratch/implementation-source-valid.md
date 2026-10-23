@@ -1,0 +1,87 @@
+# Part III: Implementation and Evidence
+
+## Chapter 10: What the Operating Record Must Show
+
+### Match the Claim to the Evidence
+
+The architecture in Part II combines software, legal recognition, providers, and businesses. Each component requires a different kind of evidence. A working program can demonstrate a technical operation. A signed agreement can establish obligations. An operating record can show what happened under those arrangements. None substitutes for the others.
+
+Mass is operating. Each government deployment, provider integration, and corridor nevertheless has its own scope, authority, and evidence. Assessing a proposed zone requires the record for that particular configuration.
+
+An operating claim should name the activity, the responsible parties, the jurisdiction, and the period observed. Evidence should distinguish preparation, submission, approval, execution, and confirmation of the external result. For a company formation, that includes the registry's record. For a payment, it includes the provider response and the evidence needed to establish receipt.
+
+A commitment signed by authorized parties records agreed terms and conditions. The implementation record must then show whether its conditions were met and its services became available. A proposed corridor remains a design until the competent parties establish the recognition it requires.
+
+### Evidence of Service and Economic Value
+
+A credible service record states what was measured and how. Processing time needs a defined start and end, including any time spent awaiting a customer, authority, or provider. Cost needs a stated boundary: setup, recurring operation, external fees, staff time, review, and remediation may all matter.
+
+Performance claims also need a comparison. A faster workflow may involve different cases, fewer jurisdictions, or simpler customers than the process used as its baseline. Reports should identify the cases covered, exclusions, failures, and changes in workload. Averages alone can conceal the delays that determine whether a service is useful.
+
+The economic record goes further. Registrations do not establish active businesses. Investment commitments do not establish funds received or productive use. Announced jobs do not establish lasting employment. A zone's evidence should follow businesses from formation through operation, revenue, hiring, survival, and local participation.
+
+Network value requires evidence about the connections themselves. Which records did a receiving authority accept? Which checks still had to be repeated? Which companies used the corridor, and for what activities? Did the resulting value cover negotiation, integration, and operating costs? These questions test the proposal's central claim.
+
+### What Would Establish the Case
+
+Three results would support the model. First, approved operations would complete with reliable evidence and manageable costs. Second, the zone's initial businesses would attract continuing demand and survive beyond launch support. Third, corridor use would produce benefits that an isolated deployment could not provide at the same cost.
+
+Those results need to be distinguished from forecasts. A planned service, a target cost, or a potential partner can explain a strategy. Observed outcomes require dated records. Publication should preserve that distinction as the zone develops.
+
+## Chapter 11: The Deployment Method
+
+### Establish Authority and Demand
+
+Preparation begins with the people and institutions whose participation determines whether the zone can operate. The finance ministry may prioritize revenue, commerce officials investment, labor authorities employment, and local government services and land use. Providers need a commercially viable role. Residents need to understand how the zone affects their work and community.
+
+The implementation plan should name an accountable operator and the authorities responsible for each regulated decision. It should identify required approvals, existing powers, dependencies on providers, and questions that remain open. Informal support is useful context but cannot replace the authority required to execute an action.
+
+The legal instruments must establish the zone's scope, governing authority, fiscal terms, operating responsibilities, and dispute arrangements. Existing legislation and registries may supply much of this framework. Changes require the procedures of the jurisdiction concerned. The system's configuration follows the authority established by those instruments.
+
+Site selection follows the needs of actual businesses. Premises, power, water, connectivity, transport, and housing should be assessed against the activities the zone intends to support. Starting with a limited usable area can make expansion depend on demand rather than speculation.
+
+### Configure and Test the Operations
+
+The technical work begins with the jurisdiction's formation requirements, license categories, fees, disclosures, and approval routes. Encoding those rules can reveal ambiguities or contradictions. The responsible authority must resolve them; software cannot confer authority on its own interpretation.
+
+Integrations need to preserve the identities and permissions of the systems they connect. Registry access, identity checks, banking, payments, and supervisory reporting each have their own obligations. Testing must cover refusal, missing evidence, interruption, duplicate requests, and recovery as well as successful completion.
+
+The first participating businesses should exercise real operations within a defined scope. They need support and a clear process for reporting problems. Momentum's proposed portfolio method supplies initial corporate services, provider relationships, workspace, and other necessary functions alongside these businesses.
+
+A limited launch should demonstrate that the complete process works through its external dependencies. Software execution, official acceptance, and provider completion must be checked separately. Findings from the initial scope guide expansion and corrections.
+
+### Grow and Maintain the Institution
+
+Growth requires consistent service. As more businesses arrive, the operator must keep permissions, records, staff capabilities, provider capacity, and response procedures current. A new sector can change the risks and regulatory obligations even when the underlying software remains the same.
+
+Specialization should follow demonstrated demand and local strengths. Additional corridor negotiations should address services or markets that participating businesses actually need. The first agreement's experience can inform later ones, while each partner retains its own conditions.
+
+Maturity means that operations can continue beyond the founding team. Responsibilities need documentation, staff need training, and records need continuity through personnel or provider changes. The government must retain the knowledge and access required to supervise its services and to exercise the transition rights in its agreements.
+
+Technical deployment and economic development have different schedules. An operating system can become available before a zone has a sustainable population of businesses. Both milestones need their own evidence, budget, and assessment.
+
+## Chapter 12: The Measurement Framework
+
+### From Activity to Impact
+
+Measurement should follow the proposed chain of effects. **Activity** records formations, transactions, and filings. **Output** records operating companies, filled jobs, and recurring revenue. **Outcome** examines costs, processing times, business survival, and service reliability. **Impact** examines incomes, skills, local participation, and the wider economy.
+
+Each level answers a different question. Activity shows that people are using the system. Output shows what that use produces. Outcomes test whether services improve. Impact tests whether the changes benefit people. Every level remains vulnerable to incomplete measurement or selective reporting, so the definitions and limitations must be visible.
+
+Time matters as well. Initial registrations can reflect incentives that later expire. Employment during construction differs from employment in operating firms. A short period of strong performance may not survive a change in market conditions. Assessment should follow the same businesses and services over time where the evidence permits it.
+
+### Use the Operating Record Carefully
+
+Attestations can measure parts of a process directly: when a request arrived, which checks ran, when an approval was recorded, and what a provider reported. Common definitions can make such records comparable across deployments.
+
+The operating record is still a record of what the system observed. Activity outside its scope, incorrect inputs, unavailable provider data, and delayed updates can affect conclusions. Researchers need to distinguish recorded events from inferred economic effects and to reconcile the relevant external evidence.
+
+Privacy and confidentiality determine what can be published. Authorized officials receive records under their powers and access rules. Aggregate reporting should protect businesses and individuals. Access itself needs a record so supervisory use can be reviewed.
+
+### Compare and Learn
+
+Published service measures can help companies compare jurisdictions and governments identify problems. Useful comparisons state the case mix, measurement period, definitions, and exclusions. They should show failed and interrupted cases alongside successful ones.
+
+Across the network, researchers can examine which policies appear to improve outcomes under which conditions. A promising relationship is a reason to investigate, not yet proof of causation. The research design in Chapter 9 provides the method for making stronger claims.
+
+Knowledge can then return to operations. An adopted improvement needs its own local approval and continued measurement. This connects the historical lesson of adaptation to a practical cycle of observation, evaluation, authorized change, and review.

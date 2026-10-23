@@ -1,0 +1,34 @@
+from pathlib import Path
+from html import escape
+import json
+p=Path('sez-in-a-box.html');s=p.read_text()
+links=[
+('Between the 1951 and 1961 censuses, net emigration exceeded 400,000, from a population of less than 3 million.','https://www.cso.ie/en/media/csoie/census/census1966results/volume1/C_1966_VOL_1_comm.pdf','CSO, Census 1966, vol. 1, p. xix'),
+("General Electric established its Irish manufacturing subsidiary, the EI Company, in Shannon in 1963.",'https://www.eielectronics.com/history/','Ei Electronics company history'),
+('Sony was manufacturing transistor radios there by 1963.','https://archives.assemblee-nationale.fr/2/cri/1963-1964-ordinaire1/057.pdf','Assemblée nationale, 20 November 1963, p. 7346'),
+("De Beers' industrial-diamond business also established manufacturing operations in Shannon.",'https://www.debeersgroup.com/news-insights/business-market/archive/element-six-announces-100-job-expansion-as-part-of-7-million-investment','De Beers, 27 January 2017'),
+("A December 2018 Irish government sector report stated that 14 of the world's 15 largest leasing companies had significant operations in Ireland, which held more than 60% of the global leasing market.",'https://enterprise.gov.ie/en/publications/publication-files/focus-on-aerospace-and-aviation.pdf','Department of Business, Enterprise and Innovation, 2018, p. 5'),
+('A 1992 Oireachtas report recorded testimony that Shannon Free Zone employment had reached about 5,000, its highest level for over a decade.','https://archive.oireachtas.ie/1992/REPORT_03111992_1.html','Oireachtas, 3 November 1992, §95'),
+("In 1980, Jiang Zemin took part in a UNIDO study program that included Shannon; the delegation's recommendations contributed to legislation for China's first SEZs.",'https://www.unido.org/stories/tiny-irish-town-and-chinas-rise-superpower-status','UNIDO, 2 March 2017'),
+('The latter spent M$43.6 million through 1964, largely at Jurong.','https://documents1.worldbank.org/curated/en/345471468101654201/pdf/multi-page.pdf','World Bank, 10 February 1966, p. 13'),
+('By May 2020, the government had committed S$92.9 billion—19.2% of GDP—to its COVID-19 support packages.','https://www.mof.gov.sg/news-resources/newsroom/ministerial-statement-on-singapore-s-fortitude-budget/','Singapore Ministry of Finance, 26 May 2020, A22'),
+("The city established from Bao'an County in 1979 had about 314,000 residents that year.",'https://hub.hku.hk/bitstream/10722/236319/1/Content.pdf?accept=1','Sit and Yang, 1997, §2.2 and table 1'),
+('The Shenzhen Stock Exchange began trial operations on 1 December 1990.','https://jr.sz.gov.cn/sjrb/xxgk/ghjh/zxgh/content/post_3171670.html','Shenzhen municipal financial authority, 20 October 2008, §1.1.3'),
+('In August 1992, the sale of lottery forms for new-share subscriptions triggered unrest in Shenzhen.','https://www.szse.cn/aboutus/research/secuities/documents/t20040106_531175.html','Shenzhen Stock Exchange, 1991–1993 retrospective'),
+('Its contemporary opening booklet records an original contract of £9.4 million and an extension of £14.6 million.','https://humanities-collections.exeter.ac.uk/dame/files/original/6285d1bcef5628a3cdf9a2ad16564dfdeffadc7b.pdf','Port Rashid opening booklet, p. 18'),
+("A Government of Dubai announcement in August 1976 estimated the 74-berth harbor's cost at AED3 billion.",'https://humanities-collections.exeter.ac.uk/dame/files/original/a246be78fb9c6ac176a3365bf131422ea7e553ea.pdf','Government of Dubai, 2 August 1976'),
+('A 2001 amendment provided a fifty-year exemption for operations within the free zone, renewable for another fifty years by a JAFZA resolution.','https://dlp.dubai.gov.ae/Legislation%20Reference/2001/Law%20No.%20%282%29%20of%202001%20Amending%20Law%20No.%20%282%29%20of%201986%20Concerning%20Business%20Activities.html','Dubai Law No. 2 of 2001, article 8'),
+('The 2021 amendment expressly preserved the application of UAE tax legislation.','https://dlp.dubai.gov.ae/Legislation%20Reference/2021/Law%20No.%20%2819%29%20of%202021%20Amending%20Law%20No.%20%282%29%20of%201986%20Concerning%20Business%20Activities.html','Dubai Law No. 19 of 2021, article 8'),
+("Dubai's specialized zones formed part of that national system.",'https://uaqftz.gov.ae/blogs/empowering-entrepreneurs-through-free-zones-in-the-uae','Umm Al Quwain Free Trade Zone, 1 August 2023'),
+('Using 2005 data, the World Bank reported 68 gigawatts of installed capacity across 48 sub-Saharan countries, including South Africa, comparable to Spain at that time.','https://ppp.worldbank.org/sites/default/files/2022-06/Africas-Power-Infrastructure-2011.pdf','World Bank, Africa’s Power Infrastructure, 2011, p. 2'),
+("Nigeria's 2014 Enterprise Survey reported 32.8 outages in a typical month.",'https://www.enterprisesurveys.org/content/dam/enterprisesurveys/documents/country-profiles/Nigeria-2014.pdf','World Bank Enterprise Surveys, Nigeria 2014, p. 14'),
+('Firms interviewed in Kenya and Rwanda in late 2008 told the US International Trade Commission that generators increased electricity costs by 20–50%.','https://www.usitc.gov/publications/332/pub4071.pdf','USITC, April 2009, p. 5-9'),
+('Official 1968 trade values put sugar at about 91% of merchandise exports.','https://statsmauritius.govmu.org/Documents/Statistics/Digests/BI_Annual_Digest/Bi-Annual_Digest_Jun69.pdf','Mauritius CSO, June 1969 digest, table 50; calculated share'),
+('It described Ethiopia\'s garment-sector base wage as the lowest among garment-producing countries; incentives could supplement that base pay.','https://bhr.stern.nyu.edu/wp-content/uploads/2024/02/NYUEthiopia_ONLINEREVISEDJUNE61.pdf','NYU Stern, May 2019, pp. 1, 4, 9 and 12')
+]
+for phrase,url,label in links:
+ old=escape(phrase,quote=False);n=s.count(old)
+ assert n in [1,2],(phrase,n)
+ s=s.replace(old,old+' <a href="'+escape(url,quote=True)+'">'+escape(label)+'</a>.')
+p.write_text(s);Path('scratch/primary-source-citations.json').write_text(json.dumps(links,ensure_ascii=False,indent=2)+'\n')
+print('Added',len(links),'source anchors at corrected historical claims')
