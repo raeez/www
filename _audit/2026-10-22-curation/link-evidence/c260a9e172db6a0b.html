@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>One Entity in Many Jurisdictions - Raeez Lorgat</title>
+<meta name="description" content="Rights, shared resources, and composed compliance for an entity recognized by several jurisdictions.">
+<meta name="author" content="Raeez Lorgat">
+<meta property="og:title" content="One Entity in Many Jurisdictions">
+<meta property="og:description" content="Rights, shared resources, and composed compliance for an entity recognized by several jurisdictions.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://research.momentum.inc/og-image.png">
+<meta property="og:url" content="https://research.momentum.inc/papers/one-entity-in-many-jurisdictions.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
+<link rel="canonical" href="https://research.momentum.inc/papers/one-entity-in-many-jurisdictions.html">
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "One Entity in Many Jurisdictions",
+    "author": { "@type": "Person", "name": "Raeez Lorgat", "url": "https://research.momentum.inc" },
+    "datePublished": "2026-09-06",
+    "description": "Rights, shared resources, and composed compliance for an entity recognized by several jurisdictions."
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JP8T5J8M28');
+</script>
+<link rel="stylesheet" href="https://use.typekit.net/zlu2quo.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', 'Baskerville', Garamond, serif;
+    --font-display: 'garamond-premier-pro-display', var(--font-text);
+    --font-caption: 'garamond-premier-pro-caption', var(--font-text);
+    --font-subhead: 'garamond-premier-pro-subhead', var(--font-text);
+    --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+    --text-base: clamp(18px, 1.125rem + 0.25vw, 21px);
+    --text-sm: calc(var(--text-base) / 1.333);
+    --text-xs: calc(var(--text-sm) / 1.333);
+    --text-lg: calc(var(--text-base) * 1.333);
+    --text-xl: calc(var(--text-lg) * 1.333);
+    --text-2xl: calc(var(--text-xl) * 1.333);
+    --baseline: 8px;
+    --leading-tight: 1.2;
+    --leading-snug: 1.35;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.618;
+    --leading-loose: 1.8;
+    --space-1: calc(var(--baseline) * 1);
+    --space-2: calc(var(--baseline) * 2);
+    --space-3: calc(var(--baseline) * 3);
+    --space-4: calc(var(--baseline) * 4);
+    --space-5: calc(var(--baseline) * 5);
+    --space-6: calc(var(--baseline) * 6);
+    --space-8: calc(var(--baseline) * 8);
+    --space-10: calc(var(--baseline) * 10);
+    --space-13: calc(var(--baseline) * 13);
+    --measure: 65ch;
+    --measure-narrow: 55ch;
+    --measure-wide: 75ch;
+    --gutter: clamp(16px, 4vw, 24px);
+    --ink: #1a1917;
+    --ink-muted: #4a4744;
+    --ink-subtle: #6a6662;
+    --ink-faint: #8a8580;
+    --ink-ghost: #b5b0ab;
+    --ink-whisper: #d4d0cc;
+    --ink-hint: #e8e5e2;
+    --paper: #fefdfb;
+    --paper-tint: #f5f3f0;
+    --kern-tight: -0.02em;
+    --kern-snug: -0.01em;
+    --kern-normal: 0;
+    --kern-loose: 0.015em;
+    --kern-wide: 0.04em;
+    --kern-caps: 0.08em;
+    --optical-margin: -0.03em;
+}
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    hanging-punctuation: first last;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body {
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--leading-relaxed);
+    color: var(--ink);
+    background: var(--paper);
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "dlig" 1, "onum" 1, "pnum" 1;
+    font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+    font-variant-numeric: oldstyle-nums proportional-nums;
+    font-kerning: normal;
+}
+.container {
+    max-width: calc(var(--measure) + var(--space-8));
+    margin-inline: auto;
+    padding: var(--space-10) var(--gutter) var(--space-8);
+}
+.back-nav { margin-bottom: var(--space-8); }
+.back-nav a {
+    font-family: var(--font-caption);
+    font-size: var(--text-sm);
+    font-variant-caps: small-caps;
+    font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+    letter-spacing: var(--kern-wide);
+    color: var(--ink-faint);
+    text-decoration: none;
+    transition: color 180ms ease;
+}
+.back-nav a:hover { color: var(--ink); }
+.article-header {
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--ink-hint);
+}
+.article-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    letter-spacing: var(--kern-tight);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-3);
+    margin-left: var(--optical-margin);
+}
+.article-meta {
+    font-family: var(--font-caption);
+    font-size: var(--text-sm);
+    color: var(--ink-faint);
+    margin-top: var(--space-3);
+}
+.article-meta a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--ink-whisper);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+    transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+.article-meta a:hover {
+    color: var(--ink-muted);
+    text-decoration-color: var(--ink-ghost);
+}
+/* Companion open-source repository link — rendered when `repo` metadata is set.
+   Monochrome ink on warm paper to sit native to the typographic system;
+   the GitHub mark carries the recognition, the hairline frame the prominence. */
+.repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+    max-width: 100%;
+    padding: 10px var(--space-3) 10px calc(var(--space-2) + 2px);
+    border: 1px solid var(--ink-whisper);
+    border-radius: 3px;
+    background: var(--paper);
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: border-color 200ms ease, color 200ms ease,
+                background 200ms ease, box-shadow 200ms ease;
+}
+.repo-link:hover {
+    border-color: var(--ink-faint);
+    color: var(--ink);
+    background: var(--paper-tint);
+    box-shadow: 0 2px 12px rgba(26, 25, 23, 0.07);
+}
+.repo-link:focus-visible { outline: 2px solid var(--ink-muted); outline-offset: 3px; }
+.repo-link__mark {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    color: var(--ink);
+    transition: transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.repo-link:hover .repo-link__mark { transform: rotate(-7deg) scale(1.06); }
+.repo-link__body { display: flex; flex-direction: column; gap: 1px; min-width: 0; line-height: var(--leading-tight); }
+.repo-link__label {
+    font-family: var(--font-caption);
+    font-size: var(--text-xs);
+    font-variant-caps: small-caps;
+    font-feature-settings: "smcp" 1, "kern" 1, "cpsp" 1;
+    letter-spacing: var(--kern-wide);
+    color: var(--ink-faint);
+    transition: color 200ms ease;
+}
+.repo-link:hover .repo-link__label { color: var(--ink-subtle); }
+.repo-link__url {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    letter-spacing: var(--kern-snug);
+    color: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.repo-link__arrow {
+    flex: none;
+    margin-left: var(--space-1);
+    color: var(--ink-ghost);
+    transition: transform 200ms ease, color 200ms ease;
+}
+.repo-link:hover .repo-link__arrow { transform: translateX(3px); color: var(--ink-faint); }
+@media (max-width: 400px) { .repo-link__arrow { display: none; } }
+/* TOC from pandoc */
+nav#TOC {
+    margin: 0 0 var(--space-8);
+    padding: var(--space-4) 0 var(--space-4) var(--space-4);
+    border-top: 1px solid var(--ink-hint);
+    border-bottom: 1px solid var(--ink-hint);
+}
+nav#TOC ul { list-style: none; padding: 0; }
+nav#TOC li { margin: 0.35rem 0; }
+nav#TOC a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-hint);
+    transition: border-color 0.2s;
+    font-size: var(--text-sm);
+}
+nav#TOC a:hover { border-color: var(--ink-muted); }
+.article-body { font-variant-ligatures: common-ligatures discretionary-ligatures contextual; }
+.article-body p {
+    margin-bottom: var(--space-3);
+    max-width: var(--measure);
+    line-height: var(--leading-loose);
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 2;
+    hyphenate-limit-lines: 2;
+}
+.article-body h1, .article-body .level1 > h2:first-child {
+    font-family: var(--font-subhead);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: var(--kern-tight);
+    line-height: var(--leading-tight);
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-3);
+    margin-left: var(--optical-margin);
+}
+.article-body h2 {
+    font-family: var(--font-subhead);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    letter-spacing: var(--kern-snug);
+    line-height: var(--leading-snug);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+    margin-left: var(--optical-margin);
+}
+.article-body h3 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-2);
+}
+.article-body a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--ink-whisper);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+    text-decoration-skip-ink: auto;
+    transition: text-decoration-color 180ms ease;
+}
+.article-body a:hover { text-decoration-color: var(--ink-muted); }
+.article-body blockquote {
+    margin: var(--space-5) 0;
+    padding-left: var(--space-3);
+    border-left: 2px solid var(--ink-hint);
+    font-style: italic;
+    color: var(--ink-muted);
+}
+.article-body hr {
+    border: none;
+    height: 1px;
+    background: var(--ink-hint);
+    margin: var(--space-8) 0;
+    max-width: 4rem;
+}
+.article-body code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    background: var(--paper-tint);
+    padding: 0.12em 0.35em;
+}
+.article-body pre {
+    background: #0d0d0c;
+    color: #c8c5b8;
+    padding: var(--space-3) var(--space-4);
+    margin: var(--space-4) 0;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.6;
+}
+.article-body pre code { background: none; padding: 0; color: inherit; }
+.article-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-4) 0;
+    font-size: var(--text-sm);
+}
+.article-body th {
+    text-align: left;
+    font-weight: 600;
+    font-variant-caps: small-caps;
+    letter-spacing: var(--kern-loose);
+    padding: var(--space-1) var(--space-2);
+    border-bottom: 2px solid var(--ink-hint);
+}
+.article-body td {
+    padding: var(--space-1) var(--space-2);
+    border-bottom: 1px solid var(--ink-hint);
+    vertical-align: top;
+}
+.article-footer {
+    margin-top: var(--space-10);
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-5);
+    border-top: 1px solid var(--ink-hint);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.author-byline {
+    font-family: var(--font-caption);
+    font-size: var(--text-sm);
+    font-style: italic;
+    color: var(--ink-muted);
+}
+.author-byline strong { font-style: normal; font-weight: 600; }
+.footer-nav a {
+    font-family: var(--font-caption);
+    font-size: var(--text-sm);
+    font-variant-caps: small-caps;
+    font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+    letter-spacing: var(--kern-wide);
+    color: var(--ink-faint);
+    text-decoration: none;
+    transition: color 180ms ease;
+}
+.footer-nav a:hover { color: var(--ink); }
+.contact-footer {
+    margin-top: var(--space-10);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--ink-hint);
+    font-family: var(--font-caption);
+    font-size: var(--text-sm);
+    color: var(--ink-faint);
+}
+::selection { background: var(--ink); color: var(--paper); }
+a:focus-visible { outline: 2px solid var(--ink-muted); outline-offset: 3px; border-radius: 2px; }
+@media (max-width: 680px) {
+    :root { --text-base: clamp(17px, 1rem + 0.2vw, 19px); }
+    .container { padding: var(--space-6) var(--gutter) var(--space-5); }
+    .article-title { font-size: var(--text-xl); }
+    .article-body h1, .article-body .level1 > h2:first-child { font-size: var(--text-lg); }
+    .article-body h2 { font-size: calc(var(--text-base) * 1.1); }
+    .article-footer { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+}
+@media (max-width: 400px) {
+    :root { --text-base: 16px; }
+    .container { padding: var(--space-5) var(--space-2) var(--space-4); }
+}
+@media (min-width: 1200px) { .container { padding-top: var(--space-13); } }
+@media print {
+    :root { --ink: #000; --paper: #fff; }
+    body { font-size: 11pt; line-height: 1.4; }
+    .container { max-width: 100%; padding: 0; }
+    .back-nav, .contact-footer { display: none; }
+    nav#TOC { display: none; }
+    a { text-decoration: none !important; color: var(--ink) !important; }
+    .article-body h1, .article-body h2 { page-break-after: avoid; }
+    p { orphans: 3; widows: 3; }
+}
+@supports (padding: max(0px)) {
+    .container {
+        padding-left: max(var(--gutter), env(safe-area-inset-left));
+        padding-right: max(var(--gutter), env(safe-area-inset-right));
+    }
+}
+
+/* Wiring in a mathematics renderer made display equations set on one unwrappable
+   line, so a long equation pushed the page wider than the viewport and readers on
+   ordinary laptops lost the right-hand side. Let each equation scroll inside its own
+   box instead of widening the page. Wide tables get the same treatment. */
+.katex-display { overflow-x: auto; overflow-y: hidden; padding-top: 0.2em; padding-bottom: 0.2em; }
+.katex-display::-webkit-scrollbar { height: 6px; }
+table { display: block; overflow-x: auto; max-width: 100%; }
+@media (max-width: 600px) {
+  .paper-nav-title { display: none; }
+}
+</style>
+<link rel="stylesheet" href="/paper.css">
+</head>
+<body>
+<div class="container">
+    <nav class="back-nav">
+        <a href="/">← Research</a>
+    </nav>
+    <article>
+        <header class="article-header">
+            <h1 class="article-title">One Entity in Many Jurisdictions</h1>
+            <p class="article-meta">September 2026 · Raeez Lorgat </p>
+                    </header>
+
+        
+        <div class="article-body">
+        <section id="one-entity-in-many-jurisdictions" class="level1">
+        <h1>One Entity in Many Jurisdictions</h1>
+        <p><strong>Abstract.</strong> When one legal person operates in several jurisdictions, which parts of an earlier evaluation can another authority reuse? A common record must distinguish the person’s identity, its rights, and permission for the particular act. We construct operation-specific recognition records that carry attributable evidence while preserving each authority’s reserved decisions. For requirements that apply to the same act, the composed grade combines authoritative judgments without weakening their restrictions. Separate records preserve specified entitlements through corporate actions and distinguish earned claims from funded payments and permission for later work. The resulting holding decisions determine lawful holder classes. Under explicit monotonicity assumptions, improved grades weakly raise comparable numeric prices, while additional instrument-wide restrictions weakly lower them. A funded second-price auction satisfies these assumptions and gives an exact comparison when the bidder population changes. Applicability disagreements retain their sources instead of receiving numeric prices. A synthetic workload shows how recognition can reduce repeated collection while retaining local decisions. Legal effectiveness and operating savings require authority instruments and measured workloads.</p>
+        <p><em>Author note.</em> The author has a commercial interest in systems of the kind this paper describes.</p>
+        <hr />
+        <section id="1-the-problem" class="level3">
+        <h3>1. What can another jurisdiction reuse?</h3>
+        <p>A company may remain one legal person while operating through registrations in several jurisdictions. Applicable law determines which acts require an authority’s decision. An identity investigation completed for one registration may answer a question elsewhere, while the receiving authority retains any sanctions or activity decision reserved to it. The problem is to reuse the investigation without changing who decides, what they decide, or which act their decision permits.</p>
+        <p>Consider the synthetic case developed at the end of this paper. Three jurisdictions require four common evidence questions and two local questions each. Independent collection answers eighteen questions. If each authority recognizes the common observations, one collection answers the four common questions and the authorities answer their six local questions. The total is ten. The saving comes from recognition of particular evidence under current rules. A reserved refusal remains effective, and an unanswered local question still prevents an act that requires its answer.</p>
+        <p>Even complete identity evidence leaves several different questions. The same person can hold shares, owe money, and operate a service. Another person can hold a contractual right to some of the share proceeds, while a creditor has priority over those proceeds. Permission to hold the shares need not permit a public offer, a pledge, or a payment from a particular account. The record must therefore identify both the legal person and the right and action being considered. Section 2 develops these distinctions through a shareholding, software delivery, and separate funding pools.</p>
+        <p>Existing law already distinguishes one person with foreign establishments from a group of separate persons. UK guidance distinguishes an overseas company’s branch from its separately incorporated subsidiary [<a href="#ref-ukbranches2026" style="overflow-wrap:anywhere;hyphens:none">27</a>]. Foreign registration, tax identification, banking access, and regulated permissions present separate questions under applicable law and provider requirements. Recognition of an earlier evaluation depends on the receiving authority’s law or an applicable instrument. A common record organizes the evidence and decisions within those relationships.</p>
+        <p>Continuation raises a related question about identity. Eligible entities can continue under another jurisdiction’s company law while preserving legal personality, subject to the applicable statutory conditions.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Preserving the person leaves a further question: which earlier evaluations have effect after the move? Applicable law and recognition instruments determine that effect. For example, the Cayman continuation provisions separately require any activity licence needed for the applicant’s business. Continuity and permission therefore remain distinct questions even within one statutory procedure.</p>
+        <p>The construction draws on three established practices. Mutual-recognition instruments specify when an outside evaluation has local effect. Catala and L4 represent legislative and regulatory rules as executable programs [<a href="#ref-merigoux2021" style="overflow-wrap:anywhere;hyphens:none">18</a>, <a href="#ref-wong2022l4" style="overflow-wrap:anywhere;hyphens:none">25</a>]. Content-addressed attestations bind an evaluation to an identity, authority, rule version, and time. Here, <em>content-addressed</em> means that a digest identifies the exact recorded content. These parts support a record of which evidence can answer which question for a specified act.</p>
+        <p>Jurisdictional competition supplies the wider economic setting. Tiebout studied it in 1956. Romano analyzed corporate law as a market, and O'Hara, Ribstein, and Bruner developed related accounts of legal choice [<a href="#ref-tiebout1956" style="overflow-wrap:anywhere;hyphens:none">24</a>, <a href="#ref-romano1985" style="overflow-wrap:anywhere;hyphens:none">23</a>, <a href="#ref-ohara2009" style="overflow-wrap:anywhere;hyphens:none">21</a>, <a href="#ref-bruner2016" style="overflow-wrap:anywhere;hyphens:none">5</a>]. The question here is what those choices imply for one person’s evaluated standing and an instrument’s lawful holders. The central economic result separates improved standing from added restrictions. Its price implications depend on a declared market mechanism and fixed buyer inputs.</p>
+        <p>Faster evidence exchange affects only part of an institutional process. Compliance review, dispute handling, service availability, beneficiary credit, and settlement finality can still determine its duration. Du, Huang, and Scharfstein distinguish those steps from payment-message speed [<a href="#ref-du2026competing" style="overflow-wrap:anywhere;hyphens:none">8</a>]. The construction specifies reusable work and retained decisions. End-to-end time and cost remain measured outcomes.</p>
+        </section>
+        <section id="2-the-object" class="level3">
+        <h3>2. Persons, rights, and permitted actions</h3>
+        <p>An evaluation needs a stable subject before another authority can reuse it. The first record identifies the person and its local legal relationship. Rights and action records then specify what that person holds and what it proposes to do. A local registration is called a <em>harbor</em> below. The term names this relationship and carries no separate grant of authority.</p>
+        <p><strong>Definition 1 (Harbor).</strong> A <em>harbor</em> is a jurisdiction-specific legal relationship of an identified entity. Its record names the home-law person, registration type, local identifier, competent authority, and active operation classes. The <em>harbor set</em> contains the jurisdictions with active records. Several registrations can belong to one person.</p>
+        <p>The registration, the tax position, and the permission to perform an operation are separate facts. Each has its own authority and effective period.</p>
+        <p><strong>Definition 2 (Multi-harbored entity).</strong> Fix one legal person <span class="math inline">E</span>, identified by its home law and registry identifier. A multi-harbored entity has a nonempty set <span class="math inline">H(E)</span> of active harbor records tied to that person. Each record binds a governance and beneficial-ownership history, local evaluations in their declared action contexts, and the instruments giving recognized evidence its local effect. A <em>compliance passport</em> carries attributable evaluations and their identity, rule, time, and dependency bindings.</p>
+        <p>We index the relevant jurisdiction-specific records by their jurisdictions. Where one jurisdiction requires several records, its local evaluation uses those records before the cross-jurisdiction comparison. Thus a jurisdiction label in <span class="math inline">H(E)</span> refers to the identified person’s active local relationship. The beneficial-ownership history identifies the persons who ultimately own or control the entity. Dependency bindings identify earlier records on which an evaluation relies.</p>
+        <p>A branch registration can already preserve one legal person across borders. UK government guidance distinguishes an overseas company’s branch from its separately incorporated subsidiary  [<a href="#ref-ukbranches2026" style="overflow-wrap:anywhere;hyphens:none">27</a>]. The construction adds a common evaluation and execution contract to such legal relationships. Its contribution is reusable, versioned recognition under each receiving authority’s rules.</p>
+        <p><strong>Table 1. Legal personality and local registration.</strong></p>
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align: left;">Arrangement</th>
+        <th style="text-align: left;">Legal personality</th>
+        <th style="text-align: left;">Local registration</th>
+        <th style="text-align: left;">Liability</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align: left;">UK branch of an overseas company</td>
+        <td style="text-align: left;">Same overseas person</td>
+        <td style="text-align: left;">UK establishment record</td>
+        <td style="text-align: left;">Overseas company bears branch obligations</td>
+        </tr>
+        <tr>
+        <td style="text-align: left;">UK subsidiary</td>
+        <td style="text-align: left;">Separate UK person</td>
+        <td style="text-align: left;">Separate incorporation</td>
+        <td style="text-align: left;">Subsidiary obligations, subject to applicable guarantees and law</td>
+        </tr>
+        <tr>
+        <td style="text-align: left;">Multi-harbored construction</td>
+        <td style="text-align: left;">One identified person</td>
+        <td style="text-align: left;">Each applicable local record</td>
+        <td style="text-align: left;">Follows the governing law and instruments</td>
+        </tr>
+        </tbody>
+        </table>
+        <p>The UK rows illustrate that distinction. They do not determine another jurisdiction’s law. For every row, tax presence and regulated permissions require their own records. A passport supplies evidence according to its recognition contract. The relevant authority grants the operation’s legal effect.</p>
+        <p><strong>Operation-specific recognition.</strong> For each pair <span class="math inline">(J,a)</span> of jurisdiction and operation class, the record contains the following fields.</p>
+        <p><strong>Table 2. What a recognition record must identify.</strong></p>
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align: left;">Field</th>
+        <th style="text-align: left;">Required content</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align: left;">Identity</td>
+        <td style="text-align: left;">Home-law person, local identifier, and continuity instrument</td>
+        </tr>
+        <tr>
+        <td style="text-align: left;">Authority</td>
+        <td style="text-align: left;">Competent issuer, legal basis, instrument identifier, and validity period</td>
+        </tr>
+        <tr>
+        <td style="text-align: left;">Scope</td>
+        <td style="text-align: left;">Recognized assertions, affected subjects, permitted uses, and local reserved questions</td>
+        </tr>
+        <tr>
+        <td style="text-align: left;">Current use</td>
+        <td style="text-align: left;">Applicable rule version, effective time, evidence availability, and freshness policy</td>
+        </tr>
+        <tr>
+        <td style="text-align: left;">Change</td>
+        <td style="text-align: left;">Amendment, revocation, succession, pending obligations, and termination procedure</td>
+        </tr>
+        </tbody>
+        </table>
+        <p>In Table 2, <em>scope</em> means the assertions and uses covered by the instrument. A freshness policy determines how current the evidence must be. These fields let the receiver distinguish an available historical record from one it may use for today’s action.</p>
+        <p>An authenticated instrument establishes the recognized scope. Its signature must come from the competent authority or a valid delegate. Registration alone supplies no omitted scope. The local evaluator returns <span class="math inline">\mathrm{Allow}</span> with its evidence, <span class="math inline">\mathrm{Await}(q)</span> for a specified missing premise, or <span class="math inline">\mathrm{Refuse}(r)</span> for a controlling prohibition. A completed foreign investigation can discharge an admitted evidence question while a reserved local decision remains necessary. This permits useful recognition without transferring the receiving authority’s power.</p>
+        <p>A continuation or domestication changes the identity history under its governing law. A subsidiary introduces another person. Each transition records those consequences before any harbor record is reused. Local counsel and the competent authority must establish the matrix for a concrete deployment. The construction below uses the operation classes admitted by that matrix.</p>
+        <section id="sec:rights-persons" class="level4">
+        <h4>Rights, persons, and the action being considered</h4>
+        <p>The same person can act in several jurisdictions without owning every asset used by those operations. A registered shareholder can retain title while another party holds a right to specified proceeds. A creditor can hold security without owning the residual interest. These relationships survive recognition only if the transported record distinguishes them.</p>
+        <p>The <em>constituting act</em> is the instrument or authoritative event that creates the right. A subject lot identifies the covered shares or other assets. These identifiers let the record preserve a proceeds right without mistaking it for title to the underlying assets.</p>
+        <p>A <em>right record</em> names its constituting act, right identifier, current holder or beneficiary, subject lot, quantity basis, priority, and effective interval. Its kind distinguishes registered holding, economic participation, voting, security, and proceeds. Each kind has its own exercise and transfer conditions. A legal-person identifier supplies the subject of these relations. It supplies neither a right nor an operation’s authority by itself.</p>
+        <p>The constituting act fixes the interpretation and the covered assets. An assignment can change the current beneficiary under a distinct authorised transition while retaining that lineage. A change of program representation preserves the current right. The companion paper <em>Admissible Obligation Transitions</em> defines when a change of program retains existing duties and rights. Here that continuity is a condition of reusing the record.</p>
+        <p><strong>Example (Title, participation, and security).</strong> Person <span class="math inline">R</span> holds 100 identified shares and their votes. A separate instrument gives <span class="math inline">B</span> a <span class="math inline">40\%</span> participation in the residual sale proceeds of that lot. A security interest gives <span class="math inline">C</span> priority up to 10 currency units. For received proceeds <span class="math inline">z\geq0</span>, let <span class="math display">\ell(z)=\min\{10,z\},\qquad b(z)=\tfrac25\bigl(z-\ell(z)\bigr),\qquad r(z)=\tfrac35\bigl(z-\ell(z)\bigr).</span> These three amounts sum to <span class="math inline">z</span>. At <span class="math inline">z=100</span>, they are <span class="math inline">10,36,54</span>. The registered share quantity and voting rights remain with <span class="math inline">R</span> until their own effective transfer. The proceeds right gives <span class="math inline">B</span> neither those votes nor permission to spend <span class="math inline">R</span>’s account. The priority and participation clauses in this example are assumed terms. Different terms define a different function.</p>
+        <p>The proceeds calculation answers how much each person receives under the assumed terms. Permission to hold, sell, pledge, or pay requires a separate record for the proposed act. A <em>rule root</em> is a content identifier for the exact governing rule set. Binding that identifier prevents a decision under one rule version from being silently reused under another.</p>
+        <p><strong>Definition (Scoped action).</strong> An action context <span class="math inline">q</span> binds the legal person, instrument or right, operation and its exact parameters, participating persons and their roles, destination, purpose, time, and current rule roots. Payment parameters include the amount, asset, and receiving account. Its authoritative scope record identifies every applicable requirement, including requirements whose reach extends beyond the destination. A missing scope determination remains an unresolved question. Choosing a smaller harbor set cannot remove a requirement already attached to <span class="math inline">q</span>.</p>
+        <p>Each required authority evaluates that exact context. An accepted imported observation can answer its evidence question. A reserved decision remains with its owning authority. Admission requires complete scope, current action authority, and satisfaction of every required decision and resource condition. A decision for holding a security therefore need not decide its offer, pledge, transfer, or distribution of proceeds.</p>
+        <p><strong>Proposition (Reuse without widening the permitted act).</strong> Fix <span class="math inline">q</span>, its complete requirement set, and its current local decisions. Suppose a recognised observation satisfies a required evidence predicate under its bound recognition rule. Substituting that observation for a new collection preserves the remaining requirements and their decisions. It can complete an otherwise satisfied action. It cannot discharge a refusal or an unanswered requirement that the recognition rule does not cover.</p>
+        <p><em>Proof.</em> The substitution changes only the evidence premise named by the recognition rule. All other premises retain their values. Their conjunction therefore becomes satisfied exactly when that evidence premise was the final unsatisfied premise. A retained refusal remains false, and an unanswered required premise remains unresolved. <span class="math inline">\square</span></p>
+        <p>For example, two destinations can recognise the same current identity observation for a holder. Both can admit holding, while one refuses a public offer under its distribution rule. The successful holding decisions and the refused offer coexist. This gives useful reuse without an entity-wide permission that confuses the three actions.</p>
+        </section>
+        <section id="sec:action-stages" class="level4">
+        <h4>Delivery stages and the acts they permit</h4>
+        <p>An organization can earn a software delivery fee while preparing a regulated service. That work can precede a bank acquisition. Custody, lending, and passenger transport still require their own permissions. A single readiness flag or increasing stage number cannot identify which act is presently permitted, because different acts depend on different facts.</p>
+        <p>A <em>delivery stage</em> names a contract-defined collection of contemplated acts. It carries a current rule profile rather than a rank that creates rights. The action context already identifies the performer, recipient, contract, purpose, jurisdiction, and exact parameters. Each profile binds that context to its technical questions, work conditions, authority questions, and resource conditions. The estate-specific funding requirements below remain in this profile whenever the act uses those resources. The authoritative scope determination identifies every applicable question. A complete profile can specify an empty class of questions when its governing rules require none. An absent profile leaves scope unresolved.</p>
+        <p>We can now state exactly what a stage permits. For a finite collection <span class="math inline">Q</span> of contemplated actions, let <span class="math inline">K_t(q)</span> contain the required questions for <span class="math inline">q</span> at time <span class="math inline">t</span>. Its distinguished scope question asks whether the profile is current and complete. Every answer belongs to <span class="math display">\{\mathsf{allow},\mathsf{await},\mathsf{refuse}\}.</span> These values record satisfied premises, unresolved premises, and controlling prohibitions. Technical readiness, contractual work conditions, legal permission, and required resources occupy separate questions. Define <span class="math display">\mathcal A_t=\{q\in Q: \text{every question in }K_t(q)\text{ has answer }\mathsf{allow}\}.</span> Thus <span class="math inline">\mathcal A_t</span> lists the acts presently admitted at time <span class="math inline">t</span>. A refusal determines the decision whenever a known current requirement refuses. The record also retains its unanswered questions. Otherwise an unanswered question determines <span class="math inline">\mathsf{await}</span>. Missing scope therefore never becomes permission through an empty conjunction.</p>
+        <p><strong>Proposition (Action-complete admission).</strong> Fix the current profiles and answers. Then <span class="math inline">\mathcal A_t</span> is the greatest subset of <span class="math inline">Q</span> whose actions satisfy every required question. Changing facts outside <span class="math inline">K_t(q)</span>, while retaining its scope and answers, leaves the decision for <span class="math inline">q</span> unchanged. A new stage label alone implies no inclusion between the old and new admissible sets.</p>
+        <p><em>Proof.</em> Every member of <span class="math inline">\mathcal A_t</span> satisfies the defining conjunction. Any set whose members satisfy those same conjunctions is a subset of <span class="math inline">\mathcal A_t</span>. The decision for <span class="math inline">q</span> depends only on its profile and answers, which proves the second statement. For the last statement, consider two actions with independent permission questions. Either question can become satisfied while the other becomes refused. The two admissible sets can therefore be incomparable. <span class="math inline">\square</span></p>
+        <p>This characterization retains every presently admissible act. It gives the same standing to a software delivery whether an unrelated bank acquisition is pending or complete. An acquisition becomes relevant when the competent rule makes it a requirement for the particular act. Even then, acquisition can satisfy that question while a custody or lending permission remains unresolved.</p>
+        <p><strong>Execution uses the current decision.</strong> An admission binds an exact command, action context, effective time, and rule roots. Starting a new command requires the current profile revision. The decision and recorded start share one serialized transition: the system checks the decision and records the start as one indivisible update, ordered against competing updates. A revision change between planning and starting requires a fresh decision. A repeated command identifier returns its existing start record when the action matches. It creates no additional start. Changing the action under that identifier fails its binding.</p>
+        <p>An external operation follows its own execution and continuation requirements. A recorded start describes the admitted start. Subsequent performance, authority changes, and partial effects retain their actual times and outcomes. The companion papers <em>Programmable Institutions</em> and <em>Op</em> describe how an operation waits for evidence and resumes from its recorded effects. Their continuation rules determine which later acts require fresh admission. Retrieval of an old start supplies its history, while any further act requires its own current decision.</p>
+        <p><strong>Earning has its own conditions.</strong> A milestone <span class="math inline">m</span> fixes the contract, action context, fee <span class="math inline">f_m&gt;0</span>, currency, permitted performance interval, and acceptance deadline. It also specifies competent performance sources and acceptors. A performance record binds one occurrence to its command, milestone, action, source, effective time, and contractual conformity. An acceptance binds that occurrence, milestone, action, competent acceptor, and effective time. Authentication and competence at the relevant effective times are premises. Conformity includes the governing requirements for the actual performance.</p>
+        <p>The following predicates separate performance from acceptance. Let <span class="math inline">P_m</span> mean that a matching conforming performance falls within the contract’s interval. Let <span class="math inline">H_m</span> mean that a competent acceptance follows that performance and meets its deadline. The earned claim is <span class="math display">e_m=f_m\,\mathbf1\{P_m\land H_m\}.</span> Here <span class="math inline">\mathbf1</span> equals one when both predicates hold and zero otherwise. The record inserts this claim once under the milestone’s identity. Additional attestations about the same milestone preserve the amount. The accepted performance and its contractual basis remain attached to it.</p>
+        <p>For each earned milestone, let <span class="math inline">c_m</span> be the sum of allocated, observed recipient credits in its currency. Each credit names its physical occurrence, payer, payee, amount, and milestone. Allocation requires the contract’s exact parties and <span class="math inline">0&lt;a\leq e_m-c_m</span>. The same physical credit has one allocation record in this finite model. A conflicting reuse of its identity fails. An invoice records the earned claim. Its outstanding amount is <span class="math inline">o_m=e_m-c_m</span>.</p>
+        <p><strong>Proposition (Stage changes preserve earned claims).</strong> For the stated earning and credit transitions, <span class="math display">0\leq c_m\leq e_m,\qquad o_m+c_m=e_m.</span> A profile change, repeated start, repeated acceptance, or repeated credit creates no additional earned amount or collected amount. An admitted new act and an earned claim for earlier work can therefore have different statuses.</p>
+        <p><em>Proof.</em> Initially all three amounts vanish. The first qualified acceptance sets <span class="math inline">e_m=o_m=f_m</span> and leaves <span class="math inline">c_m=0</span>. Later acceptances retain these values. A new credit of <span class="math inline">a\leq o_m</span> increases <span class="math inline">c_m</span> and decreases <span class="math inline">o_m</span> by <span class="math inline">a</span>. Repeated records change neither quantity. Profile changes and starts change neither the earning record nor its credits. Induction proves the identity and inequalities. <span class="math inline">\square</span></p>
+        <p>The proposition concerns the stated transitions. A cancellation, return, assignment, or authoritative correction requires its own effective transition and lineage. A profile change alone supplies none of those legal events. <em>Admissible Obligation Transitions</em> defines how that duty remains attached to its history. <em>Op</em> records the physical payment and its reversals.</p>
+        <p><strong>Example (Work before acquisition).</strong> Consider assumed contract terms for a software integration fee of 100 currency units. The permitted performance interval ends at time 10. The acceptance deadline is time 20. Its technical, work, and local authority questions are satisfied at time 5, when delivery starts. Conforming performance occurs at time 8. Acceptance at time 12 earns 100. A recipient credit of 30 leaves an outstanding claim of 70. The bank acquisition and the custody, lending, and passenger permissions can all remain unresolved throughout this sequence.</p>
+        <p>If new software work becomes refused at time 11, the completed work retains its contractual earning conditions. The stated terms permit its acceptance at time 12. A performance at time 11 falls outside the permitted performance interval and remains recorded without this earned claim. Changing the recipient, contract, currency, or milestone cannot reuse the earlier performance or credit. Each regulated act becomes admissible when its own complete questions are satisfied. These are assumed example terms. A concrete institution supplies the effective contracts, competent authorities, and evidence that instantiate them.</p>
+        </section>
+        <section id="sec:rights-transform" class="level4">
+        <h4>Corporate actions preserve specified rights</h4>
+        <p>A split changes the units in which a holding is counted. A merger can replace one position by securities and cash. The governing instrument determines which rights follow those outputs. Conservation of a specified entitlement is a condition on that transformation, distinct from conservation of market value.</p>
+        <p>In the next one-coordinate calculation, <span class="math inline">P</span> multiplies the share quantity and <span class="math inline">G</span> converts successor shares into units of the retained entitlement.</p>
+        <p><strong>Example (A split with retained participation).</strong> In fixed old-share units, a right represents <span class="math inline">\tfrac25 x</span> on <span class="math inline">x</span> covered shares. A two-for-one split gives <span class="math inline">P=[2]</span>. The successor coefficient is <span class="math inline">G=[\tfrac15]</span>, since <span class="math inline">(\tfrac15)2=\tfrac25</span>. For <span class="math inline">x=100</span>, both views return 40 old-share units. Keeping coefficient <span class="math inline">\tfrac25</span> on the 200 replacement units returns 80 and fails the identity. The contractual participation remains <span class="math inline">40\%</span>. The coefficient changes because the successor share is half an old-share unit.</p>
+        <p>The split illustrates the general test: compute each selected entitlement before the action, then compute it from the successor positions. The two computations must agree on every admitted position. The next paragraph uses local linear-algebra notation. Its position set <span class="math inline">X</span> and action matrices are separate from the action contexts and stages above.</p>
+        <p>Fix a nonempty admitted set <span class="math inline">X\subseteq\mathbb Q_{\geq0}^{n}</span> of position vectors and let <span class="math inline">V=\operatorname{span}_{\mathbb Q}X</span>. Thus a position has <span class="math inline">n</span> nonnegative rational quantities. Its rational span contains all finite rational linear combinations of admitted positions. Every coordinate has a named lot and unit. A quantitative view of the rights is a rational matrix <span class="math inline">F</span>, so <span class="math inline">Fx</span> records the selected entitlements. Each row fixes its right identifier, kind, beneficiary, governing act, and output unit. Rows can record share-equivalent quantities, specified voting weights, or currency claims. They are compared separately; unlike units are never added. If there are <span class="math inline">k</span> selected entitlements, <span class="math inline">F</span> has <span class="math inline">k</span> rows and <span class="math inline">n</span> columns. Multiplication by <span class="math inline">F</span> computes those entitlements from a position.</p>
+        <p>Let a permitted corporate action send <span class="math inline">x</span> to <span class="math inline">Px</span>, with <span class="math inline">P(X)\subseteq Y\subseteq\mathbb Q_{\geq0}^{m}</span>. The successor view <span class="math inline">G</span> has exactly the same named rows. Its columns use the successor lots and units. The matrix <span class="math inline">P</span> has <span class="math inline">m</span> rows and <span class="math inline">n</span> columns, while <span class="math inline">G</span> has <span class="math inline">k</span> rows and <span class="math inline">m</span> columns. Thus <span class="math inline">GP</span> and <span class="math inline">F</span> compute the same named outputs from the same old positions. The legal conditions authorising the action and its rights interpretation are premises. The matrices describe their quantity effects.</p>
+        <p><strong>Theorem (Preservation of quantitative rights).</strong> The action preserves every selected entitlement on <span class="math inline">X</span> if and only if <span class="math display">(GP-F)v=0\qquad\text{for every }v\in V.</span> If <span class="math inline">X=\mathbb Q_{\geq0}^{n}</span>, this condition is <span class="math inline">GP=F</span>. If a second action <span class="math inline">Q</span> has successor view <span class="math inline">H</span> and satisfies <span class="math inline">(HQ-G)w=0</span> for every <span class="math inline">w\in P(V)</span>, then <span class="math display">HQPx=Fx\qquad(x\in X).</span></p>
+        <p><em>Proof.</em> Preservation says <span class="math inline">(GP-F)x=0</span> for every <span class="math inline">x\in X</span>. A linear map vanishes on <span class="math inline">X</span> exactly when it vanishes on its rational span. For the full nonnegative orthant, the standard basis vectors belong to <span class="math inline">X</span>, so the map is zero. For composition, <span class="math inline">Px\in P(V)</span>. Therefore <span class="math inline">HQPx=GPx=Fx</span>. <span class="math inline">\square</span></p>
+        <p>This criterion is a finite linear-algebra calculation once a spanning family is supplied. The spanning family must describe the admitted position domain. Agreement on selected examples alone does not establish that coverage. A beneficiary, right kind, or unit change is an economic transition and cannot pass this test by relabeling an unchanged numeric row.</p>
+        <p><strong>Example (A merger with a cash component).</strong> Suppose each covered old share becomes two replacement shares and three currency units. Then <span class="math inline">P=(2,3)^\top</span>. Under terms granting <span class="math inline">B</span> a <span class="math inline">40\%</span> participation in both outputs, the action’s two selected rights are measured in replacement shares and currency from the outset. Per old share, <span class="math inline">F</span> therefore records <span class="math inline">40\%</span> of two replacement shares and <span class="math inline">40\%</span> of three currency units:</p>
+        <p><span class="math display">F=\begin{pmatrix}\tfrac45\\[2pt]\tfrac65\end{pmatrix}, \qquad G=\begin{pmatrix}\tfrac25&amp;0\\[2pt]0&amp;\tfrac25\end{pmatrix}, \qquad GP=F.</span> The first row has replacement-share units and the second currency units. At <span class="math inline">x=100</span>, the economic participation is measured by 80 replacement-share units and 120 currency units. Registered title can remain with <span class="math inline">R</span> while <span class="math inline">B</span>’s separate economic right follows those outputs. The equation preserves the instrument’s entitlement to these outputs. It asserts no exchange rate between them and no unchanged enterprise value. An instruction to pay 120 still requires actual funding and performance.</p>
+        <p>An independent issuance adds new positions alongside those produced by the corporate action. Let <span class="math inline">z</span> describe its quantities and let <span class="math inline">B</span> map them to the successor position coordinates. In this corollary, <span class="math inline">B</span> denotes a matrix, separately from the beneficiary named <span class="math inline">B</span> in the preceding example. The test below asks whether those added positions affect any of the inherited rights selected by <span class="math inline">G</span>.</p>
+        <p><strong>Corollary (An independent issue).</strong> Suppose the old-right identity holds on <span class="math inline">V</span>. An independent issue adds <span class="math inline">Bz</span>, where the admitted issue set <span class="math inline">Z</span> contains zero and varies independently of <span class="math inline">x\in X</span>. The inherited right remains unchanged for every <span class="math inline">y=Px+Bz</span> exactly when <span class="math display">GBw=0\qquad\bigl(w\in\operatorname{span}_{\mathbb Q}Z\bigr).</span> All admitted output vectors must lie in the successor domain.</p>
+        <p><em>Proof.</em> The difference from the old right is <span class="math inline">(GP-F)x+GBz=GBz</span>. This vanishes on <span class="math inline">Z</span> exactly when it vanishes on its span. <span class="math inline">\square</span></p>
+        <p>After the split, keep covered replacement shares in one coordinate and an unrelated issue in another. With <span class="math inline">G=(\tfrac15,0)</span>, the issue creates no additional participation in the old lot. A right covering future issues has another constituting scope and an explicit issued-rights term. If an issuance changes a denominator, priority, or exercise condition, its state-dependent right must be evaluated as such. A fixed matrix represents only its stated linear fragment. The proceeds example above has a piecewise-linear priority rule, whose two branches conserve the received amount separately.</p>
+        </section>
+        <section id="sec:estate-funding" class="level4">
+        <h4>Estate-specific funding</h4>
+        <p>Rights to proceeds and permission to pay are separate from cash available to perform the payment. A <em>legal estate</em> is the body of assets and obligations to which a resource belongs under the governing arrangements. Each resource pool names its estate, account or allocated part of assets held in custody, asset, and unit. The account identifier is canonical when every alias resolves to that same underlying account. Its use predicate binds the operation and beneficiary. Aliases resolve to the same underlying resource. If an account serves several estates, their supported slices are disjoint. An alternative purpose label supplies no additional cash.</p>
+        <p>Senior encumbrances are prior claims that already commit the pool’s assets. Pending reservations commit cash to admitted commands whose performance is still possible. For pool <span class="math inline">b</span>, let <span class="math inline">c_b</span> be actual recorded cash, <span class="math inline">e_b\geq0</span> its senior encumbrances, and <span class="math inline">r_b\geq0</span> its pending reservations. Define <span class="math display">f_b=(c_b-e_b-r_b)_+,\qquad s_b=(e_b+r_b-c_b)_+.</span> The positive part <span class="math inline">(x)_+</span> means <span class="math inline">\max\{x,0\}</span>. Thus <span class="math inline">f_b</span> is the uncommitted cash, and <span class="math inline">s_b</span> records any shortfall against existing commitments. A reservation of <span class="math inline">a\geq0</span> requires <span class="math inline">a\leq f_b</span>, the pool’s use predicate, and current authority for that exact action. The test and update form one serialised transaction over the canonical resource, so concurrent commands cannot each reserve the same available cash. Consuming a reserved payment decreases cash and its reservation by the same amount. A reservation is released only when its command cannot still perform that amount. A release is <em>conclusively fenced</em> when this inability to perform is established, rather than inferred from a timeout or missing reply.</p>
+        <p><strong>Proposition (Funding remains estate-specific).</strong> Suppose each pool initially covers its senior encumbrances and reservations. Reservation, consumption of reserved payments, and conclusively fenced release preserve that coverage under the stated rules. An authorised internal transfer of <span class="math inline">0\leq a\leq f_b</span> from pool <span class="math inline">b</span> to pool <span class="math inline">b&#39;</span>, in the same asset and unit, changes their balances by <span class="math inline">(-a,+a)</span>. It preserves total cash and each pool’s coverage. A common controller or beneficiary alone enables none of these transitions.</p>
+        <p><em>Proof.</em> A reservation reduces <span class="math inline">c_b-e_b-r_b</span> by at most its current value. Consuming a reserved payment reduces <span class="math inline">c_b</span> and <span class="math inline">r_b</span> equally. A fenced release reduces <span class="math inline">r_b</span>. An internal transfer subtracts at most the source’s free amount and increases the recipient’s balance by that amount. The two cash changes sum to zero. Induction proves the claim for every finite sequence of these transactions. Each transition has its own use and authority premises. Shared control or an economic right does not discharge them. <span class="math inline">\square</span></p>
+        <p>An authenticated external debit can expose a shortfall. The record then retains the prior commitments and reports <span class="math inline">s_b</span>; it does not erase them to restore the inequality. A transfer between separate providers follows its actual debit and credit observations. Until the destination credit arrives, its expected receipt supplies no spendable balance. <em>Op</em> supplies that partial-performance interface. The internal transfer proposition asserts atomicity only for the admitted common-ledger transition.</p>
+        <p>For example, an operator estate has 100 currency units and a client estate has zero. A client payment of 80 fails its funding premise even if both estates have the same controller. Suppose their governing instruments permit a loan of 80 and both required authorities approve it. Its effective transfer leaves balances 20 and 80, records the corresponding receivable and liability, and allows the client payment. The receivable is distinct from cash. An existing reservation of 30 in the operator estate prevents this 80-unit transfer until new funding or an effective release supplies the difference.</p>
+        <p>The institutional graph therefore retains one legal person across its harbors, several persons where subsidiaries exist, separate rights on identified positions, and distinct resource estates. Recognition composes observations across this graph. Each effective act still uses its own rights, decisions, and funded resources.</p>
+        </section>
+        </section>
+        <section id="3-the-composed-state" class="level3">
+        <h3>3. The composed state</h3>
+        <p>The earlier sections fixed who acts, which rights are involved, and which authorities must decide. We now combine their evaluations of that same act. A <em>domain</em> is a category of requirements. Let <span class="math inline">\mathcal D</span> be a fixed finite domain set. The illustrated profile takes <span class="math inline">|\mathcal{D}| = 23</span>, including sanctions, know-your-customer checks, securities, custody, tax, employment, and Sharia compliance. The results depend on finiteness and a fixed domain set, rather than the chosen number.</p>
+        <p>For each domain <span class="math inline">d</span>, the applicable grades form a finite distributive lattice <span class="math inline">D_d</span>. This is a finite ordered set with a greatest common lower grade and a least common upper grade for every pair. These operations are called <em>meet</em> and <em>join</em>; distributivity means that meet distributes over join, and conversely. The usual example is the ordered chain</p>
+        <p><span class="math display">\mathrm{NonCompliant} &lt; \mathrm{Pending} &lt; \mathrm{Compliant},</span></p>
+        <p>with a richer factor where the domain’s internal structure requires one. A higher grade records stronger standing on the same applicable requirements. A lower combined grade retains the more restrictive judgment. Separately, each evaluation records Applicable, NotApplicable, or Exempt. Those markings answer whether a requirement applies, rather than how well it is satisfied. Section 4 treats that distinction.</p>
+        <p>Tax grades state whether registrations and filings are in order. They compose like other applicable grades. Withholding, credits, and treaty positions have quantities and interactions recorded in a separate tax ledger. The meet does not compute those amounts. Problem 7 of Section 8 identifies that remaining question.</p>
+        <p>Write <span class="math inline">\mathcal{L}^{\mathrm{App}} = \prod_{d\in\mathcal{D}} D_d</span>. An element of this product is a vector with one applicable grade per domain. The <em>product order</em> compares two vectors in every coordinate: the first is lower only when each of its grades is lower or equal. The superscript <span class="math inline">\mathrm{App}</span> restricts this space to evaluations on the fixed applicable requirements. Write <span class="math inline">T_J(E;q)</span> for authority <span class="math inline">J</span>’s evaluation vector of person <span class="math inline">E</span> in action context <span class="math inline">q</span>.</p>
+        <p>For example, suppose two authorities evaluate sanctions and custody for the same act. The first returns Compliant in both domains. The second returns Pending for sanctions and NonCompliant for custody. Their meet returns Pending and NonCompliant. Each coordinate retains its required restriction. No improvement in sanctions can compensate for the custody refusal. The formula below generalizes this coordinate-wise calculation.</p>
+        <p><em>How Compliance Composes</em> proves that an idempotent, monotone operation that never weakens either input is the meet [<a href="#ref-lorgat2026composes" style="overflow-wrap:anywhere;hyphens:none">17</a>]. Here <em>idempotent</em> means that repeating an evaluation leaves its result unchanged. <em>Monotone</em> means that improving an input cannot lower the combined grade. <em>Never weakens</em> means that the output cannot exceed either input in this grade order. On the product order, the meet is pointwise: it computes each domain’s grade from that domain’s inputs alone.</p>
+        <p>Fix the action context <span class="math inline">q</span> of Section 2. For a multi-harbored entity <span class="math inline">E</span>, when every harbor supplies an authoritative grade on the same Applicable fragment, define</p>
+        <p><span class="math display">T^{\mathrm{App}}(E;q)=\bigwedge_{J\in H(E)}T_J(E;q).</span></p>
+        <p>More generally, let <span class="math inline">\mathcal J_d(q)</span> be the finite nonempty set of authorities whose current rules require a judgment for applicable domain <span class="math inline">d</span>. The action’s coordinate is <span class="math display">T_d^{\mathrm{App}}(E;q)= \bigwedge_{J\in\mathcal J_d(q)}T_{J,d}(E;q).</span> The scope record determines this set. The entity cannot choose it to exclude a controlling requirement. Inapplicability and unresolved scope retain their separate treatments in Section 4. Below, <span class="math inline">T_J(E)</span> abbreviates the evaluation in the fixed context when no comparison changes that context.</p>
+        <p>The symbol <span class="math inline">\bigwedge</span> applies meet to all the displayed inputs. The first formula covers the special case where the entity’s harbor authorities supply exactly those inputs. The second allows the applicable requirements to reach beyond the registered jurisdictions.</p>
+        <p>These meets combine authoritative judgments for the specified action. An imported observation remains evidence for a local question; it does not replace that authority’s decision. A reserved refusal survives its import. A pending required decision remains pending until its own conditions hold. Recognition may preserve or discount transported evidence. Section 5 states that transport condition. Holding, offering, pledging, and paying can have different applicability, decisions, and resource requirements for the same entity.</p>
+        <p>The imported composition theorem determines the combined evaluation. To use it for a holding decision, we still need applicability, recognition, and any reserved human judgment. Sections 4–6 specify these conditions before Section 7 derives the lawful holder set and its conditional price effects.</p>
+        </section>
+        <section id="4-where-jurisdictions-disagree-about-applicability" class="level3">
+        <h3>4. Where jurisdictions disagree about applicability</h3>
+        <p>Composition is well-behaved when the harbors agree that a domain applies. They do not always agree. One jurisdiction may treat a domain as Applicable and grade it; another may treat it as NotApplicable or Exempt.</p>
+        <p>For an assumed reporting rule, a person outside its covered class is NotApplicable. A person within its class but covered by a valid exemption is Exempt. A person subject to the rule who filed the required report can be Applicable and Compliant. Each outcome answers a different question, even though none establishes a reporting failure in this example.</p>
+        <p>Combining these markings with grades on a single chain would identify legal positions that the record must distinguish. Inserting NotApplicable and Exempt between Pending and Compliant cannot retain all the original information. Being outside a requirement’s scope and satisfying that requirement remain different legal positions, even when both permit the contemplated activity.</p>
+        <p>Accordingly, composition on the full state space returns the meet where all harbors mark a domain Applicable, the shared marking where they agree it is NotApplicable or Exempt, and an explicit record of the disagreement where they disagree. We call the last an <em>obstruction</em>: it names which applicability markings appeared and in which harbors. The result retains the question that requires institutional action.</p>
+        <p>For example, a record can retain authority A’s Applicable/Pending judgment and authority B’s NotApplicable marking for the same domain. The obstruction identifies both authorities and markings. It asks for the relevant scope determination without treating B’s marking as proof that A’s question vanished. A <em>typed</em> record identifies which kind of result it contains and the information required for that kind.</p>
+        <p>Two consequences follow. Every unqualified claim here about meets or product-lattice structure is scoped to the Applicable fragment. An obstruction must also survive to the pricing layer rather than being coerced into a number. Section 7 makes that precise.</p>
+        </section>
+        <section id="5-movement-corridors-and-the-passport" class="level3">
+        <h3>5. Movement: corridors and the passport</h3>
+        <p>A combined record must retain the conditions under which a foreign evaluation can be used. Reuse across several authorities also raises a further question: does passing through an intermediate authority preserve the same evidence and local obligations?</p>
+        <p>A <em>corridor</em> binds a source authority, destination authority, recognition instrument, and current-use context. It specifies which attributable assertions may travel and which questions the destination must answer afresh. The carried and fresh question sets can overlap. Reusing an investigation does not remove a reserved local decision.</p>
+        <p>A typed transport specifies the kind of assertion carried and preserves its origin, subject, meaning, validity period and conditions, and permitted purpose. Where both sides declare a shared grade carrier, a transported summary may use a monotone, bottom-preserving, deflationary map <span class="math inline">\phi_{A\to B}</span>. The <em>shared grade carrier</em> is the common ordered set of grades understood by both authorities. The arrow in <span class="math inline">\phi_{A\to B}</span> names transport from A to B. Monotonicity preserves comparisons between source grades. Bottom-preservation keeps the lowest grade fixed, and <em>deflationary</em> means that a transported grade cannot exceed its source grade. For example, a permitted summary can reduce Compliant to Pending while retaining Pending and NonCompliant. It discounts the evaluation without converting a refusal into approval. Those properties constrain the summary. The destination’s current action-specific <span class="math inline">\mathrm{Allow}</span> requires its own authority and completed local gate. An imported assertion cannot manufacture that decision.</p>
+        <p>The destination’s fresh questions include every decision its governing instrument reserves locally. Sanctions obligations are evaluated against the applicable current rules and subjects. A foreign result can inform that evaluation when recognized. It cannot bypass an operative local prohibition.</p>
+        <p><strong>Route composition.</strong> A route records its ordered corridor steps, transported assertions, and remaining local questions at each step. Composition concatenates compatible steps. It retains assertion identity and every intermediate fresh obligation. This gives an executable staged route even when a direct route accepts different evidence. Two routes are equivalent for an operation only when their admitted evidence, obligations, and resulting decision agree in the same context. A path name alone does not establish that equality.</p>
+        <p>The <strong>compliance passport</strong> is the attributable evidence carried along a route. Historical signatures can be checked offline when their evidence is available. Current execution also applies the destination’s freshness and availability policy. Revocation changes current use while preserving the historical assertion. Each authority retains control of its own record and decisions.</p>
+        <p>For example, one authority can recognize a completed identity investigation while requiring its own current sanctions decision. The holder supplies the investigation once, and the receiving authority performs the reserved decision. The workload at the end of this paper measures this distinction through explicit question counts. Total operating savings additionally depend on verification, local review, maintenance, and institutional coordination.</p>
+        </section>
+        <section id="6-where-computation-stops" class="level3">
+        <h3>6. Where computation stops</h3>
+        <p>Statutes say <em>fit and proper</em>, <em>material adverse change</em>, <em>good cause</em>. These require human judgment, and a system that inserts a fixed true-or-false answer at those points would replace the required legal determination.</p>
+        <p>The rule representation records the required judgment explicitly. A <strong>typed discretion hole</strong> is an unanswered question whose specified answer must come from a competent decision-maker. It names the decision required, the officer class authorized to make it, and its scope. Supplying that answer takes a signed, revocable attestation binding the signer, the exact value, and the rule version. Evaluation of an act that requires the answer stops until it arrives. A delegated program operating the entity may propose an action. The required competent decision-maker supplies the answer.</p>
+        <p>Two companion papers define the formal systems used here. <em>Lex</em> types jurisdictional rules, exceptions, legal time, authority-indexed verdicts, and discretion holes. <em>Op</em> executes operations against those rules and records typed effects, scoped compensation, and evidence of which cross-jurisdiction operations have durably completed.</p>
+        <p>The construction does not determine what fraction of institutional work falls into discretion holes. That fraction determines how much of the maintenance layer can be automated. Its value remains an empirical question.</p>
+        </section>
+        <section id="7-composed-standing-is-a-price" class="level3">
+        <h3>7. From composed standing to funded demand</h3>
+        <p>For a cash-flow claim, valuation starts from its specified payments, contingencies, and discounting assumptions. Equity, debt, asset-backed distributions, and insurance supply different payment structures. A use right additionally needs a service or consumption valuation. Legal admissibility restricts who can demand the instrument under either representation.</p>
+        <p>Here an <em>instrument</em> is the specified equity, debt, use right, or other claim whose holding and price we study. This section reuses <span class="math inline">X</span> for that instrument; it no longer denotes the position-vector set of Section 2. The current holding context determines which instrument-wide restrictions apply. Their intersection determines the lawful holder classes. The pricing mechanism below evaluates the funded bids of admitted participants.</p>
+        <p>Fix a multi-harbored entity <span class="math inline">E</span>, an instrument <span class="math inline">X</span>, and a context <span class="math inline">q</span> for holding that instrument. Its nonempty harbor set <span class="math inline">H(X)\subseteq H(E)</span> names registrations of the same instrument under one set of terms. Each relevant instrument-wide condition applies to that composed form. An offer in one jurisdiction can require another context.</p>
+        <p>The pricing comparison concerns instrument-wide restrictions in that fixed context. Each buyer’s actual purchase or holding has its own exact action context and current admission. The common holding map does not replace those individual decisions. The buyer inputs below retain their current requirements.</p>
+        <p>For an applicable domain, the holding gate uses <span class="math inline">\mathcal J_d(q)</span> from Section 3. This includes every authority whose rule reaches the act or its subjects, even when the instrument has no local registration there. It excludes requirements that do not apply to that act. When that set is exactly <span class="math inline">H(X)</span> in each domain, the gate is <span class="math inline">T^{\mathrm{App}}_{H(X)}(E;q)=\bigwedge_{J\in H(X)}T_J(E;q)</span>. For fixed comparable judgments, a meet over fewer authorities is weakly higher. Removing an authority’s label does not remove its applicable rule. The theorem below fixes <span class="math inline">q</span> and quantifies over a generic authoritative state <span class="math inline">c</span> and instrument-wide constraint set <span class="math inline">H</span>. A change of action, subject, applicability, or rule roots supplies a new comparison context.</p>
+        <p>The comparison changes either grades or restrictions. We first hold the restrictions fixed and ask what an improved grade permits. We then hold the grade fixed and add an instrument-wide restriction. These are different comparisons, and they can move the lawful holder set in opposite directions.</p>
+        <p>Fix a finite set <span class="math inline">K</span> of holder classes, such as retail, professional, and institutional investors, with further distinctions required by the relevant regimes. Write <span class="math inline">S_J : \mathcal{L}^{\mathrm{App}} \to \mathcal{P}(K)</span> for jurisdiction <span class="math inline">J</span>’s <em>admissibility surface</em>. This is a map: <span class="math inline">S_J(c)</span> lists the classes permitted by its conditions at composed state <span class="math inline">c</span>. The powerset <span class="math inline">\mathcal{P}(K)</span> is the set of all subsets of <span class="math inline">K</span>, ordered by inclusion. The one-class case <span class="math inline">K = \{\ast\}</span> records only admitted or not admitted. Nothing below requires more structure than inclusion of holder classes.</p>
+        <p><strong>The state order.</strong> Fix the jurisdiction’s rule version, action, subjects, applicability, and current-use context. On a declared grade fragment, require each <span class="math inline">S_J</span> to be monotone. Thus an improvement within that fragment retains every previously admitted class. Each class’s admitting set is <em>upward-closed</em>: once a state admits it, every higher state does too. This is an assumption about authoritative judgments under fixed rules. Accumulating evidence need not improve a grade. New evidence can reveal a prohibition, change applicability, or require another judgment. Such a change requires another evaluation.</p>
+        <p><strong>The harbor order.</strong> For a harbor set <span class="math inline">H</span> write <span class="math inline">S_H = \bigcap_{J \in H} S_J</span>. This intersection is pointwise: <span class="math inline">S_H(c)=\bigcap_{J\in H}S_J(c)</span>. A class may hold the composed instrument exactly when every condition represented in this intersection admits it. The model includes only conditions that reach the instrument wherever it is held. Examples include a controlling sanctions designation, an ownership cap in the charter, and a transfer restriction in its terms. Another harbor’s admission leaves such a restriction in force.</p>
+        <p>A condition confined to local offers and sales answers a different question. A local notification or retail distribution requirement can restrict marketing in that jurisdiction while leaving holding elsewhere unaffected. For example, the Directive on undertakings for collective investment in transferable securities (UCITS) separates home authorization from notification for marketing in another member state [<a href="#ref-eu2009ucits" style="overflow-wrap:anywhere;hyphens:none">11</a>]. Home authorization is valid across member states. Article 93 governs host marketing notification, while Articles 97 and 108 retain specified host supervision and protective powers. We therefore put instrument-wide holding restrictions in <span class="math inline">S_J</span>, and local distribution access in the bidder inputs below. A particular holder’s residency, suitability, and accreditation also enter the buyer context.</p>
+        <p>Under the stated common terms, intersecting the <span class="math inline">S_J</span> is the meet in the inclusion order. It is never wider than an input, repeats consistently, and preserves inclusion when an input widens. The same never-wider, idempotent, and monotone conditions used for grades therefore determine this intersection. The instrument has one set of terms in every harbor. An instrument registered in one harbor alone is a different comparison object with fewer conditions. Clause (ii) below compares these objects while fixing everything except the instrument-wide restrictions. Changes in distribution or buyers require the later population comparison.</p>
+        <p>Consequently <span class="math inline">S_H</span> is <em>antitone in the harbor set</em>: it can shrink when the set grows. Formally, <span class="math inline">H \subseteq H&#39;</span> gives <span class="math inline">S_{H&#39;}(c) \subseteq S_H(c)</span> for every <span class="math inline">c</span>. An intersection of monotone maps is monotone, so <span class="math inline">S_H</span> retains the state-order property as well. The theorem uses these two elementary inclusions. An added registration can also change applicable grades and attract funded buyers, but neither effect belongs to this fixed-state restriction comparison.</p>
+        <p>The economic channel rests on established results, used for their monotone direction only. Errunza and Losq (1985) price legally restricted holding directly: a security some class of investors may not hold trades at a discount against an otherwise identical unrestricted one. Merton (1987) prices the breadth of the investor base. Amihud and Mendelson (1986) show illiquidity is priced: wider spreads carry higher gross returns. Pástor and Stambaugh (2003) show aggregate liquidity is a priced state variable. Duffie, Gârleanu and Pedersen (2005) supply the search-theoretic foundation: in over-the-counter markets, prices and spreads respond to search frictions and bargaining power [<a href="#ref-errunza1985" style="overflow-wrap:anywhere;hyphens:none">10</a>, <a href="#ref-merton1987" style="overflow-wrap:anywhere;hyphens:none">19</a>, <a href="#ref-amihud1986" style="overflow-wrap:anywhere;hyphens:none">1</a>, <a href="#ref-pastor2003" style="overflow-wrap:anywhere;hyphens:none">22</a>, <a href="#ref-duffie2005" style="overflow-wrap:anywhere;hyphens:none">7</a>].</p>
+        <p>Market liquidity is the ability to trade without a large price change. Funding liquidity is the ability to obtain settlement assets when payment is due. A narrower lawful holder set can reduce market liquidity. It does not by itself show a funding shortage. Brunnermeier and Pedersen show feedback between the two forms of liquidity. The pricing theorem here signs only the holder-admissibility channel [<a href="#ref-brunnermeier2009" style="overflow-wrap:anywhere;hyphens:none">4</a>].</p>
+        <p>A price calculation can encounter an unresolved legal input. Reporting a number at that point would conceal the unresolved question. The result therefore has two forms: <code style="overflow-wrap:anywhere;hyphens:none">Price(p)</code> contains a numeric price, and <code style="overflow-wrap:anywhere;hyphens:none">PriceObstruction(o)</code> contains a reason the calculation cannot return one. The obstruction records applicability disagreement, an out-of-scope state, an empty admitted set, or a binding sanctions block, with their authorities, rule versions, and domains. Their order in the result format carries no order of legal standing.</p>
+        <p>The numeric interface below requires a supplied state in the declared Applicable fragment. A full record from Section 4 can instead contain shared NotApplicable or Exempt markings. Those markings retain their own meaning. This paper supplies no general conversion, or <em>lift</em>, from such a full record to an applicable-grade vector. If the required vector cannot be supplied, the out-of-scope obstruction records that gap. It does not silently assign Compliant to an exemption or an inapplicable requirement.</p>
+        <p>For the first comparison, fix potential buyers, class membership, distribution access, participation, valuations, and funded budgets. The operator changes only the admitted classes within that buyer context.</p>
+        <p>Let <span class="math inline">w</span> map an intrinsic valuation <span class="math inline">\pi</span>, an admitted class set <span class="math inline">S \subseteq K</span>, and a counterparty-belief model <span class="math inline">\beta</span> to either <span class="math inline">\mathrm{Price}(p)</span> or a typed obstruction. Here <span class="math inline">\pi</span> describes the instrument’s valuation under specified payment or use assumptions. The model <span class="math inline">\beta</span> describes beliefs of the counterparties whose demand enters the chosen mechanism. Both stay fixed in the theorem, which imposes a condition on that mechanism. A composition result is either <span class="math inline">\mathrm{Applicable}(c)</span> or <span class="math inline">\mathrm{Obstruction}(o)</span>. Define the pricing interface by <span class="math display">\widehat w_H(\pi,z,\beta)= \begin{cases} \mathrm{PriceObstruction}(o), &amp; z=\mathrm{Obstruction}(o),\\ w(\pi,S_H(c),\beta), &amp; z=\mathrm{Applicable}(c). \end{cases}</span> In this formula, <span class="math inline">z</span> is the composition result. An applicable result supplies <span class="math inline">c</span> to the holding map <span class="math inline">S_H</span>. An obstruction passes directly to the output with its source record, without calling the numeric mechanism.</p>
+        <p><strong>Theorem (Admissibility-conditioned pricing).</strong> Fix <span class="math inline">\pi</span>, <span class="math inline">\beta</span>, and the declared buyer context. Assume:</p>
+        <p><em>(H)</em> <span class="math inline">w</span> is <strong>monotone on its numeric branch</strong>: if <span class="math inline">S\subseteq S&#39;</span>, <span class="math inline">w(\pi,S,\beta)=\mathrm{Price}(p)</span>, and <span class="math inline">w(\pi,S&#39;,\beta)=\mathrm{Price}(p&#39;)</span>, then <span class="math inline">p\leq p&#39;</span>. This hypothesis concerns the selected pricing mechanism. The auction below supplies one construction satisfying it.</p>
+        <p>Then <span class="math inline">\widehat w_H</span> has the following properties:</p>
+        <p><em>(i) Monotone in compliance.</em> Fix the harbor set <span class="math inline">H</span>. Suppose <span class="math inline">c \le c&#39;</span>, both states compose without an applicability obstruction, and both calls to <span class="math inline">\widehat w_H</span> return numeric prices <span class="math inline">p</span> and <span class="math inline">p&#39;</span>. Then <span class="math inline">p\leq p&#39;</span>. A more compliant entity has a weakly higher numeric price on this branch.</p>
+        <p><em>(ii) Antitone in harbors.</em> Fix the compliance state <span class="math inline">c</span> and harbor sets <span class="math inline">H \subseteq H&#39;</span>. If the corresponding interface calls return numeric prices <span class="math inline">p_H</span> and <span class="math inline">p_{H&#39;}</span>, then <span class="math inline">p_{H&#39;}\leq p_H</span> <em>through the admissibility channel alone</em>. Each added harbor can only remove classes, because the composed surface is the intersection of its harbors' surfaces.</p>
+        <p><em>(iii) Obstruction-faithfulness.</em> On any input where composition returns an applicability obstruction, <span class="math inline">\widehat w_H</span> returns a typed price obstruction carrying that provenance, never a number.</p>
+        <p><em>Proof.</em> (i) <span class="math inline">S_H</span> is an intersection of state-monotone surfaces, hence state-monotone: <span class="math inline">c \le c&#39;</span> gives <span class="math inline">S_H(c) \subseteq S_H(c&#39;)</span>. Hypothesis (H) gives <span class="math inline">p\leq p&#39;</span> on the stated numeric branch. (ii) <span class="math inline">S_{H&#39;}(c) = \bigcap_{J \in H&#39;} S_J(c) \subseteq \bigcap_{J \in H} S_J(c) = S_H(c)</span> for every <span class="math inline">c</span>, since <span class="math inline">H \subseteq H&#39;</span>. Hypothesis (H) gives <span class="math inline">p_{H&#39;}\leq p_H</span> on the stated numeric branch. (iii) The first case of <span class="math inline">\widehat w_H</span> returns the obstruction and its provenance directly. It makes no call to <span class="math inline">w</span>. <span class="math inline">\square</span></p>
+        <p>The hypothesis is substantive: the inclusions of lawful classes alone do not prove a price inequality for every market. The following mechanism satisfies it because the bids supporting an old price remain available when more classes become admissible.</p>
+        <p><strong>From classes to funded bidders.</strong> Here <span class="math inline">B</span> denotes buyers, separately from the issuance matrix used in Section 2. Let <span class="math inline">B</span> be a finite population of distinct potential buyers. A map <span class="math inline">\chi:B\to K</span> assigns each buyer a legal class. Fix willingness <span class="math inline">u_i</span>, distribution access <span class="math inline">d_i</span>, submitted value <span class="math inline">v_i\ge0</span>, and committed funding <span class="math inline">f_i\ge0</span>. The first two are binary inputs. A value of one for <span class="math inline">u_i</span> means willing to participate. A value of one for <span class="math inline">d_i</span> requires distribution access and the individual buyer conditions in this context, including applicable residency, suitability, and accreditation conditions. The latter two inputs use the same currency unit. These variables are inputs, not consequences of class membership. The funded bid is <span class="math inline">b_i=\min\{v_i,f_i\}</span>. For an admitted class set <span class="math inline">S</span>, define</p>
+        <p><span class="math display">D(S)=\{i\in B:\chi(i)\in S,\ u_i=d_i=1,\ b_i&gt;0\}.</span></p>
+        <p>An admitted class may contain no participating buyer. Adding a class therefore need not add a bid. When comparing harbor sets through admissibility alone, hold <span class="math inline">B,\chi,u,d,v,f</span> fixed. Access and participation changes belong to the separate population comparison.</p>
+        <p><strong>Worked mechanism (one-unit second-price auction).</strong> A second-price auction assigns the unit to a highest bidder at the second-highest bid. Suppress the fixed <span class="math inline">\pi</span>, <span class="math inline">\beta</span>, and buyer inputs in the notation. For <span class="math inline">|D(S)|\ge2</span>, let <span class="math inline">w(S)</span> return <span class="math inline">\mathrm{Price}(p)</span>, where <span class="math inline">p</span> is the second-highest funded bid in <span class="math inline">D(S)</span>. Fewer funded bidders produce a typed market-depth obstruction in this example. If <span class="math inline">S\subseteq S&#39;</span>, then <span class="math inline">D(S)\subseteq D(S&#39;)</span>. The two bids supporting <span class="math inline">w(S)</span> remain present in <span class="math inline">D(S&#39;)</span>, so (H) follows. This is a statement about the specified auction. Strategic bidding and other market mechanisms require their own model.</p>
+        <p>For bids <span class="math inline">100,80,30</span>, removing the bidder at <span class="math inline">30</span> leaves price <span class="math inline">80</span>. Removing the bidder at <span class="math inline">80</span> instead gives price <span class="math inline">30</span>. Adding a legal class with no participating buyers leaves price unchanged. Starting from bids <span class="math inline">100,80</span>, a new arrival outside the original potential-buyer population submits a funded bid of <span class="math inline">120</span>, raising the price to <span class="math inline">100</span>. The last comparison changes the population. It therefore does not contradict the fixed-population harbor inequality.</p>
+        <p>Here <em>accession</em> means adding a jurisdiction to the relevant arrangement. For the net comparison, use the actual post-accession bids in <span class="math inline">D&#39;</span>, including changes in eligibility, participation, and funding. The proposition’s phrase “new bids” refers to this whole post-accession set, including retained buyers.</p>
+        <p><strong>Proposition (Exact accession comparison for the auction).</strong> Let <span class="math inline">D</span> and <span class="math inline">D&#39;</span> be the funded bidder sets before and after accession. Both contain at least two bids. Write <span class="math inline">p</span> for the old second-highest bid and <span class="math inline">p&#39;</span> for the new one. Then</p>
+        <p><span class="math display">\begin{aligned}p&#39;&gt;p&amp;\iff |\{i\in D&#39;:b_i&gt;p\}|\ge2,\\p&#39;&lt;p&amp;\iff |\{i\in D&#39;:b_i\ge p\}|\le1.\end{aligned}</span></p>
+        <p>Equality holds exactly when at least two new bids are at least <span class="math inline">p</span>, and at most one is greater than <span class="math inline">p</span>. These conditions allow departing buyers, newly eligible buyers, and new arrivals together.</p>
+        <p><em>Proof.</em> The second-highest bid exceeds a threshold exactly when at least two bids exceed it. It reaches the threshold exactly when at least two bids reach it. Apply both observations at <span class="math inline">p</span>. <span class="math inline">\square</span></p>
+        <p>A harbor addition can change restrictions, authoritative grades, distribution access, and the funded bidder population. The proposition computes the net effect when the resulting bids are specified. Predicting those bids requires a demand and participation model. Thus the construction supplies an exact mechanism-level comparison without treating legal classes as demand.</p>
+        <p>The price theorem uses the state and holder-set inclusions through hypothesis (H). In particular, clause (ii) uses <span class="math inline">S_{H&#39;} \subseteq S_H</span>. Clause (iii) specifies the output on an obstruction. The paper proofs above establish these claims for the stated interfaces. No pricing operator is mechanized, meaning verified by a proof-assistant program. The mechanized core covers meet, applicability provenance, and the impossibility of collapsing grades and applicability onto one chain without losing information.</p>
+        <p>A corridor changes price through its effects on current admissibility and funded demand. The theorem applies when the resulting authoritative states and bidder inputs satisfy its fixed-context hypotheses. Recognition depth alone does not order local permission. Fresh questions, legal changes, or new participants can change the comparison. The route contract records those changes so the relevant economic inputs remain explicit.</p>
+        <p><strong>The empirical comparison.</strong> The auction gives an exact answer conditional on bids. An accession study must separately estimate participation, funding, and valuation responses. It must record which restrictions and local distribution permissions changed. A zero price change is compatible with weak monotonicity. A strict reversal under fixed premises would contradict the proposed monotone price functional.</p>
+        </section>
+        <section id="8-what-is-proved-what-is-assumed-what-is-open" class="level3">
+        <h3>8. What is proved, what is assumed, what is open</h3>
+        <p><strong>Imported result.</strong> <em>How Compliance Composes</em> proves that idempotent, monotone, never-weaker composition on the Applicable fragment is the pointwise meet. Section 3 applies that result to the harbor set.</p>
+        <p><strong>Proof-assistant results.</strong> A mechanization is a formal proof checked by a proof-assistant program. The grade-meet laws, the <span class="math inline">n</span>-ary composition operator, exact applicability flags, the two provenance-loss witnesses, and the impossibility core are in <a href="https://github.com/momentum-sez/lex/blob/742d484a8cc8cc7163c36bb20629d49c1d10129c/formal/coq/Lex/TensorAlignment.v" style="overflow-wrap:anywhere;hyphens:none"><code style="overflow-wrap:anywhere;hyphens:none">TensorAlignment.v</code></a>. It imports a five-element ordered grade model and its Heyting operations, which include a logical implication compatible with that model’s meet. Those definitions and results are in <a href="https://github.com/momentum-sez/lex/blob/742d484a8cc8cc7163c36bb20629d49c1d10129c/formal/coq/Lex/VerdictHeyting.v" style="overflow-wrap:anywhere;hyphens:none"><code style="overflow-wrap:anywhere;hyphens:none">VerdictHeyting.v</code></a>. The two files contain 43 and 48 named results, respectively. These results establish the finite algebraic cores. The five-element model is part of the cited verification, while the three-chain above illustrates how the present paper combines applicable grades. The pricing implications are proved in Section 7 under hypothesis (H). The rights, funding, action-admission, and earning results in Section 2 have direct paper proofs. Their finite reference examples have independent checks. The specified cases are the proceeds allocation, split and merger identities, estate transfer with existing reservations, and milestone performance and credit rules. Each case and its expected result appear in Section 2. Those checks establish the stated cases and symbolic matrix identities. They do not prove that every implementation conforms to the general paper definitions.</p>
+        <p><strong>Paper proofs using that core.</strong> Section 7 proves that the composed surface is monotone in the compliance state and antitone in the harbor set. Clauses (i) and (ii) lift these facts through hypothesis (H) on the numeric branch. Clause (iii) specifies the interface’s output by definition.</p>
+        <p><strong>Economic premise.</strong> Hypothesis (H) belongs to the chosen price mechanism. The holder-set and liquidity literature in Section 7 motivates its direction under those models’ conditions. The auction proves it for the specified funded bids. Applying the result to another market requires establishing (H) for that market’s mechanism and comparison context.</p>
+        <p><strong>Open, and not claimed.</strong></p>
+        <ol type="1">
+        <li><p>The price map over the full state space, where applicability disagreement is present. Only the obstruction is defined there; the number is not.</p></li>
+        <li><p>The counterparty-belief layer. The price a claim clears at under heterogeneous beliefs is a functional of the cross-counterparty belief distribution, not an objective price. This is an identification problem and we have not solved it.</p></li>
+        <li><p>The demand and participation response to an actual harbor addition. Section 7 gives the exact sign for specified auction bids.</p></li>
+        <li><p>Route transitivity on the full system, with applicability and temporal effects (§5).</p></li>
+        <li><p>Whether the objects on which the construction rests — the fixed domain set, the harbor set, the per-domain grade lattices with their applicability axis, the passport, and typed discretion holes — span institutional practice: whether every act a registrar, licensing authority or court takes on an entity is a coordinate of this object or a marked hole in it. We have not proved sufficiency and do not claim it.</p></li>
+        <li><p>What fraction of institutional work falls into discretion holes (§6).</p></li>
+        <li><p>Multi-jurisdictional tax interaction. Tax facts, filings, withholding evidence and treaty positions enter a separate ledger; deductions, credits and Pillar-2 positions are normalisation steps in that ledger, not automatic consequences of the meet.</p></li>
+        </ol>
+        </section>
+        <section id="9-prior-art" class="level3">
+        <h3>9. Prior art</h3>
+        <p>The paper combines evaluated standing with action-specific rights and demand. The following bodies of work supply different parts of that problem.</p>
+        <p><em>Jurisdictional competition.</em> Tiebout, Romano, Bebchuk–Hamdani, O'Hara–Ribstein, and Bruner analyze the choice of jurisdiction and competition over legal arrangements [<a href="#ref-tiebout1956" style="overflow-wrap:anywhere;hyphens:none">24</a>, <a href="#ref-romano1985" style="overflow-wrap:anywhere;hyphens:none">23</a>, <a href="#ref-bebchuk2002" style="overflow-wrap:anywhere;hyphens:none">3</a>, <a href="#ref-ohara2009" style="overflow-wrap:anywhere;hyphens:none">21</a>, <a href="#ref-bruner2016" style="overflow-wrap:anywhere;hyphens:none">5</a>]. The present construction specifies an additional input to such choices: which evaluated facts can be reused and which restrictions remain effective for one entity’s particular acts. Whether easier compliance exit improves institutional quality remains an economic question.</p>
+        <p><em>Recognition regimes.</em> The UCITS Directive provides home authorization and a host marketing notification procedure, together with allocated supervisory powers [<a href="#ref-eu2009ucits" style="overflow-wrap:anywhere;hyphens:none">11</a>]. It gives a concrete example of legal effects defined by a recognition instrument. The Financial Action Task Force’s mutual-evaluation methodology assesses a country’s technical compliance and system effectiveness [<a href="#ref-fatf2025methodology" style="overflow-wrap:anywhere;hyphens:none">12</a>]. Its unit of assessment differs from the entity and action evaluated here. The present model asks how to retain each applicable decision and its authority when combining evaluated results.</p>
+        <p><em>Registries and identifiers.</em> X-Road provides data exchange between registries. The Legal Entity Identifier (LEI) identifies entities, and the OECD’s Base Erosion and Profit Shifting (BEPS) project coordinates tax measures [<a href="#ref-xroad" style="overflow-wrap:anywhere;hyphens:none">26</a>, <a href="#ref-gleif-lei" style="overflow-wrap:anywhere;hyphens:none">14</a>, <a href="#ref-oecd2015beps" style="overflow-wrap:anywhere;hyphens:none">20</a>]. The construction uses a stable identity and attributable observations, then separately determines their recognized use and the resulting admissibility. Neither identification nor data exchange alone supplies that legal effect.</p>
+        <p><em>Interoperability protocols.</em> Cosmos Inter-Blockchain Communication (IBC) transports packets between chains using verification by light clients, which check the relevant chain evidence [<a href="#ref-cosmos2019" style="overflow-wrap:anywhere;hyphens:none">6</a>]. A corridor here must also record which assertions a competent authority recognizes, how their grades translate, and which local decisions remain. Successful packet delivery leaves those legal recognition questions to their governing instrument.</p>
+        <p><em>Rules as code and rule composition.</em> Catala and L4 demonstrate executable representations of legislative and regulatory rules [<a href="#ref-merigoux2021" style="overflow-wrap:anywhere;hyphens:none">18</a>, <a href="#ref-wong2022l4" style="overflow-wrap:anywhere;hyphens:none">25</a>]. Regulations Expressed as Logical Models (REALM) and LegalRuleML provide representations for legal rules and their interactions [<a href="#ref-giblin2005realm" style="overflow-wrap:anywhere;hyphens:none">13</a>, <a href="#ref-athan2013legalruleml" style="overflow-wrap:anywhere;hyphens:none">2</a>]. This paper begins after the relevant rules have produced evaluations. Its inputs are judgments about the same act, reached under identified authorities. The composition question is which combined judgment retains all their restrictions. The holding maps then connect that evaluated state to a lawful holder set.</p>
+        <p><em>Asset pricing.</em> Errunza–Losq model legally restricted holding, and Merton models the breadth of the investor base. Amihud–Mendelson, Pástor–Stambaugh, and Duffie–Gârleanu–Pedersen study the price effects of liquidity and search frictions [<a href="#ref-errunza1985" style="overflow-wrap:anywhere;hyphens:none">10</a>, <a href="#ref-merton1987" style="overflow-wrap:anywhere;hyphens:none">19</a>, <a href="#ref-amihud1986" style="overflow-wrap:anywhere;hyphens:none">1</a>, <a href="#ref-pastor2003" style="overflow-wrap:anywhere;hyphens:none">22</a>, <a href="#ref-duffie2005" style="overflow-wrap:anywhere;hyphens:none">7</a>]. The construction computes a holder set from the declared regulatory standing and restrictions. A chosen price model still determines how that holder set affects demand and price. Section 7 gives a theorem under an explicit monotonicity condition and an auction that satisfies it.</p>
+        <p><em>Legal interpretation and exit.</em> Hart’s open texture of law and Dworkin’s account of interpretation explain why some required decisions cannot be supplied by a fixed rule evaluation [<a href="#ref-hart1961" style="overflow-wrap:anywhere;hyphens:none">15</a>, <a href="#ref-dworkin1977" style="overflow-wrap:anywhere;hyphens:none">9</a>]. Section 6 records those decisions and their competent sources. Hirschman’s exit and voice provide a framework for asking what easier jurisdictional movement changes [<a href="#ref-hirschman1970" style="overflow-wrap:anywhere;hyphens:none">16</a>]. This paper establishes no theorem that cheaper exit improves regulatory quality.</p>
+        </section>
+        <section id="10-the-companion-papers" class="level3">
+        <h3>10. What recognition saves</h3>
+        <p><strong>Testable implications.</strong> The declared composition law fails if its output exceeds an input on the same fixed authoritative-grade fragment. For <span class="math inline">S\subseteq S&#39;</span>, a numeric result <span class="math inline">p&gt;p&#39;</span> contradicts (H) only when valuation, beliefs, population, funding, participation, and access are held fixed. Equality satisfies (H). Observing a changed population tests a different comparison. Useful recognition occurs when an admitted foreign evaluation discharges a destination question under the current governing authority. The workload below isolates that reduction in repeated collection from the decisions retained locally.</p>
+        <p><strong>A reproducible workload and its limits.</strong> Consider three jurisdictions, four reusable evidence questions, and two distinct local questions per jurisdiction. Independent collection performs <span class="math inline">3(4+2)=18</span> question evaluations. A permitted shared collection performs <span class="math inline">4+3\cdot2=10</span>, while retaining all six local questions. The reference workflow gives this exact operation count. It also rejects stale recognition and preserves a local refusal. These are synthetic executions, not measured institutional deployments.</p>
+        <p>To reproduce the count, name four reusable questions and give each of three jurisdictions two distinct local questions. In the independent case, collect six answers for each jurisdiction. In the shared case, collect the four reusable answers once and all six local answers. Accept a reused answer only when its identity, question, recognition scope, and freshness conditions match. For the stale-recognition case, mark one imported answer expired: it must remain unresolved or be collected afresh. For the refusal case, retain a local Refuse answer while all imported answers satisfy their questions: the act requiring that local answer remains refused. These cases test the recognition rule’s stated boundaries and do not establish field performance.</p>
+        <p>Let <span class="math inline">c_q</span> be the collection cost of reusable question <span class="math inline">q</span>, and <span class="math inline">m_q</span> the number of jurisdictions requiring it. When every recipient recognizes one common current observation, avoided collection costs equal</p>
+        <p><span class="math display">\sum_q(m_q-1)c_q.</span></p>
+        <p>Let <span class="math inline">V</span> denote verification, coordination, and maintenance costs added by recognition. With identical local review costs, net savings equal the displayed amount minus <span class="math inline">V</span>. Positive savings require that difference to be positive. A revocation or changed question creates a new collection obligation under the relevant dependencies. It does not preserve the old saving by assuming stale evidence remains usable.</p>
+        <p>A proposed empirical study would compare the same eligible cases under independent and recognized-evidence workflows. It would fix the case cohort, outcome definitions, and observation horizon before measuring outcomes. Independent adjudicators would assess case completeness without knowing the workflow assignment where practicable. The study would record false acceptance, false refusal, elapsed time, human minutes, counsel time, maintenance, and fully loaded cost. It would report paired differences and uncertainty intervals, including failed and withdrawn cases. Synthetic question counts establish the mechanism’s work reduction. Actual adoption, operating savings, and legal effectiveness require the corresponding institutional observations.</p>
+        <section id="related-constructions" class="level4">
+        <h4>Related constructions</h4>
+        <p>The present question connects a fifteen-paper set. <em>How Compliance Composes</em> supplies the grade composition result used here. <em>Lex: A Logic for Jurisdictional Rules</em> represents rules and their required judgments. <em>Op: A Typed Bytecode for Compliance-Carrying Operations</em> records actions and their effects. The local definitions above state what the present argument requires from them.</p>
+        <p>The institution’s continuing activity is the subject of <em>Programmable Institutions</em>. <em>The Sovereign Jurisdiction Network</em> studies coordination between authorities. <em>Admissible Obligation Transitions</em> retains duties through program changes, while <em>Allocated Title</em> distinguishes the rights attached to identified assets. <em>Recourse</em> carries dispute outcomes into execution. <em>Accession Networks</em> studies how the recognition network forms. These constructions develop the institutional conditions whose current values this paper treats as inputs.</p>
+        <p>The market papers begin with those rights and admissible actions. <em>The Claim as Primitive</em> defines the claim object, and <em>Event-Collect BFT</em> defines ledger confirmation despite specified faulty participants. <em>One-Way Coupling of Prediction Markets to Automated Market Makers</em> studies how a prediction signal affects pricing. <em>AMM-Aware Central Counterparty Risk</em> develops the clearing waterfall, and <em>Parlay Identification of Ising Couplings in Correlated Binary Event Markets</em> identifies dependence across linked claims. Those market constructions supply further mechanisms to examine beyond the funded auction used here.</p>
+        </section>
+        </section>
+        <section id="references" class="level2">
+        <h2>References</h2>
+        <div id="ref-amihud1986">
+
+        </div>
+        <p><strong>[1]</strong> Y. Amihud and H. Mendelson. Asset pricing and the bid-ask spread. <em>Journal of Financial Economics</em>, 17(2):223–249, 1986.</p>
+        <div id="ref-athan2013legalruleml">
+
+        </div>
+        <p><strong>[2]</strong> T. Athan, H. Boley, G. Governatori, M. Palmirani, A. Paschke, and A. Wyner. OASIS LegalRuleML. In <em>Proceedings of ICAIL</em>, pages 3–12, 2013.</p>
+        <div id="ref-bebchuk2002">
+
+        </div>
+        <p><strong>[3]</strong> L. A. Bebchuk and A. Hamdani. Vigorous race or leisurely walk: Reconsidering the competition over corporate charters. <em>Yale Law Journal</em>, 112(3):553–615, 2002.</p>
+        <div id="ref-brunnermeier2009">
+
+        </div>
+        <p><strong>[4]</strong> M. K. Brunnermeier and L. H. Pedersen. Market liquidity and funding liquidity. <em>Review of Financial Studies</em>, 22(6):2201–2238, 2009.</p>
+        <div id="ref-bruner2016">
+
+        </div>
+        <p><strong>[5]</strong> C. M. Bruner. <em>Re-Imagining Offshore Finance: Market-Dominant Small Jurisdictions in a Globalizing Financial World</em>. Oxford University Press, 2016.</p>
+        <div id="ref-cosmos2019">
+
+        </div>
+        <p><strong>[6]</strong> J. Kwon and E. Buchman. Cosmos whitepaper. Interchain Foundation, 2019.</p>
+        <div id="ref-duffie2005">
+
+        </div>
+        <p><strong>[7]</strong> D. Duffie, N. Gârleanu, and L. H. Pedersen. Over-the-counter markets. <em>Econometrica</em>, 73(6):1815–1847, 2005.</p>
+        <div id="ref-du2026competing">
+
+        </div>
+        <p><strong>[8]</strong> W. Du, C. Huang, and D. Scharfstein. Competing rails for cross-border payments: Banks, fintechs, and stablecoins. Harvard Business School working paper, 15 February 2026.</p>
+        <p><a href="https://www.hbs.edu/ris/Publication%20Files/Du_Huang_Scharfstein_14Feb2016_66992079-2e6b-4584-95cf-014441c77485.pdf" class="uri" style="overflow-wrap:anywhere;hyphens:none">https://www.hbs.edu/ris/Publication%20Files/Du_Huang_Scharfstein_14Feb2016_66992079-2e6b-4584-95cf-014441c77485.pdf</a>.</p>
+        <div id="ref-dworkin1977">
+
+        </div>
+        <p><strong>[9]</strong> R. Dworkin. <em>Taking Rights Seriously</em>. Harvard University Press, 1977.</p>
+        <div id="ref-errunza1985">
+
+        </div>
+        <p><strong>[10]</strong> V. Errunza and E. Losq. International asset pricing under mild segmentation: Theory and test. <em>Journal of Finance</em>, 40(1):105–124, 1985.</p>
+        <div id="ref-eu2009ucits">
+
+        </div>
+        <p><strong>[11]</strong> European Parliament and Council. Directive 2009/65/EC on undertakings for collective investment in transferable securities. <em>Official Journal of the European Union</em>, L 302, 2009.</p>
+        <div id="ref-fatf2025methodology">
+
+        </div>
+        <p><strong>[12]</strong> Financial Action Task Force. <em>Methodology for Assessing Technical Compliance with the FATF Recommendations and the Effectiveness of AML/CFT/CPF Systems</em>. Updated June 2025.</p>
+        <div id="ref-giblin2005realm">
+
+        </div>
+        <p><strong>[13]</strong> C. Giblin, A. Y. Liu, S. Müller, B. Pfitzmann, and X. Zhou. Regulations expressed as logical models (REALM). In <em>Proceedings of JURIX</em>, pages 37–48, 2005.</p>
+        <div id="ref-gleif-lei">
+
+        </div>
+        <p><strong>[14]</strong> Global Legal Entity Identifier Foundation. The Legal Entity Identifier and the Global LEI System. Official reference material, accessed September 2026.</p>
+        <div id="ref-hart1961">
+
+        </div>
+        <p><strong>[15]</strong> H. L. A. Hart. <em>The Concept of Law</em>. Oxford University Press, 1961.</p>
+        <div id="ref-hirschman1970">
+
+        </div>
+        <p><strong>[16]</strong> A. O. Hirschman. <em>Exit, Voice, and Loyalty: Responses to Decline in Firms, Organizations, and States</em>. Harvard University Press, 1970.</p>
+        <div id="ref-lorgat2026composes">
+
+        </div>
+        <p><strong>[17]</strong> R. Lorgat. How Compliance Composes. Companion paper, September 2026.</p>
+        <div id="ref-merigoux2021">
+
+        </div>
+        <p><strong>[18]</strong> D. Merigoux, N. Chataing, and J. Protzenko. Catala: A programming language for the law. <em>Proceedings of the ACM on Programming Languages</em>, 5(ICFP), Article 77, 2021.</p>
+        <div id="ref-merton1987">
+
+        </div>
+        <p><strong>[19]</strong> R. C. Merton. A simple model of capital market equilibrium with incomplete information. <em>Journal of Finance</em>, 42(3):483–510, 1987.</p>
+        <div id="ref-oecd2015beps">
+
+        </div>
+        <p><strong>[20]</strong> Organisation for Economic Co-operation and Development. <em>OECD/G20 Base Erosion and Profit Shifting Project: Final Reports</em>. OECD Publishing, 2015.</p>
+        <div id="ref-ohara2009">
+
+        </div>
+        <p><strong>[21]</strong> E. A. O'Hara and L. E. Ribstein. <em>The Law Market</em>. Oxford University Press, 2009.</p>
+        <div id="ref-pastor2003">
+
+        </div>
+        <p><strong>[22]</strong> L. Pástor and R. F. Stambaugh. Liquidity risk and expected stock returns. <em>Journal of Political Economy</em>, 111(3):642–685, 2003.</p>
+        <div id="ref-romano1985">
+
+        </div>
+        <p><strong>[23]</strong> R. Romano. Law as a product: Some pieces of the incorporation puzzle. <em>Journal of Law, Economics, and Organization</em>, 1(2):225–283, 1985.</p>
+        <div id="ref-tiebout1956">
+
+        </div>
+        <p><strong>[24]</strong> C. M. Tiebout. A pure theory of local expenditures. <em>Journal of Political Economy</em>, 64(5):416–424, 1956.</p>
+        <div id="ref-wong2022l4">
+
+        </div>
+        <p><strong>[25]</strong> M. W. Wong et al. Overview of the CCLAW L4 project. In <em>Workshop on Programming Languages and the Law</em>, 2022.</p>
+        <div id="ref-xroad">
+
+        </div>
+        <p><strong>[26]</strong> Nordic Institute for Interoperability Solutions. <em>X-Road Architecture</em>. Official documentation, accessed September 2026.</p>
+        <div id="ref-ukbranches2026">
+
+        </div>
+        <p><strong>[27]</strong> Department for Business and Trade. Set up and register your business in the UK. <a href="https://www.business.gov.uk/invest-in-uk/support-topics/set-up-and-register-your-business-in-the-uk/" class="uri" style="overflow-wrap:anywhere;hyphens:none">https://www.business.gov.uk/invest-in-uk/support-topics/set-up-and-register-your-business-in-the-uk/</a>, accessed 5 September 2026.</p>
+        </section>
+        </section>
+        <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+        <hr />
+        <ol>
+        <li id="fn1"><p>Examples include the Cayman Companies Act (2026 Revision), <a href="https://legislation.gov.ky/cms/images/LEGISLATION/PRINCIPAL/1961/1961-0003/1961-0003_2026%20Revision.pdf" style="overflow-wrap:anywhere;hyphens:none">Part 12</a>, and the Delaware General Corporation Law, <a href="https://delcode.delaware.gov/title8/c001/sc17/" style="overflow-wrap:anywhere;hyphens:none">§§388 and 390</a>, whose continuity effects are stated for purposes of Delaware law. Other provisions include the British Virgin Islands Business Companies Act, <a href="https://www.bvifsc.vg/sites/default/files/bvi_business_companies_act.pdf" style="overflow-wrap:anywhere;hyphens:none">s183</a>, Bermuda Companies Act 1981, <a href="https://www.bermudalaws.bm/Laws/Consolidated%20Law/1981/Companies%20Act%201981" style="overflow-wrap:anywhere;hyphens:none">s132E</a>, Jersey Companies Law 1991, <a href="https://www.jerseylaw.je/laws/current/l_30_1991" style="overflow-wrap:anywhere;hyphens:none">Art127P</a>, and Abu Dhabi Global Market Companies Regulations 2020, <a href="https://en.adgm.thomsonreuters.com/rulebook/107-effect-issue-certificate-continuance-within-abu-dhabi-global-market-0" style="overflow-wrap:anywhere;hyphens:none">s107</a>. In the European Union, relevant provisions include <a href="https://eur-lex.europa.eu/eli/reg/2001/2157/oj/eng" style="overflow-wrap:anywhere;hyphens:none">Art. 8 of the European Company (SE) Regulation</a> and the cross-border conversion provisions inserted by <a href="https://eur-lex.europa.eu/eli/dir/2019/2121/oj/eng" style="overflow-wrap:anywhere;hyphens:none">Directive 2019/2121</a>, following the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62016CJ0106" style="overflow-wrap:anywhere;hyphens:none"><em>Polbud</em></a> judgment. Each mechanism has its own eligibility and procedural conditions.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+        </ol>
+        </section>
+        </div>
+
+        <footer class="article-footer">
+            <span class="author-byline"><strong>Raeez Lorgat</strong> · Managing Partner, Momentum</span>
+            <nav class="footer-nav">
+                <a href="/">← All Papers</a>
+            </nav>
+        </footer>
+        <div class="contact-footer">
+            <span>&copy; 2026 Momentum</span>
+        </div>
+    </article>
+</div>
+<script src="/paper.js" defer></script>
+</body>
+</html>
