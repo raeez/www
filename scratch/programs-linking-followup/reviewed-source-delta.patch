@@ -1,0 +1,112 @@
+--- a/content/reader-papers/when-institutional-programs-work-together.md
++++ b/content/reader-papers/when-institutional-programs-work-together.md
+@@ -8,7 +8,7 @@
+ 
+ A buyer has 120 units and needs delivery of an asset priced at 100 by the first supplier. If that supplier fails, a reserved standby supplier can deliver for 100 plus a charge of 20. The buyer must receive the asset and pay its acquisition charges. A refund by itself does not meet that goal.
+ 
+-These are the fictional contract terms in *Institutional Linking and Realization*, Section 11 \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\]. Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period. Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.
++These are the fictional contract terms in *Institutional Linking and Realization*, Section 9 \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\]. Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period. Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.
+ 
+ The conditional route reserves 100 in escrow for release to the first supplier upon delivery. Certified final failure returns it before the standby supplier needs payment. Starting with 120, the buyer retains 20 during reservation and regains the other 100 in time to pay the standby. Thus the conditional route needs 120 across both modeled branches.
+ 
+@@ -71,7 +71,7 @@
+ 
+ The resource owner can reserve 60 for the first institution and 40 for the second. Every combination within $0\le x\le60$ and $0\le y\le40$ then fits the protected capacity. The owning authority must prevent duplicate issuance of either reservation. *Op: Compliance-Carrying Operations*, Section 5.11, establishes its declared exposure invariant through a common durable reservation ledger \[[3](#ref-op){style="overflow-wrap:anywhere;hyphens:none"}\].
+ 
+-An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation. The menus contain complete continuation policies, including their possible outcomes. Their product must remain admissible under the fixed request and history \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 8\]. Selecting a menu does not itself acquire its resources.
++An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation. The menus contain complete continuation policies, including their possible outcomes. Their product must remain admissible under the fixed request and history \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 10\]. Selecting a menu does not itself acquire its resources.
+ 
+ A cell is maximal when no local menu can grow while preserving that condition. In a finite relation, every admissible tuple extends to a maximal cell. Start with its singleton menus and enlarge them while their product remains admissible. The process stops because the relation is finite. Its maximal cells cover the admissible relation.
+ 
+@@ -107,13 +107,13 @@
+ 
+ *Admissible Obligation Transitions*, Section 6.3, gives "Future equivalence and exact quotients" for a complete deterministic interface \[[6](#ref-transitions){style="overflow-wrap:anywhere;hyphens:none"}\]. States are equivalent when every admitted future action sequence has the same protected observations. Its finite refinement procedure constructs the coarsest exact grouping. Adding an operation, such as a stay or assignment, can require a finer grouping and a new comparison.
+ 
+-Comparing probabilities of public output histories requires a different test. *Institutional Linking and Realization*, Section 20, compares the full laws of finite public words in a fixed finite stochastic model \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\]. Equal public probabilities preserve that observation interface. They do not, by themselves, preserve debts or authority omitted from it.
++Comparing probabilities of public output histories requires a different test. *Institutional Linking and Realization*, Section 22, compares the full laws of finite public words in a fixed finite stochastic model \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\]. Equal public probabilities preserve that observation interface. They do not, by themselves, preserve debts or authority omitted from it.
+ 
+ Financial continuation also requires complete state. *Central Counterparty Risk in Automated Markets* computes exact completion cash on a finite acyclic decision graph \[[7](#ref-risk){style="overflow-wrap:anywhere;hyphens:none"}\]. The decision precedes the unknown successor, and every represented branch must remain funded. Delivered receipts, repayment duties, facility limits, and timing enter the graph. Concurrent plans using one facility require a joint state and an aggregate reservation.
+ 
+ ## 8 A failed design can state what is missing {#sec:obstructions}
+ 
+-An empty joined relation establishes infeasibility for its declared finite catalog. A residual requirement describes the capability tuples that would complete fixed existing selections. It retains the relationships between fields and a completion witness for each accepted tuple \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 10\].
++An empty joined relation establishes infeasibility for its declared finite catalog. A residual requirement describes the capability tuples that would complete fixed existing selections. It retains the relationships between fields and a completion witness for each accepted tuple \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 8\].
+ 
+ In the acquisition case, 120 units cannot support ordinary payment across both outcomes. A design query can identify the conditional escrow and reserved standby pair needed for the stated delivery goal. The institutions must still supply those capabilities and admit them against the current history. A computed requirement creates no new authority.
+ 
+@@ -121,7 +121,7 @@
+ 
+ Random selectors also face implementation limits. Three exactly equal route probabilities cannot come from a deterministic sampler with a fixed finite bound on independent fair bits. Every probability from such a sampler has denominator dividing a power of two. Pad shorter branches to the fixed bit limit. Each output then corresponds to an integer number of equally likely bit strings, which proves the denominator restriction.
+ 
+-Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 18\]. An available common deterministic route can remove the need for that selector when the contract permits it \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 23\].
++Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 18\]. An available common deterministic route can remove the need for that selector when the contract permits it \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 20\].
+ 
+ Each certificate must identify the model it rejects. A restricted sampler's failure does not reject every permitted controller. An interrupted search reports an unresolved result unless it has an independently checked witness or infeasibility certificate.
+ 
+@@ -147,7 +147,7 @@
+ 
+ ## 10 Technical reading map {#sec:reading-map}
+ 
+-*Institutional Linking and Realization* \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\] supplies the synthesis. Read Sections 2--4 for the execution contract, information-cell compilation, and complete joining. Sections 7--11 give ordered funding, independent-choice cells, the exact capacity trade-off, residual requirements, and funded acquisition. Sections 17--23 distinguish cumulative privacy, selector implementation, public-law comparison, and deterministic future equivalence. Section 25 states "Conditional linked realization" and all implementation premises.
++*Institutional Linking and Realization* \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\] supplies the synthesis. Read Sections 2--4 for the execution contract, information-cell compilation, and complete joining. Sections 7--11 give ordered funding, residual requirements, funded acquisition, independent-choice cells, and the exact capacity trade-off. Sections 17--23 distinguish cumulative privacy, selector implementation, deterministic future equivalence, and public-law comparison. Section 25 states "Conditional linked realization" and all implementation premises.
+ 
+ *How Compliance Composes* \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}\], Sections 5.6--5.7, contains "Lossless contextual composition," "Lossless evidence-and-obligation boundary," and "Finite institutional route equivalence." Section 3.4 proves "Exact independent recombination" and "Extension on a join tree." Section 8 defines executable evidence plans and exact finite search.
+ 
+--- a/content/reader-papers/when-institutional-programs-work-together.tex
++++ b/content/reader-papers/when-institutional-programs-work-together.tex
+@@ -23,7 +23,7 @@
+ The buyer must receive the asset and pay its acquisition charges.
+ A refund by itself does not meet that goal.
+ 
+-These are the fictional contract terms in \emph{Institutional Linking and Realization}, Section~11~\cite{linking}.
++These are the fictional contract terms in \emph{Institutional Linking and Realization}, Section~9~\cite{linking}.
+ Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period.
+ Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.
+ 
+@@ -171,7 +171,7 @@
+ 
+ An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation.
+ The menus contain complete continuation policies, including their possible outcomes.
+-Their product must remain admissible under the fixed request and history~\cite[Section~8]{linking}.
++Their product must remain admissible under the fixed request and history~\cite[Section~10]{linking}.
+ Selecting a menu does not itself acquire its resources.
+ 
+ A cell is maximal when no local menu can grow while preserving that condition.
+@@ -253,7 +253,7 @@
+ Adding an operation, such as a stay or assignment, can require a finer grouping and a new comparison.
+ 
+ Comparing probabilities of public output histories requires a different test.
+-\emph{Institutional Linking and Realization}, Section~20, compares the full laws of finite public words in a fixed finite stochastic model~\cite{linking}.
++\emph{Institutional Linking and Realization}, Section~22, compares the full laws of finite public words in a fixed finite stochastic model~\cite{linking}.
+ Equal public probabilities preserve that observation interface.
+ They do not, by themselves, preserve debts or authority omitted from it.
+ 
+@@ -268,7 +268,7 @@
+ 
+ An empty joined relation establishes infeasibility for its declared finite catalog.
+ A residual requirement describes the capability tuples that would complete fixed existing selections.
+-It retains the relationships between fields and a completion witness for each accepted tuple~\cite[Section~10]{linking}.
++It retains the relationships between fields and a completion witness for each accepted tuple~\cite[Section~8]{linking}.
+ 
+ In the acquisition case, 120 units cannot support ordinary payment across both outcomes.
+ A design query can identify the conditional escrow and reserved standby pair needed for the stated delivery goal.
+@@ -287,7 +287,7 @@
+ Each output then corresponds to an integer number of equally likely bit strings, which proves the denominator restriction.
+ 
+ Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded~\cite[Section~18]{linking}.
+-An available common deterministic route can remove the need for that selector when the contract permits it~\cite[Section~23]{linking}.
++An available common deterministic route can remove the need for that selector when the contract permits it~\cite[Section~20]{linking}.
+ 
+ Each certificate must identify the model it rejects.
+ A restricted sampler's failure does not reject every permitted controller.
+@@ -342,8 +342,8 @@
+ 
+ \emph{Institutional Linking and Realization}~\cite{linking} supplies the synthesis.
+ Read Sections~2--4 for the execution contract, information-cell compilation, and complete joining.
+-Sections~7--11 give ordered funding, independent-choice cells, the exact capacity trade-off, residual requirements, and funded acquisition.
+-Sections~17--23 distinguish cumulative privacy, selector implementation, public-law comparison, and deterministic future equivalence.
++Sections~7--11 give ordered funding, residual requirements, funded acquisition, independent-choice cells, and the exact capacity trade-off.
++Sections~17--23 distinguish cumulative privacy, selector implementation, deterministic future equivalence, and public-law comparison.
+ Section~25 states ``Conditional linked realization'' and all implementation premises.
+ 
+ \emph{How Compliance Composes}~\cite{compliance}, Sections~5.6--5.7, contains ``Lossless contextual composition,'' ``Lossless evidence-and-obligation boundary,'' and ``Finite institutional route equivalence.''

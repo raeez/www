@@ -1,0 +1,68 @@
+{
+  "worktree": "/Users/raeez/centcom-worktrees/writing-20261022-www",
+  "baseline_HEAD": "a0d011c46811837a7f5fb1d1aa60cd457b68dd00",
+  "incremental_baseline": "Accepted76-path packet after two final pagination guards",
+  "baseline_manifest_sha256": "c829db61fc84276724e574b95e766eee47968b2830181515c0fbf882d66ad846",
+  "changed_paths": [
+    {
+      "path": "compiler/reader-papers.json",
+      "before_sha256": "56b6d9baef4d0e5c5b46d66150678099d5bd2b1dadea24ae1a3d8c82ae99f1fb",
+      "after_sha256": "d46bdcaa81e4a17e483de3721207e4705c587e466e3b3732cd1d84a8f71703dd",
+      "insertions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "content/reader-papers/when-institutional-programs-work-together.md",
+      "before_sha256": "e90debbb64ea2411c5b02fdb3c7418c41105d6a2899277d3d686c9c1a68a5be0",
+      "after_sha256": "c58ec5003131942338f45dd770a2f2afe09b16cf340b38526655cde9b26bf32e",
+      "insertions": 6,
+      "deletions": 6
+    },
+    {
+      "path": "content/reader-papers/when-institutional-programs-work-together.tex",
+      "before_sha256": "65f9ec217c566fb8e3a2d6062202077e2aaf55ba9f0805b653c428352886ffb1",
+      "after_sha256": "2e33dd873b47b006f9a6e9f2c98b3e3a3bf9a3684877b60711f03469bfc102fb",
+      "insertions": 7,
+      "deletions": 7
+    },
+    {
+      "path": "materials/processed/2026-10-22-editorial/citation-locator-updates.json",
+      "before_sha256": "b45bcd095fbcb7dd7e48234797058668bcd6fa0e0249087baa6ebdf272400979",
+      "after_sha256": "36374c9a40cff9071b70ff325dd079b104c1641229cb118540d468a86d4b04aa",
+      "insertions": 119,
+      "deletions": 0
+    },
+    {
+      "path": "materials/processed/2026-10-22-editorial/frozen-reader-source-hashes.json",
+      "before_sha256": "2939ff81f9dbe42678bc71a41c9ca7eabfeb4c56584ebddeafe7b5aadb693162",
+      "after_sha256": "0ccf8455e85575ab532e86f47796bbceb068cd5a118cf366124b6a35741d360f",
+      "insertions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "materials/processed/2026-10-22-editorial/verification.json",
+      "before_sha256": "238d528960fab6ef9849526a1f7c01cec57c28f1aefcc08b06b7bc4cb9d5412a",
+      "after_sha256": "826c9c96d9744e195233dc5629dd74b04c65d0c8cb97497ce313c480cc36aeda",
+      "insertions": 55,
+      "deletions": 8
+    },
+    {
+      "path": "when-institutional-programs-work-together.html",
+      "before_sha256": "4d26433106ba3d80e0721045a65b207a82c278617e801b0db8f546aa067a4981",
+      "after_sha256": "0bba9259b396c34db0cf566536042ecf614d8cd4eb6dba2889be621f4e9d58f1",
+      "insertions": 6,
+      "deletions": 6
+    }
+  ],
+  "unchanged_baseline_paths": 69,
+  "incremental_patch_sha256": "d09f9fef93babbc51196aca93727b3481ad9298f5d01377b21d70e5d295bd2e7",
+  "incremental_insertions": 197,
+  "incremental_deletions": 31,
+  "all14_maintained_sources_match_research": true,
+  "all7_HTML_checks_passed": true,
+  "only_Programs_HTML_regenerated": true,
+  "full_staged_stat": "76 files changed, 15491 insertions(+), 528 deletions(-)",
+  "unstaged_tracked_changes": false,
+  "prior_four_evidence_whitespace_findings_retained": true,
+  "independent_integration_review": "Pass: seven-file scope, exact source/rule/HTML replay, preserved mathematical and link payloads, source/control/evidence hashes, staged bytes and incremental patch verified; no new builds or visual review."
+}

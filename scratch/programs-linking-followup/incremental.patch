@@ -1,0 +1,419 @@
+--- a/compiler/reader-papers.json
++++ b/compiler/reader-papers.json
+@@ -48,8 +48,8 @@
+       "slug": "when-institutional-programs-work-together",
+       "title": "When Institutional Programs Work Together",
+       "description": "Which compatibility conditions let local programs complete a common task?",
+-      "source_sha256": "e90debbb64ea2411c5b02fdb3c7418c41105d6a2899277d3d686c9c1a68a5be0",
+-      "tex_sha256": "65f9ec217c566fb8e3a2d6062202077e2aaf55ba9f0805b653c428352886ffb1"
++      "source_sha256": "c58ec5003131942338f45dd770a2f2afe09b16cf340b38526655cde9b26bf32e",
++      "tex_sha256": "2e33dd873b47b006f9a6e9f2c98b3e3a3bf9a3684877b60711f03469bfc102fb"
+     }
+   ],
+   "technical_links": {},
+--- a/content/reader-papers/when-institutional-programs-work-together.md
++++ b/content/reader-papers/when-institutional-programs-work-together.md
+@@ -8,7 +8,7 @@
+ 
+ A buyer has 120 units and needs delivery of an asset priced at 100 by the first supplier. If that supplier fails, a reserved standby supplier can deliver for 100 plus a charge of 20. The buyer must receive the asset and pay its acquisition charges. A refund by itself does not meet that goal.
+ 
+-These are the fictional contract terms in *Institutional Linking and Realization*, Section 11 \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\]. Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period. Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.
++These are the fictional contract terms in *Institutional Linking and Realization*, Section 9 \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\]. Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period. Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.
+ 
+ The conditional route reserves 100 in escrow for release to the first supplier upon delivery. Certified final failure returns it before the standby supplier needs payment. Starting with 120, the buyer retains 20 during reservation and regains the other 100 in time to pay the standby. Thus the conditional route needs 120 across both modeled branches.
+ 
+@@ -71,7 +71,7 @@
+ 
+ The resource owner can reserve 60 for the first institution and 40 for the second. Every combination within $0\le x\le60$ and $0\le y\le40$ then fits the protected capacity. The owning authority must prevent duplicate issuance of either reservation. *Op: Compliance-Carrying Operations*, Section 5.11, establishes its declared exposure invariant through a common durable reservation ledger \[[3](#ref-op){style="overflow-wrap:anywhere;hyphens:none"}\].
+ 
+-An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation. The menus contain complete continuation policies, including their possible outcomes. Their product must remain admissible under the fixed request and history \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 8\]. Selecting a menu does not itself acquire its resources.
++An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation. The menus contain complete continuation policies, including their possible outcomes. Their product must remain admissible under the fixed request and history \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 10\]. Selecting a menu does not itself acquire its resources.
+ 
+ A cell is maximal when no local menu can grow while preserving that condition. In a finite relation, every admissible tuple extends to a maximal cell. Start with its singleton menus and enlarge them while their product remains admissible. The process stops because the relation is finite. Its maximal cells cover the admissible relation.
+ 
+@@ -107,13 +107,13 @@
+ 
+ *Admissible Obligation Transitions*, Section 6.3, gives "Future equivalence and exact quotients" for a complete deterministic interface \[[6](#ref-transitions){style="overflow-wrap:anywhere;hyphens:none"}\]. States are equivalent when every admitted future action sequence has the same protected observations. Its finite refinement procedure constructs the coarsest exact grouping. Adding an operation, such as a stay or assignment, can require a finer grouping and a new comparison.
+ 
+-Comparing probabilities of public output histories requires a different test. *Institutional Linking and Realization*, Section 20, compares the full laws of finite public words in a fixed finite stochastic model \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\]. Equal public probabilities preserve that observation interface. They do not, by themselves, preserve debts or authority omitted from it.
++Comparing probabilities of public output histories requires a different test. *Institutional Linking and Realization*, Section 22, compares the full laws of finite public words in a fixed finite stochastic model \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\]. Equal public probabilities preserve that observation interface. They do not, by themselves, preserve debts or authority omitted from it.
+ 
+ Financial continuation also requires complete state. *Central Counterparty Risk in Automated Markets* computes exact completion cash on a finite acyclic decision graph \[[7](#ref-risk){style="overflow-wrap:anywhere;hyphens:none"}\]. The decision precedes the unknown successor, and every represented branch must remain funded. Delivered receipts, repayment duties, facility limits, and timing enter the graph. Concurrent plans using one facility require a joint state and an aggregate reservation.
+ 
+ ## 8 A failed design can state what is missing {#sec:obstructions}
+ 
+-An empty joined relation establishes infeasibility for its declared finite catalog. A residual requirement describes the capability tuples that would complete fixed existing selections. It retains the relationships between fields and a completion witness for each accepted tuple \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 10\].
++An empty joined relation establishes infeasibility for its declared finite catalog. A residual requirement describes the capability tuples that would complete fixed existing selections. It retains the relationships between fields and a completion witness for each accepted tuple \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 8\].
+ 
+ In the acquisition case, 120 units cannot support ordinary payment across both outcomes. A design query can identify the conditional escrow and reserved standby pair needed for the stated delivery goal. The institutions must still supply those capabilities and admit them against the current history. A computed requirement creates no new authority.
+ 
+@@ -121,7 +121,7 @@
+ 
+ Random selectors also face implementation limits. Three exactly equal route probabilities cannot come from a deterministic sampler with a fixed finite bound on independent fair bits. Every probability from such a sampler has denominator dividing a power of two. Pad shorter branches to the fixed bit limit. Each output then corresponds to an integer number of equally likely bit strings, which proves the denominator restriction.
+ 
+-Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 18\]. An available common deterministic route can remove the need for that selector when the contract permits it \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 23\].
++Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 18\]. An available common deterministic route can remove the need for that selector when the contract permits it \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 20\].
+ 
+ Each certificate must identify the model it rejects. A restricted sampler's failure does not reject every permitted controller. An interrupted search reports an unresolved result unless it has an independently checked witness or infeasibility certificate.
+ 
+@@ -147,7 +147,7 @@
+ 
+ ## 10 Technical reading map {#sec:reading-map}
+ 
+-*Institutional Linking and Realization* \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\] supplies the synthesis. Read Sections 2--4 for the execution contract, information-cell compilation, and complete joining. Sections 7--11 give ordered funding, independent-choice cells, the exact capacity trade-off, residual requirements, and funded acquisition. Sections 17--23 distinguish cumulative privacy, selector implementation, public-law comparison, and deterministic future equivalence. Section 25 states "Conditional linked realization" and all implementation premises.
++*Institutional Linking and Realization* \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\] supplies the synthesis. Read Sections 2--4 for the execution contract, information-cell compilation, and complete joining. Sections 7--11 give ordered funding, residual requirements, funded acquisition, independent-choice cells, and the exact capacity trade-off. Sections 17--23 distinguish cumulative privacy, selector implementation, deterministic future equivalence, and public-law comparison. Section 25 states "Conditional linked realization" and all implementation premises.
+ 
+ *How Compliance Composes* \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}\], Sections 5.6--5.7, contains "Lossless contextual composition," "Lossless evidence-and-obligation boundary," and "Finite institutional route equivalence." Section 3.4 proves "Exact independent recombination" and "Extension on a join tree." Section 8 defines executable evidence plans and exact finite search.
+ 
+--- a/content/reader-papers/when-institutional-programs-work-together.tex
++++ b/content/reader-papers/when-institutional-programs-work-together.tex
+@@ -23,7 +23,7 @@
+ The buyer must receive the asset and pay its acquisition charges.
+ A refund by itself does not meet that goal.
+ 
+-These are the fictional contract terms in \emph{Institutional Linking and Realization}, Section~11~\cite{linking}.
++These are the fictional contract terms in \emph{Institutional Linking and Realization}, Section~9~\cite{linking}.
+ Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period.
+ Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.
+ 
+@@ -171,7 +171,7 @@
+ 
+ An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation.
+ The menus contain complete continuation policies, including their possible outcomes.
+-Their product must remain admissible under the fixed request and history~\cite[Section~8]{linking}.
++Their product must remain admissible under the fixed request and history~\cite[Section~10]{linking}.
+ Selecting a menu does not itself acquire its resources.
+ 
+ A cell is maximal when no local menu can grow while preserving that condition.
+@@ -253,7 +253,7 @@
+ Adding an operation, such as a stay or assignment, can require a finer grouping and a new comparison.
+ 
+ Comparing probabilities of public output histories requires a different test.
+-\emph{Institutional Linking and Realization}, Section~20, compares the full laws of finite public words in a fixed finite stochastic model~\cite{linking}.
++\emph{Institutional Linking and Realization}, Section~22, compares the full laws of finite public words in a fixed finite stochastic model~\cite{linking}.
+ Equal public probabilities preserve that observation interface.
+ They do not, by themselves, preserve debts or authority omitted from it.
+ 
+@@ -268,7 +268,7 @@
+ 
+ An empty joined relation establishes infeasibility for its declared finite catalog.
+ A residual requirement describes the capability tuples that would complete fixed existing selections.
+-It retains the relationships between fields and a completion witness for each accepted tuple~\cite[Section~10]{linking}.
++It retains the relationships between fields and a completion witness for each accepted tuple~\cite[Section~8]{linking}.
+ 
+ In the acquisition case, 120 units cannot support ordinary payment across both outcomes.
+ A design query can identify the conditional escrow and reserved standby pair needed for the stated delivery goal.
+@@ -287,7 +287,7 @@
+ Each output then corresponds to an integer number of equally likely bit strings, which proves the denominator restriction.
+ 
+ Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded~\cite[Section~18]{linking}.
+-An available common deterministic route can remove the need for that selector when the contract permits it~\cite[Section~23]{linking}.
++An available common deterministic route can remove the need for that selector when the contract permits it~\cite[Section~20]{linking}.
+ 
+ Each certificate must identify the model it rejects.
+ A restricted sampler's failure does not reject every permitted controller.
+@@ -342,8 +342,8 @@
+ 
+ \emph{Institutional Linking and Realization}~\cite{linking} supplies the synthesis.
+ Read Sections~2--4 for the execution contract, information-cell compilation, and complete joining.
+-Sections~7--11 give ordered funding, independent-choice cells, the exact capacity trade-off, residual requirements, and funded acquisition.
+-Sections~17--23 distinguish cumulative privacy, selector implementation, public-law comparison, and deterministic future equivalence.
++Sections~7--11 give ordered funding, residual requirements, funded acquisition, independent-choice cells, and the exact capacity trade-off.
++Sections~17--23 distinguish cumulative privacy, selector implementation, deterministic future equivalence, and public-law comparison.
+ Section~25 states ``Conditional linked realization'' and all implementation premises.
+ 
+ \emph{How Compliance Composes}~\cite{compliance}, Sections~5.6--5.7, contains ``Lossless contextual composition,'' ``Lossless evidence-and-obligation boundary,'' and ``Finite institutional route equivalence.''
+--- a/materials/processed/2026-10-22-editorial/citation-locator-updates.json
++++ b/materials/processed/2026-10-22-editorial/citation-locator-updates.json
+@@ -658,6 +658,118 @@
+       "new": "\\emph{The Claim as Primitive}, \\S1.1 and \\S9.4:",
+       "count": 1,
+       "paper": "The Claim as Primitive"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.md",
++      "old": "These are the fictional contract terms in *Institutional Linking and Realization*, Section 11 \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}\\]. Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period. Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.",
++      "new": "These are the fictional contract terms in *Institutional Linking and Realization*, Section 9 \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}\\]. Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period. Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.md",
++      "old": "An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation. The menus contain complete continuation policies, including their possible outcomes. Their product must remain admissible under the fixed request and history \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}, Section 8\\]. Selecting a menu does not itself acquire its resources.",
++      "new": "An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation. The menus contain complete continuation policies, including their possible outcomes. Their product must remain admissible under the fixed request and history \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}, Section 10\\]. Selecting a menu does not itself acquire its resources.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.md",
++      "old": "Comparing probabilities of public output histories requires a different test. *Institutional Linking and Realization*, Section 20, compares the full laws of finite public words in a fixed finite stochastic model \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}\\]. Equal public probabilities preserve that observation interface. They do not, by themselves, preserve debts or authority omitted from it.",
++      "new": "Comparing probabilities of public output histories requires a different test. *Institutional Linking and Realization*, Section 22, compares the full laws of finite public words in a fixed finite stochastic model \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}\\]. Equal public probabilities preserve that observation interface. They do not, by themselves, preserve debts or authority omitted from it.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.md",
++      "old": "An empty joined relation establishes infeasibility for its declared finite catalog. A residual requirement describes the capability tuples that would complete fixed existing selections. It retains the relationships between fields and a completion witness for each accepted tuple \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}, Section 10\\].",
++      "new": "An empty joined relation establishes infeasibility for its declared finite catalog. A residual requirement describes the capability tuples that would complete fixed existing selections. It retains the relationships between fields and a completion witness for each accepted tuple \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}, Section 8\\].",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.md",
++      "old": "Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}, Section 18\\]. An available common deterministic route can remove the need for that selector when the contract permits it \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}, Section 23\\].",
++      "new": "Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}, Section 18\\]. An available common deterministic route can remove the need for that selector when the contract permits it \\[[1](#ref-linking){style=\"overflow-wrap:anywhere;hyphens:none\"}, Section 20\\].",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.md",
++      "old": "ordered funding, independent-choice cells, the exact capacity trade-off, residual requirements, and funded acquisition.",
++      "new": "ordered funding, residual requirements, funded acquisition, independent-choice cells, and the exact capacity trade-off.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.md",
++      "old": "cumulative privacy, selector implementation, public-law comparison, and deterministic future equivalence.",
++      "new": "cumulative privacy, selector implementation, deterministic future equivalence, and public-law comparison.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.tex",
++      "old": "These are the fictional contract terms in \\emph{Institutional Linking and Realization}, Section~11~\\cite{linking}.",
++      "new": "These are the fictional contract terms in \\emph{Institutional Linking and Realization}, Section~9~\\cite{linking}.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.tex",
++      "old": "Their product must remain admissible under the fixed request and history~\\cite[Section~8]{linking}.",
++      "new": "Their product must remain admissible under the fixed request and history~\\cite[Section~10]{linking}.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.tex",
++      "old": "\\emph{Institutional Linking and Realization}, Section~20, compares the full laws of finite public words in a fixed finite stochastic model~\\cite{linking}.",
++      "new": "\\emph{Institutional Linking and Realization}, Section~22, compares the full laws of finite public words in a fixed finite stochastic model~\\cite{linking}.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.tex",
++      "old": "It retains the relationships between fields and a completion witness for each accepted tuple~\\cite[Section~10]{linking}.",
++      "new": "It retains the relationships between fields and a completion witness for each accepted tuple~\\cite[Section~8]{linking}.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.tex",
++      "old": "An available common deterministic route can remove the need for that selector when the contract permits it~\\cite[Section~23]{linking}.",
++      "new": "An available common deterministic route can remove the need for that selector when the contract permits it~\\cite[Section~20]{linking}.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.tex",
++      "old": "Sections~7--11 give ordered funding, independent-choice cells, the exact capacity trade-off, residual requirements, and funded acquisition.",
++      "new": "Sections~7--11 give ordered funding, residual requirements, funded acquisition, independent-choice cells, and the exact capacity trade-off.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
++    },
++    {
++      "file": "content/reader-papers/when-institutional-programs-work-together.tex",
++      "old": "Sections~17--23 distinguish cumulative privacy, selector implementation, public-law comparison, and deterministic future equivalence.",
++      "new": "Sections~17--23 distinguish cumulative privacy, selector implementation, deterministic future equivalence, and public-law comparison.",
++      "count": 1,
++      "paper": "Institutional Linking and Realization",
++      "batch": "maintained-N07-numbering-update"
+     }
+   ],
+   "Recourse_reference_sha256": "53cb8e90ff0de2491ef2b91a3e63dcf07b0b82af02457b81e90c9dcf08946977",
+@@ -700,5 +812,12 @@
+       "path": "/Users/raeez/momentum-research-worktrees/writing-20261022-current/papers/recourse.references.json",
+       "sha256": "53cb8e90ff0de2491ef2b91a3e63dcf07b0b82af02457b81e90c9dcf08946977"
+     }
++  },
++  "maintained_N07_followup": {
++    "source_sha256": "e3d806f35557d84e573dbd2945e96b5ef1cd7e209981ab26edf55b46816fd7cd",
++    "compiled_references_sha256": "12920d49bdbc42dfd1ca347ce36279cebaa47b9474b2cfd535c2789a6a563799",
++    "body_locator_changes_per_format": 5,
++    "reading_map_order_changes_per_format": 2,
++    "section_25_unchanged": true
+   }
+ }
+--- a/materials/processed/2026-10-22-editorial/frozen-reader-source-hashes.json
++++ b/materials/processed/2026-10-22-editorial/frozen-reader-source-hashes.json
+@@ -11,6 +11,6 @@
+   "content/reader-papers/prices-information-and-clearing-risk.tex": "a311b097b110bd3efeb7abae71ae9fde24003facaea45d08e1d91e956f1d2366",
+   "content/reader-papers/title-remedies-and-institutional-change.md": "1bc1cf364dbf4a988a84cd385062258b7f966952469fafd2d0fa0ea54c2fd2d2",
+   "content/reader-papers/title-remedies-and-institutional-change.tex": "1cf7711cc2f5071654e906a54066615371d22dc5624beb8a549cf0d4210758f9",
+-  "content/reader-papers/when-institutional-programs-work-together.md": "e90debbb64ea2411c5b02fdb3c7418c41105d6a2899277d3d686c9c1a68a5be0",
+-  "content/reader-papers/when-institutional-programs-work-together.tex": "65f9ec217c566fb8e3a2d6062202077e2aaf55ba9f0805b653c428352886ffb1"
++  "content/reader-papers/when-institutional-programs-work-together.md": "c58ec5003131942338f45dd770a2f2afe09b16cf340b38526655cde9b26bf32e",
++  "content/reader-papers/when-institutional-programs-work-together.tex": "2e33dd873b47b006f9a6e9f2c98b3e3a3bf9a3684877b60711f03469bfc102fb"
+ }
+--- a/materials/processed/2026-10-22-editorial/verification.json
++++ b/materials/processed/2026-10-22-editorial/verification.json
+@@ -1,6 +1,6 @@
+ {
+   "date": "2026-10-22",
+-  "checked_at_utc": "2026-10-21T20:19:12+00:00",
++  "checked_at_utc": "2026-10-21T20:44:02+00:00",
+   "baseline": "a0d011c46811837a7f5fb1d1aa60cd457b68dd00",
+   "work_count": 18,
+   "pages": {
+@@ -21,7 +21,7 @@
+     "recognition-across-independent-authorities.html": "e3c706c6dd165d8fa9f32f6757a983a00a0e8dacd63a9220d6cdef03f8cd3e5b",
+     "prices-information-and-clearing-risk.html": "3a85612c9f987070108228e3278b3924583b3932d8519ddc1f435b7f367c02c3",
+     "title-remedies-and-institutional-change.html": "52a294f709037eb3335a61c1dc377d8a71ff828ae52eb6509a349107a1b0165e",
+-    "when-institutional-programs-work-together.html": "4d26433106ba3d80e0721045a65b207a82c278617e801b0db8f546aa067a4981"
++    "when-institutional-programs-work-together.html": "0bba9259b396c34db0cf566536042ecf614d8cd4eb6dba2889be621f4e9d58f1"
+   },
+   "reader_sources": {
+     "content/reader-papers/institutional-computation-explained.md": "3ec9c4ba511f21ecaf433dec9d0833ae6faddf87ea778f971dccc21d5c46559a",
+@@ -36,8 +36,8 @@
+     "content/reader-papers/prices-information-and-clearing-risk.tex": "a311b097b110bd3efeb7abae71ae9fde24003facaea45d08e1d91e956f1d2366",
+     "content/reader-papers/title-remedies-and-institutional-change.md": "1bc1cf364dbf4a988a84cd385062258b7f966952469fafd2d0fa0ea54c2fd2d2",
+     "content/reader-papers/title-remedies-and-institutional-change.tex": "1cf7711cc2f5071654e906a54066615371d22dc5624beb8a549cf0d4210758f9",
+-    "content/reader-papers/when-institutional-programs-work-together.md": "e90debbb64ea2411c5b02fdb3c7418c41105d6a2899277d3d686c9c1a68a5be0",
+-    "content/reader-papers/when-institutional-programs-work-together.tex": "65f9ec217c566fb8e3a2d6062202077e2aaf55ba9f0805b653c428352886ffb1"
++    "content/reader-papers/when-institutional-programs-work-together.md": "c58ec5003131942338f45dd770a2f2afe09b16cf340b38526655cde9b26bf32e",
++    "content/reader-papers/when-institutional-programs-work-together.tex": "2e33dd873b47b006f9a6e9f2c98b3e3a3bf9a3684877b60711f03469bfc102fb"
+   },
+   "reader_checks": {
+     "build_and_check_passed": 7,
+@@ -46,9 +46,9 @@
+     "ordered_bibliography_entries": 29,
+     "unchanged_delimited_mathematical_spans": 306,
+     "generated_MathML_expressions": 153,
+-    "compiled_dependency_hashes_checked": 9,
+-    "citation_rules": 94,
+-    "matched_locator_occurrences": 100,
++    "compiled_dependency_hashes_checked": 10,
++    "citation_rules": 108,
++    "matched_locator_occurrences": 114,
+     "current_cited_source_contexts_checked": "All15 formal papers and Institutional Linking and Realization supplement; unanchored body locators included."
+   },
+   "raw_reader_snapshot": {
+@@ -179,8 +179,55 @@
+       "/Users/raeez/momentum-research-worktrees/writing-20261022-reader-sources/_audit/2026-10-22-reader-sources/pdf-integrity-checks.json": "d72e9aa2125920e746f657ba672cd388c800a89b0b20f61f4bf6073bf02080d7",
+       "/Users/raeez/momentum-research-worktrees/writing-20261022-reader-sources/_audit/2026-10-22-reader-sources/anchor-fix-image-comparison.json": "7661ca48c5abbb605ad1f8317cac6d2f205d627eae5e8335eaeeb4a54d2ef50c",
+       "/Users/raeez/momentum-research-worktrees/writing-20261022-reader-sources/_audit/2026-10-22-reader-sources/build-results.json": "16abdcbd7bfb3c52267d99ee722b2f1c4f4afc86dd3e1d0bc603ba51f37371b0",
+-      "/Users/raeez/momentum-research-worktrees/writing-20261022-reader-sources/_audit/2026-10-22-reader-sources/complete-technical-number-check.json": "d1d8a200ce5522faa69f103579038d6e62f9b3fdc2fd3e049f938fd2a26c8dea"
++      "/Users/raeez/momentum-research-worktrees/writing-20261022-reader-sources/_audit/2026-10-22-reader-sources/complete-technical-number-check.json": "df90be2b923d4788a45981a4c43d5722549a8be582cea3dd35b93145f3ab6973"
+     },
+     "boundary": "Source parity and website --check ran in this worktree. PDF/render/numeric-map results are the linked research verification records; no new website visual review was performed."
++  },
++  "programs_N07_locator_followup": {
++    "baseline": "Accepted 76-path website packet after final pagination guards; exact hashes retained in scratch/programs-linking-followup/baseline-76-path-hashes.json.",
++    "owned_changed_paths": 7,
++    "other_accepted_paths_byte_identical": 69,
++    "paired_changes": {
++      "body_numeric_locators_per_format": 5,
++      "reading_map_topic_orders_per_format": 2
++    },
++    "maintained_N07_source_sha256": "e3d806f35557d84e573dbd2945e96b5ef1cd7e209981ab26edf55b46816fd7cd",
++    "maintained_N07_references_sha256": "12920d49bdbc42dfd1ca347ce36279cebaa47b9474b2cfd535c2789a6a563799",
++    "local_checks": {
++      "maintained_source_files_identical_to_research": 14,
++      "reader_HTML_checks_passed": 7,
++      "HTML_pages_regenerated": 1,
++      "Programs_unchanged_MathML_expressions": 21,
++      "Programs_ID_and_link_sequences_preserved": true,
++      "observation_law_paragraph_exact_in_both_formats": true,
++      "seven_exact_replacements_replay_each_format": true
++    },
++    "separately_recorded_research_checks": {
++      "Programs_PDF_pages": 9,
++      "PDF_links": 40,
++      "reference_anchors": 10,
++      "warnings": 0,
++      "changed_pages_inspected": [
++        1,
++        4,
++        6,
++        7,
++        8
++      ],
++      "other_rendered_pages_byte_identical": [
++        2,
++        3,
++        5,
++        9
++      ]
++    },
++    "evidence_sha256": {
++      "/Users/raeez/momentum-research-worktrees/writing-20261022-reader-sources/_audit/2026-10-22-reader-sources/n07-locator-update/maintained-N07-map-verification.json": "b120af1766faa1f3458bbf1803292644f97cb970f85a9dd1d0fc4402d9c776cb",
++      "/Users/raeez/momentum-research-worktrees/writing-20261022-reader-sources/_audit/2026-10-22-reader-sources/n07-locator-update/verification.json": "b763be187e61fdef2ad73bde81bfa16cb090421e985daf5a7a660b04aaef1e2e",
++      "/Users/raeez/momentum-research-worktrees/writing-20261022-reader-sources/_audit/2026-10-22-reader-sources/n07-locator-update/build-results.json": "0be64625641101a7cb331a6038cbde1e21085408683396724ca70a868f3c7f8a",
++      "/Users/raeez/momentum-research-worktrees/writing-20261022-reader-sources/_audit/2026-10-22-reader-sources/n07-locator-update/page-comparison.json": "937e0a8c592d9de5a95f59053f50cac630bb983477833acfd6dbb24afb45515b",
++      "/Users/raeez/momentum-research-worktrees/writing-20261022-reader-sources/_audit/2026-10-22-reader-sources/n07-locator-update/locator-changes.json": "c9dd9d176494f94e517340278ef00ffb6e4abfa848c56e85a1daa0ee96c394a5"
++    },
++    "boundary": "Only Programs sources, their compiler/frozen/citation/verification records, and Programs HTML changed. No feed, SEZ, other source, or other HTML changes. PDF checks are the linked research records; this worktree performed no new rendered inspection."
+   }
+ }
+--- a/when-institutional-programs-work-together.html
++++ b/when-institutional-programs-work-together.html
+@@ -569,7 +569,7 @@
+ <section id="sec:purchase" class="level2">
+ <h2>1 A purchase that must end in delivery</h2>
+ <p>A buyer has 120 units and needs delivery of an asset priced at 100 by the first supplier. If that supplier fails, a reserved standby supplier can deliver for 100 plus a charge of 20. The buyer must receive the asset and pay its acquisition charges. A refund by itself does not meet that goal.</p>
+-<p>These are the fictional contract terms in <em>Institutional Linking and Realization</em>, Section 11 [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>]. Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period. Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.</p>
++<p>These are the fictional contract terms in <em>Institutional Linking and Realization</em>, Section 9 [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>]. Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period. Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.</p>
+ <p>The conditional route reserves 100 in escrow for release to the first supplier upon delivery. Certified final failure returns it before the standby supplier needs payment. Starting with 120, the buyer retains 20 during reservation and regains the other 100 in time to pay the standby. Thus the conditional route needs 120 across both modeled branches.</p>
+ <table>
+ <thead>
+@@ -627,7 +627,7 @@
+ <h2>5 Reservations define the choices that can remain local</h2>
+ <p>A joined assignment must preserve shared resources even when participants retain local choices. Two institutions share capacity of 100 integral units. Either institution can use 100 when considered alone. Giving both unrestricted local permission would allow a combined use of 200. The complete condition is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>+</mo><mi>y</mi><mo>≤</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">x+y\le100</annotation></semantics></math>.</p>
+ <p>The resource owner can reserve 60 for the first institution and 40 for the second. Every combination within <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>x</mi><mo>≤</mo><mn>60</mn></mrow><annotation encoding="application/x-tex">0\le x\le60</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>y</mi><mo>≤</mo><mn>40</mn></mrow><annotation encoding="application/x-tex">0\le y\le40</annotation></semantics></math> then fits the protected capacity. The owning authority must prevent duplicate issuance of either reservation. <em>Op: Compliance-Carrying Operations</em>, Section 5.11, establishes its declared exposure invariant through a common durable reservation ledger [<a href="#ref-op" style="overflow-wrap:anywhere;hyphens:none">3</a>].</p>
+-<p>An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation. The menus contain complete continuation policies, including their possible outcomes. Their product must remain admissible under the fixed request and history [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>, Section 8]. Selecting a menu does not itself acquire its resources.</p>
++<p>An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation. The menus contain complete continuation policies, including their possible outcomes. Their product must remain admissible under the fixed request and history [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>, Section 10]. Selecting a menu does not itself acquire its resources.</p>
+ <p>A cell is maximal when no local menu can grow while preserving that condition. In a finite relation, every admissible tuple extends to a maximal cell. Start with its singleton menus and enlarge them while their product remains admissible. The process stops because the relation is finite. Its maximal cells cover the admissible relation.</p>
+ <p>Maximal cells can differ, and some retain little useful choice. Maximality specifies how far menus can extend within a fixed model. Choosing among maximal designs requires the decision maker’s objective.</p>
+ <p>With capacity fixed at 100, preserving every original allocation requires 101 independent-choice cells. Adding nine actual eligible units reduces the minimum to eleven [<a href="#ref-op" style="overflow-wrap:anywhere;hyphens:none">3</a>, Section 7.3].</p>
+@@ -649,16 +649,16 @@
+ <p>Continuation state retains unfinished computation, outstanding duties, and the state needed for its next permitted action. It includes creditors, reservations, pending commands, deadlines, and the effects of later corrections. Retained knowledge records what an observer learns from the accumulated history. Continuation state and retained knowledge are distinct parts of institutional state that can both constrain a future admission.</p>
+ <p>Two accounts with equal balances can have different payment obligations. Two histories with identical public outputs can have different private debts. A replacement must preserve the future questions that matter to the relying institution. <em>How Compliance Composes</em>, Sections 5.6–5.7, makes duties, authority, deadlines, and continuation status explicit in its boundary records and finite route comparison [<a href="#ref-compliance" style="overflow-wrap:anywhere;hyphens:none">2</a>].</p>
+ <p><em>Admissible Obligation Transitions</em>, Section 6.3, gives “Future equivalence and exact quotients” for a complete deterministic interface [<a href="#ref-transitions" style="overflow-wrap:anywhere;hyphens:none">6</a>]. States are equivalent when every admitted future action sequence has the same protected observations. Its finite refinement procedure constructs the coarsest exact grouping. Adding an operation, such as a stay or assignment, can require a finer grouping and a new comparison.</p>
+-<p>Comparing probabilities of public output histories requires a different test. <em>Institutional Linking and Realization</em>, Section 20, compares the full laws of finite public words in a fixed finite stochastic model [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>]. Equal public probabilities preserve that observation interface. They do not, by themselves, preserve debts or authority omitted from it.</p>
++<p>Comparing probabilities of public output histories requires a different test. <em>Institutional Linking and Realization</em>, Section 22, compares the full laws of finite public words in a fixed finite stochastic model [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>]. Equal public probabilities preserve that observation interface. They do not, by themselves, preserve debts or authority omitted from it.</p>
+ <p>Financial continuation also requires complete state. <em>Central Counterparty Risk in Automated Markets</em> computes exact completion cash on a finite acyclic decision graph [<a href="#ref-risk" style="overflow-wrap:anywhere;hyphens:none">7</a>]. The decision precedes the unknown successor, and every represented branch must remain funded. Delivered receipts, repayment duties, facility limits, and timing enter the graph. Concurrent plans using one facility require a joint state and an aggregate reservation.</p>
+ </section>
+ <section id="sec:obstructions" class="level2">
+ <h2>8 A failed design can state what is missing</h2>
+-<p>An empty joined relation establishes infeasibility for its declared finite catalog. A residual requirement describes the capability tuples that would complete fixed existing selections. It retains the relationships between fields and a completion witness for each accepted tuple [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>, Section 10].</p>
++<p>An empty joined relation establishes infeasibility for its declared finite catalog. A residual requirement describes the capability tuples that would complete fixed existing selections. It retains the relationships between fields and a completion witness for each accepted tuple [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>, Section 8].</p>
+ <p>In the acquisition case, 120 units cannot support ordinary payment across both outcomes. A design query can identify the conditional escrow and reserved standby pair needed for the stated delivery goal. The institutions must still supply those capabilities and admit them against the current history. A computed requirement creates no new authority.</p>
+ <p>Other profiles have different exact obstructions. An integer payment problem can have a rational solution while divisibility prevents an integral one. A translation network can have inconsistent cycle sums. These tests apply to their specified integer and translation models [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>, Sections 13–14].</p>
+ <p>Random selectors also face implementation limits. Three exactly equal route probabilities cannot come from a deterministic sampler with a fixed finite bound on independent fair bits. Every probability from such a sampler has denominator dividing a power of two. Pad shorter branches to the fixed bit limit. Each output then corresponds to an integer number of equally likely bit strings, which proves the denominator restriction.</p>
+-<p>Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>, Section 18]. An available common deterministic route can remove the need for that selector when the contract permits it [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>, Section 23].</p>
++<p>Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>, Section 18]. An available common deterministic route can remove the need for that selector when the contract permits it [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>, Section 20].</p>
+ <p>Each certificate must identify the model it rejects. A restricted sampler’s failure does not reject every permitted controller. An interrupted search reports an unresolved result unless it has an independently checked witness or infeasibility certificate.</p>
+ </section>
+ <section id="sec:realization" class="level2">
+@@ -675,7 +675,7 @@
+ </section>
+ <section id="sec:reading-map" class="level2">
+ <h2>10 Technical reading map</h2>
+-<p><em>Institutional Linking and Realization</em> [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>] supplies the synthesis. Read Sections 2–4 for the execution contract, information-cell compilation, and complete joining. Sections 7–11 give ordered funding, independent-choice cells, the exact capacity trade-off, residual requirements, and funded acquisition. Sections 17–23 distinguish cumulative privacy, selector implementation, public-law comparison, and deterministic future equivalence. Section 25 states “Conditional linked realization” and all implementation premises.</p>
++<p><em>Institutional Linking and Realization</em> [<a href="#ref-linking" style="overflow-wrap:anywhere;hyphens:none">1</a>] supplies the synthesis. Read Sections 2–4 for the execution contract, information-cell compilation, and complete joining. Sections 7–11 give ordered funding, residual requirements, funded acquisition, independent-choice cells, and the exact capacity trade-off. Sections 17–23 distinguish cumulative privacy, selector implementation, deterministic future equivalence, and public-law comparison. Section 25 states “Conditional linked realization” and all implementation premises.</p>
+ <p><em>How Compliance Composes</em> [<a href="#ref-compliance" style="overflow-wrap:anywhere;hyphens:none">2</a>], Sections 5.6–5.7, contains “Lossless contextual composition,” “Lossless evidence-and-obligation boundary,” and “Finite institutional route equivalence.” Section 3.4 proves “Exact independent recombination” and “Extension on a join tree.” Section 8 defines executable evidence plans and exact finite search.</p>
+ <p><em>Op: Compliance-Carrying Operations</em> [<a href="#ref-op" style="overflow-wrap:anywhere;hyphens:none">3</a>], Sections 5.11 and 7, contains “Global declared exposure bound,” “Least observable allowance,” and “Joint and separate reservations.” Section 7.3 gives “Exact resource menu cover for two groups.” <em>The Sovereign Jurisdiction Network</em> [<a href="#ref-recognition" style="overflow-wrap:anywhere;hyphens:none">4</a>], Sections 5.4–5.5, supplies “Preservation of source obligations” and “Joined permitted-success selector.”</p>
+ <p><em>The Claim as Primitive</em> [<a href="#ref-claim" style="overflow-wrap:anywhere;hyphens:none">5</a>], Section 3.1, gives “Entitlement preservation.” Section 6.4 states “Durable retry and conservation,” and Section 12 composes provider completion contracts. <em>Admissible Obligation Transitions</em> [<a href="#ref-transitions" style="overflow-wrap:anywhere;hyphens:none">6</a>], Sections 3.5 and 5, gives receipt meaning and “Engine-relative parametric lifecycle preservation.” Sections 6.3 and 7.7 supply future equivalence and “Original-cohort progress under continuing arrivals.”</p>

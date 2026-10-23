@@ -1,0 +1,56 @@
+--- a/archai.html
++++ b/archai.html
+@@ -250,6 +250,7 @@
+             margin-bottom: var(--space-3);
+             max-width: var(--measure);
+             line-height: var(--leading-loose);
++            overflow-wrap: anywhere;
+             hyphens: auto;
+             hyphenate-limit-chars: 6 3 2;
+             hyphenate-limit-lines: 2;
+--- a/licc-blueprint.html
++++ b/licc-blueprint.html
+@@ -513,6 +513,24 @@
+                 flex-direction: column;
+                 gap: var(--space-3);
+                 text-align: center;
++            }
++        }
++
++        @media screen and (max-width: 680px) {
++            .article-body table.c37 {
++                display: block;
++                max-width: 100%;
++                overflow-x: auto;
++                font-size: 14px;
++            }
++
++            .article-body table.c37 td { min-width: 8rem; }
++
++            .article-body > p.c16 > span.c53 {
++                display: block;
++                max-width: 100%;
++                overflow: hidden;
++                white-space: nowrap;
+             }
+         }
+ 
+--- a/prefabricated-construction.html
++++ b/prefabricated-construction.html
+@@ -514,6 +514,16 @@
+                 gap: var(--space-3);
+                 text-align: center;
+             }
++        }
++
++        @media screen and (max-width: 680px) {
++            .article-body span:has(> img),
++            .article-body img {
++                max-width: 100%;
++                height: auto !important;
++            }
++
++            .article-body img { display: block; }
+         }
+ 
+         @media (max-width: 400px) {
