@@ -1,0 +1,850 @@
+diff --git a/content/reader-papers/claims-and-continuing-obligations.md b/content/reader-papers/claims-and-continuing-obligations.md
+new file mode 100644
+index 0000000..d1abaf9
+--- /dev/null
++++ b/content/reader-papers/claims-and-continuing-obligations.md
+@@ -0,0 +1,191 @@
++# Claims and Continuing Obligations
++
++## Abstract
++
++A payment provider confirms 100 units against a 125-unit obligation, then stops responding. The unpaid 25 must remain recorded, but issuing another command can overpay if the first command later completes.
++
++This article explains how mathematical records support claim calculation and the authorization of execution. They attribute received value and preserve unfinished duties through interruptions and program changes. Finite payoff semantics, continuing obligation journals, joint command reservations, and distributed agreement supply different parts of that construction. Their guarantees depend on declared evidence, authority, storage, scheduling, and provider contracts. A confirmed ledger decision does not establish beneficiary receipt.
++
++## 1 The unpaid 25 {#sec:payment}
++
++A payer owes 125 units of one asset, and a provider holds an instruction to make the payment. Authenticated records establish that 100 units have arrived, but the provider's response leaves the remaining execution uncertain. The account shows 100 paid and 25 outstanding. The question is whether another command may pay that remainder.
++
++If the provider can still send the remaining 25, a fresh command for 25 creates two ways to pay the same remainder. A local timeout says only that a response did not arrive in time. The residual-child construction discussed below requires a provider-enforced closure or transfer of that execution right before assigning it to a child command. A broader replacement can instead rely on an enforced joint bound covering old and new effects, as Section [6](#sec:reservations){style="overflow-wrap:anywhere;hyphens:none"} explains.
++
++The worked trace in *Op: Compliance-Carrying Operations*, Sections 5.9 and 6, retains both the original target and each command's assigned quantity \[[1](#ref-op){style="overflow-wrap:anywhere;hyphens:none"}\]. After a valid split, the parent command can be recorded as matched for its assigned 100. The original payment still has 25 outstanding. The child command carries that remainder, its reservation, and its own authority checks. An ordinary retry keeps the original command identity without creating a child.
++
++For one asset and exact quantity unit, the accounting rule is $$Q=(P-R)+C+U.$$ Here $Q$ is the original target, $P$ supported payments, and $R$ linked returns. Quantity $C$ is the amount removed by an authorized cancellation or amendment. Quantity $U$ is the outstanding target.
++
++In this example, $125=100+0+25$. A supported return of 20 would reduce net payment to 80 and reopen the outstanding amount to 45 under the governing rule. Splitting commands changes none of these totals.
++
++Four identities distinguish the duty, command, occurrence, and report. The duty identifies what is owed, while the command identifies one requested action. An external occurrence identifies what the provider actually did, while an assertion identifies a report about that occurrence.
++
++Two reports of one payment cannot discharge the duty twice. Closing a command does not cancel the debt.
++
++These distinctions preserve the obligation record after a lost response. Safe retransmission separately requires the identical canonical request and provider idempotency key. The provider must enforce duplicate protection throughout the complete possible delivery interval \[[1](#ref-op){style="overflow-wrap:anywhere;hyphens:none"}, Section 5.13\].
++
++Op describes the operation as a typed program. Each instruction declares the kinds of values, permissions, and resources it consumes or produces. Its finite core checks required screening on every write path and tracks resources that cannot be duplicated. It retains ownership when execution suspends. A suspended program resumes only through its declared evidence interface.
++
++These structural checks exclude specified omissions. Their stronger meaning depends on the screening rule, authority, and provider contract being adequate. A well-formed program cannot make a false external premise true.
++
++## 2 What a claim program calculates {#sec:calculation}
++
++The payment example starts with a known target. A claim records an economic right or obligation and the conditions determining its outcome. *The Claim as Primitive* studies a precise computational form: a finite payoff program, an evaluation schedule, and payment terms \[[2](#ref-claim){style="overflow-wrap:anywhere;hyphens:none"}\]. A payoff is the amount the program determines from its admitted inputs. A position binds a quantity of that claim to the relevant parties and financial context.
++
++The language combines constants, observations, earlier resolved values, arithmetic, comparisons, and conditional choices. A cap limits an amount, while a floor supplies a minimum.
++
++Financial types record dimensions and context. Equal numerical values therefore cannot silently convert an amount from one currency to another. A currency conversion needs the declared rate, evidence, and conversion context. The program calculates the amount under those declarations without establishing their institutional truth.
++
++The exact expressiveness theorem in Section 4 characterizes the finite language. The language represents precisely the stated finite piecewise-polynomial functions: polynomial formulas selected on regions described by polynomial comparisons. Conversely, those functions can be constructed from the language. The result applies to this defined function class. It does not assert that the language encodes every imaginable financial arrangement. Bounded historical windows and recurring schedules have their own admission conditions.
++
++Evaluation also needs a valid dependency order. Ordinary historical references point strictly backward in the evaluation schedule. A producer is a computation supplying an input to another computation. The extension in Section 7 permits producers within the same event if a complete, checked dependency graph establishes an acyclic order. An omitted dependency can invalidate that reasoning.
++
++The resulting amount, its market price, and payment remain separate. Price concerns what participants exchange for a position under a valuation or trading model. Resolution concerns what the admitted program computes, while payment concerns performance against the resulting entitlement. A price move pays no coupon, and a resolved coupon need not yet have a payment receipt. Keeping these objects separate permits a claim to retain its payment history while its price changes.
++
++## 3 A coupon counter can reset while money remains due {#sec:coupon}
++
++Consider the memory-coupon construction in *The Claim as Primitive*, Sections 5 and 6.5 \[[2](#ref-claim){style="overflow-wrap:anywhere;hyphens:none"}\]. A coupon is 10 units. At each scheduled observation, the trigger either fails or succeeds. Failure adds one to the count of consecutive missed coupons. Success resolves the current coupon plus the accumulated misses, then resets the count.
++
++Starting with a zero count, the trigger sequence $0,0,1,1$ gives:
++
++  Observation              First   Second   Third   Fourth
++  ---------------------- ------- -------- ------- --------
++  Trigger                      0        0       1        1
++  Resolved coupon              0        0      30       10
++  Miss count afterward         1        2       0        0
++
++The third observation accounts for three coupons. Resetting the count prevents those missed coupons from entering the fourth payoff again. Proposition 5.7, *No missed coupon enters two resolved payoffs*, proves that property for the pre-issued schedule. Its conclusion concerns payoff calculation. The 30 can still await payment.
++
++Now admit one compatible payment occurrence of 35 units. Allocate 30 to the first payable entitlement and 5 to the second. The outstanding amount is 5 although the miss counter is zero. The entitlement journal retains the original 30 and 10, the payment occurrence, and both allocations. Neither another evaluation nor a process restart may reconstruct outstanding obligations from the zero counter alone.
++
++The durable construction commits calculation state, entitlement records, payments, and command outcomes through one write authority. A retry of a committed request returns its retained result. A stale calculation checkpoint cannot overwrite a payment that arrived afterward. These properties rely on the specified atomic storage operations, authenticated state, complete request bindings, and restart rules. Saving a file alone does not supply these guarantees.
++
++Missing observations can suspend this coupon while an unrelated ready claim resolves. Section 6.2 also identifies cases where a smaller set of observations already fixes the numerical answer. Even in those cases, the original evaluator still requires its mandatory financial evidence. Replacing the evaluation procedure would require a separate correspondence covering evidence, work limits, suspension, and observable request history.
++
++## 4 Changing the representation without losing the duty {#sec:carriage}
++
++A payment can remain unfinished when its records move to a successor program. *Admissible Obligation Transitions* separates the immutable economic duty identity from the implementation representing it \[[3](#ref-aot){style="overflow-wrap:anywhere;hyphens:none"}\]. Its family interface keeps the claim's own rights, conditions, and permitted changes. The shared engine checks requests, authority, evidence, and the current state before admitting a transition.
++
++The engine's preservation theorem starts from a valid state and assumes both the family and engine laws, including serialized execution. Newly committed refused or awaiting decisions extend the recorded history without mutating the protected private state. An exact retry returns its existing receipt. Accepted requests must preserve the family's invariant, the property its transitions are required to maintain. The instruments retain their distinct rights and conditions while sharing admission machinery. A balance and a settlement flag alone cannot express those distinctions.
++
++The carriage construction in Section 7 preserves duties through authorized splits and regroupings. A 100-unit duty has 60 discharged and 40 payable. It can acquire two positions in one successor representation without becoming two new economic claims. The correspondence must cover the predecessor completely, keep successor portions disjoint, and preserve the required rights. One serialized commit fences new execution under the old binding and activates the successor. A change of beneficiary or priority is an economic amendment requiring its own authority and laws.
++
++Payment history matters even when quantities are small. Suppose allocation $a$ pays four units, numbered 0 through 3. A return against $a$ reopens units 0 and 1. Allocation $b$ pays those two units again.
++
++A further one-unit return against $a$ must concern its remaining discharge, beginning with unit 2. It cannot reopen the replacement payment's units. The current balance alone cannot answer which earlier payment is being returned.
++
++Duty portions and physical payment portions have separate histories. Reopening the duty does not release consumed physical-credit support. Allocation $b$ requires other unconsumed support with admitted evidence.
++
++Section 7.8 represents consecutive portions as intervals while retaining their order and separate return histories. Its refinement theorem shows that expanding those intervals reproduces the corresponding individual-portion execution. A monetary quantum is the smallest permitted quantity. The interval representation avoids enumerating each quantum. Cost still depends on fragmentation, history, and the size of quantity representations. One authenticated serialized store and a common write mediator remain premises.
++
++Unresolved calculations need more than a partition of today's balance. Section 7.9 supplies a construction for authentic programs with the same instructions and matching contexts. Their positive rational position partitions can differ. Under one exclusive write authority and declared resource limits, both computations receive the same admitted requests and compatible observation refinements. When both resolve an instance, their numerical values agree.
++
++Only the source creates duties in the economic ledger, while the successor computes a correspondence. This preserves future calculation for the stated class. It does not establish arbitrary program equivalence. Currency conversion, resolved-rate references, and external conversion witnesses are excluded. Later payment aliases require additional positive-outcome, quantum, and current-history checks.
++
++Discarding records requires a test of future equivalence. Section 6.2 calls two states future-equivalent only if every admitted continuation produces the same protected observations. That includes returns, corrections, refusals, and archive restoration when those operations are admitted. Keeping today's balance unchanged is insufficient.
++
++A certificate can establish the correspondence for a complete finite supplied model, including its declared input vocabulary. Sampling a few future requests cannot establish equivalence for all requests. Adding a new operation requires rechecking the interface.
++
++## 5 Completion must name its goal {#sec:service}
++
++A system can preserve every duty record while spending forever retrying or migrating. Sections 7.4--7.6 of *Admissible Obligation Transitions* make useful service a separate requirement \[[3](#ref-aot){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++A service episode names original work and a fixed completion goal. For a decision goal, an authenticated refusal may be a valid completion. For discharge, the required performance and evidence must occur. Renaming a duty or moving it to another program cannot silently replace that goal with an easier one.
++
++The original-cohort theorem fixes a finite collection of episodes even while new work continues to arrive. Each original episode has a nonnegative integer rank that measures unfinished work. The rank is zero exactly when its declared goal is recorded. Their aggregate rank starts at $R$, never increases, and decreases through productive service.
++
++Execution must continue until completion. Whenever the aggregate rank is positive, a decrease must occur within the next $K$ transitions. Then all original goals are recorded within $KR$ transitions. An unfinished deadlock violates the continuation premise. New arrivals do not enter this original cohort or reset its count.
++
++A positive integer total can strictly decrease at most $R$ times before reaching zero. The service condition permits at most $K$ transitions per required decrease. A scheduling policy must perform productive work. Merely visiting each duty does not satisfy the service condition.
++
++The concrete bound accounts for implementation steps too. While work is unfinished, every state must have a successor. Each actual transition during unfinished work must either lower the rank or preserve it. If it preserves the rank, it must strictly lower a bounded counter for intervening work. Migration, retry, and recovery steps all count. A bounded counter that resets without a rank decrease supplies no bound.
++
++For a fixed finite set of reusable slots, a monitor can check repeated completion. Each episode remains attached to its slot until its goal is recorded. A slot must visibly clear before reuse, and the monitor records a fresh pulse when a round finishes. Returning a pointer to its starting position is insufficient.
++
++The associated finite, fully observed control game identifies states from which safe recurrence can be forced. Deadlocks lose. Completed idle states need explicit transitions back to themselves. Extending that result requires a faithful model of the actual executor and observations. It establishes neither unlimited monitor capacity nor provider performance.
++
++Provider readiness has its own dependencies. Section 12 of *The Claim as Primitive* composes jointly valid completion contracts for persistent prerequisite facts along a finite acyclic graph \[[2](#ref-claim){style="overflow-wrap:anywhere;hyphens:none"}\]. For a finite graph that may contain cycles, ordinary completion contracts wait for every predecessor. Under these declared conjunctive guarantees, external seeds ensure complete readiness if and only if the seeded facts meet every directed cycle.
++
++Without a seed, a cycle can wait forever for itself. Treating a cyclic group as one component still requires a genuine joint completion contract for that group. Combining provider readiness with the goal-service bound requires compatible authority, evidence, resources, and one declared clock.
++
++## 6 Replacement needs cash capacity and performance capacity {#sec:reservations}
++
++The service bound concerns completion, while admitting a replacement requires a separate resource test. The unpaid-25 case has two resource questions. Can the payer fund every still-possible debit? Can the old and new commands together overperform the obligation? More cash can answer the first question while leaving the second unchanged.
++
++Section 5.2 of *Admissible Obligation Transitions* gives an exact joint test \[[3](#ref-aot){style="overflow-wrap:anywhere;hyphens:none"}\]. Fix an accounting cut: the recorded point specifying which effects the balances already include. The tested scope must contain every old and candidate command sharing the affected cash or performance capacity, including in-flight effects. Let $b$ be cash after commitments outside that scope, and $u$ the duty's remaining authorized performance capacity.
++
++A negative cash difference remains a funding deficit. Admission requires nonnegative baselines. Pending observed performance can already occupy part of the performance capacity before legal discharge is established.
++
++The contract describes every possible continuation prefix, meaning every intermediate point as well as each endpoint. For each prefix, let $x$ be additional cash headroom consumed and $y$ additional performance headroom consumed. With one coordinate of each kind, the admission condition is $$\sup x\le b,\qquad \sup y\le u.$$ The suprema are the least upper bounds over the joint contract. Each quantity retains its own unit. Multiple accounts and duties receive separate coordinate tests.
++
++For an exact description of admitted continuations, these inequalities are necessary and sufficient for preserving nonnegative headroom. A larger sound set supplies a sufficient test but may refuse a feasible replacement. Intermediate prefixes matter because a later refund cannot fund an earlier debit. An already-booked debit must not be subtracted again, while an occurred but unreflected effect remains in the contract.
++
++Adding separate command ceilings gives a conservative sufficient test without statistical independence. Tighter bounds require an enforced joint constraint, such as a shared provider ceiling. Hoped-for coordination is insufficient.
++
++The registry must replace the scope's existing reservations with its joint reservation in one atomic operation. That operation must count the quantity once, retain outside commitments, and bind the replacement to the same dependencies. Provider-enforced closure can reduce remaining exposure. Provider silence does not justify such a reduction.
++
++## 7 Agreement can include an unfinished payment {#sec:agreement}
++
++When several participants maintain the ledger, their common record must include reservations as well as event decisions and resulting obligations. *Event-Collect BFT* constructs that common record while allowing payments to remain pending \[[4](#ref-event){style="overflow-wrap:anywhere;hyphens:none"}\]. BFT means Byzantine fault tolerance: agreement despite a bounded number of participants that may send false or inconsistent messages.
++
++In its four-validator example, at most one validator is faulty and three signatures form a quorum, the required agreement threshold. An instruction calls for a local transfer of seven units if an event resolves yes. A block records one agreed batch of ledger changes. The preceding confirmed block fixes the encrypted instruction order. Validators can then collect event evidence while obtaining the decryption contributions for that fixed order.
++
++Finite, signed evidence collections support a complete accepted-or-deferred decision for each candidate event. A missing response does not become proof that no event occurred. A closed collection supplies the recorded basis for deferral. A certificate is checkable evidence for a specified protocol statement. Agreement uses the chosen protocol's complete commit proof and safe leader-change rules. An intermediate preparation certificate is insufficient.
++
++The child block commits the accepted event, clearing decision, instruction receipt, and resulting state together. Clearing computes what each party owes under the configured rule. A failed local transfer group leaves no partial group write. For external payments, the committed state instead retains observed performance, allocations, outstanding duties, reservations, and continuing commands. Provider facts enter independently of whether a later instruction succeeds.
++
++A licensed venue can register trades it matches outside the ledger's own book, using its own trade identifiers. The same clearing rules then apply.
++
++A product fee is a due like any other, charged on the closed amount in the trade's settlement currency. A governed schedule names its payees, and the fee stays separate from principal and customer collateral.
++
++An atomic ledger update changes the complete state together. External providers retain their own execution and finality rules. Dispatch requires confirmation and authority at actual use. Replay recomputes the recorded decision without sending another payment. Historical first completion also remains distinct from current performance after a return.
++
++Agreement relies on the fault bound, deterministic validation, cryptographic contracts, and the underlying consensus protocol. Ledger progress additionally requires eventual communication recovery, retained instruction bodies and decryption service, finite evidence closure, and terminating execution. External completion requires funded resources, current authority, provider responses, fair dispatch and observation delivery, and a recovery process that makes finite progress. A ledger can therefore continue confirming truthful pending states while a provider remains unavailable.
++
++## 8 What remains to establish {#sec:limits}
++
++Together, these constructions specify an account in which calculated obligations survive payment failure, commands retain their remaining exposure, and program changes preserve original duties. Each result is exact under its stated conditions. These results do not certify that an institution will perform.
++
++Implementation refinement must connect actual messages, storage transactions, recovery behavior, and resource ownership to the mathematical transitions. Full-database rollback and competing independent stores need controls beyond a single-store transaction. Legal adequacy, source authority, physical occurrences, and provider finality require evidence from their named owners.
++
++*Event-Collect BFT* includes no proof-assistant artifact. Its finite checks are not parametric mechanized proofs. The other cited constructions likewise retain their stated executable and mechanization boundaries. None of these four papers establishes production latency from a scheduling parameter or a synthetic trace.
++
++## 9 Technical reading map {#sec:reading}
++
++Payment and authorized execution.
++
++:   *Op: Compliance-Carrying Operations*, Sections 3--4, 5.1--5.13, 6, and 7.5--7.6. Read *Payment-intent conservation* in Section 5.9 for the 125-unit example. *Finality separation* in Section 5.7 and the executable-scope discussion delimit the external claim. Section 5.13 states the separate provider retry-safety premises.
++
++Payoff calculation and persistent entitlements.
++
++:   *The Claim as Primitive*, Sections 2--4, Proposition 5.7 and Corollary 5.8, Sections 6--7, and Sections 11--13. The exact-expressiveness theorem fixes the language's domain. *Durable retry and conservation* in Section 6.4 states the storage result. Section 12 separately composes jointly valid provider-completion contracts, using dependency paths and named clocks.
++
++Continuing duties and useful service.
++
++:   *Admissible Obligation Transitions*, Section 5.2 (*Exact joint replacement bound*), Section 6.2 on complete future equivalence, and Sections 7.2--7.9. Theorem 7.7 gives original-cohort progress, Propositions 7.8--7.9 the finite monitor and game, and Theorem 7.10 the concrete step bound. Theorems 7.14 and 7.17 cover interval execution and structural continuation. Section 11 records the remaining authority, refinement, and provider obligations.
++
++Agreement and external completion.
++
++:   *Event-Collect BFT*, Sections 3--7 and 9, especially *Atomic event transition*, *Ledger progress*, and *Useful external progress*. Section 11 constructs certified compatible allocation within a closed batch and fixed history. Section 12 separates disclosure history and current performance. Section 14.1 states proof and implementation status. The five-round bound in Section 8 concerns its specified same-height double-certification class, not every consensus protocol.
++
++## References
++
++::: {#ref-op}
++:::
++
++**\[1\]** Raeez Lorgat. *Op: Compliance-Carrying Operations*. September 2026.
++
++::: {#ref-claim}
++:::
++
++**\[2\]** Raeez Lorgat. *The Claim as Primitive*. September 2026.
++
++::: {#ref-aot}
++:::
++
++**\[3\]** Raeez Lorgat. *Admissible Obligation Transitions*. September 2026.
++
++::: {#ref-event}
++:::
++
++**\[4\]** Raeez Lorgat. *Event-Collect BFT*. September 2026.
+diff --git a/content/reader-papers/claims-and-continuing-obligations.tex b/content/reader-papers/claims-and-continuing-obligations.tex
+new file mode 100644
+index 0000000..3774702
+--- /dev/null
++++ b/content/reader-papers/claims-and-continuing-obligations.tex
+@@ -0,0 +1,206 @@
++\documentclass{momentum}
++\title{Claims and Continuing Obligations}
++\author{Raeez Lorgat}
++\date{September 2026}
++\shorttitle{Claims and Continuing Obligations}
++
++\begin{document}
++\maketitle
++
++\begin{abstract}
++A payment provider confirms 100 units against a 125-unit obligation, then stops responding. The unpaid 25 must remain recorded, but issuing another command can overpay if the first command later completes.
++
++This article explains how mathematical records support claim calculation and the authorization of execution. They attribute received value and preserve unfinished duties through interruptions and program changes. Finite payoff semantics, continuing obligation journals, joint command reservations, and distributed agreement supply different parts of that construction. Their guarantees depend on declared evidence, authority, storage, scheduling, and provider contracts. A confirmed ledger decision does not establish beneficiary receipt.
++\end{abstract}
++
++\section{The unpaid 25}
++\label{sec:payment}
++
++A payer owes 125 units of one asset, and a provider holds an instruction to make the payment. Authenticated records establish that 100 units have arrived, but the provider's response leaves the remaining execution uncertain. The account shows 100 paid and 25 outstanding. The question is whether another command may pay that remainder.
++
++If the provider can still send the remaining 25, a fresh command for 25 creates two ways to pay the same remainder. A local timeout says only that a response did not arrive in time. The residual-child construction discussed below requires a provider-enforced closure or transfer of that execution right before assigning it to a child command. A broader replacement can instead rely on an enforced joint bound covering old and new effects, as Section~\ref{sec:reservations} explains.
++
++The worked trace in \emph{Op: Compliance-Carrying Operations}, Sections 5.9 and 6, retains both the original target and each command's assigned quantity~\cite{op}. After a valid split, the parent command can be recorded as matched for its assigned 100. The original payment still has 25 outstanding. The child command carries that remainder, its reservation, and its own authority checks. An ordinary retry keeps the original command identity without creating a child.
++
++For one asset and exact quantity unit, the accounting rule is
++\[
++ Q=(P-R)+C+U.
++\]
++Here $Q$ is the original target, $P$ supported payments, and $R$ linked returns. Quantity $C$ is the amount removed by an authorized cancellation or amendment. Quantity $U$ is the outstanding target.
++
++In this example, $125=100+0+25$. A supported return of 20 would reduce net payment to 80 and reopen the outstanding amount to 45 under the governing rule. Splitting commands changes none of these totals.
++
++Four identities distinguish the duty, command, occurrence, and report. The duty identifies what is owed, while the command identifies one requested action. An external occurrence identifies what the provider actually did, while an assertion identifies a report about that occurrence.
++
++Two reports of one payment cannot discharge the duty twice. Closing a command does not cancel the debt.
++
++These distinctions preserve the obligation record after a lost response. Safe retransmission separately requires the identical canonical request and provider idempotency key. The provider must enforce duplicate protection throughout the complete possible delivery interval~\cite[Section~5.13]{op}.
++
++Op describes the operation as a typed program. Each instruction declares the kinds of values, permissions, and resources it consumes or produces. Its finite core checks required screening on every write path and tracks resources that cannot be duplicated. It retains ownership when execution suspends. A suspended program resumes only through its declared evidence interface.
++
++These structural checks exclude specified omissions. Their stronger meaning depends on the screening rule, authority, and provider contract being adequate. A well-formed program cannot make a false external premise true.
++
++\section{What a claim program calculates}
++\label{sec:calculation}
++
++The payment example starts with a known target. A claim records an economic right or obligation and the conditions determining its outcome. \emph{The Claim as Primitive} studies a precise computational form: a finite payoff program, an evaluation schedule, and payment terms~\cite{claim}. A payoff is the amount the program determines from its admitted inputs. A position binds a quantity of that claim to the relevant parties and financial context.
++
++The language combines constants, observations, earlier resolved values, arithmetic, comparisons, and conditional choices. A cap limits an amount, while a floor supplies a minimum.
++
++Financial types record dimensions and context. Equal numerical values therefore cannot silently convert an amount from one currency to another. A currency conversion needs the declared rate, evidence, and conversion context. The program calculates the amount under those declarations without establishing their institutional truth.
++
++The exact expressiveness theorem in Section 4 characterizes the finite language. The language represents precisely the stated finite piecewise-polynomial functions: polynomial formulas selected on regions described by polynomial comparisons. Conversely, those functions can be constructed from the language. The result applies to this defined function class. It does not assert that the language encodes every imaginable financial arrangement. Bounded historical windows and recurring schedules have their own admission conditions.
++
++Evaluation also needs a valid dependency order. Ordinary historical references point strictly backward in the evaluation schedule. A producer is a computation supplying an input to another computation. The extension in Section 7 permits producers within the same event if a complete, checked dependency graph establishes an acyclic order. An omitted dependency can invalidate that reasoning.
++
++The resulting amount, its market price, and payment remain separate. Price concerns what participants exchange for a position under a valuation or trading model. Resolution concerns what the admitted program computes, while payment concerns performance against the resulting entitlement. A price move pays no coupon, and a resolved coupon need not yet have a payment receipt. Keeping these objects separate permits a claim to retain its payment history while its price changes.
++
++\section{A coupon counter can reset while money remains due}
++\label{sec:coupon}
++
++Consider the memory-coupon construction in \emph{The Claim as Primitive}, Sections 5 and 6.5~\cite{claim}. A coupon is 10 units. At each scheduled observation, the trigger either fails or succeeds. Failure adds one to the count of consecutive missed coupons. Success resolves the current coupon plus the accumulated misses, then resets the count.
++
++Starting with a zero count, the trigger sequence $0,0,1,1$ gives:
++
++\begin{center}
++\begin{tabular}{@{}lrrrr@{}}
++\toprule
++Observation & First & Second & Third & Fourth \\
++\midrule
++Trigger & 0 & 0 & 1 & 1 \\
++Resolved coupon & 0 & 0 & 30 & 10 \\
++Miss count afterward & 1 & 2 & 0 & 0 \\
++\bottomrule
++\end{tabular}
++\end{center}
++
++The third observation accounts for three coupons. Resetting the count prevents those missed coupons from entering the fourth payoff again. Proposition 5.7, \emph{No missed coupon enters two resolved payoffs}, proves that property for the pre-issued schedule. Its conclusion concerns payoff calculation. The 30 can still await payment.
++
++Now admit one compatible payment occurrence of 35 units. Allocate 30 to the first payable entitlement and 5 to the second. The outstanding amount is 5 although the miss counter is zero. The entitlement journal retains the original 30 and 10, the payment occurrence, and both allocations. Neither another evaluation nor a process restart may reconstruct outstanding obligations from the zero counter alone.
++
++The durable construction commits calculation state, entitlement records, payments, and command outcomes through one write authority. A retry of a committed request returns its retained result. A stale calculation checkpoint cannot overwrite a payment that arrived afterward. These properties rely on the specified atomic storage operations, authenticated state, complete request bindings, and restart rules. Saving a file alone does not supply these guarantees.
++
++Missing observations can suspend this coupon while an unrelated ready claim resolves. Section 6.2 also identifies cases where a smaller set of observations already fixes the numerical answer. Even in those cases, the original evaluator still requires its mandatory financial evidence. Replacing the evaluation procedure would require a separate correspondence covering evidence, work limits, suspension, and observable request history.
++
++\section{Changing the representation without losing the duty}
++\label{sec:carriage}
++
++A payment can remain unfinished when its records move to a successor program. \emph{Admissible Obligation Transitions} separates the immutable economic duty identity from the implementation representing it~\cite{aot}. Its family interface keeps the claim's own rights, conditions, and permitted changes. The shared engine checks requests, authority, evidence, and the current state before admitting a transition.
++
++The engine's preservation theorem starts from a valid state and assumes both the family and engine laws, including serialized execution. Newly committed refused or awaiting decisions extend the recorded history without mutating the protected private state. An exact retry returns its existing receipt. Accepted requests must preserve the family's invariant, the property its transitions are required to maintain. The instruments retain their distinct rights and conditions while sharing admission machinery. A balance and a settlement flag alone cannot express those distinctions.
++
++The carriage construction in Section 7 preserves duties through authorized splits and regroupings. A 100-unit duty has 60 discharged and 40 payable. It can acquire two positions in one successor representation without becoming two new economic claims. The correspondence must cover the predecessor completely, keep successor portions disjoint, and preserve the required rights. One serialized commit fences new execution under the old binding and activates the successor. A change of beneficiary or priority is an economic amendment requiring its own authority and laws.
++
++Payment history matters even when quantities are small. Suppose allocation $a$ pays four units, numbered 0 through 3. A return against $a$ reopens units 0 and 1. Allocation $b$ pays those two units again.
++
++A further one-unit return against $a$ must concern its remaining discharge, beginning with unit 2. It cannot reopen the replacement payment's units. The current balance alone cannot answer which earlier payment is being returned.
++
++Duty portions and physical payment portions have separate histories. Reopening the duty does not release consumed physical-credit support. Allocation $b$ requires other unconsumed support with admitted evidence.
++
++Section 7.8 represents consecutive portions as intervals while retaining their order and separate return histories. Its refinement theorem shows that expanding those intervals reproduces the corresponding individual-portion execution. A monetary quantum is the smallest permitted quantity. The interval representation avoids enumerating each quantum. Cost still depends on fragmentation, history, and the size of quantity representations. One authenticated serialized store and a common write mediator remain premises.
++
++Unresolved calculations need more than a partition of today's balance. Section 7.9 supplies a construction for authentic programs with the same instructions and matching contexts. Their positive rational position partitions can differ. Under one exclusive write authority and declared resource limits, both computations receive the same admitted requests and compatible observation refinements. When both resolve an instance, their numerical values agree.
++
++Only the source creates duties in the economic ledger, while the successor computes a correspondence. This preserves future calculation for the stated class. It does not establish arbitrary program equivalence. Currency conversion, resolved-rate references, and external conversion witnesses are excluded. Later payment aliases require additional positive-outcome, quantum, and current-history checks.
++
++Discarding records requires a test of future equivalence. Section 6.2 calls two states future-equivalent only if every admitted continuation produces the same protected observations. That includes returns, corrections, refusals, and archive restoration when those operations are admitted. Keeping today's balance unchanged is insufficient.
++
++A certificate can establish the correspondence for a complete finite supplied model, including its declared input vocabulary. Sampling a few future requests cannot establish equivalence for all requests. Adding a new operation requires rechecking the interface.
++
++\section{Completion must name its goal}
++\label{sec:service}
++
++A system can preserve every duty record while spending forever retrying or migrating. Sections 7.4--7.6 of \emph{Admissible Obligation Transitions} make useful service a separate requirement~\cite{aot}.
++
++A service episode names original work and a fixed completion goal. For a decision goal, an authenticated refusal may be a valid completion. For discharge, the required performance and evidence must occur. Renaming a duty or moving it to another program cannot silently replace that goal with an easier one.
++
++The original-cohort theorem fixes a finite collection of episodes even while new work continues to arrive. Each original episode has a nonnegative integer rank that measures unfinished work. The rank is zero exactly when its declared goal is recorded. Their aggregate rank starts at $R$, never increases, and decreases through productive service.
++
++Execution must continue until completion. Whenever the aggregate rank is positive, a decrease must occur within the next $K$ transitions. Then all original goals are recorded within $KR$ transitions. An unfinished deadlock violates the continuation premise. New arrivals do not enter this original cohort or reset its count.
++
++A positive integer total can strictly decrease at most $R$ times before reaching zero. The service condition permits at most $K$ transitions per required decrease. A scheduling policy must perform productive work. Merely visiting each duty does not satisfy the service condition.
++
++The concrete bound accounts for implementation steps too. While work is unfinished, every state must have a successor. Each actual transition during unfinished work must either lower the rank or preserve it. If it preserves the rank, it must strictly lower a bounded counter for intervening work. Migration, retry, and recovery steps all count. A bounded counter that resets without a rank decrease supplies no bound.
++
++For a fixed finite set of reusable slots, a monitor can check repeated completion. Each episode remains attached to its slot until its goal is recorded. A slot must visibly clear before reuse, and the monitor records a fresh pulse when a round finishes. Returning a pointer to its starting position is insufficient.
++
++The associated finite, fully observed control game identifies states from which safe recurrence can be forced. Deadlocks lose. Completed idle states need explicit transitions back to themselves. Extending that result requires a faithful model of the actual executor and observations. It establishes neither unlimited monitor capacity nor provider performance.
++
++Provider readiness has its own dependencies. Section 12 of \emph{The Claim as Primitive} composes jointly valid completion contracts for persistent prerequisite facts along a finite acyclic graph~\cite{claim}. For a finite graph that may contain cycles, ordinary completion contracts wait for every predecessor. Under these declared conjunctive guarantees, external seeds ensure complete readiness if and only if the seeded facts meet every directed cycle.
++
++Without a seed, a cycle can wait forever for itself. Treating a cyclic group as one component still requires a genuine joint completion contract for that group. Combining provider readiness with the goal-service bound requires compatible authority, evidence, resources, and one declared clock.
++
++\section{Replacement needs cash capacity and performance capacity}
++\label{sec:reservations}
++
++The service bound concerns completion, while admitting a replacement requires a separate resource test. The unpaid-25 case has two resource questions. Can the payer fund every still-possible debit? Can the old and new commands together overperform the obligation? More cash can answer the first question while leaving the second unchanged.
++
++Section 5.2 of \emph{Admissible Obligation Transitions} gives an exact joint test~\cite{aot}. Fix an accounting cut: the recorded point specifying which effects the balances already include. The tested scope must contain every old and candidate command sharing the affected cash or performance capacity, including in-flight effects. Let $b$ be cash after commitments outside that scope, and $u$ the duty's remaining authorized performance capacity.
++
++A negative cash difference remains a funding deficit. Admission requires nonnegative baselines. Pending observed performance can already occupy part of the performance capacity before legal discharge is established.
++
++The contract describes every possible continuation prefix, meaning every intermediate point as well as each endpoint. For each prefix, let $x$ be additional cash headroom consumed and $y$ additional performance headroom consumed. With one coordinate of each kind, the admission condition is
++\[
++ \sup x\le b,\qquad \sup y\le u.
++\]
++The suprema are the least upper bounds over the joint contract. Each quantity retains its own unit. Multiple accounts and duties receive separate coordinate tests.
++
++For an exact description of admitted continuations, these inequalities are necessary and sufficient for preserving nonnegative headroom. A larger sound set supplies a sufficient test but may refuse a feasible replacement. Intermediate prefixes matter because a later refund cannot fund an earlier debit. An already-booked debit must not be subtracted again, while an occurred but unreflected effect remains in the contract.
++
++Adding separate command ceilings gives a conservative sufficient test without statistical independence. Tighter bounds require an enforced joint constraint, such as a shared provider ceiling. Hoped-for coordination is insufficient.
++
++The registry must replace the scope's existing reservations with its joint reservation in one atomic operation. That operation must count the quantity once, retain outside commitments, and bind the replacement to the same dependencies. Provider-enforced closure can reduce remaining exposure. Provider silence does not justify such a reduction.
++
++\section{Agreement can include an unfinished payment}
++\label{sec:agreement}
++
++When several participants maintain the ledger, their common record must include reservations as well as event decisions and resulting obligations. \emph{Event-Collect BFT} constructs that common record while allowing payments to remain pending~\cite{event}. BFT means Byzantine fault tolerance: agreement despite a bounded number of participants that may send false or inconsistent messages.
++
++In its four-validator example, at most one validator is faulty and three signatures form a quorum, the required agreement threshold. An instruction calls for a local transfer of seven units if an event resolves yes. A block records one agreed batch of ledger changes. The preceding confirmed block fixes the encrypted instruction order. Validators can then collect event evidence while obtaining the decryption contributions for that fixed order.
++
++Finite, signed evidence collections support a complete accepted-or-deferred decision for each candidate event. A missing response does not become proof that no event occurred. A closed collection supplies the recorded basis for deferral. A certificate is checkable evidence for a specified protocol statement. Agreement uses the chosen protocol's complete commit proof and safe leader-change rules. An intermediate preparation certificate is insufficient.
++
++The child block commits the accepted event, clearing decision, instruction receipt, and resulting state together. Clearing computes what each party owes under the configured rule. A failed local transfer group leaves no partial group write. For external payments, the committed state instead retains observed performance, allocations, outstanding duties, reservations, and continuing commands. Provider facts enter independently of whether a later instruction succeeds.
++
++A licensed venue can register trades it matches outside the ledger's own book, using its own trade identifiers. The same clearing rules then apply.
++
++A product fee is a due like any other, charged on the closed amount in the trade's settlement currency. A governed schedule names its payees, and the fee stays separate from principal and customer collateral.
++
++An atomic ledger update changes the complete state together. External providers retain their own execution and finality rules. Dispatch requires confirmation and authority at actual use. Replay recomputes the recorded decision without sending another payment. Historical first completion also remains distinct from current performance after a return.
++
++Agreement relies on the fault bound, deterministic validation, cryptographic contracts, and the underlying consensus protocol. Ledger progress additionally requires eventual communication recovery, retained instruction bodies and decryption service, finite evidence closure, and terminating execution. External completion requires funded resources, current authority, provider responses, fair dispatch and observation delivery, and a recovery process that makes finite progress. A ledger can therefore continue confirming truthful pending states while a provider remains unavailable.
++
++\section{What remains to establish}
++\label{sec:limits}
++
++Together, these constructions specify an account in which calculated obligations survive payment failure, commands retain their remaining exposure, and program changes preserve original duties. Each result is exact under its stated conditions. These results do not certify that an institution will perform.
++
++Implementation refinement must connect actual messages, storage transactions, recovery behavior, and resource ownership to the mathematical transitions. Full-database rollback and competing independent stores need controls beyond a single-store transaction. Legal adequacy, source authority, physical occurrences, and provider finality require evidence from their named owners.
++
++\emph{Event-Collect BFT} includes no proof-assistant artifact. Its finite checks are not parametric mechanized proofs. The other cited constructions likewise retain their stated executable and mechanization boundaries. None of these four papers establishes production latency from a scheduling parameter or a synthetic trace.
++
++\section{Technical reading map}
++\label{sec:reading}
++
++\begin{description}
++\item[Payment and authorized execution.]
++\emph{Op: Compliance-Carrying Operations}, Sections 3--4, 5.1--5.13, 6, and 7.5--7.6. Read \emph{Payment-intent conservation} in Section 5.9 for the 125-unit example. \emph{Finality separation} in Section 5.7 and the executable-scope discussion delimit the external claim. Section 5.13 states the separate provider retry-safety premises.
++
++\item[Payoff calculation and persistent entitlements.]
++\emph{The Claim as Primitive}, Sections 2--4, Proposition 5.7 and Corollary 5.8, Sections 6--7, and Sections 11--13. The exact-expressiveness theorem fixes the language's domain. \emph{Durable retry and conservation} in Section 6.4 states the storage result. Section 12 separately composes jointly valid provider-completion contracts, using dependency paths and named clocks.
++
++\item[Continuing duties and useful service.]
++\emph{Admissible Obligation Transitions}, Section 5.2 (\emph{Exact joint replacement bound}), Section 6.2 on complete future equivalence, and Sections 7.2--7.9. Theorem 7.7 gives original-cohort progress, Propositions 7.8--7.9 the finite monitor and game, and Theorem 7.10 the concrete step bound. Theorems 7.14 and 7.17 cover interval execution and structural continuation. Section 11 records the remaining authority, refinement, and provider obligations.
++
++\item[Agreement and external completion.]
++\emph{Event-Collect BFT}, Sections 3--7 and 9, especially \emph{Atomic event transition}, \emph{Ledger progress}, and \emph{Useful external progress}. Section 11 constructs certified compatible allocation within a closed batch and fixed history. Section 12 separates disclosure history and current performance. Section 14.1 states proof and implementation status. The five-round bound in Section 8 concerns its specified same-height double-certification class, not every consensus protocol.
++\end{description}
++
++\begin{thebibliography}{9}
++\bibitem{op} Raeez Lorgat. \emph{Op: Compliance-Carrying Operations}. September 2026.
++\bibitem{claim} Raeez Lorgat. \emph{The Claim as Primitive}. September 2026.
++\bibitem{aot} Raeez Lorgat. \emph{Admissible Obligation Transitions}. September 2026.
++\bibitem{event} Raeez Lorgat. \emph{Event-Collect BFT}. September 2026.
++\end{thebibliography}
++
++\end{document}
+diff --git a/content/reader-papers/prices-information-and-clearing-risk.md b/content/reader-papers/prices-information-and-clearing-risk.md
+new file mode 100644
+index 0000000..5104b43
+--- /dev/null
++++ b/content/reader-papers/prices-information-and-clearing-risk.md
+@@ -0,0 +1,206 @@
++# Prices, Information, and Clearing Risk
++
++## Abstract
++
++A payment of 100 is due before securities worth 80 can produce cash. With only 20 available, the payment has an 80 funding gap. This article examines what joint prices and independent observations establish, how trading incentives and liquidation affect risk, and when payments require cash. The constructions provide exact identification, allocation, finite-state, and funding results under stated assumptions. They also identify incompatible quotes, hidden interactions, unstable responses, and unfunded continuations. Physical calibration, current authority, and provider performance require their own evidence.
++
++## 1 A payment before the proceeds arrive
++
++A clearing participant owes 100 at time 1, holds cash of 20, and receives 80 from securities at time 2. The time-1 gap remains 80, even if the later receipt is certain. This example appears in *Central Counterparty Risk in Automated Markets*, §6.1, Example 6.7 \[[5](#ref-ccp){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++*Market liquidity* concerns trading without a large price change. *Funding liquidity* concerns obtaining the required settlement asset before payment is due. A liquid market can still deliver proceeds too late. A solvent position can therefore fail a particular payment schedule.
++
++A claim specifies a right or obligation and the conditions determining its outcome. Its acquisition price, calculated payoff, and actual performance answer different questions. *The Claim as Primitive*, §1.1, separates the calculated value from the amount owed and the evidence that discharges it \[[2](#ref-claim){style="overflow-wrap:anywhere;hyphens:none"}\]. Here *clearing* means computing obligations within a clearing book. Sending an instruction and receiving the resulting payment remain distinct events.
++
++Permission also affects the relevant demand. In *One Entity in Many Jurisdictions*, §7, a one-unit second-price auction uses funded bids \[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}\]. Bids of 100, 80, and 30 give a price of 80. Removing the bidder at 30 leaves that price unchanged. Removing the bidder at 80 reduces it to 30.
++
++An additional permitted investor class supplies extra demand only through funded participation. The comparison fixes the auction and other buyer inputs. It does not predict the net price effect of adding a jurisdiction.
++
++## 2 What a joint price reveals
++
++The auction example concerns how participation changes a price. A joint-event market raises a different question: what does its price reveal about dependence?
++
++Two binary events have four possible joint outcomes. Their individual success probabilities leave their dependence unspecified. A *parlay* pays on their joint success. Its probability, together with the two individual probabilities, determines the four outcome probabilities.
++
++Write these four probabilities as $q_{++},q_{+-},q_{-+},q_{--}$. Each sign records one event's outcome. When every cell is positive, the pair has an exact representation with two individual parameters and one interaction parameter: $$J^{\mathrm{eff}}=\frac14\log \frac{q_{++}q_{--}}{q_{+-}q_{-+}}.$$
++
++The logarithm is natural. The individual parameters describe each event's conditional tendency, while $J^{\mathrm{eff}}$ describes the pair's effective association. This is the two-event inversion in *Parlay Identification of Ising Couplings*, §3.1, Theorem 3.1 \[[3](#ref-parlay){style="overflow-wrap:anywhere;hyphens:none"}\]. A zero cell remains a valid boundary probability law but lies outside this finite-parameter representation.
++
++A coherent price system supplies a *pricing law*, denoted $Q$. A *physical law*, denoted $P$, describes how outcomes actually occur. The inversion can identify $Q$ exactly without establishing $Q=P$. Outcome observations and an explicit calibration model must support that additional connection.
++
++The distinction between pricing and physical laws also applies to price sensitivity. A market's *curvature* records how its marginal prices change with inventory. For a cost defined by a scaled logarithm of summed exponentials, curvature equals payoff covariance divided by its positive liquidity parameter. Covariance measures joint variation under a specified law. Here that law is the venue's implied pricing law.
++
++*The Claim as Primitive*, §8.4, proves this identity for its log-partition class \[[2](#ref-claim){style="overflow-wrap:anywhere;hyphens:none"}\]. An arbitrary trading curve does not reveal physical covariance.
++
++### 2.1 An interaction created by a shared neighbour
++
++An *Ising model* represents binary outcomes by individual terms and direct pair interactions in their log probabilities. Averaging over other events can change the interaction seen in one pair.
++
++Take three events in a chain. Set all individual terms to zero, both neighboring interactions to $0.3$, and the direct endpoint interaction to zero. Averaging over the middle event gives $$J^{\mathrm{eff}}=\tfrac12\log\cosh(0.6)\approx0.08507.$$ Both endpoint success probabilities are one half. Their positive effective interaction comes entirely through the middle event.
++
++More observations of that endpoint pair estimate its effective interaction more precisely. That estimate does not converge to the zero direct interaction. This is Example 4.3 of *Parlay Identification of Ising Couplings* \[[3](#ref-parlay){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++Proposition 4.1 supplies a sharp bound on this mediated contribution. Let $U$ and $V$ be the sums of absolute interactions connecting each endpoint to the remaining events. The difference between effective and direct interaction has magnitude at most $$\frac12\log\frac{\cosh(U+V)}{\cosh(U-V)}.$$ The remaining network can have arbitrary finite interactions. One unbiased intervening event attains the bound. Using it to infer a direct interaction requires independent evidence for $U$ and $V$.
++
++Section 5.1 gives direct-identification constructions from a positive full-vector pairwise law or a known tree with positive consistent singleton and edge probabilities.
++
++### 2.2 Consistent pairs can form an impossible collection
++
++Even positive pair tables need not fit one joint law. Set three binary spins' means to zero and every pair moment to $-2/5$. Each pair then has positive cells $(3,7,7,3)/20$. The proposed covariance matrix has positive eigenvalues $1/5,7/5,7/5$.
++
++Nevertheless, every three-spin outcome satisfies $$x_1x_2+x_1x_3+x_2x_3\geq-1.$$ The proposed pair moments require an expectation of $-6/5$, which is impossible. Thus *positive semidefiniteness*, meaning nonnegative variance for every linear combination, is necessary but insufficient for binary joint compatibility.
++
++The exact compatibility test assigns nonnegative probabilities to all complete outcomes and checks the requested moments. In this example, the smallest maximum-coordinate correction is $1/15$. Uniform probability on the six nonconstant outcomes attains it, giving pair moments $-1/3$. These results appear in §3.2, Proposition 3.4 and its following counterexample \[[3](#ref-parlay){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++## 3 Buying observations with a checkable allocation
++
++Each observation used to estimate dependence must identify its events, resolution rule, round, and population. Ten thousand contracts on one resolution still supply one round. The fixed-law estimates require independent rounds with the same pair law. Missing outcomes or changing selection can invalidate that premise.
++
++Near an empty cell, the interaction estimate can become arbitrarily large. Section 6 of *Parlay Identification of Ising Couplings* therefore retains a cell confidence set when an empirical cell is empty \[[3](#ref-parlay){style="overflow-wrap:anywhere;hyphens:none"}\]. Adding artificial counts gives a separately labeled regularized estimate. It does not create an unregularized finite estimate or remove uncertainty.
++
++For changing laws, Section 7 combines sampling error with a separately supported bound on full-cell drift across each declared observation window. Simultaneous coverage over the declared windows permits selection after observing the data. A bound on interaction drift alone is insufficient because changing individual probabilities can create pooled association. Certified outward arithmetic preserves the resulting coverage statement without proving its sampling or drift premises.
++
++Observation bundles can reduce acquisition cost. Each modeled variance term equals its coefficient divided by its effective observation count. Suppose three estimates have positive variance coefficients $(1,3,9)$. A separate observation costs one unit, while a bundle observing all three costs two.
++
++With budget 600, buy 240 bundles and 120 extra observations of the third quantity. The counts are $(240,240,360)$, and the sum of variance terms is $$\frac1{240}+\frac3{240}+\frac9{360}=\frac1{24}.$$ Buying only 300 bundles gives the larger value $13/300$. This is the worked allocation in §5.3.1 \[[3](#ref-parlay){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++The general construction uses finitely many coefficient scenarios and observation bundles. It minimizes the worst scenario's sum of coefficients divided by their effective counts. Bundle costs are positive, all coefficients are positive, and every estimated quantity has some available observation. Counts come from a declared incidence matrix, which records what each purchase observes.
++
++Theorem 5.5 gives an attained *dual*: a maximization whose value supplies an exact lower bound matching the purchase problem's optimum. It assigns nonnegative values to observed quantities, constrained by every bundle's cost. It also chooses a weighted average of the coefficient scenarios. The optimal effective counts are unique, though different purchase plans can produce them.
++
++Proposition 5.6 checks a proposed allocation using its purchases, worst-scenario weights, and marginal-value inequalities. Purchased bundles meet the cost inequality with equality, while every unused bundle must also satisfy the inequality. Rational inputs and a rational witness permit exact checks. In the example, values $(1/4,3/4,1)$ certify the optimum $1/24$.
++
++This objective sums individual variance terms. Correlated errors in a combined estimator require a different loss calculation.
++
++Continuous purchases also differ from whole observations. Proposition 5.8 gives a rounding bound with an explicit budget reserve. The reserve is the sum of the costs of bundles used by the continuous optimum. The budget must exceed it, and rounding guarantees a feasible approximation. Learning the coefficients while choosing observations retains a separate adaptive-inference obligation.
++
++## 4 A price signal changes trading incentives
++
++Using a report to control another market creates a separate incentive question. A strictly proper score makes truthful reporting uniquely optimal when that score is the reporter's relevant payoff. Coupling the report to another market can create an additional payoff. The complete incentive calculation must include the reporter's positions there.
++
++*One-Way Coupling of Prediction Markets to Automated Market Makers*, §2, characterizes truthful reporting along the report-driven path \[[4](#ref-coupling){style="overflow-wrap:anywhere;hyphens:none"}\]. Assume fixed reserves, a differentiable strictly proper score, and an outcome-independent transfer. Truthfulness for every belief then requires constant transfer along the path. A one-way construction satisfies this condition.
++
++External holdings still matter. Section 5 studies a logarithmic score held to resolution, an unchanged outcome law, and expected payoff in a common unit and horizon. It bounds reporting distortion using the aggregate outside payoff's range and sensitivity, relative to scoring liquidity. Splitting one beneficial owner's positions across accounts does not split that economic exposure.
++
++Long trading sequences require cumulative accounting. On a finite directed graph, let each state record the economically relevant inventory and control. Each edge has a declared gain weight. A *potential* assigns a number $\phi(u)$ to each state such that $$w(u,v)\leq\phi(u)-\phi(v).$$ Summing along a closed path cancels the potential differences. Every cycle therefore has nonpositive total weight.
++
++Proposition 7.4 also proves the converse: nonpositive cycles admit such a potential. The least nonnegative potential is the maximum path weight starting at each state, including the empty path. Simple paths suffice because removing a cycle cannot reduce that weight.
++
++The retained-fee application weights edges by logarithmic reserve loss. These weights do not represent cash profit per trade. Each gross power-reserve trade holds its exponent fixed and charges fee $f$ times the absolute gross cash movement. Assume $0\leq f<1$.
++
++Immediate retention protects every finite inventory-restoring sequence when $f\geq1-g_\ell/g_h$. The admitted reserve exponents obey $0<g_\ell\leq g_h$, reserves stay positive, and no external reserve flows occur. A different fee route requires its own accounting.
++
++##### A funded signal adjustment.
++
++In Section 8, a sponsor funds control changes through an account whose uncommitted cash must remain nonnegative. Transfers are exact and atomic, with no fees or external reserve flows. In its worked example, reference inventory and cash scale are both 100. The control ranges from $0.8$ to $1.2$, and log inventory stays within $0.2$ of its reference.
++
++Buy inventory down to $100e^{-0.1}$ at control $0.8$, then change the control to $1.2$. The required sponsor deposit is $100(e^{0.12}-e^{0.08})$, approximately $4.42098$. Selling back and restoring the control gives the trader exactly that amount. A sponsor balance of 5 funds one cycle but cannot fund a second identical cycle without replenishment.
++
++Theorem 8.3 bounds aggregate trader cash gain by the initial sponsor balance when inventory and control close. Restoring the sponsor account too gives zero aggregate gain. Pending commitments and admitted changes between funding modes must enter any broader state model. The complete cross-mode potential construction remains open.
++
++## 5 Liquidation changes subsequent risk
++
++Clearing risk adds the effect of losses and liquidation on the resources available for settlement.
++
++*Expected Shortfall* is the average loss in a specified worst fraction of a loss distribution. Computing it requires a loss law and a horizon. A covariance matrix alone gives an exact quadratic aggregation only under the stated common elliptical family and linear-loss assumptions. Here the centered linear projections share the same distributional shape after rescaling.
++
++A digital payoff pays a specified amount if a condition holds. For general digital payoffs, the full joint law matters. The full portfolio calculation must count each hedge once \[[5](#ref-ccp){style="overflow-wrap:anywhere;hyphens:none"}, §3\].
++
++The physical-risk construction uses a common uncertainty set of candidate outcome laws. Its coverage of the actual law requires separate evidence. A certified numerical optimization gap bounds computational error in the specified problem. It does not establish that coverage. These distinctions govern the entropy-clearing and physical-risk certificates in §4 of *Central Counterparty Risk in Automated Markets* \[[5](#ref-ccp){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++For fixed losses, the waterfall allocates them to disjoint funded resources in a declared priority order. Theorem 6.12 gives a unique allocation and an exact condition for eliminating the book's residual. Reducing an unpaid profit claim reduces the obligation without supplying new cash. Netting also requires the applicable legal right \[[5](#ref-ccp){style="overflow-wrap:anywhere;hyphens:none"}, §6\].
++
++Settlement timing changes who carries risk. Simultaneous transfers of title and cash leave no settlement exposure. If title transfers at the trade and cash is netted later, someone carries the buyer's failure until the governed cutoff. Each product therefore declares its settlement stance. A consumer account is prefunded, with the buyer's cash reserved at the trade. Institutional members can use guaranteed net settlement, with collateralized debit caps and liquidity sized to the largest failures.
++
++The full waterfall requires interposition by the central counterparty. Netting at a cutoff conserves cash exactly and moves only net amounts, with pay-ins collected before pay-outs. A covered member's own resources fund its failure to pay first. Surviving members' margin and customer assets never fund another's default.
++
++A cutoff names a time in a business center and requires a certified clock. A block count does not supply that clock \[[5](#ref-ccp){style="overflow-wrap:anywhere;hyphens:none"}, §6\].
++
++### 5.1 A certificate across changing liquidation regimes
++
++A sale can lower prices, trigger another funding requirement, and cause further sales. The causal response matrix bounds those additional sales. It uses holdings, funding responses, price impact, and common units. A correlation matrix does not supply these causal inputs.
++
++When rules or funding conditions change, the system moves between regimes on a finite directed graph. Proposition 8.9 bounds newly dispatched sales using the admitted transition matrix plus a separate change in the liquidation target. A contraction shrinks the inherited response at each step, while bounds on target changes bound the increments. The proposition's lifetime bound assumes summable target-change bounds and is independent of the inventory cap \[[5](#ref-ccp){style="overflow-wrap:anywhere;hyphens:none"}, §8.2\].
++
++Testing each regime alone is insufficient because alternating responses can amplify one another. Theorem 8.13 treats finite regime graphs with nonnegative response matrices. It characterizes uniform exponential decay of every admitted matrix product, called strict exponential stability. Each regime measures response size with a norm. This norm is the maximum of finitely many nonnegative weighted sums of absolute coordinates.
++
++Every admitted transition must contract between the corresponding norms. Such norms exist exactly under strict exponential stability. Rational matrices then admit rational certificates. Failure to find one chosen shape of norm is inconclusive.
++
++### 5.2 Averaging and retained cash floors
++
++Passive averaging can slow an unstable response while leaving it unstable. Each first-order averaging stage adjusts toward its input over a specified positive time scale. An equilibrium keeps every stage's value constant. Proposition 9.6 examines a positive common equilibrium value with frozen coefficients. Write $\rho$ for its feedback gain. A finite cascade of these stages has one positive real growth rate whenever $\rho>1$ \[[5](#ref-ccp){style="overflow-wrap:anywhere;hyphens:none"}, §9.1\].
++
++For a constructed illustration, take $\rho=1.21$ and two stages with unit time constants. The characteristic equation $(1+s)^2-1.21=0$ gives rates $0.1$ and $-2.1$. Doubling both time constants reduces the positive rate to $0.05$. It remains positive.
++
++This establishes local instability of the stated positive equilibrium. A collapse forecast additionally requires branch selection and the source's evolving-dynamics assumptions. Continuation across the critical impasse remains a separate question.
++
++Settlement discipline can remove one specific feedback channel. The model requires an eligible settlement asset independent of locked pool liquidity. It excludes pool shares and the hub asset from collateral and prohibits clearing-induced liquidity withdrawals. Denomination alone does not satisfy that behavioral condition \[[5](#ref-ccp){style="overflow-wrap:anywhere;hyphens:none"}, §11.1\].
++
++Theorem 11.10 separately bounds the remaining exogenous cash tranche under exogenous-first drain priority. The shortfall must fit within that tranche, and collected fees must be nonnegative. Post-draw cash equals prior tranche cash minus the shortfall plus paid fees, independently of the next hub price. Whole-fund nondecrease in expectation additionally requires the stated conditional nondecrease assumption for the hub price and expected fees covering expected shortfalls. Any buyback consumes actual cash and must retain current required funding. The floor calculation must count that expenditure exactly once.
++
++## 6 The cash required to finish
++
++The remaining question is how much initial cash supports a policy that completes every represented outcome. Appendix C of *Central Counterparty Risk in Automated Markets* models a finite acyclic graph of observable states \[[5](#ref-ccp){style="overflow-wrap:anywhere;hyphens:none"}\]. Each action records its immediate debit, retained cash floor, possible next observations, later cash changes, and remaining debts. A policy chooses an action using only observations already available.
++
++Theorem C.4 computes the exact initial cash needed to complete every represented outcome. It works backward from terminal obligations. At each state, one permitted action must fund every successor still possible when chosen. The calculation then selects the least demanding such action. Choosing separately after learning a future outcome would understate the requirement.
++
++##### Borrowing includes repayment.
++
++Example C.10 permits a facility draw of 60 before a payment of 100. Repayment of 65 follows a separate receipt of 65. The least initial cash is 40:
++
++  Event               Available cash
++  ----------------- ----------------
++  Initial balance                 40
++  Draw 60                        100
++  Pay 100                          0
++  Receive 65                      65
++  Repay 65                         0
++
++Removing the later receipt raises this borrowing route's requirement to 105. If the graph permits a cash-only route, its requirement of 100 is preferable. Including facility failure as a possible branch also raises the original plan's root requirement to 100. A promised draw must satisfy its specified availability and receipt conditions.
++
++An independent reserve of 30 raises the first plan's total to 70, leaving 30 at completion. Do not add a reserve again when the graph's floors already include it. Lemma C.6 preserves every checkpoint when combining fixed cash paths. Paying 100 before receiving 100 requires initial cash of 100. Reversing those events requires zero. Both paths have the same final cash change.
++
++Several currencies or restricted assets require separate balances. Proposition C.7 computes the exact minimal resource vectors, each with a completing strategy, under fixed componentwise action eligibility. This finite frontier can have $2^n$ incomparable vectors after $n$ decisions, even with only two resources. Conversion requires an admitted action with its own rate, limits, timing, and authority. Finite enumeration does not establish an efficient compact representation.
++
++Durable execution must preserve the same cash and obligation identities after retries, interruptions, and returns. The correspondence concerns one settlement authority and integral amounts in one asset. Updates must commit in an order equivalent to sequential execution. The correspondence assumes truthful occurrence identities, current permissions and resource bindings, and provider records. Storage must preserve committed transactions after restart and resist operator rollback to an earlier state.
++
++Recorded returns restore cash and reopen obligations, which must discharge before further graph progress. A repeated receipt supplies no second cash inflow. These external premises determine whether the mathematical continuation describes an actual payment process.
++
++## 7 Technical reading map
++
++- *One Entity in Many Jurisdictions*, §7: "Admissibility-conditioned pricing" and "Exact accession comparison for the auction." Read the fixed buyer context and funded-bid construction together \[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++- *The Claim as Primitive*, §1.1 and §8.4: payment versus discharge, "Covariance in the log-partition class," and "Scope of the covariance reading" \[[2](#ref-claim){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++- *Parlay Identification of Ising Couplings*, §3.1, Theorem 3.1, and §3.2, Proposition 3.4: positive pair inversion and complete-law compatibility. Section 4, Proposition 4.1 and Example 4.3, give mediated-interaction bounds and the chain case. Section 5.3.1, Theorem 5.5 and Propositions 5.6--5.8, covers shared acquisition, exact certificates, complementary bundles, and integer rounding. Sections 6--8 state sampling, drift, boundary, and quote-error requirements \[[3](#ref-parlay){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++- *One-Way Coupling of Prediction Markets to Automated Market Makers*, §2, Theorem 2.1, and §5, Theorem 5.1: truthful reporting and outside-payoff bounds. Section 7, Theorem 7.3 and Proposition 7.4, covers retained fees and finite potentials. Its open problem concerns compatible certificates across execution modes. Section 8, Theorem 8.3, gives the funded adjustment. Section 10 retains equilibrium and calibration obligations \[[4](#ref-coupling){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++- *Central Counterparty Risk in Automated Markets*, §§3--4 and §6, Theorem 6.12: physical risk, numerical certification, and fixed-loss clearing. Section 8.2, Proposition 8.9 and Theorem 8.13, gives regime certificates. Section 9.1, Proposition 9.6, gives passive-cascade instability. Section 11.2, Theorem 11.10, gives the cash-tranche floor. Appendix C, Theorem C.4, Lemma C.6, Proposition C.7, and Example C.10, develops adapted completion cash, path composition, resource frontiers, and funded borrowing \[[5](#ref-ccp){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++## References
++
++::: {#ref-entity}
++:::
++
++**\[1\]** R. Lorgat. *One Entity in Many Jurisdictions*. 2026.
++
++::: {#ref-claim}
++:::
++
++**\[2\]** R. Lorgat. *The Claim as Primitive*. 2026.
++
++::: {#ref-parlay}
++:::
++
++**\[3\]** R. Lorgat. *Parlay Identification of Ising Couplings*. 2026.
++
++::: {#ref-coupling}
++:::
++
++**\[4\]** R. Lorgat. *One-Way Coupling of Prediction Markets to Automated Market Makers*. 2026.
++
++::: {#ref-ccp}
++:::
++
++**\[5\]** R. Lorgat. *Central Counterparty Risk in Automated Markets*. 2026.
+diff --git a/content/reader-papers/prices-information-and-clearing-risk.tex b/content/reader-papers/prices-information-and-clearing-risk.tex
+new file mode 100644
+index 0000000..adf83a2
+--- /dev/null
++++ b/content/reader-papers/prices-information-and-clearing-risk.tex
+@@ -0,0 +1,223 @@
++\documentclass{momentum}
++\title{Prices, Information, and Clearing Risk}
++\shorttitle{Prices, Information, and Clearing Risk}
++\author{Raeez Lorgat}
++\date{September 2026}
++
++\begin{document}
++\maketitle
++
++\begin{abstract}
++A payment of 100 is due before securities worth 80 can produce cash. With only 20 available, the payment has an 80 funding gap. This article examines what joint prices and independent observations establish, how trading incentives and liquidation affect risk, and when payments require cash. The constructions provide exact identification, allocation, finite-state, and funding results under stated assumptions. They also identify incompatible quotes, hidden interactions, unstable responses, and unfunded continuations. Physical calibration, current authority, and provider performance require their own evidence.
++\end{abstract}
++
++\section{A payment before the proceeds arrive}
++
++A clearing participant owes 100 at time 1, holds cash of 20, and receives 80 from securities at time 2. The time-1 gap remains 80, even if the later receipt is certain. This example appears in \emph{Central Counterparty Risk in Automated Markets}, \S6.1, Example 6.7~\cite{ccp}.
++
++\emph{Market liquidity} concerns trading without a large price change. \emph{Funding liquidity} concerns obtaining the required settlement asset before payment is due. A liquid market can still deliver proceeds too late. A solvent position can therefore fail a particular payment schedule.
++
++A claim specifies a right or obligation and the conditions determining its outcome. Its acquisition price, calculated payoff, and actual performance answer different questions. \emph{The Claim as Primitive}, \S1.1, separates the calculated value from the amount owed and the evidence that discharges it~\cite{claim}. Here \emph{clearing} means computing obligations within a clearing book. Sending an instruction and receiving the resulting payment remain distinct events.
++
++Permission also affects the relevant demand. In \emph{One Entity in Many Jurisdictions}, \S7, a one-unit second-price auction uses funded bids~\cite{entity}. Bids of 100, 80, and 30 give a price of 80. Removing the bidder at 30 leaves that price unchanged. Removing the bidder at 80 reduces it to 30.
++
++An additional permitted investor class supplies extra demand only through funded participation. The comparison fixes the auction and other buyer inputs. It does not predict the net price effect of adding a jurisdiction.
++
++\section{What a joint price reveals}
++
++The auction example concerns how participation changes a price. A joint-event market raises a different question: what does its price reveal about dependence?
++
++Two binary events have four possible joint outcomes. Their individual success probabilities leave their dependence unspecified. A \emph{parlay} pays on their joint success. Its probability, together with the two individual probabilities, determines the four outcome probabilities.
++
++Write these four probabilities as $q_{++},q_{+-},q_{-+},q_{--}$. Each sign records one event's outcome. When every cell is positive, the pair has an exact representation with two individual parameters and one interaction parameter:
++\[
++J^{\mathrm{eff}}=\frac14\log
++\frac{q_{++}q_{--}}{q_{+-}q_{-+}}.
++\]
++
++The logarithm is natural. The individual parameters describe each event's conditional tendency, while $J^{\mathrm{eff}}$ describes the pair's effective association. This is the two-event inversion in \emph{Parlay Identification of Ising Couplings}, \S3.1, Theorem 3.1~\cite{parlay}. A zero cell remains a valid boundary probability law but lies outside this finite-parameter representation.
++
++A coherent price system supplies a \emph{pricing law}, denoted $Q$. A \emph{physical law}, denoted $P$, describes how outcomes actually occur. The inversion can identify $Q$ exactly without establishing $Q=P$. Outcome observations and an explicit calibration model must support that additional connection.
++
++The distinction between pricing and physical laws also applies to price sensitivity. A market's \emph{curvature} records how its marginal prices change with inventory. For a cost defined by a scaled logarithm of summed exponentials, curvature equals payoff covariance divided by its positive liquidity parameter. Covariance measures joint variation under a specified law. Here that law is the venue's implied pricing law.
++
++\emph{The Claim as Primitive}, \S8.4, proves this identity for its log-partition class~\cite{claim}. An arbitrary trading curve does not reveal physical covariance.
++
++\subsection{An interaction created by a shared neighbour}
++
++An \emph{Ising model} represents binary outcomes by individual terms and direct pair interactions in their log probabilities. Averaging over other events can change the interaction seen in one pair.
++
++Take three events in a chain. Set all individual terms to zero, both neighboring interactions to $0.3$, and the direct endpoint interaction to zero. Averaging over the middle event gives
++\[
++J^{\mathrm{eff}}=\tfrac12\log\cosh(0.6)\approx0.08507.
++\]
++Both endpoint success probabilities are one half. Their positive effective interaction comes entirely through the middle event.
++
++More observations of that endpoint pair estimate its effective interaction more precisely. That estimate does not converge to the zero direct interaction. This is Example 4.3 of \emph{Parlay Identification of Ising Couplings}~\cite{parlay}.
++
++Proposition 4.1 supplies a sharp bound on this mediated contribution. Let $U$ and $V$ be the sums of absolute interactions connecting each endpoint to the remaining events. The difference between effective and direct interaction has magnitude at most
++\[
++\frac12\log\frac{\cosh(U+V)}{\cosh(U-V)}.
++\]
++The remaining network can have arbitrary finite interactions. One unbiased intervening event attains the bound. Using it to infer a direct interaction requires independent evidence for $U$ and $V$.
++
++Section 5.1 gives direct-identification constructions from a positive full-vector pairwise law or a known tree with positive consistent singleton and edge probabilities.
++
++\subsection{Consistent pairs can form an impossible collection}
++
++Even positive pair tables need not fit one joint law. Set three binary spins' means to zero and every pair moment to $-2/5$. Each pair then has positive cells $(3,7,7,3)/20$. The proposed covariance matrix has positive eigenvalues $1/5,7/5,7/5$.
++
++Nevertheless, every three-spin outcome satisfies
++\[
++x_1x_2+x_1x_3+x_2x_3\geq-1.
++\]
++The proposed pair moments require an expectation of $-6/5$, which is impossible. Thus \emph{positive semidefiniteness}, meaning nonnegative variance for every linear combination, is necessary but insufficient for binary joint compatibility.
++
++The exact compatibility test assigns nonnegative probabilities to all complete outcomes and checks the requested moments. In this example, the smallest maximum-coordinate correction is $1/15$. Uniform probability on the six nonconstant outcomes attains it, giving pair moments $-1/3$. These results appear in \S3.2, Proposition 3.4 and its following counterexample~\cite{parlay}.
++
++\section{Buying observations with a checkable allocation}
++
++Each observation used to estimate dependence must identify its events, resolution rule, round, and population. Ten thousand contracts on one resolution still supply one round. The fixed-law estimates require independent rounds with the same pair law. Missing outcomes or changing selection can invalidate that premise.
++
++Near an empty cell, the interaction estimate can become arbitrarily large. Section 6 of \emph{Parlay Identification of Ising Couplings} therefore retains a cell confidence set when an empirical cell is empty~\cite{parlay}. Adding artificial counts gives a separately labeled regularized estimate. It does not create an unregularized finite estimate or remove uncertainty.
++
++For changing laws, Section 7 combines sampling error with a separately supported bound on full-cell drift across each declared observation window. Simultaneous coverage over the declared windows permits selection after observing the data. A bound on interaction drift alone is insufficient because changing individual probabilities can create pooled association. Certified outward arithmetic preserves the resulting coverage statement without proving its sampling or drift premises.
++
++Observation bundles can reduce acquisition cost. Each modeled variance term equals its coefficient divided by its effective observation count. Suppose three estimates have positive variance coefficients $(1,3,9)$. A separate observation costs one unit, while a bundle observing all three costs two.
++
++With budget 600, buy 240 bundles and 120 extra observations of the third quantity. The counts are $(240,240,360)$, and the sum of variance terms is
++\[
++\frac1{240}+\frac3{240}+\frac9{360}=\frac1{24}.
++\]
++Buying only 300 bundles gives the larger value $13/300$. This is the worked allocation in \S5.3.1~\cite{parlay}.
++
++The general construction uses finitely many coefficient scenarios and observation bundles. It minimizes the worst scenario's sum of coefficients divided by their effective counts. Bundle costs are positive, all coefficients are positive, and every estimated quantity has some available observation. Counts come from a declared incidence matrix, which records what each purchase observes.
++
++Theorem 5.5 gives an attained \emph{dual}: a maximization whose value supplies an exact lower bound matching the purchase problem's optimum. It assigns nonnegative values to observed quantities, constrained by every bundle's cost. It also chooses a weighted average of the coefficient scenarios. The optimal effective counts are unique, though different purchase plans can produce them.
++
++Proposition 5.6 checks a proposed allocation using its purchases, worst-scenario weights, and marginal-value inequalities. Purchased bundles meet the cost inequality with equality, while every unused bundle must also satisfy the inequality. Rational inputs and a rational witness permit exact checks. In the example, values $(1/4,3/4,1)$ certify the optimum $1/24$.
++
++This objective sums individual variance terms. Correlated errors in a combined estimator require a different loss calculation.
++
++Continuous purchases also differ from whole observations. Proposition 5.8 gives a rounding bound with an explicit budget reserve. The reserve is the sum of the costs of bundles used by the continuous optimum. The budget must exceed it, and rounding guarantees a feasible approximation. Learning the coefficients while choosing observations retains a separate adaptive-inference obligation.
++
++\section{A price signal changes trading incentives}
++
++Using a report to control another market creates a separate incentive question. A strictly proper score makes truthful reporting uniquely optimal when that score is the reporter's relevant payoff. Coupling the report to another market can create an additional payoff. The complete incentive calculation must include the reporter's positions there.
++
++\emph{One-Way Coupling of Prediction Markets to Automated Market Makers}, \S2, characterizes truthful reporting along the report-driven path~\cite{coupling}. Assume fixed reserves, a differentiable strictly proper score, and an outcome-independent transfer. Truthfulness for every belief then requires constant transfer along the path. A one-way construction satisfies this condition.
++
++External holdings still matter. Section 5 studies a logarithmic score held to resolution, an unchanged outcome law, and expected payoff in a common unit and horizon. It bounds reporting distortion using the aggregate outside payoff's range and sensitivity, relative to scoring liquidity. Splitting one beneficial owner's positions across accounts does not split that economic exposure.
++
++Long trading sequences require cumulative accounting. On a finite directed graph, let each state record the economically relevant inventory and control. Each edge has a declared gain weight. A \emph{potential} assigns a number $\phi(u)$ to each state such that
++\[
++w(u,v)\leq\phi(u)-\phi(v).
++\]
++Summing along a closed path cancels the potential differences. Every cycle therefore has nonpositive total weight.
++
++Proposition 7.4 also proves the converse: nonpositive cycles admit such a potential. The least nonnegative potential is the maximum path weight starting at each state, including the empty path. Simple paths suffice because removing a cycle cannot reduce that weight.
++
++The retained-fee application weights edges by logarithmic reserve loss. These weights do not represent cash profit per trade. Each gross power-reserve trade holds its exponent fixed and charges fee $f$ times the absolute gross cash movement. Assume $0\leq f<1$.
++
++Immediate retention protects every finite inventory-restoring sequence when $f\geq1-g_\ell/g_h$. The admitted reserve exponents obey $0<g_\ell\leq g_h$, reserves stay positive, and no external reserve flows occur. A different fee route requires its own accounting.
++
++\paragraph{A funded signal adjustment.}
++In Section 8, a sponsor funds control changes through an account whose uncommitted cash must remain nonnegative. Transfers are exact and atomic, with no fees or external reserve flows. In its worked example, reference inventory and cash scale are both 100. The control ranges from $0.8$ to $1.2$, and log inventory stays within $0.2$ of its reference.
++
++Buy inventory down to $100e^{-0.1}$ at control $0.8$, then change the control to $1.2$. The required sponsor deposit is $100(e^{0.12}-e^{0.08})$, approximately $4.42098$. Selling back and restoring the control gives the trader exactly that amount. A sponsor balance of 5 funds one cycle but cannot fund a second identical cycle without replenishment.
++
++Theorem 8.3 bounds aggregate trader cash gain by the initial sponsor balance when inventory and control close. Restoring the sponsor account too gives zero aggregate gain. Pending commitments and admitted changes between funding modes must enter any broader state model. The complete cross-mode potential construction remains open.
++
++\section{Liquidation changes subsequent risk}
++
++Clearing risk adds the effect of losses and liquidation on the resources available for settlement.
++
++\emph{Expected Shortfall} is the average loss in a specified worst fraction of a loss distribution. Computing it requires a loss law and a horizon. A covariance matrix alone gives an exact quadratic aggregation only under the stated common elliptical family and linear-loss assumptions. Here the centered linear projections share the same distributional shape after rescaling.
++
++A digital payoff pays a specified amount if a condition holds. For general digital payoffs, the full joint law matters. The full portfolio calculation must count each hedge once~\cite[\S3]{ccp}.
++
++The physical-risk construction uses a common uncertainty set of candidate outcome laws. Its coverage of the actual law requires separate evidence. A certified numerical optimization gap bounds computational error in the specified problem. It does not establish that coverage. These distinctions govern the entropy-clearing and physical-risk certificates in \S4 of \emph{Central Counterparty Risk in Automated Markets}~\cite{ccp}.
++
++For fixed losses, the waterfall allocates them to disjoint funded resources in a declared priority order. Theorem 6.12 gives a unique allocation and an exact condition for eliminating the book's residual. Reducing an unpaid profit claim reduces the obligation without supplying new cash. Netting also requires the applicable legal right~\cite[\S6]{ccp}.
++
++Settlement timing changes who carries risk. Simultaneous transfers of title and cash leave no settlement exposure. If title transfers at the trade and cash is netted later, someone carries the buyer's failure until the governed cutoff. Each product therefore declares its settlement stance. A consumer account is prefunded, with the buyer's cash reserved at the trade. Institutional members can use guaranteed net settlement, with collateralized debit caps and liquidity sized to the largest failures.
++
++The full waterfall requires interposition by the central counterparty. Netting at a cutoff conserves cash exactly and moves only net amounts, with pay-ins collected before pay-outs. A covered member's own resources fund its failure to pay first. Surviving members' margin and customer assets never fund another's default.
++
++A cutoff names a time in a business center and requires a certified clock. A block count does not supply that clock~\cite[\S6]{ccp}.
++
++\subsection{A certificate across changing liquidation regimes}
++
++A sale can lower prices, trigger another funding requirement, and cause further sales. The causal response matrix bounds those additional sales. It uses holdings, funding responses, price impact, and common units. A correlation matrix does not supply these causal inputs.
++
++When rules or funding conditions change, the system moves between regimes on a finite directed graph. Proposition 8.9 bounds newly dispatched sales using the admitted transition matrix plus a separate change in the liquidation target. A contraction shrinks the inherited response at each step, while bounds on target changes bound the increments. The proposition's lifetime bound assumes summable target-change bounds and is independent of the inventory cap~\cite[\S8.2]{ccp}.
++
++Testing each regime alone is insufficient because alternating responses can amplify one another. Theorem 8.13 treats finite regime graphs with nonnegative response matrices. It characterizes uniform exponential decay of every admitted matrix product, called strict exponential stability. Each regime measures response size with a norm. This norm is the maximum of finitely many nonnegative weighted sums of absolute coordinates.
++
++Every admitted transition must contract between the corresponding norms. Such norms exist exactly under strict exponential stability. Rational matrices then admit rational certificates. Failure to find one chosen shape of norm is inconclusive.
++
++\subsection{Averaging and retained cash floors}
++
++Passive averaging can slow an unstable response while leaving it unstable. Each first-order averaging stage adjusts toward its input over a specified positive time scale. An equilibrium keeps every stage's value constant. Proposition 9.6 examines a positive common equilibrium value with frozen coefficients. Write $\rho$ for its feedback gain. A finite cascade of these stages has one positive real growth rate whenever $\rho>1$~\cite[\S9.1]{ccp}.
++
++For a constructed illustration, take $\rho=1.21$ and two stages with unit time constants. The characteristic equation $(1+s)^2-1.21=0$ gives rates $0.1$ and $-2.1$. Doubling both time constants reduces the positive rate to $0.05$. It remains positive.
++
++This establishes local instability of the stated positive equilibrium. A collapse forecast additionally requires branch selection and the source's evolving-dynamics assumptions. Continuation across the critical impasse remains a separate question.
++
++Settlement discipline can remove one specific feedback channel. The model requires an eligible settlement asset independent of locked pool liquidity. It excludes pool shares and the hub asset from collateral and prohibits clearing-induced liquidity withdrawals. Denomination alone does not satisfy that behavioral condition~\cite[\S11.1]{ccp}.
++
++Theorem 11.10 separately bounds the remaining exogenous cash tranche under exogenous-first drain priority. The shortfall must fit within that tranche, and collected fees must be nonnegative. Post-draw cash equals prior tranche cash minus the shortfall plus paid fees, independently of the next hub price. Whole-fund nondecrease in expectation additionally requires the stated conditional nondecrease assumption for the hub price and expected fees covering expected shortfalls. Any buyback consumes actual cash and must retain current required funding. The floor calculation must count that expenditure exactly once.
++
++\section{The cash required to finish}
++
++The remaining question is how much initial cash supports a policy that completes every represented outcome. Appendix C of \emph{Central Counterparty Risk in Automated Markets} models a finite acyclic graph of observable states~\cite{ccp}. Each action records its immediate debit, retained cash floor, possible next observations, later cash changes, and remaining debts. A policy chooses an action using only observations already available.
++
++Theorem C.4 computes the exact initial cash needed to complete every represented outcome. It works backward from terminal obligations. At each state, one permitted action must fund every successor still possible when chosen. The calculation then selects the least demanding such action. Choosing separately after learning a future outcome would understate the requirement.
++
++\paragraph{Borrowing includes repayment.}
++Example C.10 permits a facility draw of 60 before a payment of 100. Repayment of 65 follows a separate receipt of 65. The least initial cash is 40:
++\begin{center}
++\begin{tabular}{lr}
++\toprule
++Event & Available cash\\
++\midrule
++Initial balance & 40\\
++Draw 60 & 100\\
++Pay 100 & 0\\
++Receive 65 & 65\\
++Repay 65 & 0\\
++\bottomrule
++\end{tabular}
++\end{center}
++Removing the later receipt raises this borrowing route's requirement to 105. If the graph permits a cash-only route, its requirement of 100 is preferable. Including facility failure as a possible branch also raises the original plan's root requirement to 100. A promised draw must satisfy its specified availability and receipt conditions.
++
++An independent reserve of 30 raises the first plan's total to 70, leaving 30 at completion. Do not add a reserve again when the graph's floors already include it. Lemma C.6 preserves every checkpoint when combining fixed cash paths. Paying 100 before receiving 100 requires initial cash of 100. Reversing those events requires zero. Both paths have the same final cash change.
++
++Several currencies or restricted assets require separate balances. Proposition C.7 computes the exact minimal resource vectors, each with a completing strategy, under fixed componentwise action eligibility. This finite frontier can have $2^n$ incomparable vectors after $n$ decisions, even with only two resources. Conversion requires an admitted action with its own rate, limits, timing, and authority. Finite enumeration does not establish an efficient compact representation.
++
++Durable execution must preserve the same cash and obligation identities after retries, interruptions, and returns. The correspondence concerns one settlement authority and integral amounts in one asset. Updates must commit in an order equivalent to sequential execution. The correspondence assumes truthful occurrence identities, current permissions and resource bindings, and provider records. Storage must preserve committed transactions after restart and resist operator rollback to an earlier state.
++
++Recorded returns restore cash and reopen obligations, which must discharge before further graph progress. A repeated receipt supplies no second cash inflow. These external premises determine whether the mathematical continuation describes an actual payment process.
++
++\section{Technical reading map}
++
++\begin{itemize}
++\item \emph{One Entity in Many Jurisdictions}, \S7: ``Admissibility-conditioned pricing'' and ``Exact accession comparison for the auction.'' Read the fixed buyer context and funded-bid construction together~\cite{entity}.
++
++\item \emph{The Claim as Primitive}, \S1.1 and \S8.4: payment versus discharge, ``Covariance in the log-partition class,'' and ``Scope of the covariance reading''~\cite{claim}.
++
++\item \emph{Parlay Identification of Ising Couplings}, \S3.1, Theorem 3.1, and \S3.2, Proposition 3.4: positive pair inversion and complete-law compatibility. Section 4, Proposition 4.1 and Example 4.3, give mediated-interaction bounds and the chain case. Section 5.3.1, Theorem 5.5 and Propositions 5.6--5.8, covers shared acquisition, exact certificates, complementary bundles, and integer rounding. Sections 6--8 state sampling, drift, boundary, and quote-error requirements~\cite{parlay}.
++
++\item \emph{One-Way Coupling of Prediction Markets to Automated Market Makers}, \S2, Theorem 2.1, and \S5, Theorem 5.1: truthful reporting and outside-payoff bounds. Section 7, Theorem 7.3 and Proposition 7.4, covers retained fees and finite potentials. Its open problem concerns compatible certificates across execution modes. Section 8, Theorem 8.3, gives the funded adjustment. Section 10 retains equilibrium and calibration obligations~\cite{coupling}.
++
++\item \emph{Central Counterparty Risk in Automated Markets}, \S\S3--4 and \S6, Theorem 6.12: physical risk, numerical certification, and fixed-loss clearing. Section 8.2, Proposition 8.9 and Theorem 8.13, gives regime certificates. Section 9.1, Proposition 9.6, gives passive-cascade instability. Section 11.2, Theorem 11.10, gives the cash-tranche floor. Appendix C, Theorem C.4, Lemma C.6, Proposition C.7, and Example C.10, develops adapted completion cash, path composition, resource frontiers, and funded borrowing~\cite{ccp}.
++\end{itemize}
++
++\begin{thebibliography}{9}
++\bibitem{entity} R.~Lorgat. \emph{One Entity in Many Jurisdictions}. 2026.
++\bibitem{claim} R.~Lorgat. \emph{The Claim as Primitive}. 2026.
++\bibitem{parlay} R.~Lorgat. \emph{Parlay Identification of Ising Couplings}. 2026.
++\bibitem{coupling} R.~Lorgat. \emph{One-Way Coupling of Prediction Markets to Automated Market Makers}. 2026.
++\bibitem{ccp} R.~Lorgat. \emph{Central Counterparty Risk in Automated Markets}. 2026.
++\end{thebibliography}
++\end{document}

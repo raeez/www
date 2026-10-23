@@ -1,0 +1,96 @@
+--- Markdown plain
+
++++ TeX plain
+
+@@ -1,9 +1 @@
+
+-Claims and Continuing Obligations
+-
+-Abstract
+-
+-A payment provider confirms 100 units against a 125-unit obligation, then stops responding. The unpaid 25 must remain recorded, but issuing another command can overpay if the first command later completes.
+-
+-This article explains how mathematical records support claim calculation and the authorization of execution. They attribute received value and preserve unfinished duties through interruptions and program changes. Finite payoff semantics, continuing obligation journals, joint command reservations, and distributed agreement supply different parts of that construction. Their guarantees depend on declared evidence, authority, storage, scheduling, and provider contracts. A confirmed ledger decision does not establish beneficiary receipt.
+-
+-1 The unpaid 25
++The unpaid 25
+@@ -15 +7 @@
+
+-The worked trace in Op: Compliance-Carrying Operations, Sections 5.9 and 6, retains both the original target and each command’s assigned quantity [1]. After a valid split, the parent command can be recorded as matched for its assigned 100. The original payment still has 25 outstanding. The child command carries that remainder, its reservation, and its own authority checks. An ordinary retry keeps the original command identity without creating a child.
++The worked trace in Op: Compliance-Carrying Operations, Sections 5.9 and 6, retains both the original target and each command’s assigned quantity . After a valid split, the parent command can be recorded as matched for its assigned 100. The original payment still has 25 outstanding. The child command carries that remainder, its reservation, and its own authority checks. An ordinary retry keeps the original command identity without creating a child.
+@@ -27 +19 @@
+
+-These distinctions preserve the obligation record after a lost response. Safe retransmission separately requires the identical canonical request and provider idempotency key. The provider must enforce duplicate protection throughout the complete possible delivery interval [1, Section 5.13].
++These distinctions preserve the obligation record after a lost response. Safe retransmission separately requires the identical canonical request and provider idempotency key. The provider must enforce duplicate protection throughout the complete possible delivery interval .
+@@ -33 +25 @@
+
+-2 What a claim program calculates
++What a claim program calculates
+@@ -35 +27 @@
+
+-The payment example starts with a known target. A claim records an economic right or obligation and the conditions determining its outcome. The Claim as Primitive studies a precise computational form: a finite payoff program, an evaluation schedule, and payment terms [2]. A payoff is the amount the program determines from its admitted inputs. A position binds a quantity of that claim to the relevant parties and financial context.
++The payment example starts with a known target. A claim records an economic right or obligation and the conditions determining its outcome. The Claim as Primitive studies a precise computational form: a finite payoff program, an evaluation schedule, and payment terms . A payoff is the amount the program determines from its admitted inputs. A position binds a quantity of that claim to the relevant parties and financial context.
+@@ -47 +39 @@
+
+-3 A coupon counter can reset while money remains due
++A coupon counter can reset while money remains due
+@@ -49 +41 @@
+
+-Consider the memory-coupon construction in The Claim as Primitive, Sections 5 and 6.5 [2]. A coupon is 10 units. At each scheduled observation, the trigger either fails or succeeds. Failure adds one to the count of consecutive missed coupons. Success resolves the current coupon plus the accumulated misses, then resets the count.
++Consider the memory-coupon construction in The Claim as Primitive, Sections 5 and 6.5 . A coupon is 10 units. At each scheduled observation, the trigger either fails or succeeds. Failure adds one to the count of consecutive missed coupons. Success resolves the current coupon plus the accumulated misses, then resets the count.
+@@ -67 +59 @@
+
+-4 Changing the representation without losing the duty
++Changing the representation without losing the duty
+@@ -69 +61 @@
+
+-A payment can remain unfinished when its records move to a successor program. Admissible Obligation Transitions separates the immutable economic duty identity from the implementation representing it [3]. Its family interface keeps the claim’s own rights, conditions, and permitted changes. The shared engine checks requests, authority, evidence, and the current state before admitting a transition.
++A payment can remain unfinished when its records move to a successor program. Admissible Obligation Transitions separates the immutable economic duty identity from the implementation representing it . Its family interface keeps the claim’s own rights, conditions, and permitted changes. The shared engine checks requests, authority, evidence, and the current state before admitting a transition.
+@@ -91 +83 @@
+
+-5 Completion must name its goal
++Completion must name its goal
+@@ -93 +85 @@
+
+-A system can preserve every duty record while spending forever retrying or migrating. Sections 7.4–7.6 of Admissible Obligation Transitions make useful service a separate requirement [3].
++A system can preserve every duty record while spending forever retrying or migrating. Sections 7.4–7.6 of Admissible Obligation Transitions make useful service a separate requirement .
+@@ -109 +101 @@
+
+-Provider readiness has its own dependencies. Section 12 of The Claim as Primitive composes jointly valid completion contracts for persistent prerequisite facts along a finite acyclic graph [2]. For a finite graph that may contain cycles, ordinary completion contracts wait for every predecessor. Under these declared conjunctive guarantees, external seeds ensure complete readiness if and only if the seeded facts meet every directed cycle.
++Provider readiness has its own dependencies. Section 12 of The Claim as Primitive composes jointly valid completion contracts for persistent prerequisite facts along a finite acyclic graph . For a finite graph that may contain cycles, ordinary completion contracts wait for every predecessor. Under these declared conjunctive guarantees, external seeds ensure complete readiness if and only if the seeded facts meet every directed cycle.
+@@ -113 +105 @@
+
+-6 Replacement needs cash capacity and performance capacity
++Replacement needs cash capacity and performance capacity
+@@ -117 +109 @@
+
+-Section 5.2 of Admissible Obligation Transitions gives an exact joint test [3]. Fix an accounting cut: the recorded point specifying which effects the balances already include. The tested scope must contain every old and candidate command sharing the affected cash or performance capacity, including in-flight effects. Let b be cash after commitments outside that scope, and u the duty’s remaining authorized performance capacity.
++Section 5.2 of Admissible Obligation Transitions gives an exact joint test . Fix an accounting cut: the recorded point specifying which effects the balances already include. The tested scope must contain every old and candidate command sharing the affected cash or performance capacity, including in-flight effects. Let b be cash after commitments outside that scope, and u the duty’s remaining authorized performance capacity.
+@@ -131 +123 @@
+
+-7 Agreement can include an unfinished payment
++Agreement can include an unfinished payment
+@@ -133 +125 @@
+
+-When several participants maintain the ledger, their common record must include reservations as well as event decisions and resulting obligations. Event-Collect BFT constructs that common record while allowing payments to remain pending [4]. BFT means Byzantine fault tolerance: agreement despite a bounded number of participants that may send false or inconsistent messages.
++When several participants maintain the ledger, their common record must include reservations as well as event decisions and resulting obligations. Event-Collect BFT constructs that common record while allowing payments to remain pending . BFT means Byzantine fault tolerance: agreement despite a bounded number of participants that may send false or inconsistent messages.
+@@ -149 +141 @@
+
+-8 What remains to establish
++What remains to establish
+@@ -157 +149 @@
+
+-9 Technical reading map
++Technical reading map
+@@ -175,9 +167 @@
+
+-References
+-
+-[1] Raeez Lorgat. Op: Compliance-Carrying Operations. September 2026.
+-
+-[2] Raeez Lorgat. The Claim as Primitive. September 2026.
+-
+-[3] Raeez Lorgat. Admissible Obligation Transitions. September 2026.
+-
+-[4] Raeez Lorgat. Event-Collect BFT. September 2026.
++9 Raeez Lorgat. Op: Compliance-Carrying Operations. September 2026. Raeez Lorgat. The Claim as Primitive. September 2026. Raeez Lorgat. Admissible Obligation Transitions. September 2026. Raeez Lorgat. Event-Collect BFT. September 2026.

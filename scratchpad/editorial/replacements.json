@@ -1,0 +1,254 @@
+{
+  "claims-and-continuing-obligations": [
+    [
+      "This article explains the mathematical records needed to calculate a claim and authorize its execution. These records attribute received value and preserve unfinished duties through interruption and program changes.",
+      "This article explains how mathematical records support claim calculation and authorize execution. They attribute received value and preserve unfinished duties through interruptions and program changes."
+    ],
+    [
+      "A payer owes 125 units of one asset. A provider has been instructed to make the payment. Authenticated records establish that 100 units have arrived, but its response leaves the remaining execution uncertain. The account of the obligation is simple: 100 paid, 25 outstanding. The next permitted action is less simple.",
+      "A payer owes 125 units of one asset, and a provider holds an instruction to make the payment. Authenticated records establish that 100 units have arrived, but the provider's response leaves the remaining execution uncertain. The obligation has 100 paid and 25 outstanding. The question is whether another command may pay that remainder."
+    ],
+    [
+      "After a valid split, the parent command can be recorded as matched for its assigned 100 while the original payment still has 25 outstanding.",
+      "After a valid split, the parent command can be recorded as matched for its assigned 100. The original payment still has 25 outstanding."
+    ],
+    [
+      "An ordinary retry keeps the original command identity. It does not create a child.",
+      "An ordinary retry keeps the original command identity without creating a child."
+    ],
+    [
+      "Quantity $C$ is the amount removed by an authorized cancellation or amendment, and $U$ is the outstanding target.",
+      "Quantity $C$ is the amount removed by an authorized cancellation or amendment. Quantity $U$ is the outstanding target."
+    ],
+    [
+      "Four identities keep this account intelligible. The duty identifies what is owed. The command identifies one requested action. An external occurrence identifies what the provider actually did. An assertion identifies a report about that occurrence.",
+      "Four identities distinguish the duty, command, occurrence, and report. The duty identifies what is owed, while the command identifies one requested action. An external occurrence identifies what the provider actually did, while an assertion identifies a report about that occurrence."
+    ],
+    [
+      "Op describes the operation as a typed program: each instruction declares the kinds of values, permissions, and resources it consumes or produces. Its finite core checks required screening on every write path, tracks resources that cannot be duplicated, and retains ownership when execution suspends.",
+      "Op describes the operation as a typed program. Each instruction declares the kinds of values, permissions, and resources it consumes or produces. Its finite core checks required screening on every write path and tracks resources that cannot be duplicated. It retains ownership when execution suspends."
+    ],
+    [
+      "A claim records an economic right or obligation and the conditions determining its outcome.",
+      "The payment example starts with a known target. A claim records an economic right or obligation and the conditions determining its outcome."
+    ],
+    [
+      "The language combines constants, observations, earlier resolved values, arithmetic, comparisons, and conditional choices. A cap limits an amount. A floor supplies a minimum.",
+      "The language combines constants, observations, earlier resolved values, arithmetic, comparisons, and conditional choices. A cap limits an amount, while a floor supplies a minimum."
+    ],
+    [
+      "Financial types record dimensions and context, so a currency amount cannot silently become another currency merely because its numerical value matches. A currency conversion needs the declared rate, evidence, and conversion context. The program determines the amount under those declarations. It does not establish their institutional truth.",
+      "Financial types record dimensions and context. Equal numerical values therefore cannot silently convert an amount from one currency to another. A currency conversion needs the declared rate, evidence, and conversion context. The program calculates the amount under those declarations without establishing their institutional truth."
+    ],
+    [
+      "The exact expressiveness theorem in Section 4 identifies both the power and the limit of the finite language.",
+      "The exact expressiveness theorem in Section 4 characterizes the finite language."
+    ],
+    [
+      "This is a characterization of a defined function class, not a claim that every imaginable financial arrangement has been encoded.",
+      "The result applies to this defined function class. It does not assert that the language encodes every imaginable financial arrangement."
+    ],
+    [
+      "The extension in Section 7 permits producers within the same event when a complete, checked graph of those dependencies establishes an order with no cycle.",
+      "The extension in Section 7 permits producers within the same event if a complete, checked dependency graph establishes an acyclic order."
+    ],
+    [
+      "The resulting amount is separate from its market price. Price concerns what participants exchange for a position under a valuation or trading model. Resolution concerns what the admitted program computes. Payment concerns performance against the resulting entitlement.",
+      "The resulting amount, its market price, and payment remain separate. Price concerns what participants exchange for a position under a valuation or trading model. Resolution concerns what the admitted program computes, while payment concerns performance against the resulting entitlement."
+    ],
+    [
+      "It concerns calculation: it does not say the 30 has been paid.",
+      "Its conclusion concerns payoff calculation. The 30 can still await payment."
+    ],
+    [
+      "They do not follow merely from saving a file.",
+      "Saving a file alone does not supply these guarantees."
+    ],
+    [
+      "That mathematical fact does not waive the original evaluator's mandatory financial evidence.",
+      "Even in those cases, the original evaluator still requires its mandatory financial evidence."
+    ],
+    [
+      "This permits common admission machinery without reducing unlike instruments to one balance and one settlement flag.",
+      "The instruments retain their distinct rights and conditions while sharing admission machinery. A balance and a settlement flag alone cannot express those distinctions."
+    ],
+    [
+      "This avoids enumerating every monetary quantum, the smallest permitted quantity.",
+      "A monetary quantum is the smallest permitted quantity. The interval representation avoids enumerating each quantum."
+    ],
+    [
+      "Section 7.9 supplies a construction for authentic programs with the same instructions and matching contexts, but different positive rational position partitions.",
+      "Section 7.9 supplies a construction for authentic programs with the same instructions and matching contexts. Their positive rational position partitions can differ."
+    ],
+    [
+      "Only the source creates duties in the economic ledger. The successor computes a correspondence. This preserves future calculation for that class, not arbitrary program equivalence.",
+      "Only the source creates duties in the economic ledger, while the successor computes a correspondence. This preserves future calculation for the stated class. It does not establish arbitrary program equivalence."
+    ],
+    [
+      "Discarding records has a similarly demanding test.",
+      "Discarding records requires a test of future equivalence."
+    ],
+    [
+      "Preserving a duty does not ensure anyone completes it. A system can retain every record and still spend forever retrying or migrating.",
+      "A system can preserve every duty record while spending forever retrying or migrating."
+    ],
+    [
+      "Each original episode has a nonnegative integer rank: a measure of unfinished work that is zero exactly when its declared goal is recorded.",
+      "Each original episode has a nonnegative integer rank that measures unfinished work. The rank is zero exactly when its declared goal is recorded."
+    ],
+    [
+      "The argument is direct. A positive integer total can strictly decrease at most $R$ times before reaching zero. The service condition permits at most $K$ transitions per required decrease. Its force comes from the premises: a scheduling policy that merely visits each duty, without performing productive work, does not satisfy them.",
+      "A positive integer total can strictly decrease at most $R$ times before reaching zero. The service condition permits at most $K$ transitions per required decrease. A scheduling policy must perform productive work. Merely visiting each duty does not satisfy the service condition."
+    ],
+    [
+      "Each actual transition during unfinished work must lower the rank or preserve it while strictly lowering a bounded counter for intervening work.",
+      "Each actual transition during unfinished work must either lower the rank or preserve it. If it preserves the rank, it must strictly lower a bounded counter for intervening work."
+    ],
+    [
+      "The unpaid-25 case has two resource questions.",
+      "A service guarantee leaves the admission of a replacement to a separate test. The unpaid-25 case has two resource questions."
+    ],
+    [
+      "Provider-enforced closure can reduce remaining exposure. Silence cannot.",
+      "Provider-enforced closure can reduce remaining exposure, but provider silence leaves that exposure unchanged."
+    ],
+    [
+      "When several participants maintain the ledger, they must agree on the event decision and the resulting obligations.",
+      "When several participants maintain the ledger, their common record must include reservations as well as event decisions and resulting obligations."
+    ],
+    [
+      "Not every trade is matched on the ledger's own book. A licensed venue that matches its own trades can register them for clearing with its trade identifiers, and the same rules then apply. A product fee is a due like any other. It is charged in the trade's settlement currency, on the closed amount, to the payees a governed schedule names, and it stays separate from principal and customer collateral.",
+      "A licensed venue can register trades it matches outside the ledger's own book, using its own trade identifiers. The same clearing rules then apply.\n\nA product fee is a due like any other. It is charged on the closed amount in the trade's settlement currency. A governed schedule names its payees. The fee stays separate from principal and customer collateral."
+    ],
+    [
+      "This is atomicity of the ledger update: the complete state changes together.",
+      "An atomic ledger update changes the complete state together."
+    ],
+    [
+      "Dispatch follows confirmation and authority at actual use.",
+      "Dispatch requires confirmation and authority at actual use."
+    ],
+    [
+      "They give exact conditional results, rather than a general certificate that an institution will perform.",
+      "Each result is exact under its stated conditions. These results do not certify that an institution will perform."
+    ]
+  ],
+  "prices-information-and-clearing-risk": [
+    [
+      "This article explains how joint prices, independent observations, trading incentives, liquidation responses, and payment timing enter different mathematical questions.",
+      "This article separates five questions: what joint prices identify, what independent observations support, how trading incentives respond, how liquidation changes risk, and when payments require cash."
+    ],
+    [
+      "Consider the opening case more precisely. A clearing participant owes 100 at time 1, holds cash of 20, and receives 80 from securities at time 2.",
+      "A clearing participant owes 100 at time 1, holds cash of 20, and receives 80 from securities at time 2."
+    ],
+    [
+      "Adding a permitted investor class supplies no extra demand unless someone participates with funding.",
+      "An additional permitted investor class supplies extra demand only through funded participation."
+    ],
+    [
+      "Two binary events have four possible joint outcomes.",
+      "The auction example concerns how participation changes a price. A joint-event market raises a different question: what does its price reveal about dependence?\n\nTwo binary events have four possible joint outcomes."
+    ],
+    [
+      "Price sensitivity has a related boundary.",
+      "The distinction between pricing and physical laws also applies to price sensitivity."
+    ],
+    [
+      "An interaction created by a shared neighbour",
+      "An interaction created by a shared neighbor"
+    ],
+    [
+      "both neighbouring interactions",
+      "both neighboring interactions"
+    ],
+    [
+      "More observations of that endpoint pair estimate the same effective interaction more precisely. They do not make it converge to the zero direct interaction.",
+      "More observations of that endpoint pair estimate its effective interaction more precisely. That estimate does not converge to the zero direct interaction."
+    ],
+    [
+      "An observation must identify its events, resolution rule, round, and population.",
+      "Each observation used to estimate dependence must identify its events, resolution rule, round, and population."
+    ],
+    [
+      "a separately labelled regularized estimate",
+      "a separately labeled regularized estimate"
+    ],
+    [
+      "Section 7 treats changing laws. It combines sampling error with a separately supported bound on full-cell drift across each declared observation window.",
+      "For changing laws, Section 7 combines sampling error with a separately supported bound on full-cell drift across each declared observation window."
+    ],
+    [
+      "The general construction allows finitely many coefficient scenarios and observation bundles. It minimizes the worst scenario's sum of coefficient divided by effective count.",
+      "The general construction uses finitely many coefficient scenarios and observation bundles. It minimizes the worst scenario's sum of coefficients divided by their effective counts."
+    ],
+    [
+      "Purchased bundles meet the cost inequality with equality. All unused bundles must satisfy it too.",
+      "Purchased bundles meet the cost inequality with equality, while every unused bundle must also satisfy it."
+    ],
+    [
+      "That reserve sums the costs of bundles used by the continuous optimum.",
+      "The reserve is the sum of the costs of bundles used by the continuous optimum."
+    ],
+    [
+      "A strictly proper score makes truthful reporting uniquely optimal when that score is the reporter's relevant payoff.",
+      "Using a report to control another market creates a separate incentive question. A strictly proper score makes truthful reporting uniquely optimal when that score is the reporter's relevant payoff."
+    ],
+    [
+      "With fixed reserves, a differentiable strictly proper score, and an outcome-independent transfer, truthfulness for every belief requires constant transfer along the path.",
+      "Assume fixed reserves, a differentiable strictly proper score, and an outcome-independent transfer. Truthfulness for every belief then requires constant transfer along the path."
+    ],
+    [
+      "The economic interpretation must specify the weights. The retained-fee application uses logarithmic reserve loss, not cash profit per trade.",
+      "The retained-fee application weights edges by logarithmic reserve loss. These weights do not represent cash profit per trade."
+    ],
+    [
+      "Section 8 gives another construction. A sponsor pays for control changes through an account whose uncommitted cash cannot become negative.",
+      "In Section 8, a sponsor funds control changes through an account whose uncommitted cash must remain nonnegative."
+    ],
+    [
+      "For fixed losses, the waterfall assigns losses through disjoint funded resources in a declared priority order.",
+      "For fixed losses, the waterfall allocates them to disjoint funded resources in a declared priority order."
+    ],
+    [
+      "Reducing an unpaid profit claim reduces an obligation. It supplies no new cash.",
+      "Reducing an unpaid profit claim reduces the obligation without supplying new cash."
+    ],
+    [
+      "Settlement timing changes who carries risk. When title and cash move together, no exposure remains. When title moves at the trade and cash is netted later at a governed cut-off, someone carries the buyer's failure in between. Each product therefore declares a stance. A consumer account is prefunded: the buyer's cash is reserved at the trade. Institutional members can settle under guaranteed net settlement, with collateralised debit caps and liquidity sized to the largest failures. Only interposition by the central counterparty supports the full waterfall. Netting at a cut-off conserves cash exactly and moves only net amounts, with pay-ins collected before pay-outs. A covered member's failure to pay is funded first from its own resources. Surviving members' margin and customer assets never fund another's default. A cut-off is a time in a business centre, so it requires a certified clock, not a block count",
+      "Settlement timing changes who carries risk. Simultaneous transfers of title and cash leave no settlement exposure. If title transfers at the trade and cash is netted later, someone carries the buyer's failure until the governed cutoff. Each product therefore declares its settlement stance. A consumer account is prefunded, with the buyer's cash reserved at the trade. Institutional members can use guaranteed net settlement, with collateralized debit caps and liquidity sized to the largest failures.\n\nThe full waterfall requires interposition by the central counterparty. Netting at a cutoff conserves cash exactly and moves only net amounts, with pay-ins collected before pay-outs. A covered member's own resources fund its failure to pay first. Surviving members' margin and customer assets never fund another's default.\n\nA cutoff names a time in a business center and requires a certified clock. A block count does not supply that clock"
+    ],
+    [
+      "A contraction shrinks the inherited response at each step. Bounded target changes bound increments.",
+      "A contraction shrinks the inherited response at each step, while bounds on target changes bound the increments."
+    ],
+    [
+      "Each regime uses a norm, a measure of response size, built from finitely many nonnegative weighted sums of absolute coordinates. The norm takes their maximum.",
+      "Each regime measures response size with a norm. This norm is the maximum of finitely many nonnegative weighted sums of absolute coordinates."
+    ],
+    [
+      "that behavioural condition",
+      "that behavioral condition"
+    ],
+    [
+      "Any buyback consumes actual cash and must retain current required funding. The floor calculation cannot count that expenditure twice or ignore it.",
+      "Any buyback consumes actual cash and must retain current required funding. The floor calculation must count that expenditure exactly once."
+    ],
+    [
+      "Return to the payment deadline.",
+      "The remaining question is how much cash permits every represented payment path to finish."
+    ],
+    [
+      "A promised draw cannot substitute for its specified availability and receipt conditions.",
+      "A promised draw must satisfy its specified availability and receipt conditions."
+    ],
+    [
+      "It assumes truthful occurrence identities, current permissions and resource bindings, and provider records.",
+      "The correspondence assumes truthful occurrence identities, current permissions and resource bindings, and provider records."
+    ],
+    [
+      "Recorded returns restore cash and reopen obligations. Those obligations must discharge before further graph progress.\n\nA repeated receipt supplies no second cash inflow.",
+      "Recorded returns restore cash and reopen obligations, which must discharge before further graph progress. A repeated receipt supplies no second cash inflow."
+    ]
+  ]
+}
