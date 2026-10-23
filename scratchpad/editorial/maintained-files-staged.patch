@@ -1,0 +1,933 @@
+diff --git a/content/reader-papers/title-remedies-and-institutional-change.md b/content/reader-papers/title-remedies-and-institutional-change.md
+new file mode 100644
+index 0000000..e3c0932
+--- /dev/null
++++ b/content/reader-papers/title-remedies-and-institutional-change.md
+@@ -0,0 +1,162 @@
++# Title, Remedies, and Institutional Change
++
++## Abstract
++
++A holder sells five grams of pledged gold. The buyer can acquire the existing encumbered right without creating another five-gram allocation. The transaction must preserve the lender's interest, any physical shortage, and unfinished payment instructions. The same preservation problem arises with disputed delivery, an unpaid award, or a successor institution taking over unfinished work. This paper explains constructions that preserve rights, quantities, authority records, and remaining duties through these changes. Their results concern specified records and transitions under explicit assumptions. Legal effect, custody, and provider performance require separate evidence. An award supplies no positive lower bound on cash recovery.
++
++## 1 Five grams, one existing right
++
++Alice owns five grams in identified metal held by a custodian. She has pledged that holding to a lender. Bob agrees to buy it subject to the pledge. Assume the governing instruments permit this transfer, the necessary parties consent, and the custodian gives the required acknowledgment. The transaction changes the holder while retaining the same metal, debt, security interest, and priority.
++
++Recording a second five-gram allocation for Bob would duplicate the physical support. Deleting the pledge would enlarge the right without the lender's release. Keeping Alice as the holder would leave the agreed transfer incomplete. A correct record changes the entitled person while preserving the right's continuing conditions.
++
++Now suppose only three of the five grams remain supported by custody evidence. The recorded face quantity is still five grams, with three supported and two deficient. Transfer does not repair that shortage. Bob receives the specified impaired right, with its deficit and associated claims, if the applicable instruments permit that transaction.
++
++This case follows the transfer construction in *Allocated Title*, § 7 \[[1](#ref-allocated-title){style="overflow-wrap:anywhere;hyphens:none"}\]. It introduces the paper's central question: which parts of an obligation may change, and which must survive? A balance alone is insufficient. The record must identify the exact right, its physical support, the authority for changing it, and all actions already taken toward performance. Authority is permission held by the named institution for the particular action at the relevant time.
++
++## 2 What the register must distinguish
++
++*Allocated title* means ownership tied to identified metal under the applicable law. A promise to deliver equivalent metal is a different right. Ownership depends on effective property arrangements and actual custody, while the promise depends on an obligor's performance. A display showing "five grams" does not identify which right the holder has.
++
++The construction identifies each physical lot and its quantity, then assigns non-overlapping quantity portions to holdings. Different descriptions of the same lot cannot create additional capacity. These portions are accounting coordinates within identified metal, not necessarily separately cut pieces of a bar. The governing law must give the recorded allocation its stated proprietary effect.
++
++A pledge adds a security interest without adding metal. A permitted lease can instead replace present ownership with a claim for equivalent metal's return. The register then records the redelivery obligation and no longer presents that quantity as the holder's allocated metal. A shortage reduces support without silently deleting the entitlement. Restored support first follows the recorded restoration rule for the affected holders.
++
++The register states which of three bases applies to each holding, directly on the balance. *Allocated--segregated* title is in identified bars set apart for one holder. *Allocated--pooled* title is an undivided share of one identified bulk in one vault, with a published bar list. It lets a holder own less than a bar. An *unallocated* balance is a promise of equivalent metal.
++
++A bulk is goods in a defined space, so a pool never spans two vaults. If the pool falls short, the institution's own unsold metal in the bulk bears the loss first. Any remaining loss reduces each buyer's share in proportion, as the Sale of Goods Act 1979, section 20A, provides. One unit trades for the whole pool, so liquidity does not split by bar list. *Allocated Title*, § 3.1, states and proves the rule.
++
++Payment records must also preserve quantity. A single receipt of 100 units can perform two obligations through allocations of 60 and 40. It cannot perform both for 100. The payment's enduring identity prevents another report of the same movement from creating new quantity. Cash available for a new payment is a separate quantity because the institution may already have spent money received earlier.
++
++Across record systems, authenticated correspondence must distinguish reports of the same movement from distinct causal legs. Matching field names alone cannot decide this. Corrections and alias reconciliation must preserve consumed quantities and expose unsupported credits.
++
++Reconciliation compares five records: bank cash, custodian inventory, customer balances, the obligation ledger, and the official register. For metal, the register is the custodian's record of each pool. For securities and fund units, it is the transfer agent's. Where the ledger is only a projection of the register, a transfer reads *pending registration* until the register posts it. Legal effect follows the register.
++
++An *invariant* is a condition preserved by every permitted operation. An *election* is a holder's authorized choice among the permitted uses of the right. *Allocated Title*, § 5.6, proves its per-election invariant and conserved provider attribution under the stated transition rules and evidence assumptions. These results preserve the construction's accounting distinctions. They do not establish that the vault holds the reported metal. Independent reconciliation and access to the underlying custody evidence remain required premises.
++
++Equal aggregate quantities can conceal different legal states. Seventy grams of owned metal and thirty grams of authorized redelivery claims can account for a hundred-gram customer position. The same totals could conceal thirty grams lent without authorization. Quantity checks must therefore accompany the legal state and each holder's actual election.
++
++## 3 Four changes of holder
++
++The transfer construction separates four operations in *Allocated Title*, § 7.1. Each changes an existing right rather than issuing another allocation.
++
++1.  A registered-owner change replaces the person in whose name allocated or encumbered title is held. The beneficial owner remains the same. A properly authorized trustee replacement is the motivating case.
++
++2.  A beneficial-owner change replaces the person entitled to the economic benefit. The registered owner remains in place. The metal and continuing encumbrances retain their identities.
++
++3.  A combined transfer changes both registered and beneficial ownership to the acquirer. Alice's sale can use this mode when both interests pass to Bob.
++
++4.  A redelivery assignment changes the creditor of a contractual metal-return obligation. It transfers no present allocation of metal. The assignment must carry the effective transfer of each supporting collateral or guarantee right and any required obligor acknowledgment.
++
++The admission decision determines whether the proposed operation is permitted. It must bind the precise instructions, parties, right, legal act, consents, and current authority. A continuing lien needs its full schedule, including priority and release conditions. The custody or obligation route must support the successor's right. An unsupported assertion that a person is eligible cannot replace the required determination.
++
++Admission must also account for unfinished instructions. Suppose a payment command still names Alice when Bob takes the associated right. Changing the register's payee does not change the provider's accepted instruction. The transfer must preserve a valid forwarding or discharge arrangement, close the old command conclusively, or use an effective transfer of execution capacity. Otherwise, the same obligation can acquire two incompatible payment paths.
++
++The "Transfer preservation" proposition in § 7.3 states what an admitted transfer retains. Its "Enabled transfer" proposition adds a conditional completion result. Completion requires a reservation, a stable guard admitting the transaction, and weak fairness. Weak fairness means continuously enabled work eventually receives service. A permission that disappears before use is not a stable guard. Neither result supplies a missing consent, provider acknowledgment, or legal effect.
++
++Payment and title can become final together only under a stronger contract. *Allocated Title*, § 6, requires reserved metal, funded settlement entitlement, and a common durable decision with the stated legal effect. Prepared rights must survive interruption and authorized succession. Even then, settlement entitlement is a claim on the settlement issuer. Later withdrawal remains a separate obligation. Without these premises, the record preserves completed legs and the remaining duties instead of claiming a completed exchange.
++
++## 4 When forty kilograms earn a payment
++
++Partial delivery requires a record of both earned consideration and the remaining duty. A buyer contracts for 100 kilograms at a total price of 1,000 currency units. The governing acceptance rule pays ten units per accepted kilogram. Delivery and acceptance of forty conforming kilograms earn 400 units. Sixty kilograms remain due, and only 400 units have become earned consideration under that rule.
++
++Acceptance requires more than a weight report. It must bind the relevant quantity, measurement, assay where required, title and delivery conditions, receiving decision, and current authority. Any conversion between reported physical units and contractual quantity units must be exact, and the payment rule must be explicit. The same accepted kilograms cannot earn the full price again through a second report.
++
++Suppose instead that an offered forty-kilogram batch fails the required assay. Its offered quantity earns nothing under this acceptance rule. If ten kilograms are later accepted, they earn 100 units. The other thirty kilograms of that offer remain disputed or unaccepted. The original hundred-kilogram duty retains the remainder that the governing disposition requires.
++
++A distinct handling obligation can use a different basis. A handling fee of 50 units for the full hundred kilograms could earn 20 for forty handled kilograms, if its own instrument permits that allocation. Delivery acceptance and handling are separate duties. One observation cannot silently supply both legal predicates.
++
++These calculations illustrate "Conserved earned consideration" in *Allocated Title*, § 8.2. The result assumes one serialized allocation authority, stable occurrence identities, exact conversion, and the complete acceptance conditions. The allocation authority decides competing uses in one order against the same current state. A later acceptance cannot reuse quantity already consumed by an earlier one.
++
++A correction must also account for earlier acceptance and payment. Suppose 400 units were paid before an authoritative correction set that delivery's target consideration to 100. The original 400-unit entitlement and payment remain recorded. The correction creates the applicable 300-unit repayment or recovery obligation. It does not erase the payment, manufacture a refund, or make that cash available again. Sections 8.3 and 8.4 carry these distinctions through correction and durable handover.
++
++## 5 An award, a stay, and actual receipts
++
++The distinction between recorded entitlement and received payment also governs remedies for disputed delivery. *Recourse*, § 2, follows a seller who invoices 100,000 units after delivery \[[2](#ref-recourse){style="overflow-wrap:anywhere;hyphens:none"}\]. The buyer disputes part of the delivery.
++
++Under the example's assumed valid agreement and arbitral process, the tribunal awards 80,000. The buyer voluntarily pays 20,000, and a properly authorized custody release supplies another 60,000. Both recipient credits reach the required legal finality. The applicable reversal windows close, and a receipt fee is 100: $$\begin{aligned} \text{gross receipt}&=20{,}000+60{,}000=80{,}000,\\ \text{net recovery}&=80{,}000-100=79{,}900. \end{aligned}$$
++
++The award, gross receipt, and net recovery are different quantities. Their relationship depends here on actual payment, funded escrow, proper release authority, finality, and fees. An award alone establishes none of those payment facts. The "Award is not recovery" corollary in § 9.7 proves that an accepted award gives no positive recovery lower bound in any unit. A valid record can simply stop after the award.
++
++Suppose a court later stays a proposed execution. The stay changes present permission to act. Entering it in the record does not undo the voluntary payment or the earlier custody release. Conversely, historical permission does not authorize a new execution after the stay.
++
++The paper keeps four components: accepted historical acts, current permissions, economic effects, and explicit obstructions. Its *fold* is the deterministic calculation that derives these components from observed evidence. It distinguishes when an event happened, when evidence became available, and the time at which the record is being assessed. Reading or replaying the record never dispatches a payment.
++
++Historical legal conclusions remain subject to revision. A review-only extension with fresh event identities preserves accepted history and economic effects while potentially changing current permissions. New legal attestations can revise historical legal conclusions. Evidence of key compromise has its own validity consequences. The theorem therefore does not assert "nothing can ever change."
++
++Recovery also requires evidence beyond a provider's acceptance of an instruction. Recipient credit, the governing legal-finality evidence, and a complete account of applicable reversal windows must support collection at the stated cutoff. Missing window metadata does not mean that no windows apply. The authoritative certificate must establish completeness even when its window set is empty.
++
++"Bitemporal authority and effect integrity," in § 9.7, assumes authentication, correct identity binding, canonical ordering, authoritative economic evidence, and single-successor attribution journals. Bitemporal here refers to the separate treatment of event and observation times. Consent, arbitral process, recognition, coercive actionability, custody release, and authorized claim adjustments remain external legal predicates. The theorem checks how their determinations are used, without proving those predicates true.
++
++## 6 Who may release property and who pays the decision maker
++
++Escrow is property held under a mandate specifying when and how it may be released. In the *Recourse* escrow profile, the trustee's participation is mandatory. Release requires the trustee together with either the bonded party or the award executor, subject to the qualifying basis and mandate. The bonded party owns the bonded interest. This is not an unrestricted two-of-three signature rule. The bonded party and executor cannot bypass the trustee.
++
++The signers must authorize the same instruction under current authority. The guard includes funded property, the committed custody predecessor, replay protection, operative holds, and the required release basis. A search finding no stay is not an affirmative determination that release is permitted. The intake record must meet its declared completeness requirements. Those requirements do not prove that no unobserved external stay exists.
++
++Disputed property requires independent review under the stated profile. Holding property in suspense does not pay the beneficiary. A legal deadline cannot be silently extended, and its arrival does not itself authorize distribution. Separate operating reserves support continued case service without treating contested collateral as operating cash.
++
++The remuneration rule addresses the decision maker's financial incentives. A protected term fixes a person's total remuneration, payment dates, full funding, and reserved capacity before assignment. The total includes related benefits and cannot vary through case, hour, appeal, or outcome additions. Replacement capacity needs its own funded provision.
++
++"Protected remuneration under a funded term," in *Recourse*, § 10.4, establishes invariance to case assignment within this contract. Equal compensation receipts additionally require the stated provider execution and finality premises. The proposition is not an empirical finding of impartiality. Ownership, conflicts, appointment, and removal controls still matter. A fixed amount cannot by itself establish independent judgment.
++
++## 7 A successor inherits the unfinished command
++
++A funded obligation may already have its remaining capacity committed to an unfinished command. Consider the continuity example in *Recourse*, § 10.7. An obligation is 125 units, of which 40 have been paid. An old command can still pay the remaining 85, and 85 units remain funded. A successor inherits an 85-unit obligation. The existing command occupies its capacity, leaving none for an additional independent 85-unit command.
++
++A late receipt then establishes another payment of 60. Twenty-five units remain due, and the old command may still perform those twenty-five. Only authoritative closure of that remainder, or an effective transfer of its capacity, permits a replacement under the corresponding rule. A local timeout establishes neither. An instruction can remain in flight after local authority to issue further instructions has ended.
++
++*Admissible Obligation Transitions*, § 5.2, gives the more general "Exact joint replacement bound" \[[3](#ref-obligation-transitions){style="overflow-wrap:anywhere;hyphens:none"}\]. It tests all old and proposed commands sharing the affected cash or performance capacity. *Performance capacity* starts with the unpaid duty and subtracts observed performance awaiting discharge and reservations outside the tested scope. Cash capacity is the usable funding remaining after outside commitments. Neither baseline subtracts the reservations for commands whose sufficiency the joint test is checking. The two capacities need not share a unit or numerical value.
++
++The test covers every permitted intermediate outcome, including effects that have occurred but are not yet reflected at the accounting cutoff. In each coordinate, the least upper bound on possible consumption must fit the available capacity. The bound need not be attained by any one outcome. With an exact description of possible outcomes, the condition is necessary and sufficient. A sound overestimate gives a sufficient test, but can reject a safe replacement.
++
++For example, suppose only 25 units of both cash and performance capacity remain. An old command can use 25, and a proposed replacement can independently use another 25. Their possible total is 50, so replacement fails.
++
++Now suppose an admitted provider contract limits remaining debit across both commands to 25 and separately limits remaining performance to 25. If both limits cover in-flight effects, the capacity test passes. The replacement still requires current action authority. An estimate that the commands are unlikely to execute together is not such a contract.
++
++Every intermediate outcome matters. A later refund cannot excuse an earlier funding shortfall. A cash credit offsets exposure only when available for use. Returned performance restores capacity only under the governing obligation rule.
++
++Admission must atomically replace reservations for the complete tested scope and record the new command. Atomically means that these bookkeeping changes commit together or none commits. It must not count one joint reservation several times or deduct an already reflected debit again.
++
++These conditions concern real provider behavior as well as local records. They cannot be obtained by renaming a command or moving it to a successor's queue.
++
++## 8 Changing the institution without resetting the obligation
++
++Replacing an institution extends the preservation problem beyond its payment commands. Institutional change can alter the operator, interpreter, custody route, or technical representation. The continuing duty needs an enduring identity across these changes. *Admissible Obligation Transitions*, § 7, binds that identity to its constituting act and original occurrence. A new representation does not constitute a fresh obligation.
++
++A document archive and current balance are insufficient for the successor to resume work. The transferred state includes the duty journal, current beneficiaries and units, exact performed portions, pending commands, reservations, and the evidence governing current authority. A *continuation* is the unfinished computation together with the state needed to resume it. An unfinished program also needs its instructions, working environment, pending control state, and remaining work count. A saved result cannot reconstruct unfinished execution.
++
++The complete continuation cut in *Recourse*, § 10.7, gathers this state across the affected namespaces and histories. One authorized successor must have exclusive execution control. Old external commands remain possible until the required evidence limits or closes them. Durable local transactions and effective external controls are distinct premises. A database handover does not itself supply a provider-side fence against further execution.
++
++Preservation also differs from amendment. Carrying an existing duty into another representation preserves its currently effective terms and payment history. Changing the beneficiary, amount, priority, or discharge rule requires the authority for that substantive change. Equal balances are insufficient. Different allocations of a past payment can leave different people entitled to different remaining portions.
++
++Completion requires additional service assumptions. Repeatedly transferring a duty must not reset its original deadline or erase work already counted. The progress results in *Admissible Obligation Transitions*, § 7.4, track the original duty episode and require the specified productive service. Fair scheduling alone cannot make unavailable funding, unlawful instructions, or an unresponsive provider deliver performance.
++
++A complete handover can retain a shortage, a stayed remedy, a disputed receipt, or an unavailable route. These remaining duties or obstructions identify work for an authorized actor. Removing them from the successor's record would conceal that work.
++
++## 9 Technical reading map
++
++*Allocated Title* supplies the property and physical-performance construction. Read § 4 for assumptions A1--A8, then §§ 5.1--5.6 for quantities, cash attribution, and conservation. Section 6 states "Coupled final trade entitlements." Sections 7.1--7.3 define the four transfer modes, their admission contract, "Transfer preservation," and "Enabled transfer." Sections 8.1--8.4 cover acceptance, "Conserved earned consideration," corrections, and "Durable physical performance." Section 8.6 extends the construction through "Continuation with current obligations."
++
++*Recourse* separates adjudication from execution and receipt. Section 2 contains the invoice example. Section 8 specifies escrow and its mandatory-trustee rule. Sections 9.1--9.5 define evidence, authority, economic effects, and the fold. Sections 9.6--9.7 state assumptions F1--F5, external predicates L1--L6, "Bitemporal authority and effect integrity," and "Award is not recovery." Section 10.4 treats funded protected remuneration. Section 10.7 states complete continuation cuts, durable continuation, and resource conservation.
++
++*Admissible Obligation Transitions* supplies the general obligation model. Section 5.2 defines the "Joint remaining-effect contract" and proves the "Exact joint replacement bound." Section 7.2 states "Preservation across carriage." Sections 7.4--7.7 distinguish progress assumptions, concrete productive service, and durable execution. Sections 7.8--7.9 treat exact interval representation and structural continuation with one economic ledger. These are specified constructions, not equivalence results for arbitrary replacement programs.
++
++The cited results have written mathematical arguments with explicit hypotheses. Their scope must be read statement by statement. In particular, *Recourse*, § 13, states that none of its results is machine-checked. No result cited here proves legal effect, physical custody, universal provider reliability, or a positive minimum cash recovery from an award.
++
++## References
++
++::: {#ref-allocated-title}
++:::
++
++**\[1\]** Raeez Lorgat. *Allocated Title*. September 2026.
++
++::: {#ref-recourse}
++:::
++
++**\[2\]** Raeez Lorgat. *Recourse*. September 2026.
++
++::: {#ref-obligation-transitions}
++:::
++
++**\[3\]** Raeez Lorgat. *Admissible Obligation Transitions*. September 2026.
+diff --git a/content/reader-papers/title-remedies-and-institutional-change.tex b/content/reader-papers/title-remedies-and-institutional-change.tex
+new file mode 100644
+index 0000000..b632240
+--- /dev/null
++++ b/content/reader-papers/title-remedies-and-institutional-change.tex
+@@ -0,0 +1,171 @@
++\documentclass{momentum}
++
++\title{Title, Remedies, and Institutional Change}
++\author{Raeez Lorgat}
++\date{September 2026}
++\shorttitle{Title, Remedies, and Institutional Change}
++
++\begin{document}
++\maketitle
++
++\begin{abstract}
++A holder sells five grams of pledged gold. The buyer can acquire the existing encumbered right without creating another five-gram allocation. The transaction must preserve the lender's interest, any physical shortage, and unfinished payment instructions. The same preservation problem arises with disputed delivery, an unpaid award, or a successor institution taking over unfinished work. This paper explains constructions that preserve rights, quantities, authority records, and remaining duties through these changes. Their results concern specified records and transitions under explicit assumptions. Legal effect, custody, and provider performance require separate evidence. An award supplies no positive lower bound on cash recovery.
++\end{abstract}
++
++\section{Five grams, one existing right}
++
++Alice owns five grams in identified metal held by a custodian. She has pledged that holding to a lender. Bob agrees to buy it subject to the pledge. Assume the governing instruments permit this transfer, the necessary parties consent, and the custodian gives the required acknowledgment. The transaction changes the holder while retaining the same metal, debt, security interest, and priority.
++
++Recording a second five-gram allocation for Bob would duplicate the physical support. Deleting the pledge would enlarge the right without the lender's release. Keeping Alice as the holder would leave the agreed transfer incomplete. A correct record changes the entitled person while preserving the right's continuing conditions.
++
++Now suppose only three of the five grams remain supported by custody evidence. The recorded face quantity is still five grams, with three supported and two deficient. Transfer does not repair that shortage. Bob receives the specified impaired right, with its deficit and associated claims, if the applicable instruments permit that transaction.
++
++This case follows the transfer construction in \emph{Allocated Title}, \S~7~\cite{allocated-title}. It introduces the paper's central question: which parts of an obligation may change, and which must survive? A balance alone is insufficient. The record must identify the exact right, its physical support, the authority for changing it, and all actions already taken toward performance. Authority is permission held by the named institution for the particular action at the relevant time.
++
++\section{What the register must distinguish}
++
++\emph{Allocated title} means ownership tied to identified metal under the applicable law. A promise to deliver equivalent metal is a different right. Ownership depends on effective property arrangements and actual custody, while the promise depends on an obligor's performance. A display showing ``five grams'' does not identify which right the holder has.
++
++The construction identifies each physical lot and its quantity, then assigns non-overlapping quantity portions to holdings. Different descriptions of the same lot cannot create additional capacity. These portions are accounting coordinates within identified metal, not necessarily separately cut pieces of a bar. The governing law must give the recorded allocation its stated proprietary effect.
++
++A pledge adds a security interest without adding metal. A permitted lease can instead replace present ownership with a claim for equivalent metal's return. The register then records the redelivery obligation and no longer presents that quantity as the holder's allocated metal. A shortage reduces support without silently deleting the entitlement. Restored support first follows the recorded restoration rule for the affected holders.
++
++The register states which of three bases applies to each holding, directly on the balance. \emph{Allocated--segregated} title is in identified bars set apart for one holder. \emph{Allocated--pooled} title is an undivided share of one identified bulk in one vault, with a published bar list. It lets a holder own less than a bar. An \emph{unallocated} balance is a promise of equivalent metal.
++
++A bulk is goods in a defined space, so a pool never spans two vaults. If the pool falls short, the institution's own unsold metal in the bulk bears the loss first. Any remaining loss reduces each buyer's share in proportion, as the Sale of Goods Act 1979, section 20A, provides. One unit trades for the whole pool, so liquidity does not split by bar list. \emph{Allocated Title}, \S~3.1, states and proves the rule.
++
++Payment records must also preserve quantity. A single receipt of 100 units can perform two obligations through allocations of 60 and 40. It cannot perform both for 100. The payment's enduring identity prevents another report of the same movement from creating new quantity. Cash available for a new payment is a separate quantity because the institution may already have spent money received earlier.
++
++Across record systems, authenticated correspondence must distinguish reports of the same movement from distinct causal legs. Matching field names alone cannot decide this. Corrections and alias reconciliation must preserve consumed quantities and expose unsupported credits.
++
++Reconciliation compares five records: bank cash, custodian inventory, customer balances, the obligation ledger, and the official register. For metal, the register is the custodian's record of each pool. For securities and fund units, it is the transfer agent's. Where the ledger is only a projection of the register, a transfer reads \emph{pending registration} until the register posts it. Legal effect follows the register.
++
++An \emph{invariant} is a condition preserved by every permitted operation. An \emph{election} is a holder's authorized choice among the permitted uses of the right. \emph{Allocated Title}, \S~5.6, proves its per-election invariant and conserved provider attribution under the stated transition rules and evidence assumptions. These results preserve the construction's accounting distinctions. They do not establish that the vault holds the reported metal. Independent reconciliation and access to the underlying custody evidence remain required premises.
++
++Equal aggregate quantities can conceal different legal states. Seventy grams of owned metal and thirty grams of authorized redelivery claims can account for a hundred-gram customer position. The same totals could conceal thirty grams lent without authorization. Quantity checks must therefore accompany the legal state and each holder's actual election.
++
++\section{Four changes of holder}
++
++The transfer construction separates four operations in \emph{Allocated Title}, \S~7.1. Each changes an existing right rather than issuing another allocation.
++
++\begin{enumerate}
++\item A registered-owner change replaces the person in whose name allocated or encumbered title is held. The beneficial owner remains the same. A properly authorized trustee replacement is the motivating case.
++\item A beneficial-owner change replaces the person entitled to the economic benefit. The registered owner remains in place. The metal and continuing encumbrances retain their identities.
++\item A combined transfer changes both registered and beneficial ownership to the acquirer. Alice's sale can use this mode when both interests pass to Bob.
++\item A redelivery assignment changes the creditor of a contractual metal-return obligation. It transfers no present allocation of metal. The assignment must carry the effective transfer of each supporting collateral or guarantee right and any required obligor acknowledgment.
++\end{enumerate}
++
++The admission decision determines whether the proposed operation is permitted. It must bind the precise instructions, parties, right, legal act, consents, and current authority. A continuing lien needs its full schedule, including priority and release conditions. The custody or obligation route must support the successor's right. An unsupported assertion that a person is eligible cannot replace the required determination.
++
++Admission must also account for unfinished instructions. Suppose a payment command still names Alice when Bob takes the associated right. Changing the register's payee does not change the provider's accepted instruction. The transfer must preserve a valid forwarding or discharge arrangement, close the old command conclusively, or use an effective transfer of execution capacity. Otherwise, the same obligation can acquire two incompatible payment paths.
++
++The ``Transfer preservation'' proposition in \S~7.3 states what an admitted transfer retains. Its ``Enabled transfer'' proposition adds a conditional completion result. Completion requires a reservation, a stable guard admitting the transaction, and weak fairness. Weak fairness means continuously enabled work eventually receives service. A permission that disappears before use is not a stable guard. Neither result supplies a missing consent, provider acknowledgment, or legal effect.
++
++Payment and title can become final together only under a stronger contract. \emph{Allocated Title}, \S~6, requires reserved metal, funded settlement entitlement, and a common durable decision with the stated legal effect. Prepared rights must survive interruption and authorized succession. Even then, settlement entitlement is a claim on the settlement issuer. Later withdrawal remains a separate obligation. Without these premises, the record preserves completed legs and the remaining duties instead of claiming a completed exchange.
++
++\section{When forty kilograms earn a payment}
++
++Partial delivery requires a record of both earned consideration and the remaining duty. A buyer contracts for 100 kilograms at a total price of 1,000 currency units. The governing acceptance rule pays ten units per accepted kilogram. Delivery and acceptance of forty conforming kilograms earn 400 units. Sixty kilograms remain due, and only 400 units have become earned consideration under that rule.
++
++Acceptance requires more than a weight report. It must bind the relevant quantity, measurement, assay where required, title and delivery conditions, receiving decision, and current authority. Any conversion between reported physical units and contractual quantity units must be exact, and the payment rule must be explicit. The same accepted kilograms cannot earn the full price again through a second report.
++
++Suppose instead that an offered forty-kilogram batch fails the required assay. Its offered quantity earns nothing under this acceptance rule. If ten kilograms are later accepted, they earn 100 units. The other thirty kilograms of that offer remain disputed or unaccepted. The original hundred-kilogram duty retains the remainder that the governing disposition requires.
++
++A distinct handling obligation can use a different basis. A handling fee of 50 units for the full hundred kilograms could earn 20 for forty handled kilograms, if its own instrument permits that allocation. Delivery acceptance and handling are separate duties. One observation cannot silently supply both legal predicates.
++
++These calculations illustrate ``Conserved earned consideration'' in \emph{Allocated Title}, \S~8.2. The result assumes one serialized allocation authority, stable occurrence identities, exact conversion, and the complete acceptance conditions. The allocation authority decides competing uses in one order against the same current state. A later acceptance cannot reuse quantity already consumed by an earlier one.
++
++A correction must also account for earlier acceptance and payment. Suppose 400 units were paid before an authoritative correction set that delivery's target consideration to 100. The original 400-unit entitlement and payment remain recorded. The correction creates the applicable 300-unit repayment or recovery obligation. It does not erase the payment, manufacture a refund, or make that cash available again. Sections~8.3 and~8.4 carry these distinctions through correction and durable handover.
++
++\section{An award, a stay, and actual receipts}
++
++The distinction between recorded entitlement and received payment also governs remedies for disputed delivery. \emph{Recourse}, \S~2, follows a seller who invoices 100,000 units after delivery~\cite{recourse}. The buyer disputes part of the delivery.
++
++Under the example's assumed valid agreement and arbitral process, the tribunal awards 80,000. The buyer voluntarily pays 20,000, and a properly authorized custody release supplies another 60,000. Both recipient credits reach the required legal finality. The applicable reversal windows close, and a receipt fee is 100:
++\[
++\begin{aligned}
++\text{gross receipt}&=20{,}000+60{,}000=80{,}000,\\
++\text{net recovery}&=80{,}000-100=79{,}900.
++\end{aligned}
++\]
++
++The award, gross receipt, and net recovery are different quantities. Their relationship depends here on actual payment, funded escrow, proper release authority, finality, and fees. An award alone establishes none of those payment facts. The ``Award is not recovery'' corollary in \S~9.7 proves that an accepted award gives no positive recovery lower bound in any unit. A valid record can simply stop after the award.
++
++Suppose a court later stays a proposed execution. The stay changes present permission to act. Entering it in the record does not undo the voluntary payment or the earlier custody release. Conversely, historical permission does not authorize a new execution after the stay.
++
++The paper keeps four components: accepted historical acts, current permissions, economic effects, and explicit obstructions. Its \emph{fold} is the deterministic calculation that derives these components from observed evidence. It distinguishes when an event happened, when evidence became available, and the time at which the record is being assessed. Reading or replaying the record never dispatches a payment.
++
++Historical legal conclusions remain subject to revision. A review-only extension with fresh event identities preserves accepted history and economic effects while potentially changing current permissions. New legal attestations can revise historical legal conclusions. Evidence of key compromise has its own validity consequences. The theorem therefore does not assert ``nothing can ever change.''
++
++Recovery also requires evidence beyond a provider's acceptance of an instruction. Recipient credit, the governing legal-finality evidence, and a complete account of applicable reversal windows must support collection at the stated cutoff. Missing window metadata does not mean that no windows apply. The authoritative certificate must establish completeness even when its window set is empty.
++
++``Bitemporal authority and effect integrity,'' in \S~9.7, assumes authentication, correct identity binding, canonical ordering, authoritative economic evidence, and single-successor attribution journals. Bitemporal here refers to the separate treatment of event and observation times. Consent, arbitral process, recognition, coercive actionability, custody release, and authorized claim adjustments remain external legal predicates. The theorem checks how their determinations are used, without proving those predicates true.
++
++\section{Who may release property and who pays the decision maker}
++
++Escrow is property held under a mandate specifying when and how it may be released. In the \emph{Recourse} escrow profile, the trustee's participation is mandatory. Release requires the trustee together with either the bonded party or the award executor, subject to the qualifying basis and mandate. The bonded party owns the bonded interest. This is not an unrestricted two-of-three signature rule. The bonded party and executor cannot bypass the trustee.
++
++The signers must authorize the same instruction under current authority. The guard includes funded property, the committed custody predecessor, replay protection, operative holds, and the required release basis. A search finding no stay is not an affirmative determination that release is permitted. The intake record must meet its declared completeness requirements. Those requirements do not prove that no unobserved external stay exists.
++
++Disputed property requires independent review under the stated profile. Holding property in suspense does not pay the beneficiary. A legal deadline cannot be silently extended, and its arrival does not itself authorize distribution. Separate operating reserves support continued case service without treating contested collateral as operating cash.
++
++The remuneration rule addresses the decision maker's financial incentives. A protected term fixes a person's total remuneration, payment dates, full funding, and reserved capacity before assignment. The total includes related benefits and cannot vary through case, hour, appeal, or outcome additions. Replacement capacity needs its own funded provision.
++
++``Protected remuneration under a funded term,'' in \emph{Recourse}, \S~10.4, establishes invariance to case assignment within this contract. Equal compensation receipts additionally require the stated provider execution and finality premises. The proposition is not an empirical finding of impartiality. Ownership, conflicts, appointment, and removal controls still matter. A fixed amount cannot by itself establish independent judgment.
++
++\section{A successor inherits the unfinished command}
++
++A funded obligation may already have its remaining capacity committed to an unfinished command. Consider the continuity example in \emph{Recourse}, \S~10.7. An obligation is 125 units, of which 40 have been paid. An old command can still pay the remaining 85, and 85 units remain funded. A successor inherits an 85-unit obligation. The existing command occupies its capacity, leaving none for an additional independent 85-unit command.
++
++A late receipt then establishes another payment of 60. Twenty-five units remain due, and the old command may still perform those twenty-five. Only authoritative closure of that remainder, or an effective transfer of its capacity, permits a replacement under the corresponding rule. A local timeout establishes neither. An instruction can remain in flight after local authority to issue further instructions has ended.
++
++\emph{Admissible Obligation Transitions}, \S~5.2, gives the more general ``Exact joint replacement bound''~\cite{obligation-transitions}. It tests all old and proposed commands sharing the affected cash or performance capacity. \emph{Performance capacity} starts with the unpaid duty and subtracts observed performance awaiting discharge and reservations outside the tested scope. Cash capacity is the usable funding remaining after outside commitments. Neither baseline subtracts the reservations for commands whose sufficiency the joint test is checking. The two capacities need not share a unit or numerical value.
++
++The test covers every permitted intermediate outcome, including effects that have occurred but are not yet reflected at the accounting cutoff. In each coordinate, the least upper bound on possible consumption must fit the available capacity. The bound need not be attained by any one outcome. With an exact description of possible outcomes, the condition is necessary and sufficient. A sound overestimate gives a sufficient test, but can reject a safe replacement.
++
++For example, suppose only 25 units of both cash and performance capacity remain. An old command can use 25, and a proposed replacement can independently use another 25. Their possible total is 50, so replacement fails.
++
++Now suppose an admitted provider contract limits remaining debit across both commands to 25 and separately limits remaining performance to 25. If both limits cover in-flight effects, the capacity test passes. The replacement still requires current action authority. An estimate that the commands are unlikely to execute together is not such a contract.
++
++Every intermediate outcome matters. A later refund cannot excuse an earlier funding shortfall. A cash credit offsets exposure only when available for use. Returned performance restores capacity only under the governing obligation rule.
++
++Admission must atomically replace reservations for the complete tested scope and record the new command. Atomically means that these bookkeeping changes commit together or none commits. It must not count one joint reservation several times or deduct an already reflected debit again.
++
++These conditions concern real provider behavior as well as local records. They cannot be obtained by renaming a command or moving it to a successor's queue.
++
++\section{Changing the institution without resetting the obligation}
++
++Replacing an institution extends the preservation problem beyond its payment commands. Institutional change can alter the operator, interpreter, custody route, or technical representation. The continuing duty needs an enduring identity across these changes. \emph{Admissible Obligation Transitions}, \S~7, binds that identity to its constituting act and original occurrence. A new representation does not constitute a fresh obligation.
++
++A document archive and current balance are insufficient for the successor to resume work. The transferred state includes the duty journal, current beneficiaries and units, exact performed portions, pending commands, reservations, and the evidence governing current authority. A \emph{continuation} is the unfinished computation together with the state needed to resume it. An unfinished program also needs its instructions, working environment, pending control state, and remaining work count. A saved result cannot reconstruct unfinished execution.
++
++The complete continuation cut in \emph{Recourse}, \S~10.7, gathers this state across the affected namespaces and histories. One authorized successor must have exclusive execution control. Old external commands remain possible until the required evidence limits or closes them. Durable local transactions and effective external controls are distinct premises. A database handover does not itself supply a provider-side fence against further execution.
++
++Preservation also differs from amendment. Carrying an existing duty into another representation preserves its currently effective terms and payment history. Changing the beneficiary, amount, priority, or discharge rule requires the authority for that substantive change. Equal balances are insufficient. Different allocations of a past payment can leave different people entitled to different remaining portions.
++
++Completion requires additional service assumptions. Repeatedly transferring a duty must not reset its original deadline or erase work already counted. The progress results in \emph{Admissible Obligation Transitions}, \S~7.4, track the original duty episode and require the specified productive service. Fair scheduling alone cannot make unavailable funding, unlawful instructions, or an unresponsive provider deliver performance.
++
++A complete handover can retain a shortage, a stayed remedy, a disputed receipt, or an unavailable route. These remaining duties or obstructions identify work for an authorized actor. Removing them from the successor's record would conceal that work.
++
++\section{Technical reading map}
++
++\emph{Allocated Title} supplies the property and physical-performance construction. Read \S~4 for assumptions A1--A8, then \S\S~5.1--5.6 for quantities, cash attribution, and conservation. Section~6 states ``Coupled final trade entitlements.'' Sections~7.1--7.3 define the four transfer modes, their admission contract, ``Transfer preservation,'' and ``Enabled transfer.'' Sections~8.1--8.4 cover acceptance, ``Conserved earned consideration,'' corrections, and ``Durable physical performance.'' Section~8.6 extends the construction through ``Continuation with current obligations.''
++
++\emph{Recourse} separates adjudication from execution and receipt. Section~2 contains the invoice example. Section~8 specifies escrow and its mandatory-trustee rule. Sections~9.1--9.5 define evidence, authority, economic effects, and the fold. Sections~9.6--9.7 state assumptions F1--F5, external predicates L1--L6, ``Bitemporal authority and effect integrity,'' and ``Award is not recovery.'' Section~10.4 treats funded protected remuneration. Section~10.7 states complete continuation cuts, durable continuation, and resource conservation.
++
++\emph{Admissible Obligation Transitions} supplies the general obligation model. Section~5.2 defines the ``Joint remaining-effect contract'' and proves the ``Exact joint replacement bound.'' Section~7.2 states ``Preservation across carriage.'' Sections~7.4--7.7 distinguish progress assumptions, concrete productive service, and durable execution. Sections~7.8--7.9 treat exact interval representation and structural continuation with one economic ledger. These are specified constructions, not equivalence results for arbitrary replacement programs.
++
++The cited results have written mathematical arguments with explicit hypotheses. Their scope must be read statement by statement. In particular, \emph{Recourse}, \S~13, states that none of its results is machine-checked. No result cited here proves legal effect, physical custody, universal provider reliability, or a positive minimum cash recovery from an award.
++
++\begin{thebibliography}{9}
++\bibitem{allocated-title}
++Raeez Lorgat. \emph{Allocated Title}. September 2026.
++
++\bibitem{recourse}
++Raeez Lorgat. \emph{Recourse}. September 2026.
++
++\bibitem{obligation-transitions}
++Raeez Lorgat. \emph{Admissible Obligation Transitions}. September 2026.
++\end{thebibliography}
++
++\end{document}
+diff --git a/content/reader-papers/when-institutional-programs-work-together.md b/content/reader-papers/when-institutional-programs-work-together.md
+new file mode 100644
+index 0000000..2dabea9
+--- /dev/null
++++ b/content/reader-papers/when-institutional-programs-work-together.md
+@@ -0,0 +1,205 @@
++# When Institutional Programs Work Together
++
++## Abstract
++
++A funded purchase can still fail because its institutions select incompatible routes, spend the same reservation, or require unavailable information. Institutional composition requires one executable strategy that meets every condition and preserves the requested outcome. This article explains exact finite linking through funded delivery, shared capacity, information purchases, and continuing duties. Compatible local records yield a complete candidate only under the specified joining conditions. Execution then requires current authority, protected reservations, adequate source interpretations, and the provider and progress premises used in the model. Precise failure certificates identify what a proposed design lacks.
++
++## 1 A purchase that must end in delivery {#sec:purchase}
++
++A buyer has 120 units and needs delivery of an asset priced at 100 by the first supplier. If that supplier fails, a reserved standby supplier can deliver for 100 plus a charge of 20. The buyer must receive the asset and pay its acquisition charges. A refund by itself does not meet that goal.
++
++These are the fictional contract terms in *Institutional Linking and Realization*, Section 11 \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\]. Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period. Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.
++
++The conditional route reserves 100 in escrow for release to the first supplier upon delivery. Certified final failure returns it before the standby supplier needs payment. Starting with 120, the buyer retains 20 during reservation and regains the other 100 in time to pay the standby. Thus the conditional route needs 120 across both modeled branches.
++
++  Required initial funding     Primary delivers   Certified primary failure
++  -------------------------- ------------------ ---------------------------
++  Ordinary payment                          100                         220
++  Conditional escrow                        100                         120
++
++The calculation depends on the order of actual events. A refund claim against the first supplier remains a right even when the buyer obtains a replacement asset. It contributes funding only when an eligible receipt arrives before the next debit. A pending delivery result also leaves the escrow return condition unresolved.
++
++The standby guarantee, final-failure evidence, timely escrow return, and compatible funding pool are explicit premises. Fees, delayed returns, or standby failure require a changed calculation. The proposition proves the least funding for this finite contract profile. It does not establish a provider's offer or performance of the service.
++
++Composition requires the supplier, escrow provider, and standby supplier to support the same acquisition under compatible conditions. One institution's valid action can leave another institution unable to perform. An institutional program records the actions permitted for this shared request and their consequences.
++
++## 2 One request, one strategy, one completion condition {#sec:contract}
++
++A claim records a right or obligation and the conditions that determine its outcome. An execution goal specifies which outcome must actually occur. The goal might require an admitted decision, delivery, discharged debt, or beneficiary receipt. Each condition defines a different problem. Changing a delivery goal into a refund goal changes the request.
++
++An execution contract fixes the participating institutions, current authority, programs, dependencies, resources, observations, goal, and possible external outcomes. Authority means the named institution's permission at the relevant time and stage. A signature supplies attributable evidence whose effect depends on that permission.
++
++Each component must describe its accepted requests, resource commitments, possible outcomes, and continuing duties. It must also explain what its outputs mean. Transmitting an application differs from registering it authoritatively, just as accepting a payment instruction differs from completing payment. The claim, operation, and transition papers preserve these distinctions at their respective interfaces \[[5](#ref-claim){style="overflow-wrap:anywhere;hyphens:none"}, [3](#ref-op){style="overflow-wrap:anywhere;hyphens:none"}, [6](#ref-transitions){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++A strategy is a complete rule for choosing permitted actions as observations arrive. The same strategy must satisfy funding, authority, privacy, and completion requirements. Separate proofs that select different strategies do not establish a common solution.
++
++Future provider outcomes remain outside the designer's control. The designer selects a supplier or a conditional payment route, then must cover every outcome that the chosen contract admits. Selecting a favorable future result within the optimization would exclude risks the strategy must handle. *Institutional Linking and Realization*, Sections 2--3, fixes this order of choices \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++## 3 Actions must use available information {#sec:observations}
++
++Suppose two possible worlds look identical to an institution. Success requires the action *left* in one world and *right* in the other. Each world has a successful action, but the institution cannot select correctly from its available information.
++
++The finite construction assigns one decision variable to each distinct local observation. Every world with that observation uses the same variable. Theorem "Exact information-cell compilation" proves that satisfying these constraints is equivalent to a locally executable policy in the stated finite model \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 3\]. A satisfying assignment defines the action for each observation. Conversely, a permitted local policy assigns those variables and satisfies every world's requirement. An analyst's access to the full model gives the executing institution no extra observation.
++
++An authorized observation that distinguishes the worlds can make the example feasible. So can an authorized and funded common action that succeeds in both. The institution must acquire the evidence or capability needed for its selected change.
++
++Privacy imposes another restriction on observable behavior. An observation contract names the observer, its existing knowledge, the outputs it receives, and the private distinctions it must retain. It includes decision reasons, timing, refusals, and fees when those channels convey information. *The Sovereign Jurisdiction Network*, Section 4.11, combines local knowledge, source permissions, success, and exact privacy in one finite selector test \[[4](#ref-recognition){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++Individual privacy checks can fail under composition. Let a protected bit be $X$, and let $R$ be an independent uniform bit. Each output $X\mathbin{\oplus}R$ and $R$ is individually uniform, where $\oplus$ means addition modulo two. Together, the two outputs reveal $X$. This is the counterexample in *Institutional Linking and Realization*, Section 17.3 \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++The composition condition compares each next output after every shared public history, using the actual conditional randomness law. Induction then compares complete output histories. Deleting a local record does not remove knowledge already disclosed to its recipient. These privacy conditions must hold together with the funding, authority, and success conditions.
++
++## 4 Joining the complete choice {#sec:joining}
++
++A finite relation is a table of permitted combinations. Separate tables can constrain route and authority, route with capital and supplier, and the observation plan. The linker seeks one assignment that belongs to every applicable table.
++
++A certificate records that assignment and binds it to the exact request, domains, source meanings, and component choices. A separate checker can compare it directly with every original table. Authentication identifies a table's issuer and bytes. The issuer's authority and an adequate interpretation establish what its entries mean.
++
++Pairwise agreement can leave the full request impossible. Take three binary choices $x,y,z$ and require $$x\ne y,\qquad y\ne z,\qquad z\ne x.$$ Every individual relation has entries, and every shared value has support in its neighboring relation. Three binary values cannot all differ. Consequently the full relation is empty \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 4\].
++
++A join tree permits an exact local reduction. It arranges the constraint tables so that all tables containing any given variable form a connected subtree. Starting at the leaves, remove parent rows without matching child rows. The connectedness condition ensures that choices agree across branches.
++
++Every full solution survives reduction because its child choices supply matching rows. Conversely, retained matches extend a surviving root row to a full assignment through the whole tree.
++
++Theorem "Complete finite linking on a join tree" proves this criterion and witness construction \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 4.1\]. It applies the classical acyclic database join construction. *How Compliance Composes*, Section 3.4, proves extension when neighboring tables have equal projections on their shared variables \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}\]. That theorem requires the same connectedness condition and the complete conjunction of constraints. General finite instances can use larger groups of interacting variables or exhaustive enumeration. The computational work depends on the size of those groups.
++
++Eliminating internal choices can retain the exact feasible relation at a boundary. A replacement with the same boundary relation preserves the corresponding external feasibility tests \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Sections 5--6\]. The observation contract still governs disclosure of that relation. Learning which routes remain feasible can itself reveal private information.
++
++## 5 Reservations define the choices that can remain local {#sec:reservations}
++
++A joined assignment must preserve shared resources even when participants retain local choices. Two institutions share capacity of 100 integral units. Either institution can use 100 when considered alone. Giving both unrestricted local permission would allow a combined use of 200. The complete condition is $x+y\le100$.
++
++The resource owner can reserve 60 for the first institution and 40 for the second. Every combination within $0\le x\le60$ and $0\le y\le40$ then fits the protected capacity. The owning authority must prevent duplicate issuance of either reservation. *Op: Compliance-Carrying Operations*, Section 5.11, establishes its declared exposure invariant through a common durable reservation ledger \[[3](#ref-op){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation. The menus contain complete continuation policies, including their possible outcomes. Their product must remain admissible under the fixed request and history \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 8\]. Selecting a menu does not itself acquire its resources.
++
++A cell is maximal when no local menu can grow while preserving that condition. In a finite relation, every admissible tuple extends to a maximal cell. Start with its singleton menus and enlarge them while their product remains admissible. The process stops because the relation is finite. Its maximal cells cover the admissible relation.
++
++Maximal cells can differ, and some retain little useful choice. Maximality specifies how far menus can extend within a fixed model. Choosing among maximal designs requires the decision maker's objective.
++
++With capacity fixed at 100, preserving every original allocation requires 101 independent-choice cells. Adding nine actual eligible units reduces the minimum to eleven \[[3](#ref-op){style="overflow-wrap:anywhere;hyphens:none"}, Section 5.12.3\].
++
++To see the lower bound, consider $(0,100),(10,90),\ldots,(100,0)$. Two such pairs in one cell permit a crossed choice exceeding 109. For the matching upper bound, divide $0,\ldots,100$ into eleven consecutive blocks of at most ten values. A block $[a,b]$ supplies menus $x\le b$ and $y\le100-a$. Their combined use is at most 109, and the blocks cover every original feasible pair.
++
++This count concerns menus after compatible selection. Negotiation traffic, legal permission, and provider performance have their own conditions.
++
++Information can also change the reservation requirement. Two mutually exclusive conditional duties of 100 require separate uninformed allowances totaling 200. A common owner can reserve 100 and issue only the applicable conditional right. The least-allowance theorem in *Op* states the exact finite observation assumptions for this comparison \[[3](#ref-op){style="overflow-wrap:anywhere;hyphens:none"}, Section 5.12\].
++
++## 6 Buying information uses a shared budget {#sec:acquisition}
++
++Evidence and statistical observations have acquisition costs. *How Compliance Composes*, Section 8, defines finite evidence plans that pay once for shared acquisition prerequisites \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}\]. Each plan retains the duties created by every acquisition, including acquisitions of evidence that it later leaves unused. A missing local judgment leaves a conditional plan awaiting that judgment.
++
++*Parlay Identification of Ising Couplings*, Section 5.3, studies a different allocation problem \[[8](#ref-parlay){style="overflow-wrap:anywhere;hyphens:none"}\]. Suppose three estimated quantities have positive variance coefficients $(1,3,9)$. A singleton observation costs one unit. A bundle supplies an observation for all three quantities at cost two. The budget is 600, and the objective sums each coefficient divided by its effective observation count.
++
++Buying 300 bundles gives counts $(300,300,300)$ and objective $13/300$. Buying 240 bundles and 120 additional observations of the third quantity gives counts $(240,240,360)$ for the same cost. The resulting objective is $$\frac{1}{240}+\frac{3}{240}+\frac{9}{360}=\frac{1}{24}.$$
++
++The paper supplies an exact allocation certificate for this better plan. Its allocation theorem covers continuous purchases, positive costs, and finitely many specified positive coefficient scenarios. It determines a unique optimal count vector, although several purchase plans can produce that vector.
++
++The sampling model must justify those effective counts. Copying one observed outcome into several records does not create independent rounds. The objective also differs from the variance of an arbitrary portfolio of correlated estimators. Integer purchases and adaptive acquisition retain the paper's separate qualifications.
++
++An evidence purchase can serve several requirements and create duties that affect another operation in a joint institutional request. A statistical bundle can serve several estimands under one budget. Using either construction in a linked execution requires its costs, rights, sampling assumptions, and consequences to enter the same selected plan. The two optimization results retain their distinct hypotheses.
++
++## 7 Continuing execution needs more than a current balance {#sec:continuation}
++
++Continuation state retains a selected plan's unfinished computation, outstanding duties, and the state needed for its next permitted action. It includes creditors, reservations, pending commands, deadlines, and the effects of later corrections. Retained knowledge records what an observer learns from the accumulated history. Continuation state and retained knowledge are distinct parts of institutional state that can both constrain a future admission.
++
++Two accounts with equal balances can have different payment obligations. Two histories with identical public outputs can have different private debts. A replacement must preserve the future questions that matter to the relying institution. *How Compliance Composes*, Sections 5.6--5.7, makes duties, authority, deadlines, and continuation status explicit in its boundary records and finite route comparison \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}\].
++
++*Admissible Obligation Transitions*, Section 6.2, gives "Future equivalence and exact quotients" for a complete deterministic interface \[[6](#ref-transitions){style="overflow-wrap:anywhere;hyphens:none"}\]. States are equivalent when every admitted future action sequence has the same protected observations. Its finite refinement procedure constructs the coarsest exact grouping. Adding an operation, such as a stay or assignment, can require a finer grouping and a new comparison.
++
++Comparing probabilities of public output histories requires a different test. *Institutional Linking and Realization*, Section 20, compares the full laws of finite public words in a fixed finite stochastic model \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\]. Equal public probabilities preserve that observation interface. They do not, by themselves, preserve debts or authority omitted from it.
++
++Financial continuation also requires complete state. *Central Counterparty Risk in Automated Markets* computes exact completion cash on a finite acyclic decision graph \[[7](#ref-risk){style="overflow-wrap:anywhere;hyphens:none"}\]. The decision precedes the unknown successor, and every represented branch must remain funded. Delivered receipts, repayment duties, facility limits, and timing enter the graph. Concurrent plans using one facility require a joint state and an aggregate reservation.
++
++## 8 A failed design can state what is missing {#sec:obstructions}
++
++An empty joined relation establishes infeasibility for its declared finite catalog. A residual requirement describes the capability tuples that would complete fixed existing selections. It retains the relationships between fields and a completion witness for each accepted tuple \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 10\].
++
++In the acquisition case, 120 units cannot support ordinary payment across both outcomes. A design query can identify the conditional escrow and reserved standby pair needed for the stated delivery goal. The institutions must still supply those capabilities and admit them against the current history. A computed requirement creates no new authority.
++
++Other profiles have different exact obstructions. An integer payment problem can have a rational solution while divisibility prevents an integral one. A translation network can have inconsistent cycle sums. These tests apply to their specified integer and translation models \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Sections 13--14\].
++
++Random selectors also face implementation limits. Three exactly equal route probabilities cannot come from a deterministic sampler with a fixed finite bound on independent fair bits. Every probability from such a sampler has denominator dividing a power of two. Pad shorter branches to the fixed bit limit. Each output then corresponds to an integer number of equally likely bit strings, which proves the denominator restriction.
++
++Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 18\]. An available common deterministic route can remove the need for that selector when the contract permits it \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 23\].
++
++Each certificate must identify the model it rejects. A restricted sampler's failure does not reject every permitted controller. An interrupted search reports an unresolved result unless it has an independently checked witness or infeasibility certificate.
++
++## 9 From a compatible plan to a completed act {#sec:realization}
++
++Theorem "Conditional linked realization" connects a compatible plan to execution under explicit assumptions \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}, Section 25\]. Its factors must adequately describe the selected programs, goal, and every requirement and interaction. Its checked assignment must define locally executable controllers. Every random selector must satisfy its ownership, secrecy, independence, distribution, and timing contract.
++
++The implementation must preserve modeled transitions and meet the model's progress requirements. Its correspondence must cover the complete admitted observation and outcome interfaces. A safety argument alone permits an implementation that stalls indefinitely. Owners must acquire and protect the exact commitments through their reservation and decision protocols. Current authority, grounded resources, evidence, and provider service must satisfy the premises at their required stages.
++
++Continuing duties and prior disclosures survive new admissions and replacements. *Admissible Obligation Transitions*, Section 7.4, gives a progress theorem for an original finite group of duty episodes \[[6](#ref-transitions){style="overflow-wrap:anywhere;hyphens:none"}\]. Each episode fixes its goal and an integer rank that is zero exactly when the journal records that goal. Later arrivals add no work to the original group's rank.
++
++The total rank must never increase and must decrease productively within each fixed transition interval. The group then completes within interval length times initial rank. An elapsed-time bound additionally requires a clock bound that includes waiting.
++
++*The Claim as Primitive*, Section 12, composes provider completion bounds when their prerequisites and contracts hold jointly \[[5](#ref-claim){style="overflow-wrap:anywhere;hyphens:none"}\]. An acyclic prerequisite graph gives a maximum path-sum bound. A cyclic group needs a suitable external starting fact or a jointly valid completion contract. Rearranging the dependency graph supplies no provider service by itself.
++
++Under these conditions, the selected strategy satisfies the conjunction of requirements for the declared finite profile and goal. This is a conditional realization theorem with separate source and provider obligations. It supplies no new unrestricted composition theorem for all institutional software.
++
++Legal effect and external recovery retain their named authorities. *Recourse* distinguishes an award, enforcement, and receipts that support monetary satisfaction \[[9](#ref-recourse){style="overflow-wrap:anywhere;hyphens:none"}\]. A linked program can preserve a recovery claim and transmit an authorized instruction. The institution that controls the asset, payment, or legal act must supply the corresponding external result.
++
++## 10 Technical reading map {#sec:reading-map}
++
++*Institutional Linking and Realization* \[[1](#ref-linking){style="overflow-wrap:anywhere;hyphens:none"}\] supplies the synthesis. Read Sections 2--4 for the execution contract, information-cell compilation, and complete joining. Sections 7--11 give ordered funding, independent-choice cells, the exact capacity trade-off, residual requirements, and funded acquisition. Sections 17--23 distinguish cumulative privacy, selector implementation, public-law comparison, and deterministic future equivalence. Section 25 states "Conditional linked realization" and all implementation premises.
++
++*How Compliance Composes* \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}\], Sections 5.6--5.7, contains "Lossless contextual composition," "Lossless evidence-and-obligation boundary," and "Finite institutional route equivalence." Section 3.4 proves "Exact independent recombination" and "Extension on a join tree." Section 8 defines executable evidence plans and exact finite search.
++
++*Op: Compliance-Carrying Operations* \[[3](#ref-op){style="overflow-wrap:anywhere;hyphens:none"}\], Sections 5.11--5.12, contains "Global declared exposure bound," "Least observable allowance," and "Joint and separate reservations." Section 5.12.3 gives "Exact resource menu cover for two groups." *The Sovereign Jurisdiction Network* \[[4](#ref-recognition){style="overflow-wrap:anywhere;hyphens:none"}\], Sections 4.10--4.11, supplies "Preservation of source obligations" and "Joined permitted-success selector."
++
++*The Claim as Primitive* \[[5](#ref-claim){style="overflow-wrap:anywhere;hyphens:none"}\], Section 3.1, gives "Entitlement preservation." Section 6.4 states "Durable retry and conservation," and Section 12 composes provider completion contracts. *Admissible Obligation Transitions* \[[6](#ref-transitions){style="overflow-wrap:anywhere;hyphens:none"}\], Sections 3.5 and 5, gives receipt meaning and "Engine-relative parametric lifecycle preservation." Sections 6.2 and 7.4 supply future equivalence and "Original-cohort progress under continuing arrivals."
++
++*Central Counterparty Risk in Automated Markets* \[[7](#ref-risk){style="overflow-wrap:anywhere;hyphens:none"}\], Sections C.2--C.3, develops the "Finite completion model" and "Exact adapted completion cash."
++
++*Parlay Identification of Ising Couplings* \[[8](#ref-parlay){style="overflow-wrap:anywhere;hyphens:none"}\], Section 5.3.1, gives "Robust shared-observation allocation" and "Exact allocation certificate."
++
++*Recourse* \[[9](#ref-recourse){style="overflow-wrap:anywhere;hyphens:none"}\], Sections 9.7 and 10.7, supplies "Bitemporal authority and effect integrity," "Award is not recovery," and "Continuation and resource conservation."
++
++## References
++
++::: {#ref-linking}
++:::
++
++**\[1\]** R. Lorgat. *Institutional Linking and Realization*. September 2026.
++
++::: {#ref-compliance}
++:::
++
++**\[2\]** R. Lorgat. *How Compliance Composes*. September 2026.
++
++::: {#ref-op}
++:::
++
++**\[3\]** R. Lorgat. *Op: Compliance-Carrying Operations*. September 2026.
++
++::: {#ref-recognition}
++:::
++
++**\[4\]** R. Lorgat. *The Sovereign Jurisdiction Network*. September 2026.
++
++::: {#ref-claim}
++:::
++
++**\[5\]** R. Lorgat. *The Claim as Primitive*. September 2026.
++
++::: {#ref-transitions}
++:::
++
++**\[6\]** R. Lorgat. *Admissible Obligation Transitions*. September 2026.
++
++::: {#ref-risk}
++:::
++
++**\[7\]** R. Lorgat. *Central Counterparty Risk in Automated Markets*. September 2026.
++
++::: {#ref-parlay}
++:::
++
++**\[8\]** R. Lorgat. *Parlay Identification of Ising Couplings*. September 2026.
++
++::: {#ref-recourse}
++:::
++
++**\[9\]** R. Lorgat. *Recourse*. September 2026.
+diff --git a/content/reader-papers/when-institutional-programs-work-together.tex b/content/reader-papers/when-institutional-programs-work-together.tex
+new file mode 100644
+index 0000000..48c60d5
+--- /dev/null
++++ b/content/reader-papers/when-institutional-programs-work-together.tex
+@@ -0,0 +1,371 @@
++\documentclass{momentum}
++\title{When Institutional Programs Work Together}
++\author{Raeez Lorgat}
++\date{September 2026}
++\shorttitle{When Institutional Programs Work Together}
++\begin{document}
++\maketitle
++
++\begin{abstract}
++A funded purchase can still fail because its institutions select incompatible routes, spend the same reservation, or require unavailable information.
++Institutional composition requires one executable strategy that meets every condition and preserves the requested outcome.
++This article explains exact finite linking through funded delivery, shared capacity, information purchases, and continuing duties.
++Compatible local records yield a complete candidate only under the specified joining conditions.
++Execution then requires current authority, protected reservations, adequate source interpretations, and the provider and progress premises used in the model.
++Precise failure certificates identify what a proposed design lacks.
++\end{abstract}
++
++\section{A purchase that must end in delivery}
++\label{sec:purchase}
++
++A buyer has 120 units and needs delivery of an asset priced at 100 by the first supplier.
++If that supplier fails, a reserved standby supplier can deliver for 100 plus a charge of 20.
++The buyer must receive the asset and pay its acquisition charges.
++A refund by itself does not meet that goal.
++
++These are the fictional contract terms in \emph{Institutional Linking and Realization}, Section~11~\cite{linking}.
++Under the ordinary route, the buyer pays the first supplier immediately. If delivery fails, that payment remains unavailable throughout the required period.
++Replacement delivery then needs another 120, so the failure branch requires initial funding of 220. The primary success branch requires 100.
++
++The conditional route reserves 100 in escrow for release to the first supplier upon delivery.
++Certified final failure returns it before the standby supplier needs payment.
++Starting with 120, the buyer retains 20 during reservation and regains the other 100 in time to pay the standby.
++Thus the conditional route needs 120 across both modeled branches.
++
++\begin{center}
++\begin{tabular}{lrr}
++\toprule
++Required initial funding & Primary delivers & Certified primary failure\\
++\midrule
++Ordinary payment & 100 & 220\\
++Conditional escrow & 100 & 120\\
++\bottomrule
++\end{tabular}
++\end{center}
++
++The calculation depends on the order of actual events.
++A refund claim against the first supplier remains a right even when the buyer obtains a replacement asset.
++It contributes funding only when an eligible receipt arrives before the next debit.
++A pending delivery result also leaves the escrow return condition unresolved.
++
++The standby guarantee, final-failure evidence, timely escrow return, and compatible funding pool are explicit premises.
++Fees, delayed returns, or standby failure require a changed calculation.
++The proposition proves the least funding for this finite contract profile.
++It does not establish a provider's offer or performance of the service.
++
++Composition requires the supplier, escrow provider, and standby supplier to support the same acquisition under compatible conditions.
++One institution's valid action can leave another institution unable to perform.
++An institutional program records the actions permitted for this shared request and their consequences.
++
++\section{One request, one strategy, one completion condition}
++\label{sec:contract}
++
++A claim records a right or obligation and the conditions that determine its outcome.
++An execution goal specifies which outcome must actually occur.
++The goal might require an admitted decision, delivery, discharged debt, or beneficiary receipt.
++Each condition defines a different problem.
++Changing a delivery goal into a refund goal changes the request.
++
++An execution contract fixes the participating institutions, current authority, programs, dependencies, resources, observations, goal, and possible external outcomes.
++Authority means the named institution's permission at the relevant time and stage.
++A signature supplies attributable evidence whose effect depends on that permission.
++
++Each component must describe its accepted requests, resource commitments, possible outcomes, and continuing duties.
++It must also explain what its outputs mean.
++Transmitting an application differs from registering it authoritatively, just as accepting a payment instruction differs from completing payment.
++The claim, operation, and transition papers preserve these distinctions at their respective interfaces~\cite{claim,op,transitions}.
++
++A strategy is a complete rule for choosing permitted actions as observations arrive.
++The same strategy must satisfy funding, authority, privacy, and completion requirements.
++Separate proofs that select different strategies do not establish a common solution.
++
++Future provider outcomes remain outside the designer's control.
++The designer selects a supplier or a conditional payment route, then must cover every outcome that the chosen contract admits.
++Selecting a favorable future result within the optimization would exclude risks the strategy must handle.
++\emph{Institutional Linking and Realization}, Sections~2--3, fixes this order of choices~\cite{linking}.
++
++\section{Actions must use available information}
++\label{sec:observations}
++
++Suppose two possible worlds look identical to an institution.
++Success requires the action \emph{left} in one world and \emph{right} in the other.
++Each world has a successful action, but the institution cannot select correctly from its available information.
++
++The finite construction assigns one decision variable to each distinct local observation.
++Every world with that observation uses the same variable.
++Theorem ``Exact information-cell compilation'' proves that satisfying these constraints is equivalent to a locally executable policy in the stated finite model~\cite[Section~3]{linking}.
++A satisfying assignment defines the action for each observation.
++Conversely, a permitted local policy assigns those variables and satisfies every world's requirement.
++An analyst's access to the full model gives the executing institution no extra observation.
++
++An authorized observation that distinguishes the worlds can make the example feasible. So can an authorized and funded common action that succeeds in both.
++The institution must acquire the evidence or capability needed for its selected change.
++
++Privacy imposes another restriction on observable behavior.
++An observation contract names the observer, its existing knowledge, the outputs it receives, and the private distinctions it must retain.
++It includes decision reasons, timing, refusals, and fees when those channels convey information.
++\emph{The Sovereign Jurisdiction Network}, Section~4.11, combines local knowledge, source permissions, success, and exact privacy in one finite selector test~\cite{recognition}.
++
++Individual privacy checks can fail under composition.
++Let a protected bit be $X$, and let $R$ be an independent uniform bit.
++Each output $X\mathbin{\oplus}R$ and $R$ is individually uniform, where $\oplus$ means addition modulo two.
++Together, the two outputs reveal $X$.
++This is the counterexample in \emph{Institutional Linking and Realization}, Section~17.3~\cite{linking}.
++
++The composition condition compares each next output after every shared public history, using the actual conditional randomness law.
++Induction then compares complete output histories.
++Deleting a local record does not remove knowledge already disclosed to its recipient. These privacy conditions must hold together with the funding, authority, and success conditions.
++
++\section{Joining the complete choice}
++\label{sec:joining}
++
++A finite relation is a table of permitted combinations. Separate tables can constrain route and authority, route with capital and supplier, and the observation plan.
++The linker seeks one assignment that belongs to every applicable table.
++
++A certificate records that assignment and binds it to the exact request, domains, source meanings, and component choices.
++A separate checker can compare it directly with every original table.
++Authentication identifies a table's issuer and bytes.
++The issuer's authority and an adequate interpretation establish what its entries mean.
++
++Pairwise agreement can leave the full request impossible.
++Take three binary choices $x,y,z$ and require
++\[
++x\ne y,\qquad y\ne z,\qquad z\ne x.
++\]
++Every individual relation has entries, and every shared value has support in its neighboring relation.
++Three binary values cannot all differ.
++Consequently the full relation is empty~\cite[Section~4]{linking}.
++
++A join tree permits an exact local reduction.
++It arranges the constraint tables so that all tables containing any given variable form a connected subtree.
++Starting at the leaves, remove parent rows without matching child rows.
++The connectedness condition ensures that choices agree across branches.
++
++Every full solution survives reduction because its child choices supply matching rows.
++Conversely, retained matches extend a surviving root row to a full assignment through the whole tree.
++
++Theorem ``Complete finite linking on a join tree'' proves this criterion and witness construction~\cite[Section~4.1]{linking}.
++It applies the classical acyclic database join construction.
++\emph{How Compliance Composes}, Section~3.4, proves extension when neighboring tables have equal projections on their shared variables~\cite{compliance}.
++That theorem requires the same connectedness condition and the complete conjunction of constraints.
++General finite instances can use larger groups of interacting variables or exhaustive enumeration.
++The computational work depends on the size of those groups.
++
++Eliminating internal choices can retain the exact feasible relation at a boundary.
++A replacement with the same boundary relation preserves the corresponding external feasibility tests~\cite[Sections~5--6]{linking}.
++The observation contract still governs disclosure of that relation.
++Learning which routes remain feasible can itself reveal private information.
++
++\section{Reservations define the choices that can remain local}
++\label{sec:reservations}
++
++A joined assignment must preserve shared resources even when participants retain local choices. Two institutions share capacity of 100 integral units.
++Either institution can use 100 when considered alone.
++Giving both unrestricted local permission would allow a combined use of 200.
++The complete condition is $x+y\le100$.
++
++The resource owner can reserve 60 for the first institution and 40 for the second.
++Every combination within $0\le x\le60$ and $0\le y\le40$ then fits the protected capacity.
++The owning authority must prevent duplicate issuance of either reservation.
++\emph{Op: Compliance-Carrying Operations}, Section~5.11, establishes its declared exposure invariant through a common durable reservation ledger~\cite{op}.
++
++An independent-choice cell is a collection of local menus whose every combination satisfies the complete joint relation.
++The menus contain complete continuation policies, including their possible outcomes.
++Their product must remain admissible under the fixed request and history~\cite[Section~8]{linking}.
++Selecting a menu does not itself acquire its resources.
++
++A cell is maximal when no local menu can grow while preserving that condition.
++In a finite relation, every admissible tuple extends to a maximal cell.
++Start with its singleton menus and enlarge them while their product remains admissible.
++The process stops because the relation is finite. Its maximal cells cover the admissible relation.
++
++Maximal cells can differ, and some retain little useful choice. Maximality specifies how far menus can extend within a fixed model.
++Choosing among maximal designs requires the decision maker's objective.
++
++With capacity fixed at 100, preserving every original allocation requires 101 independent-choice cells.
++Adding nine actual eligible units reduces the minimum to eleven~\cite[Section~5.12.3]{op}.
++
++To see the lower bound, consider $(0,100),(10,90),\ldots,(100,0)$.
++Two such pairs in one cell permit a crossed choice exceeding 109.
++For the matching upper bound, divide $0,\ldots,100$ into eleven consecutive blocks of at most ten values.
++A block $[a,b]$ supplies menus $x\le b$ and $y\le100-a$.
++Their combined use is at most 109, and the blocks cover every original feasible pair.
++
++This count concerns menus after compatible selection.
++Negotiation traffic, legal permission, and provider performance have their own conditions.
++
++Information can also change the reservation requirement.
++Two mutually exclusive conditional duties of 100 require separate uninformed allowances totaling 200.
++A common owner can reserve 100 and issue only the applicable conditional right.
++The least-allowance theorem in \emph{Op} states the exact finite observation assumptions for this comparison~\cite[Section~5.12]{op}.
++
++\section{Buying information uses a shared budget}
++\label{sec:acquisition}
++
++Evidence and statistical observations have acquisition costs.
++\emph{How Compliance Composes}, Section~8, defines finite evidence plans that pay once for shared acquisition prerequisites~\cite{compliance}.
++Each plan retains the duties created by every acquisition, including acquisitions of evidence that it later leaves unused.
++A missing local judgment leaves a conditional plan awaiting that judgment.
++
++\emph{Parlay Identification of Ising Couplings}, Section~5.3, studies a different allocation problem~\cite{parlay}.
++Suppose three estimated quantities have positive variance coefficients $(1,3,9)$.
++A singleton observation costs one unit.
++A bundle supplies an observation for all three quantities at cost two.
++The budget is 600, and the objective sums each coefficient divided by its effective observation count.
++
++Buying 300 bundles gives counts $(300,300,300)$ and objective $13/300$.
++Buying 240 bundles and 120 additional observations of the third quantity gives counts $(240,240,360)$ for the same cost.
++The resulting objective is
++\[
++\frac{1}{240}+\frac{3}{240}+\frac{9}{360}=\frac{1}{24}.
++\]
++
++The paper supplies an exact allocation certificate for this better plan.
++Its allocation theorem covers continuous purchases, positive costs, and finitely many specified positive coefficient scenarios.
++It determines a unique optimal count vector, although several purchase plans can produce that vector.
++
++The sampling model must justify those effective counts.
++Copying one observed outcome into several records does not create independent rounds.
++The objective also differs from the variance of an arbitrary portfolio of correlated estimators.
++Integer purchases and adaptive acquisition retain the paper's separate qualifications.
++
++An evidence purchase can serve several requirements and create duties that affect another operation in a joint institutional request.
++A statistical bundle can serve several estimands under one budget.
++Using either construction in a linked execution requires its costs, rights, sampling assumptions, and consequences to enter the same selected plan.
++The two optimization results retain their distinct hypotheses.
++
++\section{Continuing execution needs more than a current balance}
++\label{sec:continuation}
++
++Continuation state retains a selected plan's unfinished computation, outstanding duties, and the state needed for its next permitted action.
++It includes creditors, reservations, pending commands, deadlines, and the effects of later corrections.
++Retained knowledge records what an observer learns from the accumulated history.
++Continuation state and retained knowledge are distinct parts of institutional state that can both constrain a future admission.
++
++Two accounts with equal balances can have different payment obligations.
++Two histories with identical public outputs can have different private debts.
++A replacement must preserve the future questions that matter to the relying institution.
++\emph{How Compliance Composes}, Sections~5.6--5.7, makes duties, authority, deadlines, and continuation status explicit in its boundary records and finite route comparison~\cite{compliance}.
++
++\emph{Admissible Obligation Transitions}, Section~6.2, gives ``Future equivalence and exact quotients'' for a complete deterministic interface~\cite{transitions}.
++States are equivalent when every admitted future action sequence has the same protected observations.
++Its finite refinement procedure constructs the coarsest exact grouping.
++Adding an operation, such as a stay or assignment, can require a finer grouping and a new comparison.
++
++Comparing probabilities of public output histories requires a different test.
++\emph{Institutional Linking and Realization}, Section~20, compares the full laws of finite public words in a fixed finite stochastic model~\cite{linking}.
++Equal public probabilities preserve that observation interface.
++They do not, by themselves, preserve debts or authority omitted from it.
++
++Financial continuation also requires complete state.
++\emph{Central Counterparty Risk in Automated Markets} computes exact completion cash on a finite acyclic decision graph~\cite{risk}.
++The decision precedes the unknown successor, and every represented branch must remain funded.
++Delivered receipts, repayment duties, facility limits, and timing enter the graph.
++Concurrent plans using one facility require a joint state and an aggregate reservation.
++
++\section{A failed design can state what is missing}
++\label{sec:obstructions}
++
++An empty joined relation establishes infeasibility for its declared finite catalog.
++A residual requirement describes the capability tuples that would complete fixed existing selections.
++It retains the relationships between fields and a completion witness for each accepted tuple~\cite[Section~10]{linking}.
++
++In the acquisition case, 120 units cannot support ordinary payment across both outcomes.
++A design query can identify the conditional escrow and reserved standby pair needed for the stated delivery goal.
++The institutions must still supply those capabilities and admit them against the current history.
++A computed requirement creates no new authority.
++
++Other profiles have different exact obstructions.
++An integer payment problem can have a rational solution while divisibility prevents an integral one.
++A translation network can have inconsistent cycle sums.
++These tests apply to their specified integer and translation models~\cite[Sections~13--14]{linking}.
++
++Random selectors also face implementation limits.
++Three exactly equal route probabilities cannot come from a deterministic sampler with a fixed finite bound on independent fair bits.
++Every probability from such a sampler has denominator dividing a power of two.
++Pad shorter branches to the fixed bit limit.
++Each output then corresponds to an integer number of equally likely bit strings, which proves the denominator restriction.
++
++Rejection sampling can produce exact thirds with almost-sure termination, but its worst-case running time is unbounded~\cite[Section~18]{linking}.
++An available common deterministic route can remove the need for that selector when the contract permits it~\cite[Section~23]{linking}.
++
++Each certificate must identify the model it rejects.
++A restricted sampler's failure does not reject every permitted controller.
++An interrupted search reports an unresolved result unless it has an independently checked witness or infeasibility certificate.
++
++\section{From a compatible plan to a completed act}
++\label{sec:realization}
++
++Theorem ``Conditional linked realization'' connects a compatible plan to execution under explicit assumptions~\cite[Section~25]{linking}.
++Its factors must adequately describe the selected programs, goal, and every requirement and interaction.
++Its checked assignment must define locally executable controllers.
++Every random selector must satisfy its ownership, secrecy, independence, distribution, and timing contract.
++
++The implementation must preserve modeled transitions and meet the model's progress requirements.
++Its correspondence must cover the complete admitted observation and outcome interfaces.
++A safety argument alone permits an implementation that stalls indefinitely.
++Owners must acquire and protect the exact commitments through their reservation and decision protocols.
++Current authority, grounded resources, evidence, and provider service must satisfy the premises at their required stages.
++
++Continuing duties and prior disclosures survive new admissions and replacements.
++\emph{Admissible Obligation Transitions}, Section~7.4, gives a progress theorem for an original finite group of duty episodes~\cite{transitions}.
++Each episode fixes its goal and an integer rank that is zero exactly when the journal records that goal.
++Later arrivals add no work to the original group's rank.
++
++The total rank must never increase and must decrease productively within each fixed transition interval. The group then completes within interval length times initial rank.
++An elapsed-time bound additionally requires a clock bound that includes waiting.
++
++\emph{The Claim as Primitive}, Section~12, composes provider completion bounds when their prerequisites and contracts hold jointly~\cite{claim}.
++An acyclic prerequisite graph gives a maximum path-sum bound.
++A cyclic group needs a suitable external starting fact or a jointly valid completion contract.
++Rearranging the dependency graph supplies no provider service by itself.
++
++Under these conditions, the selected strategy satisfies the conjunction of requirements for the declared finite profile and goal.
++This is a conditional realization theorem with separate source and provider obligations.
++It supplies no new unrestricted composition theorem for all institutional software.
++
++Legal effect and external recovery retain their named authorities.
++\emph{Recourse} distinguishes an award, enforcement, and receipts that support monetary satisfaction~\cite{recourse}.
++A linked program can preserve a recovery claim and transmit an authorized instruction.
++The institution that controls the asset, payment, or legal act must supply the corresponding external result.
++
++\section{Technical reading map}
++\label{sec:reading-map}
++
++\emph{Institutional Linking and Realization}~\cite{linking} supplies the synthesis.
++Read Sections~2--4 for the execution contract, information-cell compilation, and complete joining.
++Sections~7--11 give ordered funding, independent-choice cells, the exact capacity trade-off, residual requirements, and funded acquisition.
++Sections~17--23 distinguish cumulative privacy, selector implementation, public-law comparison, and deterministic future equivalence.
++Section~25 states ``Conditional linked realization'' and all implementation premises.
++
++\emph{How Compliance Composes}~\cite{compliance}, Sections~5.6--5.7, contains ``Lossless contextual composition,'' ``Lossless evidence-and-obligation boundary,'' and ``Finite institutional route equivalence.''
++Section~3.4 proves ``Exact independent recombination'' and ``Extension on a join tree.''
++Section~8 defines executable evidence plans and exact finite search.
++
++\emph{Op: Compliance-Carrying Operations}~\cite{op}, Sections~5.11--5.12, contains ``Global declared exposure bound,'' ``Least observable allowance,'' and ``Joint and separate reservations.''
++Section~5.12.3 gives ``Exact resource menu cover for two groups.''
++\emph{The Sovereign Jurisdiction Network}~\cite{recognition}, Sections~4.10--4.11, supplies ``Preservation of source obligations'' and ``Joined permitted-success selector.''
++
++\emph{The Claim as Primitive}~\cite{claim}, Section~3.1, gives ``Entitlement preservation.''
++Section~6.4 states ``Durable retry and conservation,'' and Section~12 composes provider completion contracts.
++\emph{Admissible Obligation Transitions}~\cite{transitions}, Sections~3.5 and~5, gives receipt meaning and ``Engine-relative parametric lifecycle preservation.''
++Sections~6.2 and~7.4 supply future equivalence and ``Original-cohort progress under continuing arrivals.''
++
++\emph{Central Counterparty Risk in Automated Markets}~\cite{risk}, Sections~C.2--C.3, develops the ``Finite completion model'' and ``Exact adapted completion cash.''
++
++\emph{Parlay Identification of Ising Couplings}~\cite{parlay}, Section~5.3.1, gives ``Robust shared-observation allocation'' and ``Exact allocation certificate.''
++
++\emph{Recourse}~\cite{recourse}, Sections~9.7 and~10.7, supplies ``Bitemporal authority and effect integrity,'' ``Award is not recovery,'' and ``Continuation and resource conservation.''
++
++\begin{thebibliography}{9}
++\bibitem{linking} R. Lorgat. \emph{Institutional Linking and Realization}. September 2026.
++\bibitem{compliance} R. Lorgat. \emph{How Compliance Composes}. September 2026.
++\bibitem{op} R. Lorgat. \emph{Op: Compliance-Carrying Operations}. September 2026.
++\bibitem{recognition} R. Lorgat. \emph{The Sovereign Jurisdiction Network}. September 2026.
++\bibitem{claim} R. Lorgat. \emph{The Claim as Primitive}. September 2026.
++\bibitem{transitions} R. Lorgat. \emph{Admissible Obligation Transitions}. September 2026.
++\bibitem{risk} R. Lorgat. \emph{Central Counterparty Risk in Automated Markets}. September 2026.
++\bibitem{parlay} R. Lorgat. \emph{Parlay Identification of Ising Couplings}. September 2026.
++\bibitem{recourse} R. Lorgat. \emph{Recourse}. September 2026.
++\end{thebibliography}
++\end{document}
