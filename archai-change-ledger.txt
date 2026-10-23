@@ -1,0 +1,452 @@
+001 [1]
+OLD: Mass provides primitives (entities/ownership/identity/consent/etc.). Archai composes them into “built asset institutions.” This is exactly how Momentum describes the ecosystem architecture: Archai is the tokenization layer for HomeOS buildings that integrate natively with Mass primitives.
+NEW: Mass provides primitives for entities, ownership, identity, consent, and related functions. Archai composes them into institutions that own and operate built assets. In Momentum’s architecture, Archai tokenizes HomeOS buildings through native integration with these primitives.
+
+002 [1]
+OLD: $ARCH must be treated carefully; if it has explicit cashflow claims, it may be regulated. If it is positioned as governance + underwriting collateral with carefully scoped economics, it may have a cleaner posture. This is jurisdiction-specific; Archai must be modular here.
+NEW: $ARCH may be regulated if it carries explicit cash-flow claims. Governance and underwriting collateral with carefully scoped economics may offer a clearer regulatory position. The treatment depends on jurisdiction, so Archai must support distinct legal modules.
+
+003 [1]
+OLD: Traditional real estate suffers from chronic information asymmetry. HomeOS flips this: buildings can self-report occupancy, energy, maintenance, and revenue streams—creating a continuous operational evidence layer that tokenization actually needs.
+NEW: Traditional real estate has persistent information asymmetries. HomeOS lets buildings report occupancy, energy, maintenance, and revenue streams continuously, providing the operational evidence that tokenization requires.
+
+004 [1]
+OLD: A system this complex needs an evidence layer. SEZ Legal Stack implements: Smart should generate cryptographically secured, legally enforceable attestation streams so compliance can be verified programmatically without exposing private data.
+NEW: The system needs evidence for compliance checks. Under the SEZ Legal Stack design, Smart Assets should generate cryptographically secured, legally enforceable attestation streams. These let programs verify compliance without exposing private data.
+
+005 [1]
+OLD: SEZ Stack expresses the crucial design principle: a Smart Asset should encode jurisdiction, transfer restrictions, identity tier requirements, consent mechanisms—so compliance is intrinsic, not a separate spreadsheet.
+NEW: Under the SEZ Stack design, a Smart Asset should encode its jurisdiction, transfer restrictions, identity tier requirements, and consent mechanisms. Compliance checks become part of the asset’s operation.
+
+006 [1]
+OLD: Momentum’s ecosystem explicitly includes an ADGM-based arbitration court for digital asset and machine-intelligence workflows; Archai vaults should route disputes into such hardened venues by default.
+NEW: Momentum’s ecosystem includes an ADGM-based arbitration court for digital asset and machine-intelligence workflows. Archai vaults should route disputes into such specialized venues by default.
+
+007 [1]
+OLD: For most people, “ownership” means a mortgage or nothing. Entry requires large down payments, creditworthiness, and legal sophistication. Exit is illiquid and expensive. Transaction costs are brutal.
+NEW: For most people, ownership requires a mortgage, a large down payment, creditworthiness, and legal expertise. Selling is slow and expensive, with high transaction costs.
+
+008 [1]
+OLD: Regulators and auditors don’t want dashboards; they want verifiable compliance.<br>Attestation streams prove requirements were met without exposing private data (e.g., “all holders meet KYC tier X”).
+NEW: Regulators and auditors need verifiable compliance.<br>Attestation streams prove requirements were met without exposing private data (e.g., “all holders meet KYC tier X”).
+
+009 [1]
+OLD: Mass provides the programmable &nbsp;rails to automatically &nbsp;form and maintain these entities and encode governance, ownership tables, identity gating, and consent flows programmatically.
+NEW: Mass automatically forms and maintains these entities. It encodes their governance, ownership tables, identity checks, and consent workflows.
+
+010 [1]
+OLD: Vault assets are likely regulated financial instruments in many jurisdictions. That is fine if compliance is embedded (Mass-native) and distributions/transfers are constrained accordingly.
+NEW: Vault assets are likely regulated financial instruments in many jurisdictions. Mass-native compliance must constrain distributions and transfers accordingly.
+
+011 [1]
+OLD: The built environment is the largest asset class humans maintain, yet its ownership rails are archaic: high friction, low transparency, rentier capture, and political brittleness.
+NEW: The built environment is the largest asset class humans maintain. Its ownership systems impose high transaction costs, obscure information, favor rent extraction, and remain politically fragile.
+
+012 [1]
+OLD: v0.1’s formula is directionally correct (equity proportional to stake * multiplier / valuation).<br><br>But here we refine toa safer, more precise model:
+NEW: The initial formula makes equity proportional to stake * multiplier / valuation. The model below retains that relationship and specifies time, risk, and contribution limits:
+
+013 [1]
+OLD: This is economically coherent: the vault is borrowing from residents; residents are compensated through reduced rent + earned equity.
+NEW: The vault borrows from residents and compensates them through reduced rent and earned equity.
+
+014 [1]
+OLD: A “token” is not a secured asset unless it maps to enforceable rights. Archai vault assets are always paired with a 
+NEW: A token requires enforceable rights to represent a secured asset. Archai vault assets are always paired with a 
+
+015 [1]
+OLD: v0.1 mentions underwriting network health via insurance mechanisms and a protocol token role.<br>Make it concrete:
+NEW: The initial proposal uses insurance and the protocol token to underwrite network risk:
+
+016 [1]
+OLD: Archai is not a “crypto project.” It is institutional infrastructure. So it must obey institutional physics.
+NEW: Archai is institutional infrastructure and must meet the legal, financial, and governance requirements below.
+
+017 [1]
+OLD: v0.1 mentioned modular templates (Cayman foundation, Swiss Verein, Panama company).<br>The correct framing:
+NEW: The initial proposal names modular templates: Cayman foundation, Swiss Verein, and Panama company. These form part of the following design:
+
+018 [1]
+OLD: Real assets are illiquid. If you promise instant liquidity, you’re lying.<br>Archai uses explicit gates:
+NEW: Real assets are illiquid, so Archai cannot promise instant liquidity. It uses explicit redemption gates:
+
+019 [1]
+OLD: In our view, this is the difference between “tokenizing PDFs” and building a real institutional layer.
+NEW: Together, these systems make legal rights, building operations, and compliance programmable.
+
+020 [1]
+OLD: This is the instrument for scaling supply without turning the whole system into a speculative casino.
+NEW: Capital Stake finances additional housing supply while constraining speculation.
+
+021 [1]
+OLD: that holds title and signs a protocol-aligned charter. This must be made explicit and primary.
+NEW: that holds title and signs a protocol-aligned charter. These rights must be explicit and take priority.
+
+022 [1]
+OLD: v0.1 roadmap is directionally correct; we sharpen it into phases with explicit deliverables.
+NEW: Each phase has explicit deliverables:
+
+023 [1]
+OLD: v0.1 led with “stake-based, resident-weighted, trustee-checked.”. We make this enforceable.
+NEW: The initial proposal describes governance as “stake-based, resident-weighted, trustee-checked.” The roles and constraints below make this enforceable.
+
+024 [1]
+OLD: The whitepaper must explicitly model this, because solvency and redemptions depend on it.
+NEW: Solvency and redemptions depend on an explicit model of this capital structure.
+
+025 [1]
+OLD: In other words: the legal wrapper is not paperwork. It is a programmable Smart Asset.
+NEW: The legal wrapper operates as a programmable Smart Asset.
+
+026 [1]
+OLD: This creates a network effect: more vaults = better risk modeling = cheaper capital.
+NEW: More vaults improve risk modeling, which lowers the cost of capital.
+
+027 [1]
+OLD: Archai hosts multiple models; vaults select one (and can migrate with governance).
+NEW: Archai hosts multiple models. Each vault selects one and can migrate through governance.
+
+028 [1]
+OLD: A portion of surplus flows to the Archai Commons Treasury (v0.1 proposes 5–10%).
+NEW: A portion of surplus flows to the Archai Commons Treasury. The initial proposal allocates 5–10%.
+
+029 [1]
+OLD: Each vault is a mini private equity + real estate platform with a capital stack:
+NEW: Each vault combines private equity and real estate finance through the following capital structure:
+
+030 [1]
+OLD: Surplus allocation is not “governance vibes.” It is the economic constitution.
+NEW: Surplus allocation defines the vault’s economic constitution.
+
+031 [1]
+OLD: The key is: speculation is never the default. It’s a deliberate configuration.
+NEW: Speculation requires a deliberate policy choice and is disabled by default.
+
+032 [1]
+OLD: Governance cannot vote to steal the treasury or lever the vault into oblivion.
+NEW: Governance cannot authorize treasury theft or leverage beyond the constitutional limit.
+
+033 [1]
+OLD: If you want abundant, well-maintained, community-aligned housing, you must 
+NEW: Abundant, well-maintained housing that serves its community requires 
+
+034 [1]
+OLD: Trustees are not “centralization”; they are the interface to legal reality.
+NEW: Trustees connect vault governance to its legal obligations.
+
+035 [1]
+OLD: programmable, arbitration-enabled, on-chain/off-chain hybrid institutions
+NEW: programmable institutions with on-chain and off-chain components and access to arbitration
+
+036 [1]
+OLD: A “civilizational model” is a parameter set + governance constitution:
+NEW: A “civilizational model” combines policy parameters with a governance constitution:
+
+037 [1]
+OLD: This is where “building as programmable institution” becomes real.
+NEW: These records let governance act on the building’s operations, finances, and risks.
+
+038 [1]
+OLD: Residents stake capital for a term (v0.1 suggested 3–7 years).
+NEW: Residents stake capital for a term. The initial proposal suggested 3–7 years.
+
+039 [2]
+OLD: 11.2 Distribution design (principles, not arbitrary numbers)
+NEW: 11.2 Distribution principles
+
+040 [1]
+OLD: Archai becomes credible because the Momentum stack exists:
+NEW: Archai builds on existing Momentum systems:
+
+041 [1]
+OLD: Vault governance is not “one token, one vote.”<br>It is:
+NEW: Vault governance excludes a simple “one token, one vote” model. It is:
+
+042 [2]
+OLD: 3.6 Progressive decentralization with hard guardrails
+NEW: 3.6 Progressive decentralization with explicit safeguards
+
+043 [2]
+OLD: 4.2 Archai separates “use” from “ownership” (crucial)
+NEW: 4.2 Archai separates “use” from “ownership”
+
+044 [1]
+OLD: how returns are actually produced without speculation
+NEW: how the vault produces returns without speculation
+
+045 [2]
+OLD: 6.2 Two primary stake products (clean segmentation)
+NEW: 6.2 Two primary stake products
+
+046 [2]
+OLD: 10.2 Controls (minimum viable institutional safety)
+NEW: 10.2 Minimum institutional controls
+
+047 [1]
+OLD: This is where most “tokenized real estate” fails.
+NEW: Most tokenized real estate fails to provide liquidity and exit while constraining rentier speculation.
+
+048 [1]
+OLD: Land ownership is not just finance. It encodes:
+NEW: Land ownership carries financial rights and obligations concerning:
+
+049 [2]
+OLD: 6.1 Vault balance sheet: it’s finance, admit it
+NEW: 6.1 Vault balance sheet and capital structure
+
+050 [2]
+OLD: 10.3 Insurance and underwriting (network moat)
+NEW: 10.3 Network insurance and underwriting
+
+051 [1]
+OLD: This section closes the biggest gap in v0.1: 
+NEW: The economics must explain 
+
+052 [2]
+OLD: 10.1 Threat model (real, not crypto-theater)
+NEW: 10.1 Threat model
+
+053 [2]
+OLD: 4) System model: what Archai actually is
+NEW: 4) System model
+
+054 [2]
+OLD: 6.3 Earned equity: from first principles
+NEW: 6.3 Earned equity
+
+055 [2]
+OLD: 9.1 The Mass integration is not optional
+NEW: 9.1 Required Mass integration
+
+056 [1]
+OLD: We refine this into a clean separation:
+NEW: The design separates vault assets from the network token:
+
+057 [2]
+OLD: 3) Design principles (non-negotiables)
+NEW: 3) Required design principles
+
+058 [1]
+OLD: This is not anti-user; it is solvency.
+NEW: These gates protect solvency.
+
+059 [1]
+OLD: Archai is not “a village.” It is the 
+NEW: Archai provides 
+
+060 [2]
+OLD: Why now (the missing enabling stack)
+NEW: Why now: enabling infrastructure
+
+061 [1]
+OLD: change the default incentive package
+NEW: different incentives
+
+062 [2]
+OLD: 14) Appendix B: Glossary (minimal)
+NEW: 14) Appendix B: Glossary
+
+063 [1]
+OLD: This is not “investing.” It is a 
+NEW: Resident Stake is a 
+
+064 [1]
+OLD: &nbsp;in a housing institution.
+NEW: &nbsp;in a housing institution, rather than a standalone investment.
+
+065 [1]
+OLD: Earned equity exists to reward 
+NEW: Earned equity rewards 
+
+066 [1]
+OLD: capital + governance substrate
+NEW: capital and governance infrastructure
+
+067 [1]
+OLD: (the “jurisdiction substrate”)
+NEW: (jurisdictional infrastructure)
+
+068 [2]
+OLD: 6.5 Surplus: the sacred object
+NEW: 6.5 Surplus allocation
+
+069 [1]
+OLD: (the “operational substrate”)
+NEW: (operational infrastructure)
+
+070 [1]
+OLD: We add one missing bucket:
+NEW: The allocation also includes:
+
+071 [1]
+OLD: We treat built assets as 
+NEW: We treat built assets as sources of 
+
+072 [1]
+OLD: v0.1: “The protocol token
+NEW: The initial proposal: “The protocol token
+
+073 [1]
+OLD: Version 0.2 – June 2025
+NEW: June 2025
+
+074 [1]
+OLD: (the “legal substrate”)
+NEW: (legal infrastructure)
+
+075 [1]
+OLD: why lock capital up
+NEW: why participants lock capital
+
+076 [1]
+OLD: cash-flow machines
+NEW: cash flow
+
+077 [1]
+OLD: enter via staking
+NEW: enter through staking
+
+078 [1]
+OLD: (not only buying)
+NEW: or buying
+
+079 [1]
+OLD: and crucially: 
+NEW: and 
+
+080 [1]
+OLD: Archai is the 
+NEW: Archai provides the 
+
+081 [1]
+OLD: protocol layer
+NEW: protocol
+
+082 [1]
+OLD: 50–70% (v0.1)
+NEW: 50–70% (initial proposal)
+
+083 [1]
+OLD: 20–40% (v0.1)
+NEW: 20–40% (initial proposal)
+
+084 [1]
+OLD: 5–10% (v0.1)
+NEW: 5–10% (initial proposal)
+
+
+HOLISTIC PASS AND CLAIM REVIEW CORRECTIONS
+001 [1]
+OLD: Land ownership carries financial rights and obligations concerning:
+NEW: Land ownership also determines:
+
+002 [1]
+OLD: These rights must be explicit and take priority.
+NEW: The design must make these enforceable rights explicit from the outset.
+
+003 [1]
+OLD: The model below retains that relationship and specifies time, risk, and contribution limits:
+NEW: The model below adds explicit terms for time, risk, and contribution:
+
+004 [1]
+OLD: Mass automatically forms and maintains these entities. It encodes their governance, ownership tables, identity checks, and consent workflows.
+NEW: Mass provides software to form and maintain these entities automatically. It encodes their governance, ownership tables, identity checks, and consent workflows.
+
+005 [1]
+OLD: Together, these systems make legal rights, building operations, and compliance programmable.
+NEW: Together, these systems support the legal rights, operating records, and compliance checks that programmable property institutions require.
+
+006 [1]
+OLD: Each Archai project is a 
+NEW: Each Archai project implements these requirements through a 
+
+007 [1]
+OLD: The economics must explain 
+NEW: The contracts must specify 
+
+008 [1]
+OLD: why participants lock capital
+NEW: what participants receive for locking capital
+
+009 [1]
+OLD: Most tokenized real estate fails to provide liquidity and exit while constraining rentier speculation.
+NEW: Returns alone do not resolve exit: most tokenized real estate fails to provide liquidity while constraining rentier speculation.
+
+010 [1]
+OLD: The initial proposal describes governance as “stake-based, resident-weighted, trustee-checked.” The roles and constraints below make this enforceable.
+NEW: The initial proposal describes governance as “stake-based, resident-weighted, trustee-checked.” The roles below assign control over local rules, capital, and compliance, subject to constitutional limits.
+
+011 [1]
+OLD: These records let governance act on the building’s operations, finances, and risks.
+NEW: These records connect governance decisions to the building’s operations, finances, and risks.
+
+012 [1]
+OLD: The initial proposal names modular templates: Cayman foundation, Swiss Verein, and Panama company. These form part of the following design:
+NEW: The initial proposal names templates such as a Cayman foundation, Swiss Verein, and Panama company. Jurisdiction modules organize these legal choices:
+
+013 [1]
+OLD: Primary risks:
+NEW: The legal and governance controls must address the following risks:
+
+014 [1]
+OLD: The initial proposal uses insurance and the protocol token to underwrite network risk:
+NEW: The initial proposal assigns insurance and the protocol token a role in network underwriting:
+
+015 [1]
+OLD: The design separates vault assets from the network token:
+NEW: Vault assets carry rights in individual projects. The network token serves protocol governance and underwriting, with distinct legal conditions:
+
+016 [1]
+OLD: Each phase has explicit deliverables:
+NEW: The roadmap starts with one vault, then adds portability, shared underwriting, jurisdiction modules, and resident and operator tools:
+
+
+FINAL LANGUAGE PASS
+OLD: Returns alone do not resolve exit: most tokenized real estate fails to provide liquidity while constraining rentier speculation.
+NEW: Exit requires liquidity as well as returns. Most tokenized real estate fails to provide it while constraining rentier speculation.
+
+OLD: Separately, the SEZ Legal Stack concept of 
+NEW: Separately, the SEZ Legal Stack’s 
+
+OLD: &nbsp;applies to compliance: prove required checks
+NEW: &nbsp;apply to compliance: prove required checks
+
+OLD: ownership units trade within a tight band around NAV; excess premium is taxed away.
+NEW: ownership units trade within a tight band around NAV. Excess premium is taxed away.
+
+OLD: Incentivize early vault bootstrapping (but don’t subsidize forever).
+NEW: Incentivize early vault bootstrapping with time-limited subsidies.
+
+
+DEFINITION PRESERVATION
+OLD: Archai provides the protocol
+NEW: Archai is the protocol
+Restored the original identity assertion while retaining the simpler noun.
+
+INDEPENDENT SEMANTIC REVIEW CORRECTIONS
+OLD: Exit requires liquidity as well as returns. Most tokenized real estate fails to provide it while constraining rentier speculation.
+NEW: Participants also need defined ways to exit. Most tokenized real estate fails to provide liquidity while constraining rentier speculation.
+
+OLD: The legal and governance controls must address the following risks:
+NEW: The design must address the following risks:
+
+OLD: Separately, the SEZ Legal Stack’s 
+NEW: The SEZ Legal Stack design uses 
+
+OLD: &nbsp;apply to compliance: prove required checks
+NEW: &nbsp;to prove required checks
+
+OLD: &nbsp;in a housing institution, rather than a standalone investment.
+NEW: &nbsp;in a housing institution.
+
+
+FINAL DEFINITION/SCOPE PRESERVATION
+OLD: Land ownership also determines:
+NEW: Land ownership also encodes:
+
+OLD: Each Archai project implements these requirements through a 
+NEW: Each Archai project is a 
+
+OLD: Incentivize early vault bootstrapping with time-limited subsidies.
+NEW: Incentivize early vault bootstrapping and limit the duration of subsidies.
+

@@ -1,0 +1,465 @@
+000 h2: Table of contents
+001 p: 1) The thesis        3
+002 p: Why now: enabling infrastructure        3
+003 p: 2) The problem        4
+004 p: 2.1 Ownership in real estate is structurally exclusionary        4
+005 p: 2.2 Housing markets are dominated by rentier dynamics        4
+006 p: 2.3 Buildings are opaque, so risk is mispriced        4
+007 p: 2.4 The coordination problem: land + community + infrastructure        4
+008 p: 3) Required design principles        5
+009 p: 3.1 Legal reality first        5
+010 p: 3.2 Yield first, not appreciation first        5
+011 p: 3.3 Anti-speculation must be engineered        5
+012 p: 3.4 Composability at the primitive level        5
+013 p: 3.5 Continuous attestations, not annual audits        5
+014 p: 3.6 Progressive decentralization with explicit safeguards        5
+015 p: 4) System model        6
+016 p: 4.1 Archai is a network of “Vault Institutions”        6
+017 p: 4.2 Archai separates “use” from “ownership”        6
+018 p: 4.3 Archai is a policy engine for many civilizational models        6
+019 p: 5) Protocol architecture        7
+020 p: 5.1 Layer 1: Legal wrapper (Mass-native entity)        7
+021 p: 5.2 Layer 2: Vault contracts (capital + rights engine)        7
+022 p: 5.3 Layer 3: Governance module (polycentric)        7
+023 p: 5.4 Layer 4: Commons + network treasury        8
+024 p: 5.5 Layer 5: Evidence layer (HomeOS + attestation streams)        8
+025 p: 5.6 Layer 6: Arbitration and dispute resolution        8
+026 p: 6) Vault economics: stake-to-live, stake-to-own, and earned equity        9
+027 p: 6.1 Vault balance sheet and capital structure        9
+028 p: 6.2 Two primary stake products        9
+029 p: A) Resident Stake (stake-to-live)        9
+030 p: B) Capital Stake (stake-to-build / stake-to-yield)        10
+031 p: 6.3 Earned equity        10
+032 p: 6.4 Rent: discount as “coupon”        11
+033 p: 6.5 Surplus allocation        11
+034 p: 7) Liquidity and exit without rentier speculation        12
+035 p: 7.1 Three exit paths (each with constraints)        12
+036 p: 7.2 Redemption gates: preventing bank runs        12
+037 p: 7.3 “Non-speculative” as a pricing rule        13
+038 p: 8) Governance and control surfaces        13
+039 p: 8.1 Governance must be polycentric        13
+040 p: Resident Council        13
+041 p: Capital Council        14
+042 p: Trustee/Guardian        14
+043 p: 8.2 Constitutional constraints (hard-coded)        14
+044 p: 8.3 Evidence-based governance        14
+045 p: 9) Legal + compliance: Mass-native smart assets        15
+046 p: 9.1 Required Mass integration        15
+047 p: 9.2 Smart Assets carry legal modules        15
+048 p: 9.3 Attestation streams are the regulator interface        16
+049 p: 9.4 Legal wrappers are modular (jurisdiction SDK)        16
+050 p: 10) Security, risk, and solvency        16
+051 p: 10.1 Threat model        16
+052 p: 10.2 Minimum institutional controls        17
+053 p: 10.3 Network insurance and underwriting        17
+054 p: 11) Token model: $ARCH and vault assets        17
+055 p: 11.1 Two token categories        18
+056 p: 11.2 Distribution principles        18
+057 p: 11.3 Regulatory posture        18
+058 p: 12) Roadmap        18
+059 p: Phase 1: MVP (single vault)        18
+060 p: Phase 2: Multi-vault registry + portability        19
+061 p: Phase 3: Commons layer + underwriting        19
+062 p: Phase 4: Jurisdiction SDK (legal modules)        19
+063 p: Phase 5: Resident and operator interface        19
+064 p: 13) Appendix A: The Archai stack in one diagram        19
+065 p: 14) Appendix B: Glossary        20
+067 h1: ARCHAI PROTOCOL WHITEPAPER
+068 h2: Programmable ownership for land, housing, and community infrastructure
+069 p: June 2025
+070 h3: Disclaimer
+071 p: This document is for research and design discussion. It does not constitute an offer to sell securities, financial advice, or legal advice. Real-world deployments require jurisdiction-specific legal structuring, licensing, and compliance.
+076 h2: 1) The thesis
+077 p: The built environment is the largest asset class humans maintain. Its ownership systems impose high transaction costs, obscure information, favor rent extraction, and remain politically fragile.
+078 p: Archai is the protocol that turns land and buildings into programmable institutions with on-chain and off-chain components and access to arbitration, where:
+079 li: people can enter through staking or buying,
+080 li: earn ownership over time and contribution,
+081 li: surplus is allocated by explicit constitutional logic, and
+082 li: the whole system stays compliant, auditable, and jurisdiction-portable through Mass primitives and attestation streams.
+083 p: Archai provides capital and governance infrastructure for many settlements and many civilizational models (Amagi and beyond).
+084 h3: Why now: enabling infrastructure
+085 p: Archai builds on existing Momentum systems:
+086 li: Mass makes entities/ownership/consent programmable and enforceable through compliant APIs (legal infrastructure).
+087 li: HomeOS makes buildings legible and continuously measurable (operational infrastructure), and that data directly improves valuation and risk models for tokenized assets.
+088 li: Programmable legal stacks / SEZ modules make jurisdictional portability possible (jurisdictional infrastructure), with Smart Assets carrying compliance and producing attestation streams regulators can verify programmatically.
+089 p: Together, these systems support the legal rights, operating records, and compliance checks that programmable property institutions require.
+091 h2: 2) The problem
+092 h3: 2.1 Ownership in real estate is structurally exclusionary
+093 p: For most people, ownership requires a mortgage, a large down payment, creditworthiness, and legal expertise. Selling is slow and expensive, with high transaction costs.
+094 h3: 2.2 Housing markets are dominated by rentier dynamics
+095 p: The default incentives reward:
+096 li: holding scarce assets,
+097 li: restricting supply,
+098 li: harvesting rent,
+099 li: and capturing appreciation driven by policy and scarcity.
+100 p: Abundant, well-maintained housing that serves its community requires different incentives.
+101 h3: 2.3 Buildings are opaque, so risk is mispriced
+102 p: Traditional real estate has persistent information asymmetries. HomeOS lets buildings report occupancy, energy, maintenance, and revenue streams continuously, providing the operational evidence that tokenization requires.
+103 h3: 2.4 The coordination problem: land + community + infrastructure
+104 p: Land ownership also encodes:
+105 li: governance,
+106 li: cultural norms,
+107 li: maintenance commitments,
+108 li: collective investment decisions.
+109 p: Today, these are handled by slow legal processes and weak social trust. Archai’s premise is that they can be expressed as programmable institutional logic.
+111 h2: 3) Required design principles
+112 p: Archai is institutional infrastructure and must meet the legal, financial, and governance requirements below.
+113 h3: 3.1 Legal reality first
+114 p: A token requires enforceable rights to represent a secured asset. Archai vault assets are always paired with a real legal wrapper (SPV, trust, foundation, coop) that holds title and signs a protocol-aligned charter. The design must make these enforceable rights explicit from the outset.
+115 h3: 3.2 Yield first, not appreciation first
+116 p: We treat built assets as sources of cash flow (housing, services, utilities, data, commerce). Appreciation is not the core promise.
+117 h3: 3.3 Anti-speculation must be engineered
+118 p: “Non-speculative” is a set of constraints:
+119 li: pricing rule,
+120 li: transfer constraints,
+121 li: premium capture rules,
+122 li: exit windows and gates,
+123 li: and governance limits.
+124 h3: 3.4 Composability at the primitive level
+125 p: Mass provides primitives for entities, ownership, identity, consent, and related functions. Archai composes them into institutions that own and operate built assets. In Momentum’s architecture, Archai tokenizes HomeOS buildings through native integration with these primitives.
+126 h3: 3.5 Continuous attestations, not annual audits
+127 p: The system needs evidence for compliance checks. Under the SEZ Legal Stack design, Smart Assets should generate cryptographically secured, legally enforceable attestation streams. These let programs verify compliance without exposing private data.
+128 h3: 3.6 Progressive decentralization with explicit safeguards
+129 p: Governance starts with safety: trustees, emergency powers, upgrade controls. It decentralizes only as mechanisms prove stable.
+131 h2: 4) System model
+132 h3: 4.1 Archai is a network of “Vault Institutions”
+133 p: Each Archai project is a Vault:
+134 li: a set of on-chain contracts,
+135 li: bound to an off-chain legal wrapper,
+136 li: holding a specific portfolio of land/buildings/infrastructure,
+137 li: issuing stake positions and ownership claims,
+138 li: distributing surplus according to encoded policy.
+139 h3: 4.2 Archai separates “use” from “ownership”
+140 p: Most housing systems bundle:
+141 li: right to occupy (use),
+142 li: financial exposure (ownership),
+143 li: and governance power.
+144 p: Archai treats them as separable primitives:
+145 li: Use Rights: the ability to live/work in a unit under certain terms.
+146 li: Stake Positions: time-locked capital with defined redemption and yield.
+147 li: Ownership Units: equity-like claims on the underlying entity.
+148 li: Contribution Credits: earned equity via labor/service, verified by attestations.
+149 li: Governance Power: parameterized, scoped, and constrained.
+150 p: Separating these lets us engineer “non-speculative” systems while still raising capital.
+151 h3: 4.3 Archai is a policy engine for many civilizational models
+152 p: A “civilizational model” combines policy parameters with a governance constitution:
+153 li: rent policy,
+154 li: surplus split,
+155 li: equity issuance schedule,
+156 li: contribution valuation rules,
+157 li: secondary transfer constraints,
+158 li: commons obligations.
+159 p: Archai hosts multiple models. Each vault selects one and can migrate through governance.
+161 h2: 5) Protocol architecture
+162 h3: 5.1 Layer 1: Legal wrapper (Mass-native entity)
+163 p: Each Vault corresponds to a legal entity (or entity set):
+164 li: Asset SPV / Trust holds title and bank accounts.
+165 li: Operator entity contracts services (maintenance, property management, construction).
+166 li: Archai Foundation / protocol entity holds IP, administers upgrades, manages network treasury.
+167 p: Mass provides software to form and maintain these entities automatically. It encodes their governance, ownership tables, identity checks, and consent workflows.
+168 p: The legal wrapper operates as a programmable Smart Asset.
+169 h3: 5.2 Layer 2: Vault contracts (capital + rights engine)
+170 p: Vault contracts manage:
+171 li: deposits,
+172 li: stake terms,
+173 li: redemptions,
+174 li: distribution,
+175 li: issuance of ownership units,
+176 li: rent discount rules,
+177 li: secondary transfer rules,
+178 li: reserve accounts,
+179 li: liquidation/wind-down logic.
+180 h3: 5.3 Layer 3: Governance module (polycentric)
+181 p: Vault governance excludes a simple “one token, one vote” model. It is:
+182 li: scoped,
+183 li: role-based,
+184 li: bicameral where necessary,
+185 li: with trustee/guardian failsafes.
+186 h3: 5.4 Layer 4: Commons + network treasury
+187 p: A portion of surplus flows to the Archai Commons Treasury. The initial proposal allocates 5–10%.
+188 p: This treasury funds:
+189 li: seeding new vaults,
+190 li: resident subsidies,
+191 li: protocol R&D,
+192 li: and risk underwriting (insurance).
+193 h3: 5.5 Layer 5: Evidence layer (HomeOS + attestation streams)
+194 p: Buildings running HomeOS produce continuous operational data:
+195 li: occupancy,
+196 li: energy,
+197 li: maintenance costs,
+198 li: revenue streams.
+199 p: This reduces information asymmetry and feeds valuation and risk models for tokenized assets.
+200 p: The SEZ Legal Stack design uses attestation streams to prove required checks (KYC tier, AML screening, transfer restrictions) without revealing underlying private data.
+201 h3: 5.6 Layer 6: Arbitration and dispute resolution
+202 p: Every vault must have:
+203 li: a defined dispute path,
+204 li: arbitration clause,
+205 li: on-chain evidence admissibility rules,
+206 li: and emergency intervention rights.
+207 p: Momentum’s ecosystem includes an ADGM-based arbitration court for digital asset and machine-intelligence workflows. Archai vaults should route disputes into such specialized venues by default.
+208 p: Momentum Monograph - Google Docs
+210 h2: 6) Vault economics: stake-to-live, stake-to-own, and earned equity
+211 p: The contracts must specify what participants receive for locking capital and how the vault produces returns without speculation.
+212 h3: 6.1 Vault balance sheet and capital structure
+213 p: Each vault combines private equity and real estate finance through the following capital structure:
+214 li: Senior capital (bank debt / bonds)
+Lowest risk, capped return, first claim.
+215 li: Resident stake (time-locked deposits)
+Medium risk, compensated via rent discounts + earned equity.
+216 li: Programmatic equity (vault ownership units)
+Variable return, receives residual surplus and some appreciation per policy.
+217 li: Sponsor/operator equity
+Paid for execution, absorbs early risk, earns if the asset performs.
+218 li: Commons stake (network)
+Receives protocol fee and may provide insurance backstops.
+219 p: Solvency and redemptions depend on an explicit model of this capital structure.
+220 h3: 6.2 Two primary stake products
+221 h4: A) Resident Stake (stake-to-live)
+222 p: Residents stake capital for a term. The initial proposal suggested 3–7 years.
+
+They receive:
+223 li: a rent discount (economic benefit now),
+224 li: earned equity over time (wealth building),
+225 li: governance participation (scoped),
+226 li: and the right to redeem principal at maturity (subject to safety gates).
+227 p: Resident Stake is a capitalized membership in a housing institution.
+228 h4: B) Capital Stake (stake-to-build / stake-to-yield)
+229 p: Non-resident capital providers stake into the vault with:
+230 li: defined term,
+231 li: defined distribution rules (coupon-like),
+232 li: potentially equity kicker,
+233 li: no occupancy rights.
+234 p: Capital Stake finances additional housing supply while constraining speculation.
+235 h3: 6.3 Earned equity
+236 p: Earned equity rewards time, risk, and contribution instead of mere wealth.
+237 p: The initial formula makes equity proportional to stake * multiplier / valuation. The model below adds explicit terms for time, risk, and contribution:
+238 p: Let:
+239 li: 𝑁𝐴𝑉𝑡NAVt​ = net asset value of the vault at time t (audited + attested)
+240 li: 𝑆𝑖Si​ = stake amount for position i
+241 li: 𝑇𝑖Ti​ = term length for position i
+242 li: 𝑅𝑖Ri​ = risk multiplier (construction > stabilization > mature)
+243 li: 𝐶𝑖(𝑡)Ci​(t) = contribution score (verified labor/service)
+244 li: 𝛼,𝛽α,β = policy parameters
+245 p: Define Equity Accrual Rate:
+246 p: 𝐸𝐴𝑖(𝑡)=𝑆𝑖𝑁𝐴𝑉𝑡⋅𝑓(𝑇𝑖)⋅𝑅𝑖  +  𝛼⋅𝐶𝑖(𝑡)EAi​(t)=NAVt​Si​​⋅f(Ti​)⋅Ri​+α⋅Ci​(t)
+247 p: Where:
+248 li: 𝑓(𝑇)f(T) is convex in time (long-term alignment rewarded),
+249 li: 𝑅𝑖Ri​ is bounded (no infinite multipliers),
+250 li: 𝐶𝑖(𝑡)Ci​(t) is capped per epoch to prevent gaming.
+251 p: Equity accrues continuously or in epochs, minted as Vault Ownership Units.
+252 h3: 6.4 Rent: discount as “coupon”
+253 p: We formalize:
+254 li: Let Base Rent be computed from:
+255 li: operating costs,
+256 li: reserves,
+257 li: debt service,
+258 li: targeted maintenance SLA,
+259 li: and affordability policy.
+260 li: A Resident Stake provides a discount that functions like the “interest payment” on their locked capital.
+261 p: The vault borrows from residents and compensates them through reduced rent and earned equity.
+262 h3: 6.5 Surplus allocation
+263 p: Define:
+264 p: 𝑆𝑢𝑟𝑝𝑙𝑢𝑠=𝑁𝑂𝐼−𝐷𝑒𝑏𝑡𝑆𝑒𝑟𝑣𝑖𝑐𝑒−𝑅𝑒𝑠𝑒𝑟𝑣𝑒𝑠Surplus=NOI−DebtService−Reserves
+265 p: Then allocate surplus by policy:
+266 li: Resident / staker distributions: 50–70% (initial proposal)
+267 li: Reinvestment: 20–40% (initial proposal)
+268 li: Protocol fee to Commons: 5–10% (initial proposal)
+269 p: The allocation also includes:
+270 li: Insurance / contingency buffer (can be part of reserves or funded via protocol treasury)
+271 p: Surplus allocation defines the vault’s economic constitution.
+273 h2: 7) Liquidity and exit without rentier speculation
+274 p: Participants also need defined ways to exit. Most tokenized real estate fails to provide liquidity while constraining rentier speculation.
+275 h3: 7.1 Three exit paths (each with constraints)
+276 li: Redemption at maturity (primary)
+277 li: Stake positions redeem at maturity at a deterministic rule:
+278 li: principal less fees,
+279 li: subject to solvency and redemption queues.
+280 li: Secondary transfer of stake rights (bounded)
+
+We formalize:
+281 li: transfers only to whitelisted (KYC/KYB) recipients,
+282 li: premium cap relative to NAV,
+283 li: any premium above cap is routed to Commons (anti-speculation capture),
+284 li: mandatory disclosure of vault state.
+285 li: Cross-vault portability (network feature)
+As Archai evolves into a registry, positions can be portable:
+286 li: stake exits one vault and enters another under rules,
+287 li: enabling mobility without liquidation cascades.
+288 h3: 7.2 Redemption gates: preventing bank runs
+289 p: Real assets are illiquid, so Archai cannot promise instant liquidity. It uses explicit redemption gates:
+290 li: max redemption per epoch,
+291 li: variable queue times tied to liquidity,
+292 li: emergency halts when reserves breach threshold.
+293 p: These gates protect solvency.
+294 h3: 7.3 “Non-speculative” as a pricing rule
+295 p: A vault can choose among policy modes:
+296 li: NAV-bounded mode: ownership units trade within a tight band around NAV. Excess premium is taxed away.
+297 li: Affordability-first mode: occupancy rights are non-transferable or transferable only at cost.
+298 li: Growth mode (allowed but explicit): partial appreciation can accrue, but with caps and commons capture.
+299 p: Speculation requires a deliberate policy choice and is disabled by default.
+301 h2: 8) Governance and control surfaces
+302 p: The initial proposal describes governance as “stake-based, resident-weighted, trustee-checked.” The roles below assign control over local rules, capital, and compliance, subject to constitutional limits.
+303 h3: 8.1 Governance must be polycentric
+304 p: Different decisions require different stakeholders.
+305 p: Recommended structure:
+306 h4: Resident Council
+307 p: Controls:
+308 li: community rules,
+309 li: local service priorities,
+310 li: cultural programming,
+311 li: some budget allocations.
+312 p: Voting weight: occupancy + contribution (not raw capital).
+313 h4: Capital Council
+314 p: Controls:
+315 li: leverage limits,
+316 li: reserve policy,
+317 li: large capex,
+318 li: refinancing terms,
+319 li: issuance policy.
+320 p: Voting weight: stake and ownership units (bounded).
+321 h4: Trustee/Guardian
+322 p: Controls:
+323 li: legal compliance,
+324 li: emergency actions,
+325 li: fraud response,
+326 li: enforcing constitutional constraints.
+327 p: Trustees connect vault governance to its legal obligations.
+328 h3: 8.2 Constitutional constraints (hard-coded)
+329 p: Certain parameters must be upgrade-resistant:
+330 li: maximum leverage,
+331 li: minimum reserves,
+332 li: affordability floors,
+333 li: anti-speculation constraints,
+334 li: disclosure requirements.
+335 p: Governance cannot authorize treasury theft or leverage beyond the constitutional limit.
+336 h3: 8.3 Evidence-based governance
+337 p: Governance proposals must reference:
+338 li: attested operating metrics (HomeOS),
+339 li: audited financials,
+340 li: risk reports,
+341 li: and predicted impacts.
+342 p: These records connect governance decisions to the building’s operations, finances, and risks.
+344 h2: 9) Legal + compliance: Mass-native smart assets
+345 h3: 9.1 Required Mass integration
+346 p: Mass provides programmable primitives:
+347 li: entities,
+348 li: ownership structures,
+349 li: financial instruments,
+350 li: identity,
+351 li: consent.
+Momentum Monograph - Google Docs
+352 p: Archai vaults should be implemented as a specific composition of those primitives:
+353 li: the SPV/trust is a Mass entity,
+354 li: stake positions and ownership units are Mass-native ownership tables/tokens,
+355 li: transfers are governed by identity gates and consent workflows,
+356 li: distributions use Mass fiscal rails (accounts/wallets/banking integration).
+357 h3: 9.2 Smart Assets carry legal modules
+358 p: Under the SEZ Stack design, a Smart Asset should encode its jurisdiction, transfer restrictions, identity tier requirements, and consent mechanisms. Compliance checks become part of the asset’s operation.
+359 p: For Archai:
+360 li: Each vault declares its jurisdictional module.
+361 li: Transfers compute the intersection of permissible actions (e.g., KYC tiers, residency rules, securities exemptions).
+362 li: The asset enforces constraints programmatically.
+363 h3: 9.3 Attestation streams are the regulator interface
+364 p: Regulators and auditors need verifiable compliance.
+Attestation streams prove requirements were met without exposing private data (e.g., “all holders meet KYC tier X”).
+365 p: Archai uses attestation streams for:
+366 li: holder eligibility,
+367 li: transfer compliance,
+368 li: treasury flows,
+369 li: operating metrics integrity.
+370 h3: 9.4 Legal wrappers are modular (jurisdiction SDK)
+371 p: The initial proposal names templates such as a Cayman foundation, Swiss Verein, and Panama company. Jurisdiction modules organize these legal choices:
+372 li: Create a Jurisdiction SDK: a set of deployable legal + compliance modules (entity type, offering exemptions, custody model, dispute resolution path).
+373 li: Vaults instantiate within a chosen module.
+374 li: Modules can be upgraded or migrated with governance and trustee oversight.
+376 h2: 10) Security, risk, and solvency
+377 h3: 10.1 Threat model
+378 p: The design must address the following risks:
+379 li: title defects / legal disputes,
+380 li: operator fraud,
+381 li: valuation manipulation,
+382 li: oracle corruption (data + appraisals),
+383 li: governance capture,
+384 li: liquidity cascade (redemption run),
+385 li: jurisdictional intervention,
+386 li: stablecoin/banking rail failure,
+387 li: smart contract bugs.
+388 h3: 10.2 Minimum institutional controls
+389 li: Segregated accounts (operating vs reserves vs distributions)
+390 li: Independent appraisal + HomeOS attested ops data feeding NAV
+391 li: Redemption gates + queues
+392 li: Role-based access control for operational actions
+393 li: On-chain + off-chain audit trails
+394 li: Emergency guardian powers with transparency constraints
+395 li: Insurance module (protocol-level underwriting)
+396 h3: 10.3 Network insurance and underwriting
+397 p: The initial proposal assigns insurance and the protocol token a role in network underwriting:
+398 li: The Commons Treasury can act as a first-loss backstop for defined event categories.
+399 li: $ARCH can be staked into underwriting pools (risk-weighted).
+400 li: Vaults pay risk-based premiums (paid from surplus).
+401 p: More vaults improve risk modeling, which lowers the cost of capital.
+403 h2: 11) Token model: $ARCH and vault assets
+404 p: The initial proposal: “The protocol token ($ARCH) governs the Archai network… stake-weighted voting… access to preferred vaults… claim on commons surplus… underwriting.”
+405 p: Vault assets carry rights in individual projects. The network token serves protocol governance and underwriting, with distinct legal conditions:
+406 h3: 11.1 Two token categories
+407 li: Vault Assets (per-vault)
+408 li: Stake position tokens (time-locked notes / deposit receipts)
+409 li: Ownership units (equity-like claims)
+410 li: Use rights (occupancy/access claims)
+411 p: These map to specific legal wrappers and are highly jurisdiction-dependent.
+412 li: $ARCH (network token)
+413 li: Governance of protocol-level parameters and upgrades
+414 li: Underwriting / insurance staking
+415 li: Access coordination (optional, not core)
+416 li: Fee capture from Commons Treasury (if legally viable)
+417 h3: 11.2 Distribution principles
+418 li: Incentivize early vault bootstrapping and limit the duration of subsidies.
+419 li: Reward verified contribution (builders, maintainers, operators) more than passive speculation.
+420 li: Fund long-term commons (treasury).
+421 li: Avoid short-term emission schedules that create mercenary behavior.
+422 h3: 11.3 Regulatory posture
+423 p: Vault assets are likely regulated financial instruments in many jurisdictions. Mass-native compliance must constrain distributions and transfers accordingly.
+424 p: $ARCH may be regulated if it carries explicit cash-flow claims. Governance and underwriting collateral with carefully scoped economics may offer a clearer regulatory position. The treatment depends on jurisdiction, so Archai must support distinct legal modules.
+426 h2: 12) Roadmap
+427 p: The roadmap starts with one vault, then adds portability, shared underwriting, jurisdiction modules, and resident and operator tools:
+428 h3: Phase 1: MVP (single vault)
+429 li: One legal wrapper
+430 li: One vault contract system (stake, redemption, distribution)
+431 li: One governance constitution
+432 li: One evidence feed (basic HomeOS metrics)
+433 li: Basic KYC gating through Mass
+434 h3: Phase 2: Multi-vault registry + portability
+435 li: Registry contracts
+436 li: Standard interfaces for vault types
+437 li: Cross-vault portability primitives
+438 li: Redemption queue standardization
+439 h3: Phase 3: Commons layer + underwriting
+440 li: Protocol treasury routing
+441 li: Grants program for new vault origination
+442 li: Insurance pools + risk scoring
+443 h3: Phase 4: Jurisdiction SDK (legal modules)
+444 li: Deployable templates per jurisdiction
+445 li: Integration hooks to SEZ stack modules
+446 li: Attestation stream standards for compliance
+447 h3: Phase 5: Resident and operator interface
+448 li: Mobile dashboard
+449 li: Resident onboarding flows
+450 li: Contribution verification tooling
+451 li: Proposal and voting UX
+453 h2: 13) Appendix A: The Archai stack in one diagram
+454 p: Value + control flow (simplified)
+455 p: Residents / Investors
+→ stake capital into Vault Contract
+→ Vault Contract coordinates with Mass Entity (SPV/Trust)
+→ Entity holds title + bank accounts, pays operators
+→ Building ops run on HomeOS, producing attested metrics
+→ Vault calculates surplus, updates NAV, distributes per policy
+→ Protocol fee to Commons Treasury
+→ Commons funds seeding + subsidies + insurance
+457 h2: 14) Appendix B: Glossary
+458 li: Vault: on-chain capital + rights engine paired to a real legal entity holding the asset.
+459 li: Stake position: time-locked capital with defined redemption/yield.
+460 li: Ownership unit: equity-like claim on the underlying entity.
+461 li: Use right: occupancy/access claim (may be non-transferable or bounded-transfer).
+462 li: Attestation stream: cryptographic proof stream of compliance/operations.
+463 li: Commons: shared treasury and seeding/underwriting engine.
