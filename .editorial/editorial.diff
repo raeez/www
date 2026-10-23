@@ -1,0 +1,866 @@
+--- a/content/reader-papers/institutional-computation-explained.md
++++ b/content/reader-papers/institutional-computation-explained.md
+@@ -14,7 +14,7 @@
+ 
+ A further condition can require the registrar to judge whether the address is suitable for official service. The program then records the exact question, its evidence, permitted answers, and the role authorized to answer. This unanswered question is a *discretion hole*. The request waits for a competent answer. A timeout supplies no judgment, and an answer concerning a different address supplies no answer to this request.
+ 
+-This case establishes the article's central distinction. Preparing an action, satisfying its rule, holding authority, and changing an institutional record are separate events and conditions. An institutional program must preserve their relationship as work proceeds. *Programmable Institutions* makes that relationship precise for one institution's record. *One Entity in Many Jurisdictions* specifies the persons, rights, and actions that an authority evaluates. *Accession Networks* studies how independent authorities establish recognition relations \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Sections 2--4\]\[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}, Section 2\]\[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Sections 2, 4\].
++Preparing an action, satisfying its rule, holding authority, and changing an institutional record are separate events and conditions. An institutional program must preserve their relationship as work proceeds. *Programmable Institutions* makes that relationship precise for one institution's record. *One Entity in Many Jurisdictions* specifies the persons, rights, and actions that an authority evaluates. *Accession Networks* studies how independent authorities establish recognition relations \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Sections 2--4\]\[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}, Section 2\]\[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Sections 2, 4\].
+ 
+ ## 2 Which person, which right, which action {#sec:rights}
+ 
+@@ -30,21 +30,21 @@
+ 
+ The paper's theorem "Preservation of quantitative rights" compares the same named entitlements before and after a permitted corporate action. Its linear calculation requires fixed right identities, beneficiaries, units, and an admitted position domain. Applicable instruments supply the action's authority and rights interpretation. Agreement on a few examples cannot establish preservation over every admitted position.
+ 
+-The next evaluation must identify the proposed act just as carefully. An *action context* names the person, right, operation, parameters, participants, purpose, destination, time, and current rules. Permission to hold shares can coexist with a refusal to offer them publicly. The authority set must include every requirement reaching that act. Choosing fewer registration labels cannot remove an applicable requirement \[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}, Section 2, "Scoped action"\].
++The evaluation must also identify the exact proposed act. An *action context* names the person, right, operation, parameters, participants, purpose, destination, time, and current rules. Permission to hold shares can coexist with a refusal to offer them publicly. The authority set must include every requirement reaching that act. Choosing fewer registration labels cannot remove an applicable requirement \[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}, Section 2, "Scoped action"\].
+ 
+ ## 3 What the acceptance step must establish {#sec:acceptance}
+ 
+-A delegation is a recorded grant of specified permission. The source calls it a *capability*. Its scope includes objects, actions, fields that may change, permitted judgment answers, validity, and further delegation limits. Each delegate receives a subset of the parent's authority. The same complete chain must cover every required part of the act \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.1\].
++Once the act is specified, the acceptance step must establish who may perform it. A delegation is a recorded grant of specified permission. The source calls it a *capability*. Its scope includes objects, actions, fields that may change, permitted judgment answers, validity, and further delegation limits. Each delegate receives a subset of the parent's authority. The same complete chain must cover every required part of the act \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.1\].
+ 
+ For Mira's filing, permission to change an address does not authorize changing the shareholder record. The operation declares every field it may write. The acceptance step checks the actual change against that declaration and the same authority chain. A temporary shareholder change followed by restoration contains two observable changes when both states are externally visible. The record must retain both. Isolated private computation can remain hidden only when it has no external observer or dispatch capability \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.3 and Section 4, Corollary 1\].
+ 
+-The rule's factual dependencies require equal care. A *dependency* is an observation that can affect the evaluation. It can be a value, a query result, or the absence of a conflicting record. The program must record all such dependencies and check them with the accepted change. A new conflicting judgment can invalidate an earlier evaluation even if every previously read document remains unchanged.
++The acceptance step must also check the facts on which its rule depends. A *dependency* is an observation that can affect the evaluation. It can be a value, a query result, or the absence of a conflicting record. The program must record all such dependencies and check them with the accepted change. A new conflicting judgment can invalidate an earlier evaluation even if every previously read document remains unchanged.
+ 
+-Dependency completeness concerns changes considered together. The source uses two false conditions joined by "and." Changing either condition alone leaves the result false, while changing both makes it true. Testing isolated changes would miss this dependency. Lemma 2 establishes complete dependency tracking for the paper's specified finite expression language \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.2\].
++Complete dependency tracking must account for changes that act together. The source uses two false conditions joined by "and." Changing either condition alone leaves the result false, while changing both makes it true. Testing isolated changes would miss this dependency. Lemma 2 establishes complete dependency tracking for the paper's specified finite expression language \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.2\].
+ 
+ Under assumptions F1--F10, Theorem 1 attributes each final field difference to an accepted change with a live authority chain and receipt. Corollary 1 extends the account to every observable write, including changes later reversed. The assumptions include exclusive control of authoritative writes, faithful effect declarations, complete judgments, atomic checks, authenticated actors, and trusted record time. They also require complete authority information at each use \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Section 4\].
+ 
+-That last premise has an institutional source. A delegation can end through an external order before its printed expiry. A valid signature on the delegation cannot establish that no such event occurred.
++Current authority information must come from the responsible institution. A delegation can end through an external order before its printed expiry. A valid signature on the delegation cannot establish that no such event occurred.
+ 
+ The construction therefore requires a *coverage contract* for each required competent source. It identifies covered objects, event classes, jurisdictions, and the times covered by the evidence. It states acceptable delay, outages, conflict resolution, and legally sufficient conditions for present use. The source must meet those conditions before the act proceeds. A delayed feed leaves the uncovered interval unresolved unless the contract supplies that condition \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Section 6.1\].
+ 
+@@ -66,7 +66,7 @@
+ 
+ The source gives an operator estate with 100 units and a client estate with zero. A client payment of 80 fails even when one person controls both estates. An effective, permitted loan of 80 can leave their balances at 20 and 80, with a separate receivable and liability. If the operator already reserved 30, only 70 remains free, so that transfer fails its funding condition.
+ 
+-Each of these numbers answers a different question. An allowance bounds permitted expenditure. A cash balance records available money in its named estate. An outstanding obligation states what someone must still deliver or pay. The record requires separate evidence that the responsible party performed the obligation.
++An allowance bounds permitted expenditure, while a cash balance records available money in its named estate. An outstanding obligation states what someone must still deliver or pay. The record requires separate evidence that the responsible party performed the obligation.
+ 
+ ## 5 Keeping a route to completion {#sec:completion}
+ 
+@@ -76,7 +76,7 @@
+ 
+ The finite construction works backward from the permitted terminal outcomes. It retains a next action when every allowed response remains safe and leaves a continuation with one fewer decision. This includes intermediate states along the response, not just its endpoint. An action with no possible response cannot count as successful through an empty check. Theorem 4 identifies exactly the actions preserving guaranteed completion under this fully observed finite contract \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Section 7.7\].
+ 
+-The environmental contract lists the provider responses, evidence delays, authority changes, and losses the model admits. Its completeness matters because the guarantee covers that list. An omitted provider failure cannot acquire coverage from the theorem. A response outside the contract requires a fresh analysis while existing duties remain recorded. A deadline also requires bounded response duration and a schedule, beyond a count of decisions.
++The environmental contract lists the provider responses, evidence delays, authority changes, and losses the model admits. The guarantee covers only the listed events and outcomes. It excludes any omitted provider failure. A response outside the contract requires a fresh analysis while existing duties remain recorded. A deadline also requires bounded response duration and a schedule, beyond a count of decisions.
+ 
+ Often the program does not observe the complete state. After a delayed reply, the same evidence may fit either a live delegate or a revoked delegate. The paper represents this uncertainty by a nonempty set of possible states, called a *belief*. Here belief has no probability attached.
+ 
+@@ -90,19 +90,19 @@
+ 
+ ## 6 Reusing a determination across authorities {#sec:recognition}
+ 
+-*Recognition* gives stated local effect to another authority's determination under an applicable rule or instrument. Its record identifies the original assertion, issuing authority, subject, permitted use, validity, and dependencies. The receiving authority retains each decision reserved to it. Recognized evidence can answer a specified question while leaving a separate local question pending or refused \[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}, Sections 2 and 5\].
++An institutional workflow may need a determination already made by another authority. *Recognition* gives that determination stated local effect under an applicable rule or instrument. Its record identifies the original assertion, issuing authority, subject, permitted use, validity, and dependencies. The receiving authority retains each decision reserved to it. Recognized evidence can answer a specified question while leaving a separate local question pending or refused \[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}, Sections 2 and 5\].
+ 
+-The source's synthetic collection workload makes the benefit concrete. Three authorities each require four common evidence answers and two local answers. Independent collection produces $3(4+2)=18$ answers. Permitted common collection produces $4+3\cdot2=10$, including all six local answers. An expired common observation requires a current replacement or leaves its question unresolved. A local refusal remains effective \[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}, Section 10\].
++The source illustrates evidence reuse with a synthetic collection workload. Three authorities each require four common evidence answers and two local answers. Independent collection produces $3(4+2)=18$ answers. Permitted common collection produces $4+3\cdot2=10$, including all six local answers. An expired common observation requires a current replacement or leaves its question unresolved. A local refusal remains effective \[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}, Section 10\].
+ 
+-Those counts measure stipulated collection work. Actual savings also depend on verification, coordination, maintenance, and local review. Recognition through an intermediary requires further attention to every restriction and question along the route. *Accession Networks* retains the source assertions, applicable policy clauses, current answers, and evidence of their compatible use \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Sections 5.2 and 6.3\].
++Those counts measure stipulated collection work. Actual savings also depend on verification, coordination, maintenance, and local review. Recognition through an intermediary must account for every restriction and question along the route. *Accession Networks* retains the source assertions, applicable policy clauses, current answers, and evidence of their compatible use \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Sections 5.2 and 6.3\].
+ 
+-A summary can show the strongest available recognition class for each subject. Different routes may supply different subjects, so that summary need not describe one usable route. Several routes can contribute evidence when their complete evidence family satisfies the joint admission conditions. The destination's current permission remains a separate condition. Its supporting evidence and current permission require their own records.
++A summary can show the strongest available recognition class for each subject. Different routes may supply different subjects, so that summary need not describe one usable route. Several routes can contribute evidence when their complete evidence family satisfies the joint admission conditions. The destination's current permission remains a separate condition. The supporting evidence and that permission require separate records.
+ 
+ ## 7 Common filings and the terms they preserve {#sec:accession}
+ 
+-*Accession* means joining a common instrument through an authority's own signed filing. The filing selects permitted limits on recognition and names any counterparties the authority refuses. The instrument determines notice, effective dates, and the consequences of those choices. The publisher records their effects within its assigned role \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Sections 2.2 and 6\].
++Authorities can establish recognition terms through *accession*: joining a common instrument through an authority's own signed filing. The filing selects permitted limits on recognition and names any counterparties the authority refuses. The instrument determines notice, effective dates, and the consequences of those choices. The publisher records their effects within its assigned role \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Sections 2.2 and 6\].
+ 
+-In the three-authority example, A and C select full terms while B selects partial terms. B and C refuse each other. The filings produce reciprocal recognition between A and B on partial terms, and between A and C on full terms. They establish no relation between B and C. Joining the same instrument therefore permits this specific pattern of relations \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Section 2.2\].
++In the three-authority example, A and C select full terms while B selects partial terms. B and C refuse each other. The filings produce reciprocal recognition between A and B on partial terms, and between A and C on full terms. They establish no relation between B and C \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Section 2.2\].
+ 
+ Theorem 4.5 proves equivalence with unconstrained bilateral negotiation under five conditions. The finite menu includes the unreserved option and combines limits by the lower class in each subject. Those limits apply reciprocally, and a fixed rule resolves declaration conflicts. Independently verifiable actual receipt opens a period for either authority to refuse the relation without requiring a reason or assent. The instrument establishes the relation by default after that period, while a refusal affects only the named pair.
+ 
+@@ -114,9 +114,9 @@
+ 
+ ## 8 What remains to establish {#sec:limits}
+ 
+-The constructions give explicit conditions for attributed changes, preserved rights, shared allowances, finite completion, and equivalent recognition terms. Their written proofs do not establish a deployed institution's conformity. The authority and continuation paper retains open work on formal mechanization, distributed histories, external effects, legal translation, judgment governance, and information disclosure \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Section 10\].
++The constructions give explicit conditions for attributed changes, preserved rights, shared allowances, finite completion, and equivalent recognition terms. Their written proofs do not establish a deployed institution's conformity. *Programmable Institutions* retains open work on formal mechanization, distributed histories, external effects, legal translation, judgment governance, and information disclosure \[[2](#ref-institutions){style="overflow-wrap:anywhere;hyphens:none"}, Section 10\].
+ 
+-The entity paper leaves the completeness of its institutional vocabulary and the prevalence of required human judgment open. The accession paper requires separate evidence for intermediary legal effect, actual willingness, repeated use, detection, collection, and qualified service capacity. An application must supply those premises for its own authorities, resources, and operating conditions \[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}, Section 8\]\[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Sections 7.4, 7.8, and 10\].
++*One Entity in Many Jurisdictions* leaves the completeness of its institutional vocabulary and the prevalence of required human judgment open. *Accession Networks* requires separate evidence for intermediary legal effect, actual willingness, repeated use, detection, collection, and qualified service capacity. An application must supply those premises for its own authorities, resources, and operating conditions \[[1](#ref-entity){style="overflow-wrap:anywhere;hyphens:none"}, Section 8\]\[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Sections 7.4, 7.8, and 10\].
+ 
+ ## 9 Technical reading map {#sec:reading}
+ 
+--- a/content/reader-papers/institutional-computation-explained.tex
++++ b/content/reader-papers/institutional-computation-explained.tex
+@@ -46,7 +46,6 @@
+ The request waits for a competent answer.
+ A timeout supplies no judgment, and an answer concerning a different address supplies no answer to this request.
+ 
+-This case establishes the article's central distinction.
+ Preparing an action, satisfying its rule, holding authority, and changing an institutional record are separate events and conditions.
+ An institutional program must preserve their relationship as work proceeds.
+ \emph{Programmable Institutions} makes that relationship precise for one institution's record.
+@@ -92,7 +91,7 @@
+ Applicable instruments supply the action's authority and rights interpretation.
+ Agreement on a few examples cannot establish preservation over every admitted position.
+ 
+-The next evaluation must identify the proposed act just as carefully.
++The evaluation must also identify the exact proposed act.
+ An \emph{action context} names the person, right, operation, parameters, participants, purpose, destination, time, and current rules.
+ Permission to hold shares can coexist with a refusal to offer them publicly.
+ The authority set must include every requirement reaching that act.
+@@ -101,7 +100,7 @@
+ \section{What the acceptance step must establish}
+ \label{sec:acceptance}
+ 
+-A delegation is a recorded grant of specified permission.
++Once the act is specified, the acceptance step must establish who may perform it. A delegation is a recorded grant of specified permission.
+ The source calls it a \emph{capability}.
+ Its scope includes objects, actions, fields that may change, permitted judgment answers, validity, and further delegation limits.
+ Each delegate receives a subset of the parent's authority.
+@@ -114,13 +113,13 @@
+ The record must retain both.
+ Isolated private computation can remain hidden only when it has no external observer or dispatch capability~\cite[Section~3.3 and Section~4, Corollary~1]{institutions}.
+ 
+-The rule's factual dependencies require equal care.
++The acceptance step must also check the facts on which its rule depends.
+ A \emph{dependency} is an observation that can affect the evaluation.
+ It can be a value, a query result, or the absence of a conflicting record.
+ The program must record all such dependencies and check them with the accepted change.
+ A new conflicting judgment can invalidate an earlier evaluation even if every previously read document remains unchanged.
+ 
+-Dependency completeness concerns changes considered together.
++Complete dependency tracking must account for changes that act together.
+ The source uses two false conditions joined by ``and.''
+ Changing either condition alone leaves the result false, while changing both makes it true.
+ Testing isolated changes would miss this dependency.
+@@ -131,7 +130,7 @@
+ The assumptions include exclusive control of authoritative writes, faithful effect declarations, complete judgments, atomic checks, authenticated actors, and trusted record time.
+ They also require complete authority information at each use~\cite[Section~4]{institutions}.
+ 
+-That last premise has an institutional source.
++Current authority information must come from the responsible institution.
+ A delegation can end through an external order before its printed expiry.
+ A valid signature on the delegation cannot establish that no such event occurred.
+ 
+@@ -189,9 +188,7 @@
+ An effective, permitted loan of 80 can leave their balances at 20 and 80, with a separate receivable and liability.
+ If the operator already reserved 30, only 70 remains free, so that transfer fails its funding condition.
+ 
+-Each of these numbers answers a different question.
+-An allowance bounds permitted expenditure.
+-A cash balance records available money in its named estate.
++An allowance bounds permitted expenditure, while a cash balance records available money in its named estate.
+ An outstanding obligation states what someone must still deliver or pay.
+ The record requires separate evidence that the responsible party performed the obligation.
+ 
+@@ -217,8 +214,7 @@
+ Theorem~4 identifies exactly the actions preserving guaranteed completion under this fully observed finite contract~\cite[Section~7.7]{institutions}.
+ 
+ The environmental contract lists the provider responses, evidence delays, authority changes, and losses the model admits.
+-Its completeness matters because the guarantee covers that list.
+-An omitted provider failure cannot acquire coverage from the theorem.
++The guarantee covers only the listed events and outcomes. It excludes any omitted provider failure.
+ A response outside the contract requires a fresh analysis while existing duties remain recorded.
+ A deadline also requires bounded response duration and a schedule, beyond a count of decisions.
+ 
+@@ -252,12 +248,12 @@
+ \section{Reusing a determination across authorities}
+ \label{sec:recognition}
+ 
+-\emph{Recognition} gives stated local effect to another authority's determination under an applicable rule or instrument.
++An institutional workflow may need a determination already made by another authority. \emph{Recognition} gives that determination stated local effect under an applicable rule or instrument.
+ Its record identifies the original assertion, issuing authority, subject, permitted use, validity, and dependencies.
+ The receiving authority retains each decision reserved to it.
+ Recognized evidence can answer a specified question while leaving a separate local question pending or refused~\cite[Sections~2 and 5]{entity}.
+ 
+-The source's synthetic collection workload makes the benefit concrete.
++The source illustrates evidence reuse with a synthetic collection workload.
+ Three authorities each require four common evidence answers and two local answers.
+ Independent collection produces \(3(4+2)=18\) answers.
+ Permitted common collection produces \(4+3\cdot2=10\), including all six local answers.
+@@ -266,19 +262,19 @@
+ 
+ Those counts measure stipulated collection work.
+ Actual savings also depend on verification, coordination, maintenance, and local review.
+-Recognition through an intermediary requires further attention to every restriction and question along the route.
++Recognition through an intermediary must account for every restriction and question along the route.
+ \emph{Accession Networks} retains the source assertions, applicable policy clauses, current answers, and evidence of their compatible use~\cite[Sections~5.2 and 6.3]{accession}.
+ 
+ A summary can show the strongest available recognition class for each subject.
+ Different routes may supply different subjects, so that summary need not describe one usable route.
+ Several routes can contribute evidence when their complete evidence family satisfies the joint admission conditions.
+ The destination's current permission remains a separate condition.
+-Its supporting evidence and current permission require their own records.
++The supporting evidence and that permission require separate records.
+ 
+ \section{Common filings and the terms they preserve}
+ \label{sec:accession}
+ 
+-\emph{Accession} means joining a common instrument through an authority's own signed filing.
++Authorities can establish recognition terms through \emph{accession}: joining a common instrument through an authority's own signed filing.
+ The filing selects permitted limits on recognition and names any counterparties the authority refuses.
+ The instrument determines notice, effective dates, and the consequences of those choices.
+ The publisher records their effects within its assigned role~\cite[Sections~2.2 and 6]{accession}.
+@@ -286,8 +282,7 @@
+ In the three-authority example, A and C select full terms while B selects partial terms.
+ B and C refuse each other.
+ The filings produce reciprocal recognition between A and B on partial terms, and between A and C on full terms.
+-They establish no relation between B and C.
+-Joining the same instrument therefore permits this specific pattern of relations~\cite[Section~2.2]{accession}.
++They establish no relation between B and C~\cite[Section~2.2]{accession}.
+ 
+ Theorem~4.5 proves equivalence with unconstrained bilateral negotiation under five conditions.
+ The finite menu includes the unreserved option and combines limits by the lower class in each subject.
+@@ -316,10 +311,10 @@
+ 
+ The constructions give explicit conditions for attributed changes, preserved rights, shared allowances, finite completion, and equivalent recognition terms.
+ Their written proofs do not establish a deployed institution's conformity.
+-The authority and continuation paper retains open work on formal mechanization, distributed histories, external effects, legal translation, judgment governance, and information disclosure~\cite[Section~10]{institutions}.
+-
+-The entity paper leaves the completeness of its institutional vocabulary and the prevalence of required human judgment open.
+-The accession paper requires separate evidence for intermediary legal effect, actual willingness, repeated use, detection, collection, and qualified service capacity.
++\emph{Programmable Institutions} retains open work on formal mechanization, distributed histories, external effects, legal translation, judgment governance, and information disclosure~\cite[Section~10]{institutions}.
++
++\emph{One Entity in Many Jurisdictions} leaves the completeness of its institutional vocabulary and the prevalence of required human judgment open.
++\emph{Accession Networks} requires separate evidence for intermediary legal effect, actual willingness, repeated use, detection, collection, and qualified service capacity.
+ An application must supply those premises for its own authorities, resources, and operating conditions~\cite[Section~8]{entity}\cite[Sections~7.4, 7.8, and 10]{accession}.
+ 
+ \section{Technical reading map}
+--- a/content/reader-papers/rules-evidence-and-local-decisions.md
++++ b/content/reader-papers/rules-evidence-and-local-decisions.md
+@@ -2,7 +2,9 @@
+ 
+ ## Abstract
+ 
+-A company delivers accounts after its original deadline but before an authorized extension expires. The date comparison is simple. Establishing which extension governs, who granted it, and what remains due requires a richer record. *Lex* describes rules with explicit exceptions, legal time, authority, and unresolved judgments. *How Compliance Composes* studies how their results and supporting evidence can combine without losing restrictions or attribution. Together, they distinguish an evaluated grade, an applicability record, and permission for a particular action. Finite examples explain when local evidence supports a joint conclusion, when cost optimization is exact, and where the proved constructions stop.
++A company delivers accounts after its original deadline but before an authorized extension expires. The date comparison is simple. Establishing which extension governs, who granted it, and what remains due requires a record of authority and outstanding duties. *Lex* describes rules with explicit exceptions, legal time, authority, and unresolved judgments. *How Compliance Composes* studies how their results and supporting evidence can combine without losing restrictions or attribution.
++
++Together, they distinguish an evaluated grade, an applicability record, and permission for a particular action. Finite examples explain when local evidence supports a joint conclusion, when cost optimization is exact, and where the proved constructions stop.
+ 
+ ## 1 A filing with two deadlines
+ 
+@@ -12,9 +14,9 @@
+ 
+ An application for an extension does not establish that the extension was granted. Nor does a notice for another company supply the missing authority. If the matched grant is available and the other stated conditions hold, the filing passes the extended timing rule. Missing grant evidence leaves the judgment unresolved. A deadline extension also leaves separate content and audit requirements intact. This is a worked rule model, not a determination of a particular company's legal position. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 7.7\]
+ 
+-This example separates a calculation from its justification. The calculation compares dates. The justification identifies a rule, an authorized exception, its scope, and the evidence that connects it to the filing. A reader should be able to reconstruct both.
++The date calculation needs a justification that identifies the rule, the authorized exception, its scope, and the evidence connecting it to the filing. A reader should be able to reconstruct both.
+ 
+-An institutional program needs these distinctions because later decisions reuse earlier results. A destination may accept a source's identity check while retaining its own decision about a proposed payment. A favorable source result cannot silently answer that different question. *How Compliance Composes* begins with this recognition problem and develops the structures needed to preserve it. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 1\]
++An institutional program needs these distinctions because later decisions reuse earlier results. A destination may accept a source's identity check while retaining its own decision about a proposed payment. A favorable source result cannot silently answer that different question. *How Compliance Composes* develops structures that retain this distinction when authorities recognize each other's results. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 1\]
+ 
+ ## 2 Which rule, at which time?
+ 
+@@ -24,9 +26,9 @@
+ 
+ Exception priorities must descend strictly above the base priority. Under those hypotheses, the priority evaluator agrees with the meet of the normalized clauses. Equal numeric priorities do not satisfy this theorem. The described runtime instead resolves such ties by source position. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 7.4, priority evaluator agreement\]
+ 
+-The selected result also does not describe every computation that occurred. The stated runtime evaluates the base, guards, and satisfied exception bodies before selecting by priority. Its effect accounting must therefore include evaluated bodies whose results do not win. An effect is an interaction such as reading evidence or requesting an authorized judgment. Choosing one final value does not erase those interactions. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.1 and 4.3\]
++Evaluating a rule can have effects, such as reading evidence or requesting an authorized judgment. The stated runtime evaluates the base, guards, and satisfied exception bodies before selecting by priority. Its effect accounting must include every evaluated body, even when its result is not selected. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.1 and 4.3\]
+ 
+-Legal time presents another choice of context. *Lex* distinguishes a recorded source time from times derived through legal rules. Its temporal non-regression result covers a specified graph of temporal constructors. Those constructors cannot turn a derived time back into a rewritten source time. The theorem does not establish unrestricted information-flow separation for the full language. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.2, temporal rule-graph non-regression\]
++Time also needs an explicit legal context. *Lex* distinguishes a recorded source time from times derived through legal rules. Its temporal non-regression result covers a specified graph of temporal constructors. Those constructors cannot turn a derived time back into a rewritten source time. The theorem does not establish unrestricted information-flow separation for the full language. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.2, temporal rule-graph non-regression\]
+ 
+ A later interpretation can therefore produce a new assessment while the historical record remains available. Section 4.9 separates what the evidence supported then, a legal assessment at a specified time, and permission for a current use. These are different questions with different inputs. Replaying an old decision does not issue a new permission or dispatch an external action.
+ 
+@@ -34,17 +36,17 @@
+ 
+ ## 3 When the rule needs an answer
+ 
+-Some missing inputs require computation. Others require judgment. *Lex* calls an unresolved, typed input a *hole*: it specifies the kind of answer needed without pretending that an answer exists. A mechanical hole concerns a known calculation or evidence procedure. A discretionary hole requires a competent authority's judgment. An unsettled hole requires a change in law rather than an ordinary discretionary filling. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.5\]
++A missing input may require computation or an authority's judgment. *Lex* calls an unresolved, typed input a *hole*: it specifies the kind of answer needed. A mechanical hole concerns a known calculation or evidence procedure. A discretionary hole requires a competent authority's judgment. An unsettled hole requires a change in law rather than an ordinary discretionary filling. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.5\]
+ 
+-For the filing extension, the program must obtain evidence of the competent authority's grant. It cannot manufacture that grant by solving the date calculation. The authorization record binds the supplied answer to the exact request, rule package, context, and scope. A rule package is the identified collection of rules used for evaluation. Its content identity matters independently of a convenient version label. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.3, 4.7, and 7.7\]
++For the filing extension, the program must obtain evidence of the competent authority's grant. It cannot manufacture that grant by solving the date calculation. The authorization record binds the supplied answer to the exact request, rule package, context, and scope. A rule package is the identified collection of rules used for evaluation. Its content identity matters independently of its version label. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.3, 4.7, and 7.7\]
+ 
+ Proof-carrying authorization records a delegation chain from the relevant authority to the signer. Delegation must respect the chain's scope and depth restrictions. A quorum counts distinct authorized signers, not repeated copies of one signature. Current verification also needs the specified revocation coverage and observation horizon. Missing status evidence yields `PendingEvidence`{style="overflow-wrap:anywhere;hyphens:none"}. It does not prove that no revocation exists. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.5 and 4.7--4.9\]
+ 
+-The structural quorum theorem extracts the required accepted witnesses from the verifier's conditions. It does not prove that the underlying legal judgment is correct. The full cryptographic instantiation also has separate obligations. These distinctions allow a mathematical result about an authorization record to remain useful without treating it as a source of sovereign authority. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.5, quorum acceptance unfolding\]
++The structural quorum theorem extracts the required accepted witnesses from the verifier's conditions. It does not prove that the underlying legal judgment is correct. The full cryptographic instantiation also has separate obligations. A theorem about this authorization record supplies no sovereign authority. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.5, quorum acceptance unfolding\]
+ 
+-Not every permissible act requires a new discretionary signature. *Lex* separately represents an authenticated issued act, derived evidence, and a reusable rule-based permission. The last can support automatic computation when its conditions hold. The distinction prevents both invented authority and unnecessary requests for fresh human approval. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 4.6--4.7\]
++*Lex* separately represents an authenticated issued act, derived evidence, and a reusable rule-based permission. The last can support automatic computation when its conditions hold, without a new discretionary signature. The distinction prevents both invented authority and unnecessary requests for fresh human approval. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 4.6--4.7\]
+ 
+-## 4 A grade is not an applicability record
++## 4 Grades and applicability records {#a-grade-is-not-an-applicability-record}
+ 
+ Suppose an applicable rule reports non-compliance, pending evidence, or compliance. Write these grades as $$N < P < C.$$
+ 
+@@ -60,17 +62,17 @@
+ 
+ Completed evaluation means the evaluator has produced the required results. Legal allowance additionally requires complete rule coverage, valid passing reasons, duties due for this action discharged, resolved judgments, and current local permission. Future duties can remain attached to the action. Operational admission further requires current authority for the exact request, resource reservations, protocol readiness, and freshness at the named stage. These distinctions keep a completed computation from becoming an unauthorized action. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 7.4\]
+ 
+-A threshold says how much evidence-derived grade a classification requires. *How Compliance Composes*, Section 6, considers a finite product of finite lattices and finitely many ordered tiers. Unique nested least thresholds exist exactly when the classification preserves binary meets and sends the strongest vector to the highest tier. Monotonicity alone does not suffice. These are least grade requirements, not least-cost evidence plans. Different acquisitions can establish the same required grades. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 6, Classification of tier maps\]
++A threshold specifies the evidence-derived grade required for a classification. *How Compliance Composes*, Section 6, considers a finite product of finite lattices and finitely many ordered tiers. Unique nested least thresholds exist exactly when the classification preserves binary meets and sends the strongest vector to the highest tier. Monotonicity alone does not suffice. These are least grade requirements, not least-cost evidence plans. Different acquisitions can establish the same required grades. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 6, Classification of tier maps\]
+ 
+ ## 5 Can the evidence fit together?
+ 
+ A coordinate summary reports a grade for each domain. It may conceal dependencies between the supporting choices. If the only available alternatives are $(1,0)$ and $(0,1)$, their coordinatewise upper summary is $(1,1)$. No available alternative supplies that combined state. *How Compliance Composes* therefore distinguishes an abstract grade vector from a *witnessed state*: a vector supported by jointly admissible evidence. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.3\]
+ 
+-The bit-triangle example makes the problem sharper. Three variables, $x$, $y$, and $z$, each take values zero or one. Three local tables require $$x\ne y,\qquad y\ne z,\qquad z\ne x.$$
++Consider the bit-triangle example. Three variables, $x$, $y$, and $z$, each take values zero or one. Three local tables require $$x\ne y,\qquad y\ne z,\qquad z\ne x.$$
+ 
+ Every pair of tables agrees on the possible values of its shared variable. Yet the three conditions cannot hold together. The first two force $x=z$, contrary to the third. Pairwise compatibility has left an impossible joint requirement undetected. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.4, Example 3.13\]
+ 
+-The positive result needs additional structure. A *join tree* is a connected, cycle-free graph of local tables in which each variable occurs in a connected part. A separator is the set of variables shared by two adjacent tables. Separator consistency requires equality of their full allowed assignments on that shared set, not just overlapping summaries.
++The exact compatibility result requires a particular arrangement of the local tables. A *join tree* is a connected, cycle-free graph of local tables in which each variable occurs in a connected part. A separator is the set of variables shared by two adjacent tables. Separator consistency requires equality of their full allowed assignments on that shared set, not just overlapping summaries.
+ 
+ For a nonempty finite family of tables arranged in a fixed join tree, Theorem 3.14 proves an exact equivalence. Separator consistency holds if and only if every local tuple extends to a global assignment. When a local table is nonempty, this gives a global assignment. The tree permits a constructive argument: attach a neighboring tuple that agrees on the separator, then continue through the remaining tables. The connected-variable condition prevents a later attachment from contradicting an earlier choice elsewhere. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.4\]
+ 
+@@ -78,21 +80,7 @@
+ 
+ To obtain actual evidence, the paper adds a finite witness profile. This profile must decode assignments into the exact source records they represent. Its full table conjunction must agree with independent whole-witness admission, including ownership, adverse conditions, authority, and dependency guards. Under that binding, Corollary 5.16 turns the join-tree result into a jointly admissible witness. The receiving authority's other admission conditions remain in force. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 5.5, Definition 5.15 and Corollary 5.16\]
+ 
+-## 6 The cheapest plan, within a declared problem
+-
+-Evidence acquisition can consume money or effort. Section 8 of *How Compliance Composes* gives a finite planning model with nonnegative rational costs, prerequisites, derivations, and induced duties. A plan must pay for shared acquisitions once, retain acquisition-induced duties, and supply jointly admissible evidence. Exhaustive finite search with exact feasibility checks finds a minimum-cost feasible plan or establishes infeasibility within that declared finite problem. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Definition 8.1 and Proposition 8.2\]
+-
+-For a small worked case, require grade $(2,2)$ in two coordinates. One offer supplies $(2,0)$ at cost 3. A second supplies $(0,2)$ at cost 4. A complete offer supplies $(2,2)$ at cost 9. If the offers are independent and compatible, the first two supply the target at cost 7. The saving follows from the specified offers and costs, not from a general promise that evidence reuse is cheaper.
+-
+-Theorem 8.4 identifies the independent-offer problem with weighted set cover on finite distributive grade lattices. Distributivity is the compatibility law between meet and join required by this reduction. In set cover, each offer covers some required items and the objective minimizes total cost. Here the required items are the maximal irreducible components below the target. Such a component cannot be formed by joining two strictly smaller grades. The reduction requires joint admissibility, satisfied local decisions and duties, and no additional conflicts, prerequisites, or duties from selecting offers. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 8, Theorem 8.4 and Example 8.5\]
+-
+-Remove one assumption and the answer can change. Two cheap offers at cost 1 each may conflict, leaving a compatible complete offer at cost 5 as the feasible choice. An acquisition costing 1 may trigger a duty whose evidence costs 4. A direct complete offer costing 3 then wins. The acquisition's duty remains even if the plan leaves its evidence unused. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 8, Example 8.5\]
+-
+-Recognition can also work on a bundle without working on its parts separately. The paper gives a monotone transport map that never raises an input grade. It recognizes two evidence items together but neither item alone. Acquiring both items and transporting them jointly costs 3 in that example. A calculation limited to separate transports would miss this route. The general finite planning model can represent it through the joint derivation and its prerequisites.
+-
+-A finite catalogue is a substantive assumption. Search cannot establish that the catalogue contains every available source or every legal route. A timeout establishes neither infeasibility nor optimality. A returned feasible plan has an upper cost bound. Proving that it is cheapest also requires a matching lower bound or completed exact search. An unresolved authority judgment leaves the plan conditional. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 8.1\]
+-
+-## 7 Recognition leaves a local decision intact
++## 6 Recognition leaves a local decision intact
+ 
+ Evidence transport and local permission have different algebraic roles. Transport may preserve or reduce the recognized grade. It may not silently improve it. Restrictions combine by meet, while compatible evidence can combine to support a stronger derived conclusion. Repeated transport of one source remains one origin, not several independent witnesses. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Sections 5.1--5.5\]
+ 
+@@ -100,11 +88,25 @@
+ 
+ Proposition 5.13 proves that the specified evidence operations preserve this local decision. If $e$ is the evidence-derived grade and $\lambda$ is the local cap, then $$e\wedge\lambda\leq\lambda.$$ A higher evidence grade cannot erase the cap. Nor can evidence composition turn refusal or awaiting judgment into permission. The theorem states a preservation property for the defined record and operations. It does not appoint the decision-maker. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 5.5, Recognition preserves reserved local decisions\]
+ 
+-More recorded information can reduce permission. A later adverse assertion may invalidate a dependency guard while leaving the historical record unchanged. Evidence accumulation is therefore not general monotonic growth of permission. The old decision remains replayable in its old context. A new decision must use the new context. This is the same distinction that protected both deadlines in the filing case.
++More recorded information can reduce permission. A later adverse assertion may invalidate a dependency guard while leaving the historical record unchanged. Evidence accumulation is therefore not general monotonic growth of permission. The old decision remains replayable in its old context, while a new decision must use the new context. As in the filing case, each assessment retains the context in which its evidence applied.
++
++## 7 The cheapest plan, within a declared problem
++
++A cost comparison must retain these evidence and admission conditions. Evidence acquisition can consume money or effort. Section 8 of *How Compliance Composes* gives a finite planning model with nonnegative rational costs, prerequisites, derivations, and induced duties. A plan must pay for shared acquisitions once, retain acquisition-induced duties, and supply jointly admissible evidence. Exhaustive finite search with exact feasibility checks finds a minimum-cost feasible plan or establishes infeasibility within that declared finite problem. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Definition 8.1 and Proposition 8.2\]
++
++For a small worked case, require grade $(2,2)$ in two coordinates. One offer supplies $(2,0)$ at cost 3. A second supplies $(0,2)$ at cost 4. A complete offer supplies $(2,2)$ at cost 9. If the offers are independent and compatible, the first two supply the target at cost 7. This saving depends on the specified offers and costs and need not occur in other cases.
++
++Theorem 8.4 identifies the independent-offer problem with weighted set cover on finite distributive grade lattices. Distributivity is the compatibility law between meet and join required by this reduction. In set cover, each offer covers some required items and the objective minimizes total cost. Here the required items are the maximal irreducible components below the target. Such a component cannot be formed by joining two strictly smaller grades. The reduction requires joint admissibility, satisfied local decisions and duties, and no additional conflicts, prerequisites, or duties from selecting offers. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 8, Theorem 8.4 and Example 8.5\]
++
++Remove one assumption and the answer can change. Two cheap offers at cost 1 each may conflict, leaving a compatible complete offer at cost 5 as the feasible choice. An acquisition costing 1 may trigger a duty whose evidence costs 4. A direct complete offer costing 3 is then cheaper. The acquisition's duty remains even if the plan leaves its evidence unused. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 8, Example 8.5\]
++
++Recognition can also work on a bundle without working on its parts separately. The paper gives a monotone transport map that never raises an input grade. It recognizes two evidence items together but neither item alone. Acquiring both items and transporting them jointly costs 3 in that example. A calculation limited to separate transports would miss this route. The general finite planning model can represent it through the joint derivation and its prerequisites.
++
++The exact search assumes a finite catalog. Search cannot establish that the catalog contains every available source or every legal route. A timeout establishes neither infeasibility nor optimality. A returned feasible plan has an upper cost bound. Proving that it is cheapest also requires a matching lower bound or completed exact search. An unresolved authority judgment leaves the plan conditional. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 8.1\]
+ 
+ ## 8 What the formal results establish
+ 
+-*Lex* proves substantial results about a specified structural source calculus. A type describes the form and constraints of an expression's result. Weakening permits additional well-formed assumptions. Typed substitution replaces a variable with a value of the required type. Regularity establishes that assigned types themselves are well formed. These results support the paper's precise type-preservation theorem. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 4.2\]
++*Lex* proves results about a specified structural source calculus. A type describes the form and constraints of an expression's result. Weakening permits additional well-formed assumptions. Typed substitution replaces a variable with a value of the required type. Regularity establishes that assigned types themselves are well formed. These results support the paper's precise type-preservation theorem. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 4.2\]
+ 
+ Pure conversion is the equality used to compare types in that structural core. Confluence of the underlying pure reduction and dependent-product compatibility are proved results. Confluence means that any two finite pure reductions from one term have a common result. Product compatibility ensures that convertible function types have convertible domains and result types, with exactly equal stored effect rows.
+ 
+@@ -116,7 +118,7 @@
+ 
+ Nine finite compilation cases establish verdict preservation. A separate finite model proves verdict agreement under its stated external primitive assumptions. These results do not establish full compiler correspondence or agreement with the intended legal semantics. Nor do they prove preservation of every observable distinction between certificates. Those are separate adequacy and full-abstraction obligations. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 5--5.1 and 11--12\]
+ 
+-*How Compliance Composes* similarly separates written finite constructions, mechanized cores, and supplied external premises. Its exact composition and planning theorems do not authenticate source evidence or prove that adopted instruments were completely formalized. Those tasks require their own bindings and verification. The useful conclusion is precise: preserved records and exact finite models support compositional decisions without erasing their conditions. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Sections 10--11\]
++*How Compliance Composes* similarly separates written finite constructions, mechanized cores, and supplied external premises. Its exact composition and planning theorems do not authenticate source evidence or prove that adopted instruments were completely formalized. Those tasks require their own bindings and verification. Preserved records and exact finite models support compositional decisions while retaining their conditions. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Sections 10--11\]
+ 
+ ## 9 Technical reading map
+ 
+--- a/content/reader-papers/rules-evidence-and-local-decisions.tex
++++ b/content/reader-papers/rules-evidence-and-local-decisions.tex
+@@ -9,7 +9,9 @@
+ \maketitle
+ 
+ \begin{abstract}
+-A company delivers accounts after its original deadline but before an authorized extension expires. The date comparison is simple. Establishing which extension governs, who granted it, and what remains due requires a richer record. \emph{Lex} describes rules with explicit exceptions, legal time, authority, and unresolved judgments. \emph{How Compliance Composes} studies how their results and supporting evidence can combine without losing restrictions or attribution. Together, they distinguish an evaluated grade, an applicability record, and permission for a particular action. Finite examples explain when local evidence supports a joint conclusion, when cost optimization is exact, and where the proved constructions stop.
++A company delivers accounts after its original deadline but before an authorized extension expires. The date comparison is simple. Establishing which extension governs, who granted it, and what remains due requires a record of authority and outstanding duties. \emph{Lex} describes rules with explicit exceptions, legal time, authority, and unresolved judgments. \emph{How Compliance Composes} studies how their results and supporting evidence can combine without losing restrictions or attribution.
++
++Together, they distinguish an evaluated grade, an applicability record, and permission for a particular action. Finite examples explain when local evidence supports a joint conclusion, when cost optimization is exact, and where the proved constructions stop.
+ \end{abstract}
+ 
+ \section{A filing with two deadlines}
+@@ -20,9 +22,9 @@
+ 
+ An application for an extension does not establish that the extension was granted. Nor does a notice for another company supply the missing authority. If the matched grant is available and the other stated conditions hold, the filing passes the extended timing rule. Missing grant evidence leaves the judgment unresolved. A deadline extension also leaves separate content and audit requirements intact. This is a worked rule model, not a determination of a particular company's legal position. \cite[Section~7.7]{lex}
+ 
+-This example separates a calculation from its justification. The calculation compares dates. The justification identifies a rule, an authorized exception, its scope, and the evidence that connects it to the filing. A reader should be able to reconstruct both.
++The date calculation needs a justification that identifies the rule, the authorized exception, its scope, and the evidence connecting it to the filing. A reader should be able to reconstruct both.
+ 
+-An institutional program needs these distinctions because later decisions reuse earlier results. A destination may accept a source's identity check while retaining its own decision about a proposed payment. A favorable source result cannot silently answer that different question. \emph{How Compliance Composes} begins with this recognition problem and develops the structures needed to preserve it. \cite[Section~1]{composes}
++An institutional program needs these distinctions because later decisions reuse earlier results. A destination may accept a source's identity check while retaining its own decision about a proposed payment. A favorable source result cannot silently answer that different question. \emph{How Compliance Composes} develops structures that retain this distinction when authorities recognize each other's results. \cite[Section~1]{composes}
+ 
+ \section{Which rule, at which time?}
+ 
+@@ -32,9 +34,9 @@
+ 
+ Exception priorities must descend strictly above the base priority. Under those hypotheses, the priority evaluator agrees with the meet of the normalized clauses. Equal numeric priorities do not satisfy this theorem. The described runtime instead resolves such ties by source position. \cite[Section~7.4, priority evaluator agreement]{lex}
+ 
+-The selected result also does not describe every computation that occurred. The stated runtime evaluates the base, guards, and satisfied exception bodies before selecting by priority. Its effect accounting must therefore include evaluated bodies whose results do not win. An effect is an interaction such as reading evidence or requesting an authorized judgment. Choosing one final value does not erase those interactions. \cite[Sections~3.1 and~4.3]{lex}
++Evaluating a rule can have effects, such as reading evidence or requesting an authorized judgment. The stated runtime evaluates the base, guards, and satisfied exception bodies before selecting by priority. Its effect accounting must include every evaluated body, even when its result is not selected. \cite[Sections~3.1 and~4.3]{lex}
+ 
+-Legal time presents another choice of context. \emph{Lex} distinguishes a recorded source time from times derived through legal rules. Its temporal non-regression result covers a specified graph of temporal constructors. Those constructors cannot turn a derived time back into a rewritten source time. The theorem does not establish unrestricted information-flow separation for the full language. \cite[Section~3.2, temporal rule-graph non-regression]{lex}
++Time also needs an explicit legal context. \emph{Lex} distinguishes a recorded source time from times derived through legal rules. Its temporal non-regression result covers a specified graph of temporal constructors. Those constructors cannot turn a derived time back into a rewritten source time. The theorem does not establish unrestricted information-flow separation for the full language. \cite[Section~3.2, temporal rule-graph non-regression]{lex}
+ 
+ A later interpretation can therefore produce a new assessment while the historical record remains available. Section~4.9 separates what the evidence supported then, a legal assessment at a specified time, and permission for a current use. These are different questions with different inputs. Replaying an old decision does not issue a new permission or dispatch an external action.
+ 
+@@ -42,17 +44,17 @@
+ 
+ \section{When the rule needs an answer}
+ 
+-Some missing inputs require computation. Others require judgment. \emph{Lex} calls an unresolved, typed input a \emph{hole}: it specifies the kind of answer needed without pretending that an answer exists. A mechanical hole concerns a known calculation or evidence procedure. A discretionary hole requires a competent authority's judgment. An unsettled hole requires a change in law rather than an ordinary discretionary filling. \cite[Section~3.5]{lex}
++A missing input may require computation or an authority's judgment. \emph{Lex} calls an unresolved, typed input a \emph{hole}: it specifies the kind of answer needed. A mechanical hole concerns a known calculation or evidence procedure. A discretionary hole requires a competent authority's judgment. An unsettled hole requires a change in law rather than an ordinary discretionary filling. \cite[Section~3.5]{lex}
+ 
+-For the filing extension, the program must obtain evidence of the competent authority's grant. It cannot manufacture that grant by solving the date calculation. The authorization record binds the supplied answer to the exact request, rule package, context, and scope. A rule package is the identified collection of rules used for evaluation. Its content identity matters independently of a convenient version label. \cite[Sections~3.3, 4.7, and~7.7]{lex}
++For the filing extension, the program must obtain evidence of the competent authority's grant. It cannot manufacture that grant by solving the date calculation. The authorization record binds the supplied answer to the exact request, rule package, context, and scope. A rule package is the identified collection of rules used for evaluation. Its content identity matters independently of its version label. \cite[Sections~3.3, 4.7, and~7.7]{lex}
+ 
+ Proof-carrying authorization records a delegation chain from the relevant authority to the signer. Delegation must respect the chain's scope and depth restrictions. A quorum counts distinct authorized signers, not repeated copies of one signature. Current verification also needs the specified revocation coverage and observation horizon. Missing status evidence yields \texttt{PendingEvidence}. It does not prove that no revocation exists. \cite[Sections~3.5 and~4.7--4.9]{lex}
+ 
+-The structural quorum theorem extracts the required accepted witnesses from the verifier's conditions. It does not prove that the underlying legal judgment is correct. The full cryptographic instantiation also has separate obligations. These distinctions allow a mathematical result about an authorization record to remain useful without treating it as a source of sovereign authority. \cite[Section~3.5, quorum acceptance unfolding]{lex}
++The structural quorum theorem extracts the required accepted witnesses from the verifier's conditions. It does not prove that the underlying legal judgment is correct. The full cryptographic instantiation also has separate obligations. A theorem about this authorization record supplies no sovereign authority. \cite[Section~3.5, quorum acceptance unfolding]{lex}
+ 
+-Not every permissible act requires a new discretionary signature. \emph{Lex} separately represents an authenticated issued act, derived evidence, and a reusable rule-based permission. The last can support automatic computation when its conditions hold. The distinction prevents both invented authority and unnecessary requests for fresh human approval. \cite[Sections~4.6--4.7]{lex}
++\emph{Lex} separately represents an authenticated issued act, derived evidence, and a reusable rule-based permission. The last can support automatic computation when its conditions hold, without a new discretionary signature. The distinction prevents both invented authority and unnecessary requests for fresh human approval. \cite[Sections~4.6--4.7]{lex}
+ 
+-\section{A grade is not an applicability record}
++\section{Grades and applicability records}
+ 
+ Suppose an applicable rule reports non-compliance, pending evidence, or compliance. Write these grades as
+ \[
+@@ -71,40 +73,26 @@
+ 
+ Completed evaluation means the evaluator has produced the required results. Legal allowance additionally requires complete rule coverage, valid passing reasons, duties due for this action discharged, resolved judgments, and current local permission. Future duties can remain attached to the action. Operational admission further requires current authority for the exact request, resource reservations, protocol readiness, and freshness at the named stage. These distinctions keep a completed computation from becoming an unauthorized action. \cite[Section~7.4]{lex}
+ 
+-A threshold says how much evidence-derived grade a classification requires. \emph{How Compliance Composes}, Section~6, considers a finite product of finite lattices and finitely many ordered tiers. Unique nested least thresholds exist exactly when the classification preserves binary meets and sends the strongest vector to the highest tier. Monotonicity alone does not suffice. These are least grade requirements, not least-cost evidence plans. Different acquisitions can establish the same required grades. \cite[Section~6, Classification of tier maps]{composes}
++A threshold specifies the evidence-derived grade required for a classification. \emph{How Compliance Composes}, Section~6, considers a finite product of finite lattices and finitely many ordered tiers. Unique nested least thresholds exist exactly when the classification preserves binary meets and sends the strongest vector to the highest tier. Monotonicity alone does not suffice. These are least grade requirements, not least-cost evidence plans. Different acquisitions can establish the same required grades. \cite[Section~6, Classification of tier maps]{composes}
+ 
+ \section{Can the evidence fit together?}
+ 
+ A coordinate summary reports a grade for each domain. It may conceal dependencies between the supporting choices. If the only available alternatives are $(1,0)$ and $(0,1)$, their coordinatewise upper summary is $(1,1)$. No available alternative supplies that combined state. \emph{How Compliance Composes} therefore distinguishes an abstract grade vector from a \emph{witnessed state}: a vector supported by jointly admissible evidence. \cite[Section~3.3]{composes}
+ 
+-The bit-triangle example makes the problem sharper. Three variables, $x$, $y$, and $z$, each take values zero or one. Three local tables require
++Consider the bit-triangle example. Three variables, $x$, $y$, and $z$, each take values zero or one. Three local tables require
+ \[
+ x\ne y,\qquad y\ne z,\qquad z\ne x.
+ \]
+ 
+ Every pair of tables agrees on the possible values of its shared variable. Yet the three conditions cannot hold together. The first two force $x=z$, contrary to the third. Pairwise compatibility has left an impossible joint requirement undetected. \cite[Section~3.4, Example~3.13]{composes}
+ 
+-The positive result needs additional structure. A \emph{join tree} is a connected, cycle-free graph of local tables in which each variable occurs in a connected part. A separator is the set of variables shared by two adjacent tables. Separator consistency requires equality of their full allowed assignments on that shared set, not just overlapping summaries.
++The exact compatibility result requires a particular arrangement of the local tables. A \emph{join tree} is a connected, cycle-free graph of local tables in which each variable occurs in a connected part. A separator is the set of variables shared by two adjacent tables. Separator consistency requires equality of their full allowed assignments on that shared set, not just overlapping summaries.
+ 
+ For a nonempty finite family of tables arranged in a fixed join tree, Theorem~3.14 proves an exact equivalence. Separator consistency holds if and only if every local tuple extends to a global assignment. When a local table is nonempty, this gives a global assignment. The tree permits a constructive argument: attach a neighboring tuple that agrees on the separator, then continue through the remaining tables. The connected-variable condition prevents a later attachment from contradicting an earlier choice elsewhere. \cite[Section~3.4]{composes}
+ 
+ The theorem concerns the conjunction of all declared tables. Omitting a global constraint changes that conjunction and invalidates its use for the original problem. Failure to find the proposed tree also does not prove that the original problem is infeasible. A cyclic problem may require another exact method.
+ 
+ To obtain actual evidence, the paper adds a finite witness profile. This profile must decode assignments into the exact source records they represent. Its full table conjunction must agree with independent whole-witness admission, including ownership, adverse conditions, authority, and dependency guards. Under that binding, Corollary~5.16 turns the join-tree result into a jointly admissible witness. The receiving authority's other admission conditions remain in force. \cite[Section~5.5, Definition~5.15 and Corollary~5.16]{composes}
+-
+-\section{The cheapest plan, within a declared problem}
+-
+-Evidence acquisition can consume money or effort. Section~8 of \emph{How Compliance Composes} gives a finite planning model with nonnegative rational costs, prerequisites, derivations, and induced duties. A plan must pay for shared acquisitions once, retain acquisition-induced duties, and supply jointly admissible evidence. Exhaustive finite search with exact feasibility checks finds a minimum-cost feasible plan or establishes infeasibility within that declared finite problem. \cite[Definition~8.1 and Proposition~8.2]{composes}
+-
+-For a small worked case, require grade $(2,2)$ in two coordinates. One offer supplies $(2,0)$ at cost~3. A second supplies $(0,2)$ at cost~4. A complete offer supplies $(2,2)$ at cost~9. If the offers are independent and compatible, the first two supply the target at cost~7. The saving follows from the specified offers and costs, not from a general promise that evidence reuse is cheaper.
+-
+-Theorem~8.4 identifies the independent-offer problem with weighted set cover on finite distributive grade lattices. Distributivity is the compatibility law between meet and join required by this reduction. In set cover, each offer covers some required items and the objective minimizes total cost. Here the required items are the maximal irreducible components below the target. Such a component cannot be formed by joining two strictly smaller grades. The reduction requires joint admissibility, satisfied local decisions and duties, and no additional conflicts, prerequisites, or duties from selecting offers. \cite[Section~8, Theorem~8.4 and Example~8.5]{composes}
+-
+-Remove one assumption and the answer can change. Two cheap offers at cost~1 each may conflict, leaving a compatible complete offer at cost~5 as the feasible choice. An acquisition costing~1 may trigger a duty whose evidence costs~4. A direct complete offer costing~3 then wins. The acquisition's duty remains even if the plan leaves its evidence unused. \cite[Section~8, Example~8.5]{composes}
+-
+-Recognition can also work on a bundle without working on its parts separately. The paper gives a monotone transport map that never raises an input grade. It recognizes two evidence items together but neither item alone. Acquiring both items and transporting them jointly costs~3 in that example. A calculation limited to separate transports would miss this route. The general finite planning model can represent it through the joint derivation and its prerequisites.
+-
+-A finite catalogue is a substantive assumption. Search cannot establish that the catalogue contains every available source or every legal route. A timeout establishes neither infeasibility nor optimality. A returned feasible plan has an upper cost bound. Proving that it is cheapest also requires a matching lower bound or completed exact search. An unresolved authority judgment leaves the plan conditional. \cite[Section~8.1]{composes}
+ 
+ \section{Recognition leaves a local decision intact}
+ 
+@@ -118,11 +106,25 @@
+ \]
+ A higher evidence grade cannot erase the cap. Nor can evidence composition turn refusal or awaiting judgment into permission. The theorem states a preservation property for the defined record and operations. It does not appoint the decision-maker. \cite[Section~5.5, Recognition preserves reserved local decisions]{composes}
+ 
+-More recorded information can reduce permission. A later adverse assertion may invalidate a dependency guard while leaving the historical record unchanged. Evidence accumulation is therefore not general monotonic growth of permission. The old decision remains replayable in its old context. A new decision must use the new context. This is the same distinction that protected both deadlines in the filing case.
++More recorded information can reduce permission. A later adverse assertion may invalidate a dependency guard while leaving the historical record unchanged. Evidence accumulation is therefore not general monotonic growth of permission. The old decision remains replayable in its old context, while a new decision must use the new context. As in the filing case, each assessment retains the context in which its evidence applied.
++
++\section{The cheapest plan, within a declared problem}
++
++A cost comparison must retain these evidence and admission conditions. Evidence acquisition can consume money or effort. Section~8 of \emph{How Compliance Composes} gives a finite planning model with nonnegative rational costs, prerequisites, derivations, and induced duties. A plan must pay for shared acquisitions once, retain acquisition-induced duties, and supply jointly admissible evidence. Exhaustive finite search with exact feasibility checks finds a minimum-cost feasible plan or establishes infeasibility within that declared finite problem. \cite[Definition~8.1 and Proposition~8.2]{composes}
++
++For a small worked case, require grade $(2,2)$ in two coordinates. One offer supplies $(2,0)$ at cost~3. A second supplies $(0,2)$ at cost~4. A complete offer supplies $(2,2)$ at cost~9. If the offers are independent and compatible, the first two supply the target at cost~7. This saving depends on the specified offers and costs and need not occur in other cases.
++
++Theorem~8.4 identifies the independent-offer problem with weighted set cover on finite distributive grade lattices. Distributivity is the compatibility law between meet and join required by this reduction. In set cover, each offer covers some required items and the objective minimizes total cost. Here the required items are the maximal irreducible components below the target. Such a component cannot be formed by joining two strictly smaller grades. The reduction requires joint admissibility, satisfied local decisions and duties, and no additional conflicts, prerequisites, or duties from selecting offers. \cite[Section~8, Theorem~8.4 and Example~8.5]{composes}
++
++Remove one assumption and the answer can change. Two cheap offers at cost~1 each may conflict, leaving a compatible complete offer at cost~5 as the feasible choice. An acquisition costing~1 may trigger a duty whose evidence costs~4. A direct complete offer costing~3 is then cheaper. The acquisition's duty remains even if the plan leaves its evidence unused. \cite[Section~8, Example~8.5]{composes}
++
++Recognition can also work on a bundle without working on its parts separately. The paper gives a monotone transport map that never raises an input grade. It recognizes two evidence items together but neither item alone. Acquiring both items and transporting them jointly costs~3 in that example. A calculation limited to separate transports would miss this route. The general finite planning model can represent it through the joint derivation and its prerequisites.
++
++The exact search assumes a finite catalog. Search cannot establish that the catalog contains every available source or every legal route. A timeout establishes neither infeasibility nor optimality. A returned feasible plan has an upper cost bound. Proving that it is cheapest also requires a matching lower bound or completed exact search. An unresolved authority judgment leaves the plan conditional. \cite[Section~8.1]{composes}
+ 
+ \section{What the formal results establish}
+ 
+-\emph{Lex} proves substantial results about a specified structural source calculus. A type describes the form and constraints of an expression's result. Weakening permits additional well-formed assumptions. Typed substitution replaces a variable with a value of the required type. Regularity establishes that assigned types themselves are well formed. These results support the paper's precise type-preservation theorem. \cite[Section~4.2]{lex}
++\emph{Lex} proves results about a specified structural source calculus. A type describes the form and constraints of an expression's result. Weakening permits additional well-formed assumptions. Typed substitution replaces a variable with a value of the required type. Regularity establishes that assigned types themselves are well formed. These results support the paper's precise type-preservation theorem. \cite[Section~4.2]{lex}
+ 
+ Pure conversion is the equality used to compare types in that structural core. Confluence of the underlying pure reduction and dependent-product compatibility are proved results. Confluence means that any two finite pure reductions from one term have a common result. Product compatibility ensures that convertible function types have convertible domains and result types, with exactly equal stored effect rows.
+ 
+@@ -134,7 +136,7 @@
+ 
+ Nine finite compilation cases establish verdict preservation. A separate finite model proves verdict agreement under its stated external primitive assumptions. These results do not establish full compiler correspondence or agreement with the intended legal semantics. Nor do they prove preservation of every observable distinction between certificates. Those are separate adequacy and full-abstraction obligations. \cite[Sections~5--5.1 and~11--12]{lex}
+ 
+-\emph{How Compliance Composes} similarly separates written finite constructions, mechanized cores, and supplied external premises. Its exact composition and planning theorems do not authenticate source evidence or prove that adopted instruments were completely formalized. Those tasks require their own bindings and verification. The useful conclusion is precise: preserved records and exact finite models support compositional decisions without erasing their conditions. \cite[Sections~10--11]{composes}
++\emph{How Compliance Composes} similarly separates written finite constructions, mechanized cores, and supplied external premises. Its exact composition and planning theorems do not authenticate source evidence or prove that adopted instruments were completely formalized. Those tasks require their own bindings and verification. Preserved records and exact finite models support compositional decisions while retaining their conditions. \cite[Sections~10--11]{composes}
+ 
+ \section{Technical reading map}
+ 
+--- a/content/reader-papers/recognition-across-independent-authorities.md
++++ b/content/reader-papers/recognition-across-independent-authorities.md
+@@ -2,21 +2,23 @@
+ 
+ ## Abstract
+ 
+-A registry can reuse a foreign identity record while retaining its own licensing decision. Making this arrangement reliable requires the source assertion, receiving rule, and current authority to remain separately identifiable. This article explains how recognition preserves those records through intermediaries, policy changes, and unfinished work. It also examines shared reservations and disclosures whose combined history reveals more than their individual answers. A finite policy criterion identifies when knowledge, privacy, permission, and success can hold together. Finally, accession can reproduce bilateral relations under explicit assumptions about common terms, notice, refusals, and willingness. The underlying results concern stated mathematical models. Their use requires authentic instruments, faithful interpretation, complete observations, and the relevant service and provider evidence.
++A registry can reuse a foreign identity record while retaining its own licensing decision. Reliable reuse requires the source assertion, receiving rule, and current authority to remain separately identifiable. This article explains how recognition preserves those records through intermediaries, policy changes, and unfinished work. It also examines shared reservations and disclosures whose combined history reveals more than their individual answers. A finite policy criterion identifies when knowledge, privacy, permission, and success can hold together. Accession can reproduce bilateral relations under explicit assumptions about common terms, notice, refusals, and willingness.
+ 
+-## 1 A foreign statement and a local licence {#sec:registry}
++The underlying results concern stated mathematical models. Their use requires authentic instruments, faithful interpretation, complete observations, and the relevant service and provider evidence.
+ 
+-North has checked a company's identity and standing. The company applies for a licence in South, which permits use of North's identity evidence. South also requires a current licensing decision under its own rules. Importing the file answers the identity question while the licensing question remains pending. An authorized South decision can then permit the licence, using the imported evidence. The licensing act creates the reporting duty specified by South's rule.
++## 1 A foreign statement and a local license {#sec:registry}
+ 
+-This is a constructed case from *The Sovereign Jurisdiction Network*, Example 4.5 \[[1](#ref-sjn){style="overflow-wrap:anywhere;hyphens:none"}\]. It contains three distinct events: importing evidence, deciding the application, and issuing the licence. Repeating the import creates neither a second source assertion nor another reporting duty for the same trigger. If South's current licensing decision refuses the application, the imported identity record leaves that refusal effective. Proposition 4.2 proves this separation for the paper's recognition construction.
++North has checked a company's identity and standing. The company applies for a license in South, which permits use of North's identity evidence. South also requires a current licensing decision under its own rules. Importing the file answers the identity question while the licensing question remains pending. An authorized South decision can then permit the license, using the imported evidence. The licensing act creates the reporting duty specified by South's rule.
++
++This is a constructed case from *The Sovereign Jurisdiction Network*, Example 4.5 \[[1](#ref-sjn){style="overflow-wrap:anywhere;hyphens:none"}\]. It contains three distinct events: importing evidence, deciding the application, and issuing the license. Repeating the import creates neither a second source assertion nor another reporting duty for the same trigger. If South's current licensing decision refuses the application, the imported identity record leaves that refusal effective. Proposition 4.2 proves this separation for the paper's recognition construction.
+ 
+ *Recognition* means a receiving authority gives specified treatment or effect to another authority's determination under its own governing rule. *Admission* is the check that permits a proposed use or change under that rule. *Authority* is permission to perform the particular institutional act within its stated scope and time. A signature identifies an attributable assertion under a key. Its institutional effect also depends on the signer's authority and the instrument governing the requested use.
+ 
+ A *corridor* records a directed recognition rule. It names the source, destination, permitted evidence, treatment, and questions that require a receiving authority's current answer. Those questions are called *fresh questions*. Fresh means that the answer must satisfy the present request and rule. A standing delegation can authorize its computation from reusable evidence.
+ 
+-The carrying domains and fresh questions can overlap. In the example, identity evidence and the local licensing question concern one domain. Classifying that domain as recognized cannot remove the local question. The complete record must retain both fields, together with the authority responsible for the answer. *How Compliance Composes*, Section 5.6, establishes this preservation through complete corridor contracts \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}\].
++Domains covered by recognition can also contain fresh questions. In the example, identity evidence and the local licensing question concern one domain. Classifying that domain as recognized cannot remove the local question. The complete record must retain both fields, together with the authority responsible for the answer. *How Compliance Composes*, Section 5.6, establishes this preservation through complete corridor contracts \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}\].
+ 
+-The resulting division of work permits reuse without repeating the source examination. South remains responsible for its own rule, decision, and resulting duties. The record of recognition supplies the evidence for that division throughout later use.
++South can therefore reuse North's examination while retaining responsibility for its own rule, decision, and resulting duties. The recognition record preserves evidence of this division of work throughout later use.
+ 
+ ## 2 Keeping a decision reproducible {#sec:history}
+ 
+@@ -38,9 +40,13 @@
+ 
+ A *grade* summarizes evidence treatment on a declared ordered scale. A treatment map describes how a receiving rule preserves or lowers an incoming grade. The papers require compatible meanings on the common scale. A missing correspondence between local meanings leaves transport unresolved. Labels such as Full, Partial, and Conditional describe specified maps and conditions. Their names alone establish no universal order between executable policies.
+ 
+-Consider the successful witness in *Accession Networks*, Section 6.3 \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}\]. The original source supplies full support. An intermediary carries it under a condition whose admitted answer is true. The destination applies a partial cap, and the filing requires that capped support. The retained assertion, both policies, condition answer, and current-use certificates jointly support the filing. Each receiving authority supplies its required answers, and the destination records Allow. A false condition supplies no carried support. A destination refusal prevents execution despite the same original source history.
++Consider the successful witness in *Accession Networks*, Section 6.3 \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}\]. The original source supplies full support. An intermediary carries it under a condition whose admitted answer is true. The destination applies a partial cap, and the filing requires that capped support. The retained assertion, both policies, condition answer, and current-use certificates jointly support the filing. Each receiving authority supplies its required answers, and the destination records Allow.
+ 
+-The restriction calculation and the evidence calculation remain distinct. In the paper's grade model, repeating an evaluation changes nothing, improving the inputs cannot worsen the result, and every participating restriction remains binding. These conditions force combination by the greatest common lower bound, called the *meet* \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}, Section 2.1, Proposition 2.2\]. On one ordered chain, this is the minimum. Complementary admissible evidence can instead contribute to a supported summary through its least common upper bound, called the *join*. That summary requires a compatible witness family for the exact request. Selecting favorable coordinates from incompatible alternatives does not provide such a family \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.3 and 5.5\].
++A false condition supplies no carried support. A destination refusal prevents execution despite the same original source history.
++
++The restriction calculation and the evidence calculation remain distinct. In the paper's grade model, repeating an evaluation changes nothing, improving the inputs cannot worsen the result, and every participating restriction remains binding. These conditions force combination by the greatest common lower bound, called the *meet* \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}, Section 2.1, Proposition 2.2\]. On one ordered chain, this is the minimum.
++
++Complementary admissible evidence can instead contribute to a supported summary through its least common upper bound, called the *join*. That summary requires a compatible witness family for the exact request. Selecting favorable coordinates from incompatible alternatives does not provide such a family \[[2](#ref-compliance){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.3 and 5.5\].
+ 
+ Applicability also remains attributable. If one authority finds a violation and another finds its rule outside scope, the combined record retains both determinations. The second finding does not remove the first authority's restriction. *How Compliance Composes*, Section 2.3, retains each individual source record before calculating its summary. Repeating an identical source record changes neither its identity nor that summary.
+ 
+@@ -52,11 +58,13 @@
+ 
+ An admitted act may depend on resources that another request also needs. A *reservation* identifies capacity already committed while an operation remains unresolved. The same physical resource needs one canonical identity across its representations. Another receipt for that resource creates no additional capacity.
+ 
+-The guard construction includes every resource owner whose record can affect admission \[[1](#ref-sjn){style="overflow-wrap:anywhere;hyphens:none"}, Section 5.1\]. It also includes the records that determine ownership and the required participants. A changed ownership rule invalidates the earlier participant discovery. The attempt resolves its terminal abort before recalculating the dependencies and preparing again. An unknown terminal outcome retains its reservations. A local timeout alone cannot establish that a prepared operation will never complete elsewhere.
++The guard construction includes every resource owner whose record can affect admission \[[1](#ref-sjn){style="overflow-wrap:anywhere;hyphens:none"}, Section 5.1\]. It also includes the records that determine ownership and the required participants. A changed ownership rule invalidates the earlier participant discovery. The attempt must resolve with a terminal abort before the program recalculates dependencies and prepares again. An unknown terminal outcome retains its reservations. A local timeout alone cannot establish that a prepared operation will never complete elsewhere.
+ 
+-Qualified time supplies a concrete example. *Accession Networks*, Example 7.15, has four inspections and one filing, with five available worker-slots \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}\]. A worker-slot is one qualified worker's reserved service during one specified interval. The inspections can use only three slots before their deadline. The filing can use either of two later slots. Although total demand equals total capacity, the four inspections lack one eligible slot. Purchasing another late filing slot leaves that deficit unchanged. One additional qualified inspection slot before the deadline completes the assignment under the example's service assumptions.
++The capacity limit can depend on when qualified workers are available. *Accession Networks*, Example 7.15, has four inspections and one filing, with five available worker-slots \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}\]. A worker-slot is one qualified worker's reserved service during one specified interval.
+ 
+-Proposition 7.12 tests every subset of tasks against its eligible slots. This is why total staffing cannot establish timely completion. Existing commitments must enter the assignment before proposed additional work. Input delivery, current authority, qualifications, and task duration remain premises of the schedule. Each modeled task occupies one whole slot. Its duration, including recording and handoff, must fit that slot.
++The inspections can use only three slots before their deadline. The filing can use either of two later slots. Although total demand equals total capacity, the four inspections lack one eligible slot. Purchasing another late filing slot leaves that deficit unchanged. One additional qualified inspection slot before the deadline completes the assignment under the example's service assumptions.
++
++Proposition 7.12 tests every subset of tasks against its eligible slots. Total staffing alone cannot establish that all tasks can be assigned distinct eligible slots before their deadlines. Existing commitments must enter the assignment before proposed additional work. Input delivery, current authority, qualifications, and task duration remain premises of the schedule. Each modeled task occupies one whole slot. Its duration, including recording and handoff, must fit that slot.
+ 
+ Money has the same identification requirement and a separate spending restriction. The four-inspection plan in Example 7.14 reserves twelve units of collectible collateral and separately funds four units of inspection work. Spending the inspection fees from that collateral leaves eight pledged units and fails the stated gain bounds. These are stipulated quantities in a finite example. Proposition 7.13 combines collateral, service funding, and qualified time while keeping all three constraints explicit. Its inspection and collection assumptions require their own evidence.
+ 
+@@ -64,29 +72,33 @@
+ 
+ ## 5 What the recipient can infer {#sec:privacy}
+ 
+-Selective disclosure permits a recipient to learn a stated result without receiving the complete source record. Its privacy claim must account for what that recipient already knows and can combine with the new result. A valid signature authenticates the disclosed answer without restricting subsequent inference.
++Evidence reuse can also reveal information about the source record. Selective disclosure permits a recipient to learn a stated result without receiving the complete source record. Its privacy claim must account for what that recipient already knows and can combine with the new result. A valid signature authenticates the disclosed answer without restricting subsequent inference.
+ 
+-Take three rational values $A,B,C$. The first releases disclose $A+B$ and $B+C$. For any rational change $t$, replacing the values by $A+t,B-t,C+t$ preserves both answers. Each original coordinate therefore remains undetermined in this unrestricted rational model. A further answer $A+C$ determines $A$ through $$A=\frac{(A+B)+(A+C)-(B+C)}{2}.$$ The other coordinates then follow from the earlier sums. *The Sovereign Jurisdiction Network*, Section 4.6, gives this example and its exact linear disclosure criterion \[[1](#ref-sjn){style="overflow-wrap:anywhere;hyphens:none"}\].
++Take three rational values $A,B,C$. The first releases disclose $A+B$ and $B+C$. For any rational change $t$, replacing the values by $A+t,B-t,C+t$ preserves both answers. Each original coordinate therefore remains undetermined in this unrestricted rational model.
+ 
+-The criterion checks whether all observed linear equations together determine a protected quantity. Its assumptions matter. If $A$ and $B$ are nonnegative, learning $A+B=0$ already determines both. That inference uses a domain constraint absent from the unrestricted rational test. Separate stores must also share an admission authority when recipients can combine their answers. Two requests can each pass against one old history and fail together. The admitting store records each release durably before returning its answer.
++A further answer $A+C$ determines $A$ through $$A=\frac{(A+B)+(A+C)-(B+C)}{2}.$$ The other coordinates then follow from the earlier sums. *The Sovereign Jurisdiction Network*, Section 4.6, gives this example and its exact linear disclosure criterion \[[1](#ref-sjn){style="overflow-wrap:anywhere;hyphens:none"}\].
+ 
+-Changed snapshots retain that history. Suppose a public operation doubles $A$ after an initial release of $A+B$. The next sum is $2A+B$. Subtracting the earlier answer reveals the original $A$. Section 4.8 accounts for such public linear changes and offsets in one common history. A new snapshot name cannot erase the recipient's earlier observation.
++The criterion checks whether all observed linear equations together determine a protected quantity. If $A$ and $B$ are nonnegative, learning $A+B=0$ already determines both. That inference uses a domain constraint absent from the unrestricted rational test. Separate stores must also share an admission authority when recipients can combine their answers. Two requests can each pass against one old history and fail together. The admitting store records each release durably before returning its answer.
++
++The disclosure history must also account for changes to the source values. Suppose a public operation doubles $A$ after an initial release of $A+B$. The next sum is $2A+B$. Subtracting the earlier answer reveals the original $A$. Section 4.8 accounts for such public linear changes and offsets in one common history. A new snapshot name cannot erase the recipient's earlier observation.
+ 
+ Answers are only part of what a recipient can observe. Suppose possible protected values are $0,1,2$. A query returns $0$ for value 0 and $1$ for values 1 or 2. A gate answers only when the actual answer leaves two possibilities. It then refuses exactly at value 0, so refusal identifies that value \[[1](#ref-sjn){style="overflow-wrap:anywhere;hyphens:none"}, Section 4.9\].
+ 
+-For a deterministic mechanism, the complete finite test groups possible worlds by their entire visible output. A *world* specifies one possible source and environment history within the model. An *output fibre* contains the worlds that produce the same observation. Each fibre must retain the required number of distinct protected values. Reasons, pending states, timing, query choices, and visible effects all count when the observer can distinguish them. Proposition 4.14 proves the criterion for the declared finite model and its complete observation history.
++For a deterministic mechanism, the complete finite test groups possible worlds by their entire visible output. A *world* specifies one possible source and environment history within the model. An *output fiber* contains the worlds that produce the same observation. Each fiber must retain the required number of distinct protected values. Reasons, pending states, timing, query choices, and visible effects all count when the observer can distinguish them. Proposition 4.14 proves the criterion for the declared finite model and its complete observation history.
+ 
+ Permission to compute and permission to disclose remain separate. A derived artifact retains its source obligations even when an algebraic simplification removes a coefficient. Each use needs the applicable grants for its act, purpose, audience, time, and retention period \[[1](#ref-sjn){style="overflow-wrap:anywhere;hyphens:none"}, Section 4.10\]. The inference test cannot supply those grants.
+ 
+ ## 6 When permission and privacy must hold together {#sec:joined}
+ 
+-An actor must choose using information it can actually observe. If two possible worlds look identical to that actor, its deterministic policy must choose the same action in both. An exact privacy requirement may demand equal visible actions in another set of world pairs. Equality propagates along both kinds of connection.
++To satisfy privacy and permission together, an actor must choose using information it can actually observe. If two possible worlds look identical to that actor, its deterministic policy must choose the same action in both. An exact privacy requirement may demand equal visible actions in another set of world pairs. Equality propagates along both kinds of connection.
+ 
+-The resulting *joined component* contains worlds connected by either observation equality or required privacy equality. Every component needs one action that is permitted and successful in every world it contains. Proposition 4.18, the "Joined permitted-success selector," proves this condition necessary and sufficient \[[1](#ref-sjn){style="overflow-wrap:anywhere;hyphens:none"}, Section 4.11\]. An empty common action set supplies a precise obstruction.
++The resulting *joined component* contains worlds connected by either observation equality or required privacy equality. Every component needs one action that is permitted and successful in every world it contains. Proposition 4.18, the "Joined permitted-success selector," proves this condition necessary and sufficient \[[1](#ref-sjn){style="overflow-wrap:anywhere;hyphens:none"}, Section 4.11\]. If that common action set is empty, no such policy exists.
+ 
+-The paper gives four worlds, labeled $00,01,10,11$. The actor observes the first bit. Privacy requires equal actions for worlds sharing the second bit. In that order, the permitted successful actions are $$\{a,c\},\quad\{a,d\},\quad\{b,c\},\quad\{b,d\}.$$ Information alone permits row choices $a,b$. Privacy alone permits column choices $c,d$. The joined connections link all four worlds, but no action belongs to all four sets. The two separate checks therefore do not provide a joint policy.
++The paper gives four worlds, labeled $00,01,10,11$. The actor observes the first bit. Privacy requires equal actions for worlds sharing the second bit. In that order, the permitted successful actions are $$\{a,c\},\quad\{a,d\},\quad\{b,c\},\quad\{b,d\}.$$
+ 
+-An additional action $e$ admitted in every set would satisfy the combined requirement. Its permission, funding, and successful completion must come from actual contracts in the model. Merely naming that action cannot repair the obstruction. The theorem fixes a finite world set and a complete visible action vocabulary. Hidden choices, distributed participants, and randomized policies need their specified observation and execution models.
++Information alone permits row choices $a,b$. Privacy alone permits column choices $c,d$. The joined connections link all four worlds, but no action belongs to all four sets. The two separate checks therefore do not provide a joint policy.
++
++An additional action $e$ admitted in every set would satisfy the combined requirement. Its permission, funding, and successful completion must come from actual contracts in the model. A name alone supplies none of these conditions. The theorem fixes a finite world set and a complete visible action vocabulary. Hidden choices, distributed participants, and randomized policies need their specified observation and execution models.
+ 
+ ## 7 Joining common terms {#sec:accession}
+ 
+@@ -94,11 +106,15 @@
+ 
+ Take three authorities $a,b,c$ and one domain. Authorities $a$ and $c$ accept full terms, while $b$ accepts partial terms. Authorities $b$ and $c$ decline each other. The three deposits establish reciprocal relations between $a$ and $b$ at partial terms, and between $a$ and $c$ at full terms. They establish no relation between $b$ and $c$ \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Section 2.2\].
+ 
+-Under five hypotheses, Theorem 4.5, "Accession equivalence," gives the same pairwise relations and negotiated grades as unconstrained bilateral formation, in which every compatible pair can negotiate at zero cost \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Section 4\]. The permitted reservation menu is finite and combines limits by meet. Each reservation limits entitlements and obligations reciprocally. Independently verifiable actual receipt of authenticated notice opens each participant's refusal window. Subject to the instrument's remaining timing conditions, the relation takes effect after the required windows unless a timely declination prevents the pair. A fixed rule resolves conflicting declarations. Finally, each authority offers one common set of terms to acceptable counterparties, and its deposit accurately records those terms and refusals.
++Under five hypotheses, Theorem 4.5, "Accession equivalence," gives the same pairwise relations and negotiated grades as unconstrained bilateral formation. In that comparison, every compatible pair can negotiate at zero cost \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Section 4\].
+ 
+-The last hypothesis concerns willingness. The public rules do not establish it. If an authority offers different terms to different counterparties, a common reservation can weaken a relation or remove it. Proposition 4.7 gives the exact condition for preserving bilateral content in that case. Executable equivalence further requires the same versioned clauses, admitted witnesses, and local decisions for the same request and use-time context under the compared constructions \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Section 6.3, Proposition 6.1\].
++The permitted reservation menu is finite and combines limits by meet. Each reservation limits entitlements and obligations reciprocally. Independently verifiable actual receipt of authenticated notice opens each participant's refusal window. Subject to the instrument's remaining timing conditions, the relation takes effect after the required windows unless a timely declination prevents the pair. A fixed rule resolves conflicting declarations. Finally, each authority offers one common set of terms to acceptable counterparties, and its deposit accurately records those terms and refusals.
+ 
+-One deposit per authority also leaves continuing work. Twenty sequential accessions require twenty deposits and 190 notices to incumbents. The entrants also receive the 190 corresponding incumbent objects, so the two directions create 380 initial receipt tasks. Two later updates by every participant create forty updates and 760 further receipt tasks. These counts come from the lifecycle model in Section 4.5. The construction removes repeated negotiation while notice, exceptions, assurance, and exit retain their own costs and deadlines. It gives no general conclusion that all institutional work becomes linear or that every authority will participate.
++The willingness hypothesis needs evidence beyond the public rules. If an authority offers different terms to different counterparties, a common reservation can weaken a relation or remove it. Proposition 4.7 gives the exact condition for preserving bilateral content in that case. Executable equivalence further requires the same versioned clauses, admitted witnesses, and local decisions for the same request and use-time context under the compared constructions \[[3](#ref-accession){style="overflow-wrap:anywhere;hyphens:none"}, Section 6.3, Proposition 6.1\].
++
++Notice and later updates still require work after the deposits. Twenty sequential accessions require twenty deposits and 190 notices to incumbents. The entrants also receive the 190 corresponding incumbent objects, so the two directions create 380 initial receipt tasks. Two later updates by every participant create forty updates and 760 further receipt tasks. These counts come from the lifecycle model in Section 4.5.
++
++The construction removes repeated negotiation while notice, exceptions, assurance, and exit retain their own costs and deadlines. It gives no general conclusion that all institutional work becomes linear or that every authority will participate.
+ 
+ ## 8 Technical reading map {#sec:reading}
+ 
+@@ -120,7 +136,7 @@
+ 
+ :   *Accession Networks*, Section 4.1, states H1--H5, and Section 4.2 proves Theorem 4.5. Section 4.3 gives Proposition 4.7's content boundary. Section 4.5 accounts for lifecycle work. Section 6.3 gives Proposition 6.1's executable extension. Section 7.8 gives Propositions 7.12--7.13 and Examples 7.14--7.15 on qualified time, service funding, and collateral.
+ 
+-The written proofs establish their stated implications. The finite checks cover their supplied models and inputs. Authentic source records, faithful instrument interpretation, complete observations, durable implementation, and institutional performance remain the precise obligations of each application. The papers' status sections retain these boundaries: Section 10 in each of the three references.
++The written proofs establish their stated implications. The finite checks cover their supplied models and inputs. Each application must establish authentic source records, faithful instrument interpretation, complete observations, durable implementation, and institutional performance. The papers' status sections retain these boundaries: Section 10 in each of the three references.
+ 
+ ## References
+ 
+--- a/content/reader-papers/recognition-across-independent-authorities.tex
++++ b/content/reader-papers/recognition-across-independent-authorities.tex
+@@ -10,27 +10,28 @@
+ 
+ \begin{abstract}
+ A registry can reuse a foreign identity record while retaining its own licensing decision.
+-Making this arrangement reliable requires the source assertion, receiving rule, and current authority to remain separately identifiable.
++Reliable reuse requires the source assertion, receiving rule, and current authority to remain separately identifiable.
+ This article explains how recognition preserves those records through intermediaries, policy changes, and unfinished work.
+ It also examines shared reservations and disclosures whose combined history reveals more than their individual answers.
+ A finite policy criterion identifies when knowledge, privacy, permission, and success can hold together.
+-Finally, accession can reproduce bilateral relations under explicit assumptions about common terms, notice, refusals, and willingness.
++Accession can reproduce bilateral relations under explicit assumptions about common terms, notice, refusals, and willingness.
++
+ The underlying results concern stated mathematical models.
+ Their use requires authentic instruments, faithful interpretation, complete observations, and the relevant service and provider evidence.
+ \end{abstract}
+ 
+-\section{A foreign statement and a local licence}
++\section{A foreign statement and a local license}
+ \label{sec:registry}
+ 
+ North has checked a company's identity and standing.
+-The company applies for a licence in South, which permits use of North's identity evidence.
++The company applies for a license in South, which permits use of North's identity evidence.
+ South also requires a current licensing decision under its own rules.
+ Importing the file answers the identity question while the licensing question remains pending.
+-An authorized South decision can then permit the licence, using the imported evidence.
++An authorized South decision can then permit the license, using the imported evidence.
+ The licensing act creates the reporting duty specified by South's rule.
+ 
+ This is a constructed case from \emph{The Sovereign Jurisdiction Network}, Example~4.5~\cite{sjn}.
+-It contains three distinct events: importing evidence, deciding the application, and issuing the licence.
++It contains three distinct events: importing evidence, deciding the application, and issuing the license.
+ Repeating the import creates neither a second source assertion nor another reporting duty for the same trigger.
+ If South's current licensing decision refuses the application, the imported identity record leaves that refusal effective.
+ Proposition~4.2 proves this separation for the paper's recognition construction.
+@@ -47,15 +48,14 @@
+ Fresh means that the answer must satisfy the present request and rule.
+ A standing delegation can authorize its computation from reusable evidence.
+ 
+-The carrying domains and fresh questions can overlap.
++Domains covered by recognition can also contain fresh questions.
+ In the example, identity evidence and the local licensing question concern one domain.
+ Classifying that domain as recognized cannot remove the local question.
+ The complete record must retain both fields, together with the authority responsible for the answer.
+ \emph{How Compliance Composes}, Section~5.6, establishes this preservation through complete corridor contracts~\cite{compliance}.
+ 
+-The resulting division of work permits reuse without repeating the source examination.
+-South remains responsible for its own rule, decision, and resulting duties.
+-The record of recognition supplies the evidence for that division throughout later use.
++South can therefore reuse North's examination while retaining responsibility for its own rule, decision, and resulting duties.
++The recognition record preserves evidence of this division of work throughout later use.
+ 
+ \section{Keeping a decision reproducible}
+ \label{sec:history}
+@@ -118,6 +118,7 @@
+ The destination applies a partial cap, and the filing requires that capped support.
+ The retained assertion, both policies, condition answer, and current-use certificates jointly support the filing.
+ Each receiving authority supplies its required answers, and the destination records Allow.
++
+ A false condition supplies no carried support.
+ A destination refusal prevents execution despite the same original source history.
+ 
+@@ -125,6 +126,7 @@
+ In the paper's grade model, repeating an evaluation changes nothing, improving the inputs cannot worsen the result, and every participating restriction remains binding.
+ These conditions force combination by the greatest common lower bound, called the \emph{meet}~\cite[Section~2.1, Proposition~2.2]{compliance}.
+ On one ordered chain, this is the minimum.
++
+ Complementary admissible evidence can instead contribute to a supported summary through its least common upper bound, called the \emph{join}.
+ That summary requires a compatible witness family for the exact request.
+ Selecting favorable coordinates from incompatible alternatives does not provide such a family~\cite[Sections~3.3 and~5.5]{compliance}.
+@@ -158,13 +160,14 @@
+ The guard construction includes every resource owner whose record can affect admission~\cite[Section~5.1]{sjn}.
+ It also includes the records that determine ownership and the required participants.
+ A changed ownership rule invalidates the earlier participant discovery.
+-The attempt resolves its terminal abort before recalculating the dependencies and preparing again.
++The attempt must resolve with a terminal abort before the program recalculates dependencies and prepares again.
+ An unknown terminal outcome retains its reservations.
+ A local timeout alone cannot establish that a prepared operation will never complete elsewhere.
+ 
+-Qualified time supplies a concrete example.
++The capacity limit can depend on when qualified workers are available.
+ \emph{Accession Networks}, Example~7.15, has four inspections and one filing, with five available worker-slots~\cite{accession}.
+ A worker-slot is one qualified worker's reserved service during one specified interval.
++
+ The inspections can use only three slots before their deadline.
+ The filing can use either of two later slots.
+ Although total demand equals total capacity, the four inspections lack one eligible slot.
+@@ -172,7 +175,7 @@
+ One additional qualified inspection slot before the deadline completes the assignment under the example's service assumptions.
+ 
+ Proposition~7.12 tests every subset of tasks against its eligible slots.
+-This is why total staffing cannot establish timely completion.
++Total staffing alone cannot establish that all tasks can be assigned distinct eligible slots before their deadlines.
+ Existing commitments must enter the assignment before proposed additional work.
+ Input delivery, current authority, qualifications, and task duration remain premises of the schedule.
+ Each modeled task occupies one whole slot.
+@@ -191,7 +194,7 @@
+ \section{What the recipient can infer}
+ \label{sec:privacy}
+ 
+-Selective disclosure permits a recipient to learn a stated result without receiving the complete source record.
++Evidence reuse can also reveal information about the source record. Selective disclosure permits a recipient to learn a stated result without receiving the complete source record.
+ Its privacy claim must account for what that recipient already knows and can combine with the new result.
+ A valid signature authenticates the disclosed answer without restricting subsequent inference.
+ 
+@@ -199,6 +202,7 @@
+ The first releases disclose $A+B$ and $B+C$.
+ For any rational change $t$, replacing the values by $A+t,B-t,C+t$ preserves both answers.
+ Each original coordinate therefore remains undetermined in this unrestricted rational model.
++
+ A further answer $A+C$ determines $A$ through
+ \[
+  A=\frac{(A+B)+(A+C)-(B+C)}{2}.
+@@ -207,14 +211,13 @@
+ \emph{The Sovereign Jurisdiction Network}, Section~4.6, gives this example and its exact linear disclosure criterion~\cite{sjn}.
+ 
+ The criterion checks whether all observed linear equations together determine a protected quantity.
+-Its assumptions matter.
+ If $A$ and $B$ are nonnegative, learning $A+B=0$ already determines both.
+ That inference uses a domain constraint absent from the unrestricted rational test.
+ Separate stores must also share an admission authority when recipients can combine their answers.
+ Two requests can each pass against one old history and fail together.
+ The admitting store records each release durably before returning its answer.
+ 
+-Changed snapshots retain that history.
++The disclosure history must also account for changes to the source values.
+ Suppose a public operation doubles $A$ after an initial release of $A+B$.
+ The next sum is $2A+B$.
+ Subtracting the earlier answer reveals the original $A$.
+@@ -229,8 +232,8 @@
+ 
+ For a deterministic mechanism, the complete finite test groups possible worlds by their entire visible output.
+ A \emph{world} specifies one possible source and environment history within the model.
+-An \emph{output fibre} contains the worlds that produce the same observation.
+-Each fibre must retain the required number of distinct protected values.
++An \emph{output fiber} contains the worlds that produce the same observation.
++Each fiber must retain the required number of distinct protected values.
+ Reasons, pending states, timing, query choices, and visible effects all count when the observer can distinguish them.
+ Proposition~4.14 proves the criterion for the declared finite model and its complete observation history.
+ 
+@@ -242,7 +245,7 @@
+ \section{When permission and privacy must hold together}
+ \label{sec:joined}
+ 
+-An actor must choose using information it can actually observe.
++To satisfy privacy and permission together, an actor must choose using information it can actually observe.
+ If two possible worlds look identical to that actor, its deterministic policy must choose the same action in both.
+ An exact privacy requirement may demand equal visible actions in another set of world pairs.
+ Equality propagates along both kinds of connection.
+@@ -250,7 +253,7 @@
+ The resulting \emph{joined component} contains worlds connected by either observation equality or required privacy equality.
+ Every component needs one action that is permitted and successful in every world it contains.
+ Proposition~4.18, the ``Joined permitted-success selector,'' proves this condition necessary and sufficient~\cite[Section~4.11]{sjn}.
+-An empty common action set supplies a precise obstruction.
++If that common action set is empty, no such policy exists.
+ 
+ The paper gives four worlds, labeled $00,01,10,11$.
+ The actor observes the first bit.
+@@ -259,6 +262,7 @@
+ \[
+  \{a,c\},\quad\{a,d\},\quad\{b,c\},\quad\{b,d\}.
+ \]
++
+ Information alone permits row choices $a,b$.
+ Privacy alone permits column choices $c,d$.
+ The joined connections link all four worlds, but no action belongs to all four sets.
+@@ -266,7 +270,7 @@
+ 
+ An additional action $e$ admitted in every set would satisfy the combined requirement.
+ Its permission, funding, and successful completion must come from actual contracts in the model.
+-Merely naming that action cannot repair the obstruction.
++A name alone supplies none of these conditions.
+ The theorem fixes a finite world set and a complete visible action vocabulary.
+ Hidden choices, distributed participants, and randomized policies need their specified observation and execution models.
+ 
+@@ -285,7 +289,8 @@
+ The three deposits establish reciprocal relations between $a$ and $b$ at partial terms, and between $a$ and $c$ at full terms.
+ They establish no relation between $b$ and $c$~\cite[Section~2.2]{accession}.
+ 
+-Under five hypotheses, Theorem~4.5, ``Accession equivalence,'' gives the same pairwise relations and negotiated grades as unconstrained bilateral formation, in which every compatible pair can negotiate at zero cost~\cite[Section~4]{accession}.
++Under five hypotheses, Theorem~4.5, ``Accession equivalence,'' gives the same pairwise relations and negotiated grades as unconstrained bilateral formation. In that comparison, every compatible pair can negotiate at zero cost~\cite[Section~4]{accession}.
++
+ The permitted reservation menu is finite and combines limits by meet.
+ Each reservation limits entitlements and obligations reciprocally.
+ Independently verifiable actual receipt of authenticated notice opens each participant's refusal window.
+@@ -293,17 +298,17 @@
+ A fixed rule resolves conflicting declarations.
+ Finally, each authority offers one common set of terms to acceptable counterparties, and its deposit accurately records those terms and refusals.
+ 
+-The last hypothesis concerns willingness.
+-The public rules do not establish it.
++The willingness hypothesis needs evidence beyond the public rules.
+ If an authority offers different terms to different counterparties, a common reservation can weaken a relation or remove it.
+ Proposition~4.7 gives the exact condition for preserving bilateral content in that case.
+ Executable equivalence further requires the same versioned clauses, admitted witnesses, and local decisions for the same request and use-time context under the compared constructions~\cite[Section~6.3, Proposition~6.1]{accession}.
+ 
+-One deposit per authority also leaves continuing work.
++Notice and later updates still require work after the deposits.
+ Twenty sequential accessions require twenty deposits and 190 notices to incumbents.
+ The entrants also receive the 190 corresponding incumbent objects, so the two directions create 380 initial receipt tasks.
+ Two later updates by every participant create forty updates and 760 further receipt tasks.
+ These counts come from the lifecycle model in Section~4.5.
++
+ The construction removes repeated negotiation while notice, exceptions, assurance, and exit retain their own costs and deadlines.
+ It gives no general conclusion that all institutional work becomes linear or that every authority will participate.
+ 
+@@ -339,7 +344,7 @@
+ 
+ The written proofs establish their stated implications.
+ The finite checks cover their supplied models and inputs.
+-Authentic source records, faithful instrument interpretation, complete observations, durable implementation, and institutional performance remain the precise obligations of each application.
++Each application must establish authentic source records, faithful instrument interpretation, complete observations, durable implementation, and institutional performance.
+ The papers' status sections retain these boundaries: Section~10 in each of the three references.
+ 
+ \begin{thebibliography}{9}
