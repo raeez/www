@@ -1,32 +1,44 @@
-# Raeez.com Static Site Generator
+# Raeez.com article builds
 
-A build system that fetches research papers from Google Docs and generates beautifully typeset static HTML using Adobe Garamond Pro.
+The repository contains maintained root HTML pages and separate article builders.
+Select the source route from its configuration before changing or regenerating a page.
 
-## Architecture
+## Source routes
 
+`docs.config.js` configures the Google Docs importer in `build.js`.
+It writes pages and an Atom feed under `compiler/dist/`.
+That feed discovers pages in `dist/`. It does not replace the maintained root `feed.xml`.
+
+`reader-papers.json` identifies the retained Markdown inputs for `build-reader-papers.py`.
+The builder verifies source hashes and writes the corresponding HTML pages at the repository root.
+Read `../references/source-provenance.md` before changing these source relationships.
+Keep retained raw sources unchanged.
+
+Run the reader-paper commands from the repository root:
+
+```bash
+python3 compiler/build-reader-papers.py
+python3 compiler/build-reader-papers.py --check
 ```
-Google Docs (source of truth)
-       ↓
-   Build Script (on-demand)
-       ↓
-   Static HTML (dist/)
-       ↓
-   CDN (Vercel/Cloudflare)
-```
+
+The check requires Pandoc. It compares rendered HTML with the checked-in pages without writing them.
+Inspect source dates and build diagnostics separately. A successful build does not establish external-source freshness.
 
 ## Quick Start
+
+Run the following commands from `compiler/`:
 
 ```bash
 # Install dependencies
 npm install
 
-# Build all documents
+# Build all configured imports locally
 npm run build
 
 # Build a single document
 npm run build:one sez-in-a-box
 
-# Force rebuild (clear cache)
+# Clear the import cache and rebuild
 npm run build:force
 
 # Preview locally
@@ -38,7 +50,12 @@ npm run dev
 
 ## Deployment
 
-### Vercel (Recommended)
+Deployment requires current publication authorization.
+Both preview and production commands publish externally.
+Review the target branch, host, and output directory before running them.
+For GitHub Pages, preserve the exclusions in the repository-root `_config.yml`.
+
+### Vercel
 
 ```bash
 # Preview deploy
@@ -48,7 +65,7 @@ npm run deploy:preview
 npm run deploy
 ```
 
-Or connect your GitHub repo to Vercel for automatic deployments.
+Connecting a repository for automatic deployment also requires publication authorization.
 
 ### Cloudflare Pages
 
@@ -58,17 +75,16 @@ Or connect your GitHub repo to Vercel for automatic deployments.
 
 ### Manual / Other Hosts
 
-Just upload the contents of `dist/` to any static host.
+For an authorized manual deployment, upload the reviewed output from the selected build route.
 
 ## Configuration
 
 ### Adobe Fonts Setup
 
-1. Go to [fonts.adobe.com](https://fonts.adobe.com)
-2. Find "Adobe Garamond Pro"
-3. Add to a Web Project
-4. Copy your Kit ID
-5. Replace `YOUR_KIT_ID` in `template.html`:
+`template.html` already loads an Adobe Fonts kit for Garamond Premier Pro.
+It also loads EB Garamond as a fallback.
+Inspect that configuration before changing the typography.
+For an authorized replacement, use a kit with the required families and weights:
 
 ```html
 <link rel="stylesheet" href="https://use.typekit.net/abc1def.css">
@@ -113,12 +129,15 @@ Each document page includes:
 
 ## Caching
 
-The build script caches Google Docs content for 1 hour in `.cache/`. Use `npm run build:force` to bypass the cache.
+`build.js` reuses Google Docs content from `.cache/` for 24 hours.
+If retrieval fails, it can use an older cached copy and report that fallback.
+Use `npm run build:force` to clear the import cache before rebuilding.
+Check retrieval diagnostics before reporting source freshness.
 
 ## File Structure
 
 ```
-raeez-site/
+compiler/
 ├── build.js          # Main build script
 ├── docs.config.js    # Document configuration
 ├── template.html     # HTML template
@@ -132,7 +151,7 @@ raeez-site/
 
 ## Typography Features
 
-- Adobe Garamond Pro (with EB Garamond fallback)
+- Garamond Premier Pro (with EB Garamond fallback)
 - Perfect fourth modular scale (1.333)
 - 8px baseline grid
 - Golden ratio spacing
@@ -153,11 +172,13 @@ Each page includes:
 
 ## Workflow
 
-1. **Edit in Google Docs** — Your source of truth
-2. **Run build** — `npm run build` when ready to publish
-3. **Deploy** — `npm run deploy` or push to GitHub
+1. Identify the page's source route and preserve its provenance.
+2. Edit only the assigned maintained source.
+3. Run the applicable local build and checks.
+4. Inspect the intended output and its publication exclusions.
+5. Deploy only with current publication authorization.
 
-The build takes ~2-3 seconds per document on first run (cached thereafter).
+Build time depends on source retrieval and document size.
 
 ## Troubleshooting
 
@@ -166,8 +187,9 @@ The build takes ~2-3 seconds per document on first run (cached thereafter).
 - Verify the doc ID in `docs.config.js`
 
 ### Content not updating
-- Run `npm run build:force` to clear cache
-- Or delete `.cache/` manually
+- Verify the source route first.
+- For Google Docs imports, run `npm run build:force` to clear the cache.
+- Inspect diagnostics for failed retrieval and stale-cache fallback.
 
 ### Styling issues
 - Check Adobe Fonts kit ID is correct
