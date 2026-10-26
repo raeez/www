@@ -1,0 +1,531 @@
+{
+  "verified_at_utc": "2026-10-21T22:44:41.067165+00:00",
+  "site": "www",
+  "production_commit": "6f6a4aea20c7e401ea738e19eba7723b9b04c967",
+  "published_curation_source_commit": "3e22859a9001760c09371e062dda74d155a14f5a",
+  "github_pages_build": {
+    "url": "https://api.github.com/repos/raeez/www/pages/builds/1303807750",
+    "status": "built",
+    "error": {
+      "message": null
+    },
+    "pusher": {
+      "login": "raeez",
+      "id": 173073,
+      "node_id": "MDQ6VXNlcjE3MzA3Mw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/173073?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/raeez",
+      "html_url": "https://github.com/raeez",
+      "followers_url": "https://api.github.com/users/raeez/followers",
+      "following_url": "https://api.github.com/users/raeez/following{/other_user}",
+      "gists_url": "https://api.github.com/users/raeez/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/raeez/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/raeez/subscriptions",
+      "organizations_url": "https://api.github.com/users/raeez/orgs",
+      "repos_url": "https://api.github.com/users/raeez/repos",
+      "events_url": "https://api.github.com/users/raeez/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/raeez/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "commit": "6f6a4aea20c7e401ea738e19eba7723b9b04c967",
+    "duration": 59629,
+    "created_at": "2026-10-21T22:34:20Z",
+    "updated_at": "2026-10-21T22:35:19Z"
+  },
+  "live_http_checks": {
+    "passed": true,
+    "research_production_commit": "53ec41b34bf0adb7f4406de28d2c0906566585ae",
+    "www_production_commit": "6f6a4aea20c7e401ea738e19eba7723b9b04c967",
+    "checked": [
+      {
+        "site": "research",
+        "path": "index.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "482a6ce540a5bf51ce1a3127e9065cb42d274f5b3b23541aaf23f3687383ffaa"
+      },
+      {
+        "site": "research",
+        "path": "programme.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "2e79af4a50c544a695ef6531f9181700594fe2755bfec6b12157b1c2ba1e70ff"
+      },
+      {
+        "site": "research",
+        "path": "background.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "fc345f64ba782b96151bff62cac57c05a4355f688b064b4b21d037b1bf5f47b4"
+      },
+      {
+        "site": "research",
+        "path": "papers/one-entity-in-many-jurisdictions.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "bf799f4ef1c1db5a0d237567ec20053078d9a68be9ac6a3f6fab658fbf0e29a8"
+      },
+      {
+        "site": "research",
+        "path": "papers/how-compliance-composes.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "3fe0cb4856077b49c712ccda8d69ee29d9f9de6e41cc4fabbff9790ca341b6a5"
+      },
+      {
+        "site": "research",
+        "path": "papers/programmable-institutions.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "09c4b65440b077d0992824e255890b6585bbc93976accde099d379e617883dd5"
+      },
+      {
+        "site": "research",
+        "path": "papers/lex.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "a7e6521dfeeab54e6ace67432bdc550a03490f6f445799891cb758c65218d492"
+      },
+      {
+        "site": "research",
+        "path": "papers/op.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "582a48f8d67c7f3c1d9dd578e4485ba9f6979b3160408814197dd63353b7bbca"
+      },
+      {
+        "site": "research",
+        "path": "papers/sovereign-jurisdiction-network.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "e4edabd718a18ba2492de06cefdc30bf9b014a7e99aba1b137fb4fec2fb22d52"
+      },
+      {
+        "site": "research",
+        "path": "papers/accession-networks.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "3bc868c255e0f9d123b22d9fe4c9ad12de826af3404d301e974d2ec7ad69f583"
+      },
+      {
+        "site": "research",
+        "path": "papers/moxie/claim-as-primitive.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "2ad28cefc9b3a123d7319475b8443a2b320e5a953a052f8282f1aa57b2c13b0a"
+      },
+      {
+        "site": "research",
+        "path": "papers/moxie/admissible-obligation-transitions.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "c096836101a2d413d68123842f775d21503b1430bab2b87366ace60594c6ebdf"
+      },
+      {
+        "site": "research",
+        "path": "papers/moxie/event-collect-bft.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "cb31b7dd66c25d174252601902f9aa51afc2a669f59912d3d465e4e7c7fce8a6"
+      },
+      {
+        "site": "research",
+        "path": "papers/moxie/pwamm-coupling.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "84304c499d41280cf4715955a310b4b5e3b458ce596e265543c7f96c4171b946"
+      },
+      {
+        "site": "research",
+        "path": "papers/moxie/amm-aware-central-counterparty-risk.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "357ea92e45bb2ca39d001c3e169b2939f00a3fe68cbdb08c45d5fcffaf595ba0"
+      },
+      {
+        "site": "research",
+        "path": "papers/moxie/parlay-ising-couplings.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "ac2fcf9354e6e984b2da1c987b8daa738863b13ddb31a35aaa0cc27b85f1c2a2"
+      },
+      {
+        "site": "research",
+        "path": "papers/allocated-title.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "90e5a5186b0a1da80402a2bac3b3e5bf22e979d80f58725a72d4c122b0e8a437"
+      },
+      {
+        "site": "research",
+        "path": "papers/recourse.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "f551eb95f68f24c35522d62bae0391d2e6346deb00f8152a68867995ce75a5bf"
+      },
+      {
+        "site": "research",
+        "path": "papers/content-addressed-identity.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "f8e1fbc94cd1bc403134a29ec028f5081a935eda37aba3cc1b171de30924942b"
+      },
+      {
+        "site": "research",
+        "path": "papers/defeasible-rules.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "af3cbcd77408ed4ee078e1376458cfaa57fe7943e70a234343d4804be0a5ec1c"
+      },
+      {
+        "site": "research",
+        "path": "papers/compositional-safety.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "a730d0cbaa616caff2d7989a901a18f961713b9d550a847008cbbc11f036c5b3"
+      },
+      {
+        "site": "research",
+        "path": "papers/compliance-passport.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "74187a478cc7db3d3abcd638eb6910db96a15f786041657355dfe467b12af510"
+      },
+      {
+        "site": "research",
+        "path": "papers/route-coherence.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "b1110065a05b766b0b03e9f416219daff0f35c7da387c92bb2c13d46bf526977"
+      },
+      {
+        "site": "research",
+        "path": "papers/observation-corpus.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "d5d41f0274e109e5f811be3bea69da50f010d64c033983b2cef3c89d9f54cbc5"
+      },
+      {
+        "site": "research",
+        "path": "papers/intelligent-assets.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "8c5881e8802525ce0b29eaab977b2528a7912b4c309466f3c9b4c9db506e3fe4"
+      },
+      {
+        "site": "www",
+        "path": "writing.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "80ba1546e5ff9057a69fea16164721e364592d8a304f27bd43041796e658092e"
+      },
+      {
+        "site": "www",
+        "path": "two-harnesses-and-a-limit.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "2aa48b1fc140ecb777643474b57057016ea7142b865332afab6a07032b8128e0"
+      },
+      {
+        "site": "www",
+        "path": "competitive-topologies.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "16a1ba8c62ca7a1e1c2777858a63e9fd1916c839beccb1a8ab90636a330ab401"
+      },
+      {
+        "site": "www",
+        "path": "governance-as-code.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "8141e12d53789169da05ab0d48ec0e4bb8163b5982f2bc5000355f8c9c19e000"
+      },
+      {
+        "site": "www",
+        "path": "meta-evolution.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "d0ff571a6282443c6f6be0a02780f12eddd115bcd78f884828a48029397f9909"
+      },
+      {
+        "site": "www",
+        "path": "verdict-dispute-calculus.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "4e55bd6e4a6d332875bc06ada123c193c40cc66f8d3bbade95b6cf03a465a2cc"
+      },
+      {
+        "site": "www",
+        "path": "smart-asset-vm.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "1d4546db89602a79cbcaef8782197f2253ca81afaec891542fd3731937f435dd"
+      },
+      {
+        "site": "www",
+        "path": "capital-layer.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "a6172c16100e40878254ec87e301be7c83133abcca45e839010763d87063be22"
+      },
+      {
+        "site": "www",
+        "path": "hybrid-post-quantum-signatures.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "c431627f9e20692bfc2ad1634edede28768a48d3fca1b50ca5daa552d6e8e145"
+      },
+      {
+        "site": "www",
+        "path": "compounding-intelligence.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "b81fdef2a7acfb14935e9a96980a61661b1a87564f18f3d1c80d9414dda10eb0"
+      },
+      {
+        "site": "www",
+        "path": "institutional-computation-explained.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "b0e5af3344918d8baa05d7e836e9a9aef61bf1bb4ec515caa7e194ee18c659f6"
+      },
+      {
+        "site": "www",
+        "path": "rules-evidence-and-local-decisions.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "5a30306bf9fa5383cdafc6fe768bf22fc11bbaace39eaed6ded63893f8241852"
+      },
+      {
+        "site": "www",
+        "path": "claims-and-continuing-obligations.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "ec361365b8c3ea54fa2833299c79795efc83dd66a928b28d7f0b46ba60588aac"
+      },
+      {
+        "site": "www",
+        "path": "recognition-across-independent-authorities.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "e3c706c6dd165d8fa9f32f6757a983a00a0e8dacd63a9220d6cdef03f8cd3e5b"
+      },
+      {
+        "site": "www",
+        "path": "prices-information-and-clearing-risk.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "3a85612c9f987070108228e3278b3924583b3932d8519ddc1f435b7f367c02c3"
+      },
+      {
+        "site": "www",
+        "path": "title-remedies-and-institutional-change.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "52a294f709037eb3335a61c1dc377d8a71ff828ae52eb6509a349107a1b0165e"
+      },
+      {
+        "site": "www",
+        "path": "when-institutional-programs-work-together.html",
+        "status": 200,
+        "expected_status": 200,
+        "inline_styles_match": true,
+        "reviewed_content_matches": true,
+        "live_sha256": "0bba9259b396c34db0cf566536042ecf614d8cd4eb6dba2889be621f4e9d58f1"
+      },
+      {
+        "site": "research",
+        "path": "papers/lex.pdf",
+        "status": 404,
+        "expected_status": 404
+      },
+      {
+        "site": "research",
+        "path": "papers/moxie/claim-as-primitive.pdf",
+        "status": 404,
+        "expected_status": 404
+      },
+      {
+        "site": "research",
+        "path": "technical/mass-technical-specification.pdf",
+        "status": 404,
+        "expected_status": 404
+      },
+      {
+        "site": "research",
+        "path": "papers/unpublished-unified/institutional-computation.tex",
+        "status": 404,
+        "expected_status": 404
+      },
+      {
+        "site": "research",
+        "path": "papers/sjn_corridor_checker.py",
+        "status": 404,
+        "expected_status": 404
+      },
+      {
+        "site": "research",
+        "path": "materials/raw/2026-10-22-research-curation/source.json",
+        "status": 404,
+        "expected_status": 404
+      },
+      {
+        "site": "www",
+        "path": "licc-blueprint.html",
+        "status": 404,
+        "expected_status": 404
+      },
+      {
+        "site": "www",
+        "path": "compiler/author-essays.json",
+        "status": 404,
+        "expected_status": 404
+      },
+      {
+        "site": "www",
+        "path": "content/author-essays/governance-as-code.md",
+        "status": 404,
+        "expected_status": 404
+      },
+      {
+        "site": "www",
+        "path": "materials/raw/2026-10-22-private-planning/licc-blueprint.html",
+        "status": 404,
+        "expected_status": 404
+      }
+    ]
+  },
+  "live_visual_checks": {
+    "desktop_width": 1342,
+    "mobile_width": 375,
+    "pages": [
+      {
+        "url": "https://research.momentum.inc/",
+        "desktop": true,
+        "mobile": true
+      },
+      {
+        "url": "https://research.momentum.inc/programme.html",
+        "desktop": true,
+        "mobile": true
+      },
+      {
+        "url": "https://research.momentum.inc/background.html",
+        "desktop": true,
+        "mobile": true
+      },
+      {
+        "url": "https://raeez.com/writing.html",
+        "desktop": true,
+        "mobile": true
+      },
+      {
+        "url": "https://raeez.com/governance-as-code.html",
+        "desktop": true
+      },
+      {
+        "url": "https://raeez.com/smart-asset-vm.html",
+        "mobile": true,
+        "inline_math_checked": true
+      },
+      {
+        "url": "https://raeez.com/capital-layer.html",
+        "mobile": true,
+        "wide_table_checked": true
+      }
+    ],
+    "capital_table_mobile": {
+      "document_client_width": 375,
+      "document_scroll_width": 375,
+      "table_client_width": 343,
+      "table_scroll_width": 688
+    },
+    "result": "Existing typography and templates render coherently. New article titles, body copy, inline mathematics, and horizontally contained wide table inspected in the live browser. Temporary viewport override reset; the separate mobile review tab closed. Final retained tab shows Writing at the default desktop width."
+  },
+  "published": true
+}

@@ -8,55 +8,51 @@ module.exports = [
   {
     id: '1oTfyWyjEgBjWSw30W4BLQa029pMGJ7ciFDUzn4fUjj4',
     slug: 'sez-in-a-box',
+    localHtml: '../sez-in-a-box.html',
     title: 'Special Economic Zones in a Box',
-    subtitle: 'From proof of scale to proof of network',
-    description: 'How programmable institutions enable rapid SEZ deployment through open-source legal infrastructure and network effects.',
-    meta: 'v0.35 — October 2025',
+    subtitle: 'A network model for economic zones',
+    description: 'Historical analysis of economic zones and a proposal for shared institutional infrastructure.',
+    meta: '15 October 2025 · Updated 22 October 2026 · Historical analysis and design proposal',
     filterPatterns: []
   },
   {
     id: '1eGnq8WpcdjS5TbD4U87v4HaN5YBgSwjKvXwerrXMIFY',
     slug: 'licc',
-    title: 'MIT-MBZUAI Laboratory for Incentivization, Coordination and Cooperation (LICC)',
-    subtitle: 'Comprehensive founding blueprint for dual-institution research laboratory',
-    description: 'Strategic framework, tactical execution guide, and fundraising strategy for establishing LICC as a jointly-sponsored research institution pioneering coordination science.',
-    meta: 'December 2025 • Version 1.0',
+    localHtml: '../licc.html',
+    title: 'LICC',
+    subtitle: 'The Laboratory for Incentivization, Coordination and Cooperation',
+    description: 'A private, nonprofit research institute for coordination science.',
+    meta: '2025',
     filterPatterns: []
   },
   {
     id: '1G4qUdBcrrabR50oqOvCk2uqI7mWh371ykvx92bILPL4',
     slug: 'smart-buildings',
+    localHtml: '../smart-buildings.html',
     title: 'Smart Buildings',
-    subtitle: 'Towards a programmable built environment operating system',
-    description: 'How buildings can operate as programmable Smart Assets with embedded compliance, operational intelligence, and autonomous management capabilities.',
-    meta: 'Version 0.3 — September 2025',
+    subtitle: 'Standards, records, and the contracts behind a working building',
+    description: 'Component standards, shared records, and the contracts behind a working building.',
+    meta: 'September 2025 · Design essay',
     filterPatterns: []
   },
   {
     id: '1c4luYj4edBCkVnW47JojjDK_3m8a20wX-2fPztIAF8Q',
     slug: 'prefabricated-construction',
-    title: 'Prefabricated Construction Methodologies',
-    subtitle: 'Manufacturing revolution in built environment',
-    description: 'Analysis of advanced prefabrication techniques enabling rapid, sustainable, and cost-effective building deployment at scale.',
-    meta: 'August 2025',
+    localHtml: '../prefabricated-construction.html',
+    title: 'Prefabricated Construction',
+    subtitle: 'Precast concrete and volumetric construction',
+    description: 'Comparing precast concrete and volumetric construction, from factory production to assembly on site.',
+    meta: 'August 2025 · Construction reference',
     filterPatterns: []
   },
   {
     id: '12TriV64rqMidmlzEXU5HdvbhpX_Fu4bNq5UUo7-125I',
     slug: 'archai',
+    localHtml: '../archai.html',
     title: 'Archai',
-    subtitle: 'Scalable primitives for land and community infrastructure ownership',
-    description: 'Tokenization and governance frameworks for collective land ownership and community development.',
-    meta: 'July 2025',
-    filterPatterns: []
-  },
-  {
-    id: '1dAnuVioEyPX0eyd2btYlxNTd-aVvymnqEXyJA1efx5k',
-    slug: 'licc-blueprint',
-    title: 'MIT-MBZUAI Laboratory for Incentivization, Coordination and Cooperation (LICC)',
-    subtitle: 'Comprehensive Founding Blueprint',
-    description: 'Dual-sponsorship model, strategic framework, tactical execution guide, and fundraising strategy for establishing LICC as a jointly-sponsored research institution between MIT and MBZUAI.',
-    meta: 'December 2025 • Version 1.0 • CONFIDENTIAL',
+    subtitle: 'Land ownership, use rights, and investment returns',
+    description: 'A proposal for sharing land ownership, use rights, and investment returns.',
+    meta: 'July 2025 · Project proposal',
     filterPatterns: []
   }
 ];

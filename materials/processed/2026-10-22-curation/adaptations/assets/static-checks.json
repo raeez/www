@@ -1,0 +1,64 @@
+{
+  "files": {
+    "smart-asset-vm": {
+      "source_sha256": "1b03b04f19f6dcf438916701c367a31ae59361195cbddbfef870718c6898a765",
+      "current_research_source_sha256": "1b03b04f19f6dcf438916701c367a31ae59361195cbddbfef870718c6898a765",
+      "output_sha256": "57ba7861cb34c9d9b00834430d61df9fe00cc0f4151b58a8c9f3da73ab0033c1",
+      "words": 1992,
+      "h1_count": 1,
+      "long_sentence_candidates": [],
+      "urls": [
+        "https://ercs.ethereum.org/ERCS/erc-3643",
+        "https://github.com/SecurityTokenStandard/EIP-Spec/blob/master/eip/eip-1400.md",
+        "https://github.com/ethereum/EIPs/issues/1404",
+        "https://research.momentum.inc/papers/one-entity-in-many-jurisdictions.html",
+        "https://research.momentum.inc/papers/op.html"
+      ]
+    },
+    "capital-layer": {
+      "source_sha256": "aad0d73844043e796e559e884f5de53b1370538cde64e79f420d78ad7cb08279",
+      "current_research_source_sha256": "aad0d73844043e796e559e884f5de53b1370538cde64e79f420d78ad7cb08279",
+      "output_sha256": "c93474ae83530367c1fc66584b9dbbefe600a50b77d276d04ece9c736e8b05af",
+      "words": 2515,
+      "h1_count": 1,
+      "long_sentence_candidates": [],
+      "urls": [
+        "https://delcode.delaware.gov/title8/c001/sc06/#204",
+        "https://ofac.treasury.gov/faqs/398",
+        "https://ofac.treasury.gov/faqs/401",
+        "https://ofac.treasury.gov/media/936221/download?inline=",
+        "https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/explainers/Architecture/",
+        "https://research.momentum.inc/papers/moxie/admissible-obligation-transitions.html",
+        "https://research.momentum.inc/papers/one-entity-in-many-jurisdictions.html",
+        "https://research.momentum.inc/papers/op.html",
+        "https://www.govinfo.gov/content/pkg/CFR-2025-title31-vol3/pdf/CFR-2025-title31-vol3-sec594-202.pdf",
+        "https://www.irs.gov/irb/2012-28_IRB#RP-2012-29"
+      ]
+    }
+  },
+  "checks": {
+    "capital_activation_rows_equal": true,
+    "capital_activation_row_count": 11,
+    "external_document_scan": [],
+    "pandoc_native": {
+      "smart-asset-vm": {
+        "exit": 0,
+        "stderr": "",
+        "math_nodes": 3,
+        "table_nodes": 1
+      },
+      "capital-layer": {
+        "exit": 0,
+        "stderr": "",
+        "math_nodes": 0,
+        "table_nodes": 1
+      }
+    },
+    "staged_paths": [
+      "content/author-essays/capital-layer.md",
+      "content/author-essays/smart-asset-vm.md"
+    ],
+    "index_matches_worktree": true,
+    "git_diff_cached_check": "passed"
+  }
+}

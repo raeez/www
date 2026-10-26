@@ -740,13 +740,17 @@ async function buildDocument(doc, options = {}) {
   console.log(`\n📄 ${doc.slug}`);
   
   try {
-    const rawHtml = await getDocContent(doc, options);
-    
-    console.log(`  Cleaning HTML...`);
-    const cleanedContent = cleanGoogleDocsHtml(rawHtml, doc.filterPatterns || []);
-    
-    console.log(`  Applying template...`);
-    const finalHtml = applyTemplate(doc, cleanedContent);
+    let finalHtml;
+    if (doc.localHtml) {
+      console.log('  Using maintained local article...');
+      finalHtml = fs.readFileSync(path.join(__dirname, doc.localHtml), 'utf8');
+    } else {
+      const rawHtml = await getDocContent(doc, options);
+      console.log('  Cleaning HTML...');
+      const cleanedContent = cleanGoogleDocsHtml(rawHtml, doc.filterPatterns || []);
+      console.log('  Applying template...');
+      finalHtml = applyTemplate(doc, cleanedContent);
+    }
     
     const outputPath = path.join(OUTPUT_DIR, `${doc.slug}.html`);
     fs.writeFileSync(outputPath, finalHtml);
@@ -766,7 +770,7 @@ async function buildAll(options = {}) {
   console.log('╔═══════════════════════════════════════════╗');
   console.log('║   Raeez.com Static Site Generator         ║');
   console.log('╚═══════════════════════════════════════════╝');
-  console.log(`\nBuilding ${docs.length} documents from Google Docs...`);
+  console.log(`\nBuilding ${docs.length} configured documents...`);
   
   let success = 0;
   let failed = 0;

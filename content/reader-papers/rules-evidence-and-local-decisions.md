@@ -1,0 +1,159 @@
+# Rules, Evidence, and Local Decisions
+
+## Abstract
+
+A company delivers accounts after its original deadline but before an authorized extension expires. The date comparison is simple. Establishing which extension governs, who granted it, and what remains due requires a record of authority and outstanding duties. *Lex* describes rules with explicit exceptions, legal time, authority, and unresolved judgments. *How Compliance Composes* studies how their results and supporting evidence can combine without losing restrictions or attribution.
+
+Together, they distinguish an evaluated grade, an applicability record, and permission for a particular action. Finite examples explain when local evidence supports a joint conclusion, when cost optimization is exact, and where the proved constructions stop.
+
+## 1 A filing with two deadlines
+
+Consider the accounts-filing case in *Lex*, Section 7.7. A company has an ordinary filing deadline. A competent authority grants an extension for that company and accounting period. The accounts arrive after the original deadline but before the extended deadline.
+
+The computation must retain both dates. Replacing the original date would hide why the filing appears late under the ordinary rule. Ignoring the extension would miss the authorized exception. The result needs a derivation: the granted notice matches this company, this period, and this application, so its deadline governs the timing test.
+
+An application for an extension does not establish that the extension was granted. Nor does a notice for another company supply the missing authority. If the matched grant is available and the other stated conditions hold, the filing passes the extended timing rule. Missing grant evidence leaves the judgment unresolved. A deadline extension also leaves separate content and audit requirements intact. This is a worked rule model, not a determination of a particular company's legal position. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 7.7\]
+
+The date calculation needs a justification that identifies the rule, the authorized exception, its scope, and the evidence connecting it to the filing. A reader should be able to reconstruct both.
+
+An institutional program needs these distinctions because later decisions reuse earlier results. A destination may accept a source's identity check while retaining its own decision about a proposed payment. A favorable source result cannot silently answer that different question. *How Compliance Composes* develops structures that retain this distinction when authorities recognize each other's results. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 1\]
+
+## 2 Which rule, at which time?
+
+An exception changes which rule result controls when its stated condition holds. *Lex* makes exception priority explicit. The ordinary result and its exceptions have the same declared result type. Their conditions determine which exceptions are active. The priority policy then selects the controlling result. Legal specificity and legal recency operate on distinct axes. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.1 and 4.4\]
+
+The proved agreement with a lattice evaluator has a precise scope. A lattice orders values so each pair has a greatest common lower bound and a least common upper bound. These are called meet and join, respectively. The priority computation first normalizes its clauses. Only the selected clause retains its body value, while every other clause becomes the neutral highest grade. This includes a satisfied exception defeated by a higher-priority exception.
+
+Exception priorities must descend strictly above the base priority. Under those hypotheses, the priority evaluator agrees with the meet of the normalized clauses. Equal numeric priorities do not satisfy this theorem. The described runtime instead resolves such ties by source position. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 7.4, priority evaluator agreement\]
+
+Evaluating a rule can have effects, such as reading evidence or requesting an authorized judgment. The stated runtime evaluates the base, guards, and satisfied exception bodies before selecting by priority. Its effect accounting must include every evaluated body, even when its result is not selected. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.1 and 4.3\]
+
+Time also needs an explicit legal context. *Lex* distinguishes a recorded source time from times derived through legal rules. Its temporal non-regression result covers a specified graph of temporal constructors. Those constructors cannot turn a derived time back into a rewritten source time. The theorem does not establish unrestricted information-flow separation for the full language. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.2, temporal rule-graph non-regression\]
+
+A later interpretation can therefore produce a new assessment while the historical record remains available. Section 4.9 separates what the evidence supported then, a legal assessment at a specified time, and permission for a current use. These are different questions with different inputs. Replaying an old decision does not issue a new permission or dispatch an external action.
+
+Return to the filing. The record can preserve the original deadline, the later grant, and the derivation of the extended deadline. A subsequent legal assessment may differ without deleting the earlier evidence. Current use still requires the authority and conditions for that use. Historical reproducibility alone cannot supply them. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.3, 4.9, and 7.7\]
+
+## 3 When the rule needs an answer
+
+A missing input may require computation or an authority's judgment. *Lex* calls an unresolved, typed input a *hole*: it specifies the kind of answer needed. A mechanical hole concerns a known calculation or evidence procedure. A discretionary hole requires a competent authority's judgment. An unsettled hole requires a change in law rather than an ordinary discretionary filling. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.5\]
+
+For the filing extension, the program must obtain evidence of the competent authority's grant. It cannot manufacture that grant by solving the date calculation. The authorization record binds the supplied answer to the exact request, rule package, context, and scope. A rule package is the identified collection of rules used for evaluation. Its content identity matters independently of its version label. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.3, 4.7, and 7.7\]
+
+Proof-carrying authorization records a delegation chain from the relevant authority to the signer. Delegation must respect the chain's scope and depth restrictions. A quorum counts distinct authorized signers, not repeated copies of one signature. Current verification also needs the specified revocation coverage and observation horizon. Missing status evidence yields `PendingEvidence`{style="overflow-wrap:anywhere;hyphens:none"}. It does not prove that no revocation exists. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 3.5 and 4.7--4.9\]
+
+The structural quorum theorem extracts the required accepted witnesses from the verifier's conditions. It does not prove that the underlying legal judgment is correct. The full cryptographic instantiation also has separate obligations. A theorem about this authorization record supplies no sovereign authority. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.5, quorum acceptance unfolding\]
+
+*Lex* separately represents an authenticated issued act, derived evidence, and a reusable rule-based permission. The last can support automatic computation when its conditions hold, without a new discretionary signature. The distinction prevents both invented authority and unnecessary requests for fresh human approval. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 4.6--4.7\]
+
+## 4 Grades and applicability records {#a-grade-is-not-an-applicability-record}
+
+Suppose an applicable rule reports non-compliance, pending evidence, or compliance. Write these grades as $$N < P < C.$$
+
+Here the order runs from more restrictive to less restrictive. When two applicable requirements both matter, composition must retain the stricter grade. *How Compliance Composes*, Proposition 2.2, proves that three conditions force this operation to be the meet. Its conditions are monotonicity (improving an input cannot lower the result), unchanged repeated inputs, and a result no higher than either input. On this chain, meet is simply the minimum.
+
+"Not applicable" answers a different question: whether the rule covers the case. "Exempt" records a distinct basis for not applying its ordinary requirement. Neither is another degree between pending and compliant. Combining these records with applicable grades must preserve both the grade and the reason that another input supplies no applicable grade.
+
+Theorem 2.3 proves that the stated exact pairwise reporting requirements cannot fit inside a total associative operation on the five input states alone. Proposition 2.4 supplies an exact finite extension. It stores an applicable grade, or the absence of one, together with two flags for non-applicability and exemption. The resulting structure has sixteen states, including the empty aggregate. Combining records takes the stricter present grade and unions the flags. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 2.2\]
+
+This larger summary still does not replace source evidence. Section 2.3 keeps individually attributable source cells. Each cell records its authority, rule, subject, purpose, scope, validity information, verdict, and derivation references. Repeated intake of the same immutable cell does not create new evidence. Different bodies with the same source identity are inadmissible. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Definition 2.5 and Proposition 2.6\]
+
+*Lex* also proves algebraic laws for a separate five-grade scalar summary in Section 7.4. That summary has its own defined order and role. It is not the mixed applicability record just described. The same section retains rule-level applicability and distinguishes completed evaluation, legal allowance, and operational admission. None follows from a scalar label alone.
+
+Completed evaluation means the evaluator has produced the required results. Legal allowance additionally requires complete rule coverage, valid passing reasons, duties due for this action discharged, resolved judgments, and current local permission. Future duties can remain attached to the action. Operational admission further requires current authority for the exact request, resource reservations, protocol readiness, and freshness at the named stage. These distinctions keep a completed computation from becoming an unauthorized action. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 7.4\]
+
+A threshold specifies the evidence-derived grade required for a classification. *How Compliance Composes*, Section 6, considers a finite product of finite lattices and finitely many ordered tiers. Unique nested least thresholds exist exactly when the classification preserves binary meets and sends the strongest vector to the highest tier. Monotonicity alone does not suffice. These are least grade requirements, not least-cost evidence plans. Different acquisitions can establish the same required grades. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 6, Classification of tier maps\]
+
+## 5 Can the evidence fit together?
+
+A coordinate summary reports a grade for each domain. It may conceal dependencies between the supporting choices. If the only available alternatives are $(1,0)$ and $(0,1)$, their coordinatewise upper summary is $(1,1)$. No available alternative supplies that combined state. *How Compliance Composes* therefore distinguishes an abstract grade vector from a *witnessed state*: a vector supported by jointly admissible evidence. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.3\]
+
+Consider the bit-triangle example. Three variables, $x$, $y$, and $z$, each take values zero or one. Three local tables require $$x\ne y,\qquad y\ne z,\qquad z\ne x.$$
+
+Every pair of tables agrees on the possible values of its shared variable. Yet the three conditions cannot hold together. The first two force $x=z$, contrary to the third. Pairwise compatibility has left an impossible joint requirement undetected. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.4, Example 3.13\]
+
+The exact compatibility result requires a particular arrangement of the local tables. A *join tree* is a connected, cycle-free graph of local tables in which each variable occurs in a connected part. A separator is the set of variables shared by two adjacent tables. Separator consistency requires equality of their full allowed assignments on that shared set, not just overlapping summaries.
+
+For a nonempty finite family of tables arranged in a fixed join tree, Theorem 3.14 proves an exact equivalence. Separator consistency holds if and only if every local tuple extends to a global assignment. When a local table is nonempty, this gives a global assignment. The tree permits a constructive argument: attach a neighboring tuple that agrees on the separator, then continue through the remaining tables. The connected-variable condition prevents a later attachment from contradicting an earlier choice elsewhere. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 3.4\]
+
+The theorem concerns the conjunction of all declared tables. Omitting a global constraint changes that conjunction and invalidates its use for the original problem. Failure to find the proposed tree also does not prove that the original problem is infeasible. A cyclic problem may require another exact method.
+
+To obtain actual evidence, the paper adds a finite witness profile. This profile must decode assignments into the exact source records they represent. Its full table conjunction must agree with independent whole-witness admission, including ownership, adverse conditions, authority, and dependency guards. Under that binding, Corollary 5.16 turns the join-tree result into a jointly admissible witness. The receiving authority's other admission conditions remain in force. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 5.5, Definition 5.15 and Corollary 5.16\]
+
+## 6 Recognition leaves a local decision intact
+
+Evidence transport and local permission have different algebraic roles. Transport may preserve or reduce the recognized grade. It may not silently improve it. Restrictions combine by meet, while compatible evidence can combine to support a stronger derived conclusion. Repeated transport of one source remains one origin, not several independent witnesses. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Sections 5.1--5.5\]
+
+The local decision record identifies the request and evaluation context. It also retains a local grade cap and a decision of permit, refuse, or await. Permission requires jointly admissible evidence, its derivation, a passing grade after the cap, and all current guards. Those guards include the required authority and adverse-evidence conditions.
+
+Proposition 5.13 proves that the specified evidence operations preserve this local decision. If $e$ is the evidence-derived grade and $\lambda$ is the local cap, then $$e\wedge\lambda\leq\lambda.$$ A higher evidence grade cannot erase the cap. Nor can evidence composition turn refusal or awaiting judgment into permission. The theorem states a preservation property for the defined record and operations. It does not appoint the decision-maker. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 5.5, Recognition preserves reserved local decisions\]
+
+More recorded information can reduce permission. A later adverse assertion may invalidate a dependency guard while leaving the historical record unchanged. Evidence accumulation is therefore not general monotonic growth of permission. The old decision remains replayable in its old context, while a new decision must use the new context. As in the filing case, each assessment retains the context in which its evidence applied.
+
+## 7 The cheapest plan, within a declared problem
+
+A cost comparison must retain these evidence and admission conditions. Evidence acquisition can consume money or effort. Section 8 of *How Compliance Composes* gives a finite planning model with nonnegative rational costs, prerequisites, derivations, and induced duties. A plan must pay for shared acquisitions once, retain acquisition-induced duties, and supply jointly admissible evidence. Exhaustive finite search with exact feasibility checks finds a minimum-cost feasible plan or establishes infeasibility within that declared finite problem. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Definition 8.1 and Proposition 8.2\]
+
+For a small worked case, require grade $(2,2)$ in two coordinates. One offer supplies $(2,0)$ at cost 3. A second supplies $(0,2)$ at cost 4. A complete offer supplies $(2,2)$ at cost 9. If the offers are independent and compatible, the first two supply the target at cost 7. This saving depends on the specified offers and costs and need not occur in other cases.
+
+Theorem 8.4 identifies the independent-offer problem with weighted set cover on finite distributive grade lattices. Distributivity is the compatibility law between meet and join required by this reduction. In set cover, each offer covers some required items and the objective minimizes total cost. Here the required items are the maximal irreducible components below the target. Such a component cannot be formed by joining two strictly smaller grades. The reduction requires joint admissibility, satisfied local decisions and duties, and no additional conflicts, prerequisites, or duties from selecting offers. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 8, Theorem 8.4 and Example 8.5\]
+
+Remove one assumption and the answer can change. Two cheap offers at cost 1 each may conflict, leaving a compatible complete offer at cost 5 as the feasible choice. An acquisition costing 1 may trigger a duty whose evidence costs 4. A direct complete offer costing 3 is then cheaper. The acquisition's duty remains even if the plan leaves its evidence unused. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 8, Example 8.5\]
+
+Recognition can also work on a bundle without working on its parts separately. The paper gives a monotone transport map that never raises an input grade. It recognizes two evidence items together but neither item alone. Acquiring both items and transporting them jointly costs 3 in that example. A calculation limited to separate transports would miss this route. The general finite planning model can represent it through the joint derivation and its prerequisites.
+
+The exact search assumes a finite catalog. Search cannot establish that the catalog contains every available source or every legal route. A timeout establishes neither infeasibility nor optimality. A returned feasible plan has an upper cost bound. Proving that it is cheapest also requires a matching lower bound or completed exact search. An unresolved authority judgment leaves the plan conditional. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Section 8.1\]
+
+## 8 What the formal results establish
+
+*Lex* proves results about a specified structural source calculus. A type describes the form and constraints of an expression's result. Weakening permits additional well-formed assumptions. Typed substitution replaces a variable with a value of the required type. Regularity establishes that assigned types themselves are well formed. These results support the paper's precise type-preservation theorem. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 4.2\]
+
+Pure conversion is the equality used to compare types in that structural core. Confluence of the underlying pure reduction and dependent-product compatibility are proved results. Confluence means that any two finite pure reductions from one term have a common result. Product compatibility ensures that convertible function types have convertible domains and result types, with exactly equal stored effect rows.
+
+The source trace theorem concerns finite sequences of permitted reductions. These use seven head rules and seven recursive contexts. In a generated well-formed context, the theorem retains the exact assigned type, including types obtained through conversion. The permitted reductions include steps beneath specified binders. They exclude application-argument steps, constructor firing, guards, exception bodies, and other wider operational forms.
+
+Exception peeling in this relation preserves typing. It does not by itself prove that an exception has lawful priority. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Section 4.2, Source trace preservation\]
+
+Strong normalization means that every permitted reduction sequence ends. The proved fragment restricts variable use and excludes function types, modals, recursion, and discretion holes. The result does not cover the full language. Wider progress still requires confluence and proof that pattern matches cover their possible inputs.
+
+Nine finite compilation cases establish verdict preservation. A separate finite model proves verdict agreement under its stated external primitive assumptions. These results do not establish full compiler correspondence or agreement with the intended legal semantics. Nor do they prove preservation of every observable distinction between certificates. Those are separate adequacy and full-abstraction obligations. \[[2](#ref-lex){style="overflow-wrap:anywhere;hyphens:none"}, Sections 5--5.1 and 11--12\]
+
+*How Compliance Composes* similarly separates written finite constructions, mechanized cores, and supplied external premises. Its exact composition and planning theorems do not authenticate source evidence or prove that adopted instruments were completely formalized. Those tasks require their own bindings and verification. Preserved records and exact finite models support compositional decisions while retaining their conditions. \[[1](#ref-composes){style="overflow-wrap:anywhere;hyphens:none"}, Sections 10--11\]
+
+## 9 Technical reading map
+
+Rules and time.
+
+:   Read *Lex*, Sections 3.1--3.3, 4.9, and 7.7. These connect explicit priority, temporal non-regression, historical assessment, and the accounts-filing case.
+
+Authority and missing judgments.
+
+:   Read *Lex*, Sections 3.5 and 4.6--4.9. Follow issued acts, rule-based permission, exact-request hole filling, delegation, quorum, and revocation coverage.
+
+Grades and source records.
+
+:   Read *How Compliance Composes*, Section 2, especially Proposition 2.2, Theorem 2.3, Proposition 2.4, and Proposition 2.6. Section 6 characterizes nested thresholds. Compare *Lex*, Section 7.4, without identifying its scalar summary with mixed applicability.
+
+Joint evidence.
+
+:   Read *How Compliance Composes*, Section 3.4, Example 3.13 and Theorem 3.14. Then read Definition 5.15 and Corollary 5.16 for the additional exact witness binding.
+
+Local decisions and cost.
+
+:   Read *How Compliance Composes*, Section 5.5, Proposition 5.13, followed by Section 8, Proposition 8.2 and Theorem 8.4. Keep the general planning model distinct from independent weighted set cover.
+
+Proof boundaries.
+
+:   Read *Lex*, Sections 4.2, 5--5.1, and 11--12, and *How Compliance Composes*, Sections 10--11. The hypotheses and excluded constructors are part of each result.
+
+## References
+
+::: {#ref-composes}
+:::
+
+**\[1\]** Raeez Lorgat. *How Compliance Composes*. September 2026.
+
+::: {#ref-lex}
+:::
+
+**\[2\]** Raeez Lorgat. *Lex*. September 2026.
