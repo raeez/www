@@ -67,7 +67,8 @@ def render(article, config, template):
         'description': escape(article['description'], quote=True),
         'subtitle': escape(article['subtitle']),
         'slug': article['slug'],
-        'metaHtml': escape(article['date_label']),
+        'metaHtml': escape(article['date_label']) + (
+            f' · <a href="{escape(article["pdf"], quote=True)}">PDF</a>' if article.get('pdf') else ''),
         'content': body,
     }
     for key, value in values.items():

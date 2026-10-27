@@ -37,3 +37,5 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+.article-title,
+.article-subtitle { text-wrap: balance; }
