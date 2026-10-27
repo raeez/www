@@ -1,6 +1,7 @@
 # The Institutional World Model
 [Momentum Research · research.momentum.inc](https://research.momentum.inc)\
-[raeez@momentum.inc](mailto:raeez@momentum.inc)
+[raeez@momentum.inc](mailto:raeez@momentum.inc)\
+[PDF](/institutional-world-model.pdf)
 
 **Abstract.** A learned consent rule can change whether an ownership transfer proceeds, including while an earlier transfer awaits payment. We study how AI-agent execution environments can revise governing interpretations while preserving authority and unfinished work. Its institutional world model represents law, regulation and policy in use, together with the consequences of institutional actions. A standing mandate can authorize automatic updates. Sovereign environments can exchange learned interpretations and retain control over their local use. Rulings supply authoritative examples of rule application, while investigations supply evidence about controls that miss abuse or obstruct legitimate activity.
 
