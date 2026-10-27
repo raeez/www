@@ -1,8 +1,4 @@
 # Sovereign Economies on a Decentralized Network
-[Momentum Research · research.momentum.inc](https://research.momentum.inc)\
-[raeez@momentum.inc](mailto:raeez@momentum.inc)\
-[PDF](sovereign-economies-on-a-network.pdf)
-
 **Abstract.** Mass is a decentralized network of sovereign execution environments for AI agents. Each environment learns the correct, safe interpretation of its sovereign law, policy and regulation, so it keeps up with fraud and bad actors on its own. We specify the design for institutions that must conduct an agent's work together while retaining their own rules, records and powers. Typed bytecode binds each proposed act to its authority, objects, resources and continuing obligations.
 
 Zero-knowledge proofs let the institutions check those conditions without receiving private credentials, rules or case records. Polycentric consensus joins the authorities an operation needs in one recoverable decision. Further sovereigns recognize specified results under their own policies and treaties, forming partial consensus across the network. Learned interpretations propagate with proofs of their calculation. Each receiver controls adoption, and each holder retains control of private secrets and consent.
