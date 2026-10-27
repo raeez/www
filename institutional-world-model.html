@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>The Institutional World Model — Raeez Lorgat</title>
+
+    <!-- SEO -->
+    <meta name="description" content="How sovereign execution environments for AI agents learn, adopt and correct interpretations of law, regulation and policy while preserving authority and unfinished work.">
+    <meta name="author" content="Raeez Lorgat">
+    <meta property="og:title" content="The Institutional World Model">
+    <meta property="og:description" content="How sovereign execution environments for AI agents learn, adopt and correct interpretations of law, regulation and policy while preserving authority and unfinished work.">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://raeez.com/institutional-world-model.html">
+    <link rel="alternate" type="application/atom+xml" title="Raeez Lorgat" href="https://raeez.com/feed.xml">
+
+    <!-- Structured data for LLMs -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Institutional World Model",
+    "author": {
+        "@type": "Person",
+        "name": "Raeez Lorgat",
+        "url": "https://raeez.com"
+    },
+    "description": "How sovereign execution environments for AI agents learn, adopt and correct interpretations of law, regulation and policy while preserving authority and unfinished work.",
+    "dateModified": "2026-10-22",
+    "datePublished": "2025-09-21"
+}
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP8T5J8M28"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JP8T5J8M28');
+    </script>
+
+    <!-- Adobe Fonts: Garamond Premier Pro (all optical sizes) -->
+    <link rel="stylesheet" href="https://use.typekit.net/zlu2quo.css">
+
+    <!-- Fallback -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           RESET & BOX MODEL
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           DESIGN TOKENS — ELITE TYPOGRAPHY SYSTEM
+           
+           Typography Philosophy:
+           - Garamond Premier Pro with full optical size range
+           - Perfect Fourth modular scale (1.333)
+           - 8px baseline grid for vertical rhythm
+           - Golden ratio (1.618) line-height for body text
+           - Advanced OpenType features: discretionary ligatures, old-style figures,
+             contextual alternates, capital spacing
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        :root {
+            /* ─── Font Stacks with Optical Sizes ─── */
+            --font-text: 'garamond-premier-pro', 'EB Garamond', 'Hoefler Text', 'Baskerville', Garamond, serif;
+            --font-display: 'garamond-premier-pro-display', var(--font-text);
+            --font-caption: 'garamond-premier-pro-caption', var(--font-text);
+            --font-subhead: 'garamond-premier-pro-subhead', var(--font-text);
+            --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+
+            /* ─── Modular Scale: Perfect Fourth (1.333) ─── */
+            --text-base: clamp(18px, 1.125rem + 0.25vw, 21px);
+            --text-sm: calc(var(--text-base) / 1.333);
+            --text-xs: calc(var(--text-sm) / 1.333);
+            --text-lg: calc(var(--text-base) * 1.333);
+            --text-xl: calc(var(--text-lg) * 1.333);
+            --text-2xl: calc(var(--text-xl) * 1.333);
+
+            /* ─── Baseline Grid ─── */
+            --baseline: 8px;
+
+            /* ─── Line Heights ─── */
+            --leading-tight: 1.2;
+            --leading-snug: 1.35;
+            --leading-normal: 1.5;
+            --leading-relaxed: 1.618;
+            --leading-loose: 1.8;
+
+            /* ─── Spacing Scale (baseline multiples) ─── */
+            --space-1: calc(var(--baseline) * 1);
+            --space-2: calc(var(--baseline) * 2);
+            --space-3: calc(var(--baseline) * 3);
+            --space-4: calc(var(--baseline) * 4);
+            --space-5: calc(var(--baseline) * 5);
+            --space-6: calc(var(--baseline) * 6);
+            --space-8: calc(var(--baseline) * 8);
+            --space-10: calc(var(--baseline) * 10);
+            --space-13: calc(var(--baseline) * 13);
+
+            /* ─── Measure (line length) ─── */
+            --measure: 65ch;
+            --measure-narrow: 55ch;
+            --measure-wide: 75ch;
+            --gutter: clamp(16px, 4vw, 24px);
+
+            /* ─── Color Palette ─── */
+            --ink: #1a1917;
+            --ink-muted: #4a4744;
+            --ink-subtle: #6a6662;
+            --ink-faint: #8a8580;
+            --ink-ghost: #b5b0ab;
+            --ink-whisper: #d4d0cc;
+            --ink-hint: #e8e5e2;
+            --paper: #fefdfb;
+            --paper-tint: #f5f3f0;
+
+            /* ─── Kerning & Tracking ─── */
+            --kern-tight: -0.02em;
+            --kern-snug: -0.01em;
+            --kern-normal: 0;
+            --kern-loose: 0.015em;
+            --kern-wide: 0.04em;
+            --kern-caps: 0.08em;
+            --optical-margin: -0.03em;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           BASE TYPOGRAPHY
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        html {
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+            hanging-punctuation: first last;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-text);
+            font-size: var(--text-base);
+            font-weight: 400;
+            line-height: var(--leading-relaxed);
+            color: var(--ink);
+            background: var(--paper);
+            text-rendering: optimizeLegibility;
+
+            /* ─── OpenType Feature Settings ─── */
+            font-feature-settings: 
+                "kern" 1,     /* Kerning */
+                "liga" 1,     /* Standard ligatures: fi, fl, ff, ffi, ffl */
+                "clig" 1,     /* Contextual ligatures */
+                "calt" 1,     /* Contextual alternates */
+                "dlig" 1,     /* Discretionary ligatures: ct, st, sp */
+                "onum" 1,     /* Old-style (lowercase) figures */
+                "pnum" 1;     /* Proportional figures */
+            
+            font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+            font-variant-numeric: oldstyle-nums proportional-nums;
+            font-kerning: normal;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           LAYOUT
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        .container {
+            max-width: calc(var(--measure) + var(--space-8));
+            margin-inline: auto;
+            padding: var(--space-10) var(--gutter) var(--space-8);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           BACK NAVIGATION
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        .back-nav {
+            margin-bottom: var(--space-8);
+        }
+
+        .back-nav a {
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-wide);
+            color: var(--ink-faint);
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .back-nav a:hover { color: var(--ink); }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           ARTICLE HEADER
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        .article-header {
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-5);
+            border-bottom: 1px solid var(--ink-hint);
+        }
+
+        .article-title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            letter-spacing: var(--kern-tight);
+            line-height: var(--leading-tight);
+            margin-bottom: var(--space-3);
+            margin-left: var(--optical-margin);
+        }
+
+        .article-subtitle {
+            font-size: var(--text-lg);
+            font-weight: 400;
+            font-style: italic;
+            line-height: var(--leading-snug);
+            color: var(--ink-muted);
+            max-width: var(--measure-narrow);
+            font-feature-settings: "kern" 1, "liga" 1, "dlig" 1, "onum" 1;
+        }
+
+        .article-meta {
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            color: var(--ink-faint);
+            margin-top: var(--space-3);
+        }
+
+        .article-meta a {
+            color: var(--ink-muted);
+            text-decoration: underline;
+            text-decoration-color: var(--ink-whisper);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.12em;
+            transition: text-decoration-color 180ms ease;
+        }
+
+        .article-meta a:hover { text-decoration-color: var(--ink-muted); }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           ARTICLE BODY
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        .article-body {
+            font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+        }
+
+        .article-body p {
+            margin-bottom: var(--space-3);
+            max-width: var(--measure);
+            line-height: var(--leading-loose);
+            hyphens: auto;
+            hyphenate-limit-chars: 6 3 2;
+            hyphenate-limit-lines: 2;
+        }
+
+        .article-body h1 {
+            font-family: var(--font-subhead);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            letter-spacing: var(--kern-tight);
+            line-height: var(--leading-tight);
+            margin-top: var(--space-10);
+            margin-bottom: var(--space-3);
+            margin-left: var(--optical-margin);
+        }
+
+        .article-body h2 {
+            font-family: var(--font-subhead);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            letter-spacing: var(--kern-snug);
+            line-height: var(--leading-snug);
+            margin-top: var(--space-8);
+            margin-bottom: var(--space-3);
+            margin-left: var(--optical-margin);
+        }
+
+        .article-body h3 {
+            font-size: var(--text-base);
+            font-weight: 600;
+            line-height: var(--leading-snug);
+            margin-top: var(--space-6);
+            margin-bottom: var(--space-2);
+        }
+
+        .article-body a {
+            color: var(--ink);
+            text-decoration: underline;
+            text-decoration-color: var(--ink-whisper);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.15em;
+            text-decoration-skip-ink: auto;
+            transition: text-decoration-color 180ms ease;
+        }
+
+        .article-body a:hover { text-decoration-color: var(--ink-muted); }
+
+        .article-body ul, .article-body ol {
+            margin-bottom: var(--space-3);
+            margin-left: var(--space-5);
+            max-width: var(--measure);
+        }
+
+        .article-body li {
+            margin-bottom: var(--space-1);
+            line-height: var(--leading-relaxed);
+        }
+
+        .article-body blockquote {
+            margin: var(--space-5) 0;
+            padding-left: var(--space-3);
+            border-left: 2px solid var(--ink-hint);
+            font-style: italic;
+            color: var(--ink-muted);
+        }
+
+        .article-body hr {
+            border: none;
+            height: 1px;
+            background: var(--ink-hint);
+            margin: var(--space-8) 0;
+            max-width: 4rem;
+        }
+
+        .article-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-5) 0;
+            font-size: var(--text-sm);
+        }
+
+        .article-body th, .article-body td {
+            padding: var(--space-2);
+            border-bottom: 1px solid var(--ink-hint);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .article-body th {
+            font-weight: 600;
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1;
+            letter-spacing: var(--kern-wide);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           TABLE OF CONTENTS
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        .toc {
+            margin: var(--space-6) 0;
+            padding: var(--space-5);
+            background: var(--paper-tint);
+            border-radius: 3px;
+        }
+
+        .toc-title {
+            font-family: var(--font-caption);
+            font-size: var(--text-xs);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-ghost);
+            margin-bottom: var(--space-3);
+        }
+
+        .toc-list {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+
+        .toc-item {
+            counter-increment: toc-counter;
+            margin-bottom: var(--space-1);
+        }
+
+        .toc-item::before {
+            content: counter(toc-counter) ".";
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            color: var(--ink-ghost);
+            margin-right: var(--space-1);
+            font-feature-settings: "tnum" 1, "lnum" 1;
+        }
+
+        .toc-item a {
+            font-size: var(--text-sm);
+            color: var(--ink-muted);
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .toc-item a:hover { color: var(--ink); }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           ARTICLE FOOTER
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        .article-footer {
+            margin-top: var(--space-10);
+            padding-top: var(--space-5);
+            padding-bottom: var(--space-5);
+            border-top: 1px solid var(--ink-hint);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .author-byline {
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            font-style: italic;
+            color: var(--ink-muted);
+        }
+
+        .author-byline strong {
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .footer-nav a {
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+            font-variant-caps: small-caps;
+            font-feature-settings: "smcp" 1, "c2sc" 1, "kern" 1, "cpsp" 1;
+            letter-spacing: var(--kern-wide);
+            color: var(--ink-faint);
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .footer-nav a:hover { color: var(--ink); }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           CONTACT FOOTER
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        .contact-footer {
+            margin-top: var(--space-10);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--ink-hint);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-caption);
+            font-size: var(--text-sm);
+        }
+
+        .contact-footer > a {
+            color: var(--ink-faint);
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .contact-footer > a:hover { color: var(--ink); }
+
+        .contact-footer .social {
+            display: flex;
+            align-items: center;
+            gap: 0.375em;
+        }
+
+        .contact-footer .icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.25em;
+            height: 2.25em;
+            color: var(--ink-ghost);
+            transition: color 180ms ease, background-color 180ms ease;
+            border-radius: 4px;
+        }
+
+        .contact-footer .icon-link:hover {
+            color: var(--ink);
+            background-color: var(--paper-tint);
+        }
+
+        .contact-footer .icon-link svg { display: block; }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           UTILITIES
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        ::selection { background: var(--ink); color: var(--paper); }
+
+        a:focus-visible {
+            outline: 2px solid var(--ink-muted);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        @media (max-width: 680px) {
+            :root { --text-base: clamp(17px, 1rem + 0.2vw, 19px); }
+
+            .container { padding: var(--space-6) var(--gutter) var(--space-5); }
+
+            .article-title { font-size: var(--text-xl); }
+            .article-subtitle { font-size: var(--text-base); }
+            .article-body h1 { font-size: var(--text-lg); }
+            .article-body h2 { font-size: calc(var(--text-base) * 1.1); }
+
+            .toc { padding: var(--space-3); }
+
+            .article-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-2);
+            }
+
+            .contact-footer {
+                flex-direction: column;
+                gap: var(--space-3);
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            :root { --text-base: 16px; }
+            .container { padding: var(--space-5) var(--space-2) var(--space-4); }
+        }
+
+        @media (min-width: 1200px) {
+            .container { padding-top: var(--space-13); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════════
+           PRINT
+           ═══════════════════════════════════════════════════════════════════════════════ */
+        @media print {
+            :root { --ink: #000; --paper: #fff; }
+            body { font-size: 11pt; line-height: 1.4; }
+            .container { max-width: 100%; padding: 0; }
+            .back-nav, .contact-footer { display: none; }
+            a { text-decoration: none !important; color: var(--ink) !important; }
+            .article-body h1, .article-body h2 { page-break-after: avoid; }
+            .toc { page-break-after: always; }
+        }
+
+        /* Safe area insets for notched devices */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(var(--gutter), env(safe-area-inset-left));
+                padding-right: max(var(--gutter), env(safe-area-inset-right));
+            }
+        }
+    </style>
+<link rel="stylesheet" href="reader-papers.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="back-nav">
+            <a href="writing.html">← Writing</a>
+        </nav>
+
+        <article>
+            <header class="article-header">
+                <h1 class="article-title">The Institutional World Model</h1>
+                <p class="article-subtitle">Continual learning across sovereign virtual machines</p>
+                <p class="article-meta">21 September 2025</p>
+            </header>
+
+            <div class="article-body">
+<p><a href="https://research.momentum.inc">Momentum Research · research.momentum.inc</a><br />
+<a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a></p>
+<p><strong>Abstract.</strong> A learned consent rule can change whether an ownership transfer proceeds, including while an earlier transfer awaits payment. We study how AI-agent execution environments can revise governing interpretations while preserving authority and unfinished work. Its institutional world model represents law, regulation and policy in use, together with the consequences of institutional actions. A standing mandate can authorize automatic updates. Sovereign environments can exchange learned interpretations and retain control over their local use. Rulings supply authoritative examples of rule application, while investigations supply evidence about controls that miss abuse or obstruct legitimate activity.</p>
+<p>For a finite consent learner, zero-knowledge proofs establish the specified fit over a complete source-attested inventory and inference for an exact request. Receiving adoption and current-use checks give those calculations an operative use. Public weights and decisions can still disclose information. Finite results address correction and continuation through repeated updates: completion under each fixed model need not survive model changes. A synthetic lifecycle follows learning through registration, correction and payment after operator replacement. A fraud comparison finds harmful direct transfer, while receiving validation discards all source weights and matches local learning without incremental transfer benefit.</p>
+<section id="a-consent-decision-that-can-change" class="level2">
+<h2>1. A consent decision that can change</h2>
+<p>An agent asks to change a company’s registered owner. Some changes of control require additional consent. A buyer who appears independent may share a controller with the seller, and a fixed check may miss that relationship. Earlier competent rulings can teach the execution environment how the rule applies.</p>
+<p>In the finite task studied here, synthetic rulings distinguish ordinary transfers, common-control reorganizations and nominee or custody arrangements. The adopted procedure requires consent, reserves judgment or satisfies this additional requirement. Authority, eligibility and resources still govern the transfer.</p>
+<p>The companion paper proposes Mass, a decentralized network of sovereign execution environments for AI agents [1]. Each local environment is a sovereign virtual machine. Its governing institution applies law within its jurisdiction and supplies regulation, policy and delegated powers. Agents propose work through that environment: a payment uses an account, a contract creates obligations, and a transfer changes ownership. Before an effect takes place, the environment must determine which requirements apply and what evidence or competent decision they demand.</p>
+<p>We call its learned representation of rule application and institutional outcomes an <strong>institutional world model</strong>. Governing material defines the requirements to interpret. Rulings give authoritative examples of their application, while observations and investigations support empirical models of behavior and consequences. These sources have different meanings. A consent ruling can determine what a rule requires. A fraud score predicts an empirical outcome, and a prediction of official approval carries no official power.</p>
+<p>A standing mandate authorizes an update procedure in advance. Training produces a candidate, which the environment checks against that mandate, current sources and work already underway. An accepted update governs the next agent action. Execution, investigation and correction then supply evidence for another cycle. This permits automatic revision without letting a candidate confer power on itself or reset earlier expenditure and obligations.</p>
+<p>The ownership request may outlast the interpretation that first assessed it. Registration may have changed the holder while payment remains pending at a bank. A later correction must reach the affected decision without erasing the transfer or excluding payment that the bank can still perform. Replacing the model, agent or operator leaves that continuing institution to be served.</p>
+<p>Learning also changes its own evidence. Admission selects which actions occur, investigation selects which outcomes receive labels, and other actors respond to the controls. The consent lifecycle below tests the path from private learning to execution. A separate fraud comparison tests transfer in a fixed population. Success against an adapting adversary requires further empirical evidence.</p>
+</section>
+<section id="what-the-evidence-establishes" class="level2">
+<h2>2. What the evidence establishes</h2>
+<section id="rulings-findings-and-missing-outcomes" class="level3">
+<h3>2.1. Rulings, findings and missing outcomes</h3>
+<p>A consent label answers a particular authority’s question about a particular rule and case. The learning record must identify that authority, the source revision and the permitted purpose of the determination. A reversal changes the current label. The earlier ruling and its effects remain in the record.</p>
+<p>Empirical labels need comparable precision. Suspicion, referral, investigation, competent finding and reversal record different events. Refusing a proposal supplies no fraud finding about it. Missing or censored outcomes remain explicit, with the investigation that could establish them.</p>
+<p>The observation contract records how the environment obtained each label. It identifies the proposal, acting capacity, affected objects, operative policy, decision, observation horizon and available outcome. Entities, controllers, documents, transfers and their times may all matter. The learning task determines which relationships it needs. The access contract determines which it may use.</p>
+<p>Identity judgments affect which evidence belongs to a case. A mistaken judgment can attach a ruling or payment observation to the wrong record. Source assertions must therefore remain separate from their current assessment. SamePerson identifies records about one person without merging that person’s estates. SameEvent identifies records about one occurrence, so its correction can change payment support without creating another payment. Training binds the admitted label revisions and source cut, which fixes the versions and observations available to the calculation.</p>
+<p>Authenticity cannot recover an outcome that was never observed. Suppose a gate refuses 100 of 1,000 proposed transactions and permits 900. Nine permitted transactions later receive confirmed fraud labels. Assume complete labels for those 900 at the declared horizon. Also stipulate fixed binary potential outcomes under permission, without cross-proposal interference or policy-induced response changes.</p>
+<p>If none of the refused transactions would have been fraudulent, permitting all proposals would yield a fraud rate of 0.9%. If every refused transaction would have been fraudulent, the rate would be 10.9%. The observed history is identical in both cases.</p>
+<p><strong>Proposition 1 (Unidentified outcomes and interpretations).</strong> Under the fixed-outcome premises, a record containing only the admitted outcomes in this example identifies the all-proposals potential fraud rate no more narrowly than <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0.009</mn><mo>,</mo><mn>0.109</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0.009,0.109]</annotation></semantics></math>. More generally, two admissibility functions that agree on every recorded case but disagree on a new program cannot be distinguished from that history alone.</p>
+<p><strong>Proof.</strong> Assign each missing potential outcome zero or one. Both extreme assignments preserve every observed label and decision. They attain the stated endpoints. For the second claim, the two interpretations supply identical learner inputs and different required answers. A function of those inputs cannot return the required answer in both worlds. Randomisation cannot guarantee both answers either. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math></p>
+<p>This is the selective-label obstruction [2]. An additional investigation, permitted experiment or justified identification assumption can distinguish some of the possible worlds. With interference, the counterfactual model must also cover changed outcomes among formerly admitted proposals. Provenance identifies the supplied observations. It cannot resolve what they leave open.</p>
+<p>The same limitation applies to interpretation. Two procedures can fit every retained ruling and disagree on the next ownership request. Selecting between them requires a normative source, authoritative examples or a competent determination. Repeating the already observed cases need not provide that information.</p>
+</section>
+<section id="retaining-the-relationships-needed-for-a-question" class="level3">
+<h3>2.2. Retaining the relationships needed for a question</h3>
+<p>Even an observed fact can become unavailable through the choice of representation. Consent may depend on who controls whom. A summary containing only earlier verdicts can discard the relationship needed for the next request. Empirical transfer analysis faces the same problem.</p>
+<p>Consider four entities and three transfers. The histories <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">A\to B\to C\to A</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo>→</mo><mi>D</mi></mrow><annotation encoding="application/x-tex">A\to B\to C\to D</annotation></semantics></math> can have identical transaction counts and verdicts. Only the first contains a directed cycle. The cycle supplies a feature for investigation. It does not establish fraud.</p>
+<p>Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false" form="prefix">(</mo><mi>H</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">T(H)</annotation></semantics></math> be the retained representation of history <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>, and let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math> be a declared family of questions.</p>
+<p><strong>Proposition 2 (Observation sufficiency).</strong> Every <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>∈</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">q\in Q</annotation></semantics></math> has an exact decoder from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false" form="prefix">(</mo><mi>H</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">T(H)</annotation></semantics></math> precisely when</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false" form="prefix">(</mo><mi>H</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>T</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>H</mi><mo>′</mo></msup><mo stretchy="false" form="postfix">)</mo><mspace width="1.0em"></mspace><mo>⇒</mo><mspace width="1.0em"></mspace><mi>q</mi><mo stretchy="false" form="prefix">(</mo><mi>H</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>q</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>H</mi><mo>′</mo></msup><mo stretchy="false" form="postfix">)</mo><mspace width="2.0em"></mspace><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>∈</mo><mi>Q</mi><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+T(H)=T(H&#39;)\quad\Longrightarrow\quad q(H)=q(H&#39;)
+\qquad(q\in Q).
+</annotation></semantics></math></p>
+<p><strong>Proof.</strong> Equal decoder inputs must have equal outputs. Conversely, the condition assigns one answer to each fibre of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>, defining a decoder on its image. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math></p>
+<p>Proposition 2 identifies the questions a representation preserves. Implementation also needs an available decoder. The result requires no unlimited retention. When a later task needs discarded relationships, the institution must obtain source evidence, change its observation contract or report that it cannot answer.</p>
+<p>Some local learning therefore needs personal or entity-level records. A model exported without rows can still retain information about those records. Access, retention and release obligations follow the task and its artifacts. Section 5 distinguishes the information hidden by a private calculation proof from information disclosed by its outputs.</p>
+</section>
+</section>
+<section id="from-rulings-to-an-admitted-action" class="level2">
+<h2>3. From rulings to an admitted action</h2>
+<section id="what-the-output-can-mean" class="level3">
+<h3>3.1. What the output can mean</h3>
+<p>The retained evidence supports different kinds of conclusion. Consent rulings teach an application of a rule. Fraud findings support a prediction about behavior. Statistical learning can serve either task, but the institution must specify which conclusion it will use.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Role</th>
+<th>Output</th>
+<th>Basis for reliance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Empirical model</td>
+<td>Prediction, uncertainty or identified range</td>
+<td>Observation and statistical contract</td>
+</tr>
+<tr>
+<td>Institutional interpreter</td>
+<td>Application of a named rule to a case</td>
+<td>Competent adoption, precedents and reserved decisions</td>
+</tr>
+<tr>
+<td>Admission policy</td>
+<td>Permitted effect, hold, question or refusal</td>
+<td>Current authority and complete execution contract</td>
+</tr>
+</tbody>
+</table>
+<p>One neural model may perform all three roles in the table. Each interface must establish the proposition required for its use. A prediction of official approval confers no power, and a high fraud score establishes no adjudicated finding. The institution may nevertheless adopt a score as grounds for a defined protective measure.</p>
+<p>For example, an adopted threshold can trigger a bounded investigation hold. The authorizing procedure states the affected action, duration, review and challenge route. Those terms give the score its operational force. They supply no implicit power to confiscate assets, make a criminal finding or interfere with unrelated remedial work.</p>
+<p>Competent adoption determines which judgments the institution reserves and which it delegates to learned assessment. A standing mandate can permit automatic updates within that boundary. Competence over every interpretation a model can predict is not presumed.</p>
+</section>
+<section id="fitting-the-consent-rule" class="level3">
+<h3>3.2. Fitting the consent rule</h3>
+<p>Assign each labeled case to a cell <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> through a supported feature extractor. In that cell, the model predicts a binary recorded outcome with parameter <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mi>x</mi></msub><mo>∈</mo><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\theta_x\in(0,1)</annotation></semantics></math>. Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mi>x</mi></msub><annotation encoding="application/x-tex">n_x</annotation></semantics></math> count the observed labels and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>k</mi><mi>x</mi></msub><annotation encoding="application/x-tex">k_x</annotation></semantics></math> the positives. The finite learner minimizes</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mi>x</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>θ</mi><mi>x</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>k</mi><mi>x</mi></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><msub><mi>θ</mi><mi>x</mi></msub><mo>−</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>n</mi><mi>x</mi></msub><mo>−</mo><msub><mi>k</mi><mi>x</mi></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>θ</mi><mi>x</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+L_x(\theta_x)=-(k_x+1)\log\theta_x
+ -(n_x-k_x+1)\log(1-\theta_x).
+</annotation></semantics></math></p>
+<p><strong>Lemma 3 (Finite fitted parameters).</strong> The unique minimiser is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>θ</mi><mo accent="true">̂</mo></mover><mi>x</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>k</mi><mi>x</mi></msub><mo>+</mo><mn>1</mn></mrow><mrow><msub><mi>n</mi><mi>x</mi></msub><mo>+</mo><mn>2</mn></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\widehat\theta_x=\frac{k_x+1}{n_x+2}.
+</annotation></semantics></math></p>
+<p><strong>Proof.</strong> The derivative vanishes exactly when <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>k</mi><mi>x</mi></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>θ</mi><mi>x</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>n</mi><mi>x</mi></msub><mo>−</mo><msub><mi>k</mi><mi>x</mi></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><msub><mi>θ</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">(k_x+1)(1-\theta_x)=(n_x-k_x+1)\theta_x</annotation></semantics></math>. The second derivative is positive throughout <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,1)</annotation></semantics></math>, and the loss diverges at either endpoint. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math></p>
+<p>The added units are declared pseudocounts. They define the estimator without supplying missing outcomes or establishing accuracy. With no observed labels, a cell returns <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math>, and the local training record identifies the lack of support. A private-weight receiver cannot distinguish that cell from one with balanced labels by its score alone. The consent procedure therefore refers every <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math> cell. It does not claim that the receiver knows the sample count.</p>
+<p>The consent source supplies 24 synthetic determinations, eight in each category. A positive label records the source authority’s determination that the named rule required additional consent.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr>
+<th>Source category</th>
+<th style="text-align: right;">Determinations</th>
+<th style="text-align: right;">Consent required</th>
+<th style="text-align: right;">Fitted score</th>
+<th>Adopted response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ordinary transfer</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>10</mn></mrow><annotation encoding="application/x-tex">1/10</annotation></semantics></math></td>
+<td>No additional consent</td>
+</tr>
+<tr>
+<td>Common control</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>/</mi><mn>5</mn></mrow><annotation encoding="application/x-tex">4/5</annotation></semantics></math></td>
+<td>Require consent</td>
+</tr>
+<tr>
+<td>Nominee or custody</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math></td>
+<td>Refer</td>
+</tr>
+</tbody>
+</table>
+<p>The adopted procedure returns NoAdditionalConsent at scores at most <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">1/4</annotation></semantics></math>, RequireConsent at scores at least <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mi>/</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">3/4</annotation></semantics></math>, and Refer between them. An unsupported cell thus receives Refer. This synthetic task stipulates both the category definitions and the competent source’s assignment of cases to them.</p>
+<p>The fitted score summarizes the admitted rulings. The adopted procedure gives that summary a consequence for the next request. NoAdditionalConsent satisfies only the additional-consent requirement. RequireConsent calls for exact scoped consent, and Refer calls for the reserved determination. The transfer’s other admission checks remain necessary.</p>
+<p>Now reverse six common-control positives through competent negative determinations. The positive count falls from seven to one, giving a fitted score of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>5</mn></mrow><annotation encoding="application/x-tex">1/5</annotation></semantics></math>. RequireConsent becomes NoAdditionalConsent. A suspended case can use that change only after current reassessment and reconciliation.</p>
+<p>Section 9.2 applies the same estimator to empirical fraud findings under a separately adopted consequence policy.</p>
+<p>Every fit records the objective, admitted labels, excluded missing labels, feature semantics, data cut and parameters. A richer neural learner changes the inference and assurance obligations. The institution must still specify what the output means and which use it adopts.</p>
+</section>
+<section id="the-exact-action-and-its-continuation" class="level3">
+<h3>3.3. The exact action and its continuation</h3>
+<p>The consent decision now enters an assessment of an exact request, institutional context and use. An adopted procedure can return</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mrow><mi mathvariant="sans-serif">𝖯</mi><mi mathvariant="sans-serif">𝖾</mi><mi mathvariant="sans-serif">𝗋</mi><mi mathvariant="sans-serif">𝗆</mi><mi mathvariant="sans-serif">𝗂</mi><mi mathvariant="sans-serif">𝗍</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>e</mi><mo>,</mo><mi>k</mi><mo>,</mo><mi>v</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mrow><mi mathvariant="sans-serif">𝖧</mi><mi mathvariant="sans-serif">𝗈</mi><mi mathvariant="sans-serif">𝗅</mi><mi mathvariant="sans-serif">𝖽</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo>,</mo><mi>q</mi><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mrow><mi mathvariant="sans-serif">𝖱</mi><mi mathvariant="sans-serif">𝖾</mi><mi mathvariant="sans-serif">𝖿</mi><mi mathvariant="sans-serif">𝗎</mi><mi mathvariant="sans-serif">𝗌</mi><mi mathvariant="sans-serif">𝖾</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo>,</mo><mi>u</mi><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+&amp;\mathsf{Permit}(e,k,v),\\
+&amp;\mathsf{Hold}(b,q,t),\\
+&amp;\mathsf{Refuse}(b,u).
+\end{aligned}
+</annotation></semantics></math></p>
+<p>In Permit, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math> identifies the effect and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math> the evidence supporting it. The continuation <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> records unfinished work and the conditions for resumption. Hold identifies the basis <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>, pending question <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math> and deadline <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>. Refuse identifies its basis and scope <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>u</mi><annotation encoding="application/x-tex">u</annotation></semantics></math>. The operative procedure determines when each result is available.</p>
+<p>The host controls protected institutional state. For the ownership request, it checks current power, applicable requirements, exact parties and effect, resources, dependencies and residual duties. Sanctions evaluation is one possible requirement. Complete mediation requires every protected change to pass admission, including administrative and model-adoption operations [3].</p>
+<p>Admission must also allow work that a decision creates or leaves pending. A transfer can create a reporting duty due thirty days later. Requiring the report first would obstruct the act that creates the duty. An unresolved application may still permit evidence submission, identity correction or payment of an existing refund. Permission therefore attaches to an exact action, rather than a permanent favorable status for the entity.</p>
+<p>Recording the decision supplies no missing permission. Complete mediation can use several physical functions or writers. A small verifier can check the complete admission record, including reasons, unresolved questions and continuing duties.</p>
+<p>Appendix A gives a restricted algebra for combining requirement grades. Performing a filing, obtaining consent or discharging a duty still requires evidence and an authorized operation.</p>
+</section>
+<section id="what-adoption-binds" class="level3">
+<h3>3.4. What adoption binds</h3>
+<p>Fixed weights do not fix behavior. A changed feature extractor can move a case to another cell, and changed calibration or thresholds can give its score another consequence. Institution <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> therefore adopts the complete operative bundle</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mrow><mi>i</mi><mo>,</mo><mi>v</mi></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>θ</mi><mo>,</mo><mi>F</mi><mo>,</mo><mi>C</mi><mo>,</mo><mi>P</mi><mo>,</mo><mi>R</mi><mo>,</mo><mi>U</mi><mo>;</mo><mi>E</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">
+B_{i,v}=(\theta,F,C,P,R,U;E),
+</annotation></semantics></math></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>What it fixes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math></td>
+<td>Learned parameters</td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math></td>
+<td>Feature extraction</td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math></td>
+<td>Interpretation of scores and uncertainty</td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td>Mapping from interpreted outputs to consequences</td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math></td>
+<td>Inference semantics and reproducibility</td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math></td>
+<td>Permitted uses</td>
+</tr>
+<tr>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>E</mi><annotation encoding="application/x-tex">E</annotation></semantics></math></td>
+<td>Training cuts, derivation parents and assurance evidence</td>
+</tr>
+</tbody>
+</table>
+<p>The bundle belongs to the governed context <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="normal">Γ</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\Gamma_i</annotation></semantics></math>.</p>
+<p>In the private consent profile, the source attests each case’s category encoding. The proof checks the calculation over that encoding. Proving feature extraction from committed documents would require a richer profile and its own source and semantic obligations. The finite construction makes no such claim.</p>
+<p>Update authority belongs to a separate protected mandate <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mi>i</mi></msub><annotation encoding="application/x-tex">M_i</annotation></semantics></math>. It identifies the competent origin, updater, baseline, allowed changes, checker, horizon and cumulative accounts. A candidate can reference that mandate but cannot replace its authority. A successor mandate needs competence from the predecessor context.</p>
+<p>An assessment binds the actual bundle and its inputs: source and retrieval cuts, extracted features, case, purpose and inference output. The runtime computes the supported inference or verifies a proof of that exact relation. Before commitment, the host rechecks dependencies and current authority. Changed preprocessing, weights, calibration, thresholds or retrieved material require reassessment. A checked correspondence may instead justify reuse for the exact present use. We call that reuse assessment transport.</p>
+<p>A joint operation binds the relevant vector of local contexts and bundles. Institutions may train locally, share parameters, delegate training, use local adapters or retain a frozen model. Local control concerns the adopted interpretation. It does not require each sovereign VM to train a separate neural network.</p>
+</section>
+</section>
+<section id="receiving-a-learned-interpretation" class="level2">
+<h2>4. Receiving a learned interpretation</h2>
+<section id="the-source-result-and-the-receiving-use" class="level3">
+<h3>4.1. The source result and the receiving use</h3>
+<p>The source can now fit a consent model and use it under its own rule. A receiving registrar may apply different rules to the same relationships. It needs an account of the imported artifact and the local consequence proposed for it. The source may offer a ruling, a learned interpretation or a procedure for acting on that interpretation. Recognizing one ruling does not adopt a general model. Adopting a consent model does not authorize unrelated refusals.</p>
+<p>The receiving use has three contracts. Representational correspondence binds features, labels, capacities, time windows and source meanings. Statistical assurance identifies the evidence for performance in the receiving population. Institutional recognition determines which consequence the receiver may give the result. All three are directional and task-specific.</p>
+<p>For consent, a correctly fitted source weight can still encode a relationship that receiving law treats differently. The receiver can adopt a correspondence, reserve the question for its own authority or decline the interpretation. The source can continue using its own model.</p>
+<p>Recognition can also stop at the evidence. A receiver might request more documents where the source requires consent, or adopt local calibration under an existing mandate. Shared learning is compatible with different operative interpretations.</p>
+</section>
+<section id="population-and-consequence" class="level3">
+<h3>4.2. Population and consequence</h3>
+<p>An empirical model can preserve its meaning and still perform differently after transfer. Take a detector with sensitivity <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.9</mn><annotation encoding="application/x-tex">0.9</annotation></semantics></math>, false-positive rate <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.01</mn><annotation encoding="application/x-tex">0.01</annotation></semantics></math> and prevalence <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>π</mi><annotation encoding="application/x-tex">\pi</annotation></semantics></math>. Its positive predictive value is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>0.9</mn><mi>π</mi></mrow><mrow><mn>0.9</mn><mi>π</mi><mo>+</mo><mn>0.01</mn><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>π</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\frac{0.9\pi}{0.9\pi+0.01(1-\pi)}.
+</annotation></semantics></math></p>
+<p>At prevalence <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.1</mn><annotation encoding="application/x-tex">0.1</annotation></semantics></math>, the value is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mi>/</mi><mn>11</mn></mrow><annotation encoding="application/x-tex">10/11</annotation></semantics></math>. At prevalence <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.001</mn><annotation encoding="application/x-tex">0.001</annotation></semantics></math>, it falls to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mi>/</mi><mn>121</mn></mrow><annotation encoding="application/x-tex">10/121</annotation></semantics></math>. Among 100,000 destination proposals, the latter population gives ninety flagged fraudulent cases and 999 flagged benign cases. The calculation holds classifier rates fixed. It estimates no country’s rates.</p>
+<p>The unchanged threshold therefore imposes a different burden. Receiving-population evidence must address both performance and the costs of the adopted response. Causal transportability needs additional assumptions about differences between source and destination [5].</p>
+<p>An embedding can represent jurisdictions numerically through features of their legal traditions. It may provide a prior for investigating transfer, but supplies no transfer theorem. Weight deltas also need compatible parameterization and semantics. Without that compatibility, the exchanged object must be a complete detector, rule proposal or evidence packet with a specified receiving interpretation.</p>
+</section>
+<section id="verification-before-adoption" class="level3">
+<h3>4.3. Verification before adoption</h3>
+<p>The receiver authenticates the inventory and verifies the learning calculation against expectations held in protected policy. It checks the proposed correspondence, validation and use before predecessor-authorized adoption makes the bundle operative. Shared parameters require no global synchronization. Each institution controls its adopted interpretation.</p>
+<p>Authentication and correct computation can both accompany unsuitable learning. Labels may be inaccurate, or the specified algorithm may fit a detector poorly suited to its destination. Model-replacement attacks in federated learning show how a participant can introduce targeted errors while preserving ordinary performance [6]. The receiving mandate must specify the properties its checks require.</p>
+<p>Finite validation can reject a specified poisoned candidate. It cannot exclude every unseen backdoor. Section 9 tests an authenticated but unsuitable fraud artifact within that limit.</p>
+<p>The receiving record must make failures separately contestable. A corrected source finding may require retraining. Changed receiving law may instead require a new use of an otherwise correct model. A computation proof resolves neither population fitness nor institutional adoption.</p>
+<p>Institutions already share knowledge about financial crime. FATF, INTERPOL and the Egmont Group document exchanges about fraud methods and coordinated responses [8]. Here the receiving decision must connect that knowledge to an executable consequence and remain revisable when its basis changes.</p>
+<p>Project Aurora explored collaborative detection with synthetic payment data, network analysis, machine learning and privacy-enhancing technologies [9]. Project Mandala demonstrated a peer network with rules and proof engines for cross-border compliance [10]. Its participants retained responsibility for regulatory interpretation and application. These are direct precedents for distributed learning and proof-supported compliance. The consent construction adds a specified fit from normative determinations and inference for an exact receiving request.</p>
+</section>
+</section>
+<section id="verifying-private-learning-and-inference" class="level2">
+<h2>5. Verifying private learning and inference</h2>
+<section id="the-inventory-determines-the-calculation" class="level3">
+<h3>5.1. The inventory determines the calculation</h3>
+<p>Once the receiving use is specified, the receiver needs evidence of how the source fitted the model. The underlying cases may be private. The source signs a complete finite manifest identifying case revisions, commitments and the learning task. The receiver can then check the declared calculation without receiving the raw case values.</p>
+<p>A commitment hides an encoded value and binds the source to it. For each row, six hidden indicators represent the three categories paired with the two possible rulings.</p>
+<p>Use the Ristretto group of prime order</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℓ</mi><mo>=</mo><msup><mn>2</mn><mn>252</mn></msup><mo>+</mo><mn>27742317777372353535851937790883648493</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\ell=2^{252}+27742317777372353535851937790883648493.
+</annotation></semantics></math></p>
+<p>Fix generators <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>,</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">G,H</annotation></semantics></math> whose discrete-logarithm relation is unknown. The source commits to six values for each row <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>, one for each category <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">j\in\{0,1,2\}</annotation></semantics></math> and label <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">b\in\{0,1\}</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi><mi>b</mi></mrow></msub><mo>=</mo><msub><mi>z</mi><mrow><mi>i</mi><mi>j</mi><mi>b</mi></mrow></msub><mi>G</mi><mo>+</mo><msub><mi>r</mi><mrow><mi>i</mi><mi>j</mi><mi>b</mi></mrow></msub><mi>H</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+C_{ijb}=z_{ijb}G+r_{ijb}H.
+</annotation></semantics></math></p>
+<p>The private <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>z</mi><mrow><mi>i</mi><mi>j</mi><mi>b</mi></mrow></msub><annotation encoding="application/x-tex">z_{ijb}</annotation></semantics></math> values select the row’s category and label. Independent uniform scalar blindings <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>r</mi><mrow><mi>i</mi><mi>j</mi><mi>b</mi></mrow></msub><annotation encoding="application/x-tex">r_{ijb}</annotation></semantics></math> hide their openings. A labeled row has exactly one indicator equal to one. A row with a missing label has six zero indicators. The public manifest records label presence, censoring and observation time. Its case identifiers are unique and sorted.</p>
+<p>Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>p</mi><mi>i</mi></msub><annotation encoding="application/x-tex">p_i</annotation></semantics></math> be the public indicator that a label is present. Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>e</mi><mi>i</mi></msub><annotation encoding="application/x-tex">e_i</annotation></semantics></math> indicate that the label is present, uncensored and available by the training cut. The relation requires</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mrow><mi>i</mi><mi>j</mi><mi>b</mi></mrow></msub><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">}</mo><mo>,</mo><mspace width="2.0em"></mspace><munder><mo>∑</mo><mrow><mi>j</mi><mo>,</mo><mi>b</mi></mrow></munder><msub><mi>z</mi><mrow><mi>i</mi><mi>j</mi><mi>b</mi></mrow></msub><mo>=</mo><msub><mi>p</mi><mi>i</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>n</mi><mi>j</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>e</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>z</mi><mrow><mi>i</mi><mi>j</mi><mn>0</mn></mrow></msub><mo>+</mo><msub><mi>z</mi><mrow><mi>i</mi><mi>j</mi><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>k</mi><mi>j</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>e</mi><mi>i</mi></msub><msub><mi>z</mi><mrow><mi>i</mi><mi>j</mi><mn>1</mn></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+z_{ijb}\in\{0,1\},\qquad
+\sum_{j,b}z_{ijb}=p_i,\qquad
+n_j=\sum_i e_i(z_{ij0}+z_{ij1}),\qquad
+k_j=\sum_i e_i z_{ij1}.
+</annotation></semantics></math></p>
+<p>The manifest and public eligibility rule determine every contributing row. Commitments supply its private category and label values. An inventory contains between one and 256 rows. The source attests the census and encoding under the named rule. That attestation supplies the coverage premise beyond the arithmetic checked by the proof.</p>
+<p>The artifact identifies the task, normative source, category contract, learner, runtime and fixed decision policy. It supplies three canonical fractions <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>j</mi></msub><mi>/</mi><msub><mi>b</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">a_j/b_j</annotation></semantics></math>, with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><msub><mi>a</mi><mi>j</mi></msub><mo>&lt;</mo><msub><mi>b</mi><mi>j</mi></msub><mo>≤</mo><mn>258</mn></mrow><annotation encoding="application/x-tex">0&lt;a_j&lt;b_j\le258</annotation></semantics></math>. It binds the training cut, manifest, recipient, purpose, permitted actions and release identity. The correction frontier gives the latest admitted correction sequence and head hash. A historical replacement link can identify an earlier artifact without asserting continued computational reliance on its invalidated examples.</p>
+<p>The source signs under a distinct protocol domain. Canonical encoding and content hashes bind the manifest’s exact bytes. Protected local policy supplies the receiver’s expected source key, task and current manifest frontier. Descriptions supplied by the caller cannot establish those expectations.</p>
+<p>This complete inventory prevents a form of selective inclusion. A membership proof alone could establish that chosen rows belong to a collection while omitting unfavorable rows. Here the verifier derives the relation from every signed-manifest row and the public eligibility rule. Whether the signed manifest contains the complete promised census remains the source’s responsibility.</p>
+</section>
+<section id="the-training-proof" class="level3">
+<h3>5.2. The training proof</h3>
+<p>An aggregated Bulletproof checks verifier-derived commitments in eight-bit ranges [13]. For each indicator commitment <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>, the verifier includes <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> and its complement commitment <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>−</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">G-C</annotation></semantics></math>. For each row it derives</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>i</mi></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>j</mi><mo>,</mo><mi>b</mi></mrow></munder><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi><mi>b</mi></mrow></msub><mo>−</mo><msub><mi>p</mi><mi>i</mi></msub><mi>G</mi></mrow><annotation encoding="application/x-tex">
+R_i=\sum_{j,b}C_{ijb}-p_iG
+</annotation></semantics></math></p>
+<p>and includes the residual commitment <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mi>i</mi></msub><annotation encoding="application/x-tex">R_i</annotation></semantics></math> and its negative <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><msub><mi>R</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">-R_i</annotation></semantics></math>.</p>
+<p>For category <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>, the fitting equation is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>j</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>n</mi><mi>j</mi></msub><mo>+</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>k</mi><mi>j</mi></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+a_j(n_j+2)=b_j(k_j+1).
+</annotation></semantics></math></p>
+<p>The verifier derives commitments to the counts and fitting residual:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>C</mi><msub><mi>n</mi><mi>j</mi></msub></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>e</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi><mn>0</mn></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>C</mi><msub><mi>k</mi><mi>j</mi></msub></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>e</mi><mi>i</mi></msub><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi><mn>1</mn></mrow></msub><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>F</mi><mi>j</mi></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>a</mi><mi>j</mi></msub><msub><mi>C</mi><msub><mi>n</mi><mi>j</mi></msub></msub><mo>−</mo><msub><mi>b</mi><mi>j</mi></msub><msub><mi>C</mi><msub><mi>k</mi><mi>j</mi></msub></msub><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>2</mn><msub><mi>a</mi><mi>j</mi></msub><mo>−</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>G</mi><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+C_{n_j}&amp;=\sum_i e_i(C_{ij0}+C_{ij1}),\\
+C_{k_j}&amp;=\sum_i e_iC_{ij1},\\
+F_j&amp;=a_jC_{n_j}-b_jC_{k_j}+(2a_j-b_j)G.
+\end{aligned}
+</annotation></semantics></math></p>
+<p>Both <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>j</mi></msub><annotation encoding="application/x-tex">F_j</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><msub><mi>F</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">-F_j</annotation></semantics></math> enter the same proof, with openings equal to the fitting residual and its negative. The verifier derives them from the manifest. The prover therefore cannot substitute independently chosen counts.</p>
+<p>Each row contributes twelve bit/complement entries and two residual entries. The three fitting equations add six, for a total of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>14</mn><mi>N</mi><mo>+</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">14N+6</annotation></semantics></math>. Identity commitments pad this count to a power of two. The transcript binds the full artifact and signed manifest, so inventory, fit and output form one statement.</p>
+<p><strong>Proposition 3a (Private training relation).</strong> Assume adaptive knowledge soundness and zero knowledge for the instantiated aggregated Bulletproof. Assume an unknown discrete-logarithm relation between the fixed Pedersen generators, Ed25519 authenticity, SHA-256 collision resistance and injective shared encoding. For an accepted envelope outside the corresponding failure events, knowledge extraction supplies openings of every manifest commitment satisfying the stated bit, row and eligibility relations. Its public fractions equal <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>k</mi><mi>j</mi></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>n</mi><mi>j</mi></msub><mo>+</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(k_j+1)/(n_j+2)</annotation></semantics></math> for those openings.</p>
+<p><strong>Proof.</strong> Knowledge extraction supplies bounded openings for all range entries, including each original commitment. Each bit and its derived complement open to nonnegative integers at most 255. Their sum is one modulo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℓ</mi><annotation encoding="application/x-tex">\ell</annotation></semantics></math>. Commitment binding and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>510</mn><mo>&lt;</mo><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">510&lt;\ell</annotation></semantics></math> make the integer sum one, so the original value is zero or one.</p>
+<p>A residual commitment and its negative also have nonnegative openings at most 255. Their integer sum is zero, so both openings are zero. Binding then identifies each residual with the verifier’s linear combination of the extracted original openings. Row residuals establish the one-hot or all-zero condition. Fitting residuals establish the displayed equation modulo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℓ</mi><annotation encoding="application/x-tex">\ell</annotation></semantics></math>.</p>
+<p>The admitted bounds give <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>j</mi></msub><mo>≤</mo><mn>256</mn></mrow><annotation encoding="application/x-tex">n_j\le256</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mi>j</mi></msub><mo>≤</mo><msub><mi>n</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">k_j\le n_j</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>j</mi></msub><mo>≤</mo><mn>257</mn></mrow><annotation encoding="application/x-tex">a_j\le257</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mi>j</mi></msub><mo>≤</mo><mn>258</mn></mrow><annotation encoding="application/x-tex">b_j\le258</annotation></semantics></math>. Each product in the fitting residual is at most <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>257</mn><mo>⋅</mo><mn>258</mn><mo>=</mo><mn>66</mn><mo>,</mo><mn>306</mn></mrow><annotation encoding="application/x-tex">257\cdot258=66{,}306</annotation></semantics></math>. Their absolute difference is therefore at most <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>66</mn><mo>,</mo><mn>306</mn></mrow><annotation encoding="application/x-tex">66{,}306</annotation></semantics></math>, below the group order. The modular equality is consequently an integer equality. Positive denominators and canonical reduction give the claimed fractions. Authentication and exact encoding bind those equations to the source’s signed inventory and the receiver’s expected task. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math></p>
+<p>Knowledge extraction is essential here. Pedersen commitments are perfectly hiding, so existence of an opening alone would not connect the proof to the claimed calculation. The argument requires extracted openings with the stated algebraic correspondence.</p>
+<p>Ganesh et al. prove simulation extractability for Fiat–Shamir Bulletproofs in the programmable random-oracle model [14]. This protocol-family result leaves an instantiation premise for the particular library and transcript used here.</p>
+<p>Proposition 3a establishes the fit over the attested inventory. The truth and legal meaning of a label, and the competence to issue it, remain source premises. Generalization beyond that inventory needs separate evidence. Section 4 specifies the receiving conditions, and §6 examines the changing evidence produced by repeated use.</p>
+</section>
+<section id="inference-for-the-present-request" class="level3">
+<h3>5.3. Inference for the present request</h3>
+<p>The adopted model must next be applied to the receiver’s exact request. To conceal its category, the case source supplies a signed credential containing three commitments</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mi>j</mi></msub><mo>=</mo><msub><mi>u</mi><mi>j</mi></msub><mi>G</mi><mo>+</mo><msub><mi>s</mi><mi>j</mi></msub><mi>H</mi><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>u</mi><mi>j</mi></msub><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">}</mo><mo>,</mo><mspace width="2.0em"></mspace><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>u</mi><mi>j</mi></msub><mo>=</mo><mn>1</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+U_j=u_jG+s_jH,\qquad
+u_j\in\{0,1\},\qquad \sum_j u_j=1.
+</annotation></semantics></math></p>
+<p>Public fields bind the task, normative source, category contract, case, subject, revision, source cut and request digest. Source competence and correct encoding remain premises, as they do for training.</p>
+<p>The adopted fractions fix public decision codes <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>c</mi><mi>j</mi></msub><annotation encoding="application/x-tex">c_j</annotation></semantics></math>: zero for NoAdditionalConsent, one for RequireConsent and two for Refer. For a claimed code <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>o</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">o\in\{0,1,2\}</annotation></semantics></math>, the inference proof establishes</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>c</mi><mi>j</mi></msub><msub><mi>u</mi><mi>j</mi></msub><mo>=</mo><mi>o</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\sum_j c_j u_j=o.
+</annotation></semantics></math></p>
+<p>The proof checks each bit and complement, both signs of the one-hot residual and both signs of the decision residual. Ten entries pad to sixteen. Its transcript binds the artifact, signed credential and complete inference statement.</p>
+<p><strong>Proposition 3b (Private inference relation).</strong> Under Proposition 3a’s cryptographic and encoding assumptions, an accepted inference envelope establishes knowledge of a one-hot opening of the signed case credential. The claimed output equals the fixed adopted policy’s decision for that category. The statement binds this conclusion to its exact artifact, case revision, request and proposed operation.</p>
+<p><strong>Proof.</strong> Extract the three committed openings. The bit/complement checks and one-hot residual give exactly one selected category by Proposition 3a’s integer argument. The two decision-residual checks give <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∑</mo><mi>j</mi></msub><msub><mi>c</mi><mi>j</mi></msub><msub><mi>u</mi><mi>j</mi></msub><mo>=</mo><mi>o</mi></mrow><annotation encoding="application/x-tex">\sum_j c_j u_j=o</annotation></semantics></math>. All decision values lie between zero and two, so no modular ambiguity remains. Signature verification and the bound transcript identify the credential, artifact and statement used in these equations. Exact comparison with the host’s expected statement fixes the present request and operation. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math></p>
+<p>The host derives its expected statement from the protected current context and proposed effect. Separate authenticated ingress establishes the current case credential before inference can authorize use. The host checks that credential, the adopted artifact and any required consent or reserved determination. A proof for another operation fails the exact statement comparison. NoAdditionalConsent satisfies only the additional-consent requirement. Powers, resources and native-effect checks still apply.</p>
+<p>Verified inference can thus enter the same assessment relation as local inference. The proof establishes the output. Receiving adoption and current-use checks establish the institutional consequence permitted for that output.</p>
+</section>
+<section id="disclosure-through-the-output" class="level3">
+<h3>5.4. Disclosure through the output</h3>
+<p>The proof hides additional witness information relative to its public statement. That statement already contains exact weights and metadata. It can disclose a category or label even when zero knowledge holds.</p>
+<p>Take an inventory with one eligible row. The selected category has weight <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">1/3</annotation></semantics></math> for a negative label and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">2/3</annotation></semantics></math> for a positive label. Every other category has weight <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math>. The published weights identify both category and label. An inference outcome likewise identifies a category when the three categories have distinct public decisions.</p>
+<p>The release contract must cover that output. In the finite consent profile, case identifiers, source revisions and other manifest metadata are public. Commitments and proofs avoid publishing raw witnesses. They do not prevent inference of those values from permitted outputs.</p>
+<p>Increasing the aggregate size does not by itself remove disclosure. For binary records, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mn>500</mn></msubsup><msub><mi>y</mi><mi>j</mi></msub><mi>/</mi><mn>500</mn></mrow><annotation encoding="application/x-tex">\theta=\sum_{j=1}^{500}y_j/500</annotation></semantics></math> reveals the last label to someone who knows the other 499. A corrected weight <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>θ</mi><mo>′</mo></msup><annotation encoding="application/x-tex">\theta&#39;</annotation></semantics></math> can reveal a changed label through <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>500</mn><mo stretchy="false" form="prefix">(</mo><mi>θ</mi><mo>−</mo><msup><mi>θ</mi><mo>′</mo></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">500(\theta-\theta&#39;)</annotation></semantics></math>. Neither withholding rows nor imposing a population floor supplies a privacy guarantee.</p>
+<p>A statistical privacy contract specifies the protected unit, neighboring datasets, bounded contributions, recipients and complete observable transcript. The transcript includes any visible weights, gradients, scores, model selection, correction releases, refusals and timing. Repeated inference can disclose information even when the model remains local. The observer model must include every recipient coalition covered by the claim.</p>
+<p>For neighboring histories <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>∼</mo><msup><mi>H</mi><mo>′</mo></msup></mrow><annotation encoding="application/x-tex">H\sim H&#39;</annotation></semantics></math>, differential privacy requires</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">[</mo><mi>M</mi><mo stretchy="false" form="prefix">(</mo><mi>H</mi><mo stretchy="false" form="postfix">)</mo><mo>∈</mo><mi>E</mi><mo stretchy="false" form="postfix">]</mo><mo>≤</mo><msup><mi>e</mi><mi>ε</mi></msup><mrow><mi mathvariant="normal">Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">[</mo><mi>M</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>H</mi><mo>′</mo></msup><mo stretchy="false" form="postfix">)</mo><mo>∈</mo><mi>E</mi><mo stretchy="false" form="postfix">]</mo><mo>+</mo><mi>δ</mi></mrow><annotation encoding="application/x-tex">
+\Pr[M(H)\in E]\le e^\varepsilon\Pr[M(H&#39;)\in E]+\delta
+</annotation></semantics></math></p>
+<p>for every observable event <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>E</mi><annotation encoding="application/x-tex">E</annotation></semantics></math>. The network supplement gives finite mechanisms with bounded contributions, complete output channels, durable release identities and cumulative accounting [1]. The institution must adopt a particular mechanism and its allowed outputs. A cohort threshold of 500 can supplement that policy, but proves no privacy property by itself.</p>
+<p>Learning only from an already released private statistic is post-processing under the same observation contract [7]. Reading corrected private data generally incurs another release cost. A retry must reuse the retained release identity, sample and bytes. Renaming the model does not renew its allowance. Deleting a training row cannot retract an earlier release.</p>
+<p>The singleton example rules out a nontrivial differential-privacy guarantee for the exact-weight profile. Across neighboring singleton labels, the event releasing one of the distinct weights has probabilities one and zero. The inequality then requires <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mo>≥</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\delta\ge1</annotation></semantics></math>.</p>
+<p>Changed source rows and case credentials need fresh independent uniform blindings. Reusing a blinding exposes a changed indicator through <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mo>′</mo></msup><mo>−</mo><mi>C</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mi>−</mi><mi>G</mi><mo>,</mo><mn>0</mn><mo>,</mo><mi>G</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">C&#39;-C\in\{-G,0,G\}</annotation></semantics></math>. Fresh blindings prevent that direct comparison. Weight changes and correction metadata remain disclosed.</p>
+<p>A proof can also verify a computation over a supplied random tape without establishing how the tape was sampled. Statistical privacy needs that sampling law and an explicit contract for the combined release.</p>
+<p>Some required performances themselves disclose protected information. Suppose neighboring worlds require different visible payments, each forbidden in the other world. The event containing one world’s required payment has probability zero in the other. The privacy inequality bounds successful payment in the first world by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>δ</mi><annotation encoding="application/x-tex">\delta</annotation></semantics></math>.</p>
+<p>A stronger proof system cannot alter this bound. Changing the observer, receipt, intermediary or permitted disclosure can change the institutional problem. The authorized change must be explicit and cover any later payment that would reveal the same information.</p>
+</section>
+</section>
+<section id="repeated-updates-and-their-accumulated-effects" class="level2">
+<h2>6. Repeated updates and their accumulated effects</h2>
+<section id="limits-that-survive-the-next-model" class="level3">
+<h3>6.1. Limits that survive the next model</h3>
+<p>An update can meet its individual limit while a sequence defeats the limit’s purpose. Reducing a threshold by at most 0.01 each time can move it across the entire range. Burdening at most one percent of the population per update can burden everyone if the groups rotate. A new model identifier can conceal the restart of an old hold.</p>
+<p>The monitor must therefore persist outside the bundle. Over the mandate’s horizon, it retains the authorized baseline and accumulated burdens, costs, disclosures and exposure. Each case keeps its original clock. A distance bound on weights may restrict engineering change. To control an institutional consequence, it also needs a bound on the resulting decisions or effects.</p>
+<p>The mandate can distribute powers within the procedure. It may allow automatic changes to evidence routing while reserving final refusal for a competent determination. An emergency mandate may permit bounded blocking with review and expiry. Objectives, loss weights, label meanings and consequences all belong to the delegation.</p>
+<p>A standing mandate authorizes the defined sequence of qualifying updates. An explicit adoption authorizes one identified bundle. In either case, the existing context supplies authority before the candidate can govern a later action.</p>
+<p>An accepted update installs the complete checked bundle and adoption record atomically. The candidate cannot change the criteria that authorize it. Assessment and commitment bind the installed version.</p>
+</section>
+<section id="renewing-authority-without-restarting-accounts" class="level3">
+<h3>6.2. Renewing authority without restarting accounts</h3>
+<p>Continued adoption eventually exhausts a finite update allowance. Each adoption consumes one credit. Continued learning then needs a successor mandate, adopted through a power available in the exact predecessor context.</p>
+<p>Renewal states its authorized changes to future action scope, objectives, baselines and expenditure caps. It carries forward source frontiers, correction status, model ancestry, completed acts and possible old commands. Accumulated disclosure, risk and burden remain spent. They cannot reappear as unused capacity.</p>
+<p>Competent renewal may enlarge a future allowance. The account must still show prior expenditure, and a changed lifetime guarantee must state the resulting total. A fresh mandate name cannot recreate the original privacy or risk allowance.</p>
+<p>Existing duties retain fixed goals, safety conditions and original deadlines. Their continuation certificates give checked evidence of a permitted route to completion. Each duty also keeps its remaining allowance for model adoptions affecting that route. Neither ordinary service steps nor renewal of the learner’s general budget can replenish this separate allowance.</p>
+<p>Without that separation, renewal could sustain administrative activity indefinitely while a payment waits. Even models that individually permit completion can produce this failure. Section 7 supplies a common progress condition. A renewal sequence satisfies the result only if its actual transitions meet that condition and its service premise.</p>
+<p>A competent disposition may change a duty’s performer, timing or assurance. It must identify the change and preserve the former promise’s status. Renewal cannot turn an unpaid duty into a completed one. Implementing the successor-mandate rule remains a separate obligation from the finite proofs for admitted bundles and counted execution.</p>
+</section>
+<section id="the-policy-changes-what-learning-observes" class="level3">
+<h3>6.3. The policy changes what learning observes</h3>
+<p>After a control detects abuse, adversaries may change transaction forms, switch intermediaries or manipulate learning inputs. Legitimate applicants may change behavior to avoid delay. Investigations and corrected findings can expose those responses and motivate another candidate. Its assessment must include the burdens on legitimate work imposed under the existing mandate.</p>
+<p>Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>D</mi><mi>t</mi></msub><annotation encoding="application/x-tex">D_t</annotation></semantics></math> denote data generated in period <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>π</mi><msub><mi>B</mi><mi>t</mi></msub></msub><annotation encoding="application/x-tex">\pi_{B_t}</annotation></semantics></math> the active bundle’s admission policy. The observations depend on that policy and the responses it induces:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mi>t</mi></msub><mo>=</mo><mi>D</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>π</mi><msub><mi>B</mi><mi>t</mi></msub></msub><mo>,</mo><msub><mi mathvariant="normal">Γ</mi><mi>t</mi></msub><mo>,</mo><mtext mathvariant="normal">responses of other actors</mtext><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+D_t=D(\pi_{B_t},\Gamma_t,\text{responses of other actors}).
+</annotation></semantics></math></p>
+<p>Retraining therefore acts on a population that earlier controls may have changed. Additional observations need not improve the model or make its parameters converge.</p>
+<p>For example, take <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>∼</mo><mrow><mi mathvariant="normal">Bernoulli</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>θ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Y\sim\operatorname{Bernoulli}(1-\theta)</annotation></semantics></math> under the deployed predictor. Exact squared-error retraining gives <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>1</mn><mo>−</mo><msub><mi>θ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\theta_{t+1}=1-\theta_t</annotation></semantics></math>. Starting at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.2</mn><annotation encoding="application/x-tex">0.2</annotation></semantics></math> yields the endless cycle <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.2</mn><mo>,</mo><mn>0.8</mn></mrow><annotation encoding="application/x-tex">0.2,0.8</annotation></semantics></math>. Every fit is the population optimum, but the population response prevents convergence.</p>
+<p>Performative prediction gives conditions for retraining to converge [4]. Applying them requires evidence about the response map and loss. A count of institutions or successful adoptions cannot establish those conditions. Convergence also needs a separate connection to the institution’s objective.</p>
+<p>Even without feedback, the historical data may not identify a policy’s improvement. Suppose two equally common types historically receive actions zero and one, with respective success rates 20% and 80%. Two models reproduce that record. In one, action one succeeds at 80% for both types. In the other, it succeeds at zero for type zero and 80% for type one.</p>
+<p>Always taking action one then gives 80% success in the first model and 40% in the second. Both have the same historical 50% baseline. Choosing between these effects needs additional model assumptions or information from a competently authorized investigation or experiment.</p>
+</section>
+<section id="holding-the-comparison-fixed" class="level3">
+<h3>6.4. Holding the comparison fixed</h3>
+<p>Evaluation must fix the population, outcome, baseline and horizon before comparing procedures. In the consent task, weakening the original requirement could raise the immediate pass rate. The intended outcome may instead be correctly completed ownership changes, with required consent and documentation by a stated deadline.</p>
+<p>Likewise, a formation procedure that accepts preliminary declarations must be assessed through verified documentation at the agreed deadline. First-attempt acceptance leaves that duty unresolved. The comparison must account for abandonment, false refusal, fraud loss, investigation, delay and unfinished duties.</p>
+<p>Power to adopt, correct implementation, evidence of improvement and acceptance of the tradeoff are separate judgments. An authorized procedure need not improve the selected outcome. A changed objective must be reported as such. Excluding difficult applicants cannot establish improvement for the original population.</p>
+</section>
+</section>
+<section id="preserving-unfinished-work" class="level2">
+<h2>7. Preserving unfinished work</h2>
+<section id="a-permitted-update-can-remove-the-route-to-completion" class="level3">
+<h3>7.1. A permitted update can remove the route to completion</h3>
+<p>The consent request illustrates a prospective restriction: the new interpretation can require consent before transfer. An empirical update can also block performance already owed. A detector that catches a new abuse pattern may remove the payment action needed to discharge an earlier obligation.</p>
+<p>Suppose a refund is owed in state <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math> records its completed payment. The old bundle permits <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>→</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">s\to g</annotation></semantics></math>. A new detector flags the recipient and removes that action. The narrower action set can preserve safety while making the refund impossible.</p>
+<p>Shielding in safe reinforcement learning constrains a learner under a supplied temporal specification [11]. Here the institution may competently change the interpretation, admission procedure or completion contract itself. The continuation test must identify which earlier promise such a change preserves, alters or defeats. Complete mediation and current-authority checks remain necessary throughout [3].</p>
+<p>Fix a finite state set <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>, a safe set <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>⊆</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">K\subseteq S</annotation></semantics></math>, a goal set <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>⊆</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">G\subseteq K</annotation></semantics></math> and a declared response model. For each initiated action, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">Succ</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo>,</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\operatorname{Succ}(s,a)</annotation></semantics></math> contains every complete response path’s endpoint, and every intermediate state must also be safe. The response model includes old commands that can still perform.</p>
+<p>Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>B</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A_B(s)</annotation></semantics></math> contain the actions currently admitted under bundle <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>. Define</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">Pre</mi><mo>&#8289;</mo></mrow><mi>B</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>X</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">{</mo><mi>s</mi><mo>∈</mo><mi>K</mi><mo>:</mo><mo>∃</mo><mi>a</mi><mo>∈</mo><msub><mi>A</mi><mi>B</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="0.222em"></mspace><mi>⌀</mi><mo>≠</mo><mrow><mi mathvariant="normal">Succ</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo>,</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo><mo>⊆</mo><mi>X</mi><mo>,</mo><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> all intermediate states lie in </mtext><mspace width="0.333em"></mspace></mrow><mi>K</mi><mo stretchy="false" form="postfix">}</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\operatorname{Pre}_B(X)=
+\{s\in K:\exists a\in A_B(s),\
+\varnothing\ne\operatorname{Succ}(s,a)\subseteq X,
+\text{ all intermediate states lie in }K\}.
+</annotation></semantics></math></p>
+<p>Starting with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mn>0</mn></msub><mo>=</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">W_0=G</annotation></semantics></math>, set <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>W</mi><mi>n</mi></msub><mo>∪</mo><msub><mrow><mi mathvariant="normal">Pre</mi><mo>&#8289;</mo></mrow><mi>B</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>W</mi><mi>n</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">W_{n+1}=W_n\cup\operatorname{Pre}_B(W_n)</annotation></semantics></math>. The finite fixed point is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>W</mi><mi>B</mi></msub><annotation encoding="application/x-tex">W_B</annotation></semantics></math>.</p>
+<p><strong>Theorem 4 (Continuation under a fixed bundle).</strong> Each state in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>W</mi><mi>B</mi></msub><annotation encoding="application/x-tex">W_B</annotation></semantics></math> has a strategy reaching <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math> within at most its first-entry rank in completed response steps. The strategy stays in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>, provided actual responses satisfy the declared nonempty response contract and its steps complete.</p>
+<p><strong>Proof.</strong> Give <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><msub><mi>W</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">s\in W_B</annotation></semantics></math> the least rank <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">r(s)</annotation></semantics></math> with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><msub><mi>W</mi><mrow><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">s\in W_{r(s)}</annotation></semantics></math>. Rank zero means the goal already holds. A state of positive rank entered through an admitted action whose complete responses end in the preceding approximation. Select that action. Every response stays safe and ends at a strictly smaller rank. Induction on the rank gives the bound. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math></p>
+<p>For the refund, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">d</mi></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">{</mo><mi>s</mi><mo>,</mo><mi>g</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">W_\mathrm{old}=\{s,g\}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">w</mi></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">{</mo><mi>g</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">W_\mathrm{new}=\{g\}</annotation></semantics></math>. Adoption must address that lost route. It can retain an authorized continuation or record a competent change to the obligation, performer, timing or assurance. An authorized release can end the duty without constituting payment.</p>
+<p>The goal, response model and inherited duty identity are protected inputs. A candidate cannot redefine payment as assessment or omit the possible arrival of an old payment. A local timeout cannot free a reserve while the provider can still perform. The response contract must be nonempty and cover intermediate safety. An attractive endpoint cannot substitute for an implementation or conceal unsafe execution.</p>
+</section>
+<section id="progress-through-changing-models" class="level3">
+<h3>7.2. Progress through changing models</h3>
+<p>Now let bundle <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>B</mi><mn>0</mn></msub><annotation encoding="application/x-tex">B_0</annotation></semantics></math> permit only <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>→</mo><msub><mi>s</mi><mn>1</mn></msub><mo>→</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">s_0\to s_1\to g</annotation></semantics></math>, and let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>B</mi><mn>1</mn></msub><annotation encoding="application/x-tex">B_1</annotation></semantics></math> permit only <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>1</mn></msub><mo>→</mo><msub><mi>s</mi><mn>0</mn></msub><mo>→</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">s_1\to s_0\to g</annotation></semantics></math>. Either fixed bundle allows completion from both states. Switching after each first step produces <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>,</mo><msub><mi>s</mi><mn>1</mn></msub><mo>,</mo><msub><mi>s</mi><mn>0</mn></msub><mo>,</mo><msub><mi>s</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi></mrow><annotation encoding="application/x-tex">s_0,s_1,s_0,s_1,\ldots</annotation></semantics></math>. The refund is never paid.</p>
+<p>Each step lowers the active bundle’s rank. Changing the bundle changes that rank, so the sequence makes no lasting progress. The continuing duty needs a progress condition that survives adoption.</p>
+<p>For a finite construction, fix the goal and a common rank <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>:</mo><mi>S</mi><mo>→</mo><mi mathvariant="double-struck">ℕ</mi></mrow><annotation encoding="application/x-tex">\rho:S\to\mathbb N</annotation></semantics></math>. Adoption must preserve the goal and cannot increase the current rank. Each promised service step needs an admitted implementation whose possible responses remain safe and strictly lower the rank. Administrative changes must leave sufficient opportunity for those service steps.</p>
+<p><strong>Theorem 5 (Continuation through admitted updates).</strong> Assume rank zero implies the fixed goal. Suppose each positive-rank state receives a completed promised service step within at most <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> admitted transitions, for a fixed positive integer <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>. If every intervening transition preserves safety and does not increase <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>, and each service step strictly decreases it, the goal occurs within at most <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mi>ρ</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">b\rho(s_0)</annotation></semantics></math> admitted transitions.</p>
+<p><strong>Proof.</strong> Before the first service step, the rank is at most <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\rho(s_0)</annotation></semantics></math>. That step lowers it by at least one. Repeat over blocks ending at service steps. After at most <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\rho(s_0)</annotation></semantics></math> such blocks the rank is zero; each block contains at most <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> admitted transitions. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math></p>
+<p>The count includes admitted context, service and recorded environment transitions. It bounds neither elapsed time nor unrecorded events. The promised services must actually complete. An absolute deadline additionally requires an actual clock, with no restart on model adoption or mandate renewal.</p>
+<p>A finite game can treat more general cases. Its state includes the bundle, update authority, clocks and unfinished work. Its environment includes permitted model changes and provider responses. The common rank gives the simpler sufficient condition used here.</p>
+</section>
+<section id="when-authority-is-revoked" class="level3">
+<h3>7.3. When authority is revoked</h3>
+<p>A binding revocation may remove the only lawful performance action. Once the source contract admits it as effective, affected new use must be fenced immediately. Refusing a discretionary adoption cannot keep withdrawn authority in force.</p>
+<p>The institution records the failed assurance alongside the surviving duty, exposure and possible commands. Preserving history or balancing the ledger does not perform the service. Replacing the agent cannot make silence count as payment.</p>
+<p>A competent disposition may establish a different continuation contract or discharge the duty through an authorized release. It may change the performer, timing or assurance. The former objective remains unmet unless its specified performance occurred. Necessary institutional change can proceed while leaving its consequences open to correction and remedy.</p>
+</section>
+</section>
+<section id="correction-and-continuity-of-the-institution" class="level2">
+<h2>8. Correction and continuity of the institution</h2>
+<section id="reaching-every-dependent-use" class="level3">
+<h3>8.1. Reaching every dependent use</h3>
+<p>Return to the source ruling behind the consent model. It can affect a receiving model and suspend an ownership request that never cites the ruling. Correcting only direct citations would leave that request governed by the invalidated basis.</p>
+<p>The derivation graph must therefore cover source and label revisions, training cuts, base models, local adapters, calibration, adopted bundles and assessments. An edge records possible dependence. Observed absence of correlation cannot remove a protected dependency. Selective independence needs a checked argument. Conservatively marking every use of an affected bundle is sound.</p>
+<p>A delivered correction identifies its authority, exact source revision, scope and operative time. After applying its recognition contract, the receiver marks dependent current reliance for reassessment, justified transport or competent disposition. The correction status remains on source revisions and derivation ancestors. Future derivation and adoption must inherit it or discharge it through checked reconciliation.</p>
+<p>The private consent profile binds each signed correction to the previous manifest, correction sequence and exact prior row. The replacement preserves case identity and advances the revision. Unchanged rows stay identical. New rows require separate source admission, and withdrawn rows retain their identities.</p>
+<p>The replacement manifest binds the consecutive correction history, and a new proof checks the fit over that manifest. Import uses the admitted current source frontier. An old proof can remain mathematically valid while failing that currentness check. Adopting the replacement still leaves affected cases to be reconciled.</p>
+<p>Case credentials have a separate authenticated history. Admitting a new case revision invalidates earlier reliance even before a replacement inference proof exists. Reconciliation must use the admitted current credential. It cannot supply its own purported current version. Appendix O of the companion supplement specifies both source and case interfaces [1].</p>
+<p>The kind of correction determines its retrospective meaning. New evidence, reversed findings, prospective law, population drift and corrected identity require distinct treatment. A fresh fit states its current computational dependencies. Historical replacement links can remain without continuing computational dependence on invalidated labels.</p>
+<p>The earlier assessment stays attributable. A replacement model cannot reverse a completed transfer, recall a disclosure, compensate a loss or extinguish an executable bank command. Each consequence needs its own competent act. Correction must reach the institution’s economic state as well as its learning record.</p>
+</section>
+<section id="removing-a-restriction-whose-basis-has-changed" class="level3">
+<h3>8.2. Removing a restriction whose basis has changed</h3>
+<p>Correction must also restore eligibility when current evidence supports it. Suppose an identity mistake makes one payment appear twice, causing an allocation check to block new work. A competent SameEvent correction removes the duplicate occurrence. Once the supported allocation passes current checks, the old discrepancy cannot remain an unexplained veto.</p>
+<p>An input correction can also change a refund under an already adopted formula. If the current formula gives twenty where earlier evidence supported sixty, the dependent duty needs recomputation or reassessment. An identity authority can correct the input within its powers. Amending the award formula requires the authority competent over that award.</p>
+<p>A change beyond the formula’s authorized scope needs a competent disposition. Earlier performance and outstanding commands remain in either case. Updating weights alone cannot resolve the changed duty.</p>
+</section>
+<section id="what-a-receiver-can-know-now" class="level3">
+<h3>8.3. What a receiver can know now</h3>
+<p>A receiver cannot infer a reversal that has not arrived. Consider two worlds with the same receiving state. In one the source finding remains effective. In the other it has been reversed, but notification is delayed. Computation on the identical state returns the same answer in both.</p>
+<p>Stronger currentness must come from the source contract. A validity lease, serialized current-use service or bounded notification arrangement can provide it on specified terms. Otherwise correction completeness begins after admitted delivery. The receiver retains stale or uncertain status when a stronger assurance is unavailable.</p>
+<p>Receiving information can precede receiving authority. A source reversal may trigger review while the receiver obtains its own competent determination. The local consequence remains indexed by purpose and current receiving rules.</p>
+<p>Binding authority changes follow the immediate invalidation rule of §7.3. Reconciliation may remain pending after new use is fenced. Unpaid claims and possible commands survive even if no replacement continuation is yet available.</p>
+</section>
+<section id="what-a-successor-must-receive" class="level3">
+<h3>8.4. What a successor must receive</h3>
+<p>These obligations continue when an agent or operating service is replaced. The successor needs the operative bundle, compatible inference implementation, necessary licenses, derivation references, evidence access and pending corrections. It also needs case clocks, mandates, cumulative expenditure and old commands. A content hash identifies an object. Continued use requires available bytes and services.</p>
+<p>A private proof may remain verifiable after the raw examples become unavailable. Retraining, a challenge or a different question may still require evidence outside the proof. Proposition 2 identifies which questions the retained representation can answer. Authorized erasure can preserve some capabilities and retire others. A later request must return “evidence unavailable” when its required evidence is gone.</p>
+<p>A source-label correction must state what happened to retained training influence. The model may have been retrained, withdrawn, shown independent of the record or left potentially influenced by it. Rolling back weights establishes none of those outcomes. Previously released information remains in the disclosure history.</p>
+<p>Writer transfer carries no institutional appointment by itself. A successor identity service needs a current scoped appointment or access to an available competent principal. Taking a former process’s name does not confer registrar, tribunal or provider powers. The custody contract must test the actual post-transfer authority path for each promised service.</p>
+<p>Independent operation requires usable artifacts and rights, practical access to evidence and a means to contest earlier decisions. Records cannot replace an unavailable inference service or a qualified successor. The service contract and evidence of its fulfillment must cover those dependencies. A writer fence must also prevent further protected writes by the outgoing operator.</p>
+</section>
+<section id="the-combined-execution-relation" class="level3">
+<h3>8.5. The combined execution relation</h3>
+<p>Collect these requirements in local institutional state <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi mathvariant="normal">Γ</mi><mo>,</mo><mi>H</mi><mo>,</mo><mi>S</mi><mo>,</mo><mi>K</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">X=(\Gamma,H,S,K)</annotation></semantics></math>. The context <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">Γ</mi><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> holds rules, powers, active bundles and standing mandates. History <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math> retains attributable events and derivations. State <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math> holds positions, resources, exposure and persistent accounts. Cases, assessments and unfinished work belong to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>.</p>
+<p>The following transitions connect learning to protected execution.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Transition</th>
+<th>Check at the protected boundary</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generate</td>
+<td>Observation access and candidate identity</td>
+<td>Candidate and training record, with active context unchanged</td>
+</tr>
+<tr>
+<td>Adopt</td>
+<td>Predecessor competence, actual bundle and derivation status, mandate monitor and continuing-work disposition</td>
+<td>Atomic bundle installation and adoption record</td>
+</tr>
+<tr>
+<td>Assess</td>
+<td>Exact bundle, inputs, source cut, use and supported inference</td>
+<td>Computed result with costs, disclosures and case clock</td>
+</tr>
+<tr>
+<td>Use</td>
+<td>Current context, dependencies and complete action contract</td>
+<td>Exact authorized effect and continuation</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td>Current authority and checked correspondence for the exact present use</td>
+<td>Original assessment retained with its receiving-use witness</td>
+</tr>
+<tr>
+<td>Invalidate</td>
+<td>Binding authority change under its source contract</td>
+<td>Affected new uses fenced, with failed assurance and live claims retained</td>
+</tr>
+<tr>
+<td>Correct</td>
+<td>Competent correction and conservative dependency closure, including future descendants</td>
+<td>Affected current reliance marked or reconciled</td>
+</tr>
+<tr>
+<td>Succeed</td>
+<td>Accepted custody cut, fenced writer and available post-transfer authority</td>
+<td>Continuing model and case operation under the successor</td>
+</tr>
+</tbody>
+</table>
+<p>A private artifact enters as a candidate after source and proof checks. Proposition 3a establishes its training relation. Proposition 3b establishes supported inference for an assessment. The host must bind these statements to the actual current context and effect. Neither proof receipt installs a bundle.</p>
+<p><strong>Theorem 6 (Governed learned admission).</strong> Start with an admitted local state and the stated transition rules. Assume complete mediation, atomic protected transitions, sound bundle/inference and dependency checks, and the bound source and service contracts. Every finite admitted execution has these properties:</p>
+<ol type="1">
+<li>Every operative bundle has a predecessor-authorised adoption lineage.</li>
+<li>Every learned assessment used for an effect binds the current bundle directly, or has a currently valid checked transport witness for that use. Its original computation remains attributable.</li>
+<li>Model changes retain historical consumption, disclosures and effects. They preserve relevant command possibilities until their effect contract supports exclusion. Competent dispositions can change current positions and future mandate terms without erasing that history.</li>
+<li>After an admitted correction, no affected current reliance authorises a further effect without the prescribed reconciliation.</li>
+<li>Imported models have operative force only under the receiving institution’s adoption contract.</li>
+</ol>
+<p><strong>Proof.</strong> Induct on the admitted trace. Generation adds a candidate and cannot alter the active context. Adoption checks authority in its predecessor and installs exactly the checked successor; the persistent monitor supplies the next account state. Assessment computes the supported inference and records its full dependencies. Use compares those dependencies with the current protected state and checks the exact consequence, so a changed model or feature pipeline cannot reuse the old admission without a checked current transport witness. Transport preserves the original computation and establishes the required present correspondence.</p>
+<p>Correction first finds the conservative transitive closure. It invalidates or reconciles each affected current reliance while preserving the historical records, disclosures and command identities. The same status checks cover future derivation and adoption, so a stale inactive candidate cannot bypass the correction. The use rule excludes unresolved reliance. Binding invalidation fences new uses immediately and records the assurance failure without declaring the old goal complete. Succession transfers the complete model and case cut under an exclusive writer fence, retaining the competent paths promised by its service contract. Ordinary economic transitions preserve or competently revise positions through the surrounding execution rules. None of these steps turns a foreign artifact into receiving authority. Each case preserves the claimed properties at the next state. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math></p>
+<p>Theorem 6 is a result about the stated transitions. Implementation must connect bundle installation, inference, database writes and administrative routes to those rules. The bounded public reference requires exact current-bundle equality. General assessment transport needs its own checked correspondence.</p>
+<p>The private-proof adapter must likewise obtain its expected statement from protected state and apply the accepted result to the exact operation. A correction need not invalidate the proof’s mathematics. Before use, the adapter must compare the bound source and case revisions with their admitted current frontiers.</p>
+<p>Theorem 6 alone permits refusal of every proposed act. Theorem 5 supplies progress under its additional continuation and service premises. Useful operation also needs evidence that legitimate work can proceed and that justified refusal preserves the duties left unfinished.</p>
+</section>
+</section>
+<section id="evidence-from-two-finite-tasks" class="level2">
+<h2>9. Evidence from two finite tasks</h2>
+<section id="consent-registration-and-payment" class="level3">
+<h3>9.1. Consent, registration and payment</h3>
+<p>The 24-determination consent task exercises the construction with actual training and inference proofs. Source meanings and authority are synthetic premises. Section 3.2 gives the exact fitted scores and decisions. Before adoption and use, the receiver checks the complete signed inventory and current case credential against protected expectations.</p>
+<p>The initial common-control request requires consent and fails native admission. Six authenticated reversals invalidate its basis before a replacement proof is available. The receiver then verifies the new fit and renews its exhausted adoption allowance under predecessor authority. After adoption, the case remains blocked until explicit reconciliation. That step changes the response to NoAdditionalConsent and retains the original hold clock, deadline and burden.</p>
+<p>The host commits one ownership change to Carol, consumes seven service units and records a 100-unit payment command. A seventh source correction arrives after registration while payment is pending. Signed custody carries the command, learned state and pending reconciliation to the successor. A later synthetic provider observation records the full original payment, reducing the outstanding amount to zero. The run reopens the database and compares the complete history with the final state.</p>
+<p>Seventeen host tests use real proofs to exercise changed operations, stale source and case frontiers, unauthorized adoption and correction before replacement inference. Renewal preserves lifetime accounts and the unfinished case’s update allowance. Public proof packets, accepted statements and the receiving trace supply the evidence. Source-local witnesses remain undisclosed.</p>
+<p>The execution was recorded on 24 October 2026. It demonstrates the tested path from private learning to a stored effect under synthetic authority and provider premises. It establishes no general implementation refinement, population accuracy or economic advantage from transfer. The second evaluation measures transfer in a fixed empirical task.</p>
+</section>
+<section id="a-fixed-fraud-comparison" class="level3">
+<h3>9.2. A fixed fraud comparison</h3>
+<p>The fraud task uses a synthetic Indonesian financial-integrity office and a synthetic receiving office. These names identify constructed roles. They assert no actual finding, appointment or deployment. The comparison tests how a learned relational pattern affects protected decisions, transfer and correction.</p>
+<p>Each proposal contains account-controller relationships, two transfer times and an admitted local-practice record. The feature extractor gives local practice priority. Otherwise it selects a shared-controller and rapid-relay pattern, then the ordinary cell. The practice record provides context without establishing lawfulness.</p>
+<p>Lemma 3 gives each cell weight <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo>+</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(k+1)/(n+2)</annotation></semantics></math> from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> available binary findings, of which <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> are positive. Three exact rational weights form the parameter vector. Missing findings are excluded and reported. A score at or above the adopted threshold starts a bounded hold and investigation. It supplies no fraud finding.</p>
+<p>Source training, receiving training, validation and test contain distinct cases and immutable label events. Source training has 900 available ordinary findings, nine positive, and 100 available pattern findings, ninety positive. These counts give weights of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mi>/</mi><mn>451</mn></mrow><annotation encoding="application/x-tex">5/451</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>91</mn><mi>/</mi><mn>102</mn></mrow><annotation encoding="application/x-tex">91/102</annotation></semantics></math>. Under an adopted half-threshold procedure, the pattern cell causes a bounded hold and referral.</p>
+<p>Source training also includes a local-practice cell and missing findings. A benign receiving practice resembles the source pattern. The protocol fixes every stratum, data cut and missing-label count.</p>
+<p>Evaluator truth remains separate from training and model selection. The four arms are rules only, local learning, direct source model and threshold, and receiving-validated transfer. Local learning and receiving-validated transfer have identical calibration capacity.</p>
+<p>Both calibrated arms mix initial weights with weights fitted on receiving validation and use the same finite threshold set. Selection minimizes validation cost: eight units for a missed positive and one for a held negative. Brier score, threshold and mixture break ties in that order. The selected policies are evaluated on the untouched test cut.</p>
+<p>All arms face the same 320 proposals, each for amount 100, over a five-tick horizon. A permitted proposal executes at tick zero. A hold reserves 100 until investigation at tick two, costing three service units. The investigation perfectly reveals the stipulated evaluator truth, refusing a positive case and executing a negative case. That accuracy is an explicit service assumption.</p>
+<p>Every benign case carries a fixed pre-existing performance duty. Every fifth benign case is due at tick one, and the rest at tick three. Fraudulent proposals carry no performance duty in this task. Duties, clocks and provider rules are identical across arms.</p>
+</section>
+<section id="direct-transfer-and-receiving-validation" class="level3">
+<h3>9.3. Direct transfer and receiving validation</h3>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Arm</th>
+<th style="text-align: right;">Fraud detected, of 26</th>
+<th style="text-align: right;">False holds, of 294</th>
+<th style="text-align: right;">Duties on time, of 294</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rules only</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">294</td>
+</tr>
+<tr>
+<td>Local learning</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">290</td>
+</tr>
+<tr>
+<td>Direct transfer</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">274</td>
+</tr>
+<tr>
+<td>Receiving-validated transfer</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">290</td>
+</tr>
+</tbody>
+</table>
+<p>Direct transfer incurs 240 delay-ticks, 24,000 capital-ticks and 360 investigation units. Each locally validated arm incurs eighty delay-ticks, 8,000 capital-ticks and 120 investigation units. All 294 benign duties complete by the common horizon. Perfect investigation produces no false final refusals. The learned arms miss two fraudulent executions, while rules alone miss twenty-six.</p>
+<p>Twenty-four test labels are unavailable. The full comparison uses separate synthetic evaluator truth. The archive reports observed-label metrics and every case outcome as well. These are exact fixture results, with no population uncertainty interval or estimate of real fraud performance.</p>
+<p>Receiving validation selects mixture one. It replaces every source weight with receiving-validation weights and reaches the same final weights and threshold as local learning. The experiment therefore shows no incremental transfer benefit.</p>
+<p>For this task, direct transfer imposes additional costs and receiving validation rejects the unhelpful source influence. The result supplies no general advantage for federation. Useful transfer must be evaluated for other declared populations, tasks and data.</p>
+</section>
+<section id="corrections-and-rejected-candidates" class="level3">
+<h3>9.4. Corrections and rejected candidates</h3>
+<p>The comparison produces trained bundle files that the public governance lifecycle consumes through the same feature extraction and rational inference. Candidate registration leaves the active context unchanged. Adoption checks the receiving mandate, current predecessor, complete bundle and continuation. Changing the feature pipeline or making an intervening adoption prevents reuse of an earlier assessment.</p>
+<p>An inherited refund tests lost continuation. The proposed model removes its only admitted completion action, so adoption fails while the original promise remains. The check also rejects a rotating strategy whose selected continuation can leave the common-rank region. A binding source correction remains recordable when it defeats an assurance. The system fences affected new use and retains the unresolved duty.</p>
+<p>At the correction cut, seventy original source-pattern positives receive verified-negative replacements. Separate synthetic truth marked them benign from the start: the original findings were deliberately erroneous. Refitting moves the pattern weight from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>91</mn><mi>/</mi><mn>102</mn></mrow><annotation encoding="application/x-tex">91/102</annotation></semantics></math> to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mi>/</mi><mn>34</mn></mrow><annotation encoding="application/x-tex">7/34</annotation></semantics></math>, changing Hold to Permit at threshold <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math>. Withdrawing those findings as unresolved instead gives <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>21</mn><mi>/</mi><mn>32</mn></mrow><annotation encoding="application/x-tex">21/32</annotation></semantics></math>. Reversal and missing evidence thus require different label operations.</p>
+<p>The correction marks receiving reliance through descendants and inactive candidates. A fresh fit records current source dependencies and checked historical reconciliation. The pending case still requires explicit current-case reconciliation after adoption. Releasing an existing hold remains a separate case transition. Its earlier assessment, hold start, original deadline and accumulated burden remain attributable.</p>
+<p>A separate poisoned source candidate reverses available labels but retains a valid synthetic authenticator. Its direct-use validation cost is 195, against sixteen for the selected local reference. Receiving validation refuses that proposed use. The test separates authentication from fitness, without establishing a general poisoning defense.</p>
+<p>Foreign-source and correction-completeness fields in this public experiment remain supplied metadata. Authenticated local source registration and receiving adoption perform the operative checks. The private consent profile has a different source contract, with signed manifest and correction relations. That contract does not retrospectively strengthen the fraud comparison.</p>
+</section>
+<section id="formal-results-and-executable-correspondence" class="level3">
+<h3>9.5. Formal results and executable correspondence</h3>
+<p>The finite learning mechanization proves exact threshold inference, safe contingent strategies, predecessor-authorized adoption, current-use binding, correction invalidation and persistent accounts. A common rank and remaining update credits bound interleaved use and adoption steps. Only a correctly bound fresh provider observation reduces the original command’s remaining possible payment. Completion requires the full stipulated amount to have been recorded. Authority and provider truth remain explicit premises.</p>
+<p>The executable construction protects learned state in a durable host and connects current learned admission to a native operation and economic journal. Signed custody carries active bundles, pending corrections, accounts and old commands. Authenticated commitments identify the continuing service powers.</p>
+<p>The native decoder accepts one declared ownership case. The receiver admits it with the experiment’s exact feature observation and unchanged trained bundle bytes. After execution, a separately identified lifecycle correction arrives while payment is pending. Signed custody retains learned state and the original command. The continuing competent provider and operator later record the original payment and complete the bound duty.</p>
+<p>That lifecycle correction changes none of the four-arm data. The formal module proves no general refinement from the host’s decoder and database to the finite semantics. The attached source and evidence identify the boundary and allow reproduction of the concrete lifecycle [1].</p>
+<p>The fraud experiment publishes synthetic records and weights without a confidential release mechanism. It demonstrates a bounded lifecycle in which learned parameters affect protected admission and preserve explicit authority, expenditure and correction. The normative construction answers the separate question of verifying learning and inference over committed case values.</p>
+<p>Institutional use requires accepted observation contracts, appropriate releases, receiving-population evidence, competent adoption, delivered provider service and independent review. A private derivation proof addresses the calculation. Its accepted result must remain connected to the actual installation and effect adopted by the receiver.</p>
+</section>
+</section>
+<section id="what-remains-to-be-evaluated" class="level2">
+<h2>10. What remains to be evaluated</h2>
+<p>The construction connects learned rule application to the actions an agent may perform. Its finite results state what the declared transitions and response models preserve. The private proofs establish knowledge of an exact fit and inference under explicit cryptographic assumptions. The executable lifecycles test particular paths through adoption, correction and succession. General implementation correspondence and institutional acceptance remain separate obligations.</p>
+<p>Selective labels, performative prediction, causal transportability and private learning delimit the available claims [2,4,5,7]. Authentic observations, a correct fit and greater connectivity need not improve outcomes. Competent adoption gives a model a defined use. Evidence must establish the benefits and burdens of that use.</p>
+<p>The remaining empirical question concerns repeated adaptation. Each update must pass its authorized procedure, and each shared proof must stay bound to the action the receiver permits. Evaluation must follow adversarial and legitimate responses over time. It must measure prevented harm, unnecessary exclusion, unfinished duties, correction costs and continued operation after independent operator replacement. The fixed experiment establishes neither transfer benefit nor longitudinal advantage against adaptive attacks. Those outcomes require measurement through the continuing process specified here.</p>
+</section>
+<section id="appendix-a.-composition-at-the-admission-interface" class="level2">
+<h2>Appendix A. Composition at the admission interface</h2>
+<p>Combining an action’s requirements needs an algebra appropriate to their grades. The fact that one requirement can block an action does not determine a lattice.</p>
+<p>On <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">D=\{0,\tfrac12,1\}</annotation></semantics></math>, define</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊗</mo><mi>b</mi><mo>=</mo><mrow><mi mathvariant="normal">max</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+a\otimes b=\max(0,a+b-1).
+</annotation></semantics></math></p>
+<p>This operation is commutative, has absorbing zero and identity one, and satisfies</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>⊗</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo><mo>⊗</mo><mi>c</mi><mo>=</mo><mrow><mi mathvariant="normal">max</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo>−</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>a</mi><mo>⊗</mo><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo>⊗</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+(a\otimes b)\otimes c
+=\max(0,a+b+c-2)
+=a\otimes(b\otimes c).
+</annotation></semantics></math></p>
+<p>But <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>⊗</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\tfrac12\otimes\tfrac12=0</annotation></semantics></math>. The operation is not idempotent and cannot be meet. Additional hypotheses are needed.</p>
+<p><strong>Proposition A1 (When composition is meet).</strong> Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>D</mi><mo>,</mo><mo>≤</mo><mo>,</mo><mi>⊤</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(D,\le,\top)</annotation></semantics></math> be a partially ordered set with greatest element. Suppose a binary operation is monotone in each argument, idempotent and has two-sided identity <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊤</mi><annotation encoding="application/x-tex">\top</annotation></semantics></math>. Then <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊗</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a\otimes b</annotation></semantics></math> is the greatest lower bound of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>.</p>
+<p><strong>Proof.</strong> Since <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>≤</mo><mi>⊤</mi></mrow><annotation encoding="application/x-tex">b\le\top</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>⊤</mi></mrow><annotation encoding="application/x-tex">a\le\top</annotation></semantics></math>, monotonicity gives <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊗</mo><mi>b</mi><mo>≤</mo><mi>a</mi><mo>⊗</mo><mi>⊤</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">a\otimes b\le a\otimes\top=a</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊗</mo><mi>b</mi><mo>≤</mo><mi>⊤</mi><mo>⊗</mo><mi>b</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a\otimes b\le\top\otimes b=b</annotation></semantics></math>. If <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>≤</mo><mi>a</mi><mo>,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">z\le a,b</annotation></semantics></math>, then <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>=</mo><mi>z</mi><mo>⊗</mo><mi>z</mi><mo>≤</mo><mi>a</mi><mo>⊗</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">z=z\otimes z\le a\otimes b</annotation></semantics></math>. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math></p>
+<p>For applicable requirements, order the grades from more restrictive to less restrictive: NonCompliant <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≤</mo><annotation encoding="application/x-tex">\le</annotation></semantics></math> Pending <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≤</mo><annotation encoding="application/x-tex">\le</annotation></semantics></math> Compliant. Coordinatewise meet combines independently applicable grades. Attributable source records retain applicability, exemption, authority and unresolved questions. Mixed applicability cannot safely collapse into unqualified Compliant [12].</p>
+<p>Dependent requirements also need a construction that preserves their schema. Pointwise combination can violate relationships among component judgments [1]. That problem is separate from the numerical order on one grade.</p>
+<p>On a finite distributive lattice, define the residual by</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⇒</mo><mi>b</mi><mo>=</mo><mo>⋁</mo><mo stretchy="false" form="prefix">{</mo><mi>x</mi><mo>:</mo><mi>a</mi><mo>∧</mo><mi>x</mi><mo>≤</mo><mi>b</mi><mo stretchy="false" form="postfix">}</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+a\Rightarrow b=\bigvee\{x:a\wedge x\le b\}.
+</annotation></semantics></math></p>
+<p><strong>Proposition A2 (Restricted residual).</strong> This residual satisfies <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∧</mo><mi>x</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a\wedge x\le b</annotation></semantics></math> exactly when <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≤</mo><mi>a</mi><mo>⇒</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">x\le a\Rightarrow b</annotation></semantics></math>.</p>
+<p><strong>Proof.</strong> Every eligible <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> lies below the defining join. Conversely, finite distributivity gives <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∧</mo><msub><mo>⋁</mo><mi>x</mi></msub><mi>x</mi><mo>=</mo><msub><mo>⋁</mo><mi>x</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>∧</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a\wedge\bigvee_x x=\bigvee_x(a\wedge x)\le b</annotation></semantics></math> over the eligible set. Monotonicity gives the result for each smaller <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math></p>
+<p>The residual operates on grades in the stated order. It performs no filing, obtains no evidence and creates no permission. Remediation instead searches authorized transitions and their possible responses.</p>
+<p>Transition planning does not require a residual. In the nondistributive diamond with distinct atoms <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>,</mo><mi>q</mi><mo>,</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">p,q,r</annotation></semantics></math>, both <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math> satisfy <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∧</mo><mi>x</mi><mo>≤</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p\wedge x\le0</annotation></semantics></math>, but there is no greatest solution. Finite planning remains well-defined on that state space.</p>
+<p>The dynamic dependency graph serves a different purpose again. It finds assessments that need invalidation after source, authority, model or feature changes. Sound coverage can be conservative. An empirically learned graph cannot omit an execution dependency because the observed sample showed no effect.</p>
+</section>
+<section id="references" class="level2">
+<h2>References</h2>
+<p>[1] Raeez Lorgat. <a href="https://research.momentum.inc/sovereign-economies-on-a-network.html"><em>Sovereign economies on a decentralized network: Sovereign virtual machines for AI agents, polycentric consensus and selective recognition</em></a>. 21 September 2025. Companion article and technical supplement supplied with this paper.</p>
+<p>[2] Himabindu Lakkaraju, Jon Kleinberg, Jure Leskovec, Jens Ludwig and Sendhil Mullainathan. <a href="https://www.cs.cornell.edu/home/kleinber/kdd17-selective.pdf">The Selective Labels Problem: Evaluating Algorithmic Predictions in the Presence of Unobservables</a>. KDD, 2017.</p>
+<p>[3] Jerome H. Saltzer and Michael D. Schroeder. <a href="https://web.mit.edu/saltzer/www/publications/protection/Basic.html">The Protection of Information in Computer Systems</a>. <em>Proceedings of the IEEE</em> 63(9), 1278–1308, 1975, §I.A.3.</p>
+<p>[4] Juan C. Perdomo, Tijana Zrnic, Celestine Mendler-Dünner and Moritz Hardt. <a href="https://proceedings.mlr.press/v119/perdomo20a.html">Performative Prediction</a>. ICML, PMLR 119, 7599–7609, 2020.</p>
+<p>[5] Judea Pearl and Elias Bareinboim. <a href="https://arxiv.org/abs/1503.01603">External Validity: From Do-Calculus to Transportability Across Populations</a>. <em>Statistical Science</em> 29(4), 579–595, 2014.</p>
+<p>[6] Eugene Bagdasaryan, Andreas Veit, Yiqing Hua, Deborah Estrin and Vitaly Shmatikov. <a href="https://proceedings.mlr.press/v108/bagdasaryan20a.html">How To Backdoor Federated Learning</a>. AISTATS, PMLR 108, 2938–2948, 2020.</p>
+<p>[7] Cynthia Dwork and Aaron Roth. <a href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">The Algorithmic Foundations of Differential Privacy</a>. <em>Foundations and Trends in Theoretical Computer Science</em> 9(3–4), 211–407, 2014.</p>
+<p>[8] FATF, INTERPOL and Egmont Group. <a href="https://www.fatf-gafi.org/content/dam/fatf-gafi/reports/Illicit-financial-flows-cyber-enabled-fraud.pdf.coredownload.inline.pdf">Illicit Financial Flows from Cyber-Enabled Fraud</a>. November 2023, boxes 41 and 44.</p>
+<p>[9] BIS Innovation Hub. <a href="https://www.bis.org/publications/project-aurora-power-data-technology-and-collaboration-combat-money-laundering-across-institutions-and-borders.pdf">Project Aurora: The power of data, technology and collaboration to combat money laundering across institutions and borders</a>. May 2023.</p>
+<p>[10] BIS Innovation Hub and participating central banks. <a href="https://www.bis.org/publications/project-mandala-streamlining-cross-border-transaction-compliance.pdf">Streamlining cross-border transaction compliance: Project Mandala</a>. October 2024.</p>
+<p>[11] Mohammed Alshiekh, Roderick Bloem, Rüdiger Ehlers, Bettina Könighofer, Scott Niekum and Ufuk Topcu. <a href="https://ojs.aaai.org/index.php/AAAI/article/view/11797">Safe Reinforcement Learning via Shielding</a>. AAAI 32(1), 2669–2678, 2018.</p>
+<p>[12] Raeez Lorgat. <a href="https://research.momentum.inc/papers/how-compliance-composes.html">How Compliance Composes</a>. 2026. Attributable requirements, applicability and finite composition.</p>
+<p>[13] Benedikt Bünz, Jonathan Bootle, Dan Boneh, Andrew Poelstra, Pieter Wuille and Greg Maxwell. <a href="https://eprint.iacr.org/2017/1066">Bulletproofs: Short Proofs for Confidential Transactions and More</a>. IEEE Symposium on Security and Privacy, 2018. Aggregated range proofs. Revised ePrint manuscript, 14 April 2022.</p>
+<p>[14] Chaya Ganesh, Claudio Orlandi, Mahak Pancholi, Akira Takahashi and Daniel Tschudi. <a href="https://eprint.iacr.org/2023/147">Fiat–Shamir Bulletproofs are Non-malleable (in the Random Oracle Model)</a>. <em>Journal of Cryptology</em>, 2025. <a href="https://doi.org/10.1007/s00145-024-09525-2">doi:10.1007/s00145-024-09525-2</a>.</p>
+</section>
+
+            </div>
+
+            <footer class="article-footer">
+                <p class="author-byline"><strong>Raeez Lorgat</strong>, Managing Partner at Momentum</p>
+                <nav class="footer-nav">
+                    <a href="writing.html">← All Writing</a>
+                </nav>
+            </footer>
+
+            <footer class="contact-footer">
+                <a href="mailto:raeez@momentum.inc">raeez@momentum.inc</a>
+                <nav class="social" aria-label="Social links">
+                    <a href="https://x.com/raeez" aria-label="X (Twitter)" class="icon-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/raeez" aria-label="Instagram" class="icon-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </nav>
+            </footer>
+        </article>
+    </div>
+</body>
+</html>
