@@ -8,27 +8,33 @@ date: "21 September 2025"
 [Momentum Research · research.momentum.inc](https://research.momentum.inc)\
 [raeez@momentum.inc](mailto:raeez@momentum.inc)
 
-**Abstract.** A learned consent rule can change whether an ownership transfer proceeds, including while an earlier transfer awaits payment. We study how AI-agent execution environments can revise governing interpretations while preserving authority and unfinished work. Its institutional world model represents law, regulation and policy in use, together with the consequences of institutional actions. A standing mandate can authorize automatic updates. Sovereign environments can exchange learned interpretations and retain control over their local use. Rulings supply authoritative examples of rule application, while investigations supply evidence about controls that miss abuse or obstruct legitimate activity.
+**Abstract.** AI agents conducting institutional work need an environment that determines how law, regulation and policy apply to proposed actions. New cases and changing fraud methods require learning from rulings, investigations and outcomes. We introduce an institutional world model: a learned representation of rule application and institutional consequences. Standing mandates authorize qualifying updates, while each sovereign environment controls which interpretations govern its agents. Learning crosses institutional boundaries with zero-knowledge proofs, subject to receiving adoption and use.
 
-For a finite consent learner, zero-knowledge proofs establish the specified fit over a complete source-attested inventory and inference for an exact request. Receiving adoption and current-use checks give those calculations an operative use. Public weights and decisions can still disclose information. Finite results address correction and continuation through repeated updates: completion under each fixed model need not survive model changes. A synthetic lifecycle follows learning through registration, correction and payment after operator replacement. A fraud comparison finds harmful direct transfer, while receiving validation discards all source weights and matches local learning without incremental transfer benefit.
+We construct a finite consent learner whose proofs establish a fit over a complete source-attested inventory and inference for an exact request. Adoption and current-use checks connect the calculations to an institutional effect. Public weights and decisions can reveal private inputs. Finite results address correction and continuing duties, since completion under fixed models need not survive switching. A synthetic lifecycle follows private learning through registration, correction and payment after operator replacement. A separate fraud comparison finds harmful direct transfer. Receiving validation discards all source weights and matches local learning without incremental transfer benefit. Improvement against adapting adversaries remains an empirical question.
 
-## 1. A consent decision that can change
+## 1. Introduction
 
-An agent asks to change a company's registered owner. Some changes of control require additional consent. A buyer who appears independent may share a controller with the seller, and a fixed check may miss that relationship. Earlier competent rulings can teach the execution environment how the rule applies.
+An AI agent conducting business acts through institutions whose rules determine what an operation can do. Payments use accounts, contracts create obligations, and transfers change ownership. Before allowing these effects, the environment must determine how its governing requirements apply to the case. A rule's words alone may leave questions about control, consent or evidence.
 
-In the finite task studied here, synthetic rulings distinguish ordinary transfers, common-control reorganizations and nominee or custody arrangements. The adopted procedure requires consent, reserves judgment or satisfies this additional requirement. Authority, eligibility and resources still govern the transfer.
+Consider an agent asking to change a company's registered owner. Some changes require additional consent. A fixed check may miss that the buyer and seller share a controller. Competent rulings give examples of when consent is required; investigations can reveal conduct that defeats a control or legitimate activity it obstructs. An unchanged procedure may continue missing a newly identified pattern or obstructing legitimate activity.
 
-The companion paper proposes Mass, a decentralized network of sovereign execution environments for AI agents [1]. Each local environment is a sovereign virtual machine. Its governing institution applies law within its jurisdiction and supplies regulation, policy and delegated powers. Agents propose work through that environment: a payment uses an account, a contract creates obligations, and a transfer changes ownership. Before an effect takes place, the environment must determine which requirements apply and what evidence or competent decision they demand.
+Continual learning must connect new evidence to institutional decisions. A fitted model alone cannot supply that connection: predicting official approval confers no official power, and a fraud score establishes no adjudicated finding. The institution must authorize a use, reserve appropriate judgments and provide for correction. A receiver may also have different rules, case meanings and populations, while source cases remain private.
 
-We call its learned representation of rule application and institutional outcomes an **institutional world model**. Governing material defines the requirements to interpret. Rulings give authoritative examples of their application, while observations and investigations support empirical models of behavior and consequences. These sources have different meanings. A consent ruling can determine what a rule requires. A fraud score predicts an empirical outcome, and a prediction of official approval carries no official power.
+We introduce the **institutional world model**, a learned representation of rule application and institutional outcomes within a sovereign execution environment. Governing material supplies requirements and rulings teach their application; observations and investigations support empirical models of behavior and consequences. An adopted procedure uses these distinct sources to assess what an agent may do. We specify the cycle from evidence to candidate, adoption, execution and correction.
 
-A standing mandate authorizes an update procedure in advance. Training produces a candidate, which the environment checks against that mandate, current sources and work already underway. An accepted update governs the next agent action. Execution, investigation and correction then supply evidence for another cycle. This permits automatic revision without letting a candidate confer power on itself or reset earlier expenditure and obligations.
+Mass is a decentralized network of sovereign execution environments for AI agents. Each environment learns the correct, safe interpretation of its sovereign law, policy and regulation, so it keeps up with fraud and bad actors on its own. The companion network paper develops the execution architecture [1]. Each environment is a **sovereign virtual machine**, governed by an institution that supplies its rules, delegated powers and authoritative state. Here we develop the learning process that changes its operative interpretation, including how other environments can use what it learns.
 
-The ownership request may outlast the interpretation that first assessed it. Registration may have changed the holder while payment remains pending at a bank. A later correction must reach the affected decision without erasing the transfer or excluding payment that the bank can still perform. Replacing the model, agent or operator leaves that continuing institution to be served.
+A standing mandate authorizes an update procedure in advance. The environment checks each candidate against that mandate, current sources and work underway; qualifying updates can be adopted automatically. Zero-knowledge proofs verify specified learning and inference without transmitting raw case values, although outputs can still reveal them. The receiver checks local meaning, validation evidence and authority for use. Institutions can learn from one another while retaining different operative interpretations.
 
-Learning also changes its own evidence. Admission selects which actions occur, investigation selects which outcomes receive labels, and other actors respond to the controls. The consent lifecycle below tests the path from private learning to execution. A separate fraud comparison tests transfer in a fixed population. Success against an adapting adversary requires further empirical evidence.
+Adoption also affects work underway. Registration may have occurred while payment remains pending. Correction must retain that registration occurred and account for payment the bank can still perform. A stricter model can remove the only permitted route for an existing refund. Model updates must therefore account for continuing duties, original deadlines and possible external effects. Replacing a model, agent or operator does not restart these accounts.
 
-## 2. What the evidence establishes
+We study two finite tasks. Synthetic consent rulings distinguish ordinary transfers, common-control reorganizations and nominee or custody arrangements. The procedure requires consent, reserves judgment or satisfies that requirement, leaving other authority, eligibility and resource checks intact. A fraud task compares local learning with direct and locally validated transfer. Admission and investigation select later evidence, and other actors respond to controls. The fixed comparison establishes no success against adapting adversaries.
+
+Our contributions are a private fitting and inference construction, a model-adoption contract, and finite results for correction and continuation through updates, under stated source, cryptographic, mediation and service premises. Sections 2–3 connect evidence to an exact action; §§4–5 develop receiving use and private verification. Sections 6–8 treat updates, progress, correction and succession. Section 9 gives the evaluations, and §§10–11 discuss related work and conclusions. The appendix supplies the restricted admission algebra.
+
+## 2. Evidence and its limits
+
+The learning cycle begins with a choice of evidence. A ruling, an investigation and the absence of an observed loss support different conclusions. We first specify what each record means, then ask which questions the available records can answer.
 
 ### 2.1. Rulings, findings and missing outcomes
 
@@ -36,9 +42,9 @@ A consent label answers a particular authority's question about a particular rul
 
 Empirical labels need comparable precision. Suspicion, referral, investigation, competent finding and reversal record different events. Refusing a proposal supplies no fraud finding about it. Missing or censored outcomes remain explicit, with the investigation that could establish them.
 
-The observation contract records how the environment obtained each label. It identifies the proposal, acting capacity, affected objects, operative policy, decision, observation horizon and available outcome. Entities, controllers, documents, transfers and their times may all matter. The learning task determines which relationships it needs. The access contract determines which it may use.
+The observation contract records how the environment obtained each label, with its proposal, acting capacity, affected objects, operative policy, decision, observation horizon and available outcome. The task determines needed relationships among entities, controllers, documents, transfers and their times. The access contract determines which it may use.
 
-Identity judgments affect which evidence belongs to a case. A mistaken judgment can attach a ruling or payment observation to the wrong record. Source assertions must therefore remain separate from their current assessment. SamePerson identifies records about one person without merging that person's estates. SameEvent identifies records about one occurrence, so its correction can change payment support without creating another payment. Training binds the admitted label revisions and source cut, which fixes the versions and observations available to the calculation.
+Identity errors can attach rulings or payment observations to the wrong case. Source assertions therefore remain separate from current assessments. SamePerson identifies records about one person without merging estates. SameEvent identifies records about one occurrence, so corrections can change payment support without creating another payment. Training binds admitted label revisions and the source cut defining available versions and observations.
 
 Authenticity cannot recover an outcome that was never observed. Suppose a gate refuses 100 of 1,000 proposed transactions and permits 900. Nine permitted transactions later receive confirmed fraud labels. Assume complete labels for those 900 at the declared horizon. Also stipulate fixed binary potential outcomes under permission, without cross-proposal interference or policy-induced response changes.
 
@@ -52,7 +58,7 @@ This is the selective-label obstruction [2]. An additional investigation, permit
 
 The same limitation applies to interpretation. Two procedures can fit every retained ruling and disagree on the next ownership request. Selecting between them requires a normative source, authoritative examples or a competent determination. Repeating the already observed cases need not provide that information.
 
-### 2.2. Retaining the relationships needed for a question
+### 2.2. Observation sufficiency
 
 Even an observed fact can become unavailable through the choice of representation. Consent may depend on who controls whom. A summary containing only earlier verdicts can discard the relationship needed for the next request. Empirical transfer analysis faces the same problem.
 
@@ -73,11 +79,11 @@ Proposition 2 identifies the questions a representation preserves. Implementatio
 
 Some local learning therefore needs personal or entity-level records. A model exported without rows can still retain information about those records. Access, retention and release obligations follow the task and its artifacts. Section 5 distinguishes the information hidden by a private calculation proof from information disclosed by its outputs.
 
-## 3. From rulings to an admitted action
+## 3. Learned interpretation and admission
 
-### 3.1. What the output can mean
+### 3.1. The authority of learned outputs
 
-The retained evidence supports different kinds of conclusion. Consent rulings teach an application of a rule. Fraud findings support a prediction about behavior. Statistical learning can serve either task, but the institution must specify which conclusion it will use.
+The evidence limits determine what a learned output can establish. Consent rulings concern a rule's application, while fraud findings support predictions about behavior. Before assigning either output a consequence, the institution must specify the proposition on which it intends to rely.
 
 | Role | Output | Basis for reliance |
 |---|---|---|
@@ -91,9 +97,9 @@ For example, an adopted threshold can trigger a bounded investigation hold. The 
 
 Competent adoption determines which judgments the institution reserves and which it delegates to learned assessment. A standing mandate can permit automatic updates within that boundary. Competence over every interpretation a model can predict is not presumed.
 
-### 3.2. Fitting the consent rule
+### 3.2. Finite consent learning
 
-Assign each labeled case to a cell $x$ through a supported feature extractor. In that cell, the model predicts a binary recorded outcome with parameter $\theta_x\in(0,1)$. Let $n_x$ count the observed labels and $k_x$ the positives. The finite learner minimizes
+We use a finite consent task to connect an exact fitting procedure to its adopted consequence. A supported feature extractor assigns each labeled case to a cell $x$. Within that cell, parameter $\theta_x\in(0,1)$ predicts the binary recorded outcome. Let $n_x$ count observed labels and $k_x$ the positives. The finite learner minimizes
 
 $$
 L_x(\theta_x)=-(k_x+1)\log\theta_x
@@ -122,15 +128,13 @@ The adopted procedure returns NoAdditionalConsent at scores at most $1/4$, Requi
 
 The fitted score summarizes the admitted rulings. The adopted procedure gives that summary a consequence for the next request. NoAdditionalConsent satisfies only the additional-consent requirement. RequireConsent calls for exact scoped consent, and Refer calls for the reserved determination. The transfer's other admission checks remain necessary.
 
-Now reverse six common-control positives through competent negative determinations. The positive count falls from seven to one, giving a fitted score of $1/5$. RequireConsent becomes NoAdditionalConsent. A suspended case can use that change only after current reassessment and reconciliation.
+Six competent reversals of common-control positives reduce the positive count from seven to one, giving a fitted score of $1/5$. RequireConsent becomes NoAdditionalConsent. A suspended case can use that change only after current reassessment and reconciliation. Section 9.2 applies the same estimator to empirical fraud findings under a separately adopted consequence policy.
 
-Section 9.2 applies the same estimator to empirical fraud findings under a separately adopted consequence policy.
-
-Every fit records the objective, admitted labels, excluded missing labels, feature semantics, data cut and parameters. A richer neural learner changes the inference and assurance obligations. The institution must still specify what the output means and which use it adopts.
+The fit record identifies the objective, admitted labels, excluded missing labels, feature semantics, data cut and parameters. These bindings are necessary even for this small estimator. A richer neural learner changes the inference and assurance obligations, while the institution still determines the output's meaning and permitted use.
 
 ### 3.3. The exact action and its continuation
 
-The consent decision now enters an assessment of an exact request, institutional context and use. An adopted procedure can return
+The fitted consent response answers only one requirement. We must connect it to the complete assessment of the request before allowing an institutional effect. For a specified request, context and use, an adopted procedure can return
 
 $$
 \begin{aligned}
@@ -150,7 +154,7 @@ Recording the decision supplies no missing permission. Complete mediation can us
 
 Appendix A gives a restricted algebra for combining requirement grades. Performing a filing, obtaining consent or discharging a duty still requires evidence and an authorized operation.
 
-### 3.4. What adoption binds
+### 3.4. Operative bundles and update mandates
 
 Fixed weights do not fix behavior. A changed feature extractor can move a case to another cell, and changed calibration or thresholds can give its score another consequence. Institution $i$ therefore adopts the complete operative bundle
 
@@ -178,11 +182,11 @@ An assessment binds the actual bundle and its inputs: source and retrieval cuts,
 
 A joint operation binds the relevant vector of local contexts and bundles. Institutions may train locally, share parameters, delegate training, use local adapters or retain a frozen model. Local control concerns the adopted interpretation. It does not require each sovereign VM to train a separate neural network.
 
-## 4. Receiving a learned interpretation
+## 4. Learning across sovereign environments
 
 ### 4.1. The source result and the receiving use
 
-The source can now fit a consent model and use it under its own rule. A receiving registrar may apply different rules to the same relationships. It needs an account of the imported artifact and the local consequence proposed for it. The source may offer a ruling, a learned interpretation or a procedure for acting on that interpretation. Recognizing one ruling does not adopt a general model. Adopting a consent model does not authorize unrelated refusals.
+The local procedure gives the fitted model an authorized role. A receiving registrar must determine its own role for the same artifact because its rules may treat those relationships differently. The source may offer a ruling, a learned interpretation or a procedure for acting on that interpretation. Recognizing one ruling does not adopt a general model, and adopting a consent model does not authorize unrelated refusals.
 
 The receiving use has three contracts. Representational correspondence binds features, labels, capacities, time windows and source meanings. Statistical assurance identifies the evidence for performance in the receiving population. Institutional recognition determines which consequence the receiver may give the result. All three are directional and task-specific.
 
@@ -206,23 +210,17 @@ An embedding can represent jurisdictions numerically through features of their l
 
 ### 4.3. Verification before adoption
 
-The receiver authenticates the inventory and verifies the learning calculation against expectations held in protected policy. It checks the proposed correspondence, validation and use before predecessor-authorized adoption makes the bundle operative. Shared parameters require no global synchronization. Each institution controls its adopted interpretation.
+Before adoption, the receiver authenticates the inventory and verifies the calculation against expectations in protected policy. It checks correspondence, validation and proposed use under its existing authority. Each institution controls its interpretation, so shared parameters require no global synchronization.
 
-Authentication and correct computation can both accompany unsuitable learning. Labels may be inaccurate, or the specified algorithm may fit a detector poorly suited to its destination. Model-replacement attacks in federated learning show how a participant can introduce targeted errors while preserving ordinary performance [6]. The receiving mandate must specify the properties its checks require.
+Authentic, correctly computed models can use inaccurate labels or perform poorly at their destination. Model-replacement attacks in federated learning can preserve ordinary performance while introducing targeted errors [6]. The receiving mandate specifies the required checks. Finite validation can reject the authenticated poisoned candidate tested in §9, without excluding every unseen backdoor.
 
-Finite validation can reject a specified poisoned candidate. It cannot exclude every unseen backdoor. Section 9 tests an authenticated but unsuitable fraud artifact within that limit.
+Failures must remain separately contestable. Corrected source findings may require retraining, while changed receiving law may require a different use of a correct model. A computation proof establishes neither population fitness nor adoption.
 
-The receiving record must make failures separately contestable. A corrected source finding may require retraining. Changed receiving law may instead require a new use of an otherwise correct model. A computation proof resolves neither population fitness nor institutional adoption.
+## 5. Private learning and inference
 
-Institutions already share knowledge about financial crime. FATF, INTERPOL and the Egmont Group document exchanges about fraud methods and coordinated responses [8]. Here the receiving decision must connect that knowledge to an executable consequence and remain revisable when its basis changes.
+### 5.1. Source inventory and commitments
 
-Project Aurora explored collaborative detection with synthetic payment data, network analysis, machine learning and privacy-enhancing technologies [9]. Project Mandala demonstrated a peer network with rules and proof engines for cross-border compliance [10]. Its participants retained responsibility for regulatory interpretation and application. These are direct precedents for distributed learning and proof-supported compliance. The consent construction adds a specified fit from normative determinations and inference for an exact receiving request.
-
-## 5. Verifying private learning and inference
-
-### 5.1. The inventory determines the calculation
-
-Once the receiving use is specified, the receiver needs evidence of how the source fitted the model. The underlying cases may be private. The source signs a complete finite manifest identifying case revisions, commitments and the learning task. The receiver can then check the declared calculation without receiving the raw case values.
+The receiving procedure requires evidence of the fit, but the source's cases may be private. We construct a proof of the specified calculation over a complete finite inventory, or **manifest**, attested by the source. The manifest identifies case revisions, commitments and the learning task. It lets the receiver check the calculation without receiving raw case values.
 
 A commitment hides an encoded value and binds the source to it. For each row, six hidden indicators represent the three categories paired with the two possible rulings.
 
@@ -255,7 +253,7 @@ The artifact identifies the task, normative source, category contract, learner, 
 
 The source signs under a distinct protocol domain. Canonical encoding and content hashes bind the manifest's exact bytes. Protected local policy supplies the receiver's expected source key, task and current manifest frontier. Descriptions supplied by the caller cannot establish those expectations.
 
-This complete inventory prevents a form of selective inclusion. A membership proof alone could establish that chosen rows belong to a collection while omitting unfavorable rows. Here the verifier derives the relation from every signed-manifest row and the public eligibility rule. Whether the signed manifest contains the complete promised census remains the source's responsibility.
+The complete inventory prevents selective inclusion within the manifest. Proving that chosen rows belong to a collection would still allow unfavorable rows to be omitted. Here the verifier derives the relation from every signed row and the public eligibility rule. Coverage beyond that manifest remains the source's responsibility.
 
 ### 5.2. The training proof
 
@@ -303,7 +301,7 @@ Proposition 3a establishes the fit over the attested inventory. The truth and le
 
 ### 5.3. Inference for the present request
 
-The adopted model must next be applied to the receiver's exact request. To conceal its category, the case source supplies a signed credential containing three commitments
+The training proof establishes the fit. A second proof must connect that fit to the receiver's exact request. To conceal the request's category, the case source supplies a signed credential containing three commitments
 
 $$
 U_j=u_jG+s_jH,\qquad
@@ -330,7 +328,7 @@ Verified inference can thus enter the same assessment relation as local inferenc
 
 ### 5.4. Disclosure through the output
 
-The proof hides additional witness information relative to its public statement. That statement already contains exact weights and metadata. It can disclose a category or label even when zero knowledge holds.
+Both proofs disclose their public statements, which include exact weights, metadata and decisions. Zero knowledge limits additional information from the proof. The statement itself can still reveal a category or label, so private verification needs an explicit release contract.
 
 Take an inventory with one eligible row. The selected category has weight $1/3$ for a negative label and $2/3$ for a positive label. Every other category has weight $1/2$. The published weights identify both category and label. An inference outcome likewise identifies a category when the three categories have distinct public decisions.
 
@@ -362,9 +360,11 @@ A stronger proof system cannot alter this bound. Changing the observer, receipt,
 
 ## 6. Repeated updates and their accumulated effects
 
-### 6.1. Limits that survive the next model
+The disclosure account already extends beyond a single proof. The same is true of institutional burdens and delay. We now specify what the update procedure must retain across a sequence of models.
 
-An update can meet its individual limit while a sequence defeats the limit's purpose. Reducing a threshold by at most 0.01 each time can move it across the entire range. Burdening at most one percent of the population per update can burden everyone if the groups rotate. A new model identifier can conceal the restart of an old hold.
+### 6.1. Cumulative limits
+
+An individual update limit need not bound the sequence's effects. Repeated reductions of at most 0.01 can move a threshold across its entire range. Burdening at most one percent of the population per update can burden everyone if the groups rotate. Changing the model identifier can also conceal the restart of an old hold.
 
 The monitor must therefore persist outside the bundle. Over the mandate's horizon, it retains the authorized baseline and accumulated burdens, costs, disclosures and exposure. Each case keeps its original clock. A distance bound on weights may restrict engineering change. To control an institutional consequence, it also needs a bound on the resulting decisions or effects.
 
@@ -374,23 +374,19 @@ A standing mandate authorizes the defined sequence of qualifying updates. An exp
 
 An accepted update installs the complete checked bundle and adoption record atomically. The candidate cannot change the criteria that authorize it. Assessment and commitment bind the installed version.
 
-### 6.2. Renewing authority without restarting accounts
+### 6.2. Mandate renewal
 
-Continued adoption eventually exhausts a finite update allowance. Each adoption consumes one credit. Continued learning then needs a successor mandate, adopted through a power available in the exact predecessor context.
+Under the finite allowance, each adoption consumes one credit. Continued adoption eventually requires a successor mandate authorized in the exact predecessor context.
 
-Renewal states its authorized changes to future action scope, objectives, baselines and expenditure caps. It carries forward source frontiers, correction status, model ancestry, completed acts and possible old commands. Accumulated disclosure, risk and burden remain spent. They cannot reappear as unused capacity.
+Renewal declares authorized changes to future action scope, objectives, baselines and expenditure caps. It retains source frontiers, correction status, model ancestry, completed acts and possible old commands. Disclosure, risk and burden already incurred remain spent. Competent renewal may enlarge future allowances, but the accounts must retain prior expenditure and state any changed lifetime guarantee's resulting total. Renaming a mandate restores no privacy or risk allowance.
 
-Competent renewal may enlarge a future allowance. The account must still show prior expenditure, and a changed lifetime guarantee must state the resulting total. A fresh mandate name cannot recreate the original privacy or risk allowance.
+Existing duties retain their goals, safety conditions, original deadlines and checked certificates for permitted completion routes. Each also retains its separate allowance for model adoptions affecting its completion route. Neither service steps nor renewal of the learner's general budget replenishes this allowance. Otherwise administrative activity can postpone payment indefinitely, even when each model permits completion. Section 7's result requires actual transitions satisfying its common progress condition and service premise.
 
-Existing duties retain fixed goals, safety conditions and original deadlines. Their continuation certificates give checked evidence of a permitted route to completion. Each duty also keeps its remaining allowance for model adoptions affecting that route. Neither ordinary service steps nor renewal of the learner's general budget can replenish this separate allowance.
+A competent disposition can change the performer, timing or assurance while identifying the change and retaining the former promise's status. Renewal cannot record an unpaid duty as complete. Implementing successor mandates remains separate from the finite proofs for admitted bundles and counted execution.
 
-Without that separation, renewal could sustain administrative activity indefinitely while a payment waits. Even models that individually permit completion can produce this failure. Section 7 supplies a common progress condition. A renewal sequence satisfies the result only if its actual transitions meet that condition and its service premise.
+### 6.3. Policy feedback and adversarial response
 
-A competent disposition may change a duty's performer, timing or assurance. It must identify the change and preserve the former promise's status. Renewal cannot turn an unpaid duty into a completed one. Implementing the successor-mandate rule remains a separate obligation from the finite proofs for admitted bundles and counted execution.
-
-### 6.3. The policy changes what learning observes
-
-After a control detects abuse, adversaries may change transaction forms, switch intermediaries or manipulate learning inputs. Legitimate applicants may change behavior to avoid delay. Investigations and corrected findings can expose those responses and motivate another candidate. Its assessment must include the burdens on legitimate work imposed under the existing mandate.
+The next candidate also faces evidence shaped by earlier use. After a control detects abuse, adversaries may change transaction forms, switch intermediaries or manipulate learning inputs. Legitimate applicants may change behavior to avoid delay. Investigations and corrected findings can reveal those responses. Assessing the new candidate must include the burdens already imposed on legitimate work.
 
 Let $D_t$ denote data generated in period $t$ and $\pi_{B_t}$ the active bundle's admission policy. The observations depend on that policy and the responses it induces:
 
@@ -408,23 +404,23 @@ Even without feedback, the historical data may not identify a policy's improveme
 
 Always taking action one then gives 80% success in the first model and 40% in the second. Both have the same historical 50% baseline. Choosing between these effects needs additional model assumptions or information from a competently authorized investigation or experiment.
 
-### 6.4. Holding the comparison fixed
+### 6.4. Fixed evaluation criteria
 
-Evaluation must fix the population, outcome, baseline and horizon before comparing procedures. In the consent task, weakening the original requirement could raise the immediate pass rate. The intended outcome may instead be correctly completed ownership changes, with required consent and documentation by a stated deadline.
+Feedback makes the evaluation criterion consequential. We must fix the population, outcome, baseline and horizon before comparing procedures. Weakening the consent requirement could raise the immediate pass rate while changing the task. The intended outcome may instead be correctly completed ownership changes, with required consent and documentation by a stated deadline.
 
 Likewise, a formation procedure that accepts preliminary declarations must be assessed through verified documentation at the agreed deadline. First-attempt acceptance leaves that duty unresolved. The comparison must account for abandonment, false refusal, fraud loss, investigation, delay and unfinished duties.
 
 Power to adopt, correct implementation, evidence of improvement and acceptance of the tradeoff are separate judgments. An authorized procedure need not improve the selected outcome. A changed objective must be reported as such. Excluding difficult applicants cannot establish improvement for the original population.
 
-## 7. Preserving unfinished work
+## 7. Continuation under changing interpretations
 
-### 7.1. A permitted update can remove the route to completion
+Keeping the objective fixed requires checking whether the revised procedure can still perform work already owed. Safety of each newly admitted action is insufficient for that promise.
 
-The consent request illustrates a prospective restriction: the new interpretation can require consent before transfer. An empirical update can also block performance already owed. A detector that catches a new abuse pattern may remove the payment action needed to discharge an earlier obligation.
+### 7.1. Continuation under a fixed bundle
+
+The consent procedure can require permission before a future transfer. A new empirical detector can also affect an existing obligation by removing the payment action needed to discharge it. We distinguish discretionary adoption, which can be refused, from binding authority changes that must take effect.
 
 Suppose a refund is owed in state $s$, and $g$ records its completed payment. The old bundle permits $s\to g$. A new detector flags the recipient and removes that action. The narrower action set can preserve safety while making the refund impossible.
-
-Shielding in safe reinforcement learning constrains a learner under a supplied temporal specification [11]. Here the institution may competently change the interpretation, admission procedure or completion contract itself. The continuation test must identify which earlier promise such a change preserves, alters or defeats. Complete mediation and current-authority checks remain necessary throughout [3].
 
 Fix a finite state set $S$, a safe set $K\subseteq S$, a goal set $G\subseteq K$ and a declared response model. For each initiated action, $\operatorname{Succ}(s,a)$ contains every complete response path's endpoint, and every intermediate state must also be safe. The response model includes old commands that can still perform.
 
@@ -463,7 +459,7 @@ The count includes admitted context, service and recorded environment transition
 
 A finite game can treat more general cases. Its state includes the bundle, update authority, clocks and unfinished work. Its environment includes permitted model changes and provider responses. The common rank gives the simpler sufficient condition used here.
 
-### 7.3. When authority is revoked
+### 7.3. Revocation and failed assurances
 
 A binding revocation may remove the only lawful performance action. Once the source contract admits it as effective, affected new use must be fenced immediately. Refusing a discretionary adoption cannot keep withdrawn authority in force.
 
@@ -473,9 +469,9 @@ A competent disposition may establish a different continuation contract or disch
 
 ## 8. Correction and continuity of the institution
 
-### 8.1. Reaching every dependent use
+### 8.1. Correction dependencies
 
-Return to the source ruling behind the consent model. It can affect a receiving model and suspend an ownership request that never cites the ruling. Correcting only direct citations would leave that request governed by the invalidated basis.
+A source ruling can influence a receiving model and suspend an ownership request that never cites the ruling itself. Correcting direct citations alone would leave that request governed by the invalidated basis.
 
 The derivation graph must therefore cover source and label revisions, training cuts, base models, local adapters, calibration, adopted bundles and assessments. An edge records possible dependence. Observed absence of correlation cannot remove a protected dependency. Selective independence needs a checked argument. Conservatively marking every use of an affected bundle is sound.
 
@@ -491,15 +487,15 @@ The kind of correction determines its retrospective meaning. New evidence, rever
 
 The earlier assessment stays attributable. A replacement model cannot reverse a completed transfer, recall a disclosure, compensate a loss or extinguish an executable bank command. Each consequence needs its own competent act. Correction must reach the institution's economic state as well as its learning record.
 
-### 8.2. Removing a restriction whose basis has changed
+### 8.2. Eligibility after correction
 
-Correction must also restore eligibility when current evidence supports it. Suppose an identity mistake makes one payment appear twice, causing an allocation check to block new work. A competent SameEvent correction removes the duplicate occurrence. Once the supported allocation passes current checks, the old discrepancy cannot remain an unexplained veto.
+Invalidation must also permit justified resumption. Suppose an identity mistake makes one payment appear twice, causing an allocation check to block new work. A competent SameEvent correction removes the duplicate occurrence. Once the supported allocation passes current checks, the old discrepancy cannot remain an unexplained veto.
 
 An input correction can also change a refund under an already adopted formula. If the current formula gives twenty where earlier evidence supported sixty, the dependent duty needs recomputation or reassessment. An identity authority can correct the input within its powers. Amending the award formula requires the authority competent over that award.
 
 A change beyond the formula's authorized scope needs a competent disposition. Earlier performance and outstanding commands remain in either case. Updating weights alone cannot resolve the changed duty.
 
-### 8.3. What a receiver can know now
+### 8.3. Currentness and receiving authority
 
 A receiver cannot infer a reversal that has not arrived. Consider two worlds with the same receiving state. In one the source finding remains effective. In the other it has been reversed, but notification is delayed. Computation on the identical state returns the same answer in both.
 
@@ -509,21 +505,21 @@ Receiving information can precede receiving authority. A source reversal may tri
 
 Binding authority changes follow the immediate invalidation rule of §7.3. Reconciliation may remain pending after new use is fenced. Unpaid claims and possible commands survive even if no replacement continuation is yet available.
 
-### 8.4. What a successor must receive
+### 8.4. Succession and retained evidence
 
-These obligations continue when an agent or operating service is replaced. The successor needs the operative bundle, compatible inference implementation, necessary licenses, derivation references, evidence access and pending corrections. It also needs case clocks, mandates, cumulative expenditure and old commands. A content hash identifies an object. Continued use requires available bytes and services.
+A replacement agent or operator needs the operative bundle, compatible inference implementation, licenses, derivation references, evidence access and pending corrections. Case clocks, mandates, cumulative expenditure and old commands accompany them. Continued use requires available bytes and services, beyond the identity supplied by a content hash.
 
-A private proof may remain verifiable after the raw examples become unavailable. Retraining, a challenge or a different question may still require evidence outside the proof. Proposition 2 identifies which questions the retained representation can answer. Authorized erasure can preserve some capabilities and retire others. A later request must return “evidence unavailable” when its required evidence is gone.
+A private proof may remain verifiable after raw examples disappear. Retraining, challenges or other questions may still require additional evidence. Proposition 2 identifies which questions the retained representation preserves. Authorized erasure can preserve some capabilities and retire others. Requests lacking required evidence must return “evidence unavailable.”
 
-A source-label correction must state what happened to retained training influence. The model may have been retrained, withdrawn, shown independent of the record or left potentially influenced by it. Rolling back weights establishes none of those outcomes. Previously released information remains in the disclosure history.
+A source-label correction states whether the model was retrained, withdrawn, shown independent of the record or remains potentially influenced. Rolling back weights establishes none of these outcomes, and prior disclosures remain recorded.
 
-Writer transfer carries no institutional appointment by itself. A successor identity service needs a current scoped appointment or access to an available competent principal. Taking a former process's name does not confer registrar, tribunal or provider powers. The custody contract must test the actual post-transfer authority path for each promised service.
+Writer transfer or a reused process name confers no registrar, tribunal or provider powers. The custody contract tests each promised service's actual post-transfer authority. A successor identity service needs a current scoped appointment or access to an available competent principal.
 
-Independent operation requires usable artifacts and rights, practical access to evidence and a means to contest earlier decisions. Records cannot replace an unavailable inference service or a qualified successor. The service contract and evidence of its fulfillment must cover those dependencies. A writer fence must also prevent further protected writes by the outgoing operator.
+Independent operation requires usable artifacts and rights, evidence access, available inference, a qualified successor and means to contest earlier decisions. The service contract and fulfillment evidence must cover these dependencies. A writer fence prevents further protected writes by the outgoing operator.
 
 ### 8.5. The combined execution relation
 
-Collect these requirements in local institutional state $X=(\Gamma,H,S,K)$. The context $\Gamma$ holds rules, powers, active bundles and standing mandates. History $H$ retains attributable events and derivations. State $S$ holds positions, resources, exposure and persistent accounts. Cases, assessments and unfinished work belong to $K$.
+Adoption, use, correction and succession change the same continuing institution. We represent its local state by $X=(\Gamma,H,S,K)$. The context $\Gamma$ holds rules, powers, active bundles and standing mandates. History $H$ retains attributable events and derivations, while state $S$ holds positions, resources, exposure and persistent accounts. Cases, assessments and unfinished work belong to $K$.
 
 The following transitions connect learning to protected execution.
 
@@ -560,6 +556,8 @@ Theorem 6 alone permits refusal of every proposed act. Theorem 5 supplies progre
 
 ## 9. Evidence from two finite tasks
 
+The finite tasks test two distinct questions. The consent lifecycle tests whether private learned interpretation reaches the intended effect and remains correctable. The fraud comparison tests whether transferred learning improves the receiving decision under fixed conditions.
+
 ### 9.1. Consent, registration and payment
 
 The 24-determination consent task exercises the construction with actual training and inference proofs. Source meanings and authority are synthetic premises. Section 3.2 gives the exact fitted scores and decisions. Before adoption and use, the receiver checks the complete signed inventory and current case credential against protected expectations.
@@ -574,7 +572,7 @@ The execution was recorded on 24 October 2026. It demonstrates the tested path f
 
 ### 9.2. A fixed fraud comparison
 
-The fraud task uses a synthetic Indonesian financial-integrity office and a synthetic receiving office. These names identify constructed roles. They assert no actual finding, appointment or deployment. The comparison tests how a learned relational pattern affects protected decisions, transfer and correction.
+For the empirical task, we use a synthetic Indonesian financial-integrity office and a synthetic receiving office. These constructed roles establish no actual finding, appointment or deployment. The comparison tests how a learned relational pattern affects protected decisions, transfer and correction.
 
 Each proposal contains account-controller relationships, two transfer times and an admitted local-practice record. The feature extractor gives local practice priority. Otherwise it selects a shared-controller and rapid-relay pattern, then the ordinary cell. The practice record provides context without establishing lawfulness.
 
@@ -607,11 +605,11 @@ Twenty-four test labels are unavailable. The full comparison uses separate synth
 
 Receiving validation selects mixture one. It replaces every source weight with receiving-validation weights and reaches the same final weights and threshold as local learning. The experiment therefore shows no incremental transfer benefit.
 
-For this task, direct transfer imposes additional costs and receiving validation rejects the unhelpful source influence. The result supplies no general advantage for federation. Useful transfer must be evaluated for other declared populations, tasks and data.
+The comparison therefore isolates a failure of direct transfer and the receiver's rejection of unhelpful source influence. A benefit from transfer would require evidence from other declared populations, tasks and data. This fixture establishes no general advantage for federation.
 
 ### 9.4. Corrections and rejected candidates
 
-The comparison produces trained bundle files that the public governance lifecycle consumes through the same feature extraction and rational inference. Candidate registration leaves the active context unchanged. Adoption checks the receiving mandate, current predecessor, complete bundle and continuation. Changing the feature pipeline or making an intervening adoption prevents reuse of an earlier assessment.
+The measured decisions must also connect to protected execution. The public governance lifecycle consumes the comparison's trained bundle files through the same feature extraction and rational inference. Candidate registration leaves the active context unchanged. Adoption checks the receiving mandate, current predecessor, complete bundle and continuation. A changed feature pipeline or intervening adoption prevents reuse of an earlier assessment.
 
 An inherited refund tests lost continuation. The proposed model removes its only admitted completion action, so adoption fails while the original promise remains. The check also rejects a rotating strategy whose selected continuation can leave the common-rank region. A binding source correction remains recordable when it defeats an assurance. The system fences affected new use and retains the unresolved duty.
 
@@ -625,25 +623,35 @@ Foreign-source and correction-completeness fields in this public experiment rema
 
 ### 9.5. Formal results and executable correspondence
 
-The finite learning mechanization proves exact threshold inference, safe contingent strategies, predecessor-authorized adoption, current-use binding, correction invalidation and persistent accounts. A common rank and remaining update credits bound interleaved use and adoption steps. Only a correctly bound fresh provider observation reduces the original command's remaining possible payment. Completion requires the full stipulated amount to have been recorded. Authority and provider truth remain explicit premises.
+The finite mechanization proves exact threshold inference, safe contingent strategies, predecessor-authorized adoption, current-use binding, correction invalidation and persistent accounts. A common rank and remaining update credits bound interleaved use and adoption. Only correctly bound fresh provider observations reduce the original command's remaining possible payment. Completion requires recording the full stipulated amount. Authority and provider truth remain premises.
 
-The executable construction protects learned state in a durable host and connects current learned admission to a native operation and economic journal. Signed custody carries active bundles, pending corrections, accounts and old commands. Authenticated commitments identify the continuing service powers.
+The durable host protects learned state and connects current learned admission to native execution and the economic journal. Its decoder accepts one declared ownership case with the experiment's exact feature observation and unchanged trained bundle bytes. A separately identified correction arrives after execution while payment remains pending, without changing the four-arm data. Signed custody carries learned state, active bundles, pending corrections, accounts and old commands. Authenticated commitments identify continuing service powers. The competent provider and operator later record the original payment and complete the bound duty.
 
-The native decoder accepts one declared ownership case. The receiver admits it with the experiment's exact feature observation and unchanged trained bundle bytes. After execution, a separately identified lifecycle correction arrives while payment is pending. Signed custody retains learned state and the original command. The continuing competent provider and operator later record the original payment and complete the bound duty.
+The formal module proves no general refinement from this decoder and database to the finite semantics. The attached source and evidence identify that boundary and permit lifecycle reproduction [1].
 
-That lifecycle correction changes none of the four-arm data. The formal module proves no general refinement from the host's decoder and database to the finite semantics. The attached source and evidence identify the boundary and allow reproduction of the concrete lifecycle [1].
+The fraud lifecycle publishes synthetic records and weights without confidential release. Learned parameters affect protected admission while authority, expenditure and correction remain accounted for. The normative construction separately verifies learning and inference over committed case values.
 
-The fraud experiment publishes synthetic records and weights without a confidential release mechanism. It demonstrates a bounded lifecycle in which learned parameters affect protected admission and preserve explicit authority, expenditure and correction. The normative construction answers the separate question of verifying learning and inference over committed case values.
+Institutional use requires accepted observation contracts, appropriate releases, receiving-population evidence, competent adoption, delivered provider service and independent review. The calculation established by a private proof must remain connected to the receiver's actual installation and adopted effect.
 
-Institutional use requires accepted observation contracts, appropriate releases, receiving-population evidence, competent adoption, delivered provider service and independent review. A private derivation proof addresses the calculation. Its accepted result must remain connected to the actual installation and effect adopted by the receiver.
+## 10. Related work
 
-## 10. What remains to be evaluated
+The learning problem draws on selective labels, performative prediction, causal transportability and private learning [2,4,5,7]. These establish why authentic observations, a correct fit and wider exchange need not improve outcomes. We connect those limits to the procedure that gives a learned output institutional force and to the duties affected when that procedure changes.
 
-The construction connects learned rule application to the actions an agent may perform. Its finite results state what the declared transitions and response models preserve. The private proofs establish knowledge of an exact fit and inference under explicit cryptographic assumptions. The executable lifecycles test particular paths through adoption, correction and succession. General implementation correspondence and institutional acceptance remain separate obligations.
+Institutions already share knowledge about financial crime. FATF, INTERPOL and the Egmont Group document exchanges about fraud methods and coordinated responses [8]. Here the receiving decision must connect that knowledge to an executable consequence and remain revisable when its basis changes.
 
-Selective labels, performative prediction, causal transportability and private learning delimit the available claims [2,4,5,7]. Authentic observations, a correct fit and greater connectivity need not improve outcomes. Competent adoption gives a model a defined use. Evidence must establish the benefits and burdens of that use.
+Project Aurora explored collaborative detection with synthetic payment data, network analysis, machine learning and privacy-enhancing technologies [9]. Project Mandala demonstrated a peer network with rules and proof engines for cross-border compliance [10]. Its participants retained responsibility for regulatory interpretation and application. These are direct precedents for distributed learning and proof-supported compliance. The consent construction adds a specified fit from normative determinations and inference for an exact receiving request.
 
-The remaining empirical question concerns repeated adaptation. Each update must pass its authorized procedure, and each shared proof must stay bound to the action the receiver permits. Evaluation must follow adversarial and legitimate responses over time. It must measure prevented harm, unnecessary exclusion, unfinished duties, correction costs and continued operation after independent operator replacement. The fixed experiment establishes neither transfer benefit nor longitudinal advantage against adaptive attacks. Those outcomes require measurement through the continuing process specified here.
+Shielding in safe reinforcement learning constrains a learner under a supplied temporal specification [11]. Here the institution may competently change the interpretation, admission procedure or completion contract itself. The continuation test must identify which earlier promise such a change preserves, alters or defeats. Complete mediation and current-authority checks remain necessary throughout [3].
+
+The contribution concerns the complete path from evidence to use: a specified private fit, inference for an exact request, receiving adoption and correction through continuing execution. Computational validity, empirical fitness and institutional authority remain distinct at each interface. The consent and fraud tasks evaluate different parts of that path.
+
+## 11. Conclusion
+
+We have introduced an institutional world model for execution environments that learn how their governing rules apply to an agent's work. A candidate becomes operative through authority already in force. Private proofs establish specified calculations, and receiving institutions determine the consequences those calculations may support. The resulting decisions remain connected to their evidence, earlier effects and unfinished duties through correction and succession.
+
+The finite results state what the declared transitions and response models preserve under their source, cryptographic and service premises. The executable lifecycles test particular connections through adoption, correction and succession. General implementation correspondence and institutional acceptance remain separate obligations. The fraud comparison demonstrates harmful direct transfer and successful rejection of its influence, without demonstrating a transfer benefit.
+
+The remaining empirical question is whether this continuing process improves decisions as adversarial and legitimate behavior changes. Evaluation must measure prevented harm, unnecessary exclusion, unfinished duties, correction costs and continued operation after independent operator replacement. Each update must satisfy its authorized procedure, and each shared proof must remain bound to the action the receiver permits. The fixed experiment establishes no longitudinal advantage against adaptive attacks. That claim requires evidence from repeated use of the whole process.
 
 ## Appendix A. Composition at the admission interface
 

@@ -1,33 +1,35 @@
 # Sovereign Economies on a Decentralized Network
-**Abstract.** Mass is a decentralized network of sovereign execution environments for AI agents. Each environment learns the correct, safe interpretation of its sovereign law, policy and regulation, so it keeps up with fraud and bad actors on its own. We specify the design for institutions that must conduct an agent's work together while retaining their own rules, records and powers. Typed bytecode binds each proposed act to its authority, objects, resources and continuing obligations.
+**Abstract.** Mass is a decentralized network of sovereign execution environments for AI agents. Each environment learns the correct, safe interpretation of its sovereign law, policy and regulation, so it keeps up with fraud and bad actors on its own. An agent's work can require several institutions, each controlling different records and powers. We specify how they execute that work together while retaining their own rules and private evidence.
 
-Zero-knowledge proofs let the institutions check those conditions without receiving private credentials, rules or case records. Polycentric consensus joins the authorities an operation needs in one recoverable decision. Further sovereigns recognize specified results under their own policies and treaties, forming partial consensus across the network. Learned interpretations propagate with proofs of their calculation. Each receiver controls adoption, and each holder retains control of private secrets and consent.
+Typed bytecode identifies each proposed act's authority, objects, resources and continuing obligations. Zero-knowledge proofs let institutions check these requirements without receiving private credentials, rules or case records. Polycentric consensus joins the required institutional admissions in one recoverable decision. Other institutions recognize specified results under their own policies and treaties, forming partial consensus. Learned interpretations propagate with proofs of their calculation and require receiving adoption. Holders retain control of their private secrets and consent.
 
-Finite results establish conditions for exact execution, complete authority coverage, joint admission and continuity through correction and succession. Private proof histories additionally depend on the unproved Recursive Oracle Fidelity hypothesis for concrete hashes. Progress through model changes requires a separate service condition. Local admission, selective coordination and proof reuse organize work for billions of agents. A conditional capacity construction accounts for one billion maintenance tasks and 32 fresh private queries. Synthetic lifecycles test learning, registration and later payment. In the separate fraud-learning comparison, direct transfer increases false holds, while receiving validation matches local learning and supplies no incremental transfer benefit. The organizing principle is authorized change with accountable consequences.
+Finite results give conditions for exact execution, complete authority coverage, joint admission and continuity through correction and succession. Private proof histories additionally require the unproved Recursive Oracle Fidelity hypothesis for concrete hashes. Progress through model changes needs a separate service condition. Local admission, selective coordination and proof reuse organize work for billions of agents. A conditional capacity construction accounts for one billion maintenance tasks and 32 fresh private queries. Synthetic lifecycles connect learning, registration and later payment. In a separate fraud comparison, direct transfer increases false holds. Receiving validation matches local learning, with no incremental transfer benefit.
 
-## 1. One operation, several powers
+## 1. Introduction
 
-Mass is a decentralized network of sovereign execution environments for AI agents. Each environment learns the correct, safe interpretation of its sovereign law, policy and regulation, so it keeps up with fraud and bad actors on its own.
+AI agents conducting business need their actions to take effect in the institutions that govern them. Forming a company, changing its owner and paying a counterparty involve different powers, records and obligations. Each institution must decide what it permits and what its execution changes. Those decisions must compose while institutions retain control of their rules and private records.
 
-Carol asks an AI agent to register her purchase of a company from Alice. The registrar can change ownership, and the bank can pay Alice from Carol's purchase escrow. Moving the company's equipment abroad also needs the company, custodian and destination authority. The agent must coordinate these acts without acquiring the institutions' powers or collecting everyone's private evidence.
+Consider Carol's purchase of a company from Alice. The registrar can change ownership, and the bank can pay Alice from Carol's purchase escrow. Moving the company's equipment abroad also needs the company, custodian and destination authority. Registration alone establishes neither payment nor permission to move equipment. The agent must coordinate the institutions that hold these distinct powers.
 
-A central registry settles records within its adopted authority. Extending that authority across independent institutions requires their agreement. Bilateral integrations must establish what each message authorizes, which records it changes and what follows correction or failure. A blockchain with one global order and public state imposes a common execution history and visibility. These arrangements do not by themselves provide independent legal interpretations, selective recognition or confidential evidence. The missing execution contract connects each institution's authority to its effects in the shared operation.
+Even within one institution, rules require interpretation. An administrative request may transfer control, or a payment may conceal its beneficiary. Fixed checks can miss relationships exposed by later rulings and investigations. The environment must learn how its law, policy and regulation apply as conduct changes, without acquiring authority to amend those rules on its own.
 
-Mass supplies that execution contract as a novel decentralized network with a novel consensus layer, **polycentric consensus**. Mass is not a blockchain. Here a **sovereign** is an independently governed institution. A **sovereign virtual machine** is an execution environment governed by a participating institution's adopted rules and controlling its authoritative state. Each such environment is a network node, whose service may use several replicas. We specify how these environments execute an agent's work together while each institution keeps its own powers.
+Existing arrangements resolve parts of this problem. A central registry's authority extends across independent institutions only with their agreement. Bilateral integrations must establish what each message authorizes, which records it changes and what follows correction or failure. A blockchain organized around one global order and public state supplies a common history, but that history alone supplies neither local legal interpretations nor decisions to recognize another institution's act. An execution model must connect these decisions to a shared operation and retain consequences when their basis changes.
 
-For Carol's transfer, executable policy must distinguish ownership from payment and the powers needed for each. Typed bytecode carries these distinctions in instructions whose types identify authority, objects, resources, evidence and obligations. Before commitment, the environment checks the program and its full effects. Zero-knowledge proofs let institutions verify the required authority and facts without receiving their private details. Carol proves credential possession and consent while keeping her root secret in her wallet, the software that holds her private credentials and secrets. An adopted release contract specifies the recipient, purpose and permitted disclosure, including conclusions and visible effects.
+We introduce Mass to provide this execution model as a novel decentralized network of sovereign virtual machines for AI agents. A **sovereign** here is an independently governed institution. Its **sovereign virtual machine** executes under its adopted rules and controls its authoritative state. Each machine is a network node whose service may use several replicas. Mass is not a blockchain. Its consensus layer, **polycentric consensus**, coordinates the institutions whose powers and state an operation needs, while independent work proceeds locally.
 
-The transfer's full effects determine which institutions must participate. Polycentric consensus joins their private admissions and fixes one recoverable outcome. Other sovereigns may recognize the result for specified purposes under their policies and trade treaties. Partial consensus records these admissions and accepted recognition judgments, with their purposes and authority. It grows through accepted recognition links, while corrections require dependent reliance to be reassessed. Sovereigns outside that scope remain free to decide within their own powers and binding commitments.
+The machine learns from rulings, investigations and outcomes under a **standing mandate**, which authorizes specified updates in advance and reserves other judgments. Its **institutional world model** represents learned rule application and institutional outcomes [3]. Qualifying updates can be adopted automatically. The machine assesses requests under the adopted interpretation and rechecks authority and dependencies before protected effects. A receiver can learn from another institution without adopting its rules or accepting its conclusions for every purpose.
 
-Those decisions depend on interpretations that must change as institutions learn. An administrative request can transfer control, and a payment can conceal its beneficiary. Rulings, investigations and execution outcomes teach the environment how its rules apply and where controls miss abuse. A standing mandate authorizes automatic updates within limits and reserves other judgments for competent decision-makers. Learned interpretations propagate with zero-knowledge proofs of their calculation. Each receiver checks local use before adoption and tracks source corrections. *The institutional world model* develops this learning and adoption process [3].
+Typed bytecode makes these decisions executable, with instructions distinguishing authority, objects, resources, evidence and obligations. The machine checks the program and its complete proposed effects before commitment. Zero-knowledge proofs verify the required authority and facts without transmitting private witnesses. Carol keeps her root secret in her wallet, the software holding her credentials and secrets. A release contract fixes the recipient, purpose and permitted disclosure, including conclusions and visible effects. Learned interpretations likewise travel with proofs of their calculation, subject to authorized use.
 
-Continuing business requires this cycle throughout an entity's life. An **autonomous business** is a legal entity whose agents conduct its operations under an adopted mandate. An **autonomous asset** is an identified resource with responsible legal persons and programs governing its use under such a mandate. Agents across the network form these businesses, enter contracts, trade and manage assets. At billions of agents, independent work must proceed locally, with coordination where powers or resources meet. Proof aggregation and authorized reuse reduce repeated verification without losing each operation's identity, cost or obligations.
+For a joint operation, each required institution checks its contribution against the same complete description of effects. Polycentric consensus combines these admissions into one recoverable outcome. Further institutions may recognize specified results under their policies and treaties. **Partial consensus** records admissions and accepted recognition judgments with their purposes and authority. Recognition links extend this collection; delivered corrections require reassessment. Other sovereigns retain their decisions within their powers and binding commitments.
 
-Those obligations can outlast the decision that created them. Carol may become the registered holder while payment remains capable of arriving. A correction, model update or replacement operator must account for that command and the act already performed. The principle is **authorized change with accountable consequences**. Institutions may create powers, accept authorized risks, reverse decisions, discharge liabilities, amend laws and disagree. Safety does not promise uniformly favorable judgments, permanent settlement or unconditional completion.
+An **autonomous business** is a legal entity whose agents conduct its operations under an adopted mandate. An **autonomous asset** is an identified resource with responsible legal persons and programs governing its use under such a mandate. Agents can form these businesses, enter contracts, trade and manage assets across the network. At billions of agents, local execution limits the work requiring joint decisions. Proof aggregation and authorized reuse reduce repeated verification while preserving operation identity, cost and obligations.
 
-The contribution connects executable authority and private verification to joint decisions, selective recognition and continuing consequences. Sections 2–3 develop interpretation, typed execution, joint admission and scale. Sections 4–6 follow correction, learning, extension and succession. Section 7 addresses formation and separates the operating account from the design. Section 8 presents bounded executable evidence. The appendices and Technical supplement give the supporting relations, proofs, capacity analysis and implementation limits. These specify the design's typed bytecode, private authority and recursive histories without establishing their deployment.
+Obligations can survive the rule or operator that admitted them. Carol may become the registered holder while the bank command remains capable of payment. Correction must retain that registration occurred and account for possible payment. The organizing principle is **authorized change with accountable consequences**. Institutions can create powers, accept authorized risks, reverse decisions, discharge liabilities, amend laws and disagree. Safety implies neither permanent settlement, uniformly favorable judgments nor unconditional completion.
 
-### 1.1. What gives a recorded act its effect
+Our finite results address exact effects, complete represented authority coverage, serial composition, correction, semantic extension and succession under stated adoption, mediation, proof and service premises. Progress through model updates requires a separate service condition. Sections 2–3 develop execution and joint admission; §§4–6 follow consequences, learning and institutional change. Section 7 treats formation and the separate operating account, §8 presents bounded executable evidence, and §§9–10 give related work and conclusions. The appendices and Technical supplement supply constructions, hypotheses and implementation boundaries.
+
+### 1.1. Institutional authority and the execution model
 
 The registrar's authority precedes its software. A deployment contract identifies the competent institution, adoption instrument, authoritative state, admitted acts and effects. It fixes effective time, amendment powers, correction and succession. Under competent adoption, a register transition can itself perform an institutional act. Where another registrar or provider retains that power, the transition instead creates an instruction whose performance needs further evidence.
 
@@ -37,7 +39,7 @@ Jones and Sergot distinguish institutional power from permission and practical a
 
 A competent institution may recognize an earlier impermissible act and give it corrective consequences. The corrective act requires its own authority and execution procedure.
 
-The host controls the protected register and checks the current basis of each proposed change. Ordinary requests, corrections, imports, callbacks and recovery all enter this boundary when they affect protected state. Server keys do not confer legal powers. Four interfaces keep the different consequences explicit.
+The **host** controls execution and writes to the protected register. It checks the current basis of every proposed change, including changes through corrections, imports, callbacks and recovery. Server keys do not confer legal powers. We distinguish four interfaces because changing a register, instructing a provider and relying on evidence have different consequences.
 
 | Interface | Meaning under the adopted contract |
 |---|---|
@@ -48,7 +50,7 @@ The host controls the protected register and checks the current basis of each pr
 
 One transfer can produce a native act and an external instruction together. Under the stipulated instrument, registration changes the holder while payment remains unresolved. A receiver can recognize the register act without concluding that payment occurred.
 
-For institution $i$, write
+We represent institution $i$ by
 
 $$
 X_i=(C_i,H_i,S_i,K_i).
@@ -66,27 +68,27 @@ Here principal $a$ proposes the exact event or effect $e$. Witness $w$ supplies 
 
 Authority to constitute a company differs from authority to act as its director. In the reference lifecycle, the registrar constitutes `company-7` under its charter. The act gives its owner specified appointment, amendment and revocation powers. The owner appoints an operator, and the registrar keeps its separate register authority. Each appointment or amendment checks predecessor competence and records the origin of the resulting powers. Later use checks that those derived powers remain effective.
 
-## 2. From interpretation to exact execution
+## 2. Interpretation and exact execution
 
-The sovereign machine must connect what a rule means to what an agent actually does. Its adopted representation identifies acts, affected interests, evidence and reserved judgments. Learning interprets a request within that representation. Typed execution then carries the resulting requirements to the protected register and external instructions.
+The authority model identifies an institution's acts. We follow a rule's application through request interpretation and typed execution to its register change and external instructions. The interpretation retains affected interests, evidence and reserved judgments.
 
-### 2.1. Learning a governing interpretation
+### 2.1. Governing interpretations
 
-Each machine maintains an institutional world model: a learned representation of rule application and institutional outcomes [3, §§1–3]. Governing law and policy identify the requirements. Competent rulings give examples of their application. Execution and investigation supply observations about conduct, consequences and controls. The representation must retain the relationships the question needs, including control, capacity, objects and time. A summary of earlier verdicts can lose the relationship that makes the next request different.
+Each machine's institutional world model represents rule application and institutional outcomes [3, §§1–3]. Law and policy supply requirements, while competent rulings show their application. Execution and investigation supply observations of conduct, consequences and controls. The representation must retain the relationships each question needs, including control, capacity, objects and time. Verdict summaries can omit relationships needed for a new request.
 
 The model can interpret a rule, estimate an empirical outcome or select an adopted response. These uses need different grounds. A consent ruling concerns the rule's application. A fraud estimate can justify an authorized investigation without becoming an adjudicated finding. Missing outcomes remain missing, and competent decisions remain available where the evidence cannot determine the interpretation.
 
-The operative bundle binds parameters, feature and input meanings, retrieval rules, calibration, uncertainty treatment, consequence policy and inference semantics. It names the runtime, permitted uses, normative scope, source revisions and evidence. Changing preprocessing or a threshold can change an interpretation even with fixed weights. A machine may train locally, use shared parameters, delegate training or adopt a local adapter. Sovereign control concerns the interpretation it adopts, rather than a separate model for each agent.
+Weights alone do not determine an interpretation. Preprocessing can assign a request to a different category, and a changed threshold can give the same score another consequence. The institution therefore adopts an **operative bundle** containing parameters, feature and input meanings, retrieval rules, calibration, uncertainty treatment, consequence policy and inference semantics. The bundle also names its runtime, permitted uses, normative scope, source revisions and evidence. A machine may train locally, use shared parameters, delegate training or adopt a local adapter. Sovereign control concerns the interpretation adopted, not a separate model for each agent.
 
-The standing mandate fixes the update procedure, objectives, labels, permitted consequences and reserved judgments. It also limits accumulated delay, cost and disclosure. Candidate generation, verification and adoption form a repeated cycle, followed by execution, investigation and correction. Adoption checks the complete bundle under predecessor authority. A stronger learner changes the calculation and assurance required at this interface. It does not acquire the power to amend law or decide a reserved question.
+The standing mandate fixes the update procedure, objectives, labels, permitted consequences and reserved judgments, including limits on accumulated delay, cost and disclosure. Each cycle generates and verifies a candidate before adoption checks the complete bundle under the authority already in force. Execution, investigation and correction then supply evidence for the next cycle. A stronger learner changes the calculation and assurance needed at this interface. It gains no power to amend law or decide a reserved question.
 
 The consent example makes this process concrete. It distinguishes ordinary transfers, common-control reorganizations and nominee or custody changes. For category $j$, $n_j$ counts eligible rulings and $k_j$ those requiring consent. The finite learner fits $\theta_j=(k_j+1)/(n_j+2)$. The adopted procedure returns `NoAdditionalConsent` at $\theta_j\le1/4$, `RequireConsent` at $\theta_j\ge3/4$, and `Refer` between them. An empty category gives $1/2$ and reserves judgment. Section 8.1 gives the synthetic rulings and fitted values.
 
 `RequireConsent` needs competent consent for the exact case. `Refer` leaves the question to the authorized officer. `NoAdditionalConsent` satisfies this requirement alone. Authority, holder, eligibility, other officer answers and execution resources still govern the transfer. This finite fit checks a specified interpretation procedure. It neither parses arbitrary legislation nor proves the legal correctness of its generalization.
 
-### 2.2. Assessing the request
+### 2.2. Request assessment
 
-An assessment binds the exact request to the basis of its decision. Its record names source authority, rule, request revision, subject, objects, purpose and use stage. It retains applicability, exemptions, evaluated conditions, unanswered questions, residual duties and disclosure restrictions. The receiving decision is Permit, Refuse or Await. A displayed grade summarizes that record and cannot replace it.
+The adopted interpretation must be applied to an exact request. We call this an **assessment**. Its record identifies source authority, rule, request revision, subject, objects, purpose and use stage. It preserves applicability, exemptions, evaluated conditions, unanswered questions, residual duties and disclosure restrictions. Permit, Refuse or Await summarizes the receiving decision, but cannot replace the record that explains it.
 
 For a learned assessment, the record also binds the entire operative bundle and actual feature, input and retrieval cutoffs. The host computes the supported inference or verifies the adopted proof, then rechecks the complete bindings at the protected effect. A changed feature pipeline invalidates an earlier assessment even with unchanged parameters. Section 5 explains how zero-knowledge proofs can supply the consent requirement.
 
@@ -94,9 +96,7 @@ Assessment itself can spend resources, disclose information or suspend for an of
 
 The host retains the schedule, current position, captured context, query ticket and all costs and disclosures already incurred. Resumption reconciles the ticket. An unanswered question cannot become false because evaluation stopped. After selecting a consequence, the host checks current authority and dependencies again. Required assessments retain their effects even when their consequence loses priority.
 
-These attempts belong to one continuing case. The case retains request revisions, sources, identity determinations and each attempt's context. Refusal ends an attempt, but an authorized change may justify another. Earlier approval supplies no perpetual permission. In the reference, a rule change moves Permit to Refuse, and a further competent change permits a later attempt. Earlier occurrences and consumed resources remain fixed.
-
-The execution right remains bound to the exact institutional intent. Reassessment grants no right to repeat a completed register act or issue a second payment command for it.
+Assessment attempts belong to one continuing case, with its request revisions, sources, identity determinations and earlier contexts. Refusal ends an attempt, while an authorized change may justify another. In the reference, a rule change moves Permit to Refuse, and a further competent change permits a later attempt. The case retains earlier occurrences and consumed resources. Its execution right stays bound to the institutional intent, so reassessment cannot repeat a completed register act or issue a second payment command. Earlier approval likewise supplies no perpetual permission.
 
 ### 2.3. Typed bytecode and the ownership operation
 
@@ -112,9 +112,9 @@ The executable ownership instance checks a narrower source and host profile; it 
 
 An absent officer answer or Refuse leaves Alice as holder and the cash available. Permit changes the holder once, consumes seven of 100 service units and reserves all 100 currency units. Cash available is then zero and cash spent remains zero. The continuation retains the exact judgment, disclosure restrictions and one payment command under its provider contract. Unknown payment leaves that command and reserve for the current or replacement planner to reconcile.
 
-### 2.4. What exact execution establishes
+### 2.4. Exact execution
 
-The finite source and host have independent definitions. The source syntax is
+We state exact execution for a finite profile with independently defined source and host semantics. The source syntax is
 
 $$
 p::=\mathsf{Done}\mid\mathsf{Act}(q)\mid p;p
@@ -141,19 +141,17 @@ The theorem is mechanized for the finite calculus. Service units remain separate
 
 An adapter then checks the exact economic meaning: funding owner, estate, unit, purpose, beneficiary, occurrence, command, reserve, service consumption, disclosure and continuation. Appendix A.3 gives Lemma 1a and its implementation premises. The host computes the successor without a durable effect, checks the import and commits both representations with one receipt. Retry recovers the original act and command while returning the current continuation separately. Administrative and recovery routes enter the same protected boundary.
 
-Proof-carrying code lets a host check untrusted computation against its policy [13]. Here the correspondence also requires competent adoption, faithful rule encoding, admitted evidence and complete mediation of the actual institutional effect.
+### 2.5. Complete requirements and private admission
 
-### 2.5. Resolving requirements against the effect
-
-Carol's operation has a small fixed profile. A larger program can exercise powers or activate requirements absent from its initial request. Tentative execution must therefore describe the complete patch, commands, resource use and residual duties before final admission. The host resolves requirements against this description through an operation we call JOIN. Each applicable instance needs an evaluation, authorized reuse or authenticated exemption. Unknown scope leaves an identified determination pending.
+The ownership profile fixes one operation's requirements. Larger programs can exercise powers or activate requirements absent from their initial request. After tentative execution, the host resolves requirements against the complete patch, commands, resource use and residual duties. JOIN matches each applicable requirement with an evaluation, authorized reuse or authenticated exemption. Unknown scope leaves an identified determination pending.
 
 Zero-knowledge proofs supply these dispositions without transmitting their private witnesses. A witness is the credential, source fact, authority chain or execution record that satisfies the proof relation. The statement binds the adopted profile, current source commitments and complete proposed effect. For an evaluated requirement it also binds the source rule, certified bytecode, actual trace and arguments. JOIN checks both directions: every applicable requirement has one disposition, and every disposition covers an applicable requirement. A proof for payment to Alice cannot authorize payment to Bob.
 
 Institutions can therefore contribute authority to one act while withholding the details that justify their contributions. Under its proof-system assumptions, the proof establishes the specified authority chain, scope and current-use conditions. Competent adoption gives those checks their institutional meaning. The host compares the statement with its protected inputs before committing the stated effect.
 
-When source facts and receiving criteria must both remain private, the design uses distributed private evaluation. The Technical supplement's Appendix C constructs it over seven server roles, with privacy and availability under a static bound of two corrupt roles. Proofs bind the encrypted inputs, their openings, complete execution views and resulting state. Invalid inputs follow the same declared schedule. The answer remains locked until the matching Commit. Disclosure accounting covers authorized answers, effects, refusals, timing and openings before exposure, including disclosures that survive an aborted operation.
+Some checks depend on both private source facts and private receiving criteria. For this case, Technical supplement Appendix C constructs distributed private evaluation over seven server roles. Privacy and availability require a static bound of two corrupt roles. Proofs bind encrypted inputs, their openings, complete execution views and resulting state, while invalid inputs follow the same declared schedule. The answer remains locked until the matching Commit. Before exposure, disclosure accounting covers answers, effects, refusals, timing and openings, including disclosures that survive an aborted operation.
 
-The network also carries proofs of prior execution. These proofs use the recursive construction in Technical supplement Appendix D under its unproved Recursive Oracle Fidelity hypothesis for concrete hashes. Exec verifies one execution, Merge checks compatible executions, and History extends a certified predecessor. Each parent verifies its child proofs and their statements, binding the program, context, request, effects, duties and permitted output. A decreasing rank toward earlier proofs excludes circular ancestry. Imports preserve their original assumptions and cumulative security costs. The receiver can verify a history without its private witnesses, while custody preserves evidence needed for later questions.
+An admission can depend on prior execution, whose private witnesses need not be disclosed again. Technical supplement Appendix D supplies recursive proofs under the unproved Recursive Oracle Fidelity hypothesis for concrete hashes. Exec verifies one execution, Merge checks compatible executions, and History extends a certified predecessor. Each parent verifies its child proofs and statements, binding the program, context, request, effects, duties and permitted output. A decreasing rank excludes circular ancestry, and imports retain ancestral assumptions and cumulative security costs. The receiver can verify the history while custody preserves evidence needed for later questions.
 
 <figure id="figure-1">
 <img src="figures/sovereign-economies-figure-1.svg" alt="The prover receives the exact request and private witness, performs tentative execution and describes the actual effect. Its statement and proofs cross to the authoritative host. The host runs JOIN against its adopted requirements, bundle and case inference, then checks authority and protected state before committing. Refusal or waiting retains assessment effects. Black and grey." style="width:100%;height:auto" />
@@ -168,15 +166,13 @@ The registrar now has an admitted local act with an exact continuation. Moving t
 
 ## 3. Joint admission and selective recognition
 
-For the equipment transfer, the company authorizes release, the custodian applies its duties, and the destination decides whether the evidence permits receipt. Shared resources and institutional relationships can make these decisions depend on one another. Selecting participants from the direct writes alone would miss some of the required powers.
+The equipment transfer requires decisions that no local execution can supply alone. The company authorizes release, the custodian applies its duties, and the destination decides whether the evidence permits receipt. Their decisions can share resource constraints and depend on one another. We first establish what a receiving institution may conclude, then derive the affected scope and the joint decision. Considering these states together for analysis does not give any institution control of the others' records, powers or interpretation.
 
-The network connects local machines for execution and selective reliance on records. The analysis considers their states together. Each institution keeps its own records, powers and interpretation.
-
-### 3.1. Preserving the meaning of combined judgments
+### 3.1. Dependent judgments and selective recognition
 
 The home register may establish `Holder(company-7, Carol)` while a receiving jurisdiction requires a further determination before licensing her activity. The refusal leaves the home act intact. The receiving case retains the reason and unanswered question for reassessment under a later rule or treaty.
 
-Recognition therefore needs an explicit bridge between source and destination schemas. The bridge states each transferred field's meaning, the adopted instrument and the purpose of reliance. Its finite checker tests every admitted source record against the destination's dependencies. The receiver separately checks whether its current policy permits that bridge for this use. A valid schema mapping has no institutional effect until the receiver adopts it.
+To use the home record, the receiver needs a **recognition bridge** between the source and destination schemas. The bridge states each transferred field's meaning, the adopted instrument and the purpose of reliance. Its finite checker tests every admitted source record against the destination's dependencies. The receiver then checks whether its current policy permits that bridge for this use. A valid mapping acquires institutional effect through receiving adoption.
 
 Using the private evaluation and proof relations of §2.5, a recognition proof checks the bridge against a committed source record and exposes the permitted conclusion. It binds the source act and proof history, receiving policy, purpose, restrictions and remaining duties. The receiver verifies those bindings before recording its decision. The finite bridge checker in Technical supplement §H.3 establishes schema preservation. Private execution must additionally satisfy §2.5's proof and disclosure conditions.
 
@@ -194,19 +190,15 @@ A source's learned category may likewise map to a different category, a reserved
 
 A corridor is the connection between two nodes over which Mass automates business. It exists between every pair and carries requests and proofs between authenticated endpoints. Agreements such as trade treaties add mutual recognition of specified checks and records, subject to their authority, conditions and amendment rules in each participant's policy. Recognition links may form a proper subgraph of the communication network. Operational replicas maintain each participant's service under its own fault assumptions.
 
-For every certified act, whether admitted locally or through polycentric consensus (§3.3), **partial consensus** is the collection of sovereigns' admissions and accepted recognition judgments, indexed by local context, purpose, question and rule. Every entry binds the act's certificate and proof history, directly or through a derived record. Each entry identifies the act or derived record, its authority, source evidence and terms of reliance. It records who accepts what and on which basis, without requiring a common answer to different institutional questions.
+Purpose-specific admissions and accepted recognition judgments form partial consensus, which can extend beyond an operation's participants. Section 3.3 develops this collection after establishing the joint decision it can extend.
 
-The design grows this collection through accepted recognition links under each receiver's policy and treaty terms. If B recognizes A's register act and issues a license, C may recognize that license under a separate agreement. C checks the permitted source evidence, B's decision, its own bridge and authority. The two links confer no direct recognition from A to C.
-
-On admitted delivery of a source correction or reversal, the design follows recorded dependencies and marks affected reliance for revalidation. Each receiver decides whether its use survives or needs a new judgment. Suspended or refused reliance leaves the accepted collection, while earlier decisions, effects and duties stay recorded. Technical supplement §§H.3, H.7 and H.15 construct the local recognition, continuation and assertion checks. Maintaining this collection across the network requires complete dependency records and delivery of changes. The local constructions supply no general propagation theorem and cannot reveal an undelivered reversal.
-
-### 3.2. Finding the complete affected scope
+### 3.2. Affected powers and dependencies
 
 Consider two subsidiaries sharing a parent exposure limit of 100. Each proposes to increase its exposure from 40 to 55. Either change appears acceptable against the original state, but together they produce 110. The parent's constraint belongs in both operations' scope even if neither directly writes a parent record.
 
 The scope checker uses the complete tentative patch, commands, resource use and duties. Its expression language supports named reads, finite lookups, arithmetic, conditionals and typed comparisons. Support $D(e)$ includes reads from every syntactic branch and every lookup reachable through the admitted schema. A branch can remain a dependency even when it does not determine the present result.
 
-For learned assessments, support also covers the active bundle, feature pipeline, calibration, thresholds and actual source cutoffs. Declared dependencies must cover the computation performed. Empirical absence of causal influence cannot justify removing an execution dependency. The host needs the result to remain valid under concurrent changes, including changes that leave the immediate output unchanged.
+A learned assessment adds dependencies on the active bundle, feature pipeline, calibration, thresholds and actual source cutoffs. These must cover the computation performed. Lack of observed causal influence cannot justify omitting a dependency needed to preserve the result under concurrent change. This requirement includes changes that leave the immediate output unchanged.
 
 **Lemma 2 (Complete support).** If two states agree on $D(e)$ and the bound request inputs, they give the same value to $e$.
 
@@ -228,15 +220,13 @@ The unchanged-right case is easy to miss. Let $\rho(x,y)=x\land y$ at $(0,0)$, a
 
 Completeness is relative to the adopted catalogue. An unrecorded contract can still affect the institution. A competent instrument can bound the profile through conclusive positions and a route for external orders. Beyond that scope, the missing evidence or judgment must enter before the system can claim complete authority coverage.
 
-### 3.3. Agreeing one outcome
+### 3.3. Polycentric consensus
 
 The derived scope identifies the institutions whose admissions the operation needs. Each checks its powers and requirements against the same manifest. The manifest binds effects, dependency versions, rule contexts, model bundles, operator generations and the terminal decision service. A generation identifies who may currently admit new work. Participants can use different models while preparing this one action.
 
 For private admission, each institution supplies a zero-knowledge proof of its required contribution, bound to that manifest. The deciding service checks the proofs against the expected profiles and authenticated authority roots. The proof may conceal source facts, credentials or policy details while exposing the conclusion the other participants may rely on. Scope, reservations and the terminal outcome receive their own bindings. Technical supplement Appendix E.4 connects the reservation grants to completed execution through a final proof called ContextJoin. Preparation, terminal admission and history require that joined relation.
 
 This is polycentric consensus (Technical supplement §H.6): independently governed institutions supply the required admissions, and one designated replicated service agrees a recoverable Commit or Abort outcome. In the two-authority recovery profile (Technical supplement Appendix B), each participating authority controls its own replicas, and further replicas are controlled independently of both. The manifest fixes its roster, epoch and fault bound. A replica quorum cannot replace a missing institutional admission. Each institution retains its authoritative history, and other sovereigns make their own receiving decisions. The novel layer is the complete connection from affected powers and private admission to a shared outcome and selectively recognized consequences.
-
-Daml provides stakeholder authorization and privacy-aware multiparty workflows [17]. Canton checks relevant participants' authorization, consequences and activeness before coordinating commit [18] [19]. The Bank for International Settlements (BIS) Project Mandala combines rules and proof engines while institutions retain responsibility for interpretation [20]. Generalized consensus also avoids unnecessary ordering of independent operations [21]. These supply precedents for the ingredients. Here their composition must preserve current powers, private evidence and continuing consequences under the following conditions.
 
 An effectful attempt acquires shared read reservations and exclusive write reservations in canonical order, without upgrades. It then recompiles scope and checks protected versions. Every required institution prepares the exact resulting manifest. Reservations remain held through Commit and installation, or through Abort and certified cleanup. Actual terminal use checks expiry as well.
 
@@ -266,11 +256,17 @@ The specified design in Technical supplement Appendix B uses asynchronous common
 </figcaption>
 </figure>
 
-The terminal certificate and proof history can support a receiving decision under §3.1. Recognition expands reliance on the act for specified purposes. It neither changes committee membership nor requires another sovereign to accept the result. A changed treaty or rule can change permitted reliance while the earlier act stays recorded.
+The terminal certificate and proof history can support a receiving decision under §3.1. Recognition extends reliance for a specified purpose without changing committee membership. It requires no other sovereign to accept the result. A changed treaty or rule can change permitted reliance while the earlier act stays recorded.
+
+For every certified act, whether admitted locally or through polycentric consensus, **partial consensus** is the collection of sovereigns' admissions and accepted recognition judgments, indexed by local context, purpose, question and rule. Every entry binds the act's certificate and proof history, directly or through a derived record. Each entry identifies the act or derived record, its authority, source evidence and terms of reliance. It records who accepts what and on which basis, without requiring a common answer to different institutional questions.
+
+The design grows this collection through accepted recognition links under each receiver's policy and treaty terms. If B recognizes A's register act and issues a license, C may recognize that license under a separate agreement. C checks the permitted source evidence, B's decision, its own bridge and authority. The two links confer no direct recognition from A to C.
+
+After admitted delivery of a source correction or reversal, the design marks affected reliance for revalidation through recorded dependencies. Each receiver checks whether its use survives or needs a new judgment. Suspended or refused reliance leaves partial consensus, while earlier decisions, effects and duties remain recorded. Technical supplement §§H.3, H.7 and H.15 construct local recognition, continuation and assertion checks. Network propagation requires complete dependency records and delivery of changes. Those constructions neither prove general propagation nor reveal undelivered reversals.
 
 Commit can also leave a payment instruction capable of external performance. A stay can change dispatch permission while retaining that instruction's history. Ending its external execution right requires evidence under the provider contract. The institution must account for payment that may still arrive.
 
-### 3.4. Billions of agents and the work they create
+### 3.4. Agent scale and capacity
 
 Billions of agents can operate autonomous businesses and assets without becoming billions of consensus replicas. The architecture routes each proposal to the sovereign machines whose powers and state it uses. Independent institutions admit independent work locally. Joint operations coordinate their full affected scope, and compatible executions can merge through their proofs. A shared exposure limit or exclusive resource still requires coordination.
 
@@ -282,9 +278,9 @@ The Technical supplement's Appendix E costs an instance with 32 institutions, ea
 
 That instance fixes the catalogue, two ordered sources, bounded scope, preallocated rights, compatible current-use contracts and no conflicting writer. Larger scopes or contention require another resource census. Besides Recursive Oracle Fidelity, the agreement instantiation requires unproved Joint-Rank Fidelity for its concrete-hash ranks. Appendix C.3 states both hypotheses.
 
-## 4. Carrying the consequences forward
+## 4. Continuing economic consequences
 
-Registration leaves Carol's purchase payment outstanding from her personal escrow. The company continues trading through its own estate. Carol's roles as purchaser and shareholder make her neither the owner of its cash nor the debtor under its contracts. Later learning and decisions must act on these distinct rights, resources and obligations.
+An admitted operation is only one event in the company's life. Registration leaves Carol's purchase payment outstanding from her personal escrow, while the company trades through its own estate. Her roles as purchaser and shareholder make her neither the owner of its cash nor the debtor under its contracts. We follow these positions through performance, correction and closure. Later learning must account for them when it changes the actions available to the institution.
 
 ### 4.1. Positions, performance and available resources
 
@@ -292,9 +288,7 @@ An economic program declares the rights and duties it can create, resources it c
 
 Programs compose through their justified lifecycle events. Performance under one can discharge another's duty or satisfy its prerequisite. The resulting positions depend on admitted identities, quantities, authority and causal relationships. A union of duties, or a requirement that every program be ready, would miss this productive composition.
 
-Take a company account with 100 currency units. Financing supplies an actual inflow of 50 and creates a repayment duty of 55. The company spends 40 on inputs, produces ten goods and contracts to sell ten at ten currency units each. It delivers eight, receives 60 and retains another 40 as possible under the original payment command. Its cash is $100+50-40+60=170$.
-
-Carol's purchase escrow remains separate.
+Take a company account with 100 currency units, separate from Carol's purchase escrow. Financing supplies an actual inflow of 50 and creates a repayment duty of 55. The company spends 40 on inputs, produces ten goods and contracts to sell ten at ten currency units each. It delivers eight, receives 60 and retains another 40 as possible under the original payment command. Its cash is $100+50-40+60=170$.
 
 The receivable does not yet supply available cash. The account distinguishes valuation, an identified value range, transfer permission, an executable quote, realizable liquidity and cash at the deadline. A blocked transfer can prevent a quote while leaving valuation possible. A claim paying 100 tomorrow can have value 100 at a unit discount factor and supply nothing for a duty due today.
 
@@ -306,13 +300,11 @@ $$
 
 Several legal consequences can depend on one occurrence without multiplying its resource. Under admitted guarantee and subrogation terms, one payment can discharge a creditor's claim and guarantee exposure while creating a recourse claim. Only one payment of 100 enters the cash account. Competent set-off can extinguish reciprocal debts without any cash transfer. The journal records each change's basis, so the sum of live liabilities need not remain constant.
 
-Typestate and linear asset disciplines prevent invalid resource use in systems such as Obsidian [22]. The exclusive accounts apply that principle while distinguishing resource quantities from the legal consequences they support. Later decisions additionally need a relation to actual performance and still-executable commands.
-
 In this design, the interfaces connect the network to economic services. Moxie prices and clears claims, which record economic rights or obligations and their outcome conditions. Recourse administers disputes and carries authenticated decisions into execution. These roles retain competent institutions' powers and the distinction between positions, instructions and performance.
 
-### 4.2. When identity changes
+### 4.2. Identity correction
 
-Suppose two provider records each appear to establish a separate payment of 100. Each supports an allocation of 100. A competent determination then identifies both records as one payment. Available resources become 100 against competing allocations of 200.
+Resource accounting depends on which occurrences the evidence supports. Suppose two provider records each appear to establish a separate payment of 100 and each supports an allocation of 100. A competent determination then identifies both records as one payment. Available resources become 100 against competing allocations of 200.
 
 Correction retains both sources, the earlier determinations and their allocations. It records the shortfall and withdraws unsupported completion conclusions. Choosing a claimant needs an adopted priority rule or further competent disposition. A disposition allocating 60 and 40, for example, leaves the two duties of 100 outstanding by 40 and 60.
 
@@ -324,7 +316,7 @@ Corrected state includes retained sources, current identity determinations, depe
 
 A later attribution resolution must also restore the eligibility that current support justifies. The old discrepancy cannot become a permanent unexplained veto. Changed support recomputes dependent consequences under their adopted formulas or records pending reassessment. Identity-correction authority alone supplies no power to amend an award.
 
-### 4.3. Successive decisions about the same performance
+### 4.3. Successive institutional decisions
 
 Return to the company's sale. A competent decision reduces accepted quantity from ten to four. Four of the eight delivered units must return. The price becomes 40, leaving a refund entitlement of 20 from the 60 already paid. Delivery and payment remain historical facts, and the original payment command can still deliver another 40.
 
@@ -375,7 +367,7 @@ Suppose a business has spent its initial ten units and owes a supplier 50. Its a
 
 If the adverse outcome occurs, the journal retains performance, unpaid positions and the applicable default process. Release or insolvency disposition can reduce liability without inventing payment or a replacement debtor. A competent revocation may remove the only lawful performance action. Correct refusal then leaves the original service objective unmet.
 
-Authority safety, feasibility and controllability make different claims. Safety constrains admitted effects. Feasibility establishes that a successful execution exists, while controllability supplies a policy against every declared response. Actual service additionally needs authority, funding, scheduling and providers that perform the policy. Silence from a replacement planner does not discharge an accepted duty.
+We distinguish authority safety from the ability to fulfill a promise. Safety constrains admitted effects. Feasibility establishes that a successful execution exists, while controllability supplies a policy against every declared response. Realizing that policy additionally needs authority, funding, scheduling and provider performance. A replacement planner that remains silent can leave every safety check intact while an accepted duty goes unserved.
 
 A discretionary model update that removes the only lawful payment route must preserve the promised continuation or record a competent change to it. Holds retain original clocks, investigation costs and exposure through revisions. A binding revocation immediately blocks affected new uses even without a replacement continuation. Section 5.3 supplies the finite strategy calculation for a funded performance promise. An adopted wind-down objective needs its own strategy and account.
 
@@ -385,15 +377,15 @@ Closure requires a disposition of the continuing work. Consider the company's ow
 
 Factual resolution, legal disposition, case closure and operational retirement are distinct outcomes. Competent disposition can finish the company's role while a successor continues an unresolved case. Retained uncertainty and obligations remain available to those whose work depends on them.
 
-## 5. Changing interpretations without losing the work
+## 5. Continual learning and existing obligations
 
-The account now records what the company has done, what it owes and what its outstanding commands can still perform. A model update can change the actions available to resolve those positions. Adoption must preserve the promised continuation or record a competent change to that promise.
+The company's continuing positions determine what a model update must address. New observations may expose abuse, a ruling may correct an interpretation, or a sovereign may amend the requirement itself. Each event has its own authority and consequences. If the new interpretation changes the actions available for an existing duty, adoption must preserve its promised continuation or record a competent change.
 
-New observations can expose abuse that escaped a detector. A ruling can change an existing requirement's interpretation, and a sovereign can amend the requirement itself. These events need different authority and responses. Agents and counterparties can also adapt to a control, so evidence that it missed abuse must remain distinct from authority to change the rule.
+Agents and counterparties also respond to controls. The environment must learn from those responses while distinguishing evidence of missed abuse from authority to alter a rule. We follow that process from an imported interpretation through source correction and repeated local adoption.
 
-### 5.1. Propagating learned interpretations
+### 5.1. Learning propagation
 
-A useful interpretation may originate elsewhere. The source can share its fitted model, but the receiver must first establish three grounds for local use. Representational correspondence concerns categories, labels, identities, units and observation windows. Statistical validation concerns the receiving population. Institutional recognition determines the consequences permitted under the receiver's rule. A correct source calculation establishes none of these automatically.
+Local use of an imported model needs three grounds. Representational correspondence covers categories, labels, identities, units and observation windows. Statistical validation concerns the receiving population, and institutional recognition determines permitted consequences under the receiver's rule. Correct source calculation establishes none of these automatically.
 
 Verification creates a nonoperative candidate. Adoption checks the latest admitted source revision, task correspondence, normative scope, permitted uses and validation evidence. It also checks predecessor authority, cumulative limits and the continuation of inherited work before installing the exact bundle atomically. A standing mandate can authorize this procedure automatically. Recognition of a specific finding, a warning, imported parameters and adoption of a general model remain different acts.
 
@@ -407,7 +399,7 @@ Appendix B specifies the commitments, integer bounds, fitting and inference rela
 
 The network design repeats this process beyond one receiver. Suppose A releases an interpretation to B, which finds a permitted local use. B can relay the original evidence to C only as its release contract permits. A proof bound to B cannot authorize C. A can issue a correctly bound artifact and proof for C under a new authorized release. B's possession of the earlier proof supplies no private witness for reissuing it. C checks its own correspondence, validation and mandate before adoption.
 
-B may instead adapt the interpretation using its own rulings. Its new proof must establish that declared calculation and retain the dependencies on A's evidence and B's additions. Recursive verification can carry earlier certificates through an admitted proof profile. Combining different profiles requires a composition argument that retains every ancestral assumption and disclosure cost. Relaying the same ruling along several paths creates no independent new evidence. These are rules for network propagation. Appendix B constructs the finite fitting and inference steps, without a general theorem for learning across arbitrary graphs.
+B can instead adapt the interpretation with its own rulings. Its proof must establish the declared calculation and dependencies on A's evidence and B's additions. Recursive verification can carry earlier certificates through an admitted proof profile. Combining profiles requires a composition argument retaining every ancestral assumption and disclosure cost. Relaying one ruling repeatedly creates no independent evidence. Appendix B constructs finite fitting and inference, without a general theorem for learning across arbitrary graphs.
 
 <figure id="figure-3">
 <img src="figures/sovereign-economies-figure-3.svg" alt="A learns from local rulings and releases a proof bound to B. B verifies and adopts, adds its own rulings, and proves the resulting adaptation. B sends C a new recipient-bound proof under a permitted onward release. C verifies and assesses local adoption. A lower path carries source revisions and corrections through recorded dependencies. Black and grey." style="width:100%;height:auto" />
@@ -420,9 +412,9 @@ B may instead adapt the interpretation using its own rulings. Its new proof must
 
 The dependency graph also carries corrections through base models, adapters, calibration, adopted bundles and assessments [3, §8]. After admitted delivery, each receiver marks affected current reliance before another effect uses it. Network reach establishes neither statistical improvement nor convergence to one interpretation. Those claims need evidence about the receiving populations and their responses to the controls.
 
-### 5.2. Corrections and repeated adoption
+### 5.2. Source correction and repeated adoption
 
-The consent instance starts with eight common-control rulings, seven requiring consent. Section 2.1's fit gives $(7+1)/(8+2)=4/5$. Six competent reversals leave one positive ruling and give $(1+1)/(8+2)=1/5$. Correction arrives through authenticated source ingress before any replacement model is available. It invalidates dependent reliance through the source revision, manifest, fitted artifact and assessment.
+An imported interpretation remains dependent on its evidence after adoption. In the consent instance, eight common-control rulings include seven requiring consent, so §2.1's fit gives $(7+1)/(8+2)=4/5$. Six competent reversals leave one positive ruling and give $(1+1)/(8+2)=1/5$. Authenticated source ingress delivers the correction before a replacement model is available. The source revision invalidates dependent reliance through the manifest, fitted artifact and assessment.
 
 Each correction identifies an exact prior row and replacement revision. The next manifest retains unchanged rows and justifies every changed row through consecutive admitted corrections. A withdrawal keeps an identified row without a label. An unfavorable case cannot disappear silently. Fresh independent blindings protect corrected commitments from revealing bit changes through reused randomness, although released weight differences and correction metadata remain observable.
 
@@ -447,9 +439,9 @@ Repeated discretionary updates retain the mandate's authorized baseline, cumulat
 
 A finite update allowance supports a finite claim. Renewal requires a further predecessor-authorized transition retaining the old mandate, history, expenditure, corrections, commands and live cases. For a particular continuation, a persistent allowance charges one unit for each model adoption. Ordinary service steps and mandate renewal do not replenish it. Otherwise repeated renewal could postpone the duty forever. Safety can be proved for every finite prefix, while completion still requires a progress argument and actual services.
 
-### 5.3. A progress condition that survives updates
+### 5.3. Progress through model updates
 
-Let $A_B(s)$ be the actions admitted by bundle $B$ at state $s$. The finite response specification describes complete paths, including possible effects of old commands. In the following formula, $\mathrm{Succ}(s,a)$ contains path endpoints. The predecessor test also requires every intermediate state on every path to remain in $\mathrm{Safe}$. Define
+To check whether an update preserves a performance promise, we first need a completion criterion for a fixed bundle. Let $A_B(s)$ be the actions admitted by bundle $B$ at state $s$. The finite response specification describes complete paths, including possible effects of old commands. In the following formula, $\mathrm{Succ}(s,a)$ contains path endpoints. The predecessor test also requires every intermediate state on every path to remain in $\mathrm{Safe}$. Define
 
 $$
 W_0=\mathrm{Safe}\cap\mathrm{Goal},\qquad
@@ -471,13 +463,11 @@ The bound counts admitted transitions. It supplies neither elapsed time nor a bo
 
 Binding revocation enters independently of discretionary adoption. It immediately blocks affected new uses, even without a replacement continuation or disposition. If it removes a necessary performance route, the old assurance fails while the duty and possible external effects remain. Refusing to record withdrawal cannot preserve obsolete authority.
 
-BIS Project Aurora studies collaborative financial-crime learning, while shielding constrains reinforcement learning under a supplied specification [25] [26]. Learning across institutions and separate enforcement boundaries therefore have direct precedents. Here adoption governs an operative interpretation and the downstream effects of changing it. Current-use checks, inherited duties and correction connect learning to institutional execution.
+## 6. Semantic extension and operator succession
 
-## 6. Continuing under new operations and operators
+Changing models, operations, institutional forms or operators must preserve existing work's meaning or record a competent disposition. Succession also requires the evidence, authority and resources needed to continue that work.
 
-A new model changes the interpretation used by existing operations. Continuing institutions can also add operations, adopt new forms or replace the service that runs them. Each change must preserve the meaning of existing work or identify the competent act that changes it.
-
-### 6.1. Extending the operation set
+### 6.1. Admitted semantic extension
 
 Creating another company of an existing form needs founding authority, a fresh identity and valid initial state. A new institutional form additionally needs meanings for its powers, operations, effects, rights and receiving interfaces. A new computational primitive requires correspondence with the actual host or provider. A fresh nominal type establishes neither power nor implementation correctness.
 
@@ -510,9 +500,9 @@ Replay retains the seven units already consumed. Every other route must preserve
 
 The theorem covers the declared finite domain. Arbitrary new host code still requires exact-effect correspondence. Decidable certificate checking does not imply a complete method for discovering every valid extension.
 
-### 6.2. Retaining the evidence a successor needs
+### 6.2. Retained verification capabilities
 
-Later decisions need evidence from earlier execution. A successor needs current positions, sources, identity and decision history, consumed resources, pending commands, disclosures and executable continuations. The custody cut fixes this complete inventory at an agreed point. Migration under the same contract must match future operations and observations in both directions. A competent change must name the differences it authorizes.
+The extension checker and a successor need current positions, sources, identity and decision history, consumed resources, pending commands, disclosures and executable continuations. The **custody cut** fixes this inventory at an agreed point. Migration under the same contract must match future operations and observations in both directions. A competent change must identify its authorized differences.
 
 The retention terms must also identify which future questions remain answerable. Let $\alpha(H)$ be the retained representation of history $H$, and let $Q$ be the permitted question family. Exact answers exist precisely when
 
@@ -527,7 +517,7 @@ $$
 
 The finite checker requires an available decoder as well. If $Q$ distinguishes every history, $\alpha$ must retain injective information about them. A commitment to deleted data supplies no reconstruction procedure. A plaintext backup counts as retained information. Competent erasure may retire a question and require later requests to return “evidence unavailable”. This changes a verification capability without proving physical erasure.
 
-### 6.3. Transferring custody and control
+### 6.3. Custody and holder control
 
 Custody succession binds the retained capabilities to an accepted inventory and exclusive writer generation. The outgoing operator stops admissions, the successor accepts the cut, and the host fences the old writer before admitting new work. Late provider evidence continues to resolve the original command under its contract. Missing commands, reserves, duties or disclosure records reject the transfer.
 
@@ -542,7 +532,7 @@ For learned interpretation, the inventory includes exact artifacts, verifier and
 </figcaption>
 </figure>
 
-Private evidence must remain under its holder's control through succession. The holder record binds a stable lineage, control generation, secret and signing-key commitments, recovery policy and status. Credentials bind that lineage and secret commitment to issuer-authenticated attributes. Presentation proves issuer authentication, possession of the secret, required predicates, current control and consent to the specified use. The wallet root secret remains in the wallet. The agent receives permission to perform a specified act rather than possession of that secret.
+A credential holder can also need a successor device while earlier uses and disclosures remain relevant. The holder record binds a stable lineage, control generation, secret and signing-key commitments, recovery policy and status. Credentials bind that lineage and secret commitment to issuer-authenticated attributes. Presentation proves issuer authentication, possession of the secret, required predicates, current control and consent to the specified use. The wallet root secret remains in the wallet. The agent receives permission to perform a specified act rather than possession of that secret.
 
 Consent separately covers credential use, predicate disclosure, raw export and institutional action. It fixes recipient, purpose, expiry and permitted reuse. The holder-control service orders each Allow or Deny against current control and prior use. A proof binds that decision to the exact command, output mode and recipient. Institutions can check eligibility and authority without receiving the credential's private attributes or secret. Public conclusions, identifiers and authorized openings remain subject to the release contract.
 
@@ -557,9 +547,9 @@ Technical supplement Appendix C supplies this private-authority construction and
 </figcaption>
 </figure>
 
-### 6.4. The continuing execution relation
+### 6.4. Continuing execution
 
-The refinement relation pairs protected implementation state with its local institutional meaning. It compares context, active bundle, exact inference, native effects, economic identities, accounts, retained evidence and live work. An internal step may change storage layout while preserving this relation. A visible step must match an admitted institutional transition with the same effects and observations.
+We can now state the relation that connects these constructions through one continuing institution. It pairs protected implementation state with context, active bundle, exact inference, native effects, economic identities, accounts, retained evidence and live work. An internal step may change storage layout while preserving that relation. A visible step must match an admitted institutional transition with the same effects and observations.
 
 This relation connects the distinctions used throughout the example. The register act differs from the bank occurrence that later performs its instruction. Service capacity differs from Carol's cash. Current positions follow operative decisions and supported occurrences, while unresolved commands retain possible effects. Custody carries these records and their authority paths into a successor's execution.
 
@@ -577,15 +567,15 @@ The reference tests an unmediated native mutation by changing a protected databa
 
 Under the theorem's premises, substituting another planning agent cannot enlarge the admitted action set, even if that agent tries to evade a restriction. Useful completion still depends on its competence and the available services. Evaluation must therefore measure legitimate completion alongside rejection of unauthorized effects.
 
-## 7. Forming and sustaining the institution
+## 7. Institution formation and participation
 
-An autonomous business needs a legally constituted entity, an adopted agent mandate and services capable of performing its work. An autonomous asset likewise needs responsible legal persons and authority for its governing programs. Formation supplies these premises through competent acts, funding and operating commitments whose timing and capacity fit together.
+Formation must supply the adopted powers and available services assumed by execution. An autonomous business needs a legally constituted entity, an agent mandate and services capable of its work. An autonomous asset needs responsible legal persons and authority for its programs. Constituting acts, funding and operating commitments must fit in timing and capacity.
 
-Momentum builds the institutional network. Its formation work concerns actual consents, funding and service commitments. A feasible plan identifies who can perform each constituting act and which prerequisites must remain valid. It assigns qualified providers and resources available together. Aggregate money and capacity alone do not establish a jointly feasible assignment. The finite founding construction checks assignment and timing under declared alternatives.
+Momentum builds the institutional network. Formation concerns actual consents, funding and service commitments. The finite founding construction checks assignment and timing under declared alternatives. A feasible plan identifies competent actors and continuing prerequisites, assigning qualified providers and resources available together. Aggregate money and capacity alone cannot establish that joint feasibility.
 
 Conditional commitments can coordinate willing participants when they have a launch budget, named risk bearers and terms for failure or withdrawal. Feasibility supplies neither willingness nor capital. Once constituted, an institution can hold powers, appoint agents, own assets and undertake duties within its founding scope. Extension then follows the predecessor-authorized process in §6.1.
 
-An authority can start with existing companies and work. Local benefits must cover migration and continuing costs through a contracted payer or committed public budget. Companies pay for requested work and completed services. Institutions fund public functions. Provider agreements cover execution, proving, retention and recovery, while licenses and managed operations can fund engineering. Mass has no coin or token of its own.
+An authority can start with existing companies and work when local benefits cover migration and continuing costs. Its sovereign node supplies institutional services under its own mandate and state, funded by contracted payers or committed public budgets. Companies pay for requested work and completed services, institutions for public functions. Provider agreements cover execution, proving, retention and recovery. Licenses and managed operations can fund engineering. Mass has no coin or token of its own.
 
 ### 7.1. Recognition and participation
 
@@ -593,13 +583,13 @@ A corridor extends local benefits when each participant's expected benefit cover
 
 Common accession terms can reduce formation instruments. Under the Technical supplement's exact restriction, receipt, refusal and collision hypotheses, $n$ filings replace up to $n(n-1)/2$ bilateral instruments [11]. The $n(n-1)$ directional receipt tasks remain. Executable equivalence also needs matching clauses, contexts, evidence and local decisions. Recognition can change prices, costs and exposure, so fewer instruments or wider access establishes no universal economic gain.
 
-A new link preserves old feasible policies if it only adds optional actions and leaves old costs, outcomes and liabilities unchanged. Continuing the old policy proves that limited monotonicity. Mandatory costs, changed prices, shared liquidity and new exposures can violate its premises. The recognition graph therefore differs from the economic exposure graph.
+Adding only optional actions preserves old feasible policies if costs, outcomes and liabilities remain unchanged: the old policy remains available. Mandatory costs, changed prices, shared liquidity and new exposures can defeat these premises. Recognition and economic exposure therefore have different graphs.
 
-Participation also depends on practical control of upgrades, keys, evidence formats, archives, licenses, provider relationships and successor qualification. Learning adds model artifacts, inference services, training provenance, correction channels and lawful evidence access. The deployment contract names each dependency. A participating authority must be able to appoint a compatible operator and obtain the rights and materials needed to operate.
+Participation requires practical control of upgrades, keys, evidence formats, archives, licenses, provider relationships and successor qualification. Learning adds model artifacts, inference, training provenance, correction channels and lawful evidence access. The deployment contract identifies these dependencies and the rights and materials needed for an authority to appoint a compatible operator.
 
-Competent institutional work, reliable service and integration can sustain a business while keeping replacement possible. Remaining unilateral controls and dependent services must be explicit. Open-source code establishes neither operational independence nor a governed standard.
+Replaceable providers can compete through competent institutional work, reliable service and integration. Participation contracts identify unilateral controls and dependent services. Open-source code establishes neither operational independence nor a governed standard.
 
-An operator can cease new work while earlier commands remain capable of performance. Its duties then need performance, transfer, amendment or discharge through competent disposition. An accepted successor receives encumbered resources, retained evidence and funded responsibilities for its assigned role. The old writer is blocked from new admissions. Without a qualified successor or an obligated, capable provider, records alone cannot guarantee uninterrupted service.
+An operator can stop new work while earlier commands remain executable. Competent disposition must provide performance, transfer, amendment or discharge of its duties. An accepted successor receives encumbered resources, evidence and funded responsibilities; the old writer is fenced. Uninterrupted service requires a qualified successor or an obligated, capable provider.
 
 ### 7.2. The operating account
 
@@ -617,7 +607,7 @@ The UAE documents of 20 October 2026 specify two related company actions and one
 
 ## 8. Evidence from connected execution
 
-The local reference must connect its calculations to stored effects and then show how those effects survive correction and succession. The experiments below address these connections under synthetic authority and provider premises. They also test whether transferred learning helps the receiving institution.
+The consent lifecycle tests learned admission through correction and succession. The economic comparison tests continuity of stored effects. The separate fraud comparison tests whether transfer benefits a receiver under fixed synthetic conditions. Each retains its authority and provider premises.
 
 ### 8.1. Private consent through registration and succession
 
@@ -629,29 +619,29 @@ The consent lifecycle instantiates §2.1 with 24 synthetic competent rulings and
 | Common-control reorganization | 8 | 7 | $4/5$ | `RequireConsent` |
 | Nominee or custody change | 8 | 4 | $1/2$ | `Refer` |
 
-The source releases the signed manifest, fitted artifact and proof while retaining private categories and ruling witnesses. The receiver verifies the complete statement against protected source expectations, adopts the fit and verifies a separate case proof for the exact ownership request.
+The source releases its signed manifest, fitted artifact and proof, retaining private categories and ruling witnesses. The receiver verifies the complete statement against protected expectations, adopts the fit and verifies case inference for the exact ownership request.
 
-Its first outcome is `RequireConsent`, and the attempted transfer is refused. Six authenticated reversals invalidate the old interpretation before replacement. The receiver verifies the new fit, renews its exhausted adoption allowance under predecessor authority and adopts the replacement. The case stays blocked until explicit reconciliation. Reconciliation yields `NoAdditionalConsent` while retaining the original hold start, deadline and accumulated burden.
+The first outcome, `RequireConsent`, causes refusal. Six authenticated reversals invalidate the old interpretation. The receiver verifies the replacement fit, renews its exhausted allowance under predecessor authority and adopts it. The case remains blocked until explicit reconciliation yields `NoAdditionalConsent`, retaining its original hold start, deadline and accumulated burden.
 
-The host then records Carol's ownership once, consumes seven service units and issues the original payment command for 100. A seventh source correction arrives while payment is pending. Signed custody transfers the command, learned state and pending reconciliation to the successor. A later synthetic provider observation records performance of all 100 units, leaving zero outstanding. Database reopening and history replay reproduce the recorded state.
+The host records Carol's ownership once, consumes seven service units and issues the original payment command for 100. After a seventh source correction during pending payment, signed custody transfers the command, learned state and pending reconciliation. A synthetic provider observation records all 100 units paid, leaving zero outstanding. Database reopening and history replay reproduce that state.
 
-Seventeen host tests exercise real proofs, stale frontiers, changed operations, unauthorized adoption, correction and renewal of the retained accounts. Public proof packets, accepted statements, the receiving trace and stored successor supply the evidence. Source-local witnesses remain excluded.
+Seventeen host tests exercise real proofs, stale frontiers, changed operations, unauthorized adoption, correction and renewal of retained accounts. Public packets, accepted statements, the receiving trace and stored successor supply evidence without source-local witnesses.
 
-This execution was recorded on 24 October 2026. Source competence, case meanings, provider assertions and the protected host are synthetic premises. The run establishes the tested connection between proof verification and stored effects. It supplies neither general implementation refinement nor real institutional acceptance. The age predicate in Appendix C.1 and the empirical fraud task in §8.3 are separate profiles.
+The execution recorded on 24 October 2026 connects proof verification to stored effects under synthetic source competence, case meanings, provider assertions and protected host premises. It establishes neither general implementation refinement nor real institutional acceptance. Appendix C.1's age predicate and §8.3's empirical fraud task use separate profiles.
 
 ### 8.2. Economic correction and the workflow comparison
 
-A distinct run joins the Rust ownership successor and economic journal in one SQLite commit. It proceeds through constitution, appointment, suspended assessment, registration, uncertain payment, identity revision, two remedies and restitution. Custody transfers, an injected discrepancy is detected and repaired, late performance arrives, and competent disposition closes the company. Carol's command retains her escrow of 100, while seven service units are consumed once. Assessment costs and disclosures remain separately recorded.
+A distinct run joins the Rust ownership successor and economic journal in one SQLite commit. It follows constitution, appointment, suspended assessment, registration, uncertain payment, identity revision, two remedies and restitution. Custody transfers; an injected discrepancy is detected and repaired; late performance arrives; competent disposition closes the company. Carol's command retains her escrow of 100. Seven service units are consumed once, with assessment costs and disclosures recorded separately.
 
-Adversarial cases change economic fields, authority, rules, commands and successor state. They also replay receipts and try to suppress old commands through extension. The source, adapter and host checks address distinct boundaries. Technical supplement Appendices I and K give the full cases and implementation limits.
+Adversarial cases alter economic fields, authority, rules, commands and successor state, replay receipts and try to suppress old commands through extension. Source, adapter and host checks protect distinct boundaries. Technical supplement Appendices I and K give cases and implementation limits.
 
-An actual Temporal deployment on the local test server supplies independently written comparison logic. Both implementations execute the same ten-event payment and decision case. They agree on 66 cash values and six projections of commands, decisions, occurrences, unknown outcomes and the unrelated lender. Both refuse changed actor, authority and currency inputs. Temporal also resumes after worker replacement and replays its history.
+A Temporal deployment on the local test server supplies independently written comparison logic. Both implementations execute the same ten-event payment and decision case, agreeing on 66 cash values and six projections of commands, decisions, occurrences, unknown outcomes and the unrelated lender. Both refuse changed actor, authority and currency inputs. Temporal resumes after worker replacement and replays its history.
 
-Both implementations pass the comparison. The journal supplies reusable economic transitions, while the Temporal application implements the rules directly. The comparison includes a protected lender claim of seven units. It excludes the financing and production in §4.1 and the duplicate-allocation repair in §4.2. Durable Functions formalizes recoverable stateful computation [23], and Temporal supplies the practical comparator [24]. An engineering advantage needs measured reductions in unverified application logic or reconstruction across further cases under the same institutional contracts.
+Both implementations pass. The journal supplies reusable economic transitions; the Temporal application implements the rules directly. The comparison protects a lender claim of seven units but excludes §4.1's financing and production and §4.2's duplicate-allocation repair. Durable Functions formalizes recoverable stateful computation [23]; Temporal supplies the practical comparator [24]. Engineering advantage requires measured reductions in unverified application logic or reconstruction across further cases under matching institutional contracts.
 
 ### 8.3. The separate fraud-learning comparison
 
-The fraud experiment uses a synthetic Indonesian financial-integrity office and a synthetic receiving office [3, §9.2]. Controller relationships, transfer times and a receiving practice record define three feature cells. Available findings fit exact weights $(k+1)/(n+2)$. Missing labels stay missing. Four arms face the same 320 test proposals, horizon and provider behavior. Local learning and receiving validation have identical calibration capacity, with mixture and threshold chosen before test evaluation.
+The fraud experiment uses a synthetic Indonesian financial-integrity office and a synthetic receiving office [3, §9.2]. Controller relationships, transfer times and a receiving practice record define three feature cells. Available findings fit exact weights $(k+1)/(n+2)$; missing labels remain missing. Four arms face the same 320 proposals, horizon and provider behavior. Local learning and receiving validation have identical calibration capacity, with mixture and threshold chosen before testing.
 
 Each proposal has value 100. A tick is one simulation step, and a capital-tick is one currency unit reserved for one tick. A hold reserves the value until investigation at tick two, costing three abstract service units. Investigation perfectly reveals stipulated truth. Every benign case retains the same prior duty and deadline across arms.
 
@@ -662,21 +652,21 @@ Each proposal has value 100. A tick is one simulation step, and a capital-tick i
 | Direct source transfer | 24 | 96 | 274 |
 | Receiving-validated transfer | 24 | 16 | 290 |
 
-Direct transfer uses 24,000 capital-ticks and 360 investigation units. Both locally validated arms use 8,000 capital-ticks and 120 investigation units. Every benign duty completes by the common horizon. The perfect stipulated investigation produces no false final refusals. Twenty-four test labels are unavailable. Evaluator truth supplies the synthetic full-population comparison and never enters training or selection.
+Direct transfer uses 24,000 capital-ticks and 360 investigation units; both locally validated arms use 8,000 and 120 respectively. All benign duties complete by the common horizon. Perfect stipulated investigation produces no false final refusals. Twenty-four test labels are unavailable. Evaluator truth supplies the synthetic population comparison and never enters training or selection.
 
-Receiving validation selects a mixture that replaces the source weights entirely with receiving-validation weights. Transfer therefore adds no benefit in this fixture. The result identifies a particular direct-transfer failure and successful local rejection of its influence. It supplies neither a population performance estimate nor a general advantage for federation.
+Receiving validation selects a mixture containing only receiving-validation weights. It rejects the source influence and supplies no incremental transfer benefit in this fixture. This particular direct-transfer failure establishes neither a population performance estimate nor a general federation advantage.
 
-The same bundle bytes enter the protected lifecycle. Candidate creation cannot activate them, and changed preprocessing invalidates earlier assessment. The test refuses a restrictive candidate that removes the inherited refund route while the performance promise remains. Seventy source corrections change the pattern weight from $91/102$ to $7/34$, moving Hold to Permit at threshold $1/2$. Adoption and case reconciliation preserve original costs and deadlines.
+The same bundle bytes enter protected execution. Candidate creation cannot activate them; changed preprocessing invalidates assessment. The test rejects a restrictive candidate that removes the inherited refund route while its promise remains. Seventy source corrections change the pattern weight from $91/102$ to $7/34$, moving Hold to Permit at threshold $1/2$. Adoption and reconciliation retain original costs and deadlines.
 
-Technical supplement Appendix N gives the finite inference, adoption, correction and progress proofs and their executable boundaries. The host admits one declared ownership case with the experiment's unchanged model files. A separate lifecycle correction arrives while payment is pending. Custody retains the command and learned state, and competent synthetic services record payment. That correction changes none of the comparison data. The checks establish neither general implementation refinement nor unconditional completion.
+Technical supplement Appendix N gives finite inference, adoption, correction and progress proofs with executable boundaries. The host admits one declared ownership case using unchanged experimental model files. A separate correction during pending payment changes none of the comparison data. Custody retains the command and learned state, and competent synthetic services record payment. These checks establish neither general implementation refinement nor unconditional completion.
 
-### 8.4. What the reference establishes
+### 8.4. Reference evidence and deployment requirements
 
-The ownership, economic, fraud and age-proof profiles retain their source and measurement records of 23 October 2026. The private-consent execution adds the record of 24 October 2026. All use synthetic cases and stipulated authority and provider contracts. The private-consent packet contains public proofs and receiving outcomes, excluding private source witnesses.
+The ownership, economic, fraud and age-proof profiles retain records of 23 October 2026; private-consent execution adds 24 October 2026. All use synthetic cases and stipulated authority and provider contracts. The consent packet contains public proofs and receiving outcomes, excluding private witnesses.
 
-Public and private procedures can satisfy one institutional predicate with different disclosure and cost. Appendix C.1 holds the ownership operation fixed for the measured age comparison and states each mode's assumptions and timing boundaries. Appendix C.2 gives cases where visible effects, reporting rules or causal uncertainty require a changed institutional contract. A better internal calculation alone cannot remove those obstructions.
+Public and private procedures can satisfy one institutional predicate at different disclosure and cost. Appendix C.1 compares a fixed ownership operation under each mode's assumptions and timing boundaries. Appendix C.2 shows why visible effects, reporting rules or causal uncertainty can require changing the institutional contract, beyond improving internal calculation.
 
-The formal results establish their stated execution, composition, privacy and continuity properties under the declared hypotheses. The following evidence would connect those properties to an actual deployment.
+The formal execution, composition, privacy and continuity results retain their declared hypotheses. Deployment requires the following additional evidence.
 
 | Claim | Evidence in the reference | Additional deployment evidence |
 |---|---|---|
@@ -689,17 +679,29 @@ The formal results establish their stated execution, composition, privacy and co
 
 The age and consent measurements test their own proof profiles. They do not measure the recursive construction in §§2.5–3.4, whose cryptographic and service premises appear in Appendix C.3.
 
-The reproducibility archive contains source proofs, pinned toolchains, theorem-to-symbol mappings, public fixtures and raw outputs, including the private-consent execution. The Technical supplement gives the full constructions. Actual acceptance and independent succession require the institutional records above. The archive's SHA-256 is:
+The reproducibility archive includes source proofs, pinned toolchains, theorem-to-symbol mappings, public fixtures and raw outputs, including private-consent execution. The Technical supplement gives full constructions. Actual acceptance and independent succession require the records above. The archive's SHA-256 is:
 
 `87e56070c8cf64516fda2a82d23ddb5f932d97f03630d45b7a8ff748e9f4b163`
 
-### 8.5. The remaining correspondence
+## 9. Related work
 
-Full correspondence for production languages, databases, administrative tools, adapters and external services remains open. The local experiments establish neither institutional acceptance nor independent operator control. They also establish no reduced cost for an actual business. Stronger engineering claims require comparisons under the same mandates, provider contracts and completion criteria.
+Proof-carrying code lets a host check untrusted computation against its policy [13]. Our design also requires competent adoption, faithful rule encoding, admitted evidence and complete mediation connecting the admitted program to actual register changes and external instructions.
 
-The construction places learned interpretation between an agent's proposal and the institution's effect. Sovereigns supply governing requirements. Their environments check proposed actions, exchange verifiable calculations and coordinate operations that need several powers. The continuing account then constrains each later correction: completed acts stay recorded, unresolved commands retain possible effects, and duties persist until performance or competent disposition.
+Catala supplies executable statutory rules and verified core compilation steps for defaults and exceptions [14]. Stipula models contractual permissions, obligations and asset transfers [15]. Its statutory extension ranks mandatory imports above contractual provisions and default imports below them [16]. Our assessment profiles include evaluation schedules and their costs, disclosures, failures and suspensions.
 
-That account permits a company to trade, accept authorized risk and close while a successor administers an earlier uncertain payment. The next evaluation must follow this whole process under changing adversarial behavior. It must measure legitimate completion, prevented harm, correction, cost and human work against fixed requirements, including after independent replacement of the operator.
+Daml provides stakeholder authorization and privacy-aware multiparty workflows [17]. Canton checks relevant participants' authorization, consequences and activeness before coordinating commit [18] [19]. The Bank for International Settlements (BIS) Project Mandala combines rules and proof engines while institutions retain responsibility for interpretation [20]. Generalized consensus avoids unnecessary ordering of independent operations [21]. Our design connects complete affected scope, current permissions and private admissions to a recoverable outcome. Later recognition remains an independent receiving act.
+
+BIS Project Aurora studies collaborative financial-crime learning [25], while shielding constrains reinforcement learning under a supplied specification [26]. Our adoption procedure additionally governs changes to operative interpretations and their downstream effects through current-use checks, inherited duties and correction.
+
+Obsidian uses typestate and linear asset disciplines against invalid resource use [22]. Our exclusive accounts distinguish resource quantities from their legal consequences, while ordered consequences relate later decisions to performance and still-executable commands. Both implementations pass §8.2's comparison. Engineering advantage still requires measurements under matching institutional contracts.
+
+## 10. Conclusion
+
+We have specified a network in which agents act through sovereign environments that learn under institutional authority. Typed execution connects interpretation to exact effects. Private proofs support joint admission and selective recognition without shared raw evidence. Continuing accounts connect changed interpretations, remedies and operators to performed acts and executable commands.
+
+A company can trade, accept authorized risk and close while a successor administers an uncertain payment. Guarantees depend on each profile's institutional, implementation, cryptographic and service premises. Correspondence for production languages, databases, administrative tools, adapters and external services remains open. The experiments establish neither institutional acceptance nor independent operator control and measure no reduced cost for an actual business.
+
+Evaluation must follow the full lifecycle under changing adversarial behavior and independent operator replacement. It must compare legitimate completion, prevented harm, correction, cost and human work under matching mandates, provider contracts and completion criteria. Each act remains connected to its authority and continuing consequences.
 
 ## Appendix A. Assessment, compilation and economic import
 
@@ -707,7 +709,7 @@ This appendix develops §2's assessment schedules, compiler call and economic im
 
 ### A.1. Assessment schedules
 
-An exception pairs a guard that tests applicability with a body specifying its consequence. Suppose the default requests judgment, but an independently established exception permits the act. Eager evaluation may suspend at the default before reaching that exception. Delayed consequence bodies may permit selection without the request. The completed evaluations can return the same value while implementing different procedures.
+An exception pairs an applicability guard with a consequence body. If the default requests judgment but an independently established exception permits the act, eager evaluation may suspend first. Delaying consequence bodies can avoid the request. Equal returned values need not imply equal procedures.
 
 | Adopted procedure | Assessments performed | Selected consequence |
 |---|---|---|
@@ -715,13 +717,11 @@ An exception pairs a guard that tests applicability with a body specifying its c
 | Latent-consequence procedure | All guards in source order. Consequence bodies remain latent. | Only the selected body is opened. |
 | Priority-selected procedure | Guards in descending priority order, stopping at the first true guard. | The selected body, or the default when every guard is false. |
 
-The pinned Op compiler lowers its defeasible form to the priority-selected schedule. Its admissibility check permits effectful constituents. Equality of final verdicts therefore does not prove correspondence with eager Lex evaluation. The Technical supplement gives the attestation example at this compiler interface and states the precise source-language boundary.
-
-Catala supplies executable statutory rules and verified core compilation steps, including defaults and exceptions [14]. Stipula models contractual permissions, obligations and asset transfers [15]. Its statutory extension places mandatory imports above contractual provisions and default imports below them [16]. These are close precedents for executable normative reasoning. The assessment profiles here additionally distinguish costs, disclosures, failures and suspensions incurred while computing a decision. The adopted procedure includes its evaluation schedule.
+The pinned Op compiler uses the priority-selected schedule for defeasible forms and permits effectful constituents. Equal verdicts therefore do not establish correspondence with eager Lex evaluation. The Technical supplement gives the attestation example and exact source-language boundary.
 
 ### A.2. The supported compiler call
 
-The public compiler constructs the ownership decision through its actual `LexTerm` interface. In this supported expression, `eligibility` joins the profile's field checks. Constructor `select` builds `LexTerm::Match`, and `lit` carries the complete typed action:
+The public compiler uses its actual `LexTerm` interface for ownership. Here `eligibility` joins the profile's field checks, `select` constructs `LexTerm::Match`, and `lit` carries the complete typed action:
 
 ```rust
 let term = select(eligibility,
@@ -742,13 +742,13 @@ Statement::Run {
 }
 ```
 
-The reference includes the complete program and constructors. Its driver compares instruction shape, compiled decision and exact arguments against an independently evaluated source action. The host checks current holder, rule, authority and funding before changing state.
+The reference supplies the full program and constructors. Its driver compares instruction shape, compiled decision and exact arguments with an independently evaluated source action. Before changing state, the host checks current holder, rule, authority and funding.
 
-The additional-consent outcome supplies one further condition: request-bound consent, a reserved question, or satisfaction of that requirement. It bypasses none of the existing checks. The original finite ownership calculus has the correspondence proved in Theorem 1. Connecting the private learner additionally requires the proof verification and receiving checks in §5 and Appendix B.
+The additional-consent outcome adds one condition: request-bound consent, a reserved question, or satisfaction of that requirement. Existing checks still apply. Theorem 1 proves finite ownership correspondence. The private learner also needs §5 and Appendix B's proof verification and receiving checks.
 
 ### A.3. Interpreting the native successor economically
 
-Each register act has an occurrence identity distinct from its payment command and any later payment occurrence. The adapter compares the meaning of each field. Funding-account owner, estate, unit and purpose must match the exact payment. The native occurrence, original command, reserve, service consumption, disclosure and remaining work must also match. Historical admission differs from current balance, and unrelated estate records remain equal. A common digest cannot replace these comparisons.
+Register acts, payment commands and later payment occurrences have distinct identities. The adapter checks the exact funding-account owner, estate, unit, purpose, native occurrence, original command, reserve, service consumption, disclosure and remaining work. It distinguishes historical admission from current balance and preserves unrelated estate records. Digests cannot replace these meaning comparisons.
 
 The quantity `commandPossible` measures how much the original payment command can still pay.
 
@@ -765,11 +765,11 @@ The imported owner, estate, unit, purpose, beneficiary and continuation equal th
 
 The extracted checker runs on the actual Rust successor and economic projection before commit. Its strict decoder admits the declared ownership profile, role map and bounded quantities. Decoder correctness, extraction and runtime remain implementation premises.
 
-A further checked payment rule reduces cash and possible payment by the received quantity while retaining original admission. Identity revisions and remedies have separate transitions in the wider journal. Lemma 1a proves initial import alone. The native route's side-effect-free computation, combined durable commit and replay behavior in §2.4 connect this import to later execution.
+A separate checked payment rule reduces cash and possible payment by the received quantity while preserving original admission. Identity revisions and remedies use other journal transitions. Lemma 1a covers initial import only. Section 2.4 connects later execution through side-effect-free computation, combined durable commit and replay.
 
 ## Appendix B. Private fitting and current inference
 
-The consent proofs used in §5 establish specified calculations over private witnesses. Adoption supplies their institutional consequence. This appendix gives the signed inputs, exact integer relations and assumptions that connect the calculations to the published fit and current request.
+Section 5's consent proofs verify calculations over private witnesses. We give their signed inputs, integer relations and assumptions for the published fit and current request. Adoption supplies institutional effect.
 
 ### B.1. Committing the declared case collection
 
@@ -798,7 +798,7 @@ The artifact and manifest bind normative task, rule revision, category meanings,
 
 ### B.2. Proving the fit
 
-An aggregated Bulletproof operates on verifier-derived commitments [5]. Each range entry proves that a committed value lies from zero to 255. A commitment opening consists of the value and its blinding. For each private bit, the proof supplies nonnegative eight-bit openings of the bit and its complement. Their sum of one forces Boolean values. For each row-sum and rational-fitting residual, openings of the residual and its negative sum to zero, forcing the residual to vanish.
+An aggregated Bulletproof establishes knowledge of committed values from zero to 255 [5]. Each witness supplies a value and blinding. Every private bit and its complement sum to one, forcing Boolean values. Every row-sum or rational-fitting residual and its negative sum to zero, forcing the residual to vanish.
 
 Before deterministic padding to a power of two, the proof has $14N+6$ range entries. The verifier derives every commitment. It computes $C_{n_j}=\sum_i e_i(C_{i,j,0}+C_{i,j,1})$ and $C_{k_j}=\sum_i e_iC_{i,j,1}$ from the signed rows. The fitting equation uses
 
@@ -821,9 +821,9 @@ $$
 
 Ten derived range entries, padded to sixteen, establish this relation. Its statement binds the adopted artifact, case source, subject, case revision, cutoff, request digest and complete proposed operation. The host compares it with the expected current operation. Another holder, request, authority revision or effect cannot pass this comparison. Extraction of the category from underlying facts remains the case source's obligation.
 
-These proofs do not conceal their public statements. With one eligible row, its category has weight $1/3$ or $2/3$, and the other categories have weight $1/2$. The weights reveal both category and ruling. If all three categories have distinct public outcomes, the inference outcome reveals the chosen category. Zero knowledge limits further proof disclosure relative to these statements and gives no differential-privacy guarantee for the artifact.
+Public statements remain visible. For one eligible row, its category weight is $1/3$ or $2/3$ and other weights are $1/2$, revealing category and ruling. The inference outcome reveals the category if all three categories have distinct public outcomes. Zero knowledge limits further proof disclosure relative to those statements and supplies no differential-privacy guarantee for the artifact.
 
-Correction changes both ancestry and possible disclosure. Each admitted correction names its prior row and replacement revision. Successive manifests preserve unchanged rows and justify changes through the consecutive correction record. Withdrawal retains an identified unlabeled row. Corrected commitments need fresh independent blindings: reusing one would expose a bit change through their difference. Public weight changes and correction metadata remain observable. These cryptographic measures supplement the current-use and reconciliation rules of §5.2.
+Corrections affect ancestry and disclosure. Each admitted correction identifies its prior row and replacement revision. Successive manifests retain unchanged rows and justify changes through consecutive admitted corrections. Withdrawal retains an identified unlabeled row. Corrected commitments require fresh independent blindings because reuse exposes bit changes. Public weight changes and correction metadata remain observable. These measures supplement §5.2's current-use and reconciliation rules.
 
 ## Appendix C. Confidential operation, obstructions and analytical capacity
 
@@ -853,7 +853,7 @@ Ten paired fresh-store runs measured the whole native host call. Its median was 
 
 The public comparator deliberately reveals the opening used in its private pair. The combined benchmark artifact is public evidence, not a confidential joint release. Separate host tests reject a valid proof for a changed operation and a historically valid proof after revocation. Both modes admit the same current institutional transition under their respective disclosure permissions.
 
-### C.2. Requirements that need a different contract
+### C.2. Privacy and identification obstructions
 
 A visible required act can reveal information despite a private calculation. Suppose adjacent protected worlds require different public payments and each forbids the other's payment. Let $B_0$ contain the payment required in world zero. Lawful execution gives $P_1(B_0)=0$. Under $(\epsilon,\delta)$ differential privacy,
 
