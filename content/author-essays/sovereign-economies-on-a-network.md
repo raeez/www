@@ -1,6 +1,7 @@
 # Sovereign Economies on a Decentralized Network
 [Momentum Research · research.momentum.inc](https://research.momentum.inc)\
-[raeez@momentum.inc](mailto:raeez@momentum.inc)
+[raeez@momentum.inc](mailto:raeez@momentum.inc)\
+[PDF](sovereign-economies-on-a-network.pdf)
 
 **Abstract.** Mass is a decentralized network of sovereign execution environments for AI agents. Each environment learns the correct, safe interpretation of its sovereign law, policy and regulation, so it keeps up with fraud and bad actors on its own. We specify the design for institutions that must conduct an agent's work together while retaining their own rules, records and powers. Typed bytecode binds each proposed act to its authority, objects, resources and continuing obligations.
 
@@ -28,7 +29,7 @@ Continuing business requires this cycle throughout an entity's life. An **autono
 
 Those obligations can outlast the decision that created them. Carol may become the registered holder while payment remains capable of arriving. A correction, model update or replacement operator must account for that command and the act already performed. The principle is **authorized change with accountable consequences**. Institutions may create powers, accept authorized risks, reverse decisions, discharge liabilities, amend laws and disagree. Safety does not promise uniformly favorable judgments, permanent settlement or unconditional completion.
 
-The contribution connects executable authority and private verification to joint decisions, selective recognition and continuing consequences. Sections 2–3 develop interpretation, typed execution, joint admission and scale. Sections 4–6 follow correction, learning, extension and succession. Section 7 addresses formation and separates the operating account from the design. Section 8 presents bounded executable evidence. The appendices and [Technical supplement](https://research.momentum.inc/sovereign-economies-technical-supplement.html) give the supporting relations, proofs, capacity analysis and implementation limits. These specify the design's typed bytecode, private authority and recursive histories without establishing their deployment.
+The contribution connects executable authority and private verification to joint decisions, selective recognition and continuing consequences. Sections 2–3 develop interpretation, typed execution, joint admission and scale. Sections 4–6 follow correction, learning, extension and succession. Section 7 addresses formation and separates the operating account from the design. Section 8 presents bounded executable evidence. The appendices and Technical supplement give the supporting relations, proofs, capacity analysis and implementation limits. These specify the design's typed bytecode, private authority and recursive histories without establishing their deployment.
 
 ### 1.1. What gives a recorded act its effect
 
