@@ -622,7 +622,7 @@ The finite mechanization proves exact threshold inference, safe contingent strat
 
 The durable host protects learned state and connects current learned admission to native execution and the economic journal. Its decoder accepts one declared ownership case with the experiment's exact feature observation and unchanged trained bundle bytes. A separately identified correction arrives after execution while payment remains pending, without changing the four-arm data. Signed custody carries learned state, active bundles, pending corrections, accounts and old commands. Authenticated commitments identify continuing service powers. The competent provider and operator later record the original payment and complete the bound duty.
 
-The formal module proves no general refinement from this decoder and database to the finite semantics. The attached source and evidence identify that boundary and permit lifecycle reproduction [1].
+The formal module proves no general refinement from this decoder and database to the finite semantics. The source and evidence in the reproducibility archive identify that boundary and permit lifecycle reproduction [1].
 
 The fraud lifecycle publishes synthetic records and weights without confidential release. Learned parameters affect protected admission while authority, expenditure and correction remain accounted for. The normative construction separately verifies learning and inference over committed case values.
 
