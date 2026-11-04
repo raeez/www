@@ -36,7 +36,7 @@ Conventional litigation and arbitration can decide such disputes. Their procedur
 
 Arbitration rules also require equal treatment and a reasonable opportunity to present a case. Those requirements remain essential when the underlying activity is automated. [United Nations Commission on International Trade Law, Arbitration Rules (as revised in 2010), Articles 17 and 26](https://www.jus.uio.no/english/services/library/treaties/01/1-09/uncitral-arbitration-rules-2010.html).
 
-The mismatch appears between the proceeding and the systems conducting the business. A lawyer may have to reconstruct an agent's authority, recover records from several providers and explain what a software event meant.
+A lawyer may have to reconstruct an agent's authority, recover records from several providers and explain what a software event meant.
 
 After an order, someone must establish which systems it reaches, who may act on it, and whether they did. Faster document drafting leaves that work to be done.
 
@@ -50,41 +50,21 @@ People need effective notice, access to the material used against them, and an o
 
 ## Operating records can reduce the cost of preparing a dispute
 
-The cost of respecting those rights depends partly on how much the lawyer must reconstruct. The systems running a company can preserve the records a later proceeding will need.
-
-Keeping entities compliant can cost tens of thousands to hundreds of thousands of US dollars, with work split across registries, licence offices, tax offices and banks. That work follows a nine-to-five working day, while AI agents operate around the clock.
-
-Amazon lets people buy goods online, and Stripe lets businesses accept payments online; making those transactions convenient creates new categories of business.
-
-AI agents can carry out a company's work. With Mass they run businesses autonomously, end to end.
+The cost of respecting those rights depends partly on how much the lawyer must reconstruct. The AI agents running a company can preserve the records a later proceeding will need, beginning with an asset's creation, or origination.
 
 Mass lets AI agents automate companies, trade, commerce and markets, and the origination, management and maintenance of assets, end to end and across borders. Every action they take is compliant and lawful by default.
 
-Mass runs companies, institutions, and deployments. Each company's own AI agent, on any AI model it chooses, drives the company's operations from formation to closure. Mass makes the compliance call before each action runs.
-
-Mass automates work throughout the life of companies, funds, securities and assets. That work includes formation, licensing, banking, tax, records, trading and closure.
-
-Managing the whole life gives Mass better data for making compliance decisions better, faster and cheaper by construction. Mass can prove mathematically that each action was lawful.
-
-It learns from every economy it serves how to combat fraud and which practices work best. Fraud comes first. Mass also learns which checks, evidence and consents a case needs.
-
-It learns which procedures complete work and where they add delay or cost. Learning travels with supporting proofs, which each receiving institution checks before choosing what to adopt.
-
-Mass runs that work around the clock, at a fraction of the cost of doing it by hand. It gives one compliance answer where systems would otherwise disagree. Each government keeps its own law, data and keys.
-
-Mass runs companies today in Delaware, Montana, New York, California, Nevada and Wyoming in the United States, Hong Kong, Singapore, the Abu Dhabi Global Market, the Cayman Islands, the British Virgin Islands and the Seychelles.
-
-In Próspera, Honduras, Mass records companies in Próspera's own registry.
+Mass runs companies, institutions, and deployments. Each company's own AI agent, on any AI model it chooses, drives the company's operations from formation to closure.
 
 The United Arab Emirates has agreed to deploy Mass for the entire federal economy, starting with pilot programmes in the emirates of Ras Al Khaimah and Abu Dhabi. The Abu Dhabi Global Market deployment is live in production.
 
-Uzbekistan, Kazakhstan, Pakistan, Korea, Indonesia, Botswana and Hainan, China are coming onto Mass.
+The UAE pilot is live, and reporting for the National Economic Registry (NER) of the United Arab Emirates is live; people need records to challenge automated conduct.
 
-Mass onboards whole economic zones, with pilots of at least 10,000 entities per jurisdiction. At that scale, courts need a reliable way to obtain the relevant records without rebuilding a company's history for each dispute.
+Each economy that connects adds a market for every company on the network, and once enough economies run on one network, those that come later build on it. Pilots cover at least 10,000 entities per jurisdiction, so courts need records parties can inspect and challenge.
 
-Agents can issue any asset in one economy, sell it in all the others and move it between them, at a fraction of today's time and cost.
+Mass makes the compliance call before each action runs. It learns from every economy it serves how to combat fraud and which practices work best.
 
-Momentum builds the network. Each economy that connects adds a market for every company on the network, and once enough economies run on one network, those that come later build on it. Those transactions also need a route to remedy.
+Fraud takes priority. Lessons travel with proofs each receiving institution checks before choosing what to adopt. Those choices shape the checks, evidence and consents recorded for later examination and challenge.
 
 In the repair dispute, the case service would need the agent's authority, the agreed work and the events surrounding the payment request. The proceeding's disclosure rules would govern access. The tribunal would determine whether the contractor performed the repair and what remedy follows.
 
@@ -118,15 +98,11 @@ The service agreement must identify who maintains the records, corrects errors a
 
 Applicable law and their agreements determine the duties and liability attached to each. Professional insurance, agreements to cover specified losses and operating controls must address the actual work each participant undertakes.
 
-With a partner bank, Mass co-builds and leads one compliance team, handles each company's whole lifecycle, compliance and regulation, and is responsible and liable for that work.
-
-Accountable people hold the keys. The bank sees the work through Mass's dashboards, and regulators retain supervision. The duties of the people preparing or deciding a dispute must be equally explicit.
-
 An operator faces a financial conflict if it administers a dispute involving an institution whose fees support its business. Appointment and challenge procedures need to protect the decision from that relationship.
 
 Technical access to the case file must remain separate from authority to alter the proceeding.
 
-Recourse runs dispute resolution and carries outcomes into execution. It is at the research and design stage, and its company has yet to be formed.
+Momentum builds the network. Recourse runs dispute resolution and carries outcomes into execution. It is at the research and design stage, and its company has yet to be formed.
 
 Its [research](https://research.momentum.inc/papers/recourse.html) separates case administration, evidence records and the transmission of outcomes to institutions entitled to act. Judicial power remains with courts, and arbitral awards come from properly constituted human tribunals.
 

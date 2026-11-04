@@ -36,6 +36,64 @@ def checked_bytes(path, expected):
     return raw
 
 
+def place_figures(markdown, article):
+    """Insert each configured figure after the paragraph containing its anchor, as the PDF does.
+
+    A figure without an anchor opens the article body, where the PDF sets its cover figure.
+    The essay text is not changed; only figure blocks are added between paragraphs.
+    """
+    figures = article.get('figures', [])
+    for number, figure in reversed(list(enumerate(figures, 1))):
+        path = ROOT / figure['src']
+        if not path.is_file():
+            raise ValueError(f'Missing figure {figure["src"]}: {article["slug"]}')
+        size = re.search(r'<svg[^>]*\bwidth="([\d.]+)pt" height="([\d.]+)pt"', path.read_text()[:2000])
+        width, height = (float(size[1]), float(size[2])) if size else (0, 0)
+        scale = min(1.0, width / figure.get('column_pt', 380)) if width else 1.0
+        block = ('\n\n```{=html}\n'
+                 f'<figure class="essay-figure" id="figure-{number}" style="--figure-scale:{scale:.3f}">'
+                 f'<a class="essay-figure-link" href="{escape(figure["src"], quote=True)}">'
+                 f'<img src="{escape(figure["src"], quote=True)}" alt="{escape(figure["alt"], quote=True)}"'
+                 + (f' width="{width * 4 / 3:.0f}" height="{height * 4 / 3:.0f}"' if width else '')
+                 + (" loading=\"lazy\"" if number > 1 else "") + ' decoding="async"></a></figure>\n```\n')
+        anchor = figure.get('after')
+        if anchor is None:
+            markdown = block.lstrip('\n') + '\n' + markdown.lstrip('\n')
+            continue
+        start = markdown.find(anchor)
+        if start < 0 or markdown.find(anchor, start + 1) >= 0:
+            raise ValueError(f'Figure anchor not found once: {anchor[:60]}')
+        end = markdown.find('\n\n', start)
+        end = len(markdown) if end < 0 else end
+        markdown = markdown[:end] + block + markdown[end:]
+    return markdown
+
+
+def set_note(markdown, article):
+    """Set the paragraph that begins with the configured prefix as a note below a rule."""
+    prefix = article.get('note_prefix')
+    if not prefix:
+        return markdown
+    matches = list(re.finditer(r'(?:^|\n\n)(' + re.escape(prefix) + r'[^\n]*(?:\n[^\n]+)*)', markdown))
+    if len(matches) != 1:
+        raise ValueError(f'Note paragraph not found once: {article["slug"]}')
+    paragraph = matches[0]
+    return (markdown[:paragraph.start(1)] + '::: {.article-note}\n' + paragraph[1] + '\n:::'
+            + markdown[paragraph.end(1):])
+
+
+def meta_line(article):
+    """Date, then the author and a marked PDF link when configured, as on the research site."""
+    parts = [escape(article['date_label'])]
+    if article.get('meta_author'):
+        parts.append(escape(article['meta_author']))
+    if article.get('pdf'):
+        label = escape(article.get('pdf_label', 'PDF'))
+        marked = ' class="article-pdf"' if article.get('meta_author') else ''
+        parts.append(f'<a{marked} href="{escape(article["pdf"], quote=True)}">{label}</a>')
+    return ' · '.join(parts)
+
+
 def render(article, config, template):
     source = ROOT / config['source_directory'] / (article['slug'] + '.md')
     raw = checked_bytes(source, article['source_sha256'])
@@ -43,6 +101,8 @@ def render(article, config, template):
     heading, markdown = raw.decode().split('\n', 1)
     if heading != '# ' + article['title']:
         raise ValueError(f'Source title mismatch: {source.name}')
+    markdown = place_figures(markdown, article)
+    markdown = set_note(markdown, article)
     body = subprocess.run(
         ['pandoc', '--from=markdown', '--to=html5', '--mathml',
          '--section-divs', '--wrap=none', '--fail-if-warnings'],
@@ -67,8 +127,7 @@ def render(article, config, template):
         'description': escape(article['description'], quote=True),
         'subtitle': escape(article['subtitle']),
         'slug': article['slug'],
-        'metaHtml': escape(article['date_label']) + (
-            f' · <a href="{escape(article["pdf"], quote=True)}">PDF</a>' if article.get('pdf') else ''),
+        'metaHtml': meta_line(article),
         'content': body,
     }
     for key, value in values.items():
