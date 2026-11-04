@@ -35,7 +35,7 @@ LEAKS = [
     ('ledger code', r'\b(?:D-20\d\d-\d\d-\d\d[\w-]*|MC-[A-Z]+-\d+|SC-\d{2,3})\b'),
     ('model or tool name', r'\b(?:Astra|Sol|Codex|GPT(?:-\d+)?|Claude|Opus|Fable|Sonnet|Gemini|ChatGPT|LLM)\b'
                            r'|\bPro\b(?![-‐–])'),
-    ('process word', r'\b(?:wave|waves|heal|heals|healed|healing|packet|packets|harvest|harvested|seat|seats|'
+    ('process word', r'\b(?:wave(?![-‐ ]operator)|waves(?![-‐ ]operator)|heal|heals|healed|healing|packet|packets|harvest|harvested|seat|seats|'
                      r'lane|lanes|swarm|stand-in|redispatch|draft)\b'),
 ]
 LEAK_RE = [(name, re.compile(pattern)) for name, pattern in LEAKS]
