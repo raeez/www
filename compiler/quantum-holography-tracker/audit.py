@@ -184,7 +184,9 @@ def scan_fetches(page, markup):
 def candidates(page, wirer, cards):
     """Names in the report text that look like terms and have no card."""
     main = BeautifulSoup(str(page.find('main')), 'html.parser')
-    for node in main.select('#terms, script, style, math, .term, dfn, nav, .tally'):
+    # The page's own labels, and the paper titles a breakthrough cites, are not candidates.
+    for node in main.select('#terms, script, style, math, .term, dfn, nav, .tally, .bt-label, .bt-lines dt, '
+                            '.bt-more > summary, .bt-proved em, .bt-proved i'):
         node.decompose()
     emphasised = Counter()
     for node in main.find_all(['strong', 'em', 'b', 'i']):
@@ -384,6 +386,8 @@ def run(build, markup, root, compare=None):
         failures.append(f'math: {len(build.renderer.failed)} TeX formulas failed to render')
     for item in build.missing_words:
         failures.append(f'words: missing {item}')
+    for issue in build.ranked_issues:
+        failures.append(f'opening: {issue}')
     long_titles = [i for i in build.board_items if i['words'] > 24]
     if long_titles:
         notes.append(f'{len(long_titles)} status items have titles over 24 words')
@@ -426,7 +430,15 @@ def run(build, markup, root, compare=None):
                   'external_links': build.external_links, 'relative_links': build.relative_links,
                   'tex_failures': build.renderer.failed, 'missing': build.missing_words},
         'status_board': {'counts': build.board_counts, 'long_titles': len(long_titles),
-                         'long_bodies': len(long_bodies), 'items': len(build.board_items)},
+                         'long_bodies': len(long_bodies), 'items': len(build.board_items),
+                         'shown': build.has_board},
+        'opening': {'file': shown(build.opening_path) if build.opening_path else None,
+                    'subject': 'subject' in build.opening,
+                    'breakthroughs': sum(1 for i in build.ranked_items if i['kind'] == 'breakthrough'),
+                    'obstructions': sum(1 for i in build.ranked_items if i['kind'] == 'obstruction'),
+                    'sections': [s.get('id') for s in build.opening_sections],
+                    'items': build.ranked_items, 'issues': build.ranked_issues,
+                    'labels': build.label_overrides},
         'raw_notation': notation,
         'weight': weight(markup, page, compare),
         'math_font': {'bytes': build.font_bytes, 'characters': getattr(build, 'font_chars', 0)},
@@ -503,9 +515,24 @@ def text_report(result, limit=25):
     for where, text in result['raw_notation'][:6]:
         add(f'    {where}: {text}')
     sb = result['status_board']
+    op = result['opening']
     add('')
-    add('STATUS BOARD  ' + ' · '.join(f'{k} {v}' for k, v in sb['counts'].items()) +
-        f' · titles over 24 words: {sb["long_titles"]} · text over 45 words: {sb["long_bodies"]}')
+    if op['file'] or op['breakthroughs'] or op['obstructions']:
+        add(f'OPENING  {op["file"] or "in the report"} · subject: {"yes" if op["subject"] else "no"} · '
+            f'breakthroughs {op["breakthroughs"]} · obstructions {op["obstructions"]} · '
+            f'further sections: {", ".join(op["sections"]) or "none"}')
+        add(f'  items with every line (Achieved, Why it matters, Domain and hypotheses, Proved in, Read more) '
+            f'and a Read more that resolves: {len(op["items"]) - len({i.split(" lacks")[0].split(":")[0] for i in op["issues"]})}'
+            f' of {len(op["items"])}')
+        for issue in op['issues'][:limit]:
+            add(f'  {issue}')
+        if op['labels']:
+            add('  LABELS.json: ' + '; '.join(f'{k} → {v!r}' for k, v in op['labels'].items()))
+    if sb['shown']:
+        add('STATUS BOARD  ' + ' · '.join(f'{k} {v}' for k, v in sb['counts'].items()) +
+            f' · titles over 24 words: {sb["long_titles"]} · text over 45 words: {sb["long_bodies"]}')
+    else:
+        add('STATUS BOARD  not shown: the opening replaces it')
     mf = result['math_font']
     add(f'MATH FONT  {mf["bytes"]:,} bytes for {mf["characters"]} characters')
     add('')

@@ -35,6 +35,9 @@ context; it exists to build and check the page until the settled words arrive.
 words/REPORT.html   or   words/REPORT.md
 words/STATUS.md
 cards/TERMS.json
+words/OPENING.md    or   words/OPENING.html     (optional: the opening)
+cards/OPENING-TERMS.json                        (optional: the opening's cards)
+words/LABELS.json                               (optional: names for the page's labels)
 ```
 
 ### words/STATUS.md
@@ -176,6 +179,76 @@ What exactly holds. [The next step.]{data-role=next}
 
 Use `[wording]{data-term=card-id}` to link a different wording to a card.
 
+### words/OPENING.md (the opening)
+
+When this file exists, it opens the page: its title replaces the report's title and title
+lines, and the report's status board is not shown. The body of the report follows it.
+
+```markdown
+# Title
+
+First paragraph of the subject, in plain words.
+
+Second paragraph of the subject.
+
+## Breakthroughs {#breakthroughs data-toc="Breakthroughs"}
+
+### 1. Headline claim, at most 16 words
+
+- **Achieved:** what is proved, as one sentence.
+- **Why it matters:** …
+- **Domain and hypotheses:** …
+- **Proved in:** paper title, section, hypotheses.
+- **Read more:** [Section label](#section-id)
+
+### 2. …
+
+### Decisive obstructions
+
+#### Headline of the obstruction
+
+- **Achieved:** … (the same five lines)
+
+## Open problems {#open-problems data-toc="Open problems"}
+
+### Short name of the problem
+
+Prose.
+```
+
+- Every paragraph between the title and the first `##` heading is the subject. A
+  `## The subject` heading may mark it instead.
+- `## Breakthroughs` lists the results in rank order; a leading `1.` in a headline is printed
+  as its rank. A heading named "Decisive obstructions" (or "Obstructions") starts the
+  obstructions, set apart in a band of their own; it can also be its own `##` section.
+- Each item is a heading and a list of labelled lines. The page recognises the labels
+  Achieved, Why it matters, Domain and hypotheses (or Status), Proved in and Read more, and
+  prints them as written. The Achieved line shows with the headline; the others open on
+  demand. The audit requires all five on every breakthrough and every obstruction, and a
+  Read more link to a part of the page.
+- `## Open problems`, and any other `##` section in the file, follows the obstructions as an
+  unnumbered section with its own contents entry.
+- The same parts can be written into REPORT.md, before the status section; then the status
+  board is kept and its six counts move below the obstructions.
+- `cards/OPENING-TERMS.json` has the format of TERMS.json. Its cards are added to the
+  others; a card with the same id as a TERMS.json card replaces it.
+- STATUS.md may give a hash line for each file (`Opening-Hash:`, `Opening-Cards-Hash:`);
+  the audit reports which inputs the hashes match.
+
+### words/LABELS.json
+
+One object of `{key: text}`, overriding the labels in `page.json` and the state names:
+
+```json
+{"working": "Partly proved", "next": "", "status": "Results"}
+```
+
+- The keys are the state ids (`established`, `working`, `failing`, `stabilising`,
+  `oscillating`, `remains`), `next`, and any label in `page.json`.
+- An empty value (`""` or `null`) for `next` hides every "Next" line; for a state, it drops
+  the state from the board when the state has no items.
+- A status item without a "Next" line shows none.
+
 ### cards/TERMS.json
 
 A JSON list of card objects:
@@ -218,6 +291,7 @@ the page does not contain, or carry file names, labels or internal codes.
 | leaks | seat and session ids, hexadecimal ids, paths, file names, LaTeX labels, question and ledger codes, model and tool names, process words | all |
 | fetches | every resource loaded from another host; only the site's fonts are allowed | all |
 | listing | the page named in the site's indexes; the robots meta | all |
+| opening | every breakthrough and obstruction has its five lines, its Read more resolves | all |
 | weight | bytes, gzip bytes and their composition | none |
 
 The labels the page itself prints (contents, status, terms, the card labels, the state names)

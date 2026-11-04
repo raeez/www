@@ -19,6 +19,7 @@
   let current = null;
   let openTimer = 0, closeTimer = 0;
   let pointerAt = -1e9;  // when the last pointer press happened
+  let cardFormulas = false;
   let restoring = false; // focus is being returned to a term after Escape
   document.addEventListener('pointerdown', () => { pointerAt = performance.now(); }, true);
 
@@ -43,6 +44,7 @@
     });
     cardBody.replaceChildren(parts);
     cardBody.scrollTop = 0;
+    cardFormulas = true;
     backButton.hidden = trail.length === 0;
     if (trail.length) backName.textContent = nameOf(trail[trail.length - 1]);
     card.setAttribute('aria-label', cardTitle.textContent);
@@ -105,6 +107,7 @@
     pinned = Boolean(options.pin);
     byHover = Boolean(options.hover);
     place();
+    if (cardFormulas) { cardFormulas = false; measure(cardBody); }
     if (options.focus) cardTitle.focus({ preventScroll: true });
   }
 
@@ -139,10 +142,22 @@
   closeButton.addEventListener('click', () => close(true));
   closeButton.setAttribute('aria-label', L.close || 'Close');
 
-  for (const term of document.querySelectorAll('main [data-term]')) {
-    term.setAttribute('aria-haspopup', 'dialog');
-    term.setAttribute('aria-controls', 'qh-card');
-    term.setAttribute('aria-expanded', 'false');
+  {
+    const terms = [...document.querySelectorAll('main [data-term]')];
+    const idle = window.requestIdleCallback || (fn => setTimeout(() => fn({ timeRemaining: () => 8 }), 1));
+    let at = 0;
+    const mark = deadline => {
+      do {
+        for (const term of terms.slice(at, at + 200)) {
+          term.setAttribute('aria-haspopup', 'dialog');
+          term.setAttribute('aria-controls', 'qh-card');
+          if (!term.hasAttribute('aria-expanded')) term.setAttribute('aria-expanded', 'false');
+        }
+        at += 200;
+      } while (at < terms.length && deadline.timeRemaining() > 2);
+      if (at < terms.length) idle(mark);
+    };
+    idle(mark);
   }
 
   const pageTerm = target => {
@@ -265,26 +280,52 @@
     }
   }, true);
 
-  const tocLinks = [...toc.querySelectorAll('a[href^="#"]')];
-  const targets = tocLinks.map(link => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
-    .filter(pair => pair[1]);
-  let spyFrame = 0;
+  // The current place: sections are measured on every scroll, headings only inside the current
+  // section (the others may not be laid out yet; see content-visibility in the style).
+  const target = link => document.getElementById(decodeURIComponent(link.hash.slice(1)));
+  const tops = [], subsOf = new Map();
+  for (const li of toc.querySelectorAll(':scope > ol > li')) {
+    const link = li.querySelector(':scope > a');
+    const node = link && link.hash && target(link);
+    if (!node) continue;
+    tops.push([link, node]);
+    subsOf.set(link, [...li.querySelectorAll('.sub a')].map(a => [a, target(a)]).filter(pair => pair[1]));
+  }
+  let spyFrame = 0, activeTop = null, activeSub = null;
   function spy() {
     spyFrame = 0;
     const line = 120;
     let topLink = null, subLink = null;
-    for (const [link, target] of targets) {
-      if (target.getBoundingClientRect().top - line <= 0) {
-        if (link.closest('.sub')) subLink = link; else { topLink = link; subLink = null; }
+    for (const [link, node] of tops) {
+      if (node.getBoundingClientRect().top - line <= 0) topLink = link; else break;
+    }
+    if (topLink) {
+      for (const [link, node] of subsOf.get(topLink)) {
+        if (node.getBoundingClientRect().top - line <= 0) subLink = link; else break;
       }
     }
-    for (const link of tocLinks) link.classList.remove('is-active');
-    for (const li of toc.querySelectorAll('li.is-current')) li.classList.remove('is-current');
+    if (topLink === activeTop && subLink === activeSub) return;
+    if (activeTop) { activeTop.classList.remove('is-active'); activeTop.parentElement.classList.remove('is-current'); }
+    if (activeSub) activeSub.classList.remove('is-active');
+    activeTop = topLink; activeSub = subLink;
     if (topLink) {
       topLink.classList.add('is-active');
       topLink.parentElement.classList.add('is-current');
     }
-    if (subLink && topLink && topLink.parentElement.contains(subLink)) subLink.classList.add('is-active');
+    if (subLink) subLink.classList.add('is-active');
+    follow(subLink || topLink);
+  }
+  // On the rail, the current entry stays in view as the reader moves through a long contents.
+  const rail = window.matchMedia('(min-width: 1180px)');
+  let followed = null;
+  function follow(link) {
+    if (!link || link === followed || !rail.matches || toc.scrollHeight <= toc.clientHeight + 4) return;
+    followed = link;
+    const top = link.getBoundingClientRect().top - toc.getBoundingClientRect().top + toc.scrollTop;
+    const margin = Math.min(120, toc.clientHeight / 4);
+    if (top < toc.scrollTop + margin || top > toc.scrollTop + toc.clientHeight - margin) {
+      toc.scrollTop = Math.max(0, top - toc.clientHeight / 3);
+    }
   }
   window.addEventListener('scroll', () => { if (!spyFrame) spyFrame = requestAnimationFrame(spy); }, { passive: true });
   spy();
@@ -321,9 +362,30 @@
     }
     const tools = board.querySelector('.board-tools');
     const input = board.querySelector('#board-filter');
-    const none = board.querySelector('.filter-none');
+    const toggle = board.querySelector('.filter-toggle');
+    const row = board.querySelector('#board-filter-row');
+    const none = document.createElement('p');
+    none.className = 'filter-none';
+    none.hidden = true;
+    none.setAttribute('role', 'status');
+    none.textContent = L.no_match || 'No match';
+    const states = board.querySelector('.states');
+    if (states) states.before(none);
     if (tools && input) {
       tools.hidden = false;
+      const openSearch = show => {
+        row.hidden = !show;
+        tools.classList.toggle('is-open', show);
+        toggle.setAttribute('aria-expanded', String(show));
+        if (show) input.focus();
+        else if (input.value) { input.value = ''; input.dispatchEvent(new Event('input')); }
+      };
+      toggle.addEventListener('click', () => openSearch(row.hidden));
+      input.addEventListener('keydown', event => {
+        if (event.key === 'Escape') { event.stopPropagation(); openSearch(false); toggle.focus(); }
+      });
+      input.addEventListener('blur', () => { if (!input.value) setTimeout(() => {
+        if (document.activeElement !== toggle && !input.value) openSearch(false); }, 150); });
       const rows = [...board.querySelectorAll('.st-item')].map(item => [item, item.textContent.toLocaleLowerCase()]);
       let timer = 0;
       input.addEventListener('input', () => {
@@ -349,9 +411,49 @@
     if (li.querySelector('.t-n').textContent.trim() === '0') li.setAttribute('data-zero', '');
   }
 
+  /* ------------------------------------------------------- in-page jumps */
+  // Parts far from the screen are laid out only when reached, so a jump can land short while
+  // the parts around the target take their real height. Settle the target under the bar.
+  function settle(node) {
+    let tries = 0;
+    const step = () => {
+      const want = parseFloat(getComputedStyle(node).scrollMarginTop) || 0;
+      const top = node.getBoundingClientRect().top;
+      if (Math.abs(top - want) <= 3 || tries++ > 8) { spy(); return; }
+      window.scrollBy(0, top - want);
+      requestAnimationFrame(() => requestAnimationFrame(step));
+    };
+    requestAnimationFrame(() => requestAnimationFrame(step));
+  }
+  const jumpTarget = hash => {
+    try { return hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null; }
+    catch (error) { return null; }
+  };
+  document.addEventListener('click', event => {
+    const link = event.target.closest && event.target.closest('a[href^="#"]');
+    if (!link) return;
+    // Terms open their card instead (that handler, registered earlier, prevents the jump).
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey) return;
+    const node = jumpTarget(link.hash);
+    if (node) settle(node);
+  });
+  window.addEventListener('hashchange', () => { const node = jumpTarget(location.hash); if (node) settle(node); });
+  if (location.hash) {
+    const node = jumpTarget(location.hash);
+    if (node) window.addEventListener('load', () => settle(node), { once: true });
+  }
+
+  /* ------------------------------------------------------------ print */
+  let opened = [];
+  window.addEventListener('beforeprint', () => {
+    opened = [...document.querySelectorAll('main details:not([open])')];
+    opened.forEach(d => { d.open = true; });
+  });
+  window.addEventListener('afterprint', () => { opened.forEach(d => { d.open = false; }); opened = []; });
+
   /* ------------------------------------------------------ wide formulas */
-  function measure() {
-    for (const math of document.querySelectorAll('main math:not([display="block"])')) {
+  function measure(root) {
+    for (const math of root.querySelectorAll('math:not([display="block"])')) {
       if (math.parentElement.classList.contains('math-wrap')) continue;
       const host = math.parentElement.closest('p, li, dd, td, th, div, summary, figcaption, blockquote');
       if (!host) continue;
@@ -362,11 +464,27 @@
         wrap.append(math);
       }
     }
-    for (const wrap of document.querySelectorAll('.math-wrap')) {
-      const wide = wrap.scrollWidth > wrap.clientWidth + 2;
-      wrap.classList.toggle('is-wide', wide);
-      wrap.classList.toggle('at-end', wide && wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 2);
-    }
+    const wraps = [...root.querySelectorAll('.math-wrap')];
+    const states = wraps.map(wrap => [wrap.scrollWidth > wrap.clientWidth + 2,
+                                      wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 2]);
+    wraps.forEach((wrap, i) => {
+      wrap.classList.toggle('is-wide', states[i][0]);
+      wrap.classList.toggle('at-end', states[i][0] && states[i][1]);
+    });
+  }
+  const parts = [...document.querySelectorAll('main > section, main > header, .card-entry')];
+  let near = null;
+  function watch() {
+    if (near) near.disconnect();
+    if (!('IntersectionObserver' in window)) { parts.forEach(measure); return; }
+    near = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        near.unobserve(entry.target);
+        measure(entry.target);
+      }
+    }, { rootMargin: '800px 0px' });
+    parts.forEach(part => near.observe(part));
   }
   document.addEventListener('scroll', event => {
     const wrap = event.target;
@@ -375,7 +493,7 @@
     }
   }, true);
   let resizeTimer = 0;
-  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(measure, 150); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-  measure();
+  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(watch, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(watch);
+  watch();
 })();

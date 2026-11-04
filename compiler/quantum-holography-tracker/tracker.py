@@ -5,6 +5,10 @@ The page is one HTML file. Its parts come from three inputs:
     words/REPORT.html or words/REPORT.md   the report, with its hero and status section
     words/STATUS.md                        whether the words are settled, and their date
     cards/TERMS.json                       the term cards
+    words/OPENING.md                       optional: the title, the subject, the breakthroughs,
+                                           the decisive obstructions and the open problems
+    cards/OPENING-TERMS.json               optional: cards for the opening (they win on a shared id)
+    words/LABELS.json                      optional: the writer's names for the page's labels
 
 and from the chrome in content/quantum-holography-tracker/page.json. Mathematics written in
 TeX is rendered to MathML here, so the page needs no renderer. Every term with a card is
@@ -38,6 +42,26 @@ TEX = re.compile(r'\\\((.+?)\\\)|\\\[(.+?)\\\]', re.S)
 HTMLISH = re.compile(r'<\s*(p|div|span|em|strong|b|i|math|ul|ol|li|a|br|sup|sub|dfn|table|section)\b', re.I)
 CARD_ID = re.compile(r'^[a-z0-9][a-z0-9-]*$')
 KEEP_DATA = {'data-term', 'data-state', 'data-card'}
+# The opening's parts, recognised by their headings (or by data-role).
+OPENING = (
+    ('subject', re.compile(r'^(?:the )?subject$')),
+    ('breakthroughs', re.compile(r'^(?:the )?(?:main |central )?breakthroughs?$')),
+    ('obstructions', re.compile(r'^(?:the )?(?:decisive )?(?:obstructions|no-go results)$')),
+    ('open-problems', re.compile(r'^(?:the )?open (?:problems|questions)$')),
+)
+OBSTRUCTIONS = dict(OPENING)['obstructions']
+# The labelled lines of a breakthrough or obstruction, as the writer may name them.
+LINE_KEYS = (
+    ('achieved', re.compile(r'^(?:achieved|result|rules out)$')),
+    ('why', re.compile(r'^why it matters$')),
+    ('domain', re.compile(r'^(?:domain(?: and hypotheses)?|hypotheses|status|holds on)$')),
+    ('proved', re.compile(r'^(?:proved in|source|sources|proof)$')),
+    ('read', re.compile(r'^read (?:more|on)$')),
+)
+LINE_NAMES = {'achieved': 'Achieved', 'why': 'Why it matters', 'domain': 'Domain and hypotheses',
+              'proved': 'Proved in', 'read': 'Read more'}
+RANK = re.compile(r'^\s*(\d{1,2})[.)]\s+')
+PUNCT_AFTER_MATH = re.compile(r'^[,.;:!?)\]\u2019\u201d]+')
 
 
 def parse(markup):
@@ -338,6 +362,25 @@ def wrap_display_math(root):
             math.wrap(Tag(name='span', attrs={'class': 'math-wrap'}))
 
 
+def keep_punctuation(root):
+    """Punctuation after an inline formula stays on the formula's line."""
+    for math in root.find_all('math'):
+        if math.get('display') == 'block' or (math.parent is not None and 'nobr' in (math.parent.get('class') or [])):
+            continue
+        after = math.next_sibling
+        if not isinstance(after, NavigableString) or isinstance(after, Comment):
+            continue
+        found = PUNCT_AFTER_MATH.match(str(after))
+        if not found:
+            continue
+        rest = str(after)[found.end():]
+        span = Tag(name='span', attrs={'class': 'nobr'})
+        math.replace_with(span)
+        span.append(math)
+        span.append(NavigableString(found.group(0)))
+        after.replace_with(NavigableString(rest)) if rest else after.extract()
+
+
 def subset_math_font(markup, font_path):
     """A subset of the OpenType math font holding the characters the page's MathML uses."""
     from fontTools import subset
@@ -393,9 +436,13 @@ class Build:
     def __init__(self, folder, page, math_font=None):
         self.folder = Path(folder)
         self.page = page
-        self.labels = page['labels']
+        self.labels = dict(page['labels'])
         self.states = [s['id'] for s in page['states']]
         self.state_label = {s['id']: s['label'] for s in page['states']}
+        self.hidden_states, self.show_next, self.label_overrides = set(), True, {}
+        self.opening, self.ranked, self.ranked_items, self.ranked_issues = {}, {}, [], []
+        self.opening_sections, self.opening_doc, self.opening_path = [], None, None
+        self.has_board = True
         self.math_font = math_font
         self.warnings, self.problems = [], []
         self.pointers, self.attachments, self.external_links = [], [], []
@@ -430,11 +477,42 @@ class Build:
             'TERMS.json': hashlib.sha256(terms_bytes).hexdigest(),
             self.report_path.name + '+TERMS.json': hashlib.sha256(report_bytes + terms_bytes).hexdigest(),
         }
+        # The opening: its own words and cards. An opening card replaces a card with the same id.
+        opening_html, opening_md = words / 'OPENING.html', words / 'OPENING.md'
+        opening_markup = None
+        if opening_html.exists():
+            self.opening_path = opening_html
+            opening_markup = opening_html.read_text(encoding='utf-8')
+        elif opening_md.exists():
+            self.opening_path = opening_md
+            opening_markup = pandoc(opening_md.read_text(encoding='utf-8'), self.warnings)
+        if self.opening_path is not None:
+            digests[self.opening_path.name] = hashlib.sha256(self.opening_path.read_bytes()).hexdigest()
+        opening_cards = cards_dir / 'OPENING-TERMS.json'
+        if opening_cards.exists():
+            extra_bytes = opening_cards.read_bytes()
+            digests['OPENING-TERMS.json'] = hashlib.sha256(extra_bytes).hexdigest()
+            extra = json.loads(extra_bytes)
+            if not isinstance(extra, list):
+                raise SystemExit('cards/OPENING-TERMS.json must hold a list of card objects')
+            at = {str(row.get('id', '')).strip(): i for i, row in enumerate(rows) if isinstance(row, dict)}
+            rows = list(rows)
+            for row in extra:
+                ident = str(row.get('id', '')).strip() if isinstance(row, dict) else ''
+                if ident in at:
+                    rows[at[ident]] = row
+                else:
+                    at[ident] = len(rows)
+                    rows.append(row)
         self.status = parse_status(words / 'STATUS.md', digests)
+        self.read_labels(words / 'LABELS.json')
         self.renderer = TexRenderer()
         self.cards = Cards(rows, self.renderer, self.warnings, self.problems)
         self.doc = parse(markup)
         self.report_tex = self.renderer.collect(self.doc, 'report')
+        if opening_markup is not None:
+            self.opening_doc = parse(opening_markup)
+            self.report_tex += self.renderer.collect(self.opening_doc, 'opening')
         self.renderer.run(self.warnings)
         self.renderer.apply(self.report_tex)
         self.renderer.apply(self.cards.tex_jobs)
@@ -450,6 +528,15 @@ class Build:
             status.extract()
         if hero is None:
             hero = self.plain_hero(doc)
+        if self.opening_doc is not None:
+            # The opening replaces the report's title lines and its status board.
+            odoc = self.opening_doc
+            ohero = odoc.find(attrs={'data-role': 'hero'})
+            ohero = ohero.extract() if ohero is not None else self.opening_hero(odoc)
+            hero, status, self.has_board = ohero, None, False
+            self.take_opening(odoc, rest=True)
+        else:
+            self.take_opening(doc, rest=False)
         self.hero, self.status_el = hero, status
         for node in doc.find_all(attrs={'data-role': 'eyebrow'}):
             node['class'] = ['eyebrow']
@@ -468,14 +555,13 @@ class Build:
                 loose.append(node)
         if loose:
             sections.append(self.wrap(loose))
-        if self.status_el is None:
-            for section in sections:
-                board = self.plain_status(section)
-                if board is not None:
-                    self.status_el = board
-                    sections.remove(section)
-                    break
-        self.sections = sections
+        for section in sections:
+            if self.plain_status(section) is not None:
+                if self.status_el is None and self.has_board:
+                    self.status_el = self.plain_status(section)
+                sections.remove(section)
+                break
+        self.sections = self.opening_sections + sections
 
     def wrap(self, nodes):
         """Loose report content becomes a section; the section takes its heading's id and label."""
@@ -597,10 +683,329 @@ class Build:
             item.append(fragment)
         return item
 
+    # ------------------------------------------------------------ opening
+    def read_labels(self, path):
+        """words/LABELS.json renames the page's labels and state names; an empty value drops one."""
+        if not path.exists():
+            return
+        try:
+            data = json.loads(path.read_text(encoding='utf-8'))
+        except ValueError as error:
+            self.problems.append(('LABELS.json is not valid JSON', str(error)))
+            return
+        if not isinstance(data, dict):
+            self.problems.append(('LABELS.json must hold one object of {key: text}', type(data).__name__))
+            return
+        self.label_overrides = data
+        for key, value in data.items():
+            k = ' '.join(str(key).lower().split())
+            k = STATE_ALIASES.get(k, k)
+            empty = value is None or value is False or (isinstance(value, str) and not value.strip())
+            if not empty and not isinstance(value, str):
+                self.problems.append(('LABELS.json value is not text', str(key)))
+                continue
+            if k in self.state_label:
+                if empty:
+                    self.hidden_states.add(k)
+                else:
+                    self.state_label[k] = value.strip()
+            elif k == 'next':
+                if empty:
+                    self.show_next = False
+                else:
+                    self.labels['next'] = value.strip()
+            elif k in self.labels:
+                if empty:
+                    self.problems.append(('LABELS.json leaves a page label empty', str(key)))
+                else:
+                    self.labels[k] = value.strip()
+            else:
+                self.warnings.append(f'LABELS.json: unknown key “{key}” (ignored)')
+
+    def opening_hero(self, doc):
+        """The opening's title, and every paragraph before its first section: the subject."""
+        hero = parse('<header data-role="hero"></header>').header
+        title = doc.find('h1')
+        if title is not None:
+            follower = title.find_next_sibling(True)
+            hero.append(title.extract())
+            subject = parse('<section data-role="subject"></section>').section
+            while follower is not None and not HEADING.match(follower.name) and follower.name != 'section':
+                following = follower.find_next_sibling(True)
+                subject.append(follower.extract())
+                follower = following
+            if subject.find(True) is not None:
+                self.opening['subject'] = subject
+        return hero
+
+    @staticmethod
+    def opening_key(node):
+        if not isinstance(node, Tag):
+            return None
+        role = node.get('data-role')
+        if role in dict(OPENING):
+            return role
+        heading = node if node.name == 'h2' else None
+        if node.name == 'section':
+            first = node.find(HEADING)
+            heading = first if first is not None and first.name == 'h2' else None
+        if heading is None:
+            return None
+        text = text_of(heading).strip(' .:').casefold()
+        for key, pattern in OPENING:
+            if pattern.match(text):
+                return key
+        return None
+
+    def take_opening(self, doc, rest):
+        """Lift the opening's parts out of doc. With rest, every other part of doc is opening too."""
+        nodes = list(doc.contents)
+        found, i = [], 0
+        while i < len(nodes):
+            node = nodes[i]
+            key = self.opening_key(node)
+            if key is None and not (rest and isinstance(node, Tag) and
+                                    (node.name in ('h2', 'section') or node.get('data-role'))):
+                i += 1
+                continue
+            if node.name == 'section' or node.name != 'h2':
+                part, i = node.extract(), i + 1
+            else:
+                group, j = [node], i + 1
+                while j < len(nodes):
+                    following = nodes[j]
+                    if isinstance(following, Tag) and (following.name in ('h1', 'h2', 'section')
+                                                       or following.get('data-role')):
+                        break
+                    group.append(following)
+                    j += 1
+                part, i = self.wrap(group), j
+            found.append((key or 'part', part))
+        if found and 'subject' not in self.opening and not rest:
+            lead = []
+            for node in list(doc.contents):
+                if isinstance(node, Tag) and (HEADING.match(node.name) or node.name == 'section'
+                                              or node.get('data-role')):
+                    break
+                lead.append(node)
+            if any(isinstance(n, Tag) for n in lead):
+                self.opening['subject'] = self.wrap(lead)
+        for key, part in found:
+            if key in ('breakthroughs', 'obstructions') and key not in self.ranked:
+                self.shape_ranked(part, key)
+                self.opening[key] = part
+            elif key == 'subject' and 'subject' not in self.opening:
+                self.opening['subject'] = part
+            else:
+                self.opening_sections.append(part)
+        subject = self.opening.get('subject')
+        if subject is not None:
+            for heading in subject.find_all(HEADING):
+                heading['data-no-terms'] = ''
+
+    @staticmethod
+    def line_label(li):
+        node = li
+        while True:
+            first = next((c for c in node.contents if not (isinstance(c, NavigableString) and not c.strip())), None)
+            if isinstance(first, Tag) and first.name == 'p':
+                node = first
+                continue
+            return first if isinstance(first, Tag) and first.name in ('strong', 'b') else None
+
+    def shape_ranked(self, section, key):
+        """Breakthroughs and obstructions: each item is a heading and a list of labelled lines.
+
+        A heading followed by a deeper heading, or one named like "Decisive obstructions",
+        starts a group; the obstructions group becomes its own band.
+        """
+        h2 = section.find('h2')
+        title = h2.decode_contents() if h2 is not None else ''
+        if h2 is not None:
+            h2.extract()
+        groups = []
+
+        def new_group(kind, heading):
+            group = {'kind': kind, 'heading': heading, 'intro': [], 'items': []}
+            groups.append(group)
+            return group
+
+        group = new_group('obstruction' if key == 'obstructions' else 'breakthrough', None)
+        item = None
+        children = [c for c in section.contents if isinstance(c, Tag)]
+        for index, node in enumerate(children):
+            if HEADING.match(node.name):
+                following = children[index + 1] if index + 1 < len(children) else None
+                text = text_of(node).strip(' .:').casefold()
+                deeper = following is not None and HEADING.match(following.name) is not None and \
+                    int(following.name[1]) > int(node.name[1])
+                if OBSTRUCTIONS.match(text) or deeper or following is None:
+                    node['data-no-terms'] = ''
+                    group = new_group('obstruction' if OBSTRUCTIONS.match(text) else group['kind'], node)
+                    item = None
+                    continue
+                item = {'heading': node, 'lists': [], 'extra': []}
+                group['items'].append(item)
+            elif node.name in ('ul', 'ol'):
+                if item is None:
+                    item = {'heading': None, 'lists': [], 'extra': []}
+                    group['items'].append(item)
+                item['lists'].append(node)
+            else:
+                (item['extra'] if item is not None else group['intro']).append(node)
+        for g in groups:
+            for it in g['items']:
+                for lst in it['lists']:
+                    for li in lst.find_all('li', recursive=False):
+                        label = self.line_label(li)
+                        if label is not None:
+                            label['data-no-terms'] = ''
+                            # The titles of cited papers are names, not uses of terms.
+                            if re.match(r'(?:proved in|sources?)\b', text_of(label).strip().casefold()):
+                                for cited in li.find_all(['em', 'i', 'cite']):
+                                    cited['data-no-terms'] = ''
+        groups = [g for g in groups if g['items'] or g['intro']]
+        self.ranked[key] = {'title': title, 'section': section, 'groups': groups}
+
+    def item_lines(self, item):
+        """The item's lines as (key, label, value html); key is None for an unrecognised label."""
+        lines = []
+        for lst in item['lists']:
+            for li in lst.find_all('li', recursive=False):
+                clone = parse(str(li)).li
+                label_tag = self.line_label(clone)
+                label = ''
+                if label_tag is not None:
+                    label = text_of(label_tag).strip().rstrip(':').strip()
+                    label_tag.decompose()
+                inner = [c for c in clone.contents if not (isinstance(c, NavigableString) and not c.strip())]
+                if len(inner) == 1 and isinstance(inner[0], Tag) and inner[0].name == 'p':
+                    value = inner[0].decode_contents()
+                else:
+                    value = clone.decode_contents()
+                value = re.sub(r'^\s*:\s*', '', value.strip())
+                key = next((k for k, pattern in LINE_KEYS if pattern.match(label.casefold())), None)
+                lines.append((key, label, value))
+        return lines
+
+    def check_ranked(self):
+        """Each breakthrough has its five lines; each Read more resolves to a part of the page."""
+        for key, data in self.ranked.items():
+            for group in data['groups']:
+                for n, item in enumerate(group['items'], 1):
+                    head = text_of(item['heading']) if item['heading'] is not None else ''
+                    name = f'{group["kind"]} {n}' + (f' “{head[:70]}”' if head else '')
+                    lines = self.item_lines(item)
+                    keys = [k for k, _, _ in lines]
+                    record = {'kind': group['kind'], 'title': head, 'lines': [label for _, label, _ in lines]}
+                    self.ranked_items.append(record)
+                    if not head:
+                        self.ranked_issues.append(f'{name} has no headline')
+                    elif len(RANK.sub('', head).split()) > 16:
+                        self.warnings.append(f'{name}: headline over 16 words')
+                    missing = [LINE_NAMES[k] for k in ('achieved', 'why', 'domain', 'proved', 'read')
+                               if k not in keys]
+                    if missing:
+                        self.ranked_issues.append(f'{name} lacks {", ".join(missing)}')
+                    unknown = [label or '(no label)' for k, label, _ in lines if k is None]
+                    if unknown:
+                        self.ranked_issues.append(f'{name} has lines the page does not recognise: '
+                                                  + ', '.join(unknown))
+                    for k, label, value in lines:
+                        if k != 'read':
+                            continue
+                        anchors = [a for a in parse(value).find_all('a', href=True)]
+                        if not anchors:
+                            self.ranked_issues.append(f'{name}: {label} links to no section')
+                        for a in anchors:
+                            href = a['href'].strip()
+                            if not href.startswith('#'):
+                                self.ranked_issues.append(f'{name}: {label} links outside the page ({href})')
+                                continue
+                            target = unquote(href[1:])
+                            target = self.renamed.get(target, target)
+                            if target not in self.ids:
+                                self.ranked_issues.append(f'{name}: {label} points to #{target}, '
+                                                          'which the page does not contain')
+
+    def ranked_html(self):
+        out = []
+        used = set()
+        for key in ('breakthroughs', 'obstructions'):
+            data = self.ranked.get(key)
+            if not data:
+                continue
+            for group in data['groups']:
+                kind = group['kind']
+                band = 'breakthroughs' if kind == 'breakthrough' else 'obstructions'
+                ident = band if band not in used else f'{band}-{len(used) + 1}'
+                used.add(ident)
+                heading = group['heading']
+                title = heading.decode_contents() if heading is not None else data['title']
+                parts = [f'<section class="band band-{band}" id="{ident}" aria-labelledby="{ident}-title">',
+                         f'<h2 class="band-title" id="{ident}-title">{title}</h2>']
+                if group['intro']:
+                    parts.append('<div class="band-intro">' + ''.join(str(n) for n in group['intro']) + '</div>')
+                tag = 'ol' if kind == 'breakthrough' else 'ul'
+                parts.append(f'<{tag} class="bt-list">')
+                for n, item in enumerate(group['items'], 1):
+                    parts.append(self.ranked_item(item, kind, n, ident))
+                parts.append(f'</{tag}></section>')
+                out.append(''.join(parts))
+        return ''.join(out)
+
+    def ranked_item(self, item, kind, n, band):
+        lines = self.item_lines(item)
+        head = item['heading'].decode_contents().strip() if item['heading'] is not None else ''
+        rank = None
+        found = RANK.match(head)
+        if found:
+            rank, head = found.group(1), head[found.end():]
+        lead = next((i for i, (k, _, _) in enumerate(lines) if k == 'achieved'), None)
+        if lead is None:
+            lead = next((i for i, (k, _, _) in enumerate(lines) if k not in ('read',)), None)
+        # A breakthrough is marked by its rank; an obstruction by the shape of a route ruled out.
+        mark = f'<span class="bt-rank">{rank or n}</span>' if kind == 'breakthrough' else glyph('failing')
+        parts = [f'<li class="bt-item{" bt-first" if n == 1 and kind == "breakthrough" else ""}" '
+                 f'id="{band}-{n}"><div class="bt-mark" aria-hidden="true">{mark}</div><div class="bt-main">']
+        if head:
+            parts.append(f'<h3 class="bt-head">{head}</h3>')
+        if lead is not None:
+            _, label, value = lines[lead]
+            label_html = f'<span class="bt-label">{html.escape(label)}</span> ' if label else ''
+            parts.append(f'<p class="bt-lead">{label_html}{value}</p>')
+        rest = [line for i, line in enumerate(lines) if i != lead]
+        if rest or item['extra']:
+            summary = ' · '.join(html.escape(label) for _, label, _ in rest if label)
+            parts.append(f'<details class="bt-more"><summary><span>{summary or html.escape(self.labels.get("more", "More"))}'
+                         '</span></summary><dl class="bt-lines">')
+            for k, label, value in rest:
+                cls = f' class="bt-{k}"' if k else ''
+                parts.append(f'<div{cls}><dt>{html.escape(label)}</dt><dd>{value}</dd></div>')
+            parts.append('</dl>')
+            if item['extra']:
+                parts.append('<div class="bt-extra">' + ''.join(str(n) for n in item['extra']) + '</div>')
+            parts.append('</details>')
+        parts.append('</div></li>')
+        return ''.join(parts)
+
+    def subject_html(self):
+        part = self.opening.get('subject')
+        if part is None:
+            return ''
+        heading = part.find(HEADING)
+        label = ''
+        if heading is not None:
+            label = f'<p class="subject-label">{heading.decode_contents()}</p>'
+            heading.extract()
+        return f'<div class="subject" id="subject">{label}{part.decode_contents()}</div>'
+
     def assign_ids(self):
         # Ids the page itself uses; a report id that collides is renamed.
         reserved = {'main', 'status', 'status-title', 'terms', 'terms-title', 'terms-other', 'contents',
-                    'qh-card', 'qh-card-title', 'top', 'board-filter', 'bar'}
+                    'qh-card', 'qh-card-title', 'top', 'board-filter', 'board-filter-row', 'bar', 'subject',
+                    'breakthroughs', 'breakthroughs-title', 'obstructions', 'obstructions-title'}
+        reserved |= {f'{band}-{n}' for band in ('breakthroughs', 'obstructions') for n in range(1, 40)}
         reserved |= {f'status-{s}' for s in self.states} | {f'status-{s}-title' for s in self.states}
         reserved |= {f'terms-{c}' for c in 'abcdefghijklmnopqrstuvwxyz'}
         used = set()
@@ -651,7 +1056,18 @@ class Build:
             for heading in section.find_all(HEADING):
                 if not heading.has_attr('id'):
                     heading['id'] = claim(slugify(text_of(heading), 'part'))
+        # The opening's own parts carry only the ids the page gives them.
+        for part in self.opening.values():
+            for node in [part] + part.find_all(id=True):
+                if node.has_attr('id'):
+                    del node['id']
         self.ids = used
+        if self.has_board:
+            self.ids |= {'status'} | {f'status-{s}' for s in self.states}
+        self.ids |= {'terms', 'top'} | ({'subject'} if 'subject' in self.opening else set())
+        for data in self.ranked.values():
+            for group in data['groups']:
+                self.ids.add('breakthroughs' if group['kind'] == 'breakthrough' else 'obstructions')
 
     # -------------------------------------------------------------- contents
     def toc(self):
@@ -695,7 +1111,8 @@ class Build:
                     if id(h) in chosen and h is not label_heading:
                         children.append((h['id'], h.get('data-toc') or text_of(h)))
             entries.append({'id': section['id'], 'label': label, 'children': children,
-                            'section': section, 'label_heading': label_heading})
+                            'section': section, 'label_heading': label_heading,
+                            'opening': any(section is s for s in self.opening_sections)})
         self.entries = entries
         self.section_label = {e['id']: e['label'] or '' for e in entries}
 
@@ -791,6 +1208,12 @@ class Build:
     def board(self):
         lab = self.labels
         items = {s: [] for s in self.states}
+        if not self.has_board:
+            # The opening replaces the status board.
+            self.board_counts = {s: 0 for s in self.states}
+            self.board_items = []
+            self.board_html = parse('')
+            return
         headline = dek = None
         defs = {}
         el = self.status_el
@@ -818,6 +1241,9 @@ class Build:
             self.missing_words.append('one line defining each state (established, working, failing, '
                                       'stabilising, oscillating, remains)')
         self.board_counts = {s: len(items[s]) for s in self.states}
+        for state in self.hidden_states:
+            if self.board_counts.get(state):
+                self.problems.append(('LABELS.json drops a state that still has items', state))
         self.board_items = []
         parts = ['<section id="status" class="board sec" aria-labelledby="status-title">',
                  '<header class="sec-head">']
@@ -826,13 +1252,21 @@ class Build:
         parts.append(f'<h2 id="status-title">{headline or html.escape(lab["status"])}</h2>')
         if dek:
             parts.append(f'<p class="dek">{dek}</p>')
-        parts.append('</header>')
-        parts.append('<div class="board-tools" hidden><label class="filter"><span>'
+        # The search is a small control; its field and its empty result appear only when used.
+        parts.append('<div class="board-tools" hidden><button class="filter-toggle" type="button" '
+                     f'aria-expanded="false" aria-controls="board-filter-row" title="{html.escape(lab["filter"])}">'
+                     '<svg class="glyph" viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
+                     '<circle cx="6.8" cy="6.8" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"/>'
+                     '<path d="m10.2 10.2 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'
+                     f'</svg><span class="filter-toggle-label">{html.escape(lab["filter"])}</span></button>'
+                     '<label class="filter" id="board-filter-row" hidden><span class="visually-hidden">'
                      f'{html.escape(lab["filter"])}</span><input id="board-filter" type="search" '
-                     'autocomplete="off" spellcheck="false"></label>'
-                     f'<p class="filter-none" hidden>{html.escape(lab["no_match"])}</p></div>')
+                     'autocomplete="off" spellcheck="false"></label></div>')
+        parts.append('</header>')
+        if self.ranked:
+            parts.append(self.tally_html())
         parts.append('<div class="states">')
-        for state in self.states:
+        for state in self.shown_states():
             label = html.escape(self.state_label[state])
             n = len(items[state])
             parts.append(f'<section class="state" id="status-{state}" data-state="{state}" '
@@ -851,6 +1285,17 @@ class Build:
             parts.append('</ol></section>')
         parts.append('</div></section>')
         self.board_html = parse(''.join(parts))
+
+    def shown_states(self):
+        return [s for s in self.states if not (s in self.hidden_states and not self.board_counts.get(s))]
+
+    def tally_html(self):
+        tally = []
+        for s in self.shown_states():
+            tally.append(f'<li data-state="{s}"><a href="#status-{s}">{glyph(s)}'
+                         f'<span class="t-n">{self.board_counts[s]}</span>'
+                         f'<span class="t-l">{html.escape(self.state_label[s])}</span></a></li>')
+        return f'<ol class="tally" aria-label="{html.escape(self.labels["status"])}">{"".join(tally)}</ol>'
 
     def state_id(self, value):
         value = ' '.join(value.lower().split())
@@ -883,6 +1328,8 @@ class Build:
         if body:
             detail.append(f'<div class="st-text">{body}</div>')
         for n in nexts:
+            if not self.show_next or not text_of(n):
+                continue
             detail.append(f'<p class="st-next"><span class="st-label">{html.escape(self.labels["next"])}'
                           f'</span> {n.decode_contents()}</p>')
         if ref:
@@ -996,6 +1443,9 @@ class Build:
             if entry['label'] is None:
                 section['class'] = section['class'] + ['lead']
                 continue
+            if entry.get('opening'):
+                section['class'] = section['class'] + ['opening']
+                continue
             n += 1
             eyebrow = section.find(class_='eyebrow')
             label = text_of(eyebrow) if eyebrow is not None else entry['label']
@@ -1004,7 +1454,8 @@ class Build:
             heading = section.find(HEADING)
             if heading is not None and text_of(heading) == label:
                 label = ''
-            head = parse(f'<p class="eyebrow"><span class="num">{n}</span>{html.escape(label)}</p>').p
+            head = parse(f'<p class="eyebrow" data-no-terms><span class="num">{n}</span>'
+                         f'{html.escape(label)}</p>').p
             section.insert(0, head)
 
     # ------------------------------------------------------------------ build
@@ -1021,6 +1472,11 @@ class Build:
             self.explicit_terms(section, entry['label'])
             self.statements(section)
         self.links(self.hero, 'hero')
+        self.check_ranked()
+        for key, part in self.opening.items():
+            self.links(part, key)
+            self.explicit_terms(part, key)
+            self.statements(part)
         self.board()
         self.links(self.board_html, 'status')
         self.explicit_terms(self.board_html, 'status')
@@ -1040,6 +1496,17 @@ class Build:
         for section in self.sections:
             self.wired += self.wirer.wire(section, body_scope)
         self.wired += self.wirer.wire(self.hero, lambda node: 'hero')
+        if 'subject' in self.opening:
+            self.wired += self.wirer.wire(self.opening['subject'], lambda node: 'subject')
+        for data in self.ranked.values():
+            for group in data['groups']:
+                for root in group['intro']:
+                    self.wired += self.wirer.wire(root, lambda node, g=group: id(g), first_only=True)
+                for item in group['items']:
+                    seen = set()
+                    roots = ([item['heading']] if item['heading'] is not None else []) + item['lists'] + item['extra']
+                    for root in roots:
+                        self.wired += self.wirer.wire(root, lambda node, it=item: id(it), first_only=True, seen=seen)
         for item in self.board_html.find_all('li', class_='st-item'):
             self.wired += self.wirer.wire(item, lambda node, item=item: id(item), first_only=True)
         for ident in self.cards.order:
@@ -1056,6 +1523,11 @@ class Build:
             wrap_display_math(tree)
         wrap_display_math(self.board_html)
         wrap_display_math(self.hero)
+        for part in self.opening.values():
+            self.strip_internal_attributes(part)
+            wrap_display_math(part)
+        for root in [self.hero, self.board_html, *self.opening.values(), *self.sections, *self.cards.trees.values()]:
+            keep_punctuation(root)
         self.glossary_html = self.glossary()
         return self.assemble()
 
@@ -1067,38 +1539,59 @@ class Build:
         eyebrow = hero.find(attrs={'data-role': 'eyebrow'})
         dek = hero.find(attrs={'data-role': 'dek'})
         state = hero.find(attrs={'data-role': 'state'})
-        if dek is None:
-            self.missing_words.append('the one-line description under the title (data-role="dek")')
-        if state is None:
-            self.missing_words.append('the one-line current state under the title (data-role="state")')
+        if self.opening_doc is not None:
+            if 'subject' not in self.opening:
+                self.missing_words.append('the subject paragraphs under the opening\'s title')
+        else:
+            if dek is None:
+                self.missing_words.append('the one-line description under the title (data-role="dek")')
+            if state is None:
+                self.missing_words.append('the one-line current state under the title (data-role="state")')
         self.title_text = text_of(title) if title is not None else self.page['slug']
         self.dek_text = text_of(dek) if dek is not None else ''
-        tally = []
-        for s in self.states:
-            tally.append(f'<li data-state="{s}"><a href="#status-{s}">{glyph(s)}'
-                         f'<span class="t-n">{self.board_counts[s]}</span>'
-                         f'<span class="t-l">{html.escape(self.state_label[s])}</span></a></li>')
+        if not self.dek_text and 'subject' in self.opening:
+            first = self.opening['subject'].find('p')
+            self.dek_text = text_of(first) if first is not None else ''
+        # The text of linked words is joined with spaces; punctuation closes up to its word.
+        self.dek_text = re.sub(r'\s+([.,;:!?)])', r'\1', self.dek_text)
         date = self.status['date']
-        parts = ['<header class="hero" id="top">']
+        opening = bool(self.opening)
+        parts = [f'<header class="hero{" hero-opening" if opening else ""}" id="top">']
         if eyebrow is not None:
             parts.append(f'<p class="eyebrow hero-eyebrow">{eyebrow.decode_contents()}</p>')
+        if opening and date:
+            parts.append(f'<p class="hero-date"><time datetime="{date.isoformat()}">{long_date(date)}</time></p>')
         parts.append(f'<h1 class="title">{title.decode_contents() if title is not None else ""}</h1>')
         if dek is not None:
             parts.append(f'<p class="hero-dek">{dek.decode_contents()}</p>')
         if state is not None:
             parts.append(f'<p class="hero-state">{state.decode_contents()}</p>')
-        parts.append(f'<ol class="tally" aria-label="{html.escape(self.labels["status"])}">{"".join(tally)}</ol>')
-        if date:
+        parts.append(self.subject_html())
+        if self.has_board and not self.ranked:
+            parts.append(self.tally_html())
+        if date and not opening:
             parts.append(f'<p class="hero-date"><time datetime="{date.isoformat()}">{long_date(date)}</time></p>')
         parts.append('</header>')
         return ''.join(parts)
 
     def toc_html(self):
         lab = self.labels
-        rows = [f'<li><a href="#status">{html.escape(lab["status"])}</a></li>']
+        rows = []
+        for data in self.ranked.values():
+            for group in data['groups']:
+                band = 'breakthroughs' if group['kind'] == 'breakthrough' else 'obstructions'
+                heading = group['heading']
+                label = text_of(heading) if heading is not None else text_of(parse(data['title']))
+                if f'href="#{band}"' not in ''.join(rows):
+                    rows.append(f'<li class="toc-opening"><a href="#{band}">{html.escape(label)}</a></li>')
+        for entry in self.entries:
+            if entry.get('opening') and entry['label']:
+                rows.append(f'<li class="toc-opening"><a href="#{entry["id"]}">{html.escape(entry["label"])}</a></li>')
+        if self.has_board:
+            rows.append(f'<li><a href="#status">{html.escape(lab["status"])}</a></li>')
         n = 0
         for entry in self.entries:
-            if entry['label'] is None:
+            if entry['label'] is None or entry.get('opening'):
                 continue
             n += 1
             sub = ''
@@ -1114,7 +1607,10 @@ class Build:
     def assemble(self):
         page, lab = self.page, self.labels
         hero = self.hero_html()
-        body = ''.join(section.decode() for section in self.sections)
+        opening = self.ranked_html() + ''.join(s.decode() for s in self.opening_sections)
+        body = ''.join(section.decode() for section in self.sections
+                       if not any(section is s for s in self.opening_sections))
+        board = self.board_html.decode() if self.has_board else ''
         css = (HERE / 'tracker.css').read_text(encoding='utf-8')
         js = (HERE / 'tracker.js').read_text(encoding='utf-8')
         config = json.dumps({k: lab[k] for k in ('close', 'back', 'show_all', 'show_fewer', 'no_match')},
@@ -1122,7 +1618,7 @@ class Build:
         fontface = ''
         self.font_bytes = 0
         if self.math_font is not None:
-            woff, count = subset_math_font(hero + body + str(self.glossary_html) + str(self.board_html),
+            woff, count = subset_math_font(hero + opening + body + str(self.glossary_html) + board,
                                            self.math_font)
             self.font_bytes = len(woff)
             self.font_chars = count
@@ -1138,6 +1634,7 @@ class Build:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
 <title>{title} — {html.escape(page["author"])}</title>
 <meta name="description" content="{description}">
 <meta name="author" content="{html.escape(page["author"])}">
@@ -1160,7 +1657,8 @@ class Build:
 {self.toc_html()}
 <main id="main">
 {hero}
-{self.board_html.decode()}
+{opening}
+{board}
 {body}
 {self.glossary_html.decode()}
 </main>
