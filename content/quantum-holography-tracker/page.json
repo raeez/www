@@ -1,0 +1,35 @@
+{
+  "slug": "quantum-holography-tracker",
+  "site": "https://raeez.com",
+  "author": "Raeez Lorgat",
+  "home": "index.html",
+  "home_label": "Raeez Lorgat",
+  "labels": {
+    "skip": "Skip to the report",
+    "contents": "Contents",
+    "status": "Status",
+    "terms": "Terms",
+    "motivation": "Why it matters",
+    "context": "Where it sits",
+    "related": "Related",
+    "introduced": "Introduced in",
+    "next": "Next",
+    "read": "Read in the report",
+    "show_all": "Show all",
+    "show_fewer": "Show fewer",
+    "filter": "Find a question",
+    "no_match": "No question matches",
+    "close": "Close",
+    "back": "Back",
+    "proof": "Proof",
+    "empty_state": "None at present"
+  },
+  "states": [
+    {"id": "established", "label": "Established"},
+    {"id": "working", "label": "Working"},
+    {"id": "failing", "label": "Failing"},
+    {"id": "stabilising", "label": "Stabilising"},
+    {"id": "oscillating", "label": "Oscillating"},
+    {"id": "remains", "label": "Remains"}
+  ]
+}

@@ -1,0 +1,224 @@
+# quantum-holography-tracker: inputs and build
+
+This folder holds the inputs of `quantum-holography-tracker.html` at the repository root.
+GitHub Pages excludes the folder (`_config.yml`). The page is unlisted: it carries
+`<meta name="robots" content="noindex, nofollow">` and is not named in `writing.html`,
+`feed.xml`, `sitemap.xml`, `llms.txt`, `llms-full.txt` or `robots.txt`.
+
+## Build
+
+```bash
+# from the repository root
+python3 compiler/build-quantum-holography-tracker.py --input <folder>
+python3 compiler/build-quantum-holography-tracker.py --allow-draft     # the stand-in below
+```
+
+The build reads one input folder, renders all TeX to MathML, links every use of a term to
+its card, writes one self-contained HTML file and runs the audits. It writes the page to the
+repository root only when `STATUS.md` says the words are settled and every audit passes, or
+when `--allow-draft` is given; otherwise it writes `audit/rejected.html`. The audit results
+are in `audit/audit.txt` and `audit/audit.json`.
+
+Requirements: Python 3 with `beautifulsoup4` and `fonttools`, `pandoc` 3, and `node` (for
+the vendored TeX renderer, `compiler/quantum-holography-tracker/vendor/temml.cjs`, MIT).
+The embedded math font is a subset of Garamond-Math (SIL Open Font License), found with
+`kpsewhich Garamond-Math.otf` or given with `--math-font`.
+
+`stand-in/` is the 24 October 2026 report converted with
+`compiler/quantum-holography-tracker/import_integrated_report.py`, without changing its
+words. Its status states were assigned by the conversion and its cards have no motivation or
+context; it exists to build and check the page until the settled words arrive.
+
+## Input folder
+
+```
+words/REPORT.html   or   words/REPORT.md
+words/STATUS.md
+cards/TERMS.json
+```
+
+### words/STATUS.md
+
+```
+Status: settled            (or: draft; a "State:" line is read the same way)
+Date: 2026-11-05           (the date of the last change to the words; the page prints it)
+Hash: <sha256 of REPORT.md or REPORT.html, of TERMS.json, or of the two concatenated>
+Changed: <what changed>
+```
+
+The page is written only when the first word after `Status:` or `State:` is `settled`.
+
+### words/REPORT.md (plain Markdown)
+
+Pandoc Markdown with TeX in `$ … $`, `$$ … $$`, `\( … \)` or `\[ … \]`. Plain structure is
+enough; the build reads it as follows.
+
+```markdown
+# Title
+
+One line: what the programme is.            (a paragraph of 45 words at most)
+
+One line: where it stands now.              (a second short paragraph, optional)
+
+## Headline of the status section, as a claim
+
+### Established
+
+*One line: what this state means.*
+
+- **The item, as one sentence.** What holds, on what domain. Next: the next step.
+- **Another item.** …
+
+### Working
+### Failing
+### Stabilising
+### Oscillating
+### What remains
+
+## Section headline, as a claim {#question data-toc="Short contents label"}
+
+Prose, with $Y(a,z)$ inline and $$\int_0^1 f$$ on its own line.
+```
+
+- The first `#` heading is the title; up to two short paragraphs after it are the first
+  screen's two lines. Use `##` for sections and `###`, `####` inside them.
+- The section whose headings name two or more states (Established, Working, Failing,
+  Stabilising, Oscillating, What remains) becomes the status board at the top of the page.
+  Under each state heading, an italic line defines the state; each list item, sub-heading or
+  paragraph is one item; a bold lead is the item's title on the board; "Next:" starts its next
+  step.
+- `{#id}` on a heading gives the section its anchor; `data-toc` a shorter contents label.
+- `[wording]{data-term=card-id}` links a different wording to a card;
+  `::: {.statement data-kind=Theorem}` … `:::` and `::: {.proof}` … `:::` set statements and
+  closed proofs.
+
+### words/REPORT.html
+
+An HTML fragment (no `<html>`, `<head>` or `<body>`). Write `&lt;` and `&amp;` for `<` and
+`&`, also inside TeX. Mathematics is MathML, or TeX in `\( … \)` (inline) and `\[ … \]`
+(display); `<span class="math inline">` and `<span class="math display">` holding TeX are
+also read. The parts, in any order:
+
+```html
+<header data-role="hero">
+  <p data-role="eyebrow">Geometry · quantum fields · arithmetic</p>
+  <h1>Title</h1>
+  <p data-role="dek">One line: what the programme is.</p>
+  <p data-role="state">One line: where it stands now.</p>
+</header>
+
+<section data-role="status">
+  <h2>Headline of the status section, as a claim</h2>
+  <p data-role="dek">Optional one-line lead.</p>
+  <dl data-role="states">
+    <dt data-state="established">Established</dt><dd>One line: what this state means.</dd>
+    … one pair for each of: established, working, failing, stabilising, oscillating, remains
+  </dl>
+  <ol>
+    <li data-state="working" data-ref="section-or-heading-id">
+      <h3>The item, as one sentence (24 words at most)</h3>
+      <p>What exactly holds or is being built, on what domain.</p>
+      <p data-role="next">The next step.</p>
+    </li>
+    …
+  </ol>
+</section>
+
+<section id="motivation" data-toc="Short contents label">
+  <p data-role="eyebrow">Optional section label</p>
+  <h2>Section headline, as a claim</h2>
+  <p>…</p>
+  <div class="statement" data-kind="Theorem"> … </div>
+  <div class="proof"> … </div>          (rendered as a closed “Proof” block)
+</section>
+```
+
+- The status section moves to the top of the page, under the title. States are
+  `established`, `working`, `failing`, `stabilising`, `oscillating` and `remains`. Each
+  item's heading is its title on the board; the rest opens beneath it. `data-ref` links the
+  item to the section that discusses it.
+- Each top-level `<section>` is one entry in the contents; its `<h2>` headings (or `<h3>`,
+  when a section has one `<h2>`) are the entries beneath it. `data-toc` gives a shorter label.
+- Terms are linked automatically: every use of a card's `display_name` or alias, singular or
+  plural, in any case. To link a different wording, write
+  `<span data-term="card-id">wording</span>`. A `<dfn>` naming a card marks where the term is
+  defined; the card links to it.
+- Links to `#ids` that are not on the page, and links to attached files, are removed (their
+  words stay) and reported. The page carries no attachments.
+
+### words/REPORT.md (explicit form)
+
+The parts can also be marked explicitly, as fenced divs and spans:
+
+```markdown
+::: {data-role=hero}
+[Geometry · quantum fields · arithmetic]{data-role=eyebrow}
+
+# Title
+
+[One line: what the programme is.]{data-role=dek}
+:::
+
+::: {data-role=status}
+## Headline of the status section
+::: {data-state=working data-ref=motivation}
+### The item, as one sentence
+What exactly holds. [The next step.]{data-role=next}
+:::
+:::
+
+## Section headline {#motivation data-toc="Short label"}
+
+::: {.statement data-kind=Theorem}
+…
+:::
+```
+
+Use `[wording]{data-term=card-id}` to link a different wording to a card.
+
+### cards/TERMS.json
+
+A JSON list of card objects:
+
+```json
+[
+  {
+    "id": "vertex-algebra",
+    "display_name": "vertex algebra",
+    "definition": "A <strong>vertex algebra</strong> is … \\(Y(a,z)\\) …",
+    "motivation": "Why the programme needs it, in one to three sentences.",
+    "context": "Where it sits: what it generalises, what it is compared with.",
+    "related": ["vertex-operator", "lattice-vertex-algebra"],
+    "aliases": ["vertex algebras"]
+  }
+]
+```
+
+| Field | Type | Rule |
+|---|---|---|
+| `id` | string | lowercase slug `[a-z0-9-]`, unique; the page anchor is `#term-<id>` |
+| `display_name` | string | the card's title; also the name linked in the text |
+| `definition` | string | the definition itself, complete without the rest of the page |
+| `motivation` | string | why the term matters to the programme |
+| `context` | string | where it sits among the other notions |
+| `related` | list of ids | each id has a card; shown as links that open those cards |
+| `aliases` | list of strings | optional; other names linked to this card |
+
+Text fields are HTML or Markdown, with TeX as above. A card must not depend on its place
+in the page ("above", "below", "this section"), cite a numbered item, link to a statement
+the page does not contain, or carry file names, labels or internal codes.
+
+## Audits
+
+| Audit | Checks | Stops a settled build |
+|---|---|---|
+| terms | names marked or defined as terms without a card; emphasised phrases, capitalised names and frequent technical phrases without a card (candidates for the writer) | marked or defined without a card |
+| cards | empty fields, unknown related ids, shared definitions, positional words, numbered citations, length over 180 words, a definition that does not name its term | empty fields, unknown ids |
+| words | links to absent statements, attachments, TeX that failed to render, missing hero and status lines | all |
+| leaks | seat and session ids, hexadecimal ids, paths, file names, LaTeX labels, question and ledger codes, model and tool names, process words | all |
+| fetches | every resource loaded from another host; only the site's fonts are allowed | all |
+| listing | the page named in the site's indexes; the robots meta | all |
+| weight | bytes, gzip bytes and their composition | none |
+
+The labels the page itself prints (contents, status, terms, the card labels, the state names)
+are in `page.json`.
