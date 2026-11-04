@@ -26,7 +26,7 @@ The dispute concerns what the contractor promised, whether the work satisfied th
 
 Other legal claims begin without an agreement between the parties. Someone whose property an automated operation damages may seek a remedy. The procedure must identify a lawful forum for that person, including a court where the matter requires one.
 
-An arbitration route needs an effective agreement covering the parties and dispute. [United Nations Commission on International Trade Law, Model Law on International Commercial Arbitration (1985, with amendments adopted in 2006), Article 7](https://rm.coe.int/uncitral-model-law-on-arbitration/1680a72daa).
+An arbitration route needs an effective agreement covering the parties and dispute. [United Nations Commission on International Trade Law, Model Law on International Commercial Arbitration (1985, with amendments adopted in 2006), Article 7](https://uncitral.un.org/sites/uncitral.un.org/files/media-documents/uncitral/en/19-09955_e_ebook.pdf).
 
 ## Urgent protection must preserve a fair hearing
 
@@ -166,4 +166,4 @@ It would show how the institution handles a mistake in its own software and how 
 
 People would have a practical route to independent judgment and lawful remedy as commerce becomes autonomous.
 
-Sources: [Model Law, Article 7](https://rm.coe.int/uncitral-model-law-on-arbitration/1680a72daa); [Arbitration Rules, Articles 17 and 26](https://www.jus.uio.no/english/services/library/treaties/01/1-09/uncitral-arbitration-rules-2010.html); [Recourse, §§10.4–10.8](https://research.momentum.inc/papers/recourse.html#sec:supply); [When Sovereigns Disagree](https://raeez.com/verdict-dispute-calculus.html).
+Sources: [Model Law, Article 7](https://uncitral.un.org/sites/uncitral.un.org/files/media-documents/uncitral/en/19-09955_e_ebook.pdf); [Arbitration Rules, Articles 17 and 26](https://www.jus.uio.no/english/services/library/treaties/01/1-09/uncitral-arbitration-rules-2010.html); [Recourse, §§10.4–10.8](https://research.momentum.inc/papers/recourse.html#sec:supply); [When Sovereigns Disagree](https://raeez.com/verdict-dispute-calculus.html).
