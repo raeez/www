@@ -297,7 +297,7 @@ class Wirer:
                     self.lookup[key] = ident
                     patterns.append(form)
         patterns.sort(key=len, reverse=True)
-        body = '|'.join(re.escape(p).replace(r'\-', '[-‐–]').replace('–', '[-‐–]') for p in patterns)
+        body = '|'.join(''.join('[-‐–]' if ch in '-‐–' else re.escape(ch) for ch in p) for p in patterns)
         self.regex = re.compile(r'(?<![\w\-‐–])(' + body + r')(?![\w\-‐–])', re.I) if body else None
 
     @staticmethod
