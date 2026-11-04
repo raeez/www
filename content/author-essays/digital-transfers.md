@@ -8,86 +8,6 @@ A legal claim asks a court or another competent body to determine or protect a r
 
 I want traditional legal institutions to provide that route for on-chain activity: transactions recorded on a blockchain. Those institutions need enough authority to resolve disputes. People using them need ways to detect misconduct and challenge their decisions.
 
-Businesses are assigning more of their operating work to artificial intelligence (AI) agents, software that acts on their instructions. As that work becomes automated, legal challenges must reach the resulting actions.
-
-## A transaction can follow network rules while ownership remains disputed
-
-I see an institutional blind spot when reducing dependence on an intermediary becomes a theory for dispensing with institutions altogether.
-
-Restricting an operator's discretion gives people a useful protection. They can inspect the rules governing an asset and the conditions under which it can move. Independent participants can check whether a transaction followed those rules and preserve evidence if the operator changes its account.
-
-Legal entitlement asks who has rights to the asset. A person may control the key used in a transaction after acquiring it through theft. The original owner, the recipient, and a later buyer can have different claims. The applicable law determines their rights.
-
-The International Institute for the Unification of Private Law distinguishes factual control from a valid transfer of rights in its 2023 digital-asset principles. The validity of a transfer depends on other applicable law. [Principles on Digital Assets and Private Law, commentary 6.5](https://www.unidroit.org/wp-content/uploads/2024/01/Principles-on-Digital-Assets-and-Private-Law-linked-1.pdf).
-
-## Companies need to establish authority before their software acts
-
-That distinction matters before a transfer too. An agent's AI model supplies its reasoning and responses. A company needs the agent's actions to respect its authority and obligations.
-
-The work includes creating assets and establishing their rights, called origination, then maintaining those rights as the company operates. Automating that work requires the company's records, permissions, and applicable rules to remain connected.
-
-Keeping entities compliant costs tens of thousands to hundreds of thousands of US dollars as banks, registries and advisers reconcile separate records and decisions.
-
-Their offices run nine to five while agents operate around the clock. Amazon's shopping and Stripe's payments show how convenience makes new businesses possible.
-
-Mass lets AI agents automate companies, trade, commerce and markets, and the origination, management and maintenance of assets, end to end and across borders. Every action they take is compliant and lawful by default.
-
-Mass runs companies, institutions, and deployments. Each company's own AI agent, on any AI model it chooses, drives the company's operations from formation to closure.
-
-Agents can issue any asset in one economy, sell it in all the others and move it between them, at a fraction of today's time and cost. The records must preserve the rights and conditions through each move.
-
-Each economy that connects adds a market for every company on the network, and once enough economies run on one network, those that come later build on it.
-
-Mass makes the compliance call before each action runs. It learns from every economy it serves how to combat fraud and which practices work best.
-
-Mass runs the whole life of companies, investment funds, securities such as shares, and other assets around the clock. It gives one compliance answer for the same facts and applicable rules.
-
-Managing the whole life gives Mass better data for that call: who owns the company, who may act, what consent exists, and what has changed. Mass performs compliance better, faster, and cheaper by construction because it runs the work that produces those records.
-
-With a partner bank, Mass co-builds and leads one compliance team and is responsible and liable for that work. Accountable people hold the keys. The bank sees the work through Mass's dashboards, and regulators retain supervision.
-
-The learning begins with fraud and extends to which checks, evidence, and consents a case needs. Mass also learns which procedures complete work and where they add delay or cost. It revises what it learned when facts or rulings change.
-
-Each receiving institution checks the supporting proof and chooses what learning to adopt. Shared learning must preserve the confidentiality and access rules governing the underlying records.
-
-The choice to adopt a shared practice must remain traceable when many companies rely on it. A later ruling can affect actions across those companies.
-
-Mass's pilots cover entire economic zones, areas with a dedicated legal or regulatory framework. Each pilot calls for at least 10,000 entities per jurisdiction. Each government retains its law, data, keys, and supervision.
-
-Each action's record must identify the relevant jurisdictions and institutions. That requirement applies across Mass's existing footprint and wherever deployment has been agreed.
-
-Mass runs companies today in Delaware, Montana, New York, California, Nevada and Wyoming in the United States, Hong Kong, Singapore, the Abu Dhabi Global Market, the Cayman Islands, the British Virgin Islands and the Seychelles.
-
-In Próspera, Honduras, Mass records companies in Próspera's own registry.
-
-The United Arab Emirates has agreed to deploy Mass for the entire federal economy, starting with pilot programmes in the emirates of Ras Al Khaimah and Abu Dhabi. The Abu Dhabi Global Market deployment is live in production.
-
-When a shared practice changes, or a ruling changes what it permits, the affected companies need records of their actions in each jurisdiction. I want the dispute process to preserve that evidence so an independent decision-maker can examine a challenge to the facts or authority.
-
-## A judgment needs a lawful way to affect the asset
-
-A design risk for traditional legal technology is treating the judgment as the end of the technical problem. Execution, the work of giving a decision effect, requires the order to reach someone able and entitled to act.
-
-The order must concern the right asset and preserve its conditions when the recipient translates it into an action. A later suspension must reach the same systems.
-
-Uploading a document can assist this work. Connecting the decision to an asset also requires a defined relationship between the legal instrument, the responsible institution, and the software controlling the action. The recipient must establish what the decision permits before the software acts.
-
-## People must be able to challenge the institutions exercising authority
-
-That authority can extend beyond agreements between participants. A dispute may involve someone who never accepted an application's terms. It may concern mandatory law, which the parties cannot set aside by agreement. Courts and other competent authorities exercise powers grounded in law.
-
-Sovereignty belongs in this design: each jurisdiction retains authority over its law and public institutions. Courts retain judicial power. A custodian, an institution holding assets for others, remains responsible for the assets it holds when acting on a court's decision.
-
-Responsibility also requires evidence that survives a dispute with the institution itself. Suppose an operator changes its account of a decision. If it controls every copy, the affected person depends on it to reconstruct the event.
-
-Independently retained records let that person produce the earlier statement, identify its issuer, and submit the discrepancy for review.
-
-Decentralized autonomy means participants can verify instructions through systems they control, retain evidence outside the issuing institution, and reject requests that exceed agreed authority. Their governing agreements could also let them change providers. Existing obligations still require completion or lawful resolution.
-
-The protection depends on available records, independent reviewers, and someone with authority to act on their findings. Several systems controlled by the same operator offer little independence from that operator.
-
-An institution can also apply an unjust rule consistently. People need a procedure for challenging the rule or its application, even when the institution would prefer silence.
-
 ## People need a body with authority to hear their dispute
 
 For the wallet owner, the first difficulty may be finding a forum: a court or other body with authority to hear the claim.
@@ -100,11 +20,31 @@ The United Nations Commission on International Trade Law's Model Law on Internat
 
 These are model provisions for adoption into domestic law. The law governing the actual proceeding determines the applicable requirements.
 
+## A transaction can follow network rules while ownership remains disputed
+
+The forum must decide rights that the network's rules may leave unresolved. I see an institutional blind spot when reducing dependence on an intermediary becomes a theory for dispensing with institutions altogether.
+
+Restricting an operator's discretion gives people a useful protection. They can inspect the rules governing an asset and the conditions under which it can move. Independent participants can check whether a transaction followed those rules and preserve evidence if the operator changes its account.
+
+Legal entitlement asks who has rights to the asset. A person may control the key used in a transaction after acquiring it through theft. The original owner, the recipient, and a later buyer can have different claims. The applicable law determines their rights.
+
+The International Institute for the Unification of Private Law distinguishes factual control from a valid transfer of rights in its 2023 digital-asset principles. The validity of a transfer depends on other applicable law. [Principles on Digital Assets and Private Law, commentary 6.5](https://www.unidroit.org/wp-content/uploads/2024/01/Principles-on-Digital-Assets-and-Private-Law-linked-1.pdf).
+
 The case file should retain the transaction records, the basis for interpreting them, and the owner's account of the compromise. An allegation must remain distinguishable from a verified event. Each party needs access to material it is entitled to contest, under the proceeding's confidentiality rules.
 
 The record should also identify the adjudicator, the person or tribunal deciding the case, and establish the appointment, submitted questions, and governing procedure. A recipient asked to act must check whether the decision remains effective or a stay, a legal suspension, prevents that action.
 
-If a custodian holds the disputed asset, action depends on its legal duties and powers. Funds held in escrow, an arrangement that holds them until specified conditions are met, might be released under agreed rules after a decision authenticated as coming from its stated issuer.
+## A judgment needs a lawful way to affect the asset
+
+A design risk for traditional legal technology is treating the judgment as the end of the technical problem. Execution, the work of giving a decision effect, requires the order to reach someone able and entitled to act.
+
+The order must concern the right asset and preserve its conditions when the recipient translates it into an action. A later suspension must reach the same systems.
+
+Uploading a document can assist this work. Connecting the decision to an asset also requires a defined relationship between the legal instrument, the responsible institution, and the software controlling the action. The recipient must establish what the decision permits before the software acts.
+
+If a custodian, an institution holding assets for others, holds the disputed asset, action depends on its legal duties and powers.
+
+Funds held in escrow, an arrangement that holds them until specified conditions are met, might be released under agreed rules after a decision authenticated as coming from its stated issuer.
 
 Each route needs its own authority and technical means. For assets in a wallet outside those arrangements, the claimant may need relief against a person or other reachable property.
 
@@ -113,6 +53,22 @@ The original transaction can remain in the ledger while a later transfer or paym
 The record must therefore distinguish a decision, an instruction, and an observed result. A custodian's acknowledgment establishes receipt of the instruction. Evidence of a resulting transfer establishes performance to that extent, with any unpaid balance remaining due.
 
 Through refusal, interruption, or review, the claimant should be able to see what remains owed and who is responsible for the next act.
+
+## People must be able to challenge the institutions exercising authority
+
+The power to decide a dispute can extend beyond agreements. A dispute may involve someone who never accepted an application's terms. It may concern mandatory law, which the parties cannot set aside by agreement. Courts and other competent authorities exercise powers grounded in law.
+
+Sovereignty belongs in this design: each jurisdiction retains authority over its law and public institutions. Courts retain judicial power. A custodian remains responsible for the assets it holds when acting on a court's decision.
+
+Responsibility also requires evidence that survives a dispute with the institution itself. Suppose an operator changes its account of a decision. If it controls every copy, the affected person depends on it to reconstruct the event.
+
+Independently retained records let that person produce the earlier statement, identify its issuer, and submit the discrepancy for review.
+
+Decentralized autonomy means participants can verify instructions through systems they control, retain evidence outside the issuing institution, and reject requests that exceed agreed authority. Their governing agreements could also let them change providers. Existing obligations still require completion or lawful resolution.
+
+The protection depends on available records, independent reviewers, and someone with authority to act on their findings. Several systems controlled by the same operator offer little independence from that operator.
+
+An institution can also apply an unjust rule consistently. People need a procedure for challenging the rule or its application, even when the institution would prefer silence.
 
 ## Each legal instruction must limit the action it permits
 
@@ -130,7 +86,7 @@ A company choosing a provider can negotiate limits on intervention and rights to
 
 ## A claimant should be able to use records from every blockchain
 
-The disputed right may concern several systems. A transfer can appear on one blockchain, its supporting agreement elsewhere, and the relevant assets with a custodian. A claimant should be able to bring those records together.
+The disputed right may concern several systems. A transfer can appear on one blockchain, its supporting agreement elsewhere, and the relevant assets with a custodian. A claimant should be able to bring those records together. Each action's record must identify the relevant jurisdictions and institutions.
 
 Compatibility requires reliable ways to identify each transaction, interpret its status, and establish what the destination can do. Different blockchains require different checks. A common case format must preserve those differences.
 
@@ -139,6 +95,28 @@ A receiving institution applies the rules governing its own powers. Recognizing 
 I would make compatibility with every blockchain a design requirement. People should be able to seek assistance while leaving the disputed asset where it is. Any remedy still depends on the authority and means of execution available in that case.
 
 Institutions could then share case records and verification methods while retaining their law, procedures, and responsibility for decisions.
+
+An institution adopting a shared practice should check the supporting proof and record what it chose to adopt. If facts or rulings change, affected parties need those records to challenge the resulting actions, under the records' confidentiality and access rules.
+
+## Companies need to establish authority before their software acts
+
+Businesses are assigning more of their operating work to artificial intelligence (AI) agents, software that acts on their instructions. As that work becomes automated, legal challenges must reach the resulting actions. An agent's AI model supplies its reasoning and responses.
+
+A company's agent must respect its authority and obligations. The work includes creating assets and establishing their rights, called origination, then maintaining those rights as the company operates. That requires connected records, permissions and applicable rules.
+
+Mass lets AI agents automate companies, trade, commerce and markets, and the origination, management and maintenance of assets, end to end and across borders. Every action they take is compliant and lawful by default. Mass runs companies, institutions, and deployments.
+
+Each company's own AI agent, on any AI model it chooses, drives the company's operations from formation to closure. Mass makes the compliance call before each action runs.
+
+It learns from every economy it serves how to combat fraud and which practices work best. It learns which checks, evidence and consents each case needs. Lessons carry proofs each receiving institution checks before choosing what to adopt.
+
+Each economy that connects adds a market for every company on the network, and once enough economies run on one network, those that come later build on it. Claims need records across markets.
+
+The United Arab Emirates has agreed to deploy Mass for the entire federal economy, starting with pilot programmes in the emirates of Ras Al Khaimah and Abu Dhabi.
+
+The Abu Dhabi Global Market deployment is live in production. The UAE pilot is live. Reporting to the National Economic Registry (NER) of the United Arab Emirates is live. Each pilot requires at least 10,000 entities per jurisdiction. Records must link challenged actions to entities.
+
+As with the wallet owner's transfer, someone may dispute the facts or authority behind an agent's action. I want the action's records to remain available for independent examination.
 
 ## People and institutions can use the same dispute service
 
@@ -155,3 +133,4 @@ Its design covers case administration, consent and authority records, and authen
 I call this sovereign infrastructure because it concerns how institutions exercise authority over economic activity. Centralized powers can coexist with independently held evidence and effective procedures for challenging their use.
 
 The next case may be against the operator. People should still be able to obtain their records, reach an independent forum, and pursue the remedy that forum has authority to grant.
+

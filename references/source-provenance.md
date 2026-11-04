@@ -86,3 +86,18 @@ The principal authorized publication of three essays on raeez.com on 4 November 
 | `digital-transfers.pdf` | `03-Digital-Transfers.pdf` | `27158762119848f0c41ab3c4cbbe34106160885c091d0a861f7f43fa2a0e9ec8` |
 
 The maintained sources in `content/author-essays/` keep the essay text unchanged. The two later sources lose only their YAML front matter, which the builder does not read. Each PDF has no embedded files and is under 61 KB. The X threads and the Recourse whitepaper in the same folder are not published. Each new essay records its own modification date in `compiler/author-essays.json`; the other essays keep the 22 October 2026 revision date.
+
+## Three essays, settled revision — 4 November 2026
+
+The three essays published earlier on 4 November 2026 were replaced with their settled revision. Their Markdown sources and designed PDFs were copied byte-for-byte from the placed folder `Raeez-Essays-Recourse-2026-11-01/v2-constraint-set/` into `materials/raw/2026-11-04-settled-essay-sources/`; the hashes match that folder's `SHA256SUMS`. The earlier archive in `materials/raw/2026-11-04-author-essay-sources/` is kept unchanged.
+
+| Page | Archived source | SHA-256 |
+|---|---|---|
+| `country-in-a-box.html` | `01-Country-in-a-Box.md` | `58e2f4308cac208a1a0d3682d9122e8f453ab814506639117105d7004daad54e` |
+| `ai-courts.html` | `02-AI-Courts.md` | `a8bf34877d78b7f76ff3aea921801a6e5e6115d272beb3c1adfd63452fc7fa67` |
+| `digital-transfers.html` | `03-Digital-Transfers.md` | `ec7e77a8d12fb295224ac5ec743ad6a3ba54b140004187e8f7e3b446064ba596` |
+| `country-in-a-box.pdf` | `01-Country-in-a-Box.pdf` | `a0205eec3b828f52f543b178771e834ad248777041547648d6c001e3eecb01bb` |
+| `ai-courts.pdf` | `02-AI-Courts.pdf` | `aa76bdbcdd03b44fcdfed1a13caee08db6ec35457523348a7a3b243e7bb33982` |
+| `digital-transfers.pdf` | `03-Digital-Transfers.pdf` | `8db370c3b2efeb5f05f6476ae2c24efc990791da36317e5c6b02daa8056fcbf7` |
+
+The maintained sources in `content/author-essays/` are these files without their YAML front matter. Each page's subtitle and description are the front matter's own `subtitle` and `description`. Each PDF has no embedded files. The figures in `figures/country-in-a-box-figure-*.svg`, `figures/ai-courts-figure-*.svg` and `figures/digital-transfers-figure-*.svg` were rendered, one per page, from the same figure definitions and LaTeX template that produced each PDF, then cropped and converted to SVG; each sits after the paragraph the PDF places it after. The X threads and the Recourse whitepaper in the same folder are not published.

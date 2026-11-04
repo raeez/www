@@ -1,98 +1,60 @@
 # Country in a Box
 
-Business is moving onto AI faster than commerce moved onto the internet, and AI agents can now do the work. These agents use software to act on behalf of people and companies. The institutions receiving their instructions need to keep pace.
+Consider a fictional transaction in company shares. The governing documents require consent before a transfer. A buyer and seller agree a price, and the seller says the required consent has been given.
 
-## Stripe rebuilt the merchant bank for the internet
+The recorded consent names a different transaction.
 
-Merchant banks were built for shops with a front door. Stripe rebuilt the merchant bank: how it signs a business up, judges its risk, keeps it compliant and closes its account. Online commerce at scale followed.
+If the parties dispute what the consent covers, they need a forum with authority to decide whether the transfer may proceed. The exchange has a transaction to complete, and the registry has an entry to maintain.
 
-Amazon, the online retailer, and Stripe showed how convenience could create room for new kinds of business. AI extends that question to the operation of the business itself, including the institutions that maintain its rights and obligations.
+Suppose the court orders the transfer to pause while it hears the dispute. A later decision may permit the transfer or require a correction. The history must retain the original entry, the dispute and the act that changed the position.
 
-## Autonomous businesses need dependable rights
+“Country in a box” names my ambition to make this institutional arrangement repeatable. A jurisdiction establishes a registry, exchange and court under its law. They can reuse the software and procedures that connect them while retaining distinct authority.
 
 Before committing capital, you need to know what you will own, how you can transfer it, and what happens if someone disputes your rights. Those answers must remain dependable after the money has moved.
 
 A company can fail for ordinary commercial reasons while its agreed terms still determine who bears the loss.
 
-A jurisdiction asking people to finance businesses must make those commitments credible. I would start with a registry that maintains records of rights, an exchange where people can trade them, and a court that hears disputes.
+Businesses run by AI agents, software that acts on behalf of people and companies, need the same dependable rights. Business is moving onto AI faster than commerce moved onto the internet, and AI agents can now do the work.
 
-Their shared records should help a transaction proceed and let an independent court examine what happened if the parties disagree.
+## Stripe rebuilt the merchant bank for the internet
 
-Today, keeping an entity compliant can cost tens of thousands to hundreds of thousands of US dollars. Its corporate registrar, licence office, tax office, bank and advisers each handle part of its life.
+Merchant banks were built for shops with a front door. Stripe rebuilt the merchant bank: how it signs a business up, judges its risk, keeps it compliant and closes its account. Online commerce at scale followed.
 
-Records have to be reconciled between them, and their working day often runs from nine to five. That work must be available around the clock to the company's AI agents.
-
-With Mass they run businesses autonomously, end to end.
-
-Mass lets AI agents automate companies, trade, commerce and markets, and the origination, management and maintenance of assets, end to end and across borders. Every action they take is compliant and lawful by default.
-
-Each company's own AI agent, on any AI model it chooses, drives the company's operations from formation to closure. Mass makes the compliance call before each action runs. It learns from every economy it serves how to combat fraud and which practices work best.
-
-In Próspera, Honduras, Mass records companies in Próspera's own registry.
-
-Mass runs companies, institutions, and deployments. Businesses run this way are AI-native. Mass automates this work through its AI-native operating system.
-
-Mass serves public bodies, private businesses and non-profits, from a one-person company to a large institution. Its AI-native business customers have identifiable beneficial owners: the people who ultimately own or control them. Their agents act for those businesses.
-
-## Mass rebuilds a sovereign economy for AI
-
-Stripe provides software that lets businesses accept payments online. The registry, the regulator, the tax office and a company's bank already work online, but they were designed for people to use. Mass rebuilds them for AI agents, as Stripe rebuilt the merchant bank.
-
-A company run by AI agents then costs a fraction as much to run.
-
-Mass forms the company, applies for its licences, opens its bank accounts, files its taxes and keeps its records, and it checks every action against the law before the action runs.
-
-This whole-life operation gives Mass the data and context to make the compliance call better, faster and cheaper by construction.
-
-With a partner bank, Mass co-builds and leads one compliance team, handles the company's lifecycle compliance, and is responsible and liable. Accountable people hold the keys, the bank sees the work through Mass's dashboards, and regulators retain supervision.
-
-Learning improves that work across the network. Fraud comes first: investigations inform which checks, evidence and consents a case needs. Mass also learns which procedures complete work, where they add delay or cost, and what must change after a new ruling or fact.
-
-Each receiving institution checks the supporting proof and chooses what to adopt.
-
-Mass works around the clock. It gives a consistent compliance answer for the same facts and applicable rules when the systems involved give conflicting answers. A new fact or ruling changes the basis for the next action.
-
-Firms choose their own AI, and each government keeps its own law, data and keys. Mass automates the whole life of companies, funds, securities and assets. Mass can prove mathematically that each action was lawful.
-
-That continuity extends across economies. Agents can issue any asset in one economy, sell it in all the others and move it between them, at a fraction of today's time and cost.
-
-Momentum builds the network. Mass operates as a decentralized network in which each economy retains control of its own institutions. Corridors connect every pair of places on the network because Mass automates business between them.
-
-Governments can also agree on special concessions, such as accepting each other's checks and records.
-
-Each economy that connects adds a market for every company on the network, and once enough economies run on one network, those that come later build on it.
-
-This work spans private operations and government deployments. Mass runs companies today in Delaware, Montana, New York, California, Nevada and Wyoming in the United States, Hong Kong, Singapore, the Abu Dhabi Global Market, the Cayman Islands, the British Virgin Islands and the Seychelles.
-
-The United Arab Emirates has agreed to deploy Mass for the entire federal economy, starting with pilot programmes in the emirates of Ras Al Khaimah and Abu Dhabi. The Abu Dhabi Global Market deployment is live in production.
-
-Mass onboards whole economic zones, with pilot programmes of at least 10,000 entities in each jurisdiction.
-
-Uzbekistan, Kazakhstan, Pakistan, Korea, Indonesia, Botswana and Hainan, China are coming onto Mass.
-
-The institutional question grows with that network. In [Special Economic Zones in a Box](https://raeez.com/sez-in-a-box.html), I described how jurisdictions could agree on the evidence they recognize.
-
-Within a jurisdiction, the institutions responsible for the record, the trade and the dispute also need to work together while retaining distinct authority.
+For a business run by AI agents, the registrar, licence office, tax office and bank need to receive instructions around the clock. Their records must also let a court examine an act the agent carried out.
 
 ## Trading a right requires a record that can be challenged
 
 A registry keeps ownership and authority records current under the governing rules. An investor needs to inspect the basis for an entry, the restrictions attached to it, and the later acts that changed it.
 
-A company's original record may change after a transfer, a court order or an amendment to its governing documents. Maintaining the register means preserving both the current position and the history that explains it.
+Origination means creating assets. A company's record may change after transfers, court orders or amendments to its governing documents. The registry preserves the current position and the history that explains it.
+
+In Próspera, Honduras, Mass records companies in Próspera's own registry. Mass lets AI agents automate companies, trade, commerce and markets, and the origination, management and maintenance of assets, end to end and across borders. Every action they take is compliant and lawful by default.
+
+Mass runs companies, institutions, and deployments. Each company's own AI agent, on any AI model it chooses, drives the company's operations from formation to closure. Mass makes the compliance call before each action runs.
+
+It learns from every economy it serves how to combat fraud and which practices work best. Institutions check proofs accompanying lessons before choosing consent procedures to adopt, retaining their authority.
+
+Lifetime records improve data for better, faster, cheaper compliance. Companies run at a fraction of the cost. Pilots cover whole economic zones with at least 10,000 entities per jurisdiction, requiring records usable in disputes.
+
+Mass runs companies today in Delaware, Montana, New York, California, Nevada and Wyoming in the United States, Hong Kong, Singapore, the Abu Dhabi Global Market, the Cayman Islands, the British Virgin Islands and the Seychelles.
+
+The United Arab Emirates has agreed to deploy Mass for the entire federal economy, starting with pilot programmes in the emirates of Ras Al Khaimah and Abu Dhabi. The Abu Dhabi Global Market deployment is live in production.
+
+The pilot and National Economic Registry (NER) of the United Arab Emirates reporting are live. Momentum builds the network. Each economy that connects adds a market for every company on the network, and once enough economies run on one network, those that come later build on it.
 
 An exchange brings buyers and sellers together, supports pricing and calculates the obligations created by their trades. Those obligations need a route to performance through the institutions responsible for the assets and payments.
 
-A claim records an economic right or obligation and the conditions that determine its outcome. It can govern money, assets, ownership, delivery, performance or events. Moxie prices and clears claims. It is in testnet, a network for testing the system before production use.
+A claim records an economic right or obligation and the conditions that determine its outcome. It can govern money, assets, ownership, delivery, performance or events.
 
-Mass and Moxie are peer networks that connect the life of an organization with the claims it creates.
+Moxie prices and clears claims. It is in testnet, a network for testing the system before production use.
 
 A court deals with contested rights and conduct. A party may challenge a transfer, the interpretation of an agreement or an institution's own decision. The court hears the parties and determines the dispute within its jurisdiction.
 
 Its procedure must let each side see and answer the evidence on which the decision depends.
 
-Recourse runs dispute resolution and carries outcomes into execution. Recourse is at the research and design stage; its company has not yet been formed.
+Recourse runs dispute resolution and carries outcomes into execution. Recourse is at the research and design stage. Its company has not yet been formed.
 
-Its design covers case administration, consent and authority records, decisions, temporary suspensions of action, and coordination with the institutions that can give decisions effect. Courts retain judicial power, and banks and custodians act within their own lawful authority.
+Recourse's design covers case administration, consent and authority records, decisions, temporary suspensions of action, and coordination with the institutions that can give decisions effect. Courts retain judicial power, and banks and custodians act within their own lawful authority.
 
 Each transaction needs the traded right to match the recorded right, with its conditions intact. A later judgment must reach the institutions able and obliged to give it effect.
 
@@ -102,31 +64,25 @@ A market operator has an interest in attracting transactions. A registry must ke
 
 Those duties need distinct authority. The institution whose conduct is challenged must face an independent decision. Participants need a route to challenge the official record itself, including the acts of the people who maintain it.
 
-Shared software must preserve that independence. An administrator may have the technical ability to alter a record, change a trading restriction and close a dispute. The design has to assign each power to the appropriate office and preserve who exercised it, under which authority.
+Shared software must preserve that independence. An administrator may have the technical ability to alter a record, change a trading restriction and close a dispute. The design has to assign each power to the appropriate office.
 
-Each institution should be able to inspect the evidence behind another's act and challenge an act that exceeds its authority.
+The record must preserve who exercised each power and under which authority. Each institution should be able to inspect the evidence behind another's act and challenge an act that exceeds its authority.
 
-Consider a fictional transaction in company shares. The governing documents require consent before a transfer. A buyer and seller agree a price, and the seller says the required consent has been given. The recorded consent names a different transaction.
-
-The immediate task is to establish whether the transfer satisfies its conditions. If the parties dispute what the consent covers, they need a forum with authority to decide that question. The exchange has a transaction to complete, and the registry has an entry to maintain.
-
-Suppose the court orders the transfer to pause while it hears the dispute. Later, a decision may permit the transfer or require a correction. The history must retain the original entry, the dispute and the act that changed the position.
-
-The buyer can then inspect how the system handles a disagreement that puts its own records in question. That capacity matters before any dispute occurs, when the buyer decides whether to commit capital.
+A prospective buyer can inspect how the institutions handle a disagreement that puts their own records in question. The right to challenge an institution matters when the buyer decides whether to commit capital.
 
 ## A judgment needs a lawful route into execution
 
 The registry and exchange must receive the court's order and identify the right and the parties it binds. They must establish who issued it, under what authority, and when it takes effect before applying it within their own authority.
 
-They also need to know whether a later event changes what they should do. A stay, which temporarily suspends an action, may be lifted; an authorization may expire; a later ruling may change the permitted action.
+They also need to know whether a later event changes what they should do. A stay that temporarily suspends an action may be lifted, an authorization may expire, or a later ruling may change the permitted action.
 
 The record must retain the sequence so each institution can explain the basis for its response.
 
 The court should be able to examine the same agreement and sequence of acts that the registry and exchange used. Access rules protect confidential material while giving each participant the evidence its role requires.
 
-Responsibility continues through execution. A direction to pay records what should happen. The bank or custodian acts under its own lawful authority, and evidence of receipt establishes what reached the beneficiary.
+Responsibility continues through execution. A direction to pay records what should happen. A payment instruction asks the bank or custodian to act under its own lawful authority.
 
-A case record should preserve those events separately, so the parties can see which obligations remain.
+The bank's executed act and the beneficiary's receipt are separate events. The case record should preserve evidence of both so the parties can see what was done, what arrived and which obligations remain.
 
 ## Two connected institutions make the third easier to establish
 
@@ -154,10 +110,9 @@ The advantage depends on usable records, lawful access and clear terms for recog
 
 ## The institutions I help build must be open to challenge
 
-“Country in a box” names my ambition to make this institutional arrangement repeatable. A jurisdiction establishes the authority of its registry, exchange and court under its law. Each institution needs people accountable for its work and procedures suited to its responsibilities.
-
-They can reuse the software and procedures that connect them.
+Each institution needs people accountable for its work and procedures suited to its responsibilities.
 
 Someone investing there should be able to inspect a right, transact on its terms and bring a disagreement before an independent court. When the court decides, the responsible institutions should give the decision effect under the applicable law and record what they did.
 
 That process must remain available when the institution being challenged is one I helped build.
+
