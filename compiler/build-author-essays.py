@@ -50,8 +50,10 @@ def place_figures(markdown, article):
         size = re.search(r'<svg[^>]*\bwidth="([\d.]+)pt" height="([\d.]+)pt"', path.read_text()[:2000])
         width, height = (float(size[1]), float(size[2])) if size else (0, 0)
         scale = min(1.0, width / figure.get('column_pt', 380)) if width else 1.0
+        # The SVGs keep a 4 pt crop margin; the bleed lets the drawn figure meet the text edges.
+        bleed = figure.get('margin_pt', 4) / width if width else 0
         block = ('\n\n```{=html}\n'
-                 f'<figure class="essay-figure" id="figure-{number}" style="--figure-scale:{scale:.3f}">'
+                 f'<figure class="essay-figure" id="figure-{number}" style="--figure-scale:{scale:.3f};--figure-bleed:{bleed:.4f}">'
                  f'<a class="essay-figure-link" href="{escape(figure["src"], quote=True)}">'
                  f'<img src="{escape(figure["src"], quote=True)}" alt="{escape(figure["alt"], quote=True)}"'
                  + (f' width="{width * 4 / 3:.0f}" height="{height * 4 / 3:.0f}"' if width else '')

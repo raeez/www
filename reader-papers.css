@@ -46,18 +46,21 @@
   max-width: 100%;
 }
 .article-body .essay-figure img {
+  /* The image's own white margin falls outside the box, so the drawn figure meets the text edges. */
   display: block;
-  width: 100%;
+  width: calc(100% / (1 - 2 * var(--figure-bleed, 0)));
+  max-width: none;
   height: auto;
+  margin-left: calc(-100% * var(--figure-bleed, 0) / (1 - 2 * var(--figure-bleed, 0)));
 }
 .article-body > .essay-figure:first-child,
 .article-body > section:first-child > .essay-figure:first-child { margin-top: 0; }
 @media (max-width: 680px) {
-  /* On a phone the figure takes the full column and a little of the margin; a tap opens it at full size. */
+  /* On a phone the figure takes the full text column, inside the same side gutter as the text; a tap opens it at full size. */
   .article-body .essay-figure {
-    width: calc(100% + 24px);
-    max-width: none;
-    margin-inline: -12px;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
   }
 }
 .article-body .essay-figure-link { display: block; cursor: zoom-in; }

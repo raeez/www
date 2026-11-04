@@ -101,3 +101,14 @@ The three essays published earlier on 4 November 2026 were replaced with their s
 | `digital-transfers.pdf` | `03-Digital-Transfers.pdf` | `8db370c3b2efeb5f05f6476ae2c24efc990791da36317e5c6b02daa8056fcbf7` |
 
 The maintained sources in `content/author-essays/` are these files without their YAML front matter. Each page's subtitle and description are the front matter's own `subtitle` and `description`. Each PDF has no embedded files. The figures in `figures/country-in-a-box-figure-*.svg`, `figures/ai-courts-figure-*.svg` and `figures/digital-transfers-figure-*.svg` were rendered, one per page, from the same figure definitions and LaTeX template that produced each PDF, then cropped and converted to SVG; each sits after the paragraph the PDF places it after. The X threads and the Recourse whitepaper in the same folder are not published.
+
+The writer then corrected the AI Courts source: its two Model Law, Article 7 links now point to the official UNCITRAL text, with no change to the linked words, and the Digital Transfers opening figure names the assets. The three PDFs were re-rendered. The corrected AI Courts source and the three new PDFs were copied byte-for-byte from the same placed folder into `materials/raw/2026-11-04-settled-essay-sources-r2/`; the hashes match that folder's `SHA256SUMS`. The Country in a Box and Digital Transfers sources are unchanged and stay archived in `materials/raw/2026-11-04-settled-essay-sources/`.
+
+| File | Archived source | SHA-256 |
+|---|---|---|
+| `content/author-essays/ai-courts.md` | `02-AI-Courts.md` | `a1471c6184c2d861985fc6b3caaf4747af38e81d5b6ccc56387efa724d816a29` |
+| `country-in-a-box.pdf` | `01-Country-in-a-Box.pdf` | `ca77775cfe3d9eab03209874bcc5d0e22f94df0b8d7ac0b42bdbc4df104f24e1` |
+| `ai-courts.pdf` | `02-AI-Courts.pdf` | `62bb643c3f2519e55dfb79ac7d3a810d155d1015e5c3ea1b83133ba7868214a2` |
+| `digital-transfers.pdf` | `03-Digital-Transfers.pdf` | `0c1e016f94b535391124a14a1b022bec5e03468cb981a26f0f6b75f975167104` |
+
+`figures/digital-transfers-figure-1.svg` was re-rendered from the corrected figure definition. Every other figure re-renders byte-identical from the corrected definitions and is unchanged. Each PDF has no embedded files.
