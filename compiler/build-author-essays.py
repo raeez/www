@@ -54,7 +54,7 @@ def render(article, config, template):
         data['@type'] = 'Article'
         data['headline'] = article['title']
         data['description'] = article['description']
-        data['dateModified'] = config['revision_date']
+        data['dateModified'] = article.get('revision_date', config['revision_date'])
         if article.get('publication_date'):
             data['datePublished'] = article['publication_date']
         serialized = json.dumps(data, ensure_ascii=False, indent=4).replace('<', '\\u003c')

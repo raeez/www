@@ -71,3 +71,18 @@ The zone-network essay sits with institutions and law because its central subjec
 ## LICC institutional identity — 22 October 2026
 
 The principal states that LICC is an institution he is founding and rejects its placement under Science. The catalogue now identifies the LICC and Sensoria pages as institutional projects. LICC uses its full name, The Laboratory for Incentivization, Coordination and Cooperation. Its page description follows its own institutional definition. The wrapper retains the established year 2025 and removes the added proposal label and disputed December precision. This correction changes catalogue and header metadata, with the institutional document and visual design preserved.
+
+## Three essays on institutions and remedies — 4 November 2026
+
+The principal authorized publication of three essays on raeez.com on 4 November 2026 and excluded publication to x.com. Their Markdown sources and designed PDFs were copied byte-for-byte from the placed folder `Raeez-Essays-Recourse-2026-11-01/v2-constraint-set/` into `materials/raw/2026-11-04-author-essay-sources/`; the hashes match that folder's `SHA256SUMS`.
+
+| Page | Archived source | SHA-256 |
+|---|---|---|
+| `country-in-a-box.html` | `01-Country-in-a-Box.md` | `fec1efbefa970fb0ec659fd22f4833bb0779c02df7972f6b20e5304eec31b815` |
+| `ai-courts.html` | `02-AI-Courts.md` | `2945985426b1b7ff267adf15c86927dad2633a7fc165c8315c5e83f9db748cf2` |
+| `digital-transfers.html` | `03-Digital-Transfers.md` | `4e64ef6931a9e1b8b49e8efba6f1711c4094676bbb38fd177881c49a2ca69ad0` |
+| `country-in-a-box.pdf` | `01-Country-in-a-Box.pdf` | `1214308f111ba17cd45c43efc087af563e470c2123a017a4cd5f5254383f437d` |
+| `ai-courts.pdf` | `02-AI-Courts.pdf` | `70340c98a44beaf53cb0b95e6dfeada147a4cac27818635323048edb4705a6e7` |
+| `digital-transfers.pdf` | `03-Digital-Transfers.pdf` | `27158762119848f0c41ab3c4cbbe34106160885c091d0a861f7f43fa2a0e9ec8` |
+
+The maintained sources in `content/author-essays/` keep the essay text unchanged. The two later sources lose only their YAML front matter, which the builder does not read. Each PDF has no embedded files and is under 61 KB. The X threads and the Recourse whitepaper in the same folder are not published. Each new essay records its own modification date in `compiler/author-essays.json`; the other essays keep the 22 October 2026 revision date.
