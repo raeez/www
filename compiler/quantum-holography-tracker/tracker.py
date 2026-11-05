@@ -321,7 +321,8 @@ class Wirer:
                 if not isinstance(parent, Tag):
                     continue
                 if parent.name in NO_WIRE or parent.has_attr('data-term') or \
-                        parent.has_attr('data-no-terms'):
+                        parent.has_attr('data-no-terms') or \
+                        (parent.name in ('em', 'i', 'cite') and looks_like_title(parent.get_text())):
                     blocked = True
                     break
             if blocked:
@@ -353,6 +354,14 @@ class Wirer:
                 nodes.append(NavigableString(source[last:]))
                 text.replace_with(*nodes)
         return count
+
+
+def looks_like_title(text):
+    """An italic work title (for example a cited paper): three or more words, every word of four or
+    more letters capitalised. Term names inside a cited title are not linked to cards."""
+    words = re.findall(r"[A-Za-z][A-Za-z'’-]*", text)
+    long_words = [w for w in words if len(w) >= 4]
+    return len(words) >= 3 and bool(long_words) and all(w[0].isupper() for w in long_words)
 
 
 def wrap_display_math(root):
