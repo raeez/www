@@ -95,6 +95,13 @@
     });
   }
 
+  // A hidden card keeps no layout, so a scroll reset made while it is hidden does not hold:
+  // reset once the card is visible, and again after layout, on every open path.
+  function toTop() {
+    cardBody.scrollTop = 0; card.scrollTop = 0;
+    requestAnimationFrame(() => { cardBody.scrollTop = 0; card.scrollTop = 0; });
+  }
+
   function open(term, options = {}) {
     const id = term.dataset.term;
     if (!id) return;
@@ -108,6 +115,7 @@
     byHover = Boolean(options.hover);
     place();
     if (cardFormulas) { cardFormulas = false; measure(cardBody); }
+    toTop();
     if (options.focus) cardTitle.focus({ preventScroll: true });
   }
 
@@ -133,11 +141,12 @@
     fill(id);
     pinned = true;
     place();
+    toTop();
   }
 
   backButton.addEventListener('click', () => {
     const id = trail.pop();
-    if (id) { fill(id); place(); }
+    if (id) { fill(id); place(); toTop(); }
   });
   closeButton.addEventListener('click', () => close(true));
   closeButton.setAttribute('aria-label', L.close || 'Close');
