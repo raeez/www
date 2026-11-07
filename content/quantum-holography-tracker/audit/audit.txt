@@ -1,15 +1,15 @@
 Input: /Users/raeez/mathematics/coordination/reports/quantum-holography-tracker-20261104
 Words: draft · date 2026-11-08 · hashes in STATUS.md matching inputs: none
 
-PAGE WEIGHT  7,713,839 bytes · 1,179,114 bytes compressed (gzip -9)
+PAGE WEIGHT  7,905,265 bytes · 1,199,993 bytes compressed (gzip -9)
   style (with the embedded math font)           183,346
   embedded math font                            151,016
   script                                         21,339
-  MathML                                      4,436,371
-  TeX source inside MathML                      986,058
-  term cards (glossary)                       2,685,274
+  MathML                                      4,590,118
+  TeX source inside MathML                    1,012,768
+  term cards (glossary)                       2,735,917
   status section                                      0
-  term links                                  1,074,618
+  term links                                  1,081,737
 
 ROBOTS  noindex, nofollow: yes
 LISTING  named in: none of writing.html, feed.xml, sitemap.xml, llms.txt, llms-full.txt, robots.txt, index.html
@@ -20,22 +20,32 @@ EXTERNAL FETCHES  4 (0 not allowed)
   ok  link preconnect href https://fonts.gstatic.com
   ok  link stylesheet href https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap
 
-INTERNAL STRINGS  0
+INTERNAL STRINGS  54
+      54 × process word
+           page (text): Pentagon waves and chains
+           page (text): A basis with controlled waves
+           section pentagon-waves-chain-defect (text): Pentagon waves and chains
+           section pentagon-waves-chain-defect (text): Pentagon waves
+           section pentagon-waves-chain-defect (text): pentagon wave
+           section pentagon-waves-chain-defect (text): …s the intermediate substitutions are defined coefficientwise on these waves. No product of arbitrary series in opposite cones is used.
 
-TERMS  901 cards · 6,703 term links in the page
+TERMS  911 cards · 6,728 term links in the page
   marked as a term, no card: 0
   defined in the report (<dfn>), no card: 0
-  emphasised (bold or italic) in the report, no card: 7 distinct
-    Chiral Quantum Groups and Holography (31); Calabi–Yau Quantum Groups (9); The Igusa Square Root (8); An for ordered line coefficients (3); On differential graded categories (1); All-power comparisons and (1); in the sourced elliptic theory (1)
-  capitalised names and acronyms used twice or more, no card: 107 distinct
-    Quantum (44); Groups (40); Chiral (31); Holography (31); Hom (30); Taylor (26); Raeez (24); Lorgat (24); They (18); Euler (17); Indeed (15); Put (14); Clifford (13); Calabi–Yau (13); Igusa (12); Theorems (10); Root (10); Gaussian (10); Leibniz (9); Morita (9); Elliptic (9); Propositions (8); Frobenius (8); Square (8); Affine (7)
+  emphasised (bold or italic) in the report, no card: 8 distinct
+    Chiral Quantum Groups and Holography (31); Calabi–Yau Quantum Groups (9); The Igusa Square Root (8); An for ordered line coefficients (3); On differential graded categories (1); All-power comparisons and (1); Pentagon renormalization maps (1); in the sourced elliptic theory (1)
+  capitalised names and acronyms used twice or more, no card: 109 distinct
+    Quantum (44); Groups (40); Chiral (31); Holography (31); Hom (30); Taylor (26); Raeez (25); Lorgat (25); They (19); Euler (18); Indeed (16); Put (16); Clifford (13); Calabi–Yau (13); Igusa (12); Gaussian (11); Theorems (10); Root (10); Leibniz (9); Morita (9); Elliptic (9); Propositions (8); Frobenius (8); Square (8); Affine (7)
   technical phrases used four times or more, no card: 23 distinct
     higher products (7); coefficient map (6); ordered products (5); proves the comparison (5); ordered product (5); regular unit (5); parameter map (5); zero fibre (5); transition maps (4); coefficient spaces (4); coefficient maps (4); derived tensor (4); gives the comparison (4); derived complex (4); free resolution (4); local map (4); nonzero complex (4); explicit comparison (4); total charge (4); coefficient comparison (4); inverse identities (4); relative unit (4); inverse maps (4)
 
-CARDS  901
+CARDS  911
      11 × definition depends on page position
      11 × context depends on page position
       6 × motivation depends on page position
+      4 × context carries a process word
+      2 × motivation carries a process word
+      2 × definition carries a process word
       1 × definition carries a model or tool name
   shared definitions: 0 groups covering 0 cards
 
@@ -51,5 +61,6 @@ OPENING  /Users/raeez/mathematics/coordination/reports/quantum-holography-tracke
 STATUS BOARD  not shown: the opening replaces it
 MATH FONT  113,260 bytes for 304 characters
 
-FAILURES  1
+FAILURES  2
+  leak: 54 × process word
   status: the words are “draft”, not settled
