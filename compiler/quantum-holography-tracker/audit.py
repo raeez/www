@@ -184,9 +184,11 @@ def scan_fetches(page, markup):
 def candidates(page, wirer, cards):
     """Names in the report text that look like terms and have no card."""
     main = BeautifulSoup(str(page.find('main')), 'html.parser')
-    # The page's own labels, and the paper titles a breakthrough cites, are not candidates.
-    for node in main.select('#terms, script, style, math, .term, dfn, nav, .tally, .bt-label, .bt-lines dt, '
-                            '.bt-more > summary, .bt-proved em, .bt-proved i'):
+    # The page's own labels, the paper titles a result cites, and the map and other navigation
+    # (which repeat names the words already use) are not candidates.
+    for node in main.select('#terms, script, style, math, .term, dfn, nav, .tally, .chip, .key, .hl, '
+                            '.rk-label, .rk-lines dt, .rk-more > summary, .rk-proved em, .rk-proved i, '
+                            '.rk-side, .strip, .mapsec, .op-status, .terms-tools'):
         node.decompose()
     emphasised = Counter()
     for node in main.find_all(['strong', 'em', 'b', 'i']):
@@ -316,7 +318,8 @@ def weight(markup, page, compare=None):
         'script': size(r'<script>.*?</script>'),
         'MathML': size(r'<math\b.*?</math>'),
         'TeX source inside MathML': size(r'<annotation\b.*?</annotation>'),
-        'term cards (glossary)': size(r'<section[^>]*\bid="terms".*?</section>\s*</main>'),
+        'term cards (glossary)': size(r'<section[^>]*\bid="terms".*?</section>\s*</div>\s*</div>\s*</main>'),
+        'map of results': size(r'<section class="mapsec".*?</section>'),
         'status section': size(r'<section[^>]*\bid="status".*?</div></section>\s*<section'),
         'term links': size(r'<a class="term[^"]*"[^>]*>'),
     }

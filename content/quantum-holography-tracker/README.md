@@ -24,6 +24,29 @@ the vendored TeX renderer, `compiler/quantum-holography-tracker/vendor/temml.cjs
 The embedded math font is a subset of Garamond-Math (SIL Open Font License), found with
 `kpsewhich Garamond-Math.otf` or given with `--math-font`.
 
+## What the page shows
+
+- **The first screen.** The title and the subject, then the breakthroughs in rank order. Each
+  row gives the headline, its status, the Achieved line as the writer states it, the work and
+  sections its "Proved in" line cites, and the report sections its "Read more" line names; the
+  other lines open on demand. The obstructions follow by name, then links to the rest of the
+  page with the size of each part.
+- **Statuses come only from the words.** A "Proved in" (or "Proof") line gives *Proved*; a
+  "Checked" line gives *Checked*; an open problem is *Open*. Nothing else sets a status, and no
+  status is shown for an item whose lines state none.
+- **The map of results.** One row for each result: the report sections its "Read more" line
+  names (with the theorems and propositions stated there, and whether each proof is on the
+  page), the result with its status, and the sections of the work its "Proved in" line cites,
+  joined by hairlines. Open problems have rows of their own. Relations between results are
+  shown only where the words state them: a "Builds on" line, or a link from one item to
+  another. The audit notes when no item states one.
+- **Finding things.** A search over results, sections, statements and term cards (the Search
+  button, `/` or Ctrl-K); the contents beside the report, with each result's sections marked
+  and the statements of each section counted; a link on every heading and statement; a filter
+  over the term cards.
+- **Light and dark.** The page follows the reader's system theme; the button in the bar
+  switches it, and the choice is remembered in the browser.
+
 `stand-in/` is the 24 October 2026 report converted with
 `compiler/quantum-holography-tracker/import_integrated_report.py`, without changing its
 words. Its status states were assigned by the conversion and its cards have no motivation or
@@ -226,6 +249,12 @@ Prose.
   prints them as written. The Achieved line shows with the headline; the others open on
   demand. The audit requires all five on every breakthrough and every obstruction, and a
   Read more link to a part of the page.
+- Two further lines are optional. **Checked:** records a check of the result (the page shows
+  *Checked* beside *Proved*). **Builds on:** links the items or sections the result builds on,
+  for example `- **Builds on:** [Coefficient duality](#breakthroughs-1)`; the map lists them.
+  An open problem takes a paragraph that starts "Builds on:" for the same purpose. The anchors
+  are `#breakthroughs-1`, `#breakthroughs-2`, … and `#obstructions-1`, … in rank order, and each
+  open problem's own heading anchor.
 - `## Open problems`, and any other `##` section in the file, follows the obstructions as an
   unnumbered section with its own contents entry.
 - The same parts can be written into REPORT.md, before the status section; then the status
