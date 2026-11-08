@@ -566,6 +566,11 @@ mfrac > :nth-child(2), msqrt, mover > :first-child { math-shift: compact; }
   .tml-med-pad { padding-left: 0.1em; }
   .tml-lrg-pad { padding-left: 0.15em; }
 }
+/* Chromium does not draw <menclose>; Firefox and WebKit draw its notation themselves. */
+@supports (not (-moz-appearance: none)) and (not (-webkit-backdrop-filter: none)) {
+  menclose.tml-overline { padding-top: 0.1em; border-top: 0.065em solid; }
+  menclose.tml-underline { padding-bottom: 0.1em; border-bottom: 0.065em solid; }
+}
 .table-wrap { max-width: 100%; overflow-x: auto; margin: var(--s3) 0; }
 table { border-collapse: collapse; width: 100%; font-size: var(--text-sm); line-height: 1.5; }
 th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--ink-hint); }
