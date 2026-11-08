@@ -1,15 +1,16 @@
 Input: /Users/raeez/mathematics/coordination/reports/quantum-holography-tracker-20261104
 Words: draft · date 2026-11-08 · hashes in STATUS.md matching inputs: none
 
-PAGE WEIGHT  8,377,219 bytes · 1,262,594 bytes compressed (gzip -9)
-  style (with the embedded math font)           184,186
+PAGE WEIGHT  8,496,457 bytes · 1,279,880 bytes compressed (gzip -9)
+  style (with the embedded math font)           207,347
   embedded math font                            151,856
-  script                                         21,339
+  script                                         40,445
   MathML                                      4,912,422
   TeX source inside MathML                    1,081,667
-  term cards (glossary)                       2,904,397
+  term cards (glossary)                       2,905,006
+  map of results                                 12,768
   status section                                      0
-  term links                                  1,130,198
+  term links                                  1,130,131
 
 ROBOTS  noindex, nofollow: yes
 LISTING  named in: none of writing.html, feed.xml, sitemap.xml, llms.txt, llms-full.txt, robots.txt, index.html
@@ -20,8 +21,8 @@ EXTERNAL FETCHES  4 (0 not allowed)
   ok  link preconnect href https://fonts.gstatic.com
   ok  link stylesheet href https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap
 
-INTERNAL STRINGS  59
-      59 × process word
+INTERNAL STRINGS  61
+      61 × process word
            page (text): Pentagon waves and chains
            page (text): A basis with controlled waves
            section pentagon-waves-chain-defect (text): Pentagon waves and chains
@@ -29,15 +30,15 @@ INTERNAL STRINGS  59
            section pentagon-waves-chain-defect (text): pentagon wave
            section pentagon-waves-chain-defect (text): …s the intermediate substitutions are defined coefficientwise on these waves. No product of arbitrary series in opposite cones is used.
 
-TERMS  939 cards · 7,077 term links in the page
+TERMS  939 cards · 7,076 term links in the page
   marked as a term, no card: 0
   defined in the report (<dfn>), no card: 0
   emphasised (bold or italic) in the report, no card: 11 distinct
     Chiral Quantum Groups and Holography (31); Calabi–Yau Quantum Groups (9); The Igusa Square Root (8); Pentagon renormalization maps (4); Signed traces and charge (4); An for ordered line coefficients (3); On differential graded categories (1); All-power comparisons and (1); Geometric and their (1); from a (1); in the sourced elliptic theory (1)
-  capitalised names and acronyms used twice or more, no card: 116 distinct
-    Quantum (44); Groups (40); Hom (32); Chiral (31); Holography (31); Raeez (30); Lorgat (30); Euler (30); Taylor (26); They (21); Indeed (19); Put (17); Clifford (13); Calabi–Yau (13); Igusa (12); Fock (11); Theorems (10); Root (10); Gaussian (10); Leibniz (9); Morita (9); Elliptic (9); Lie (8); Work (8); Propositions (8)
+  capitalised names and acronyms used twice or more, no card: 117 distinct
+    Quantum (43); Groups (40); Hom (32); Chiral (31); Holography (31); Raeez (30); Lorgat (30); Euler (30); Taylor (26); They (21); Indeed (19); Put (17); Clifford (13); Calabi–Yau (13); Igusa (12); Fock (11); Theorems (10); Root (10); Gaussian (10); Leibniz (9); Morita (9); Elliptic (9); Lie (8); Work (8); Propositions (8)
   technical phrases used four times or more, no card: 27 distinct
-    higher products (7); ordered product (6); total charge (6); coefficient map (6); ordered products (5); proves the comparison (5); regular unit (5); parameter map (5); zero fibre (5); transition maps (4); coefficient spaces (4); coefficient maps (4); derived tensor (4); gives the comparison (4); physical comparison (4); derived complex (4); free resolution (4); local map (4); nonzero complex (4); explicit comparison (4); exterior products (4); coefficient comparison (4); renormalization maps (4); traces and charge (4); inverse identities (4)
+    higher products (6); ordered product (6); total charge (6); coefficient map (6); ordered products (5); proves the comparison (5); regular unit (5); parameter map (5); zero fibre (5); transition maps (4); coefficient spaces (4); coefficient maps (4); derived tensor (4); gives the comparison (4); physical comparison (4); derived complex (4); free resolution (4); local map (4); nonzero complex (4); explicit comparison (4); exterior products (4); coefficient comparison (4); renormalization maps (4); traces and charge (4); inverse identities (4)
 
 CARDS  939
      12 × definition depends on page position
@@ -63,5 +64,8 @@ STATUS BOARD  not shown: the opening replaces it
 MATH FONT  113,892 bytes for 310 characters
 
 FAILURES  2
-  leak: 59 × process word
+  leak: 61 × process word
   status: the words are “draft”, not settled
+
+NOTES
+  map: no result or open problem has a "Builds on" line, so the map draws no arrows between results; a "Builds on" line linking other items draws them
