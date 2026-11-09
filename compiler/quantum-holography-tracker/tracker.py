@@ -40,6 +40,9 @@ NO_WIRE = {'a', 'code', 'pre', 'math', 'script', 'style', 'summary', 'button', '
 NO_TEX = {'math', 'code', 'pre', 'script', 'style', 'annotation', 'svg', 'textarea', 'title'}
 TEX = re.compile(r'\\\((.+?)\\\)|\\\[(.+?)\\\]', re.S)
 HTMLISH = re.compile(r'<\s*(p|div|span|em|strong|b|i|math|ul|ol|li|a|br|sup|sub|dfn|table|section)\b', re.I)
+# A '<' typed into TeX inside an HTML field (as in i<j) opens a tag in the HTML parser, which then swallows
+# the formula and the text after it; protect_tex escapes it in every TeX span that holds no HTML tag.
+TEX_TAG = re.compile(r'</?(?:p|div|span|em|strong|b|i|a|code|pre|math|ul|ol|li|br|sup|sub|dfn|table|section|h[1-6])\b[^<>]*>', re.I)
 CARD_ID = re.compile(r'^[a-z0-9][a-z0-9-]*$')
 KEEP_DATA = {'data-term', 'data-state', 'data-card'}
 # The opening's parts, recognised by their headings (or by data-role).
@@ -78,6 +81,10 @@ PUNCT_AFTER_MATH = re.compile(r'^[,.;:!?)\]\u2019\u201d]+')
 
 def parse(markup):
     return BeautifulSoup(markup, 'html.parser')
+
+
+def protect_tex(markup):
+    return TEX.sub(lambda m: m.group(0) if TEX_TAG.search(m.group(0)) else m.group(0).replace('<', '&lt;'), markup)
 
 
 def text_of(node):
@@ -235,7 +242,7 @@ class Cards:
     def __init__(self, rows, renderer, warnings, problems):
         self.rows, self.by_id, self.order = rows, {}, []
         self.fields = {}
-        markdown_jobs = []
+        markdown_jobs, raw = [], set()
         for index, row in enumerate(rows):
             ident = str(row.get('id', '')).strip()
             if not CARD_ID.match(ident):
@@ -253,7 +260,8 @@ class Cards:
                 if value.strip() and not HTMLISH.search(value):
                     markdown_jobs.append((ident, field, value))
                 else:
-                    self.fields[(ident, field)] = value
+                    self.fields[(ident, field)] = protect_tex(value)
+                    raw.add((ident, field))
         if markdown_jobs:
             blocks = [f'::: {{#qhf{i}}}\n{value}\n:::\n' for i, (_, _, value) in enumerate(markdown_jobs)]
             out = parse(pandoc('\n'.join(blocks), warnings))
@@ -263,6 +271,11 @@ class Cards:
         self.trees, self.tex_jobs = {}, []
         for key, value in self.fields.items():
             tree = parse(value)
+            if key in raw:
+                text = tree.get_text()
+                lost = [m.group(0) for m in TEX.finditer(value) if html.unescape(m.group(0)) not in text]
+                if lost:
+                    problems.append((f'{key[1]} loses {len(lost)} formula(s) in HTML parsing, first {lost[0][:48]!r}', key[0]))
             self.tex_jobs += renderer.collect(tree, f'card {key[0]} {key[1]}')
             self.trees[key] = tree
 
