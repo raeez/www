@@ -117,6 +117,21 @@ class Math:
 
 
 MATH_RE = re.compile(r'\\\((.+?)\\\)|\\\[(.+?)\\\]', re.S)
+LINK_RE = re.compile(r'\[([^\[\]]+)\]\((https?://[^\s)]+)\)')
+ARXIV_RE = re.compile(r'arxiv\.org/(?:abs|html|pdf)/((?:math|hep-th|math-ph|alg-geom|q-alg)/\d{7}|\d{4}\.\d{4,5})(v\d+)?', re.I)
+
+
+def unlink(text):
+    """[label](url) -> label, followed by its arXiv number when the address has one.
+
+    The page makes no reference to another host, so citations are given as text."""
+    def one(m):
+        label, url = m.group(1), m.group(2)
+        a = ARXIV_RE.search(url)
+        if a and a.group(1) not in label:
+            return f'{label} (arXiv:{a.group(1)}{a.group(2) or ""})'
+        return label
+    return LINK_RE.sub(one, text or '')
 EMPH_RE = re.compile(r'(?<![\w*])\*(?=\S)([^*\n]+?)(?<=\S)\*(?![\w*])')
 
 
@@ -180,6 +195,7 @@ class Build:
         """Plain text with TeX and *emphasis* to HTML; glossary terms attached once per block."""
         if text is None:
             return ''
+        text = unlink(text)
         seen = set() if seen is None else seen
         parts = []
         pos = 0
@@ -219,17 +235,28 @@ class Build:
     def status_label(self, status):
         return self.page['status_labels'][status]
 
-    def statement(self, s, where, heading='h4'):
+    def statement_id(self, s):
+        sid = (s.get('id') or '').strip()
+        return 's-' + ident(sid) if sid else ''
+
+    def statement(self, s, where, heading='h4', title_override=None, chip=True):
         status = s.get('status')
         if status not in STATEMENT_STATUSES:
             self.problems.append(f'{where}: unknown statement status {status!r}')
             status = 'open'
         seen = set()
         label = self.status_label(status)
-        title = s.get('title') or ''
-        out = [f'<article class="statement st-{slug(status)}" data-status="{status}">']
+        title = (s.get('title') or '') if title_override is None else title_override
+        sid = self.statement_id(s)
+        if sid:
+            self.anchors.add(sid)
+        id_attr = f' id="{sid}"' if sid else ''
+        added = ' added' if s.get('added') else ''
+        out = [f'<article class="statement st-{slug(status)}{added}" data-status="{status}"{id_attr}>']
         out.append('<div class="statement-head">')
         out.append(f'<span class="status-chip chip-{slug(status)}">{mark(status)}<span>{html.escape(label)}</span></span>')
+        if s.get('added') and chip:
+            out.append(f'<span class="added-chip">{html.escape(self.page["labels"]["added"])}</span>')
         if title:
             out.append(f'<{heading} class="statement-title">{self.rich(title, seen, terms=False)}</{heading}>')
         out.append('</div>')
@@ -259,12 +286,14 @@ class Build:
             return f'<p>{self.rich(text.strip() if text else "", seen)}</p>'
         return ''.join(f'<p>{self.rich(b, seen)}</p>' for b in blocks)
 
-    def section(self, sid, title, body, cls='', kicker=None):
+    def section(self, sid, title, body, cls='', kicker=None, added=False):
         self.anchors.add(sid)
         k = f'<p class="kicker">{html.escape(kicker)}</p>' if kicker else ''
+        chip = (f'<p class="section-added"><span class="added-chip">{html.escape(self.page["labels"]["added_section"])}'
+                f'</span></p>') if added else ''
         return (f'<section id="{sid}" class="section {cls}" aria-labelledby="{sid}-h">'
                 f'<header class="section-head">{k}<h2 id="{sid}-h"><a class="anchor" href="#{sid}">'
-                f'{html.escape(title)}</a></h2></header>{body}</section>')
+                f'{html.escape(title)}</a></h2>{chip}</header>{body}</section>')
 
     # Sections ---------------------------------------------------------------------------
 
@@ -282,7 +311,10 @@ class Build:
                 f'<h1>{self.rich(c["title"], terms=False)}</h1>'
                 f'<p class="subtitle">{self.rich(c.get("subtitle", ""), terms=False)}</p>'
                 f'<p class="as-of">{html.escape(L["as_of"])} <time datetime="{html.escape(c["as_of"])}">'
-                f'{html.escape(long_date(c["as_of"]))}</time></p>'
+                f'{html.escape(long_date(c["as_of"]))}</time>'
+                + (f'<span class="sep" aria-hidden="true"> · </span><a href="#changes">{html.escape(L["changes_link"])}</a>'
+                   if (c.get('changes') or {}).get('items') else '') +
+                '</p>'
                 f'</header>'
                 f'<div class="lead prose">{lead}</div>'
                 f'<nav class="tally" aria-label="{html.escape(L["tally"])}"><p class="tally-label">'
@@ -298,8 +330,15 @@ class Build:
     @staticmethod
     def all_statements(c):
         yield from c.get('principal', [])
+        for q in (c.get('frontier') or {}).get('questions', []):
+            if q.get('question'):
+                yield q['question']
+            yield from q.get('known', [])
         for r in c.get('rows', []):
             yield from r.get('statements', [])
+        for f in (c.get('failures') or {}).get('items', []):
+            if f.get('witness'):
+                yield f['witness']
         for g in c.get('open', []):
             yield from g.get('statements', [])
 
@@ -331,6 +370,89 @@ class Build:
             extra = (f'<p class="key-sub">{html.escape(self.page["labels"]["key_cells"])}</p>'
                      f'<dl class="key">{"".join(cells)}</dl>')
         return f'<dl class="key">{"".join(items)}</dl>{extra}'
+
+    def changes(self, c):
+        ch = c.get('changes') or {}
+        items = ch.get('items') or []
+        if not items:
+            return ''
+        L = self.page['labels']
+        refs = {}
+        for st in self.all_statements(c):
+            if st.get('id'):
+                refs[st['id']] = st
+        lis = []
+        for i, it in enumerate(items):
+            ref = (it.get('ref') or '').strip()
+            target = refs.get(ref)
+            if not target:
+                self.problems.append(f'changes item {i}: no statement with id {ref!r}')
+            title = self.rich((target or {}).get('title') or '', terms=False)
+            status = (target or {}).get('status', 'open')
+            head = (f'<a class="change-link" href="#s-{ident(ref)}">{mark(status)}<span>{title}</span></a>'
+                    if target else '')
+            lis.append(f'<li>{head}<p>{self.rich(it.get("text", ""))}</p></li>')
+        since = ch.get('since') or ''
+        label = L['changes_since'].format(date=long_date(since)) if since else L['changes']
+        self.anchors.add('changes')
+        intro = f'<p class="changes-intro">{self.rich(ch["intro"])}</p>' if ch.get('intro') else ''
+        return (f'<aside class="changes" id="changes" aria-labelledby="changes-h">'
+                f'<p class="kicker">{html.escape(L["changes_kicker"])}</p>'
+                f'<h2 id="changes-h" class="changes-title">{html.escape(label)}</h2>'
+                f'{intro}<ol class="change-list">{"".join(lis)}</ol></aside>')
+
+    def frontier(self, c):
+        fr = c.get('frontier') or {}
+        questions = fr.get('questions') or []
+        if not questions:
+            return ''
+        L = self.page['labels']
+        out = []
+        all_added = all(st.get('added') for q in questions for st in [q.get('question') or {}] + (q.get('known') or []))
+        for i, q in enumerate(questions):
+            qid = 'q-' + ident(q.get('id') or q.get('title') or str(i))
+            self.anchors.add(qid)
+            question = q.get('question') or {}
+            body = self.statement(question, f'frontier {i} question', title_override='', chip=not all_added) if question else ''
+            why = (f'<div class="question-why prose"><p class="question-why-label">{html.escape(L["why"])}</p>'
+                   f'{self.paragraphs(q["why"])}</div>') if q.get('why') else ''
+            known = q.get('known') or []
+            kn = ''
+            if known:
+                inner = ''.join(self.statement(s, f'frontier {i} known {j}', chip=not all_added) for j, s in enumerate(known))
+                n = len(known)
+                count = L['statements_one'] if n == 1 else L['statements_many'].format(n=n)
+                kn = (f'<details class="known"><summary><span>{html.escape(L["known"])}</span>'
+                      f'<span class="row-count">{html.escape(count)}</span>{icon("chevron")}</summary>'
+                      f'<div class="statements">{inner}</div></details>')
+            out.append(f'<div class="question" id="{qid}"><p class="question-num">{i + 1}</p>'
+                       f'<h3><a class="anchor" href="#{qid}">{self.rich(q.get("title", ""), terms=False)}</a></h3>'
+                       f'{body}{why}{kn}</div>')
+        intro = f'<div class="section-intro prose">{self.paragraphs(fr["intro"])}</div>' if fr.get('intro') else ''
+        return self.section('frontier', fr.get('heading') or L['frontier'], intro + f'<div class="questions">{"".join(out)}</div>',
+                            kicker=L['frontier_kicker'], added=all_added)
+
+    def failures(self, c):
+        fa = c.get('failures') or {}
+        items = fa.get('items') or []
+        if not items:
+            return ''
+        L = self.page['labels']
+        out = []
+        all_added = all((it.get('witness') or {}).get('added') for it in items)
+        for i, it in enumerate(items):
+            fid = 'f-' + ident(it.get('id') or str(i))
+            self.anchors.add(fid)
+            w = it.get('witness') or {}
+            witness = self.statement(w, f'failure {i} witness', chip=not all_added) if w else ''
+            if not w:
+                self.problems.append(f'failure {i}: no witness')
+            out.append(f'<div class="failure" id="{fid}"><p class="claim">'
+                       f'<span class="claim-tag">{mark("refuted form")}<span>{html.escape(L["false"])}</span></span>'
+                       f'<span class="claim-text">{self.rich(claim_text(it.get("claim", "")), terms=False)}</span></p>{witness}</div>')
+        intro = f'<div class="section-intro prose">{self.paragraphs(fa["intro"])}</div>' if fa.get('intro') else ''
+        return self.section('failures', fa.get('heading') or L['failures'], intro + f'<div class="failures">{"".join(out)}</div>',
+                            kicker=L['failures_kicker'], added=all_added)
 
     def principal(self, c):
         L = self.page['labels']
@@ -495,15 +617,23 @@ class Build:
         L = self.page['labels']
 
         cover = self.cover(c)
+        changes = self.changes(c)
         key = self.section('status', L['key'], self.key(c), cls='key-section', kicker=L['key_kicker'])
         principal = self.principal(c)
+        frontier = self.frontier(c)
         examples = self.rows(c)
+        failures = self.failures(c)
         open_ = self.open_problems(c)
         essay = self.essay(essay_text, c.get('essay_lead', '')) if essay_text else ''
         terms = self.glossary()
 
-        nav_items = [('programme', L['nav_programme']), ('results', L['nav_results']),
-                     ('examples', L['nav_examples']), ('open', L['nav_open'])]
+        nav_items = [('programme', L['nav_programme']), ('results', L['nav_results'])]
+        if frontier:
+            nav_items.append(('frontier', L['nav_frontier']))
+        nav_items.append(('examples', L['nav_examples']))
+        if failures:
+            nav_items.append(('failures', L['nav_failures']))
+        nav_items.append(('open', L['nav_open']))
         if essay:
             nav_items.append(('essay', L['nav_essay']))
         if terms:
@@ -516,7 +646,7 @@ class Build:
                 f'<nav class="nav" aria-label="{html.escape(L["on_page"])}"><ul>{nav}</ul></nav>'
                 f'<button type="button" class="theme" aria-label="{html.escape(L["theme"])}" title="{html.escape(L["theme"])}">'
                 f'{icon("theme")}</button></div></div>'
-                f'<main id="main" tabindex="-1">{cover}{key}{principal}{examples}{open_}{essay}{terms}</main>'
+                f'<main id="main" tabindex="-1">{cover}{changes}{key}{principal}{frontier}{examples}{failures}{open_}{essay}{terms}</main>'
                 f'<footer class="foot"><div class="foot-inner"><p>{html.escape(self.page["author"])} · '
                 f'<time datetime="{html.escape(c["as_of"])}">{html.escape(long_date(c["as_of"]))}</time></p>'
                 f'<p><a href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a> · '
@@ -600,6 +730,12 @@ def subset_font(path, chars, keep_math):
     font.flavor = 'woff'
     font.save(buffer)
     return buffer.getvalue()
+
+
+def claim_text(text):
+    """A false claim is labelled by the page; a leading 'False:' in the text is dropped."""
+    text = re.sub(r'^\s*false\s*[:.]\s*', '', text or '', flags=re.I)
+    return text[:1].upper() + text[1:]
 
 
 def strip_tags(markup):

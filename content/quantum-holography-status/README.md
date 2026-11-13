@@ -28,16 +28,24 @@ Licence), which are embedded as subsets. The page makes no request to any other 
   "principal": [STATEMENT, ...],
   "columns": [{"id", "name", "explanation", "short"?}, ...]   ids: object dual modules fusion bulk lines states dictionary
   "rows": [{"id", "name", "short"?, "summary", "cells": {column id: CELL}, "statements": [STATEMENT, ...]}, ...],
+  "changes"?: {"since" (YYYY-MM-DD), "intro", "items": [{"ref": statement id, "text"}, ...]},
+  "frontier"?: {"heading", "intro", "questions": [{"id", "title", "question": STATEMENT, "why", "known": [STATEMENT, ...]}, ...]},
+  "failures"?: {"heading", "intro", "items": [{"id", "claim", "witness": STATEMENT}, ...]},
   "open": [{"heading", "intro", "statements": [STATEMENT, ...]}, ...],
   "glossary": [{"term", "forms": [...], "definition"}, ...],
   "essay_lead": ""
 }
-STATEMENT = {"status", "title", "text", "novelty", "antecedents", "cite", "source": [...]}
+STATEMENT = {"status", "title", "text", "novelty", "antecedents", "cite", "source": [...], "id"?, "added"?}
 CELL      = {"status", "note", "source": [...]}
 ```
 
 Statement statuses: checked, pending, conditional, conjecture, heuristic, open, published.
 Cell statuses: checked, partial, pending, published, open, not posed, refuted form.
+`id` gives a statement an anchor (`#s-<id>`), which `changes.items[].ref` names; `added: true` marks a
+statement as new in this edition. `changes` is shown under the cover as a numbered list of links, `frontier`
+after the principal results, `failures` (a natural statement marked false, then its counterexample) after
+the examples. Markdown links in `cite` and `antecedents` are shown as their text, with the arXiv number when
+the address has one: the page links to no other host.
 Text is plain, with TeX between `\(`…`\)` or `\[`…`\]` and `*emphasis*`. The `source` fields are for
 tracing and are never rendered. Glossary `forms` are matched in the text, and the first use of each
 term in a block opens its definition on hover, focus or tap.

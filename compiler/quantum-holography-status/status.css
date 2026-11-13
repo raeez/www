@@ -371,3 +371,54 @@ mfrac > :nth-child(2), msqrt, mover > :first-child { math-shift: compact; }
   menclose.tml-underline { padding-bottom: 0.1em; border-bottom: 0.065em solid; }
 }
 .nobr { white-space: nowrap; }
+
+/* What changed in this edition: a short numbered list under the cover, each item linked to its statement. */
+.changes { max-width: calc(var(--measure) + 2 * var(--gutter)); margin: clamp(32px, 5vw, 56px) auto 0; padding: 0 var(--gutter); }
+.changes > * { margin-left: 0; }
+.changes { position: relative; }
+.changes-title { font-size: calc(var(--text-base) * 1.3); font-weight: 400; margin-bottom: .5em; }
+.changes-intro { color: var(--ink-2); }
+.change-list { list-style: none; margin: 0; padding: 0; counter-reset: change; border-top: 1px solid var(--rule); }
+.change-list li { counter-increment: change; position: relative; padding: 12px 0 12px 2.2em; border-bottom: 1px solid var(--rule-soft); }
+.change-list li::before { content: counter(change); position: absolute; left: 0; top: 12px; width: 1.6em; color: var(--ink-4);
+                          font-size: var(--text-sm); font-variant-numeric: lining-nums tabular-nums; }
+.change-list p { margin: .2em 0 0; color: var(--ink-2); font-size: var(--text-sm); }
+.change-link { display: inline-flex; align-items: flex-start; gap: 8px; font-weight: 600; color: var(--ink); text-decoration: none; }
+.change-link .mark { width: 13px; height: 13px; margin-top: .32em; }
+.change-link:hover span { color: var(--accent); text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .18em; }
+.as-of a { color: var(--accent); }
+.as-of .sep { color: var(--ink-4); }
+
+/* A statement new in this edition carries a small label beside its status. */
+.added-chip { display: inline-block; font-size: var(--text-xs); letter-spacing: .06em; text-transform: uppercase; color: var(--accent);
+              background: var(--accent-soft); padding: 1px 8px; border-radius: 999px; font-variant-numeric: lining-nums; white-space: nowrap; }
+.statement:target { box-shadow: 0 0 0 2px var(--accent-soft), var(--shadow); }
+
+/* Questions at the frontier: each question, why it matters, and what is proved toward it. */
+.questions { display: grid; gap: clamp(28px, 4vw, 44px); counter-reset: question; }
+.question { border-top: 1px solid var(--rule); padding-top: 1.1em; min-width: 0; }
+.question-num { margin: 0 0 .2em; font-size: var(--text-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-4);
+                font-variant-numeric: lining-nums; }
+.question-num::before { content: 'Question '; }
+.question h3 { font-size: calc(var(--text-base) * 1.34); font-weight: 400; line-height: 1.22; margin-bottom: .7em; }
+.question > .statement { background: transparent; }
+.question-why { margin: 1em 0 0; color: var(--ink-2); }
+.question-why-label { margin: 0 0 .25em; font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-4); }
+.known { margin-top: 1em; border-top: 1px solid var(--rule-soft); }
+.known > summary { display: flex; align-items: baseline; gap: 10px; padding: 12px 0; cursor: pointer; list-style: none; color: var(--accent); }
+.known > summary::-webkit-details-marker { display: none; }
+.known > summary .icon { align-self: center; color: var(--ink-4); }
+.known[open] > summary .icon { transform: rotate(180deg); }
+.known > .statements { padding-bottom: 6px; }
+
+/* Natural statements that fail: the statement, marked false, then its counterexample. */
+.failures { display: grid; gap: 22px; }
+.failure { min-width: 0; }
+.claim { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0 0 .55em; }
+.claim-tag { display: inline-flex; align-items: center; gap: 6px; font-size: var(--text-xs); letter-spacing: .06em; text-transform: uppercase;
+             color: var(--st-refuted-form); white-space: nowrap; }
+.claim-tag .mark { width: 12px; height: 12px; }
+.claim-text { flex: 1 1 18rem; min-width: 0; font-style: italic; color: var(--ink-2); }
+.failure > .statement { margin-left: clamp(0px, 2vw, 18px); }
+@media print { .known > .statements { display: grid !important; } }
+.section-added { margin: .6em 0 0; }
