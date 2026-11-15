@@ -330,10 +330,11 @@ class Build:
     @staticmethod
     def all_statements(c):
         yield from c.get('principal', [])
-        for q in (c.get('frontier') or {}).get('questions', []):
-            if q.get('question'):
-                yield q['question']
-            yield from q.get('known', [])
+        for key in ('decisive', 'frontier'):
+            for q in (c.get(key) or {}).get('questions', []):
+                if q.get('question'):
+                    yield q['question']
+                yield from q.get('known', [])
         for r in c.get('rows', []):
             yield from r.get('statements', [])
         for f in (c.get('failures') or {}).get('items', []):
@@ -401,8 +402,8 @@ class Build:
                 f'<h2 id="changes-h" class="changes-title">{html.escape(label)}</h2>'
                 f'{intro}<ol class="change-list">{"".join(lis)}</ol></aside>')
 
-    def frontier(self, c):
-        fr = c.get('frontier') or {}
+    def frontier(self, c, key='frontier'):
+        fr = c.get(key) or {}
         questions = fr.get('questions') or []
         if not questions:
             return ''
@@ -413,13 +414,13 @@ class Build:
             qid = 'q-' + ident(q.get('id') or q.get('title') or str(i))
             self.anchors.add(qid)
             question = q.get('question') or {}
-            body = self.statement(question, f'frontier {i} question', title_override='', chip=not all_added) if question else ''
+            body = self.statement(question, f'{key} {i} question', title_override='', chip=not all_added) if question else ''
             why = (f'<div class="question-why prose"><p class="question-why-label">{html.escape(L["why"])}</p>'
                    f'{self.paragraphs(q["why"])}</div>') if q.get('why') else ''
             known = q.get('known') or []
             kn = ''
             if known:
-                inner = ''.join(self.statement(s, f'frontier {i} known {j}', chip=not all_added) for j, s in enumerate(known))
+                inner = ''.join(self.statement(s, f'{key} {i} known {j}', chip=not all_added) for j, s in enumerate(known))
                 n = len(known)
                 count = L['statements_one'] if n == 1 else L['statements_many'].format(n=n)
                 kn = (f'<details class="known"><summary><span>{html.escape(L["known"])}</span>'
@@ -429,8 +430,8 @@ class Build:
                        f'<h3><a class="anchor" href="#{qid}">{self.rich(q.get("title", ""), terms=False)}</a></h3>'
                        f'{body}{why}{kn}</div>')
         intro = f'<div class="section-intro prose">{self.paragraphs(fr["intro"])}</div>' if fr.get('intro') else ''
-        return self.section('frontier', fr.get('heading') or L['frontier'], intro + f'<div class="questions">{"".join(out)}</div>',
-                            kicker=L['frontier_kicker'], added=all_added)
+        return self.section(key, fr.get('heading') or L[key], intro + f'<div class="questions">{"".join(out)}</div>',
+                            kicker=L[f'{key}_kicker'], added=all_added)
 
     def failures(self, c):
         fa = c.get('failures') or {}
@@ -620,6 +621,7 @@ class Build:
         changes = self.changes(c)
         key = self.section('status', L['key'], self.key(c), cls='key-section', kicker=L['key_kicker'])
         principal = self.principal(c)
+        decisive = self.frontier(c, 'decisive')
         frontier = self.frontier(c)
         examples = self.rows(c)
         failures = self.failures(c)
@@ -628,6 +630,8 @@ class Build:
         terms = self.glossary()
 
         nav_items = [('programme', L['nav_programme']), ('results', L['nav_results'])]
+        if decisive:
+            nav_items.append(('decisive', L['nav_decisive']))
         if frontier:
             nav_items.append(('frontier', L['nav_frontier']))
         nav_items.append(('examples', L['nav_examples']))
@@ -646,7 +650,7 @@ class Build:
                 f'<nav class="nav" aria-label="{html.escape(L["on_page"])}"><ul>{nav}</ul></nav>'
                 f'<button type="button" class="theme" aria-label="{html.escape(L["theme"])}" title="{html.escape(L["theme"])}">'
                 f'{icon("theme")}</button></div></div>'
-                f'<main id="main" tabindex="-1">{cover}{changes}{key}{principal}{frontier}{examples}{failures}{open_}{essay}{terms}</main>'
+                f'<main id="main" tabindex="-1">{cover}{changes}{key}{principal}{decisive}{frontier}{examples}{failures}{open_}{essay}{terms}</main>'
                 f'<footer class="foot"><div class="foot-inner"><p>{html.escape(self.page["author"])} · '
                 f'<time datetime="{html.escape(c["as_of"])}">{html.escape(long_date(c["as_of"]))}</time></p>'
                 f'<p><a href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a> · '
