@@ -6249,8 +6249,21 @@ s(\beta e_\eta)\longmapsto(-1)^{\deg\beta+1}\beta .</annotation></semantics></ma
     searchState.q = q || '';
     var id = hashId();
     var st = history.state && history.state.reader;
+    // Only Back and Forward revisit a saved position. Reload follows the URL.
+    var timing = window.performance;
+    var nav = timing && timing.getEntriesByType && timing.getEntriesByType('navigation')[0];
+    var traversal = nav ? nav.type === 'back_forward' : timing && timing.navigation && timing.navigation.type === 2;
+    var saved = traversal && st && (st.at || typeof st.y === 'number') ? st : null;
+    if (st && !traversal) {
+      var entry = stateWith({});
+      delete entry.reader.at;
+      delete entry.reader.off;
+      delete entry.reader.y;
+      delete entry.reader.focus;
+      replaceEntry(entry);
+    }
     if (id) {
-      if (!go(id, { replace: true, initial: true, focus: false, keepQuery: !!q, restore: st && st.id === id && (st.at || typeof st.y === 'number') ? st : null })) {
+      if (!go(id, { replace: true, initial: true, focus: false, keepQuery: !!q, restore: saved && saved.id === id ? saved : null })) {
         if (!current && view !== 'front') show(null);
         replaceEntry(stateWith({ id: '', view: view }));
       }
@@ -6258,7 +6271,8 @@ s(\beta e_\eta)\longmapsto(-1)^{\deg\beta+1}\beta .</annotation></semantics></ma
       show(null);
       lastId = '';
       replaceEntry(stateWith({ id: '', view: 'front' }));
-      if (st && (st.at || typeof st.y === 'number')) restorePlace(st, false);
+      if (saved) restorePlace(saved, false);
+      else window.scrollTo(0, 0);
       if (!q) offerPlace();
     }
     if (q) {
