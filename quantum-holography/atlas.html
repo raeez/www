@@ -1646,9 +1646,9 @@ main[data-reader] > [hidden='until-found'] { content-visibility: hidden; }
 /* The map of the book: a column per part, a box per chapter (number and title), and a line from a chapter to each
    later chapter that draws on it directly. Lines are quiet and thinner than the boxes' rules; one chapter under the
    pointer or focus lights its own lines. Where the figure is too narrow for the titles, it gives way to the contents. */
-.mg-front-intro { max-width: var(--mg-measure); margin: 0 0 var(--s5); }
-.mg-front-intro p { margin: 0; text-wrap: pretty; }
-.mg-front-intro p + p { text-indent: 1.5em; }
+.mg-front-intro, .mg-front-abstract { max-width: var(--mg-measure); margin: 0 0 var(--s5); }
+.mg-front-intro p, .mg-front-abstract p { margin: 0; text-wrap: pretty; }
+.mg-front-intro p + p, .mg-front-abstract p + p { text-indent: 1.5em; }
 .mg-front-intro .mg-lead { margin-bottom: var(--s2); }
 .mg-front-intro .mg-lead + p { text-indent: 0; }
 .mg-bookmap { margin: 0 0 var(--s3); container-type: inline-size; }
@@ -1809,7 +1809,7 @@ main[data-reader] > [hidden='until-found'] { content-visibility: hidden; }
 .mg-terms li { padding: .05rem .45rem; border: 1px solid var(--rule); border-radius: 999px; font-style: italic; color: var(--ink-2); }
 
 /* Running text: a book's paragraphs, indented after the first; a paragraph that continues after a display is not. */
-.mg-ch-open, .mg-ch-text, .mg-front-intro, .mg-gl-entry, .mg-ri-entry { hyphens: auto; -webkit-hyphens: auto;
+.mg-ch-open, .mg-ch-text, .mg-front-intro, .mg-front-abstract, .mg-gl-entry, .mg-ri-entry { hyphens: auto; -webkit-hyphens: auto;
   hyphenate-limit-chars: 8 4 4; -webkit-hyphenate-limit-before: 4; -webkit-hyphenate-limit-after: 4; }
 .mg-lead { hyphens: manual !important; -webkit-hyphens: manual !important; }
 .mg-ch-open p, .mg-ch-text p { margin: 0; text-wrap: pretty; }
