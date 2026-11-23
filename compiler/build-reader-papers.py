@@ -71,7 +71,7 @@ def render(paper, previous, following, config):
         'description': escape(paper['description'], quote=True),
         'subtitle': escape(paper['description']),
         'slug': paper['slug'],
-        'metaHtml': 'September 2026',
+        'metaHtml': escape(paper.get('date_label', 'September 2026')),
         'content': body,
     }
     for key, value in values.items():
