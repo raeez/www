@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "check": "Reversing only the accessible label change on each final source gives the source SHA256 in the full corpus measurement.",
+  "measurement": {
+    "file": "verification.json",
+    "sha256": "78f2cc6f95b120b338c26c13256ceca3b58012a84f85e67b7f632a9b20f067a4"
+  },
+  "sourcePins": {
+    "reader.js": {
+      "baseline": "6299d8daec3943bee0cf80a487a30153653b20c8a89873163ef7d80ad9440fc5",
+      "measuredProducer": "6c9398c5954e2756ca8d82000a78d653e70ec3be59cf51f8388c4bbdaa25a8d2",
+      "final": "c3dc108d47c691b4f536d08d5f46b95e2e658a8250e7eeb11471ee5797274807"
+    },
+    "reader-runtime/reader-book.js": {
+      "baseline": "35b5ca076c69893889714234abe81344ab90b1a090293cf2e0bd6a73fc9a97d0",
+      "measuredProducer": "8065bf95f1506cb6f702605846d13e8cdfccd2785299f25ce9868d7facfe18ab",
+      "final": "85d43ddbb04a3375dea7f22e91264a3de0cb76ad39e4ad278cf20babb9ef678b"
+    },
+    "reader-runtime/reader-companions.js": {
+      "baseline": "df853929917478b24301e472dcb20241ab4920557e4360e8c0c8ebb4e07bdbeb",
+      "measuredProducer": "eebb5f151ccf58ae6954dd7548d0e1fe431ed16bc2131ac917976a6fcd0e08a3",
+      "final": "8320b12d5511bdb32e78f60c750b1405bf06883ea28530dde2b21ce513f6b1be"
+    }
+  }
+}
