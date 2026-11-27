@@ -1,0 +1,261 @@
+{
+ "schema": "qh-status-dom-contract/foundation",
+ "state": "frozen candidate: preview.html sha256 cc101c071da73aa629ee1bd3b545e201962290393a20106a7a1522f2d8de6715 (built from the 11:20 layout-baseline content), patch sha256 695ff9a8294b37470a7542c7444f466a4ba5a6f502a037db94ef2c34769da38c. Existing hooks preserved; foundation additions present. Static structure check (tools/contract_static.py --candidate) passes 77 checks: 39 existing hooks, 28 foundation structures, 10 attribute checks. Browser behaviour runs (tools/contract.mjs) were stopped by root's browser restriction (RESTRICTION.md); the last browser run, on an earlier candidate, is development evidence only. status.js behaviour on the final markup is not exercised by this lane. Integration checks for the composed tree and the successor payload: INTEGRATION.md.",
+ "owners": {
+  "foundation": [
+   "compiler/quantum-holography-status/status.py",
+   "compiler/quantum-holography-status/status.css",
+   "compiler/quantum-holography-status/status-print.css",
+   "content/quantum-holography-status/page.json (labels only)"
+  ],
+  "interaction": [
+   "compiler/quantum-holography-status/status.js"
+  ],
+  "atlas": [
+   "compiler/quantum-holography-status/atlas.py (new)",
+   "atlas CSS/JS returned by atlas.py"
+  ],
+  "quality": [
+   "independent tests"
+  ],
+  "content": [
+   "content/quantum-holography-status/content.json",
+   "content/quantum-holography-status/essay.md",
+   "content/quantum-holography-status/atlas.json (reader-safe projection, when supplied by root)"
+  ]
+ },
+ "test": {
+  "static_command": "python3 materials/processed/qh-attack-heal-20261116/foundation/tools/contract_static.py <page.html> [--candidate]",
+  "static_requires": "Python 3 only; parses the built page before scripts run; hooks created by status.js at run time are listed as not checked",
+  "browser_command_not_run_after_restriction": "node materials/processed/qh-attack-heal-20261116/foundation/tools/run.mjs materials/processed/qh-attack-heal-20261116/foundation/tools/contract.mjs <page.html> --candidate",
+  "baseline_result": "static: ALL PASS on baseline/preview.html (existing hooks)"
+ },
+ "existing_hooks_preserved": {
+  "rule": "Every selector below keeps matching with the same meaning until the shared integration has a composed replacement. Minimum counts are baseline lower bounds.",
+  "global": {
+   "html[data-theme]": "set by .theme click and by the head script from localStorage 'qh-theme' (values light|dark)",
+   "button.theme": "theme toggle",
+   "a.skip[href='#main'], #main": "skip link and search root",
+   "#card[role=dialog][hidden] > .card-inner": "one floating card for .term, .cell-btn, .col-head (aria-controls='card', aria-expanded)",
+   ".nav a[href^='#']": "bar links; status.js sets aria-current and observes the target ids; one link per section id (status.js maps href -> link, so a duplicate href in .nav is not allowed)"
+  },
+  "terms": {
+   "button.term[data-term]": "data-term names the id of a .gloss entry",
+   ".gloss[id^=term-] > dt + dd": "card content source (144)",
+   "#terms h2": "label of the card link to the glossary"
+  },
+  "grid": {
+   "table.grid": "arrow keys, Home, End move between th/td controls using rows and cellIndex",
+   "thead button.col-head[data-col]": "-> #col-<id> > dt + dd",
+   "td.cell[data-status] > button.cell-btn[data-row] + .cell-note[hidden]": "the note is the button's sibling inside the td; data-row names the row id",
+   "tbody th a[href='#row-<id>']": "row link; its text labels the card's link"
+  },
+  "rows": {
+   "details.row[id^=row-] > summary": "summary click writes the address (#row-id)",
+   ".rows .statement[data-status]": "row status filter sets [hidden] on these",
+   ".row-tools": "parent of the filter live region",
+   ".filter[data-filter][aria-pressed] (outside .find)": "row status filter chips",
+   "[data-expand=all|none]": "Open all / Close all act on details.row and details.known inside closest('section'); their labels are copied to the question sections' toolbar"
+  },
+  "questions": {
+   "main section.section .questions": "a section with .questions and two or more details.known (and no [data-expand]) gets a .known-actions toolbar inserted before .questions",
+   "main .question[id^=q-] h3 (.anchor)": "question title",
+   ".question-num > .question-num-label": "number label, skipped in titles",
+   ".question > .statement | .question > .question-ask > .statement": "the question's own statement (must stay a direct child of .question or of .question-ask)",
+   ".known, .question-known": "related statements; skipped in the question's own search text, indexed as separate units with the question as context"
+  },
+  "statements": {
+   "article.statement[data-status][id?]": "unit of search and filter; id s-<slug> is the stable anchor",
+   ".statement-head .status-chip .mark": "status label and mark for search results",
+   ".statement-title": "search title",
+   ".statement-notes .note-label, .added-chip": "skipped in search text"
+  },
+  "other_units": {
+   ".failure[id] .claim-text, .failure > .statement": "counterexample claim and witness",
+   ".open-group[id] h3": "open-problem group",
+   ".col-def dt": "column definition",
+   "#essay-title, .essay > p:not(.essay-byline), .essay-lead": "essay",
+   ".gloss dt": "glossary"
+  },
+  "search": {
+   "main > .tally": "the search (.find[role=search]) is inserted after it unless a [data-find] mount exists",
+   ".tally a[data-filter]": "status tally: opens the search filtered by that status (the links keep their mark and label; the counts are removed)",
+   "[data-find] with data-label-*": "optional served mount (not used by the baseline)",
+   ".find { --find-styled: 1 }": "status.css styles the search; status.js then adds no fallback style",
+   "section ids results, decisive, frontier, examples, failures, open, essay, terms": "search scopes, labelled by the .nav link text; status.js lists them in its own fixed order (see the interaction proposal on page order)"
+  },
+  "disclosure": {
+   "openAround(el)": "status.js opens every details ancestor of a reached element (hash, search hit); an id placed inside a closed details is therefore reachable",
+   "beforeprint/afterprint": "every main details opens for print and is restored afterwards"
+  },
+  "formulas": {
+   ".math-display, .math-long": "receive tabindex=0 when wider than their box, except inside a, button, summary, .find, #card"
+  },
+  "address": "URL parameters q, in, status, show are owned by status.js"
+ },
+ "foundation_additions_tested": {
+  "contents": {
+   "main > .overview > nav.contents#contents[aria-labelledby=contents-label] > ol > li > a[href='#<section>']": "every built section in page order by the heading it shows, numbered: atlas (when present), results, status (the key), examples, decisive, frontier, open, failures, essay, terms; what each holds counted from the content (questions, comparisons, families x parts, counterexamples, statements in groups, definitions); no status counts"
+  },
+  "question_sections": {
+   "main > section.wide.questions-section.<decisive|frontier>": "both question sections use the same card; ids unchanged (#decisive, #frontier, #q-*)",
+   ".question.compare[.few-known|.no-known] > header.question-head + .question-ask + .question-known?": "every card; .few-known when the question has one or two related statements (one column at every width), .no-known when it has none; at >=1180px the other cards have two columns (question, related statements) and every card head keeps the reading measure",
+   ".question-num > .question-num-label": "'Decisive question' or 'Comparison' (page.json decisive_question, frontier_question); status.js strips it from titles as before",
+   ".question-known > p.known-head + ul.statements.known-list > li.fold-item > details.known.fold": "related statements, one line each; class known keeps status.js Open all / Close all and its toolbar (now also in #decisive)",
+   "details.known.fold > summary.fold-head > (svg.mark, span.fold-title, span.fold-status[.visually-hidden], [span.added-chip], svg.icon)": "the line: mark, title, status text. The status text carries class visually-hidden when the status is checked (read by assistive technology, not shown; the mark shows it, named by the key and the legend) and is visible for every other status, so the conditional and open items stand out",
+   "details.known.fold > article.statement[id]": "the statement keeps its markup and anchor; its .statement-head is not drawn inside the line (the summary is its heading) except when it is :target",
+   ".question-ask > p.question-ask-label[data-label]": "empty element; CSS draws the label from data-label ('The question'), so status.js search does not index it; the statement stays the next sibling and a direct child of .question-ask",
+   ".q-index > p.q-index-head > span.q-index-label[id]": "landmark name with the section heading (aria-labelledby); no caption or status counts (A3-A3-10); 'The questions' (decisive) or 'The comparisons' (frontier; page.json frontier_index)",
+   ".question-known > p.known-head > span.known-label + span.row-count + span.known-key?": "the related-statements head: label, count of related statements, and, when a related statement is checked, a legend line for the checked mark (span.known-key[aria-hidden=true], on its own line; no status counts): the checked lines show only their mark, and every line's accessible name carries its own status; not printed (each printed statement has its chip)"
+  },
+  "statements": {
+   ".statement > div.statement-hyp > p.statement-hyp-label + ul > li": "optional content field STATEMENT.hypotheses (list of strings with TeX) rendered before .statement-text; label page.json 'hypotheses'; renders nothing until content supplies it",
+   ".statement-head > p.statement-context": "only on statements with an id (135); shown for :target only"
+  },
+  "grid": {
+   "button.col-head > span.col-head-text": "heading text, at --text-fig at every width; upright at <=1000px (screen)",
+   ".cell-note > p.cell-note-head + p.cell-note-text + p.cell-note-meaning?": "the note follows the head, so status.js names the card by the head and describes it by the note; the meaning of the status (key explanation, else page gloss) follows",
+   ".grid-legend > ul.legend + p.legend-key > a[href=#status]": "legend links to the key",
+   "layout": "table-layout fixed: the family column takes a set share (38% from 1180px and at 1000px and below; 32% between 1100 and 1180px and 26% between 1000 and 1100px, so that the longest heading word fits its mark column; 24% in print) and the mark columns share the rest, so no text size can widen the table; the wrap neither scrolls nor clips; the heading row is sticky under the bar (static at max-width 1000px and max-height 520px); marks and family links have scroll-margin-top so focus clears it; alternate rows are banded",
+   "table.grid button.col-head (first) / [tabindex=\"-1\"] (others), button.cell-btn[tabindex=\"-1\"], tbody th > a.row-link[tabindex=\"-1\"]": "the table is one tab stop; status.js arrow keys, Home and End move between its controls (they call focus(), which works on tabindex -1); status.js TABBABLE still matches these buttons and links for its nextAfter() search",
+   "tbody th > a.row-link": "family link; its MathML carries no TeX annotation, because status.js copies its textContent into the cell card",
+   ".cell-btn[aria-label]": "TeX-free: \"<family name without TeX>, <column>: <status>\"",
+   ".grid-wrap[role=region]": "no tabindex (the table does not scroll)"
+  },
+  "bar": {
+   ".bar-inner > a.nav-top[href=#programme] + nav.nav": "the overview link outside the scrolling links, shown at <=1040px where .nav li:first-child is not drawn",
+   ".bar-inner > button.find-open[data-find-open]": "search control; status.js focusSearch() on click",
+   ".home": "hidden at <=1180px (kept in the footer)"
+  },
+  "glossary": {
+   "section#terms.wide.terms-section > nav.gloss-index > ol > li > a[href=#term-*]": "letter index to the first term of each letter",
+   ".glossary": "screen >=1100px: two-column grid read row by row; print: one column"
+  },
+  "print": {
+   ".statements, .questions, .failures, .glossary, .cell-lines": "block flow in print (a grid that crosses a page can lose an item in Chrome)",
+   ".key, .col-defs dl": "two CSS columns in print",
+   "details.known.fold > summary": "not printed; the statement prints its own heading",
+   ".math-display": "print box widened 31mm each side (margin -31mm) beside the 116mm measure; font-size min(.94em, 150mm / var(--fw, 1))"
+  },
+  "formulas": {
+   ".math-display > math[style=\"display:block math;--fw:<em>\"]": "estimated width in em written by the build (status.py mathml_width) on display formulas estimated wider than 38em (WIDE_FORMULA_EM); used only by the print sheet: font-size min(.94em, 150mm / var(--fw, 1))"
+  },
+  "rows": {
+   "details.row[data-filter-empty]": "status.js attribute now styled: family name in --ink-4 and marks dimmed on screen; reset in print"
+  },
+  "overview": {
+   "main > .overview > header.cover#programme + .lead + nav.contents#contents": "the cover, lead and contents in one block; at >=1280px a three-track grid puts the contents in the right margin beside the cover and lead, and the block keeps the wide frame, so the contents ends where the bar and the sections end",
+   "main > .overview + nav.tally": "the tally stays a direct child of main, so status.js still inserts the search after main > .tally (unchanged hook)"
+  },
+  "section_heads": {
+   "main section.section > header.section-head > p.kicker > span.part-num (+ span.sep + kicker words)": "every section head carries its part number, in contents order (page.json label 'part', default '\u00a7{n}': a section number, not a count; the atlas, when present, takes its place in the order); the kicker words follow the number only where they do not repeat the heading; the separator's spaces stay outside its aria-hidden span, so the text reads '\u00a72 Established'; the number is set in small-cap figures",
+   "main > .overview > nav.contents ol > li > a > span.contents-num + span.contents-title + span.contents-holds": "each contents entry carries the number of its section, in a numeral track max(1.6em, var(--contents-num)) that status.py sizes to the longest number label (in ch), the same on every line; checked by contract_static.py"
+  },
+  "page_order": {
+   "main": "overview (cover, lead, contents), tally, [changes], [atlas], results, status (the key), examples, decisive, frontier, open, failures, essay, terms; the bar and the contents follow the same order (the key has no bar item; it is part 2 in the contents, part 3 with the atlas). CHANGED: the key and the examples now precede the question sections (the lead introduces the table before the questions; the key comes just before the table it explains, on screen and on paper), and open problems precede the counterexamples. Every id and anchor is unchanged"
+  },
+  "tally": {
+   "main > nav.tally > ul > li > a[href='#examples'][data-filter] > svg.mark + span.count-label": "the statuses on the page, each opening its statements (status.js hook unchanged), without counts (CHANGED: span.count removed; the overview draws no theorem-count inference); label page.json 'tally' 'Statements by status'; hidden in print"
+  },
+  "marks": {
+   "svg.mark.mark-<status>": "one shape per status, no series of fills: checked solid disc, conditional ring with a centre dot, open ring, heuristic dashed ring, conjecture outline diamond, pending (Proposed) solid diamond in the disc's box (lighter than the disc), partial solid triangle, published document square, not posed dash, refuted form cross. CHANGED: pending (was a half-filled ring) and partial (was a quarter-filled ring) no longer form an empty-quarter-half-full series with open and checked"
+  },
+  "statement_statuses": {
+   "article.statement[data-status] / .status-chip.chip-<slug> / .st-<slug>": "statement statuses: checked, refuted form, pending, conditional, conjecture, heuristic, open, published (status.py STATEMENT_STATUSES; audit.py validates against it; any other value fails the build). 'refuted form' (a checked scoped negative result; the atlas's scoped_negative) is kept as itself everywhere: data-status=\"refuted form\", class st-refuted-form, chip-refuted-form, the cross mark, the label page.json status_labels['refuted form'], its hypotheses and its novelty (NOVELTY_STATUSES: checked, refuted form, pending); its related-statement line shows the status words; the overview status line and the family filters list it when present; status.js reads the value from data-status and data-filter (a value with a space is supported). Test: tests/refuted/refuted_test.py Every statement status the page uses must have its entry in content.json status_key (else a build problem, so the key explains every status a reader meets). An invalid value fails the build and, in a draft or rejected page, is shown as itself (class st-unknown, no mark), never as open. The family filters (.row-tools .filter[data-filter]) offer the statuses the families hold; the overview's status line (.tally) lists every status on the page."
+  }
+ },
+ "atlas_mount_tested": {
+  "data": "content/quantum-holography-status/atlas.json (programme-scientific-atlas-public/v1, reader-safe projection supplied by root); absent -> no section, no nav item, no contents entry",
+  "module": "compiler/quantum-holography-status/atlas.py (atlas lane) exposing render(data, ctx) -> dict(html, title?, kicker?, nav_label?, css?, js?, problems?)",
+  "ctx": "AtlasContext: rich(text, terms=True) (TeX to MathML, *emphasis*, glossary terms), mark(status, label=None) for statuses checked|pending|conditional|conjecture|heuristic|open|published|partial|not posed|refuted form (map the atlas's scoped_negative to 'refuted form', the page's status for checked scoped negatives), anchors (frozenset of page ids), anchor_for(content statement id) -> '#s-...' or None, question_anchor(content question id) -> '#q-...' or None, labels, status_labels, ident(text)",
+  "placement": "<section id='atlas' class='section wide atlas' data-atlas-mount aria-labelledby='atlas-h'>: the first section after the overview (and the changes aside), before section#results; nav item 'atlas' after 'programme'; contents entry first (part \u00a71). CHANGED from 'after section#status': the key now follows the examples (page order below). If the rendered atlas is tall enough to push the results and the matrix far down (root measures the composed page), the one-line alternative in status.py run() is to move {atlas} after {examples} in the main string and parts['atlas'] after parts['examples'] (nav item likewise); placement checks in tests/atlas/atlas_test.py and tests/atlas-real/real_mount_test.py then expect examples -> atlas -> decisive",
+  "assets": "css embedded after status.css and before status-print.css (the print sheet wins at equal specificity); js in its own <script> after status.js; js must not contain </script>; no network APIs (audit fails on fetch/XMLHttpRequest/WebSocket/EventSource/sendBeacon)",
+  "order": "render() runs after every other section is built, so anchor_for knows every statement anchor; returned problems become build failures",
+  "failure_modes": "atlas.json without atlas.py -> build failure; empty html -> no section",
+  "test": "/tmp/qh-tracker-build-20261116-venv/bin/python -B materials/processed/qh-attack-heal-20261116/foundation/tests/atlas/atlas_test.py (18 checks, fixture outside content/); presence of the atlas data on a built page: tools/atlas_presence.py (INTEGRATION.md step 5)",
+  "not_provided": "status.js functions are not exported; the atlas cannot use #card (owned by status.js)",
+  "namespace": "Atlas markup uses its own class prefix (atlas-*). These page classes are live status.js or layout hooks and must not be used inside the atlas: grid, card, card-inner, filter, filters, row, rows, row-name, statement, statement-head, statement-title, status-chip, question, question-ask, questions, known, fold, failure, claim-text, open-group, col-def, gloss, theme, nav, find, tally, cell-btn, col-head. The classes that ctx.rich() and ctx.mark() emit (term, math-inline, math-long, math-display, nobr, mark) may appear: status.js handles them anywhere on the page. status.js binds the first .grid in the document for its arrow keys.",
+  "search": "status.js SCOPES does not include \"atlas\", so atlas text is not searched until the interaction lane adds it",
+  "hardening": "build failures: atlas css or js containing \"</script\" or \"</style\"; atlas markup using a reserved page class (status.py ATLAS_RESERVED_CLASSES: grid, card, card-inner, filter, filters, row, rows, row-name, statement, statement-head, statement-title, status-chip, question, question-ask, questions, known, fold, failure, claim-text, open-group, col-def, gloss, theme, nav, find, tally, cell-btn, col-head). The classes that ctx.rich() and ctx.mark() emit are allowed (atlas_test.py case: a glossary term, a long formula and display math).",
+  "audit": "atlas text is reader-visible and passes audit.py FORBIDDEN: no tool or model names; no workflow vocabulary (for example pipeline, owner, audit, ledger); no internal identifiers of the form T|N|B|R|P|C followed by 1-3 digits (so labels such as \"C2\" or \"P1\" fail); no E1-E8; no version tags; no file names; no paths; no LaTeX labels"
+ },
+ "cross_lane_proposals": {
+  "interaction (status.js)": [
+   "SCOPES in page order: build the list from the document order of the section ids (for example sort by compareDocumentPosition), and add 'atlas' when present, so that the search's part chips and result groups follow the page: results, examples, decisive, frontier, open, failures, essay, terms. Without it the search keeps the old order (results, decisive, frontier, examples, failures, open, ...); nothing breaks",
+   "contentFor(cell-btn): take the family name from rowLink.title (math-free) or a textOf() that skips <annotation>; the foundation build already strips annotations from a.row-link.",
+   "Tab from a pinned card that has no focusable content (column heading cards) should hide the card and let focus move on; Escape should return focus only when focus is in the card or on its owner (A2 A1-A2-06).",
+   "On a touch sheet, scroll the trigger above the sheet (A1-A2-14).",
+   "Roving tabindex in the table: after an arrow move, set tabindex 0 on the focused control and -1 on the previous one, so Shift+Tab returns to the last mark visited.",
+   "Search facets (12 chips) become tab stops right after the search field on focus; consider placing them after the results or behind one toggle.",
+   "Print scaling of very wide display formulas could be measured at print time; the foundation build writes an estimated width (--fw) instead.",
+   "Index the question card number with its label (\"Decisive question 12\", \"Comparison 11\") in the question unit, and skip .question-why-label in its body text.",
+   "keepInSight(): no change needed now (the bar no longer pins a link inside the scroller).",
+   "Add 'orientation' (and 'atlas') to SCOPES in page order, so the orientation part is searchable (F2)."
+  ],
+  "content": [
+   "STATEMENT.hypotheses (optional list) to make hypotheses a separate part of a question (status.py renders it).",
+   "ids for the 98 statements without one (6 principal results, 81 row statements, 11 open problems).",
+   "explicit cross-references between decisive questions, remaining comparisons, rows and open problems (or carried by the atlas projection).",
+   "README.md schema line for hypotheses (README is content-owned).",
+   "README.md (content-owned) describes the old order: 'decisive and frontier follow the principal results' and 'failures ... follows the examples'. Proposed text: 'The examples follow the principal results, with the key to the marks after them; decisive and frontier follow, using the same question cards, then the open problems; failures (a natural statement marked false, then its counterexample) follow the open problems.'",
+   "The key's 'partial' explanation groups restricted positive results with obstructions; the mark is now a solid triangle (no fraction); the content owner may wish to keep the explanation's wording in step.",
+   "README.md (content-owned): the statement statuses line should read 'Statement statuses: checked, refuted form, pending, conditional, conjecture, heuristic, open, published.' with a note: 'refuted form' marks a checked scoped negative result (the statement as first posed fails, and the statement says where).",
+   "Write the plain-text symbols the page audit refuses in TeX: 'detects the T2 coordinate' -> \\(T_2\\); 'A bare exterior E3 algebra' (twice) -> \\(E_3\\) (composed preview, 3 audit failures).",
+   "Confirm the status change of s-decisive-centre-objectwise-coherence (checked in the 11:20 content, conditional in the composed preview)."
+  ],
+  "build script (compiler/build-quantum-holography-status.py)": [
+   "Read page.json from args.input instead of CONTENT (A1-A2-16): page = json.loads((args.input / \"page.json\").read_text(encoding=\"utf-8\"))."
+  ],
+  "atlas": [
+   "Map the atlas status code scoped_negative to ctx.mark('refuted form', label), so a scoped negative claim has the cross mark and the refuted-form colour that statements and cells use.",
+   "Give each claim's element the id ctx.claim_anchor(claim id) ('atlas-claim-<ident>'), so the page's statements that name the claim (atlasClaimId) link to it (F2).",
+   "Choose each claim's visible status label by its stored code: ctx.status_labels[{'checked': 'checked', 'conditional': 'conditional', 'remaining': 'open', 'scoped_negative': 'refuted form'}[code]] (Established, Conditional, Remaining, Scoped negative), not the record's status.label (status-language ruling)."
+  ]
+ },
+ "trade_offs": {
+  "folded related statements": "while folded, the 105 related-statement h4 titles are not in the heading outline; each title is the text of its summary (a disclosure control)"
+ },
+ "integration_checks": {
+  "doc": "INTEGRATION.md (exact commands and acceptance for the composed tree and the successor payload)",
+  "completeness": "tools/completeness.py <content-folder> <page.html>: every content field shown, in its own element and section",
+  "anchors": "tools/anchors.py <reference.html> <page.html>: every original stable anchor kept",
+  "atlas_presence": "tools/atlas_presence.py <atlas.json> <page.html>: every domain, claim, edge, comparison and reading path shown, addressed or embedded"
+ },
+ "deltas_after_integration": {
+  "integrated": "patch/foundation.patch 695ff9a8294b37470a7542c7444f466a4ba5a6f502a037db94ef2c34769da38c (applied by root 15:26:44Z); unchanged",
+  "apply_order": "695ff9a8 (integrated) -> F1 -> F2; each delta has its own GUARD.json whose baseline hashes are the previous state; python3 <delta>/apply_guarded.py <repo-root> [--check], or patch -p1 < <delta>/<name>.patch",
+  "F1_status_language": {
+   "patch": "patch-f1-status-language/f1-status-language.patch",
+   "patch_sha256": "9613254535445e7ad38c6f591b403309a89f4dd87ed24b2a79f24fba143a6ad8",
+   "files": [
+    "compiler/quantum-holography-status/status.py",
+    "content/quantum-holography-status/page.json"
+   ],
+   "ruling": "STATUS-LANGUAGE-RULING.md d6b665dea0a56670f3396970c699172c22def7b72502dcd0a5ad555b4620a242; STATUS-LANGUAGE-PATCH.json 6b7a84b8db4d20e74c776160074aef026a333c280c23be8aead331c6c4483c4c",
+   "change": "page.json status_labels by stored code: checked Established, conditional Conditional, open Remaining, published Published, partial Partial, not posed Not posed, refuted form Scoped negative, pending Proposed (conjecture, heuristic unchanged); every label on the page (chips, cells and their cards, legend, key, family filters, overview status line, related lines, accessible names) comes from these by code. The page's own fallback explanations (page.json cell_glosses) are removed: every status the page shows needs its entry in content.json status_key, else a build problem. Colours, codes, ids and hypotheses unchanged",
+   "unchanged_wording": "the section heading 'Open problems' (a section name, not a status label)"
+  },
+  "F2_successor_fields": {
+   "patch": "patch-f2-successor-fields/f2-successor-fields.patch",
+   "patch_sha256": "3f2c449364146401c292d05e72e101795dd2adf94e065ed4d902a12ce5462655",
+   "files": [
+    "compiler/quantum-holography-status/status.py",
+    "compiler/quantum-holography-status/status.css",
+    "compiler/quantum-holography-status/status-print.css",
+    "content/quantum-holography-status/page.json"
+   ],
+   "dom": {
+    "main > section#orientation.section.wide.orientation (part 1 when present)": "content orientation: h2 = orientation.title; .orientation-text (explanation paragraphs, reading column); .pfs (reading column below 1180px, two columns on the wide frame from 1180px) > .pf#pf-<id> (h3 title, .pf-text, .pf-label, ul.pf-families > li > a[href='#row-<family id>']); .guidance > h3.guidance-title + dl.guide > .guide-item > dt + dd (readerGuidance); in the bar and the contents (groups counted)",
+    "article.statement > p.statement-summary": "a statement's summary (the principal results), after the head and before the hypotheses",
+    "article.statement[data-atlas-claim]": "the atlas claim a statement names (atlasClaimId), kept on the statement",
+    ".as-of > time[datetime=as_of_utc]": "the date with the evidence boundary's time ('16 November 2026, 13:50 UTC'); also in the footer; a malformed as_of_utc, or one on another day than as_of, is a build problem",
+    "article.statement > p.statement-notes.statement-atlas > span.note-label > a[href='#atlas-claim-<ident(claim id)>']": "a link to the claim, drawn only when the atlas markup holds that id (never a dead link); a note label, so the search skips it; not printed",
+    ".bar .nav (end fade)": "the end fade marks links beyond the bar's edge at every width (the rule that removed it from 1040px is gone): the bar has up to 11 items",
+    ".as-of: separator + &nbsp; + link": "the separator binds to the link after it, so a narrow date line breaks before '\u00b7 Contents'"
+   },
+   "validation": "scientific_atlas (schema, asOf, path) is checked against atlas.json; a mismatch or a missing atlas.json is a build problem; it is not shown",
+   "atlas_context": "AtlasContext.claim_anchor(claim_id) -> 'atlas-claim-<ident(claim_id)>': the id the atlas renderer should give each claim's element, so that statements link to it",
+   "checks": "successor_checks.py --src followup/src/compiler/quantum-holography-status on the composed preview (content.json 89c382de...): completeness ALL PASS, anchors 428/428, static contract ALL PASS, gate clean; on the baseline content the F2 page passes fidelity (--relabel), contract, completeness and anchors, and differs from F1 only by the date-line binding and the bar's end fade (font-independent hash c56be5c4...)"
+  }
+ }
+}
