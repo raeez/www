@@ -96,6 +96,8 @@
     'too-short': 'Type at least two letters or digits.',
     'more-in': '{k} more in {where}',
     'in-formula': 'in a formula',
+    'formula-in-source': 'Formula in source',
+    'formula-as-tex': 'Formula: {tex}',
     'kind-chapter': 'Chapter',
     'kind-section': 'Section',
     'kind-text': 'Passage',
@@ -103,8 +105,23 @@
     'kind-gloss': 'Glossary entry',
     'kind-unit': 'Atlas entry',
     'kind-heading': 'Heading',
+    'kind-definition': 'Definition', 'kind-theorem': 'Theorem', 'kind-lemma': 'Lemma',
+    'kind-proposition': 'Proposition', 'kind-corollary': 'Corollary', 'kind-result': 'Result',
+    'kind-claim': 'Claim', 'kind-consequence': 'Consequence', 'kind-example': 'Example',
+    'kind-counterexample': 'Counterexample', 'kind-conjecture': 'Conjecture', 'kind-heuristic': 'Heuristic',
+    'kind-open-problem': 'Open problem', 'kind-open-question': 'Open question', 'kind-proof': 'Proof',
+    'kind-proof-sketch': 'Proof sketch', 'kind-construction': 'Construction', 'kind-remark': 'Remark',
+    'kind-notation': 'Notation', 'kind-convention': 'Convention', 'kind-introduction': 'Introduction',
     'close': 'Close',
     'go-to': 'Go to {where}',
+    'define-kind': 'Definition',
+    'define-go': 'Read the definition',
+    'define-go-here': 'Show the definition on this screen',
+    'define-reference': 'Reference',
+    'define-equation': 'Equation {n}',
+    'define-text': 'Definition in the text',
+    'define-return': 'Back to “{term}”',
+    'proof-skip': 'Skip to the end of the proof',
     'unknown': 'This book has no place with the address {address}.',
     'changed-address': 'This saved address names a changed passage. Its location is available below.',
     'ambiguous-address': 'This saved address can refer to different passages. Choose from the available locations.',
@@ -140,6 +157,7 @@
       if (n.nodeType === 3) { out.push(n.nodeValue); return; }
       if (n.nodeType !== 1) return;
       if (!top && skip && n.matches(skip)) return;
+      if (!top && n.hasAttribute('data-reader-skip')) return; /* the reader's own controls are not the book's words */
       var tag = n.localName;
       if (tag === 'svg' || tag === 'annotation' || tag === 'script' || tag === 'style' || tag === 'template' || (noMath && tag === 'math')) return;
       for (var c = n.firstChild; c; c = c.nextSibling) walk(c, false);
@@ -159,8 +177,10 @@
   /* A copy for showing elsewhere: formulae and links kept, ids, controls and interactive figures removed. */
   function cleanCopy(node, tag) {
     var copy = node.cloneNode(true);
-    all('script, style, template, button, input, select, textarea, figure[data-figure], [hidden], .anchor-sr', copy)
+    all('script, style, template, button, input, select, textarea, figure[data-figure], [hidden], .anchor-sr, [data-reader-skip]', copy)
       .forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
+    all('[data-definition-near]', copy).forEach(function (n) { n.removeAttribute('data-definition-near'); });
+    copy.removeAttribute('data-definition-near');
     all('[id]', copy).forEach(function (n) { n.removeAttribute('id'); });
     all('[tabindex]', copy).forEach(function (n) { n.removeAttribute('tabindex'); });
     all('[aria-labelledby], [aria-describedby], [aria-controls]', copy).forEach(function (n) {
@@ -293,11 +313,23 @@
   function ours(t) { return !!t && t !== main && main.contains(t) && (!!placeOf(t) || onFront(t)); }
   /* Environments as the chapter renderer marks them: [data-env] with its class (definition, theorem, proof, …); a
      definition may also be served as [data-term] and any other result as [data-result]. */
-  var ENV = '[data-env]:not([data-env="proof"]), div[data-term], section[data-term], div[data-result], section[data-result], aside[data-result]';
+  var ENV = '[data-env], div[data-term], section[data-term], div[data-result], section[data-result], aside[data-result]';
+  var PROOF = '[data-env="proof"], [data-env="proof-sketch"]';
   function envKind(b) {
-    var e = b.getAttribute('data-env');
-    if (e === 'definition' || (!e && b.hasAttribute('data-term'))) return 'definition';
-    return 'result';
+    return b.getAttribute('data-env') || (b.hasAttribute('data-term') ? 'definition' : 'result');
+  }
+  function envLabel(kind, status) {
+    if (!kind || !WORDS['kind-' + kind]) return '';
+    var label = word('kind-' + kind);
+    if (status === 'proved') return 'Proved ' + label.toLowerCase();
+    if (status === 'conditional') return 'Conditional ' + label.toLowerCase();
+    if (status === 'conjecture' && kind !== 'conjecture') return 'Conjectural ' + label.toLowerCase();
+    if (status === 'heuristic' && kind !== 'heuristic') return 'Heuristic ' + label.toLowerCase();
+    if (status === 'open' && !/^open-/.test(kind)) return 'Open ' + label.toLowerCase();
+    return label;
+  }
+  function envWords(kind, status) {
+    return fold(envLabel(kind, status) + ' ' + (status || '').replace(/-/g, ' '));
   }
   /* The sections of a place: section[data-section] where the page wraps them, else its headings with an address. */
   function sectionMarks(place) {
@@ -413,7 +445,7 @@
     if (t) return t;
     var m = /^(.+)-p\d+$/.exec(id);
     var host = m ? doc.getElementById(m[1]) : null;
-    var place = host ? placeOf(host) : null;
+    var place = host ? placeOf(host) || (front && front.contains(host) ? front : null) : null;
     if (!place) return null;
     jobsFor(place).forEach(function (job) { job([]); }); /* the same order as the search index: the same addresses */
     return doc.getElementById(id);
@@ -603,7 +635,24 @@
     if (!p) return (front && front.querySelector('h1')) || front || toc;
     return isChapter(p) ? chapterHeading(p) : referenceHeading(p);
   }
+  /* On a narrow screen a formula kept whole with its punctuation (.nobr) can be wider than its line. Such a group, and
+     only such a group, scrolls in place rather than widening the page. */
+  function fitFormulas() {
+    var scope = current || front;
+    if (!scope) return;
+    var groups = all('.nobr', scope);
+    groups.forEach(function (n) { n.classList.remove('reader-wide'); });
+    if (!media('(max-width: 480px)')) return;
+    groups.filter(function (n) {
+      var block = n.parentElement && n.parentElement.closest(STRUCT + ', .mg-env, .mg-display');
+      if (!block) return false;
+      var right = block.getBoundingClientRect().right - (parseFloat(getComputedStyle(block).paddingRight) || 0);
+      return n.getBoundingClientRect().right > right + 0.5;
+    }).forEach(function (n) { n.classList.add('reader-wide'); });
+  }
   function show(place) {
+    clearReturn();
+    later(fitFormulas);
     var target = place && places.indexOf(place) >= 0 ? place : null;
     if (!target && !front && !toc && chapters.length) target = chapters[0];
     else if (!target && !front && !toc && references.length) target = references[0];
@@ -835,11 +884,15 @@
     }, 250);
   }
 
+  /* Focus the reader gives itself (a returned reminder, a restored place) is not a reader arriving at a term by keys. */
+  var quietFocus = null;
   function focusQuietly(el) {
     if (!el || !el.focus) return;
     var natural = /^(button|input|select|textarea|summary)$/.test(el.localName) || (el.localName === 'a' && el.hasAttribute('href'));
     if (!natural && !el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+    quietFocus = el;
     try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); }
+    quietFocus = null;
   }
   var revealed = null;
   function markRevealed(el) {
@@ -1131,7 +1184,11 @@
         });
         frag.appendChild(head);
       }
-      var summary = t.querySelector('[data-chapter-summary]') || firstParagraph(t);
+      var tocLink = toc && all('a[data-chapter-link]', toc).find(function (link) {
+        return link.hash === '#' + t.id;
+      });
+      var summary = t.querySelector('[data-chapter-summary]') ||
+        (tocLink && tocLink.parentElement.querySelector('.mg-toc-summary')) || firstParagraph(t);
       if (summary) frag.appendChild(cleanCopy(summary, summary.localName === 'p' ? 'p' : 'div'));
       var pre = t.querySelector('[data-prerequisites]');
       if (pre && pre.querySelector('a[href]')) frag.appendChild(cleanCopy(pre));
@@ -1188,12 +1245,134 @@
     if (!t && Object.prototype.hasOwnProperty.call(redirects, id)) t = resolve(redirects[id]);
     return t;
   }
+  /* Terms. A phrase the author has linked to its defining passage carries data-ref="definition", the passage as
+     data-definition-target and the author's brief statement of the definition as data-definition-preview. On hover or
+     keyboard focus the reminder shows that statement with a visible link to the passage; a tap, a click or Enter keeps
+     it open. Nothing here generates a definition or guesses a target: a term without the author's preview, or whose
+     passage this page cannot show, stays an ordinary link. */
+  function isTerm(a) {
+    return !!a && a.localName === 'a' && a.getAttribute('data-ref') === 'definition' && !!a.getAttribute('data-definition-preview');
+  }
+  function selectingIn(node) {
+    var s = window.getSelection ? window.getSelection() : null;
+    return !!s && !s.isCollapsed && s.rangeCount > 0 && s.getRangeAt(0).intersectsNode(node);
+  }
+  var termDescribedBy = null; /* the term's own aria-describedby while the reminder describes it */
+  var nearTarget = null;      /* a defining passage already on the screen, outlined while its term is shown */
+  function definitionTitle(t) {
+    var b = t.matches(ENV) ? t : t.closest(ENV);
+    if (b && main.contains(b)) {
+      var title = blockTitle(b);
+      if (title) return textOf(title).replace(/\s*[.:]\s*$/, '');
+    }
+    if (/^h[1-6]$/.test(t.localName)) return headingText(t);
+    var display = t.closest('.mg-display');
+    if (display && display.getAttribute('data-tag')) return fill(word('define-equation'), { n: '(' + display.getAttribute('data-tag') + ')' });
+    return word('define-text');
+  }
+  /* The place of a definition in brief, as a chapter and its numbered section ("Chapter 1 · §1.1"); the full place,
+     with the section's title, is the link's accessible name. */
+  function whereShort(t) {
+    var place = placeOf(t);
+    if (!place || isPart(place)) return whereOf(t);
+    var where = fill(word('chapter'), { n: chapterNumber(place) });
+    var sec = sectionOf(t);
+    var h = sec && place.contains(sec) ? sectionHeading(sec) : null;
+    var m = h && /^(\d+(?:\.\d+)+)\s/.exec(headingText(h));
+    return m ? where + ' · §' + m[1] : where;
+  }
+  function onScreen(t) {
+    if (!t.getClientRects().length) return false;
+    var r = t.getBoundingClientRect();
+    return r.bottom > barBottom() + 8 && r.top < (window.innerHeight || 0) - 8;
+  }
+  function openDefinition(a, pin) {
+    var href = a.getAttribute('href') || '';
+    var local = href.charAt(0) === '#';
+    var t = local ? targetOfLink(a) : null;
+    if (local && (!t || !ours(t))) return false;
+    if (t && t.contains(a)) return false; /* the term inside its own definition */
+    clearTimeout(hideTimer);
+    clearTimeout(openTimer);
+    if (peekFrom && peekFrom !== a) releaseTerm();
+    peekFrom = a;
+    peekTarget = t;
+    peekPinned = !!pin;
+    peekBody.textContent = '';
+    var title = t ? definitionTitle(t) : word('define-kind');
+    peekBody.appendChild(element('p', 'reader-define-title', title));
+    var text = peekBody.appendChild(element('p', 'reader-define-text', a.getAttribute('data-definition-preview')));
+    text.id = 'reader-define-text';
+    var where = t ? whereOf(t) : word('define-reference');
+    peekWhere.textContent = t ? whereShort(t) : where;
+    var near = !!t && onScreen(t);
+    peekGo.href = local ? '#' + give(t) : a.getAttribute('href');
+    peekGo.textContent = near ? word('define-go-here') : word('define-go');
+    peekGo.setAttribute('aria-label', (near ? word('define-go-here') : word('define-go')) + ': ' + title + ', ' + where);
+    peek.setAttribute('aria-label', title + ' — ' + where);
+    peek.setAttribute('data-kind', 'definition');
+    peek.setAttribute('data-term', '');
+    if (pin) peek.setAttribute('role', 'dialog'); else peek.removeAttribute('role');
+    if (termDescribedBy === null) termDescribedBy = a.getAttribute('aria-describedby') || '';
+    a.setAttribute('aria-describedby', ((termDescribedBy ? termDescribedBy + ' ' : '') + text.id).trim());
+    if (near) { nearTarget = peekBlock(t); nearTarget.setAttribute('data-definition-near', ''); }
+    peek.hidden = false;
+    if (pin) a.setAttribute('aria-expanded', 'true');
+    placePeek(true);
+    /* A long statement scrolls in its own box, reachable by keys. */
+    if (peekBody.scrollHeight > peekBody.clientHeight + 1) { peekBody.tabIndex = 0; peekBody.setAttribute('aria-labelledby', text.id); }
+    else { peekBody.removeAttribute('tabindex'); peekBody.removeAttribute('aria-labelledby'); }
+    if (pin) focusQuietly(peekWhere);
+    return true;
+  }
+  /* The term's own attributes back as they were when its reminder closes or moves to another term. */
+  function releaseTerm() {
+    if (peekFrom) {
+      peekFrom.removeAttribute('aria-expanded');
+      if (termDescribedBy !== null) {
+        if (termDescribedBy) peekFrom.setAttribute('aria-describedby', termDescribedBy); else peekFrom.removeAttribute('aria-describedby');
+      }
+    }
+    termDescribedBy = null;
+    if (nearTarget) nearTarget.removeAttribute('data-definition-near');
+    nearTarget = null;
+    peek.removeAttribute('data-term');
+    peek.setAttribute('role', 'dialog');
+    peekBody.removeAttribute('tabindex');
+    peekBody.removeAttribute('aria-labelledby');
+    peekGo.removeAttribute('aria-label');
+    sheetRoom(0);
+  }
+  /* On a narrow screen the reminder is a sheet at the foot of the screen. The page gains room below its text while the
+     sheet is open, so that a term near the end of the page can still be read above it. */
+  function sheetRoom(px) {
+    if (px) main.style.setProperty('--reader-sheet-room', px + 'px'); else main.style.removeProperty('--reader-sheet-room');
+    if (px) main.setAttribute('data-sheet-open', ''); else main.removeAttribute('data-sheet-open');
+  }
+  /* Back to the reading after a definition was followed: a control beside the defining passage, until the place changes. */
+  var returnControl = null;
+  function offerReturn(term, block) {
+    clearReturn();
+    if (!term || !block || !block.parentNode) return;
+    var p = element('p', 'reader-return');
+    p.setAttribute('data-reader-skip', '');
+    var b = p.appendChild(element('button', 'reader-return-button', fill(word('define-return'), { term: textOf(term) })));
+    b.type = 'button';
+    b.addEventListener('click', function () { clearReturn(); history.back(); });
+    block.parentNode.insertBefore(p, block.nextSibling);
+    returnControl = p;
+  }
+  function clearReturn() {
+    if (returnControl && returnControl.parentNode) returnControl.parentNode.removeChild(returnControl);
+    returnControl = null;
+  }
   function openPeek(a, pin, target) {
+    if (isTerm(a) && !target) return openDefinition(a, pin);
     var t = target || targetOfLink(a);
     if (!t || !ours(t) || onFront(t)) return false;
     clearTimeout(hideTimer);
     clearTimeout(openTimer);
-    if (peekFrom && peekFrom !== a) peekFrom.removeAttribute('aria-expanded');
+    if (peekFrom) releaseTerm();
     peekFrom = a;
     peekTarget = t;
     peekPinned = !!pin;
@@ -1221,16 +1400,16 @@
     var from = peekFrom;
     var hadFocus = peek.contains(doc.activeElement);
     peek.hidden = true;
+    releaseTerm();
     peekBody.textContent = '';
-    if (from) from.removeAttribute('aria-expanded');
     peekFrom = null;
     peekTarget = null;
     peekPinned = false;
-    if (from && (returnFocus || hadFocus) && from.isConnected) from.focus();
+    if (from && (returnFocus || hadFocus) && from.isConnected) { quietFocus = from; from.focus(); quietFocus = null; }
   }
   /* Beside the cross-reference on a wide screen: the page's style decides, from the place given here. On a narrow
      screen the page shows the reminder as a sheet and these are not used. */
-  function placePeek() {
+  function placePeek(opening) {
     if (peek.hidden || !peekFrom) return;
     var rects = peekFrom.getClientRects ? peekFrom.getClientRects() : [];
     var r = rects && rects.length ? rects[0] : peekFrom.getBoundingClientRect();
@@ -1238,24 +1417,56 @@
     var below = vh - r.bottom;
     var h = peek.offsetHeight || 0;
     var downward = below >= Math.min(h + 16, 320) || below >= r.top;
+    /* A term's definition on a wide screen goes beside the paragraph, level with the term, where it covers no text. */
+    if (peek.hasAttribute('data-term') && !media('(max-width: 640px)')) {
+      var br = peekBlock(peekFrom).getBoundingClientRect();
+      if ((window.innerWidth || 0) - br.right - 24 >= (peek.offsetWidth || 0) + 8) {
+        peek.setAttribute('data-placement', 'side');
+        peek.style.setProperty('--peek-x', Math.round(br.right + 24) + 'px');
+        peek.style.setProperty('--peek-y', Math.round(Math.max(barBottom() + 8, Math.min(r.top - 8, vh - h - 8))) + 'px');
+        return;
+      }
+    }
     peek.setAttribute('data-placement', downward ? 'below' : 'above');
     peek.style.setProperty('--peek-x', Math.round(r.left) + 'px');
     peek.style.setProperty('--peek-y', Math.round(downward ? r.bottom : r.top) + 'px');
+    /* A sheet: the term it belongs to is kept readable above it, even at the end of the page. */
+    if (opening && peek.hasAttribute('data-term') && media('(max-width: 640px)')) {
+      var sheetTop = peek.getBoundingClientRect().top;
+      if (r.bottom > sheetTop - 12) {
+        sheetRoom(Math.ceil(vh - sheetTop + 24));
+        window.scrollBy(0, Math.ceil(r.bottom - sheetTop + 24));
+      }
+    }
   }
   function hideSoon() {
     if (peekPinned) return;
     clearTimeout(hideTimer);
-    hideTimer = setTimeout(function () { if (!peekPinned) closePeek(false); }, 300);
+    /* A term's definition may stand beside the paragraph: the pointer is given time to cross to it. */
+    hideTimer = setTimeout(function () { if (!peekPinned) closePeek(false); }, peek.hasAttribute('data-term') ? 700 : 300);
   }
   peekClose.addEventListener('click', function () { closePeek(true); });
   peek.addEventListener('click', function (event) {
-    var a = event.target.closest && event.target.closest('a[href^="#"]');
+    var a = event.target.closest && event.target.closest('a[href]');
     if (!a || !peek.contains(a) || !plainClick(event)) return;
-    event.preventDefault();
     var from = peekFrom;
-    var id = decode(a.getAttribute('href').slice(1));
+    var term = isTerm(from) ? from : null;
+    var href = a.getAttribute('href');
+    if (href.charAt(0) !== '#') {
+      /* A definition in another page of the book: the entry left keeps the place, as for any link to that page. */
+      if (!bookPage(a.href)) return;
+      event.preventDefault();
+      closePeek(false);
+      leaveFor(a.href, 'assign', from);
+      return;
+    }
+    event.preventDefault();
+    var id = decode(href.slice(1));
     closePeek(false);
-    go(id, { push: true, from: from });
+    if (go(id, { push: true, from: from }) && term) {
+      var t = resolve(id);
+      if (t) offerReturn(term, peekBlock(t));
+    }
   });
   var TABBABLE = 'a[href], button:not([disabled]), input:not([disabled]), summary, [tabindex]:not([tabindex="-1"])';
   function reachable(el) {
@@ -1302,12 +1513,16 @@
       var moved = xy !== lastXY;
       lastXY = xy;
       var a = refLink(event.target);
+      /* Not while a button is held: the reader may be selecting text. */
+      if (event.buttons) { clearTimeout(openTimer); return; }
       if (!a || !moved) return;
       if (peekFrom === a && !peek.hidden) { clearTimeout(hideTimer); return; }
       if (peekPinned) return;
       clearTimeout(openTimer);
-      openTimer = setTimeout(function () { if (!peekPinned) openPeek(a, false); }, 380);
+      openTimer = setTimeout(function () { if (!peekPinned) openPeek(a, false); }, isTerm(a) ? 300 : 380);
     });
+    /* Pressing the button begins a selection or a click: a reminder waiting to open on hover does not. */
+    main.addEventListener('mousedown', function () { clearTimeout(openTimer); }, true);
     main.addEventListener('mouseout', function (event) {
       var a = refLink(event.target);
       if (!a) return;
@@ -1317,6 +1532,24 @@
       if (peekFrom === a) hideSoon();
     });
   }
+  /* A term reached by keys shows its definition at once, described to a screen reader; leaving the term closes what
+     only reaching it opened. Focus the reader gives itself, or a click's focus, opens nothing. */
+  main.addEventListener('focusin', function (event) {
+    var a = event.target;
+    if (!isTerm(a) || a === quietFocus || peekPinned) return;
+    var keyed = true;
+    try { keyed = a.matches(':focus-visible'); } catch (e) { keyed = true; }
+    if (!keyed) return;
+    clearTimeout(openTimer);
+    openPeek(a, false);
+  });
+  main.addEventListener('focusout', function (event) {
+    var a = event.target;
+    if (!isTerm(a) || peekFrom !== a || peekPinned) return;
+    var to = event.relatedTarget;
+    if (to && peek.contains(to)) return;
+    closePeek(false);
+  });
 
   /* ------------------------------------------------------------------ search */
 
@@ -1393,7 +1626,7 @@
       GREEK[t.w].split('').forEach(function (c) { if (u.ft.indexOf(c) >= 0) inTitle = 13; if (u.fb.indexOf(c) >= 0) inBody = 4; });
       return Math.max(inTitle, inBody, grade(u.ft, t.w, true) === 3 ? 12 : 0, grade(u.fb, t.w, true) === 3 ? 3 : 0);
     }
-    var gt = grade(u.ft, t.w, t.strict);
+    var gt = Math.max(grade(u.ft, t.w, t.strict), grade(u.classification, t.w, t.strict));
     var gb = grade(u.fb, t.w, t.strict);
     var gc = grade(u.fc, t.w, t.strict);
     return gt || gb || gc ? gt * 4 + gb + gc / 2 : 0;
@@ -1417,12 +1650,12 @@
     if (t.kind === 'letterlike') return u.ro.indexOf(t.raw) >= 0;
     if (t.kind === 'greek') return GREEK[t.w].split('').some(function (c) { return u.ft.indexOf(c) >= 0 || u.fb.indexOf(c) >= 0; }) ||
       grade(u.ft, t.w, true) === 3 || grade(u.fb, t.w, true) === 3;
-    return !!(grade(u.ft, t.w, t.strict) || grade(u.fb, t.w, t.strict));
+    return !!(grade(u.ft, t.w, t.strict) || grade(u.fb, t.w, t.strict) || grade(u.classification, t.w, t.strict));
   }
   /* Whether a term shows in the words of a result (else it was found only in a formula). */
   function inWords(u, t, plain) {
     if (t.kind === 'letterlike') return plain.toLowerCase().indexOf(t.raw) >= 0;
-    var p = fold(plain + ' ' + u.title + ' ' + u.context);
+    var p = fold(plain + ' ' + u.title + ' ' + u.context + ' ' + u.classification);
     if (t.kind === 'greek') return GREEK[t.w].split('').some(function (c) { return p.indexOf(c) >= 0; }) || grade(p, t.w, true) === 3;
     if (t.plain && grade(p, t.plain, false) > 0) return true;
     return grade(p, t.w, t.strict) > 0;
@@ -1489,6 +1722,7 @@
       if (n.nodeType === 3) { out.push({ text: n.nodeValue }); return; }
       if (n.nodeType !== 1) return;
       if (!top && skip && n.matches(skip)) return;
+      if (!top && n.hasAttribute('data-reader-skip')) return;
       var tag = n.localName;
       if (tag === 'math') { out.push({ math: n, text: textOf(n) }); return; }
       if (tag === 'svg' || tag === 'annotation' || tag === 'script' || tag === 'style' || tag === 'template') return;
@@ -1507,6 +1741,66 @@
     var box = element('span', 'math-long'); /* a wide formula scrolls inside its own box, as on the page */
     box.appendChild(c);
     return box;
+  }
+  /* Cross-page results carry the same math as the destination, separate from the search text. */
+  var MATH_NS = 'http://www.w3.org/1998/Math/MathML';
+  var MATH_TAG = /^(math|semantics|annotation|mi|mn|mo|ms|mtext|mspace|mrow|mfrac|msqrt|mroot|mstyle|merror|mpadded|mphantom|menclose|mfenced|msub|msup|msubsup|munder|mover|munderover|mmultiscripts|mprescripts|none|mtable|mtr|mtd|mlabeledtr)$/;
+  var MATH_ATTR = /^(accent|accentunder|align|aria-label|bevelled|class|close|columnalign|columnlines|columnspacing|columnspan|depth|dir|display|displaystyle|encoding|fence|form|frame|framespacing|height|largeop|linethickness|lspace|mathbackground|mathcolor|mathsize|mathvariant|maxsize|minsize|movablelimits|notation|open|rowalign|rowlines|rowspacing|rowspan|rspace|scriptlevel|separator|separators|stretchy|symmetric|voffset|width|style|xmlns)$/;
+  function snippetParts(sources, skip) {
+    var out = [];
+    var hasMath = false;
+    sources.forEach(function (source) {
+      pieces(source, skip).forEach(function (p) {
+        if (p.math) {
+          hasMath = true;
+          var wide = p.math.getAttribute('display') === 'block' || !!p.math.closest('.math-display, .math-long');
+          out.push([p.math.outerHTML, wide]);
+        } else if (typeof out[out.length - 1] === 'string') {
+          out[out.length - 1] += p.text;
+        } else {
+          out.push(p.text);
+        }
+      });
+    });
+    return hasMath ? out : undefined;
+  }
+  function readSnippet(parts, text, hasMath) {
+    var span = element('span');
+    if (!Array.isArray(parts)) {
+      span.textContent = hasMath ? word('formula-in-source') : text;
+      return span;
+    }
+    var template = doc.createElement('template');
+    parts.forEach(function (p) {
+      if (typeof p === 'string') {
+        span.appendChild(doc.createTextNode(p));
+        return;
+      }
+      if (!Array.isArray(p) || typeof p[0] !== 'string' || typeof p[1] !== 'boolean') {
+        span.appendChild(doc.createTextNode(word('formula-in-source')));
+        return;
+      }
+      template.innerHTML = p[0];
+      var math = template.content.firstElementChild;
+      if (!math || math.localName !== 'math' || template.content.childNodes.length !== 1 ||
+          [math].concat(all('*', math)).some(function (n) {
+            return n.namespaceURI !== MATH_NS || !MATH_TAG.test(n.localName) ||
+              Array.prototype.some.call(n.attributes, function (a) {
+                return !MATH_ATTR.test(a.name) || (a.name === 'style' && !/^[-a-z0-9:; .,%]+$/i.test(a.value));
+              });
+          })) {
+        span.appendChild(doc.createTextNode(word('formula-in-source')));
+        return;
+      }
+      if (p[1]) {
+        var box = element('span', 'math-long');
+        box.appendChild(math);
+        span.appendChild(box);
+      } else {
+        span.appendChild(math);
+      }
+    });
+    return span;
   }
   function snippetOf(u, marks) {
     var ps = pieces(u.bodyEl || u.el, u.skip);
@@ -1577,7 +1871,7 @@
   var KIND = { definition: 6, gloss: 5, result: 5, chapter: 4, section: 4, figure: 3, unit: 2, heading: 2, text: 1 };
   var STRUCT = 'p, li, dd, dt, blockquote, pre, tr, figcaption';
   var DISPLAY = '.math-display, math[display="block"]';
-  var NOT_TEXT = ENV + ', figure[data-figure], [data-prerequisites], [data-chapter-kicker], [data-chapter-end], ' +
+  var NOT_TEXT = 'figure[data-figure], [data-prerequisites], [data-chapter-kicker], [data-chapter-end], ' +
                  'nav, h1, h2, h3, h4, h5, h6, [data-block-title], .reader-notices, script, style, template, [data-reader-skip]';
   /* A block whose only words are links to places of this page (an entry of a chapter's own contents) is navigation,
      like a nav list; the places it links to are found as themselves. */
@@ -1590,7 +1884,8 @@
     return !textOf(rest).replace(/[\s·,;:.–—-]+/g, '');
   }
   function textBlocks(scope, extraSkip) {
-    var skip = NOT_TEXT + (extraSkip ? ', ' + extraSkip : '');
+    // Reference witnesses keep their own paragraphs and addresses inside the counterexample that cites them.
+    var skip = (isPart(scope) ? '' : ENV + ', ') + NOT_TEXT + (extraSkip ? ', ' + extraSkip : '');
     var list = all(STRUCT + ', ' + DISPLAY, scope).filter(function (b) {
       if (b.closest(skip) && b.closest(skip) !== scope && scope.contains(b.closest(skip))) return false;
       if (b.matches(DISPLAY)) return !(b.parentNode && b.parentNode.closest(STRUCT) && scope.contains(b.parentNode.closest(STRUCT))) &&
@@ -1605,9 +1900,13 @@
     var bodyEl = o.bodyEl || el;
     var body = o.body != null ? o.body : textOf(bodyEl, o.skip);
     var context = o.context || '';
+    var record = el.closest(REFERENCE) && el.closest('[data-env], [data-index-env], [data-status]');
+    var env = o.env || (record && (record.getAttribute('data-index-env') || record.getAttribute('data-env'))) || undefined;
+    var status = o.status || (record && record.getAttribute('data-status')) || (env === 'counterexample' ? 'refuted-form' : undefined);
     list.push({
+      env: env, status: status, classification: envWords(env, status),
       el: el, anchor: o.anchor || el, group: o.group, kind: o.kind, titleEl: o.titleEl || null, title: titleText, body: body,
-      name: o.name ? fold(o.name) : '', context: context, where: o.where || '', whereEl: o.whereEl || null, skip: o.skip || null, bodyEl: o.bodyEl || null,
+      name: o.name ? fold(o.name) : '', context: context, where: o.where || '', whereEl: o.whereEl || null, skip: o.skip || null, bodyEl: o.bodyEl || null, snippetSources: o.snippetSources || null,
       ft: fold(titleText), fb: fold(body), fc: fold(context), keys: titleKeys(fold(titleText)),
       defs: o.defs || [],
       ro: (titleText + ' ' + body).toLowerCase(), raw: (titleText + ' ' + context + ' ' + body).toLowerCase(),
@@ -1660,6 +1959,37 @@
     var s = sectionOf(b);
     return s && place.contains(s) ? sectionHeading(s) : null;
   }
+  function passageUnit(list, b, anchor, ch) {
+    if (linkOnly(b)) return;
+    var ctx = sectionContext(b, ch);
+    var lead = b.localName === 'p' ? leadOf(b) : null;
+    addUnit(list, b, { kind: 'text', group: ch.id, context: ctx, where: ctx, whereEl: sectionHeadingIn(b, ch),
+                       titleEl: lead, defs: definedIn(b), anchor: anchor });
+  }
+  function environmentUnits(list, place) {
+    all(ENV, place).forEach(function (b) {
+      var title = blockTitle(b);
+      var proof = b.matches(PROOF);
+      // Older unlabelled proof containers remain searchable at their original passage addresses.
+      var passages = proof ? textBlocks(b) : [];
+      if (proof && !title) {
+        passages.forEach(function (p) { passageUnit(list, p, anchorFor(p), place); });
+        return;
+      }
+      give(b);
+      var parts = passages.map(function (p) { return { block: p, anchor: anchorFor(p) }; })
+        .filter(function (p) { return p.anchor !== b; });
+      var kind = envKind(b);
+      var dfn = b.querySelector('dfn');
+      var ctx = sectionContext(b, place);
+      // A long proof has a named entry and its individually addressable paragraphs and equations.
+      addUnit(list, b, { kind: kind, env: kind, status: b.getAttribute('data-status'), group: place.id,
+                         titleEl: title, bodyEl: parts.length ? title : b, skip: ENV,
+                         name: dfn ? textOf(dfn) : '', defs: kind === 'definition' ? definedIn(b) : [],
+                         context: ctx, where: ctx, whereEl: sectionHeadingIn(b, place) });
+      parts.forEach(function (p) { passageUnit(list, p.block, p.anchor, place); });
+    });
+  }
   function chapterJob(ch) {
     return function (list) {
       var g = ch.id;
@@ -1674,13 +2004,7 @@
                           context: sectionContext(h, ch), where: sectionContext(h, ch),
                           whereEl: sectionHeadingIn(h, ch) });
       });
-      all(ENV, ch).forEach(function (b) {
-        give(b);
-        var dfn = b.querySelector('dfn');
-        var kind = envKind(b);
-        addUnit(list, b, { kind: kind, group: g, titleEl: blockTitle(b), name: dfn ? textOf(dfn) : '', context: sectionContext(b, ch),
-                           where: sectionContext(b, ch), whereEl: sectionHeadingIn(b, ch), defs: kind === 'definition' ? definedIn(b) : [] });
-      });
+      environmentUnits(list, ch);
       all('figure[data-figure]', ch).forEach(function (f) {
         give(f);
         var cap = f.querySelector('figcaption');
@@ -1691,10 +2015,7 @@
       });
       textBlocks(ch).forEach(function (b) {
         var anchor = anchorFor(b); /* every block keeps the address it had, in the same order, results or not */
-        if (linkOnly(b)) return;
-        var ctx = sectionContext(b, ch);
-        var lead = b.localName === 'p' ? leadOf(b) : null;
-        addUnit(list, b, { kind: 'text', group: g, context: ctx, where: ctx, whereEl: sectionHeadingIn(b, ch), titleEl: lead, defs: definedIn(b), anchor: anchor });
+        passageUnit(list, b, anchor, ch);
       });
     };
   }
@@ -1712,7 +2033,7 @@
               if (!u.id) return;
               var t = u.getAttribute('data-qh-unit-title');
               var head = t ? null : u.querySelector('h2, h3, h4, h5, h6, [data-block-title]');
-              addUnit(list, u, { kind: 'unit', group: g, title: t || '', titleEl: head, skip: UNIT,
+              addUnit(list, u, { kind: 'unit', status: u.getAttribute('data-qh-unit-status'), group: g, title: t || '', titleEl: head, skip: UNIT,
                                  context: u.getAttribute('data-qh-unit-place') || '', where: u.getAttribute('data-qh-unit-place') || '' });
             });
           });
@@ -1721,18 +2042,23 @@
       return jobsList;
     }
     return [function (list) {
+      all('.failure[data-env="counterexample"][id]', ref).forEach(function (b) {
+        var title = b.querySelector('.claim-text');
+        if (title) addUnit(list, b, { kind: 'counterexample', group: g, titleEl: title, bodyEl: title });
+      });
       all('dl > dt, dl > div > dt', ref).forEach(function (dt) {
         var host = dt.parentNode.localName === 'div' && dt.parentNode.id ? dt.parentNode : dt;
         give(host);
-        var dd = [];
-        var ddTex = [];
-        for (var n = dt.nextElementSibling; n && n.localName === 'dd'; n = n.nextElementSibling) { dd.push(textOf(n)); ddTex.push(texOf(n)); }
-        addUnit(list, host, { kind: 'gloss', group: g, titleEl: dt, name: textOf(dt), body: dd.join(' '), tex: ddTex.join(' ') });
+        var definitions = [];
+        for (var n = dt.nextElementSibling; n && n.localName === 'dd'; n = n.nextElementSibling) definitions.push(n);
+        addUnit(list, host, { kind: 'gloss', group: g, titleEl: dt, name: textOf(dt), snippetSources: definitions,
+                             body: definitions.map(function (d) { return textOf(d); }).join(' '),
+                             tex: definitions.map(function (d) { return texOf(d); }).join(' ') });
       });
       all('[data-gloss], div[data-term]', ref).forEach(function (b) {
         give(b);
         var dfn = b.querySelector('dfn, dt');
-        addUnit(list, b, { kind: 'gloss', group: g, titleEl: blockTitle(b) || dfn, name: dfn ? textOf(dfn) : '' });
+        addUnit(list, b, { kind: 'gloss', env: 'definition', group: g, titleEl: blockTitle(b) || dfn, name: dfn ? textOf(dfn) : '' });
       });
       var own = referenceHeading(ref);
       all('h2, h3, h4, h5, h6', ref).forEach(function (h) {
@@ -1740,24 +2066,70 @@
         var host = h.id ? h : h.parentNode.closest('[id]');
         if (!host || !ref.contains(host) && host !== ref) return;
         addUnit(list, host, { kind: 'heading', group: g, titleEl: h, body: '' });
+        if (h.matches('.question-head h3')) {
+          var card = h.closest('.question');
+          var question = card && card.querySelector('.question-ask > .statement[data-env][id]');
+          // The question and its card can share one printed title while keeping two addresses.
+          if (question && !question.querySelector('.statement-title'))
+            addUnit(list, question, { kind: 'heading', group: g, titleEl: h, body: '' });
+        }
       });
-      textBlocks(ref, 'dl > dt, dl > dd, dl > div > dt, dl > div > dd, [data-gloss]').forEach(function (b) {
+      textBlocks(ref, 'dl > dt, dl > dd, dl > div > dt, dl > div > dd, [data-gloss], div[data-term], section[data-term]').forEach(function (b) {
         var anchor = anchorFor(b);
         if (linkOnly(b)) return;
         addUnit(list, b, { kind: 'text', group: g, context: '', where: '', anchor: anchor });
       });
     }];
   }
-  function jobsFor(place) { return isChapter(place) ? [chapterJob(place)] : referenceJobs(place); }
+  function introductionJob(list) {
+    environmentUnits(list, front);
+    all('.mg-front-abstract, .mg-front-intro', front).forEach(function (region) {
+      var title = region.getAttribute('aria-label') || word('kind-introduction');
+      var headings = all('h2[id], h3[id], h4[id], h5[id], h6[id]', region).filter(function (h) {
+        return !h.closest(ENV + ', figure, nav, [data-reader-skip]');
+      });
+      if (region.id && !headings.length) {
+        addUnit(list, region, { kind: 'heading', group: front.id, title: title, body: '' });
+      }
+      headings.forEach(function (h) {
+        addUnit(list, h, { kind: 'heading', group: front.id, titleEl: h, body: '',
+                           anchor: h.querySelector('#introduction') || h });
+      });
+      var next = 0, heading = null;
+      textBlocks(region, 'figure, nav, [data-reader-skip]').forEach(function (b) {
+        if (linkOnly(b)) return;
+        while (next < headings.length && (headings[next].compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING)) {
+          heading = headings[next++];
+        }
+        var where = heading ? headingText(heading) : title;
+        var anchor = b.id ? b : b.closest('.mg-display[id]') || b;
+        give(anchor);
+        addUnit(list, b, { kind: 'text', group: front.id, anchor: anchor, titleEl: b.localName === 'p' ? leadOf(b) : null,
+                           defs: definedIn(b), context: where, where: where, whereEl: heading });
+      });
+      all('figure[id]', region).forEach(function (figure) {
+        var caption = figure.querySelector('figcaption');
+        if (caption) addUnit(list, figure, { kind: 'figure', group: front.id, titleEl: blockTitle(figure), bodyEl: caption });
+      });
+    });
+  }
+  function jobsFor(place) {
+    if (place === front) return [introductionJob];
+    return isChapter(place) ? [chapterJob(place)] : referenceJobs(place);
+  }
 
   var units = null;
   var pending = null;
   var building = [];
   function jobs() {
     var list = [];
+    if (front) list.push(introductionJob);
     places.forEach(function (p) { list = list.concat(jobsFor(p)); });
     return list;
   }
+  /* The units are built when they are first asked for (the search opening, or a script asking with qh:reader-units),
+     never while the page loads or is read: on a telephone that work would hold back the painting of the page being
+     scrolled. */
   function index() {
     if (units) return units;
     if (!pending) { building = []; pending = jobs(); }
@@ -1784,8 +2156,10 @@
       var where = x.where || '';
       var body = x.text || '';
       out.push({ el: null, anchor: null, remote: true, href: x.page + '#' + encodeURIComponent(x.id), rid: x.id, group: x.group,
+                 env: x.env, status: x.status, classification: envWords(x.env, x.status),
                  kind: x.kind || 'text', titleEl: null, title: title, body: body, name: fold(x.name || ''), context: where, where: where,
-                 skip: null, bodyEl: null, ft: fold(title), fb: fold(body), fc: fold(where), keys: titleKeys(fold(title)),
+                 skip: null, bodyEl: null, bodyParts: x.bodyParts, titleParts: x.titleParts, whereParts: x.whereParts,
+                 ft: fold(title), fb: fold(body), fc: fold(where), keys: titleKeys(fold(title)),
                  defs: Array.isArray(x.defs) ? x.defs : [], ro: (title + ' ' + body).toLowerCase(),
                  raw: (title + ' ' + where + ' ' + body).toLowerCase(), ttex: x.ttex || '', tex: x.tex || '' });
     });
@@ -1818,27 +2192,16 @@
     event.detail.units = index().filter(function (u) { return !u.remote; }).map(function (u) {
       var g = doc.getElementById(u.group);
       var chapter = g && isChapter(g);
-      return { id: give(u.anchor), group: u.group, groupKind: chapter ? 'chapter' : 'reference',
-               groupTitle: chapter ? chapterTitle(g) : headingText(referenceHeading(g)), groupNumber: chapter ? chapterNumber(g) : '',
-               kind: u.kind, title: u.title, name: u.name, where: u.where, text: u.body || '', defs: u.defs, ttex: u.ttex, tex: u.tex };
+      return { id: give(u.anchor), group: u.group, groupKind: g === front ? 'front' : chapter ? 'chapter' : 'reference',
+               groupTitle: g === front ? word('kind-introduction') : chapter ? chapterTitle(g) : headingText(referenceHeading(g)),
+               groupNumber: chapter ? chapterNumber(g) : '', env: u.env, status: u.status,
+               kind: u.kind, title: u.title, name: u.name, where: u.where, text: u.body || '', defs: u.defs, ttex: u.ttex, tex: u.tex,
+               bodyParts: /^(chapter|section|heading)$/.test(u.kind) ? undefined :
+                 snippetParts(u.snippetSources || [u.bodyEl || u.el], u.skip),
+               titleParts: u.titleEl ? snippetParts([inlineCopy(u.titleEl)]) : undefined,
+               whereParts: u.whereEl ? snippetParts([inlineCopy(u.whereEl)]) : undefined };
     });
   });
-  function indexWhenIdle() {
-    if (units) return;
-    if (!pending) { building = []; pending = jobs(); }
-    var idle = window.requestIdleCallback || function (fn) {
-      return setTimeout(function () {
-        var start = Date.now();
-        fn({ timeRemaining: function () { return Math.max(0, 8 - (Date.now() - start)); } });
-      }, 30);
-    };
-    idle(function slice(deadline) {
-      if (units || !pending) return;
-      while (pending.length && deadline.timeRemaining() > 2) pending.shift()(building);
-      if (pending.length) idle(slice); else { units = building; pending = null; }
-    });
-  }
-
   /* The panel: a field, the scopes (all, the chapters, each part of the reference) with their counts, a line that says
      how many results there are, and the results by place: the chapters in the book's order first, then the reference.
      Each place shows its first few results and offers the rest. */
@@ -1906,6 +2269,7 @@
     Object.keys(remoteGroups).filter(function (g) { return remoteGroups[g].kind === 'chapter' && order.indexOf(g) < 0; })
       .sort(function (a, b) { return (+remoteGroups[a].number || 0) - (+remoteGroups[b].number || 0); })
       .forEach(function (g) { order.push(g); });
+    if (front) order.push(front.id);
     references.forEach(function (r) { if (order.indexOf(r.id) < 0) order.push(r.id); });
     if (pagesMap) pagesMap.pages.forEach(function (pg) { (pg.parts || []).forEach(function (pt) { if (pt && pt.id && order.indexOf(pt.id) < 0) order.push(pt.id); }); });
     Object.keys(remoteGroups).forEach(function (g) { if (order.indexOf(g) < 0) order.push(g); });
@@ -1918,6 +2282,7 @@
   }
   function scopeOfGroup(g) {
     var p = doc.getElementById(g);
+    if ((p && p === front) || (remoteGroups[g] && remoteGroups[g].kind === 'front')) return 'chapters';
     if (p) return isChapter(p) ? 'chapters' : g;
     return remoteGroups[g] && remoteGroups[g].kind === 'chapter' ? 'chapters' : g;
   }
@@ -1939,6 +2304,7 @@
   }
   function groupWhere(g) {
     var p = doc.getElementById(g);
+    if (p && p === front) return word('kind-introduction');
     if (p) return isChapter(p) ? fill(word('chapter'), { n: chapterNumber(p) }) : partLabel(g);
     var r = remoteGroups[g];
     return r && r.kind === 'chapter' ? fill(word('chapter'), { n: r.number }) : partLabel(g);
@@ -1962,36 +2328,53 @@
   function rankSort(a, b) {
     return b.exact - a.exact || b.own - a.own || b.tier - a.tier || b.kind - a.kind || b.score - a.score || a.order - b.order;
   }
+  /* Link names are text. Give them the exact TeX instead of the formula's concatenated leaves.
+     The visible MathML stays in the accessibility tree for mathematical navigation. */
+  function appendHitPart(link, part, id, remote) {
+    part.id = id;
+    link.appendChild(part);
+    if (!remote || !part.querySelector('math')) return id;
+    var text = pieces(part).map(function (p) {
+      if (!p.math) return p.text;
+      var tex = p.math.querySelector('annotation[encoding="application/x-tex"]');
+      return tex ? ' ' + fill(word('formula-as-tex'), { tex: tex.textContent.trim() }) + ' ' :
+        ' ' + word('formula-in-source') + ' ';
+    }).join('').replace(/\s+/g, ' ').trim();
+    var label = element('span', null, text);
+    label.id = id + '-label';
+    label.hidden = true;
+    link.appendChild(label);
+    return label.id;
+  }
   function hitLink(h, n, marks, terms) {
     var u = h.unit;
     var li = element('li', 'reader-hit');
     var a = element('a', 'reader-hit-link');
     if (u.remote) a.href = u.href; else a.href = '#' + give(u.anchor);
     a.setAttribute('data-hit', String(n));
-    if (u.remote && !u.bodyEl) u.bodyEl = element('span', null, u.body);
+    if (u.remote && !u.bodyEl) u.bodyEl = readSnippet(u.bodyParts, u.body, !!u.tex);
     var ids = 'reader-hit-' + n;
     var labelled = [];
     var lead = h.best ? groupWhere(u.group) + (groupTitle(u.group) ? ' · ' + groupTitle(u.group) : '') : '';
-    var plain = u.remote ? u.body : textOf(u.bodyEl || u.el, u.skip, true);
+    var plain = textOf(u.bodyEl || u.el, u.skip, true);
     var inFormula = terms.some(function (t) { return !inWords(u, t, plain); });
-    var kindWord = WORDS['kind-' + u.kind] ? word('kind-' + u.kind) : '';
+    var kindWord = envLabel(u.env, u.status) || (WORDS['kind-' + u.kind] ? word('kind-' + u.kind) : '');
+    if (u.env) a.setAttribute('data-hit-env', u.env);
+    if (u.status) a.setAttribute('data-hit-status', u.status);
     var whereText = u.where || '';
     var w = element('span', 'reader-hit-where');
-    w.id = ids + '-where';
     var parts = [];
     if (kindWord) parts.push(element('span', 'reader-hit-kind', kindWord));
     if (lead) parts.push(highlight(element('span', null, lead), marks));
     if (!u.remote && u.whereEl) parts.push(highlight(inlineCopy(u.whereEl), marks));
-    else if (whereText) parts.push(highlight(element('span', null, whereText), marks));
+    else if (whereText) parts.push(highlight(readSnippet(u.whereParts, whereText, false), marks));
     if (inFormula) parts.push(element('span', 'reader-hit-formula', word('in-formula')));
     parts.forEach(function (n, k) { if (k) w.appendChild(doc.createTextNode(' · ')); w.appendChild(n); });
-    if (parts.length) a.appendChild(w);
+    var whereId = parts.length ? appendHitPart(a, w, ids + '-where', u.remote) : '';
     if (u.titleEl || u.title) {
-      var t = u.titleEl ? inlineCopy(u.titleEl) : element('span', null, u.title);
+      var t = u.titleEl ? inlineCopy(u.titleEl) : readSnippet(u.titleParts, u.title, !!u.ttex);
       t.className = 'reader-hit-title';
-      t.id = ids + '-title';
-      a.appendChild(highlight(t, marks));
-      labelled.push(t.id);
+      labelled.push(appendHitPart(a, highlight(t, marks), ids + '-title', u.remote));
     }
     var snip = null;
     if (u.kind === 'chapter' || u.kind === 'section') {
@@ -2000,11 +2383,10 @@
       if (first) snip = snippetOf({ el: first, bodyEl: first, skip: null }, marks);
     } else if (u.kind !== 'heading') snip = snippetOf(u, marks);
     if (snip) {
-      snip.id = ids + '-text';
-      a.appendChild(snip);
-      if (labelled.length) a.setAttribute('aria-describedby', snip.id); else labelled.push(snip.id);
+      var snippetId = appendHitPart(a, snip, ids + '-text', u.remote);
+      if (labelled.length) a.setAttribute('aria-describedby', snippetId); else labelled.push(snippetId);
     }
-    if (parts.length) labelled.push(ids + '-where');
+    if (whereId) labelled.push(whereId);
     a.setAttribute('aria-labelledby', labelled.join(' '));
     li.appendChild(a);
     return li;
@@ -2043,7 +2425,7 @@
       var isExact = exact && (u.keys.indexOf(exact) >= 0 || u.name === exact || u.defs.indexOf(exact) >= 0) ? 1 : 0;
       var own = terms.every(function (t) { return ownHas(u, t); }) ? 1 : 0;
       var tier = !phrase || !own ? 0 : together(u.ft, phrase) ? 2 : together(u.fb, phrase) ? 1 : 0;
-      var h = { unit: u, score: score, own: own, tier: tier, exact: isExact, kind: KIND[u.kind] || 0, order: i };
+      var h = { unit: u, score: score, own: own, tier: tier, exact: isExact, kind: KIND[u.kind] || (u.env ? KIND.result : 0), order: i };
       var sc = scopeOfGroup(u.group);
       perScope.all++;
       perScope[sc] = (perScope[sc] || 0) + 1;
@@ -2294,6 +2676,51 @@
 
   /* ------------------------------------------------------------------ events */
 
+  // Chromium writes a same-document fragment as a named PDF destination, even when its chapter is hidden.
+  var paperLinks = null;
+  window.addEventListener('beforeprint', function () {
+    var canonical = doc.querySelector('link[rel~="canonical"][href]');
+    if (paperLinks || !canonical) return;
+    var publication = new URL(canonical.href);
+    if (publication.protocol !== 'https:') return;
+    var bookFile = bookHref || 'index.html';
+    var ownFile = companion ? publication.pathname.split('/').pop() : bookFile;
+    var printedURL = location.href.split('#')[0];
+    paperLinks = [];
+    all('a[href]', main).forEach(function (a) {
+      var href = a.getAttribute('href');
+      var hash = href.indexOf('#');
+      if (hash < 0 || hash === href.length - 1 || a.hasAttribute('download') || a.closest('[hidden]')) return;
+      var file = href.slice(0, hash);
+      if (file && file !== bookFile && !(pagesMap && pagesMap.pages.some(function (p) { return p.href === file; }))) return;
+      var fragment = href.slice(hash);
+      var id = decode(fragment.slice(1));
+      var target = (!file || file === ownFile) && doc.getElementById(id);
+      var dest;
+      if (target && !target.closest('[hidden]') && target.getClientRects().length &&
+          window.getComputedStyle(target).visibility === 'visible') {
+        dest = fragment;
+      } else {
+        file = file || (target ? ownFile : ownerOf(id));
+        if (!file) return;
+        var online = new URL(file === bookFile ? './' : file, publication).href;
+        // Write the empty query literally: Chromium's URL.search setter discards it.
+        dest = online + (online === printedURL ? '?' : '') + fragment;
+      }
+      if (dest !== href) {
+        paperLinks.push([a, href, dest]);
+        a.setAttribute('href', dest);
+      }
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    if (!paperLinks) return;
+    paperLinks.forEach(function (row) {
+      if (row[0].getAttribute('href') === row[2]) row[0].setAttribute('href', row[1]);
+    });
+    paperLinks = null;
+  });
+
   doc.addEventListener('click', function (event) {
     if (event.defaultPrevented || !plainClick(event)) return;
     var term = event.target.closest && event.target.closest('button.term[data-term]');
@@ -2308,6 +2735,13 @@
     var a = event.target.closest && event.target.closest('a[href]');
     if (!a || peek.contains(a) || results.contains(a)) return;
     var href = a.getAttribute('href');
+    /* A term, whether its definition is in this page or another: the definition opens and stays (a second press
+       closes it). A click that ends a selection of the term's words keeps the selection. */
+    if (isTerm(a) && main.contains(a)) {
+      if (selectingIn(a)) { event.preventDefault(); return; }
+      if (peekFrom === a && !peek.hidden && peekPinned) { event.preventDefault(); closePeek(true); return; }
+      if (openPeek(a, true)) { event.preventDefault(); return; }
+    }
     if (href.charAt(0) !== '#' && !a.hasAttribute('download') && !a.target && bookPage(a.href)) {
       /* Another page of the book (a component's link included): the entry left keeps the place. */
       event.preventDefault();
@@ -2368,14 +2802,18 @@
       later(function () {
         scrollFrame = false;
         trackSection();
-        if (!peek.hidden) { if (peekPinned) placePeek(); else closePeek(false); }
+        /* A reminder kept open follows its link. One shown on hover closes; a term's definition shown on hover or by
+           keys stays while its term is on the screen (reaching a term by keys may itself scroll it into view). */
+        if (!peek.hidden) {
+          if (peekPinned || (peek.hasAttribute('data-term') && peekFrom && onScreen(peekFrom))) placePeek(); else closePeek(false);
+        }
       });
     }
     saveEntrySoon();
     clearTimeout(placeTimer);
     placeTimer = setTimeout(savePlace, 700);
   }, { passive: true });
-  window.addEventListener('resize', function () { later(function () { measureBar(); placePeek(); }); });
+  window.addEventListener('resize', function () { later(function () { measureBar(); placePeek(); fitFormulas(); }); });
   window.addEventListener('pagehide', function () { savePlace(); });
   /* Back from another page of the book may show this page as it was left (the back-forward cache): its search too. */
   window.addEventListener('pageshow', function (event) {
@@ -2434,6 +2872,13 @@
     var p = event.target;
     if (places.indexOf(p) < 0 && p !== front) return;
     if (p === current || (p === front && !current)) return;
+    // Browsers also reveal hidden ancestors when following a fragment or traversing history.
+    // That navigation already owns the entry and its specific destination inside this place.
+    var target = resolve(hashId());
+    if (target && p.contains(target)) {
+      show(p === front ? null : p);
+      return;
+    }
     leaveEntry(null);
     var id = p === front ? (front.id || '') : p.id;
     pushEntry(stateWith({ id: id, view: p === front ? 'front' : isChapter(p) ? 'chapter' : 'reference' }, true), urlFor(id));
@@ -2461,10 +2906,30 @@
   doc.addEventListener('qh:content-changed', function () {
     units = null;
     pending = null;
-    if (searchOpen && searchState.q.trim()) run(); else indexWhenIdle();
+    if (searchOpen && searchState.q.trim()) run();
   });
 
   /* ------------------------------------------------------------------ the start */
+
+  /* Proofs. A proof that follows its statement is described by that statement's label, so that a screen reader
+     names what it proves; a long proof begins with a way past it, shown to a reader moving by keys. */
+  all('[data-env="proof"], [data-env="proof-sketch"]', main).forEach(function (proof) {
+    var before = proof.previousElementSibling;
+    var title = before && before.matches('[data-result], [data-term]') ? blockTitle(before) : null;
+    if (title && title.id && !proof.hasAttribute('aria-describedby')) proof.setAttribute('aria-describedby', title.id);
+    /* No address is made for the text after the proof: generated passage addresses keep their published order. */
+    if (!proof.nextElementSibling || all(':scope > p, :scope > .mg-display, :scope > ol, :scope > ul', proof).length < 4) return;
+    var skip = element('button', 'reader-proof-skip', word('proof-skip'));
+    skip.type = 'button';
+    skip.setAttribute('data-reader-skip', '');
+    skip.addEventListener('click', function () {
+      var past = proof.nextElementSibling;
+      if (!past) return;
+      scrollToEl(past);
+      focusQuietly(past);
+    });
+    proof.insertBefore(skip, proof.firstChild);
+  });
 
   try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) { /* kept by the browser */ }
   (function start() {
@@ -2505,6 +2970,5 @@
       if (st && st.panel && st.hit) focusHit(st.hit);
     }
     later(function () { measureBar(); trackSection(); });
-    indexWhenIdle();
   })();
 })();
