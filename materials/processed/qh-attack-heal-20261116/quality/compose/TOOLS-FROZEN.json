@@ -1,0 +1,41 @@
+{
+ "purpose": "Quality tools frozen for the one focused run on root's exact combined candidate (A8-F-01 mapped to F2's markup).",
+ "tools": {
+  "qh-static.mjs": "b389c235576ba0671c484c675cb0e57c047304e0490ee5b861b943f3511429a3",
+  "qh-status-extension.mjs": "8626a66e101d8e9cb19ecaad49ccf1cd02979524391583067d4693884b584aac",
+  "qh-status-language.mjs": "faabb98814c9332a2debdd0ae2b7a21f22665050f3dc09398cd06fee60c036be",
+  "qh-builder-fixtures.py": "166fd33f3254a7dbd441b23f6a281aa01fbdec7f43001521419d45a8180ab580",
+  "qh-audit-fixtures.py": "7309d7640269e053af849557000473a6c5537d52554c3fa8be9344c230483574",
+  "qh-atlas-fidelity.py": "314a25956d0ab8b9f84655269f0ad7b1f26baa873a9415db1378b4e7c1915f79"
+ },
+ "before_A8": {
+  "qh-static.mjs": "63d1b4ad67900e53dd24254563a2fe188fe206f532f721fd2a96f42567e284ae",
+  "qh-status-extension.mjs": "9f6cbca4e1f06ba419e42e62a94df9a80237bf4c5745182591cf936465871219"
+ },
+ "delta": {
+  "path": "compose/tools-A8-F-01.diff",
+  "sha256": "d5b70b9df1fba81d9a83e2e05ef09bbee743751348eb17518ae82f5102ec9d90"
+ },
+ "mapping": [
+  "statements paired with their articles by anchor (ids), not by position",
+  "hypotheses under .statement-hyp (F2) or .statement-hypotheses",
+  "atlas.json TeX allowed as annotations; a formula without annotation allowed only inside a grid row link",
+  "tally pills without counts (F2): the statements of the status on the page are the count",
+  "row status mixes required only where the page uses them"
+ ],
+ "evidence": {
+  "current preview, F1+F2+quality with the atlas as a test input": "qh-static all 11 PASS (Q06, Q08, Q10 included); qh-status-extension S1-S6 PASS (needs node --max-old-space-size=8192)",
+  "baseline content, F1+F2+quality": "qh-static all PASS except Q11 (the baseline status_key labels; the owner's new status_key clears it)",
+  "older markup (c3f candidate, c3e fixture)": "qh-static as before; qh-status-extension S1-S6 PASS",
+  "F2 fixtures refuted-form and refuted-principal-only": "qh-status-extension S1-S6 PASS"
+ },
+ "focused_run": {
+  "build": "PY -B compiler/build-quantum-holography-status.py --output <out>/preview.html --audit-dir <out>/audit (and --no-fonts); audit PASS expected only once the content and atlas fixes land (27 data failures on the 16 November current preview)",
+  "static": "QH_JSDOM=<jsdom> node lead/qh-static.mjs --html <preview> --content <content dir with content.json, essay.md, atlas.json> --page <page.json> --baseline-html quality/baseline/preview.html",
+  "status_extension": "QH_JSDOM=<jsdom> node --max-old-space-size=8192 lead/qh-status-extension.mjs --html <preview> --word <a word from a refuted-form hypothesis>",
+  "status_language": "QH_JSDOM=<jsdom> node lead/qh-status-language.mjs --html <preview>",
+  "audit_fixtures": "QH_PRIVATE_PROBES=<probe file outside the repository> python3 -I -B lead/qh-audit-fixtures.py <producer folder>",
+  "builder_fixtures": "python3 -I -B lead/qh-builder-fixtures.py <builder> <work folder> (run from the candidate root)",
+  "not_run": "the interaction suite on the old baseline script (root)"
+ }
+}

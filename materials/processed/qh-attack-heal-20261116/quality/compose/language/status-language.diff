@@ -1,0 +1,24 @@
+--- a/content/quantum-holography-status/page.json
++++ b/content/quantum-holography-status/page.json
+@@ -86,16 +86,16 @@
+     "contents_open": "{n} statements in {g} groups"
+   },
+   "status_labels": {
+-    "checked": "Proved and independently checked",
++    "checked": "Established",
+     "pending": "Proposed",
+     "conditional": "Conditional",
+     "conjecture": "Conjecture",
+     "heuristic": "Heuristic",
+-    "open": "Open problem",
++    "open": "Remaining",
+     "published": "Published",
+-    "partial": "Partly established",
+-    "not posed": "Not yet formulated",
+-    "refuted form": "Refuted as first posed"
++    "partial": "Partial",
++    "not posed": "Not posed",
++    "refuted form": "Scoped negative"
+   },
+   "novelty_labels": {
+     "new": "New",

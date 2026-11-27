@@ -1,0 +1,646 @@
+{
+ "html": "compose/composed-build/preview-nofonts.html",
+ "html_sha256": "59a236c53c116be9b3ed11fd68ba0b8565f7a5884e71e10de70d0f0a7f817f94",
+ "html_bytes": 1981806,
+ "checks": {
+  "Q03-csp": {
+   "pass": true,
+   "csp": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; font-src data:; img-src data:; base-uri 'none'; form-action 'none'"
+  },
+  "Q06": {
+   "pass": false,
+   "content_statements": 281,
+   "dom_statements": 281,
+   "counts": {
+    "checked": 197,
+    "pending": 0,
+    "conditional": 6,
+    "refuted form": 0,
+    "conjecture": 0,
+    "heuristic": 0,
+    "open": 74,
+    "published": 4
+   },
+   "tally": {
+    "checked": null,
+    "conditional": null,
+    "open": null,
+    "published": null
+   },
+   "problems": [
+    {
+     "i": 9,
+     "id": "decisive-native-interface",
+     "problem": "data-status checked != open"
+    },
+    {
+     "i": 9,
+     "id": "decisive-native-interface",
+     "problem": "chip \"Proved and independently checked\""
+    },
+    {
+     "i": 9,
+     "id": "decisive-native-interface",
+     "problem": "class statement st-checked"
+    },
+    {
+     "i": 9,
+     "id": "decisive-native-interface",
+     "problem": "anchor  != s-decisive-native-interface"
+    },
+    {
+     "i": 10,
+     "id": "decisive-endpoint-two-corings",
+     "problem": "anchor  != s-decisive-endpoint-two-corings"
+    },
+    {
+     "i": 11,
+     "id": "decisive-separated-wick",
+     "problem": "anchor  != s-decisive-separated-wick"
+    },
+    {
+     "i": 12,
+     "id": "decisive-induction-full-unbounded",
+     "problem": "anchor  != s-decisive-induction-full-unbounded"
+    },
+    {
+     "i": 13,
+     "id": "decisive-finite-quotient-point-duality",
+     "problem": "anchor  != s-decisive-finite-quotient-point-duality"
+    },
+    {
+     "i": 14,
+     "id": "decisive-induction-all-energy-intrinsic",
+     "problem": "data-status open != checked"
+    },
+    {
+     "i": 14,
+     "id": "decisive-induction-all-energy-intrinsic",
+     "problem": "chip \"Open problem\""
+    },
+    {
+     "i": 14,
+     "id": "decisive-induction-all-energy-intrinsic",
+     "problem": "class statement st-open"
+    },
+    {
+     "i": 14,
+     "id": "decisive-induction-all-energy-intrinsic",
+     "problem": "anchor  != s-decisive-induction-all-energy-intrinsic"
+    },
+    {
+     "i": 15,
+     "id": "decisive-native-r3-covariant-recipient",
+     "problem": "anchor s-hyperbolic-genus-identity != s-decisive-native-r3-covariant-recipient"
+    },
+    {
+     "i": 16,
+     "id": "decisive-fullbar-wilson-parameter",
+     "problem": "anchor s-hyperbolic-character-average != s-decisive-fullbar-wilson-parameter"
+    },
+    {
+     "i": 17,
+     "id": "decisive-geometric-left-vacuum",
+     "problem": "anchor s-hyperbolic-all-genus != s-decisive-geometric-left-vacuum"
+    },
+    {
+     "i": 18,
+     "id": "decisive-induction-complete-support",
+     "problem": "anchor s-scalar-average-obstruction != s-decisive-induction-complete-support"
+    },
+    {
+     "i": 19,
+     "id": "decisive-native-resolved-evaluation",
+     "problem": "anchor s-rank-four-genus-masses != s-decisive-native-resolved-evaluation"
+    },
+    {
+     "i": 20,
+     "id": "decisive-horizontal-one-family",
+     "problem": "anchor s-rank-four-character != s-decisive-horizontal-one-family"
+    },
+    {
+     "i": 21,
+     "id": "decisive-endpoint-native-coefficients",
+     "problem": "anchor s-endpoint-algebraic-recipient != s-decisive-endpoint-native-coefficients"
+    },
+    {
+     "i": 22,
+     "id": "decisive-supported-bulk-actions",
+     "problem": "data-status checked != open"
+    },
+    {
+     "i": 22,
+     "id": "decisive-supported-bulk-actions",
+     "problem": "chip \"Proved and independently checked\""
+    },
+    {
+     "i": 22,
+     "id": "decisive-supported-bulk-actions",
+     "problem": "class statement st-checked"
+    },
+    {
+     "i": 22,
+     "id": "decisive-supported-bulk-actions",
+     "problem": "anchor s-endpoint-derived-and-hybrid-coring != s-decisive-supported-bulk-actions"
+    },
+    {
+     "i": 23,
+     "id": "decisive-all-state-pairing",
+     "problem": "anchor s-endpoint-separated-wick-and-primitive != s-decisive-all-state-pairing"
+    },
+    {
+     "i": 24,
+     "id": "decisive-global-current-cohomology",
+     "problem": "anchor  != s-decisive-global-current-cohomology"
+    },
+    {
+     "i": 25,
+     "id": "decisive-algebraic-supplements",
+     "problem": "anchor  != s-decisive-algebraic-supplements"
+    },
+    {
+     "i": 26,
+     "id": "decisive-unframed-components",
+     "problem": "anchor  != s-decisive-unframed-components"
+    },
+    {
+     "i": 27,
+     "id": "decisive-four-position-six-image",
+     "problem": "anchor  != s-decisive-four-position-six-image"
+    },
+    {
+     "i": 28,
+     "id": "decisive-unframed-full-and-critical",
+     "problem": "data-status open != checked"
+    },
+    {
+     "i": 28,
+     "id": "decisive-unframed-full-and-critical",
+     "problem": "chip \"Open problem\""
+    },
+    {
+     "i": 28,
+     "id": "decisive-unframed-full-and-critical",
+     "problem": "class statement st-open"
+    },
+    {
+     "i": 28,
+     "id": "decisive-unframed-full-and-critical",
+     "problem": "anchor  != s-decisive-unframed-full-and-critical"
+    },
+    {
+     "i": 29,
+     "id": "decisive-mixed-joint-geometric-quotients",
+     "problem": "anchor s-filtered-vacuum-composition != s-decisive-mixed-joint-geometric-quotients"
+    },
+    {
+     "i": 30,
+     "id": "decisive-centre-base-change",
+     "problem": "data-status checked != open"
+    },
+    {
+     "i": 30,
+     "id": "decisive-centre-base-change",
+     "problem": "chip \"Proved and independently checked\""
+    },
+    {
+     "i": 30,
+     "id": "decisive-centre-base-change",
+     "problem": "class statement st-checked"
+    },
+    {
+     "i": 30,
+     "id": "decisive-centre-base-change",
+     "problem": "anchor s-ambient-contragredient-vacuum != s-decisive-centre-base-change"
+    },
+    {
+     "i": 31,
+     "id": "decisive-centre-tame-quotient",
+     "problem": "anchor s-intrinsic-vacuum-and-modular-brst != s-decisive-centre-tame-quotient"
+    },
+    {
+     "i": 32,
+     "id": "decisive-centre-self-linking",
+     "problem": "anchor  != s-decisive-centre-self-linking"
+    },
+    {
+     "i": 33,
+     "id": "decisive-centre-incoming-refinements",
+     "problem": "anchor  != s-decisive-centre-incoming-refinements"
+    }
+   ],
+   "problem_count": 645
+  },
+  "Q07": {
+   "pass": true,
+   "rows": 20,
+   "grid_rows": 20,
+   "problems": [],
+   "problem_count": 0,
+   "aria_labels_with_tex": 0
+  },
+  "Q10": {
+   "pass": false,
+   "missing": [
+    {
+     "where": "statement 9 decisive-native-interface",
+     "field": "text",
+     "chunk": "Constructafilteredrealizationofthetransverserelativebarormodule-Homofindependentlydefinedendpointmodules,andcompareitsco"
+    },
+    {
+     "where": "statement 9 decisive-native-interface",
+     "field": "text",
+     "chunk": "branchbeforeassertingacommoncollisiontheory."
+    },
+    {
+     "where": "statement 9 decisive-native-interface",
+     "field": "title",
+     "chunk": "Realizethecoefficientdualthroughnativeendpointoperations"
+    },
+    {
+     "where": "statement 10 decisive-endpoint-two-corings",
+     "field": "text",
+     "chunk": "ForthepolynomialHeisenbergpointalgebra,theordinaryderivedkernelisthelocal-cohomologycoring"
+    },
+    {
+     "where": "statement 10 decisive-endpoint-two-corings",
+     "field": "text",
+     "chunk": ",withimagethe"
+    },
+    {
+     "where": "statement 10 decisive-endpoint-two-corings",
+     "field": "text",
+     "chunk": "-power-supportedsector.Aseparateproduct-bar/hybridhomotopy–derivedenhancementhasthediagonalKoszulcoringandretainseveryal"
+    },
+    {
+     "where": "statement 10 decisive-endpoint-two-corings",
+     "field": "title",
+     "chunk": "Twopoint-kerneltheoriesarealreadydistinguished"
+    },
+    {
+     "where": "statement 11 decisive-separated-wick",
+     "field": "text",
+     "chunk": "Onfullyseparatedconfigurations,thereducedexteriormodelhasastrictlyunitalfinite"
+    },
+    {
+     "where": "statement 11 decisive-separated-wick",
+     "field": "text",
+     "chunk": "automorphismandinverse,withfiniteinsertionsforarbitraryfinitecommutingchargematrices,includingJordanblocks.Theabsolutesp"
+    },
+    {
+     "where": "statement 11 decisive-separated-wick",
+     "field": "title",
+     "chunk": "Separatedchargetransporthasfinitehigheroperations"
+    },
+    {
+     "where": "statement 12 decisive-induction-full-unbounded",
+     "field": "text",
+     "chunk": "Foreveryfinite-dimensionalsimplecomplexLiealgebraandeverylevel,includingcriticallevel,correctedinductiongivesthefullunbo"
+    },
+    {
+     "where": "statement 12 decisive-induction-full-unbounded",
+     "field": "title",
+     "chunk": "Correctedalgebraicinductionisanequivalenceateverylevel"
+    },
+    {
+     "where": "statement 13 decisive-finite-quotient-point-duality",
+     "field": "text",
+     "chunk": "Forthegeneral-linearYangdoubleofrankn≥2ateachfinitequantumprecision,pointdualityholdsbetweentermwiseR_N-freecomplexesofs"
+    },
+    {
+     "where": "statement 13 decisive-finite-quotient-point-duality",
+     "field": "title",
+     "chunk": "Finite-quotientpointdualityincludescriticallevel"
+    },
+    {
+     "where": "statement 14 decisive-induction-all-energy-intrinsic",
+     "field": "text",
+     "chunk": "Foreveryfinite-dimensionalsimplecomplexLiealgebra,everylevelandeveryfinitehorizontaltop,theactualcontragredientobjectand"
+    },
+    {
+     "where": "statement 14 decisive-induction-all-energy-intrinsic",
+     "field": "title",
+     "chunk": "Inductionpreservesthemarkedcomparisonineveryenergy"
+    },
+    {
+     "where": "statement 15 decisive-native-r3-covariant-recipient",
+     "field": "text",
+     "chunk": "Forthefour-colourgeneral-linearsystemmodulohbarcubed,thederivativeformulaholdsforeveryexteriormonomialandjetateverylevel"
+    },
+    {
+     "where": "statement 15 decisive-native-r3-covariant-recipient",
+     "field": "title",
+     "chunk": "Nativeghostcoefficientshaveacompatibledgrecipient"
+    },
+    {
+     "where": "statement 16 decisive-fullbar-wilson-parameter",
+     "field": "text",
+     "chunk": "Theselectedbinarycollisionextendstoeveryfinitefull-bararitywithliteraltreeandblockfaces,sourceunitsandtheprescribedmixed"
+    },
+    {
+     "where": "statement 16 decisive-fullbar-wilson-parameter",
+     "field": "title",
+     "chunk": "FullbarsretaintheselectedunarymapsandWilsonroofs"
+    },
+    {
+     "where": "statement 17 decisive-geometric-left-vacuum",
+     "field": "text",
+     "chunk": "AtnonzeroHeisenberglevel,theprescribedpolarizedinducedleftvacuumisequivalenttothegeometricvacuummodulewithitsleftaction,"
+    },
+    {
+     "where": "statement 17 decisive-geometric-left-vacuum",
+     "field": "title",
+     "chunk": "Thepolarizedgeometricleftvacuumisidentified"
+    },
+    {
+     "where": "statement 18 decisive-induction-complete-support",
+     "field": "text",
+     "chunk": "Thecompleteinductionequivalenceusesdegreewiseproductsofdiscreteenergyfibres,continuousmodulemapsandseparatedegreewiselow"
+    },
+    {
+     "where": "statement 18 decisive-induction-complete-support",
+     "field": "title",
+     "chunk": "Completedinductionhasitsownsupporttheorem"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation",
+     "field": "text",
+     "chunk": "Modulohbarcubed,resolvedcoactionswithatmosttwoexternalrootedinputsretaintheirmixedcell,quotient,transposeandunitdata.Sca"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation",
+     "field": "title",
+     "chunk": "Resolvednativecellsadmitmarkedevaluation"
+    },
+    {
+     "where": "statement 20 decisive-horizontal-one-family",
+     "field": "text",
+     "chunk": "Asingleselectedfamilynowhasitsexactunarymap,nativeCartanclosure,physicalfacetsandunits,Wilsonandright-affine-barroofs,bi"
+    },
+    {
+     "where": "statement 20 decisive-horizontal-one-family",
+     "field": "title",
+     "chunk": "Onefinitehorizontalfamilycarriesthenativecomparisons"
+    },
+    {
+     "where": "statement 21 decisive-endpoint-native-coefficients",
+     "field": "text",
+     "chunk": "AtnonzeroHeisenberglevel,actualnativepolynomialchargedcutequivalences,fullcharge-changingHomcomplexes,nativeenergyclosur"
+    },
+    {
+     "where": "statement 21 decisive-endpoint-native-coefficients",
+     "field": "title",
+     "chunk": "Endpointcoefficientcomparisonspreservenativeattachments"
+    },
+    {
+     "where": "statement 22 decisive-supported-bulk-actions",
+     "field": "text",
+     "chunk": "Fortheuniversalaffinecochainsystemwithnondegenerateshiftedform"
+    },
+    {
+     "where": "statement 22 decisive-supported-bulk-actions",
+     "field": "text",
+     "chunk": ",constructtheregular,localizedandsupportedconfiguration-operationcomplexescarryingthenativeproduct,thespecifiedsecondary"
+    },
+    {
+     "where": "statement 22 decisive-supported-bulk-actions",
+     "field": "text",
+     "chunk": "inthatactualrecipient,withtheprescribedseparatedhomotopy.Inthemixed-currentrealization,retaintheoriginalunrestrictedglob"
+    },
+    {
+     "where": "statement 22 decisive-supported-bulk-actions",
+     "field": "title",
+     "chunk": "Constructthenativeoperationsystemanditsboundaryaction"
+    },
+    {
+     "where": "statement 23 decisive-all-state-pairing",
+     "field": "text",
+     "chunk": "Forfinite-dimensionalcomplex"
+    },
+    {
+     "where": "statement 23 decisive-all-state-pairing",
+     "field": "text",
+     "chunk": ",universalbalancedaffinevacuaandabsoluteghosts,thespecifiedprojectedtwo-copyfieldsagreeoneveryalgebraicstate,includingre"
+    },
+    {
+     "where": "statement 23 decisive-all-state-pairing",
+     "field": "text",
+     "chunk": ",thesecondaryagreesonallalgebraicghostjetswiththeendpoint-averageoperation.Somecurrent-containinginputsfailthedistinctre"
+    },
+    {
+     "where": "statement 23 decisive-all-state-pairing",
+     "field": "title",
+     "chunk": "Thefullprojectedaffinefieldsagreeonalgebraicstates"
+    },
+    {
+     "where": "statement 24 decisive-global-current-cohomology",
+     "field": "text",
+     "chunk": "Forordinaryscalarmixeddistributionswithfiniteorderoneachcompactandnouniformglobalnormal-orderbound,thethree-positioncomp"
+    },
+    {
+     "where": "statement 24 decisive-global-current-cohomology",
+     "field": "text",
+     "chunk": "Here"
+    },
+    {
+     "where": "statement 24 decisive-global-current-cohomology",
+     "field": "text",
+     "chunk": "isthejointpointprincipal-partmoduleand"
+    },
+    {
+     "where": "statement 24 decisive-global-current-cohomology",
+     "field": "text",
+     "chunk": "arethetwoforestinclusions.Each"
+    },
+    {
+     "where": "statement 24 decisive-global-current-cohomology",
+     "field": "text",
+     "chunk": "isthespecifiedlocallyfiniteDolbeaultcokernel;itvanishesafterrestrictiontoasmallernormalradius.Thescalarfinite-polevacuum"
+    },
+    {
+     "where": "statement 24 decisive-global-current-cohomology",
+     "field": "text",
+     "chunk": "ascokernel.Theforestsumisintrinsicallythesimultaneous"
+    },
+    {
+     "where": "statement 24 decisive-global-current-cohomology",
+     "field": "text",
+     "chunk": "-locally-nilpotentsubmoduleandgivestheuniquepolynomial-Weyl-linearsection.Thisisalgebraicscalarcohomology.Thefinite-norm"
+    },
+    {
+     "where": "statement 24 decisive-global-current-cohomology",
+     "field": "title",
+     "chunk": "Thefullscalarglobalanswerretainsthreeescapingmodules"
+    },
+    {
+     "where": "statement 25 decisive-algebraic-supplements",
+     "field": "text",
+     "chunk": "TheFOcurrentandnormal-orderidentification,cosetstresssplitanddeclaredsl2/sl3invariant/self-productpackageareestablishedo"
+    },
+    {
+     "where": "statement 25 decisive-algebraic-supplements",
+     "field": "title",
+     "chunk": "Theolderaffinesupplementshaveprecisepositivescopes"
+    },
+    {
+     "where": "statement 26 decisive-unframed-components",
+     "field": "text",
+     "chunk": "TheunframedfirstChevalleypagehasoneorigin-independentcomparisonidentifyingeverycollision,allowedtargetdeletionandsourcev"
+    },
+    {
+     "where": "statement 26 decisive-unframed-components",
+     "field": "title",
+     "chunk": "Theresiduediagramandformalaugmentationcriterionareconstructed"
+    },
+    {
+     "where": "statement 27 decisive-four-position-six-image",
+     "field": "text",
+     "chunk": "Actualfour-positioncontactmapsretainthenormaltransportandfixed-gatecorrection.Atthreepositions,thesix-imageconecontainst"
+    },
+    {
+     "where": "statement 27 decisive-four-position-six-image",
+     "field": "title",
+     "chunk": "Four-positioncontactsextendtoasix-imagecone"
+    },
+    {
+     "where": "statement 28 decisive-unframed-full-and-critical",
+     "field": "text",
+     "chunk": "Forpolynomialaffinecochainsofafinite-dimensionalsemisimpleLiealgebrawithnondegenerateshiftedform,thefullordered-atlastra"
+    },
+    {
+     "where": "statement 28 decisive-unframed-full-and-critical",
+     "field": "title",
+     "chunk": "Theunframedaugmentationlocusisdetermined"
+    },
+    {
+     "where": "statement 29 decisive-mixed-joint-geometric-quotients",
+     "field": "text",
+     "chunk": "Theparameter-properjoint-currentcarrierhasstagewiseboundedmomentcomparisonsandfullfinite-particlethree-positioncohomolog"
+    },
+    {
+     "where": "statement 29 decisive-mixed-joint-geometric-quotients",
+     "field": "title",
+     "chunk": "Mixedcurrentshaveactualjointandgeometriccarriers"
+    },
+    {
+     "where": "statement 30 decisive-centre-base-change",
+     "field": "text",
+     "chunk": "Inthestrictcategoryofalgebraicdgvertexsuperalgebraswithordinarytensors,takethenonzero-levelHeisenbergalgebra"
+    },
+    {
+     "where": "statement 30 decisive-centre-base-change",
+     "field": "text",
+     "chunk": ".Determinewhethertherequiredbasetransitionsonthefulltwo-leggedcocyclecategories"
+    },
+    {
+     "where": "statement 30 decisive-centre-base-change",
+     "field": "text",
+     "chunk": "inducenerveweakequivalences,withunrestrictedsourcesandrefinements.Targetsretaintheirprescribedbounded-belowenergygrading"
+    },
+    {
+     "where": "statement 30 decisive-centre-base-change",
+     "field": "text",
+     "chunk": "acyclic,thefirstexactquestioniswhether"
+    }
+   ],
+   "missing_count": 2262
+  },
+  "Q11-complete-payload": {
+   "pass": false,
+   "unrendered_count": 3,
+   "by_field": {
+    "status_key[].label": 3
+   },
+   "sample": [
+    {
+     "path": "status_key[0].label",
+     "chunk": "Checked"
+    },
+    {
+     "path": "status_key[5].label",
+     "chunk": "Notposed"
+    },
+    {
+     "path": "status_key[6].label",
+     "chunk": "Refutedform"
+    }
+   ]
+  },
+  "Q08": {
+   "pass": false,
+   "math_elements": 2507,
+   "annotations": 2506,
+   "distinct_content_tex": 1621,
+   "tex_errors": 0,
+   "content_tex_not_rendered": [],
+   "content_tex_not_rendered_count": 0,
+   "annotations_not_in_content": []
+  },
+  "Q08-raw-tex": {
+   "pass": true,
+   "count": 0,
+   "sample": []
+  },
+  "Q15-tex-in-names": {
+   "pass": true,
+   "count": 0,
+   "sample": []
+  },
+  "Q09": {
+   "pass": true,
+   "ids": 430,
+   "expected": 271,
+   "duplicates": [],
+   "missing": [],
+   "broken_hrefs": [],
+   "statement_id_collisions": [],
+   "baseline_ids_lost": [],
+   "baseline_ids_lost_count": 0,
+   "statements_without_anchor": 98
+  },
+  "Q04": {
+   "pass": true,
+   "hard_hits": 0,
+   "review_hits": 2,
+   "scans": {
+    "closed_source_paths_whole_doc": [],
+    "private_paths_whole_doc": [],
+    "internal_path_words_whole_doc": [],
+    "hex_hashes_whole_doc": [],
+    "model_tool_names_reader": [],
+    "hard_patterns_in_tex": [],
+    "model_tool_names_script": [],
+    "process_words_reader": [
+     "992); Dong–Lepowsky (1993); Costello–Gwilliam (2016, author draft); Gwilliam–Rabinovich–Williams (2020, preprint).Proved",
+     "in to be constructed.Continuous Virasoro sewing retains the adopted local theorem above charge one and the geometric tre"
+    ],
+    "version_tokens_reader": [],
+    "percentages_reader": [],
+    "external_gate_visible": [],
+    "source_fragments_checked": 351,
+    "source_fragment_hits": []
+   }
+  },
+  "Q05": {
+   "pass": true,
+   "hits": []
+  }
+ },
+ "inputs": {
+  "content_sha256": "39eebb2c101f072177700716fe9f4a9f9de61c5c2d5595f8e813854a14b40934",
+  "essay_sha256": "457e4c4ce75972cf929a4cfeba4f4e83a7aab37f640b50d69f18dc78c93a4f60"
+ },
+ "summary": {
+  "Q03-csp": "PASS",
+  "Q06": "FAIL",
+  "Q07": "PASS",
+  "Q10": "FAIL",
+  "Q11-complete-payload": "FAIL",
+  "Q08": "FAIL",
+  "Q08-raw-tex": "PASS",
+  "Q15-tex-in-names": "PASS",
+  "Q09": "PASS",
+  "Q04": "PASS",
+  "Q05": "PASS"
+ }
+}

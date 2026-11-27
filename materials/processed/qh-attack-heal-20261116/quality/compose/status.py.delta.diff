@@ -1,0 +1,350 @@
+--- status.py.theirs	2026-11-16 22:29:58
++++ status.py.resolved	2026-11-16 22:31:14
+@@ -13,6 +13,7 @@
+ import base64
+ import html
+ import io
++from html.parser import HTMLParser
+ import json
+ import re
+ import subprocess
+@@ -99,11 +100,19 @@
+     def __init__(self):
+         self.jobs = []
+         self.errors = []
++        self.text_jobs = {}  # TeX -> the one job that gives its text form
+ 
+     def add(self, tex, display):
+         self.jobs.append({'tex': tex, 'display': display})
+         return f'\x00M{len(self.jobs) - 1}\x00'
+ 
++    def add_text(self, tex):
++        """A placeholder for the formula's rendered token text (no markup, no TeX), for attributes and titles."""
++        if tex not in self.text_jobs:
++            self.jobs.append({'tex': tex, 'display': False})
++            self.text_jobs[tex] = len(self.jobs) - 1
++        return f'\x00T{self.text_jobs[tex]}\x00'
++
+     def render(self):
+         if not self.jobs:
+             self.out = []
+@@ -115,10 +124,14 @@
+             if 'error' in row:
+                 self.errors.append({'tex': job['tex'], 'error': row['error']})
+ 
+-    def substitute(self, markup):
++    def substitute(self, markup, escape_text=True):  # noqa: C901
+         def one(m):
+-            i = int(m.group(1))
++            kind, i = m.group(1), int(m.group(2))
+             row = self.out[i]
++            if kind == 'T':
++                text = self.jobs[i]['tex'] if 'html' not in row else math_text(row['html'])
++                text = ' '.join(text.split())
++                return html.escape(text, quote=True) if escape_text else text
+             if 'html' not in row:
+                 return f'<code class="tex-error">{html.escape(self.jobs[i]["tex"])}</code>'
+             out = row['html']
+@@ -129,7 +142,7 @@
+                 if width > WIDE_FORMULA_EM:
+                     out = out.replace('style="display:block math;"', f'style="display:block math;--fw:{width:.1f}"', 1)
+             return out
+-        return re.sub(r'\x00M(\d+)\x00', one, markup)
++        return re.sub(r'\x00([MT])(\d+)\x00', one, markup)
+ 
+ 
+ # Display formulas estimated wider than this (in em) carry --fw for the print sheet. The estimate below,
+@@ -209,6 +222,66 @@
+ 
+ 
+ MATH_RE = re.compile(r'\\\((.+?)\\\)|\\\[(.+?)\\\]', re.S)
++
++
++class _MathText(HTMLParser):
++    """Reads Temml's MathML into text that keeps the structure a reader needs: base_sub, base^sup,
++    (num)/(den), √x. The TeX annotation is skipped; invisible parts are dropped."""
++
++    def __init__(self):
++        super().__init__(convert_charrefs=True)
++        self.stack = [['root', []]]
++        self.skip = 0
++
++    def handle_starttag(self, tag, attrs):
++        if self.skip or tag in ('annotation', 'annotation-xml', 'mphantom'):
++            self.skip += 1
++            return
++        self.stack.append([tag, []])
++
++    def handle_endtag(self, tag):
++        if self.skip:
++            self.skip -= 1
++            return
++        if len(self.stack) > 1:
++            name, parts = self.stack.pop()
++            self.stack[-1][1].append(_math_join(name, parts))
++
++    def handle_data(self, data):
++        if not self.skip:
++            self.stack[-1][1].append(data)
++
++
++def _math_group(s):
++    s = s.strip()
++    return s if len(s) <= 1 else f'({s})'
++
++
++def _math_join(name, parts):
++    kids = [p for p in parts if p.strip()]
++    if name == 'msub' and len(kids) == 2:
++        return f'{kids[0]}_{_math_group(kids[1])}'
++    if name == 'msup' and len(kids) == 2:
++        return f'{kids[0]}^{_math_group(kids[1])}'
++    if name == 'msubsup' and len(kids) == 3:
++        return f'{kids[0]}_{_math_group(kids[1])}^{_math_group(kids[2])}'
++    if name == 'mfrac' and len(kids) == 2:
++        return f'{_math_group(kids[0])}/{_math_group(kids[1])}'
++    if name == 'msqrt':
++        return '√' + _math_group(''.join(kids))
++    if name == 'mroot' and len(kids) == 2:
++        return f'{_math_group(kids[1])}√{_math_group(kids[0])}'
++    if name == 'mspace':
++        return ' '
++    return ''.join(parts)
++
++
++def math_text(markup):
++    """Plain text of rendered MathML, for attributes and titles: C_2, T^2, q^(1/2), p/q; never TeX."""
++    parser = _MathText()
++    parser.feed(markup)
++    parser.close()
++    return ''.join(parser.stack[0][1])
+ LINK_RE = re.compile(r'\[([^\[\]]+)\]\((https?://[^\s)]+)\)')
+ ARXIV_RE = re.compile(r'arxiv\.org/(?:abs|html|pdf)/((?:math|hep-th|math-ph|alg-geom|q-alg)/\d{7}|\d{4}\.\d{4,5})(v\d+)?', re.I)
+ 
+@@ -233,13 +306,25 @@
+     def __init__(self, glossary):
+         self.by_form = {}
+         self.entries = []
++        self.problems = []
++        # An entry's own id is its anchor and is reserved first; anchors derived from terms avoid it.
++        explicit = ['term-' + ident(e['id']) for e in glossary if (e.get('id') or '').strip()]
++        for dup in sorted({t for t in explicit if explicit.count(t) > 1}):
++            self.problems.append(f'glossary: two entries have the id anchor {dup}')
++        taken = set(explicit)
+         for entry in glossary:
+-            tid = 'term-' + ident(entry['term'])
+-            base = tid
+-            n = 2
+-            while any(e['id'] == tid for e in self.entries):
+-                tid = f'{base}-{n}'
+-                n += 1
++            if (entry.get('id') or '').strip():
++                tid = 'term-' + ident(entry['id'])
++            else:
++                tid = base = 'term-' + ident(entry['term'])
++                if base in explicit:
++                    self.problems.append(f'glossary: the anchor {base} of the term "{entry["term"]}" is taken by another '
++                                         f'entry\'s id; give one of them a different id')
++                n = 2
++                while tid in taken:
++                    tid = f'{base}-{n}'
++                    n += 1
++                taken.add(tid)
+             entry = dict(entry, id=tid)
+             self.entries.append(entry)
+             forms = set(entry.get('forms') or []) | {entry['term']}
+@@ -327,16 +412,17 @@
+ 
+     # Text -------------------------------------------------------------------------------
+ 
+-    def rich(self, text, seen=None, terms=True):
+-        """Plain text with TeX and *emphasis* to HTML; glossary terms attached once per block."""
++    def rich(self, text, seen=None, terms=True, markup=True):
++        """Plain text with TeX and *emphasis* to HTML; glossary terms attached once per block.
++        With markup=False only TeX is converted: asterisks and [links](...) stay as written."""
+         if text is None:
+             return ''
+-        text = unlink(text)
++        text = unlink(text) if markup else text
+         seen = set() if seen is None else seen
+         parts = []
+         pos = 0
+         for m in MATH_RE.finditer(text):
+-            parts.append(self.plain(text[pos:m.start()], seen, terms))
++            parts.append(self.plain(text[pos:m.start()], seen, terms, markup))
+             pos = m.end()
+             if m.group(1) is not None:
+                 tex = m.group(1).strip()
+@@ -354,14 +440,27 @@
+                     parts.append('<span class="math-inline">' + self.math.add(tex, False) + '</span>')
+             else:
+                 parts.append('<span class="math-display">' + self.math.add(m.group(2).strip(), True) + '</span>')
+-        parts.append(self.plain(text[pos:], seen, terms))
++        parts.append(self.plain(text[pos:], seen, terms, markup))
+         return ''.join(parts)
+ 
+-    def plain(self, text, seen, terms):
++    def text_form(self, text):
++        """Text for attributes and titles: each formula becomes its rendered token text after the TeX run
++        (never TeX source), and emphasis marks are dropped. The caller escapes the result."""
++        out, pos = [], 0
++        text = unlink(text or '')
++        for m in MATH_RE.finditer(text):
++            out.append(EMPH_RE.sub(r'\1', text[pos:m.start()]))
++            out.append(self.math.add_text((m.group(1) or m.group(2)).strip()))
++            pos = m.end()
++        out.append(EMPH_RE.sub(r'\1', text[pos:]))
++        return ''.join(out)
++
++    def plain(self, text, seen, terms, markup=True):
+         if '\\(' in text or '\\)' in text or '\\[' in text or '\\]' in text:
+             self.problems.append('unbalanced TeX delimiters in: ' + text[:120])
+         escaped = html.escape(text, quote=False)
+-        escaped = EMPH_RE.sub(r'<em>\1</em>', escaped)
++        if markup:
++            escaped = EMPH_RE.sub(r'<em>\1</em>', escaped)
+         if terms:
+             escaped = self.term_links.link(escaped, seen)
+         return escaped
+@@ -407,7 +506,10 @@
+         if context and sid:
+             out.append(f'<p class="statement-context"><a href="{context[0]}">{context[1]}</a></p>')
+         out.append('</div>')
+-        hypotheses = [h for h in (s.get('hypotheses') or []) if (h or '').strip()]
++        given = s.get('hypotheses')
++        if given is not None and (not isinstance(given, list) or not all(isinstance(h, str) and h.strip() for h in given)):
++            self.problems.append(f'{where}: hypotheses must be a list of non-empty texts')
++        hypotheses = [h for h in given if isinstance(h, str) and h.strip()] if isinstance(given, list) else []
+         if hypotheses:
+             out.append(f'<div class="statement-hyp"><p class="statement-hyp-label">{html.escape(self.page["labels"]["hypotheses"])}</p>'
+                        f'<ul>{"".join(f"<li>{self.rich(h, seen)}</li>" for h in hypotheses)}</ul></div>')
+@@ -740,7 +842,7 @@
+             fid = 'f-' + ident(it.get('id') or str(i))
+             self.anchors.add(fid)
+             w = it.get('witness') or {}
+-            witness = self.statement(w, f'failure {i} witness', chip=not all_added) if w else ''
++            witness = self.statement(w, f'failure {i} witness', heading='h3', chip=not all_added) if w else ''
+             if not w:
+                 self.problems.append(f'failure {i}: no witness')
+             out.append(f'<div class="failure" id="{fid}"><p class="claim">'
+@@ -774,7 +876,7 @@
+         head = ''.join(
+             f'<th scope="col"><button type="button" class="col-head" data-col="{cid}"{"" if k == 0 else out_of_tab} '
+             f'aria-describedby="col-{cid}" aria-haspopup="dialog" aria-expanded="false" aria-controls="card"><span class="col-head-text">'
+-            f'{html.escape(columns.get(cid, {}).get("short") or columns.get(cid, {}).get("name", cid))}</span>'
++            f'{self.rich(columns.get(cid, {}).get("short") or columns.get(cid, {}).get("name", cid), terms=False)}</span>'
+             f'</button></th>' for k, cid in enumerate(order))
+         rows = []
+         for r in c.get('rows', []):
+@@ -792,7 +894,7 @@
+                     st = 'not posed'
+                 colname = columns.get(cid, {}).get('name', cid)
+                 note = cell.get('note') or ''
+-                label = f'{strip_tags(self.math_free(r["name"]))}, {colname}: {self.status_label(st)}'
++                label = f'{self.text_form(r["name"])}, {self.text_form(colname)}: {self.status_label(st)}'
+                 note_html = self.rich(note, terms=False)
+                 cells.append(
+                     f'<td class="cell cell-{slug(st)}" data-status="{st}">'
+@@ -801,15 +903,15 @@
+                     f'{mark(st)}</button>'
+                     f'<div class="cell-note" hidden><p class="cell-note-head">{mark(st)}<span>'
+                     f'{html.escape(self.status_label(st))}</span> <span class="cell-note-where">'
+-                    f'{html.escape(colname)}</span></p><p class="cell-note-text">{note_html}</p>'
++                    f'{self.rich(colname, terms=False)}</span></p><p class="cell-note-text">{note_html}</p>'
+                     + (f'<p class="cell-note-meaning">{meaning[st]}</p>' if meaning.get(st) else '') +
+                     '</div></td>')
+             short = r.get('short') or self.page.get('row_short', {}).get(r.get('id')) or r['name']
+-            rows.append(f'<tr><th scope="row"><a class="row-link" href="#{rid}" tabindex="-1" title="{html.escape(self.math_free(r["name"]))}">'
++            rows.append(f'<tr><th scope="row"><a class="row-link" href="#{rid}" tabindex="-1" title="{html.escape(self.text_form(r["name"]))}">'
+                         f'{self.rich(short, terms=False)}</a></th>'
+                         f'{"".join(cells)}</tr>')
+         col_notes = ''.join(
+-            f'<div class="col-def" id="col-{cid}"><dt>{html.escape(columns[cid]["name"])}</dt>'
++            f'<div class="col-def" id="col-{cid}"><dt>{self.rich(columns[cid]["name"], terms=False)}</dt>'
+             f'<dd>{self.rich(columns[cid].get("explanation", ""), terms=False)}</dd></div>' for cid in order if cid in columns)
+         table = (f'<div class="grid-wrap" role="region" aria-label="{html.escape(L["grid"])}">'
+                  f'<table class="grid"><caption class="visually-hidden">{html.escape(L["grid_caption"])}</caption>'
+@@ -840,7 +942,7 @@
+                 note = (cell.get('note') or '').strip()
+                 note_html = f'<span class="cell-text">{self.rich(note, terms=False)}</span>' if note else ''
+                 cells.append(f'<li class="cell-line cell-{slug(st)}">{mark(st)}<span class="cell-col">'
+-                             f'{html.escape(columns.get(cid, {}).get("name", cid))}</span>'
++                             f'{self.rich(columns.get(cid, {}).get("name", cid), terms=False)}</span>'
+                              f'<span class="cell-body"><span class="cell-st">{html.escape(self.status_label(st))}</span>'
+                              f'{note_html}</span></li>')
+             marks = ''.join(mark(((r.get('cells') or {}).get(cid) or {}).get('status', 'not posed')
+@@ -873,8 +975,12 @@
+     def open_problems(self, c):
+         L = self.page['labels']
+         groups = []
++        used = {'open', 'open-h'}  # the section's own anchors
+         for i, g in enumerate(c.get('open', [])):
+-            gid = 'open-' + ident(g.get('heading', str(i)))
++            gid = 'open-' + ident(g.get('id') or g.get('heading', str(i)))
++            if gid in used:
++                self.problems.append(f'open group {i}: anchor {gid} is already used on the page')
++            used.add(gid)
+             self.anchors.add(gid)
+             where = (f'#{gid}', self.rich(g.get('heading', ''), terms=False))
+             body = ''.join(self.statement(s, f'open {i}.{j}', context=where) for j, s in enumerate(g.get('statements', [])))
+@@ -893,16 +999,15 @@
+             block = ' '.join(block.split())
+             if not block:
+                 continue
+-            esc = html.escape(block, quote=False)
+-            if len(block) <= 32 and '=' in block:
+-                paras.append(f'<p class="essay-display">{esc}</p>')
++            if len(block) <= 32 and '=' in block and not MATH_RE.search(block):
++                paras.append(f'<p class="essay-display">{html.escape(block, quote=False)}</p>')
+             else:
+-                paras.append(f'<p>{esc}</p>')
++                paras.append(f'<p>{self.rich(block, terms=False, markup=False)}</p>')
+         lead_html = f'<p class="essay-lead">{self.rich(lead)}</p>' if (lead or '').strip() else ''
+         self.essay_title = title
+         return self.section('essay', L['essay'],
+                             f'{lead_html}<article class="essay prose" aria-labelledby="essay-title">'
+-                            f'<h3 id="essay-title" class="essay-title">{html.escape(title)}</h3>'
++                            f'<h3 id="essay-title" class="essay-title">{self.rich(title, terms=False, markup=False)}</h3>'
+                             f'<p class="essay-byline">{html.escape(self.page["author"])}</p>'
+                             f'{"".join(paras)}</article>', kicker=L['essay_kicker'])
+ 
+@@ -933,7 +1038,10 @@
+         self.content = c
+         essay_path = self.folder / 'essay.md'
+         essay_text = essay_path.read_text(encoding='utf-8') if essay_path.exists() else ''
++        if not essay_path.exists():
++            self.warnings.append('essay.md not found in the input folder; the page has no essay')
+         self.term_links = Terms(c.get('glossary', []))
++        self.problems.extend(self.term_links.problems)
+         L = self.page['labels']
+ 
+         cover = self.cover(c)
+@@ -1012,6 +1120,8 @@
+             self.problems.append(f'page: sections missing from the contents, so without a part number: {unnumbered}')
+         body = re.sub('\x00PART:([\\w-]+)\x00', lambda m: html.escape(number.get(m.group(1), '')), body)
+ 
++        title_form = self.text_form(c['title'])
++        description_form = self.text_form(c.get('subtitle', ''))
+         self.math.render()
+         body = self.math.substitute(body)
+         # A family's link in the table is copied as text into its cells' cards (status.js reads its
+@@ -1030,8 +1140,8 @@
+         if self.atlas_assets['js']:
+             js += '\n</script>\n<script>' + self.atlas_assets['js']
+         fonts = self.font_faces(body)
+-        title_text = strip_tags(self.math_free(c['title']))
+-        description = strip_tags(self.math_free(c.get('subtitle', '')))
++        title_text = self.math.substitute(title_form, escape_text=False)
++        description = self.math.substitute(description_form, escape_text=False)
+         head = (
+             '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+@@ -1084,7 +1194,7 @@
+     from fontTools import subset
+     from fontTools.ttLib import TTFont
+     chars = {c for c in chars if not c.isspace()} | {' ', ' '}
+-    font = TTFont(str(path))
++    font = TTFont(str(path), recalcTimestamp=False)  # keep the source font's date: the page is byte-reproducible
+     options = subset.Options()
+     options.layout_features = ['*']
+     options.flavor = 'woff'

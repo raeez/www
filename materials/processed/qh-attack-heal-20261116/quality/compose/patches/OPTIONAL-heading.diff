@@ -1,0 +1,11 @@
+--- a/compiler/quantum-holography-status/status.py
++++ b/compiler/quantum-holography-status/status.py
+@@ -842,7 +842,7 @@
+             fid = 'f-' + ident(it.get('id') or str(i))
+             self.anchors.add(fid)
+             w = it.get('witness') or {}
+-            witness = self.statement(w, f'failure {i} witness', chip=not all_added) if w else ''
++            witness = self.statement(w, f'failure {i} witness', heading='h3', chip=not all_added) if w else ''
+             if not w:
+                 self.problems.append(f'failure {i}: no witness')
+             out.append(f'<div class="failure" id="{fid}"><p class="claim">'

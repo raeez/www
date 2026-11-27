@@ -1,0 +1,86 @@
+--- a/lead/qh-static.mjs
++++ b/lead/qh-static.mjs
+@@ -103,8 +103,15 @@
+ const sts = [...allStatements(c)];
+ const arts = [...doc.querySelectorAll('main article.statement')];
++// Each content statement is paired with its article by its anchor when it has an id (the page may order statements
++// differently from the content: a question's own statement, folded related statements); statements without an id take
++// the articles without an anchor, in order (A8-F-01).
++const artById = new Map(arts.filter(a => a.id).map(a => [a.id, a]));
++const anchorlessArts = arts.filter(a => !a.id);
++let nextAnchorless = 0;
++const pairedArts = sts.map(s => (s.id ? artById.get('s-' + ident(s.id)) : anchorlessArts[nextAnchorless++]) || null);
+ const statusProblems = [];
+ const counts = Object.fromEntries(STATEMENT_STATUSES.map(s => [s, 0]));
+ sts.forEach((s, i) => {
+-  const a = arts[i];
++  const a = pairedArts[i];
+   const st = STATEMENT_STATUSES.includes(s.status) ? s.status : null;
+   if (st) counts[st]++;
+@@ -118,5 +125,5 @@
+   // Hypotheses: every one rendered, in order, under the statement's text.
+   const hyps = Array.isArray(s.hypotheses) ? s.hypotheses.filter(h => String(h).trim()) : [];
+-  const lis = [...a.querySelectorAll(':scope > .statement-hypotheses li')];
++  const lis = [...a.querySelectorAll(':scope > .statement-hypotheses li, :scope > .statement-hyp li')];  // either markup (A8-F-01)
+   if (lis.length !== hyps.length) statusProblems.push({ i, id: s.id, problem: `hypotheses ${lis.length} rendered of ${hyps.length}` });
+   hyps.forEach((h, k) => expectText('hypothesis', h, lis[k], `statement ${i} ${s.id || ''} hypothesis ${k}`));
+@@ -292,11 +299,20 @@
+ const annSet = new Set(anns);
+ const texNotRendered = [...contentTex].filter(t => !annSet.has(t));
+-const annNotInContent = [...annSet].filter(t => !contentTex.has(t));
++// TeX of the atlas data supplied with the content (atlas.json beside content.json) is rendered by the atlas module: its
++// formulas are allowed annotations (their completeness is the atlas checks' business) (A8-F-01).
++const atlasTex = new Set();
++if (fs.existsSync(`${contentDir}/atlas.json`)) collectTex(JSON.parse(fs.readFileSync(`${contentDir}/atlas.json`, 'utf8')), '', atlasTex);
++const annNotInContent = [...annSet].filter(t => !contentTex.has(t) && !atlasTex.has(t));
+ const mathCount = doc.querySelectorAll('math').length;
+ const texErrors = doc.querySelectorAll('code.tex-error').length;
+-check('Q08', texErrors === 0 && texNotRendered.length === 0 && annNotInContent.length === 0 && mathCount === anns.length,
+-      { math_elements: mathCount, annotations: anns.length, distinct_content_tex: contentTex.size, tex_errors: texErrors,
+-        content_tex_not_rendered: texNotRendered.slice(0, 20), content_tex_not_rendered_count: texNotRendered.length,
+-        annotations_not_in_content: annNotInContent.slice(0, 20) });
++// Every formula carries its TeX annotation, except inside a grid row link, where the producer drops it so that the
++// link's name holds no TeX (A8-F-01).
++const bareMath = [...doc.querySelectorAll('math')].filter(m => !m.querySelector('annotation[encoding="application/x-tex"]'));
++const bareOutsideRowLinks = bareMath.filter(m => !m.closest('a.row-link'));
++check('Q08', texErrors === 0 && texNotRendered.length === 0 && annNotInContent.length === 0 && bareOutsideRowLinks.length === 0,
++      { math_elements: mathCount, annotations: anns.length, distinct_content_tex: contentTex.size, atlas_tex: atlasTex.size,
++        tex_errors: texErrors, content_tex_not_rendered: texNotRendered.slice(0, 20), content_tex_not_rendered_count: texNotRendered.length,
++        annotations_not_in_content: annNotInContent.slice(0, 20), math_without_annotation: bareMath.length,
++        math_without_annotation_outside_row_links: bareOutsideRowLinks.length });
+ 
+ // Q08 (continued): no raw TeX delimiters in reader-visible text, formulas removed.
+--- a/lead/qh-status-extension.mjs
++++ b/lead/qh-status-extension.mjs
+@@ -48,7 +48,10 @@
+   const b = rowFilter(d);
+   const inRows = d.querySelectorAll(`.rows .statement[data-status="${STATUS}"]`).length;
+-  const hyp = arts.map(a => a.querySelectorAll(':scope > .statement-hypotheses li').length);
++  const hyp = arts.map(a => a.querySelectorAll(':scope > .statement-hypotheses li, :scope > .statement-hyp li').length);  // either markup (A8-F-01)
+   // A row filter and a row mix entry exist exactly when an example row has such a statement (A7-V-04).
+-  const rowsOk = inRows ? (!!b && b.textContent.trim() === label && !!mixName && mixName.includes(label)) : (!b && !mixName);
++  // Row mixes exist only in the older markup; F2 shows statuses in fold lines instead, so a mix is required only where
++  // the page uses mixes (A8-F-01).
++  const mixesUsed = !!d.querySelector('.row-count .mix');
++  const rowsOk = inRows ? (!!b && b.textContent.trim() === label && (!mixesUsed || (!!mixName && mixName.includes(label)))) : (!b && !mixName);
+   record('S1', arts.length > 0 && !!label && marksHidden && rowsOk && hyp.every(n => n > 0),
+     { statements: arts.length, inRows, chipLabel: label, marksHidden, filterName: b && b.textContent.trim(), mixName, hypotheses: hyp });
+@@ -83,5 +86,7 @@
+   const w = load(); const d = w.document; await sleep(50);
+   const a = [...d.querySelectorAll('.tally a[data-filter]')].find(x => x.getAttribute('data-filter') === STATUS);
+-  const n = a ? a.querySelector('.count').textContent : null;
++  // A pill shows its count, or (F2) none: then the statements of the status on the page are the count (A8-F-01).
++  const shown = a && a.querySelector('.count');
++  const n = a ? (shown ? shown.textContent : String(d.querySelectorAll(`main article.statement[data-status="${STATUS}"]`).length)) : null;
+   if (a) a.click(); await sleep(120);
+   const facet = [...d.querySelectorAll('.find .filter[data-status-facet]')].find(f => f.getAttribute('data-status-facet') === STATUS);
+@@ -113,6 +118,7 @@
+   const openTally = [...d.querySelectorAll('.tally a[data-filter]')].find(x => x.getAttribute('data-filter') === 'open');
+   const wrong = [...d.querySelectorAll(`main article.statement[data-status="${STATUS}"]`)].filter(a => a.classList.contains('st-open')).length;
+-  record('S6', wrong === 0 && !!openTally && +openTally.querySelector('.count').textContent === openArts,
+-    { openStatements: openArts, openTally: openTally && openTally.querySelector('.count').textContent, shownAsOpen: wrong });
++  const openCount = openTally && openTally.querySelector('.count');  // F2's pills carry no count (A8-F-01)
++  record('S6', wrong === 0 && !!openTally && (!openCount || +openCount.textContent === openArts),
++    { openStatements: openArts, openTally: openCount ? openCount.textContent : 'no count on the pill', shownAsOpen: wrong });
+   w.close();
+ }
