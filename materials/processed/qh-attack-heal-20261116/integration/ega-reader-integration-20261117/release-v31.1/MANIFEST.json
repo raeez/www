@@ -1,0 +1,111 @@
+{
+  "schema": "quantum-holography-native-edition/1",
+  "edition": "release-v31.1",
+  "commit": "f4a409ead1939da17462f4da6d3930b7c9894575",
+  "base_public_commit": "bfd891056c0f9c13a5279c15b911cc143963638d",
+  "primary_parent_commit": "bfd891056c0f9c13a5279c15b911cc143963638d",
+  "primary_repository": "https://github.com/raeez/www",
+  "public_reader": "https://raeez.com/quantum-holography/",
+  "content_id": "4fc06f800a2c6d63c33de60edd7e240666c862d4bdbd7d3c474d2f42d1fa53c6",
+  "native_inputs": 67,
+  "native_changed_files": [
+    "compiler/quantum-holography-status/monograph.css",
+    "compiler/quantum-holography-status/reader-runtime/reader-book.js",
+    "compiler/quantum-holography-status/reader-runtime/reader-companions.js",
+    "compiler/quantum-holography-status/status.py"
+  ],
+  "public_exports": {
+    "primary": {
+      "url": "https://raeez.com/quantum-holography/",
+      "commit": "f4a409ead1939da17462f4da6d3930b7c9894575",
+      "files": {
+        "index.html": {
+          "sha256": "afea633056d8a4055d17fd9396ba13766236a0a518ab131005623bb043273448",
+          "bytes": 6588274
+        },
+        "reference.html": {
+          "sha256": "5f302d95b86344f2d7ef69828b90d7c4c5457eebc7d393749fa843894c3cdf7b",
+          "bytes": 5115331
+        },
+        "atlas.html": {
+          "sha256": "3118230604efa30410f9ed3a729c16cdb4daccd6d5ea92eb66ece31ffbeaa0eb",
+          "bytes": 11559151
+        },
+        "reader-index.js": {
+          "sha256": "11ba231e96bc09c21a4cc296eea1b2777ce798fcd968c8f2d22ced92e342fb7c",
+          "bytes": 17849221
+        }
+      },
+      "attachments": {
+        "celestial-current-product.pdf": {
+          "sha256": "5ba2cc78f2b862b0cb77cddf3385efad376fc2a1c942d8bd4c8ed899ef1b7390",
+          "bytes": 818884
+        },
+        "celestial-residue.pdf": {
+          "sha256": "30a5f9f3da8791197d744f2bea3a28016b5f69b7bf01b9846eede32602021dbf",
+          "bytes": 1157630
+        },
+        "critical-points-and-sphere-insertions.pdf": {
+          "sha256": "0a07e71181bd73547f4a451de1914e68ec30880c3b6914cff795ef65d1314ceb",
+          "bytes": 234395
+        },
+        "interacting-theories.pdf": {
+          "sha256": "ca842a2bee43350f23f864b9bdb16d18144569163d6d277030844919721f8956",
+          "bytes": 2067239
+        },
+        "introduction.pdf": {
+          "sha256": "5860bf6b3a15d7688f1c09434afd12ff0e3754a95bf5719e104910813c414be1",
+          "bytes": 989043
+        }
+      }
+    },
+    "standalone_build": {
+      "files": {
+        "atlas.html": {
+          "bytes": 11558622,
+          "sha256": "4ed86bbb7441d9a390c2ff476d3525fcdb37b274455626a8e2a6da8cc9b4eca1"
+        },
+        "index.html": {
+          "bytes": 6587745,
+          "sha256": "3474c827041e85337170df2d1556aeed5a7e15d7e61bbfefc86ef3024a59824e"
+        },
+        "reader-index.js": {
+          "bytes": 17849221,
+          "sha256": "11ba231e96bc09c21a4cc296eea1b2777ce798fcd968c8f2d22ced92e342fb7c"
+        },
+        "reference.html": {
+          "bytes": 5114802,
+          "sha256": "aafda72f01a9bf728b3c274500b60aef4e3e539768e62f5aba390c1fd81fe589"
+        }
+      },
+      "attachments": {
+        "celestial-current-product.pdf": {
+          "sha256": "5ba2cc78f2b862b0cb77cddf3385efad376fc2a1c942d8bd4c8ed899ef1b7390",
+          "bytes": 818884
+        },
+        "celestial-residue.pdf": {
+          "sha256": "30a5f9f3da8791197d744f2bea3a28016b5f69b7bf01b9846eede32602021dbf",
+          "bytes": 1157630
+        },
+        "critical-points-and-sphere-insertions.pdf": {
+          "sha256": "0a07e71181bd73547f4a451de1914e68ec30880c3b6914cff795ef65d1314ceb",
+          "bytes": 234395
+        },
+        "interacting-theories.pdf": {
+          "sha256": "ca842a2bee43350f23f864b9bdb16d18144569163d6d277030844919721f8956",
+          "bytes": 2067239
+        },
+        "introduction.pdf": {
+          "sha256": "5860bf6b3a15d7688f1c09434afd12ff0e3754a95bf5719e104910813c414be1",
+          "bytes": 989043
+        }
+      }
+    }
+  },
+  "reader_runtime": {
+    "reader": "controls/reader-v18.js",
+    "reference": "controls/status-v18.js",
+    "bookReader": "controls/reader-book-math-notices.js"
+  },
+  "verification": "verification/PUBLICATION.json"
+}

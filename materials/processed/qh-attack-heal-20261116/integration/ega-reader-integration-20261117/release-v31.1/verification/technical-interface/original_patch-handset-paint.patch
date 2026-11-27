@@ -1,0 +1,137 @@
+diff -ru a/compiler/quantum-holography-status/monograph.css b/compiler/quantum-holography-status/monograph.css
+--- a/compiler/quantum-holography-status/monograph.css	2026-11-20 09:22:15
++++ b/compiler/quantum-holography-status/monograph.css	2026-11-20 09:23:07
+@@ -74,6 +74,10 @@
+ /* Places: the reader script shows one; the others are hidden until found. */
+ main[data-reader] { display: block; padding-bottom: var(--s6); }
+ main[data-reader] > [hidden='until-found'] { content-visibility: hidden; }
++/* While a page whose reader will run is still loading, its places are not laid out; the reader shows one of them as
++   soon as it starts. (The mark on the root is set in the head, and taken away if no reader starts.) A telephone then
++   lays out only what it shows and stays free to paint the page as it is scrolled. */
++html[data-reader-js] main[data-reader]:not([data-reader-on]) > :is(article[data-chapter], section[data-reference]) { content-visibility: hidden; }
+ [data-revealed] { animation: mg-revealed 2.4s ease-out 1; border-radius: 3px; }
+ @keyframes mg-revealed { from { box-shadow: 0 0 0 .4em color-mix(in srgb, var(--accent) 22%, transparent); background-color: color-mix(in srgb, var(--accent-soft) 70%, transparent); } }
+ @media (prefers-reduced-motion: reduce) { [data-revealed] { animation: none; outline: 2px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 4px; } }
+diff -ru a/compiler/quantum-holography-status/reader-runtime/reader-book.js b/compiler/quantum-holography-status/reader-runtime/reader-book.js
+--- a/compiler/quantum-holography-status/reader-runtime/reader-book.js	2026-11-20 09:22:15
++++ b/compiler/quantum-holography-status/reader-runtime/reader-book.js	2026-11-20 09:22:39
+@@ -1840,6 +1840,9 @@
+     places.forEach(function (p) { list = list.concat(jobsFor(p)); });
+     return list;
+   }
++  /* The units are built when they are first asked for (the search opening, or a script asking with qh:reader-units),
++     never while the page loads or is read: on a telephone that work would hold back the painting of the page being
++     scrolled. */
+   function index() {
+     if (units) return units;
+     if (!pending) { building = []; pending = jobs(); }
+@@ -1910,22 +1913,6 @@
+                whereParts: u.whereEl ? snippetParts([inlineCopy(u.whereEl)]) : undefined };
+     });
+   });
+-  function indexWhenIdle() {
+-    if (units) return;
+-    if (!pending) { building = []; pending = jobs(); }
+-    var idle = window.requestIdleCallback || function (fn) {
+-      return setTimeout(function () {
+-        var start = Date.now();
+-        fn({ timeRemaining: function () { return Math.max(0, 8 - (Date.now() - start)); } });
+-      }, 30);
+-    };
+-    idle(function slice(deadline) {
+-      if (units || !pending) return;
+-      while (pending.length && deadline.timeRemaining() > 2) pending.shift()(building);
+-      if (pending.length) idle(slice); else { units = building; pending = null; }
+-    });
+-  }
+-
+   /* The panel: a field, the scopes (all, the chapters, each part of the reference) with their counts, a line that says
+      how many results there are, and the results by place: the chapters in the book's order first, then the reference.
+      Each place shows its first few results and offers the rest. */
+@@ -2572,7 +2559,7 @@
+   doc.addEventListener('qh:content-changed', function () {
+     units = null;
+     pending = null;
+-    if (searchOpen && searchState.q.trim()) run(); else indexWhenIdle();
++    if (searchOpen && searchState.q.trim()) run();
+   });
+ 
+   /* ------------------------------------------------------------------ the start */
+@@ -2616,6 +2603,5 @@
+       if (st && st.panel && st.hit) focusHit(st.hit);
+     }
+     later(function () { measureBar(); trackSection(); });
+-    indexWhenIdle();
+   })();
+ })();
+diff -ru a/compiler/quantum-holography-status/reader-runtime/reader-companions.js b/compiler/quantum-holography-status/reader-runtime/reader-companions.js
+--- a/compiler/quantum-holography-status/reader-runtime/reader-companions.js	2026-11-20 09:22:15
++++ b/compiler/quantum-holography-status/reader-runtime/reader-companions.js	2026-11-20 09:22:48
+@@ -1821,6 +1821,9 @@
+     places.forEach(function (p) { list = list.concat(jobsFor(p)); });
+     return list;
+   }
++  /* The units are built when they are first asked for (the search opening, or a script asking with qh:reader-units),
++     never while the page loads or is read: on a telephone that work would hold back the painting of the page being
++     scrolled. */
+   function index() {
+     if (units) return units;
+     if (!pending) { building = []; pending = jobs(); }
+@@ -1891,22 +1894,6 @@
+                whereParts: u.whereEl ? snippetParts([inlineCopy(u.whereEl)]) : undefined };
+     });
+   });
+-  function indexWhenIdle() {
+-    if (units) return;
+-    if (!pending) { building = []; pending = jobs(); }
+-    var idle = window.requestIdleCallback || function (fn) {
+-      return setTimeout(function () {
+-        var start = Date.now();
+-        fn({ timeRemaining: function () { return Math.max(0, 8 - (Date.now() - start)); } });
+-      }, 30);
+-    };
+-    idle(function slice(deadline) {
+-      if (units || !pending) return;
+-      while (pending.length && deadline.timeRemaining() > 2) pending.shift()(building);
+-      if (pending.length) idle(slice); else { units = building; pending = null; }
+-    });
+-  }
+-
+   /* The panel: a field, the scopes (all, the chapters, each part of the reference) with their counts, a line that says
+      how many results there are, and the results by place: the chapters in the book's order first, then the reference.
+      Each place shows its first few results and offers the rest. */
+@@ -2543,7 +2530,7 @@
+   doc.addEventListener('qh:content-changed', function () {
+     units = null;
+     pending = null;
+-    if (searchOpen && searchState.q.trim()) run(); else indexWhenIdle();
++    if (searchOpen && searchState.q.trim()) run();
+   });
+ 
+   /* ------------------------------------------------------------------ the start */
+@@ -2587,6 +2574,5 @@
+       if (st && st.panel && st.hit) focusHit(st.hit);
+     }
+     later(function () { measureBar(); trackSection(); });
+-    indexWhenIdle();
+   })();
+ })();
+diff -ru a/compiler/quantum-holography-status/status.py b/compiler/quantum-holography-status/status.py
+--- a/compiler/quantum-holography-status/status.py	2026-11-20 09:22:15
++++ b/compiler/quantum-holography-status/status.py	2026-11-20 09:23:05
+@@ -1251,7 +1251,14 @@
+             f'<link rel="canonical" href="{html.escape(self.page["site"])}/{self.page["slug"]}.html">\n'
+             '<link rel="icon" href="data:,">\n'
+             "<script>try{var t=localStorage.getItem('qh-theme');if(t==='dark'||t==='light')"
+-            "document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>\n"
++            "document.documentElement.setAttribute('data-theme',t)}catch(e){}"
++            # Before the body arrives, the page is marked as one whose reader will run, so that the places the reader
++            # does not show are never laid out (monograph.css). If no reader has started by the end of the body (the
++            # page has none, or it failed), the mark is taken away and the page is the whole book. Without scripts
++            # the mark is never set.
++            "(function(r){r.setAttribute('data-reader-js','');document.addEventListener('DOMContentLoaded',function(){"
++            "var m=document.querySelector('main[data-reader]');if(!m||!m.hasAttribute('data-reader-on'))"
++            "r.removeAttribute('data-reader-js')})})(document.documentElement)</script>\n"
+             f'<style>{fonts}\n{css}</style>\n</head>\n')
+         return head + f'<body>\n{body}\n<script>{js}</script>\n</body>\n</html>\n'
+ 
