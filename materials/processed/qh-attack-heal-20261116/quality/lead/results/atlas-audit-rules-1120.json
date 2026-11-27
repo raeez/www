@@ -1,0 +1,102 @@
+{
+ "baseline": {
+  "strings_failing": 11,
+  "failure_kinds": {
+   "internal identifier": 6,
+   "possible internal identifier (or E_n written without subscript)": 2,
+   "version tag": 3
+  },
+  "warning_kinds": {},
+  "samples": {
+   "internal identifier": [
+    "Centered normals are a, b+a/2, c+a/2, b-a/2, c-a/2; a=(tau,u), b=(sigma,v), c=(rho,w). D=d",
+    "Omega=C1(a) wedge C1(b) wedge C1(c)=-pi^3 delta_9 d-tau wedge d-sigma wedge d-rho wedge db",
+    "Two distinct even degree-zero spectators, N12=0, b1=b2=1, mu=1, and the same matched dg qu"
+   ],
+   "possible internal identifier (or E_n written without subscript)": [
+    "The native adjoint generating matrix is S_N=c(F⊗F)^−1 S_trace(F⊗F), with F_a=sqrt(hbar w_a",
+    "The square roots are the formal branches with constant coefficient one; E1=theta′/theta."
+   ],
+   "version tag": [
+    "For the ordered word a1 a2 u3 v4 v5 v6, the fully supported earlier pair factors through t",
+    "Use exactly the ordered word a1 a2 u3 v4 v5 v6 with roots U,U,V: one fully supported earli",
+    "For the ordered word a1 a2 u3 v4 v5 v6, the fully supported earlier pair factors through t"
+   ]
+  }
+ },
+ "c3": {
+  "strings_failing": 220,
+  "failure_kinds": {
+   "raw TeX in reader text": 209,
+   "internal identifier": 6,
+   "possible internal identifier (or E_n written without subscript)": 2,
+   "version tag": 3
+  },
+  "warning_kinds": {
+   "possible formula outside TeX delimiters": 470
+  },
+  "samples": {
+   "raw TeX in reader text": [
+    "The four-colour native theory has an intrinsic ordered source, a global Cartan isomorphism",
+    "For the four-colour native system over \\(R_3=\\mathbb C[\\hbar]/(\\hbar^3)\\), the coefficient",
+    "At each fixed numerical \\(K\\ne-2\\) over \\(R_3\\), \\(\\mathcal E_{\\rm ten}=\\mathcal P+\\mathca"
+   ],
+   "internal identifier": [
+    "Centered normals are a, b+a/2, c+a/2, b-a/2, c-a/2; a=(tau,u), b=(sigma,v), c=(rho,w). D=d",
+    "Omega=C1(a) wedge C1(b) wedge C1(c)=-pi^3 delta_9 d-tau wedge d-sigma wedge d-rho wedge db",
+    "Two distinct even degree-zero spectators, N12=0, b1=b2=1, mu=1, and the same matched dg qu"
+   ],
+   "possible internal identifier (or E_n written without subscript)": [
+    "The native adjoint generating matrix is S_N=c(F⊗F)^−1 S_trace(F⊗F), with F_a=sqrt(hbar w_a",
+    "The square roots are the formal branches with constant coefficient one; E1=theta′/theta."
+   ],
+   "version tag": [
+    "For the ordered word a1 a2 u3 v4 v5 v6, the fully supported earlier pair factors through t",
+    "Use exactly the ordered word a1 a2 u3 v4 v5 v6 with roots U,U,V: one fully supported earli",
+    "For the ordered word a1 a2 u3 v4 v5 v6, the fully supported earlier pair factors through t"
+   ]
+  }
+ },
+ "c3b": {
+  "strings_failing": 220,
+  "failure_kinds": {
+   "raw TeX in reader text": 209,
+   "internal identifier": 6,
+   "possible internal identifier (or E_n written without subscript)": 2,
+   "version tag": 3
+  },
+  "warning_kinds": {
+   "possible formula outside TeX delimiters": 470
+  },
+  "samples": {
+   "raw TeX in reader text": [
+    "The four-colour native theory has an intrinsic ordered source, a global Cartan isomorphism",
+    "For the four-colour native system over \\(R_3=\\mathbb C[\\hbar]/(\\hbar^3)\\), the coefficient",
+    "At each fixed numerical \\(K\\ne-2\\) over \\(R_3\\), \\(\\mathcal E_{\\rm ten}=\\mathcal P+\\mathca"
+   ],
+   "internal identifier": [
+    "Centered normals are a, b+a/2, c+a/2, b-a/2, c-a/2; a=(tau,u), b=(sigma,v), c=(rho,w). D=d",
+    "Omega=C1(a) wedge C1(b) wedge C1(c)=-pi^3 delta_9 d-tau wedge d-sigma wedge d-rho wedge db",
+    "Two distinct even degree-zero spectators, N12=0, b1=b2=1, mu=1, and the same matched dg qu"
+   ],
+   "possible internal identifier (or E_n written without subscript)": [
+    "The native adjoint generating matrix is S_N=c(F⊗F)^−1 S_trace(F⊗F), with F_a=sqrt(hbar w_a",
+    "The square roots are the formal branches with constant coefficient one; E1=theta′/theta."
+   ],
+   "version tag": [
+    "For the ordered word a1 a2 u3 v4 v5 v6, the fully supported earlier pair factors through t",
+    "Use exactly the ordered word a1 a2 u3 v4 v5 v6 with roots U,U,V: one fully supported earli",
+    "For the ordered word a1 a2 u3 v4 v5 v6, the fully supported earlier pair factors through t"
+   ]
+  }
+ },
+ "c3c": {
+  "strings_failing": 220,
+  "failure_kinds": {
+   "raw TeX in reader text": 209,
+   "internal identifier (or mathematics written without TeX)": 6,
+   "possible internal identifier (or E_n written without subscript)": 2,
+   "version tag (or a subscript written without TeX)": 3
+  }
+ }
+}

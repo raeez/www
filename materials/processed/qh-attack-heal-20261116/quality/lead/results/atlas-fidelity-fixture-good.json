@@ -1,0 +1,73 @@
+{
+ "source": "materials/processed/qh-attack-heal-20261116/quality/heal/fixtures/atlas/good.json",
+ "page": "materials/processed/qh-attack-heal-20261116/quality/heal/fixtures/atlas/good.html",
+ "results": {
+  "AT0-data-present": {
+   "pass": true,
+   "domains": 2,
+   "claims": 3,
+   "edges": 2,
+   "comparisons": 1,
+   "paths": 2
+  },
+  "AT1-ids": {
+   "pass": true,
+   "problems": [],
+   "count": 0
+  },
+  "AT2-fields-and-enums": {
+   "pass": true,
+   "problems": [],
+   "count": 0
+  },
+  "AT3-references": {
+   "pass": true,
+   "problems": [],
+   "count": 0
+  },
+  "AT4-comparison-agreement": {
+   "pass": true,
+   "problems": [],
+   "count": 0
+  },
+  "AT5-edge-uniqueness": {
+   "pass": true,
+   "problems": [],
+   "relations": {
+    "used_in": 1
+   }
+  },
+  "AT5b-one-label-per-relation": {
+   "pass": true,
+   "relations_with_several_labels": {}
+  },
+  "AT6-dependency-paths-connected": {
+   "pass": true,
+   "problems": [],
+   "dependency_paths": 1
+  },
+  "AT7-public-safety": {
+   "pass": true,
+   "problems": [],
+   "count": 0
+  },
+  "AT8-rendering-fidelity": {
+   "pass": true,
+   "problems": [],
+   "count": 0,
+   "drawn_edges": 4,
+   "claims_drawn": 3
+  },
+  "AT8b-text-equivalent": {
+   "pass": true,
+   "edges_without_text_equivalent": [],
+   "count": 0
+  },
+  "AT8c-editorial-paths-marked": {
+   "pass": true,
+   "editorial_paths": 1,
+   "marked_in_page": 1
+  }
+ },
+ "all_pass": true
+}

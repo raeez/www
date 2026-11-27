@@ -1,0 +1,116 @@
+{
+ "source": "materials/processed/qh-attack-heal-20261116/quality/heal/fixtures/atlas/bad.json",
+ "page": "materials/processed/qh-attack-heal-20261116/quality/heal/fixtures/atlas/bad.html",
+ "results": {
+  "AT0-data-present": {
+   "pass": true,
+   "domains": 2,
+   "claims": 4,
+   "edges": 4,
+   "comparisons": 1,
+   "paths": 2
+  },
+  "AT1-ids": {
+   "pass": false,
+   "problems": [
+    "claim id 'Bad ID' is not reader-safe"
+   ],
+   "count": 1
+  },
+  "AT2-fields-and-enums": {
+   "pass": false,
+   "problems": [
+    "claim Bad ID: status code 'proved'",
+    "claim Bad ID: no status label",
+    "claim Bad ID: no title"
+   ],
+   "count": 3
+  },
+  "AT3-references": {
+   "pass": false,
+   "problems": [
+    "claim Bad ID: unknown domain 'nowhere'",
+    "claim Bad ID: unknown comparison 'cmp-none'",
+    "edge e4: unknown target 'ghost'"
+   ],
+   "count": 3
+  },
+  "AT4-comparison-agreement": {
+   "pass": false,
+   "problems": [
+    "comparison cmp-kz: bar-cobar listed as checked but its status is remaining",
+    "claim Bad ID: comparisonIds ['cmp-none'] but listed in []"
+   ],
+   "count": 2
+  },
+  "AT5-edge-uniqueness": {
+   "pass": false,
+   "problems": [
+    "edge ('bar-cobar', 'module-equiv', 'used_in') appears 2 times"
+   ],
+   "relations": {
+    "used_in": 2,
+    "refines": 1
+   }
+  },
+  "AT5b-one-label-per-relation": {
+   "pass": false,
+   "relations_with_several_labels": {
+    "used_in": [
+     "implies",
+     "is used in"
+    ]
+   }
+  },
+  "AT6-dependency-paths-connected": {
+   "pass": false,
+   "problems": [
+    "path p-dep: no edge between stage 'Bar' and stage 'Bulk'"
+   ],
+   "dependency_paths": 1
+  },
+  "AT7-public-safety": {
+   "pass": false,
+   "problems": [
+    "atlas.domains[0].summary: model or tool name \"Astra\"",
+    "atlas.domains[0].summary: workflow vocabulary \"attack-heal\"",
+    "atlas.domains[0].summary: process stage label \"wave-3\"",
+    "atlas.domains[0].summary: path \"frontier/attack-heal\"",
+    "atlas.domains[0].summary: file name \".md\"",
+    "atlas.domains[0].summary: percentage \"87%\"",
+    "atlas.claims[1].source: private field",
+    "atlas.claims[1].source[0]: workflow vocabulary \"inscribe\"",
+    "atlas.claims[1].source[0]: path \"inscribe/x\"",
+    "atlas.claims[1].source[0]: file name \".md\""
+   ],
+   "count": 10
+  },
+  "AT8-rendering-fidelity": {
+   "pass": false,
+   "problems": [
+    "drawn edge 'e9' is not in the data",
+    "edge e2: data-source 'bulk-action' != 'module-equiv'",
+    "claim bar-cobar: drawn status checked != data",
+    "path p-orient: drawn kind source_bound_dependency_path != editorial_orientation"
+   ],
+   "count": 4,
+   "drawn_edges": 4,
+   "claims_drawn": 3
+  },
+  "AT8b-text-equivalent": {
+   "pass": false,
+   "edges_without_text_equivalent": [
+    "e2",
+    "e3",
+    "e4"
+   ],
+   "count": 3
+  },
+  "AT8c-editorial-paths-marked": {
+   "pass": false,
+   "editorial_paths": 1,
+   "marked_in_page": 0
+  }
+ },
+ "all_pass": false
+}

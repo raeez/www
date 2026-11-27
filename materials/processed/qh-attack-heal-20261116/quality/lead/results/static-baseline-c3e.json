@@ -1,0 +1,191 @@
+{
+ "html": "materials/processed/qh-attack-heal-20261116/quality/baseline/preview.html",
+ "html_sha256": "d1ef80413ee39f0e0c08011b668d008f48218852c56b9839efe1b4ecc854d700",
+ "html_bytes": 2198862,
+ "checks": {
+  "Q02": {
+   "pass": true,
+   "inputs": {
+    "content_sha256": "39eebb2c101f072177700716fe9f4a9f9de61c5c2d5595f8e813854a14b40934",
+    "essay_sha256": "457e4c4ce75972cf929a4cfeba4f4e83a7aab37f640b50d69f18dc78c93a4f60"
+   }
+  },
+  "Q03-csp": {
+   "pass": true,
+   "csp": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; font-src data:; img-src data:; base-uri 'none'; form-action 'none'"
+  },
+  "Q06": {
+   "pass": true,
+   "content_statements": 281,
+   "dom_statements": 281,
+   "counts": {
+    "checked": 197,
+    "pending": 0,
+    "conditional": 6,
+    "refuted form": 0,
+    "conjecture": 0,
+    "heuristic": 0,
+    "open": 74,
+    "published": 4
+   },
+   "tally": {
+    "checked": 197,
+    "conditional": 6,
+    "open": 74,
+    "published": 4
+   },
+   "problems": [],
+   "problem_count": 0
+  },
+  "Q07": {
+   "pass": false,
+   "rows": 20,
+   "grid_rows": 20,
+   "problems": [
+    {
+     "row": "w-algebras",
+     "col": "object",
+     "problem": "aria-label",
+     "got": "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Algebra and geometry: Partly established"
+    },
+    {
+     "row": "w-algebras",
+     "col": "dual",
+     "problem": "aria-label",
+     "got": "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Koszul dual: Partly established"
+    },
+    {
+     "row": "w-algebras",
+     "col": "modules",
+     "problem": "aria-label",
+     "got": "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Module comparison: Partly established"
+    },
+    {
+     "row": "w-algebras",
+     "col": "fusion",
+     "problem": "aria-label",
+     "got": "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Fusion and exchange: Published"
+    },
+    {
+     "row": "w-algebras",
+     "col": "bulk",
+     "problem": "aria-label",
+     "got": "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Bulk operations: Partly established"
+    },
+    {
+     "row": "w-algebras",
+     "col": "lines",
+     "problem": "aria-label",
+     "got": "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Lines and endpoints: Published"
+    },
+    {
+     "row": "w-algebras",
+     "col": "states",
+     "problem": "aria-label",
+     "got": "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, States and sewing: Not yet formulated"
+    },
+    {
+     "row": "w-algebras",
+     "col": "dictionary",
+     "problem": "aria-label",
+     "got": "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Physical comparison: Open problem"
+    }
+   ],
+   "problem_count": 8,
+   "aria_labels_with_tex": 8
+  },
+  "Q10": {
+   "pass": true,
+   "missing": [],
+   "missing_count": 0
+  },
+  "Q08": {
+   "pass": true,
+   "math_elements": 2502,
+   "annotations": 2502,
+   "distinct_content_tex": 1621,
+   "tex_errors": 0,
+   "content_tex_not_rendered": [],
+   "content_tex_not_rendered_count": 0,
+   "annotations_not_in_content": []
+  },
+  "Q08-raw-tex": {
+   "pass": false,
+   "count": 8,
+   "sample": [
+    "l-momentum domain this establishes only \\(c=33\\), \\(P_0=0\\), \\(h_0=4/3\\), with t",
+    "ntum domain this establishes only \\(c=33\\), \\(P_0=0\\), \\(h_0=4/3\\), with trace \\",
+    " domain this establishes only \\(c=33\\), \\(P_0=0\\), \\(h_0=4/3\\), with trace \\(5/1",
+    " this establishes only \\(c=33\\), \\(P_0=0\\), \\(h_0=4/3\\), with trace \\(5/144\\). T",
+    "s establishes only \\(c=33\\), \\(P_0=0\\), \\(h_0=4/3\\), with trace \\(5/144\\). The c",
+    "shes only \\(c=33\\), \\(P_0=0\\), \\(h_0=4/3\\), with trace \\(5/144\\). The current ge"
+   ]
+  },
+  "Q15-tex-in-names": {
+   "pass": false,
+   "count": 8,
+   "sample": [
+    "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Algebra and geometry: Partly established",
+    "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Koszul dual: Partly established",
+    "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Module comparison: Partly established",
+    "\\(W\\)-algebras and quantum Drinfeld–Sokolov reduction, Fusion and exchange: Published"
+   ]
+  },
+  "Q09": {
+   "pass": true,
+   "ids": 428,
+   "expected": 271,
+   "duplicates": [],
+   "missing": [],
+   "broken_hrefs": [],
+   "statement_id_collisions": [],
+   "baseline_ids_lost": null,
+   "baseline_ids_lost_count": null,
+   "statements_without_anchor": 98
+  },
+  "Q04": {
+   "pass": true,
+   "hard_hits": 0,
+   "review_hits": 2,
+   "scans": {
+    "closed_source_paths_whole_doc": [],
+    "private_paths_whole_doc": [],
+    "internal_path_words_whole_doc": [],
+    "hex_hashes_whole_doc": [],
+    "model_tool_names_reader": [],
+    "hard_patterns_in_tex": [],
+    "model_tool_names_script": [],
+    "process_words_reader": [
+     "992); Dong–Lepowsky (1993); Costello–Gwilliam (2016, author draft); Gwilliam–Rabinovich–Williams (2020, preprint).Proved",
+     "in to be constructed.Continuous Virasoro sewing retains the adopted local theorem above charge one and the geometric tre"
+    ],
+    "version_tokens_reader": [],
+    "percentages_reader": [],
+    "external_gate_visible": [],
+    "source_fragments_checked": 351,
+    "source_fragment_hits": []
+   }
+  },
+  "Q05": {
+   "pass": true,
+   "hits": []
+  }
+ },
+ "inputs": {
+  "content_sha256": "39eebb2c101f072177700716fe9f4a9f9de61c5c2d5595f8e813854a14b40934",
+  "essay_sha256": "457e4c4ce75972cf929a4cfeba4f4e83a7aab37f640b50d69f18dc78c93a4f60"
+ },
+ "summary": {
+  "Q02": "PASS",
+  "Q03-csp": "PASS",
+  "Q06": "PASS",
+  "Q07": "FAIL",
+  "Q10": "PASS",
+  "Q08": "PASS",
+  "Q08-raw-tex": "FAIL",
+  "Q15-tex-in-names": "FAIL",
+  "Q09": "PASS",
+  "Q04": "PASS",
+  "Q05": "PASS"
+ }
+}

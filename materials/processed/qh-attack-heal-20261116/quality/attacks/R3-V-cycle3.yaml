@@ -1,0 +1,145 @@
+# R3-V cycle-3 report (read-only reviewer, successor to A1; visual-system attack and verification of A2-A1-01, -03, -04).
+# Saved from its report; absolute worktree paths shortened to repository-relative paths and its runtime line left out
+# (runtime checks are reported in the handoff message). The basis, verdicts and referee are as returned; the attack
+# entries are condensed to id, severity, status, lens, broken step, minimal heal, deciding check and owner (their
+# target, evidence_ref, files_read and tools_used fields are omitted); the page-image checks are as returned.
+basis:
+  limitation: >-
+    No browser: no Chrome tools, no CDP, no headless run and no screenshot. Every geometry, measure and colour claim is
+    computed from the CSS, the built HTML and the font files (EB Garamond through fontTools 4.60.2 and hb-shape, the
+    HarfBuzz command-line shaper, printing to stdout). Behaviour claims come from jsdom 28.1.0, which has no layout,
+    painting, scrolling, media queries or speech. Actual visual verification is still unresolved (BLOCKER-CHROME.md).
+    No subagents were started, so there was no reviewer to forward root's restriction to.
+  frozen_inputs: >-
+    The sha256 prefixes match for BRIEF.txt, CHECKPOINT.md, LEDGER.yaml, interaction.diff, foundation.diff,
+    MANIFEST.json, candidate/preview.html (685e0fa2), candidate/preview-nofonts.html (074136e2) and
+    lead/qh-jsdom-checks.mjs (395b2ee8). All 13 mirror files equal the MANIFEST after-hashes. The worktree production
+    sources equal BASELINE.json. VISUAL-ATTACK.md was not read (it did not exist when checked), nor the A2 reports or any
+    other lane's tree.
+  runs: >-
+    Lead jsdom suite, read-only without --out: 25 of 25 pass on the candidate, 0 page errors; on the baseline 15
+    J-checks fail; J6b passes on the baseline only because the baseline has no correction to suppress; R1-R9 pass on
+    both. qh-static.mjs on candidate/preview.html: Q03, Q04, Q05, Q06, Q07, Q08, Q08-raw-tex, Q09, Q10 and
+    Q15-tex-in-names PASS. External-documents regex on the whole candidate HTML (data: URIs removed): 0 hits.
+    Closed-source path regex: 0 hits on candidate and baseline.
+verdicts:
+  - id: A2-A1-01
+    verdict: healed-verified in DOM and source; speech output not verified
+    evidence: >-
+      status.css:594 (.find-count:empty) and :659 (.row-tools .filter-count:empty) visually hide the empty regions
+      instead of display:none; status.js:1045 does the same in the fallback style; status.js:400 keeps the filter region
+      role=status aria-live=polite. jsdom on the candidate: at load both regions compute display:block, position:absolute,
+      1px by 1px, overflow:hidden; after "Published" the filter count reads "Showing 4 of 109 statements, in 4 of 20
+      examples."; on the baseline find-count is display:none at load. J13 passes on the candidate and fails on the baseline.
+    residual: Speech by NVDA or VoiceOver needs a screen reader (root). The heal leaves a new visible state, A3-V-12.
+  - id: A2-A1-03
+    verdict: healed-verified in jsdom
+    evidence: >-
+      status.js:424-430 writes "<shown> of <full>" into each row's .row-count while a filter is on, keeps data-count, and
+      restores on clear; :488-492 and :498-501 switch to full counts for print. Tested: Published, and Published with
+      Conditional, 0 mismatches over 20 rows; clearing restores; beforeprint shows full counts; ?show=published shows
+      "0 of 15 statements" at load; a hash target hidden by the filter lifts it and full counts return. J7b passes on the
+      candidate and fails on the baseline.
+    residual: >-
+      (1) The full status mix stays beside the shown count (A3-V-13). (2) The longer count keeps the strips ragged
+      (A3-V-05). (3) Severity 5: two beforeprint events without afterprint between them restore full counts while
+      filters stay pressed; the details open/restore code has the same pattern.
+  - id: A2-A1-04
+    verdict: Logic healed (jsdom with stubbed rectangles); real pointer event order and layout not verified
+    evidence: >-
+      status.js:306-318: pointerdown and mousedown inside .grid-wrap (capture) set a flag; any keydown clears it; focusin
+      skips the correction once while set. Stubbed geometry: a Chrome-style press makes 0 scroll writes; ArrowLeft after
+      it still corrects; keyboard-only ArrowLeft corrects (236, then 172); a touch press makes 0 writes. J6 and J6b pass.
+    residual: >-
+      Severity 5: a press that does not move focus (Safari and iOS buttons, the table background, the scrollbar, a
+      screen reader's synthesized click) leaves the flag set; the next non-key focus is then not corrected (tested: the
+      card's Close returning focus to a covered mark made 0 corrections). Real-browser check PIC-18.
+visual_attacks:
+  - {id: A3-V-01, severity: 2, status: valid, lens: "visualization of the research, its concepts and its totality",
+     broken_step: "No view shows how results, questions, examples, counterexamples and the eight parts relate: only counts (tally, mixes), one 20x8 matrix, and containment lists (105 related statements under 34 questions, 109 under 20 rows). 0 relation hooks, 0 links between statements, no svg beyond 1,099 marks and 26 icons; 96 Antecedents notes cite literature only; concepts only in a 144-entry alphabetical glossary and the closed column definitions; content.json has no relation field.",
+     minimal_heal: "Integrate the atlas lane's relation view over the content owner's atlas data under CONTRACT.json atlas_testability_requirements, with a text equivalent; put an overview of the whole programme near the top.",
+     deciding_evidence: "PIC-12 on the integrated candidate, plus Q24", owner: "atlas lane and root; relation data from the content owner"}
+  - {id: A3-V-02, severity: 3, status: valid, lens: "visualization and proportion of the 20x8 overview",
+     broken_step: "(a) Each column is as wide as its one-line name (73-142 px), so the table needs 1,173 px at 1400 (fits 1,214), 1,109 at 1024 (box 942; 85% visible), 1,065 at 768 (66%), 873 at 480 (50%), 873 at 375 (39%: about 2.5 of 8 columns beside a 113 px row header); the hint about narrow screens is wrong at 1024 and 768. (b) Row names wrap to 2-4 lines: the table is about 1,100-1,350 px tall at every width. (c) overflow-x:auto makes .grid-wrap a scroll container, so the sticky header sticks only inside it; rows 11-20 are read without column names when the page scrolls.",
+     minimal_heal: "Let .col-head wrap above 640 px (white-space: normal; text-wrap: balance) as print does: computed minimum 690 px at 1024 (box 942) and 664 px at 768 (box 705); make the header follow the page (no wrapper overflow when the table fits; thead th { top: var(--bar) }); correct the hint; short labels from root and the content owner.",
+     deciding_evidence: PIC-04, owner: foundation}
+  - {id: A3-V-03, severity: 3, status: valid, lens: "proportion of the reading measure",
+     broken_step: "(a) Below 1080 px the decisive questions use the full wide container in one column: 129 characters per line in statements and 135 in 'Why it matters' at 1024 (900 px at 18.43 px), 99 and 105 at 768; the section's heading, intro and index stay 640 px wide, so cards start 152 px left of their index at 1024. (b) The 640 px measure gives 86/91/95 characters in prose and 80/85/89 in statements at 1400/1024/768. (c) Print: about 105 characters in prose and 99 in statements at 152 mm and 10.8 pt. The site's pages use 65ch.",
+     minimal_heal: "Below 1080 px limit .section.decisive > .questions to var(--measure); set --measure in ch or em (65ch matches the site); print measure about 100-110 mm (70-77 characters).",
+     deciding_evidence: "PIC-01, PIC-02, PIC-03", owner: foundation}
+  - {id: A3-V-04, severity: 3, status: valid, lens: "proportion of the statement card at phone width",
+     broken_step: "'PROVED AND INDEPENDENTLY CHECKED' (uppercase, .06em tracking, nowrap) measures 324.5 px at 375 against 311 px of card content: it runs through the 14 px right padding to about 0.5 px of the border on all 197 such cards, and crosses the border by about 14 px at 360. At 1400 the chip is 369 px, 62% of the text width.",
+     minimal_heal: "Let the chip wrap with a hanging mark, or set small capitals without the wide tracking; a shorter label needs root's label-ownership ruling (C27).",
+     deciding_evidence: PIC-06, owner: foundation}
+  - {id: A3-V-05, severity: 3, status: valid, lens: "balance and alignment of the example list",
+     broken_step: "Each summary is its own grid with auto columns, so the 109 px mark strips start up to about 45 px apart (row-count 134.2-179.1 px at 1400); with a filter on, the widest count grows to 205 px.",
+     minimal_heal: "A fixed track for the count (for example 2em 1fr auto 11em 1em, or a ch width), or one shared grid for all rows.",
+     deciding_evidence: PIC-07, owner: foundation}
+  - {id: A3-V-06, severity: 3, status: undecided, lens: "harmony and hierarchy of the type scale, headings and section names",
+     broken_step: "19 font-size expressions; six steps between body and question heading (1.06-1.34x, adjacent factors 1.031-1.066; the site uses 1.333). Containers lighter than contents (row name 1.06x/400 over statement titles 1.16x/600; question heading 1.2x/400 over titles 1.16x/600 at 375-560). The essay title (h3, 1.75x) is larger than its section h2 at 375-1024 and equal at 1400; the essay section shows kicker 'Essay', h2 'Essay', lead, title, byline. Six of nine sections have different names in the bar, kicker and h2.",
+     minimal_heal: "One modular scale with weight steps; container headings at least as strong as their contents; essay title below or instead of the h2; one name per section (labels page.json; headings from the content owner through root).",
+     deciding_evidence: PIC-08, owner: foundation}
+  - {id: A3-V-07, severity: 3, status: undecided, lens: "rhythm (spacing and line-height as a system)",
+     broken_step: "17 line-heights; 37 margin, 41 padding and 26 gap values; px and em mixed; card padding declared three times; 14 px card gaps do not scale with 17-19.56 px text. The site uses 8 px units and three leadings (1.618, 1.35, 1.2).",
+     minimal_heal: "A spacing scale and two or three leadings by tokens; remove the duplicate declarations.",
+     deciding_evidence: PIC-09, owner: foundation}
+  - {id: A3-V-08, severity: 3, status: undecided, lens: "colour system, colour-vision deficiency, mark sizes and stroke weights",
+     broken_step: "Light statuses at OKLab lightness 0.45-0.60, chroma 0.014-0.136; smallest normal-vision distances conditional-published 0.069, pending-published 0.073, heuristic-open 0.077, open-refuted 0.080; luminance-only collisions checked-published 0.002, heuristic-open 0.000, checked-conjecture 0.000; simulated deuteranopia partial-open 0.024 (84 and 14 cells), protanopia checked-open 0.049 (197 and 74 statements); dark deuteranopia conditional-published and checked-heuristic 0.008. Five of ten marks are rings differing only in an interior detail; at 11 px the stroke is 1.1 px, the conditional dot 3.0 px, the published bars 0.96 px. The accent is almost the conditional colour in dark (0.026). A proved and an open card differ by a 1.03:1 background and a 1.19:1 dashed border.",
+     minimal_heal: "Separate statuses by lightness as well as hue (largest separation for checked/open and partial/open); marks of at least 12 px with stronger interiors; move the accent away from the conditional hue.",
+     deciding_evidence: PIC-10, owner: foundation}
+  - {id: A3-V-09, severity: 3, status: undecided, lens: "density and the reader's path through 281 statements",
+     broken_step: "138 of 281 cards show by default; the decisive section shows all 93 of its cards (about 83,000 characters, 43% of the visible text), collapsing to one column below 1080 px but staying expanded. The grid, the only overview, comes after the cover, key, 9 principal results, 22 decisive and 12 frontier questions: estimated about 56,000 px down at 1400x900 (63 screens), 51,000 at 1024x768, 84,000 at 375x667 (plus or minus 25%).",
+     minimal_heal: "An overview near the top (A3-V-01); below 1080 px the decisive related statements behind disclosures; root decides the order.",
+     deciding_evidence: PIC-11, owner: "foundation; order by root"}
+  - {id: A3-V-10, severity: 3, status: undecided, lens: "harmony with the site's existing visual language (no exemplar designated)",
+     broken_step: "The site's pages use type and hairlines only (no boxes or shadows; radius only on hover tints and the portrait; small capitals; old-style figures; a 1.333 scale; 8 px units; leading 1.618). The tracker uses bordered cards with 6 px radius, pill chips, circular buttons, drop shadows, gradient scroll cues, uppercase tracked labels and lining figures.",
+     minimal_heal: "Root designates the exemplar; then align the tokens to it, or record why the tracker departs.",
+     deciding_evidence: PIC-13, owner: root}
+new_attacks:
+  - {id: A3-V-11, severity: 3, status: valid, lens: "usability of the bar at the required widths (regression from the C14 heal)",
+     broken_step: "The 34 px search button and its 18 px gap take 52 px from the navigation. The labels total 34.46 em; at 1024 the navigation needs 778.9 px and gets 736.7 px (baseline 788.7 px, fits). The fade that shows more links applies only below 900 px and the scrollbar is hidden, so between 900 and 1044 px (baseline 900-984 px) the last link is cut with no cue; at 1024 about 18 px of 'Terms' is cut.",
+     minimal_heal: "Keep the fade whenever the list overflows (a class set when scrollWidth > clientWidth, checked on resize), or move the fade breakpoint to 1080 px, or a shorter label.",
+     deciding_evidence: PIC-05, owner: "foundation (CSS) and interaction (class)"}
+  - {id: A3-V-12, severity: 4, status: valid, lens: "consistency of the filter toolbar's states",
+     broken_step: "At load the count line is empty and visually hidden; after a press and a clear it reads 'Showing all 109 statements of the examples.' and stays visible.",
+     minimal_heal: "While no filter is on, visually hide the count line (still announced)."}
+  - {id: A3-V-13, severity: 4, status: undecided, lens: "communication of filtered counts",
+     broken_step: "A filtered summary reads '0 of 15 statements' followed by the unfiltered mix; screen readers hear '...0 of 15 statements14 Proved and independently checked1 Open problem'.",
+     minimal_heal: "While a filter is on, mute the filtered-out mix items or label the mix."}
+  - {id: A3-V-14, severity: 4, status: undecided, lens: "print layout (A2-A2-07 heal)",
+     broken_step: "display:block !important overrides the two-column print grids of .key and .col-defs > dl (status-print.css:92 and :147 become dead); both now print in one column.",
+     minimal_heal: "Try column-count: 2 with break-inside: avoid in print preview; otherwise remove the dead rules."}
+  - {id: A3-V-15, severity: 4, status: undecided, lens: "balance of the card (C23 heal)",
+     broken_step: "Every line of card text is inset 44 px on the right against 16 px on the left, though the Close button covers only the top 38 px; at 26rem the text is 354 px wide instead of 382 px.",
+     minimal_heal: "Reserve the space beside the first line only (float the button or pad only the heading)."}
+page_image_checks:
+  - "General: baseline/preview.html and candidate/preview.html as task-owned tabs in light and dark; judge every screen beside index.html and writing.html at the same width."
+  - "PIC-01 (A3-V-03a): 1024x768 and 768x1024, decisive question 1: characters on one line of its statement and of 'Why it matters', and of a principal result; width of '#decisive .question-ask .statement-text'. Confirms: about 129 and 135 at 1024 (99 and 105 at 768), width about 900 px, cards 152 px left of the index."
+  - "PIC-02 (A3-V-03b): 1400, 1024, 768: characters per line in an essay paragraph and a principal card. Confirms: about 86/91/95 and 79/84/88."
+  - "PIC-03 (A3-V-03c): print preview A4 and Letter at 100%: characters per line in a statement and in the essay. Confirms: about 99 and 105."
+  - "PIC-04 (A3-V-02): 1400x900, 1024x768, 375x667: whole grid visible? At row 20, are the column names visible? Compare .grid width with .grid-wrap clientWidth."
+  - "PIC-05 (A3-V-11): 1024 light and dark, top of page, candidate against baseline; also 960 and 1100. Confirms: 'Terms' cut by about 18 px with no fade in the candidate."
+  - "PIC-06 (A3-V-04): 375, first principal card: padding between the chip text and the card border; optionally 360."
+  - "PIC-07 (A3-V-05, A2-A1-03): 1400, examples closed: do the 20 strips share one left edge? Then Published: summaries read 'n of N statements'."
+  - "PIC-08 (A3-V-06): 375 and 768: essay h3 larger than h2 'Essay'? Row 1: statement titles heavier than the row name? Bar, kicker and h2 names agree?"
+  - "PIC-09 (A3-V-07): 1400 and 375: principal results into the decisive section, and an opened row, beside index.html and writing.html."
+  - "PIC-10 (A3-V-08): 1x and 2x, light and dark: zoomed 11 px strips and 17 px grid marks; ring, ring with quarter, ring with dot, disc distinguishable? Simulate deuteranopia and protanopia by an approved route; open card versus proved card at a glance in light."
+  - "PIC-11 (A3-V-09): document y of #examples at 1400x900, 1024x768, 375x667, and the first screen."
+  - "PIC-12 (A3-V-01): whole page at 1400, now and on the integrated atlas candidate: any view of the relations?"
+  - "PIC-13 (A3-V-10): tracker beside index.html and writing.html at 1400 and 375."
+  - "PIC-14 (A3-V-12): toolbar at load versus after pressing Published twice."
+  - "PIC-15 (A3-V-13): with Published, read three row summaries."
+  - "PIC-16 (A3-V-14, A2-A1-03): A4 print preview, candidate against baseline: key and column definitions; print with Published pressed shows full counts."
+  - "PIC-17 (A3-V-15): 1400, a term card of three or more lines: left and right margins below the Close button."
+  - "PIC-18 (A2-A1-04): Chrome at 768, a column partly under the row header: press a mark just right of the header edge (card opens, no jump); ArrowLeft and Home clear the header."
+  - "Inherited from CHECKPOINT.md: C16, C23, C01 and A2-A2-07 (question 16 and its related statement printed after 'QUESTION 15' on A4 and Letter), console free of errors."
+referee:
+  verdict: blocked
+  reason: "Valid severity 2-3 entries open in this lens (A3-V-01, -02, -03, -04, -05, -11); A3-V-06 to -10 need the page image; A3-V-01 depends on the atlas. The three assigned heals are verified in source and jsdom with the residuals stated."
+  obligations_for_root:
+    - "Connect the native Chrome integration; the lead runs PIC-01 to PIC-18 and the inherited checks; no visual acceptance before then."
+    - "Atlas lane and content owner: a relation view of the whole programme (A3-V-01); Q24 and PIC-12 on the integrated candidate."
+    - "Foundation: A3-V-02, -03, -04, -05, -11 (and -14 if print preview supports two columns). Interaction: the overflow class for A3-V-11, A3-V-12 and A3-V-13."
+    - "Rulings: the exemplar for this page (A3-V-10); ownership of status labels and section names (A1-A2-15 / C27); C22."
+    - "Content owner: short row and column labels if one-line headers are kept; consistent section headings; the status key explains 'Proposed', which no statement or cell uses; relation data for the atlas."
+    - "Screen-reader speech checks for A2-A1-01; real-browser pointer check for A2-A1-04 (PIC-18)."

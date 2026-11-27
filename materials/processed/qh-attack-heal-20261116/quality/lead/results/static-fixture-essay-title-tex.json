@@ -1,0 +1,121 @@
+{
+ "html": "materials/processed/qh-attack-heal-20261116/quality/heal/fixtures/c3b/essay-title-tex/page.html",
+ "html_sha256": "85b27b6d92366af686c3a33f3f2ea64b987faab531196d1efc0e9c74a50687af",
+ "html_bytes": 1839344,
+ "checks": {
+  "Q03-csp": {
+   "pass": true,
+   "csp": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; font-src data:; img-src data:; base-uri 'none'; form-action 'none'"
+  },
+  "Q06": {
+   "pass": true,
+   "content_statements": 281,
+   "dom_statements": 281,
+   "counts": {
+    "checked": 197,
+    "pending": 0,
+    "conditional": 6,
+    "conjecture": 0,
+    "heuristic": 0,
+    "open": 74,
+    "published": 4
+   },
+   "tally": {
+    "checked": 197,
+    "conditional": 6,
+    "open": 74,
+    "published": 4
+   },
+   "problems": [],
+   "problem_count": 0
+  },
+  "Q07": {
+   "pass": true,
+   "rows": 20,
+   "grid_rows": 20,
+   "problems": [],
+   "problem_count": 0,
+   "aria_labels_with_tex": 0
+  },
+  "Q10": {
+   "pass": true,
+   "missing": [],
+   "missing_count": 0
+  },
+  "Q08": {
+   "pass": true,
+   "math_elements": 2507,
+   "annotations": 2507,
+   "distinct_content_tex": 1622,
+   "tex_errors": 0,
+   "content_tex_not_rendered": [],
+   "content_tex_not_rendered_count": 0,
+   "annotations_not_in_content": []
+  },
+  "Q08-raw-tex": {
+   "pass": true,
+   "count": 0,
+   "sample": []
+  },
+  "Q15-tex-in-names": {
+   "pass": true,
+   "count": 0,
+   "sample": []
+  },
+  "Q09": {
+   "pass": true,
+   "ids": 428,
+   "expected": 271,
+   "duplicates": [],
+   "missing": [],
+   "broken_hrefs": [],
+   "statement_id_collisions": [],
+   "baseline_ids_lost": null,
+   "baseline_ids_lost_count": null,
+   "statements_without_anchor": 98
+  },
+  "Q04": {
+   "pass": true,
+   "hard_hits": 0,
+   "review_hits": 2,
+   "scans": {
+    "closed_source_paths_whole_doc": [],
+    "private_paths_whole_doc": [],
+    "internal_path_words_whole_doc": [],
+    "hex_hashes_whole_doc": [],
+    "model_tool_names_reader": [],
+    "hard_patterns_in_tex": [],
+    "model_tool_names_script": [],
+    "process_words_reader": [
+     "992); Dong–Lepowsky (1993); Costello–Gwilliam (2016, author draft); Gwilliam–Rabinovich–Williams (2020, preprint).Proved",
+     "in to be constructed.Continuous Virasoro sewing retains the adopted local theorem above charge one and the geometric tre"
+    ],
+    "version_tokens_reader": [],
+    "percentages_reader": [],
+    "external_gate_visible": [],
+    "source_fragments_checked": 351,
+    "source_fragment_hits": []
+   }
+  },
+  "Q05": {
+   "pass": true,
+   "hits": []
+  }
+ },
+ "inputs": {
+  "content_sha256": "3ce4c1b7d570e0d8e7cb5e320a1faad16914d6118d6266a872dab9902701eba2",
+  "essay_sha256": "d3f81f46fba58ca5889d4cc19ebb74b3df12bd3da7c2d49d35e04833c478ff94"
+ },
+ "summary": {
+  "Q03-csp": "PASS",
+  "Q06": "PASS",
+  "Q07": "PASS",
+  "Q10": "PASS",
+  "Q08": "PASS",
+  "Q08-raw-tex": "PASS",
+  "Q15-tex-in-names": "PASS",
+  "Q09": "PASS",
+  "Q04": "PASS",
+  "Q05": "PASS"
+ }
+}

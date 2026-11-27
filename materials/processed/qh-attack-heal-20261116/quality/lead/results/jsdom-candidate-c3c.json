@@ -1,0 +1,315 @@
+{
+ "J1": {
+  "pass": true,
+  "observed": {
+   "hoverCardShown": true,
+   "focusAfterEscapeFromChip": "button.filter \"Proved and independently checked\"",
+   "focusAfterEscapeInSearch": "input#find-q.find-input \"\""
+  }
+ },
+ "J2": {
+  "pass": true,
+  "observed": {
+   "pinnedTitle": "Algebra and geometry",
+   "active": "button.col-head \"Koszul dual\"",
+   "cardHidden": false,
+   "cardTitle": "Koszul dual",
+   "expanded1": "false",
+   "expanded2": "true"
+  }
+ },
+ "J2b": {
+  "pass": true,
+  "observed": {
+   "cardHidden": false,
+   "expanded3": "false",
+   "active": "button.col-head \"Koszul dual\""
+  }
+ },
+ "J3": {
+  "pass": true,
+  "observed": {
+   "active": "a.find-link \"Programme…constructions include coeffici\"",
+   "connected": true,
+   "count": "79 matches"
+  }
+ },
+ "J4": {
+  "pass": true,
+  "observed": {
+   "id": "row-heisenberg",
+   "openedFirst": true,
+   "reopenedAfterCloseAll": true,
+   "hash": "#row-heisenberg"
+  }
+ },
+ "J5": {
+  "pass": true,
+  "observed": {
+   "input": "koszul",
+   "search": "?q=koszul",
+   "hash": "#examples",
+   "count": "50 matches"
+  }
+ },
+ "J6": {
+  "pass": true,
+  "observed": {
+   "scrollLeftWrites": [
+    226,
+    152
+   ],
+   "finalScrollLeft": 152,
+   "note": "stubbed geometry; real layout unverified"
+  }
+ },
+ "J7": {
+  "pass": true,
+  "observed": {
+   "emptyRows": 16,
+   "note": "No statement in this example has the selected status.",
+   "count": "Showing 4 of 109 statements, in 4 of 20 examples.",
+   "countVisuallyHidden": false,
+   "notesAfterClear": 0
+  }
+ },
+ "J8": {
+  "pass": true,
+  "observed": {
+   "?in=bogus": {
+    "count": "",
+    "search": "",
+    "hits": 0
+   },
+   "?status=bogus": {
+    "count": "",
+    "search": "",
+    "hits": 0
+   },
+   "?status=Checked": {
+    "count": "197 matches",
+    "search": "?status=checked",
+    "hits": 40
+   },
+   "?q=koszul&in=bogus": {
+    "count": "50 matches",
+    "search": "?q=koszul",
+    "hits": 40
+   },
+   "?show=bogus": {
+    "count": "",
+    "search": "",
+    "hits": 0
+   }
+  }
+ },
+ "J9": {
+  "pass": true,
+  "observed": {
+   "cardLink": "W-algebras and quantum Drinfeld–Sokolov reduction",
+   "cardLinkTextContent": "WW-algebras and quantum Drinfeld–Sokolov reduction",
+   "gridText": "W-algebras and quantum Drinfeld–Sokolov reduction"
+  }
+ },
+ "J10": {
+  "pass": true,
+  "observed": {
+   "comultiplication": "1 match",
+   "status marks": "1 match",
+   "strongest status": "1 match"
+  }
+ },
+ "J11": {
+  "pass": true,
+  "observed": {
+   "afterSlash": "button.filter \"Proved and independently checked\"",
+   "openerShown": true,
+   "viaOpener": "input#find-q.find-input \"\""
+  }
+ },
+ "J12": {
+  "pass": true,
+  "observed": {
+   "opened": true,
+   "closeControl": true,
+   "closeName": "Close",
+   "closedByControl": true,
+   "focusAfterClose": "button.term \"strongly rational\"",
+   "escapeFromCardFocus": "button.term \"strongly rational\""
+  }
+ },
+ "J13": {
+  "pass": true,
+  "observed": {
+   "atLoad": [
+    "find-count=block",
+    "filter-count=block"
+   ],
+   "filtered": [
+    "find-count=block",
+    "filter-count=block"
+   ],
+   "cleared": [
+    "find-count=block",
+    "filter-count visually-hidden=block"
+   ]
+  }
+ },
+ "J6b": {
+  "pass": true,
+  "observed": {
+   "writesAfterPointerFocus": 0,
+   "writesAfterKeyboard": 0,
+   "note": "stubbed geometry"
+  }
+ },
+ "J7b": {
+  "pass": true,
+  "observed": {
+   "before": "15 statements",
+   "filtered": "0 of 15 statements",
+   "printing": "15 statements",
+   "afterPrint": "0 of 15 statements",
+   "cleared": "15 statements"
+  }
+ },
+ "J14": {
+  "pass": true,
+  "observed": {
+   "overflowingMarked": true,
+   "scrolledToEndMarked": false,
+   "midwayMarked": true,
+   "fittingMarked": false,
+   "note": "stubbed widths"
+  }
+ },
+ "J15": {
+  "pass": true,
+  "observed": {
+   "on": {
+    "countHidden": false,
+    "mixHidden": true,
+    "text": "Showing 4 of 109 statements, in 4 of 20 examples."
+   },
+   "off": {
+    "countHidden": true,
+    "mixHidden": false,
+    "text": "Showing all 109 statements of the examples.",
+    "position": "absolute"
+   }
+  }
+ },
+ "J16": {
+  "pass": true,
+  "observed": {
+   "withoutScript": {
+    "inDocument": false,
+    "hidden": true,
+    "template": true,
+    "present": true
+   },
+   "withScript": {
+    "hidden": false,
+    "opened": true,
+    "closed": true
+   }
+  }
+ },
+ "J17": {
+  "pass": true,
+  "observed": {
+   "baseline": {
+    "term": {
+     "prevented": true,
+     "focus": "a.card-more \"Terms\"",
+     "focusHidden": false
+    },
+    "head": {
+     "prevented": false,
+     "focus": "button.col-head \"Algebra and geometry\"",
+     "focusHidden": false
+    },
+    "visibleClose": false
+   },
+   "foundationOnly": {
+    "term": {
+     "prevented": true,
+     "focus": "a.card-more \"Terms\"",
+     "focusHidden": false
+    },
+    "head": {
+     "prevented": false,
+     "focus": "button.col-head \"Algebra and geometry\"",
+     "focusHidden": false
+    },
+    "visibleClose": false
+   }
+  }
+ },
+ "R1": {
+  "pass": true,
+  "observed": {
+   "exists": true,
+   "closedAncestor": false
+  }
+ },
+ "R2": {
+  "pass": true,
+  "observed": {
+   "hidden": false,
+   "pressed": []
+  }
+ },
+ "R3": {
+  "pass": true,
+  "observed": {
+   "tally": "197",
+   "count": "197 matches"
+  }
+ },
+ "R4": {
+  "pass": true,
+  "observed": {
+   "rowsOpen": 20,
+   "knownOpen": 0
+  }
+ },
+ "R5": {
+  "pass": true,
+  "observed": {
+   "value": "",
+   "active": "input#find-q.find-input \"\""
+  }
+ },
+ "R6": {
+  "pass": true,
+  "observed": {
+   "right": "button.cell-btn \"Heisenberg, free fields and lattice vert\"",
+   "down": "button.cell-btn \"Affine Kac–Moody algebras at irrational \""
+  }
+ },
+ "R7": {
+  "pass": true,
+  "observed": {
+   "hash": "#s-principal-collar-pentagon",
+   "search": "?q=collar+pentagon"
+  }
+ },
+ "R8": {
+  "pass": true,
+  "observed": {
+   "hidden": false,
+   "expanded": "true",
+   "labelledby": "card-title"
+  }
+ },
+ "R9": {
+  "pass": true,
+  "observed": {
+   "total": 26,
+   "during": 26,
+   "after": 0
+  }
+ },
+ "pageErrors": []
+}

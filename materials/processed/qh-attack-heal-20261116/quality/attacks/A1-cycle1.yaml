@@ -1,0 +1,696 @@
+# A1 first-wave attacker (read-only; lens: accessibility and interaction), returned 2026-11-16. Saved from its report
+# before consolidation; absolute worktree paths shortened to repository-relative paths, and its runtime line left out
+# (runtime checks are reported in the handoff message, not in persistent files). The adjudication is in LEDGER.yaml.
+- id: A1-A1-01
+  severity: 3
+  status: valid
+  lens: "accessibility and interaction / keyboard focus, content on hover or focus (WCAG 1.4.13, 2.4.3)"
+  target: "compiler/quantum-holography-status/status.js:210-216 (document keydown, Escape branch)"
+  claim: >-
+    Escape closes the floating card and gives focus back to the card's trigger. The comment at
+    status.js:194 says this is intended: "focus handed back to a trigger after Escape does not reopen its card".
+  broken_step: >-
+    Line 214 calls owner.focus() whenever document.activeElement is not the owner. It never checks
+    where focus actually is. Two supported paths move keyboard focus away from the reader.
+    (a) Hover card [tested]: keyboard focus is on some control and the pointer hovers a term, which opens
+    the term's card (owner = the hovered term). Pressing Escape hides the card and moves focus to the
+    hovered term. If focus was in the search field, the same key press also clears the query: the input's
+    own Escape handler (status.js:777-779) runs first and the event still bubbles up to this handler.
+    (b) Stale pinned card [tested]: a pinned card stays open after focus leaves it (A1-A1-02). Escape pressed
+    on a later control, or in the search field, pulls focus back to the old trigger.
+  evidence_type: failing_test
+  evidence_ref: |-
+    node + jsdom 28, read-only script on preview-nofonts.html (scrollIntoView stubbed; for (a) window.matchMedia
+    stubbed so that '(hover: hover) and (pointer: fine)' matches):
+    (a) 1 focus on filter "Proved and independently check" | hover card open for "local vacuum" : true
+        2 Escape -> card hidden true | focus now on term "local vacuum"
+        3 Escape in search with hover card -> query now "" | focus now on term "local vacuum"
+    (b) 3 Tab to col-head 2 (+300ms) | card hidden: false | card title: "Algebra and geometry" | ... | focus: col-head Koszul dual
+        4 Escape on col-head 2 | card hidden: true | ... | focus: col-head Algebra and geometry
+        (term pinned, then '/') C Escape in empty search: focus -> term "associated positive-definite e"
+    status.js:214  if (back && doc.activeElement !== back) { returning = true; back.focus(); returning = false; }
+  files_read: ["compiler/quantum-holography-status/status.js", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom 28 (read-only, stdout only)"]
+  confidence: high
+  blast_radius: >-
+    Keyboard users, and mouse-plus-keyboard users, who close a card with Escape. Search users lose
+    their query and their focus position with one key press. Fails 1.4.13 (dismissal must not move keyboard
+    focus) and 2.4.3 (focus order).
+  minimal_heal: >-
+    status.js (interaction): in the Escape branch, always hide the card, but call back.focus() only
+    when focus is inside the card (card.contains(document.activeElement)) or is on body.
+  residual: >-
+    Path (a) ran with a matchMedia stub because jsdom has no real hover. Screen-reader announcement of the
+    focus jump was not checked.
+  deciding_evidence: >-
+    Chrome desktop with a mouse: Tab to a "Show" filter chip, hover a dotted term until its card shows,
+    press Escape, then evaluate document.activeElement. Now: the term button. After the heal: the chip.
+
+- id: A1-A1-02
+  severity: 3
+  status: valid
+  lens: "accessibility and interaction / card state, keyboard, aria-expanded"
+  target: "status.js:146-150 (hideSoon), 195-201 (focusin/focusout), 218-220 (Tab handler)"
+  claim: >-
+    The comment at status.js:217 says "Tab from an opened trigger enters the card's links; leaving the
+    last one continues after the trigger". The card describes the control that has focus.
+  broken_step: >-
+    A pinned card (opened with Enter, Space or a click) is not closed when focus leaves its trigger for
+    anything outside the card. Column-head cards contain no link or button (none in any of the 8 .col-def
+    [observed]), so the Tab handler returns at line 220 and the browser's own Tab moves on. The focusout
+    handler then calls hideSoon(), which returns at line 147 because pinned is true. The focusin handler
+    skips show() for the same reason (line 197). Result [tested]: focus is on "Koszul dual" but the card
+    still shows "Algebra and geometry"; "Algebra and geometry" keeps aria-expanded="true" and "Koszul dual"
+    stays "false". The same happens after Shift+Tab from any pinned trigger, and after '/' from a pinned
+    term: the card "Associated lattice" stays open while focus is in the search field.
+  evidence_type: failing_test
+  evidence_ref: |-
+    jsdom on preview-nofonts.html:
+    2 Enter (click) col-head 1 | card hidden: false | card title: "Algebra and geometry" | expanded: Algebra and geometry=true, ...
+       Tab keydown defaultPrevented: false
+    3 Tab to col-head 2 (+300ms) | card hidden: false | card title: "Algebra and geometry" | expanded: Algebra and geometry=true, Koszul dual=false, Module comparison=false | focus: col-head Koszul dual
+    B after / : focus find-q "" | card still open: true | card title "Associated lattice"
+    status.js:147  if (pinned) return;     status.js:197  if (el && !pinned && !returning) show(el, false);
+  files_read: ["compiler/quantum-holography-status/status.js", "compiler/quantum-holography-status/status.py", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom 28 (read-only)"]
+  confidence: high
+  blast_radius: >-
+    Keyboard and screen-reader readers who move across the column heads, and anyone who pins a term or
+    cell and then moves backwards. They see the wrong definition, and the wrong trigger is marked expanded.
+    The stale card sits 8 px below its trigger, over the first table rows, and can cover the control that
+    focus reaches next [expected]. Escape then pulls focus back to the old trigger (A1-A1-01).
+  minimal_heal: >-
+    status.js (interaction): in the document focusout handler, when pinned is true and relatedTarget is
+    neither inside #card nor the owner, call hide() instead of hideSoon(). The existing focusin handler
+    then shows the card of the newly focused trigger.
+  residual: The overlap of the stale card on the newly focused control was not measured.
+  deciding_evidence: >-
+    Chrome: Tab to the first column head, press Enter, press Tab. Check that #card is hidden or shows
+    "Koszul dual", and read aria-expanded on both heads.
+
+- id: A1-A1-03
+  severity: 3
+  status: valid
+  lens: "accessibility and interaction / focus loss after DOM replacement (search)"
+  target: "status.js:763-771 (input debounce, ArrowDown branch), 846 (results.textContent = '')"
+  claim: "Search hint (status.js:436): \"the down arrow moves through the results\"."
+  broken_step: >-
+    The input handler delays run() by 90 ms (line 765). The ArrowDown branch (769-771) focuses the first
+    link of the result list that is currently shown, which may belong to the previous query, and does not
+    first run the pending query. The Enter branch (772-776) does run it. When the 90 ms timer fires, run()
+    empties the result container (846) and removes the focused link, so focus falls to body [tested].
+  evidence_type: failing_test
+  evidence_ref: |-
+    jsdom: after vertex: 81 matches
+    set value "vertex algebra", dispatched input then ArrowDown in the same tick:
+    ArrowDown 0ms after typing -> focus: find-link "Proved and independently checkedSiegel–W" | connected: true
+    +150ms: count 78 matches | previously focused link still in DOM: false | activeElement: BODY
+  files_read: ["compiler/quantum-holography-status/status.js", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom 28 (read-only)"]
+  confidence: high
+  blast_radius: >-
+    Keyboard and screen-reader users who press Down less than 90 ms after the last keystroke (fast
+    typing, paste then Down, dictation). Focus is lost, and the result they reached belonged to the
+    previous query.
+  minimal_heal: >-
+    status.js (interaction): in the ArrowDown branch, if input.value differs from state.q, call
+    clearTimeout(timer), set state.q = input.value and limit = 40, and run(true) before focusing the
+    first .find-link, as the Enter branch does.
+  residual: How often real users press Down within 90 ms was not measured.
+  deciding_evidence: >-
+    Chrome: type "vertex" and wait; paste " algebra" and press Down at once (or send both keys through
+    DevTools with 0 ms delay); evaluate document.activeElement after 200 ms.
+
+- id: A1-A1-04
+  severity: 3
+  status: valid
+  lens: "accessibility and interaction / state round trip (row disclosures)"
+  target: "status.js:277-291 (openTarget runs only on hashchange), 305-312 (Open all/Close all), 357-361 (applyFilter closes rows)"
+  claim: "Comment at status.js:276: \"Rows open when they are the target of a link, and a link into a row opens it.\""
+  broken_step: >-
+    A row opens only on a hashchange event. "Close all" (bindExpand) and the status filter (d.open = any)
+    close the row that the address names but leave location.hash as it is. Following a link to that row
+    again (the grid's row-header link, or the row link inside a cell card) does not change the hash, so
+    no hashchange fires and the row stays closed. The reader is scrolled to a closed row [tested]. The
+    search has its own branch for this case (status.js:920); plain links have none.
+  evidence_type: failing_test
+  evidence_ref: |-
+    jsdom (url https://example.test/...):
+    1 grid link clicked: hash #row-heisenberg | row open true | hashchange events 1
+    2 Close all: row open false | hash #row-heisenberg
+    3 same grid link clicked again: row open false | hashchange events 1
+    4 cell card row link clicked: row open false | card hidden true | hashchange events 1
+  files_read: ["compiler/quantum-holography-status/status.js", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom 28 (read-only)"]
+  confidence: high
+  blast_radius: >-
+    Grid-to-row navigation (20 row-header links, 160 cell-card row links) after Close all or after
+    using a status filter. Affects keyboard, pointer and screen-reader readers alike.
+  minimal_heal: >-
+    status.js (interaction): one option is a delegated click handler for a[href^="#"] that calls
+    openTarget() after the default action when the link's fragment equals location.hash. The other is
+    to call setHash('', false) in bindExpand and applyFilter when they close the row named by the hash.
+  residual: Not run in a real browser. By the HTML spec, hashchange does not fire when the fragment is unchanged.
+  deciding_evidence: >-
+    Chrome: click the grid link "Heisenberg, free fields...", click Close all, click the same link again;
+    evaluate document.getElementById('row-heisenberg').open.
+
+- id: A1-A1-05
+  severity: 3
+  status: valid
+  lens: "accessibility and interaction / empty and edge states (status filter)"
+  target: "status.js:349-369 (applyFilter), 336-343 (visually hidden live region); status.css (no rule for [data-filter-empty]); status.py:601 (static row count)"
+  claim: >-
+    The "Show" filter restricts the rows' statements to the chosen statuses. status.js marks rows with no
+    match as data-filter-empty.
+  broken_step: >-
+    With a filter on, rows that have no matching statement are closed and given data-filter-empty, but no
+    CSS rule uses that attribute (none in status.css or status-print.css) and nothing visible is added.
+    The row summary keeps its full count ("15 statements"). The only count of what is shown is in a
+    visually hidden live region. A reader who opens such a row, uses Open all, or arrives from a shared
+    ?show=...#row-... address sees the summary and the column lines with no statements and no notice
+    [tested].
+  evidence_type: failing_test
+  evidence_ref: |-
+    jsdom, after pressing "Published": open rows 4 | data-filter-empty rows 16
+    live region: "Showing 4 of 109 statements, in 4 of 20 examples."
+    open an empty row row-heisenberg : visible statements 0 of 15 | summary still says: "15 statements14 Proved and independently checked1 Open problem"
+    CSS rules mentioning data-filter-empty: 0
+    arrival ?show=published#row-heisenberg: hash target row open: true | visible statements in it: 0 | data-filter-empty: true
+  files_read: ["compiler/quantum-holography-status/status.js", "compiler/quantum-holography-status/status.css", "compiler/quantum-holography-status/status-print.css", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom 28 (read-only)", "Bash: grep"]
+  confidence: high
+  blast_radius: >-
+    Sighted readers using "Show": Published leaves 16 of 20 rows empty and Conditional leaves 17 of 20
+    [computed from statement counts]. Also affects shared addresses carrying ?show= and Open all with a
+    filter on. The row counts misreport what is shown.
+  minimal_heal: >-
+    status.css (foundation): a visible empty state for details.row[data-filter-empty], for example a
+    muted summary and a note in .statements saying that no statement has the selected status.
+    status.js (interaction): make the filter count visible (drop visually-hidden at 338 or add a visible
+    copy), and while a filter is on write "n of N shown" into each row's .row-count.
+  residual: none
+  deciding_evidence: "Chrome: press Published, open \"Heisenberg, free fields...\"; screenshot."
+
+- id: A1-A1-06
+  severity: 3
+  status: valid
+  lens: "accessibility and interaction / search with no results (false negative)"
+  target: "status.js:425-426 (comment), 440 (WORDS.none), 445-447 (SCOPES), 521-586 (index)"
+  claim: >-
+    The comment calls this "Search of the whole page". The field is labelled "Search this page", and an
+    empty result reads "Nothing on this page matches."
+  broken_step: >-
+    index() builds search units only from statements, questions, rows, counterexamples, open-problem
+    groups, column definitions, essay paragraphs and glossary entries. Three kinds of visible text are in
+    no unit: the cover lead; the status key (its heading and its explanations); and the section intros of
+    the decisive, frontier, examples, failures and terms sections. A word that appears only there gets
+    "Nothing on this page matches." [tested].
+  evidence_type: failing_test
+  evidence_ref: |-
+    jsdom (visible occurrences counted in main with scripts, styles, svg, annotation and [hidden] removed):
+    search "comultiplication" -> "Nothing on this page matches." | visible occurrences: 1   (lead)
+    search "\"coefficient dualities\"" -> "Nothing on this page matches." | visible occurrences: 1   (lead)
+    search "status marks" -> "Nothing on this page matches." | visible occurrences: 1   (status key heading)
+    search "strongest status" -> "Nothing on this page matches." | visible occurrences: 1   (examples intro)
+    search "consequential" -> "Nothing on this page matches." | visible occurrences: 1   (decisive intro)
+  files_read: ["compiler/quantum-holography-status/status.js", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom 28 (read-only)"]
+  confidence: high
+  blast_radius: >-
+    Any reader looking for something they saw in the lead, the key or an intro. The interface states that
+    the page does not contain text that it visibly contains.
+  minimal_heal: >-
+    status.js (interaction): add search units for main > .lead p, #status .key-item and each
+    .section-intro (each intro under its section's scope; the lead and key under new scopes). The smallest
+    change that removes the false claim is to reword WORDS.none to name what is searched, for example
+    "No statement, question, example, counterexample, open problem, essay paragraph or term matches."
+  residual: none
+  deciding_evidence: "Chrome: type comultiplication in the search field; read the count line."
+
+- id: A1-A1-07
+  severity: 3
+  status: valid
+  lens: "accessibility and interaction / character key shortcut (WCAG 2.1.4, Level A)"
+  target: "status.js:975-984 ('/' handler); hint text status.js:436"
+  claim: "Hint: \"Press / to search from anywhere on the page\"."
+  broken_step: >-
+    '/' with no modifier is bound on document keydown for the whole page. The only exception is focus in
+    an input, textarea, select or contenteditable element (line 979). The reader cannot turn the shortcut
+    off or remap it, and it is not limited to a focused component. WCAG 2.1.4 requires one of these three.
+  evidence_type: line_reference
+  evidence_ref: |-
+    status.js:977  if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey || event.defaultPrevented) return;
+    status.js:980-981  event.preventDefault(); focusSearch();
+    The page has no settings control for the shortcut [observed].
+  files_read: ["compiler/quantum-holography-status/status.js"]
+  tools_used: ["Read"]
+  confidence: high
+  blast_radius: >-
+    Speech-input users: a dictated or stray "/" moves focus to the search field and scrolls the page.
+    Keyboard users who type '/' while on any control. The pinned-card interaction is described in
+    A1-A1-01 and A1-A1-02.
+  minimal_heal: >-
+    status.js (interaction): require a modifier for the shortcut, or add an on-page switch that disables
+    it. Update WORDS.hint (436) to match.
+  residual: Behaviour of specific speech-input products was not tested.
+  deciding_evidence: >-
+    macOS Voice Control or Dragon: with focus on a filter chip, dictate "slash"; observe focus moving to
+    #find-q.
+
+- id: A1-A1-08
+  severity: 3
+  status: valid
+  lens: "accessibility and interaction / non-text contrast of status marks (WCAG 1.4.11)"
+  target: "status.css:38 (--st-not-posed: #9b958d), 60 and 73 (dark #77716a), 162 (.mark-not-posed), 206 (hovered row bg), 211 (selected cell bg)"
+  claim: >-
+    The comment at status.py:29-30 says the marks "read in monochrome, in print and for readers who do
+    not separate the colours". WCAG 1.4.11 requires 3:1 for graphics needed to understand content.
+  broken_step: >-
+    The "Not yet formulated" mark is a 1.6-unit dash. It is the only visual sign of that status in 22 grid
+    cells and in 22 marks of the row-summary strips. It falls below 3:1 in several places [computed]:
+    - light theme, #9b958d: 2.94:1 on the grid background paper-3 (#fffefb), 2.85:1 on paper (#fcfaf6),
+      2.61:1 on a hovered row (paper-2 #f4f0e9), 2.46:1 in the selected cell (accent-soft #e1ecec);
+    - dark theme, #77716a: 2.78:1 in the selected cell (#1f3234). On paper-3 it is 3.37:1, which passes.
+  evidence_type: counterexample
+  evidence_ref: |-
+    node WCAG relative-luminance computation (sRGB threshold 0.04045):
+    notposed #9b958d on paper #fcfaf6: 2.846  on paper3 #fffefb: 2.942  on paper2 #f4f0e9: 2.612
+    LIGHT expanded cell bg accent-soft #e1ecec: notposed 2.46 | DARK expanded cell bg #1f3234: notposed 2.78
+    DOM: not-posed marks: grid cells 22 | row-marks 22 | legend 1 | key 1 | cell-lines 22
+  files_read: ["compiler/quantum-holography-status/status.css", "compiler/quantum-holography-status/status.py", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e (contrast computation)", "Bash: node -e with jsdom (count)"]
+  confidence: high
+  blast_radius: >-
+    Low-vision sighted readers of the grid and of the row summaries: everywhere in the light theme, and in
+    the selected cell in the dark theme. Screen-reader users get the status as text through the cell
+    button's aria-label.
+  minimal_heal: >-
+    status.css (foundation): set --st-not-posed to #857f77 in the light theme (computed 3.80 on paper, 3.49
+    on paper-2, 3.93 on paper-3, 3.29 on accent-soft) and to #857f77 in the dark theme (4.10 on paper-3,
+    4.34 on paper-2, 3.39 on accent-soft). The print value (#77716a on white, 4.82:1) already passes.
+  residual: >-
+    The stroke is about 1.6 px wide; anti-aliasing lowers its effective contrast below the token value
+    [heuristic].
+  deciding_evidence: >-
+    Chrome at 1x zoom: sample the stroke-centre pixel of .mark-not-posed on a hovered row and in a
+    selected cell, and compute the ratio against the background.
+
+- id: A1-A1-09
+  severity: 3
+  status: valid
+  lens: "accessibility and interaction / accessible names (raw TeX)"
+  target: "status.py:545 and 549 (cell button aria-label)"
+  claim: "Each grid mark button is named \"<example>, <column>: <status>\"."
+  broken_step: >-
+    The label is built from the raw content name r["name"], TeX delimiters included. The 8 buttons of the
+    W-algebras row are therefore named starting "\(W\)-algebras and quantum Drinfeld–Sokolov reduction".
+    The row-header link's title (status.py:556) already removes the delimiters with math_free; the
+    aria-label does not.
+  evidence_type: line_reference
+  evidence_ref: |-
+    grep preview.html: aria-label="\(W\)-algebras and quantum Drinfeld–Sokolov reduction, Algebra and geometry: Partly established" (and the same for the other 7 columns)
+    jsdom: cell aria-labels 160 with backslash/dollar 8; row link titles with backslash 0
+  files_read: ["compiler/quantum-holography-status/status.py", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview.html", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: grep", "Bash: node -e with jsdom (read-only)"]
+  confidence: high
+  blast_radius: >-
+    Screen-reader and braille users on 8 grid controls, and on any future row name that contains TeX.
+  minimal_heal: >-
+    status.py (foundation): build the label from strip_tags(self.math_free(r["name"])), as the title at
+    line 556 already does.
+  residual: >-
+    math_free removes the delimiters but leaves TeX commands (for example \mathfrak{sl}_2). No current row
+    name has one.
+  deciding_evidence: VoiceOver or NVDA: move to the marks of row 6 and listen to the names.
+
+- id: A1-A1-10
+  severity: 3
+  status: valid
+  lens: "accessibility and interaction / visible label corruption in the card"
+  target: "status.js:105-110 (contentFor: cell card link text from rowLink.textContent)"
+  claim: "The cell card ends with a link naming its example (the grid's row-header text)."
+  broken_step: >-
+    rowLink.textContent includes the TeX text of the MathML <annotation> as well as the rendered <mi>.
+    In all 8 cell cards of the W-algebras row, the visible link therefore reads "WW-algebras and quantum
+    Drinfeld–Sokolov reduction" [tested]. textOf() in the same file (484-496) skips annotation, but this
+    path does not use it.
+  evidence_type: failing_test
+  evidence_ref: |-
+    jsdom: grid row link html: <a href="#row-w-algebras" ...><span class="math-inline"><math><semantics><mi>W</mi><annotation encoding="application/x-tex">W</annotation></semantics></math></span>-algebras ...</a>
+    card-more link in cell card: "WW-algebras and quantum Drinfeld–Sokolov reduction" | contains math element: false
+  files_read: ["compiler/quantum-holography-status/status.js", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom 28 (read-only)"]
+  confidence: high
+  blast_radius: >-
+    Every reader who opens a card for one of the 8 marks of that row, and any future row whose name
+    contains a formula.
+  minimal_heal: >-
+    status.js (interaction): build the link text with textOf(rowLink), or copy rowLink.innerHTML, instead
+    of using rowLink.textContent.
+  residual: none
+  deciding_evidence: "Any browser: select a mark in row 6; read the link at the foot of the card."
+
+- id: A1-A1-11
+  severity: 3
+  status: undecided
+  lens: "accessibility and interaction / focus hidden in the horizontally scrolling grid"
+  target: "status.css:194 (.grid-wrap overflow-x:auto), 202-203 and 332 (sticky opaque row header, z-index 1); status.js:240-274 (arrow keys)"
+  claim: "Focus is always visible; Tab and the arrow keys move through the grid's marks."
+  broken_step: >-
+    When the table is wider than its box, the row-header column is sticky at left: 0, has an opaque
+    background and sits on z-index 1. .grid-wrap sets no scroll-padding-left. Suppose the table is
+    scrolled right and a cell is reached by ArrowLeft, Home, Shift+Tab, or Tab from the row header. That
+    cell lies inside the scroll box but under the sticky header. The browser either does not scroll at all
+    or scrolls the cell to the left edge, which is still under the header. Either way the focused mark and
+    its ring are hidden [expected].
+    Estimated widths [computed from EB Garamond advance widths and the CSS sizes]: the table needs at
+    least 873 px against a 343 px box at 375 px, 873 vs 442 at 480 px, 1065 vs 707 at 768 px, 1109 vs 944
+    at 1024 px, and 1173 vs 1216 at 1400 px (fits). The sticky header is 113 px wide at 640 px and below,
+    and 187 px at 1024 px.
+  evidence_type: line_reference
+  evidence_ref: |-
+    status.css:202 .grid tbody th { position: sticky; left: 0; z-index: 1; ... background: var(--paper-3); min-width: 11.5em; max-width: 15em;
+    status.css:332 (max-width 640px) .grid tbody th { min-width: 8.5em; max-width: 9.5em; }
+    python3 -I -B fontTools estimate: vw=375 ... grid min table=873px vs wrap=343px scrolls=True | sticky th=113px; vw=1024 ... 1109px vs 944px scrolls=True | sticky th=187px
+  files_read: ["compiler/quantum-holography-status/status.css", "compiler/quantum-holography-status/status.js"]
+  tools_used: ["Read", "Bash: python3 -I -B with fontTools (reads EBGaramond-Regular.otf; no writes)"]
+  confidence: medium
+  blast_radius: Keyboard users of the grid at 375, 480, 768 and 1024 px (four of the five required widths).
+  minimal_heal: >-
+    status.css (foundation): give .grid-wrap a scroll-padding-left equal to the sticky header's maximum
+    width (15em of the grid font above 640 px, 9.5em at 640 px and below). If a target browser ignores
+    scroll-padding for focus scrolling, also add in status.js (interaction): on focusin inside .grid-wrap,
+    reduce wrap.scrollLeft until the focused control's left edge is right of its row header.
+  residual: >-
+    Needs real layout. The width estimates ignore kerning and the fallback font used by the no-fonts build.
+  deciding_evidence: >-
+    Chrome, Firefox and Safari at 375, 480, 768 and 1024 px: focus the first mark of row 1, press End, then
+    press ArrowLeft repeatedly. At each step evaluate
+    const c=document.activeElement.getBoundingClientRect(), t=document.activeElement.closest('tr').querySelector('th').getBoundingClientRect(); c.left < t.right
+    (true means the focused cell is covered).
+
+- id: A1-A1-12
+  severity: 3
+  status: undecided
+  lens: "accessibility and interaction / touch: the card as a bottom sheet"
+  target: "status.css:291-293 (.card.sheet); status.js:80-84 (place), 170-182 (document click dismissal); status.py:713 (card markup), 728 (viewport-fit=cover)"
+  claim: "On narrow touch screens the card becomes a bottom sheet that the reader can read and dismiss."
+  broken_step: >-
+    Four problems.
+    (1) The card has no close control [observed]: its markup is an empty .card-inner, and show() adds only
+    the content and a "more" link.
+    (2) In sheet mode place() returns without scrolling the page. A sheet up to min(60vh, 26rem) tall can
+    cover the trigger that opened it, and then the reader cannot tap the trigger again to close it (the
+    toggle at status.js:174) [expected].
+    (3) Closing by tapping elsewhere relies on a click listener on document. On iOS Safari, taps on
+    non-interactive text may not send a click to document [unverified, low confidence].
+    (4) The sheet uses bottom: 8px without env(safe-area-inset-bottom), although the page sets
+    viewport-fit=cover. The sheet's bottom edge, where the "more" link sits, can fall under the home
+    indicator [expected].
+  evidence_type: line_reference
+  evidence_ref: |-
+    status.css:292 .card.sheet { position: fixed; left: 8px !important; right: 8px; top: auto !important; bottom: 8px; max-width: none; }
+    status.js:84 if (narrow && !hoverCapable) { card.style.left = ''; card.style.top = ''; return; }
+    status.js:180 if (!event.target.closest('#card') || event.target.closest('#card a[href]')) hide();
+    status.py:713 <div class="card" id="card" role="dialog" aria-modal="false" hidden><div class="card-inner"></div></div>
+  files_read: ["compiler/quantum-holography-status/status.css", "compiler/quantum-holography-status/status.js", "compiler/quantum-holography-status/status.py"]
+  tools_used: ["Read"]
+  confidence: low
+  blast_radius: >-
+    Phone readers at 375 and 480 px who open a term, mark or column card. They may be unable to see what
+    they tapped, or to close the sheet without tapping another control.
+  minimal_heal: >-
+    status.js (interaction): add a labelled close button to the card (at least in sheet mode); when the
+    sheet covers its trigger, scroll the trigger above the sheet. status.css (foundation): .card.sheet
+    { bottom: calc(8px + env(safe-area-inset-bottom)) }.
+  residual: The iOS click delivery and all geometry are unverified.
+  deciding_evidence: >-
+    iPhone Safari (iOS 17 or 18) at 375x667 portrait, and Android Chrome at 412 px: tap a term in the
+    lower half of the screen and record whether the sheet covers it. Tap plain paragraph text above the
+    sheet and record whether the sheet closes. Scroll until the toolbar collapses and check whether the
+    "more" link clears the home indicator.
+
+- id: A1-A1-13
+  severity: 4
+  status: valid
+  lens: "accessibility and interaction / keyboard efficiency in the grid"
+  target: "status.py:525-565 (grid markup); status.js:240-274 (arrow-key model)"
+  claim: "Comment at status.js:240: the arrow keys move between the table's marks and headings."
+  broken_step: >-
+    Every mark, column head and row link is also a separate Tab stop: 160 cell buttons, 20 row links, 8
+    column heads and the scroll region, so 189 Tab presses are needed to pass the table [computed via
+    DOM]. There is no roving tabindex and no link to skip the table, although the arrow model already
+    moves focus inside it.
+  evidence_type: other
+  evidence_ref: "jsdom: tab stops in grid-wrap: 189"
+  files_read: ["compiler/quantum-holography-status/status.py", "compiler/quantum-holography-status/status.js", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom (count)"]
+  confidence: high
+  blast_radius: Keyboard and switch users reading the page in order, who must pass the table to reach the filters and rows.
+  minimal_heal: >-
+    status.js (interaction): roving tabindex, with one control at tabindex 0 and the rest at -1, updated by
+    the existing arrow handler. Alternatively, status.py (foundation): a "Skip the table" link before
+    .grid-wrap that points to the row tools.
+  residual: none
+  deciding_evidence: "Count Tab presses from the grid region to the first \"Show\" chip."
+
+- id: A1-A1-14
+  severity: 4
+  status: valid
+  lens: "accessibility and interaction / heading structure"
+  target: "status.py:242 (default heading='h4'), 502 (counterexample statements), 579 (row statements)"
+  claim: Headings give the page's structure.
+  broken_step: >-
+    Statement titles in the examples and counterexamples sections are h4 directly under the section's h2,
+    with no h3 between. In #examples the row name that contains them is a summary, not a heading, so
+    heading navigation lands on statement titles without their example.
+  evidence_type: other
+  evidence_ref: "jsdom: heading level skips: {\"examples: h2->h4\":1,\"failures: h2->h4\":1}"
+  files_read: ["compiler/quantum-holography-status/status.py", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom"]
+  confidence: high
+  blast_radius: Screen-reader users who navigate by heading in two sections.
+  minimal_heal: "status.py (foundation): pass heading='h3' at lines 502 and 579."
+  residual: none
+  deciding_evidence: Heading list in NVDA or VoiceOver.
+
+- id: A1-A1-15
+  severity: 4
+  status: valid
+  lens: "accessibility and interaction / dialog semantics of the card"
+  target: "status.py:175-176 (term button), 713 (card); status.js:119-136 (show), 1002 (markScrollers skips #card)"
+  claim: "Comment at status.js:128: \"The card is a non-modal dialog: named by its heading, described by the text under it.\""
+  broken_step: >-
+    Three code facts [inspected]. First, the triggers announce aria-haspopup="dialog", but activating one
+    leaves focus on the trigger, and the card is the last element in body. Nothing is announced, and a
+    screen-reader user must know to press Tab to reach it [expected]. Second, term buttons have no
+    aria-describedby pointing to their definition; column heads do. Third, formulas copied into the card
+    (glossary definitions contain 37 .math-long boxes [observed]) never get a tabindex, so a formula wider
+    than the card cannot be scrolled with the keyboard there [expected].
+  evidence_type: line_reference
+  evidence_ref: |-
+    status.js:133-135 card.hidden = false; el.setAttribute('aria-expanded', 'true'); place(el);   (no focus move)
+    status.js:1002 if (box.closest('a, button, summary, .find, #card')) return;
+    status.py:527 col-head has aria-describedby="col-{cid}"; status.py:175-176 term button has none
+  files_read: ["compiler/quantum-holography-status/status.js", "compiler/quantum-holography-status/status.py", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom (count)"]
+  confidence: medium
+  blast_radius: Screen-reader users reading definitions; keyboard users reading a wide formula inside a card.
+  minimal_heal: >-
+    status.js (interaction): when a card is pinned by activation, move focus into it (to its first link, or
+    to the card with tabindex=-1) and return focus on close; run markScrollers on the card content after
+    show(). status.py (foundation): give each term button aria-describedby pointing to its glossary dd, and
+    give that dd an id.
+  residual: Actual screen-reader output and card formula widths are unverified.
+  deciding_evidence: >-
+    NVDA with Firefox and VoiceOver with Safari: Tab to a dotted term, press Enter, and record what is
+    announced. At 375 px compare scrollWidth and clientWidth of each .math-long inside #card.
+
+- id: A1-A1-16
+  severity: 4
+  status: valid
+  lens: "accessibility and interaction / control state (theme)"
+  target: "status.py:706-707; status.js:16-22"
+  claim: "A button switches between the light and dark themes."
+  broken_step: >-
+    The button's name is fixed ("Switch between light and dark") and it exposes no aria-pressed or other
+    state. Assistive technology cannot tell which theme is active, and nothing changes after activation.
+  evidence_type: line_reference
+  evidence_ref: "status.py:706 <button type=\"button\" class=\"theme\" aria-label=... title=...>; status.js:17-21 sets only data-theme and localStorage"
+  files_read: ["compiler/quantum-holography-status/status.py", "compiler/quantum-holography-status/status.js"]
+  tools_used: ["Read"]
+  confidence: high
+  blast_radius: Low-vision screen-reader users.
+  minimal_heal: >-
+    status.js (interaction): set aria-pressed for dark (and name the button "Dark theme"), or update
+    aria-label and title to name the target theme, both at load and after each change.
+  residual: none
+  deciding_evidence: Accessibility tree of the theme button before and after a click.
+
+- id: A1-A1-17
+  severity: 4
+  status: valid
+  lens: "accessibility and interaction / target size (44 px recommended)"
+  target: "status.css:114 (.nav a), 117 (.theme), 208 and 334 (.cell-btn), 231 (.filter), 236 (.link-btn), 626-631 (pointer: coarse)"
+  claim: "Policy: touch targets of 24 px minimum, 44 px recommended."
+  broken_step: >-
+    At the 17 px base size used at 375 and 480 px [computed from the CSS]: the theme button is 34x34 px; a
+    "Show" chip is about 31 px tall (13.26 x 1.55 + 8 + 2); Open all and Close all are about 27 px tall
+    (14.96 x 1.55 + 4); grid marks are 40x36 px; nav links are about 35 px tall. All meet 24 px and none
+    meets 44 px. The coarse-pointer block enlarges only the search controls.
+  evidence_type: line_reference
+  evidence_ref: "status.css:117 width: 34px; height: 34px; status.css:627-631 @media (pointer: coarse) { .find .filter ...; .find .find-clear, .find .find-more ... }"
+  files_read: ["compiler/quantum-holography-status/status.css"]
+  tools_used: ["Read"]
+  confidence: medium
+  blast_radius: Touch readers with motor impairments.
+  minimal_heal: >-
+    status.css (foundation): inside @media (pointer: coarse), set min-height: 44px on .row-tools .filter,
+    .link-btn and .nav a; make .theme 44x44; give .cell-btn a height of 44px.
+  residual: Exact rendered heights need a browser.
+  deciding_evidence: "getBoundingClientRect() of each control at 375 px with touch emulation."
+
+- id: A1-A1-18
+  severity: 4
+  status: valid
+  lens: "accessibility and interaction / search results misrepresent formulas"
+  target: "status.js:484-496 (textOf), 636-652 (snippet)"
+  claim: Each result shows the words around the match.
+  broken_step: >-
+    Snippets and result context are built with textOf(), which joins MathML token text and drops the
+    script structure. E_3 appears as "E3", \mathfrak{sl}_2 as "𝔰𝔩2" and H^\bullet as "H∙" [tested].
+  evidence_type: failing_test
+  evidence_ref: "jsdom, search \"mode algebra\": snippet \"…It supplies a commutative E3-model; uniqueness among all E3-structures with this cohomology holds for 𝔰𝔩2 but fails for\" and \"…discrete smooth modules is H∙(𝔤;ℂ).\""
+  files_read: ["compiler/quantum-holography-status/status.js", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+  tools_used: ["Read", "Bash: node -e with jsdom 28 (read-only)"]
+  confidence: high
+  blast_radius: Every reader of search results that contain formulas, sighted or using a screen reader.
+  minimal_heal: >-
+    status.js (interaction): for snippet text, have textOf emit "_" or "^" between base and script for
+    msub, msup and msubsup, or substitute the formula's TeX annotation.
+  residual: none
+  deciding_evidence: Search "mode algebra" in any browser and read the snippets.
+
+- id: A1-A1-19
+  severity: 4
+  status: valid
+  lens: "accessibility and interaction / duplicate accessible names"
+  target: "status.py:611-612 (examples Open all/Close all); status.js:317-333 (frontier copies)"
+  claim: Each control's name says what it does.
+  broken_step: >-
+    There are two buttons named "Open all" and two named "Close all", in the frontier and examples
+    sections [tested]. Their names do not say what they open or close, so a list of buttons, or a voice
+    command such as "click Open all", is ambiguous.
+  evidence_type: failing_test
+  evidence_ref: "jsdom: Open all buttons after JS: frontier,examples"
+  files_read: ["compiler/quantum-holography-status/status.py", "compiler/quantum-holography-status/status.js"]
+  tools_used: ["Read", "Bash: node -e with jsdom"]
+  confidence: high
+  blast_radius: Screen-reader and voice-control users.
+  minimal_heal: >-
+    status.py (foundation) and status.js (interaction): an aria-label naming the scope ("Open all
+    examples", "Open all related statements"), or aria-describedby pointing to the section heading.
+  residual: none
+  deciding_evidence: Buttons list in NVDA or VoiceOver.
+
+- id: A1-A1-20
+  severity: 4
+  status: undecided
+  lens: "accessibility and interaction / focus indicator partly clipped"
+  target: "status.css:90 (outline 2px, offset 2px), 111/113/329 (.nav overflow-x:auto and mask), 194 (.grid-wrap overflow), 198 (sticky opaque thead th)"
+  claim: Keyboard focus is always visible.
+  broken_step: >-
+    .nav sets overflow-x:auto, so its overflow-y computes to auto, and its height equals the link height.
+    The top and bottom bands of a nav link's ring, 2-4 px outside the link, are therefore clipped, leaving
+    two vertical bars. Below 900 px the right 12% of the nav is masked to transparent, so a link scrolled
+    into view at the right edge also loses part of its text and ring. For column heads, the ring's top
+    band is outside .grid-wrap's clip, and its right band lies under the next sticky header cell's opaque
+    background. [expected from the CSS overflow and painting rules]
+  evidence_type: line_reference
+  evidence_ref: "status.css:111 .nav { ...; overflow-x: auto; ...; mask-image: linear-gradient(90deg, #000 88%, transparent); }  status.css:90 :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }"
+  files_read: ["compiler/quantum-holography-status/status.css"]
+  tools_used: ["Read"]
+  confidence: medium
+  blast_radius: Keyboard users in the bar (all widths) and on the column heads. Part of the ring stays visible.
+  minimal_heal: >-
+    status.css (foundation): use an inset ring (outline-offset: -2px) for .nav a, .col-head and .grid tbody
+    th a, or give .nav vertical padding with a matching negative margin. Add scroll-padding-inline-end on
+    .nav equal to the mask width.
+  residual: Needs rendering.
+  deciding_evidence: >-
+    Screenshots in Chrome, Firefox and Safari of a focused nav link at 375 and 1400 px and of a focused
+    column head.
+
+- id: A1-A1-21
+  severity: 4
+  status: undecided
+  lens: "accessibility and interaction / forced colours"
+  target: "status.css:233 (.filter[aria-pressed='true']), 211 (.cell-btn[aria-expanded='true']), 116 (.nav a[aria-current]), 636-642 (forced-colors block)"
+  claim: "Comment at status.css:636: \"Forced colours: system colours for the glyph, the pressed chips, the focus ring and the highlight.\""
+  broken_step: >-
+    The forced-colors block covers only the search chips (.find .filter). The "Show" chips in the row
+    toolbar show their pressed state only through border colour, background and text colour. Forced
+    colours replace all three with system colours, so pressed and unpressed chips look the same
+    [expected]. The selected grid cell and the current nav link have the same problem.
+  evidence_type: line_reference
+  evidence_ref: "status.css:639 .find .filter[aria-pressed='true'] { outline: 2px solid Highlight; outline-offset: -3px; }  (no rule for .row-tools .filter)"
+  files_read: ["compiler/quantum-holography-status/status.css"]
+  tools_used: ["Read"]
+  confidence: medium
+  blast_radius: Windows contrast-theme users of the status filter, the grid and the bar.
+  minimal_heal: >-
+    status.css (foundation): in @media (forced-colors: active), apply the outline rule to
+    .filter[aria-pressed='true'] rather than only .find .filter; add outline: 2px solid Highlight to
+    .cell-btn[aria-expanded='true']; add text-decoration: underline to .nav a[aria-current='true'].
+  residual: Forced colours are not in the binding acceptance list; rendering is unverified.
+  deciding_evidence: >-
+    Chrome DevTools, Rendering panel, emulate forced-colors: active. Press "Published" in the Show group
+    and compare it with an unpressed chip.
+
+- id: A1-A1-22
+  severity: 4
+  status: undecided
+  lens: "accessibility and interaction / content on hover is hoverable (WCAG 1.4.13)"
+  target: "status.js:89-90 (card placed 8 px from its trigger), 146-150 (hidden 160 ms after the pointer leaves)"
+  claim: The pointer can move from a trigger onto its card.
+  broken_step: >-
+    On hover devices the card sits 8 px from its trigger and is hidden 160 ms after the pointer leaves the
+    trigger. A pointer moving slower than about 50 px/s does not reach the card before it disappears
+    [heuristic].
+  evidence_type: line_reference
+  evidence_ref: "status.js:89 var below = r.bottom + window.scrollY + 8;  status.js:149 hideTimer = setTimeout(hide, 160);"
+  files_read: ["compiler/quantum-holography-status/status.js"]
+  tools_used: ["Read"]
+  confidence: low
+  blast_radius: Mouse users with slow or tremulous pointer control. Clicking pins the card, which avoids the problem.
+  minimal_heal: >-
+    status.js (interaction): lengthen the grace period (for example 400-600 ms), or bridge the gap so the
+    card overlaps its trigger.
+  residual: User-speed dependent.
+  deciding_evidence: >-
+    Chrome with a mouse: hover a term, then move the pointer to its card at about 40 px/s; record whether
+    the card stays.
+---
+survived:
+  - "Skip link: it is the first Tab stop, appears on focus above the bar (z-index 30 vs 20) and targets main[tabindex=-1] (status.py:702,708; status.css:95-96) [inspected]."
+  - "Reach and operate every control class by keyboard (theme, nav, tally, search field, facet chips, results, grid marks and heads, row summaries, Open all/Close all, filters, terms, pinned-card links, formula boxes). All are native buttons, links or summaries; wide formulas get tabindex=0 (status.js:1000-1007) [inspected; tested for column heads, terms and search]."
+  - "No keyboard trap: the card's Tab handler always passes focus to the next tabbable element or back to the owner, and the arrow handlers never intercept Tab (status.js:217-237, 243-273) [inspected]."
+  - "Focus order follows reading order: the search is inserted after the tally, the added Open all/Close all precede their list, and no CSS reorders focusable elements [inspected]."
+  - "ARIA references: after the scripts run there are 0 broken idrefs (aria-labelledby, describedby, controls, for) and 0 duplicate ids [tested]."
+  - "Text equivalents for status: status chips, the legend, the key, cell-line text, mix counts with visually hidden status names, question-index marks (role=img with aria-label), result status text and cell aria-labels (apart from A1-A1-09) [observed]."
+  - "Status without colour: the ten statuses use ten distinct mark shapes (status.py:31-49); the dashed border and colour stripe are redundant with the chip text [observed; heuristic at 11 px]."
+  - "Text contrast in light and dark: every text token pair in use is at least 4.5:1. The lowest is ink-4 on paper-2 at 4.500002 (the grid corner label), which passes with zero margin. Status chip text on its tint is at least 4.52 [computed]."
+  - "Focus ring contrast: 6.46-7.47:1 in the light theme and 5.18-10.90:1 in the dark theme against every background computed, including pressed chips and the selected cell [computed]."
+  - "Reduced motion: smooth scrolling and transitions apply only under prefers-reduced-motion: no-preference, and smooth() returns 'auto' under reduce (status.css:81,633-635; status.js:7) [inspected]."
+  - "Tally links: their counts equal the search's status counts (197, 6, 74, 4), and activating one moves focus to the search with the count announced [tested]."
+  - "Search keyboard model: Down, Up, Home, End and Escape work in the results; Enter goes to the first hit; Clear and Show all hand focus on (status.js:768-811) [inspected; Down tested without the race in A1-A1-03]."
+  - "Address state: ?show, ?q, ?in and ?status are restored on arrival and on popstate [tested on arrival]."
+  - "A hit inside closed or filtered content: go() opens the enclosing details, lifts the status filter, and handles the case where the hash is already the target (status.js:49-56, 914-926) [inspected]."
+  - "Open all and Close all act only within their own section [tested: the frontier's Open all left the rows untouched]."
+  - "Sticky page bar: html scroll-padding-top of calc(var(--bar) + 16px) keeps fragment and scrollIntoView targets below the 51 px bar (status.css:80) [inspected; focus-scroll behaviour in browsers expected]."
+  - "Print: every disclosure opens on beforeprint and is restored on afterprint; statements hidden by a filter are printed; the card, search and tools are hidden (status.js:412-423; status-print.css:58-60,153) [inspected]."
+  - "Landmarks: the two question indexes have distinct names (label plus section heading), each section is a named region, and there is one search landmark (status.py:483-484) [inspected]."
+  - "Live regions (the search count line and the filter count) exist before their first update (status.js:336-348, 750-753) [inspected]."
+  - "Hidden content stays silent: cell notes, the closed card and the hidden facets carry [hidden]; decorative marks and the row-mark strip are aria-hidden, and the grid duplicates the strip's information [observed]."
+  - "iOS focus zoom: the search input uses 17 px text (16 px or more), so iOS does not zoom when it is focused (status.css:9,568) [inspected]."

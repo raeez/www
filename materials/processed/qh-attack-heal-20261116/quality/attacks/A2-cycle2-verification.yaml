@@ -1,0 +1,355 @@
+# A2 cycle-2 verification of the lead's heal candidate (read-only; root's browser restriction forwarded verbatim).
+# Saved from its report; absolute worktree paths shortened, runtime line left out (reported in the handoff message).
+# The verdicts are as returned; in new_attacks the evidence_ref, files_read and tools_used fields are condensed and
+# the referee block is summarised. Claims, severities, statuses, heals and deciding evidence are as returned.
+verdicts:
+  - id: C01
+    verdict: healed-unverified
+    evidence: |-
+      inspected (candidate sources, cascade):
+      - status-print.css:97 sets .statements, .questions, .failures { display: block; }. The sibling margins at :98, :160
+        and :171 are 8pt, 16pt and 14pt.
+      - status.css:422 sets @media print { .known > .statements { display: block !important; } }.
+      - status.py:721 appends the print sheet after status.css, so equal-specificity rules win by order.
+      - No rule of higher specificity sets display on these containers. .question-known .statements sets only gap;
+        .section.decisive > .questions sets only max-width and margins.
+      Block flow therefore applies to every .statements (principal, example rows, related-statement lists, the decisive
+      .question-known), to .questions (frontier and decisive) and to .failures.
+      - Spacing: 8pt and 16pt equal the old print gaps. .failures changes from the screen gap of 22px (16.5pt) to 14pt.
+        No margins collapse into children: .question has a border and .statement has no vertical margins.
+      - Breaks: .statement { break-inside: avoid } is unchanged.
+      - Screen: every change sits inside @media print, so the screen cascade is unchanged.
+    residual: |-
+      Only an approved print route can decide whether content is lost on A4 or Letter; the Chrome evidence is inadmissible.
+      In print, .glossary (144 unbreakable entries), .key and .col-defs > dl are still grid containers (A2-A2-07).
+  - id: C02
+    verdict: healed-verified
+    evidence: |-
+      inspected: build-quantum-holography-status.py:55-60. page.json is read from --input; if absent, the default is
+      used with a warning. The audit folder defaults to <input>/audit.
+      computed from the frozen fixture outputs:
+      - heal/fixtures/out/candidate-builder.html contains "Proved and checked independently" 429 times (the fixture's
+        page.json label). baseline-builder.html contains "Proved and independently checked" 429 times (the default).
+      - The candidate builder's audit was written to heal/fixtures/input-labels/audit/, inside --input.
+    residual: |-
+      The default audit folder is now created inside the input folder, so building a frozen content package writes
+      audit/ into that package. The lead ran the fixture builds; I did not run the builder.
+  - id: C03
+    verdict: healed-verified
+    evidence: |-
+      computed:
+      - section#essay in the candidate has 4 <math> elements and 0 raw "\(".
+      - All 27 essay paragraphs match the baseline text once each MathML formula is mapped back to its TeX annotation.
+        The essay has 0 <em> and 0 term buttons.
+      - The page has 2506 <math> elements (2502 + 4) and 2506 annotations. No TeX from content.json or essay.md is
+        unrendered, and there is 0 tex-error.
+      tested: the healed audit run on the baseline page reports the 8 raw-TeX delimiters.
+    residual: "Two latent defects: the short-display branch (A2-A2-01) and the asterisk and link rewriting (A2-A2-11)."
+  - id: C04
+    verdict: healed-verified
+    evidence: |-
+      computed: none of the 356 aria-label, title, alt or placeholder values contains a backslash. The W row's 8 names
+      read "W-algebras and quantum Drinfeld–Sokolov reduction, <column>: <status>". status.py:549 and :560 use math_free.
+      tested: the healed audit run on the baseline page reports the 8 TeX names.
+    residual: "math_free keeps TeX commands, so any name containing a command now fails the build (A2-A2-02)."
+  - id: C05
+    verdict: healed-verified
+    evidence: |-
+      tested (jsdom on candidate preview-nofonts with the page script run; stubs: matchMedia returns false,
+      scrollIntoView only records): the card link for row-w-algebras reads "W-algebras and quantum Drinfeld–Sokolov
+      reduction" with annotations excluded. It contains MathML and no ids. Cycle-1 source A1-A2-04; owned by interaction.
+    residual: none
+  - id: C07
+    verdict: healed-verified
+    evidence: |-
+      tested (jsdom, same stubs):
+      - Arrive at #row-heisenberg, press Close all, click the row name in the grid: the row opens.
+      - Open #s-hyperbolic-all-genus, close its row by its summary, follow a link with the same hash: the row opens.
+      Mechanism: a document click handler compares the link's href with location.hash and runs openTarget after the
+      default action. Cycle-1 source A1-A2-06; owned by interaction.
+    residual: none
+  - id: C08
+    verdict: healed-verified
+    evidence: |-
+      tested (jsdom):
+      - ?in=bogus and ?status=bogus: the address is cleaned to "" and no empty-result state appears.
+      - ?status=Checked: rewritten to ?status=checked; "197 matches"; the chip is pressed.
+      - ?in=Examples&q=koszul: rewritten to ?in=examples&q=koszul; "28 matches".
+      - ?show=Open,bogus: rewritten to ?show=open; the filter is pressed.
+      0 script errors.
+    residual: none
+  - id: C09
+    verdict: healed-verified
+    evidence: |-
+      tested (jsdom). jsdom does not fire popstate on fragment navigation, so after the link click a popstate was
+      dispatched, as the HTML spec prescribes:
+      - Type "koszul", then within 150 ms follow an in-page link and receive popstate: the input keeps "koszul", the
+        address is "?q=koszul#examples", and the count reads "50 matches".
+      - A popstate whose query part changed ("?q=fusion") restores "fusion".
+      inspected:
+      - Mechanism: in-page link clicks flush the pending address in the capture phase, and popstate compares
+        location.search with lastSearch.
+      - Where replaceState throws, lastSearch is never updated, so popstate returns early and the reader's search is kept.
+    residual: "That browsers fire popstate on fragment navigation is expected from the spec, not observed; the heal is correct either way."
+  - id: C17
+    verdict: not-healed
+    evidence: |-
+      tested:
+      - The lead's fixtures behave as expected on the healed audit: all 6 cycle-1 leak classes are now flagged, and
+        both clean fixtures pass.
+      - Both the spaced and the joined visible texts are scanned. The candidate page produces 0 failures; the baseline
+        page produces 16 (8 raw TeX, 8 TeX names).
+      - My battery of 18 further leak probes: 13 pass unflagged. These include ids with workflow words, identifiers or
+        stage numbers; visible "G10", "version 2" and "round 4"; a JSON script block; a CSS comment; an svg title;
+        words set with \mathrm or \operatorname; a soft hyphen inside a word; and aria-roledescription.
+      - All 6 of my clean mathematical probes fail the build.
+      This is a partial heal (A2-A2-04, A2-A2-05, A2-A2-06).
+    residual: "Id, script/JSON and comment leak classes stay open, and the new false positives can reject valid content."
+  - id: C18
+    verdict: not-healed
+    evidence: "computed: candidate audit.txt contains 'WARNING 98 statements have no id, so no link reaches the statement itself'. The warning gives a count only; the ledger's heal also asked for a list."
+    residual: "Foundation: list the anchorless statements in the warning. Content owner: ids for 98 statements (81 of 109 example statements), or an explicit acceptance by root."
+  - id: C19
+    verdict: not-healed
+    evidence: |-
+      computed: all 428 baseline ids are present in the candidate; there are 0 new ids and 0 duplicates.
+      inspected: optional ids are read at status.py:149 (glossary) and :626 (open groups), and the README documents them.
+      Without ids, anchors still come from headings and terms, so the claim (anchors survive retitling) does not yet
+      hold on the current page.
+    residual: "Explicit ids are not reserved and can be renamed or taken over (A2-A2-03); the content owner has added no ids."
+  - id: C20
+    verdict: not-healed
+    evidence: |-
+      computed: the audit now warns, without blocking, on:
+      - "adopted" (essay);
+      - "draft" (the citation "2016, author draft");
+      - "recorded exact kernel certificate", "stored matrix arithmetic", "replayed" and "saved constructor certificate".
+      The wording is unchanged because the content is frozen.
+    residual: "The content owner must rule on these phrases; the external process-language gate stays open until then."
+  - id: C21
+    verdict: not-healed
+    evidence: "inspected: DESIGN-CONTRACT.json is unchanged (mtime 17:54, before cycle 1). It still has no manifest format, relation enum, step rule or status map."
+    residual: "Needs a contract revision from the atlas lane and root. A2-A2-05 is a precondition: today the build audit cannot see a JSON atlas block."
+  - id: C22
+    verdict: not-healed
+    evidence: "computed: the candidate tally (197/74/6/4) and the row and question status counts are unchanged."
+    residual: "Root must rule on whether readerRules[1] covers the whole page or only the atlas."
+  - id: C25
+    verdict: healed-verified
+    evidence: "inspected: audit.py:125-127 counts ids with a single Counter. tested: the healed audit runs in 0.29 s on the 2.2 MB candidate page; cycle 1 estimated 3.9 s for the old duplicate check alone."
+    residual: none
+  - id: C26
+    verdict: not-healed
+    evidence: |-
+      Not healed, as the plan intended:
+      - A1-A2-14: 5 terms are still never attached, including Universal regular \(W_3\).
+      - A1-A2-16: go() is unchanged (status.js:985-996).
+      - A1-A2-18: status.py:525, 612 and 700 are unchanged.
+      - A1-A2-19: the page grew to 2,205,708 bytes (+6,846).
+      - A1-A2-02(6): shipped CSS/JS comments grew from 97 to 107 (computed); one records a test observation ("seen in
+        Chromium on Letter").
+    residual: "Severity 4; outside convergence."
+  - id: C27
+    verdict: not-healed
+    evidence: "A1-A2-15: the content's status_key labels are still ignored without any check; no ruling on label ownership."
+    residual: "Needs a ruling from root or foundation."
+  - id: C28
+    verdict: healed-verified
+    evidence: |-
+      computed by parsing the head table of each embedded WOFF font:
+      - Candidate: head.modified equals the source fonts' dates. EB Garamond Regular 2023-03-19T14:45:31, Italic
+        2021-07-22T16:35:14, SemiBold 2021-07-22T16:30:29, Garamond-Math 2022-01-03T14:45:07.
+      - Baseline: head.modified is the build time, 2026-11-16T11:10:47 and :48. This is why two builds of the same
+        sources differed.
+      inspected: status.py passes recalcTimestamp=False.
+    residual: "I did not run two candidate builds to show byte identity (builder runs are not permitted); it is expected from the mechanism."
+  - id: heal-integrity
+    verdict: healed-verified
+    evidence: |-
+      computed:
+      - PATCH.diff is byte-equal to foundation.diff followed by interaction.diff.
+      - Applying its hunks in memory to the unchanged worktree sources reproduces all 7 changed files with the
+        manifest's after-hashes: 7419f94a, f1671c86, 1cb99378, 1b74a38c, 1be55133, 8fd202d6, 8a1cf8c3.
+      - The candidate preview embeds exactly the mirror's status.css + status-print.css and status.js.
+      - content.json, essay.md and page.json are byte-identical to the baseline.
+      - The patch's added lines contain no private paths or tool names, apart from the audit's own patterns.
+    residual: none
+new_attacks:
+  - id: A2-A2-01
+    severity: 3
+    status: valid
+    lens: "data fidelity / builder robustness (essay TeX)"
+    target: "heal/mirror/compiler/quantum-holography-status/status.py:644-647 (essay short-display branch)"
+    claim: "The README now says TeX in essay.md is set as mathematics, and the essay passes the healed audit."
+    broken_step: >-
+      A block of 32 characters or fewer that contains '=' still takes the essay-display branch, and that branch
+      html-escapes the raw block. A standalone equation paragraph such as \(c=26\) or \[Z=\int e^{-S}\] therefore
+      stays raw TeX, and the healed audit's RAW_TEX rule fails the build. Before the heal such a block printed raw; now
+      the builder refuses valid essay content.
+    evidence_type: failing_test
+    evidence_ref: "python3 -I -B -c on the mirror's Build.essay with synthetic text: the essay-display paragraph keeps \\(c=26\\); RAW_TEX hits ['\\\\(', '\\\\)']. The current essay has no such block (computed)."
+    confidence: high
+    blast_radius: "Any future essay with a short displayed equation fails to build."
+    minimal_heal: "status.py (foundation): apply the display heuristic only to blocks without TeX, or render display blocks with rich() and keep the class."
+    residual: none
+    deciding_evidence: "Re-run the synthetic call: the essay-display paragraph should hold a math placeholder and RAW_TEX should find nothing."
+  - id: A2-A2-02
+    severity: 3
+    status: valid
+    lens: "data fidelity / builder robustness (accessible names)"
+    target: "heal/mirror/compiler/quantum-holography-status/status.py:549, 560; audit.py TEX_IN_ATTRIBUTE"
+    claim: "Grid accessible names and row titles are free of TeX for any row name the content format allows."
+    broken_step: >-
+      math_free removes only the \( \) delimiters, so a name containing a TeX command keeps the command in its 8
+      aria-labels and its title; TEX_IN_ATTRIBUTE then raises 9 failures and the builder refuses the content. The page
+      <title> and og:title also use math_free, but TEX_IN_ATTRIBUTE does not scan them, so TeX there would ship raw.
+    evidence_type: failing_test
+    evidence_ref: "mirror Build.grid on a row named '\\(\\mathfrak{sl}_2\\)-modules and \\(\\widehat{\\mathfrak g}\\) at level \\(k\\)': aria-label '\\mathfrak{sl}_2-modules and \\widehat{\\mathfrak g} at level k, ...'; 9 TEX_IN_ATTRIBUTE failures."
+    confidence: high
+    blast_radius: "Newer content with a TeX command in a row or column name cannot be built."
+    minimal_heal: "status.py (foundation): build accessible names from the formula's rendered token text after math.render(); apply the same to <title> and og:title."
+    residual: none
+    deciding_evidence: "Build a fixture row with \\mathfrak in its name; expect PASS and names without backslashes."
+  - id: A2-A2-03
+    severity: 3
+    status: valid
+    lens: "deep links (anchor stability with optional ids)"
+    target: "heal/mirror/compiler/quantum-holography-status/status.py:144-156 (Terms), :626 (open groups)"
+    claim: "A glossary entry's id or an open group's id gives a stable anchor (README)."
+    broken_step: >-
+      Explicit ids are not reserved: an explicit glossary id equal to an earlier entry's derived anchor is silently
+      suffixed, reordering moves explicit anchors to other entries, and an explicit open-group id "h" collides with the
+      section heading id open-h.
+    evidence_type: failing_test
+    evidence_ref: "[('Weak module', 'term-weak-module'), ('Weak module (completed)' [id weak-module], 'term-weak-module-2'), ('Another' [id Weak_Module], 'term-weak-module-3')]; open ids ['open', 'open-h', 'open-h', 'open-fusion']"
+    confidence: high
+    blast_radius: "Shared #term- and #open- links once ids are introduced; current anchors unchanged."
+    minimal_heal: "status.py (foundation): assign explicit ids first and fail on equal explicit ids; suffix derived anchors that collide; reject explicit ids equal to fixed ids."
+    residual: none
+    deciding_evidence: "The explicit id keeps term-weak-module in both orders; a duplicate explicit id fails the build."
+  - id: A2-A2-04
+    severity: 3
+    status: valid
+    lens: "public safety (healed audit: ids and process/version tokens)"
+    target: "heal/mirror/compiler/quantum-holography-status/audit.py:46 (ID_FORBIDDEN), :24-39 (FORBIDDEN)"
+    claim: "Element ids follow the reader-text rules, and process or version language fails the build."
+    broken_step: >-
+      These ids pass: s-ast-t152, s-ledger-entry, term-inscribe-adoption, s-phase-2-result, open-session-12. These
+      visible strings pass: "G10", "version 2", "round 4", "cycle 2".
+    evidence_type: failing_test
+    evidence_ref: "probe battery against the mirror's audit.run (the stub build from lead/qh-audit-fixtures.py); FORBIDDEN rules 1, 2, 9, 10 give 0 hits on the 428 candidate ids; a lowercase identifier rule would flag s-decisive-native-r3-covariant-recipient."
+    confidence: high
+    blast_radius: "Public safety of shared links and visible text for any future content."
+    minimal_heal: "audit.py (foundation): scan ids with FORBIDDEN rules 1, 2, 9, 10 (failures) and identifier shapes (warnings); add version \\d and revision \\d."
+    residual: none
+    deciding_evidence: "Every probe fails while the candidate still passes."
+  - id: A2-A2-05
+    severity: 3
+    status: valid
+    lens: "public safety (whole document; atlas readiness)"
+    target: "heal/mirror/compiler/quantum-holography-status/audit.py:61-71, 138, 159-161"
+    claim: "The build audit gates leaks anywhere in the HTML, including JSON blocks, comments and metadata."
+    broken_step: >-
+      A <script type="application/json" id="qh-atlas-data"> block carrying "Astra-authored", a /Users/.../ADOPTION.md path
+      and "wave 3" passes, as do CSS and JS comments; one new shipped comment records a test observation ("seen in
+      Chromium on Letter").
+    evidence_type: failing_test
+    evidence_ref: "MISS leak | json script block in body ; MISS leak | css comment in head ; MISS leak | svg title element; comments: candidate 107, baseline 97"
+    confidence: high
+    blast_radius: "Any atlas data embedded as CONTRACT.json prescribes, and any comment text."
+    minimal_heal: "audit.py (foundation): scan non-executable script blocks and all comments with the FORBIDDEN, path and hash rules, or strip comments."
+    residual: none
+    deciding_evidence: "Both probes fail the re-healed audit, and the candidate still passes."
+  - id: A2-A2-06
+    severity: 4
+    status: valid
+    lens: "public safety audit (false positives)"
+    target: "heal/mirror/compiler/quantum-holography-status/audit.py:34, 37-38, 135-137"
+    claim: "The hardened audit passes mathematical prose."
+    broken_step: "These fail the build: 'the s-wave 1 contribution', 'the phase 0 term vanishes', A~/~B in TeX source, \\text{50\\% of modes}, 'chains/cochains', 'projective line P1' in attributes and mtext."
+    evidence_type: failing_test
+    evidence_ref: "FP clean probes: path 'chains/'; path (in TeX source) '~/'; internal identifier 'P1'; process stage label 'wave 1', 'phase 0'; percentage (in a formula) '50%'"
+    confidence: high
+    blast_radius: "Future content with such wording is refused; the current content passes."
+    minimal_heal: "audit.py (foundation): drop ~/ from the TeX-source scan; require (?<![\\w-]) before stage words or match only capitalised labels; percentages inside formulas as warnings."
+    residual: "Whether a phrasing is legitimate is partly the content owner's call."
+    deciding_evidence: "The 6 clean probes pass and the leak probes stay flagged."
+  - id: A2-A2-07
+    severity: 2
+    status: undecided
+    lens: "print (coverage of the C01 heal)"
+    target: "status.css:273, 355, 539; status-print.css:92-93, 145-146, 181"
+    claim: "The C01 heal removes the exposure to grid fragmentation in print."
+    broken_step: "In print .glossary (144 unbreakable entries), .key and .col-defs > dl (grid !important) are still grids with unbreakable items (expected; unverified)."
+    evidence_type: line_reference
+    evidence_ref: "status.css:273 .glossary { display: grid } | status-print.css:181 .gloss { break-inside: avoid } | status.css:539 @media print { .col-defs > dl { display: grid !important; } }"
+    confidence: medium
+    blast_radius: "Glossary definitions, key items or column definitions could be missing on paper."
+    minimal_heal: "status-print.css (foundation): in print, .glossary, .key and .col-defs > dl as block flow (override the !important)."
+    residual: "Original evidence of loss is inadmissible; the mechanism cannot be tested here."
+    deciding_evidence: "Approved print route on A4 and Letter: all 144 glossary entries, the key items and the column definitions present."
+  - id: A2-A2-08
+    severity: 3
+    status: valid
+    lens: "data fidelity (formulas outside TeX)"
+    target: "content.json: #s-decisive-finite-quotient-point-duality, #s-decisive-induction-full-unbounded, #s-decisive-centre-l2-positive-subclasses, #s-decisive-centre-objectwise-coherence, #s-decisive-centre-hard-receiving-modules"
+    claim: "Every formula a reader sees is set as mathematics."
+    broken_step: "Five statements write formulas as ASCII outside TeX: 'R_N=C[hbar]/(hbar^N), N≥1', 'W_F' (twice), 'Y_f tensor N', 'G0 union G_F', 'q_B'. The healed audit warns only."
+    evidence_type: counterexample
+    evidence_ref: "candidate audit.txt WARNING lines; content scan /decisive/questions/0/known/3/text"
+    confidence: high
+    blast_radius: "Five decisive-question statements, on screen, in print and in search."
+    minimal_heal: "Content owner: wrap the five formulas in \\( \\). Foundation: keep the warning, make it a failure once the content is clean."
+    residual: "Whether each token is meant as a formula is the content owner's decision."
+    deciding_evidence: "Content-owner revision; the audit then reports 0 'outside TeX' warnings."
+  - id: A2-A2-09
+    severity: 4
+    status: valid
+    lens: "print"
+    target: "status.css:660"
+    claim: "Print treats all rows alike."
+    broken_step: "details.row[data-filter-empty] > summary .row-name { color: var(--ink-3) } is not limited to screen; rows a screen filter emptied print with a muted name."
+    evidence_type: line_reference
+    evidence_ref: "status.css:660-661"
+    confidence: medium
+    blast_radius: "Rows printed after a filter was used; cosmetic."
+    minimal_heal: "status-print.css (foundation): details.row[data-filter-empty] > summary .row-name { color: inherit; }"
+    residual: none
+    deciding_evidence: "Approved print route with a row filter pressed."
+  - id: A2-A2-10
+    severity: 1
+    status: undecided
+    lens: "public safety (repository publication)"
+    target: "commit scope: content/quantum-holography-status/content.json; materials/processed/qh-attack-heal-20261116/quality/** (BASELINE.json, lead/.chrome)"
+    claim: "Private tracing data and session or account data never become public."
+    broken_step: >-
+      content.json carries 1021 private source strings. The repository tracks content/ and materials/processed by
+      convention; .gitignore excludes neither the new content folder nor the quality materials, which include
+      BASELINE.json (account names, model, absolute paths) and lead/.chrome (a 2.9 MB browser profile). _config.yml keeps
+      them off the published site, not out of the repository; the remote's visibility cannot be checked here.
+    evidence_type: other
+    evidence_ref: "git remote -v | git ls-files: materials 138, content 23 | git check-ignore: BASELINE.json not ignored | du -sh lead/.chrome: 2.9M"
+    confidence: low
+    blast_radius: "Private sources and lane or session data become public if root commits these paths to a public remote."
+    minimal_heal: "Root: confirm repository visibility; if public, commit content.json without its source fields (private manifest) and do not commit the quality materials, at least lead/.chrome and BASELINE.json."
+    residual: "Repository visibility and root's commit list are unknown."
+    deciding_evidence: "Root's statement of repository visibility and the exact list of paths to be committed."
+  - id: A2-A2-11
+    severity: 4
+    status: valid
+    lens: "data fidelity (essay through the rich-text path)"
+    target: "status.py:647 (rich for essay blocks); README essay line"
+    claim: "The essay is reproduced unchanged except that its TeX is set as mathematics (README)."
+    broken_step: "Essay blocks also pass through emphasis and link rewriting: 'the *-algebra structure on a C* algebra' becomes italic; a non-arXiv link loses its address. The current essay has neither."
+    evidence_type: failing_test
+    evidence_ref: "mirror Build.rich on the two synthetic strings"
+    confidence: high
+    blast_radius: "Future essays that use * in mathematics or contain links."
+    minimal_heal: "status.py/README (foundation): render essay blocks with TeX only, or document the handling."
+    residual: none
+    deciding_evidence: "Re-run the two synthetic strings."
+referee:
+  verdict: continue one cycle
+  closed_this_cycle: [C02, C03, C04, C05, C07, C08, C09, C25, C28, heal-integrity]
+  open_entries: [A2-A2-10 (1, root), C01 (2, approved print route), A2-A2-07 (2, foundation then root), C17 (3), A2-A2-01 (3), A2-A2-02 (3), A2-A2-03 (3), A2-A2-08 (3, content owner), C18 (3), C19 (3), C20 (3, content owner), C21 (3, atlas and root), C22 (3, root)]
+  basis: "Admissible evidence only: no browser, CDP, headless run, screenshot or PDF render; jsdom stubs matchMedia and scrollIntoView and popstate was dispatched by hand; no layout, scrolling or printing. No other reviewers were active."

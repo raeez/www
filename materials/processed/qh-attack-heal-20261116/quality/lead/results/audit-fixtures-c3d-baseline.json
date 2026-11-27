@@ -1,0 +1,925 @@
+{
+ "folder": "compiler/quantum-holography-status",
+ "fixtures": {
+  "tag-merge": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mtext": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "aria-title": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "process": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "head": {
+   "kind": "leak",
+   "flagged": true,
+   "warned": false,
+   "as_expected": true,
+   "failures": [
+    "tool or model named in the page head"
+   ],
+   "warnings": []
+  },
+  "raw-tex-text": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "tex-in-aria": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "plain-math-prose": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "citation": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "id-ledger": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-inscribe-adoption": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-phase-2": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-session-12": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-identifier-three-digits": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-identifier-shape": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "visible-G10": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "visible-version-2": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "visible-Round-4": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "visible-round-4-lowercase": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "json-data-block": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "css-comment": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "html-comment": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "svg-title": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathrm-word": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "operatorname-word": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "soft-hyphen": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "aria-roledescription": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "chains-cochains": {
+   "kind": "clean",
+   "flagged": true,
+   "warned": false,
+   "as_expected": false,
+   "failures": [
+    "path: \"chains/\" in …The map from chains/cochains to the dual complex is an equivalence.…"
+   ],
+   "warnings": []
+  },
+  "tie-slash-in-tex": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "s-wave-1": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "phase-0": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "percent-in-formula": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "svg-text": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "svg-desc": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "data-attribute": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "json-single-quoted-type": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "other-data-type": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "aria-label-single-quoted": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "js-string": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "js-line-comment": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "css-generated-content": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "meta-other": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "comment-names-source-file": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "js-regex-and-division": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "hash-visible": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "hash-aria": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "hash-id": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "repository-address": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "open-repository-address": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "id-version-tag": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-version-word": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-draft": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "text-Phase-2": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "text-language-model": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "text-pull-request": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "text-attack-heal": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "post-Wave-3": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "pre-Phase-2": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "post-wave-3-lowercase": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "tex-percent": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathrm-letters-digits": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathrm-subscript": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "id-background-2": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "id-around-4": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "id-plane-wave-1": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-phase-0": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-cycle-3": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-spine": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "visible-spine": {
+   "kind": "warn",
+   "flagged": true,
+   "warned": false,
+   "as_expected": false,
+   "failures": [
+    "workflow vocabulary: \"spine\" in …The spine of the ribbon graph is a deformation retract.…"
+   ],
+   "warnings": []
+  },
+  "mtext-P1": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "aria-P1": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "all-caps-WAVE-3": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "zero-width-inside-word": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathit-word": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathbf-word": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathsf-word": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathrm-Wave-3": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "long-integer-in-tex": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "long-integer-in-prose": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "rm-unbraced-digits": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathrm-digits-superscript": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathrm-digits-beside-subscript": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathrm-one-digit": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "svg-data-uri-base64": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "svg-data-uri-percent": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "svg-data-uri-css": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "js-template-interpolation": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "js-comment-ordinary-words": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "js-token-list": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "js-prose-string-workflow": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "name-with-digits": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "uuid": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "tex-label": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "tex-label-ordinary": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "tex-thin-space-percent": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "en-dash-stage": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "id-frontier-engine": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "process-words": {
+   "kind": "warn",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "css-custom-property-string": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "js-string-inside-interpolation": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "js-nested-string-workflow": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "js-nested-template": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "svg-data-uri-charset-base64": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "svg-data-uri-image-set": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "svg-data-uri-style-attribute": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "svg-data-uri-srcset": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "mathit-letters-digits": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "uuid-in-id": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "data-attribute-token": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "css-selector-token": {
+   "kind": "clean",
+   "flagged": false,
+   "warned": false,
+   "as_expected": true,
+   "failures": [],
+   "warnings": []
+  },
+  "private-path-1": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "private-path-2": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  },
+  "private-path-3": {
+   "kind": "leak",
+   "flagged": false,
+   "warned": false,
+   "as_expected": false,
+   "failures": [],
+   "warnings": []
+  }
+ },
+ "skipped": [],
+ "all_as_expected": false
+}

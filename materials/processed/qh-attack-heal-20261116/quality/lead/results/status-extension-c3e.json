@@ -1,0 +1,70 @@
+{
+ "html": "heal/fixtures/c3e/refuted-form/page.html",
+ "status": "refuted form",
+ "results": {
+  "S1": {
+   "pass": true,
+   "observed": {
+    "statements": 2,
+    "chipLabel": "Refuted as first posed",
+    "marksHidden": true,
+    "filterName": "Refuted as first posed",
+    "mixName": "1 Refuted as first posed",
+    "hypotheses": [
+     2,
+     2
+    ]
+   }
+  },
+  "S2": {
+   "pass": true,
+   "observed": {
+    "shown": 1,
+    "statuses": [
+     "refuted form"
+    ],
+    "search": "?show=refuted+form",
+    "count": "Showing 1 of 110 statements, in 1 of 20 examples."
+   }
+  },
+  "S3": {
+   "pass": true,
+   "observed": {
+    "pressed": "true",
+    "shown": 1
+   }
+  },
+  "S4": {
+   "pass": true,
+   "observed": {
+    "tally": "2",
+    "facetPressed": "true",
+    "count": "2 matches"
+   }
+  },
+  "S5": {
+   "pass": true,
+   "observed": {
+    "hits": 16,
+    "statements": [
+     "#s-scoped-negative-principal",
+     "#s-scoped-negative-fixture"
+    ],
+    "found": [
+     "#s-scoped-negative-principal",
+     "#s-scoped-negative-fixture"
+    ]
+   }
+  },
+  "S6": {
+   "pass": true,
+   "observed": {
+    "openStatements": 74,
+    "openTally": "74",
+    "shownAsOpen": 0
+   }
+  },
+  "pageErrors": []
+ },
+ "all_pass": true
+}

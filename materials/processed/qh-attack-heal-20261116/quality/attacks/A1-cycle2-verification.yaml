@@ -1,0 +1,319 @@
+# A1 cycle-2 verification of the lead's heal candidate (read-only; root's browser restriction forwarded verbatim).
+# Saved from its hand-back; absolute worktree paths shortened to repository-relative paths, nothing else changed.
+# Runtime line left out (reported in the handoff message, not in persistent files).
+verdicts:
+  - id: C04
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-09 (also raised by A2 as A1-A2-05).
+      [inspected] Mirror status.py:549 now builds the label as math_free(name), math_free(colname): status.
+      [tested-static] In the candidate HTML, 0 aria-label or title values contain TeX; the baseline had 8. The W-algebras
+      marks are now named "W-algebras and quantum Drinfeld–Sokolov reduction, Algebra and geometry: Partly established".
+      [tested] lead/qh-static.mjs check Q15-tex-in-names passes on the candidate (run read-only, no --out).
+      [inspected] audit.py now fails the build on TeX in reader attributes (TEX_IN_ATTRIBUTE).
+    residual: >-
+      math_free keeps TeX commands such as \mathfrak{sl}_2. With the new audit rule, a row name containing one now
+      fails the build instead of shipping. No current row name has one.
+  - id: C05
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-10.
+      [inspected] Mirror status.js:111 copies rowLink.innerHTML instead of textContent.
+      [tested] J9 passes on the candidate: the card link reads "W-algebras and quantum Drinfeld–Sokolov reduction"
+      once annotations are removed, the same as the grid. J9 fails on the baseline ("WW-algebras ...").
+    residual: none
+  - id: C06
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-05. Verified against the ledger's minimal heal (a visible count line and a visible note
+      in each emptied row).
+      [inspected] Mirror status.js:393-418 renames the live region to class filter-count and adds a per-row
+      .filter-empty-note; status.css:657-660 styles both.
+      [tested] J7 passes on the candidate and fails on the baseline. Candidate output: 16 empty rows; note "No statement
+      in this example has the selected status."; count "Showing 4 of 109 statements, in 4 of 20 examples." and not
+      visually hidden; no note left after the filter is cleared.
+      [tested] My run: a same-hash link to a row the filter emptied opens it, the note shows, and the filter stays
+      pressed.
+    residual: >-
+      Two follow-on issues. (1) The count region is now display:none while empty, which puts the first announcement at
+      risk (A2-A1-01, severity 3). (2) Row summaries keep their unfiltered counts (A2-A1-03, severity 4).
+  - id: C07
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-04.
+      [inspected] Mirror status.js:330-336 adds a click handler for in-page links whose fragment equals location.hash.
+      [tested] J4 passes on the candidate (the grid link reopens the row after Close all) and fails on the baseline.
+      [tested] My run: the cell card's row link reopens the row after Close all, and also after the Published filter
+      has closed it.
+    residual: Hash scrolling is not run (jsdom only).
+  - id: C10
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-01.
+      [inspected] Mirror status.js:225-233 adds the fromCard rule to the Escape handler.
+      [tested] J1 passes and fails on the baseline: with a hover card open, focus stays on the chip; in the search field
+      focus also stays. My run confirms the hover card was open before that second Escape, so the pass is not vacuous.
+      [tested] J12 and my runs: Escape from inside the card (on the Close button or a link) returns focus to the trigger;
+      Escape on a pinned owner closes the card and focus stays on the owner.
+    residual: Hover was emulated with a matchMedia stub.
+  - id: C11
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-02.
+      [inspected] Mirror status.js:201-208 hides a pinned card when focus moves from its owner to another control.
+      [tested] J2 and J2b pass on the candidate and fail on the baseline.
+      [tested] My trace: J2 now reaches the next column head by way of the card's Close button (Tab handler). The new
+      focusout rule is exercised by J2b (Shift+Tab): the old head is aria-expanded=false, the new head true, and the
+      card shows the new head.
+    residual: none in jsdom. jsdom supplies relatedTarget, as browsers do.
+  - id: C12
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-03.
+      [inspected] Mirror status.js:839-840 runs the pending query before moving focus.
+      [tested] J3 passes on the candidate: Down lands on a result that is still connected after 300 ms. On the baseline
+      focus ends on body.
+    residual: none
+  - id: C13
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-06. Verified for the stated broken step.
+      [inspected] Mirror status.js:504 adds two new search scopes (programme, status); 576-580 and 645-654 index the
+      lead paragraphs, the status-key items and each section's introduction or heading.
+      [tested] J10 passes: "comultiplication", "status marks" and "strongest status" each give 1 match. All three fail
+      on the baseline.
+      [tested] R3 passes: the tally and status-facet counts are unchanged (197).
+    residual: >-
+      [tested] "Nothing on this page matches." is still shown for words that appear only in interface text: "updated"
+      (as-of line), "scrolls" (grid hint), "columns" (What the columns mean), and the author's surname (byline,
+      footer). Recorded as A2-A1-02, severity 4.
+  - id: C14
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-07.
+      [inspected] No keydown handler for a printable character remains in mirror status.js. The only keys handled are
+      Escape, Tab, arrows, Home, End and Enter.
+      [inspected] The bar opener emitted at mirror status.py:711 is unhidden and wired at status.js:1050-1056.
+      [tested] J11 passes: '/' on a chip leaves focus where it is, and the opener focuses #find-q. J11 fails on the
+      baseline.
+    residual: none
+  - id: C15
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-08.
+      [inspected] Mirror status.css:38, 60 and 73 set #857f77. The token is used only for the mark, a graphic
+      (.mark-not-posed); no text uses it.
+      [computed] WCAG ratios for #857f77:
+      - light: 3.80 on paper, 3.49 on a hovered row (paper-2), 3.93 on the grid and card (paper-3), 3.29 in the selected
+        cell (accent-soft);
+      - dark: 4.65 on paper, 4.34 on paper-2, 4.10 on paper-3, 3.39 on accent-soft;
+      - print: #77716a on white, 4.82.
+    residual: The rendered anti-aliased 1.6-unit stroke cannot be measured without a browser.
+  - id: C16
+    verdict: healed-unverified
+    evidence: >-
+      My cycle-1 finding A1-A1-11.
+      [inspected] Mirror status.js:293-312 runs clearRowHeader on focusin and again on the next frame. By inspection,
+      the direction and amount are correct: scrollLeft decreases by (overlap + 4) px.
+      [tested] J6 passes, but only with stubbed rectangles. The stubbed rectangles do not move after the scroll, so the
+      re-check writes a second time (226, then 152). J6 fails on the baseline.
+    residual: >-
+      Whether a focused mark clears the sticky header needs real layout at 375, 480, 768 and 1024 px. The pointer case
+      is A2-A1-04.
+  - id: C23
+    verdict: healed-unverified
+    evidence: >-
+      My cycle-1 finding A1-A1-12.
+      [inspected] Mirror status.py:721 emits a Close button labelled "Close" as the card's first child; status.js:209-216
+      wires it; status.css:656 adds env(safe-area-inset-bottom).
+      [tested] J12 passes: Close closes the card and returns focus to the trigger.
+      [tested] My runs:
+      - Tab order for term and cell cards is trigger, Close, the card's link, then the next control after the trigger;
+      - column-head cards go trigger, Close, then the next head;
+      - aria-expanded is false after Close;
+      - Shift+Tab from Close returns to the trigger;
+      - no focus trap.
+    residual: >-
+      Three checks need a touch browser: whether the sheet covers its trigger, whether tapping text outside closes it on
+      iOS, and whether the safe-area offset clears the home indicator.
+  - id: C24
+    verdict: healed-verified
+    evidence: >-
+      My cycle-1 finding A1-A1-14.
+      [inspected] Mirror status.py:506 and 583 pass heading='h3'.
+      [tested-static] The candidate's heading outline skips no level; the baseline went h2 to h4 in examples and in
+      failures.
+      [inspected] grep shows that no CSS or JS h3 selector applies inside rows or counterexamples.
+    residual: >-
+      Row names are still summaries, not headings, so heading navigation lists statement titles without their example
+      (severity 4).
+  - id: C26
+    verdict: not-healed
+    evidence: >-
+      [inspected] Deferred by the ledger; severity 4. The mirror leaves these unchanged:
+      - A1-A1-13: 189 Tab stops in the grid.
+      - A1-A1-15: activating a trigger does not move focus into the card; term buttons have no aria-describedby; formulas
+        in the card take no focus. The Close control is the only new piece.
+      - A1-A1-16: the theme button exposes no state.
+      - A1-A1-17: targets are below 44 px. The new opener (34 px) and Close (32 px) follow the same pattern.
+      - A1-A1-18: snippets flatten subscripts and superscripts.
+      - A1-A1-19: two "Open all" / "Close all" pairs share names.
+    residual: Optional; does not block.
+  - id: C27
+    verdict: not-healed
+    evidence: >-
+      [inspected] Deferred; severity 4, undecided. Unchanged in the mirror:
+      - A1-A1-21: the forced-colors block (status.css:636-642) still covers only .find chips, while its comment claims
+        it covers the pressed chips;
+      - A1-A1-22: the 160 ms hover grace and the 8 px gap;
+      - A1-A1-20: focus rings clipped in the nav and on column heads.
+    residual: Needs rendering. Does not block.
+new_attacks:
+  - id: A2-A1-01
+    severity: 3
+    status: undecided
+    lens: "accessibility and interaction / status messages (WCAG 4.1.3)"
+    target: "heal/mirror status.css:658 (.row-tools .filter-count:empty { display: none }), status.css:593 (.find-count:empty { display: none }, same as baseline); status.js:393-394 (filter region class changed from visually-hidden to filter-count)"
+    claim: >-
+      The status filter's count is "shown, not only announced" (status.js:394), and the search count line
+      (role=status, aria-live=polite) announces each result count.
+    broken_step: >-
+      Both role=status regions are created empty and are display:none while empty. They are therefore not rendered,
+      and not in the accessibility tree, until their first message. In the baseline the filter region was visually
+      hidden but rendered from load. Screen readers announce unreliably a region that becomes displayed at the same
+      moment its text is set [expected].
+      Moments affected:
+      - the first press of a "Show" filter after load (new in the candidate, a regression);
+      - every first result count after the search field was empty, including the count a tally link sets just before
+        focus moves to the field (present since the baseline).
+    evidence_type: line_reference
+    evidence_ref: |-
+      status.css:658 .row-tools .filter-count:empty { display: none; }
+      status.css:593 .find-count:empty { display: none; }
+      jsdom at load: baseline filter region class "visually-hidden", role status, text "";
+      candidate filter region class "filter-count", role status, text "" (so :empty applies);
+      search count class "find-count", text "" in both builds.
+    files_read: ["materials/processed/qh-attack-heal-20261116/quality/heal/mirror/compiler/quantum-holography-status/status.css", "materials/processed/qh-attack-heal-20261116/quality/heal/mirror/compiler/quantum-holography-status/status.js", "materials/processed/qh-attack-heal-20261116/quality/candidate/preview-nofonts.html", "materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html"]
+    tools_used: ["Read", "Bash: grep", "Bash: node -e with jsdom 28 (read-only; scrollIntoView stubbed)"]
+    confidence: medium
+    blast_radius: Screen-reader users of the "Show" filter, the search field and the tally links.
+    minimal_heal: >-
+      status.css (foundation): replace both ":empty { display: none }" rules with a rule that keeps the element
+      rendered but visually hidden while empty (the .visually-hidden declarations). Alternatively, status.js
+      (interaction): give the filter count its "Showing all ... statements of the examples." text at load so it is
+      never empty.
+    residual: Speech output cannot be observed here.
+    deciding_evidence: >-
+      NVDA with Chrome and VoiceOver with Safari: after load, press "Published" once; type a first query into the empty
+      search field; activate a tally link. Record whether each message is spoken. After the heal, a static re-check:
+      no role=status element is display:none when empty.
+  - id: A2-A1-02
+    severity: 4
+    status: valid
+    lens: "accessibility and interaction / search with no results (residual false negative)"
+    target: "heal/mirror status.js:499 (WORDS.none), 581-656 (index)"
+    claim: "\"Nothing on this page matches.\" is true when shown (C13)."
+    broken_step: >-
+      After the heal, a word that appears only in interface text still gets "Nothing on this page matches." [tested].
+      Four examples: "updated" (as-of line), "scrolls" (grid hint), "columns" (the "What the columns mean"
+      disclosure), and the author's surname (essay byline and footer).
+    evidence_type: failing_test
+    evidence_ref: |-
+      jsdom on candidate/preview-nofonts.html:
+      as-of "updated" -> "Nothing on this page matches." | visible occurrences: 1
+      grid hint "scrolls" -> "Nothing on this page matches." | visible occurrences: 1
+      col-defs summary "columns" -> "Nothing on this page matches." | visible occurrences: 1
+      essay byline / footer surname -> "Nothing on this page matches." | visible occurrences: 1
+    files_read: ["materials/processed/qh-attack-heal-20261116/quality/heal/mirror/compiler/quantum-holography-status/status.js", "materials/processed/qh-attack-heal-20261116/quality/candidate/preview-nofonts.html"]
+    tools_used: ["Read", "Bash: node -e with jsdom 28 (read-only)"]
+    confidence: high
+    blast_radius: Readers who search for interface wording; the message is literally false.
+    minimal_heal: >-
+      status.js (interaction): reword WORDS.none to name what is searched, or index the as-of line, the grid hint, the
+      column-definitions summary and the byline.
+    residual: none
+    deciding_evidence: Type "scrolls" into the search in any browser.
+  - id: A2-A1-03
+    severity: 4
+    status: valid
+    lens: "accessibility and interaction / status filter feedback per row"
+    target: "heal/mirror status.py:605 (static .row-count in the row summary); status.js:397-426 (applyFilter does not touch it)"
+    claim: "A status filter tells the reader what it shows (C06)."
+    broken_step: >-
+      With a filter on, each row summary still shows its unfiltered count and status mix [tested]. Under "Published",
+      the Heisenberg row shows 0 of 15 statements but its summary reads "15 statements" (14 / 1). The critical-level row
+      shows 1 of 4 but reads "4 statements" (2 / 1 / 1). The global line and the per-row note fix C06's stated defect;
+      the summary number is still the only per-row count, and it does not describe what is shown.
+    evidence_type: failing_test
+    evidence_ref: |-
+      jsdom, candidate, after pressing Published:
+      row-heisenberg | shown 0 of 15 | visible row-count text: "15 statements141"
+      row-affine-critical | shown 1 of 4 | visible row-count text: "4 statements211"
+    files_read: ["materials/processed/qh-attack-heal-20261116/quality/heal/mirror/compiler/quantum-holography-status/status.py", "materials/processed/qh-attack-heal-20261116/quality/heal/mirror/compiler/quantum-holography-status/status.js", "materials/processed/qh-attack-heal-20261116/quality/candidate/preview-nofonts.html"]
+    tools_used: ["Read", "Bash: node -e with jsdom 28 (read-only)"]
+    confidence: high
+    blast_radius: Sighted and screen-reader readers who use the "Show" filter.
+    minimal_heal: >-
+      status.js (interaction): while a filter is on, write "n of N shown" into each .row-count, and restore it when the
+      filter is cleared.
+    residual: none
+    deciding_evidence: Press Published, then read the row summaries.
+  - id: A2-A1-04
+    severity: 4
+    status: undecided
+    lens: "accessibility and interaction / sticky-header correction on pointer focus"
+    target: "heal/mirror status.js:293-312 (clearRowHeader runs on every focusin inside .grid-wrap)"
+    claim: "\"A mark focused while the table is scrolled sideways is brought clear of the sticky row header.\""
+    broken_step: >-
+      The correction also runs when focus comes from a mouse press: Chrome, and Firefox on Windows, focus a button on
+      mousedown. The table therefore scrolls by (overlap + 4) px between mousedown and mouseup [expected]. If the press
+      was within 4 px right of the header's edge:
+      - mouseup lands on the neighbouring mark;
+      - the click goes to the row, their common ancestor;
+      - the document click handler then closes the card that focusin had just opened.
+    evidence_type: line_reference
+    evidence_ref: "status.js:302 gridWrap.scrollLeft -= (h.right - c.left) + 4; status.js:307-311 run on every focusin, whatever the input"
+    files_read: ["materials/processed/qh-attack-heal-20261116/quality/heal/mirror/compiler/quantum-holography-status/status.js"]
+    tools_used: ["Read"]
+    confidence: low
+    blast_radius: >-
+      Mouse users clicking a mark that is partly under the row header, in a 4 px band. The second click works.
+    minimal_heal: >-
+      status.js (interaction): correct only keyboard-initiated focus (skip when el.matches(':focus-visible') is false),
+      or defer the correction until after pointerup.
+    residual: Needs real layout and real pointer events.
+    deciding_evidence: >-
+      Chrome at 768 px: scroll the grid so that a column of marks is partly under the row header; press a mark just
+      right of the header edge; record whether its card opens.
+referee:
+  verdict: continue one cycle
+  open_entries:
+    - "C16 (severity 3): healed-unverified. The code is present and its logic is tested on stubbed geometry; only real layout can close it. Owner: root, through an approved browser route."
+    - "C23 (severity 3): healed-unverified. The Close control is present and tested in jsdom; sheet geometry, iOS tap-outside and the safe-area offset need a touch browser. Owner: root."
+    - "A2-A1-01 (severity 3, new): undecided. The new filter count and the existing search count are role=status regions set to display:none while empty, so first announcements are at risk; the filter count is a regression of this heal. It can be healed in-lane with one CSS rule or one JS line, then re-checked statically and with J7. Otherwise root records it as a screen-reader obligation."
+  obligations_for_root:
+    - "C16: Chrome, Firefox and Safari at 375, 480, 768 and 1024 px. With the grid scrolled sideways, reach marks by ArrowLeft, Home/End, Shift+Tab, and Tab from the row header. Assert document.activeElement.getBoundingClientRect().left >= its row th's right edge. Also click a partly covered mark and confirm its card opens (A2-A1-04)."
+    - "C23: iOS Safari and Android Chrome at 375 px, touch. Open term, cell and column cards by tap; record whether the sheet covers its trigger. Close by the Close control (focus returns to the trigger), by tapping plain text outside the sheet, and by Escape on a hardware keyboard. Confirm the sheet's bottom clears the home indicator with the toolbar collapsed."
+    - "A2-A1-01, if not healed: NVDA with Chrome and VoiceOver with Safari. Is the first 'Showing ... statements' message spoken after the first Show press? Is the first 'N matches' spoken after typing into an empty field, and after a tally link?"
+    - "C15 (optional): measure rendered contrast of the not-posed dash. The token arithmetic already passes."
+    - "Lens-wide browser checks for this candidate, none runnable here: Q14 Tab walk with visible focus, including the new bar opener and the card's Close button; Q19 touch target sizes; Q11 the 375 px bar with the extra button; Q23 console."
+    - "Outside this lens, the external gate stays with the content owner and root (C20). The heals added no process tokens: draft 1, cycle 4 and phase 5 occur in both builds, and every context is mathematical or the citation 'author draft'. No tool names or private paths in either build."
+  basis: >-
+    Admissible evidence only. No browser, CDP, headless run or screenshot was used. jsdom has no layout, painting,
+    scrolling or screen reader, so every geometry and speech claim above is labelled expected or unverified. I started
+    no sub-agents, so there is no active reviewer to forward root's restriction to.
+    Frozen inputs: the ledger, restriction, manifest, both diffs and both candidate previews match the stated sha256
+    prefixes. The mirror files match the manifest's after-hashes. Both candidate previews embed the mirror status.js and
+    CSS verbatim, and their bodies are identical.
+    Lead jsdom suite, run read-only without --out: all 13 J-checks fail on the baseline and pass on the candidate, so
+    they discriminate; R1-R9 pass on both; 0 page errors. Lead static checks (Q03, Q04-Q10, Q15-tex-in-names) pass on
+    the candidate.
+    Notes on the lead's checks: J2 passes by the Tab-into-Close path; only J2b exercises the new focusout rule. J6
+    proves the arithmetic only, because its rectangles are static. J7 checks a class, not computed style, so it cannot
+    see the :empty display:none rule (A2-A1-01). J10 covers the three ledger words only (A2-A1-02). jsdom 28 does fire
+    popstate on fragment navigation and on history.back(), so J5's manual popstate is a second event; the check still
+    discriminates.
+    Attacks on the heals that survived [tested]: the popstate guard and capture-phase flush (type, follow a nav link at
+    once, press Back; the query and ?q= are kept); the Close control (no trap, aria-expanded correct, Escape and Close
+    both return focus); no printable-character shortcut remains; the new scopes leave status counts unchanged; the h3
+    change affects no styling or search code.

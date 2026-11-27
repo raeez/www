@@ -1,0 +1,605 @@
+# A2 first-wave attacker (read-only; lens: deep links, history, data fidelity, public safety, print, scale), returned
+# 2026-11-16. Its runtime line is left out (runtime checks are reported in the handoff message, not in persistent files).
+# Saved from its hand-back before any consolidation, unchanged except that absolute worktree paths in files_read
+# were shortened to repository-relative paths. The lead's adjudication is in LEDGER.yaml.
+- id: A1-A2-01
+  severity: 2
+  status: valid
+  lens: "scale and robustness (builder --input)"
+  target: "compiler/build-quantum-holography-status.py:54 (also :49, :62); compiler/quantum-holography-status/status.py:668-671"
+  claim: >-
+    The builder docstring (lines 7-8) says the --input folder holds content.json, essay.md and page.json.
+    The builder must accept newer reviewed content without code changes.
+  broken_step: >-
+    page.json is always read from the default folder (line 54) and never from --input. Only content.json and essay.md
+    come from --input (status.py:668, 671). --audit-dir defaults to the default folder's audit/ (line 49), so building
+    any other folder overwrites the default content's audit.txt, audit.json or rejected.html. If essay.md is missing,
+    the essay section and essay_lead are dropped with no warning (status.py:671, 684).
+    Expected consequences: if a newer folder's page.json changes status_labels, the page is built with the old labels
+    on every chip, tally entry, key and legend. If a newer folder needs a label key that the default page.json lacks
+    (any L[...] lookup, e.g. status.py:488, 689), the build stops with KeyError.
+  evidence_type: line_reference
+  evidence_ref: |-
+    build-quantum-holography-status.py
+    49:    parser.add_argument('--audit-dir', type=Path, default=CONTENT / 'audit')
+    54:    page = json.loads((CONTENT / 'page.json').read_text(encoding='utf-8'))
+    62:    build = status.Build(args.input, page, text_fonts, math_font)
+    status.py
+    668:   c = json.loads((self.folder / 'content.json').read_text(encoding='utf-8'))
+    671:   essay_text = essay_path.read_text(encoding='utf-8') if essay_path.exists() else ''
+  files_read:
+    - compiler/build-quantum-holography-status.py
+    - compiler/quantum-holography-status/status.py
+    - content/quantum-holography-status/README.md
+  tools_used: [Read, "grep -n", "sed -n"]
+  confidence: high
+  blast_radius: >-
+    Every build from a folder other than content/quantum-holography-status can have stale or wrong status and
+    interface labels, can crash, overwrites the default content's audit record, and can silently omit the essay.
+  minimal_heal: >-
+    Builder (foundation): read page.json from args.input, and fall back to the default with a warning only when it is
+    absent. Default --audit-dir to args.input/'audit'. Warn when essay.md is missing.
+  residual: "Not executed, because the builder writes files. The label and KeyError consequences are expected from the code, not observed."
+  deciding_evidence: >-
+    Build a copy of the content folder whose page.json changes status_labels.checked, with an isolated --output and
+    --audit-dir. Check the chip text in the output and where audit.txt was written.
+
+- id: A1-A2-02
+  severity: 3
+  status: valid
+  lens: "public safety (audit contract)"
+  target: "compiler/quantum-holography-status/audit.py:18-41, 99-102; compiler/quantum-holography-status/status.py:801-802"
+  claim: >-
+    audit.py is the page's public-safety contract. Reader-visible names of tools or models, file names, internal
+    identifiers and workflow vocabulary are supposed to fail the build.
+  broken_step: >-
+    The audit scans only body text with script, style, math and svg removed, and strip_tags joins text across tags
+    with no separator. As a result, whole leak classes pass:
+    (1) A forbidden word at an element boundary fuses with its neighbour and loses its \b anchor (tested). The real
+    page has 1381 such joins across block or label boundaries (computed); for example, every statement title directly
+    follows its status-chip text.
+    (2) \text{} inside a formula renders as visible <mtext> but is never scanned (tested).
+    (3) Attribute values (aria-label, title) and element ids are never scanned (tested). Ids appear in the address bar
+    when a link is shared.
+    (4) Process and version words are missing from the list (tested): wave, phase, draft, session, swarm, lane,
+    round, heal, attack-heal, G-prefixed identifiers, percentages, and "adopted" on its own (only "adoption" and
+    "adopted record" are listed).
+    (5) The <head> check only matches generator|astra|claude|codex|gpt.
+    (6) The 97 CSS/JS comments shipped in the page are never scanned (observed). They name producer files
+    (status.js 3 times, status.css 2 times).
+  evidence_type: failing_test
+  evidence_ref: |-
+    python3 -I -B -c (imports audit.py; applies audit.visible_text and audit.FORBIDDEN to synthetic markup):
+    tag-merge | text: 'Proved and independently checkedAudit of the bulk' | flagged: []
+    control   | text: 'See the ledger' | flagged: [('workflow vocabulary', 'ledger')]
+    mtext     | text: 'x ' | flagged: []        (<math><mtext>see the ledger in ADOPTION.md</mtext></math>)
+    aria      | text: 'x' | flagged: []         (aria-label="ledger T12" title="/Users/x/prep/a.md")
+    id        | text: 'x' | flagged: []         (id="s-ast-t152-wave-3")
+    process   | text: 'wave 3 of the attack-heal swarm, draft, phase 2, session 12, lane G10, round 4, 87% comple' | flagged: []
+    On preview.html: word-char joins across tags: 1413 | across block/label boundaries: 1381
+      examples: ['page|Raeez', 'Lorgat|Programme', 'programme|Quantum', 'duality|Ordered']
+    Embedded comments: comments 97 bytes 9195; 'status.js' 3; 'status.css' 2
+  files_read:
+    - compiler/quantum-holography-status/audit.py
+    - compiler/quantum-holography-status/status.py
+    - materials/processed/qh-attack-heal-20261116/quality/baseline/preview.html
+  tools_used: ["python3 -I -B -c (read-only import of audit.py)", Read]
+  confidence: high
+  blast_radius: >-
+    Public safety for every future content edition. The page currently carries none of these classes except one
+    "adopted" in the essay (see A1-A2-11), but the audit would PASS such leaks in titles, formulas, labels, ids,
+    metadata and comments.
+  minimal_heal: >-
+    audit.py (foundation):
+    (a) Insert a space at every tag boundary before scanning.
+    (b) Also scan mtext/annotation text, attribute values (aria-label, title, alt, content), id and href values, the
+    whole head, and script/style comments; alternatively, strip comments in status.py.
+    (c) Add patterns for wave, phase, draft, session, swarm, lane, round, heal, adopted, [A-Z]\d{1,3} including G,
+    and \d+\s?%.
+  residual: "none"
+  deciding_evidence: "Re-run the six synthetic cases above against the healed audit; each must be flagged."
+
+- id: A1-A2-03
+  severity: 3
+  status: valid
+  lens: "data fidelity (TeX to MathML)"
+  target: "compiler/quantum-holography-status/status.py:630-644 (essay); section#essay"
+  claim: "Each TeX segment the reader sees becomes MathML."
+  broken_step: >-
+    essay() escapes each block with html.escape (line 640) and never calls rich(). The essay paragraph that contains
+    TeX is therefore printed raw: "this establishes only \(c=33\), \(P_0=0\), \(h_0=4/3\), with trace \(5/144\)".
+    The unbalanced-delimiter check in plain() never runs on the essay, and the audit has no raw-TeX rule, so the
+    build PASSes (computed).
+  evidence_type: counterexample
+  evidence_ref: |-
+    python3 -I -c over preview.html: essay section bytes 15707, math elements in essay 0
+    RAW TeX in essay HTML: ...this establishes only \(c=33\), \(P_0=0\), \(h_0=4/3\), with trace \(5/144\). The current generic rout...
+    Visible-text scan (audit.visible_text): '\(' 4 hits, all in the essay; '\[' 0; 'tex-error' only in CSS
+    content.json side: expected math renders from builder logic 2502 = page <math> 2502
+  files_read:
+    - compiler/quantum-holography-status/status.py
+    - content/quantum-holography-status/essay.md
+    - materials/processed/qh-attack-heal-20261116/quality/baseline/preview.html
+  tools_used: ["python3 -I -c", Read]
+  confidence: high
+  blast_radius: "Essay readers and print; on screen and paper the four formulae read as backslash code."
+  minimal_heal: >-
+    status.py (foundation): render each essay block with self.rich(block, terms=False), keeping the essay-display test
+    on the raw block. audit.py: fail on \( \) \[ \] in visible text.
+  residual: "none"
+  deciding_evidence: "After the heal, count <math> in section#essay (expected 4) and grep visible text for '\\(' (expected 0)."
+
+- id: A1-A2-04
+  severity: 3
+  status: valid
+  lens: "data fidelity (visible text in the cell card)"
+  target: "compiler/quantum-holography-status/status.js:108-109 (#card .card-more)"
+  claim: "A grid cell's card ends with a link to its row, named by the row's name."
+  broken_step: >-
+    The link text is rowLink.textContent. That includes the hidden <annotation> TeX source after the rendered MathML,
+    so the W-algebras row is named "WW-algebras and quantum Drinfeld–Sokolov reduction" (tested). Any row name with
+    richer TeX would show its rendered tokens followed by the raw TeX source.
+  evidence_type: failing_test
+  evidence_ref: |-
+    node -e with jsdom (preview-nofonts.html, page script run in memory; click on td .cell-btn[data-row="row-w-algebras"]):
+    card hidden: false | card-more text: "WW-algebras and quantum Drinfeld–Sokolov reduction" | href: #row-w-algebras
+    row name as shown in grid (annotation excluded): "W-algebras and quantum Drinfeld–Sokolov reduction"
+  files_read:
+    - compiler/quantum-holography-status/status.js
+    - materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html
+  tools_used: ["node -e (jsdom 28)"]
+  confidence: high
+  blast_radius: "The 8 cell cards of the W-algebras row now, and every cell card of any future row whose name contains TeX."
+  minimal_heal: >-
+    status.js (interaction): build the link from a clone of rowLink with its annotation elements removed (as
+    inlineCopy does), or from a text-only data attribute emitted by status.py.
+  residual: "none"
+  deciding_evidence: "Repeat the jsdom click; card-more text must equal the grid text."
+
+- id: A1-A2-05
+  severity: 3
+  status: valid
+  lens: "data fidelity (accessible names)"
+  target: "compiler/quantum-holography-status/status.py:545, 549 (td .cell-btn aria-label)"
+  claim: "Each grid mark is named as row name, column name and status."
+  broken_step: >-
+    The label uses the raw r["name"]. For the W-algebras row, the 8 accessible names begin with the TeX source
+    "\(W\)-algebras". The title attribute on line 556 already uses math_free, but aria-label does not (computed).
+  evidence_type: counterexample
+  evidence_ref: |-
+    python3 -I -c regex over preview.html attributes: attributes containing backslash: 8
+    aria-label = \(W\)-algebras and quantum Drinfeld–Sokolov reduction, Algebra and geometry: Partly established
+    aria-label = \(W\)-algebras and quantum Drinfeld–Sokolov reduction, Physical comparison: Open problem
+  files_read:
+    - compiler/quantum-holography-status/status.py
+    - materials/processed/qh-attack-heal-20261116/quality/baseline/preview.html
+  tools_used: ["python3 -I -c"]
+  confidence: high
+  blast_radius: "Screen-reader users of the grid: 8 cells now, and every cell of any future row whose name contains TeX."
+  minimal_heal: "status.py (foundation): label = f'{self.math_free(r[\"name\"])}, {colname}: ...'. audit.py: fail on a backslash in aria-label or title."
+  residual: "none"
+  deciding_evidence: "Rebuild, then grep aria-label values for a backslash (expected 0)."
+
+- id: A1-A2-06
+  severity: 3
+  status: valid
+  lens: "deep links (in-page hash change)"
+  target: "compiler/quantum-holography-status/status.js:276-291, 295-302, 305-311"
+  claim: "Rows open when they are the target of a link, and a link into a row opens it (status.js:276)."
+  broken_step: >-
+    openTarget runs only on hashchange (line 291). Two actions leave the old hash in place: "Close all" (line 310)
+    closes rows without touching the hash, and the summary handler (line 300) clears only #row-<id>, so a hash such as
+    #s-x stays when its row is closed. A later click on a link with the same hash is a same-fragment navigation: no
+    hashchange fires and the row stays closed. Such links include the grid row name, the cell card's row link, the
+    question index and the change list.
+    For #row-... targets this fails in every engine, because details revealing in fragment navigation starts at the
+    target's ancestors and never opens the target itself (expected per the HTML spec). For #s-... targets it fails in
+    engines that do not reveal details ancestors.
+  evidence_type: failing_test
+  evidence_ref: |-
+    node -e with jsdom (page script run), URL ...#row-heisenberg:
+    1 arrival #row-heisenberg: open true
+    2 after Close all: open false hash #row-heisenberg
+    3 after clicking the row name in the grid: open false hash #row-heisenberg
+    5 after second summary click (close): open false hash ""
+    6 grid link after summary-close: open true hash #row-heisenberg
+    Second run: D3 same-hash link click after closing row: row open false hash #s-hyperbolic-all-genus
+  files_read:
+    - compiler/quantum-holography-status/status.js
+    - materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html
+  tools_used: ["node -e (jsdom 28)", Read]
+  confidence: high
+  blast_radius: "Any reader who opens a row by link, closes it with Close all (or closes a statement's row), then follows a link to it again."
+  minimal_heal: >-
+    status.js (interaction): add a click listener for a[href^="#"]. When the link's hash equals location.hash, run
+    openAround on the target and scroll to it. Also clear the hash in bindExpand when it closes the row the hash names.
+  residual: "jsdom has no layout, so engine behaviour for #s- targets in Firefox and Safari is unverified."
+  deciding_evidence: >-
+    In Chrome, Firefox and Safari:
+    (1) Open #row-heisenberg, press Close all, click the Heisenberg row name in the grid; expected: row opens.
+    (2) Open #s-hyperbolic-all-genus, close its row by the summary, follow the same link again.
+
+- id: A1-A2-07
+  severity: 3
+  status: valid
+  lens: "shared views (invalid parameter values)"
+  target: "compiler/quantum-holography-status/status.js:928-930 (fromAddress), 824-835 (setState), 849-852 (run)"
+  claim: "?in= and ?status= restore a shared search view."
+  broken_step: >-
+    fromAddress accepts any value. For an unknown value, setState presses no chip but keeps the value in state, and
+    run then excludes every unit. The reader sees an empty field, no pressed chip and "Nothing on this page matches."
+    The bogus value is written back into the URL.
+    Links shared across editions fail the same way (expected): ?status=pending once no statement is pending (no chip
+    exists), ?in=frontier after that section is removed, ?status=Checked (wrong case).
+  evidence_type: failing_test
+  evidence_ref: |-
+    node -e with jsdom (page script run), URL ...?in=bogus:
+    B {"href":"?in=bogus","count":"Nothing on this page matches.","links":0,"pressed":[],"rowFiltersPressed":[]}
+  files_read:
+    - compiler/quantum-holography-status/status.js
+  tools_used: ["node -e (jsdom 28)"]
+  confidence: high
+  blast_radius: "Shared or bookmarked search links whose scope or status no longer exists: an empty result with no visible cause."
+  minimal_heal: >-
+    status.js (interaction): in fromAddress, keep only scopes in SCOPES and statuses that have a
+    data-status-facet chip. Rewrite the address without dropped values; optionally say that a filter was ignored.
+  residual: "none"
+  deciding_evidence: "Repeat the jsdom case; expect no empty-result state and no ?in=bogus in the URL."
+
+- id: A1-A2-08
+  severity: 3
+  status: valid
+  lens: "history (popstate on fragment navigation)"
+  target: "compiler/quantum-holography-status/status.js:1033, 1017-1031, 837-845, 32-41"
+  claim: "The address carries the reader's search and filters so that a view round-trips."
+  broken_step: >-
+    Every in-page link click is a fragment navigation, and fragment navigations fire popstate (expected per the HTML
+    spec: "update document for history step application" with documentIsNew false). The popstate handler calls
+    fromURL(false), which treats the URL as the truth. The URL can lag the page state in two cases:
+    (a) Within 350 ms of a search change (line 844). The search field, its results and any row filter are reset to
+    the old URL; then the pending timer writes the discarded query into the new entry, so the address and the page
+    disagree.
+    (b) Permanently, where writeParams swallows a throwing replaceState (line 40, "some file views"). Per the spec,
+    content:, blob: and about:srcdoc views may only rewrite the fragment. There, every nav, grid, index or card link
+    click resets the reader's search and row filter.
+  evidence_type: line_reference
+  evidence_ref: |-
+    1033: window.addEventListener('popstate', function () { fromURL(false); });
+    1028-1029: if (next.q === state.q.trim() && same(...) && same(...)) return; setState(next);
+    1022: if (filters.length && !same(show, nowShown)) { ... applyFilter(false); }
+    843-844: pendingAddress = {...}; addressTimer = setTimeout(flushAddress, 350);
+    39-40: history.replaceState(...) } catch (e) { /* the address cannot be changed here (some file views) */ }
+    jsdom fired 0 popstate events on a fragment navigation, so the race is not reproducible there.
+  files_read:
+    - compiler/quantum-holography-status/status.js
+  tools_used: [Read, "sed -n", "node -e (jsdom 28; inconclusive)"]
+  confidence: medium
+  blast_radius: "Readers who search and then navigate within the page; in non-file offline views, every in-page link."
+  minimal_heal: >-
+    status.js (interaction): restore search and filter state on popstate only when location.search differs from the
+    last search string the page wrote or read. Flush the pending address in a capturing click listener for in-page
+    links.
+  residual: "Browser confirmation is pending."
+  deciding_evidence: >-
+    In Chrome, Firefox and Safari:
+    (1) Type "koszul" in the search and within 300 ms click "Examples" in the bar; record input.value and
+    location.search.
+    (2) Load the file from a blob: URL, press a row filter, click a grid row link; record the filter state.
+
+- id: A1-A2-09
+  severity: 3
+  status: valid
+  lens: "deep links (statement anchors)"
+  target: "content/quantum-holography-status/content.json statements without id; status.py:238-240, 253; status.js:885-886, 921-923"
+  claim: "A reader can share a link to a statement (#s-...), including one inside a closed example row."
+  broken_step: >-
+    Statements without a content id get no id attribute; this affects 98 of 281 (computed). A search hit for one of
+    them pushes the nearest ancestor's id (#row-..., #results or #open-...), so a shared link opens a whole row (up to
+    15 statements) or a section. No audit rule reports anchorless statements.
+  evidence_type: counterexample
+  evidence_ref: |-
+    python3 -I -c over content.json:
+    principal total 9 no id 6 | rows total 109 no id 81 | open total 13 no id 11
+    decisive.question 22/0, decisive.known 71/0, frontier.question 12/0, frontier.known 34/0, failures 11/0
+  files_read:
+    - content/quantum-holography-status/content.json
+    - compiler/quantum-holography-status/status.py
+    - compiler/quantum-holography-status/status.js
+  tools_used: ["python3 -I -c"]
+  confidence: high
+  blast_radius: "Deep links to 81 of 109 example statements, 6 of 9 principal results and 11 of 13 open problems."
+  minimal_heal: >-
+    Content owner: add ids. audit.py (foundation): warn, listing each statement without an id. Builder fallbacks
+    derived from position or title would be unstable and are not recommended.
+  residual: "Whether the acceptance contract requires every statement to be linkable is not stated."
+  deciding_evidence: "Statement count without id after the content update (expected 0), or a contract line exempting them."
+
+- id: A1-A2-10
+  severity: 3
+  status: valid
+  lens: "deep links (anchor stability)"
+  target: "compiler/quantum-holography-status/status.py:622, 145-150, 439, 499, 531/576"
+  claim: "Shared anchors survive retitling and reordering of content."
+  broken_step: >-
+    Open-group anchors are always derived from the heading; the content format has no id field for groups.
+    Glossary anchors are derived from the term text, with order-dependent -2/-3 suffixes on collision.
+    Questions fall back to the title and then to position; failures fall back to position; rows fall back to name.
+    Retitling or reordering therefore changes these anchors silently, and an old #open- or #term- link lands at the
+    top of the page with no message.
+    ident() normalisation (case, punctuation, non-ASCII removal, 60-character cut) can merge distinct ids. For
+    statements, rows, questions, failures and groups, the audit then fails the build on a duplicate id, which refuses
+    valid content. Glossary terms are renamed silently instead.
+  evidence_type: line_reference
+  evidence_ref: |-
+    622: gid = 'open-' + ident(g.get('heading', str(i)))
+    145-150: tid = 'term-' + ident(entry['term']) ... while any(e['id'] == tid ...): tid = f'{base}-{n}'
+    439: qid = 'q-' + ident(q.get('id') or q.get('title') or str(i))
+    499: fid = 'f-' + ident(it.get('id') or str(i))
+    Computed now: 4 group anchors from headings (e.g. open-comparing-fields-configurations-and-duals);
+    144 term anchors from term text; no collisions; no truncation.
+  files_read:
+    - compiler/quantum-holography-status/status.py
+    - content/quantum-holography-status/README.md
+    - content/quantum-holography-status/content.json
+  tools_used: [Read, "python3 -I -c"]
+  confidence: high
+  blast_radius: "Shared links to open-problem groups and glossary terms after any rewording; question, failure and row links where ids are omitted."
+  minimal_heal: >-
+    Content format and status.py (foundation): optional "id" on open groups and glossary entries, used when present.
+    audit.py: warn when an anchor is derived from a title or position, or is suffixed.
+  residual: "none"
+  deciding_evidence: "Rename one open-group heading in a copy and rebuild; the anchor must not change."
+
+- id: A1-A2-11
+  severity: 3
+  status: undecided
+  lens: "public safety (process language in reader text)"
+  target: "content/quantum-holography-status/essay.md (paragraph beginning 'Continuous Virasoro sewing'); content.json /decisive/questions/8/known/0/text (#s-decisive-critical-existing-order)"
+  claim: "Reader text carries no process or workflow language and cites no closed artefacts."
+  broken_step: >-
+    The essay says "retains the adopted local theorem". "Adopted" is the project's adoption vocabulary; the audit bans
+    "adoption" and "adopted record" but not "adopted". Statement decisive-critical-existing-order says "the rank
+    computation remains a saved constructor certificate", "uses a recorded exact kernel certificate" and "the stored
+    matrix arithmetic has not been independently replayed". These refer to stored computational artefacts the reader
+    cannot inspect. All pass the baseline audit (observed: PASS). The judgement is heuristic.
+  evidence_type: other
+  evidence_ref: |-
+    visible-text scan of preview.html: 'adopt': 1 -> "...Continuous Virasoro sewing retains the adopted local theorem above charge one..."
+    content.json scan: "...but the rank computation remains a saved constructor certificate. No argument yet forces..."
+    "...This all-mode partial uses a recorded exact kernel certificate and a checked finite-determination argument; the stored matrix arithmetic has not been independently replayed."
+  files_read:
+    - content/quantum-holography-status/essay.md
+    - content/quantum-holography-status/content.json
+    - materials/processed/qh-attack-heal-20261116/quality/baseline/audit/audit.txt
+  tools_used: ["python3 -I -c", grep]
+  confidence: medium
+  blast_radius: "Two reader-visible passages; the public-safety convergence scan."
+  minimal_heal: >-
+    Content owner: reword, or name a public certificate. audit.py (foundation): add "adopted", plus a warning pattern
+    for saved, stored or recorded certificate wording.
+  residual: "Whether these phrases are mathematical qualifications or process residue is the content owner's decision."
+  deciding_evidence: "A content-owner ruling on the three phrases."
+
+- id: A1-A2-12
+  severity: 3
+  status: undecided
+  lens: "atlas readiness (contract enforceability)"
+  target: "materials/processed/qh-attack-heal-20261116/quality/DESIGN-CONTRACT.json (readerRules[0..2], shape.edges, shape.readingPaths, shape.claims.status/sourceLabel, integration, schema)"
+  claim: "The quality lane can check mechanically that the atlas data is relation-faithful and reader-safe."
+  broken_step: >-
+    (a) "Every graph edge is projected from an existing bound edge", but no public field binds an edge to its source
+    edge, and the format of the non-reader manifest is not given. Projection cannot be checked from the public data.
+    (b) relation "existing_source_bound_type" has no enumerated vocabulary, and label is free text with no
+    relation-to-label map, so a label can overstate its relation.
+    (c) A reading-path "step" is undefined. Stages hold lists of claimIds, so it is unclear whether every pair or any
+    pair must be linked, in which direction, and which relation types count as dependency.
+    (d) status.code {checked, conditional, scoped_negative, remaining} has no mapping from the page's statuses. The 4
+    published statements, pending, conjecture, heuristic, partial, not posed and refuted form all lack a code.
+    (e) sourceLabel ("Named source statement") conflicts with the no-private-paths rule unless it is limited to
+    published references. The current source values are private paths.
+    (f) The example values ("Astra-authored ...", "Astra scientific content owner", "frozen08:35 canonical source
+    package", ".../v1") contain a tool name, process language and a version tag. The current audit would not catch
+    them if they were embedded as JSON in a script element.
+    (g) Nothing requires comparison lists and claims.comparisonIds to agree, or list membership to match status.code.
+  evidence_type: missing_source
+  evidence_ref: |-
+    DESIGN-CONTRACT.json: "relation": "existing_source_bound_type"; "kind": "editorial_orientation|source_bound_dependency_path";
+    "code": "checked|conditional|scoped_negative|remaining"; "sourceLabel": "Named source statement, only where actually supplied";
+    "summary": "Astra-authored current scope"; "sourcePackage": "... private bindings retained in a separate non-reader manifest"
+    content.json source sample: "inscribe/ast-T152/ADOPTION.md, adopted main theorem 1–3 ..."
+  files_read:
+    - materials/processed/qh-attack-heal-20261116/quality/DESIGN-CONTRACT.json
+    - content/quantum-holography-status/content.json
+  tools_used: [cat, "python3 -I -c"]
+  confidence: medium
+  blast_radius: "Atlas graph fidelity and public safety; the quality lane cannot sign off on edges or paths."
+  minimal_heal: >-
+    Atlas (owner) and contract: define the following before implementation.
+    (1) The manifest format (edge id, bound edge id, relation, endpoints, exact scope), checked at build time with
+    leak-free failures.
+    (2) A relation enum with a label per relation.
+    (3) A step rule for dependency paths, plus an acyclicity check.
+    (4) A status map from the page's statuses to the atlas codes.
+    (5) sourceLabel restricted to published citations.
+    Quality checks: schema and enum validation; referential integrity of domainId, edge endpoints, comparison lists
+    and path claimIds; bidirectional agreement between claims and comparisons, and with status.code; edge-to-binding
+    equality; no edges derived from "known" co-membership or antecedent text; a reader-safe id regex and collision
+    check against existing page anchors; a public-safety scan of every reader value, including ids and embedded JSON.
+  residual: "Definitions may exist in materials withheld from this lane."
+  deciding_evidence: "A contract revision or manifest specification that defines (a) to (g)."
+
+- id: A1-A2-13
+  severity: 3
+  status: undecided
+  lens: "atlas readiness (counts versus the no-theorem-count rule)"
+  target: "nav.tally (status.py:300-321), .row-count .mix and .q-index .mix (status.py:405-423)"
+  claim: "Status presentation implies no closure percentage or theorem count (DESIGN-CONTRACT readerRules[1])."
+  broken_step: >-
+    The cover tally "Statements on this page" shows counts by status: 197 Proved and independently checked,
+    74 Open problem, 6 Conditional, 4 Published (computed). Every row, question card and index entry repeats status
+    counts. This is a theorem count by status that invites the ratio 197/281. If the rule applies to the integrated
+    page, the tally contradicts it.
+  evidence_type: other
+  evidence_ref: 'jsdom: tally page {"checked":197,"conditional":6,"open":74,"published":4} = content counts'
+  files_read:
+    - compiler/quantum-holography-status/status.py
+    - materials/processed/qh-attack-heal-20261116/quality/DESIGN-CONTRACT.json
+  tools_used: ["node -e (jsdom 28)"]
+  confidence: medium
+  blast_radius: "Cover, rows and question indexes, if the atlas rule governs the whole page."
+  minimal_heal: "Decision for the lead and atlas owner: limit the rule to the atlas, or replace counts by status with lists (status.py, foundation)."
+  residual: "The rule's scope (atlas only, or the whole page) is unstated."
+  deciding_evidence: "A ruling on the scope of readerRules[1]."
+
+- id: A1-A2-14
+  severity: 4
+  status: valid
+  lens: "data fidelity (glossary attachment)"
+  target: "compiler/quantum-holography-status/status.py:158-162, 202-231"
+  claim: "The first use of each glossary term in a block opens its definition."
+  broken_step: >-
+    Terms are matched only in the non-math text segments, so a form that contains TeX can never match. "Universal
+    regular \(W_3\)" occurs in /rows/5/statements/2/text and /open/1/statements/1/text but is never attached
+    (computed). The other four unattached terms appear only in titles or cell notes (unlinked by design) or nowhere.
+  evidence_type: counterexample
+  evidence_ref: |-
+    audit.txt: terms never attached in the text: ..., Universal regular \(W_3\)
+    content scan: 'regular universal \(W_3\)' 3 ['/rows/5/cells/object/note', '/rows/5/cells/dual/note', '/rows/5/statements/2/text']; 'universal regular \(W_3\)' 1 ['/open/1/statements/1/text']
+  files_read:
+    - compiler/quantum-holography-status/status.py
+    - materials/processed/qh-attack-heal-20261116/quality/baseline/audit/audit.txt
+  tools_used: ["python3 -I -c"]
+  confidence: high
+  blast_radius: "Readers of two statements; any future term whose name contains TeX."
+  minimal_heal: "status.py (foundation): match forms against the text with formulas replaced by placeholder tokens before splitting, or warn in the audit when a form contains TeX."
+  residual: "none"
+  deciding_evidence: "After the heal, 'terms never attached' no longer lists Universal regular \\(W_3\\)."
+
+- id: A1-A2-15
+  severity: 4
+  status: undecided
+  lens: "data fidelity (status labels)"
+  target: "compiler/quantum-holography-status/status.py:354-361 (key) and status_label()"
+  claim: "Each status reaches the page with the content's label."
+  broken_step: >-
+    content.json status_key[].label is never read; page.json labels are used instead, with no consistency check.
+    5 of 8 differ (computed): Checked / Proved and independently checked; Open / Open problem; Partial / Partly
+    established; Not posed / Not yet formulated; Refuted form / Refuted as first posed.
+  evidence_type: counterexample
+  evidence_ref: "python3 -I -c comparison: 'checked' | content label: 'Checked' | page label: 'Proved and independently checked' | DIFFERENT (and 4 more)"
+  files_read:
+    - content/quantum-holography-status/content.json
+    - content/quantum-holography-status/page.json
+  tools_used: ["python3 -I -c"]
+  confidence: medium
+  blast_radius: "Every chip, tally, key and legend label, if the content owner's labels are authoritative."
+  minimal_heal: "status.py/audit.py (foundation): warn when a content label differs from page.json, or document page.json as authoritative."
+  residual: "Which file owns the labels is a design decision."
+  deciding_evidence: "An ownership ruling on status labels."
+
+- id: A1-A2-16
+  severity: 4
+  status: valid
+  lens: "history (row filter and result clicks)"
+  target: "compiler/quantum-holography-status/status.js:914-920, 49-55, 368"
+  claim: "The history entry being left keeps the view that led away from it (status.js:916)."
+  broken_step: >-
+    go() flushes the search, then openAround lifts a row filter that hides the target. applyFilter then rewrites the
+    current entry without ?show= before location.hash pushes the new entry. Back returns to an entry without the
+    reader's row filter.
+  evidence_type: line_reference
+  evidence_ref: "916 flushAddress(); 918 openAround(el); 54 rowFilterLift(); 368 writeParams({ show: on.join(',') }); 920 location.hash = el.id"
+  files_read:
+    - compiler/quantum-holography-status/status.js
+  tools_used: [Read]
+  confidence: high
+  blast_radius: "Readers who filter rows, search, open a result hidden by the filter, then press Back."
+  minimal_heal: "status.js (interaction): in go(), lift the filter with applyFilter(false) and write ?show= only on the new entry."
+  residual: "none"
+  deciding_evidence: "In a browser: set ?show=open, search, click a checked result, press Back; ?show=open must return."
+
+- id: A1-A2-17
+  severity: 4
+  status: valid
+  lens: "scale (build audit cost)"
+  target: "compiler/quantum-holography-status/audit.py:86"
+  claim: "The audit scales with content."
+  broken_step: "The duplicate-id check reruns re.findall over the whole page once per id. It is quadratic: about 3.9 s now, 15.7 s at 2x content and 98 s at 5x (computed)."
+  evidence_type: other
+  evidence_ref: "python3 -I -c: ids 428; one findall over 2190442 chars: 0.009 s; est 3.9 s now; 2x 15.7 s; 5x 98.2 s"
+  files_read:
+    - compiler/quantum-holography-status/audit.py
+  tools_used: ["python3 -I -c"]
+  confidence: high
+  blast_radius: "Build time only."
+  minimal_heal: "audit.py (foundation): collections.Counter over a single findall."
+  residual: "none"
+  deciding_evidence: "Time audit.run on the baseline after the heal."
+
+- id: A1-A2-18
+  severity: 4
+  status: valid
+  lens: "robustness (newer content, empty sections)"
+  target: "compiler/quantum-holography-status/status.py:521, 581, 605-608, 618-628, 695; audit.py:53-56"
+  claim: "Newer content is rendered whole or rejected; empty optional sections disappear."
+  broken_step: >-
+    A column id outside the fixed COLUMNS list is dropped from the grid, the row lines and the column definitions,
+    together with its cells, and nothing fails (the audit checks only COLUMNS).
+    The Open problems and Results sections and their nav links are always emitted, even when empty.
+    Row filter buttons come from page-wide counts, so a status that occurs only outside the rows gets a filter that
+    empties every row.
+  evidence_type: line_reference
+  evidence_ref: "521 order = [cid for cid in COLUMNS if cid in columns] or COLUMNS; 581 for cid in COLUMNS:; 607-608 ... for st, n in self.counts(c) if n; 695 nav_items.append(('open', L['nav_open']))"
+  files_read:
+    - compiler/quantum-holography-status/status.py
+    - compiler/quantum-holography-status/audit.py
+  tools_used: [Read, "sed -n"]
+  confidence: high
+  blast_radius: "Future content only; the current content is unaffected (computed: all 8 columns, all 4 statuses present in rows)."
+  minimal_heal: "status.py/audit.py (foundation): fail on unknown column ids; skip empty sections and their nav links; build row filters from row statements only."
+  residual: "none"
+  deciding_evidence: "Build fixtures with an extra column, open: [], and a status found only in the principal results."
+
+- id: A1-A2-19
+  severity: 4
+  status: valid
+  lens: "scale (page weight)"
+  target: "status.py mark() (repeated inline svg), grid() and rows() (cell notes rendered twice), Temml annotate:true"
+  claim: "The single-file page stays usable at 2x to 5x content."
+  broken_step: >-
+    The weight is linear but heavily duplicated (computed). In the 1,828,020-byte no-font page: MathML is
+    733,308 bytes (40%), including 179,612 bytes of TeX annotations; 1,127 inline SVG copies of 10 marks take
+    237,584 bytes; 160 cell notes are rendered twice. At 5x content this is roughly 9 to 10 MB plus fonts (expected).
+  evidence_type: other
+  evidence_ref: "python3 -I -c: nofonts bytes 1828020 | MathML 733308 (40%) | annotations 179612 | inline SVG marks 237584 (1127 svgs) | style+script 97775"
+  files_read:
+    - materials/processed/qh-attack-heal-20261116/quality/baseline/preview-nofonts.html
+  tools_used: ["python3 -I -c"]
+  confidence: medium
+  blast_radius: "Load and memory on mobile at larger editions."
+  minimal_heal: "status.py (foundation): one svg symbol sprite referenced by same-document use elements; the card reads the row's cell line instead of a second copy."
+  residual: "Real-device load cost is unmeasured."
+  deciding_evidence: "Load time and memory on a mid-range phone for 1x and a synthetic 5x build."
+
+# survived (A2's list of reader tasks that work, with reasons)
+survived:
+  - "Deep link on arrival to #s- inside a closed example row: the row opens and the target is scrolled to (tested in jsdom); html scroll-padding-top (bar plus 16px) clears the sticky bar (expected)."
+  - "Deep link to #s- inside a closed related-statements list opens details.known (tested in jsdom)."
+  - "Deep link to #col- inside the closed column definitions opens details.col-defs (tested in jsdom)."
+  - "#q-, #f-, #open-, #term- and section anchors are never inside details; native fragment scroll applies with scroll-padding-top (expected); all 428 ids accounted for and the audit link check passes (computed)."
+  - "In-page hash change to a statement in a closed row opens it (tested in jsdom)."
+  - "?show=open#s-<checked statement>: the filter is lifted, the row opens and the target is shown (tested in jsdom)."
+  - "?status=checked gives 197 matches, equal to the tally's 197; each statement maps to exactly one search unit (tested in jsdom)."
+  - "Back/Forward after a result click: typing and filters use replaceState, and result clicks flush the pending address before pushing, so Back returns to the same search (code path; expected)."
+  - "Statuses and counts: 281 statements in content order with equal data-status and ids; tally, 20 row counts and mixes, 34 question counts, index mixes and own marks, 160 grid cells and 160 row cell lines all equal content (computed)."
+  - "Text: normalised bodies of all 281 statements equal content; 254 titles shown plus 27 equal to their card title; 101 note blocks as expected (computed)."
+  - "content.json TeX: 2502 <math> elements equal the 2502 renders implied by the builder rules; 1621 distinct annotations equal 1621 distinct TeX segments; 0 TeX errors (computed)."
+  - "Citations: both markdown arXiv links keep their numbers; no other host appears in src or href except the never-requested canonical link (computed)."
+  - "Source privacy: none of 765 distinct source strings or their tokens (ADOPTION, inscribe/, chains/, prep/, CHECK-, .md, /Users) appear in the HTML; no hashes, session or account tokens, and no % in visible text (computed); _config.yml excludes content/, compiler/ and materials/ from the published site (observed)."
+  - "Print A4/Letter: beforeprint opens every details in main and afterprint restores it, with a ::details-content fallback; filtered statements print; bar, search, card, filters, tools and hints are hidden; the grid header repeats; estimated grid width about 162 mm of 178 or 184 mm; the widest display formula (about 168 mm) is centred in a 152 mm column with 13 mm of slack per side (static analysis, heuristic; browser unverified)."
+  - "Print colours: dark tokens are replaced by light ones for every data-theme (equal specificity, later sheet wins) (computed)."
+  - "Search scale: 518 units, about 328k characters; folding every unit for 'Show all' costs 42 ms in V8 (about 210 ms at 5x); the index is built lazily, once (computed)."
+  - "Anchor collisions now: none among statement, term, question, failure and group ids; a duplicate would fail the audit (computed)."
+  - "claim_text: all 11 claims begin 'False: ' followed by an English word; only that prefix is removed (computed)."
+  - "Essay display heuristic: no essay block of 32 characters or fewer contains '=', so no paragraph is restyled (computed)."
+  - "Hostile parameter values reach the DOM only through value or textContent; no innerHTML takes address data (code path)."

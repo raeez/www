@@ -1,0 +1,100 @@
+{
+ "source": "/tmp/programme-public-content-0835-20261116/layout-snapshot-1120/atlas.json",
+ "page": null,
+ "results": {
+  "AT0-data-present": {
+   "pass": true,
+   "domains": 9,
+   "claims": 503,
+   "edges": 53,
+   "comparisons": 58,
+   "paths": 18
+  },
+  "AT1-ids": {
+   "pass": true,
+   "problems": [],
+   "count": 0
+  },
+  "AT2-fields-and-enums": {
+   "pass": true,
+   "problems": [],
+   "count": 0
+  },
+  "AT3-references": {
+   "pass": true,
+   "problems": [],
+   "count": 0
+  },
+  "AT4-comparison-agreement": {
+   "pass": true,
+   "problems": [],
+   "count": 0
+  },
+  "AT5-edge-uniqueness": {
+   "pass": true,
+   "problems": [],
+   "relations": {
+    "uses": 1,
+    "discharges_condition": 1,
+    "compared_by_witness": 1,
+    "supplies_accepted_interface": 2,
+    "supplies_terminal_case": 1,
+    "uses_checked_input": 1,
+    "extends": 1,
+    "conditional_comparison": 1,
+    "supplies_hypothesis": 1,
+    "implies_with_hypothesis": 1,
+    "explicit_source_input": 2,
+    "conditional_component_discharged": 1,
+    "supplies_hypothesis_conditionally": 1,
+    "checked application": 1,
+    "reduces moment actions": 1,
+    "checked construction input": 1,
+    "checked exact coordinate return": 1,
+    "checked construction": 1,
+    "checked extension": 1,
+    "checked target comparison": 1,
+    "supplies a source estimate": 1,
+    "applies under the actual-map hypotheses": 1,
+    "supplies the Hilbert links": 1,
+    "identifies the source being compared": 1,
+    "used_by": 1,
+    "realized_by": 1,
+    "construction_input": 1,
+    "proof_uses": 1,
+    "used_with_factorization": 1,
+    "detected_by": 1,
+    "conditional_assembly": 1
+   }
+  },
+  "AT5b-one-label-per-relation": {
+   "pass": false,
+   "relations_with_several_labels": {
+    "supplies_accepted_interface": [
+     "Actual extension and finite jets",
+     "First Ward and Stokes interface"
+    ],
+    "explicit_source_input": [
+     "The native selector identifies the final projector",
+     "The whole-base cells supply an integration input"
+    ]
+   }
+  },
+  "AT6-dependency-paths-connected": {
+   "pass": true,
+   "problems": [],
+   "dependency_paths": 0
+  },
+  "AT7-public-safety": {
+   "pass": false,
+   "problems": [
+    "atlas.schema: version or process word \"v1\"",
+    "atlas.claims[420].statement: version or process word \"v4\"",
+    "atlas.claims[420].hypotheses[0]: version or process word \"v4\"",
+    "atlas.readingPaths[11].stages[7].description: version or process word \"v4\""
+   ],
+   "count": 4
+  }
+ },
+ "all_pass": false
+}
