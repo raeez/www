@@ -1,0 +1,73 @@
+/* The front's figure: counting quanta and measuring their exchange, after the fourth paragraph of the front.
+   It is a static figure in the page's own .qh-fig frame, head, title and caption. It has no data-figure or
+   data-config attribute, so the figure script leaves it alone. Every colour is a page token, so both themes and
+   print follow the page. There is no dashed line, because dashes are reserved for open comparisons. All bars
+   share one length: a full bar is certainty and a half bar is half the time. The accessible description is read
+   in place of the drawing, which is hidden from assistive technology. */
+.qf-ex.qh-fig { hyphens: manual; -webkit-hyphens: manual; }
+.qf-ex.qh-fig p { margin: 0; text-indent: 0; text-align: left; }
+.qf-ex.qh-fig .qf-ex-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+/* The two alternatives on the circle, and the exchange between them. */
+.qf-ex-states { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center;
+  column-gap: var(--s2); row-gap: var(--s1); margin: var(--s1) 0 var(--s3); }
+.qf-ex-ring { display: block; justify-self: center; width: calc(var(--text-base) * 4.5);
+  height: calc(var(--text-base) * 4.5); overflow: visible; }
+.qf-ex-ring-base { fill: none; stroke: var(--rule); stroke-width: 1px; }
+.qf-ex-ring-wave { fill: none; stroke: var(--ink-2); stroke-width: 1.75px; stroke-linejoin: round; }
+.qf-ex-quantum { fill: var(--ink); }
+.qf-ex-swap { display: grid; justify-items: center; row-gap: 2px; }
+.qf-ex-arrows { display: block; width: calc(var(--text-base) * 3); height: calc(var(--text-base) * 1.2);
+  color: var(--accent); }
+.qf-ex-shaft { fill: none; stroke: currentColor; stroke-width: 1.5px; }
+.qf-ex-head { fill: currentColor; }
+.qf-ex.qh-fig .qf-ex-eq { font-size: var(--text-fig); line-height: var(--lh-compact); color: var(--ink-2);
+  text-align: center; white-space: nowrap; }
+.qf-ex-state { align-self: start; }
+.qf-ex.qh-fig .qf-ex-state p { text-align: center; }
+.qf-ex.qh-fig .qf-ex-name { font-size: var(--text-lead); line-height: var(--lh-compact); }
+.qf-ex.qh-fig .qf-ex-what { font-size: var(--text-fig); line-height: var(--lh-compact); color: var(--ink-3); }
+/* Two alternative measurements on fresh preparations: the two columns are the preparations. */
+.qf-ex-table { width: 100%; table-layout: fixed; border-collapse: collapse; border-spacing: 0; margin: 0; }
+.qf-ex-table col { width: 50%; }
+.qf-ex-table th, .qf-ex-table td { padding: 0; border: 0; background: none; text-align: left;
+  vertical-align: top; font-weight: 400; }
+.qf-ex-table .qf-ex-colhead { padding: 0 0 var(--s1); border-bottom: 1px solid var(--rule); vertical-align: bottom;
+  font-size: var(--text-sm); font-weight: 600; line-height: var(--lh-compact); color: var(--ink); }
+.qf-ex-table .qf-ex-grouphead { padding: var(--s2) 0 var(--s1); font-size: var(--text-sm); font-style: italic;
+  line-height: var(--lh-compact); color: var(--ink-2); }
+.qf-ex-table .qf-ex-group--x .qf-ex-grouphead { border-top: 1px solid var(--rule-soft); }
+.qf-ex-table .qf-ex-cell { padding-bottom: var(--s2); }
+.qf-ex-table tr > :first-child:not([colspan]) { padding-right: calc(var(--s3) / 2); }
+.qf-ex-table tr > :last-child:not([colspan]) { padding-left: calc(var(--s3) / 2); }
+.qf-ex-out + .qf-ex-out { margin-top: var(--s2); }
+.qf-ex.qh-fig .qf-ex-line { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  column-gap: .6em; font-size: var(--text-fig); line-height: var(--lh-compact); }
+.qf-ex-k { min-width: 0; color: var(--ink-2); }
+.qf-ex-group--x .qf-ex-k { font-size: 1.12em; color: var(--ink); }
+.qf-ex-v { flex: 0 0 auto; margin-left: auto; white-space: nowrap; color: var(--ink-3); }
+/* Each bar is outlined in its own fill colour, so the empty part of the scale stays visible in both themes. */
+.qf-ex-bar { position: relative; display: block; height: .6rem; margin-top: 4px; overflow: hidden;
+  border: 1px solid var(--ink-3); border-radius: 2px; }
+.qf-ex-fill { position: absolute; top: 0; bottom: 0; left: 0; background: var(--ink-3);
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.qf-ex-fill--half { width: 50%; }
+.qf-ex-fill--all { width: 100%; }
+.qf-ex-fill--none { width: 0; }
+.qf-ex-group--x .qf-ex-bar { border-color: var(--accent); }
+.qf-ex-group--x .qf-ex-fill { background: var(--accent); }
+/* Phone widths: smaller circles and a narrower gutter between the two preparations. */
+@container (max-width: 26rem) {
+  .qf-ex-states { column-gap: var(--s1); }
+  .qf-ex-ring { width: calc(var(--text-base) * 3.6); height: calc(var(--text-base) * 3.6); }
+  .qf-ex-arrows { width: calc(var(--text-base) * 2.4); height: calc(var(--text-base) * .96); }
+  .qf-ex-table tr > :first-child:not([colspan]) { padding-right: var(--s1); }
+  .qf-ex-table tr > :last-child:not([colspan]) { padding-left: var(--s1); }
+}
+@media (forced-colors: active) {
+  .qf-ex-bar { border-color: CanvasText; }
+  .qf-ex-fill { forced-color-adjust: none; background: CanvasText; }
+  .qf-ex-ring-base, .qf-ex-ring-wave { stroke: CanvasText; }
+  .qf-ex-quantum { fill: CanvasText; }
+  .qf-ex-arrows { color: CanvasText; }
+}

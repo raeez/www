@@ -1,0 +1,136 @@
+/* The drawing vocabulary of the authored figures. Each mark has one meaning wherever it appears in the book.
+   A filled dot is a basis state. A ring singles out a state which the text names. A solid line with a head is a
+   defined map and carries its symbol. A line which joins two products is the homotopy that compares them, and a
+   shaded face compares two routes. A soft band is the set of states which one kind of operation can reach. A
+   dashed line is an open comparison and appears nowhere else. The accent marks what the argument, or the
+   reader's choice, singles out. A number set in the tabular face is a computed value.
+   Drawings are measured in twentieths of the text size, so their labels keep their proportion to the reading text
+   on a phone, on a desk and on paper. A choice among cases is a group of radio buttons, which the keyboard
+   reaches without a script. Every case a drawing can show is also written out in words beside it. */
+.qv.qh-fig { hyphens: manual; -webkit-hyphens: manual; --qv-u: calc(var(--text-base) / 20); }
+.qv.qh-fig p { margin: 0; text-indent: 0; text-align: left; }
+.qv.qh-fig .qv-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+/* Panels: each drawing is narrow enough for a phone, and panels stand side by side where there is room. */
+.qv-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: var(--s3);
+  align-items: start; margin: var(--s1) 0 var(--s2); }
+.qv-panel { min-width: 0; }
+.qv.qh-fig .qv-panel-h { margin: 0 0 var(--s1); font-size: var(--text-sm); font-weight: 600; line-height: var(--lh-compact);
+  color: var(--ink); }
+.qv-svg { display: block; width: 100%; max-width: calc(var(--qv-w, 340) * var(--qv-u)); height: auto; margin: 0 auto;
+  overflow: visible; font-family: var(--font-text); }
+.qv.qh-fig .qv-say { margin: var(--s1) 0 0; max-width: var(--measure); font-size: var(--text-sm); line-height: 1.45;
+  color: var(--ink-2); }
+.qv.qh-fig .qv-note { margin: 4px 0 0; font-size: var(--text-fig); line-height: 1.4; color: var(--ink-2); }
+
+/* Marks of a drawing. */
+.qv-svg { color: var(--ink); }
+.qv-svg text { fill: currentColor; }
+.qv-svg .qv-l { font-size: 14px; }
+.qv-svg .qv-b { font-size: 16px; font-style: italic; }
+.qv-svg .qv-i { font-style: italic; }
+.qv-svg .qv-s { font-size: 12.5px; color: var(--ink-3); }
+.qv-svg .qv-n { font-family: var(--font-ui); font-size: 12px; color: var(--ink-3); font-variant-numeric: lining-nums tabular-nums; }
+.qv-svg .qv-v { font-family: var(--font-ui); font-size: 13px; color: var(--ink); font-variant-numeric: lining-nums tabular-nums; }
+.qv-svg .qv-sub, .qv-svg .qv-sup { font-size: .72em; font-style: normal; }
+.qv-svg .qv-halo { paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.qv-ink { fill: none; stroke: var(--ink-2); stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+.qv-rule { fill: none; stroke: var(--rule); stroke-width: 1; }
+.qv-axis { fill: none; stroke: var(--ink-4); stroke-width: 1; }
+.qv-go { fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.qv-head { fill: var(--ink-2); stroke: none; }
+.qv-head-go { fill: var(--accent); stroke: none; }
+.qv-dot { fill: var(--ink); stroke: none; }
+.qv-dot-quiet { fill: var(--paper-3); stroke: var(--ink-4); stroke-width: 1; }
+.qv-ring { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.6; }
+.qv-band { fill: none; stroke: var(--accent-soft); stroke-width: 16; stroke-linecap: round; }
+.qv-band-line { fill: none; stroke: var(--accent); stroke-width: 1.2; stroke-linecap: round; }
+.qv-face { fill: var(--accent-soft); stroke: none; }
+.qv-badge { fill: var(--paper); stroke: var(--ink-4); stroke-width: 1; }
+.qv-full { fill: var(--ink); stroke: var(--ink); stroke-width: 1.2; }
+.qv-empty { fill: var(--paper-3); stroke: var(--ink-3); stroke-width: 1.2; }
+.qv-open { stroke-dasharray: 5 4; }
+
+/* A choice among cases: radio buttons drawn as pills. The chosen case shows its layer of the drawing and its
+   sentence. Where the browser cannot follow the choice, the first case is shown and the pills are left out. */
+.qv-choose { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: var(--s1) 0 var(--s2); }
+.qv.qh-fig .qv-choose-h { flex: 0 0 100%; margin: 0; font-size: var(--text-xs); letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-3); }
+.qv-opt { position: relative; display: inline-flex; }
+.qv-pick { position: absolute; left: 0; top: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.qv-pick + label { display: inline-block; padding: 3px 12px; border: 1px solid var(--rule); border-radius: 999px;
+  font-size: var(--text-sm); line-height: 1.4; color: var(--ink-2); }
+.qv-pick:hover + label { border-color: var(--ink-4); }
+.qv-pick:checked + label { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent);
+  color: var(--ink); }
+.qv-pick:focus-visible + label { outline: 2px solid var(--focus, var(--accent)); outline-offset: 2px; }
+.qv [data-layer] { display: none; }
+.qv:has(.qv-pick[data-k="1"]:checked) [data-layer~="1"],
+.qv:has(.qv-pick[data-k="2"]:checked) [data-layer~="2"],
+.qv:has(.qv-pick[data-k="3"]:checked) [data-layer~="3"],
+.qv:has(.qv-pick[data-k="4"]:checked) [data-layer~="4"],
+.qv:has(.qv-pick[data-k="5"]:checked) [data-layer~="5"],
+.qv:has(.qv-pick[data-k="6"]:checked) [data-layer~="6"] { display: revert; }
+@supports not selector(:has(*)) {
+  .qv [data-layer~="1"] { display: revert; }
+  .qv .qv-choose { display: none; }
+}
+
+/* Tables of the cases, in words and formulas. */
+.qv .qv-table { width: 100%; margin: var(--s2) 0 0; border-collapse: collapse; border-spacing: 0; font-size: var(--text-sm);
+  line-height: 1.4; }
+.qv .qv-table th, .qv .qv-table td { padding: 5px 10px 5px 0; border: 0; border-top: 1px solid var(--rule-soft); background: none;
+  text-align: left; vertical-align: top; font-weight: 400; }
+.qv .qv-table thead th { border-top: 0; vertical-align: bottom; font-size: var(--text-xs); color: var(--ink-3); }
+.qv .qv-table tbody th { color: var(--ink-2); }
+.qv .qv-table .is-hit > * { background: var(--accent-soft); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.qv .qv-table .is-hit > :first-child { box-shadow: inset 2px 0 0 var(--accent); padding-left: 8px; }
+
+/* Small multiples: one card for each case, all cases in view together. */
+.qv-cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.4rem), 1fr)); gap: var(--s1) var(--s2);
+  margin: var(--s1) 0 0; padding: 0; list-style: none; }
+.qv-case { min-width: 0; padding: 6px 8px 8px; border: 1px solid var(--rule-soft); border-radius: 6px; }
+.qv-case.is-hit { border-color: var(--accent); background: var(--accent-soft); -webkit-print-color-adjust: exact;
+  print-color-adjust: exact; }
+.qv.qh-fig .qv-case-h { margin: 0 0 2px; font-size: var(--text-fig); line-height: 1.3; color: var(--ink); }
+.qv.qh-fig .qv-cut { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 .5em;
+  font-size: var(--text-fig); line-height: 1.45; color: var(--ink-2); }
+.qv-word { font-family: var(--font-ui); font-variant-numeric: lining-nums; white-space: nowrap; color: var(--ink); }
+.qv-word .qv-bar { display: inline-block; width: 0; height: .95em; margin: 0 .36em -.12em; border-left: 1.5px solid var(--ink); }
+.qv-yes { color: var(--ink-3); }
+.qv-no { color: var(--ink); font-weight: 600; }
+.qv.qh-fig .qv-verdict { margin: 4px 0 0; font-size: var(--text-fig); line-height: 1.3; color: var(--ink-3); }
+.qv-case.is-hit .qv-verdict { color: var(--ink); font-weight: 600; }
+
+/* Young diagrams, each box holding its column minus its row, and lists of states with their readings. */
+.qv-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); gap: var(--s2) var(--s3);
+  margin: var(--s1) 0 0; padding: 0; list-style: none; }
+.qv-item { min-width: 0; }
+.qv.qh-fig .qv-item-h { margin: 0 0 6px; font-size: var(--text-sm); line-height: 1.35; color: var(--ink); }
+.qv.qh-fig .qv-group-h { margin: var(--s2) 0 var(--s1); padding-top: var(--s1); border-top: 1px solid var(--rule-soft);
+  font-size: var(--text-sm); font-style: italic; line-height: var(--lh-compact); color: var(--ink-2); }
+.qv.qh-fig .qv-group-h.is-first { margin-top: 0; padding-top: 0; border-top: 0; }
+.qv-yd { display: inline-block; vertical-align: top; margin: 0 0 4px; font-size: var(--text-sm); line-height: 1; }
+.qv-yr { display: flex; }
+.qv-yr > span { box-sizing: border-box; display: grid; place-items: center; width: 1.7em; height: 1.7em; margin: 0 -1px -1px 0;
+  border: 1px solid var(--ink-3); background: var(--paper-3); font-family: var(--font-ui); font-size: .8em;
+  font-variant-numeric: lining-nums tabular-nums; color: var(--ink-2); }
+.qv-reading { font-family: var(--font-ui); font-variant-numeric: lining-nums tabular-nums; color: var(--ink); }
+.qv-strip { max-width: calc(var(--qv-w, 222) * var(--qv-u)); margin: 2px 0 0; }
+
+@media print {
+  .qv .qv-choose { display: none; }
+  .qv p[data-layer] { display: block; }
+  .qv-ring, .qv-band, .qv-face, .qv-full { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+@media (forced-colors: active) {
+  .qv-go, .qv-band-line { stroke: Highlight; }
+  .qv-head-go { fill: Highlight; }
+  .qv-ring { fill: Canvas; stroke: Highlight; stroke-width: 2.4; }
+  .qv-band { stroke: GrayText; stroke-width: 2; }
+  .qv-face { fill: Canvas; stroke: GrayText; stroke-width: 1; }
+  .qv-dot, .qv-full { fill: CanvasText; }
+  .qv-pick:checked + label { border-color: Highlight; }
+  .qv-case.is-hit { border-color: Highlight; border-width: 2px; }
+}

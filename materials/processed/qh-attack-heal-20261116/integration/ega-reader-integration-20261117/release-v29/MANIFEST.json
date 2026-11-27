@@ -1,0 +1,129 @@
+{
+  "schema": "quantum-holography-native-edition/1",
+  "edition": "release-v29",
+  "commit": "5047984766ff9027a50b4e894381241a85b697f2",
+  "base_public_commit": "04dbd695741f1437957ff8951b87ef1d41d0f5b0",
+  "primary_parent_commit": "04dbd695741f1437957ff8951b87ef1d41d0f5b0",
+  "primary_repository": "https://github.com/raeez/www",
+  "public_reader": "https://raeez.com/quantum-holography/",
+  "content_id": "d829b8fe87e5fcf56242f0f7647954f40ffd396dccf8ab3289410f2e4eb252c5",
+  "native_inputs": 65,
+  "native_changed_files": [
+    "compiler/quantum-holography-status/atlas.js",
+    "compiler/quantum-holography-status/figures.js",
+    "compiler/quantum-holography-status/figures.py",
+    "compiler/quantum-holography-status/monograph.py",
+    "compiler/quantum-holography-status/reader-runtime/reader-book.js",
+    "compiler/quantum-holography-status/reader-runtime/reader-companions.js",
+    "compiler/quantum-holography-status/reader.js",
+    "compiler/quantum-holography-status/tests/atlas.test.cjs",
+    "compiler/quantum-holography-status/tests/figures.test.cjs",
+    "compiler/quantum-holography-status/tests/reader.test.cjs",
+    "compiler/quantum-holography-status/tests/test_figures.py",
+    "compiler/quantum-holography-status/tests/test_monograph_downloads.py",
+    "content/quantum-holography-status/atlas.json",
+    "content/quantum-holography-status/chapters/01-physical-questions.md",
+    "content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+    "content/quantum-holography-status/chapters/03-local-fields.md",
+    "content/quantum-holography-status/chapters/04-factorization.md",
+    "content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+    "content/quantum-holography-status/chapters/06-duality-and-induction.md",
+    "content/quantum-holography-status/chapters/07-actions-and-centres.md",
+    "content/quantum-holography-status/chapters/08-completions.md",
+    "content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+    "content/quantum-holography-status/chapters/10-analytic-sewing.md",
+    "content/quantum-holography-status/chapters/11-states-and-lines.md",
+    "content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+    "content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+    "content/quantum-holography-status/chapters/14-branes.md",
+    "content/quantum-holography-status/chapters/15-hall-and-compact.md",
+    "content/quantum-holography-status/chapters/16-arithmetic.md",
+    "content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+    "content/quantum-holography-status/chapters/18-open-problems.md",
+    "content/quantum-holography-status/content.json",
+    "content/quantum-holography-status/essay.md",
+    "content/quantum-holography-status/reader-data/expanded-introduction.md",
+    "content/quantum-holography-status/reader-data/fig-schur-readings.html",
+    "content/quantum-holography-status/reader-data/manifest.json",
+    "content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+    "content/quantum-holography-status/supplements/supplements.json"
+  ],
+  "public_exports": {
+    "primary": {
+      "url": "https://raeez.com/quantum-holography/",
+      "commit": "5047984766ff9027a50b4e894381241a85b697f2",
+      "files": {
+        "index.html": {
+          "sha256": "def6f635bbbb817b0b58a78e474d5ae2eb59018e171b4ec6527b1bd49f13bce7",
+          "bytes": 6266164
+        },
+        "reference.html": {
+          "sha256": "4d7ed80f5618b6794026610bf7f31f32aee461f4a8e3e927bdbf6db5f185dbd3",
+          "bytes": 5114292
+        },
+        "atlas.html": {
+          "sha256": "3cdb352a41bfad8d6de9a99e2939a6e3eb732be346bafd3e18e9fb0001c1d82b",
+          "bytes": 11558112
+        },
+        "reader-index.js": {
+          "sha256": "61e5401570e43723e0baea0a4e4a2d1201a7c73a65c76ac907a5402b458b2b97",
+          "bytes": 17454513
+        }
+      },
+      "attachments": {
+        "celestial-current-product.pdf": {
+          "sha256": "5ba2cc78f2b862b0cb77cddf3385efad376fc2a1c942d8bd4c8ed899ef1b7390",
+          "bytes": 818884
+        },
+        "celestial-residue.pdf": {
+          "sha256": "30a5f9f3da8791197d744f2bea3a28016b5f69b7bf01b9846eede32602021dbf",
+          "bytes": 1157630
+        },
+        "introduction.pdf": {
+          "sha256": "5860bf6b3a15d7688f1c09434afd12ff0e3754a95bf5719e104910813c414be1",
+          "bytes": 989043
+        }
+      }
+    },
+    "standalone_build": {
+      "files": {
+        "index.html": {
+          "sha256": "77046e16a40a85d076b70382f1478fe1ebf119a88f3bdaf9a64b159796041392",
+          "bytes": 6265635
+        },
+        "reference.html": {
+          "sha256": "8a6e899e3ef90a228565b6d665da56d0574e785547db3cfb5a617034bb85983f",
+          "bytes": 5113763
+        },
+        "atlas.html": {
+          "sha256": "e7e35f846f864b9ad7d3940be2263a8f10d5c40e9635129ce2682266d280be11",
+          "bytes": 11557583
+        },
+        "reader-index.js": {
+          "sha256": "61e5401570e43723e0baea0a4e4a2d1201a7c73a65c76ac907a5402b458b2b97",
+          "bytes": 17454513
+        }
+      },
+      "attachments": {
+        "celestial-current-product.pdf": {
+          "sha256": "5ba2cc78f2b862b0cb77cddf3385efad376fc2a1c942d8bd4c8ed899ef1b7390",
+          "bytes": 818884
+        },
+        "celestial-residue.pdf": {
+          "sha256": "30a5f9f3da8791197d744f2bea3a28016b5f69b7bf01b9846eede32602021dbf",
+          "bytes": 1157630
+        },
+        "introduction.pdf": {
+          "sha256": "5860bf6b3a15d7688f1c09434afd12ff0e3754a95bf5719e104910813c414be1",
+          "bytes": 989043
+        }
+      }
+    }
+  },
+  "reader_runtime": {
+    "reader": "controls/reader-v18.js",
+    "reference": "controls/status-v18.js",
+    "bookReader": "controls/reader-book-math-notices.js"
+  },
+  "verification": "verification/PUBLICATION.json"
+}
