@@ -1,0 +1,63 @@
+{
+  "status": "PRIVATE_RUNTIME_CANDIDATE",
+  "base_commit": "1130a902f8977789d1a180ac4bf4107afc03e0dd",
+  "base_ready_manifest": {
+    "bytes": 12440,
+    "sha256": "7ac7a8b6d4a05d1551ac85ec6475f4b78bdbfb3556c45d7786c428a23a01520d"
+  },
+  "prior_control": {
+    "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v23/compatibility/controls/reader-v23-book.js",
+    "bytes": 118474,
+    "sha256": "51e1b83e523c68193012c87fb7e8b1716aa768a3ef2128f4da96421cc771feb8"
+  },
+  "candidate_control": {
+    "path": "/private/tmp/qh-reader-historical-math-20261118/reader-book-math-notices.js",
+    "bytes": 119305,
+    "sha256": "bbadad5b370a08e5f2f7430f7cf749dc702507b891ead2285f321b9954e790c9"
+  },
+  "candidate_patch": {
+    "bytes": 2845,
+    "sha256": "62204967398c46e5579cdc5faac68da4c343ab9e1f8b1c096dcc577b2703263e"
+  },
+  "predecessor_files": {
+    "index.html": {
+      "sha256": "2b04856bfc2bb4349eececfc98c6d58348f2f88813d31725e7167292c8df85bc",
+      "bytes": 5192889
+    },
+    "reference.html": {
+      "sha256": "1054b707c975ad9a3a7604c38f07e19e641046da412c81cc4176fe15320de530",
+      "bytes": 5071331
+    },
+    "atlas.html": {
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088
+    },
+    "reader-index.js": {
+      "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+      "bytes": 5988098
+    }
+  },
+  "preview_files": {
+    "index.html": {
+      "bytes": 5193720,
+      "sha256": "c3632d404c3ad250a59e0ede1158556452ae2edbbcf689ce490b597c5f8c0985"
+    },
+    "reference.html": {
+      "bytes": 5071331,
+      "sha256": "1054b707c975ad9a3a7604c38f07e19e641046da412c81cc4176fe15320de530"
+    },
+    "atlas.html": {
+      "bytes": 11472088,
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492"
+    },
+    "reader-index.js": {
+      "bytes": 5988098,
+      "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca"
+    }
+  },
+  "integration": {
+    "catalog_runtime_key": "bookReader",
+    "suggested_release_relative_control": "controls/reader-book-math-notices.js",
+    "source_affected": "book runtime only"
+  }
+}

@@ -1,0 +1,3868 @@
+{
+  "schema": "qh-full-first-text-source-audit/1",
+  "authored_candidate": {
+    "path": "/private/tmp/qh-reader-abstract-20261118/coverage/CANDIDATE-8.md",
+    "sha256": "13acc7ba32869c6713b53703da54a48d8254452ed3364d487fd94ead2fa95c06",
+    "bytes": 49321
+  },
+  "prior_18_70_85_audit": {
+    "path": "/private/tmp/qh-reader-abstract-20261118/coverage/COVERAGE.json",
+    "sha256": "b0124853a97b72898cc5e0db3a498e5e08a34daf7959275f3b7d78385360f353",
+    "bytes": 145588
+  },
+  "historical_audit_scope": "Eighteen chapter summaries, seventy named statements including examples, reductions and eleven explicitly open problems, and eighty-five subject terms of the v23 source manifest. This is a claim to scoped reader-facing treatment of the full finite index, not a proof that every sentence in the book is reproduced or that all eleven open problems are solved. The separately linked harmonic-density theorem and selected later finite-precision results remain independently sourced.",
+  "counts": {
+    "chapters": 18,
+    "named_statements_or_open_problems": 70,
+    "named_statements_without_reader_treatment": 0,
+    "indexed_terms_or_paired_labels": 85,
+    "exact_term_strings": 84,
+    "paired_index_labels_explained_in_one_sentence": 1,
+    "retained_older_front_paragraphs": 33,
+    "total_paragraphs": 53
+  },
+  "chapters": [
+    {
+      "chapter": "ch01",
+      "title": "Boundary observables and reconstruction",
+      "original_summary": "Two coupled displacements give a model of a boundary measurement. Averaging over the hidden displacement preserves the measured fluctuations, including a correction missed by simply fixing the hidden displacement at its mean.",
+      "reason": "A conditional measurement is computed from an independently fixed energy and contraction; the finite coupled-displacement integral supplies the elementary derivation.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/01-physical-questions.md",
+      "source_sha256": "6bd33551c81f5e62693987794bdcfa1de20f44caa6e4038e05622b5ce3001c19",
+      "opening_locations": [
+        {
+          "key": "S1",
+          "position": 1,
+          "sha256": "479d7ac281b72b1970998699dff5e9d7806e369cfa0f982bdcaadfea060c71a9"
+        },
+        {
+          "key": "S5",
+          "position": 5,
+          "sha256": "ed3dfd31a0a271b22e20e097818c025803e8bed7ac178217ba67090a1decf57f"
+        },
+        {
+          "key": "S6",
+          "position": 6,
+          "sha256": "c2aa54e9cc5e2d688f7f35175fb56512e9c9cf7a224f697bbfca6bf8a3d1844e"
+        },
+        {
+          "key": "S13",
+          "position": 36,
+          "sha256": "65893b31e4992eb190a5cf1f686f917afa663b330807a2c3261d6ce9853da927"
+        },
+        {
+          "key": "mehler",
+          "position": 42,
+          "sha256": "d78a31249913eb5a5f4930d968892189b331f26128b469a5ed9fbb8e356713af"
+        }
+      ]
+    },
+    {
+      "chapter": "ch02",
+      "title": "Algebras, modules and combining systems",
+      "original_summary": "Knowing how a symmetry acts on one system leaves a question when two systems are put together. A coproduct specifies the joint action. In a finite example from the Ising model, the two sectors being joined must also match.",
+      "reason": "A joint symmetry acts through a coproduct. Matching sectors give a finite instance where naive tensoring loses the allowed intermediate state.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+      "source_sha256": "f5f193dfef39313f1d1f970f90cfa2022f08c2c017113773f552854d1a872b8b",
+      "opening_locations": [
+        {
+          "key": "coproduct",
+          "position": 24,
+          "sha256": "51171d3b17402522f347dd12861f816d145c7aecfa29918df5bcc011e6b619ee"
+        },
+        {
+          "key": "Ising",
+          "position": 25,
+          "sha256": "140c453437238587c494b75696c40a2e5232368ef0a8770608c1a1a556a895a9"
+        },
+        {
+          "key": "braids",
+          "position": 26,
+          "sha256": "4f8fb5e4eeaafca83ff3e7eb387ee23fdab7650fca555e4a9d7282c5ae6d81c8"
+        }
+      ]
+    },
+    {
+      "chapter": "ch03",
+      "title": "Local fields on a curve",
+      "original_summary": "The strength of the correlation between two currents grows as their positions approach. Expanding it in powers of the separation gives relations among the harmonics. A small contour around a charged insertion measures the charge.",
+      "reason": "The Laurent expansion and weighted residues connect local poles to modal observations and to measurement of a charged source.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/03-local-fields.md",
+      "source_sha256": "0284a40a4d79b8e8a3c42d67b7de65f48d8395d49f167e95168e8ecfa85ababc",
+      "opening_locations": [
+        {
+          "key": "S7",
+          "position": 7,
+          "sha256": "15b4d7cdbed3b0436133f0250fa2555ec95454c432c249d8baf363131887fd12"
+        },
+        {
+          "key": "S11",
+          "position": 22,
+          "sha256": "7e932fecf42bf1b8a4fc6810df04bef866efdf8d0c797213bbfea6593d3d3f3c"
+        },
+        {
+          "key": "S15",
+          "position": 41,
+          "sha256": "60e84997a5ec85f91898ce1422f81efbfee9f0597a108e6851d7890f3a16310a"
+        },
+        {
+          "key": "ordinary",
+          "position": 12,
+          "sha256": "b428e394cf34a18e275963b48b0fab15c2ad8b26dbf803758077ff2971a5e3ae"
+        },
+        {
+          "key": "mehler",
+          "position": 42,
+          "sha256": "d78a31249913eb5a5f4930d968892189b331f26128b469a5ed9fbb8e356713af"
+        }
+      ]
+    },
+    {
+      "chapter": "ch04",
+      "title": "Factorization and collision geometry",
+      "original_summary": "What data specify a product when several insertion points meet? Four charged lines have the same measured full turns and local dimensions for a whole family of collision rules. Additional symmetry can narrow the choice.",
+      "reason": "Consecutive cuts, attachments on the labelled collision slice, and sector-sensitive irregular continuation are distinguished.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/04-factorization.md",
+      "source_sha256": "35bb0d0ad3dd2a8bbdeb406fb69efa6408b2f7dc5a24d4e182767f23dd324155",
+      "opening_locations": [
+        {
+          "key": "S9",
+          "position": 9,
+          "sha256": "ffdb3c7b0a59726186342511ca08bc22359aaa455d2927229d7afaab94b07a3b"
+        },
+        {
+          "key": "S10",
+          "position": 10,
+          "sha256": "92f09aa39a4b258d33810da824d1edb909ae530af6d5866c1de1cd9f27d261b0"
+        },
+        {
+          "key": "attach",
+          "position": 15,
+          "sha256": "afb45aaefbdf11353cd1baeee56d7f3eba1412535f34b8a9c2765e82d3ecb364"
+        },
+        {
+          "key": "ordinary",
+          "position": 12,
+          "sha256": "b428e394cf34a18e275963b48b0fab15c2ad8b26dbf803758077ff2971a5e3ae"
+        },
+        {
+          "key": "twists",
+          "position": 16,
+          "sha256": "c8f63f1879a13b3635f6aee35b0a6b664972b85b660e72810eb83d000f1550e5"
+        }
+      ]
+    },
+    {
+      "chapter": "ch05",
+      "title": "Bar constructions and coherent operations",
+      "original_summary": "A product turns a word into a shorter word. Recording all the ways to shorten it keeps track of relations among products. The bar and cobar constructions show when this record suffices to reconstruct the algebra.",
+      "reason": "Coherent associativity, support, connected duality and the all-arity integrated mode algebra appear as separate results.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+      "source_sha256": "78c1a134c6825ee6c241c22788059f88953ee814f078f2d6b1ea52cfb16ed8be",
+      "opening_locations": [
+        {
+          "key": "S8",
+          "position": 8,
+          "sha256": "0ca2274f9a092ca50b91cca1938329c0f0e0d80ba06df6d61307661d2f8d5638"
+        },
+        {
+          "key": "S9",
+          "position": 9,
+          "sha256": "ffdb3c7b0a59726186342511ca08bc22359aaa455d2927229d7afaab94b07a3b"
+        },
+        {
+          "key": "S10",
+          "position": 10,
+          "sha256": "92f09aa39a4b258d33810da824d1edb909ae530af6d5866c1de1cd9f27d261b0"
+        },
+        {
+          "key": "modes",
+          "position": 17,
+          "sha256": "4ffd71c4d5f936287537300f6ae7fa6729142e4b47c376bc60fd6d63e68ace07"
+        },
+        {
+          "key": "W4",
+          "position": 13,
+          "sha256": "58903b62b747af20917a89e2f2b15e62d1663eb82bb317fbb9c29bc094c53c56"
+        },
+        {
+          "key": "words",
+          "position": 11,
+          "sha256": "e0195ea0b87eef111dce1824b80b789467c442295a560634bdf272fad521b084"
+        },
+        {
+          "key": "coefficients",
+          "position": 18,
+          "sha256": "cd3489b57456b44c3a5b1e6a9d62c5d81ef4f99270491c4782e6e1a3bb0a55b0"
+        }
+      ]
+    },
+    {
+      "chapter": "ch06",
+      "title": "Derived adjunctions and induction",
+      "original_summary": "An algebraic construction carries a module to another category and back. For current algebras at certain levels, a finite filtration proves that the round trip recovers the original module under specified realization hypotheses. Identifying that construction with a physical interface is a further question.",
+      "reason": "The actual unit, generated target and sharp root-length mechanism are given under smooth realization conditions.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/06-duality-and-induction.md",
+      "source_sha256": "d8cb106a5ddbfc38c218fbee7cbed3bb90fd369bad035215153867fe0bd35f91",
+      "opening_locations": [
+        {
+          "key": "induct",
+          "position": 27,
+          "sha256": "b8850baa29db030adece1f324882f66a0ad61fa9b7c64f61fafaeda7252219a8"
+        },
+        {
+          "key": "smooth",
+          "position": 28,
+          "sha256": "af5c1dca0a8d558061f38a3dd1525d13f5f34275ab0bfa2fdfbac7fb5f886fcd"
+        }
+      ]
+    },
+    {
+      "chapter": "ch07",
+      "title": "Actions and derived centres",
+      "original_summary": "A field placed inside a region can act on measurements at the boundary. Acting on the vacuum alone can miss an action that is visible on an excited state. A centre describes operations compatible with all the actions being tested.",
+      "reason": "A two-colour family admits full recognition by vacuum evaluation; a separate free half-space construction tests physical observability.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/07-actions-and-centres.md",
+      "source_sha256": "991eaf50d97a34169c9c62732206b437f6314a939c69634740dca943418d9490",
+      "opening_locations": [
+        {
+          "key": "centre",
+          "position": 33,
+          "sha256": "ee731a6b37f3e26abf8afe28bd9f5aeb7ef1567c509fc5a55e14b7f638a2f332"
+        },
+        {
+          "key": "S13",
+          "position": 36,
+          "sha256": "65893b31e4992eb190a5cf1f686f917afa663b330807a2c3261d6ce9853da927"
+        },
+        {
+          "key": "mixed",
+          "position": 37,
+          "sha256": "8f86152ea298c4cb2c957a66ebe1dffdc5e7e5bab1be8cb1bc8996f37adbb441"
+        },
+        {
+          "key": "unitization",
+          "position": 34,
+          "sha256": "713d50086815a1130d3cf4cd663597748184688d823af361b098796aa5fd470a"
+        },
+        {
+          "key": "exterior",
+          "position": 35,
+          "sha256": "0c553cf5f7227980b24040e8fd55caa2ebe376d77dd9b79ee5b3b1166eb6f164"
+        },
+        {
+          "key": "poles",
+          "position": 38,
+          "sha256": "daae2982cbfdf6d75402c76323129be499e22b42ee248158a99585e980db8d8b"
+        }
+      ]
+    },
+    {
+      "chapter": "ch08",
+      "title": "Tensor products, support and completion",
+      "original_summary": "A series of vectors need not be a finite sum of vectors times scalar series. This distinction decides whether a spectator can be kept independent when the first two fields are combined.",
+      "reason": "The third-state series explains why two separately completed factors have a smaller domain, and why one must compare true intermediate spaces.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/08-completions.md",
+      "source_sha256": "8ad41e4ab4cf4f093c574e6259ef3119169787e617c026bfaf8f2cd537ad6b6d",
+      "opening_locations": [
+        {
+          "key": "mixed",
+          "position": 37,
+          "sha256": "8f86152ea298c4cb2c957a66ebe1dffdc5e7e5bab1be8cb1bc8996f37adbb441"
+        },
+        {
+          "key": "induct",
+          "position": 27,
+          "sha256": "b8850baa29db030adece1f324882f66a0ad61fa9b7c64f61fafaeda7252219a8"
+        },
+        {
+          "key": "poles",
+          "position": 38,
+          "sha256": "daae2982cbfdf6d75402c76323129be499e22b42ee248158a99585e980db8d8b"
+        }
+      ]
+    },
+    {
+      "chapter": "ch09",
+      "title": "Ordered boundary operations and mixed theories",
+      "original_summary": "Move two boundary insertions toward the same height while varying their positions along a surface. A contribution concentrated where the positions meet can survive this limit and enter the next operation.",
+      "reason": "A height-ordered pole carries a wall term whose differential cancels the simultaneous contact. The chapter retains the many-probe and compact refinements.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+      "source_sha256": "a03a957c41ca69399bcee1357ccd8fb956963fce50bf9608e859e4f422d44f5e",
+      "opening_locations": [
+        {
+          "key": "mixed",
+          "position": 37,
+          "sha256": "8f86152ea298c4cb2c957a66ebe1dffdc5e7e5bab1be8cb1bc8996f37adbb441"
+        },
+        {
+          "key": "ward",
+          "position": 39,
+          "sha256": "3516b55c7c66363f2c895397f0139c13741c20dd6debc45f5643556fd51229a2"
+        }
+      ]
+    },
+    {
+      "chapter": "ch10",
+      "title": "Analytic sewing and conformal blocks",
+      "original_summary": "Cutting a surface decomposes a correlation into contributions from intermediate states. Sew it back in a different order. The two answers can be compared only where the sums over all intermediate states are defined.",
+      "reason": "The positive Virasoro sewing and its genuine input-domain counterexample are distinct from the exactly solvable scalar cylinder.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/10-analytic-sewing.md",
+      "source_sha256": "668bd1c944f76f2af530fad6af83c2f8024ed15f98d564f97463bd9ee7c914eb",
+      "opening_locations": [
+        {
+          "key": "sew",
+          "position": 44,
+          "sha256": "3a374f566ee3c3c8598c36cb306827cd164012e57d2ef1865e2ab1e568a4a47c"
+        },
+        {
+          "key": "S15",
+          "position": 41,
+          "sha256": "60e84997a5ec85f91898ce1422f81efbfee9f0597a108e6851d7890f3a16310a"
+        },
+        {
+          "key": "graph",
+          "position": 45,
+          "sha256": "aa9dcd4ff10a507f3d8bfd075a14822ffe2d525362d447e07b6e081f3c170bbf"
+        }
+      ]
+    },
+    {
+      "chapter": "ch11",
+      "title": "States, determinant lines and quantum fields",
+      "original_summary": "Two states give the same readings on either harmonic alone. A measurement involving both harmonics distinguishes them. A free disk supplies an independent calculation, and cutting a more general filling raises a further normalization problem.",
+      "reason": "The neutral disk tomography, charged independent preparation, finite complex amplitude and quadratic continuum result all retain their distinct evidence.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/11-states-and-lines.md",
+      "source_sha256": "10e44ebca573505d0e69e5d0cd44a3420c748848712c2a398f534833557fb179",
+      "opening_locations": [
+        {
+          "key": "S6",
+          "position": 6,
+          "sha256": "c2aa54e9cc5e2d688f7f35175fb56512e9c9cf7a224f697bbfca6bf8a3d1844e"
+        },
+        {
+          "key": "S14",
+          "position": 40,
+          "sha256": "dd24557e4e499fc9bfa4f400bd598f11bcd1a01ffba92aea783ef27af5e169ef"
+        },
+        {
+          "key": "S15",
+          "position": 41,
+          "sha256": "60e84997a5ec85f91898ce1422f81efbfee9f0597a108e6851d7890f3a16310a"
+        },
+        {
+          "key": "S16",
+          "position": 43,
+          "sha256": "32aeb860356237dbe1b2946e67bb1c5313cb11f5c174b097646cc363637eca1a"
+        },
+        {
+          "key": "line",
+          "position": 52,
+          "sha256": "0a5bd8ecf064e763f46d9711a46a64e692eae852c423973a4579e873003c1ff7"
+        },
+        {
+          "key": "S17",
+          "position": 53,
+          "sha256": "fecc3af789b6fad3251a667161e17b86c6c9c74c687c243cbd262a2751ead8ee"
+        },
+        {
+          "key": "mehler",
+          "position": 42,
+          "sha256": "d78a31249913eb5a5f4930d968892189b331f26128b469a5ed9fbb8e356713af"
+        }
+      ]
+    },
+    {
+      "chapter": "ch12",
+      "title": "Quantum groups and nonlinear chiral algebras",
+      "original_summary": "A symmetry acting on two systems needs a rule for combining its actions. For fields that depend on position, this rule must also respect their exchange. Explicit examples show how many of the field operations the resulting algebra captures.",
+      "reason": "A level-changing spectral coproduct, a finite braid algebra, the failed next-order current lift and a computed exceptional quartic exemplify separate results.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+      "source_sha256": "76a299118a24beed77192fc8381249a43fc3a0eec5093cc6ad9972eaa39e6380",
+      "opening_locations": [
+        {
+          "key": "coproduct",
+          "position": 24,
+          "sha256": "51171d3b17402522f347dd12861f816d145c7aecfa29918df5bcc011e6b619ee"
+        },
+        {
+          "key": "Ising",
+          "position": 25,
+          "sha256": "140c453437238587c494b75696c40a2e5232368ef0a8770608c1a1a556a895a9"
+        },
+        {
+          "key": "matrix",
+          "position": 19,
+          "sha256": "a57260ba4649893175f110c99cc0b7b93358cc85c9dc3150ddc18d4cb717d307"
+        },
+        {
+          "key": "W4",
+          "position": 13,
+          "sha256": "58903b62b747af20917a89e2f2b15e62d1663eb82bb317fbb9c29bc094c53c56"
+        },
+        {
+          "key": "braids",
+          "position": 26,
+          "sha256": "4f8fb5e4eeaafca83ff3e7eb387ee23fdab7650fca555e4a9d7282c5ae6d81c8"
+        },
+        {
+          "key": "matrixfields",
+          "position": 20,
+          "sha256": "d18e35ef455f68b717576d10e56f051eb0ba3556c83f3f1191eb82ca1385700a"
+        },
+        {
+          "key": "torsion",
+          "position": 14,
+          "sha256": "2d51778dd948139a89af60152d6224332b7ef7f59ee2fb9ae857d85712cd1e78"
+        }
+      ]
+    },
+    {
+      "chapter": "ch13",
+      "title": "Geometric reconstruction and rational examples",
+      "original_summary": "Which geometric data recover an algebra of fields? Identifying the vacuum for separated points with its limiting sections at coincident points recovers the original chiral bracket in a specified geometric construction. The category of representations alone can be shared by different algebras.",
+      "reason": "The ordinary geometric round trip and the weaker categorical symmetry reconstruction use different actual coefficients.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+      "source_sha256": "916c6e85dca820fc1ab50e0bc86828604d371a001a1f9049de62a14a63b85ad6",
+      "opening_locations": [
+        {
+          "key": "S11",
+          "position": 22,
+          "sha256": "7e932fecf42bf1b8a4fc6810df04bef866efdf8d0c797213bbfea6593d3d3f3c"
+        },
+        {
+          "key": "Ising",
+          "position": 25,
+          "sha256": "140c453437238587c494b75696c40a2e5232368ef0a8770608c1a1a556a895a9"
+        },
+        {
+          "key": "modes",
+          "position": 17,
+          "sha256": "4ffd71c4d5f936287537300f6ae7fa6729142e4b47c376bc60fd6d63e68ace07"
+        },
+        {
+          "key": "coefficients",
+          "position": 18,
+          "sha256": "cd3489b57456b44c3a5b1e6a9d62c5d81ef4f99270491c4782e6e1a3bb0a55b0"
+        },
+        {
+          "key": "ordinary",
+          "position": 12,
+          "sha256": "b428e394cf34a18e275963b48b0fab15c2ad8b26dbf803758077ff2971a5e3ae"
+        }
+      ]
+    },
+    {
+      "chapter": "ch14",
+      "title": "Branes and open–closed operations",
+      "original_summary": "A line can end on a defect, and two endpoints can be joined. A calculation with particle states shows that a flux operation survives the joining even when ordinary multiplication forgets it.",
+      "reason": "The joined two-ended particle algebra keeps homological flux and an independent brane field construction has a rigorously proper image at every rank.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/14-branes.md",
+      "source_sha256": "d64bcfc44a07e055e2425150c8ca54568f889799dd00f148603e71c82031f846",
+      "opening_locations": [
+        {
+          "key": "M2",
+          "position": 29,
+          "sha256": "f8c6e74e69d9346a4e7102a7d7fbbef3d626ecebf243d43d2920b5c5d8cd7d4c"
+        },
+        {
+          "key": "D3",
+          "position": 31,
+          "sha256": "8004dbc97a4710a6b20c704902a0651d02c0f2470c6f598fb278880a0452d48e"
+        },
+        {
+          "key": "fluxsquare",
+          "position": 30,
+          "sha256": "bc01755898edee745ab5b961f83598e0b131c605c3dfaf9308cce193ef4db7d0"
+        },
+        {
+          "key": "BRST",
+          "position": 32,
+          "sha256": "1c3de0e6ea5c8a305e2814b746ed5dc2fe35c53dae56435b3ccafcc0dc227096"
+        }
+      ]
+    },
+    {
+      "chapter": "ch15",
+      "title": "Hall geometry and compact states",
+      "original_summary": "Count the ways one object can be built as an extension of two others. Keeping the spaces of choices gives a multiplication. For states from a K3 surface, even all the specified traces can miss a nonzero three-state measurement.",
+      "reason": "Generated Hall multiplication is independently realized in a specified surface and graph example. The compact relative cubic separates states after a trace loses them.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/15-hall-and-compact.md",
+      "source_sha256": "3dcb07976209f23c71e9ea91570273a680072e662102c833958d9ebd675a2d34",
+      "opening_locations": [
+        {
+          "key": "Hall",
+          "position": 46,
+          "sha256": "bbe92cfd1fe00ab08dfa095f9633a8d3b863b304281ede3488e23caea16ba2fa"
+        },
+        {
+          "key": "K3",
+          "position": 48,
+          "sha256": "2924d5fbb9dec94e263f304fb31fbad028369fd2b364ef6ed956e03c54c67163"
+        },
+        {
+          "key": "jets",
+          "position": 47,
+          "sha256": "9ba9da13dc908c7c078477b0acd86c1361e3df78e75013ef6fd38e8e8abbfe5a"
+        },
+        {
+          "key": "ideal",
+          "position": 49,
+          "sha256": "1559409fd827a99b6a4d4c73fbb2ba472100be25e66b7bf0699c95b8fa23d456"
+        }
+      ]
+    },
+    {
+      "chapter": "ch16",
+      "title": "Arithmetic traces and positivity",
+      "original_summary": "The Weil functional assigns a number to a test function using primes and the real place. Moving two copies of a single test farther apart gives a sign question equivalent to the Riemann hypothesis.",
+      "reason": "Geometric trace and a positive Hilbert representation compare exactly. The fixed-pulse family states the still open all-test positivity boundary.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/16-arithmetic.md",
+      "source_sha256": "b0ff8cc6dc92d421f8bba7655a7ba00852efa7a8f2d0faf6f45b761e2c0c3f05",
+      "opening_locations": [
+        {
+          "key": "Weil",
+          "position": 50,
+          "sha256": "62105b8bf04fe3cf16e5d4495fef0212a194a834ac187823a07bdb7ea0583cbd"
+        },
+        {
+          "key": "arithmetic",
+          "position": 51,
+          "sha256": "30e2a5c1d1cfdbc77564ca882d5fe48ff96d279709823e29e2f9436d8d075c92"
+        }
+      ]
+    },
+    {
+      "chapter": "ch17",
+      "title": "From boundary operations to bulk reconstruction",
+      "original_summary": "An interface transports observables or states between two descriptions. A filling of the boundary prepares a state. Gluing two filled regions pairs their boundary states. The Gaussian example identifies both a transported operation and a state by measurements made on each side.",
+      "reason": "The actual module adjunction, action map, independent preparation and absolute cap are successive obligations. Algebraic kernels in a given precision have their own recipient.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+      "source_sha256": "ab61eedf7e3ce9daa0af2f35a83062e9d68f2b05720c1730c1321386d8d41611",
+      "opening_locations": [
+        {
+          "key": "induct",
+          "position": 27,
+          "sha256": "b8850baa29db030adece1f324882f66a0ad61fa9b7c64f61fafaeda7252219a8"
+        },
+        {
+          "key": "centre",
+          "position": 33,
+          "sha256": "ee731a6b37f3e26abf8afe28bd9f5aeb7ef1567c509fc5a55e14b7f638a2f332"
+        },
+        {
+          "key": "S13",
+          "position": 36,
+          "sha256": "65893b31e4992eb190a5cf1f686f917afa663b330807a2c3261d6ce9853da927"
+        },
+        {
+          "key": "S14",
+          "position": 40,
+          "sha256": "dd24557e4e499fc9bfa4f400bd598f11bcd1a01ffba92aea783ef27af5e169ef"
+        },
+        {
+          "key": "S15",
+          "position": 41,
+          "sha256": "60e84997a5ec85f91898ce1422f81efbfee9f0597a108e6851d7890f3a16310a"
+        },
+        {
+          "key": "S16",
+          "position": 43,
+          "sha256": "32aeb860356237dbe1b2946e67bb1c5313cb11f5c174b097646cc363637eca1a"
+        },
+        {
+          "key": "S17",
+          "position": 53,
+          "sha256": "fecc3af789b6fad3251a667161e17b86c6c9c74c687c243cbd262a2751ead8ee"
+        },
+        {
+          "key": "critical",
+          "position": 21,
+          "sha256": "d08907e0de57a6577c8c139d18b8eaa88374c294a88f5fa61bf8091ee37e2ae5"
+        },
+        {
+          "key": "mehler",
+          "position": 42,
+          "sha256": "d78a31249913eb5a5f4930d968892189b331f26128b469a5ed9fbb8e356713af"
+        }
+      ]
+    },
+    {
+      "chapter": "ch18",
+      "title": "The strongest remaining questions",
+      "original_summary": "A test that distinguished the free examples can fail in an interacting theory. The remaining problems specify which collision, composition, state or arithmetic measurement would settle a proposed reconstruction.",
+      "reason": "The frontier consists of distinct operation comparisons at collisions, on physical interfaces, at independent completed domains and on a genuine geometric cut; arithmetic positivity is a separate open theorem.",
+      "source_file": "/tmp/qh-reader-753-v23-20261118/frozen/workspace/content/quantum-holography-status/chapters/18-open-problems.md",
+      "source_sha256": "2d852ae29c825da85314486ed84cdd528ffc2d944783b19d8f2729eb05a72097",
+      "opening_locations": [
+        {
+          "key": "attach",
+          "position": 15,
+          "sha256": "afb45aaefbdf11353cd1baeee56d7f3eba1412535f34b8a9c2765e82d3ecb364"
+        },
+        {
+          "key": "modes",
+          "position": 17,
+          "sha256": "4ffd71c4d5f936287537300f6ae7fa6729142e4b47c376bc60fd6d63e68ace07"
+        },
+        {
+          "key": "induct",
+          "position": 27,
+          "sha256": "b8850baa29db030adece1f324882f66a0ad61fa9b7c64f61fafaeda7252219a8"
+        },
+        {
+          "key": "centre",
+          "position": 33,
+          "sha256": "ee731a6b37f3e26abf8afe28bd9f5aeb7ef1567c509fc5a55e14b7f638a2f332"
+        },
+        {
+          "key": "mixed",
+          "position": 37,
+          "sha256": "8f86152ea298c4cb2c957a66ebe1dffdc5e7e5bab1be8cb1bc8996f37adbb441"
+        },
+        {
+          "key": "sew",
+          "position": 44,
+          "sha256": "3a374f566ee3c3c8598c36cb306827cd164012e57d2ef1865e2ab1e568a4a47c"
+        },
+        {
+          "key": "M2",
+          "position": 29,
+          "sha256": "f8c6e74e69d9346a4e7102a7d7fbbef3d626ecebf243d43d2920b5c5d8cd7d4c"
+        },
+        {
+          "key": "K3",
+          "position": 48,
+          "sha256": "2924d5fbb9dec94e263f304fb31fbad028369fd2b364ef6ed956e03c54c67163"
+        },
+        {
+          "key": "Weil",
+          "position": 50,
+          "sha256": "62105b8bf04fe3cf16e5d4495fef0212a194a834ac187823a07bdb7ea0583cbd"
+        },
+        {
+          "key": "line",
+          "position": 52,
+          "sha256": "0a5bd8ecf064e763f46d9711a46a64e692eae852c423973a4579e873003c1ff7"
+        },
+        {
+          "key": "S17",
+          "position": 53,
+          "sha256": "fecc3af789b6fad3251a667161e17b86c6c9c74c687c243cbd262a2751ead8ee"
+        },
+        {
+          "key": "smooth",
+          "position": 28,
+          "sha256": "af5c1dca0a8d558061f38a3dd1525d13f5f34275ab0bfa2fdfbac7fb5f886fcd"
+        },
+        {
+          "key": "matrixfields",
+          "position": 20,
+          "sha256": "d18e35ef455f68b717576d10e56f051eb0ba3556c83f3f1191eb82ca1385700a"
+        },
+        {
+          "key": "unitization",
+          "position": 34,
+          "sha256": "713d50086815a1130d3cf4cd663597748184688d823af361b098796aa5fd470a"
+        },
+        {
+          "key": "poles",
+          "position": 38,
+          "sha256": "daae2982cbfdf6d75402c76323129be499e22b42ee248158a99585e980db8d8b"
+        },
+        {
+          "key": "ward",
+          "position": 39,
+          "sha256": "3516b55c7c66363f2c895397f0139c13741c20dd6debc45f5643556fd51229a2"
+        },
+        {
+          "key": "graph",
+          "position": 45,
+          "sha256": "aa9dcd4ff10a507f3d8bfd075a14822ffe2d525362d447e07b6e081f3c170bbf"
+        },
+        {
+          "key": "jets",
+          "position": 47,
+          "sha256": "9ba9da13dc908c7c078477b0acd86c1361e3df78e75013ef6fd38e8e8abbfe5a"
+        },
+        {
+          "key": "arithmetic",
+          "position": 51,
+          "sha256": "30e2a5c1d1cfdbc77564ca882d5fe48ff96d279709823e29e2f9436d8d075c92"
+        }
+      ]
+    }
+  ],
+  "named_statements": [
+    {
+      "id": "ch02-ising-fibre",
+      "chapter": "ch02",
+      "title": "Ising fusion over the algebra of sectors",
+      "source_status": "Example",
+      "chapter_anchor": "ch02-ising-matching-ends",
+      "source_range": {
+        "start": 12442,
+        "end": 15081
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Intermediate-label matching and weak Hopf reconstruction, with all-spin intertwiners.",
+      "subject_appears_in": [
+        {
+          "key": "Ising",
+          "position": 25,
+          "sha256": "140c453437238587c494b75696c40a2e5232368ef0a8770608c1a1a556a895a9"
+        },
+        {
+          "key": "braids",
+          "position": 26,
+          "sha256": "4f8fb5e4eeaafca83ff3e7eb387ee23fdab7650fca555e4a9d7282c5ae6d81c8"
+        }
+      ]
+    },
+    {
+      "id": "ch04-proposition-ternary-diagonal-operations",
+      "chapter": "ch04",
+      "title": "Proposition (ternary diagonal operations)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch04-three-residues",
+      "source_range": {
+        "start": 8561,
+        "end": 8890
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The fixed fully localized, unshifted two-parenthesization spans intersect trivially and strict ternary products vanish.",
+      "subject_appears_in": [
+        {
+          "key": "ordinary",
+          "position": 12,
+          "sha256": "b428e394cf34a18e275963b48b0fab15c2ad8b26dbf803758077ff2971a5e3ae"
+        }
+      ]
+    },
+    {
+      "id": "ch04-theorem-classical-factorization-and-chiral-algebras",
+      "chapter": "ch04",
+      "title": "Theorem: classical factorization and chiral algebras",
+      "source_status": "Theorem",
+      "chapter_anchor": "factorization-algebra",
+      "source_range": {
+        "start": 13284,
+        "end": 13637
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Classical unital factorization and chiral bracket are equivalent, with the actual realized vacuum giving a reconstruction.",
+      "subject_appears_in": [
+        {
+          "key": "ordinary",
+          "position": 12,
+          "sha256": "b428e394cf34a18e275963b48b0fab15c2ad8b26dbf803758077ff2971a5e3ae"
+        },
+        {
+          "key": "S11",
+          "position": 22,
+          "sha256": "7e932fecf42bf1b8a4fc6810df04bef866efdf8d0c797213bbfea6593d3d3f3c"
+        }
+      ]
+    },
+    {
+      "id": "ch04-theorem-simultaneous-cluster-twists",
+      "chapter": "ch04",
+      "title": "Theorem (simultaneous cluster twists)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch04-normal-link",
+      "source_range": {
+        "start": 17535,
+        "end": 18186
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Nearby classes exist exactly when simultaneous full twists have a nonzero common generalized fixed vector.",
+      "subject_appears_in": [
+        {
+          "key": "twists",
+          "position": 16,
+          "sha256": "c8f63f1879a13b3635f6aee35b0a6b664972b85b660e72810eb83d000f1550e5"
+        }
+      ]
+    },
+    {
+      "id": "ch04-four-ray-attachments",
+      "chapter": "ch04",
+      "title": "A projective line of four-ray attachments",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch04-gaussian-collision",
+      "source_range": {
+        "start": 29343,
+        "end": 31352
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "A P¹ family with identical local dimensions, selected to two and then one under different extra hypotheses.",
+      "subject_appears_in": [
+        {
+          "key": "attach",
+          "position": 15,
+          "sha256": "afb45aaefbdf11353cd1baeee56d7f3eba1412535f34b8a9c2765e82d3ecb364"
+        }
+      ]
+    },
+    {
+      "id": "ch05-theorem-connected-consecutive-cut-duality",
+      "chapter": "ch05",
+      "title": "Theorem: connected consecutive-cut duality",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch05-ordered-cuts-give-a-finite-geometric-bar-construction",
+      "source_range": {
+        "start": 15732,
+        "end": 16134
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The connected ordered bar and cobar are inverse including maps and homotopies.",
+      "subject_appears_in": [
+        {
+          "key": "S10",
+          "position": 10,
+          "sha256": "92f09aa39a4b258d33810da824d1edb909ae530af6d5866c1de1cd9f27d261b0"
+        },
+        {
+          "key": "words",
+          "position": 11,
+          "sha256": "e0195ea0b87eef111dce1824b80b789467c442295a560634bdf272fad521b084"
+        }
+      ]
+    },
+    {
+      "id": "ch05-support-theorem",
+      "chapter": "ch05",
+      "title": "Support theorem",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch05-the-support-remembers-which-cuts-were-allowed",
+      "source_range": {
+        "start": 19092,
+        "end": 19752
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Positive coefficients are supported where cuts fail; the three-field locus is the outer diagonal.",
+      "subject_appears_in": [
+        {
+          "key": "S10",
+          "position": 10,
+          "sha256": "92f09aa39a4b258d33810da824d1edb909ae530af6d5866c1de1cd9f27d261b0"
+        }
+      ]
+    },
+    {
+      "id": "ch05-theorem-the-algebraic-collision-integral",
+      "chapter": "ch05",
+      "title": "Theorem (the algebraic collision integral)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch05-rational-exchange-diagram",
+      "source_range": {
+        "start": 29898,
+        "end": 30337
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "All-arity algebraic collision integral gives the entire multipoint mode quotient in degree zero.",
+      "subject_appears_in": [
+        {
+          "key": "modes",
+          "position": 17,
+          "sha256": "4ffd71c4d5f936287537300f6ae7fa6729142e4b47c376bc60fd6d63e68ace07"
+        },
+        {
+          "key": "coefficients",
+          "position": 18,
+          "sha256": "cd3489b57456b44c3a5b1e6a9d62c5d81ef4f99270491c4782e6e1a3bb0a55b0"
+        }
+      ]
+    },
+    {
+      "id": "ch06-conditional-unit-theorem-for-inflated-coefficients",
+      "chapter": "ch06",
+      "title": "Conditional unit theorem for inflated coefficients",
+      "source_status": "Conditional result",
+      "chapter_anchor": "ch06-cofree-coefficients-give-the-first-unit-theorem",
+      "source_range": {
+        "start": 15316,
+        "end": 15753
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The specified actual unit holds first on unbounded quotient-inflated complexes, even at critical level.",
+      "subject_appears_in": [
+        {
+          "key": "induct",
+          "position": 27,
+          "sha256": "b8850baa29db030adece1f324882f66a0ad61fa9b7c64f61fafaeda7252219a8"
+        },
+        {
+          "key": "smooth",
+          "position": 28,
+          "sha256": "af5c1dca0a8d558061f38a3dd1525d13f5f34275ab0bfa2fdfbac7fb5f886fcd"
+        }
+      ]
+    },
+    {
+      "id": "ch06-finite-descent-theorem",
+      "chapter": "ch06",
+      "title": "Finite descent theorem",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch06-finite-descent-from-a-quotient",
+      "source_range": {
+        "start": 17959,
+        "end": 18182
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Finite descent uses a split augmentation and K-flat presentation with derived tensor nilpotence, extending this unit to all coefficients.",
+      "subject_appears_in": [
+        {
+          "key": "smooth",
+          "position": 28,
+          "sha256": "af5c1dca0a8d558061f38a3dd1525d13f5f34275ab0bfa2fdfbac7fb5f886fcd"
+        }
+      ]
+    },
+    {
+      "id": "ch06-theorem-sharp-tensor-exponent",
+      "chapter": "ch06",
+      "title": "Theorem (sharp tensor exponent)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch06-four-factors-suffice-for-nonrational-mathfraksl3",
+      "source_range": {
+        "start": 20596,
+        "end": 20993
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "At s outside Q, D positive roots give the sharp bound. Three survive and four vanish for traceless three-by-three matrices.",
+      "subject_appears_in": [
+        {
+          "key": "induct",
+          "position": 27,
+          "sha256": "b8850baa29db030adece1f324882f66a0ad61fa9b7c64f61fafaeda7252219a8"
+        }
+      ]
+    },
+    {
+      "id": "ch06-conditional-full-unit-theorem",
+      "chapter": "ch06",
+      "title": "Conditional full-unit theorem",
+      "source_status": "Conditional result",
+      "chapter_anchor": "ch06-four-factors-suffice-for-nonrational-mathfraksl3",
+      "source_range": {
+        "start": 26049,
+        "end": 26993
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "All unbounded source complexes are recovered under the stated smooth enhanced realization, with image precisely Loc(W).",
+      "subject_appears_in": [
+        {
+          "key": "induct",
+          "position": 27,
+          "sha256": "b8850baa29db030adece1f324882f66a0ad61fa9b7c64f61fafaeda7252219a8"
+        }
+      ]
+    },
+    {
+      "id": "ch06-common-current-tail",
+      "chapter": "ch06",
+      "title": "Smooth completeness from a common current tail",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch06-common-tail-completeness",
+      "source_range": {
+        "start": 46813,
+        "end": 48014
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Smooth completion on energy-graded positive sl₂ currents with a single tail annihilating all sufficiently low cohomology.",
+      "subject_appears_in": [
+        {
+          "key": "smooth",
+          "position": 28,
+          "sha256": "af5c1dca0a8d558061f38a3dd1525d13f5f34275ab0bfa2fdfbac7fb5f886fcd"
+        }
+      ]
+    },
+    {
+      "id": "ch07-recognition-theorem",
+      "chapter": "ch07",
+      "title": "Recognition theorem",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch07-recognition-on-chevalley-coalgebras",
+      "source_range": {
+        "start": 12476,
+        "end": 13066
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "For a coherently pointed unital Chevalley source on the affine line, vacuum and multiplication give inverse full character/action spaces for the two-colour target.",
+      "subject_appears_in": [
+        {
+          "key": "centre",
+          "position": 33,
+          "sha256": "ee731a6b37f3e26abf8afe28bd9f5aeb7ef1567c509fc5a55e14b7f638a2f332"
+        }
+      ]
+    },
+    {
+      "id": "ch07-unitization-theorem",
+      "chapter": "ch07",
+      "title": "Unitization theorem",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch07-recognition-on-chevalley-coalgebras",
+      "source_range": {
+        "start": 15156,
+        "end": 15881
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Unitization preserves full fibres under a strict closed horizontal representative; a distinct commutative-connection family also covers arbitrary markings.",
+      "subject_appears_in": [
+        {
+          "key": "unitization",
+          "position": 34,
+          "sha256": "713d50086815a1130d3cf4cd663597748184688d823af361b098796aa5fd470a"
+        }
+      ]
+    },
+    {
+      "id": "ch07-binary-exterior-source-theorem",
+      "chapter": "ch07",
+      "title": "Binary exterior-source theorem",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch07-ordinary-exterior-sources-and-the-map-they-compute",
+      "source_range": {
+        "start": 21276,
+        "end": 21616
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The six-cell algebra of two exterior generators computes the derived maps into every ordinary dg vertex target.",
+      "subject_appears_in": [
+        {
+          "key": "exterior",
+          "position": 35,
+          "sha256": "0c553cf5f7227980b24040e8fd55caa2ebe376d77dd9b79ee5b3b1166eb6f164"
+        }
+      ]
+    },
+    {
+      "id": "ch07-theorem-finite-exterior-sources",
+      "chapter": "ch07",
+      "title": "Theorem (finite exterior sources)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch07-finite-exterior-sources",
+      "source_range": {
+        "start": 24415,
+        "end": 25726
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Two entries per nonempty subset give all finite exterior source maps, with scalar components and loops counted.",
+      "subject_appears_in": [
+        {
+          "key": "exterior",
+          "position": 35,
+          "sha256": "0c553cf5f7227980b24040e8fd55caa2ebe376d77dd9b79ee5b3b1166eb6f164"
+        }
+      ]
+    },
+    {
+      "id": "ch07-heisenberg-automorphism-fibre",
+      "chapter": "ch07",
+      "title": "The automorphism test for a genuine Heisenberg action",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch07-genuine-heisenberg-fibre",
+      "source_range": {
+        "start": 29209,
+        "end": 30285
+      },
+      "top_text_disposition": "source reduction to named open conditions",
+      "top_treatment": "The genuine pointed Heisenberg comparison holds iff the zero sector is connected and the specified automorphism space contractible. Both remain open.",
+      "subject_appears_in": [
+        {
+          "key": "exterior",
+          "position": 35,
+          "sha256": "0c553cf5f7227980b24040e8fd55caa2ebe376d77dd9b79ee5b3b1166eb6f164"
+        }
+      ]
+    },
+    {
+      "id": "ch07-strict-three-spectator-theorem",
+      "chapter": "ch07",
+      "title": "Strict three-spectator theorem",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch07-residues-with-spectators",
+      "source_range": {
+        "start": 34879,
+        "end": 35580
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Three arbitrary nonnegative spectator bounds with positive odd marked-pair bound yield cohomology vanishing below q for q≥2 on the full base.",
+      "subject_appears_in": [
+        {
+          "key": "poles",
+          "position": 38,
+          "sha256": "daae2982cbfdf6d75402c76323129be499e22b42ee248158a99585e980db8d8b"
+        }
+      ]
+    },
+    {
+      "id": "ch08-theorem-finite-radial-current-comparison",
+      "chapter": "ch08",
+      "title": "Theorem — finite radial current comparison",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch08-a-comparison-for-any-finite-number-of-radial-inputs",
+      "source_range": {
+        "start": 15558,
+        "end": 17052
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The finite-arithmetic radial comparison for any finite number of inputs retains the outgoing and commuting incoming actions under all the named hypotheses.",
+      "subject_appears_in": [
+        {
+          "key": "poles",
+          "position": 38,
+          "sha256": "daae2982cbfdf6d75402c76323129be499e22b42ee248158a99585e980db8d8b"
+        }
+      ]
+    },
+    {
+      "id": "ch08-finite-total-spectator",
+      "chapter": "ch08",
+      "title": "The full three-pole comparison for a finite-total spectator",
+      "source_status": "Conditional result",
+      "chapter_anchor": "ch08-three-pole-comparison",
+      "source_range": {
+        "start": 23782,
+        "end": 24820
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The independent factorization of the third input is reached when the spectator has finite total cohomology. Degreewise finiteness is insufficient.",
+      "subject_appears_in": [
+        {
+          "key": "poles",
+          "position": 38,
+          "sha256": "daae2982cbfdf6d75402c76323129be499e22b42ee248158a99585e980db8d8b"
+        }
+      ]
+    },
+    {
+      "id": "ch08-theorem-three-pole-evaluation",
+      "chapter": "ch08",
+      "title": "Theorem (three-pole evaluation)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch08-factorized-common-domain",
+      "source_range": {
+        "start": 28172,
+        "end": 30294
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The rational three-pole resolution acts on the genuinely factorized common domain.",
+      "subject_appears_in": [
+        {
+          "key": "poles",
+          "position": 38,
+          "sha256": "daae2982cbfdf6d75402c76323129be499e22b42ee248158a99585e980db8d8b"
+        }
+      ]
+    },
+    {
+      "id": "ch08-theorem-four-pole-evaluation",
+      "chapter": "ch08",
+      "title": "Theorem (four-pole evaluation)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch08-incomparable-clusters",
+      "source_range": {
+        "start": 38177,
+        "end": 40468
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Independent pole pairs give a four-pole evaluation on the common arrays using separate resolutions.",
+      "subject_appears_in": [
+        {
+          "key": "poles",
+          "position": 38,
+          "sha256": "daae2982cbfdf6d75402c76323129be499e22b42ee248158a99585e980db8d8b"
+        }
+      ]
+    },
+    {
+      "id": "ch09-theorem-finite-marked-ward-calculus",
+      "chapter": "ch09",
+      "title": "Theorem — finite marked Ward calculus",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch09-ordered-poles-and-their-complete-differential",
+      "source_range": {
+        "start": 12514,
+        "end": 13535
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Under compatible arrangement, extension, gating and support, the finite Ward span is closed under its entire differential.",
+      "subject_appears_in": [
+        {
+          "key": "mixed",
+          "position": 37,
+          "sha256": "8f86152ea298c4cb2c957a66ebe1dffdc5e7e5bab1be8cb1bc8996f37adbb441"
+        },
+        {
+          "key": "ward",
+          "position": 39,
+          "sha256": "3516b55c7c66363f2c895397f0139c13741c20dd6debc45f5643556fd51229a2"
+        }
+      ]
+    },
+    {
+      "id": "ch09-theorem-radial-circuit-transport",
+      "chapter": "ch09",
+      "title": "Theorem — radial circuit transport",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch09-relative-currents-and-a-radial-homotopy",
+      "source_range": {
+        "start": 17968,
+        "end": 18812
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The specified first and successive circuit contacts have a continuous radial limit and a homotopy to this limit in the original relative complex.",
+      "subject_appears_in": [
+        {
+          "key": "ward",
+          "position": 39,
+          "sha256": "3516b55c7c66363f2c895397f0139c13741c20dd6debc45f5643556fd51229a2"
+        }
+      ]
+    },
+    {
+      "id": "ch09-theorem-transport-of-the-two-mark-contact",
+      "chapter": "ch09",
+      "title": "Theorem (transport of the two-mark contact)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch09-two-marked-height-operation",
+      "source_range": {
+        "start": 24252,
+        "end": 24985
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The two-mark contact and its specified disjoint spectators obey that transport.",
+      "subject_appears_in": [
+        {
+          "key": "ward",
+          "position": 39,
+          "sha256": "3516b55c7c66363f2c895397f0139c13741c20dd6debc45f5643556fd51229a2"
+        }
+      ]
+    },
+    {
+      "id": "ch10-theorem-101-finite-analytic-sewing",
+      "chapter": "ch10",
+      "title": "Theorem 10.1 (finite analytic sewing)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch10-finite-uncut-sewings",
+      "source_range": {
+        "start": 9232,
+        "end": 10365
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Untruncated finite tree sewings converge under cylinder margins, normalized four-point change and pentagon; channel changes agree at common domain.",
+      "subject_appears_in": [
+        {
+          "key": "sew",
+          "position": 44,
+          "sha256": "3a374f566ee3c3c8598c36cb306827cd164012e57d2ef1865e2ab1e568a4a47c"
+        }
+      ]
+    },
+    {
+      "id": "ch10-theorem-102-intrinsic-complete-sources",
+      "chapter": "ch10",
+      "title": "Theorem 10.2 (intrinsic complete sources)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch10-a-common-intrinsic-input-space",
+      "source_range": {
+        "start": 20147,
+        "end": 20969
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The intrinsic common sources are complete, dense and functorial, with original positive and vacuum topologies and convergent vector-field mode actions.",
+      "subject_appears_in": [
+        {
+          "key": "graph",
+          "position": 45,
+          "sha256": "aa9dcd4ff10a507f3d8bfd075a14822ffe2d525362d447e07b6e081f3c170bbf"
+        }
+      ]
+    },
+    {
+      "id": "ch10-continuous-composite-sewing",
+      "chapter": "ch10",
+      "title": "Two independently completed conformal blocks",
+      "source_status": "Conditional result",
+      "chapter_anchor": "ch10-two-completed-clusters",
+      "source_range": {
+        "start": 26273,
+        "end": 27677
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Two independently prepared completed graph inputs admit positive and resolved vacuum pairings. Concentration identifies the indispensable graph norm.",
+      "subject_appears_in": [
+        {
+          "key": "graph",
+          "position": 45,
+          "sha256": "aa9dcd4ff10a507f3d8bfd075a14822ffe2d525362d447e07b6e081f3c170bbf"
+        }
+      ]
+    },
+    {
+      "id": "ch11-collar-mixed-moment",
+      "chapter": "ch11",
+      "title": "A mixed measurement separates states with identical mode marginals",
+      "source_status": "Example",
+      "chapter_anchor": "ch11-relative-phase",
+      "source_range": {
+        "start": 10861,
+        "end": 13035
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Independent single-mode marginals do not distinguish the phase states; a fluctuating joint disk measurement recovers the signed mean.",
+      "subject_appears_in": [
+        {
+          "key": "S1",
+          "position": 1,
+          "sha256": "479d7ac281b72b1970998699dff5e9d7806e369cfa0f982bdcaadfea060c71a9"
+        },
+        {
+          "key": "S3",
+          "position": 3,
+          "sha256": "c6b3a55d62b8058b4c15b478c9751418b01c45644e2146e128be442f77ee9e49"
+        },
+        {
+          "key": "S4",
+          "position": 4,
+          "sha256": "455d739efa00d3f7e52b0189334dbb1c076de908e65b290cb4f889d96d9e86b5"
+        },
+        {
+          "key": "S6",
+          "position": 6,
+          "sha256": "c2aa54e9cc5e2d688f7f35175fb56512e9c9cf7a224f697bbfca6bf8a3d1844e"
+        },
+        {
+          "key": "S13",
+          "position": 36,
+          "sha256": "65893b31e4992eb190a5cf1f686f917afa663b330807a2c3261d6ce9853da927"
+        }
+      ]
+    },
+    {
+      "id": "ch11-ray-disk-state",
+      "chapter": "ch11",
+      "title": "A neutral level-one ray pair and a sourced disk at finite radius",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch11-neutral-ray-pair",
+      "source_range": {
+        "start": 15514,
+        "end": 16856
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Opposite Wilson lines and an independently sourced harmonic disk have the same complete normalized joint law and collar overlap.",
+      "subject_appears_in": [
+        {
+          "key": "S15",
+          "position": 41,
+          "sha256": "60e84997a5ec85f91898ce1422f81efbfee9f0597a108e6851d7890f3a16310a"
+        },
+        {
+          "key": "mehler",
+          "position": 42,
+          "sha256": "d78a31249913eb5a5f4930d968892189b331f26128b469a5ed9fbb8e356713af"
+        }
+      ]
+    },
+    {
+      "id": "ch11-theorem-111-normalized-numerical-gaussian",
+      "chapter": "ch11",
+      "title": "Theorem 11.1 (normalized numerical Gaussian)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch11-a-numerical-state-from-the-original-cycles",
+      "source_range": {
+        "start": 24054,
+        "end": 25396
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The fixed quadratic solid-torus numerical state and its graded moments arise from the actual finite cycles in the specified small source domain.",
+      "subject_appears_in": [
+        {
+          "key": "S17",
+          "position": 53,
+          "sha256": "fecc3af789b6fad3251a667161e17b86c6c9c74c687c243cbd262a2751ead8ee"
+        }
+      ]
+    },
+    {
+      "id": "ch11-theorem-112-original-heat-finite-part",
+      "chapter": "ch11",
+      "title": "Theorem 11.2 (original heat finite part)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch11-original-coefficient-heat-and-a-based-local-vacuum-line",
+      "source_range": {
+        "start": 31388,
+        "end": 32538
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The original reflected gapped heat construction yields a based local amplitude-line section; an absolute geometric cut remains open.",
+      "subject_appears_in": [
+        {
+          "key": "line",
+          "position": 52,
+          "sha256": "0a5bd8ecf064e763f46d9711a46a64e692eae852c423973a4579e873003c1ff7"
+        }
+      ]
+    },
+    {
+      "id": "ch12-theorem-spectral-field-and-coproduct-construction",
+      "chapter": "ch12",
+      "title": "Theorem (spectral field and coproduct construction)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch12-a-spectral-construction-of-products-and-coproducts",
+      "source_range": {
+        "start": 11721,
+        "end": 12760
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "For the actual compatible spectral Hopf data the fields and crossed tensor respect the coassociative level-indexed coproduct.",
+      "subject_appears_in": [
+        {
+          "key": "coproduct",
+          "position": 24,
+          "sha256": "51171d3b17402522f347dd12861f816d145c7aecfa29918df5bcc011e6b619ee"
+        },
+        {
+          "key": "braids",
+          "position": 26,
+          "sha256": "4f8fb5e4eeaafca83ff3e7eb387ee23fdab7650fca555e4a9d7282c5ae6d81c8"
+        }
+      ]
+    },
+    {
+      "id": "ch12-ising-spin-exchange",
+      "chapter": "ch12",
+      "title": "Spin intertwiners and the oriented Ising half-turn",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch12-ising-half-turn",
+      "source_range": {
+        "start": 16281,
+        "end": 18077
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Adjacent double exchanges span all finite-spin intertwiners; the marked half-turn ratio distinguishes orientation.",
+      "subject_appears_in": [
+        {
+          "key": "Ising",
+          "position": 25,
+          "sha256": "140c453437238587c494b75696c40a2e5232368ef0a8770608c1a1a556a895a9"
+        },
+        {
+          "key": "braids",
+          "position": 26,
+          "sha256": "4f8fb5e4eeaafca83ff3e7eb387ee23fdab7650fca555e4a9d7282c5ae6d81c8"
+        }
+      ]
+    },
+    {
+      "id": "ch12-theorem-rational-affine-field-comparison",
+      "chapter": "ch12",
+      "title": "Theorem (rational affine field comparison)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch12-rational-matrix-fields-and-the-full-curved-dual",
+      "source_range": {
+        "start": 21059,
+        "end": 21611
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "For every rank N≥2 at all levels the formal double is topologically free, fields and exchanges agree on states, and the classical field fibre is the universal trace-free affine vertex algebra.",
+      "subject_appears_in": [
+        {
+          "key": "matrixfields",
+          "position": 20,
+          "sha256": "d18e35ef455f68b717576d10e56f051eb0ba3556c83f3f1191eb82ca1385700a"
+        }
+      ]
+    },
+    {
+      "id": "ch12-rank-two-cauchy",
+      "chapter": "ch12",
+      "title": "The rank-two determinant-one RTT double in normalized modes modulo \\(\\hbar^2\\)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch12-intrinsic-rtt-modes",
+      "source_range": {
+        "start": 23984,
+        "end": 25157
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Prescribed rank-two Cauchy lifts inject with proper image at the first quantum order and fail the exhibited test on the critical mixed coefficient at the next order.",
+      "subject_appears_in": [
+        {
+          "key": "matrix",
+          "position": 19,
+          "sha256": "a57260ba4649893175f110c99cc0b7b93358cc85c9dc3150ddc18d4cb717d307"
+        }
+      ]
+    },
+    {
+      "id": "ch12-exceptional-torsion",
+      "chapter": "ch12",
+      "title": "Torsion lengths in the exceptional universal \\(W_4\\) vacuum complex",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch12-exceptional-w4-fibres-and-the-algebra-of-extensions",
+      "source_range": {
+        "start": 38310,
+        "end": 40036
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The four exceptional levels have twelve states instead of eight; two length-one torsion summands each generate two exceptional classes.",
+      "subject_appears_in": [
+        {
+          "key": "W4",
+          "position": 13,
+          "sha256": "58903b62b747af20917a89e2f2b15e62d1663eb82bb317fbb9c29bc094c53c56"
+        },
+        {
+          "key": "torsion",
+          "position": 14,
+          "sha256": "2d51778dd948139a89af60152d6224332b7ef7f59ee2fb9ae857d85712cd1e78"
+        }
+      ]
+    },
+    {
+      "id": "ch13-theorem-ordinary-classical-reconstruction",
+      "chapter": "ch13",
+      "title": "Theorem (ordinary classical reconstruction)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch13-the-ordinary-categorical-round-trip",
+      "source_range": {
+        "start": 7317,
+        "end": 8433
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Full ordinary families with the geometric vacuum recover the fixed original unital chiral algebra.",
+      "subject_appears_in": [
+        {
+          "key": "S11",
+          "position": 22,
+          "sha256": "7e932fecf42bf1b8a4fc6810df04bef866efdf8d0c797213bbfea6593d3d3f3c"
+        }
+      ]
+    },
+    {
+      "id": "ch13-theorem-supported-vandermonde-pro-duality",
+      "chapter": "ch13",
+      "title": "Theorem (supported Vandermonde pro-duality)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch13-supported-duality-and-the-direction-of-comparison",
+      "source_range": {
+        "start": 13621,
+        "end": 14156
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Transposed auxiliary Vandermonde yields dual pro-system isomorphism with vacuum, derivative data, spectator extension, numerical specialization and cross-cut Vandermonde factors.",
+      "subject_appears_in": [
+        {
+          "key": "coefficients",
+          "position": 18,
+          "sha256": "cd3489b57456b44c3a5b1e6a9d62c5d81ef4f99270491c4782e6e1a3bb0a55b0"
+        }
+      ]
+    },
+    {
+      "id": "ch13-ising-weak-hopf",
+      "chapter": "ch13",
+      "title": "The weak Hopf algebra of Ising sectors",
+      "source_status": "Example",
+      "chapter_anchor": "ch13-finite-rational-categories-and-a-non-scalar-base",
+      "source_range": {
+        "start": 28609,
+        "end": 29544
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Matching sectors give the 34-dimensional finite ribbon weak Hopf algebra and projector onto pairs with compatible labels.",
+      "subject_appears_in": [
+        {
+          "key": "Ising",
+          "position": 25,
+          "sha256": "140c453437238587c494b75696c40a2e5232368ef0a8770608c1a1a556a895a9"
+        }
+      ]
+    },
+    {
+      "id": "ch14-theorem-the-flux-class-in-derived-particle-composition",
+      "chapter": "ch14",
+      "title": "Theorem: the flux class in derived particle composition",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch14-what-a-joined-interface-remembers",
+      "source_range": {
+        "start": 5003,
+        "end": 6593
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "For N≥1 with ℏ≠0 at zero Cherednik parameter, Tor₁ vanishes while flux cap in Tor₂ splits onto the particle algebra.",
+      "subject_appears_in": [
+        {
+          "key": "M2",
+          "position": 29,
+          "sha256": "f8c6e74e69d9346a4e7102a7d7fbbef3d626ecebf243d43d2920b5c5d8cd7d4c"
+        }
+      ]
+    },
+    {
+      "id": "ch14-square-flux-locality",
+      "chapter": "ch14",
+      "title": "A vanishing flux square and its locality obstruction",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch14-what-a-joined-interface-remembers",
+      "source_range": {
+        "start": 8139,
+        "end": 10672
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The algebraic square is null, the four-input representative is 3ℏ⁴, and no uniformly finite order at the marked point supplies the primitive.",
+      "subject_appears_in": [
+        {
+          "key": "fluxsquare",
+          "position": 30,
+          "sha256": "bc01755898edee745ab5b961f83598e0b131c605c3dfaf9308cce193ef4db7d0"
+        }
+      ]
+    },
+    {
+      "id": "ch14-theorem-integral-curved-comparison",
+      "chapter": "ch14",
+      "title": "Theorem: integral curved comparison",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch14-the-matrix-complex-before-taking-cohomology",
+      "source_range": {
+        "start": 13124,
+        "end": 13802
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Integral rank 1–3 curved comparison, formal zero fibre and separate all-rank rational-parameter result with nonzero quartic at ranks 3 and above.",
+      "subject_appears_in": [
+        {
+          "key": "fluxsquare",
+          "position": 30,
+          "sha256": "bc01755898edee745ab5b961f83598e0b131c605c3dfaf9308cce193ef4db7d0"
+        }
+      ]
+    },
+    {
+      "id": "ch14-theorem-the-exact-chiral-image",
+      "chapter": "ch14",
+      "title": "Theorem: the exact chiral image",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch14-d3-branes-chiral-operators-and-hilbert-scheme-sections",
+      "source_range": {
+        "start": 19424,
+        "end": 20707
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "At all ranks, on the framed relative polynomial BRST complex and torus-finite sections specialized at ℏ=1, the exact image is the kernel of the marked odd charge.",
+      "subject_appears_in": [
+        {
+          "key": "D3",
+          "position": 31,
+          "sha256": "8004dbc97a4710a6b20c704902a0651d02c0f2470c6f598fb278880a0452d48e"
+        },
+        {
+          "key": "BRST",
+          "position": 32,
+          "sha256": "1c3de0e6ea5c8a305e2814b746ed5dc2fe35c53dae56435b3ccafcc0dc227096"
+        }
+      ]
+    },
+    {
+      "id": "ch14-separated-m5-exchange",
+      "chapter": "ch14",
+      "title": "The order of separated surface collars",
+      "source_status": "Example",
+      "chapter_anchor": "ch14-surface-fusion-and-the-miura-product",
+      "source_range": {
+        "start": 27059,
+        "end": 28028
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The ordered separated M5 collar reading and marked Miura coefficient agree only with the stated level-one input, magnetic strength and parameter normalization.",
+      "subject_appears_in": [
+        {
+          "key": "fluxsquare",
+          "position": 30,
+          "sha256": "bc01755898edee745ab5b961f83598e0b131c605c3dfaf9308cce193ef4db7d0"
+        }
+      ]
+    },
+    {
+      "id": "ch15-integral-one-loop-hall",
+      "chapter": "ch15",
+      "title": "The one-loop cobar on finite root jets",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch15-one-loop-on-finite-root-jets",
+      "source_range": {
+        "start": 4081,
+        "end": 6046
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Finite one-loop root-jet cobar cohomology occurs in degree m in charge m, with exchange algebra in that degree over the polynomial parameter.",
+      "subject_appears_in": [
+        {
+          "key": "jets",
+          "position": 47,
+          "sha256": "9ba9da13dc908c7c078477b0acd86c1361e3df78e75013ef6fd38e8e8abbfe5a"
+        }
+      ]
+    },
+    {
+      "id": "ch15-theorem-ordinary-k3-hall-comparison",
+      "chapter": "ch15",
+      "title": "Theorem (ordinary K3 Hall comparison)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch15-a-faithful-ordinary-comparison-on-a-k3-surface",
+      "source_range": {
+        "start": 10361,
+        "end": 11090
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The doubly laced quiver with moment relation and specified three stable bundles yield isomorphic generated ordinary Hall algebras with the cyclic strictly vertex-unital comparison.",
+      "subject_appears_in": [
+        {
+          "key": "Hall",
+          "position": 46,
+          "sha256": "bbe92cfd1fe00ab08dfa095f9633a8d3b863b304281ede3488e23caea16ba2fa"
+        }
+      ]
+    },
+    {
+      "id": "ch15-compact-cubic-inverse",
+      "chapter": "ch15",
+      "title": "Scalar measurements recovering a compact first-order product",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch15-a-cyclic-product-that-all-these-traces-can-miss",
+      "source_range": {
+        "start": 33954,
+        "end": 36888
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "For graded commutative cyclic first-order corrections, exactly 1,750 fixed scalar measurements are necessary and sufficient. The compact section example displays a geometric discriminant.",
+      "subject_appears_in": [
+        {
+          "key": "K3",
+          "position": 48,
+          "sha256": "2924d5fbb9dec94e263f304fb31fbad028369fd2b364ef6ed956e03c54c67163"
+        },
+        {
+          "key": "ideal",
+          "position": 49,
+          "sha256": "1559409fd827a99b6a4d4c73fbb2ba472100be25e66b7bf0699c95b8fa23d456"
+        }
+      ]
+    },
+    {
+      "id": "ch15-weierstrass-determinant",
+      "chapter": "ch15",
+      "title": "The Weierstrass determinant on smooth genus-two curves",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch15-the-igusa-series-and-the-stronger-realization-question",
+      "source_range": {
+        "start": 46559,
+        "end": 48746
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "A six-point evaluation determinant squared gives the normalized weight-ten Igusa form on smooth genus-two Jacobians.",
+      "subject_appears_in": [
+        {
+          "key": "ideal",
+          "position": 49,
+          "sha256": "1559409fd827a99b6a4d4c73fbb2ba472100be25e66b7bf0699c95b8fa23d456"
+        }
+      ]
+    },
+    {
+      "id": "ch16-theorem-continuous-integer-summation-duality",
+      "chapter": "ch16",
+      "title": "Theorem (continuous integer-summation duality)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch16-integer-summation-defines-the-complex-before-its-spectrum",
+      "source_range": {
+        "start": 8324,
+        "end": 9191
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Integer summation has closed image and its Mellin image is the ideal with all zeta zeros to full multiplicity, and the full continuous dual detects the jets.",
+      "subject_appears_in": [
+        {
+          "key": "arithmetic",
+          "position": 51,
+          "sha256": "30e2a5c1d1cfdbc77564ca882d5fe48ff96d279709823e29e2f9436d8d075c92"
+        }
+      ]
+    },
+    {
+      "id": "ch16-theorem-geometric-theta-trace",
+      "chapter": "ch16",
+      "title": "Theorem (geometric theta trace)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch16-a-geometric-construction-of-the-full-trace",
+      "source_range": {
+        "start": 12901,
+        "end": 13375
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The geometric trace quotient recovers the complete Weil formula from arithmetic operators.",
+      "subject_appears_in": [
+        {
+          "key": "Weil",
+          "position": 50,
+          "sha256": "62105b8bf04fe3cf16e5d4495fef0212a194a834ac187823a07bdb7ea0583cbd"
+        },
+        {
+          "key": "arithmetic",
+          "position": 51,
+          "sha256": "30e2a5c1d1cfdbc77564ca882d5fe48ff96d279709823e29e2f9436d8d075c92"
+        }
+      ]
+    },
+    {
+      "id": "ch16-translation-annulus",
+      "chapter": "ch16",
+      "title": "The annulus spectrum of translation on the geometric Hilbert quotient",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch16-a-geometric-construction-of-the-full-trace",
+      "source_range": {
+        "start": 13720,
+        "end": 15459
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "For 1/2<s<min(a,1) real nonzero translations have annular spectrum on the fixed geometric Hilbert quotient. No equivalent norm unitarizes that action.",
+      "subject_appears_in": [
+        {
+          "key": "arithmetic",
+          "position": 51,
+          "sha256": "30e2a5c1d1cfdbc77564ca882d5fe48ff96d279709823e29e2f9436d8d075c92"
+        }
+      ]
+    },
+    {
+      "id": "ch16-theorem-fixed-whole-window-positivity",
+      "chapter": "ch16",
+      "title": "Theorem (fixed whole-window positivity)",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch16-whole-window-positivity-and-the-off-block-term",
+      "source_range": {
+        "start": 28786,
+        "end": 29241
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The whole-window quadratic form has a strictly positive lower bound for width ≤31/10 on the stated test domain.",
+      "subject_appears_in": [
+        {
+          "key": "arithmetic",
+          "position": 51,
+          "sha256": "30e2a5c1d1cfdbc77564ca882d5fe48ff96d279709823e29e2f9436d8d075c92"
+        }
+      ]
+    },
+    {
+      "id": "ch16-fixed-sign-test",
+      "chapter": "ch16",
+      "title": "A fixed translate test for Weil positivity",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch16-fixed-shape-translates",
+      "source_range": {
+        "start": 33001,
+        "end": 35148
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The eventually nonnegative integer-logarithmic translate readings of one specified pulse are equivalent to the Riemann hypothesis.",
+      "subject_appears_in": [
+        {
+          "key": "Weil",
+          "position": 50,
+          "sha256": "62105b8bf04fe3cf16e5d4495fef0212a194a834ac187823a07bdb7ea0583cbd"
+        }
+      ]
+    },
+    {
+      "id": "ch17-state-field-noncritical",
+      "chapter": "ch17",
+      "title": "The noncritical cohomology field with its trace sector",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch17-native-r3-fields",
+      "source_range": {
+        "start": 11775,
+        "end": 12823
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "Through ℏ² the noncritical state field is a translated product of the trace and degree-three sectors with b²=Tb=0.",
+      "subject_appears_in": [
+        {
+          "key": "critical",
+          "position": 21,
+          "sha256": "d08907e0de57a6577c8c139d18b8eaa88374c294a88f5fa61bf8091ee37e2ae5"
+        }
+      ]
+    },
+    {
+      "id": "ch17-critical-state-cohomology",
+      "chapter": "ch17",
+      "title": "Critical states at precision three",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch17-native-r3-fields",
+      "source_range": {
+        "start": 12825,
+        "end": 13939
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The critical precision-three state module is free on the quadratic invariant jets, their degree-one partners, and the ghost and trace factors; generator singular products are separate.",
+      "subject_appears_in": [
+        {
+          "key": "critical",
+          "position": 21,
+          "sha256": "d08907e0de57a6577c8c139d18b8eaa88374c294a88f5fa61bf8091ee37e2ae5"
+        }
+      ]
+    },
+    {
+      "id": "ch17-retained-homotopy",
+      "chapter": "ch17",
+      "title": "A normalized homotopy on the marked retained source",
+      "source_status": "Theorem",
+      "chapter_anchor": "ch17-all-retained-marked",
+      "source_range": {
+        "start": 18634,
+        "end": 21453
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "A normalized homotopy matches the two marked retained kernels on arbitrary algebraic rooted states at fixed noncritical level.",
+      "subject_appears_in": [
+        {
+          "key": "critical",
+          "position": 21,
+          "sha256": "d08907e0de57a6577c8c139d18b8eaa88374c294a88f5fa61bf8091ee37e2ae5"
+        }
+      ]
+    },
+    {
+      "id": "ch17-abelian-gaussian-comparison",
+      "chapter": "ch17",
+      "title": "Two presentations of the marked Gaussian half-space",
+      "source_status": "Theorem",
+      "chapter_anchor": "states-lines-and-caps",
+      "source_range": {
+        "start": 31862,
+        "end": 33414
+      },
+      "top_text_disposition": "qualified affirmative, finite calculation, or explicit obstruction",
+      "top_treatment": "The compact marked Gaussian field presentations match at corresponding levels, including differential, product, unit and the charged preparation.",
+      "subject_appears_in": [
+        {
+          "key": "S13",
+          "position": 36,
+          "sha256": "65893b31e4992eb190a5cf1f686f917afa663b330807a2c3261d6ce9853da927"
+        },
+        {
+          "key": "S15",
+          "position": 41,
+          "sha256": "60e84997a5ec85f91898ce1422f81efbfee9f0597a108e6851d7890f3a16310a"
+        },
+        {
+          "key": "mehler",
+          "position": 42,
+          "sha256": "d78a31249913eb5a5f4930d968892189b331f26128b469a5ed9fbb8e356713af"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-181",
+      "chapter": "ch18",
+      "title": "Problem 18.1",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-physical-adjunction",
+      "source_range": {
+        "start": 2429,
+        "end": 3006
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "A physical interface must realize the adjunction and its two natural transformations in the required categories.",
+      "subject_appears_in": [
+        {
+          "key": "induct",
+          "position": 27,
+          "sha256": "b8850baa29db030adece1f324882f66a0ad61fa9b7c64f61fafaeda7252219a8"
+        },
+        {
+          "key": "smooth",
+          "position": 28,
+          "sha256": "af5c1dca0a8d558061f38a3dd1525d13f5f34275ab0bfa2fdfbac7fb5f886fcd"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-182",
+      "chapter": "ch18",
+      "title": "Problem 18.2",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-chiral-quantum-groups",
+      "source_range": {
+        "start": 8662,
+        "end": 9163
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "A general same-position chiral coproduct and a curved contramodule equivalence require further constructions.",
+      "subject_appears_in": [
+        {
+          "key": "coproduct",
+          "position": 24,
+          "sha256": "51171d3b17402522f347dd12861f816d145c7aecfa29918df5bcc011e6b619ee"
+        },
+        {
+          "key": "braids",
+          "position": 26,
+          "sha256": "4f8fb5e4eeaafca83ff3e7eb387ee23fdab7650fca555e4a9d7282c5ae6d81c8"
+        },
+        {
+          "key": "matrixfields",
+          "position": 20,
+          "sha256": "d18e35ef455f68b717576d10e56f051eb0ba3556c83f3f1191eb82ca1385700a"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-183",
+      "chapter": "ch18",
+      "title": "Problem 18.3",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-universal-centres",
+      "source_range": {
+        "start": 14163,
+        "end": 14711
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "Recognition for arbitrary acting systems and a physical bulk-to-centre map remain open outside the explicitly stated families.",
+      "subject_appears_in": [
+        {
+          "key": "centre",
+          "position": 33,
+          "sha256": "ee731a6b37f3e26abf8afe28bd9f5aeb7ef1567c509fc5a55e14b7f638a2f332"
+        },
+        {
+          "key": "unitization",
+          "position": 34,
+          "sha256": "713d50086815a1130d3cf4cd663597748184688d823af361b098796aa5fd470a"
+        },
+        {
+          "key": "exterior",
+          "position": 35,
+          "sha256": "0c553cf5f7227980b24040e8fd55caa2ebe376d77dd9b79ee5b3b1166eb6f164"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-184",
+      "chapter": "ch18",
+      "title": "Problem 18.4",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-composition-domains",
+      "source_range": {
+        "start": 21123,
+        "end": 21724
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "Specialized integral collisions and independently formed physical line composites must still be related on a common domain.",
+      "subject_appears_in": [
+        {
+          "key": "poles",
+          "position": 38,
+          "sha256": "daae2982cbfdf6d75402c76323129be499e22b42ee248158a99585e980db8d8b"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-185",
+      "chapter": "ch18",
+      "title": "Problem 18.5",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-composition-domains",
+      "source_range": {
+        "start": 30089,
+        "end": 30631
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "Descent to a whole completion requires the kernel condition and continuity in its actual topology.",
+      "subject_appears_in": [
+        {
+          "key": "graph",
+          "position": 45,
+          "sha256": "aa9dcd4ff10a507f3d8bfd075a14822ffe2d525362d447e07b6e081f3c170bbf"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-186",
+      "chapter": "ch18",
+      "title": "Problem 18.6",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-elliptic-attachment",
+      "source_range": {
+        "start": 31771,
+        "end": 32194
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "Matching compact elliptic evaluation to the supported contact with the prescribed lower homotopies remains open.",
+      "subject_appears_in": [
+        {
+          "key": "ward",
+          "position": 39,
+          "sha256": "3516b55c7c66363f2c895397f0139c13741c20dd6debc45f5643556fd51229a2"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-187",
+      "chapter": "ch18",
+      "title": "Problem 18.7",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-gravitational-cap",
+      "source_range": {
+        "start": 34656,
+        "end": 35380
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "Independent physical quadratic and interacting cap comparison including global scale/phase and sewing is open.",
+      "subject_appears_in": [
+        {
+          "key": "line",
+          "position": 52,
+          "sha256": "0a5bd8ecf064e763f46d9711a46a64e692eae852c423973a4579e873003c1ff7"
+        },
+        {
+          "key": "S16",
+          "position": 43,
+          "sha256": "32aeb860356237dbe1b2946e67bb1c5313cb11f5c174b097646cc363637eca1a"
+        },
+        {
+          "key": "S17",
+          "position": 53,
+          "sha256": "fecc3af789b6fad3251a667161e17b86c6c9c74c687c243cbd262a2751ead8ee"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-188",
+      "chapter": "ch18",
+      "title": "Problem 18.8",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-branes-and-compact-states",
+      "source_range": {
+        "start": 41702,
+        "end": 42134
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "Physical two-ended interval flux and coincident surface fusion require independent field operations beyond their algebraic and separated checks.",
+      "subject_appears_in": [
+        {
+          "key": "M2",
+          "position": 29,
+          "sha256": "f8c6e74e69d9346a4e7102a7d7fbbef3d626ecebf243d43d2920b5c5d8cd7d4c"
+        },
+        {
+          "key": "D3",
+          "position": 31,
+          "sha256": "8004dbc97a4710a6b20c704902a0651d02c0f2470c6f598fb278880a0452d48e"
+        },
+        {
+          "key": "fluxsquare",
+          "position": 30,
+          "sha256": "bc01755898edee745ab5b961f83598e0b131c605c3dfaf9308cce193ef4db7d0"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-189",
+      "chapter": "ch18",
+      "title": "Problem 18.9",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-branes-and-compact-states",
+      "source_range": {
+        "start": 44099,
+        "end": 44640
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "Full critical Hall-to-compact field realization must carry the coefficient morphism, orientations, relative moment parameters, state pairing and three-boundary contribution.",
+      "subject_appears_in": [
+        {
+          "key": "Hall",
+          "position": 46,
+          "sha256": "bbe92cfd1fe00ab08dfa095f9633a8d3b863b304281ede3488e23caea16ba2fa"
+        },
+        {
+          "key": "jets",
+          "position": 47,
+          "sha256": "9ba9da13dc908c7c078477b0acd86c1361e3df78e75013ef6fd38e8e8abbfe5a"
+        },
+        {
+          "key": "K3",
+          "position": 48,
+          "sha256": "2924d5fbb9dec94e263f304fb31fbad028369fd2b364ef6ed956e03c54c67163"
+        },
+        {
+          "key": "ideal",
+          "position": 49,
+          "sha256": "1559409fd827a99b6a4d4c73fbb2ba472100be25e66b7bf0699c95b8fa23d456"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-1810",
+      "chapter": "ch18",
+      "title": "Problem 18.10",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-arithmetic",
+      "source_range": {
+        "start": 48811,
+        "end": 49213
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "Uniform positivity over all compact tests, beyond the proved finite window, is equivalent to the Riemann hypothesis.",
+      "subject_appears_in": [
+        {
+          "key": "Weil",
+          "position": 50,
+          "sha256": "62105b8bf04fe3cf16e5d4495fef0212a194a834ac187823a07bdb7ea0583cbd"
+        },
+        {
+          "key": "arithmetic",
+          "position": 51,
+          "sha256": "30e2a5c1d1cfdbc77564ca882d5fe48ff96d279709823e29e2f9436d8d075c92"
+        }
+      ]
+    },
+    {
+      "id": "ch18-problem-1811",
+      "chapter": "ch18",
+      "title": "Problem 18.11",
+      "source_status": "Open problem",
+      "chapter_anchor": "problem-arithmetic",
+      "source_range": {
+        "start": 50641,
+        "end": 51375
+      },
+      "top_text_disposition": "scoped research question",
+      "top_treatment": "Finite-height arithmetic collision complexes retain p-adic normal differentiation, Frobenius, and compatibility with independently defined local field operations is open.",
+      "subject_appears_in": [
+        {
+          "key": "arithmetic",
+          "position": 51,
+          "sha256": "30e2a5c1d1cfdbc77564ca882d5fe48ff96d279709823e29e2f9436d8d075c92"
+        }
+      ]
+    }
+  ],
+  "terms": [
+    {
+      "id": "term-algebra",
+      "chapter": "ch02",
+      "term": "algebra",
+      "chapter_anchor": "ch02-multiplication-and-representations",
+      "source_range": {
+        "start": 1121,
+        "end": 2134
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 9,
+      "locations": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        17,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        46,
+        47,
+        48
+      ],
+      "explanatory_source_definition_at": "ch02-multiplication-and-representations"
+    },
+    {
+      "id": "term-module",
+      "chapter": "ch02",
+      "term": "module",
+      "chapter_anchor": "ch02-multiplication-and-representations",
+      "source_range": {
+        "start": 1619,
+        "end": 2614
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 12,
+      "locations": [
+        12,
+        20,
+        21,
+        27,
+        28,
+        33,
+        42
+      ],
+      "explanatory_source_definition_at": "ch02-multiplication-and-representations"
+    },
+    {
+      "id": "term-coproduct",
+      "chapter": "ch02",
+      "term": "coproduct",
+      "chapter_anchor": "ch02-a-coproduct-gives-the-action-on-a-tensor-product",
+      "source_range": {
+        "start": 3232,
+        "end": 4900
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 11,
+      "locations": [
+        11,
+        24,
+        25,
+        26
+      ],
+      "explanatory_source_definition_at": "ch02-a-coproduct-gives-the-action-on-a-tensor-product"
+    },
+    {
+      "id": "term-bialgebra",
+      "chapter": "ch02",
+      "term": "bialgebra",
+      "chapter_anchor": "ch02-a-coproduct-gives-the-action-on-a-tensor-product",
+      "source_range": {
+        "start": 3796,
+        "end": 4900
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 26,
+      "locations": [
+        26
+      ],
+      "explanatory_source_definition_at": "ch02-a-coproduct-gives-the-action-on-a-tensor-product"
+    },
+    {
+      "id": "term-braiding",
+      "chapter": "ch02",
+      "term": "braiding",
+      "chapter_anchor": "ch02-associators-exchange-and-coherence",
+      "source_range": {
+        "start": 10645,
+        "end": 11243
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 26,
+      "locations": [
+        26
+      ],
+      "explanatory_source_definition_at": "ch02-associators-exchange-and-coherence"
+    },
+    {
+      "id": "term-associator",
+      "chapter": "ch02",
+      "term": "associator",
+      "chapter_anchor": "ch02-associators-exchange-and-coherence",
+      "source_range": {
+        "start": 9592,
+        "end": 10643
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 26,
+      "locations": [
+        26
+      ],
+      "explanatory_source_definition_at": "ch02-associators-exchange-and-coherence"
+    },
+    {
+      "id": "term-adjunction",
+      "chapter": "ch06",
+      "term": "adjunction",
+      "chapter_anchor": "adjunction-comparison-maps",
+      "source_range": {
+        "start": 1969,
+        "end": 3108
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 27,
+      "locations": [
+        27,
+        28
+      ],
+      "explanatory_source_definition_at": "adjunction-comparison-maps"
+    },
+    {
+      "id": "term-adjunction-unit-and-counit",
+      "chapter": "ch06",
+      "term": "adjunction unit and counit",
+      "chapter_anchor": "adjunction-comparison-maps",
+      "source_range": {
+        "start": 1969,
+        "end": 2662
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 28,
+      "locations": [
+        28
+      ],
+      "explanatory_source_definition_at": "adjunction-comparison-maps"
+    },
+    {
+      "id": "term-field",
+      "chapter": "ch03",
+      "term": "field",
+      "chapter_anchor": "fields-and-modes",
+      "source_range": {
+        "start": 1125,
+        "end": 2125
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 1,
+      "locations": [
+        1,
+        2,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        14,
+        15,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        30,
+        31,
+        32,
+        33,
+        36,
+        37,
+        39,
+        41,
+        42,
+        43,
+        45,
+        47,
+        50,
+        51,
+        52,
+        53
+      ],
+      "explanatory_source_definition_at": "fields-and-modes"
+    },
+    {
+      "id": "term-locality",
+      "chapter": "ch03",
+      "term": "locality",
+      "chapter_anchor": "fields-and-modes",
+      "source_range": {
+        "start": 2127,
+        "end": 2952
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 12,
+      "locations": [
+        12
+      ],
+      "explanatory_source_definition_at": "fields-and-modes"
+    },
+    {
+      "id": "term-vertex-algebra",
+      "chapter": "ch03",
+      "term": "vertex algebra",
+      "chapter_anchor": "vertex-algebra",
+      "source_range": {
+        "start": 3919,
+        "end": 5708
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 20,
+      "locations": [
+        20,
+        35
+      ],
+      "explanatory_source_definition_at": "vertex-algebra"
+    },
+    {
+      "id": "term-lambda-bracket",
+      "chapter": "ch03",
+      "term": "lambda bracket",
+      "chapter_anchor": "vertex-algebra",
+      "source_range": {
+        "start": 5710,
+        "end": 6431
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 12,
+      "locations": [
+        12
+      ],
+      "explanatory_source_definition_at": "vertex-algebra"
+    },
+    {
+      "id": "term-differential-module",
+      "chapter": "ch03",
+      "term": "differential module",
+      "chapter_anchor": "differential-modules",
+      "source_range": {
+        "start": 14496,
+        "end": 16419
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 12,
+      "locations": [
+        12
+      ],
+      "explanatory_source_definition_at": "differential-modules"
+    },
+    {
+      "id": "term-configuration-space",
+      "chapter": "ch04",
+      "term": "configuration space",
+      "chapter_anchor": "configuration-spaces",
+      "source_range": {
+        "start": 1035,
+        "end": 2200
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 12,
+      "locations": [
+        12
+      ],
+      "explanatory_source_definition_at": "configuration-spaces"
+    },
+    {
+      "id": "term-chiral-operation",
+      "chapter": "ch04",
+      "term": "chiral operation",
+      "chapter_anchor": "chiral-operation",
+      "source_range": {
+        "start": 3290,
+        "end": 5218
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 12,
+      "locations": [
+        12
+      ],
+      "explanatory_source_definition_at": "chiral-operation"
+    },
+    {
+      "id": "term-factorization-algebra",
+      "chapter": "ch04",
+      "term": "factorization algebra",
+      "chapter_anchor": "factorization-algebra",
+      "source_range": {
+        "start": 10989,
+        "end": 12735
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 12,
+      "locations": [
+        12
+      ],
+      "explanatory_source_definition_at": "factorization-algebra"
+    },
+    {
+      "id": "term-ran-space",
+      "chapter": "ch04",
+      "term": "Ran space",
+      "chapter_anchor": "factorization-algebra",
+      "source_range": {
+        "start": 12737,
+        "end": 13282
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 12,
+      "locations": [
+        12
+      ],
+      "explanatory_source_definition_at": "factorization-algebra"
+    },
+    {
+      "id": "term-cochain-complex",
+      "chapter": "ch05",
+      "term": "cochain complex",
+      "chapter_anchor": "cohomology-and-parameters",
+      "source_range": {
+        "start": 1409,
+        "end": 3514
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 11,
+      "locations": [
+        11
+      ],
+      "explanatory_source_definition_at": "cohomology-and-parameters"
+    },
+    {
+      "id": "term-homotopy",
+      "chapter": "ch05",
+      "term": "homotopy",
+      "chapter_anchor": "cohomology-and-parameters",
+      "source_range": {
+        "start": 2381,
+        "end": 3514
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 8,
+      "locations": [
+        8,
+        9,
+        21,
+        33,
+        34,
+        39
+      ],
+      "explanatory_source_definition_at": "cohomology-and-parameters"
+    },
+    {
+      "id": "term-quasi-isomorphism",
+      "chapter": "ch05",
+      "term": "quasi-isomorphism",
+      "chapter_anchor": "cohomology-and-parameters",
+      "source_range": {
+        "start": 3009,
+        "end": 3514
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 11,
+      "locations": [
+        11
+      ],
+      "explanatory_source_definition_at": "cohomology-and-parameters"
+    },
+    {
+      "id": "term-massey-product",
+      "chapter": "ch05",
+      "term": "Massey product",
+      "chapter_anchor": "ch05-relations-can-leave-a-higher-operation",
+      "source_range": {
+        "start": 5254,
+        "end": 5741
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 14,
+      "locations": [
+        14
+      ],
+      "explanatory_source_definition_at": "ch05-relations-can-leave-a-higher-operation"
+    },
+    {
+      "id": "term-bar-construction",
+      "chapter": "ch05",
+      "term": "bar construction",
+      "chapter_anchor": "ch05-words-and-the-reduced-bar-construction",
+      "source_range": {
+        "start": 6373,
+        "end": 8501
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 9,
+      "locations": [
+        9,
+        11,
+        30
+      ],
+      "explanatory_source_definition_at": "ch05-words-and-the-reduced-bar-construction"
+    },
+    {
+      "id": "term-coherent-associative-algebra",
+      "chapter": "ch05",
+      "term": "coherent associative algebra",
+      "chapter_anchor": "ch05-one-differential-encodes-all-associativity-homotopies",
+      "source_range": {
+        "start": 9739,
+        "end": 10347
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 11,
+      "locations": [
+        11
+      ],
+      "explanatory_source_definition_at": "ch05-one-differential-encodes-all-associativity-homotopies"
+    },
+    {
+      "id": "term-conilpotent-coalgebra",
+      "chapter": "ch05",
+      "term": "conilpotent coalgebra",
+      "chapter_anchor": "ch05-cobar-reverses-the-construction",
+      "source_range": {
+        "start": 11416,
+        "end": 11812
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 11,
+      "locations": [
+        11
+      ],
+      "explanatory_source_definition_at": "ch05-cobar-reverses-the-construction"
+    },
+    {
+      "id": "term-cobar-construction",
+      "chapter": "ch05",
+      "term": "cobar construction",
+      "chapter_anchor": "ch05-cobar-reverses-the-construction",
+      "source_range": {
+        "start": 11814,
+        "end": 13457
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 30,
+      "locations": [
+        30
+      ],
+      "explanatory_source_definition_at": "ch05-cobar-reverses-the-construction"
+    },
+    {
+      "id": "term-twisting-cochain",
+      "chapter": "ch05",
+      "term": "twisting cochain",
+      "chapter_anchor": "ch05-cobar-reverses-the-construction",
+      "source_range": {
+        "start": 12537,
+        "end": 13457
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 11,
+      "locations": [
+        11
+      ],
+      "explanatory_source_definition_at": "ch05-cobar-reverses-the-construction"
+    },
+    {
+      "id": "term-k-flat-and-k-injective",
+      "chapter": "ch06",
+      "term": "K-flat and K-injective",
+      "chapter_anchor": "adjunction-comparison-maps",
+      "source_range": {
+        "start": 3800,
+        "end": 4271
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 28,
+      "locations": [
+        28
+      ],
+      "explanatory_source_definition_at": "adjunction-comparison-maps"
+    },
+    {
+      "id": "term-smooth-affine-module",
+      "chapter": "ch06",
+      "term": "smooth affine module",
+      "chapter_anchor": "ch06-affine-currents-and-the-algebra-acting-on-their-resolution",
+      "source_range": {
+        "start": 8098,
+        "end": 8714
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 28,
+      "locations": [
+        28
+      ],
+      "explanatory_source_definition_at": "ch06-affine-currents-and-the-algebra-acting-on-their-resolution"
+    },
+    {
+      "id": "term-raw-affine-level",
+      "chapter": "ch06",
+      "term": "raw affine level",
+      "chapter_anchor": "ch06-affine-currents-and-the-algebra-acting-on-their-resolution",
+      "source_range": {
+        "start": 7257,
+        "end": 8096
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 28,
+      "locations": [
+        28
+      ],
+      "explanatory_source_definition_at": "ch06-affine-currents-and-the-algebra-acting-on-their-resolution"
+    },
+    {
+      "id": "term-localizing-subcategory",
+      "chapter": "ch06",
+      "term": "localizing subcategory",
+      "chapter_anchor": "ch06-the-image-and-its-original-counit",
+      "source_range": {
+        "start": 28165,
+        "end": 29534
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 28,
+      "locations": [
+        28
+      ],
+      "explanatory_source_definition_at": "ch06-the-image-and-its-original-counit"
+    },
+    {
+      "id": "term-compact-object",
+      "chapter": "ch06",
+      "term": "compact object",
+      "chapter_anchor": "ch06-the-image-and-its-original-counit",
+      "source_range": {
+        "start": 29536,
+        "end": 29889
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 28,
+      "locations": [
+        28
+      ],
+      "explanatory_source_definition_at": "ch06-the-image-and-its-original-counit"
+    },
+    {
+      "id": "term-joint-augmentation-torsion",
+      "chapter": "ch06",
+      "term": "joint augmentation torsion",
+      "chapter_anchor": "ch06-cellularity-and-derived-torsion",
+      "source_range": {
+        "start": 42266,
+        "end": 43791
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 28,
+      "locations": [
+        28
+      ],
+      "explanatory_source_definition_at": "ch06-cellularity-and-derived-torsion"
+    },
+    {
+      "id": "term-centre",
+      "chapter": "ch07",
+      "term": "centre",
+      "chapter_anchor": "ch07-central-operations-on-modules",
+      "source_range": {
+        "start": 1301,
+        "end": 2226
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 6,
+      "locations": [
+        6,
+        33,
+        34
+      ],
+      "explanatory_source_definition_at": "ch07-central-operations-on-modules"
+    },
+    {
+      "id": "term-hochschild-cochains",
+      "chapter": "ch07",
+      "term": "Hochschild cochains",
+      "chapter_anchor": "ch07-central-operations-on-modules",
+      "source_range": {
+        "start": 2228,
+        "end": 3752
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 34,
+      "locations": [
+        34
+      ],
+      "explanatory_source_definition_at": "ch07-central-operations-on-modules"
+    },
+    {
+      "id": "term-actor-and-pointing",
+      "chapter": "ch07",
+      "term": "actor and pointing",
+      "chapter_anchor": "ch07-a-factorizing-actor-and-its-pointing",
+      "source_range": {
+        "start": 7898,
+        "end": 10198
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 34,
+      "locations": [
+        34
+      ],
+      "explanatory_source_definition_at": "ch07-a-factorizing-actor-and-its-pointing"
+    },
+    {
+      "id": "term-homotopy-fibre",
+      "chapter": "ch07",
+      "term": "homotopy fibre",
+      "chapter_anchor": "ch07-a-factorizing-actor-and-its-pointing",
+      "source_range": {
+        "start": 9249,
+        "end": 10198
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 34,
+      "locations": [
+        34
+      ],
+      "explanatory_source_definition_at": "ch07-a-factorizing-actor-and-its-pointing"
+    },
+    {
+      "id": "term-recognition",
+      "chapter": "ch07",
+      "term": "recognition",
+      "chapter_anchor": "ch07-a-factorizing-actor-and-its-pointing",
+      "source_range": {
+        "start": 10200,
+        "end": 10782
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 33,
+      "locations": [
+        33,
+        34
+      ],
+      "explanatory_source_definition_at": "ch07-a-factorizing-actor-and-its-pointing"
+    },
+    {
+      "id": "term-spectator",
+      "chapter": "ch07",
+      "term": "spectator",
+      "chapter_anchor": "ch07-residues-with-spectators",
+      "source_range": {
+        "start": 30945,
+        "end": 31390
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 38,
+      "locations": [
+        38,
+        39
+      ],
+      "explanatory_source_definition_at": "ch07-residues-with-spectators"
+    },
+    {
+      "id": "term-coordinatewise-tensor-completion",
+      "chapter": "ch08",
+      "term": "coordinatewise tensor completion",
+      "chapter_anchor": "tensor-completion-and-rank",
+      "source_range": {
+        "start": 2269,
+        "end": 2687
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 38,
+      "locations": [
+        38
+      ],
+      "explanatory_source_definition_at": "tensor-completion-and-rank"
+    },
+    {
+      "id": "term-laurent-series",
+      "chapter": "ch08",
+      "term": "Laurent series",
+      "chapter_anchor": "ch08-laurent-series-with-algebraic-coefficients",
+      "source_range": {
+        "start": 5099,
+        "end": 5291
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 12,
+      "locations": [
+        12
+      ],
+      "explanatory_source_definition_at": "ch08-laurent-series-with-algebraic-coefficients"
+    },
+    {
+      "id": "term-relative-current-complex",
+      "chapter": "ch09",
+      "term": "relative current complex",
+      "chapter_anchor": "ch09-relative-currents-and-a-radial-homotopy",
+      "source_range": {
+        "start": 14900,
+        "end": 15305
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 39,
+      "locations": [
+        39
+      ],
+      "explanatory_source_definition_at": "ch09-relative-currents-and-a-radial-homotopy"
+    },
+    {
+      "id": "term-normalized-boundary-hypothesis",
+      "chapter": "ch10",
+      "term": "normalized boundary hypothesis",
+      "chapter_anchor": "ch10-virasoro-representations-and-domains-of-fields",
+      "source_range": {
+        "start": 7037,
+        "end": 7847
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 45,
+      "locations": [
+        45
+      ],
+      "explanatory_source_definition_at": "ch10-virasoro-representations-and-domains-of-fields"
+    },
+    {
+      "id": "term-determinant-line",
+      "chapter": "ch11",
+      "term": "determinant line",
+      "chapter_anchor": "ch11-finite-gaussian-integration-and-the-determinant-line",
+      "source_range": {
+        "start": 3941,
+        "end": 4905
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 47,
+      "locations": [
+        47,
+        52
+      ],
+      "explanatory_source_definition_at": "ch11-finite-gaussian-integration-and-the-determinant-line"
+    },
+    {
+      "id": "term-normalized-state",
+      "chapter": "ch11",
+      "term": "normalized state",
+      "chapter_anchor": "ch11-finite-gaussian-integration-and-the-determinant-line",
+      "source_range": {
+        "start": 5142,
+        "end": 5566
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 42,
+      "locations": [
+        42
+      ],
+      "explanatory_source_definition_at": "ch11-finite-gaussian-integration-and-the-determinant-line"
+    },
+    {
+      "id": "term-cap-reconstruction",
+      "chapter": "ch17",
+      "term": "cap",
+      "chapter_anchor": "states-lines-and-caps",
+      "source_range": {
+        "start": 31131,
+        "end": 31860
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 42,
+      "locations": [
+        42,
+        49,
+        53
+      ],
+      "explanatory_source_definition_at": "states-lines-and-caps"
+    },
+    {
+      "id": "term-associative-chiral-algebra",
+      "chapter": "ch12",
+      "term": "associative chiral algebra",
+      "chapter_anchor": "ch12-associative-products-on-configurations",
+      "source_range": {
+        "start": 5684,
+        "end": 6285
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 9,
+      "locations": [
+        9,
+        26
+      ],
+      "explanatory_source_definition_at": "ch12-associative-products-on-configurations"
+    },
+    {
+      "id": "term-chiral-coproduct",
+      "chapter": "ch12",
+      "term": "chiral coproduct",
+      "chapter_anchor": "ch12-associative-products-on-configurations",
+      "source_range": {
+        "start": 7267,
+        "end": 9821
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 26,
+      "locations": [
+        26
+      ],
+      "explanatory_source_definition_at": "ch12-associative-products-on-configurations"
+    },
+    {
+      "id": "term-spectral-form",
+      "chapter": "ch12",
+      "term": "spectral form",
+      "chapter_anchor": "ch12-a-spectral-construction-of-products-and-coproducts",
+      "source_range": {
+        "start": 9937,
+        "end": 12760
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 26,
+      "locations": [
+        26
+      ],
+      "explanatory_source_definition_at": "ch12-a-spectral-construction-of-products-and-coproducts"
+    },
+    {
+      "id": "term-contramodule",
+      "chapter": "ch12",
+      "term": "contramodule",
+      "chapter_anchor": "ch12-nonlinear-fields-the-w3-example",
+      "source_range": {
+        "start": 35200,
+        "end": 36866
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 20,
+      "locations": [
+        20
+      ],
+      "explanatory_source_definition_at": "ch12-nonlinear-fields-the-w3-example"
+    },
+    {
+      "id": "term-geometric-realization",
+      "chapter": "ch13",
+      "term": "geometric realization",
+      "chapter_anchor": "ch13-the-realized-vacuum-on-every-configuration",
+      "source_range": {
+        "start": 4310,
+        "end": 7045
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 22,
+      "locations": [
+        22
+      ],
+      "explanatory_source_definition_at": "ch13-the-realized-vacuum-on-every-configuration"
+    },
+    {
+      "id": "term-ribbon-category",
+      "chapter": "ch13",
+      "term": "ribbon category",
+      "chapter_anchor": "ch13",
+      "source_range": {
+        "start": 50,
+        "end": 3227
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 26,
+      "locations": [
+        26
+      ],
+      "explanatory_source_definition_at": "ch13"
+    },
+    {
+      "id": "term-pro-object",
+      "chapter": "ch13",
+      "term": "pro-object",
+      "chapter_anchor": "ch13-supported-duality-and-the-direction-of-comparison",
+      "source_range": {
+        "start": 12894,
+        "end": 13619
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 18,
+      "locations": [
+        18
+      ],
+      "explanatory_source_definition_at": "ch13-supported-duality-and-the-direction-of-comparison"
+    },
+    {
+      "id": "term-brane-and-brst-differential",
+      "chapter": "ch14",
+      "term": "brane and BRST differential",
+      "chapter_anchor": "ch14",
+      "source_range": {
+        "start": 368,
+        "end": 1772
+      },
+      "top_text_match": "both source concepts defined together; conjunction in the index is not a single technical term",
+      "first_exact_or_explanatory_position": 32,
+      "locations": [
+        32
+      ],
+      "explanatory_source_definition_at": "ch14"
+    },
+    {
+      "id": "term-hall-correspondence",
+      "chapter": "ch15",
+      "term": "Hall correspondence",
+      "chapter_anchor": "ch15-extensions-and-the-reason-for-associativity",
+      "source_range": {
+        "start": 1551,
+        "end": 3232
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 47,
+      "locations": [
+        47
+      ],
+      "explanatory_source_definition_at": "ch15-extensions-and-the-reason-for-associativity"
+    },
+    {
+      "id": "term-orientation-root",
+      "chapter": "ch15",
+      "term": "orientation root",
+      "chapter_anchor": "ch15-critical-coefficients-and-orientation",
+      "source_range": {
+        "start": 13039,
+        "end": 13565
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 47,
+      "locations": [
+        47
+      ],
+      "explanatory_source_definition_at": "ch15-critical-coefficients-and-orientation"
+    },
+    {
+      "id": "term-semi-topological-component",
+      "chapter": "ch15",
+      "term": "semi-topological component",
+      "chapter_anchor": "ch15-critical-coefficients-and-orientation",
+      "source_range": {
+        "start": 17618,
+        "end": 18643
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 47,
+      "locations": [
+        47
+      ],
+      "explanatory_source_definition_at": "ch15-critical-coefficients-and-orientation"
+    },
+    {
+      "id": "term-rigidification",
+      "chapter": "ch15",
+      "term": "rigidification",
+      "chapter_anchor": "ch15-compact-reduction-keeps-relative-moment-values",
+      "source_range": {
+        "start": 22215,
+        "end": 23824
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 47,
+      "locations": [
+        47
+      ],
+      "explanatory_source_definition_at": "ch15-compact-reduction-keeps-relative-moment-values"
+    },
+    {
+      "id": "term-stable-pair",
+      "chapter": "ch15",
+      "term": "stable pair",
+      "chapter_anchor": "ch15-the-igusa-series-and-the-stronger-realization-question",
+      "source_range": {
+        "start": 44445,
+        "end": 44863
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 49,
+      "locations": [
+        49
+      ],
+      "explanatory_source_definition_at": "ch15-the-igusa-series-and-the-stronger-realization-question"
+    },
+    {
+      "id": "term-weil-functional",
+      "chapter": "ch16",
+      "term": "Weil functional",
+      "chapter_anchor": "ch16-the-complete-arithmetic-functional",
+      "source_range": {
+        "start": 1305,
+        "end": 3160
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 51,
+      "locations": [
+        51
+      ],
+      "explanatory_source_definition_at": "ch16-the-complete-arithmetic-functional"
+    },
+    {
+      "id": "term-weil-positivity",
+      "chapter": "ch16",
+      "term": "Weil positivity",
+      "chapter_anchor": "ch16-the-complete-arithmetic-functional",
+      "source_range": {
+        "start": 3162,
+        "end": 3888
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 51,
+      "locations": [
+        51
+      ],
+      "explanatory_source_definition_at": "ch16-the-complete-arithmetic-functional"
+    },
+    {
+      "id": "term-frobenius-lift",
+      "chapter": "ch16",
+      "term": "Frobenius lift",
+      "chapter_anchor": "ch16-what-integral-arithmetic-points-forget",
+      "source_range": {
+        "start": 21710,
+        "end": 24267
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 51,
+      "locations": [
+        51
+      ],
+      "explanatory_source_definition_at": "ch16-what-integral-arithmetic-points-forget"
+    },
+    {
+      "id": "term-proper-trace-ideal",
+      "chapter": "ch16",
+      "term": "proper trace ideal",
+      "chapter_anchor": "ch16-the-trace-domain-and-its-coherent-multiplication",
+      "source_range": {
+        "start": 15571,
+        "end": 18716
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 51,
+      "locations": [
+        51
+      ],
+      "explanatory_source_definition_at": "ch16-the-trace-domain-and-its-coherent-multiplication"
+    },
+    {
+      "id": "term-interface",
+      "chapter": "ch17",
+      "term": "interface",
+      "chapter_anchor": "interfaces-and-reconstruction",
+      "source_range": {
+        "start": 1861,
+        "end": 2219
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 27,
+      "locations": [
+        27,
+        28,
+        29
+      ],
+      "explanatory_source_definition_at": "interfaces-and-reconstruction"
+    },
+    {
+      "id": "term-conditional-expectation",
+      "chapter": "ch01",
+      "term": "conditional expectation",
+      "chapter_anchor": "reduction-must-retain-the-measurements",
+      "source_range": {
+        "start": 2576,
+        "end": 3288
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 42,
+      "locations": [
+        42
+      ],
+      "explanatory_source_definition_at": "reduction-must-retain-the-measurements"
+    },
+    {
+      "id": "term-matching-sector-tensor",
+      "chapter": "ch02",
+      "term": "matching-sector tensor product",
+      "chapter_anchor": "ch02-ising-matching-ends",
+      "source_range": {
+        "start": 13290,
+        "end": 15081
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 26,
+      "locations": [
+        26
+      ],
+      "explanatory_source_definition_at": "ch02-ising-matching-ends"
+    },
+    {
+      "id": "term-charged-current",
+      "chapter": "ch03",
+      "term": "charge of a current module",
+      "chapter_anchor": "ch03-charged-current-contour",
+      "source_range": {
+        "start": 10103,
+        "end": 11208
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 42,
+      "locations": [
+        42
+      ],
+      "explanatory_source_definition_at": "ch03-charged-current-contour"
+    },
+    {
+      "id": "term-normal-link",
+      "chapter": "ch04",
+      "term": "normal link complex",
+      "chapter_anchor": "ch04-normal-link",
+      "source_range": {
+        "start": 16245,
+        "end": 17291
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 16,
+      "locations": [
+        16
+      ],
+      "explanatory_source_definition_at": "ch04-normal-link"
+    },
+    {
+      "id": "term-collision-attaching-map",
+      "chapter": "ch17",
+      "term": "attaching map",
+      "chapter_anchor": "independent-realizations",
+      "source_range": {
+        "start": 37117,
+        "end": 38909
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 16,
+      "locations": [
+        16
+      ],
+      "explanatory_source_definition_at": "independent-realizations"
+    },
+    {
+      "id": "term-consecutive-cut",
+      "chapter": "ch04",
+      "term": "consecutive cut",
+      "chapter_anchor": "ordered-cut-geometry",
+      "source_range": {
+        "start": 43330,
+        "end": 44073
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 12,
+      "locations": [
+        12
+      ],
+      "explanatory_source_definition_at": "ordered-cut-geometry"
+    },
+    {
+      "id": "term-spencer-complex",
+      "chapter": "ch05",
+      "term": "Spencer complex",
+      "chapter_anchor": "ch05-rational-exchange-diagram",
+      "source_range": {
+        "start": 27095,
+        "end": 28200
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 18,
+      "locations": [
+        18
+      ],
+      "explanatory_source_definition_at": "ch05-rational-exchange-diagram"
+    },
+    {
+      "id": "term-bulk-supported-action",
+      "chapter": "ch07",
+      "term": "supported boundary action",
+      "chapter_anchor": "ch07-supported-bulk-action",
+      "source_range": {
+        "start": 5334,
+        "end": 5948
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 42,
+      "locations": [
+        42
+      ],
+      "explanatory_source_definition_at": "ch07-supported-bulk-action"
+    },
+    {
+      "id": "term-genuine-roof",
+      "chapter": "ch07",
+      "term": "pointed Heisenberg roof",
+      "chapter_anchor": "ch07-genuine-heisenberg-fibre",
+      "source_range": {
+        "start": 27525,
+        "end": 28178
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 35,
+      "locations": [
+        35
+      ],
+      "explanatory_source_definition_at": "ch07-genuine-heisenberg-fibre"
+    },
+    {
+      "id": "term-factorized-common-domain",
+      "chapter": "ch08",
+      "term": "factorized common domain",
+      "chapter_anchor": "ch08-factorized-common-domain",
+      "source_range": {
+        "start": 26576,
+        "end": 27439
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 38,
+      "locations": [
+        38
+      ],
+      "explanatory_source_definition_at": "ch08-factorized-common-domain"
+    },
+    {
+      "id": "term-upward-proper",
+      "chapter": "ch09",
+      "term": "upward-proper support",
+      "chapter_anchor": "ch09-fields-as-joint-currents",
+      "source_range": {
+        "start": 4544,
+        "end": 5145
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 39,
+      "locations": [
+        39
+      ],
+      "explanatory_source_definition_at": "ch09-fields-as-joint-currents"
+    },
+    {
+      "id": "term-analytic-graph-domain",
+      "chapter": "ch10",
+      "term": "graph domain",
+      "chapter_anchor": "ch10-two-completed-clusters",
+      "source_range": {
+        "start": 24961,
+        "end": 26271
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 45,
+      "locations": [
+        45
+      ],
+      "explanatory_source_definition_at": "ch10-two-completed-clusters"
+    },
+    {
+      "id": "term-harmonic-mehler-collar",
+      "chapter": "ch11",
+      "term": "Mehler collar",
+      "chapter_anchor": "ch11-harmonic-disk-and-collar",
+      "source_range": {
+        "start": 6970,
+        "end": 7905
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 42,
+      "locations": [
+        42
+      ],
+      "explanatory_source_definition_at": "ch11-harmonic-disk-and-collar"
+    },
+    {
+      "id": "term-harmonic-state",
+      "chapter": "ch11",
+      "term": "harmonic disk state",
+      "chapter_anchor": "ch11-harmonic-disk-and-collar",
+      "source_range": {
+        "start": 6487,
+        "end": 6968
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 42,
+      "locations": [
+        42
+      ],
+      "explanatory_source_definition_at": "ch11-harmonic-disk-and-collar"
+    },
+    {
+      "id": "term-multipoint-mode",
+      "chapter": "ch12",
+      "term": "multipoint mode",
+      "chapter_anchor": "ch12-intrinsic-rtt-modes",
+      "source_range": {
+        "start": 22459,
+        "end": 23302
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 20,
+      "locations": [
+        20
+      ],
+      "explanatory_source_definition_at": "ch12-intrinsic-rtt-modes"
+    },
+    {
+      "id": "term-cauchy-lift",
+      "chapter": "ch12",
+      "term": "Cauchy lift",
+      "chapter_anchor": "ch12-intrinsic-rtt-modes",
+      "source_range": {
+        "start": 23719,
+        "end": 23982
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 20,
+      "locations": [
+        20
+      ],
+      "explanatory_source_definition_at": "ch12-intrinsic-rtt-modes"
+    },
+    {
+      "id": "term-weak-hopf-algebra",
+      "chapter": "ch13",
+      "term": "weak Hopf algebra",
+      "chapter_anchor": "ch13-finite-rational-categories-and-a-non-scalar-base",
+      "source_range": {
+        "start": 27454,
+        "end": 28607
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 25,
+      "locations": [
+        25
+      ],
+      "explanatory_source_definition_at": "ch13-finite-rational-categories-and-a-non-scalar-base"
+    },
+    {
+      "id": "term-flux-cocycle",
+      "chapter": "ch14",
+      "term": "flux cocycle",
+      "chapter_anchor": "ch14-what-a-joined-interface-remembers",
+      "source_range": {
+        "start": 8139,
+        "end": 8848
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 30,
+      "locations": [
+        30
+      ],
+      "explanatory_source_definition_at": "ch14-what-a-joined-interface-remembers"
+    },
+    {
+      "id": "term-root-jet",
+      "chapter": "ch15",
+      "term": "finite root jet",
+      "chapter_anchor": "ch15-one-loop-on-finite-root-jets",
+      "source_range": {
+        "start": 4979,
+        "end": 6046
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 47,
+      "locations": [
+        47
+      ],
+      "explanatory_source_definition_at": "ch15-one-loop-on-finite-root-jets"
+    },
+    {
+      "id": "term-fixed-weil-test",
+      "chapter": "ch16",
+      "term": "translated Weil test",
+      "chapter_anchor": "ch16-fixed-shape-translates",
+      "source_range": {
+        "start": 33001,
+        "end": 34781
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 51,
+      "locations": [
+        51
+      ],
+      "explanatory_source_definition_at": "ch16-fixed-shape-translates"
+    },
+    {
+      "id": "term-retained-kernel",
+      "chapter": "ch17",
+      "term": "retained kernel",
+      "chapter_anchor": "ch17-retained-first-root",
+      "source_range": {
+        "start": 14023,
+        "end": 15310
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 21,
+      "locations": [
+        21
+      ],
+      "explanatory_source_definition_at": "ch17-retained-first-root"
+    },
+    {
+      "id": "term-rooted-operation",
+      "chapter": "ch17",
+      "term": "rooted operation",
+      "chapter_anchor": "ch17-all-retained-marked",
+      "source_range": {
+        "start": 18634,
+        "end": 19906
+      },
+      "top_text_match": "exact indexed term string",
+      "first_exact_or_explanatory_position": 21,
+      "locations": [
+        21
+      ],
+      "explanatory_source_definition_at": "ch17-all-retained-marked"
+    }
+  ],
+  "additional_fragments": {
+    "words": {
+      "key": "words",
+      "position": 11,
+      "sha256": "e0195ea0b87eef111dce1824b80b789467c442295a560634bdf272fad521b084"
+    },
+    "ordinary": {
+      "key": "ordinary",
+      "position": 12,
+      "sha256": "b428e394cf34a18e275963b48b0fab15c2ad8b26dbf803758077ff2971a5e3ae"
+    },
+    "torsion": {
+      "key": "torsion",
+      "position": 14,
+      "sha256": "2d51778dd948139a89af60152d6224332b7ef7f59ee2fb9ae857d85712cd1e78"
+    },
+    "twists": {
+      "key": "twists",
+      "position": 16,
+      "sha256": "c8f63f1879a13b3635f6aee35b0a6b664972b85b660e72810eb83d000f1550e5"
+    },
+    "coefficients": {
+      "key": "coefficients",
+      "position": 18,
+      "sha256": "cd3489b57456b44c3a5b1e6a9d62c5d81ef4f99270491c4782e6e1a3bb0a55b0"
+    },
+    "matrixfields": {
+      "key": "matrixfields",
+      "position": 20,
+      "sha256": "d18e35ef455f68b717576d10e56f051eb0ba3556c83f3f1191eb82ca1385700a"
+    },
+    "critical": {
+      "key": "critical",
+      "position": 21,
+      "sha256": "d08907e0de57a6577c8c139d18b8eaa88374c294a88f5fa61bf8091ee37e2ae5"
+    },
+    "braids": {
+      "key": "braids",
+      "position": 26,
+      "sha256": "4f8fb5e4eeaafca83ff3e7eb387ee23fdab7650fca555e4a9d7282c5ae6d81c8"
+    },
+    "smooth": {
+      "key": "smooth",
+      "position": 28,
+      "sha256": "af5c1dca0a8d558061f38a3dd1525d13f5f34275ab0bfa2fdfbac7fb5f886fcd"
+    },
+    "fluxsquare": {
+      "key": "fluxsquare",
+      "position": 30,
+      "sha256": "bc01755898edee745ab5b961f83598e0b131c605c3dfaf9308cce193ef4db7d0"
+    },
+    "BRST": {
+      "key": "BRST",
+      "position": 32,
+      "sha256": "1c3de0e6ea5c8a305e2814b746ed5dc2fe35c53dae56435b3ccafcc0dc227096"
+    },
+    "unitization": {
+      "key": "unitization",
+      "position": 34,
+      "sha256": "713d50086815a1130d3cf4cd663597748184688d823af361b098796aa5fd470a"
+    },
+    "exterior": {
+      "key": "exterior",
+      "position": 35,
+      "sha256": "0c553cf5f7227980b24040e8fd55caa2ebe376d77dd9b79ee5b3b1166eb6f164"
+    },
+    "poles": {
+      "key": "poles",
+      "position": 38,
+      "sha256": "daae2982cbfdf6d75402c76323129be499e22b42ee248158a99585e980db8d8b"
+    },
+    "ward": {
+      "key": "ward",
+      "position": 39,
+      "sha256": "3516b55c7c66363f2c895397f0139c13741c20dd6debc45f5643556fd51229a2"
+    },
+    "mehler": {
+      "key": "mehler",
+      "position": 42,
+      "sha256": "d78a31249913eb5a5f4930d968892189b331f26128b469a5ed9fbb8e356713af"
+    },
+    "graph": {
+      "key": "graph",
+      "position": 45,
+      "sha256": "aa9dcd4ff10a507f3d8bfd075a14822ffe2d525362d447e07b6e081f3c170bbf"
+    },
+    "jets": {
+      "key": "jets",
+      "position": 47,
+      "sha256": "9ba9da13dc908c7c078477b0acd86c1361e3df78e75013ef6fd38e8e8abbfe5a"
+    },
+    "ideal": {
+      "key": "ideal",
+      "position": 49,
+      "sha256": "1559409fd827a99b6a4d4c73fbb2ba472100be25e66b7bf0699c95b8fa23d456"
+    },
+    "arithmetic": {
+      "key": "arithmetic",
+      "position": 51,
+      "sha256": "30e2a5c1d1cfdbc77564ca882d5fe48ff96d279709823e29e2f9436d8d075c92"
+    }
+  },
+  "signed_baseline_proof": {
+    "c4_positions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      13,
+      15,
+      17,
+      19,
+      22,
+      23,
+      24,
+      25,
+      27,
+      29,
+      31,
+      33,
+      36,
+      37,
+      40,
+      41,
+      43,
+      44,
+      46,
+      48,
+      50,
+      52,
+      53
+    ],
+    "all_c4_byte_identical": true,
+    "original_17_positions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      22,
+      23,
+      36,
+      40,
+      41,
+      43,
+      53
+    ],
+    "original_figure_after_paragraph": 4
+  }
+}

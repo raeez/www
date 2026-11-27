@@ -1,0 +1,832 @@
+{
+  "status": "PASS",
+  "chromium": "147.0.7727.15",
+  "files": {
+    "index.html": {
+      "bytes": 5240692,
+      "sha256": "4b877ff7450746584f1e0bf247e3bf682a1bb6b3d60fca959338f23484169e8a"
+    },
+    "atlas.html": {
+      "bytes": 11472123,
+      "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594"
+    },
+    "reference.html": {
+      "bytes": 5071411,
+      "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701"
+    },
+    "reader-index.js": {
+      "bytes": 5988098,
+      "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca"
+    }
+  },
+  "previous": {
+    "index.html": {
+      "bytes": 5192993,
+      "sha256": "53c6b4c090cb25bcb30d6cefc5f35c1573e9f4e7966d2c2efc78b66fc620cfe0"
+    },
+    "atlas.html": {
+      "bytes": 11472147,
+      "sha256": "a46cacb61b98ee79b167557075d5e2b175e019a867394a372967b45db3106da4"
+    },
+    "reference.html": {
+      "bytes": 5071435,
+      "sha256": "02f555b74e0fceb955851fe3724cb8ab4a4b40a728734cd4a8e06c8da63a88c9"
+    },
+    "reader-index.js": {
+      "bytes": 5988098,
+      "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca"
+    }
+  },
+  "checks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 950
+      },
+      "originalPositions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        22,
+        23,
+        36,
+        40,
+        41,
+        43,
+        53
+      ],
+      "paragraphs": 53,
+      "inspection": {
+        "visible": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "links": [
+          {
+            "para": 5,
+            "nth": 0,
+            "href": "#ch11-relative-phase",
+            "exists": true
+          },
+          {
+            "para": 6,
+            "nth": 0,
+            "href": "#fields-and-modes",
+            "exists": true
+          },
+          {
+            "para": 9,
+            "nth": 0,
+            "href": "#ch05-ordered-cuts-give-a-finite-geometric-bar-construction",
+            "exists": true
+          },
+          {
+            "para": 10,
+            "nth": 0,
+            "href": "#ch05-cobar-reverses-the-construction",
+            "exists": true
+          },
+          {
+            "para": 11,
+            "nth": 0,
+            "href": "#ch04-three-residues",
+            "exists": true
+          },
+          {
+            "para": 12,
+            "nth": 0,
+            "href": "#ch12-exceptional-w4-fibres-and-the-algebra-of-extensions",
+            "exists": true
+          },
+          {
+            "para": 14,
+            "nth": 0,
+            "href": "#ch04-irregular-collision",
+            "exists": true
+          },
+          {
+            "para": 15,
+            "nth": 0,
+            "href": "#ch04-normal-link",
+            "exists": true
+          },
+          {
+            "para": 16,
+            "nth": 0,
+            "href": "#ch05-rational-exchange-diagram",
+            "exists": true
+          },
+          {
+            "para": 17,
+            "nth": 0,
+            "href": "#ch13-supported-duality-and-the-direction-of-comparison",
+            "exists": true
+          },
+          {
+            "para": 18,
+            "nth": 0,
+            "href": "#ch12-rational-matrix-fields-and-the-full-curved-dual",
+            "exists": true
+          },
+          {
+            "para": 19,
+            "nth": 0,
+            "href": "#ch12-rational-matrix-fields-and-the-full-curved-dual",
+            "exists": true
+          },
+          {
+            "para": 20,
+            "nth": 0,
+            "href": "#ch17-native-r3-fields",
+            "exists": true
+          },
+          {
+            "para": 21,
+            "nth": 0,
+            "href": "#ch13-the-ordinary-categorical-round-trip",
+            "exists": true
+          },
+          {
+            "para": 23,
+            "nth": 0,
+            "href": "#ch12-a-spectral-construction-of-products-and-coproducts",
+            "exists": true
+          },
+          {
+            "para": 24,
+            "nth": 0,
+            "href": "#ch12-ising-half-turn",
+            "exists": true
+          },
+          {
+            "para": 25,
+            "nth": 0,
+            "href": "#ch12-ising-half-turn",
+            "exists": true
+          },
+          {
+            "para": 26,
+            "nth": 0,
+            "href": "#affine-reconstruction-scope",
+            "exists": true
+          },
+          {
+            "para": 27,
+            "nth": 0,
+            "href": "#ch06-common-tail-completeness",
+            "exists": true
+          },
+          {
+            "para": 28,
+            "nth": 0,
+            "href": "#ch14-what-a-joined-interface-remembers",
+            "exists": true
+          },
+          {
+            "para": 29,
+            "nth": 0,
+            "href": "#ch14-surface-fusion-and-the-miura-product",
+            "exists": true
+          },
+          {
+            "para": 30,
+            "nth": 0,
+            "href": "#ch14-d3-branes-chiral-operators-and-hilbert-scheme-sections",
+            "exists": true
+          },
+          {
+            "para": 32,
+            "nth": 0,
+            "href": "#ch07-recognition-on-chevalley-coalgebras",
+            "exists": true
+          },
+          {
+            "para": 33,
+            "nth": 0,
+            "href": "#ch07-recognition-on-chevalley-coalgebras",
+            "exists": true
+          },
+          {
+            "para": 34,
+            "nth": 0,
+            "href": "#ch07-finite-exterior-sources",
+            "exists": true
+          },
+          {
+            "para": 36,
+            "nth": 0,
+            "href": "#ch09-ordered-poles-and-their-complete-differential",
+            "exists": true
+          },
+          {
+            "para": 37,
+            "nth": 0,
+            "href": "#ch08-factorized-common-domain",
+            "exists": true
+          },
+          {
+            "para": 38,
+            "nth": 0,
+            "href": "#ch09-relative-currents-and-a-radial-homotopy",
+            "exists": true
+          },
+          {
+            "para": 39,
+            "nth": 0,
+            "href": "#ch11-recovering-a-state-from-the-disk",
+            "exists": true
+          },
+          {
+            "para": 40,
+            "nth": 0,
+            "href": "#ch11-neutral-ray-pair",
+            "exists": true
+          },
+          {
+            "para": 41,
+            "nth": 0,
+            "href": "#states-lines-and-caps",
+            "exists": true
+          },
+          {
+            "para": 42,
+            "nth": 0,
+            "href": "#ch11-independent-meridian-measure",
+            "exists": true
+          },
+          {
+            "para": 43,
+            "nth": 0,
+            "href": "#ch10-finite-uncut-sewings",
+            "exists": true
+          },
+          {
+            "para": 44,
+            "nth": 0,
+            "href": "#ch10-two-completed-clusters",
+            "exists": true
+          },
+          {
+            "para": 45,
+            "nth": 0,
+            "href": "#ch15-a-faithful-ordinary-comparison-on-a-k3-surface",
+            "exists": true
+          },
+          {
+            "para": 46,
+            "nth": 0,
+            "href": "#ch15-one-loop-on-finite-root-jets",
+            "exists": true
+          },
+          {
+            "para": 47,
+            "nth": 0,
+            "href": "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+            "exists": true
+          },
+          {
+            "para": 48,
+            "nth": 0,
+            "href": "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+            "exists": true
+          },
+          {
+            "para": 49,
+            "nth": 0,
+            "href": "#ch16-fixed-shape-translates",
+            "exists": true
+          },
+          {
+            "para": 50,
+            "nth": 0,
+            "href": "#ch16-a-positive-representation-and-its-exact-missing-remainder",
+            "exists": true
+          },
+          {
+            "para": 51,
+            "nth": 0,
+            "href": "#ch11-original-coefficient-heat-and-a-based-local-vacuum-line",
+            "exists": true
+          },
+          {
+            "para": 52,
+            "nth": 0,
+            "href": "#problem-gravitational-cap",
+            "exists": true
+          }
+        ],
+        "errors": 0,
+        "math": 90,
+        "figure": "fig-front-exchange",
+        "figureAfter": 4,
+        "author": [
+          "Raeez Lorgat",
+          "https://raeez.com"
+        ],
+        "width": 1440,
+        "viewport": 1440
+      },
+      "destinations": [
+        "#ch11-relative-phase",
+        "#fields-and-modes",
+        "#ch05-ordered-cuts-give-a-finite-geometric-bar-construction",
+        "#ch05-cobar-reverses-the-construction",
+        "#ch04-three-residues",
+        "#ch12-exceptional-w4-fibres-and-the-algebra-of-extensions",
+        "#ch04-irregular-collision",
+        "#ch04-normal-link",
+        "#ch05-rational-exchange-diagram",
+        "#ch13-supported-duality-and-the-direction-of-comparison",
+        "#ch12-rational-matrix-fields-and-the-full-curved-dual",
+        "#ch12-rational-matrix-fields-and-the-full-curved-dual",
+        "#ch17-native-r3-fields",
+        "#ch13-the-ordinary-categorical-round-trip",
+        "#ch12-a-spectral-construction-of-products-and-coproducts",
+        "#ch12-ising-half-turn",
+        "#ch12-ising-half-turn",
+        "#affine-reconstruction-scope",
+        "#ch06-common-tail-completeness",
+        "#ch14-what-a-joined-interface-remembers",
+        "#ch14-surface-fusion-and-the-miura-product",
+        "#ch14-d3-branes-chiral-operators-and-hilbert-scheme-sections",
+        "#ch07-recognition-on-chevalley-coalgebras",
+        "#ch07-recognition-on-chevalley-coalgebras",
+        "#ch07-finite-exterior-sources",
+        "#ch09-ordered-poles-and-their-complete-differential",
+        "#ch08-factorized-common-domain",
+        "#ch09-relative-currents-and-a-radial-homotopy",
+        "#ch11-recovering-a-state-from-the-disk",
+        "#ch11-neutral-ray-pair",
+        "#states-lines-and-caps",
+        "#ch11-independent-meridian-measure",
+        "#ch10-finite-uncut-sewings",
+        "#ch10-two-completed-clusters",
+        "#ch15-a-faithful-ordinary-comparison-on-a-k3-surface",
+        "#ch15-one-loop-on-finite-root-jets",
+        "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+        "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+        "#ch16-fixed-shape-translates",
+        "#ch16-a-positive-representation-and-its-exact-missing-remainder",
+        "#ch11-original-coefficient-heat-and-a-based-local-vacuum-line",
+        "#problem-gravitational-cap"
+      ],
+      "scrolledPreviews": [
+        "#ch05-rational-exchange-diagram",
+        "#ch14-d3-branes-chiral-operators-and-hilbert-scheme-sections",
+        "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+        "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+        "#ch16-fixed-shape-translates"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "originalPositions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        22,
+        23,
+        36,
+        40,
+        41,
+        43,
+        53
+      ],
+      "paragraphs": 53,
+      "inspection": {
+        "visible": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "links": [
+          {
+            "para": 5,
+            "nth": 0,
+            "href": "#ch11-relative-phase",
+            "exists": true
+          },
+          {
+            "para": 6,
+            "nth": 0,
+            "href": "#fields-and-modes",
+            "exists": true
+          },
+          {
+            "para": 9,
+            "nth": 0,
+            "href": "#ch05-ordered-cuts-give-a-finite-geometric-bar-construction",
+            "exists": true
+          },
+          {
+            "para": 10,
+            "nth": 0,
+            "href": "#ch05-cobar-reverses-the-construction",
+            "exists": true
+          },
+          {
+            "para": 11,
+            "nth": 0,
+            "href": "#ch04-three-residues",
+            "exists": true
+          },
+          {
+            "para": 12,
+            "nth": 0,
+            "href": "#ch12-exceptional-w4-fibres-and-the-algebra-of-extensions",
+            "exists": true
+          },
+          {
+            "para": 14,
+            "nth": 0,
+            "href": "#ch04-irregular-collision",
+            "exists": true
+          },
+          {
+            "para": 15,
+            "nth": 0,
+            "href": "#ch04-normal-link",
+            "exists": true
+          },
+          {
+            "para": 16,
+            "nth": 0,
+            "href": "#ch05-rational-exchange-diagram",
+            "exists": true
+          },
+          {
+            "para": 17,
+            "nth": 0,
+            "href": "#ch13-supported-duality-and-the-direction-of-comparison",
+            "exists": true
+          },
+          {
+            "para": 18,
+            "nth": 0,
+            "href": "#ch12-rational-matrix-fields-and-the-full-curved-dual",
+            "exists": true
+          },
+          {
+            "para": 19,
+            "nth": 0,
+            "href": "#ch12-rational-matrix-fields-and-the-full-curved-dual",
+            "exists": true
+          },
+          {
+            "para": 20,
+            "nth": 0,
+            "href": "#ch17-native-r3-fields",
+            "exists": true
+          },
+          {
+            "para": 21,
+            "nth": 0,
+            "href": "#ch13-the-ordinary-categorical-round-trip",
+            "exists": true
+          },
+          {
+            "para": 23,
+            "nth": 0,
+            "href": "#ch12-a-spectral-construction-of-products-and-coproducts",
+            "exists": true
+          },
+          {
+            "para": 24,
+            "nth": 0,
+            "href": "#ch12-ising-half-turn",
+            "exists": true
+          },
+          {
+            "para": 25,
+            "nth": 0,
+            "href": "#ch12-ising-half-turn",
+            "exists": true
+          },
+          {
+            "para": 26,
+            "nth": 0,
+            "href": "#affine-reconstruction-scope",
+            "exists": true
+          },
+          {
+            "para": 27,
+            "nth": 0,
+            "href": "#ch06-common-tail-completeness",
+            "exists": true
+          },
+          {
+            "para": 28,
+            "nth": 0,
+            "href": "#ch14-what-a-joined-interface-remembers",
+            "exists": true
+          },
+          {
+            "para": 29,
+            "nth": 0,
+            "href": "#ch14-surface-fusion-and-the-miura-product",
+            "exists": true
+          },
+          {
+            "para": 30,
+            "nth": 0,
+            "href": "#ch14-d3-branes-chiral-operators-and-hilbert-scheme-sections",
+            "exists": true
+          },
+          {
+            "para": 32,
+            "nth": 0,
+            "href": "#ch07-recognition-on-chevalley-coalgebras",
+            "exists": true
+          },
+          {
+            "para": 33,
+            "nth": 0,
+            "href": "#ch07-recognition-on-chevalley-coalgebras",
+            "exists": true
+          },
+          {
+            "para": 34,
+            "nth": 0,
+            "href": "#ch07-finite-exterior-sources",
+            "exists": true
+          },
+          {
+            "para": 36,
+            "nth": 0,
+            "href": "#ch09-ordered-poles-and-their-complete-differential",
+            "exists": true
+          },
+          {
+            "para": 37,
+            "nth": 0,
+            "href": "#ch08-factorized-common-domain",
+            "exists": true
+          },
+          {
+            "para": 38,
+            "nth": 0,
+            "href": "#ch09-relative-currents-and-a-radial-homotopy",
+            "exists": true
+          },
+          {
+            "para": 39,
+            "nth": 0,
+            "href": "#ch11-recovering-a-state-from-the-disk",
+            "exists": true
+          },
+          {
+            "para": 40,
+            "nth": 0,
+            "href": "#ch11-neutral-ray-pair",
+            "exists": true
+          },
+          {
+            "para": 41,
+            "nth": 0,
+            "href": "#states-lines-and-caps",
+            "exists": true
+          },
+          {
+            "para": 42,
+            "nth": 0,
+            "href": "#ch11-independent-meridian-measure",
+            "exists": true
+          },
+          {
+            "para": 43,
+            "nth": 0,
+            "href": "#ch10-finite-uncut-sewings",
+            "exists": true
+          },
+          {
+            "para": 44,
+            "nth": 0,
+            "href": "#ch10-two-completed-clusters",
+            "exists": true
+          },
+          {
+            "para": 45,
+            "nth": 0,
+            "href": "#ch15-a-faithful-ordinary-comparison-on-a-k3-surface",
+            "exists": true
+          },
+          {
+            "para": 46,
+            "nth": 0,
+            "href": "#ch15-one-loop-on-finite-root-jets",
+            "exists": true
+          },
+          {
+            "para": 47,
+            "nth": 0,
+            "href": "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+            "exists": true
+          },
+          {
+            "para": 48,
+            "nth": 0,
+            "href": "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+            "exists": true
+          },
+          {
+            "para": 49,
+            "nth": 0,
+            "href": "#ch16-fixed-shape-translates",
+            "exists": true
+          },
+          {
+            "para": 50,
+            "nth": 0,
+            "href": "#ch16-a-positive-representation-and-its-exact-missing-remainder",
+            "exists": true
+          },
+          {
+            "para": 51,
+            "nth": 0,
+            "href": "#ch11-original-coefficient-heat-and-a-based-local-vacuum-line",
+            "exists": true
+          },
+          {
+            "para": 52,
+            "nth": 0,
+            "href": "#problem-gravitational-cap",
+            "exists": true
+          }
+        ],
+        "errors": 0,
+        "math": 90,
+        "figure": "fig-front-exchange",
+        "figureAfter": 4,
+        "author": [
+          "Raeez Lorgat",
+          "https://raeez.com"
+        ],
+        "width": 390,
+        "viewport": 390
+      },
+      "destinations": [
+        "#ch11-relative-phase",
+        "#fields-and-modes",
+        "#ch05-ordered-cuts-give-a-finite-geometric-bar-construction",
+        "#ch05-cobar-reverses-the-construction",
+        "#ch04-three-residues",
+        "#ch12-exceptional-w4-fibres-and-the-algebra-of-extensions",
+        "#ch04-irregular-collision",
+        "#ch04-normal-link",
+        "#ch05-rational-exchange-diagram",
+        "#ch13-supported-duality-and-the-direction-of-comparison",
+        "#ch12-rational-matrix-fields-and-the-full-curved-dual",
+        "#ch12-rational-matrix-fields-and-the-full-curved-dual",
+        "#ch17-native-r3-fields",
+        "#ch13-the-ordinary-categorical-round-trip",
+        "#ch12-a-spectral-construction-of-products-and-coproducts",
+        "#ch12-ising-half-turn",
+        "#ch12-ising-half-turn",
+        "#affine-reconstruction-scope",
+        "#ch06-common-tail-completeness",
+        "#ch14-what-a-joined-interface-remembers",
+        "#ch14-surface-fusion-and-the-miura-product",
+        "#ch14-d3-branes-chiral-operators-and-hilbert-scheme-sections",
+        "#ch07-recognition-on-chevalley-coalgebras",
+        "#ch07-recognition-on-chevalley-coalgebras",
+        "#ch07-finite-exterior-sources",
+        "#ch09-ordered-poles-and-their-complete-differential",
+        "#ch08-factorized-common-domain",
+        "#ch09-relative-currents-and-a-radial-homotopy",
+        "#ch11-recovering-a-state-from-the-disk",
+        "#ch11-neutral-ray-pair",
+        "#states-lines-and-caps",
+        "#ch11-independent-meridian-measure",
+        "#ch10-finite-uncut-sewings",
+        "#ch10-two-completed-clusters",
+        "#ch15-a-faithful-ordinary-comparison-on-a-k3-surface",
+        "#ch15-one-loop-on-finite-root-jets",
+        "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+        "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+        "#ch16-fixed-shape-translates",
+        "#ch16-a-positive-representation-and-its-exact-missing-remainder",
+        "#ch11-original-coefficient-heat-and-a-based-local-vacuum-line",
+        "#problem-gravitational-cap"
+      ],
+      "scrolledPreviews": []
+    }
+  ]
+}

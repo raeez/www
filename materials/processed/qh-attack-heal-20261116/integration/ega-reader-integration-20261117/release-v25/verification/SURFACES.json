@@ -1,0 +1,242 @@
+{
+  "status": "PASS",
+  "files": {
+    "index.html": {
+      "sha256": "4b877ff7450746584f1e0bf247e3bf682a1bb6b3d60fca959338f23484169e8a",
+      "bytes": 5240692
+    },
+    "reference.html": {
+      "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701",
+      "bytes": 5071411
+    },
+    "atlas.html": {
+      "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594",
+      "bytes": 11472123
+    },
+    "reader-index.js": {
+      "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+      "bytes": 5988098
+    }
+  },
+  "predecessor": {
+    "index.html": {
+      "sha256": "53c6b4c090cb25bcb30d6cefc5f35c1573e9f4e7966d2c2efc78b66fc620cfe0",
+      "bytes": 5192993
+    },
+    "reference.html": {
+      "sha256": "02f555b74e0fceb955851fe3724cb8ab4a4b40a728734cd4a8e06c8da63a88c9",
+      "bytes": 5071435
+    },
+    "atlas.html": {
+      "sha256": "a46cacb61b98ee79b167557075d5e2b175e019a867394a372967b45db3106da4",
+      "bytes": 11472147
+    },
+    "reader-index.js": {
+      "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+      "bytes": 5988098
+    }
+  },
+  "signed_raw": {
+    "sha256": "7d122883fb7db735a2038783a5e260639722fafe6ed4ad60b372acb62be2df78",
+    "bytes": 4727337
+  },
+  "pages": {
+    "index.html": {
+      "same_signed_rendered_paragraphs": 53,
+      "verbatim_issued_earlier_paragraphs": 17,
+      "previous_positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        22,
+        23,
+        36,
+        40,
+        41,
+        43,
+        53
+      ],
+      "original_figure_position": 4,
+      "chapter_article_count": 18,
+      "chapter_article_hashes": {
+        "ch01": "94e73def0198e952bc0a834bc6778b5e3c69089477263461d255fea77982bf65",
+        "ch02": "d429e25690aadb2d632823a43cea7b94391753a1a13635a049bd308d2397c721",
+        "ch03": "4e398aa877f930b927911ac4191d33e6a13959b145aba5ff238ce963374f1233",
+        "ch04": "9470e76f5e5b10c3906e68628f025b130b1d0e513b7493d002cd30f61efd5423",
+        "ch05": "7fe8b2a2aeb74c595a067e442d7fcfddbc8f1265d91f9fd1d05896e72b8f829f",
+        "ch06": "3bde0fb97bf0e6e62fd76c7d6c2196874c88193d64fcde191211e7810bc8f7ad",
+        "ch07": "bae3430b3cd3cb88b64caf161851ede82288a37764055aaf7e41e7639b741133",
+        "ch08": "7c21acaa6f742aa9322fbae2c4185a53ae110b6bfd714b4592682d1337c4bd6b",
+        "ch09": "defe3c22037c37fd7d50e6f0d5b242eacee0757886c76b5593ec9ec1a7fff891",
+        "ch10": "aa5c54af3107344e8c0efbc5cbecf2ee7d9008b78d18877e92ab26b0a3bb867f",
+        "ch11": "0ce108c7024187e00121b8f327d1450b51bb8d063baacee086946a76680b365d",
+        "ch12": "dbef5a367ccc2da939035d63b933953463c7c6346942d9580a3e9049d3554804",
+        "ch13": "399cb42b39996f334d6f3f910f6f6969feba09b6535aa57e185b5c3326d4aea9",
+        "ch14": "07a2f794c4bd16e20c327c30287834db7869a0a41677fb887dc0210875c614ab",
+        "ch15": "6586640318bfbc47347a415cfb5562dce24271ea2a4fe0c8f0deef910b7ef03c",
+        "ch16": "ed3c0b16cd73386bd6ebaba9568db77b4cb0319bb90f95fd199bd05ad2e6dc6a",
+        "ch17": "ca949a23c0a40b050c55619f717b89e619d39c4e0cbaf03a5115afe82976ba9d",
+        "ch18": "651f00cf357196e4dbfa0420cef5c12b6579e7f406ef57af9bfa19f4ef260fa6"
+      },
+      "exact_existing_paragraphs": 1768,
+      "local_links": [
+        "#ch11-relative-phase",
+        "#fields-and-modes",
+        "#ch05-ordered-cuts-give-a-finite-geometric-bar-construction",
+        "#ch05-cobar-reverses-the-construction",
+        "#ch04-three-residues",
+        "#ch12-exceptional-w4-fibres-and-the-algebra-of-extensions",
+        "#ch04-irregular-collision",
+        "#ch04-normal-link",
+        "#ch05-rational-exchange-diagram",
+        "#ch13-supported-duality-and-the-direction-of-comparison",
+        "#ch12-rational-matrix-fields-and-the-full-curved-dual",
+        "#ch12-rational-matrix-fields-and-the-full-curved-dual",
+        "#ch17-native-r3-fields",
+        "#ch13-the-ordinary-categorical-round-trip",
+        "#ch12-a-spectral-construction-of-products-and-coproducts",
+        "#ch12-ising-half-turn",
+        "#ch12-ising-half-turn",
+        "#affine-reconstruction-scope",
+        "#ch06-common-tail-completeness",
+        "#ch14-what-a-joined-interface-remembers",
+        "#ch14-surface-fusion-and-the-miura-product",
+        "#ch14-d3-branes-chiral-operators-and-hilbert-scheme-sections",
+        "#ch07-recognition-on-chevalley-coalgebras",
+        "#ch07-recognition-on-chevalley-coalgebras",
+        "#ch07-finite-exterior-sources",
+        "#ch09-ordered-poles-and-their-complete-differential",
+        "#ch08-factorized-common-domain",
+        "#ch09-relative-currents-and-a-radial-homotopy",
+        "#ch11-recovering-a-state-from-the-disk",
+        "#ch11-neutral-ray-pair",
+        "#states-lines-and-caps",
+        "#ch11-independent-meridian-measure",
+        "#ch10-finite-uncut-sewings",
+        "#ch10-two-completed-clusters",
+        "#ch15-a-faithful-ordinary-comparison-on-a-k3-surface",
+        "#ch15-one-loop-on-finite-root-jets",
+        "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+        "#ch15-a-cyclic-product-that-all-these-traces-can-miss",
+        "#ch16-fixed-shape-translates",
+        "#ch16-a-positive-representation-and-its-exact-missing-remainder",
+        "#ch11-original-coefficient-heat-and-a-based-local-vacuum-line",
+        "#problem-gravitational-cap"
+      ],
+      "canonical": "https://raeez.com/quantum-holography/",
+      "og_url": "https://raeez.com/quantum-holography/",
+      "ordered_figure_hashes": [
+        "e8ea60ab83308fb608c5283a24e81a77202dea759e20d15df45bb93e21e061c3",
+        "df8ee2739521eac4b12bc1c1c0d94f653e2837e7ab1bdfb7af5d6d0a7d0ec149",
+        "baa400ffb11d0d90b22aa6016472351b23f1da2f61319b84a0634bf83caf6525",
+        "4fcb0141323c7011a9fb39842119380932e1b2a9eb6bc5536e1177d8e2b4b09d",
+        "baa1ed715dd37ae9a842530d087c2c4da74af188528f8dcdfdfd05b37e3cd8f6",
+        "a25a5221a45658f6b79cdb5f8de1c84f9903a8aa07657a6ce789f1706b8ba1df",
+        "e0f9ef55d0e8993273bc82d486d69ff65956390c976d1e579e6492ba48a2e48a",
+        "dc170346658e9618aacc54c73167d58c9af99f8c9df3ce9a7a425fd832bb7ad4",
+        "f7e8a341b4bc2194d613edb4a3587649374af173e016be790a91d0dd03250e66",
+        "b6c85f77ee5b5aba8db0e4ffdb721113e0822cd649991ece07ea15a3744d50c1",
+        "fbc4b02e32d19aeb3251c7dbaff9bad87190d1a2240af422bbbda40350e765dc",
+        "7a8287f70e5a4050cb491b8ac5ac73f2266054371222a4d72dc7546245a41ef8",
+        "6d1d2977c26e14045e00937b700d54f0b188d3917f01d367c2f2b77be107fad2",
+        "3174cf64ddbeb73c581e8c466b23926c54bfbbdbc8f544e0143087fb13095c08",
+        "edbf5aeda3d525f8165d28df8098023075540ed46dcb40afdadbc445c619e9b8",
+        "65fc6c571b05a7b9a1ff679b7791178bc8924e13a1242ead36d982dbeb1200ab",
+        "abfe9f8e6b28b3d833dca25d1b555db36fd5314be254fdfd8758090141886640",
+        "22983c851bed881fadc597d01d1f8c6ccb7516796db228c7419882685ad725b0",
+        "2233f8529d123ab2f82214804ab8ac605cf5112c80b7abb7229ae00a91d51f76",
+        "1218aa5024cfe7dee26fa0c6f85958bf2cdf2fe5ef13d938d5e7746270e22d6f"
+      ],
+      "prior_physical_ids": 3481,
+      "prior_ids_lost": [],
+      "published_author_hrefs": [
+        [
+          null,
+          "mg-site",
+          "https://raeez.com"
+        ],
+        [
+          "author",
+          null,
+          "https://raeez.com"
+        ],
+        [
+          "author",
+          null,
+          "https://raeez.com"
+        ],
+        [
+          null,
+          null,
+          "https://raeez.com"
+        ]
+      ]
+    },
+    "reference.html": {
+      "complete_body_preserved": true,
+      "entire_file_unchanged": false,
+      "canonical": "https://raeez.com/quantum-holography/reference.html",
+      "og_url": "https://raeez.com/quantum-holography/reference.html",
+      "ordered_figure_hashes": [],
+      "prior_physical_ids": 2637,
+      "prior_ids_lost": [],
+      "published_author_hrefs": [
+        [
+          null,
+          "mg-site",
+          "https://raeez.com"
+        ],
+        [
+          "author",
+          null,
+          "https://raeez.com"
+        ],
+        [
+          "author",
+          null,
+          "https://raeez.com"
+        ],
+        [
+          null,
+          null,
+          "https://raeez.com"
+        ]
+      ]
+    },
+    "atlas.html": {
+      "complete_body_preserved": true,
+      "entire_file_unchanged": false,
+      "canonical": "https://raeez.com/quantum-holography/atlas.html",
+      "og_url": "https://raeez.com/quantum-holography/atlas.html",
+      "ordered_figure_hashes": [
+        "a5c8d721f74568bd914055ad5f31cf1391aa9efb7c5b1e95edb4f725db015792"
+      ],
+      "prior_physical_ids": 3637,
+      "prior_ids_lost": [],
+      "published_author_hrefs": [
+        [
+          null,
+          "mg-site",
+          "https://raeez.com"
+        ],
+        [
+          "author",
+          null,
+          "https://raeez.com"
+        ],
+        [
+          null,
+          null,
+          "https://raeez.com"
+        ]
+      ]
+    }
+  }
+}

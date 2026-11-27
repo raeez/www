@@ -1,0 +1,23 @@
+{
+  "status": "RETRY_UNCHANGED_FROZEN_SOURCE",
+  "stage": "raw fixture before optional reader control applied",
+  "failed_fixture": {
+    "sha256": "8bd50fd95d3a729bf6b6ca68f7642e92a292d53e167281f530fecaf35efea4e3",
+    "bytes": 7931
+  },
+  "same_fixture_from_normal": {
+    "sha256": "caf88cc8a11070b8d849532ae5c44fd005b93e2ef8faeded3c1bcc2e081a7579",
+    "bytes": 7414
+  },
+  "source_manifest": {
+    "sha256": "ad30e32412c2cdd066c73d813339a92929e9d0d83418d99b15b0bf36f94f5f35",
+    "bytes": 15679
+  },
+  "all_four_raw_files_identical": true,
+  "new_full_frozen_directory": "/private/tmp/qh-reader-v25-all-results-20261118/math-notices/frozen-retry",
+  "identical_raw_fixture_replay": {
+    "sha256": "caf88cc8a11070b8d849532ae5c44fd005b93e2ef8faeded3c1bcc2e081a7579",
+    "bytes": 7414
+  },
+  "replay_result": "70 of 70 passed"
+}

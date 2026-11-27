@@ -1,0 +1,278 @@
+{
+  "status": "PASS",
+  "chromium": "147.0.7727.15",
+  "site": "/tmp/qh-reader-v25-all-results-20261118/math-notices/normal-corrected/release",
+  "baseline": "/tmp/qh-reader-v25-all-results-20261118/core/normal-corrected/release",
+  "files": {
+    "index.html": {
+      "bytes": 5240692,
+      "sha256": "4b877ff7450746584f1e0bf247e3bf682a1bb6b3d60fca959338f23484169e8a"
+    },
+    "reference.html": {
+      "bytes": 5071411,
+      "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701"
+    },
+    "atlas.html": {
+      "bytes": 11472123,
+      "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594"
+    },
+    "reader-index.js": {
+      "bytes": 5988098,
+      "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca"
+    }
+  },
+  "prior": {
+    "index.html": {
+      "bytes": 5239861,
+      "sha256": "dc4e742b731677aa35569d108ce0d99880482b2166c1f42f524128c46da7321d"
+    },
+    "reference.html": {
+      "bytes": 5071411,
+      "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701"
+    },
+    "atlas.html": {
+      "bytes": 11472123,
+      "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594"
+    },
+    "reader-index.js": {
+      "bytes": 5988098,
+      "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca"
+    }
+  },
+  "results": [
+    {
+      "width": 1440,
+      "old": "ch12-passage-ea4d57b1e0b6319164a1",
+      "target": "ch12-passage-94aa463b505ca4493752",
+      "query": "Cauchy lifts",
+      "previous_text": "Go to has coefficient . Products of classical single-current modes have Laurent-polynomial coefficients in ,…",
+      "preserved_math": [
+        "e_{12}\\otimes e_{21}",
+        "1/(2(x-y))"
+      ],
+      "label": {
+        "href": "#ch12-passage-94aa463b505ca4493752",
+        "label": "Go to has \n𝑒\n12\n⊗\n𝑒\n21\n coefficient \n1\n/\n(\n2\n(\n𝑥\n−\n𝑦\n)\n)\n. Products of classical single-current modes have Laurent-polynomial…",
+        "tex": [
+          "e_{12}\\otimes e_{21}",
+          "1/(2(x-y))"
+        ],
+        "mathBoxes": [
+          {
+            "width": 57.375,
+            "height": 14.25,
+            "left": 417.078125,
+            "right": 474.453125
+          },
+          {
+            "width": 88.703125,
+            "height": 17.90625,
+            "left": 549.796875,
+            "right": 638.5
+          }
+        ],
+        "errors": 0,
+        "interactiveDescendants": 0,
+        "copiedIds": 0,
+        "noticeWidth": 796.46875,
+        "scrollWidth": 1440,
+        "viewport": 1440,
+        "visible": true,
+        "r": {
+          "left": 340.765625,
+          "right": 1037.703125,
+          "height": 51.1875,
+          "width": 696.9375
+        }
+      },
+      "back_query_restored": true,
+      "trusted_pointer": true
+    },
+    {
+      "width": 1440,
+      "old": "ch04-passage-4c330d8efe43bf930e8c",
+      "target": "ch04-passage-58169c0376132dec521c",
+      "query": "split injection",
+      "previous_text": "Go to The pair is split injective on the normal complex. Its dual therefore spans the image of the localization…",
+      "preserved_math": [
+        "(F_u,F_w)"
+      ],
+      "label": {
+        "href": "#ch04-passage-58169c0376132dec521c",
+        "label": "Go to The pair \n(\n𝐹\n𝑢\n,\n𝐹\n𝑤\n)\n is split injective on the normal complex. Its dual therefore spans the image of the…",
+        "tex": [
+          "(F_u,F_w)"
+        ],
+        "mathBoxes": [
+          {
+            "width": 58.890625,
+            "height": 17.296875,
+            "left": 452.0625,
+            "right": 510.953125
+          }
+        ],
+        "errors": 0,
+        "interactiveDescendants": 0,
+        "copiedIds": 0,
+        "noticeWidth": 796.46875,
+        "scrollWidth": 1440,
+        "viewport": 1440,
+        "visible": true,
+        "r": {
+          "left": 340.765625,
+          "right": 1037.703125,
+          "height": 51.1875,
+          "width": 696.9375
+        }
+      },
+      "back_query_restored": true,
+      "trusted_pointer": true
+    },
+    {
+      "width": 1440,
+      "old": "reduction-must-retain-the-measurements-p1",
+      "target": "reduction-must-retain-the-measurements",
+      "query": "measurements",
+      "previous_text": "Go to 1.1 Reduction must retain the measurements",
+      "preserved_math": [],
+      "label": {
+        "href": "#reduction-must-retain-the-measurements",
+        "label": "Go to 1.1 Reduction must retain the measurements",
+        "tex": [],
+        "mathBoxes": [],
+        "errors": 0,
+        "interactiveDescendants": 0,
+        "copiedIds": 0,
+        "noticeWidth": 796.46875,
+        "scrollWidth": 1440,
+        "viewport": 1440,
+        "visible": true,
+        "r": {
+          "left": 682.5625,
+          "right": 1037.703125,
+          "height": 28.59375,
+          "width": 355.140625
+        }
+      },
+      "back_query_restored": true,
+      "trusted_pointer": true
+    },
+    {
+      "width": 390,
+      "old": "ch12-passage-ea4d57b1e0b6319164a1",
+      "target": "ch12-passage-94aa463b505ca4493752",
+      "query": "Cauchy lifts",
+      "previous_text": "Go to has coefficient . Products of classical single-current modes have Laurent-polynomial coefficients in ,…",
+      "preserved_math": [
+        "e_{12}\\otimes e_{21}",
+        "1/(2(x-y))"
+      ],
+      "label": {
+        "href": "#ch12-passage-94aa463b505ca4493752",
+        "label": "Go to has \n𝑒\n12\n⊗\n𝑒\n21\n coefficient \n1\n/\n(\n2\n(\n𝑥\n−\n𝑦\n)\n)\n. Products of classical single-current modes have Laurent-polynomial…",
+        "tex": [
+          "e_{12}\\otimes e_{21}",
+          "1/(2(x-y))"
+        ],
+        "mathBoxes": [
+          {
+            "width": 54.96875,
+            "height": 13.6875,
+            "left": 108.59375,
+            "right": 163.5625
+          },
+          {
+            "width": 84.96875,
+            "height": 17.171875,
+            "left": 44,
+            "right": 128.96875
+          }
+        ],
+        "errors": 0,
+        "interactiveDescendants": 0,
+        "copiedIds": 0,
+        "noticeWidth": 358,
+        "scrollWidth": 390,
+        "viewport": 390,
+        "visible": true,
+        "r": {
+          "left": 35,
+          "right": 294.96875,
+          "height": 92.8125,
+          "width": 259.96875
+        }
+      },
+      "back_query_restored": true,
+      "trusted_pointer": true
+    },
+    {
+      "width": 390,
+      "old": "ch04-passage-4c330d8efe43bf930e8c",
+      "target": "ch04-passage-58169c0376132dec521c",
+      "query": "split injection",
+      "previous_text": "Go to The pair is split injective on the normal complex. Its dual therefore spans the image of the localization…",
+      "preserved_math": [
+        "(F_u,F_w)"
+      ],
+      "label": {
+        "href": "#ch04-passage-58169c0376132dec521c",
+        "label": "Go to The pair \n(\n𝐹\n𝑢\n,\n𝐹\n𝑤\n)\n is split injective on the normal complex. Its dual therefore spans the image of the…",
+        "tex": [
+          "(F_u,F_w)"
+        ],
+        "mathBoxes": [
+          {
+            "width": 56.515625,
+            "height": 16.59375,
+            "left": 142.1875,
+            "right": 198.703125
+          }
+        ],
+        "errors": 0,
+        "interactiveDescendants": 0,
+        "copiedIds": 0,
+        "noticeWidth": 358,
+        "scrollWidth": 390,
+        "viewport": 390,
+        "visible": true,
+        "r": {
+          "left": 35,
+          "right": 294.96875,
+          "height": 92.8125,
+          "width": 259.96875
+        }
+      },
+      "back_query_restored": true,
+      "trusted_pointer": true
+    },
+    {
+      "width": 390,
+      "old": "reduction-must-retain-the-measurements-p1",
+      "target": "reduction-must-retain-the-measurements",
+      "query": "measurements",
+      "previous_text": "Go to 1.1 Reduction must retain the measurements",
+      "preserved_math": [],
+      "label": {
+        "href": "#reduction-must-retain-the-measurements",
+        "label": "Go to 1.1 Reduction must retain the measurements",
+        "tex": [],
+        "mathBoxes": [],
+        "errors": 0,
+        "interactiveDescendants": 0,
+        "copiedIds": 0,
+        "noticeWidth": 358,
+        "scrollWidth": 390,
+        "viewport": 390,
+        "visible": true,
+        "r": {
+          "left": 35,
+          "right": 294.96875,
+          "height": 49.40625,
+          "width": 259.96875
+        }
+      },
+      "back_query_restored": true,
+      "trusted_pointer": true
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "decision": "PASS",
+  "reviewer": "/root/astra62_rebuild_director/bounded_m5",
+  "scope": "Rendered mathematical-physics text, figure, byline and official-domain metadata in the actual two v25 alternative distributions. No change to the signed scientific conclusions.",
+  "prior_signed_science_and_native_read": {
+    "bytes": 2830,
+    "sha256": "2aca1fdb99a728be3db29ae34c4d509fa098c9d216b3a06660fedbab7a4a5746"
+  },
+  "authored_source_sha256": "13acc7ba32869c6713b53703da54a48d8254452ed3364d487fd94ead2fa95c06",
+  "accepted_baseline_index": {
+    "bytes": 4727337,
+    "sha256": "7d122883fb7db735a2038783a5e260639722fafe6ed4ad60b372acb62be2df78"
+  },
+  "current_native_core": {
+    "bytes": 4760761,
+    "sha256": "bc52503a3546ee56d79acf7259d40db86e7437d91f7c2d21faab8f803c3943d3"
+  },
+  "front_dom_sha256": "2d6b9ce39584e4962126010e2554a6fde215bf954917d992489f1569225c56b8",
+  "identical_whole_front_paragraphs": 53,
+  "identical_figure": "fig-front-exchange follows paragraph 4",
+  "front_anchors_with_unique_destinations": 42,
+  "exact_ch11_scientific_comparison": {
+    "linked_section_ids": [
+      "#ch11-relative-phase",
+      "#ch11-recovering-a-state-from-the-disk",
+      "#ch11-neutral-ray-pair",
+      "#ch11-independent-meridian-measure",
+      "#ch11-original-coefficient-heat-and-a-based-local-vacuum-line"
+    ],
+    "whole_chapter_body_elements_with_identical_element_text_tail_and_arity": 10235,
+    "unchanged_prose_paragraphs": 136,
+    "exact_mathml_trees": 572,
+    "mathml_list_sha256": "1da1201f96dd3f1b86d39a17b318c631d25cca8e251f3d392d7d7c143a82a216",
+    "body_attribute_differences_only": {
+      "div@id": 73,
+      "h4@data-reader-search-heading": 14,
+      "p@id": 132
+    },
+    "harmonic_disk_proof": {
+      "paragraphs": 5,
+      "display_equations": 2,
+      "tex_annotations_in_original_sequence": 35
+    }
+  },
+  "front_byline": {
+    "author": "Raeez Lorgat",
+    "href": "https://raeez.com",
+    "visible_date": "18 November 2026",
+    "datetime": "2026-11-18"
+  },
+  "canonical_equals_open_graph_url": {
+    "index.html": "https://raeez.com/quantum-holography/",
+    "reference.html": "https://raeez.com/quantum-holography/reference.html",
+    "atlas.html": "https://raeez.com/quantum-holography/atlas.html"
+  },
+  "variants": {
+    "core": {
+      "reviewed_directory": "/tmp/qh-reader-v25-all-results-20261118/core/independent-reconstruction",
+      "four_files": {
+        "index.html": {
+          "bytes": 5239861,
+          "sha256": "dc4e742b731677aa35569d108ce0d99880482b2166c1f42f524128c46da7321d"
+        },
+        "reference.html": {
+          "bytes": 5071411,
+          "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701"
+        },
+        "atlas.html": {
+          "bytes": 11472123,
+          "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594"
+        },
+        "reader-index.js": {
+          "bytes": 5988098,
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca"
+        }
+      },
+      "additional_ready_copies_with_same_four_hashes": []
+    },
+    "math-notices": {
+      "reviewed_directory": "/tmp/qh-reader-v25-all-results-20261118/math-notices/independent-reconstruction",
+      "four_files": {
+        "index.html": {
+          "bytes": 5240692,
+          "sha256": "4b877ff7450746584f1e0bf247e3bf682a1bb6b3d60fca959338f23484169e8a"
+        },
+        "reference.html": {
+          "bytes": 5071411,
+          "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701"
+        },
+        "atlas.html": {
+          "bytes": 11472123,
+          "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594"
+        },
+        "reader-index.js": {
+          "bytes": 5988098,
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca"
+        }
+      },
+      "additional_ready_copies_with_same_four_hashes": []
+    }
+  },
+  "publication_scope": "These were inspected as local issue candidates. This review makes no deployment claim."
+}

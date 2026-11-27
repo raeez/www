@@ -1,0 +1,14 @@
+--- a/compatibility/tools/build-amendment.cjs
++++ b/compatibility/tools/build-amendment.cjs
+@@ -106,7 +106,10 @@
+           if (p.matches('[data-section], [data-chapter], [data-reference]')) scopes.push(p.id);
+         }
+         if (!scopes.includes(unit.group)) scopes.push(unit.group);
+-        const hrefs = [...element.querySelectorAll('a[href]')].map((link) => link.getAttribute('href'));
++        // Adding the author's homepage to a byline preserves the passage's existing address.
++        const hrefs = [...element.querySelectorAll('a[href]')]
++          .filter((link) => !link.matches('.essay-byline > a[rel~="author"], .mg-front-byline > a[rel~="author"]'))
++          .map((link) => link.getAttribute('href'));
+         const cell = row && element.closest('.cell-note') ? element.closest('td') : null;
+         const button = cell?.querySelector('button.cell-btn[data-row]');
+         const column = cell?.closest('table')?.tHead?.rows[0]?.cells[cell.cellIndex]?.querySelector('.col-head[data-col]');

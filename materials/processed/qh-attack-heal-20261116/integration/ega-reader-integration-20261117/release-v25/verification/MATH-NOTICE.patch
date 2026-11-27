@@ -1,0 +1,59 @@
+--- a/compatibility/controls/reader-v23-book.js
++++ b/compatibility/controls/reader-book-math-notices.js
+@@ -561,7 +561,11 @@
+     var row = element('p', 'reader-notice-actions');
+     actions.forEach(function (a) {
+       var n;
+-      if (a.href) { n = element('a', 'reader-notice-action', a.text); n.href = a.href; }
++      if (a.href) {
++        n = element('a', 'reader-notice-action', a.text);
++        n.href = a.href;
++        if (a.content) n.replaceChildren(a.content);
++      }
+       else {
+         n = element('button', 'reader-notice-action', a.text);
+         n.type = 'button';
+@@ -986,7 +990,22 @@
+         isSection(t) ? sectionHeading(t) : isChapter(t) ? chapterHeading(t) : isPart(t) ? referenceHeading(t) : null;
+       var label = heading ? headingText(heading) : textOf(t, null, true) || textOf(t);
+       if (label.length > 110) label = label.slice(0, 107).replace(/\s+\S*$/, '') + '…';
+-      return { text: fill(word('go-to'), { where: label || candidate }), href: '#' + candidate };
++      var action = { text: fill(word('go-to'), { where: label || candidate }), href: '#' + candidate };
++      var source = heading || t;
++      if (source.querySelector('math')) {
++        var snippet = snippetOf({ el: source, skip: '.anchor-sr, [aria-hidden="true"], [hidden], button' }, [], 110);
++        if (snippet) {
++          snippet.removeAttribute('class');
++          all('[id]', snippet).forEach(function (node) { node.removeAttribute('id'); });
++          var content = doc.createDocumentFragment();
++          word('go-to').split('{where}').forEach(function (part, i) {
++            if (i) content.appendChild(snippet.cloneNode(true));
++            content.appendChild(doc.createTextNode(part));
++          });
++          action.content = content;
++        }
++      }
++      return action;
+     }).filter(Boolean);
+     var p = notice('predecessor', word(older.ambiguous ? 'ambiguous-address' : 'changed-address'), actions);
+     scrollToEl(notices);
+@@ -1508,7 +1527,7 @@
+     box.appendChild(c);
+     return box;
+   }
+-  function snippetOf(u, marks) {
++  function snippetOf(u, marks, maxChars) {
+     var ps = pieces(u.bodyEl || u.el, u.skip);
+     var flat = '';
+     ps.forEach(function (p) {
+@@ -1534,8 +1553,8 @@
+       });
+     }
+     var start = first > 70 ? flat.lastIndexOf(' ', first - 60) + 1 : 0;
+-    var end = Math.min(flat.length, start + 220);
+-    if (end < flat.length) { var sp = flat.lastIndexOf(' ', end); if (sp > start + 120) end = sp; }
++    var end = Math.min(flat.length, start + (maxChars || 220));
++    if (end < flat.length) { var sp = flat.lastIndexOf(' ', end); if (sp > start + (maxChars ? Math.floor(maxChars / 2) : 120)) end = sp; }
+     var span = element('span', 'reader-hit-text');
+     if (start > 0) span.appendChild(doc.createTextNode('…'));
+     ps.forEach(function (p) {
