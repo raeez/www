@@ -1,0 +1,84 @@
+{
+  "schema": "quantum-holography-reader-edition/1",
+  "edition": "v22",
+  "utc": "2026-11-18T10:20:40.514765+00:00",
+  "public_reader": "https://research.momentum.inc/quantum-holography/",
+  "commit": "12a06276b0d8d44301d9dac307410c33db45154a",
+  "base_public_commit": "9556e30f229c48a8294378d81a8b84e1f62732c6",
+  "scientific_horizon_utc": "2026-11-18T02:32:40.214455Z",
+  "targeted_accession": {
+    "name": "third 234 flag",
+    "last_independent_event_utc": "2026-11-18T07:17:53.907Z",
+    "theorem": {
+      "path": "/tmp/astra62-post665-research-20261118/third-234-flag/PROOF.md",
+      "sha256": "79b5abe4e1757ec633c4a52207ab350908b1d96422aee1d2548063332eb9289c",
+      "bytes": 8288
+    },
+    "independent_reading": {
+      "sha256": "5be74fb549d6389764d15ed6c86373015e599e1b996979d60c3ecbb44303db35",
+      "bytes": 4870
+    }
+  },
+  "content_id": "a9b6079e2b3ce20dc4481dd984b7b4a5c527485e9ae4dc3e61e056465d9bd05a",
+  "native_inputs": 56,
+  "full_rebuild_matches_published": {
+    "index.html": {
+      "sha256": "f6b5a56cc36e1161c356a56142d58ecbdaa0a3e7a49767271be19abd1d6335e5",
+      "bytes": 5097280
+    },
+    "reference.html": {
+      "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+      "bytes": 5068537
+    },
+    "atlas.html": {
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088
+    },
+    "reader-index.js": {
+      "sha256": "4bf1c1685168b17582852d9113c651ee421051f4074ee8e1043adf3382cad5d9",
+      "bytes": 5957374
+    }
+  },
+  "chapters": 18,
+  "search_units": 7091,
+  "historic_locators_verified": 8704,
+  "local_links_checked": 30388,
+  "formulas_checked": 24158,
+  "math_errors": 0,
+  "authored_opening_figure": [
+    {
+      "id": "fig-front-exchange",
+      "after_paragraph": 4,
+      "file": "fig-front-exchange.html"
+    }
+  ],
+  "native_visual_status": "Native Opus figure delivered. Deployed desktop and narrow viewport inspection awaiting an identified authorized device.",
+  "receipts": {
+    "SOURCE-MANIFEST.json": "e9ca6747ee6a22432f2b0cfa3ed26f4e501d8680e14f4531f731d046737c8d40",
+    "EXPECTED-PUBLIC.json": "ecc3b9f143e36a1db563c2a9149d3e18d2d8f18ce38a748a1df87aa2d9ddad9a",
+    "compatibility/history.json": "94f924486caecd0c89b0b46d43997b41734cbcf4ecaf7364c3cae8f907dbe6b6",
+    "tools/build_reader.py": "0a2f2514b3462dc247cbdedd0f80e62cf16791f1a3ecf4ad31bfa51b3f355a69",
+    "rebuild.py": "b4e4350f6c74890895ffd6c899edacc328e777c857e1123336824f6ce24c8522",
+    "verification/ACCEPTED-INPUTS.json": "475319c2a3a17a83c031f2c16e755a12e1fc4ceda0856126df612087e81ddacb",
+    "verification/THIRD-FLAG-INDEPENDENT.json": "5be74fb549d6389764d15ed6c86373015e599e1b996979d60c3ecbb44303db35",
+    "verification/THIRD-FLAG-FINAL-BOOKMARKS.json": "cbe8d7df39a070a549130f3f73d4412b8d4f1d83dd9f1efc786ccaedbf429027",
+    "verification/SCOPED-BOOKMARK-DIFF.json": "7b13cc3cb3c1b5598654c85c2f470f1f2c6d8a3e79440e1979d0ca38bfc3fbf1",
+    "verification/FIGURE-PRESERVATION.json": "b554fe51b00f78d9b70979a5808d83a11a9be1cb6f86695c0912fb1800e1f420",
+    "compatibility/tools/build-amendment.cjs": "a7089bf095e41876231b68ad7453d0e43e6704e7411b1ddd3ec859a43b486084",
+    "tools/check-third-flag.cjs": "1b454ff53995d2124f970668ecea5aa3584fa2097ff410d4cc40d27789cbc7cd",
+    "verification/REPRODUCTION.json": "6e0027c156c3422d841142116e8cc8b92b6de1fcf2804b49fec333cabd276d78",
+    "verification/FINAL-SCIENCE.json": "cda26748d4b789e38e2aac468f745d959faf3305c8fbf0e614280310d30859bd",
+    "verification/FINAL-NOTATION.json": "9762a0cd409ed937d917c4d19b270aa345101f608a269be1849e62b671b78cd5",
+    "verification/V22-PARITY.json": "0c0e9acdd0e5687a96954e3eb9570228bced7560d16e5c21e5b3b8fa6615d361",
+    "verification/V22-ROUTES.json": "29ed6dc413589713a525a9972cc01208843815bcf8ef96b6ef9e14072a0d3bd4",
+    "verification/FINAL-LINKS.json": "6e5aa74d50ef15d03b80b61a565409f00327adf0ef3761fdc3a472dcb2ef1ec4",
+    "verification/NATIVE-INSTALL-PLAN.json": "3397ba4b201a8e6049ce1d2e02e1abe8a593357540c819cbce4ca1d00b1240cd",
+    "LOCAL-READY.json": "e51de085b5af7fc265b9b56dbc6a880f07000faf070f58103e7de1a35e220f62",
+    "compatibility/current-history.json": "ae73d1710a248bf012700631afde9a392bb986ddf8cfcb54f6761e643c3baaa8",
+    "verification/PUSH.json": "4daeb8548f96d1a7986cd5222454e1851a620b1a74ecb6fcbe05c855291107fb",
+    "verification/PUBLICATION.json": "dc56837cdb5b1ec5219072bb8cdb8548fef6bd00f79fc84faaca36b43829576c",
+    "verification/BARE-READBACK.json": "64c0792f6421a1e32e8bdd0a20448794b51dd3bffc65cf8a6e40f7ffbac0c94b",
+    "verification/EDITABLE-INSTALLED.json": "985c801461fd648c8b0333b4cff7e74eeb06b8eeea95b601434b0bfbacdb67b6",
+    "verification/NATIVE-AUDIT.json": "d88dbd8787377ff07f80b958ab05c66b4f5bcd08803cbf548aba9c4b3af840a2"
+  }
+}

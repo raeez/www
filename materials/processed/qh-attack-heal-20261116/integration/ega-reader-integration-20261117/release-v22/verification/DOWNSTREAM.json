@@ -1,0 +1,159 @@
+{
+  "schema": "qh-first-principles-downstream-build/1",
+  "status": "MECHANICAL_CHECKS_COMPLETE",
+  "source_audit_failures": [],
+  "math_formulas": 24158,
+  "math_errors": 0,
+  "commands": [
+    {
+      "step": "split",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-reference.py",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/combined.html",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public",
+        "--book-name",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T09:10:16.220428+00:00",
+      "completed_utc": "2026-11-18T09:10:18.055216+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/split.log"
+    },
+    {
+      "step": "metadata",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/set_page_metadata.py",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public"
+      ],
+      "started_utc": "2026-11-18T09:10:18.055339+00:00",
+      "completed_utc": "2026-11-18T09:10:18.235938+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/metadata.log"
+    },
+    {
+      "step": "index",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/reader-index.cjs",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public/reader-index.js",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public/index.html",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public/reference.html",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public/atlas.html"
+      ],
+      "started_utc": "2026-11-18T09:10:18.262098+00:00",
+      "completed_utc": "2026-11-18T09:10:55.292799+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/index.log"
+    },
+    {
+      "step": "public_check",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/check_public.py",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/PUBLIC-FILES-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T09:10:55.292917+00:00",
+      "completed_utc": "2026-11-18T09:11:03.742696+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/public_check.log"
+    },
+    {
+      "step": "v14_consumer_check",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/consumer/check.cjs",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/V14-CONSUMER-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T09:11:03.742874+00:00",
+      "completed_utc": "2026-11-18T09:11:22.406859+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/v14_consumer_check.log"
+    },
+    {
+      "step": "split_checks",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-checks.cjs",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T09:11:22.406948+00:00",
+      "completed_utc": "2026-11-18T09:12:01.626637+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/split_checks.log"
+    },
+    {
+      "step": "reader_page",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "--page",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public/index.html"
+      ],
+      "started_utc": "2026-11-18T09:12:01.626893+00:00",
+      "completed_utc": "2026-11-18T09:13:16.622453+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/reader_page.log"
+    },
+    {
+      "step": "reader_fixtures",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/workspace/compiler/quantum-holography-status/tests/reader.test.cjs"
+      ],
+      "started_utc": "2026-11-18T09:13:16.622667+00:00",
+      "completed_utc": "2026-11-18T09:13:41.315126+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/reader_fixtures.log"
+    }
+  ],
+  "heading_metadata": {
+    "path": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/build/HEADING-METADATA.json",
+    "sha256": "347870068c35b999755fd745b2a0baf35b6bfb69993d46bf95bcd026bfa076f0",
+    "bytes": 3454
+  },
+  "public_files": {
+    "index.html": {
+      "path": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public/index.html",
+      "sha256": "a7a594301588b1eff49ac6de81d603f4f5c8d484217bc3cea2ba5f4d3f16240e",
+      "bytes": 4620417
+    },
+    "reference.html": {
+      "path": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public/reference.html",
+      "sha256": "699eeb5102ea860832dea002467120ef963917386e615148676ef8c0b551b7e3",
+      "bytes": 4700127
+    },
+    "atlas.html": {
+      "path": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public/atlas.html",
+      "sha256": "191a470ec650c72ac4cd71543ed41d1d8ac101d3a48521b5e904214f63cc99c4",
+      "bytes": 11336897
+    },
+    "reader-index.js": {
+      "path": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/public/reader-index.js",
+      "sha256": "4d251ae85d48f5a0dbb329549c401395f91b5f07f7cad45dc40d8a192b2d889e",
+      "bytes": 5970603
+    }
+  },
+  "bad_local_links": [],
+  "private_or_attribution_hit_count": 0,
+  "native_visual_qa": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "release_candidate": false
+}

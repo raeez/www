@@ -1,0 +1,175 @@
+{
+  "native_editor_root": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration",
+  "adopted_public_baseline": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v21",
+  "baseline_sha256": {
+    "chapters/04-factorization.md": "03494346cc9ad863d5870eceb77891a57647303b1ba4be2aafd876d69851cc62",
+    "chapters/18-open-problems.md": "e2057a40249ec72f7df002feb89f5628a2b1b98b41a77343e01eb3df92aee7f5",
+    "reader-data/manifest.json": "cff1c2325cc45449564da10f30ed54c0bd18597cc023f8d98cc54ced2420eab3"
+  },
+  "staged_sha256": {
+    "chapters/04-factorization.md": "35bb0d0ad3dd2a8bbdeb406fb69efa6408b2f7dc5a24d4e182767f23dd324155",
+    "chapters/18-open-problems.md": "2d852ae29c825da85314486ed84cdd528ffc2d944783b19d8f2729eb05a72097",
+    "reader-data/manifest.json": "30ba5e199cec1b3ffda7e90eb86d45ac09d68be550cede14635174f0580fadd5"
+  },
+  "edited_range": {
+    "chapter_04": {
+      "native_initial_lines": [
+        251,
+        285
+      ],
+      "actual_replaced_line": 285,
+      "rendered_preimage_anchors": [
+        "ch04-passage-2f4f046d58a33950f6b8",
+        "ch04-passage-4c330d8efe43bf930e8c"
+      ]
+    },
+    "chapter_18": {
+      "actual_replaced_line": 69,
+      "rendered_preimage_anchor": "ch18-passage-c18f6e9e7e81aa998696"
+    }
+  },
+  "index_excerpt_changes": [],
+  "index_offset_changes": [
+    {
+      "collection": "terms",
+      "id": "term-consecutive-cut",
+      "former": {
+        "start": 41469,
+        "end": 42212
+      },
+      "current": {
+        "start": 43330,
+        "end": 44073
+      }
+    },
+    {
+      "collection": "theorems",
+      "id": "ch18-problem-184",
+      "former": {
+        "start": 20936,
+        "end": 21537
+      },
+      "current": {
+        "start": 21123,
+        "end": 21724
+      }
+    },
+    {
+      "collection": "theorems",
+      "id": "ch18-problem-185",
+      "former": {
+        "start": 29902,
+        "end": 30444
+      },
+      "current": {
+        "start": 30089,
+        "end": 30631
+      }
+    },
+    {
+      "collection": "theorems",
+      "id": "ch18-problem-186",
+      "former": {
+        "start": 31584,
+        "end": 32007
+      },
+      "current": {
+        "start": 31771,
+        "end": 32194
+      }
+    },
+    {
+      "collection": "theorems",
+      "id": "ch18-problem-187",
+      "former": {
+        "start": 34469,
+        "end": 35193
+      },
+      "current": {
+        "start": 34656,
+        "end": 35380
+      }
+    },
+    {
+      "collection": "theorems",
+      "id": "ch18-problem-188",
+      "former": {
+        "start": 41515,
+        "end": 41947
+      },
+      "current": {
+        "start": 41702,
+        "end": 42134
+      }
+    },
+    {
+      "collection": "theorems",
+      "id": "ch18-problem-189",
+      "former": {
+        "start": 43912,
+        "end": 44453
+      },
+      "current": {
+        "start": 44099,
+        "end": 44640
+      }
+    },
+    {
+      "collection": "theorems",
+      "id": "ch18-problem-1810",
+      "former": {
+        "start": 48624,
+        "end": 49026
+      },
+      "current": {
+        "start": 48811,
+        "end": 49213
+      }
+    },
+    {
+      "collection": "theorems",
+      "id": "ch18-problem-1811",
+      "former": {
+        "start": 50454,
+        "end": 51188
+      },
+      "current": {
+        "start": 50641,
+        "end": 51375
+      }
+    }
+  ],
+  "reference_essay_sha256": "7beb2bb19763934fa50d2cf8eb415048cd73e7806fb79163e46e01c25795bb5b",
+  "preimage_public": {
+    "index": {
+      "url": "https://research.momentum.inc/quantum-holography/",
+      "download_sha256": "916a1a6db44808c235303eadbf65aa9bf0101d28d731bc627103baf913fbb770",
+      "bytes": 5082278,
+      "direct_read": "/private/tmp/astra62-post665-research-20261118/reader-deltas/public-ega-observation.html"
+    },
+    "atlas": {
+      "url": "https://research.momentum.inc/quantum-holography/atlas.html",
+      "download_sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088,
+      "direct_read": "/private/tmp/astra62-post665-research-20261118/reader-deltas/public-atlas-observation.html"
+    },
+    "reference": {
+      "url": "https://research.momentum.inc/quantum-holography/reference.html",
+      "download_sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+      "bytes": 5068537,
+      "direct_read": "/private/tmp/astra62-post665-research-20261118/reader-deltas/public-reference-observation.html"
+    }
+  },
+  "scientific": {
+    "original": {
+      "file": "/private/tmp/astra62-post665-research-20261118/third-234-flag/PROOF.md",
+      "sha256": "79b5abe4e1757ec633c4a52207ab350908b1d96422aee1d2548063332eb9289c"
+    },
+    "distinct_scientific_verdict": {
+      "file": "/private/tmp/astra62-post665-research-20261118/third-234-flag/VERDICT.json",
+      "sha256": "775c8bea0bb959fdd46840935804918eb96c59991129e111a1e7eb37150554fb"
+    }
+  },
+  "editorial_status": "Staged against live v21; decision by independent first reader and release owner is separate.",
+  "reader_patch_sha256": "b66d65b94365cf3dd46152c9c3acf6a610ae6368be878f4dd91820a0309c411f"
+}

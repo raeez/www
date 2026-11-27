@@ -1,0 +1,112 @@
+{
+  "decision": "PASS, final normal rendered book and all three prior bookmarks",
+  "edition": "38715cde54cfd2a353aeb50e92ab3a0ef597b3556d89b99600a2ce9ad575c4b2",
+  "reader": "/root/qh_first_principles_reader/collisions_duals",
+  "scope": "Independent mathematical reading, exact DOM equality of the two reviewed sections, and real locally rendered browser navigation of the three historical locators.",
+  "bound_files": {
+    "final_book": {
+      "path": "/tmp/qh-reader-third-flag-v22-20261118/normal-final/release/index.html",
+      "sha256": "f6b5a56cc36e1161c356a56142d58ecbdaa0a3e7a49767271be19abd1d6335e5",
+      "bytes": 5097280
+    },
+    "final_search_index": {
+      "path": "/tmp/qh-reader-third-flag-v22-20261118/normal-final/release/reader-index.js",
+      "sha256": "4bf1c1685168b17582852d9113c651ee421051f4074ee8e1043adf3382cad5d9",
+      "bytes": 5957374
+    },
+    "reference": {
+      "path": "/tmp/qh-reader-third-flag-v22-20261118/normal-final/release/reference.html",
+      "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+      "bytes": 5068537
+    },
+    "atlas": {
+      "path": "/tmp/qh-reader-third-flag-v22-20261118/normal-final/release/atlas.html",
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088
+    },
+    "previous_issued_book": {
+      "path": "/tmp/qh-reader-pedagogy-20261118/technical/normal-final/release/index.html",
+      "sha256": "916a1a6db44808c235303eadbf65aa9bf0101d28d731bc627103baf913fbb770",
+      "bytes": 5082278
+    },
+    "scientific_read_decision": {
+      "path": "/tmp/astra62-post665-research-20261118/checks/ega-reader-third-flag-independent/VERDICT.json",
+      "sha256": "5be74fb549d6389764d15ed6c86373015e599e1b996979d60c3ecbb44303db35",
+      "bytes": 4870
+    },
+    "first_enclosure_disposition": {
+      "path": "/tmp/astra62-post665-research-20261118/checks/ega-reader-third-flag-independent/DURABLE-READBACK-INITIAL.json",
+      "sha256": "a3ba19218c272fb258d4fd33c2be94236867f8002721ceba3dd5680d0f380ed5",
+      "bytes": 2574
+    },
+    "initial_native_browser": {
+      "path": "/tmp/astra62-post665-research-20261118/checks/ega-reader-third-flag-independent/INITIAL-BROWSER.json",
+      "sha256": "2c1b294557ac5ef0b8b0e7a7a874603939037cfc823f348ee11b2cdba52c3160",
+      "bytes": 2097
+    },
+    "final_native_browser": {
+      "path": "/tmp/astra62-post665-research-20261118/checks/ega-reader-third-flag-independent/FINAL-BROWSER.json",
+      "sha256": "420cfe511dde05f97b811b2b070c2de086f011f52d4e5cc7c2c47f06562421cc",
+      "bytes": 2017
+    },
+    "browser_replay_source": {
+      "path": "/tmp/astra62-post665-research-20261118/checks/ega-reader-third-flag-independent/check-durable.cjs",
+      "sha256": "d2b2bcaf163d91821d980edaedbe0276f68841525ed4f1f82375d817c30bfee8",
+      "bytes": 5396
+    }
+  },
+  "math_sections": {
+    "collision-supported-data": {
+      "same_subtree_bytes_as_previously_checked_render": true,
+      "subtree_sha256": "3d11fb0386592077da4c5a5aeba8c994867ec0e5e243a06941a515fec122be66",
+      "math_elements": 380,
+      "math_error_elements": 0
+    },
+    "problem-composition-domains": {
+      "same_subtree_bytes_as_previously_checked_render": true,
+      "subtree_sha256": "6a21ae397f39554b6a3ecf753121d7febda84d76e3cc572b3b5ce7207cfe95a3",
+      "math_elements": 96,
+      "math_error_elements": 0
+    }
+  },
+  "prior_bookmarks": [
+    {
+      "old_id": "ch04-passage-2f4f046d58a33950f6b8",
+      "target": "ch04-passage-2f4f046d58a33950f6b8",
+      "notice": "retained",
+      "visible_render": {
+        "hash": "#ch04-passage-2f4f046d58a33950f6b8",
+        "tag": "p",
+        "visible": true,
+        "rendered_lead": "Four points allow a different measurement. On the transverse space \n𝑋\n=\n𝔸\n3\n take \n𝑠\n=\n𝑧\n2\n−\n𝑧\n1\n,\n \n𝑥\n="
+      },
+      "back_restores_notice_and_search": "not used for a retained anchor"
+    },
+    {
+      "old_id": "ch04-passage-4c330d8efe43bf930e8c",
+      "target": "ch04-passage-58169c0376132dec521c",
+      "notice": "This saved address names a changed passage. Its location is available below.",
+      "visible_render": {
+        "hash": "#ch04-passage-58169c0376132dec521c",
+        "tag": "p",
+        "visible": true,
+        "rendered_lead": "The pair \n(\n𝐹\n𝑢\n,\n𝐹\n𝑤\n)\n is split injective on the normal complex. Its dual therefore spans the image of t"
+      },
+      "back_restores_notice_and_search": true
+    },
+    {
+      "old_id": "ch18-passage-c18f6e9e7e81aa998696",
+      "target": "ch18-passage-5e09310b95ac3b81c201",
+      "notice": "This saved address names a changed passage. Its location is available below.",
+      "visible_render": {
+        "hash": "#ch18-passage-5e09310b95ac3b81c201",
+        "tag": "p",
+        "visible": true,
+        "rendered_lead": "For the slope-two connection \n𝑀\n𝑎\n on \n𝑈\n=\n{\n𝑥\n𝑦\n(\n𝑥\n−\n𝑦\n)\n≠\n0\n}\n⊂\n𝔸\n2\n, let \n𝑖\n include the origin, "
+      },
+      "back_restores_notice_and_search": true
+    }
+  ],
+  "compatibility_finding": "The changed Chapter 4 bookmark now opens the paragraph containing the surviving split injectivity and proper joint image from L. Chapter 18 opens the precise updated three-flag paragraph, and the unchanged Chapter 4 entrance remains directly addressable. Both changed bookmarks retain their changed-passage notice and return through browser Back with the search state restored.",
+  "mathematical_scope": "The third algebraic restriction is a statement on the cohomology of the specified two-dimensional square-zero coupling with the prescribed markings. Its comparison with sectorial or enhanced specialization remains open."
+}

@@ -1,0 +1,109 @@
+{
+  "status": "READY_FOR_ISSUE",
+  "publication": "private, not issued",
+  "edition": "release-v22",
+  "utc": "2026-11-18T09:43:29.166406+00:00",
+  "base_public_commit": "9556e30f229c48a8294378d81a8b84e1f62732c6",
+  "content_id": "a9b6079e2b3ce20dc4481dd984b7b4a5c527485e9ae4dc3e61e056465d9bd05a",
+  "source_identity": "431e18c6fc2f12cf6a5c5e0251952eb8bc3ae38f35950964ec826b45ad2e7622",
+  "scientific_horizon_utc": "2026-11-18T02:32:40.214455Z",
+  "base_scientific_census_utc": "2026-11-18T02:32:40.214455Z",
+  "targeted_accession_utc": "2026-11-18T07:17:53.907Z",
+  "compiled_directory": "/private/tmp/qh-reader-third-flag-v22-20261118/normal-final/release",
+  "public_files": {
+    "index.html": {
+      "sha256": "f6b5a56cc36e1161c356a56142d58ecbdaa0a3e7a49767271be19abd1d6335e5",
+      "bytes": 5097280
+    },
+    "reference.html": {
+      "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+      "bytes": 5068537
+    },
+    "atlas.html": {
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088
+    },
+    "reader-index.js": {
+      "sha256": "4bf1c1685168b17582852d9113c651ee421051f4074ee8e1043adf3382cad5d9",
+      "bytes": 5957374
+    }
+  },
+  "receipts": {
+    "SOURCE-MANIFEST.json": {
+      "sha256": "e9ca6747ee6a22432f2b0cfa3ed26f4e501d8680e14f4531f731d046737c8d40",
+      "bytes": 12222
+    },
+    "EXPECTED-PUBLIC.json": {
+      "sha256": "ecc3b9f143e36a1db563c2a9149d3e18d2d8f18ce38a748a1df87aa2d9ddad9a",
+      "bytes": 517
+    },
+    "compatibility/history.json": {
+      "sha256": "94f924486caecd0c89b0b46d43997b41734cbcf4ecaf7364c3cae8f907dbe6b6",
+      "bytes": 8408
+    },
+    "tools/build_reader.py": {
+      "sha256": "0a2f2514b3462dc247cbdedd0f80e62cf16791f1a3ecf4ad31bfa51b3f355a69",
+      "bytes": 7700
+    },
+    "rebuild.py": {
+      "sha256": "b4e4350f6c74890895ffd6c899edacc328e777c857e1123336824f6ce24c8522",
+      "bytes": 546
+    },
+    "verification/ACCEPTED-INPUTS.json": {
+      "sha256": "475319c2a3a17a83c031f2c16e755a12e1fc4ceda0856126df612087e81ddacb",
+      "bytes": 2065
+    },
+    "verification/THIRD-FLAG-INDEPENDENT.json": {
+      "sha256": "5be74fb549d6389764d15ed6c86373015e599e1b996979d60c3ecbb44303db35",
+      "bytes": 4870
+    },
+    "verification/THIRD-FLAG-FINAL-BOOKMARKS.json": {
+      "sha256": "cbe8d7df39a070a549130f3f73d4412b8d4f1d83dd9f1efc786ccaedbf429027",
+      "bytes": 5740
+    },
+    "verification/SCOPED-BOOKMARK-DIFF.json": {
+      "sha256": "7b13cc3cb3c1b5598654c85c2f470f1f2c6d8a3e79440e1979d0ca38bfc3fbf1",
+      "bytes": 426
+    },
+    "verification/FIGURE-PRESERVATION.json": {
+      "sha256": "b554fe51b00f78d9b70979a5808d83a11a9be1cb6f86695c0912fb1800e1f420",
+      "bytes": 683
+    },
+    "compatibility/tools/build-amendment.cjs": {
+      "sha256": "a7089bf095e41876231b68ad7453d0e43e6704e7411b1ddd3ec859a43b486084",
+      "bytes": 31381
+    },
+    "tools/check-third-flag.cjs": {
+      "sha256": "1b454ff53995d2124f970668ecea5aa3584fa2097ff410d4cc40d27789cbc7cd",
+      "bytes": 1529
+    },
+    "verification/REPRODUCTION.json": {
+      "sha256": "6e0027c156c3422d841142116e8cc8b92b6de1fcf2804b49fec333cabd276d78",
+      "bytes": 1573
+    },
+    "verification/FINAL-SCIENCE.json": {
+      "sha256": "cda26748d4b789e38e2aac468f745d959faf3305c8fbf0e614280310d30859bd",
+      "bytes": 3280
+    },
+    "verification/FINAL-NOTATION.json": {
+      "sha256": "9762a0cd409ed937d917c4d19b270aa345101f608a269be1849e62b671b78cd5",
+      "bytes": 2686
+    },
+    "verification/V22-PARITY.json": {
+      "sha256": "0c0e9acdd0e5687a96954e3eb9570228bced7560d16e5c21e5b3b8fa6615d361",
+      "bytes": 1421
+    },
+    "verification/V22-ROUTES.json": {
+      "sha256": "29ed6dc413589713a525a9972cc01208843815bcf8ef96b6ef9e14072a0d3bd4",
+      "bytes": 2964
+    },
+    "verification/FINAL-LINKS.json": {
+      "sha256": "6e5aa74d50ef15d03b80b61a565409f00327adf0ef3761fdc3a472dcb2ef1ec4",
+      "bytes": 774
+    },
+    "verification/NATIVE-INSTALL-PLAN.json": {
+      "sha256": "3397ba4b201a8e6049ce1d2e02e1abe8a593357540c819cbce4ca1d00b1240cd",
+      "bytes": 1886
+    }
+  }
+}
