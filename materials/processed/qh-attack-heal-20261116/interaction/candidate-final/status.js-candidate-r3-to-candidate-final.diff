@@ -1,0 +1,197 @@
+--- a/compiler/quantum-holography-status/status.js (candidate-r3)
++++ b/compiler/quantum-holography-status/status.js (candidate-final)
+@@ -59,6 +59,7 @@
+   var WORDS = {
+     search: word('search', 'Search this page'),
+     placeholder: word('placeholder', 'Search statements, questions, examples and terms'),
++    placeholderShort: word('placeholder-short', 'Search this page'),
+     hint: word('hint', 'Press / to search; the down arrow moves through the results.'),
+     part: word('part', 'Part'),
+     status: word('status', 'Status'),
+@@ -237,6 +238,7 @@
+   /* What a mark in the table and a term mean is read with them by assistive technology: each trigger is described
+      by its scope or its definition, and a row name written in TeX is read as text. */
+   byClass('term', main).concat(byClass('cell-btn', main), byClass('col-head', main)).forEach(function (t) {
++    if (t.localName === 'a' && !t.hasAttribute('role')) t.setAttribute('role', 'button'); /* it opens a card, not a page */
+     if (!t.hasAttribute('aria-haspopup')) { t.setAttribute('aria-haspopup', 'dialog'); t.setAttribute('aria-controls', 'card'); t.setAttribute('aria-expanded', 'false'); }
+     var label = t.getAttribute('aria-label') || '';
+     if (/\\[()[\]]/.test(label)) t.setAttribute('aria-label', label = label.replace(/\\[()[\]]/g, ''));
+@@ -436,6 +438,7 @@
+   }
+   doc.addEventListener('click', function (event) {
+     var el = triggerOf(event.target);
++    if (el && el.localName === 'a' && !plainClick(event)) return; /* a term served as a link, opened as a link */
+     if (el) {
+       event.preventDefault();
+       if (owner === el && pinned) { hide(); return; }
+@@ -447,6 +450,10 @@
+       if (!event.target.closest('#card') || event.target.closest('#card a[href]')) hide();
+     }
+   });
++  doc.addEventListener('keydown', function (event) {
++    if (event.key !== ' ' || event.defaultPrevented || event.target.localName !== 'a') return;
++    if (triggerOf(event.target) === event.target) { event.preventDefault(); event.target.click(); } /* Space, as on a button */
++  });
+   if (hoverCapable) {
+     /* A card opens when the pointer moves onto its trigger, never when the page scrolls a trigger under a resting
+        pointer (the browser then reports the pointer over it, and may report a move, at the same place on the screen). */
+@@ -456,10 +463,15 @@
+       if (at === pointerAt) return;
+       pointerAt = at;
+       var el = triggerOf(event.target);
+-      if (el && !pinned && !(owner === el && card && !card.hidden)) show(el, false);
++      if (!el || pinned) return;
++      if (owner === el && card && !card.hidden) { clearTimeout(hideTimer); return; }
++      show(el, false);
+     }, { passive: true });
+     doc.addEventListener('mouseover', function (event) {
+-      if (event.target.closest && event.target.closest('#card')) clearTimeout(hideTimer);
++      /* Over the card, or back over the trigger of the card that is shown: the card stays. */
++      var t = event.target;
++      if (t.closest && t.closest('#card')) { clearTimeout(hideTimer); return; }
++      if (card && !card.hidden && owner && triggerOf(t) === owner) clearTimeout(hideTimer);
+     });
+     doc.addEventListener('mouseout', function (event) {
+       var el = triggerOf(event.target) || (event.target.closest && event.target.closest('#card'));
+@@ -530,6 +542,14 @@
+     if (gridStop) {
+       var keysHost = gridWrap || grid;
+       var gridKeys = doc.getElementById('grid-keys');
++      var caption = grid.caption;
++      if (!gridKeys && caption && caption.classList.contains('visually-hidden')) {
++        /* read when a screen reader enters the table */
++        gridKeys = element('span', 'grid-keys', WORDS.gridKeys);
++        gridKeys.id = 'grid-keys';
++        caption.appendChild(doc.createTextNode(' '));
++        caption.appendChild(gridKeys);
++      }
+       if (!gridKeys) {
+         gridKeys = element('p', 'visually-hidden grid-keys', WORDS.gridKeys);
+         gridKeys.id = 'grid-keys';
+@@ -1071,6 +1091,8 @@
+       fb: fold(body + ' \u0001 ' + statusLabel + ' ' + labels),
+       fl: fold(statusLabel + ' ' + labels),
+       raw: (textOf(o.titleEl) + ' ' + context + ' ' + body).toLowerCase(),
++      ro: (textOf(o.titleEl) + ' ' + body).toLowerCase(),
++      ttex: texNorm(texOf(o.titleEl)),
+       tex: texNorm(tex)
+     });
+   }
+@@ -1189,6 +1211,27 @@
+         var key = st ? statusKey(st) : null;
+         add(el, { titleEl: t, title: textOf(t), skip: '[data-qh-unit-title]', offered: true, status: key ? st : null,
+                   statusLabel: key ? key.label : '', mark: key ? key.mark : null, context: el.getAttribute('data-qh-unit-place') || '' });
++      });
++    });
++    /* Text in a part that none of the units above holds (a part of another shape): each of its innermost blocks becomes
++       a unit, titled by the nearest heading before it, so that nothing a reader can read lies outside the search. */
++    list.push(function () {
++      var held = typeof Set === 'function' ? new Set(building.map(function (u) { return u.el; })) : null;
++      if (!held) return;
++      var isHeld = function (el) { for (var n = el; n && n !== main; n = n.parentElement) if (held.has(n)) return true; return false; };
++      var CHROME = '.find, .qh-notice, #card, nav, .row-tools, .grid-block, .tally, .section-head, .kicker, .essay-byline, ' +
++                   '.visually-hidden, [hidden], [aria-hidden="true"], button, summary, table';
++      partSections.forEach(function (sec) {
++        if (!shared(sec)) return;
++        var heads = all('h2, h3, h4', sec);
++        all('p, li, dd, h3, h4, blockquote, figcaption', sec).forEach(function (b) {
++          if (b.closest(CHROME) || isHeld(b) || b.querySelector('p, li, dd, h3, h4, blockquote')) return;
++          if (textOf(b).split(/\s+/).filter(Boolean).length < 3) return;
++          var head = null;
++          heads.forEach(function (h) { if (h !== b && !h.contains(b) && (h.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING)) head = h; });
++          give(b, sec.id + '-' + ident(firstWords(b, 8)).slice(0, 48));
++          add(b, { titleEl: head, title: head ? textOf(head) : '' });
++        });
+       });
+     });
+     return list;
+@@ -1592,7 +1635,10 @@
+   }
+   /* How strongly a unit holds a search term (0: not at all); its title counts most and its context least. */
+   function weigh(u, t) {
+-    if (t.kind === 'tex') return u.tex.indexOf(t.tex) >= 0 || grade(u.fb, t.w, false) || (t.plain && grade(u.fb, t.plain, false)) ? 1 : 0;
++    if (t.kind === 'tex') {
++      var tt = function (f) { return Math.max(grade(f, t.w, false), t.plain ? grade(f, t.plain, false) : 0); };
++      return Math.max(tt(u.ft) * 4 + tt(u.fb) + tt(u.fc) / 2, u.ttex.indexOf(t.tex) >= 0 ? 4 : u.tex.indexOf(t.tex) >= 0 ? 1 : 0);
++    }
+     if (t.kind === 'letterlike') {
+       if (u.raw === undefined) u.raw = (textOf(u.titleEl) + ' ' + u.context + ' ' + textOf(u.el, u.skip)).toLowerCase();
+       return u.raw.indexOf(t.raw) >= 0 ? 1 : 0;
+@@ -1624,12 +1670,21 @@
+     }
+     return false;
+   }
++  /* Whether a term is in the unit's own words (its title, its text, its formulae), not only in its place. */
++  function ownHas(u, t) {
++    if (t.kind === 'tex') return u.tex.indexOf(t.tex) >= 0 || !!(grade(u.ft, t.w, false) || grade(u.fb, t.w, false)) ||
++      !!(t.plain && (grade(u.ft, t.plain, false) || grade(u.fb, t.plain, false)));
++    if (t.kind === 'letterlike') return u.ro.indexOf(t.raw) >= 0;
++    if (t.kind === 'greek') return GREEK[t.w].split('').some(function (c) { return u.ft.indexOf(c) >= 0 || u.fb.indexOf(c) >= 0; }) ||
++      grade(u.ft, t.w, true) === 3 || grade(u.fb, t.w, true) === 3;
++    return !!(grade(u.ft, t.w, t.strict) || grade(u.fb, t.w, t.strict));
++  }
+   /* Whether a term shows in the words of a result (else it was found only in a formula). */
+   function inWords(u, t, plain) {
+     if (t.kind === 'letterlike') return plain.toLowerCase().indexOf(t.raw) >= 0;
+     var p = fold(plain);
+     if (t.kind === 'greek') return GREEK[t.w].split('').some(function (c) { return p.indexOf(c) >= 0; }) || grade(p, t.w, true) === 3;
+-    if (t.plain && grade(p, t.plain, false) > 0) return true;
++    if (t.plain && (grade(p, t.plain, false) > 0 || (!u.quiet && grade(fold(textOf(u.titleEl, null, true)), t.plain, false) > 0))) return true;
+     return grade(p, t.w, t.strict) > 0 || (!u.quiet && grade(fold(textOf(u.titleEl, null, true)), t.w, t.strict) > 0) ||
+            grade(u.fc, t.w, t.strict) > 0 || grade(u.fl, t.w, t.strict) > 0;
+   }
+@@ -1659,9 +1714,10 @@
+       return;
+     }
+     var perScope = {};
+-    var exact = fold(state.q.replace(/["“”]/g, '')).replace(/\s+/g, ' ').trim();
+-    /* Results that hold the words side by side, in the order typed, come first, in a title before in the text, and their
+-       part leads the list. */
++    var exact = fold(state.q.replace(/["“”„‟«»]/g, '')).replace(/\s+/g, ' ').trim();
++    /* Results that hold every word in their own title or text come before those found only through their place (a row,
++       a question, a column); among them, those that hold the words side by side, in the order typed, come first, in a
++       title before in the text; the part with the best result leads the list. */
+     var phrase = phraseOf(terms);
+     index().forEach(function (u, i) {
+       if (state.statuses.length && state.statuses.indexOf(u.status) < 0) return;
+@@ -1674,15 +1730,16 @@
+       perScope[u.scope] = (perScope[u.scope] || 0) + 1;
+       if (state.scopes.length && state.scopes.indexOf(u.scope) < 0) return;
+       if (exact && u.ft === exact) score += 30;
+-      var tier = !phrase ? 0 : together(u.ft, phrase) ? 2 : together(u.fb, phrase) || together(u.fc, phrase) ? 1 : 0;
+-      hits.push({ unit: u, score: score, tier: tier, order: i });
++      var own = terms.every(function (t) { return ownHas(u, t); }) ? 1 : 0;
++      var tier = !phrase || !own ? 0 : together(u.ft, phrase) ? 2 : together(u.fb, phrase) ? 1 : 0;
++      hits.push({ unit: u, score: score, own: own, tier: tier, order: i });
+     });
+     var best = {};
+-    var rank = function (h) { return h.tier * 1e6 + h.score; };
++    var rank = function (h) { return h.own * 4e6 + h.tier * 1e6 + h.score; };
+     hits.forEach(function (h) { best[h.unit.scope] = Math.max(best[h.unit.scope] || 0, rank(h)); });
+     hits.sort(function (a, b) {
+       return best[b.unit.scope] - best[a.unit.scope] || SCOPES.indexOf(a.unit.scope) - SCOPES.indexOf(b.unit.scope) ||
+-             b.tier - a.tier || b.score - a.score || a.order - b.order;
++             b.own - a.own || b.tier - a.tier || b.score - a.score || a.order - b.order;
+     });
+     countParts(perScope);
+     countLine.textContent = hits.length === 0 ? WORDS.none : hits.length === 1 ? WORDS.one : WORDS.many.replace('{n}', hits.length);
+@@ -1812,6 +1869,19 @@
+     });
+     hooked('data-find-open').forEach(function (b) { b.addEventListener('click', function (event) { event.preventDefault(); focusSearch(); }); });
+     window.addEventListener('load', indexWhenIdle);
++    /* The placeholder names what can be searched; a field too narrow to show it whole (a phone) gets the short one.
++       Measured once the page has loaded and when the window changes, never at start-up. */
++    var fitPlaceholder = function () {
++      var room = input.clientWidth;
++      if (!room) return;
++      var cs = window.getComputedStyle(input);
++      room -= (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
++      var em = parseFloat(cs.fontSize) || 16;
++      input.placeholder = WORDS.placeholder.length * em * 0.5 <= room ? WORDS.placeholder : WORDS.placeholderShort;
++    };
++    var fitTimer = null;
++    window.addEventListener('load', fitPlaceholder);
++    window.addEventListener('resize', function () { clearTimeout(fitTimer); fitTimer = setTimeout(fitPlaceholder, 150); });
+   }
+ 
+   /* The tally counts every statement on the page, so its links list every statement of that status on the page, as a

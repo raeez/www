@@ -1,0 +1,171 @@
+{
+  "schema": "qh-status-interaction-contract",
+  "state": "cycle 2 heals (candidate r3)",
+  "owner": "interaction lane: compiler/quantum-holography-status/status.js and compiler/quantum-holography-status/tests/interaction.test.cjs (new)",
+  "compatible_with": [
+    "foundation CONTRACT.json existing_hooks_preserved and foundation_additions_tested (snapshot of 2026-11-16T12:18Z: status.py 0bf52f9c, status.css 33073f8f, status-print.css 01bdf76e, page.json 99642a2d)",
+    "atlas CONTRACT.json qh-atlas-module (atlas.py e80a27f6, atlas.js eedd2a0d, atlas.css 1a755fd6 as copied 2026-11-16T13:09Z)",
+    "the baseline producer (BASELINE.json)"
+  ],
+  "reads_from_markup": {
+    "found once at start (class and tag indexes, not selector scans)": [
+      ".statement (all; those without id get one)",
+      "main > .lead > p",
+      ".essay-lead",
+      ".essay > p (not .essay-byline)",
+      ".key-item (.mark class gives its status)",
+      "section.section > .section-intro",
+      ".grid (first outside the atlas) with thead .col-head[data-col], tbody th a[href], td button",
+      "details (in main; .row among them)",
+      "main > section.section",
+      ".term, .cell-btn, .col-head",
+      "button[data-expand]",
+      "button.filter[data-filter] outside .find",
+      ".tally a[data-filter]",
+      ".math-display, .math-long (in main)",
+      ".legend > li with .mark (under the table)",
+      ".nav a",
+      "[data-find], [data-needs-script], [data-find-open]"
+    ],
+    "search units (built in idle time, or at once when a search starts)": [
+      "cover h1 + subtitle",
+      "lead paragraphs (title shown, not searched)",
+      "status key items",
+      "changes li",
+      "section intros",
+      "statements (not a question's own, not a witness)",
+      "questions (own statement, why text; labels .question-why-label, .question-ask-label skipped)",
+      "rows (summary)",
+      "each .cell-line of a row (row, column, status, scope)",
+      "failures (claim, witness; shown as False with 'counterexample: <status>')",
+      "open groups",
+      "column definitions (context: the col-defs summary)",
+      "essay title, essay lead and paragraphs (title shown, not searched)",
+      "glossary entries",
+      "atlas: [data-atlas-mount] [data-qh-unit][id], titled by [data-qh-unit-title]"
+    ],
+    "parts (Part chips)": "'programme' (everything before the first part) and every main > section.section with a nav link; the atlas section is a part when it offers units"
+  },
+  "creates": {
+    "ids": {
+      "statements without id": "s-<ident(title)> (-2, -3 in page order); identical to proposals/STATUS-PY.md P1",
+      "lead and essay paragraphs": "programme-<first words> / essay-<first words>",
+      "status key items": "status-<status slug>",
+      "section intros": "<section id>-intro",
+      "a row's column line": "<row id>-<column id>",
+      "a mark's scope note": "<row id>-<column id>-scope on the note's scope paragraph (-2, -3 for further paragraphs), when not served (P3 serves the same)",
+      "a glossary definition": "<term id>-def (when not served)",
+      "search": "find-q, find-hint, find-results, find-hit-<n>-title|-where|-text",
+      "card": "card-title, card-text (unchanged)",
+      "table keys": "grid-keys (the words saying what the keys do in the table; the description of the table region)",
+      "legend help": "lens-help (the words saying what a legend switch does; the description of every switch)"
+    },
+    "elements": {
+      ".find[role=search]": "as before; each chip group is role=toolbar with one tab stop; Part chips carry span.count and [data-none] when a search has no match there; the count line .find-count is not live; a visually hidden role=status inside .find announces it 700 ms after typing pauses",
+      ".qh-notice[role=status] (first child of main, empty when silent)": "data-notice=unknown | ask | resume; a p with the words and link-btn buttons (Search for …, Continue reading, Close)",
+      ".row-tools > p.filter-note": "visible count and Show all while the Show filter is on (text aria-hidden; the live region announces)",
+      ".row-body > p.filter-empty": "in a row the filter leaves empty, with Show all statements",
+      ".grid-block > p#grid-keys.grid-keys": "after the table region: what the arrow keys, Home and End do; the CSS block shows it only while focus is in the table",
+      "p#lens-help.lens-help before the legend list": "what a legend switch does",
+      ".legend li > button.lens[aria-pressed][data-lens] > (mark, label, span.count)": "the legend's entries become switches; a role=status beside the legend announces the marked count; a space separates the label and the count; aria-describedby=lens-help; data-lens is the status as the cells write it (data-status), whatever its class slug",
+      ".find .find-more": "shows the next 100 results (label key more: {k} the number it adds, {n} the total)",
+      "span.math-long in .find-snippet": "a display formula copied into a result keeps a scroll box"
+    },
+    "attributes": {
+      "details.row[data-filter-empty]": "the Show filter left it without statements",
+      ".statement[data-filter-exempt]": "shown although the filter hides its status (it was reached by a link or result)",
+      "[data-revealed]": "the element a link or result led to, until the next",
+      "table.grid td/th[data-cross=row|col|both]": "the row and column of the mark in focus or under the pointer",
+      "table.grid[data-lens] and td.cell[data-lit]": "the statuses switched on in the legend, and their cells",
+      "tabindex": "table controls roving (one stop); its scroll box -1; chips roving; wide formula boxes 0 with data-scroll-focus",
+      "aria": "aria-describedby on marks and terms when not served; TeX delimiters removed from mark names; aria-haspopup/controls/expanded on triggers when not served",
+      ".find-link focus record": "back record {hit, limit} (limit: how many results were shown); {hit, all} from earlier entries is still read"
+    },
+    "css_highlight": "::highlight(qh-find) over the search words in the element a result led to (no DOM change)"
+  },
+  "styles_required": "No style is injected by status.js. The interaction states above are styled only by the CSS block in proposals/ (append status-css-block.css to status.css and status-print-css-block.css to status-print.css); without it they are functional but plain.",
+  "address": {
+    "params": "q, in, status, show are written by status.js; values the page does not have are named in a notice and dropped on arrival; every other parameter is kept",
+    "hash": "an element id; unknown, malformed or hidden targets -> cancelable qh:unknown-anchor, then a notice with a search for the address's words; #find-q and #find-results open the search",
+    "push": "search result, in-page link (native), tally link (?status=, no hash), qh:navigate, Continue reading, a row opened from a non-row address; the tally link adds in=<the page's parts> only when a component offers search units",
+    "replace": "typing, chips, Show filter, opening a row from a row address or none, closing the row the address names",
+    "history_state": "history.state.qh = {open: [disclosure keys], back: {id} | {hit, limit} | {within, n}}; written before leaving an entry and on every toggle; read on Back, Forward and reload; other keys and foreign states are kept. An entry with no back record (Forward, a link the browser follows, a typed address) puts focus on the element its hash names.",
+    "disclosure_key": "its id, else 'in:' + the first id inside it, else '<nearest id>:<class>'"
+  },
+  "storage": {
+    "localStorage qh-theme": "light | dark (unchanged)",
+    "localStorage qh-place": "{id, title, at}: the part at the top of the screen when scrolling stops; offered once on a later plain visit, only while its address still names a part with that title; Close forgets it",
+    "rule": "every access in try/catch; nothing depends on storage"
+  },
+  "atlas": {
+    "isolation": "events starting inside [data-atlas-mount] are ignored by every page listener; page lookups exclude the mount; shared: the glossary card of .term[data-term]",
+    "atlas_to_page": {
+      "qh:navigate": "dispatch from inside the mount, bubbles, cancelable, detail {id}: the page reveals #id (an id of the page, not of the atlas), pushes an entry, focuses it and records the dispatching element for focus return; it calls preventDefault when handled",
+      "qh:content-changed": "dispatch on document after adding or replacing page content: the page finds mounts again and rebuilds the search units",
+      "data-qh-unit": "an element with an id and data-qh-unit (title: its [data-qh-unit-title]) is a search unit under the atlas part; optional data-qh-unit-status (one of the page's status values, as data-status writes them: its words and mark come from the status key, and the Status chips include the unit) and data-qh-unit-place (words naming where it sits, shown as the result's place and searched as such)"
+    },
+    "page_to_atlas": {
+      "qh:state": "on document after search, filter and address changes: detail {q, scopes, statuses, show, hash}",
+      "qh:reveal": "on an offered unit when a search result leads to it, bubbles, cancelable, detail {id}: the atlas shows and focuses it and calls preventDefault; otherwise the page scrolls to it and focuses it",
+      "qh:unknown-anchor": "on document, cancelable, detail {id}: a component that owns the address calls preventDefault and the page shows no notice"
+    },
+    "atlas_must_not": "write the page's address or history itself, or use the page's hook classes (foundation ATLAS_RESERVED_CLASSES)",
+    "observed": "the atlas lane's atlas.js does not cancel qh:reveal, so the page's fallback (scroll and focus) runs; cancelling is the atlas's choice; '/' does not open the page's search while focus is inside the mount (the atlas may forward it)",
+    "tally": "a tally link lists the page's own statements: when a component offers units, the link limits the search to the page's parts (in=…), so its list count equals the tally's count",
+    "atlas_links": "a link inside the mount is never handled by the page, but the search typed before it is written into the entry it leaves"
+  },
+  "served_hooks": {
+    "[data-find]": "optional served search mount (proposals/STATUS-PY.md P6 serves it after the tally, hidden until the script runs); its data-label-<name> attributes replace the interface words, from page.json \"interface\"",
+    "[data-needs-script][hidden]": "served hidden, shown by status.js (proposals/STATUS-PY.md P2)",
+    "[data-find-open]": "a control that opens the search",
+    "label_keys": [
+      "search",
+      "placeholder",
+      "hint",
+      "part",
+      "status",
+      "clear",
+      "none",
+      "one",
+      "many",
+      "more",
+      "short",
+      "formula",
+      "witness",
+      "shown",
+      "all-shown",
+      "show-all",
+      "row-empty",
+      "row-show-all",
+      "unknown",
+      "unknown-ask",
+      "search-for",
+      "lens-on",
+      "lens-off",
+      "resume",
+      "resume-go",
+      "close",
+      "lens-help",
+      "grid-keys"
+    ],
+    "label_notes": {
+      "more": "Show {k} more ({k}: how many it adds, {n}: the total)",
+      "hint": "no longer promises \"from anywhere\": the atlas keeps its own keys"
+    }
+  },
+  "proposals_for_foundation": {
+    "summary": "proposals/STATUS-PY.md (P1 served statement ids, P2 script-only controls served hidden, P3 served descriptions, P4 TeX-free mark names) and the CSS block; exact patches and hashes there",
+    "P3 (revised)": "a mark is described by its scope paragraph only (the id moves from .cell-note to its scope p)",
+    "P6": "serve <div data-find data-needs-script hidden data-label-…> after the tally, with words from page.json \"interface\"",
+    "P2b (proposal only)": "split the grid hint: hide \"Select a mark for its scope.\" without the script, keep \"On a narrow screen the table scrolls sideways.\" (page.json grid_hint split by its owner)",
+    "P5 (proposal only, open)": "terms and marks served as links (a.term[href=#term-…], marks to their row line) so no control is inert without the script; status.js already accepts any element type for .term and .cell-btn",
+    "content ids (content owner)": "every statement should carry a content id; statements without one are addressed by their title words and change address when the title does"
+  },
+  "verification": "sh materials/processed/qh-attack-heal-20261116/interaction/tools/verify-all.sh (no browser); results in verify/verify-all.log",
+  "status_values": {
+    "rule": "status.js holds no status vocabulary: every status is the served data-status of a statement or cell and the data-filter of a Show filter chip or tally link, compared as an opaque string; a value may have spaces ('refuted form', written st-refuted-form, chip-refuted-form, mark-refuted-form in class names) and is written into the address as status=refuted+form or show=refuted+form",
+    "refuted form for statements (content-contract delta, root 2026-11-16)": "works without a change to status.js: reader-task test 'a statement status of two words (refuted form) works in the filter, the address, the tally, the search and the legend' (synthetic card, on the baseline and the foundation producers)",
+    "needs from the foundation": "serve, for every status that statements carry, its Show filter chip, its tally entry, its status-key item (the search names a status by the key's words) and its chip label; never coerce 'refuted form' to 'open'",
+    "needs from the atlas": "data-qh-unit-status carries the page's value ('refuted form'), not the atlas's own name ('scoped_negative'); otherwise the unit shows no status and the Status chips leave it out"
+  }
+}

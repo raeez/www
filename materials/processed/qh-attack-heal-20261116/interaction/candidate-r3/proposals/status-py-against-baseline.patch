@@ -1,0 +1,122 @@
+--- a/compiler/quantum-holography-status/status.py
++++ b/compiler/quantum-holography-status/status.py
+@@ -172,7 +172,7 @@
+                 return m.group(0)
+             seen.add(tid)
+             self.used[tid] = self.used.get(tid, 0) + 1
+-            return (f'<button type="button" class="term" data-term="{tid}" aria-haspopup="dialog" '
++            return (f'<button type="button" class="term" data-term="{tid}" aria-describedby="{tid}-def" aria-haspopup="dialog" '
+                     f'aria-expanded="false" aria-controls="card">{m.group(1)}</button>')
+         return self.regex.sub(one, escaped_text)
+ 
+@@ -188,6 +188,8 @@
+         self.warnings = []
+         self.anchors = set()
+         self.links = []
++        self.reserved_ids = set()
++        self.given_ids = {}
+ 
+     # Text -------------------------------------------------------------------------------
+ 
+@@ -237,7 +239,18 @@
+ 
+     def statement_id(self, s):
+         sid = (s.get('id') or '').strip()
+-        return 's-' + ident(sid) if sid else ''
++        if sid:
++            return 's-' + ident(sid)
++        # A statement without an id is addressed by its title, by the rule status.js applies at run time
++        # ('s-' + ident(title), then -2, -3 ... in page order), so a link made with or without the script is the same.
++        key = id(s)
++        if key not in self.given_ids:
++            base = 's-' + ident(s.get('title') or '')
++            sid, n = base, 2
++            while sid in self.reserved_ids or sid in self.given_ids.values():
++                sid, n = f'{base}-{n}', n + 1
++            self.given_ids[key] = sid
++        return self.given_ids[key]
+ 
+     def statement(self, s, where, heading='h4', title_override=None, chip=True):
+         status = s.get('status')
+@@ -318,8 +331,16 @@
+                 f'</header>'
+                 f'<div class="lead prose">{lead}</div>'
+                 f'<nav class="tally" aria-label="{html.escape(L["tally"])}"><p class="tally-label">'
+-                f'{html.escape(L["tally"])}</p><ul>{stats}</ul></nav>')
++                f'{html.escape(L["tally"])}</p><ul>{stats}</ul></nav>'
++                + self.find_mount())
+ 
++    def find_mount(self):
++        # The search's place, built by the script; page.json "interface" gives its words (data-label-<key>).
++        words = self.page.get('interface') or {}
++        attrs = ''.join(f' data-label-{k}="{html.escape(str(v))}"' for k, v in sorted(words.items())
++                        if re.fullmatch(r'[a-z][a-z-]*', k) and v)
++        return f'<div data-find data-needs-script hidden{attrs}></div>'
++
+     def counts(self, c):
+         tally = {s: 0 for s in STATEMENT_STATUSES}
+         for s in self.all_statements(c):
+@@ -542,16 +563,17 @@
+                     st = 'not posed'
+                 colname = columns.get(cid, {}).get('name', cid)
+                 note = cell.get('note') or ''
+-                label = f'{r["name"]}, {colname}: {self.status_label(st)}'
++                label = f'{strip_tags(self.math_free(r["name"]))}, {colname}: {self.status_label(st)}'  # read as text, not as TeX
+                 note_html = self.rich(note, terms=False)
+                 cells.append(
+                     f'<td class="cell cell-{slug(st)}" data-status="{st}">'
+                     f'<button type="button" class="cell-btn" data-row="{rid}" aria-label="{html.escape(label)}" '
++                    f'aria-describedby="{rid}-{cid}-scope" '
+                     f'aria-haspopup="dialog" aria-expanded="false" aria-controls="card">'
+                     f'{mark(st)}</button>'
+                     f'<div class="cell-note" hidden><p class="cell-note-head">{mark(st)}<span>'
+                     f'{html.escape(self.status_label(st))}</span> <span class="cell-note-where">'
+-                    f'{html.escape(colname)}</span></p><p>{note_html}</p></div></td>')
++                    f'{html.escape(colname)}</span></p><p id="{rid}-{cid}-scope">{note_html}</p></div></td>')
+             short = r.get('short') or self.page.get('row_short', {}).get(r.get('id')) or r['name']
+             rows.append(f'<tr><th scope="row"><a href="#{rid}" title="{html.escape(self.math_free(r["name"]))}">'
+                         f'{self.rich(short, terms=False)}</a></th>'
+@@ -564,7 +586,7 @@
+                  f'<thead><tr><th scope="col" class="corner">{html.escape(L["grid_corner"])}</th>{head}</tr></thead>'
+                  f'<tbody>{"".join(rows)}</tbody></table></div>')
+         legend = f'<div class="grid-legend">{self.key(c, compact=True)}</div>'
+-        return (f'<div class="grid-block">{table}<p class="grid-hint">{html.escape(L["grid_hint"])}</p>'
++        return (f'<div class="grid-block">{table}<p class="grid-hint" data-needs-script hidden>{html.escape(L["grid_hint"])}</p>'
+                 f'<div class="grid-aside">{legend}<details class="col-defs"><summary>{html.escape(L["columns"])}'
+                 f'{icon("chevron")}</summary><dl>{col_notes}</dl></details></div></div>')
+ 
+@@ -606,7 +628,7 @@
+             f'<button type="button" class="filter" data-filter="{st}" aria-pressed="false">{mark(st)}'
+             f'<span>{html.escape(self.status_label(st))}</span></button>'
+             for st, n in self.counts(c) if n)
+-        toolbar = (f'<div class="row-tools"><div class="filters" role="group" aria-label="{html.escape(L["filter"])}">'
++        toolbar = (f'<div class="row-tools" data-needs-script hidden><div class="filters" role="group" aria-label="{html.escape(L["filter"])}">'
+                    f'<span class="filters-label">{html.escape(L["filter"])}</span>{filters}</div>'
+                    f'<div class="row-actions"><button type="button" class="link-btn" data-expand="all">{html.escape(L["expand"])}</button>'
+                    f'<button type="button" class="link-btn" data-expand="none">{html.escape(L["collapse"])}</button></div></div>')
+@@ -656,7 +678,7 @@
+         for e in sorted(self.term_links.entries, key=lambda e: e['term'].lower()):
+             self.anchors.add(e['id'])
+             items.append(f'<div class="gloss" id="{e["id"]}"><dt>{self.rich(e["term"], terms=False)}</dt>'
+-                         f'<dd>{self.rich(e.get("definition", ""), terms=False)}</dd></div>')
++                         f'<dd id="{e["id"]}-def">{self.rich(e.get("definition", ""), terms=False)}</dd></div>')
+         if not items:
+             return ''
+         return self.section('terms', L['terms'], f'<p class="section-intro prose">{html.escape(L["terms_intro"])}</p>'
+@@ -670,6 +692,7 @@
+         essay_path = self.folder / 'essay.md'
+         essay_text = essay_path.read_text(encoding='utf-8') if essay_path.exists() else ''
+         self.term_links = Terms(c.get('glossary', []))
++        self.reserved_ids = {'s-' + ident(s['id'].strip()) for s in self.all_statements(c) if (s.get('id') or '').strip()}
+         L = self.page['labels']
+ 
+         cover = self.cover(c)
+@@ -703,7 +726,7 @@
+                 f'<div class="bar"><div class="bar-inner">'
+                 f'<a class="home" href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a>'
+                 f'<nav class="nav" aria-label="{html.escape(L["on_page"])}"><ul>{nav}</ul></nav>'
+-                f'<button type="button" class="theme" aria-label="{html.escape(L["theme"])}" title="{html.escape(L["theme"])}">'
++                f'<button type="button" class="theme" data-needs-script hidden aria-label="{html.escape(L["theme"])}" title="{html.escape(L["theme"])}">'
+                 f'{icon("theme")}</button></div></div>'
+                 f'<main id="main" tabindex="-1">{cover}{changes}{key}{principal}{decisive}{frontier}{examples}{failures}{open_}{essay}{terms}</main>'
+                 f'<footer class="foot"><div class="foot-inner"><p>{html.escape(self.page["author"])} · '

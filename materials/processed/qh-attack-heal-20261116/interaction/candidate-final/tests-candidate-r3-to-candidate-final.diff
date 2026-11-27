@@ -1,0 +1,218 @@
+--- a/tests (candidate-r3)
++++ b/tests (candidate-final)
+@@ -1096,12 +1096,12 @@
+     if (!phrase) continue;
+     tried++;
+     const list = run(phrase);
+-    assert.ok(list.length && (holds(list[0], phrase) || holds(target(list[0]), phrase)), 'the first result for "' + phrase + '" holds it');
++    assert.ok(list.length && holds(target(list[0]), phrase), 'the first result for "' + phrase + '" holds it in its own words');
+     const at = list.findIndex(a => { const t = target(a); return t === st || (t && t.matches('.question, .failure') && st.closest('.question, .failure') === t); });
+     assert.ok(at >= 0, '"' + phrase + '" finds its statement');
+     const group = list[at].closest('.find-group');
+     list.slice(0, at).filter(a => a.closest('.find-group') === group).forEach(a =>
+-      assert.ok(holds(a, phrase) || holds(target(a), phrase), 'in its part, only results that hold "' + phrase + '" come before its statement'));
++      assert.ok(holds(target(a), phrase), 'in its part, only results that hold "' + phrase + '" come before its statement'));
+   }
+   assert.ok(tried >= 10, tried + ' statements tried');
+   noErrors(p);
+@@ -1280,6 +1280,8 @@
+   assert.ok(keys && visibleText(keys).length > 20, 'the words are on the page');
+   const host = p.d.querySelector('.grid-wrap') || p.d.querySelector('table.grid');
+   assert.ok((host.getAttribute('aria-describedby') || '').split(' ').includes('grid-keys'), 'they describe the table\'s region');
++  const caption = p.d.querySelector('table.grid caption');
++  if (caption && caption.classList.contains('visually-hidden')) assert.ok(caption.contains(keys), 'and are read with the table\'s caption');
+   noErrors(p);
+ });
+ 
+@@ -1547,6 +1549,20 @@
+   move(term, 303, 301);                              /* the reader moves the pointer onto the term */
+   await settle();
+   assert.equal(card.hidden, false, 'a real move opens its card');
++  const mouse = (el, type, related) => el.dispatchEvent(new p.w.MouseEvent(type, { bubbles: true, relatedTarget: related }));
++  mouse(term, 'mouseout', card);                     /* onto the card, then back onto its term, and rest there */
++  mouse(card, 'mouseover', term);
++  move(card, 320, 330);
++  mouse(card, 'mouseout', term);
++  mouse(term, 'mouseover', card);
++  move(term, 305, 302);
++  await sleep(250);
++  assert.equal(card.hidden, false, 'back on its term, the card stays');
++  mouse(term, 'mouseout', p.d.body);                 /* off the term and back within the moment a card waits */
++  await sleep(60);
++  mouse(term, 'mouseover', p.d.body);
++  await sleep(250);
++  assert.equal(card.hidden, false, 'a quick return keeps it');
+   noErrors(p);
+ });
+ 
+@@ -1589,6 +1605,18 @@
+   await settle();
+   assert.equal(card.hidden, true, 'Escape closes it');
+   assert.equal(p.d.activeElement, term, 'and returns to the term');
++  assert.equal(term.getAttribute('role'), 'button', 'run by the script, a term link is a button that opens a card');
++  const third = [...p.d.querySelectorAll('main a.term')][2];
++  third.focus();
++  key(third, ' ');
++  await settle();
++  assert.equal(card.hidden, false, 'Space opens its card, as on a button');
++  key(p.d.activeElement, 'Escape');
++  await settle();
++  const other = [...p.d.querySelectorAll('main a.term')][1];
++  const modified = new p.w.MouseEvent('click', { bubbles: true, cancelable: true, ctrlKey: true });
++  other.dispatchEvent(modified);
++  assert.equal(modified.defaultPrevented, false, 'a modified click opens the link as a link (a new tab)');
+   const plain = load({ html, noScript: true });
+   const t = plain.d.querySelector('main a.term');
+   assert.ok(plain.d.getElementById(t.getAttribute('href').slice(1)), 'without the script the link leads to the definition');
+@@ -1639,8 +1667,8 @@
+ test('a statement status of two words (refuted form) works in the filter, the address, the tally, the search and the legend', async () => {
+   const st = 'refuted form';
+   const key = new JSDOM(PAGE).window.document.querySelector('.mark.mark-refuted-form');
+-  const label = key && key.closest('li, .key-item') ? visibleText(key.closest('li, .key-item').querySelector('span, dt') || key.closest('li')) : 'Refuted as first posed';
+-  const html = withStatus(st, label || 'Refuted as first posed');
++  const label = key && key.closest('li, .key-item') ? visibleText(key.closest('li, .key-item').querySelector('span, dt') || key.closest('li')) : 'Scoped negative';
++  const html = withStatus(st, label || 'Scoped negative');
+   const p = load({ html });
+   await settle();
+   const chip = p.d.querySelector('.row-tools .filter[data-filter="refuted form"]');
+@@ -1664,7 +1692,7 @@
+   assert.ok(facet, 'the search has a Status chip for it');
+   const p3 = load({ html });
+   await settle();
+-  await type(p3, '"' + (label || 'Refuted as first posed') + '"');
++  await type(p3, '"' + (label || 'Scoped negative') + '"');
+   assert.ok(hitFor(p3, p3.d.querySelector('[data-test-card]')), 'its label finds it');
+   const lens = p3.d.querySelector('.legend .lens[data-lens="refuted form"]');
+   if (lens) {
+@@ -1672,8 +1700,131 @@
+     assert.equal(p3.d.querySelectorAll('.grid td[data-lit]').length, p3.d.querySelectorAll('.grid td.cell[data-status="refuted form"]').length, 'the legend switch lights the cells of that status');
+   }
+   [p, again, p3].forEach(noErrors);
++});
++
++test('search: a field too narrow for the placeholder gets the short one, and a wide field keeps the full one', async () => {
++  let width = 180;
++  const p = load({ before(w) {
++    Object.defineProperty(w.HTMLInputElement.prototype, 'clientWidth', { configurable: true, get() { return this.id === 'find-q' ? width : 0; } });
++  } });
++  await settle();
++  p.w.dispatchEvent(new p.w.Event('load'));
++  const q = p.d.getElementById('find-q');
++  assert.ok(q.placeholder.length < 30, 'narrow: "' + q.placeholder + '"');
++  width = 900;
++  p.w.dispatchEvent(new p.w.Event('resize'));
++  await sleep(250);
++  assert.ok(q.placeholder.length >= 30, 'wide: "' + q.placeholder + '"');
++  noErrors(p);
+ });
+ 
++/* ---------------------------------------------------------------- third review: search */
++
++test('search: text in a part of another shape is searchable, and its Part chip counts it', async () => {
++  const part = '<section id="zsynth" class="section"><header class="section-head"><h2 id="zsynth-h">Synthesis zqxjv</h2></header>' +
++    '<p>The programme synthesis lorquim ties the parts together.</p><h3>Reading path qwvyxz</h3>' +
++    '<ol><li>First read the lorquim results here.</li><li>Then the comparisons follow from them.</li></ol></section>';
++  const html = PAGE.replace('<section id="results"', part + '<section id="results"')
++    .replace('<li><a href="#results">', '<li><a href="#zsynth">Synthesis</a></li><li><a href="#results">');
++  assert.notEqual(html, PAGE, 'the page has the shape the part is added to');
++  const p = load({ html });
++  await settle();
++  await type(p, 'lorquim');
++  const list = hits(p);
++  assert.ok(list.length >= 2, 'its words are found: ' + list.length + ' results');
++  list.forEach(a => assert.ok(target(p, a) && target(p, a).closest('#zsynth'), 'each result is in the new part'));
++  const chip = p.d.querySelector('.find .filter[data-scope="zsynth"]');
++  assert.ok(chip && /[1-9]\d*$/.test(visibleText(chip)), 'its Part chip counts its matches: ' + (chip && visibleText(chip)));
++  await type(p, 'qwvyxz');
++  assert.ok(hits(p).length >= 1, 'the heading that titles its blocks is found');
++  noErrors(p);
++});
++
++test('search: TeX typed into a word of a title finds that title', async () => {
++  const p = load();
++  await settle();
++  const src = el => { let o = ''; (function w(n) { if (n.nodeType === 3) { o += n.nodeValue; return; } if (n.nodeType !== 1) return;
++    if (n.localName === 'math') { const a = n.querySelector('annotation'); o += a ? a.textContent : ''; return; } for (let c = n.firstChild; c; c = c.nextSibling) w(c); })(el); return o; };
++  let query = null, unit = null;
++  const plainForm = x => x.replace(/\\[A-Za-z]+/g, '').replace(/[_^{}$]/g, '').toLowerCase();
++  for (const t of p.d.querySelectorAll('main .statement-title')) {
++    const words = src(t).replace(/\s+/g, ' ').trim().split(' ');
++    const k = words.findIndex(x => /[A-Za-z]_\{?\d+\}?-?[A-Za-z]{3,}/.test(x));
++    if (k <= 0 || !/^[A-Za-z]{3,}$/.test(words[k - 1])) continue;
++    const word = words[k].replace(/[{}]/g, '').replace(/[.,;:]+$/, '');
++    const st = t.closest('.statement');
++    const text = st.querySelector('.statement-text');
++    /* a title whose word the statement's text does not repeat: only the title can be found by it */
++    if (text && plainText(text).toLowerCase().replace(/\s+/g, '').includes(plainForm(word).replace(/\s+/g, ''))) continue;
++    query = words[k - 1] + ' ' + word; unit = st; break;
++  }
++  if (!query) return;                                 /* this content has no such title */
++  await type(p, query);
++  /* the statement's own result; a question's own (asked) statement is found as its question */
++  const asked = !!unit.closest('.question') && /(^|\s)(question|question-ask)(\s|$)/.test(unit.parentElement.className);
++  const hit = hits(p).find(a => target(p, a) === (asked ? unit.closest('.question') : unit));  /* not a row that holds it */
++  assert.ok(hit, '"' + query + '" finds the statement whose title shows it');
++  noErrors(p);
++});
++
++test('search: within a part, results that hold the words in their own text come before those found only through their place', async () => {
++  const p = load();
++  await settle();
++  /* A result's own words, as the search reads them: blocks apart, formulae and the result's place (a column's name and
++     status in a row, the context line of a statement) left out. */
++  const BLOCKS = /^(p|div|li|dt|dd|h[1-6]|article|ul|ol|dl|summary|section|header)$/;
++  const ownWords = el => {
++    const c = el.cloneNode(true);
++    c.querySelectorAll('.cell-col, .cell-st, .statement-context, math, svg, annotation').forEach(n => n.remove());
++    let out = '';
++    (function walk(n) {
++      if (n.nodeType === 3) { out += n.nodeValue; return; }
++      if (n.nodeType !== 1) return;
++      for (let k = n.firstChild; k; k = k.nextSibling) walk(k);
++      if (BLOCKS.test(n.localName)) out += ' ';
++    })(c);
++    return out.toLowerCase();
++  };
++  const own = (el, w) => new RegExp('(^|[^a-z])' + w.toLowerCase()).test(ownWords(el));
++  const ownText = el => el;
++  const phrases = [];
++  [...p.d.querySelectorAll('details.row .row-name')].map(plainText).forEach(n => {
++    const w = n.split(/[\s,]+/).filter(x => /^[A-Za-z]{5,}$/.test(x));
++    for (let i = 0; i + 1 < w.length && phrases.length < 6; i++) phrases.push(w[i] + ' ' + w[i + 1]);
++  });
++  for (const phrase of phrases) {
++    await type(p, phrase);
++    const words = phrase.split(' ');
++    const groups = new Map();
++    hits(p).forEach(a => { const g = a.closest('.find-group'); if (!groups.has(g)) groups.set(g, []); groups.get(g).push(a); });
++    for (const links of groups.values()) {
++      const holds = links.map(a => { const x = target(p, a); return !!x && words.every(w => own(ownText(x), w)); });
++      const firstOut = holds.indexOf(false);
++      if (firstOut >= 0) assert.ok(holds.slice(firstOut).every(h => !h), '"' + phrase + '": a result found only through its place comes before one that holds the words');
++    }
++  }
++  noErrors(p);
++});
++
++test('search: a defined term typed in any quotes puts its definition first', async () => {
++  const p = load();
++  await settle();
++  const terms = [...p.d.querySelectorAll('main .gloss')].map(g => ({ g, dt: plainText(g.querySelector('dt')) })).filter(x => x.dt && !/[«»„“”"]/.test(x.dt));
++  assert.ok(terms.length, 'the page has a glossary');
++  const q = p.d.getElementById('find-q');
++  q.focus();
++  for (const { g, dt } of terms) {
++    q.value = '«' + dt + '»';                         /* Enter runs the search at once */
++    q.dispatchEvent(new p.w.Event('input', { bubbles: true }));
++    key(q, 'Enter');
++    q.focus();
++    const first = hits(p)[0];
++    const x = first && target(p, first);
++    assert.ok(x && (x === g || x.contains(g) || g.contains(x)), '«' + dt + '» puts its definition first');
++  }
++  noErrors(p);
++});
++
+ /* ---------------------------------------------------------------- run */
+ 
+ (async () => {

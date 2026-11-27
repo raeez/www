@@ -1,0 +1,16 @@
+const { JSDOM } = require('jsdom');
+const fs = require('fs');
+const dom = new JSDOM(fs.readFileSync(process.argv[2], 'utf8'));
+const d = dom.window.document, main = d.getElementById('main');
+const time = (name, fn) => { const t = Date.now(); let n = 0; for (let i = 0; i < 3; i++) n = fn().length; console.log(((Date.now() - t) / 3).toFixed(1).padStart(7), String(n).padStart(5), name); };
+const arr = c => Array.prototype.slice.call(c);
+time('qsa main .statement', () => d.querySelectorAll('main .statement'));
+time('gEBCN statement', () => main.getElementsByClassName('statement'));
+time('gEBCN key-item + section-intro + essay-lead', () => arr(main.getElementsByClassName('key-item')).concat(arr(main.getElementsByClassName('section-intro')), arr(main.getElementsByClassName('essay-lead'))));
+time('gEBTN * + attr checks (hooks)', () => arr(d.getElementsByTagName('*')).filter(e => e.hasAttribute('data-find') || e.hasAttribute('data-needs-script') || e.hasAttribute('data-find-open')));
+time('qsa [data-find]', () => d.querySelectorAll('[data-find]'));
+time('gEBTN button + filter [data-expand]', () => arr(d.getElementsByTagName('button')).filter(b => b.hasAttribute('data-expand')));
+time('gEBTN details', () => main.getElementsByTagName('details'));
+time('gEBCN term+cell-btn+col-head', () => arr(main.getElementsByClassName('term')).concat(arr(main.getElementsByClassName('cell-btn')), arr(main.getElementsByClassName('col-head'))));
+time('gEBCN math-display+math-long', () => arr(main.getElementsByClassName('math-display')).concat(arr(main.getElementsByClassName('math-long'))));
+time('main.children sections', () => arr(main.children).filter(e => e.localName === 'section'));

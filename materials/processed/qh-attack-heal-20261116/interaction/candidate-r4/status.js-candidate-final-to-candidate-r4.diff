@@ -1,0 +1,113 @@
+--- a/compiler/quantum-holography-status/status.js (candidate-final)
++++ b/compiler/quantum-holography-status/status.js (candidate-r4)
+@@ -1080,8 +1080,8 @@
+     var title = o.title || '';
+     var context = o.context || '';
+     var labels = o.labels !== undefined ? o.labels : labelsOf(o.statusEl);
+-    var body = textOf(el, o.skip);
+-    var tex = texOf(el, o.skip) + ' ' + texOf(o.titleEl);
++    var body = o.body !== undefined ? o.body : textOf(el, o.skip);
++    var tex = texOf(el, o.skip) + ' ' + (o.quiet ? '' : texOf(o.titleEl)); /* a borrowed title's formulae are not the unit's */
+     building.push({
+       el: el, scope: scope, titleEl: o.titleEl || null, contextEl: o.contextEl || null, contextLead: o.contextLead || '',
+       title: title, context: context, skip: o.skip || null, quiet: !!o.quiet,
+@@ -1092,7 +1092,7 @@
+       fl: fold(statusLabel + ' ' + labels),
+       raw: (textOf(o.titleEl) + ' ' + context + ' ' + body).toLowerCase(),
+       ro: (textOf(o.titleEl) + ' ' + body).toLowerCase(),
+-      ttex: texNorm(texOf(o.titleEl)),
++      ttex: o.quiet ? '' : texNorm(texOf(o.titleEl)),
+       tex: texNorm(tex)
+     });
+   }
+@@ -1213,24 +1213,40 @@
+                   statusLabel: key ? key.label : '', mark: key ? key.mark : null, context: el.getAttribute('data-qh-unit-place') || '' });
+       });
+     });
+-    /* Text in a part that none of the units above holds (a part of another shape): each of its innermost blocks becomes
+-       a unit, titled by the nearest heading before it, so that nothing a reader can read lies outside the search. */
++    /* Text in a part that none of the units above holds (a part of another shape, whatever its markup: paragraphs,
++       lists, divs, definition lists, tables): each stretch of it belongs to its nearest block (a table's row, for a
++       table), and each such block becomes a unit with its own words, titled by the nearest heading before it, so that
++       nothing a reader can read lies outside the search. */
+     list.push(function () {
+       var held = typeof Set === 'function' ? new Set(building.map(function (u) { return u.el; })) : null;
+       if (!held) return;
+       var isHeld = function (el) { for (var n = el; n && n !== main; n = n.parentElement) if (held.has(n)) return true; return false; };
+       var CHROME = '.find, .qh-notice, #card, nav, .row-tools, .grid-block, .tally, .section-head, .kicker, .essay-byline, ' +
+-                   '.visually-hidden, [hidden], [aria-hidden="true"], button, summary, table';
++                   '.visually-hidden, [hidden], [aria-hidden="true"], button, annotation, svg, script, style';
++      var BLOCKS = 'p, li, dd, dt, h3, h4, h5, h6, blockquote, figcaption, pre, summary, td, th, caption, div, article, aside, header, footer';
+       partSections.forEach(function (sec) {
+         if (!shared(sec)) return;
+         var heads = all('h2, h3, h4', sec);
+-        all('p, li, dd, h3, h4, blockquote, figcaption', sec).forEach(function (b) {
+-          if (b.closest(CHROME) || isHeld(b) || b.querySelector('p, li, dd, h3, h4, blockquote')) return;
+-          if (textOf(b).split(/\s+/).filter(Boolean).length < 3) return;
++        var blocks = [];
++        var words = [];
++        var walker = doc.createTreeWalker(sec, 4);
++        for (var t = walker.nextNode(); t; t = walker.nextNode()) {
++          var el = t.parentElement;
++          if (!el || !/\S/.test(t.nodeValue) || el.closest(CHROME) || isHeld(el)) continue;
++          var row = el.closest('tr');
++          var b = row && sec.contains(row) ? row : el.closest(BLOCKS);
++          if (!b || !sec.contains(b) || b === sec) continue;
++          var k = blocks.indexOf(b);
++          if (k < 0) { k = blocks.length; blocks.push(b); words.push(''); }
++          words[k] += t.nodeValue + (el.closest('td, th') && !t.nextSibling ? ' ' : '');
++        }
++        blocks.forEach(function (b, k) {
++          var own = words[k].replace(/\s+/g, ' ').trim();
++          if (!/[A-Za-z\u00C0-\u024F]{3}/.test(own) || own.split(' ').length < 2) return;
+           var head = null;
+           heads.forEach(function (h) { if (h !== b && !h.contains(b) && (h.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING)) head = h; });
+-          give(b, sec.id + '-' + ident(firstWords(b, 8)).slice(0, 48));
+-          add(b, { titleEl: head, title: head ? textOf(head) : '' });
++          give(b, sec.id + '-' + ident(own.split(' ').slice(0, 8).join(' ')).slice(0, 48));
++          add(b, { titleEl: head, title: head ? textOf(head) : '', body: own });
+         });
+       });
+     });
+@@ -1499,7 +1515,7 @@
+     input.setAttribute('spellcheck', 'false');
+     input.setAttribute('enterkeyhint', 'search');
+     input.setAttribute('aria-controls', 'find-results');
+-    input.setAttribute('aria-describedby', 'find-hint');
++    if (hoverCapable) input.setAttribute('aria-describedby', 'find-hint'); /* the hint is for a keyboard and a pointer */
+     input.placeholder = WORDS.placeholder;
+     clearButton = element('button', 'link-btn find-clear', WORDS.clear);
+     clearButton.type = 'button';
+@@ -2144,6 +2160,14 @@
+       if (arrival && !location.hash && active()) requestAnimationFrame(function () { find.scrollIntoView({ block: 'start' }); });
+     }
+   }
++  /* The address the search gives to a block of a part of another shape exists once the search's units are built: such
++     an address (a part's id, then words) is looked up again after building them, before it is called unknown. */
++  function findAddress(id) {
++    var el = doc.getElementById(id);
++    if (el || !input || !partSections.some(function (s) { return id.indexOf(s.id + '-') === 0; })) return el;
++    index();
++    return doc.getElementById(id);
++  }
+   function openTarget(arrival) {
+     if (noticeKind === 'unknown' || (!arrival && noticeKind)) dismiss();
+     var raw = location.hash.slice(1);
+@@ -2152,7 +2176,7 @@
+     var readable = true;
+     try { id = decodeURIComponent(raw); } catch (e) { readable = false; }
+     if ((id === 'find-q' || id === 'find-results') && input) { focusSearch(); announce(); return; }
+-    var target = readable ? doc.getElementById(id) : null;
++    var target = readable ? findAddress(id) : null;
+     if (target && !shared(target)) { announce(); return; } /* the component's own address */
+     var opened = target ? openAround(target) : [];
+     if (!target || target.closest('[hidden]')) { unknownAddress(id, readable, arrival); announce(); return; }
+@@ -2171,7 +2195,7 @@
+     if (qh.open) restoreOpen(qh.open);
+     /* The element the address names is shown here, not only on hashchange, which may come after the next frame. */
+     var id = hashId();
+-    var to = id && id !== 'find-q' && id !== 'find-results' ? doc.getElementById(id) : null;
++    var to = id && id !== 'find-q' && id !== 'find-results' ? findAddress(id) : null;
+     if (to && !shared(to)) to = null;
+     if (to) openAround(to);
+     var back = qh.back;

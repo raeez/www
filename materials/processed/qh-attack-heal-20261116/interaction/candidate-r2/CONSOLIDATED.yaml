@@ -1,0 +1,93 @@
+# Consolidated ledger, cycle 1 (interaction lane). Sources, saved before consolidation and never edited:
+#   attack/A1-first-wave.txt (sha256 1854ff95...), attack/A2-first-wave.txt (sha256 4c7847e8...), attack/M-local-ledger.yaml.
+# Verification: compiler/quantum-holography-status/tests/interaction.test.cjs (jsdom 28.1.0), run on the standalone build
+# (dev/preview-nofonts.html), the build with the foundation's producer (integration/), the same with the CSS proposal
+# (integration-css/) and the same with the atlas lane's renderer on its synthetic fixture (integration-atlas/).
+# "test:" names a test in that file; "check:" names a tool in tools/. Browser evidence is not admissible (RESTRICTION-BROWSER.md).
+# Severity 1-3 entries: every one is healed, invalid with evidence, or routed with an exact patch to its owner.
+
+main_thread:
+  A1-M-01: {status: healed, heal: "visible count line with Show all under the chips; per-row note with Show all statements", test: "filter: a row the Show filter leaves without statements says so and offers to show all"}
+  A1-M-02: {status: healed, heal: "client anchors s-<ident(title)> for the 98 statements without an id (rule identical to status.py ident, checked on all 98, no collision)", test: ["deep link: every statement has its own address after the script starts", "deep link: a result for a statement that had no id gives the address of that statement, and the address reopens it"], route: "served ids: proposals/STATUS-PY.md P1 (foundation or content owner)"}
+  A1-M-03: {status: healed, heal: "notice naming the address, with a search for its words; cancelable qh:unknown-anchor first", test: "deep link: an address the page does not have is named, with a search for its words"}
+  A1-M-04: {status: healed, heal: "[data-atlas-mount] isolation in every page lookup and listener; qh:navigate, qh:state, qh:reveal, qh:unknown-anchor, qh:content-changed, data-qh-unit", test: ["atlas: the page does not index, filter or bind what is inside the atlas mount", "atlas: qh:navigate reveals a page anchor with history, focus and focus return on Back", "atlas: page listeners leave the atlas's own links, keys and focus alone", "atlas: an unknown address the atlas claims shows no notice", "atlas: text the atlas offers is searchable, and a result asks the atlas to show it"]}
+  A1-M-05: {status: healed, heal: "beforeprint keeps the first saved state", test: "print: a second print request before the first ends still restores the reader's state"}
+  A1-M-06: {status: non_core, note: "superseded by the A1-M-07 heal (no toggle-time measurement where IntersectionObserver exists); its Chrome evidence is not admissible"}
+  A1-M-07: {status: healed, heal: "each formula box measured when it comes within 400px of the screen; full pass only without IntersectionObserver", test: "performance: formula boxes are measured as they come near the screen, not all at start-up", residual: "browser timing not measured under the restriction"}
+
+A1:
+  A1-A-01: {sev: 3, status: healed, heal: "a filtered-out target is shown (data-filter-exempt) without lifting the filter or writing the address", test: "filter: a link to a statement the Show filter hides shows it and keeps the filter and the address"}
+  A1-A-02: {sev: 3, status: healed, same_as: A1-M-01}
+  A1-A-03: {sev: 3, status: healed, heal: "rows' own open state saved when a filter starts and restored when it ends", test: "filter: turning the Show filter on and off returns the rows to the reader's own state"}
+  A1-A-04: {sev: 3, status: healed, heal: "unknown, malformed and hidden targets get the notice; #find-q and #find-results open the search", test: ["deep link: an address the page does not have is named, with a search for its words", "address: unknown filter values are named and dropped, a one-letter query explains itself, #find-q opens the search"]}
+  A1-A-05: {sev: 3, status: healed, heal: "unknown in/status/show values named in a notice and dropped from the address; short query explained; unclosed and curly quotes", test: ["address: unknown filter values are named and dropped, a one-letter query explains itself, #find-q opens the search", "search: curly quotes and an unclosed quote make a phrase as straight quotes do"]}
+  A1-A-06: {sev: 3, status: healed, heal: "a link to the current address opens what conceals its target", test: "address: a link to the address already shown reopens the row it names"}
+  A1-A-07: {sev: 3, status: healed, heal: "row toggles replace only a row address or none; otherwise push", test: "history: opening a row from a section address keeps that address for Back"}
+  A1-A-08: {sev: 3, status: healed, heal: "every unit addressable (statements, lead and essay paragraphs, key items, intros, column lines); no duplicate push", test: ["deep link: a result for a statement that had no id gives the address of that statement, and the address reopens it", "history: two results in one row are two entries, each with its own address"]}
+  A1-A-09: {sev: 3, status: healed, heal: "history.state.qh {open, back}: Back restores the entry's disclosures and refocuses the control left from (results, links, card owner, bar links)", test: ["history: Back after a search result returns focus to that result and closes what the result opened", "history: following a term's card to the glossary and going Back returns focus to the term", "history: Back after a link in the bar returns focus to that link, also when a search has changed the page above"]}
+  A1-A-10: {sev: 3, status: healed, heal: "popstate cancels the pending address write", test: "history: a search typed just before Back is not written into the entry Back returns to"}
+  A1-A-11: {sev: 3, status: healed, heal: "pending address written before any in-page link and on pagehide", test: "history: a search typed just before following a link stays with the entry it was typed in"}
+  A1-A-12: {sev: 3, status: healed, heal: "address pushed before disclosures open; filter not lifted (A1-A-01)", test: "history: a result hidden by the Show filter keeps the filter in the entry left behind"}
+  A1-A-13: {sev: 3, status: healed, heal: "tally pushes ?status=… without a hash; Back returns and refocuses the tally link", test: "history: a tally link is a new entry; Back returns to the page as it was"}
+  A1-A-14: {sev: 3, status: healed, heal: "document Escape ignores an Escape already used and moves focus only from the card or its owner", test: "card: a pinned card closes when focus moves on, so Escape does not send focus back to it"}
+  A1-A-15: {sev: 3, status: healed, heal: "a pinned card closes when focus moves anywhere else; Tab from a card without links closes it", test: "card: a pinned card closes when focus moves on, so Escape does not send focus back to it"}
+  A1-A-16: {sev: 3, status: healed, heal: "'/' remembers the control; Escape on an empty search returns to it", test: "card: a pinned card closes when focus moves on, so Escape does not send focus back to it"}
+  A1-A-17: {sev: 3, status: healed, heal: "roving tabindex: the table is one Tab stop; Control+Home/End", test: "table: the table is one stop for the Tab key, and its scroll box is not another"}
+  A1-A-18: {sev: 3, status: healed, same_as: A1-M-04}
+  A1-A-19: {sev: 3, status: healed, heal: "listeners ignore events from inside the mount; '/' checks the composed origin; only .term[data-term] shared", test: "atlas: page listeners leave the atlas's own links, keys and focus alone"}
+  A1-A-20: {sev: 2, status: healed, heal: "null-safe text; index built into a local list and kept only when complete; arrival target opened in finally", test: "robustness: a malformed row in the page does not break search or the address target"}
+  A1-A-21: {sev: 4, status: healed, heal: "print opening and formula focus exclude the mount", test: "atlas: page listeners leave the atlas's own links, keys and focus alone"}
+  A1-A-22: {sev: 3, status: healed, heal: "per-entry open disclosures in history.state (Back, Forward, reload); place kept on this device and offered on a later visit", test: ["reading: open disclosures are kept in the history entry and restored on reload", "reading: the place where reading stopped is offered on a later visit, and Continue goes there"]}
+  A1-A-23: {sev: 3, status: healed, heal: "a result found only in a formula says 'in a formula'", test: "search: a TeX query finds the formulae that contain it and names that it matched in a formula"}
+  A1-A-24: {sev: 4, status: healed, same_as: A1-M-05}
+  A1-A-25: {sev: 4, status: healed, heal: "focus in a newly hidden statement moves to its row summary", test: "filter: focus inside a statement that the filter hides moves to its row"}
+  A1-A-26: {sev: 4, status: valid, route: "foundation: proposals/STATUS-PY.md P2 (serve script-only controls hidden with data-needs-script)", script_side: "status.js unhides them", test: "script-only controls served hidden are shown by the script"}
+  A1-A-27: {sev: 4, status: healed, heal: "data-revealed on the reached element", route: "CSS: proposals/css-against-*.patch", residual: "look not verified (browser restriction)"}
+  A1-A-28: {sev: 4, status: healed, test: "search: ArrowDown on the last shown result reaches Show all"}
+  A1-A-29: {sev: 5, status: non_core, heal: "AltGraph '/' accepted", residual: "untested"}
+  A1-A-30: {sev: 4, status: healed, heal: "index built in idle slices after load (8 ms slices also where requestIdleCallback is missing)", check: "tools/jsdom-cost.cjs: first focus after idle 0.3-1.2 ms against 351-459 ms baseline (jsdom, upper bound)", residual: "browser timing not measured"}
+  A1-A-31..40: {status: invalid, note: "survivors recorded by A1; several are kept as regression tests (deep links, print, keyboard trap, grid arrows, ids)"}
+
+A2:
+  A2-B-01: {sev: 2, status: healed, heal: "programme scope (cover, lead, status key), section intros, every nav-linked part searchable", test: "search: words read in the lead, the status key and a section introduction are found where they are"}
+  A2-B-02: {sev: 2, status: healed, heal: "counterexample result shows the page's False label and 'counterexample: <status>'", test: "search: a counterexample result is shown as false, with its witness as the counterexample"}
+  A2-B-03: {sev: 2, status: healed, heal: "snippets cut from the page with whole MathML copies set inline", test: "search: a snippet keeps the formulae around the match as formulae", residual: "rendering of MathML in snippets not seen (browser restriction)"}
+  A2-B-04: {sev: 3, status: healed, test: "search: the words of a status label and of a note label find the statements that carry them"}
+  A2-B-05: {sev: 3, status: healed, test: "search: punctuation alone and a single letter search nothing and say so; a single symbol is searched"}
+  A2-B-06: {sev: 3, status: healed, same_test: A2-B-05, note: "letterlike symbols (ℂ, 𝔰) matched unfolded"}
+  A2-B-07: {sev: 3, status: healed, test: "search: curly quotes and an unclosed quote make a phrase as straight quotes do"}
+  A2-B-08: {sev: 3, status: healed, heal: "TeX searched only for words written with TeX; Greek names find the letter", test: "search: a word is not found through the name of a TeX command, and a short word must begin a word"}
+  A2-B-09: {sev: 3, status: healed, heal: "words of up to five letters must begin a word; ranking whole > start > inside", test: "search: a word is not found through the name of a TeX command, and a short word must begin a word"}
+  A2-B-10: {sev: 3, status: healed, heal: "score before part; exact title first; groups ordered by best hit; Part chips count matches", test: "search: a defined term typed in full puts its definition first, and the Part chips count where the matches are"}
+  A2-B-11: {sev: 3, status: healed, test: "search: the essay title is one result, and the \"why it matters\" label is not a match"}
+  A2-B-12: {sev: 3, status: healed, test: "search: a column's scope in a row is its own result, naming the column and its status"}
+  A2-B-13: {sev: 3, status: healed, heal: "own ids, data-revealed, CSS Highlight API marks, first far match centred", residual: "highlight drawing not seen (browser restriction; jsdom has no CSS.highlights)"}
+  A2-B-14: {sev: 3, status: healed, same_as: A1-A-09}
+  A2-B-15: {sev: 3, status: healed, same_as: A1-A-05}
+  A2-B-16: {sev: 3, status: healed, heal: "count shown at once; one live region written 700 ms after typing pauses and only on change", test: "search: the count is announced once typing pauses, not at every keystroke"}
+  A2-B-17: {sev: 3, status: healed, test: "search: Enter in the field moves to the first result and leaves the address as it was"}
+  A2-B-18: {sev: 3, status: healed, heal: "card built from DOM copies; row link keeps its formula", test: "card: the link to a row whose name has a formula reads as the row name"}
+  A2-B-19: {sev: 3, status: healed, heal: "TeX delimiters removed from cell names at start (the foundation now serves them TeX-free)", test: "table: each mark is described by its scope, and no name is read as TeX"}
+  A2-B-20: {sev: 3, status: healed, heal: "cell buttons described by their scope, terms by their definition", test: "table: each mark is described by its scope, and no name is read as TeX", route: "served aria-describedby: proposals/STATUS-PY.md P3"}
+  A2-B-21: {sev: 3, status: valid, route: "foundation: proposals/STATUS-PY.md P2 and P4 (served hidden toolbars; terms and marks as links)", script_side: "data-needs-script support tested"}
+  A2-B-22: {sev: 3, status: valid, route: "CSS proposal includes forced-colours outlines for pressed chips, open cell, current nav link, lens", residual: "not seen (browser restriction)"}
+  A2-B-23: {sev: 3, status: healed, heal: "idle-time index; start-up lookups through class and tag indexes", check: "tools/jsdom-cost.cjs and scratch/probe-startup.cjs: start-up 376-410 ms against 286-320 ms baseline, query time 25-31 ms against 138-148 ms (jsdom)", residual: "browser timing not measured"}
+  A2-B-24: {sev: 4, status: non_core, note: "Show all renders all hits at once (477 for 'the'); chunking not done"}
+  A2-B-25: {sev: 4, status: non_core, note: "braces, \\geq/\\leq/\\neq and >=/<= done; transliteration and mixed text+TeX phrases not done"}
+  A2-B-26: {sev: 4, status: healed, heal: "obsolete fallback style removed from status.js; comment scan clean", check: "tools/fidelity.py E5 (936 pieces, 0 hits)", route: "status.css/status-print.css comments: foundation"}
+  A2-B-27: {sev: 4, status: healed, test: "search: results are named by title and place and described by the words around the match"}
+  A2-B-28: {sev: 4, status: healed, test: "search: a column definition result names the column definitions as its place"}
+  A2-B-29..37: {status: invalid, note: "survivors recorded by A2"}
+
+foundation_proposals_taken_up:
+  touch-sheet: {status: healed, heal: "page moves so the trigger stays above the bottom sheet", residual: "layout not testable in jsdom; not seen"}
+  search-chips: {status: healed, heal: "each chip group a toolbar with one Tab stop", test: "search: each group of chips is one stop for the Tab key, with arrow keys inside"}
+  atlas-search: {status: healed, heal: "opt-in data-qh-unit units under an Atlas part; activation hands reveal to the atlas", test: "atlas: text the atlas offers is searchable, and a result asks the atlas to show it"}
+
+added_for_visualization:
+  table-crosshair: {test: "table: the mark in focus lights its row and its column, and moving on moves the light", residual: "look not seen"}
+  table-status-lens: {test: "table: each legend entry follows one status across the table, with its count", residual: "look not seen"}
+
+blocked_or_routed:
+  real-atlas-composition: "atlas.py rejects layout-snapshot-1120/atlas.json against this content.json with 13 data findings (integration-atlas/audit-nofonts/audit.txt); renders nothing by design; routed to root"
+  visual-qa: "E8 not performed: binding browser restriction"

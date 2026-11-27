@@ -1,0 +1,613 @@
+--- a/tests (candidate-r2)
++++ b/tests (candidate-r3)
+@@ -58,10 +58,13 @@
+ }
+ async function type(page, text) {
+   const q = page.d.getElementById('find-q');
++  const seen = () => visibleText(page.d.querySelector('.find-count') || page.d.body.ownerDocument.createElement('i')) + '|' + hits(page).length;
++  const before = seen();
+   q.focus();
+   q.value = text;
+   q.dispatchEvent(new page.w.Event('input', { bubbles: true }));
+   await sleep(150);
++  for (let i = 0; i < 40 && seen() === before; i++) await sleep(25);   /* a busy machine runs the search later */
+   return q;
+ }
+ function visibleText(el) { return (el.textContent || '').replace(/\s+/g, ' ').trim(); }
+@@ -261,16 +264,18 @@
+ });
+ 
+ test('deep link: an address the page does not have is named, with a search for its words', async () => {
+-  const p = load({ url: '#term-poisson-bracket' });
++  /* an address no content will have (any page's own ids would do as well, for a term the glossary does not hold) */
++  assert.equal(PAGE.includes('zqxjv-lorquim'), false, 'the address used here is absent from the page');
++  const p = load({ url: '#term-zqxjv-lorquim' });
+   await settle();
+   const note = p.d.querySelector('.qh-notice');
+   assert.ok(note && isShown(note), 'a notice is shown');
+-  assert.ok(visibleText(note).includes('#term-poisson-bracket'), 'it names the address');
+-  const go = [...note.querySelectorAll('button')].find(b => /poisson bracket/i.test(visibleText(b)));
++  assert.ok(visibleText(note).includes('#term-zqxjv-lorquim'), 'it names the address');
++  const go = [...note.querySelectorAll('button')].find(b => /zqxjv lorquim/i.test(visibleText(b)));
+   assert.ok(go, 'it offers a search for the address\'s words');
+   go.click();
+   await sleep(150);
+-  assert.equal(p.d.getElementById('find-q').value, 'poisson bracket');
++  assert.equal(p.d.getElementById('find-q').value, 'zqxjv lorquim');
+   assert.ok(!p.d.querySelector('#find-results').hidden || /nothing/i.test(visibleText(p.d.querySelector('.find-count'))), 'the search ran');
+   noErrors(p);
+   const bad = load({ url: '#%E0%A4%A' });
+@@ -1068,6 +1073,40 @@
+   noErrors(p);
+ });
+ 
++test('search: words typed in the order they are written put the results that hold them together first', async () => {
++  const p = load();
++  await settle();
++  const q = p.d.getElementById('find-q');
++  q.focus();
++  const run = text => {                                /* Enter runs the search at once */
++    q.value = text;
++    q.dispatchEvent(new p.w.Event('input', { bubbles: true }));
++    key(q, 'Enter');
++    q.focus();
++    return hits(p);
++  };
++  const target = a => p.d.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)));
++  const holds = (el, phrase) => !!el && new RegExp(phrase.toLowerCase().split(' ')
++    .map(x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('[\\s,;:]+')).test(shownText(el).toLowerCase());
++  const statements = [...p.d.querySelectorAll('main .statement')].filter(st => !st.closest('[data-atlas-mount]'));
++  let tried = 0;
++  for (let i = 0; i < statements.length; i += 7) {
++    const st = statements[i];
++    const phrase = samplePhrase(st, 4);
++    if (!phrase) continue;
++    tried++;
++    const list = run(phrase);
++    assert.ok(list.length && (holds(list[0], phrase) || holds(target(list[0]), phrase)), 'the first result for "' + phrase + '" holds it');
++    const at = list.findIndex(a => { const t = target(a); return t === st || (t && t.matches('.question, .failure') && st.closest('.question, .failure') === t); });
++    assert.ok(at >= 0, '"' + phrase + '" finds its statement');
++    const group = list[at].closest('.find-group');
++    list.slice(0, at).filter(a => a.closest('.find-group') === group).forEach(a =>
++      assert.ok(holds(a, phrase) || holds(target(a), phrase), 'in its part, only results that hold "' + phrase + '" come before its statement'));
++  }
++  assert.ok(tried >= 10, tried + ' statements tried');
++  noErrors(p);
++});
++
+ test('search: each group of chips is one stop for the Tab key, with arrow keys inside', async () => {
+   const p = load();
+   await settle();
+@@ -1109,9 +1148,532 @@
+   const boxes = watcher.list.slice(0, 3);
+   watcher.cb(boxes.map(target => ({ target, isIntersecting: true })));
+   assert.equal(p.w.__reads, 3, 'three boxes near the screen, three measurements');
++  noErrors(p);
++});
++
++/* ---------------------------------------------------------------- second review: reader tasks */
++
++const target = (p, a) => { try { return p.d.getElementById(decodeURIComponent(a.getAttribute('href').slice(1))); } catch (e) { return null; } };
++const statusesIn = d => [...d.querySelectorAll('.statement')].map(s => s.getAttribute('data-status'));
++
++test('filter: rows the reader opens or closes while the filter is on stay so, and a row\'s own Show all keeps it open', async () => {
++  const p = load();
++  await settle();
++  const rows = [...p.d.querySelectorAll('details.row')];
++  const chip = [...p.d.querySelectorAll('.row-tools .filter[data-filter]')].find(c => {
++    const n = rows.filter(d => statusesIn(d).includes(c.getAttribute('data-filter'))).length;
++    return n > 0 && n < rows.length;
++  });
++  assert.ok(chip, 'a status that some rows have and others not');
++  const st = chip.getAttribute('data-filter');
++  const kept = rows.find(d => statusesIn(d).includes(st));
++  const emptied = rows.find(d => !statusesIn(d).includes(st));
++  kept.open = true;
++  emptied.open = false;
++  await settle();
++  chip.click();
++  await settle();
++  assert.equal(kept.open, true);
++  assert.equal(emptied.open, false);
++  kept.open = false;                                  /* the reader's own choices while the filter is on */
++  emptied.open = true;
++  await settle();
++  chip.click();
++  await settle();
++  assert.equal(kept.open, false, 'a row the reader closed while filtered stays closed');
++  assert.equal(emptied.open, true, 'a row the reader opened while filtered stays open');
++  emptied.open = false;
++  await settle();
++  chip.click();
++  await settle();
++  emptied.open = true;                                /* the reader opens a row the filter left without statements */
++  await settle();
++  const note = emptied.querySelector('.filter-empty');
++  assert.ok(note && isShown(note), 'the row says the filter left it empty');
++  note.querySelector('button').click();
++  await settle();
++  assert.equal(chip.getAttribute('aria-pressed'), 'false', 'the filter is off');
++  assert.equal(emptied.open, true, 'the row whose statements were asked for stays open');
++  assert.ok([...emptied.querySelectorAll('.statement')].every(isShown), 'its statements are shown');
++  noErrors(p);
++});
++
++test('filter: each tally link lists exactly as many results as the tally counts', async () => {
++  const p = load();
++  await settle();
++  const links = [...p.d.querySelectorAll('.tally a[data-filter]')];
++  assert.ok(links.length, 'the page has a tally');
++  for (const a of links) {
++    const n = +visibleText(a.querySelector('.count'));
++    a.click();
++    await sleep(150);
++    const said = visibleText(p.d.querySelector('.find-count'));
++    assert.ok(new RegExp('^' + n + ' match').test(said), a.getAttribute('data-filter') + ': the tally counts ' + n + ', the list says "' + said + '"');
++    p.w.history.back();
++    await sleep(150);
++  }
++  noErrors(p);
++});
++
++test('history: a search typed just before following a link inside the atlas stays with the entry it was typed in', async () => {
++  const html = PAGE.replace('<section id="results"',
++    MOCK_ATLAS.replace('</section>', '<a id="atlas-self" href="#atlas-mock-h">Atlas heading</a></section>') + '<section id="results"');
++  const p = load({ html });
++  await settle();
++  const q = p.d.getElementById('find-q');
++  q.focus();
++  q.value = 'zqxjv lorquim';
++  q.dispatchEvent(new p.w.Event('input', { bubbles: true }));
++  await sleep(130);                                   /* the search has run; its address is not yet written */
++  p.d.getElementById('atlas-self').click();
++  await sleep(450);
++  assert.equal(p.d.getElementById('find-q').value, 'zqxjv lorquim', 'the field keeps the search');
++  assert.ok(/[?&]q=zqxjv/.test(p.w.location.search), 'the new entry carries it: ' + p.w.location.href);
++  p.w.history.back();
++  await sleep(200);
++  assert.ok(/[?&]q=zqxjv/.test(p.w.location.search), 'the entry left behind carries it: ' + p.w.location.href);
++  noErrors(p);
++});
++
++test('deep link: an address the page does not have, reached during a visit, is named in view with focus on its words', async () => {
++  const p = load();
++  await settle();
++  const section = p.d.querySelector('main section.section[id]');
++  p.w.location.hash = section.id;
++  await settle();
++  p.w.__scrolled.length = 0;
++  p.w.location.hash = 'zqxjv-lorquim';
++  await settle();
++  const note = p.d.querySelector('.qh-notice');
++  assert.ok(note && isShown(note) && visibleText(note).includes('#zqxjv-lorquim'), 'the notice names the address');
++  assert.ok(note.contains(p.d.activeElement), 'focus is on the notice');
++  assert.ok(p.w.__scrolled.some(el => note.contains(el)), 'the notice is brought into view');
++  noErrors(p);
++});
++
++test('history: Forward to the entry of a result puts focus on what the result led to', async () => {
++  const probe = load({ noScript: true });
++  const st = [...probe.d.querySelectorAll('details.row .statement[id]')].find(s => samplePhrase(s.querySelector('.statement-text') || s, 3));
++  const phrase = samplePhrase(st.querySelector('.statement-text') || st, 3);
++  const p = load();
++  await settle();
++  await type(p, '"' + phrase + '"');
++  const hit = hitFor(p, p.d.getElementById(st.id));
++  hit.focus();
++  hit.click();
++  await settle();
++  assert.equal(p.d.activeElement, p.d.getElementById(st.id), 'the result leads to the statement');
++  p.w.history.back();
++  await sleep(150);
++  assert.ok(p.d.activeElement.matches('.find-link'), 'Back returns focus to the result');
++  p.w.history.forward();
++  await sleep(150);
++  assert.equal(p.d.activeElement, p.d.getElementById(st.id), 'Forward returns focus to the statement');
++  assert.ok(isShown(p.d.getElementById(st.id)));
++  noErrors(p);
++});
++
++test('table: what the keys do inside the table is said beside it and describes its region', async () => {
++  const p = load();
++  await settle();
++  const keys = p.d.getElementById('grid-keys');
++  assert.ok(keys && visibleText(keys).length > 20, 'the words are on the page');
++  const host = p.d.querySelector('.grid-wrap') || p.d.querySelector('table.grid');
++  assert.ok((host.getAttribute('aria-describedby') || '').split(' ').includes('grid-keys'), 'they describe the table\'s region');
++  noErrors(p);
++});
++
++test('table: a legend switch says what it does, and every count is a word of its own in its control\'s name', async () => {
++  const p = load();
++  await settle();
++  const lenses = [...p.d.querySelectorAll('.legend .lens')];
++  assert.ok(lenses.length, 'the legend has switches');
++  lenses.forEach(b => {
++    assert.ok(/\D \d+$/.test(visibleText(b)), 'status and count apart: ' + visibleText(b));
++    const d = p.d.getElementById(b.getAttribute('aria-describedby'));
++    assert.ok(d && visibleText(d).length > 10, 'described');
++  });
++  await type(p, 'the');
++  const counted = [...p.d.querySelectorAll('.find .filter[data-scope]')].filter(c => visibleText(c.querySelector('.count') || c) !== '');
++  assert.ok(counted.length, 'the Part chips count');
++  counted.forEach(c => assert.ok(/\D \d+$/.test(visibleText(c)), 'part and count apart: ' + visibleText(c)));
++  noErrors(p);
++});
++
++test('reading: an offer to continue reading is withdrawn once the reader follows a link elsewhere', async () => {
++  const probe = load({ noScript: true });
++  const st = probe.d.querySelectorAll('details.row .statement[id]')[3];
++  const p = load({ before(w) { w.document.elementFromPoint = function () { return w.document.getElementById(st.id); }; } });
++  await settle();
++  p.w.dispatchEvent(new p.w.Event('scroll'));
++  await sleep(800);
++  const saved = p.w.localStorage.getItem('qh-place');
++  const later = load({ storageSeed: { 'qh-place': saved } });
++  await settle();
++  assert.notEqual(visibleText(later.d.querySelector('.qh-notice')), '', 'the offer is made');
++  later.d.querySelector('.nav a[href^="#"]').click();
++  await settle();
++  assert.equal(visibleText(later.d.querySelector('.qh-notice')), '', 'the offer is gone after a link');
++  const moved = JSON.parse(saved);
++  moved.title = 'zqxjv lorquim';                      /* a place whose address now names something else */
++  const edition = load({ storageSeed: { 'qh-place': JSON.stringify(moved) } });
++  await settle();
++  assert.equal(visibleText(edition.d.querySelector('.qh-notice')), '', 'no offer for a place whose address names something else');
++  [p, later, edition].forEach(noErrors);
++});
++
++test('history: Back after reaching a statement the filter hides hides it again in the entry left behind', async () => {
++  const probe = load({ noScript: true });
++  const chips = [...probe.d.querySelectorAll('.row-tools .filter[data-filter]')].map(c => c.getAttribute('data-filter'));
++  const st = [...probe.d.querySelectorAll('.rows .statement[id]')].find(s => s.getAttribute('data-status') !== chips[0] && samplePhrase(s.querySelector('.statement-text') || s, 3));
++  const phrase = samplePhrase(st.querySelector('.statement-text') || st, 3);
++  const p = load({ url: '?show=' + chips[0] });
++  await settle();
++  const hiddenNow = () => [...p.d.querySelectorAll('.rows .statement')].filter(s => s.hidden).length;
++  const before = hiddenNow();
++  await type(p, '"' + phrase + '"');
++  hitFor(p, p.d.getElementById(st.id)).click();
++  await settle();
++  assert.equal(hiddenNow(), before - 1, 'the statement reached is shown');
++  p.w.history.back();
++  await sleep(150);
++  assert.equal(hiddenNow(), before, 'Back hides it again');
++  noErrors(p);
++});
++
++test('search: a match in a status or a label is not called a match in a formula', async () => {
++  const p = load();
++  await settle();
++  const labels = new Set([...p.d.querySelectorAll('main .statement .status-chip')].map(c => visibleText(c)).filter(Boolean));
++  assert.ok(labels.size, 'the statements carry status labels');
++  for (const label of labels) {
++    await type(p, '"' + label + '"');
++    const list = hits(p);
++    assert.ok(list.length, label + ' finds the statements that carry it');
++    assert.equal(list.filter(a => a.querySelector('.find-formula')).length, 0, label + ': no result says "in a formula"');
++  }
++  noErrors(p);
++});
++
++test('search: the scopes of a row do not come before the results that hold the words themselves', async () => {
++  const p = load();
++  await settle();
++  const name = [...p.d.querySelectorAll('details.row .row-name')].map(plainText).find(t => /[A-Za-z]{7,}/.test(t));
++  const word = name.match(/[A-Za-z]{7,}/)[0];
++  await type(p, word);
++  const re = new RegExp('(^|[^A-Za-z])' + word, 'i');     /* the word at the start of a word, as the search weighs it */
++  const list = hits(p);
++  assert.ok(list.length, word + ' finds something');
++  const groups = new Map();
++  list.forEach(a => { const g = a.closest('.find-group'); if (!groups.has(g)) groups.set(g, []); groups.get(g).push(a); });
++  for (const links of groups.values()) {
++    const borrowed = links.map(a => { const t = target(p, a); return !!t && t.matches('.cell-line') && !re.test(plainText(t)); });
++    const firstBorrowed = borrowed.indexOf(true);
++    if (firstBorrowed < 0) continue;
++    assert.ok(borrowed.slice(firstBorrowed).every(Boolean) || links.slice(firstBorrowed).every((a, k) => borrowed[firstBorrowed + k] || !re.test(plainText(target(p, a)))),
++      word + ': a scope found only by its row\'s or column\'s name comes after the results that hold the word');
++  }
++  noErrors(p);
++});
++
++test('search: a Greek letter\'s name finds the letter, or the name as a whole word, never words that begin with it', async () => {
++  const p = load();
++  await settle();
++  for (const [name, letter] of [['mu', 'μ'], ['nu', 'ν'], ['chi', 'χ'], ['pi', 'π']]) {
++    await type(p, name);
++    hits(p).forEach(a => {
++      const t = target(p, a);
++      const text = (t ? t.textContent : '') + ' ' + a.textContent;
++      assert.ok(text.includes(letter) || new RegExp('(^|[^A-Za-z])' + name + '([^A-Za-z]|$)', 'i').test(text), name + ': ' + visibleText(a).slice(0, 90));
++    });
++  }
+   noErrors(p);
+ });
+ 
++test('search: TeX typed into a word, or apart from its argument, finds what the page shows', async () => {
++  const p = load();
++  await settle();
++  let query = null;
++  let unit = null;
++  for (const m of p.d.querySelectorAll('main .statement-text math')) {
++    const tex = ((m.querySelector('annotation') || {}).textContent || '').trim();
++    let next = m.nextSibling;
++    if (!next && m.parentNode.localName === 'span') next = m.parentNode.nextSibling;
++    const after = next && next.nodeType === 3 ? /^-([A-Za-z]{3,})/.exec(next.nodeValue) : null;
++    if (after && /^[A-Za-z]_\{?\d\}?$/.test(tex)) { query = tex.replace(/[{}]/g, '') + '-' + after[1]; unit = m.closest('.statement'); break; }
++  }
++  if (query) {
++    await type(p, query);
++    assert.ok(hitFor(p, unit), query + ' finds the statement that shows it');
++    assert.equal(visibleText(p.d.querySelector('.find-count')).includes('Nothing'), false);
++  }
++  const ann = [...p.d.querySelectorAll('main annotation')].map(a => /\\mathbb\{([A-Z])\}/.exec(a.textContent)).find(Boolean);
++  if (ann) {
++    await type(p, '\\mathbb{' + ann[1] + '}');
++    const braced = countText(p);
++    await type(p, '\\mathbb ' + ann[1]);
++    assert.equal(countText(p), braced, '\\mathbb ' + ann[1] + ' is the same formula word as \\mathbb{' + ann[1] + '}');
++  }
++  assert.ok(query || ann, 'the content has a word of either kind to try');
++  noErrors(p);
++});
++
++test('search: a display formula copied into a result keeps its scroll box', async () => {
++  const p = load();
++  await settle();
++  let checked = 0;
++  for (const st of [...p.d.querySelectorAll('main .statement')].filter(s => s.querySelector('math[display="block"]')).slice(0, 12)) {
++    const phrase = samplePhrase(st.querySelector('.statement-text') || st, 3);
++    if (!phrase) continue;
++    await type(p, '"' + phrase + '"');
++    const hit = hitFor(p, st) || hits(p).find(a => { const t = target(p, a); return t && t.contains(st); });
++    if (!hit) continue;
++    const display = new Set([...st.querySelectorAll('math[display="block"] annotation')].map(a => a.textContent));
++    [...hit.querySelectorAll('.find-snippet math')].forEach(m => {
++      const a = m.querySelector('annotation');
++      if (a && display.has(a.textContent)) { checked++; assert.ok(m.parentNode.classList.contains('math-long'), 'a display formula sits in a scroll box'); }
++    });
++    if (checked >= 2) break;
++  }
++  assert.ok(checked > 0, 'a display formula was found in a snippet');
++  noErrors(p);
++});
++
++test('table: a mark\'s name never reads as TeX, and its description is its scope', async () => {
++  let html = PAGE;
++  html = html.replace(/(<button type="button" class="cell-btn"[^>]*aria-label=")([^",]*)(, )/, '$1\\mathfrak{gl}_N Yangians$3');
++  const p = load({ html });
++  await settle();
++  const btns = [...p.d.querySelectorAll('.cell-btn')];
++  btns.forEach(b => assert.ok(!/\\[A-Za-z()[\]]/.test(b.getAttribute('aria-label') || ''), 'no TeX in "' + b.getAttribute('aria-label') + '"'));
++  const b = btns[0];
++  const ids = (b.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
++  assert.equal(ids.length, 1, 'one description');
++  const described = visibleText(p.d.getElementById(ids[0]));
++  const note = b.closest('td').querySelector('.cell-note');
++  const head = note.querySelector('.cell-note-head');
++  assert.ok(described && !described.startsWith(visibleText(head)), 'the description does not repeat the status and the column: ' + described.slice(0, 80));
++  const meaning = note.querySelector('.cell-note-meaning');
++  assert.ok(!meaning || !described.includes(visibleText(meaning)), 'nor the meaning of the status, which is the same for every mark');
++  noErrors(p);
++});
++
++test('atlas: a unit the atlas offers may give its status and place, and the tally still lists the page\'s own statements', async () => {
++  const open = PAGE.match(/<a href="#examples" data-filter="([^"]+)"/);
++  const st = open ? open[1] : 'open';
++  const offered = MOCK_ATLAS.replace('</section>', '<div id="atlas-domain-x" data-qh-unit data-qh-unit-status="' + st + '" data-qh-unit-place="Atlas place qwvyxz">' +
++    '<h3 data-qh-unit-title>Domain qwvyxz</h3><p>Offered words lorquim.</p></div></section>');
++  const html = PAGE.replace('<section id="results"', offered + '<section id="results"')
++    .replace('<li><a href="#results">', '<li><a href="#atlas-mock">Atlas</a></li><li><a href="#results">');
++  const p = load({ html });
++  await settle();
++  await type(p, 'lorquim');
++  const list = hits(p);
++  assert.equal(list.length, 1);
++  assert.ok(visibleText(list[0]).includes('Atlas place qwvyxz'), 'the place is said: ' + visibleText(list[0]));
++  assert.ok(list[0].querySelector('.find-where svg, .find-where .mark'), 'the status mark is shown');
++  const chip = p.d.querySelector('.find .filter[data-status-facet="' + st + '"]');
++  chip.click();
++  await sleep(150);
++  assert.equal(hits(p).length, 1, 'the Status filter keeps it');
++  const tally = p.d.querySelector('.tally a[data-filter="' + st + '"]');
++  if (tally) {
++    const n = +visibleText(tally.querySelector('.count'));
++    tally.click();
++    await sleep(150);
++    assert.ok(new RegExp('^' + n + ' match').test(visibleText(p.d.querySelector('.find-count'))), 'the tally lists the page\'s statements');
++  }
++  noErrors(p);
++});
++
++test('search: a broad search shows its results a hundred more at a time', async () => {
++  const p = load();
++  await settle();
++  await type(p, 'the');
++  const total = +(/(\d+) match/.exec(countText(p)) || [0, 0])[1];
++  if (total <= 40) return;
++  assert.equal(hits(p).length, 40);
++  p.d.querySelector('#find-results .find-more').click();
++  await settle();
++  assert.equal(hits(p).length, Math.min(140, total));
++  assert.equal(p.d.activeElement, hits(p)[40], 'focus moves to the first newly shown result');
++  noErrors(p);
++});
++
++test('search: one accented letter or a minus sign alone searches nothing and says so', async () => {
++  const p = load();
++  await settle();
++  for (const q of ['é', '−']) {
++    await type(p, q);
++    assert.equal(hits(p).length, 0, q);
++    assert.ok(/two letters/i.test(countText(p)), q + ': ' + countText(p));
++  }
++  noErrors(p);
++});
++
++test('interface words served with the page replace the script\'s own', async () => {
++  const words = ' data-label-placeholder="Search zqxjv families" data-label-shown="Showing {shown} of {total} zqxjv, in {rows} of {all} families."';
++  const html = PAGE.replace(/(<nav class="tally"[\s\S]*?<\/nav>)/, '$1<div data-find data-needs-script hidden' + words + '></div>');
++  assert.notEqual(html, PAGE, 'the page has a tally to serve the mount after');
++  const p = load({ html });
++  await settle();
++  const q = p.d.getElementById('find-q');
++  assert.equal(q.placeholder, 'Search zqxjv families');
++  assert.ok(q.closest('[data-find]'), 'the search is built in the served mount');
++  assert.equal(q.closest('[data-find]').hidden, false, 'the served mount is shown');
++  const chip = p.d.querySelector('.row-tools .filter[data-filter]');
++  chip.click();
++  await settle();
++  assert.ok(/zqxjv, in \d+ of \d+ families/.test(visibleText(p.d.querySelector('.filter-note'))), visibleText(p.d.querySelector('.filter-note')));
++  noErrors(p);
++});
++
++/* ---------------------------------------------------------------- native QA of the foundation candidate (F6, F10, F12) */
++
++test('card: a card opens when the pointer moves onto a term, not when the page scrolls a term under a resting pointer', async () => {
++  const p = load({ before(w) {
++    w.matchMedia = q => ({ matches: /hover: hover|pointer: fine/.test(q), media: q, onchange: null,
++      addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {} });
++  } });
++  await settle();
++  const term = p.d.querySelector('main .term');
++  const card = p.d.getElementById('card');
++  const move = (el, x, y) => el.dispatchEvent(new p.w.MouseEvent('mousemove', { bubbles: true, screenX: x, screenY: y, clientX: x, clientY: y }));
++  move(p.d.body, 300, 300);                          /* the pointer rests at one place */
++  term.dispatchEvent(new p.w.MouseEvent('mouseover', { bubbles: true, screenX: 300, screenY: 300 }));   /* a scroll brings a term under it */
++  move(term, 300, 300);                              /* and the browser reports a move at the same place */
++  await settle();
++  assert.equal(card.hidden, true, 'no card opens uninvited');
++  move(term, 303, 301);                              /* the reader moves the pointer onto the term */
++  await settle();
++  assert.equal(card.hidden, false, 'a real move opens its card');
++  noErrors(p);
++});
++
++test('bar: a bar that scrolls sideways names the edges where it hides links', async () => {
++  let left = 0;
++  const p = load({ before(w) {
++    const isNav = el => !!(el.classList && el.classList.contains('nav'));
++    Object.defineProperty(w.HTMLElement.prototype, 'scrollWidth', { configurable: true, get() { return isNav(this) ? 680 : 0; } });
++    Object.defineProperty(w.HTMLElement.prototype, 'clientWidth', { configurable: true, get() { return isNav(this) ? 300 : 0; } });
++    Object.defineProperty(w.HTMLElement.prototype, 'scrollLeft', { configurable: true, get() { return isNav(this) ? left : 0; }, set(v) { if (isNav(this)) left = v; } });
++  } });
++  await settle();
++  const nav = p.d.querySelector('.nav');
++  assert.equal(nav.getAttribute('data-edge'), null, 'nothing is measured at start-up (the served fade fits the start)');
++  nav.dispatchEvent(new p.w.Event('scroll'));
++  assert.equal(nav.getAttribute('data-edge'), 'end', 'at the start, more lies at the end');
++  left = 120;
++  nav.dispatchEvent(new p.w.Event('scroll'));
++  assert.equal(nav.getAttribute('data-edge'), 'start end', 'scrolled, more lies at both edges');
++  left = 380;
++  nav.dispatchEvent(new p.w.Event('scroll'));
++  assert.equal(nav.getAttribute('data-edge'), 'start', 'at the end, more lies at the start only');
++  noErrors(p);
++});
++
++test('card: a term served as a link opens its card while the script runs, and leads to its definition without it', async () => {
++  const html = PAGE.replace(/<button type="button" class="term" data-term="([^"]+)"([^>]*)>([\s\S]*?)<\/button>/g, '<a class="term" href="#$1" data-term="$1"$2>$3</a>');
++  assert.notEqual(html, PAGE, 'the page has term buttons to serve as links');
++  const p = load({ html });
++  await settle();
++  const term = p.d.querySelector('main a.term');
++  const before = p.w.location.href;
++  term.focus();
++  term.click();
++  await settle();
++  const card = p.d.getElementById('card');
++  assert.equal(card.hidden, false, 'the card opens');
++  assert.equal(p.w.location.href, before, 'the link does not navigate while the script runs');
++  key(p.d.activeElement, 'Escape');
++  await settle();
++  assert.equal(card.hidden, true, 'Escape closes it');
++  assert.equal(p.d.activeElement, term, 'and returns to the term');
++  const plain = load({ html, noScript: true });
++  const t = plain.d.querySelector('main a.term');
++  assert.ok(plain.d.getElementById(t.getAttribute('href').slice(1)), 'without the script the link leads to the definition');
++  noErrors(p);
++});
++
++/* ---------------------------------------------------------------- content contract: a status of two words */
++
++/* The page as the producer would serve it with one statement of the status "refuted form" (a checked, scoped negative
++   result): its card, a Show filter chip and a tally entry, made from the page's own markup for another status. */
++function withStatus(st, label) {
++  const dom = new JSDOM(PAGE);
++  const d = dom.window.document;
++  const slug = st.replace(/\s+/g, '-');
++  const card = [...d.querySelectorAll('details.row .statement[data-status]')].find(s => s.getAttribute('data-status') !== st);
++  const from = card.getAttribute('data-status').replace(/\s+/g, '-');
++  card.setAttribute('data-status', st);
++  card.setAttribute('data-test-card', '');
++  card.className = card.className.replace('st-' + from, 'st-' + slug);
++  const chip = card.querySelector('.status-chip');
++  chip.className = chip.className.replace('chip-' + from, 'chip-' + slug);
++  const mark = chip.querySelector('.mark');
++  if (mark) mark.setAttribute('class', (mark.getAttribute('class') || '').replace('mark-' + from, 'mark-' + slug));
++  const words = [...chip.querySelectorAll('span')].pop();
++  if (words) words.textContent = label;
++  const filter = d.querySelector('.row-tools .filter[data-filter]');
++  const f2 = filter.cloneNode(true);
++  f2.setAttribute('data-filter', st);
++  f2.setAttribute('aria-pressed', 'false');
++  [...f2.childNodes].filter(n => n.nodeType === 3 || (n.nodeType === 1 && n.localName === 'span')).forEach(n => n.remove());
++  f2.appendChild(d.createTextNode(label));
++  filter.parentNode.appendChild(f2);
++  const tally = d.querySelector('.tally a[data-filter]');
++  if (tally) {
++    const li = tally.closest('li').cloneNode(true);
++    const a = li.querySelector('a');
++    a.setAttribute('data-filter', st);
++    a.querySelector('.count').textContent = '1';
++    const l = a.querySelector('.count-label');
++    if (l) l.textContent = label;
++    tally.closest('ul').appendChild(li);
++  }
++  const html = dom.serialize();
++  dom.window.close();
++  return html;
++}
++
++test('a statement status of two words (refuted form) works in the filter, the address, the tally, the search and the legend', async () => {
++  const st = 'refuted form';
++  const key = new JSDOM(PAGE).window.document.querySelector('.mark.mark-refuted-form');
++  const label = key && key.closest('li, .key-item') ? visibleText(key.closest('li, .key-item').querySelector('span, dt') || key.closest('li')) : 'Refuted as first posed';
++  const html = withStatus(st, label || 'Refuted as first posed');
++  const p = load({ html });
++  await settle();
++  const chip = p.d.querySelector('.row-tools .filter[data-filter="refuted form"]');
++  chip.click();
++  await settle();
++  const shown = [...p.d.querySelectorAll('details.row .statement')].filter(isShown);
++  assert.deepEqual(shown, [p.d.querySelector('[data-test-card]')], 'the filter shows the statement of that status, and only it');
++  assert.ok(/[?&]show=refuted(\+|%20)form/.test(p.w.location.search), 'the address names it: ' + p.w.location.search);
++  const again = load({ html, url: p.w.location.search });
++  await settle();
++  assert.equal(again.d.querySelector('.row-tools .filter[data-filter="refuted form"]').getAttribute('aria-pressed'), 'true', 'arrival by that address applies it');
++  assert.equal(visibleText(again.d.querySelector('.qh-notice')), '', 'and does not call it unknown');
++  const tally = again.d.querySelector('.tally a[data-filter="refuted form"]');
++  if (tally) {
++    tally.click();
++    await sleep(150);
++    assert.ok(/^1 match/.test(visibleText(again.d.querySelector('.find-count'))), 'the tally entry lists its statement: ' + visibleText(again.d.querySelector('.find-count')));
++    assert.ok(/[?&]status=refuted(\+|%20)form/.test(again.w.location.search), again.w.location.search);
++  }
++  const facet = again.d.querySelector('.find .filter[data-status-facet="refuted form"]');
++  assert.ok(facet, 'the search has a Status chip for it');
++  const p3 = load({ html });
++  await settle();
++  await type(p3, '"' + (label || 'Refuted as first posed') + '"');
++  assert.ok(hitFor(p3, p3.d.querySelector('[data-test-card]')), 'its label finds it');
++  const lens = p3.d.querySelector('.legend .lens[data-lens="refuted form"]');
++  if (lens) {
++    lens.click();
++    assert.equal(p3.d.querySelectorAll('.grid td[data-lit]').length, p3.d.querySelectorAll('.grid td.cell[data-status="refuted form"]').length, 'the legend switch lights the cells of that status');
++  }
++  [p, again, p3].forEach(noErrors);
++});
++
+ /* ---------------------------------------------------------------- run */
+ 
+ (async () => {

@@ -1,0 +1,57 @@
+--- a/compiler/quantum-holography-status/status.css
++++ b/compiler/quantum-holography-status/status.css
+@@ -741,3 +741,40 @@
+   .bar-inner, .cover, .lead, .contents, .tally, .section, .changes, .find, .foot-inner {
+     padding-left: max(var(--gutter), env(safe-area-inset-left)); padding-right: max(var(--gutter), env(safe-area-inset-right)); }
+ }
++
++/* ---------------------------------------------------------------------------------------------
++   States the script sets. A notice at the top of the page names an address the page does not have,
++   or offers the place where reading stopped; the Show filter counts what it shows and says when a
++   row has nothing left; the element a link or a result led to is marked; the matched words are drawn
++   in it; the search's Part chips count their matches.
++   --------------------------------------------------------------------------------------------- */
++.qh-notice { max-width: calc(var(--measure) + 2 * var(--gutter)); margin: 16px auto 0; padding: 0 var(--gutter); }
++.qh-notice:empty { display: none; }
++.qh-notice p { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin: 0; padding: 10px 14px;
++               background: var(--paper-3); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
++               border-radius: var(--radius); font-size: var(--text-sm); color: var(--ink-2); }
++.qh-notice .link-btn, .filter-note .link-btn, .filter-empty .link-btn { font-size: inherit; }
++.row-tools .filter-note { flex-basis: 100%; margin: 0; font-size: var(--text-sm); color: var(--ink-3); }
++.filter-note[hidden], .filter-empty[hidden] { display: none; }
++.filter-empty { margin: 0 0 14px; padding: 10px 14px; border: 1px dashed var(--rule); border-radius: var(--radius);
++                font-size: var(--text-sm); color: var(--ink-3); }
++details.row[data-filter-empty] > summary .row-name { color: var(--ink-3); }
++details.row[data-revealed] > summary .row-name, .failure[data-revealed] .claim-text, .open-group[data-revealed] > h3 { color: var(--accent); }
++.cell-line[data-revealed], .key-item[data-revealed], .col-def[data-revealed], .section-intro[data-revealed],
++.lead > p[data-revealed], .essay > p[data-revealed], .essay-lead[data-revealed], .change-list li[data-revealed] {
++  background: var(--accent-soft); box-shadow: 0 0 0 6px var(--accent-soft); border-radius: 2px; }
++.find-formula { font-style: italic; }
++.find .filter .count { color: var(--ink-3); font-variant-numeric: lining-nums tabular-nums; }
++.find .filter .count:empty { display: none; }
++.find .filter[data-none]:not([aria-pressed='true']) { color: var(--ink-4); border-style: dashed; }
++::highlight(qh-find) { background-color: #cde2e3; color: inherit; text-decoration: underline 1px #1d5a63; }
++@media (prefers-color-scheme: dark) {
++  :root:not([data-theme='light']) ::highlight(qh-find) { background-color: #33504f; text-decoration-color: #7fb9bd; }
++}
++:root[data-theme='dark'] ::highlight(qh-find) { background-color: #33504f; text-decoration-color: #7fb9bd; }
++@media (forced-colors: active) {
++  ::highlight(qh-find) { background-color: Mark; color: MarkText; }
++  .qh-notice p, .filter-empty { border-color: CanvasText; }
++  .filter[aria-pressed='true'], .cell-btn[aria-expanded='true'] { outline: 2px solid Highlight; outline-offset: -3px; }
++  .nav a[aria-current='true'] { outline: 1px solid Highlight; }
++}
+--- a/compiler/quantum-holography-status/status-print.css
++++ b/compiler/quantum-holography-status/status-print.css
+@@ -202,3 +202,11 @@
+   .foot { margin-top: 20pt; color: var(--ink-3); }
+   .foot-inner { padding: 8pt 0 0; }
+ }
++
++/* The script's states are screen-only: no notice, filter line or mark on paper, and no drawn match. */
++@media print {
++  .qh-notice, .filter-note, .filter-empty { display: none !important; }
++  details.row[data-revealed] > summary .row-name, .failure[data-revealed] .claim-text, .open-group[data-revealed] > h3 { color: inherit; }
++  [data-revealed] { background: none !important; box-shadow: none !important; }
++  ::highlight(qh-find) { background-color: transparent; text-decoration: none; }
++}

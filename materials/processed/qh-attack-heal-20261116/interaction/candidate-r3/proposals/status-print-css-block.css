@@ -1,0 +1,13 @@
+
+/* The script's states are screen-only: no notice, filter line or mark on paper, and no drawn match. */
+@media print {
+  .qh-notice, .filter-note, .filter-empty { display: none !important; }
+  details.row[data-revealed] > summary .row-name, details.row[data-filter-empty] > summary .row-name,
+  .failure[data-revealed] .claim-text, .open-group[data-revealed] > h3 { color: inherit; }
+  .lens-help { display: none !important; }
+  [data-edge] { -webkit-mask-image: none !important; mask-image: none !important; }
+  [data-revealed] { background: none !important; box-shadow: none !important; }
+  ::highlight(qh-find) { background-color: transparent; text-decoration: none; }
+  .grid td[data-lit], .grid [data-cross] { background: none !important; box-shadow: none !important; }
+  .legend .lens { border: 0; background: none; box-shadow: none; padding: 0; }
+}

@@ -1,0 +1,115 @@
+--- a/tests (candidate-final)
++++ b/tests (candidate-r4)
+@@ -292,7 +292,7 @@
+ test('print: a second print request before the first ends still restores the reader\'s state', async () => {
+   const p = load();
+   await settle();
+-  const details = [...p.d.querySelectorAll('main details')];
++  const details = [...p.d.querySelectorAll('main details')].filter(x => !x.closest('[data-atlas-mount]'));   /* the page's own */
+   const before = details.map(x => x.open);
+   p.w.dispatchEvent(new p.w.Event('beforeprint'));
+   p.w.dispatchEvent(new p.w.Event('beforeprint'));
+@@ -347,7 +347,7 @@
+   assert.ok(target.closest('details.row').open, 'the row is opened');
+   assert.equal(p.d.activeElement, target, 'focus is on the target');
+   p.w.history.back();
+-  await sleep(120);
++  for (let i = 0; i < 40 && p.d.activeElement !== go; i++) await sleep(25);
+   assert.equal(p.d.activeElement, go, 'Back returns focus to the atlas control');
+   assert.ok(states.length > 0, 'qh:state is announced');
+   noErrors(p);
+@@ -675,7 +675,7 @@
+     assert.ok(d && b.closest('td').contains(d), 'scope of ' + b.getAttribute('aria-label'));
+     assert.ok(!/\\[()[\]]/.test(b.getAttribute('aria-label')), b.getAttribute('aria-label'));
+   });
+-  p.d.querySelectorAll('main .term[data-term]').forEach(t => {
++  [...p.d.querySelectorAll('main .term[data-term]')].filter(t => !t.closest('[data-atlas-mount]')).forEach(t => {   /* the page's own */
+     const d = p.d.getElementById(t.getAttribute('aria-describedby'));
+     assert.ok(d && d.localName === 'dd', 'definition of ' + t.textContent);
+   });
+@@ -1607,11 +1607,10 @@
+   assert.equal(p.d.activeElement, term, 'and returns to the term');
+   assert.equal(term.getAttribute('role'), 'button', 'run by the script, a term link is a button that opens a card');
+   const third = [...p.d.querySelectorAll('main a.term')][2];
+-  third.focus();
+-  key(third, ' ');
++  key(third, ' ');                                   /* Space, without focus showing the card first */
+   await settle();
+   assert.equal(card.hidden, false, 'Space opens its card, as on a button');
+-  key(p.d.activeElement, 'Escape');
++  key(third, 'Escape');
+   await settle();
+   const other = [...p.d.querySelectorAll('main a.term')][1];
+   const modified = new p.w.MouseEvent('click', { bubbles: true, cancelable: true, ctrlKey: true });
+@@ -1723,7 +1722,10 @@
+ test('search: text in a part of another shape is searchable, and its Part chip counts it', async () => {
+   const part = '<section id="zsynth" class="section"><header class="section-head"><h2 id="zsynth-h">Synthesis zqxjv</h2></header>' +
+     '<p>The programme synthesis lorquim ties the parts together.</p><h3>Reading path qwvyxz</h3>' +
+-    '<ol><li>First read the lorquim results here.</li><li>Then the comparisons follow from them.</li></ol></section>';
++    '<ol><li>First read the lorquim results here.</li><li>Then the comparisons follow from them.</li></ol>' +
++    '<div class="relation">The relation zorbat joins two of the parts.</div>' +
++    '<table><tr><td>Path plinkor first</td><td>then the rest in order</td></tr></table>' +
++    '<dl><dt>Term quindle stated</dt><dd>Its meaning given in words.</dd></dl></section>';
+   const html = PAGE.replace('<section id="results"', part + '<section id="results"')
+     .replace('<li><a href="#results">', '<li><a href="#zsynth">Synthesis</a></li><li><a href="#results">');
+   assert.notEqual(html, PAGE, 'the page has the shape the part is added to');
+@@ -1737,7 +1739,18 @@
+   assert.ok(chip && /[1-9]\d*$/.test(visibleText(chip)), 'its Part chip counts its matches: ' + (chip && visibleText(chip)));
+   await type(p, 'qwvyxz');
+   assert.ok(hits(p).length >= 1, 'the heading that titles its blocks is found');
+-  noErrors(p);
++  for (const w of ['zorbat', 'plinkor', 'quindle']) {           /* text in a div, a table's row and a term of a list */
++    await type(p, w);
++    assert.ok(hits(p).some(a => { const x = target(p, a); return x && x.closest('#zsynth'); }), w + ' is found in the new part');
++  }
++  await type(p, 'lorquim');
++  const address = hits(p)[0].getAttribute('href');
++  const fresh = load({ html, url: address });        /* the address a result gives, on a fresh visit */
++  await settle();
++  assert.equal(visibleText(fresh.d.querySelector('.qh-notice')), '', 'the page does not call its own address unknown: ' + address);
++  const el = fresh.d.getElementById(decodeURIComponent(address.slice(1)));
++  assert.ok(el && el.hasAttribute('data-revealed'), 'the block it names is reached');
++  [p, fresh].forEach(noErrors);
+ });
+ 
+ test('search: TeX typed into a word of a title finds that title', async () => {
+@@ -1825,6 +1838,31 @@
+   noErrors(p);
+ });
+ 
++test('search: a formula in a row\'s name is the row\'s, not a match of each of its column scopes', async () => {
++  const m = /(<span class="row-name">(?:(?!<\/span>)[\s\S])*?<annotation encoding="application\/x-tex">)([^<]+)(<\/annotation>)/.exec(PAGE);
++  if (!m) return;                                     /* no row name with a formula in this content */
++  const html = PAGE.replace(m[0], m[1] + '\\mathfrak{zq}' + m[3]);
++  const p = load({ html });
++  await settle();
++  await type(p, '\\mathfrak{zq}');
++  const own = hits(p).filter(a => { const x = target(p, a); return x && x.matches('.cell-line'); });
++  assert.equal(own.length, 0, 'no column scope is found by its row name\'s formula');
++  noErrors(p);
++});
++
++test('search: the field is described by the keyboard hint only where there is a keyboard and a fine pointer', async () => {
++  const touch = load();
++  await settle();
++  assert.equal(touch.d.getElementById('find-q').hasAttribute('aria-describedby'), false, 'not on a touch screen');
++  const desk = load({ before(w) {
++    w.matchMedia = q => ({ matches: /hover: hover|pointer: fine/.test(q), media: q, onchange: null,
++      addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {} });
++  } });
++  await settle();
++  assert.equal(desk.d.getElementById('find-q').getAttribute('aria-describedby'), 'find-hint', 'with a fine pointer');
++  [touch, desk].forEach(noErrors);
++});
++
+ /* ---------------------------------------------------------------- run */
+ 
+ (async () => {
+@@ -1842,6 +1880,7 @@
+       console.log('FAIL  ' + t.name + '\n      ' + String(e && e.message || e).split('\n').slice(0, 6).join('\n      '));
+     }
+     opened.splice(0).forEach(dom => dom.window.close());
++    if (typeof global.gc === 'function') global.gc();  /* a large page needs its memory back between tests */
+   }
+   console.log(ran + ' tests, ' + (failed ? failed + ' failed' : 'all passed'));
+   process.exit(failed ? 1 : 0);

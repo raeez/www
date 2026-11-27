@@ -1,0 +1,661 @@
+--- a/compiler/quantum-holography-status/status.js (candidate-r2)
++++ b/compiler/quantum-holography-status/status.js (candidate-r3)
+@@ -44,6 +44,9 @@
+   });
+   function hooked(attr) { return hooks.filter(function (el) { return el.hasAttribute(attr); }); }
+ 
++  /* Elements after which reading text takes a space (textOf, used from start-up on). */
++  var BLOCK = /^(p|div|li|dt|dd|h[1-6]|article|ul|ol|dl|summary|section|header)$/;
++
+   /* Interface words: these defaults, or data-label-* attributes on a [data-find] element served with the page. */
+   var mount = hooked('data-find')[0] || null;
+   function word(name, fallback) {
+@@ -56,14 +59,14 @@
+   var WORDS = {
+     search: word('search', 'Search this page'),
+     placeholder: word('placeholder', 'Search statements, questions, examples and terms'),
+-    hint: word('hint', 'Press / to search from anywhere on the page; the down arrow moves through the results.'),
++    hint: word('hint', 'Press / to search; the down arrow moves through the results.'),
+     part: word('part', 'Part'),
+     status: word('status', 'Status'),
+     clear: word('clear', 'Clear'),
+     none: word('none', 'Nothing on this page matches.'),
+     one: word('one', '1 match'),
+     many: word('many', '{n} matches'),
+-    more: word('more', 'Show all {n}'),
++    more: word('more', 'Show {k} more'),
+     short: word('short', 'Type at least two letters or digits, or one symbol.'),
+     formula: word('formula', 'in a formula'),
+     witness: word('witness', 'counterexample: {status}'),
+@@ -77,6 +80,8 @@
+     searchFor: word('search-for', 'Search for “{words}”'),
+     lensOn: word('lens-on', 'Marked {n} of the {all} marks in the table.'),
+     lensOff: word('lens-off', 'No status is marked in the table.'),
++    lensHelp: word('lens-help', 'Select a status to mark its cells in the table.'),
++    gridKeys: word('grid-keys', 'Arrow keys move between the marks and headings of the table; Home and End go to the ends of a row; Tab leaves the table.'),
+     resume: word('resume', 'You were reading {title}.'),
+     resumeGo: word('resume-go', 'Continue reading'),
+     close: word('close', 'Close')
+@@ -150,7 +155,7 @@
+   function steady(host) { return all(FOCUSABLE, host).filter(function (el) { return !el.closest(CHANGING); }); }
+   function locator(el) {
+     if (!el || el.nodeType !== 1 || el === doc.body || el === root) return null;
+-    if (el.matches('.find-link[data-hit]')) return { hit: +el.getAttribute('data-hit'), all: limit === Infinity };
++    if (el.matches('.find-link[data-hit]')) return { hit: +el.getAttribute('data-hit'), limit: limit };
+     if (el.id) return { id: el.id };
+     if (el.closest(CHANGING)) return null;
+     var host = (el.parentElement && el.parentElement.closest('[id]')) || doc.body;
+@@ -234,12 +239,24 @@
+   byClass('term', main).concat(byClass('cell-btn', main), byClass('col-head', main)).forEach(function (t) {
+     if (!t.hasAttribute('aria-haspopup')) { t.setAttribute('aria-haspopup', 'dialog'); t.setAttribute('aria-controls', 'card'); t.setAttribute('aria-expanded', 'false'); }
+     var label = t.getAttribute('aria-label') || '';
+-    if (/\\[()[\]]/.test(label)) t.setAttribute('aria-label', label.replace(/\\[()[\]]/g, ''));
++    if (/\\[()[\]]/.test(label)) t.setAttribute('aria-label', label = label.replace(/\\[()[\]]/g, ''));
++    var td = t.classList.contains('cell-btn') ? t.closest('td') : null;
++    var note = td && td.querySelector('.cell-note');
++    /* A mark's name that still holds TeX is said with the row's full name as the page shows it. */
++    if (note && /\\[A-Za-z]/.test(label)) {
++      var rowEl = t.getAttribute('data-row') ? doc.getElementById(t.getAttribute('data-row')) : null;
++      var named = (rowEl && rowEl.querySelector('.row-name')) || td.parentNode.cells[0];
++      var where = note.querySelector('.cell-note-where');
++      var said = note.querySelector('.cell-note-head > span:not(.cell-note-where)');
++      if (named && named !== td && where && said) t.setAttribute('aria-label', textOf(named) + ', ' + textOf(where) + ': ' + textOf(said));
++    }
+     if (t.hasAttribute('aria-describedby')) return;
+-    if (t.classList.contains('cell-btn')) {
+-      var td = t.closest('td');
+-      var note = td && td.querySelector('.cell-note');
+-      if (note) t.setAttribute('aria-describedby', give(note, (t.getAttribute('data-row') || 'cell') + '-' + (columnIds[td.cellIndex - 1] || td.cellIndex) + '-scope'));
++    if (note) {
++      /* described by its scope, without the status and column its name already says */
++      var base = (t.getAttribute('data-row') || 'cell') + '-' + (columnIds[td.cellIndex - 1] || td.cellIndex) + '-scope';
++      var scope = note.querySelector('.cell-note-text') ||
++                  Array.prototype.filter.call(note.children, function (c) { return c.localName === 'p' && !c.classList.contains('cell-note-head'); })[0];
++      t.setAttribute('aria-describedby', give(scope || note, base));
+     } else if (t.classList.contains('term') && t.hasAttribute('data-term')) {
+       var entry = doc.getElementById(t.getAttribute('data-term'));
+       var dd = entry && entry.querySelector('dd');
+@@ -249,6 +266,7 @@
+ 
+   /* Reaching an element: every closed details around it opens, and a statement the Show filter hides is shown. */
+   var showDespiteFilter = null;
++  var refilter = null;
+   function openAround(el) {
+     var opened = [];
+     for (var d = el; d; d = d.parentElement) {
+@@ -430,9 +448,17 @@
+     }
+   });
+   if (hoverCapable) {
+-    doc.addEventListener('mouseover', function (event) {
++    /* A card opens when the pointer moves onto its trigger, never when the page scrolls a trigger under a resting
++       pointer (the browser then reports the pointer over it, and may report a move, at the same place on the screen). */
++    var pointerAt = null;
++    doc.addEventListener('mousemove', function (event) {
++      var at = event.screenX + ',' + event.screenY;
++      if (at === pointerAt) return;
++      pointerAt = at;
+       var el = triggerOf(event.target);
+-      if (el && !pinned) { show(el, false); return; }
++      if (el && !pinned && !(owner === el && card && !card.hidden)) show(el, false);
++    }, { passive: true });
++    doc.addEventListener('mouseover', function (event) {
+       if (event.target.closest && event.target.closest('#card')) clearTimeout(hideTimer);
+     });
+     doc.addEventListener('mouseout', function (event) {
+@@ -500,6 +526,18 @@
+     var gridWrap = grid.closest('.grid-wrap');
+     /* The table scrolls with the control in focus, so its scroll box need not be a stop of its own. */
+     if (gridWrap && gridStop && gridWrap.getAttribute('tabindex') === '0') gridWrap.tabIndex = -1;
++    /* What the keys do inside the table is the description of its region (the served hint says it on screen). */
++    if (gridStop) {
++      var keysHost = gridWrap || grid;
++      var gridKeys = doc.getElementById('grid-keys');
++      if (!gridKeys) {
++        gridKeys = element('p', 'visually-hidden grid-keys', WORDS.gridKeys);
++        gridKeys.id = 'grid-keys';
++        keysHost.parentNode.insertBefore(gridKeys, keysHost.nextSibling);
++      }
++      var described = (keysHost.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
++      if (described.indexOf('grid-keys') < 0) keysHost.setAttribute('aria-describedby', described.concat('grid-keys').join(' '));
++    }
+     grid.addEventListener('focusin', function (event) {
+       var c = event.target;
+       if (c === gridStop || gridControls.indexOf(c) < 0) return;
+@@ -582,17 +620,32 @@
+       if (on.length) grid.setAttribute('data-lens', on.join(' ')); else grid.removeAttribute('data-lens');
+       if (lensNews) lensNews.textContent = on.length ? fill(WORDS.lensOn, { n: n, all: marked.length }) : WORDS.lensOff;
+     };
++    var lensHelp = null;
+     if (legendList) all('li', legendList).forEach(function (li) {
+       var m = li.querySelector('.mark');
+       var slug = m && /(?:^|\s)mark-([\w-]+)/.exec(m.getAttribute('class') || '');
+-      var st = slug && slug[1].replace(/-/g, ' ');
++      /* The status this mark stands for, as the cells of the table write it. */
++      var st = null;
++      if (slug) marked.some(function (c) {
++        var s = c.getAttribute('data-status');
++        if (s.replace(/\s+/g, '-') !== slug[1]) return false;
++        st = s;
++        return true;
++      });
+       var count = st ? marked.filter(function (c) { return c.getAttribute('data-status') === st; }).length : 0;
+       if (!count) return;
++      if (!lensHelp) {
++        lensHelp = element('p', 'lens-help', WORDS.lensHelp);
++        lensHelp.id = 'lens-help';
++        legendList.parentNode.insertBefore(lensHelp, legendList);
++      }
+       var b = element('button', 'lens');
+       b.type = 'button';
+       b.setAttribute('aria-pressed', 'false');
+       b.setAttribute('data-lens', st);
++      b.setAttribute('aria-describedby', 'lens-help');
+       while (li.firstChild) b.appendChild(li.firstChild);
++      b.appendChild(doc.createTextNode(' '));
+       b.appendChild(element('span', 'count', String(count)));
+       li.appendChild(b);
+       lenses.push(b);
+@@ -669,17 +722,19 @@
+   var filterTools = filters.length ? (filters[0].closest('.row-tools') || filters[0].parentNode) : null;
+   var filterNews = filterTools ? liveRegion(filterTools) : null;
+   var rowsBeforeFilter = null;
++  var rowsSetByFilter = null; /* what the filter last made of each row, to tell the reader's own changes from it */
+   function shownStatuses() {
+     return filters.filter(function (f) { return f.getAttribute('aria-pressed') === 'true'; })
+                   .map(function (f) { return f.getAttribute('data-filter'); });
+   }
+-  function showAllButton(label, focusAfter) {
++  function showAllButton(label, focusAfter, keepOpen) {
+     var b = element('button', 'link-btn', label);
+     b.type = 'button';
+     b.setAttribute('data-show-all', '');
+     b.addEventListener('click', function () {
+       var to = focusAfter();
+       setFilters([]);
++      if (keepOpen) keepOpen.open = true; /* the row whose statements were asked for stays open to show them */
+       if (to) to.focus();
+     });
+     return b;
+@@ -704,7 +759,7 @@
+     note = element('p', 'filter-empty');
+     note.hidden = true;
+     note.appendChild(doc.createTextNode(WORDS.rowEmpty + ' '));
+-    note.appendChild(showAllButton(WORDS.rowShowAll, function () { return d.querySelector('summary'); }));
++    note.appendChild(showAllButton(WORDS.rowShowAll, function () { return d.querySelector('summary'); }, d));
+     body.insertBefore(note, body.querySelector('.statements'));
+     return note;
+   }
+@@ -737,9 +792,11 @@
+     if (on.length) {
+       if (!rowsBeforeFilter) rowsBeforeFilter = rows.map(function (d) { return d.open; });
+       rows.forEach(function (d) { d.open = visibleIn(d); });
++      rowsSetByFilter = rows.map(function (d) { return d.open; });
+     } else if (rowsBeforeFilter) {
+       rows.forEach(function (d, i) { d.open = rowsBeforeFilter[i]; });
+       rowsBeforeFilter = null;
++      rowsSetByFilter = null;
+     }
+     describeFilter();
+     /* Focus inside a statement the filter has just hidden moves to its row. */
+@@ -760,6 +817,25 @@
+     s.setAttribute('data-filter-exempt', '');
+     describeFilter();
+   } : null;
++  refilter = filters.length ? function () {
++    var on = shownStatuses();
++    var changed = false;
++    rowStatements.forEach(function (s) {
++      if (!s.hasAttribute('data-filter-exempt')) return;
++      s.removeAttribute('data-filter-exempt');
++      s.hidden = on.length > 0 && on.indexOf(s.getAttribute('data-status')) < 0;
++      changed = true;
++    });
++    if (changed) describeFilter();
++  } : null;
++  /* A row the reader opens or closes while the filter is on (by its heading, a link, or Back) is the reader's own
++     state from then on, and stays so when the filter is turned off. Printing opens rows for the paper only. */
++  rows.forEach(function (d, i) {
++    d.addEventListener('toggle', function () {
++      if (!rowsSetByFilter || printed) return;
++      if (d.open !== rowsSetByFilter[i]) { rowsBeforeFilter[i] = d.open; rowsSetByFilter[i] = d.open; }
++    });
++  });
+   filters.forEach(function (f) {
+     f.addEventListener('click', function () {
+       f.setAttribute('aria-pressed', f.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+@@ -768,8 +844,31 @@
+   });
+   var tallyLinks = [].concat.apply([], byClass('tally', doc).map(function (t) { return all('a[data-filter]', t); }));
+ 
++  /* A box that scrolls sideways (a wide formula, the bar on a narrow screen) names the edges where it hides more:
++     data-edge holds start, end, both or nothing, so that the CSS fades exactly those edges, in either theme. */
++  function edgesOf(el) {
++    var max = el.scrollWidth - el.clientWidth;
++    var e = [];
++    if (max > 1 && el.scrollLeft > 1) e.push('start');
++    if (max > 1 && el.scrollLeft < max - 1) e.push('end');
++    if (e.length) el.setAttribute('data-edge', e.join(' ')); else el.removeAttribute('data-edge');
++  }
++  var watchedEdges = [];
++  function watchEdges(el, on) {
++    var at = watchedEdges.indexOf(el);
++    if (on && at < 0) { watchedEdges.push(el); el.addEventListener('scroll', onEdgeScroll, { passive: true }); }
++    if (!on && at >= 0) { watchedEdges.splice(at, 1); el.removeEventListener('scroll', onEdgeScroll); }
++    if (on) edgesOf(el); else el.removeAttribute('data-edge');
++  }
++  function onEdgeScroll(event) { edgesOf(event.currentTarget); }
++
+   /* Mark the section in view in the bar; on a narrow screen the bar scrolls to keep that link in sight. */
+   var nav = doc.querySelector('.nav');
++  /* The bar is measured when it scrolls or the window changes, never at start-up: the served fade fits its start. */
++  if (nav) {
++    nav.addEventListener('scroll', onEdgeScroll, { passive: true });
++    window.addEventListener('resize', function () { edgesOf(nav); });
++  }
+   var navLinks = all('.nav a');
+   var byId = {};
+   navLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+@@ -875,13 +974,17 @@
+   function parseQuery(q) {
+     var out = [];
+     String(q || '').replace(/>=/g, '≥').replace(/<=/g, '≤').replace(/[“”„‟«»]/g, '"')
++      /* A TeX command typed apart from a one-letter or braced argument is one formula word: \mathbb C as \mathbb{C}. */
++      .replace(/(\\[A-Za-z]+)\s+(?=\{|[A-Za-z0-9](?![A-Za-z0-9]))/g, '$1')
+       .replace(/"([^"]+)(?:"|$)|(\S+)/g, function (_, phrase, w) {
+         var raw = phrase ? phrase.replace(/\s+/g, ' ').trim() : w.replace(/^["'.,;:!?()[\]]+|["'.,;:!?()[\]]+$/g, '');
+         if (!raw) return '';
+         var f = fold(raw);
+         var kind = TEXY.test(raw) ? 'tex' : LETTERLIKE.test(raw) ? 'letterlike' :
+                    (!phrase && Object.prototype.hasOwnProperty.call(GREEK, f)) ? 'greek' : 'text';
+-        out.push({ w: f, raw: raw.toLowerCase(), tex: texNorm(raw), kind: kind,
++        /* TeX written into words (W_3-modules) is also looked for as the page's words show it (W3-modules). */
++        var plain = kind === 'tex' ? fold(raw.replace(/\\[A-Za-z]+/g, '').replace(/[_^{}$]/g, '')) : '';
++        out.push({ w: f, raw: raw.toLowerCase(), tex: texNorm(raw), kind: kind, plain: /[a-z]{3}/.test(plain) && plain !== f ? plain : '',
+                    strict: kind === 'text' && /^[0-9a-z][0-9a-z '-]*$/.test(f) && f.replace(/[^0-9a-z]/g, '').length <= 5 });
+         return '';
+       });
+@@ -906,7 +1009,6 @@
+   }
+ 
+   /* Reader-visible text of an element, formulae given by their symbols (or left out), without marks or chips. */
+-  var BLOCK = /^(p|div|li|dt|dd|h[1-6]|article|ul|ol|dl|summary|section|header)$/;
+   function textOf(el, skip, noMath) {
+     if (!el) return '';
+     var out = [];
+@@ -957,6 +1059,8 @@
+     var statusLabel = o.statusLabel || (chip ? textOf(chip) : '');
+     var title = o.title || '';
+     var context = o.context || '';
++    var labels = o.labels !== undefined ? o.labels : labelsOf(o.statusEl);
++    var body = textOf(el, o.skip);
+     var tex = texOf(el, o.skip) + ' ' + texOf(o.titleEl);
+     building.push({
+       el: el, scope: scope, titleEl: o.titleEl || null, contextEl: o.contextEl || null, contextLead: o.contextLead || '',
+@@ -964,7 +1068,9 @@
+       status: o.status || (o.statusEl ? o.statusEl.getAttribute('data-status') : null),
+       statusLabel: statusLabel, mark: o.mark || (chip ? chip.querySelector('.mark') : null),
+       ft: o.quiet ? '' : fold(title), fc: fold(context),
+-      fb: fold(textOf(el, o.skip) + ' \u0001 ' + statusLabel + ' ' + (o.labels !== undefined ? o.labels : labelsOf(o.statusEl))),
++      fb: fold(body + ' \u0001 ' + statusLabel + ' ' + labels),
++      fl: fold(statusLabel + ' ' + labels),
++      raw: (textOf(o.titleEl) + ' ' + context + ' ' + body).toLowerCase(),
+       tex: texNorm(tex)
+     });
+   }
+@@ -1034,9 +1140,11 @@
+         /* Each column's scope in the row: found by the row, the column, its status or the words of the scope. */
+         all('.cell-lines > .cell-line', d).forEach(function (li) {
+           var col = li.querySelector('.cell-col');
+-          var st = /(?:^|\s)cell-(?!line)([\w-]+)/.exec(li.className);
+-          add(li, { titleEl: name, title: textOf(name), contextEl: col, context: textOf(col), skip: '.cell-col, .cell-st', labels: '',
+-                    status: st ? st[1].replace(/-/g, ' ') : null, statusLabel: textOf(li.querySelector('.cell-st')), mark: li.querySelector('.mark') });
++          /* Its cell's status is said and searchable by its words; it is not a statement's status, so the Status chips
++             and the tally, which count statements, leave it out. */
++          add(li, { titleEl: name, title: textOf(name), quiet: true, contextEl: col, context: textOf(name) + ' ' + textOf(col),
++                    skip: '.cell-col, .cell-st', labels: '',
++                    statusLabel: textOf(li.querySelector('.cell-st')), mark: li.querySelector('.mark') });
+         });
+       });
+     });
+@@ -1076,11 +1184,25 @@
+     (isolating ? all(ISOLATED + ' [data-qh-unit][id]') : []).forEach(function (el) {
+       list.push(function () {
+         var t = el.querySelector('[data-qh-unit-title]');
+-        add(el, { titleEl: t, title: textOf(t), skip: '[data-qh-unit-title]', offered: true });
++        /* A unit may give its status (one of the page's status values) and its place in the component. */
++        var st = el.getAttribute('data-qh-unit-status');
++        var key = st ? statusKey(st) : null;
++        add(el, { titleEl: t, title: textOf(t), skip: '[data-qh-unit-title]', offered: true, status: key ? st : null,
++                  statusLabel: key ? key.label : '', mark: key ? key.mark : null, context: el.getAttribute('data-qh-unit-place') || '' });
+       });
+     });
+     return list;
+   }
++  /* The status key's words and mark for a status value. */
++  function statusKey(st) {
++    var cls = 'mark-' + st.replace(/\s+/g, '-');
++    var items = byClass('key-item', main);
++    for (var i = 0; i < items.length; i++) {
++      var m = items[i].querySelector('.mark');
++      if (m && m.classList.contains(cls)) return { label: textOf(items[i].querySelector('dt')), mark: m };
++    }
++    return null;
++  }
+   function index() {
+     if (units) return units;
+     if (!pending) { building = []; pending = jobs(); }
+@@ -1110,9 +1232,11 @@
+   function marksOf(terms) {
+     var m = [];
+     terms.forEach(function (t) {
+-      if (t.kind === 'text' || t.kind === 'tex') m.push({ w: t.w, strict: t.strict });
+-      else if (t.kind === 'greek') {
+-        m.push({ w: t.w, strict: true });
++      if (t.kind === 'text' || t.kind === 'tex') {
++        m.push({ w: t.w, strict: t.strict });
++        if (t.plain) m.push({ w: t.plain, strict: false });
++      } else if (t.kind === 'greek') {
++        m.push({ w: t.w, strict: true, whole: true });
+         GREEK[t.w].split('').forEach(function (c) { m.push({ w: c, strict: false }); });
+       }
+     });
+@@ -1125,6 +1249,7 @@
+       var lead = isWordChar(k.w.charAt(0));
+       for (var at = m.text.indexOf(k.w); at >= 0; at = m.text.indexOf(k.w, at + 1)) {
+         if (k.strict && lead && isWordChar(m.text.charAt(at - 1))) continue;
++        if (k.whole && isWordChar(m.text.charAt(at + k.w.length))) continue;
+         ranges.push([m.from[at], m.to[at + k.w.length - 1]]);
+       }
+     });
+@@ -1178,11 +1303,16 @@
+     return out;
+   }
+   function mathCopy(m) {
++    var wide = m.getAttribute('display') === 'block' || !!(m.parentNode && m.parentNode.closest && m.parentNode.closest('.math-display, .math-long'));
+     var c = m.cloneNode(true);
+     c.removeAttribute('display');
+     c.classList.remove('tml-display');
+     all('[id]', c).forEach(function (n) { n.removeAttribute('id'); });
+-    return c;
++    if (!wide) return c;
++    /* A display formula keeps the page's rule that a wide formula scrolls inside its own box. */
++    var box = element('span', 'math-long');
++    box.appendChild(c);
++    return box;
+   }
+   function snippetOf(u, marks) {
+     var ps = pieces(u.el, u.skip);
+@@ -1203,6 +1333,7 @@
+         var lead = isWordChar(k.w.charAt(0));
+         for (var at = m.text.indexOf(k.w); at >= 0; at = m.text.indexOf(k.w, at + 1)) {
+           if (k.strict && lead && isWordChar(m.text.charAt(at - 1))) continue;
++          if (k.whole && isWordChar(m.text.charAt(at + k.w.length))) continue;
+           if (first < 0 || m.from[at] < first) first = m.from[at];
+           break;
+         }
+@@ -1258,6 +1389,7 @@
+   var results = null;
+   var clearButton = null;
+   var limit = 40;
++  var STEP = 100;
+   var hits = [];
+   var state = { q: '', scopes: [], statuses: [] };
+   var addressTimer = null;
+@@ -1392,7 +1524,15 @@
+     });
+     results.addEventListener('click', function (event) {
+       var more = event.target.closest('.find-more');
+-      if (more) { limit = Infinity; run(false); var links = all('.find-link', results); if (links[40]) links[40].focus(); return; }
++      if (more) {
++        /* The next results come a hundred at a time, so that a broad search never builds the whole list at once. */
++        var had = all('.find-link', results).length;
++        limit = had + STEP;
++        run(false);
++        var links = all('.find-link', results);
++        if (links[had]) links[had].focus();
++        return;
++      }
+       var a = event.target.closest('.find-link');
+       if (!a || !plainClick(event)) return;
+       event.preventDefault();
+@@ -1443,7 +1583,8 @@
+   /* Each Part chip counts the matches in its part, so the reader sees where they are before choosing one. */
+   function countParts(perScope) {
+     all('.filter[data-scope]', facets).forEach(function (b) {
+-      var c = b.querySelector('.count') || b.appendChild(element('span', 'count'));
++      var c = b.querySelector('.count');
++      if (!c) { b.appendChild(doc.createTextNode(' ')); c = b.appendChild(element('span', 'count')); }
+       var n = perScope ? perScope[b.getAttribute('data-scope')] || 0 : null;
+       c.textContent = n === null ? '' : String(n);
+       if (n === 0) b.setAttribute('data-none', ''); else b.removeAttribute('data-none');
+@@ -1451,36 +1592,53 @@
+   }
+   /* How strongly a unit holds a search term (0: not at all); its title counts most and its context least. */
+   function weigh(u, t) {
+-    if (t.kind === 'tex') return u.tex.indexOf(t.tex) >= 0 || grade(u.fb, t.w, false) ? 1 : 0;
++    if (t.kind === 'tex') return u.tex.indexOf(t.tex) >= 0 || grade(u.fb, t.w, false) || (t.plain && grade(u.fb, t.plain, false)) ? 1 : 0;
+     if (t.kind === 'letterlike') {
+       if (u.raw === undefined) u.raw = (textOf(u.titleEl) + ' ' + u.context + ' ' + textOf(u.el, u.skip)).toLowerCase();
+       return u.raw.indexOf(t.raw) >= 0 ? 1 : 0;
+     }
+     if (t.kind === 'greek') {
++      /* The letter first; the name counts only as a whole word ('mu' is not the start of 'multiple'). */
+       var inTitle = 0;
+       var inBody = 0;
+-      GREEK[t.w].split('').forEach(function (c) { if (u.ft.indexOf(c) >= 0) inTitle = 4; if (u.fb.indexOf(c) >= 0) inBody = 1; });
+-      return Math.max(inTitle, inBody, grade(u.ft, t.w, true) * 4, grade(u.fb, t.w, true));
++      GREEK[t.w].split('').forEach(function (c) { if (u.ft.indexOf(c) >= 0) inTitle = 13; if (u.fb.indexOf(c) >= 0) inBody = 4; });
++      return Math.max(inTitle, inBody, grade(u.ft, t.w, true) === 3 ? 12 : 0, grade(u.fb, t.w, true) === 3 ? 3 : 0);
+     }
+     var gt = grade(u.ft, t.w, t.strict);
+     var gb = grade(u.fb, t.w, t.strict);
+     var gc = grade(u.fc, t.w, t.strict);
+     return gt || gb || gc ? gt * 4 + gb + gc / 2 : 0;
++  }
++  /* Words typed in the order they are written, as one phrase: a pattern for them side by side, or null for one word or a
++     query with a formula, a Greek name or a symbol in it. */
++  function phraseOf(terms) {
++    if (terms.length < 2 || terms.some(function (t) { return t.kind !== 'text'; })) return null;
++    return new RegExp(terms.map(function (t) { return t.w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('[\\s,;:]+'), 'g');
++  }
++  function together(field, re) {
++    if (!field || !re) return false;
++    re.lastIndex = 0;
++    for (var m = re.exec(field); m; m = re.exec(field)) {
++      if (!isWordChar(field.charAt(m.index - 1))) return true;
++      re.lastIndex = m.index + 1;
++    }
++    return false;
+   }
+   /* Whether a term shows in the words of a result (else it was found only in a formula). */
+   function inWords(u, t, plain) {
+     if (t.kind === 'letterlike') return plain.toLowerCase().indexOf(t.raw) >= 0;
+     var p = fold(plain);
+-    if (t.kind === 'greek') return GREEK[t.w].split('').some(function (c) { return p.indexOf(c) >= 0; }) || grade(p, t.w, true) > 0;
++    if (t.kind === 'greek') return GREEK[t.w].split('').some(function (c) { return p.indexOf(c) >= 0; }) || grade(p, t.w, true) === 3;
++    if (t.plain && grade(p, t.plain, false) > 0) return true;
+     return grade(p, t.w, t.strict) > 0 || (!u.quiet && grade(fold(textOf(u.titleEl, null, true)), t.w, t.strict) > 0) ||
+-           grade(u.fc, t.w, t.strict) > 0;
++           grade(u.fc, t.w, t.strict) > 0 || grade(u.fl, t.w, t.strict) > 0;
+   }
+ 
+   function run(record) {
+     var terms = parseQuery(state.q);
+     var faceted = state.scopes.length > 0 || state.statuses.length > 0;
+     /* Typed text with fewer than two letters or digits (or one symbol) searches nothing, and says so. */
+-    var typed = terms.map(function (t) { return t.raw; }).join('').replace(/[^\p{L}\p{N}\p{S}]/gu, '');
++    var typed = terms.map(function (t) { return t.kind === 'text' ? t.w : t.raw; }).join('').replace(/[^\p{L}\p{N}\p{S}]/gu, '');
+     var tooShort = !!state.q.trim() && !faceted && !/[^\x00-\x7f]/.test(typed) && typed.length < 2;
+     var on = active() && !tooShort;
+     clearButton.hidden = !active();
+@@ -1502,6 +1660,9 @@
+     }
+     var perScope = {};
+     var exact = fold(state.q.replace(/["“”]/g, '')).replace(/\s+/g, ' ').trim();
++    /* Results that hold the words side by side, in the order typed, come first, in a title before in the text, and their
++       part leads the list. */
++    var phrase = phraseOf(terms);
+     index().forEach(function (u, i) {
+       if (state.statuses.length && state.statuses.indexOf(u.status) < 0) return;
+       var score = 0;
+@@ -1513,13 +1674,15 @@
+       perScope[u.scope] = (perScope[u.scope] || 0) + 1;
+       if (state.scopes.length && state.scopes.indexOf(u.scope) < 0) return;
+       if (exact && u.ft === exact) score += 30;
+-      hits.push({ unit: u, score: score, order: i });
++      var tier = !phrase ? 0 : together(u.ft, phrase) ? 2 : together(u.fb, phrase) || together(u.fc, phrase) ? 1 : 0;
++      hits.push({ unit: u, score: score, tier: tier, order: i });
+     });
+     var best = {};
+-    hits.forEach(function (h) { best[h.unit.scope] = Math.max(best[h.unit.scope] || 0, h.score); });
++    var rank = function (h) { return h.tier * 1e6 + h.score; };
++    hits.forEach(function (h) { best[h.unit.scope] = Math.max(best[h.unit.scope] || 0, rank(h)); });
+     hits.sort(function (a, b) {
+       return best[b.unit.scope] - best[a.unit.scope] || SCOPES.indexOf(a.unit.scope) - SCOPES.indexOf(b.unit.scope) ||
+-             b.score - a.score || a.order - b.order;
++             b.tier - a.tier || b.score - a.score || a.order - b.order;
+     });
+     countParts(perScope);
+     countLine.textContent = hits.length === 0 ? WORDS.none : hits.length === 1 ? WORDS.one : WORDS.many.replace('{n}', hits.length);
+@@ -1581,7 +1744,7 @@
+       list.appendChild(li);
+     });
+     if (hits.length > shown.length) {
+-      var more = element('button', 'link-btn find-more', WORDS.more.replace('{n}', hits.length));
++      var more = element('button', 'link-btn find-more', fill(WORDS.more, { k: Math.min(STEP, hits.length - shown.length), n: hits.length }));
+       more.type = 'button';
+       results.appendChild(more);
+     }
+@@ -1662,11 +1825,13 @@
+       flushAddress();
+       leave(a);
+       var params = readParams() || new URLSearchParams();
++      var pageParts = SCOPES.filter(function (id) { var s = doc.getElementById(id); return !s || shared(s); });
++      var scopes = pageParts.length < SCOPES.length ? pageParts : [];
+       params.delete('q');
+-      params.delete('in');
++      if (scopes.length) params.set('in', scopes.join(',')); else params.delete('in');
+       params.set('status', a.getAttribute('data-filter'));
+       pushAddress(location.pathname + '?' + params.toString());
+-      setState({ q: '', scopes: [], statuses: [a.getAttribute('data-filter')] }, false);
++      setState({ q: '', scopes: scopes, statuses: [a.getAttribute('data-filter')] }, false);
+       focusSearch();
+     });
+   });
+@@ -1679,6 +1844,7 @@
+     var wide = box.scrollWidth > box.clientWidth + 1;
+     if (wide && !box.hasAttribute('tabindex')) { box.setAttribute('tabindex', '0'); box.setAttribute('data-scroll-focus', ''); }
+     else if (!wide && box.hasAttribute('data-scroll-focus')) { box.removeAttribute('tabindex'); box.removeAttribute('data-scroll-focus'); }
++    watchEdges(box, wide);
+   }
+   var boxes = byClass('math-display', main).concat(byClass('math-long', main));
+   var nearBoxes = null;
+@@ -1745,7 +1911,7 @@
+   }
+   function savePlace() {
+     var u = placeNow();
+-    if (u) keep(PLACE, JSON.stringify({ id: u.id, at: Date.now() }));
++    if (u) keep(PLACE, JSON.stringify({ id: u.id, title: placeTitle(u), at: Date.now() }));
+   }
+   var placeTimer = null;
+   window.addEventListener('scroll', function () { clearTimeout(placeTimer); placeTimer = setTimeout(savePlace, 700); }, { passive: true });
+@@ -1769,6 +1935,7 @@
+     try { at = JSON.parse(raw); } catch (e) { at = null; }
+     var el = at && typeof at.id === 'string' && at.id !== 'programme' ? doc.getElementById(at.id) : null;
+     if (!el || !shared(el) || !main.contains(el)) return;
++    if (typeof at.title === 'string' && at.title !== placeTitle(el)) return; /* the address names something else now */
+     notice('resume', fill(WORDS.resume, { title: '“' + placeTitle(el) + '”' }), [
+       [WORDS.resumeGo, function () { dismiss(); leave(null); navigateTo(el, null); }]
+     ], function () { keep(PLACE, null); });
+@@ -1808,7 +1975,7 @@
+     noticeKind = null;
+     if (hadFocus && main) focusQuietly(main);
+   }
+-  function unknownAddress(id, readable) {
++  function unknownAddress(id, readable, arrival) {
+     var claim = null;
+     try { claim = new CustomEvent('qh:unknown-anchor', { cancelable: true, detail: { id: id } }); } catch (e) { claim = null; }
+     if (claim && !doc.dispatchEvent(claim)) return; /* a component has this address */
+@@ -1823,6 +1990,13 @@
+       }]);
+     }
+     notice('unknown', fill(WORDS.unknown, { address: '#' + id }), actions);
++    /* Reached during a visit (a link, an edited address), the notice is brought into view with focus on its words;
++       Back returns to where the reader was. */
++    var said = !arrival && noticeKind === 'unknown' ? noticeBox.querySelector('p > span') : null;
++    if (said) {
++      focusQuietly(said);
++      try { said.scrollIntoView({ block: 'center' }); } catch (e) { said.scrollIntoView(); }
++    }
+   }
+ 
+   /* The state of the page, for a component that follows it. */
+@@ -1848,7 +2022,7 @@
+     isolating = mounts.length > 0;
+     units = null;
+     pending = null;
+-    if (input && active()) run(false);
++    if (input && active()) run(false); else indexWhenIdle();
+   });
+ 
+   /* A link inside the page: the entry it leaves keeps the reader's search, open disclosures and focus; a link to the
+@@ -1856,8 +2030,9 @@
+   doc.addEventListener('click', function (event) {
+     if (!plainClick(event)) return;
+     var a = event.target.closest && event.target.closest('a[href^="#"]');
+-    if (!a || !shared(a)) return;
++    if (!a) return;
+     flushAddress();
++    if (!shared(a) || triggerOf(a)) return; /* a term served as a link opens its card instead */
+     var raw = a.getAttribute('href').slice(1);
+     if (!raw) return;
+     var id = raw;
+@@ -1900,7 +2075,7 @@
+     }
+   }
+   function openTarget(arrival) {
+-    if (noticeKind === 'unknown') dismiss();
++    if (noticeKind === 'unknown' || (!arrival && noticeKind)) dismiss();
+     var raw = location.hash.slice(1);
+     if (!raw) { announce(); return; }
+     var id = raw;
+@@ -1910,7 +2085,7 @@
+     var target = readable ? doc.getElementById(id) : null;
+     if (target && !shared(target)) { announce(); return; } /* the component's own address */
+     var opened = target ? openAround(target) : [];
+-    if (!target || target.closest('[hidden]')) { unknownAddress(id, readable); announce(); return; }
++    if (!target || target.closest('[hidden]')) { unknownAddress(id, readable, arrival); announce(); return; }
+     markRevealed(target);
+     if (opened.length || (arrival && given[target.id])) requestAnimationFrame(function () { target.scrollIntoView(); });
+     announce();
+@@ -1919,16 +2094,28 @@
+     /* A search typed just before Back belongs to the entry that was left, not to this one. */
+     clearTimeout(addressTimer);
+     pendingAddress = null;
++    if (noticeKind && noticeKind !== 'unknown') dismiss();
++    if (refilter) refilter();
+     var qh = qhOf(event.state);
+     fromURL(false);
+     if (qh.open) restoreOpen(qh.open);
++    /* The element the address names is shown here, not only on hashchange, which may come after the next frame. */
++    var id = hashId();
++    var to = id && id !== 'find-q' && id !== 'find-results' ? doc.getElementById(id) : null;
++    if (to && !shared(to)) to = null;
++    if (to) openAround(to);
+     var back = qh.back;
+     if (back) {
+-      if (back.all && limit !== Infinity && input && active()) { limit = Infinity; run(false); }
++      var want = back.all ? Infinity : typeof back.limit === 'number' ? back.limit : 0;
++      if (want > limit && input && active()) { limit = want; run(false); }
+       requestAnimationFrame(function () {
+         var el = located(back);
+         if (el && el.isConnected && reachable(el)) focusQuietly(el);
+       });
++    } else if (to) {
++      /* An entry that keeps no place to return to (one reached by Forward, a link the browser follows, or an address
++         typed in) puts focus on the element its address names. */
++      requestAnimationFrame(function () { if (to.isConnected && reachable(to)) focusQuietly(to); });
+     }
+   });
+   window.addEventListener('hashchange', function () { openTarget(false); });
