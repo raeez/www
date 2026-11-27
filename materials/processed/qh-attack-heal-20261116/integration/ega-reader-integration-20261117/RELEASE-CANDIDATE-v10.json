@@ -1,0 +1,83 @@
+{
+ "at": "2026-11-17T04:37:16Z",
+ "owner": "website owner (foundation session 67e78388, on claude4)",
+ "status": "RELEASE CANDIDATE v10: every automated check passes; native QA pending for items 5 and 6 (atlas repair, first capture) and the new items 7 (the supplement) and 8 (its contents entry); items 1-4 keep their v8 passes",
+ "supersedes": "RELEASE-CANDIDATE-v9.json (v9: never captured; preserved read-only)",
+ "delta_from_v9": {
+  "foundation_v7": "sealed successor (supplied supplements in the reference); INSTALL-foundation-v7-supplement.json",
+  "supplement": {
+   "title": "Four frontier comparisons",
+   "date": "17 November 2026",
+   "file": "content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+   "sha256": "7e97fcdd2613a685f0f31d6ca328612a02fcf089163153a0e8260e22b24b71e9",
+   "supplied_as": "WEBSITE-CONTENT-HANDOFF.json (Astra max, exact approved prose); formal_adoption false; original_targets_closed false",
+   "placed": "reference.html, part #frontier-comparisons after #frontier (The remaining comparisons), unnumbered, kicker Supplement; listed in the book contents after The remaining comparisons"
+  }
+ },
+ "compiler": {
+  "monograph.py": "487bb1ab5269733851fe55544000225b53fbb25165a86c933cbc516252b6dc14",
+  "monograph.css": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52",
+  "status.py": "6fa05e99f46649abd80ca34279eb2bc032df38adf968004bb66975162231904e",
+  "atlas.js": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684",
+  "atlas.css": "adb4339082f7a55c722a51bf89650e47a157576a22c08b4eb2abbb3d951d934b",
+  "figures.js": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965",
+  "figures.css": "3f65beb93fdfac44e49d7d45a5878630a5dd90fc82b3d35b4192d141214747b2",
+  "reader.js": "40ed4eb4fa623bb765c5e2b5249e0445969742b03614e878fb626462a810a0c9",
+  "status.js": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5"
+ },
+ "combined": {
+  "sha256": "66cd5dce3f3cc6cc3aaaf5545c31a27ac69c4b88ed99811394df484527715297",
+  "build_audit": "PASS, 17,661 formulas (v9 + 183 of the supplement), 0 TeX errors"
+ },
+ "site": {
+  "index.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v10/index.html",
+   "sha256": "962423514869e0373a9dfc286f4ffbf26fe74885836bb33705cb16ec72758f72",
+   "bytes": 3197685
+  },
+  "reference.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v10/reference.html",
+   "sha256": "77a5b6e44776a68eac73164dc8a634e349abdc85afede90f9b8a20404b1e59ef",
+   "bytes": 3851012
+  },
+  "atlas.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v10/atlas.html",
+   "sha256": "214f544b2ccddc0616d26f82ba4bb5919920a01433c249ae2299abf021e43ff9",
+   "bytes": 9815412
+  },
+  "reader-index.js": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v10/reader-index.js",
+   "sha256": "3214a88455d8427050f54dbb7f95754cd0ce3f004ef0aa04b946657c67c00a2f",
+   "bytes": 4764059
+  }
+ },
+ "checks": {
+  "split": "12 of 12",
+  "page": "19 of 19",
+  "reader_tests": "70 of 70",
+  "index": "5,675 units (v9 + 57, all the supplement's)",
+  "public": "0 hits; 21,465 links and map ids, 0 bad; 3 external (canonical links)",
+  "supplement_exact": "check_supplement.py on reference.html and on the combined page: placement, heading, dateline 2026-11-17, 4 sections, 183 of 183 formulae with identical TeX in order, 2,105 of 2,105 words in order and none added, contents entry, no duplicate id: ALL PASS"
+ },
+ "confinement_v9_to_v10": {
+  "index.html": "changed only: nav#contents (one entry), the page map, the style block",
+  "reference.html": "changed only: the page map, the style block; added: section#frontier-comparisons",
+  "atlas.html": "changed only: the page map, the style block",
+  "css": "9 rules differ: 7 scoped to the supplement, 2 the math font subset (311 -> 313 characters, none removed, no advance width changed)",
+  "search_index": "0 units changed, 57 added (all the supplement), 0 removed; the supplement has no word \"factors\""
+ },
+ "publication_checkout": {
+  "path": "/Users/raeez/www-worktrees/2026-11-17-qh-publication",
+  "staged_uncommitted": {
+   "index.html": "962423514869e0373a9dfc286f4ffbf26fe74885836bb33705cb16ec72758f72",
+   "reference.html": "77a5b6e44776a68eac73164dc8a634e349abdc85afede90f9b8a20404b1e59ef",
+   "atlas.html": "214f544b2ccddc0616d26f82ba4bb5919920a01433c249ae2299abf021e43ff9",
+   "reader-index.js": "3214a88455d8427050f54dbb7f95754cd0ce3f004ef0aa04b946657c67c00a2f",
+   ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+ },
+ "preserved": [
+  "site/release-v9 (read-only), RELEASE-CANDIDATE-v9.json",
+  "site/release-v8 (read-only), RELEASE-CANDIDATE-v8.json, FINAL-RELEASE-DECISION-v8-20261117.md"
+ ]
+}
