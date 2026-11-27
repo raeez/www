@@ -1,0 +1,2206 @@
+{
+  "schema": "qh-authored-diagrams/v1",
+  "diagrams": [
+    {
+      "id": "fig-programme-overview",
+      "chapter_id": "ch01",
+      "section_id": "the-mathematical-problem-in-its-present-form",
+      "type": "authored_diagram",
+      "title": "What can a boundary measurement recover?",
+      "caption": "A residue can distinguish two weights at a collision. A normalized boundary state can leave the absolute vacuum amplitude undetermined. On the two-state boundary for \\(W=x^3\\), the square of the odd class vanishes in cohomology. Its three-input product is the unit and detects the cubic coefficient. Each arrow connects one of these questions to a calculation.",
+      "nodes": [
+        {
+          "id": "programme-local",
+          "label": "Fields at colliding points",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "chiral-operation"
+          },
+          "description": "A double pole tests the first derivative of a weight when two points meet. A term supported on their diagonal disappears when the points are kept distinct."
+        },
+        {
+          "id": "programme-duality",
+          "label": "Products and higher relations",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-words-and-the-reduced-bar-construction"
+          },
+          "description": "Bar records multiplication by contracting adjacent factors. Cobar recovers a connected algebra through the finite filtration by word length."
+        },
+        {
+          "id": "programme-modules",
+          "label": "Modules and interface maps",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "adjunction-comparison-maps"
+          },
+          "description": "The unit compares a module with the result of induction followed by its right adjoint. The counit compares the reverse round trip with a module on the receiving side. A physical interface must realize the relevant functors."
+        },
+        {
+          "id": "programme-centres",
+          "label": "Actions and vacuum evaluation",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          },
+          "description": "Evaluation sends an action to a character. Recognition asks whether multiplication by that character recovers the entire pointed action."
+        },
+        {
+          "id": "programme-domains",
+          "label": "Inputs for repeated operations",
+          "definition_ref": {
+            "chapter_id": "ch08",
+            "section_id": "tensor-completion-and-rank"
+          },
+          "description": "An algebraic tensor uses finitely many independent spectator states. A Laurent series formed after tensoring can have a new spectator state in every coefficient."
+        },
+        {
+          "id": "programme-quantum",
+          "label": "Fields and coproducts",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          },
+          "description": "A coproduct gives an action on two representations. In the spectral example the two levels combine in order and the tensor carries a cross contraction."
+        },
+        {
+          "id": "programme-geometric",
+          "label": "Vacua and collision extensions",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-the-realized-vacuum-on-every-configuration"
+          },
+          "description": "Ordinary geometric reconstruction uses the family of realized vacua and its maps over every marked configuration."
+        },
+        {
+          "id": "programme-branes",
+          "label": "Composition of junctions",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-what-a-joined-interface-remembers"
+          },
+          "description": "Derived tensor product retains both outer actions. For particle junctions it also detects a degree-two flux class."
+        },
+        {
+          "id": "programme-hall",
+          "label": "Extensions and compact states",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          },
+          "description": "A Hall product uses the space of extensions. A compact three-point operation can distinguish products whose prescribed traces agree."
+        },
+        {
+          "id": "programme-arithmetic",
+          "label": "The full Weil trace and its sign",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "The theta quotient realizes the full Weil functional. Positivity asks whether its value on every convolution square is nonnegative."
+        },
+        {
+          "id": "programme-state",
+          "label": "States and filling amplitudes",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "description": "For a nonzero vacuum amplitude Z(1), dividing each insertion amplitude Z(O) by Z(1) gives its normalized expectation. Gluing also uses the vacuum amplitude and the pairing at the common boundary."
+        },
+        {
+          "id": "programme-reconstruction",
+          "label": "The physical bulk",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "interfaces-and-reconstruction"
+          },
+          "description": "Bulk reconstruction compares independently defined fields and states with their boundary actions, collision maps and measurements."
+        },
+        {
+          "id": "programme-interactions",
+          "label": "Which repeated product detects the interaction?",
+          "definition_ref": {
+            "chapter_id": "ch19",
+            "section_id": "ch19-boundary-potential"
+          },
+          "description": "For the two-state boundary of \\(W=x^3\\) or \\(W=x^4\\), the odd class has square zero. Its repeated insertions distinguish the cubic term from the quartic term."
+        }
+      ],
+      "edges": [
+        {
+          "id": "read-local-duality",
+          "source": "programme-local",
+          "target": "programme-duality",
+          "label": "Retain the relations between local products",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-modules",
+          "source": "programme-duality",
+          "target": "programme-modules",
+          "label": "Test the unit and counit on representations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-centres",
+          "source": "programme-modules",
+          "target": "programme-centres",
+          "label": "Ask which operations act compatibly",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-domains",
+          "source": "programme-local",
+          "target": "programme-domains",
+          "label": "Specify the domains of repeated operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-quantum",
+          "source": "programme-modules",
+          "target": "programme-quantum",
+          "label": "Compare the operation combining systems",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-geometric",
+          "source": "programme-local",
+          "target": "programme-geometric",
+          "label": "Retain the geometric collision extensions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-branes",
+          "source": "programme-modules",
+          "target": "programme-branes",
+          "label": "Test the prescribed physical interfaces",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-geometric-hall",
+          "source": "programme-geometric",
+          "target": "programme-hall",
+          "label": "Compare extension and state operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-hall-arithmetic",
+          "source": "programme-hall",
+          "target": "programme-arithmetic",
+          "label": "Distinguish the operation from its trace",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-domains-state",
+          "source": "programme-domains",
+          "target": "programme-state",
+          "label": "Define the numerical state and amplitude",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-centres-reconstruction",
+          "source": "programme-centres",
+          "target": "programme-reconstruction",
+          "label": "Compare the independently defined bulk action",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-state-reconstruction",
+          "source": "programme-state",
+          "target": "programme-reconstruction",
+          "label": "Retain filling and gluing amplitudes",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-interactions",
+          "source": "programme-duality",
+          "target": "programme-interactions",
+          "label": "Read a coefficient of the potential from repeated boundary insertions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        }
+      ],
+      "context_key": "programme-context-v1",
+      "highlighted_node_ids": [
+        "programme-local",
+        "programme-reconstruction"
+      ],
+      "legend": [
+        {
+          "kind": "reading_relation",
+          "text": "An arrow connects related questions. Its label names the comparison to make."
+        }
+      ]
+    },
+    {
+      "id": "fig-programme-context-duality",
+      "chapter_id": "ch06",
+      "section_id": "ch06-the-image-and-its-original-counit",
+      "type": "authored_diagram",
+      "title": "The representation comparison within reconstruction",
+      "caption": "The trivial representation detects the fixed vectors of an involution and misses the sign representation. Under the smooth realization and adjunction hypotheses of (6.1) at nonrational shifted level, the affine unit recovers every module over the coefficient algebra. The counit is invertible precisely on the subcategory generated by the inducing module, with its energy shifts in the graded case. Comparing these tensor products with fusion of physical lines requires a map preserving that operation.",
+      "nodes": [
+        {
+          "id": "programme-local",
+          "label": "Fields at colliding points",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "chiral-operation"
+          },
+          "description": "A residue measures singular behaviour at a collision. A coefficient supported there can disappear on the open set of distinct points."
+        },
+        {
+          "id": "programme-duality",
+          "label": "Products and higher relations",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-words-and-the-reduced-bar-construction"
+          },
+          "description": "Bar records multiplication by contracting adjacent factors. Cobar recovers a connected algebra through the finite filtration by word length."
+        },
+        {
+          "id": "programme-modules",
+          "label": "Modules and interface maps",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "adjunction-comparison-maps"
+          },
+          "description": "The unit compares a module with the result of induction followed by its right adjoint. The counit compares the reverse round trip with a module on the receiving side. A physical interface must realize the relevant functors."
+        },
+        {
+          "id": "programme-centres",
+          "label": "Actions and vacuum evaluation",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          },
+          "description": "Evaluation sends an action to a character. Recognition asks whether multiplication by that character recovers the entire pointed action."
+        },
+        {
+          "id": "programme-domains",
+          "label": "Inputs for repeated operations",
+          "definition_ref": {
+            "chapter_id": "ch08",
+            "section_id": "tensor-completion-and-rank"
+          },
+          "description": "Collecting coefficients in one Laurent series and forming an algebraic tensor with a spectator impose different finiteness conditions."
+        },
+        {
+          "id": "programme-quantum",
+          "label": "Fields and coproducts",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          },
+          "description": "A coproduct gives an action on two representations. In the spectral example the two levels combine in order and the tensor carries a cross contraction."
+        },
+        {
+          "id": "programme-geometric",
+          "label": "Vacua and collision extensions",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-the-realized-vacuum-on-every-configuration"
+          },
+          "description": "Ordinary geometric reconstruction uses the family of realized vacua and its maps over every marked configuration."
+        },
+        {
+          "id": "programme-branes",
+          "label": "Composition of junctions",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-what-a-joined-interface-remembers"
+          },
+          "description": "Derived tensor product retains both outer actions. For particle junctions it also detects a degree-two flux class."
+        },
+        {
+          "id": "programme-hall",
+          "label": "Extensions and compact states",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          },
+          "description": "A Hall product uses the space of extensions. A compact three-point operation can distinguish products whose prescribed traces agree."
+        },
+        {
+          "id": "programme-arithmetic",
+          "label": "The full Weil trace and its sign",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "The theta quotient realizes the full Weil functional. Positivity asks whether its value on every convolution square is nonnegative."
+        },
+        {
+          "id": "programme-state",
+          "label": "States and filling amplitudes",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "description": "A normalized state gives expectations. Absolute amplitudes also require a choice of normalization for the integration and its sewing."
+        },
+        {
+          "id": "programme-reconstruction",
+          "label": "The physical bulk",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "interfaces-and-reconstruction"
+          },
+          "description": "Bulk reconstruction compares independently defined fields and states with their boundary actions, collision maps and measurements."
+        },
+        {
+          "id": "programme-interactions",
+          "label": "An interaction measured by higher products",
+          "definition_ref": {
+            "chapter_id": "ch19",
+            "section_id": "ch19-boundary-potential"
+          },
+          "description": "For the two-state boundary of \\(W=x^3\\) or \\(W=x^4\\), the odd class has square zero. Its repeated insertions distinguish the cubic term from the quartic term."
+        }
+      ],
+      "edges": [
+        {
+          "id": "read-local-duality",
+          "source": "programme-local",
+          "target": "programme-duality",
+          "label": "Retain the relations between local products",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-modules",
+          "source": "programme-duality",
+          "target": "programme-modules",
+          "label": "Test the unit and counit on representations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-centres",
+          "source": "programme-modules",
+          "target": "programme-centres",
+          "label": "Ask which operations act compatibly",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-domains",
+          "source": "programme-local",
+          "target": "programme-domains",
+          "label": "Specify the domains of repeated operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-quantum",
+          "source": "programme-modules",
+          "target": "programme-quantum",
+          "label": "Compare the operation combining systems",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-geometric",
+          "source": "programme-local",
+          "target": "programme-geometric",
+          "label": "Retain the geometric collision extensions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-branes",
+          "source": "programme-modules",
+          "target": "programme-branes",
+          "label": "Test the prescribed physical interfaces",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-geometric-hall",
+          "source": "programme-geometric",
+          "target": "programme-hall",
+          "label": "Compare extension and state operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-hall-arithmetic",
+          "source": "programme-hall",
+          "target": "programme-arithmetic",
+          "label": "Distinguish the operation from its trace",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-domains-state",
+          "source": "programme-domains",
+          "target": "programme-state",
+          "label": "Define the numerical state and amplitude",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-centres-reconstruction",
+          "source": "programme-centres",
+          "target": "programme-reconstruction",
+          "label": "Compare the independently defined bulk action",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-state-reconstruction",
+          "source": "programme-state",
+          "target": "programme-reconstruction",
+          "label": "Retain filling and gluing amplitudes",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-interactions",
+          "source": "programme-duality",
+          "target": "programme-interactions",
+          "label": "Read a coefficient of the potential from repeated boundary insertions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        }
+      ],
+      "context_key": "programme-context-v1",
+      "highlighted_node_ids": [
+        "programme-duality",
+        "programme-modules",
+        "programme-reconstruction"
+      ],
+      "legend": [
+        {
+          "kind": "reading_relation",
+          "text": "An arrow connects two questions in the book. Its label identifies the operation or measurement they share."
+        }
+      ]
+    },
+    {
+      "id": "fig-ray-relative-contact",
+      "chapter_id": "ch09",
+      "section_id": "ch09-relative-currents-and-a-radial-homotopy",
+      "type": "authored_diagram",
+      "title": "One endpoint contact in the relative complex",
+      "caption": "For \\(X=\\widehat p_1\\star\\widehat J_2\\) the ambient differential gives a current on the mixed diagonal. The shifted supported component cancels it in the first component of the cone differential.",
+      "nodes": [
+        {
+          "id": "ray-ambient",
+          "label": "Ambient product \\(X\\)",
+          "definition_ref": {
+            "chapter_id": "ch09",
+            "section_id": "ch09-ordered-poles-and-their-complete-differential"
+          },
+          "description": "Its two inputs are closed. The normal-ordered term is closed and the contraction supplies the endpoint form."
+        },
+        {
+          "id": "ray-shifted",
+          "label": "Supported correction \\(+\\hbar C_1\\)",
+          "definition_ref": {
+            "chapter_id": "ch09",
+            "section_id": "ch09-relative-currents-and-a-radial-homotopy"
+          },
+          "description": "Both the height and complex separations vanish on its support. It lies one degree above the ambient product."
+        },
+        {
+          "id": "ray-first",
+          "label": "Ambient component of \\(d_F\\)",
+          "definition_ref": {
+            "chapter_id": "ch09",
+            "section_id": "ch09-relative-currents-and-a-radial-homotopy"
+          },
+          "description": "The two incoming terms sum to zero. The other component is \\(-\\mathcal D(\\hbar C_1)=0\\) because the contact is closed."
+        }
+      ],
+      "edges": [
+        {
+          "id": "ray-differential",
+          "source": "ray-ambient",
+          "target": "ray-first",
+          "label": "Apply \\(\\mathcal D\\) to obtain \\(-\\hbar C_1\\)",
+          "kind": "mathematical_map"
+        },
+        {
+          "id": "ray-inclusion",
+          "source": "ray-shifted",
+          "target": "ray-first",
+          "label": "Include \\(+\\hbar C_1\\) as an ambient current",
+          "kind": "mathematical_map"
+        }
+      ]
+    },
+    {
+      "id": "fig-two-sewing-momenta",
+      "chapter_id": "ch10",
+      "section_id": "ch10-two-completed-clusters",
+      "type": "authored_diagram",
+      "title": "Independent input momenta and the vacuum diagonal",
+      "caption": "For two received positive sections the choice of outgoing representation changes which momentum is available to a subsequent test. The vacuum evaluates both sections at the same momentum and retains that momentum in its output.",
+      "hypotheses": [
+        "Outer separation one and final exponent \\(s<0\\). Assume the normalized four-point data and two-radius bounds, with stationary exponent \\(r>\\log 2\\) and moving exponent \\(t>\\log 2\\) sufficiently large as in the composite sewing."
+      ],
+      "nodes": [
+        {
+          "id": "sewing-sections",
+          "label": "Received sections \\(f(p),g(q)\\)",
+          "definition_ref": {
+            "chapter_id": "ch10",
+            "section_id": "ch10-two-completed-clusters"
+          },
+          "description": "Each carries an energy-weighted uniform bound and a square-integral bound. The two preparations are independent."
+        },
+        {
+          "id": "sewing-positive",
+          "label": "Positive section at \\((p,q,e)\\)",
+          "definition_ref": {
+            "chapter_id": "ch10",
+            "section_id": "ch10-two-completed-clusters"
+          },
+          "description": "The final fibre has momentum e. Its squared norm is integrated over both input momenta and the output momentum."
+        },
+        {
+          "id": "sewing-vacuum",
+          "label": "Vacuum functional resolved at \\(p\\)",
+          "definition_ref": {
+            "chapter_id": "ch10",
+            "section_id": "ch10-two-completed-clusters"
+          },
+          "description": "On two ground packets the coefficient is their pointwise product. A later momentum packet can still test where it is concentrated."
+        }
+      ],
+      "edges": [
+        {
+          "id": "sewing-independent",
+          "source": "sewing-sections",
+          "target": "sewing-positive",
+          "label": "Apply \\(\\mu_{p,q}(1)\\) at independent momenta",
+          "kind": "mathematical_map"
+        },
+        {
+          "id": "sewing-diagonal",
+          "source": "sewing-sections",
+          "target": "sewing-vacuum",
+          "label": "Apply \\(\\beta_{p,p}(1)\\) on the diagonal",
+          "kind": "mathematical_map"
+        }
+      ]
+    },
+    {
+      "id": "fig-programme-context-quantum",
+      "chapter_id": "ch12",
+      "section_id": "ch12-a-spectral-construction-of-products-and-coproducts",
+      "type": "authored_diagram",
+      "title": "How a local product acts on two systems",
+      "caption": "Apply the coproduct before or after taking a field product. The two results agree when the tensor field includes the scalar from crossing its middle inputs. In this spectral construction the levels are automorphisms. Pulling the tensor action back along the coproduct gives an action at their composite.",
+      "nodes": [
+        {
+          "id": "programme-local",
+          "label": "Fields at colliding points",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "chiral-operation"
+          },
+          "description": "A residue measures singular behaviour at a collision. A coefficient supported there can disappear on the open set of distinct points."
+        },
+        {
+          "id": "programme-duality",
+          "label": "Products and higher relations",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-words-and-the-reduced-bar-construction"
+          },
+          "description": "Bar records multiplication by contracting adjacent factors. Cobar recovers a connected algebra through the finite filtration by word length."
+        },
+        {
+          "id": "programme-modules",
+          "label": "Modules and interface maps",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "adjunction-comparison-maps"
+          },
+          "description": "The unit compares a module with the result of induction followed by its right adjoint. The counit compares the reverse round trip with a module on the receiving side. A physical interface must realize the relevant functors."
+        },
+        {
+          "id": "programme-centres",
+          "label": "Actions and vacuum evaluation",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          },
+          "description": "Evaluation sends an action to a character. Recognition asks whether multiplication by that character recovers the entire pointed action."
+        },
+        {
+          "id": "programme-domains",
+          "label": "Inputs for repeated operations",
+          "definition_ref": {
+            "chapter_id": "ch08",
+            "section_id": "tensor-completion-and-rank"
+          },
+          "description": "Collecting coefficients in one Laurent series and forming an algebraic tensor with a spectator impose different finiteness conditions."
+        },
+        {
+          "id": "programme-quantum",
+          "label": "Fields and coproducts",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          },
+          "description": "Pull the action of the tensor field back along \\(D_{\\eta_1,\\eta_2}\\). The scalar crossing uses \\(\\rho_{-z}\\), and the second coaction component multiplies the first on the left."
+        },
+        {
+          "id": "programme-geometric",
+          "label": "Vacua and collision extensions",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-the-realized-vacuum-on-every-configuration"
+          },
+          "description": "Ordinary geometric reconstruction uses the family of realized vacua and its maps over every marked configuration."
+        },
+        {
+          "id": "programme-branes",
+          "label": "Composition of junctions",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-what-a-joined-interface-remembers"
+          },
+          "description": "Derived tensor product retains both outer actions. For particle junctions it also detects a degree-two flux class."
+        },
+        {
+          "id": "programme-hall",
+          "label": "Extensions and compact states",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          },
+          "description": "A Hall product uses the space of extensions. A compact three-point operation can distinguish products whose prescribed traces agree."
+        },
+        {
+          "id": "programme-arithmetic",
+          "label": "The full Weil trace and its sign",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "The theta quotient realizes the full Weil functional. Positivity asks whether its value on every convolution square is nonnegative."
+        },
+        {
+          "id": "programme-state",
+          "label": "States and filling amplitudes",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "description": "A normalized state gives expectations. Absolute amplitudes also require a choice of normalization for the integration and its sewing."
+        },
+        {
+          "id": "programme-reconstruction",
+          "label": "The physical bulk",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "interfaces-and-reconstruction"
+          },
+          "description": "Bulk reconstruction compares independently defined fields and states with their boundary actions, collision maps and measurements."
+        },
+        {
+          "id": "programme-interactions",
+          "label": "An interaction measured by higher products",
+          "definition_ref": {
+            "chapter_id": "ch19",
+            "section_id": "ch19-boundary-potential"
+          },
+          "description": "For the two-state boundary of \\(W=x^3\\) or \\(W=x^4\\), the odd class has square zero. Its repeated insertions distinguish the cubic term from the quartic term."
+        }
+      ],
+      "edges": [
+        {
+          "id": "read-local-duality",
+          "source": "programme-local",
+          "target": "programme-duality",
+          "label": "Retain the relations between local products",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-modules",
+          "source": "programme-duality",
+          "target": "programme-modules",
+          "label": "Test the unit and counit on representations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-centres",
+          "source": "programme-modules",
+          "target": "programme-centres",
+          "label": "Ask which operations act compatibly",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-domains",
+          "source": "programme-local",
+          "target": "programme-domains",
+          "label": "Specify the domains of repeated operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-quantum",
+          "source": "programme-modules",
+          "target": "programme-quantum",
+          "label": "Compare the operation combining systems",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-geometric",
+          "source": "programme-local",
+          "target": "programme-geometric",
+          "label": "Retain the geometric collision extensions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-branes",
+          "source": "programme-modules",
+          "target": "programme-branes",
+          "label": "Test the prescribed physical interfaces",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-geometric-hall",
+          "source": "programme-geometric",
+          "target": "programme-hall",
+          "label": "Compare extension and state operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-hall-arithmetic",
+          "source": "programme-hall",
+          "target": "programme-arithmetic",
+          "label": "Distinguish the operation from its trace",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-domains-state",
+          "source": "programme-domains",
+          "target": "programme-state",
+          "label": "Define the numerical state and amplitude",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-centres-reconstruction",
+          "source": "programme-centres",
+          "target": "programme-reconstruction",
+          "label": "Compare the independently defined bulk action",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-state-reconstruction",
+          "source": "programme-state",
+          "target": "programme-reconstruction",
+          "label": "Retain filling and gluing amplitudes",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-interactions",
+          "source": "programme-duality",
+          "target": "programme-interactions",
+          "label": "Read a coefficient of the potential from repeated boundary insertions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        }
+      ],
+      "context_key": "programme-context-v1",
+      "highlighted_node_ids": [
+        "programme-local",
+        "programme-modules",
+        "programme-quantum",
+        "programme-domains"
+      ],
+      "legend": [
+        {
+          "kind": "reading_relation",
+          "text": "An arrow connects two questions in the book. Its label identifies the operation or measurement they share."
+        }
+      ]
+    },
+    {
+      "id": "fig-supported-vandermonde-directions",
+      "chapter_id": "ch13",
+      "section_id": "ch13-supported-duality-and-the-direction-of-comparison",
+      "type": "authored_diagram",
+      "title": "The Vandermonde map before and after duality",
+      "caption": "On the affine line with its chosen coordinate, the Vandermonde for one Heisenberg current with zero central contractions in the Cousin differential takes exterior coefficients to symmetric coefficients. Transposing this isomorphism reverses the arrow and the vacuum triangle.",
+      "nodes": [
+        {
+          "id": "vd-exterior",
+          "label": "Exterior \\(\\mathcal C^-_{I,n}\\)",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-supported-duality-and-the-direction-of-comparison"
+          }
+        },
+        {
+          "id": "vd-symmetric",
+          "label": "Symmetric \\(\\mathcal C^+_{I,n}\\)",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-supported-duality-and-the-direction-of-comparison"
+          }
+        },
+        {
+          "id": "vd-symmetric-dual",
+          "label": "Symmetric dual \\((\\mathcal C^+_{I,n})^\\sharp\\)",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-supported-duality-and-the-direction-of-comparison"
+          }
+        },
+        {
+          "id": "vd-exterior-dual",
+          "label": "Exterior dual \\((\\mathcal C^-_{I,n})^\\sharp\\)",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-supported-duality-and-the-direction-of-comparison"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "vd-forward",
+          "source": "vd-exterior",
+          "target": "vd-symmetric",
+          "label": "Multiply by \\(V_n\\)",
+          "kind": "equivalence",
+          "status": "Proved isomorphism"
+        },
+        {
+          "id": "vd-transpose",
+          "source": "vd-symmetric-dual",
+          "target": "vd-exterior-dual",
+          "label": "Transpose \\(V_n^\\sharp\\)",
+          "kind": "equivalence",
+          "status": "Proved isomorphism"
+        }
+      ],
+      "hypotheses": [
+        "One Heisenberg species over \\(\\mathbb C[\\kappa]\\), a finite position set \\(I\\), and \\(n\\) polar factors on the affine line with its chosen coordinate. The Cousin differential has zero central contractions. Duals retain their inverse system of finite stages."
+      ],
+      "relations": [
+        "On a cut the transposed multiplication contains \\(C_{J|K}^\\sharp\\) on the dual of the entire localized external coefficient."
+      ],
+      "status": "Supported pro-duality is proved. The forward comparison with the original regular exterior contact is open."
+    },
+    {
+      "id": "fig-hecke-two-sheet-order",
+      "chapter_id": "ch14",
+      "section_id": "ch14-cotangent-yangian-defect",
+      "type": "authored_diagram",
+      "title": "Two framed sheets in opposite orders",
+      "caption": "Fix \\(T_1=I+E_{12}/u\\) and \\(T_2=I+E_{21}/u\\). Both orders give \\(E_{12}+E_{21}\\) at \\(u^{-1}\\). The upper-left entry at \\(u^{-2}\\) is one in \\(T_1T_2\\) and zero in \\(T_2T_1\\).",
+      "nodes": [
+        {
+          "id": "hk-input",
+          "label": "Two sheets \\(T_1,T_2\\)",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-cotangent-yangian-defect"
+          }
+        },
+        {
+          "id": "hk-12",
+          "label": "Coefficient \\(E_{11}\\)",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-cotangent-yangian-defect"
+          }
+        },
+        {
+          "id": "hk-21",
+          "label": "Coefficient \\(E_{22}\\)",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-cotangent-yangian-defect"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "hk-12-order",
+          "source": "hk-input",
+          "target": "hk-12",
+          "label": "Take \\([u^{-2}]\\,T_1T_2\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "hk-21-order",
+          "source": "hk-input",
+          "target": "hk-21",
+          "label": "Take \\([u^{-2}]\\,T_2T_1\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "hypotheses": [
+        "Inverse parallel transport along increasing \\(t\\), fixed frames at the two ends, a fixed direction of the oriented line, and the same nonzero spectral displacement \\(u\\)."
+      ],
+      "status": "Classical framed scattering measurement"
+    },
+    {
+      "id": "fig-programme-context-arithmetic",
+      "chapter_id": "ch16",
+      "section_id": "ch16-a-positive-representation-and-its-exact-missing-remainder",
+      "type": "authored_diagram",
+      "title": "What a trace can recover",
+      "caption": "The arithmetic trace asks which zeros a positive representation counts. The compact tube asks which three-input products have a specified fibre row and the same multiplication traces. Vary the arithmetic test in (16.12) or the three K3 states in (15.9) to see what the respective scalar comparisons require.",
+      "nodes": [
+        {
+          "id": "programme-local",
+          "label": "Fields at colliding points",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "chiral-operation"
+          },
+          "description": "A residue measures singular behaviour at a collision. A coefficient supported there can disappear on the open set of distinct points."
+        },
+        {
+          "id": "programme-duality",
+          "label": "Products and higher relations",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-words-and-the-reduced-bar-construction"
+          },
+          "description": "Bar records multiplication by contracting adjacent factors. Cobar recovers a connected algebra through the finite filtration by word length."
+        },
+        {
+          "id": "programme-modules",
+          "label": "Modules and interface maps",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "adjunction-comparison-maps"
+          },
+          "description": "The unit compares a module with the result of induction followed by its right adjoint. The counit compares the reverse round trip with a module on the receiving side. A physical interface must realize the relevant functors."
+        },
+        {
+          "id": "programme-centres",
+          "label": "Actions and vacuum evaluation",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          },
+          "description": "Evaluation sends an action to a character. Recognition asks whether multiplication by that character recovers the entire pointed action."
+        },
+        {
+          "id": "programme-domains",
+          "label": "Inputs for repeated operations",
+          "definition_ref": {
+            "chapter_id": "ch08",
+            "section_id": "tensor-completion-and-rank"
+          },
+          "description": "Collecting coefficients in one Laurent series and forming an algebraic tensor with a spectator impose different finiteness conditions."
+        },
+        {
+          "id": "programme-quantum",
+          "label": "Fields and coproducts",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          },
+          "description": "A coproduct gives an action on two representations. In the spectral example the two levels combine in order and the tensor carries a cross contraction."
+        },
+        {
+          "id": "programme-geometric",
+          "label": "Vacua and collision extensions",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-the-realized-vacuum-on-every-configuration"
+          },
+          "description": "Ordinary geometric reconstruction uses the family of realized vacua and its maps over every marked configuration."
+        },
+        {
+          "id": "programme-branes",
+          "label": "Composition of junctions",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-what-a-joined-interface-remembers"
+          },
+          "description": "Derived tensor product retains both outer actions. For particle junctions it also detects a degree-two flux class."
+        },
+        {
+          "id": "programme-hall",
+          "label": "Extensions and compact states",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          },
+          "description": "A Hall product uses the space of extensions. A compact three-point operation can distinguish products whose prescribed traces agree."
+        },
+        {
+          "id": "programme-arithmetic",
+          "label": "The full Weil trace and its sign",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "The theta quotient realizes the full Weil functional. Positivity asks whether its value on every convolution square is nonnegative."
+        },
+        {
+          "id": "programme-state",
+          "label": "States and filling amplitudes",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "description": "A normalized state gives expectations. Absolute amplitudes also require a choice of normalization for the integration and its sewing."
+        },
+        {
+          "id": "programme-reconstruction",
+          "label": "The physical bulk",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "interfaces-and-reconstruction"
+          },
+          "description": "Bulk reconstruction compares independently defined fields and states with their boundary actions, collision maps and measurements."
+        },
+        {
+          "id": "programme-interactions",
+          "label": "An interaction measured by higher products",
+          "definition_ref": {
+            "chapter_id": "ch19",
+            "section_id": "ch19-boundary-potential"
+          },
+          "description": "For the two-state boundary of \\(W=x^3\\) or \\(W=x^4\\), the odd class has square zero. Its repeated insertions distinguish the cubic term from the quartic term."
+        }
+      ],
+      "edges": [
+        {
+          "id": "read-local-duality",
+          "source": "programme-local",
+          "target": "programme-duality",
+          "label": "Retain the relations between local products",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-modules",
+          "source": "programme-duality",
+          "target": "programme-modules",
+          "label": "Test the unit and counit on representations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-centres",
+          "source": "programme-modules",
+          "target": "programme-centres",
+          "label": "Ask which operations act compatibly",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-domains",
+          "source": "programme-local",
+          "target": "programme-domains",
+          "label": "Specify the domains of repeated operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-quantum",
+          "source": "programme-modules",
+          "target": "programme-quantum",
+          "label": "Compare the operation combining systems",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-geometric",
+          "source": "programme-local",
+          "target": "programme-geometric",
+          "label": "Retain the geometric collision extensions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-branes",
+          "source": "programme-modules",
+          "target": "programme-branes",
+          "label": "Test the prescribed physical interfaces",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-geometric-hall",
+          "source": "programme-geometric",
+          "target": "programme-hall",
+          "label": "Compare extension and state operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-hall-arithmetic",
+          "source": "programme-hall",
+          "target": "programme-arithmetic",
+          "label": "Distinguish the operation from its trace",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-domains-state",
+          "source": "programme-domains",
+          "target": "programme-state",
+          "label": "Define the numerical state and amplitude",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-centres-reconstruction",
+          "source": "programme-centres",
+          "target": "programme-reconstruction",
+          "label": "Compare the independently defined bulk action",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-state-reconstruction",
+          "source": "programme-state",
+          "target": "programme-reconstruction",
+          "label": "Retain filling and gluing amplitudes",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-interactions",
+          "source": "programme-duality",
+          "target": "programme-interactions",
+          "label": "Read a coefficient of the potential from repeated boundary insertions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        }
+      ],
+      "context_key": "programme-context-v1",
+      "highlighted_node_ids": [
+        "programme-arithmetic",
+        "programme-hall",
+        "programme-state",
+        "programme-domains"
+      ],
+      "legend": [
+        {
+          "kind": "reading_relation",
+          "text": "An arrow connects two questions in the book. Its label identifies the operation or measurement they share."
+        }
+      ]
+    },
+    {
+      "id": "fig-programme-context-reconstruction",
+      "chapter_id": "ch17",
+      "section_id": "independent-realizations",
+      "type": "authored_diagram",
+      "title": "What must survive reconstruction",
+      "caption": "On the level-one neutral rays the scalar left by the outgoing subtraction cancels from the normalized collar reading. A filling must still fix that scalar. For four charge-one rays at level two, the measured Wick line attaches by the identity on the link. The attaching map for the full supported charge-four source remains open. On the cubic boundary, recovering the interaction and evaluating a disk trace use different insertions.",
+      "nodes": [
+        {
+          "id": "programme-local",
+          "label": "Fields at colliding points",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "chiral-operation"
+          },
+          "description": "A residue measures singular behaviour at a collision. A coefficient supported there can disappear on the open set of distinct points."
+        },
+        {
+          "id": "programme-duality",
+          "label": "Products and higher relations",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-words-and-the-reduced-bar-construction"
+          },
+          "description": "Bar records multiplication by contracting adjacent factors. Cobar recovers a connected algebra through the finite filtration by word length."
+        },
+        {
+          "id": "programme-modules",
+          "label": "Modules and interface maps",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "adjunction-comparison-maps"
+          },
+          "description": "The unit compares a module with the result of induction followed by its right adjoint. The counit compares the reverse round trip with a module on the receiving side. A physical interface must realize the relevant functors."
+        },
+        {
+          "id": "programme-centres",
+          "label": "Actions and vacuum evaluation",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          },
+          "description": "Evaluation sends an action to a character. Recognition asks whether multiplication by that character recovers the entire pointed action."
+        },
+        {
+          "id": "programme-domains",
+          "label": "Inputs for repeated operations",
+          "definition_ref": {
+            "chapter_id": "ch08",
+            "section_id": "tensor-completion-and-rank"
+          },
+          "description": "Collecting coefficients in one Laurent series and forming an algebraic tensor with a spectator impose different finiteness conditions."
+        },
+        {
+          "id": "programme-quantum",
+          "label": "Fields and coproducts",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          },
+          "description": "A coproduct gives an action on two representations. In the spectral example the two levels combine in order and the tensor carries a cross contraction."
+        },
+        {
+          "id": "programme-geometric",
+          "label": "Vacua and collision extensions",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-the-realized-vacuum-on-every-configuration"
+          },
+          "description": "Ordinary geometric reconstruction uses the family of realized vacua and its maps over every marked configuration."
+        },
+        {
+          "id": "programme-branes",
+          "label": "Composition of junctions",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-what-a-joined-interface-remembers"
+          },
+          "description": "Derived tensor product retains both outer actions. For particle junctions it also detects a degree-two flux class."
+        },
+        {
+          "id": "programme-hall",
+          "label": "Extensions and compact states",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          },
+          "description": "A Hall product uses the space of extensions. A compact three-point operation can distinguish products whose prescribed traces agree."
+        },
+        {
+          "id": "programme-arithmetic",
+          "label": "The full Weil trace and its sign",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "The theta quotient realizes the full Weil functional. Positivity asks whether its value on every convolution square is nonnegative."
+        },
+        {
+          "id": "programme-state",
+          "label": "States and filling amplitudes",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "description": "A normalized state gives expectations. Absolute amplitudes also require a choice of normalization for the integration and its sewing."
+        },
+        {
+          "id": "programme-reconstruction",
+          "label": "The physical bulk",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "interfaces-and-reconstruction"
+          },
+          "description": "Bulk reconstruction compares independently defined fields and states with their boundary actions, collision maps and measurements."
+        },
+        {
+          "id": "programme-interactions",
+          "label": "An interaction measured by higher products",
+          "definition_ref": {
+            "chapter_id": "ch19",
+            "section_id": "ch19-boundary-potential"
+          },
+          "description": "For the two-state boundary of \\(W=x^3\\) or \\(W=x^4\\), the odd class has square zero. Its repeated insertions distinguish the cubic term from the quartic term."
+        }
+      ],
+      "edges": [
+        {
+          "id": "read-local-duality",
+          "source": "programme-local",
+          "target": "programme-duality",
+          "label": "Retain the relations between local products",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-modules",
+          "source": "programme-duality",
+          "target": "programme-modules",
+          "label": "Test the unit and counit on representations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-centres",
+          "source": "programme-modules",
+          "target": "programme-centres",
+          "label": "Ask which operations act compatibly",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-domains",
+          "source": "programme-local",
+          "target": "programme-domains",
+          "label": "Specify the domains of repeated operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-quantum",
+          "source": "programme-modules",
+          "target": "programme-quantum",
+          "label": "Compare the operation combining systems",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-geometric",
+          "source": "programme-local",
+          "target": "programme-geometric",
+          "label": "Retain the geometric collision extensions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-branes",
+          "source": "programme-modules",
+          "target": "programme-branes",
+          "label": "Test the prescribed physical interfaces",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-geometric-hall",
+          "source": "programme-geometric",
+          "target": "programme-hall",
+          "label": "Compare extension and state operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-hall-arithmetic",
+          "source": "programme-hall",
+          "target": "programme-arithmetic",
+          "label": "Distinguish the operation from its trace",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-domains-state",
+          "source": "programme-domains",
+          "target": "programme-state",
+          "label": "Define the numerical state and amplitude",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-centres-reconstruction",
+          "source": "programme-centres",
+          "target": "programme-reconstruction",
+          "label": "Compare the independently defined bulk action",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-state-reconstruction",
+          "source": "programme-state",
+          "target": "programme-reconstruction",
+          "label": "Retain filling and gluing amplitudes",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-interactions",
+          "source": "programme-duality",
+          "target": "programme-interactions",
+          "label": "Read a coefficient of the potential from repeated boundary insertions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        }
+      ],
+      "context_key": "programme-context-v1",
+      "highlighted_node_ids": [
+        "programme-reconstruction",
+        "programme-centres",
+        "programme-state",
+        "programme-branes",
+        "programme-hall",
+        "programme-arithmetic"
+      ],
+      "legend": [
+        {
+          "kind": "reading_relation",
+          "text": "An arrow connects two questions in the book. Its label identifies the operation or measurement they share."
+        }
+      ]
+    },
+    {
+      "id": "fig-ordered-cut-support",
+      "chapter_id": "ch04",
+      "section_id": "ordered-cut-geometry",
+      "type": "authored_diagram",
+      "title": "Which cuts separate three ordered points?",
+      "caption": "Let \\(x\\ne y\\). At \\((x,x,y)\\) the cut \\(12|3\\) separates its blocks. At \\((x,y,x)\\) neither consecutive cut does so, since positions 1 and 3 are equal. The common complement is the whole diagonal \\(\\Delta_{13}\\), including points away from the triple collision.",
+      "nodes": [
+        {
+          "id": "cut-x3",
+          "label": "\\(X^3\\)",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "configuration-spaces"
+          }
+        },
+        {
+          "id": "cut-u12",
+          "label": "\\(U_{1,2}=X^3\\setminus(\\Delta_{12}\\cup\\Delta_{13})\\)",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "ordered-cut-geometry"
+          }
+        },
+        {
+          "id": "cut-u21",
+          "label": "\\(U_{2,1}=X^3\\setminus(\\Delta_{13}\\cup\\Delta_{23})\\)",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "ordered-cut-geometry"
+          }
+        },
+        {
+          "id": "cut-z3",
+          "label": "\\(Z_3=\\Delta_{13}\\): \\(x_1=x_3\\)",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "ordered-cut-geometry"
+          }
+        },
+        {
+          "id": "cut-small",
+          "label": "\\(\\Delta_{123}\\): \\(x_1=x_2=x_3\\)",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "configuration-spaces"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "cut-u12-inclusion",
+          "source": "cut-u12",
+          "target": "cut-x3",
+          "label": "Include the open for the cut after 1",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "cut-u21-inclusion",
+          "source": "cut-u21",
+          "target": "cut-x3",
+          "label": "Include the open for the cut after 2",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "cut-z3-inclusion",
+          "source": "cut-z3",
+          "target": "cut-x3",
+          "label": "Include the diagonal of the first and third points",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "cut-small-inclusion",
+          "source": "cut-small",
+          "target": "cut-z3",
+          "label": "Include the triple collision",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "equations": [
+        "\\(Z_3=X^3\\setminus(U_{1,2}\\cup U_{2,1})=\\Delta_{13}\\)"
+      ],
+      "hypotheses": [
+        "Smooth curve; external input order 1,2,3; only consecutive cuts."
+      ],
+      "witness": {
+        "coordinates": "x₁=x₃≠x₂",
+        "conclusion": "Both consecutive cuts fail, although the point is outside the small diagonal."
+      }
+    },
+    {
+      "id": "fig-connected-bar-cobar",
+      "chapter_id": "ch05",
+      "section_id": "ch05-ordered-cuts-give-a-finite-geometric-bar-construction",
+      "type": "authored_diagram",
+      "title": "Reconstructing connected coefficients by consecutive cuts",
+      "caption": "With three positive factors there are two gaps. Mark each gap as a separator or leave it inside a word. In the associated graded of cobar of bar the two choices at the first gap are joined by the identity, so the square contracts. The same contraction works for every word of length greater than one. At arity \\(n\\) the filtration ends at length \\(n\\). With the empty coefficient fixed to \\(k\\), bar and cobar recover the objects and their mapping spaces.",
+      "nodes": [
+        {
+          "id": "bc-algebra",
+          "label": "Connected augmented coherent associative algebras",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-ordered-cuts-give-a-finite-geometric-bar-construction"
+          }
+        },
+        {
+          "id": "bc-coalgebra",
+          "label": "Connected counital coaugmented coherent coassociative coalgebras",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-ordered-cuts-give-a-finite-geometric-bar-construction"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "bc-bar",
+          "source": "bc-algebra",
+          "target": "bc-coalgebra",
+          "label": "Bar \\(B\\)",
+          "kind": "functor",
+          "status": "Theorem"
+        },
+        {
+          "id": "bc-cobar",
+          "source": "bc-coalgebra",
+          "target": "bc-algebra",
+          "label": "Cobar \\(\\Omega\\)",
+          "kind": "functor",
+          "status": "Theorem"
+        }
+      ],
+      "relations": [
+        {
+          "text": "The two functors are inverse equivalences, including the full mapping spaces.",
+          "status": "Theorem"
+        },
+        {
+          "text": "The intrinsic adjunction is \\(B\\dashv\\Omega\\); the strict twisting-cochain adjunction has the opposite presentation \\(\\Omega_{\\rm dg}\\dashv B_{\\rm dg}\\).",
+          "status": "Convention"
+        }
+      ],
+      "hypotheses": [
+        "Smooth separated finite-type curve over a characteristic-zero field.",
+        "Unbounded complexes of algebraic right differential modules with quasi-coherent underlying modules, with consecutive-cut convolution.",
+        "Empty coefficient identified with k; all higher associativity and coassociativity data retained."
+      ],
+      "formulas": [
+        "\\(\\bar A^{\\star r}_n=0\\quad(r>n)\\)",
+        "\\(\\overline{\\Omega C}_n\\simeq R\\Gamma_{Z_n}(C_n)[-1]\\quad\\text{for factorizing }C\\)"
+      ]
+    },
+    {
+      "id": "fig-four-step-descent",
+      "chapter_id": "ch06",
+      "section_id": "ch06-four-factors-suffice-for-nonrational-mathfraksl3",
+      "type": "authored_diagram",
+      "title": "The four triangles for the positive ideal of sl₃",
+      "caption": "For \\(B=Y_{-s}(\\mathfrak{sl}_3)\\) with \\(s\\notin\\mathbb Q\\), three positive factors of weights \\(1,2,1\\) survive and the fourth tensor power vanishes. Start at \\(T_4(L)=0\\). At each step the scalar-extension unit \\(u\\) identifies the cofiber as an inflated \\(U(\\mathfrak{sl}_3)\\)-complex. Under (6.1) the affine unit \\(\\eta\\) is invertible on those cofibers. The four triangles give \\(\\eta_L\\) on any unbounded \\(L\\).",
+      "nodes": [
+        {
+          "id": "descent-t0",
+          "label": "\\(T_0(L)\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "formula": "L"
+        },
+        {
+          "id": "descent-t1",
+          "label": "\\(T_1(L)\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "formula": "\\(I^{\\otimes_B^{\\mathbf L}1}\\otimes_B^{\\mathbf L}L\\)"
+        },
+        {
+          "id": "descent-t2",
+          "label": "\\(T_2(L)\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "formula": "\\(I^{\\otimes_B^{\\mathbf L}2}\\otimes_B^{\\mathbf L}L\\)"
+        },
+        {
+          "id": "descent-t3",
+          "label": "\\(T_3(L)\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "formula": "\\(I^{\\otimes_B^{\\mathbf L}3}\\otimes_B^{\\mathbf L}L\\)"
+        },
+        {
+          "id": "descent-t4",
+          "label": "\\(T_4(L)\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "formula": "0"
+        },
+        {
+          "id": "descent-q0",
+          "label": "\\(UF(T_0(L))\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "description": "Inflated from the unrestricted R-complex obtained by derived scalar extension."
+        },
+        {
+          "id": "descent-q1",
+          "label": "\\(UF(T_1(L))\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "description": "Inflated from the unrestricted R-complex obtained by derived scalar extension."
+        },
+        {
+          "id": "descent-q2",
+          "label": "\\(UF(T_2(L))\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "description": "Inflated from the unrestricted R-complex obtained by derived scalar extension."
+        },
+        {
+          "id": "descent-q3",
+          "label": "\\(UF(T_3(L))\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "description": "Inflated from the unrestricted R-complex obtained by derived scalar extension."
+        }
+      ],
+      "edges": [
+        {
+          "id": "descent-include-0",
+          "source": "descent-t1",
+          "target": "descent-t0",
+          "label": "Induced by \\(I\\to B\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-unit-0",
+          "source": "descent-t0",
+          "target": "descent-q0",
+          "label": "Scalar-extension unit \\(u\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-include-1",
+          "source": "descent-t2",
+          "target": "descent-t1",
+          "label": "Induced by \\(I\\to B\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-unit-1",
+          "source": "descent-t1",
+          "target": "descent-q1",
+          "label": "Scalar-extension unit \\(u\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-include-2",
+          "source": "descent-t3",
+          "target": "descent-t2",
+          "label": "Induced by \\(I\\to B\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-unit-2",
+          "source": "descent-t2",
+          "target": "descent-q2",
+          "label": "Scalar-extension unit \\(u\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-include-3",
+          "source": "descent-t4",
+          "target": "descent-t3",
+          "label": "Induced by \\(I\\to B\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-unit-3",
+          "source": "descent-t3",
+          "target": "descent-q3",
+          "label": "Scalar-extension unit \\(u\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "hypotheses": [
+        "\\(R=U(\\mathfrak{sl}_3)\\), \\(I=\\bigoplus_{w>0}B_w\\), and \\(F=R\\otimes_B^{\\mathbf L}-\\); \\(U\\) is inflation.",
+        "Both R-actions and two-sided K-flatness are retained.",
+        "\\(I^{\\otimes_R^{\\mathbf L}4}=0\\), while \\(I^{\\otimes_R^{\\mathbf L}3}\\ne0\\)."
+      ],
+      "relations": [
+        {
+          "text": "\\(T_{j+1}(L)\\to T_j(L)\\to UF(T_j(L))\\to T_{j+1}(L)[1]\\), for \\(0\\le j<4\\).",
+          "status": "Theorem"
+        },
+        {
+          "text": "Under the separately stated smooth realization hypotheses, invertibility of its actual unit on inflated complexes propagates through this finite tower.",
+          "status": "Conditional consequence"
+        }
+      ]
+    },
+    {
+      "id": "fig-character-action-comparison",
+      "chapter_id": "ch07",
+      "section_id": "ch07-a-factorizing-actor-and-its-pointing",
+      "type": "authored_diagram",
+      "title": "Multiplication by a character and evaluation on the boundary vacuum",
+      "caption": "Evaluate \\(\\Theta(g)\\) on the boundary vacuum \\(u_B\\). The right-unit identity returns \\(g\\), giving \\(\\Psi\\Theta\\simeq1\\). In the opposite order one must recover the whole action, including its path at the actor pointing \\(u\\). This holds on the recognized families. The separate roof comparison for one exterior generator acting on rank-one \\(V_\\kappa\\) at \\(\\kappa\\ne0\\) has components indexed by charge and constant, each with additive fundamental group \\(\\mathbb C\\) and zero higher homotopy groups.",
+      "nodes": [
+        {
+          "id": "recognition-character",
+          "label": "\\(\\mathcal X(F,u)\\): pointed characters \\(F\\to C\\)",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          }
+        },
+        {
+          "id": "recognition-action",
+          "label": "\\(\\mathcal A_C(F,u)\\): pointed operations \\(F\\otimes^!C\\to C\\)",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "recognition-theta",
+          "source": "recognition-character",
+          "target": "recognition-action",
+          "label": "\\(\\Theta(g)=m(g\\otimes^!1_C)\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "recognition-psi",
+          "source": "recognition-action",
+          "target": "recognition-character",
+          "label": "\\(\\Psi(\\alpha)=\\alpha(1_F\\otimes^!u_B)\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "relations": [
+        {
+          "text": "\\(\\Psi\\Theta\\simeq1\\) by the unit identity.",
+          "status": "Theorem"
+        },
+        {
+          "text": "\\(\\Theta\\Psi\\simeq1\\) on the genuinely unital Chevalley family, its specified module extensions, and the nonunital families of Chapter 7.",
+          "status": "Theorem on stated families"
+        },
+        {
+          "text": "Full recognition for every pointed factorizing actor, with all roots and refinements.",
+          "status": "Open problem"
+        }
+      ],
+      "hypotheses": [
+        "Characteristic-zero field; the ordered collision category and both tensors specified in Chapter 7.",
+        "\\(C\\) is the Chevalley coalgebra of \\(kp_1\\oplus kp_2\\); \\(u\\) is an actual coherent pointing."
+      ],
+      "prohibitions": [
+        "An equivalence for every pointed factorizing actor remains open.",
+        "The ordinary exterior-source mapping space uses a different category and has its own presentation."
+      ]
+    },
+    {
+      "id": "fig-spectral-coproduct",
+      "chapter_id": "ch12",
+      "section_id": "ch12-a-spectral-construction-of-products-and-coproducts",
+      "type": "authored_diagram",
+      "title": "Splitting three ordered levels in two ways",
+      "caption": "Begin at \\(V_{\\eta_1\\eta_2\\eta_3}\\). Either path sends \\(a\\) to \\(\\eta_2\\eta_3a_1\\otimes\\eta_3a_2\\otimes a_3\\). Each binary tensor uses the scalar cross contraction and the right coaction with tail \\(n_{(1)}m_{(1)}\\) on \\(m\\otimes n\\).",
+      "nodes": [
+        {
+          "id": "spectral-source",
+          "label": "\\(V_{\\eta_1\\eta_2\\eta_3}\\)",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          }
+        },
+        {
+          "id": "spectral-left",
+          "label": "\\(V_{\\eta_1\\eta_2}\\boxtimes_\\rho V_{\\eta_3}\\)",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          }
+        },
+        {
+          "id": "spectral-right",
+          "label": "\\(V_{\\eta_1}\\boxtimes_\\rho V_{\\eta_2\\eta_3}\\)",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          }
+        },
+        {
+          "id": "spectral-target",
+          "label": "\\(V_{\\eta_1}\\boxtimes_\\rho V_{\\eta_2}\\boxtimes_\\rho V_{\\eta_3}\\)",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "spectral-first-left",
+          "source": "spectral-source",
+          "target": "spectral-left",
+          "label": "\\(D_{\\eta_1\\eta_2,\\eta_3}\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "spectral-first-right",
+          "source": "spectral-source",
+          "target": "spectral-right",
+          "label": "\\(D_{\\eta_1,\\eta_2\\eta_3}\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "spectral-second-left",
+          "source": "spectral-left",
+          "target": "spectral-target",
+          "label": "\\(D_{\\eta_1,\\eta_2}\\boxtimes_\\rho1\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "spectral-second-right",
+          "source": "spectral-right",
+          "target": "spectral-target",
+          "label": "\\(1\\boxtimes_\\rho D_{\\eta_2,\\eta_3}\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "equations": [
+        "\\(a\\longmapsto\\eta_2\\eta_3a_1\\otimes\\eta_3a_2\\otimes a_3\\)"
+      ],
+      "hypotheses": [
+        "Flat Hopf algebra with bijective antipode over a characteristic-zero coefficient algebra.",
+        "Translation, unitary spectral coquasitriangular form and level automorphisms satisfy all displayed identities in Chapter 12.",
+        "The fields and all finite products have the specified common rational germs and expansion domains."
+      ],
+      "status": "Theorem in the spectral class"
+    },
+    {
+      "id": "fig-hall-correspondence",
+      "chapter_id": "ch15",
+      "section_id": "ch15-extensions-and-the-reason-for-associativity",
+      "type": "authored_diagram",
+      "title": "Two projections of a Hall extension",
+      "caption": "The projection \\(p\\) (arrow 1) reads the quotient and the chosen subobject. The projection \\(q\\) (arrow 2) forgets the subobject. Its fibre over the plane \\(\\mathbb F_3^2\\) has four points, one per line. For a complex subobject variety, (15.1) integrates the rational-valued input weights with compactly supported Euler characteristic.",
+      "nodes": [
+        {
+          "id": "hall-endpoints",
+          "label": "Quotient and subobject \\((M/B,B)\\)",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          }
+        },
+        {
+          "id": "hall-extensions",
+          "label": "Extension \\(B\\subset M\\)",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          }
+        },
+        {
+          "id": "hall-middle",
+          "label": "Middle object \\(M\\)",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "hall-p",
+          "source": "hall-extensions",
+          "target": "hall-endpoints",
+          "label": "\\(p:(M,B)\\mapsto(M/B,B)\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "hall-q",
+          "source": "hall-extensions",
+          "target": "hall-middle",
+          "label": "\\(q:(M,B)\\mapsto M\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "formulas": [
+        "\\((f*g)(M)=\\int_{B\\subset M}f(M/B)g(B)\\,d\\chi_c\\)",
+        "\\(p^*(\\mathscr P_\\alpha\\boxtimes\\mathscr P_\\beta)\\longrightarrow q^!\\mathscr P_{\\alpha+\\beta}\\)"
+      ],
+      "hypotheses": [
+        "The constructible-function integral uses finite charge support and an actual domain on which Euler integration is defined.",
+        "For vanishing-cycle complexes one must also specify the oriented coefficient map (15.2), its support and its degree shift."
+      ],
+      "status": "Ordinary Hall multiplication and the oriented coefficient comparison"
+    },
+    {
+      "id": "fig-weil-trace-remainder",
+      "chapter_id": "ch16",
+      "section_id": "ch16-a-positive-representation-and-its-exact-missing-remainder",
+      "type": "authored_diagram",
+      "title": "Which zeros contribute to each trace?",
+      "caption": "Each real centered zero of multiplicity \\(m\\) contributes to \\(m\\) Hilbert coordinates in the positive representation. The full trace also includes every nonreal centered zero. Equality for all tests is equivalent to the Riemann hypothesis.",
+      "nodes": [
+        {
+          "id": "weil-test",
+          "label": "Test \\(f\\in\\mathcal A_a\\)",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-a-geometric-construction-of-the-full-trace"
+          }
+        },
+        {
+          "id": "weil-full",
+          "label": "Full Weil trace",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "\\(W(f)=\\sum_\\rho m_\\rho\\widehat f(w_\\rho)\\)."
+        },
+        {
+          "id": "weil-critical",
+          "label": "Critical-line trace",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-a-positive-representation-and-its-exact-missing-remainder"
+          },
+          "description": "\\(\\operatorname{Tr}\\pi_{\\mathrm{crit}}(f)=\\sum_{w_\\rho\\in\\mathbb R}m_\\rho\\widehat f(w_\\rho)\\). At a double critical zero the first two layers each contribute one copy of the Fourier value."
+        },
+        {
+          "id": "weil-remainder",
+          "label": "Nonreal remainder",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-a-positive-representation-and-its-exact-missing-remainder"
+          },
+          "description": "\\(\\mathcal R(f)=\\sum_{w_\\rho\\notin\\mathbb R}m_\\rho\\widehat f(w_\\rho)\\). Subtract the critical trace from the full trace on the same test, as in (16.12)."
+        }
+      ],
+      "edges": [
+        {
+          "id": "weil-W",
+          "source": "weil-test",
+          "target": "weil-full",
+          "label": "Complete Weil functional",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "weil-positive",
+          "source": "weil-test",
+          "target": "weil-critical",
+          "label": "Trace of the positive critical representation",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "weil-R",
+          "source": "weil-test",
+          "target": "weil-remainder",
+          "label": "Nonreal spectral contribution",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "equations": [
+        "\\(W(f)=\\operatorname{Tr}\\pi_{\\mathrm{crit}}(f)+\\mathcal R(f)\\)"
+      ],
+      "relations": [
+        {
+          "text": "The decomposition is exact on the stated test algebra.",
+          "status": "Theorem"
+        },
+        {
+          "text": "\\(\\mathcal R(f)=0\\) for every test.",
+          "status": "Open problem equivalent to the Riemann hypothesis"
+        }
+      ],
+      "prohibitions": [
+        "The nonreal remainder is not known to vanish on every test.",
+        "A complex-bilinear residue dual is different from a positive Hilbert pairing."
+      ]
+    },
+    {
+      "id": "fig-state-line-cap",
+      "chapter_id": "ch17",
+      "section_id": "states-lines-and-caps",
+      "type": "authored_diagram",
+      "title": "A normalized state, an amplitude line and a filling",
+      "caption": "Dividing a solid-torus integral by its empty-insertion value gives the normalized Gaussian state. Regulated coefficient heat supplies a local vacuum vector on its own source domain. Comparing either with the prescribed filling requires its cut map, amplitude line and sewing pairing.",
+      "nodes": [
+        {
+          "id": "state-finite",
+          "label": "Gaussian integrals on the finite cycles",
+          "definition_ref": {
+            "chapter_id": "ch11",
+            "section_id": "ch11-a-numerical-state-from-the-original-cycles"
+          },
+          "description": "The singular-window coordinates couple the finite integrals. Each uses its transported cycle and includes every odd variable before taking the limit."
+        },
+        {
+          "id": "state-normalized",
+          "label": "Normalized numerical state \\(\\omega_\\mu\\)",
+          "definition_ref": {
+            "chapter_id": "ch11",
+            "section_id": "ch11-a-numerical-state-from-the-original-cycles"
+          },
+          "description": "Radon even Gaussian law and full graded Wick moments on the specified observable space."
+        },
+        {
+          "id": "line-finite",
+          "label": "Finite action lines and coefficient heat",
+          "definition_ref": {
+            "chapter_id": "ch11",
+            "section_id": "ch11-original-coefficient-heat-and-a-based-local-vacuum-line"
+          },
+          "description": "Reflected fixed-adjoint realization, finite Riesz action blocks and continued density-cycle frames."
+        },
+        {
+          "id": "line-local",
+          "label": "Based local section \\(s_{\\mathrm{fp}}\\) of the vacuum line",
+          "definition_ref": {
+            "chapter_id": "ch11",
+            "section_id": "ch11-original-coefficient-heat-and-a-based-local-vacuum-line"
+          },
+          "description": "Integration over finite shells and the heat finite part retain the base amplitude and the connection."
+        },
+        {
+          "id": "state-cap",
+          "label": "State and amplitude prepared by the prescribed filling",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "status": "Open problem",
+          "description": "The filling must produce the boundary state and its empty-insertion vector in the same amplitude line, and must reproduce their pairing when two fillings are joined."
+        }
+      ],
+      "edges": [
+        {
+          "id": "state-limit",
+          "source": "state-finite",
+          "target": "state-normalized",
+          "label": "Normalized cycle limit",
+          "kind": "construction",
+          "status": "Theorem",
+          "hypotheses": [
+            "Fixed metric and density; 0<|q|<1, κ≠0, ħ>0.",
+            "Smooth integrable μ with zero normal trace in the stated small inverse neighbourhood; supplied smooth Ward filling Tμ.",
+            "Original coupled finite cycles and the declared test-observable topology."
+          ]
+        },
+        {
+          "id": "line-finite-part",
+          "source": "line-finite",
+          "target": "line-local",
+          "label": "Heat finite part",
+          "kind": "construction",
+          "status": "Theorem",
+          "hypotheses": [
+            "Original reflected weighted realization with the stated spectral gap and C⁴/C¹-small source bounds.",
+            "Higher-seminorm bounds for source derivatives; integrability and smooth Ward filling for action-line statements.",
+            "Local source neighbourhood; original base action integral retained."
+          ]
+        },
+        {
+          "id": "cap-state-comparison",
+          "source": "state-normalized",
+          "target": "state-cap",
+          "label": "Compare normalized observables on a common domain",
+          "kind": "open_comparison",
+          "status": "Open problem",
+          "direction": "undirected"
+        },
+        {
+          "id": "cap-line-comparison",
+          "source": "line-local",
+          "target": "state-cap",
+          "label": "Identify the amplitude line and gluing normalization",
+          "kind": "open_comparison",
+          "status": "Open problem",
+          "direction": "undirected"
+        }
+      ],
+      "equations": [
+        "\\(Z(O)=Z(1)\\,\\omega(O)\\)",
+        "\\(Z_M^{\\mathrm{bulk}}(O)=Z_M^\\partial(r_M(O))\\quad\\text{is the required cap comparison}\\)"
+      ],
+      "prohibitions": [
+        "Recovery of the absolute vacuum amplitude from normalized moments alone.",
+        "Equality of the two preparations without a common observable domain and an identification of their amplitude lines.",
+        "Global holonomy or convergence of an unregularized infinite determinant from the local heat calculation alone."
+      ]
+    }
+  ]
+}
