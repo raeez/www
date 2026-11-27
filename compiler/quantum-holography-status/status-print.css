@@ -1,0 +1,212 @@
+/* ---------------------------------------------------------------------------------------------
+   Print. Embedded after the screen stylesheet, so at equal specificity these rules win; everything here is
+   inside @media print and the screen page is unchanged.
+
+   The script's print contract: on beforeprint every disclosure in the page is opened
+   (the example rows, 'Related statements' under a question, the column definitions under the
+   grid), and on afterprint each returns to the state the reader left it in. This sheet sets no
+   [open] state of its own; the ::details-content rule in the screen stylesheet remains only as a fallback.
+
+   Paper is always light: the dark theme's colours are replaced by the light ones, deepened for
+   ink on white. Backgrounds are not relied on, since browsers drop them when printing; the status
+   stripe of a statement is drawn as a border, and every mark keeps its own shape.
+   --------------------------------------------------------------------------------------------- */
+@media print {
+  @page {
+    margin: 16mm 16mm 18mm;
+    @bottom-center {
+      content: counter(page);
+      font-family: 'QH Garamond', 'EB Garamond', Garamond, 'Times New Roman', serif;
+      font-size: 8.5pt;
+      color: #555049;
+    }
+  }
+
+  /* Light colours on every theme, deepened for paper; type set in points. */
+  :root, :root[data-theme='dark'], :root:not([data-theme='light']) {
+    color-scheme: light;
+    --ink: #111010; --ink-2: #2e2b27; --ink-3: #47433d; --ink-4: #5f5a53;
+    --rule: #aaa399; --rule-soft: #cdc7bd;
+    --paper: #fff; --paper-2: #fff; --paper-3: #fff;
+    --accent: #1d5a63; --accent-soft: transparent; --focus: transparent;
+    --st-checked: #1f5b34; --st-pending: #1f5281; --st-conditional: #24656a; --st-conjecture: #61408a;
+    --st-heuristic: #6b5944; --st-open: #8a5106; --st-published: #44505c; --st-partial: #536b24;
+    --st-not-posed: #77716a; --st-refuted-form: #962f20;
+    --shadow: none; --scroll-cue: transparent; --index-hover: transparent;
+
+    /* Type set in points on the screen's scale (every size derives from the body size); a reading column of
+       about 76 characters, so that a formula wider than the column has room in the white space beside it
+       before it reaches the edge of the paper. */
+    --text-base: 11.2pt;
+    --lh-text: 1.42; --lh-title: 1.08;
+    --measure: 116mm;
+    --wide: 100%;
+    --gutter: 0mm;
+  }
+
+  html, body { background: #fff !important; }
+  body { color: var(--ink); font-size: var(--text-base); line-height: var(--lh-text); }
+  body, .statement, .card { --surface: transparent; }
+  p { orphans: 3; widows: 3; }
+  .statement-text p, .row-summary, .gloss dd, .key-item dd, .col-def dd, .change-list p { hyphens: auto; -webkit-hyphens: auto; }
+
+  /* Nothing to press on paper. */
+  .bar, .skip, .theme, .card, .find, .tally, .row-tools, .row-actions, .known-actions, .link-btn, .filters,
+  .grid-hint, .cell-note, .icon, .find-open, .statement-context, .legend-key { display: none !important; }
+  /* Each printed related statement carries its own status chip, so the screen's key to the checked mark is not printed. */
+  .known-key { display: none !important; }
+  .foot-inner > p:last-child { display: none; }
+  :focus-visible { outline: none; }
+  a, a:hover, .change-link, .change-link:hover span, .as-of a, .q-index a, .grid tbody th a { color: inherit; text-decoration: none; }
+  h2 .anchor:hover::after, h3 .anchor:hover::after { content: none; }
+  .term, .term:hover, .term[aria-expanded='true'] { color: inherit; text-decoration: none; cursor: auto; }
+  .col-head, .cell-btn, summary { cursor: auto; }
+
+  /* Headings stay with what follows them. */
+  h1, h2, h3, h4, .kicker, .section-head, .question-head, .statement-head, .known-head, .question-ask-label,
+  .question-why-label, .q-index-head, .tally-label, .key-sub, .changes-title, .contents-label { break-after: avoid; page-break-after: avoid; }
+  .section-head, .question-head, .statement-head, .known-head { break-inside: avoid; }
+  .mg-env-alone { break-after: avoid; }
+  .mg-qed-line { break-before: avoid; }
+  .mg-env-label .mark { break-after: avoid; }
+
+  /* Cover and the edition's changes. */
+  .cover { padding-top: 0; padding-bottom: 0; }
+  .cover h1 { line-height: var(--lh-title); margin-bottom: .3em; }
+  .subtitle { margin-bottom: .8em; }
+  .lead { padding-top: 1em; }
+  .tally { padding-top: .2em; }
+  .tally ul { gap: 4pt 6pt; }
+  .tally a { padding: 1.5pt 7pt 1.5pt 5pt; border: .6pt solid var(--rule); background: none; color: var(--ink-2); }
+  .changes { margin-top: 16pt; }
+  .change-list li { padding: 6pt 0 6pt 2.2em; break-inside: avoid; }
+  .change-list li::before { top: 6pt; }
+
+  /* Sections. The grid of examples, the essay and the terms each begin a page. */
+  .section { padding-top: 18pt; }
+  .section-head { margin-bottom: 1em; }
+  #examples, #essay, #terms { break-before: page; page-break-before: always; padding-top: 0; }
+  .section.questions-section > .questions { max-width: var(--measure); }
+
+  /* Long lists print as block flow or columns, never as a grid that crosses a page: Chrome can drop a grid
+     item that moves to the next page. */
+  .statements, .questions, .failures, .glossary, .cell-lines { display: block; }
+  .statements > * + * { margin-top: 8pt; }
+  .questions > * + * { margin-top: 16pt; }
+  .failures > * + * { margin-top: 14pt; }
+
+  /* Status key */
+  .key { display: block; column-count: 2; column-gap: 18pt; }
+  .key-item { break-inside: avoid; margin-bottom: 8pt; }
+
+  /* Statements: kept whole; the status stripe is a border so that it prints without background
+     graphics; the chips lose their tint and keep their colour and mark. */
+  .statement, .principal .statement { padding: 8pt 10pt 7pt 11pt; background: none !important; box-shadow: none !important;
+                                      border: .6pt solid var(--rule); border-left: 2.4pt solid var(--st); border-radius: 2pt;
+                                      break-inside: avoid; page-break-inside: avoid; }
+  .st-open, .st-conjecture, .st-heuristic { border-top-style: dashed; border-right-style: dashed; border-bottom-style: dashed; }
+  .statement:target { box-shadow: none !important; }
+  .statement-head { margin-bottom: .35em; }
+  .status-chip { background: none; padding: 0; }
+  .status-chip .mark { width: 9pt; height: 9pt; }
+  .added-chip { background: none; border: .6pt solid currentColor; padding: 0 4pt; }
+  .statement-text { line-height: var(--lh-text); }
+  .statement-notes { margin-top: .6em; padding-top: .45em; }
+  .question-known .statement { font-size: inherit; }
+
+  /* Long mathematics. A display formula is never clipped to a scroll box: its box reaches 31mm into the white
+     space on each side of the reading column (the column is 116mm on a page area of at least 178mm), and a
+     formula whose estimated width (--fw, in em, written by the build for wide formulas only) would exceed
+     150mm is set smaller to fit; 150mm leaves room for the estimate's error in the most indented context
+     (a statement inside a family of examples). A long inline formula is unclipped in the same way. */
+  .math-display, .math-long { overflow: visible !important; background: none !important; max-width: none; scrollbar-width: none; }
+  .math-display { margin: .55em -31mm; padding: 0; break-inside: avoid; page-break-inside: avoid; }
+  .math-display math { font-size: min(.94em, calc(150mm / var(--fw, 1))); }
+  .math-long { padding: 0; vertical-align: baseline; }
+  math { color: inherit; }
+
+  /* The grid of examples: unscrolled, with its header repeated on each page it crosses, rows kept
+     whole, and lines in place of the screen's shaded header and hover. */
+  .grid-block { margin: .8em 0 1.2em; }
+  .grid-wrap { overflow: visible !important; border: .75pt solid var(--rule); border-radius: 0; background: none; }
+  .grid { min-width: 0; width: 100%; font-size: var(--text-fig); }
+  .grid thead { display: table-header-group; }
+  .grid tr { break-inside: avoid; page-break-inside: avoid; }
+  .grid th, .grid td { border-bottom: .5pt solid var(--rule-soft); }
+  .grid thead th { position: static; background: none; color: var(--ink-2); border-bottom: .75pt solid var(--ink-3); }
+  .grid .corner { width: 24%; }
+  /* No banding or rounded cells on paper (selectors as specific as the screen rules they replace). */
+  .grid thead th:nth-child(n), .grid tbody tr:nth-child(n) > :nth-child(n) { border-radius: 0; }
+  .grid tbody th { position: static; background: none; border-right: .5pt solid var(--rule-soft); }
+  .grid tbody th a { padding: 3pt 6pt; color: var(--ink); line-height: var(--lh-display); }
+  .grid tbody tr:nth-child(n) > *, .grid tbody tr:hover th, .grid tbody tr:hover td, .cell-btn[aria-expanded='true'] { background: none; }
+  .grid .corner { padding: 4pt 6pt; }
+  .col-head { padding: 4pt 1pt; white-space: normal; line-height: var(--lh-display); }
+  .cell-btn { min-width: 0; height: 14pt; }
+  .cell-btn .mark { width: 10pt; height: 10pt; }
+  .cell-btn:hover .mark { transform: none; }
+  .grid-aside { margin-top: .8em; gap: 8pt; }
+  .col-defs { padding-top: .4em; }
+  .col-defs summary { color: var(--ink-3); }
+  .col-defs dl { display: block; column-count: 2; column-gap: 18pt; }
+  .col-def { break-inside: avoid; margin-bottom: 5pt; }
+
+  /* The rows, all open: the summary is the row's heading and stays with its body. Statements
+     that a status filter had hidden on screen are printed too, since the filter is not. */
+  .row { break-inside: auto; }
+  .row > summary { grid-template-columns: 2em minmax(0, 1fr) auto auto; padding: 8pt 0 5pt; break-after: avoid; page-break-after: avoid; }
+  .row > summary:hover .row-name { color: inherit; }
+  .row-name { font-weight: 600; }
+  .row-body { padding: 0 0 12pt 2em; }
+  .cell-lines { margin: 0 0 10pt; padding: 6pt 0; break-inside: avoid; }
+  .cell-line { break-inside: avoid; }
+  .cell-line + .cell-line { margin-top: 3pt; }
+  .rows .statement[hidden] { display: block !important; }
+  details.row[data-filter-empty] > summary .row-name { color: inherit; }
+  details.row[data-filter-empty] > summary .row-marks { opacity: 1; }
+
+  /* Questions */
+  .question { padding-top: .8em; }
+  .question:target > .question-head h3 { color: inherit; }
+  .question.compare { display: block; }
+  .question-known { border: 0; padding: 0; margin: .9em 0 0; }
+  .q-index { margin: 1em 0 16pt; }
+  .q-index li { break-inside: avoid; break-after: auto; page-break-after: auto; }
+  .q-index a { padding: 3pt 0; }
+  /* Related statements print whole, each under its own heading: the one-line summaries are for the screen. */
+  .statements.known-list { border: 0; }
+  .fold-item { border: 0; }
+  .fold > summary { display: none !important; }
+  .fold > .statement { margin: 0; }
+  .fold > .statement > .statement-head { display: flex; }
+
+  /* How the programme fits together: block flow on paper (a grid that crosses a page can lose an item). */
+  .pfs { display: block; }
+  .pf { break-inside: avoid; margin: 0 0 10pt; }
+  .statement-atlas { display: none !important; }
+
+  /* Counterexamples */
+  .failure { break-inside: auto; }
+  .claim { break-after: avoid; page-break-after: avoid; }
+  .failure > .statement { margin-left: 10pt; }
+
+  /* Contents: a list of the parts, without page numbers. */
+  .contents { padding-top: 10pt; }
+  .contents a { padding: 3pt 0; }
+  .contents li { break-inside: avoid; }
+
+  /* Open problems, essay and terms */
+  .open-group { margin-bottom: 1.4em; }
+  .essay { margin-top: .6em; }
+  .essay-byline { margin-bottom: 1.4em; }
+  .essay p.essay-display { break-inside: avoid; }
+  .gloss { padding: 5pt 0; break-inside: avoid; }
+  .gloss-index { display: none; }
+  /* One column on paper: a definition's formula needs the full column. */
+  .section.terms-section > .glossary { max-width: var(--measure); column-count: auto; }
+  .gloss:target { background: none; margin: 0; padding: 5pt 0; }
+
+  /* Footer */
+  .foot { margin-top: 20pt; color: var(--ink-3); }
+  .foot-inner { padding: 8pt 0 0; }
+}
