@@ -1,0 +1,124 @@
+--- a/content/quantum-holography-status/page.json
++++ b/content/quantum-holography-status/page.json
+@@ -149,6 +149,9 @@
+     "defined_in": "Defined in",
+     "results_index": "Index of results",
+     "results_index_note": "Each result of the book with its status and statement, linked to its place in the chapter.",
+-    "with_status_js": true
++    "with_status_js": true,
++    "front_rail": "The book at a glance",
++    "parts": "Parts",
++    "chapters_range": "Chapters {first}–{last}"
+   }
+ }
+--- a/compiler/quantum-holography-status/monograph.py
++++ b/compiler/quantum-holography-status/monograph.py
+@@ -1062,6 +1062,21 @@
+                 f'{"".join(paths)}</svg>{tip_html}{"".join(boxes)}</div></div>'
+                 f'<figcaption class="mg-map-cap" id="mg-map-cap">{html.escape(L.get("map_caption", ""))}</figcaption></figure>')
+ 
++    def parts_glance(self):
++        """The five parts at a glance, each with its chapters' numbers, linked to the part in the contents."""
++        L = self.L
++        items = []
++        for p in self.parts:
++            chs = [self.by_id[cid]['number'] for cid in p.get('chapter_ids', []) if cid in self.by_id]
++            if not chs:
++                continue
++            span = (L.get('chapters_range', 'Chapters {first}–{last}').replace('{first}', str(chs[0])).replace('{last}', str(chs[-1]))
++                    if len(chs) > 1 else L.get('chapter_n', 'Chapter {n}').replace('{n}', str(chs[0])))
++            items.append(f'<li><a href="#{p["id"]}-title"><span class="mg-glance-no">{ROMAN[self.part_no[p["id"]] - 1]}</span> '
++                         f'<span class="mg-glance-title">{html.escape(p["title"])}</span></a> <span class="mg-glance-ch">{html.escape(span)}</span></li>')
++        return (f'<div class="mg-rail-block"><p class="mg-rail-h" id="mg-glance-h">{html.escape(L.get("parts", "Parts"))}</p>'
++                f'<ol class="mg-glance" aria-labelledby="mg-glance-h">{"".join(items)}</ol></div>')
++
+     def routes(self):
+         L = self.L
+         items = []
+@@ -1240,9 +1255,11 @@
+         marks = (f'<div class="mg-marks"><p class="mg-marks-h" id="mg-marks-h">{html.escape(L.get("marks", "Marks of the results"))}</p>'
+                  f'<ul class="mg-marks-list" aria-labelledby="mg-marks-h">{key}</ul>'
+                  f'<p class="mg-marks-note">{html.escape(L.get("marks_note", ""))}</p></div>')
+-        return (f'<header class="mg-front" id="front" data-reader-front>'
++        rail = (f'<aside class="mg-front-rail" aria-label="{html.escape(L.get("front_rail", "The book at a glance"))}">'
++                f'{self.parts_glance()}{self.routes()}</aside>')
++        return (f'<header class="mg-front" id="front" data-reader-front><div class="mg-front-frame"><div class="mg-front-main">'
+                 f'<div class="mg-front-title-block"><h1 class="mg-front-title">{self.b.rich(m["title"], terms=False)}</h1>'
+-                f'{sub}{audience}{byline}</div>{self.introduction()}{self.book_map()}{self.routes()}{marks}</header>')
++                f'{sub}{audience}{byline}</div>{self.introduction()}</div>{rail}</div>{self.book_map()}{marks}</header>')
+ 
+     def contents(self, reference):
+         L = self.L
+--- a/compiler/quantum-holography-status/monograph.css
++++ b/compiler/quantum-holography-status/monograph.css
+@@ -1,12 +1,12 @@
+ /* The monograph: a book in parts and chapters, read one chapter at a time by the reader script, with the former status page
+    kept whole as its reference volume. It shares the page's tokens: the type, the 1.2 scale, the paper
+    and ink, the accent, and one set of status marks and colours, used here only for mathematical status.
+-   Proportion: one reading measure of 31 body sizes (about 70 characters); a margin column for the chapter's place
++   Proportion: one reading measure of 28 body sizes (about 70 characters of this face); a margin column for the chapter's place
+    in the book; numbers of sections and chapters hang in the left margin on a wide screen; space in quarters, halves
+    and multiples of the body line. The book's map is one grid of columns (a column per chapter, a narrower gap
+    between parts) shared by the front matter's map, its routes and every chapter's locator. */
+ :root {
+-  --mg-measure: calc(var(--text-base) * 31);
++  --mg-measure: calc(var(--text-base) * 28);
+   --mg-aside: 15rem;
+   --mg-gap: clamp(28px, 3.6vw, 56px);
+   --mg-frame: calc(var(--mg-measure) + var(--mg-gap) + var(--mg-aside));
+@@ -80,7 +80,22 @@
+ 
+ /* The front matter ---------------------------------------------------------------------------------------------- */
+ .mg-front { max-width: calc(var(--mg-frame) + 8rem); margin: 0 auto; padding: var(--s6) var(--gutter) var(--s4); }
+-.mg-front-title-block { max-width: 46rem; margin-bottom: var(--s5); }
++/* The title page uses the chapters' frame: the reading column, and the margin column with the book at a glance. */
++.mg-front-frame { display: grid; grid-template-columns: minmax(0, var(--mg-measure)) var(--mg-gap) var(--mg-aside); align-items: start;
++                  max-width: var(--mg-frame); margin: 0 auto; }
++.mg-front-main { grid-column: 1; min-width: 0; }
++.mg-front-rail { grid-column: 3; grid-row: 1; padding-top: calc(var(--s6) + .5rem); font-size: var(--text-sm); line-height: var(--lh-compact); color: var(--ink-2); }
++.mg-rail-block + .mg-routes { margin-top: var(--s3); padding-top: var(--s2); border-top: 1px solid var(--rule-soft); }
++.mg-rail-h { margin: 0 0 .5rem; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .07em; }
++.mg-glance { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
++.mg-glance a { display: grid; grid-template-columns: 1.9rem minmax(0, 1fr); align-items: baseline; color: var(--ink); text-decoration: none; }
++.mg-glance a:hover .mg-glance-title { color: var(--accent); text-decoration: underline; text-decoration-thickness: .06em; }
++.mg-glance-no { color: var(--accent); font-variant-caps: all-small-caps; letter-spacing: .06em; }
++.mg-glance-ch { display: block; padding-left: 1.9rem; color: var(--ink-3); }
++.mg-front-rail .mg-routes { margin-top: var(--s3); }
++.mg-front-rail .mg-route { display: block; }
++.mg-front-rail .mg-route-list { display: block; }
++.mg-front-title-block { margin-bottom: var(--s5); }
+ .mg-front-title { margin: 0 0 var(--s2); font-size: calc(var(--text-base) * 2.986); font-weight: 400; line-height: var(--lh-title);
+                   letter-spacing: -.012em; text-wrap: balance; }
+ .mg-front-subtitle { margin: 0 0 var(--s3); font-size: var(--text-h3b); font-style: italic; color: var(--ink-2); line-height: var(--lh-display); }
+@@ -90,7 +105,7 @@
+ /* The map of the book: a column per part, a box per chapter (number and title), and a line from a chapter to each
+    later chapter that draws on it directly. Lines are quiet and thinner than the boxes' rules; one chapter under the
+    pointer or focus lights its own lines. Where the figure is too narrow for the titles, it gives way to the contents. */
+-.mg-front-intro { max-width: var(--mg-measure); margin: 0 0 var(--s5); hyphens: auto; }
++.mg-front-intro { max-width: var(--mg-measure); margin: 0 0 var(--s5); }
+ .mg-front-intro p { margin: 0; text-wrap: pretty; }
+ .mg-front-intro p + p { text-indent: 1.5em; }
+ .mg-front-intro .mg-lead { margin-bottom: var(--s2); }
+@@ -252,7 +267,9 @@
+ .mg-terms li { padding: .05rem .45rem; border: 1px solid var(--rule); border-radius: 999px; font-style: italic; color: var(--ink-2); }
+ 
+ /* Running text: a book's paragraphs, indented after the first; a paragraph that continues after a display is not. */
+-.mg-ch-open, .mg-ch-text { hyphens: auto; -webkit-hyphens: auto; }
++.mg-ch-open, .mg-ch-text, .mg-front-intro, .mg-gl-entry, .mg-ri-entry { hyphens: auto; -webkit-hyphens: auto;
++  hyphenate-limit-chars: 8 4 4; -webkit-hyphenate-limit-before: 4; -webkit-hyphenate-limit-after: 4; }
++.mg-lead { hyphens: manual !important; -webkit-hyphens: manual !important; }
+ .mg-ch-open p, .mg-ch-text p { margin: 0; text-wrap: pretty; }
+ .mg-ch-open p + p, .mg-ch-text p + p, .mg-display + p:not(.mg-cont), .mg-list + p:not(.mg-cont) { text-indent: 1.5em; }
+ .mg-ch-text p.mg-cont, .mg-ch-open p.mg-cont { text-indent: 0; }
+@@ -543,6 +560,11 @@
+   .mg-ch-text { grid-row: 3 !important; }
+   .mg-ch-end { max-width: var(--mg-measure); }
+   .mg-toc-part, .mg-toc-ref { grid-template-columns: minmax(0, 1fr); }
++  .mg-front-frame { grid-template-columns: minmax(0, 1fr); max-width: var(--mg-measure); margin: 0; }
++  .mg-front-rail { grid-column: 1; grid-row: 2; padding: var(--s2) 0 var(--s1); margin: 0 0 var(--s4); border-top: 1px solid var(--rule-soft);
++                   border-bottom: 1px solid var(--rule-soft); display: flex; flex-wrap: wrap; gap: 0 2.5rem; }
++  .mg-front-rail > * { flex: 1 1 14rem; }
++  .mg-rail-block + .mg-routes { margin-top: 0; padding-top: 0; border-top: 0; }
+   .mg-toc-chapters, .mg-toc-ref-list { grid-column: 1; grid-row: auto; margin-top: var(--s2); }
+   .mg-toc-part-summary, .mg-toc-ref-note { grid-column: 1; }
+   .reader-home { display: none; }
