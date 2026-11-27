@@ -1,0 +1,72 @@
+ok   start: a bare visit shows the title page and the contents, and every chapter and reference part waits hidden until found
+ok   start: where the browser cannot find hidden text, the places not shown are simply hidden
+ok   start: the 955-claim register is never the default scroll: the atlas is shown only when it is addressed
+ok   address: a chapter address shows that chapter alone, with its part, number and neighbours in the bar and the contents
+ok   address: an address inside a chapter (a definition, an equation, a figure by its own id) shows its chapter and reaches it
+ok   address: a retained reference part keeps its old addresses (no redirect needed)
+ok   address: an old address the page maps is shown at its new place, and the address is rewritten
+ok   address: an unknown address is named, in view, with a search for its words, on the title page
+ok   address: a component may claim an address the page does not have
+ok   sequence: Next and Previous move by chapter with focus on the new chapter title, each a history entry, and announce the chapter
+ok   history: Back returns to the chapter and to the control that was used; Forward goes on again
+ok   history: the end of a chapter leads to the next one, and Back returns to the end link
+ok   history: a typed address is followed once, and Back after it returns
+ok   history: the entry left keeps the reading position, restored on Back
+ok   contents: in a chapter the bar opens the contents at the current chapter; Escape closes them and returns focus
+ok   contents: a chapter chosen in the contents is shown and the contents close
+ok   reminder: a cross-reference opens the definition it names beside the text, without leaving the chapter or the entry
+ok   reminder: a result, an equation and a section are shown whole (statement, formula, heading and first paragraph)
+ok   reminder: Go to moves there as a history entry, and Back returns to the chapter with focus on the cross-reference
+ok   reminder: a prerequisite shows the chapter it names (title and summary or opening) with a way to it
+ok   reminder: a modified click and a link marked data-ref="none" are ordinary links
+ok   reminder: Tab past its end goes on in the text after the cross-reference
+ok   reminder: on a fine pointer, resting on a cross-reference opens a reminder that does not take focus
+ok   search: "/" opens the search with focus in the field; a figure's own controls keep the key
+ok   search: the chapters come first, in the book's order, and a large reference part shows a few results and offers the rest
+ok   search: a result opens its place as a history entry with focus on it; Back reopens the search with focus on that result
+ok   search: a paragraph found without an address is given one that holds on a later visit
+ok   search: a defined word or a title typed whole leads with the place it is introduced
+ok   search: a scope lists only its part; Show more adds a hundred with focus on the first new result
+ok   search: an atlas result shows the atlas and asks the atlas to show it; the atlas keeps scroll and focus when it answers
+ok   search: an address with ?q= opens the search with that query, without taking focus
+ok   search: Escape closes the search, returns focus to where "/" was pressed and drops the query from the address
+ok   search: arrow keys move through the results, and Escape from a result returns to the field
+ok   component: a link inside the atlas is left to the atlas; its request to show a place of the book is honoured
+ok   component: every change of place is told to components (qh:state) with the view and the place
+ok   find: the browser's find in a hidden chapter shows that chapter, as a history entry, and leaves the scrolling to the browser
+ok   place: the place read is kept on this device and offered on a bare visit; Continue reading goes there and Close forgets it
+ok   place: a kept place whose title no longer matches is not offered; refused storage costs nothing
+ok   route: following a route makes Next follow it, and leaving it restores the book's order
+ok   steps: each step says where it goes, and its name says it in full
+ok   hooks: a figure that carries data-chapter and data-section values is neither a chapter nor a section
+ok   search: a formula found is addressed by the author's equation id, not by a new one
+ok   hooks: the part named in a chapter's head is navigation, not a cross-reference
+ok   reference: an address inside a closed row of the reference opens the row and reaches it
+ok   reference: without the status page script, a term served as a button opens its glossary entry in a reminder
+ok   reference: with the status page script beside the reader, its term card answers, and there is one search, one notice area and one place kept
+ok   reference: with the status page script, Back and Forward move between places once, and a row opened before leaving is open again on Back
+ok   theme: the bar keeps the page's light and dark control, which switches the theme and remembers the choice
+ok   theme: a choice kept on this device is the page's; with storage refused the control still switches
+ok   theme: beside the status page script, in either order, one press switches once
+ok   hooks: a figure or diagram with data-figure-chapter and data-figure-section values (or the older names) is never a chapter or a section
+ok   titles: a number the page sets apart in a heading is neither fused with the title nor repeated
+ok   words: the page's own interface words replace the reader's
+ok   shape: the bar holds six controls whatever the length of the book, in a served slot when the page gives one
+ok   shape: when only some chapters are served the bar still counts the whole book, and the sequence skips the missing ones
+ok   shape: without section wrappers, headings with an address serve as the sections
+ok   style: the reader adds no stylesheet and no inline style beyond its two measures
+ok   narrow: before any result no scope is offered; with results only All, the scope pressed and the scopes holding results
+ok   narrow: a reference part is named as the page names it (its bar or contents link), in its scope, its results and the bar
+ok   narrow: each result says its kind; a section shows its first paragraph; its place keeps its formula
+ok   narrow: an entry of a chapter's own contents is navigation, not a result; the section it names is, and every address stays as it was
+ok   index: the reader gives its units for the index, each with its address, place and words
+ok   split: the book page holds only the book; an address of a companion page is forwarded there in place of this entry
+ok   split: a link to a companion page leaves for it, and the entry left keeps the place for Back
+ok   split: the search reaches the companion pages through the index: chapters first, then the parts in the map's order
+ok   split: a result in a companion page leaves for it with the search kept in the entry left; coming back reopens it on that result
+ok   split: the index is loaded as a script when the search first opens, and its results join the list
+ok   split: an index that cannot be loaded is said, and the book's own results remain
+ok   companion: a companion page opens on its first part; its bar leads to the book's title page and back to the place last read
+ok   companion: from the atlas page a link written to the book's page is followed as a change of page, keeping the place
+
+70 of 70 passed

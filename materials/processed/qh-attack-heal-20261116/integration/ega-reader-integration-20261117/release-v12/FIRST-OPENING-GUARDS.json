@@ -1,0 +1,41 @@
+{
+ "guards": [
+  {
+   "id": "OPEN-AUDIENCE-HTML",
+   "old_count": 0,
+   "new_count": null,
+   "pass": true
+  },
+  {
+   "id": "OPEN-FRONT-HTML-1",
+   "old_count": 0,
+   "new_count": 1,
+   "pass": true
+  },
+  {
+   "id": "OPEN-FRONT-HTML-2",
+   "old_count": 0,
+   "new_count": 1,
+   "pass": true
+  },
+  {
+   "id": "OPEN-CH01-HTML",
+   "old_count": 0,
+   "new_count": 1,
+   "pass": true
+  },
+  {
+   "id": "no audience element",
+   "count": 0,
+   "pass": true
+  }
+ ],
+ "search": {
+  "old_chapter1_text": 0,
+  "new_chapter1_text": 1,
+  "old_audience": 0,
+  "removed_front_paragraph": 0,
+  "pass": true
+ },
+ "pass": true
+}

@@ -1,0 +1,143 @@
+{
+ "at": "2026-11-17T14:14:24Z",
+ "owner": "website owner (foundation session 67e78388, claude10, Opus 5.5 max)",
+ "status": "LOCAL PREVIEW v12 (body revision on v11). Every automated check passes; not cleared: native capture and QA of changed views pending; not published",
+ "base": "v11 (frozen; its inputs in content-v11-inputs/)",
+ "authority": {
+  "receipt_sha256": "f1c930015fad59844aefe1bb195df82173ddd0bf6a9efcab67eb4cb627aacc68",
+  "author_seal_sha256": "7b01de93923b91b5735857bda31874b62d3487c03cdcc4b15c798917bd3fa1e2",
+  "verdict": "PASS_SOURCE_FIDELITY_BODY_ONLY",
+  "install_record": "body-revision-v12/INSTALL-body-revision.json"
+ },
+ "site": {
+  "index.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v12/index.html",
+   "sha256": "0baeb0871aee8251e117df3b2fc3a6269f6979e86bb0c0b507e14024991ebc0a",
+   "bytes": 3213003
+  },
+  "reference.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v12/reference.html",
+   "sha256": "67fd8ffb52b62e56f101d7e2b88053f6f2adf240a57b4c298e3f045655a08fdf",
+   "bytes": 3854887
+  },
+  "atlas.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v12/atlas.html",
+   "sha256": "fc8ff40a2858e3fe375511eab3080da27e93305a5b9ad6f2c7596982504c4446",
+   "bytes": 9815215
+  },
+  "reader-index.js": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v12/reader-index.js",
+   "sha256": "67fe46ffce075cca47be61914255d1c2cc0d1d67713b15b42b1de7f1d09c1e22",
+   "bytes": 4774399
+  }
+ },
+ "checks": {
+  "build": "PASS; 17,703 formulas (v11 + 42), 0 TeX errors",
+  "split": "12 of 12",
+  "page": "19 of 19",
+  "reader_tests": "70 of 70",
+  "index": "5,686 units",
+  "public": "0 hits; 21,466 links and map ids, 0 bad",
+  "body_markers": "21 of 21 (one generic marker resolved: BODY-MARKERS-NOTE.json)",
+  "first_opening_guards": "all pass (kept)",
+  "supplement": "exact (ALL PASS)",
+  "sources": "chapters 1, 4, 5, 12 and content.json byte-identical to the author proposal; manifest equal at all 11 pointers, unchanged elsewhere; atlas.py differs from v11 only by its replacement"
+ },
+ "confinement_v11_to_v12": {
+  "index.html": "changed only article#ch01, #ch04, #ch05, #ch12",
+  "reference.html": "changed only #orientation, #terms, #glossary, #results-index",
+  "atlas.html": "changed only section#atlas"
+ },
+ "changed_places": [
+  {
+   "operation": "BODY-CH01-FACTOR",
+   "page": "index.html",
+   "at": "#from-products-to-local-operations"
+  },
+  {
+   "operation": "BODY-CH04-OPENING",
+   "page": "index.html",
+   "at": "#ch04"
+  },
+  {
+   "operation": "BODY-CH04-BD-COMPARISON",
+   "page": "index.html",
+   "at": "#lie-and-operator-product"
+  },
+  {
+   "operation": "BODY-CH04-WORDS",
+   "page": "index.html",
+   "at": "#ordered-cut-geometry"
+  },
+  {
+   "operation": "BODY-CH04-TWO-CARRIERS",
+   "page": "index.html",
+   "at": "#ordered-cut-geometry"
+  },
+  {
+   "operation": "BODY-CH04-TRANSITION",
+   "page": "?",
+   "at": "not located by its first words"
+  },
+  {
+   "operation": "BODY-CH05-WORD-CATEGORY",
+   "page": "?",
+   "at": "not located by its first words"
+  },
+  {
+   "operation": "BODY-CH05-DUALITY-TYPE",
+   "page": "?",
+   "at": "not located by its first words"
+  },
+  {
+   "operation": "BODY-CH05-DEFINITION",
+   "page": "?",
+   "at": "not located by its first words"
+  },
+  {
+   "operation": "BODY-CH05-SUPPORTED-ALGEBRA",
+   "page": "index.html",
+   "at": "#ch05-the-support-remembers-which-cuts-were-allowed"
+  },
+  {
+   "operation": "BODY-CH05-ATLAS-SUPPORT",
+   "page": "index.html",
+   "at": "#ch05-the-support-remembers-which-cuts-were-allowed"
+  },
+  {
+   "operation": "BODY-CH12-CARRIERS",
+   "page": "index.html",
+   "at": "#ch12-associative-products-on-configurations"
+  },
+  {
+   "operation": "BODY-CH12-DEFINITION",
+   "page": "index.html",
+   "at": "#ch12-associative-products-on-configurations"
+  },
+  {
+   "operation": "BODY-CH12-VACUUM",
+   "page": "index.html",
+   "at": "#ch12-associative-products-on-configurations"
+  },
+  {
+   "operation": "BODY-CH12-BD-MAP",
+   "page": "index.html",
+   "at": "#ch12-associative-products-on-configurations"
+  },
+  {
+   "operation": "BODY-MANIFEST-COPIES",
+   "page": "reference.html / index.html",
+   "at": "#glossary, #orientation, #results-index, #terms (generated copies)"
+  },
+  {
+   "operation": "BODY-REFERENCE-ORIENTATION-TERMS",
+   "page": "reference.html / index.html",
+   "at": "#glossary, #orientation, #results-index, #terms (generated copies)"
+  },
+  {
+   "operation": "BODY-ATLAS-INTRO",
+   "page": "?",
+   "at": "not located by its first words"
+  }
+ ]
+}
