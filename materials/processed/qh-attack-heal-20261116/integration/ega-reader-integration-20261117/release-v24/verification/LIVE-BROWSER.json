@@ -1,0 +1,1201 @@
+{
+  "stage": "live",
+  "observedStartUtc": "2026-11-18T11:53:23.653Z",
+  "observedEndUtc": "2026-11-18T11:53:53.530Z",
+  "chromium": "147.0.7727.15",
+  "method": "Production Chromium rendering. Native Tab and Enter plus pointer click or touch tap generate the actual external top-level GET; this destination alone returns a locally intercepted 204 during per-link tests. Origin content is unmodified. A separate unintercepted GET records the real destination status. Residual in-site navigation is real and unintercepted.",
+  "staticPredecessorComparison": "dc662cbdf5d75a4680369ee969df2cab708a0e4b98837540f48847f257a4028e",
+  "findings": [],
+  "cases": [
+    {
+      "profile": "desktop",
+      "name": "reference.html",
+      "url": "https://research.momentum.inc/quantum-holography/reference.html",
+      "authors": [
+        {
+          "index": 0,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "nav",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Skip to the page",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 1,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "essay byline",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Essay",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 2,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Raeez Lorgat",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 3,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Raeez Lorgat",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Contents",
+          "href": "index.html#contents",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Atlas and reference",
+          "href": "index.html#programme-overview",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Top",
+          "href": "index.html#front",
+          "visible": true,
+          "route": "direct rendered link",
+          "hash": "#front",
+          "pathname": "/quantum-holography/index.html",
+          "hasTarget": true,
+          "targetTag": "HEADER"
+        }
+      ],
+      "visualCaptures": [
+        {
+          "file": "desktop-reference-author-0.png",
+          "sha256": "dfeb61101dd1a2c4df840d72b5a686f924c3876d76d2f20af08b579b677389fa"
+        },
+        {
+          "file": "desktop-reference-author-1.png",
+          "sha256": "d5c0d29024b88183396c729b1e2d77bfa677fa0e1d7e2f412eb517a13b20a42f"
+        },
+        {
+          "file": "desktop-reference-author-2.png",
+          "sha256": "b4e399922f5887fded2202a012a07c31bac3ee232b98235bf4348c95ff0e5152"
+        },
+        {
+          "file": "desktop-reference-author-3.png",
+          "sha256": "dacfe7fd6a78a178c45660bc4597362d0b80e810de2a0057d03defe7a89f9c81"
+        }
+      ],
+      "served": {
+        "url": "https://research.momentum.inc/quantum-holography/reference.html",
+        "status": 200,
+        "sha256": "02f555b74e0fceb955851fe3724cb8ab4a4b40a728734cd4a8e06c8da63a88c9",
+        "bytes": 5071435,
+        "equalsStaged": true,
+        "hashMethod": "Chromium navigation response bytes"
+      },
+      "shape": {
+        "authors": [
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "nav"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "essay byline"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          }
+        ],
+        "time": [
+          {
+            "date": "2026-11-18",
+            "text": "18 November 2026",
+            "hasLinkAncestor": false
+          }
+        ],
+        "title": "Reference — Chiral Quantum Groups and Holography — Raeez Lorgat",
+        "meta": "Raeez Lorgat",
+        "viewport": {
+          "width": 1440,
+          "height": 1000,
+          "mobile": false
+        }
+      }
+    },
+    {
+      "profile": "desktop",
+      "name": "index.html",
+      "url": "https://research.momentum.inc/quantum-holography/",
+      "authors": [
+        {
+          "index": 0,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "nav",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Skip to the page",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 1,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "book byline",
+          "precedingTabStop": {
+            "tag": "BUTTON",
+            "label": "Switch between light and dark",
+            "id": "reader-theme"
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 2,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Terms",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 3,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Raeez Lorgat",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Contents",
+          "href": "#contents",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Atlas and reference",
+          "href": "#programme-overview",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Top",
+          "href": "#front",
+          "visible": true,
+          "route": "direct rendered link",
+          "hash": "#front",
+          "pathname": "/quantum-holography/",
+          "hasTarget": true,
+          "targetTag": "HEADER"
+        }
+      ],
+      "visualCaptures": [
+        {
+          "file": "desktop-index-author-0.png",
+          "sha256": "5b969c7f3e7cbaad9ac6927a3f3fc7e3d739219c245a02a80cdea7d76ff80e72"
+        },
+        {
+          "file": "desktop-index-author-1.png",
+          "sha256": "1ab1412df1155516afb4b20f48e2fdcac75946a528a3ff335470e8b1bccb2668"
+        },
+        {
+          "file": "desktop-index-author-2.png",
+          "sha256": "d39a5817d664c9f53db0933045d92a7bb8ffb4087ff7d1f29a5b8487d1219a35"
+        },
+        {
+          "file": "desktop-index-author-3.png",
+          "sha256": "5a95bff04c726aff5b69b75108c9f5ca7684c0f018bd0a2ff36f6370d0a82e0c"
+        }
+      ],
+      "served": {
+        "url": "https://research.momentum.inc/quantum-holography/",
+        "status": 200,
+        "sha256": "53c6b4c090cb25bcb30d6cefc5f35c1573e9f4e7966d2c2efc78b66fc620cfe0",
+        "bytes": 5192993,
+        "equalsStaged": true,
+        "hashMethod": "Chromium navigation response bytes"
+      },
+      "shape": {
+        "authors": [
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "nav"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "book byline"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          }
+        ],
+        "time": [
+          {
+            "date": "2026-11-18",
+            "text": "18 November 2026",
+            "hasLinkAncestor": false
+          },
+          {
+            "date": "2026-11-18T02:32:40.214455Z",
+            "text": "",
+            "hasLinkAncestor": false
+          },
+          {
+            "date": "2026-11-18",
+            "text": "18 November 2026",
+            "hasLinkAncestor": false
+          }
+        ],
+        "title": "Chiral Quantum Groups and Holography — Raeez Lorgat",
+        "meta": "Raeez Lorgat",
+        "viewport": {
+          "width": 1440,
+          "height": 1000,
+          "mobile": false
+        }
+      }
+    },
+    {
+      "profile": "desktop",
+      "name": "atlas.html",
+      "url": "https://research.momentum.inc/quantum-holography/atlas.html",
+      "authors": [
+        {
+          "index": 0,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "nav",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Skip to the page",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 1,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "SUMMARY",
+            "label": "EDITORIAL ORDER\nRead the algebraic domain before the physical com",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 2,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Raeez Lorgat",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "click": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Contents",
+          "href": "index.html#contents",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Atlas and reference",
+          "href": "index.html#programme-overview",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Top",
+          "href": "index.html#front",
+          "visible": true,
+          "route": "direct rendered link",
+          "hash": "#front",
+          "pathname": "/quantum-holography/index.html",
+          "hasTarget": true,
+          "targetTag": "HEADER"
+        }
+      ],
+      "visualCaptures": [
+        {
+          "file": "desktop-atlas-author-0.png",
+          "sha256": "6e8a0ee8ce1de9c962200b363db2072af1e87cd252239b5d5472152c966052a6"
+        },
+        {
+          "file": "desktop-atlas-author-1.png",
+          "sha256": "a71e87ae1dc83edb9d299478ff85561476a8888046ba9f2308dd9fad5640bab2"
+        },
+        {
+          "file": "desktop-atlas-author-2.png",
+          "sha256": "e7b7d7af515bc1cef10cb9cb2a89d051250b17265f72cb870264bb800998c5b2"
+        }
+      ],
+      "served": {
+        "url": "https://research.momentum.inc/quantum-holography/atlas.html",
+        "status": 200,
+        "sha256": "a46cacb61b98ee79b167557075d5e2b175e019a867394a372967b45db3106da4",
+        "bytes": 11472147,
+        "equalsStaged": true,
+        "hashMethod": "separate uncached origin GET plus native Chromium navigation"
+      },
+      "shape": {
+        "authors": [
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "nav"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          }
+        ],
+        "time": [
+          {
+            "date": "2026-11-18",
+            "text": "18 November 2026",
+            "hasLinkAncestor": false
+          }
+        ],
+        "title": "Atlas — Chiral Quantum Groups and Holography — Raeez Lorgat",
+        "meta": "Raeez Lorgat",
+        "viewport": {
+          "width": 1440,
+          "height": 1000,
+          "mobile": false
+        }
+      }
+    },
+    {
+      "profile": "phone",
+      "name": "index.html",
+      "url": "https://research.momentum.inc/quantum-holography/",
+      "authors": [
+        {
+          "index": 0,
+          "visible": false,
+          "raw": "https://raeez.com",
+          "hideReason": "Native responsive style or closed section at this route"
+        },
+        {
+          "index": 1,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "book byline",
+          "precedingTabStop": {
+            "tag": "BUTTON",
+            "label": "Switch between light and dark",
+            "id": "reader-theme"
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "tap": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 2,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Terms",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "tap": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 3,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Raeez Lorgat",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "tap": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Contents",
+          "href": "#contents",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Atlas and reference",
+          "href": "#programme-overview",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Top",
+          "href": "#front",
+          "visible": true,
+          "route": "direct rendered link",
+          "hash": "#front",
+          "pathname": "/quantum-holography/",
+          "hasTarget": true,
+          "targetTag": "HEADER"
+        }
+      ],
+      "visualCaptures": [
+        {
+          "file": "phone-index-author-1.png",
+          "sha256": "227a797ba105c6b93e0618e9f8df20f5b619f5ea9122f28c0371d6be9204935c"
+        },
+        {
+          "file": "phone-index-author-2.png",
+          "sha256": "3f3205859eb3d2df214b7b4cc62ec38e0cff8dd3bc56b7234b4807938b2f0b60"
+        },
+        {
+          "file": "phone-index-author-3.png",
+          "sha256": "825af3b7405b5786560c326ea75810b52daf503d8f2da1b085b445b31b315a2c"
+        }
+      ],
+      "served": {
+        "url": "https://research.momentum.inc/quantum-holography/",
+        "status": 200,
+        "sha256": "53c6b4c090cb25bcb30d6cefc5f35c1573e9f4e7966d2c2efc78b66fc620cfe0",
+        "bytes": 5192993,
+        "equalsStaged": true,
+        "hashMethod": "Chromium navigation response bytes"
+      },
+      "shape": {
+        "authors": [
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "book byline"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          }
+        ],
+        "time": [
+          {
+            "date": "2026-11-18",
+            "text": "18 November 2026",
+            "hasLinkAncestor": false
+          },
+          {
+            "date": "2026-11-18T02:32:40.214455Z",
+            "text": "",
+            "hasLinkAncestor": false
+          },
+          {
+            "date": "2026-11-18",
+            "text": "18 November 2026",
+            "hasLinkAncestor": false
+          }
+        ],
+        "title": "Chiral Quantum Groups and Holography — Raeez Lorgat",
+        "meta": "Raeez Lorgat",
+        "viewport": {
+          "width": 390,
+          "height": 664,
+          "mobile": true
+        }
+      }
+    },
+    {
+      "profile": "phone",
+      "name": "reference.html",
+      "url": "https://research.momentum.inc/quantum-holography/reference.html",
+      "authors": [
+        {
+          "index": 0,
+          "visible": false,
+          "raw": "https://raeez.com",
+          "hideReason": "Native responsive style or closed section at this route"
+        },
+        {
+          "index": 1,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "essay byline",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Essay",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "tap": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 2,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Raeez Lorgat",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "tap": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 3,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Raeez Lorgat",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "tap": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Contents",
+          "href": "index.html#contents",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Atlas and reference",
+          "href": "index.html#programme-overview",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Top",
+          "href": "index.html#front",
+          "visible": true,
+          "route": "direct rendered link",
+          "hash": "#front",
+          "pathname": "/quantum-holography/index.html",
+          "hasTarget": true,
+          "targetTag": "HEADER"
+        }
+      ],
+      "visualCaptures": [
+        {
+          "file": "phone-reference-author-1.png",
+          "sha256": "354319678170cacccd73618b4f3fa70bddaf5c8edf4128b9b53b93eb4e45f656"
+        },
+        {
+          "file": "phone-reference-author-2.png",
+          "sha256": "3f3205859eb3d2df214b7b4cc62ec38e0cff8dd3bc56b7234b4807938b2f0b60"
+        },
+        {
+          "file": "phone-reference-author-3.png",
+          "sha256": "825af3b7405b5786560c326ea75810b52daf503d8f2da1b085b445b31b315a2c"
+        }
+      ],
+      "served": {
+        "url": "https://research.momentum.inc/quantum-holography/reference.html",
+        "status": 200,
+        "sha256": "02f555b74e0fceb955851fe3724cb8ab4a4b40a728734cd4a8e06c8da63a88c9",
+        "bytes": 5071435,
+        "equalsStaged": true,
+        "hashMethod": "Chromium navigation response bytes"
+      },
+      "shape": {
+        "authors": [
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "essay byline"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          }
+        ],
+        "time": [
+          {
+            "date": "2026-11-18",
+            "text": "18 November 2026",
+            "hasLinkAncestor": false
+          }
+        ],
+        "title": "Reference — Chiral Quantum Groups and Holography — Raeez Lorgat",
+        "meta": "Raeez Lorgat",
+        "viewport": {
+          "width": 390,
+          "height": 664,
+          "mobile": true
+        }
+      }
+    },
+    {
+      "profile": "phone",
+      "name": "atlas.html",
+      "url": "https://research.momentum.inc/quantum-holography/atlas.html",
+      "authors": [
+        {
+          "index": 0,
+          "visible": false,
+          "raw": "https://raeez.com",
+          "hideReason": "Native responsive style or closed section at this route"
+        },
+        {
+          "index": 1,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "SUMMARY",
+            "label": "EDITORIAL ORDER\nRead the algebraic domain before the physical com",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "tap": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        },
+        {
+          "index": 2,
+          "visible": true,
+          "raw": "https://raeez.com",
+          "resolved": "https://raeez.com/",
+          "name": "Raeez Lorgat",
+          "target": "",
+          "tabIndex": 0,
+          "zone": "footer",
+          "precedingTabStop": {
+            "tag": "A",
+            "label": "Raeez Lorgat",
+            "id": null
+          },
+          "tabFocused": true,
+          "enter": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          },
+          "trustedKeys": [
+            "Shift",
+            "Tab",
+            "Enter"
+          ],
+          "tap": {
+            "url": "https://raeez.com/",
+            "method": "GET",
+            "isNavigation": true,
+            "resourceType": "document"
+          }
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Contents",
+          "href": "index.html#contents",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Atlas and reference",
+          "href": "index.html#programme-overview",
+          "visible": false,
+          "route": "not displayed at this viewport"
+        },
+        {
+          "label": "Top",
+          "href": "index.html#front",
+          "visible": true,
+          "route": "direct rendered link",
+          "hash": "#front",
+          "pathname": "/quantum-holography/index.html",
+          "hasTarget": true,
+          "targetTag": "HEADER"
+        }
+      ],
+      "visualCaptures": [
+        {
+          "file": "phone-atlas-author-1.png",
+          "sha256": "3f3205859eb3d2df214b7b4cc62ec38e0cff8dd3bc56b7234b4807938b2f0b60"
+        },
+        {
+          "file": "phone-atlas-author-2.png",
+          "sha256": "2e9faa1bd71c891a7dc477b6700b035d0c0051b34d8775be08ba348e3490a74f"
+        }
+      ],
+      "served": {
+        "url": "https://research.momentum.inc/quantum-holography/atlas.html",
+        "status": 200,
+        "sha256": "a46cacb61b98ee79b167557075d5e2b175e019a867394a372967b45db3106da4",
+        "bytes": 11472147,
+        "equalsStaged": true,
+        "hashMethod": "separate uncached origin GET plus native Chromium navigation"
+      },
+      "shape": {
+        "authors": [
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          },
+          {
+            "text": "Raeez Lorgat",
+            "link": "https://raeez.com",
+            "zone": "footer"
+          }
+        ],
+        "time": [
+          {
+            "date": "2026-11-18",
+            "text": "18 November 2026",
+            "hasLinkAncestor": false
+          }
+        ],
+        "title": "Atlas — Chiral Quantum Groups and Holography — Raeez Lorgat",
+        "meta": "Raeez Lorgat",
+        "viewport": {
+          "width": 390,
+          "height": 664,
+          "mobile": true
+        }
+      }
+    }
+  ]
+}

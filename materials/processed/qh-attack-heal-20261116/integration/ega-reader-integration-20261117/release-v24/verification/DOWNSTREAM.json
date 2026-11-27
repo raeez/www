@@ -1,0 +1,159 @@
+{
+  "schema": "qh-first-principles-downstream-build/1",
+  "status": "MECHANICAL_CHECKS_COMPLETE",
+  "source_audit_failures": [],
+  "math_formulas": 24405,
+  "math_errors": 0,
+  "commands": [
+    {
+      "step": "split",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/private/tmp/qh-byline-20261118/v24/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-reference.py",
+        "/private/tmp/qh-byline-20261118/v24/normal/build/combined.html",
+        "/private/tmp/qh-byline-20261118/v24/normal/public",
+        "--book-name",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T12:25:01.547873+00:00",
+      "completed_utc": "2026-11-18T12:25:09.995827+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-byline-20261118/v24/normal/build/split.log"
+    },
+    {
+      "step": "metadata",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/private/tmp/qh-byline-20261118/v24/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/set_page_metadata.py",
+        "/private/tmp/qh-byline-20261118/v24/normal/public"
+      ],
+      "started_utc": "2026-11-18T12:25:09.996052+00:00",
+      "completed_utc": "2026-11-18T12:25:10.369985+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-byline-20261118/v24/normal/build/metadata.log"
+    },
+    {
+      "step": "index",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-byline-20261118/v24/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/reader-index.cjs",
+        "/private/tmp/qh-byline-20261118/v24/normal/public/reader-index.js",
+        "/private/tmp/qh-byline-20261118/v24/normal/public/index.html",
+        "/private/tmp/qh-byline-20261118/v24/normal/public/reference.html",
+        "/private/tmp/qh-byline-20261118/v24/normal/public/atlas.html"
+      ],
+      "started_utc": "2026-11-18T12:25:10.445446+00:00",
+      "completed_utc": "2026-11-18T12:27:14.095277+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-byline-20261118/v24/normal/build/index.log"
+    },
+    {
+      "step": "public_check",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/private/tmp/qh-byline-20261118/v24/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/check_public.py",
+        "/private/tmp/qh-byline-20261118/v24/normal/public",
+        "/private/tmp/qh-byline-20261118/v24/normal/build/PUBLIC-FILES-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T12:27:14.095579+00:00",
+      "completed_utc": "2026-11-18T12:27:34.627252+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-byline-20261118/v24/normal/build/public_check.log"
+    },
+    {
+      "step": "v14_consumer_check",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-byline-20261118/v24/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/consumer/check.cjs",
+        "/private/tmp/qh-byline-20261118/v24/normal/public",
+        "/private/tmp/qh-byline-20261118/v24/normal/build/V14-CONSUMER-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T12:27:34.627633+00:00",
+      "completed_utc": "2026-11-18T12:28:27.351842+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-byline-20261118/v24/normal/build/v14_consumer_check.log"
+    },
+    {
+      "step": "split_checks",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-byline-20261118/v24/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-checks.cjs",
+        "/private/tmp/qh-byline-20261118/v24/normal/public",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T12:28:27.352038+00:00",
+      "completed_utc": "2026-11-18T12:30:05.156982+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-byline-20261118/v24/normal/build/split_checks.log"
+    },
+    {
+      "step": "reader_page",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-byline-20261118/v24/normal/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "--page",
+        "/private/tmp/qh-byline-20261118/v24/normal/public/index.html"
+      ],
+      "started_utc": "2026-11-18T12:30:05.157566+00:00",
+      "completed_utc": "2026-11-18T12:32:05.983564+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-byline-20261118/v24/normal/build/reader_page.log"
+    },
+    {
+      "step": "reader_fixtures",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-byline-20261118/v24/normal/workspace/compiler/quantum-holography-status/tests/reader.test.cjs"
+      ],
+      "started_utc": "2026-11-18T12:32:05.984343+00:00",
+      "completed_utc": "2026-11-18T12:32:43.611951+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-byline-20261118/v24/normal/build/reader_fixtures.log"
+    }
+  ],
+  "heading_metadata": {
+    "path": "/private/tmp/qh-byline-20261118/v24/normal/build/HEADING-METADATA.json",
+    "sha256": "2584ca512a22476660a7eefe4f499a6d903e0c459bbea30d5bef236aa37fcc07",
+    "bytes": 3482
+  },
+  "public_files": {
+    "index.html": {
+      "path": "/private/tmp/qh-byline-20261118/v24/normal/public/index.html",
+      "sha256": "4332e0369eeb67ec709a76d9851cc23c9062f6b749e3cd7613ad081e8e887d7d",
+      "bytes": 4713893
+    },
+    "reference.html": {
+      "path": "/private/tmp/qh-byline-20261118/v24/normal/public/reference.html",
+      "sha256": "c830dd8c1a6ca2d7cb5b61d651da33663f1591effdc92edb224821fcad387404",
+      "bytes": 4703025
+    },
+    "atlas.html": {
+      "path": "/private/tmp/qh-byline-20261118/v24/normal/public/atlas.html",
+      "sha256": "b41b19c1d6aa1be2d27fcc30a21718f6eefc825389c53653938b7fde2fa4e829",
+      "bytes": 11336956
+    },
+    "reader-index.js": {
+      "path": "/private/tmp/qh-byline-20261118/v24/normal/public/reader-index.js",
+      "sha256": "2624bae40d4da5944d58ee827769e351acdc3e4b3dd1c9d91beeb2e2981199e0",
+      "bytes": 6002132
+    }
+  },
+  "bad_local_links": [],
+  "private_or_attribution_hit_count": 0,
+  "native_visual_qa": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "release_candidate": false
+}

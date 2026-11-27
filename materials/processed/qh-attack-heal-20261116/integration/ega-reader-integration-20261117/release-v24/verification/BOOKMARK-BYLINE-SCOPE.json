@@ -1,0 +1,78 @@
+{
+  "scope": "Unchanged mathematical and navigational inputs to the durable address identity across all generated search records after isolating semantically marked reader bylines",
+  "input_program": {
+    "sha256": "c3ecc8392bdeab43a978f0b3bf4c5d991062d570f482895c2bc0fcbc6c9abc67",
+    "bytes": 31577
+  },
+  "corrected_program": {
+    "sha256": "04a18d94e6c0d47983083538829a43d883efe287f7425fa05a039fb25ea31e22",
+    "bytes": 31798
+  },
+  "change": {
+    "sha256": "16d3597ba6e78ead7f010ee8125b2a150d15ae9bd2667573c9cd8d3cb03a3ff7",
+    "bytes": 1015
+  },
+  "pages": {
+    "index.html": {
+      "old_native": {
+        "sha256": "5e3aae76d1c02ac8584f06c4529b98c7e3f1d712cc34680ba06ed6d11d7db9f0",
+        "bytes": 4713789
+      },
+      "new_native": {
+        "sha256": "4332e0369eeb67ec709a76d9851cc23c9062f6b749e3cd7613ad081e8e887d7d",
+        "bytes": 4713893
+      },
+      "generated_records": 2608,
+      "sha256_of_all_generated_identity_inputs": "e68031eec3ff42ec7b09915cf1171300365445faab67335cb7dc2c39ad25725b",
+      "byline": []
+    },
+    "reference.html": {
+      "old_native": {
+        "sha256": "4aebf2385bd29d3d7e46950a09c5ca376c8470bf584fd6aaab36176ec3babd0e",
+        "bytes": 4702921
+      },
+      "new_native": {
+        "sha256": "c830dd8c1a6ca2d7cb5b61d651da33663f1591effdc92edb224821fcad387404",
+        "bytes": 4703025
+      },
+      "generated_records": 1732,
+      "sha256_of_all_generated_identity_inputs": "2137e7a30671203197863bddc8a411460fa0843166f69965805b9de289ee1ee5",
+      "byline": [
+        {
+          "id": "essay-p2",
+          "hrefs": [],
+          "text": [
+            "Raeez Lorgat"
+          ]
+        }
+      ]
+    },
+    "atlas.html": {
+      "old_native": {
+        "sha256": "191a470ec650c72ac4cd71543ed41d1d8ac101d3a48521b5e904214f63cc99c4",
+        "bytes": 11336897
+      },
+      "new_native": {
+        "sha256": "b41b19c1d6aa1be2d27fcc30a21718f6eefc825389c53653938b7fde2fa4e829",
+        "bytes": 11336956
+      },
+      "generated_records": 0,
+      "sha256_of_all_generated_identity_inputs": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "byline": []
+    }
+  },
+  "retained_issued_reference": "essay-passage-cb70f373f117fb2fbc22",
+  "retained_old_provisional_alias": "essay-p2",
+  "first_run": {
+    "receipt": {
+      "sha256": "48f518ce5d545572678030286c1f6ca6f9db860b59f2b812297e45674fcd7d85",
+      "bytes": 20035261
+    },
+    "incorrect_output": {
+      "sha256": "6122ba49e06304b70930546bf7bb47e8e1a952a93ac6febf786ae314431b9e95",
+      "bytes": 5988098
+    },
+    "wrong_generated_id": "essay-passage-14c0208e703c90d1bfb4",
+    "changed_source_files": []
+  }
+}
