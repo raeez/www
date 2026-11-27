@@ -1,0 +1,43 @@
+<figure class="qh-fig qv" id="fig-front-routes" aria-labelledby="fig-front-routes-title">
+<div class="qh-fig-head"><p class="qh-fig-title" id="fig-front-routes-title">Comparing the products of three and of four fields</p></div>
+<p class="qv-sr">With three fields a, b and c there are two products, (ab)c and a(bc), and one homotopy h joins them. With four fields there are five products, joined by five homotopies in a pentagon. From ((ab)c)d to a(b(cd)) one route passes through (ab)(cd) and uses two homotopies. The other route passes through (a(bc))d and a((bc)d) and uses three. A further homotopy, an operation on four fields, fills the pentagon between the two routes.</p>
+<div class="qv-panels">
+<div class="qv-panel">
+<p class="qv-panel-h">Three fields</p>
+<svg class="qv-svg" viewBox="0 0 280 132" style="--qv-w:280" aria-hidden="true" focusable="false">
+<path class="qv-rule" d="M22 34H118"/><path class="qv-rule" d="M162 34H258"/>
+<ellipse class="qv-ring" cx="49" cy="34" rx="20" ry="11"/><ellipse class="qv-ring" cx="231" cy="34" rx="20" ry="11"/>
+<g class="qv-dot"><circle cx="40" cy="34" r="3.4"/><circle cx="58" cy="34" r="3.4"/><circle cx="100" cy="34" r="3.4"/><circle cx="180" cy="34" r="3.4"/><circle cx="222" cy="34" r="3.4"/><circle cx="240" cy="34" r="3.4"/></g>
+<g class="qv-l qv-i" text-anchor="middle"><text x="40" y="17">a</text><text x="58" y="17">b</text><text x="100" y="17">c</text><text x="180" y="17">a</text><text x="222" y="17">b</text><text x="240" y="17">c</text></g>
+<path class="qv-ink" d="M70 92H210"/><path class="qv-head" d="M180 92l-9 -4v8z"/>
+<circle class="qv-dot" cx="70" cy="92" r="4"/><circle class="qv-dot" cx="210" cy="92" r="4"/>
+<text class="qv-l qv-i qv-halo" x="140" y="83" text-anchor="middle">h</text>
+<g class="qv-l qv-i" text-anchor="middle"><text x="70" y="117">(ab)c</text><text x="210" y="117">a(bc)</text></g>
+</svg>
+</div>
+<div class="qv-panel">
+<p class="qv-panel-h">Four fields</p>
+<svg class="qv-svg" viewBox="0 0 340 226" style="--qv-w:340" aria-hidden="true" focusable="false">
+<path class="qv-face" d="M62 108L170 44L278 108L234 188L106 188Z"/>
+<path class="qv-ink" d="M62 108L170 44L278 108L234 188L106 188Z"/>
+<g class="qv-head"><path d="M0 0l-9 -4v8z" transform="translate(148.4 56.8) rotate(-30.65)"/><path d="M0 0l-9 -4v8z" transform="translate(256.4 95.2) rotate(30.65)"/><path d="M0 0l-9 -4v8z" transform="translate(97.2 172) rotate(61.19)"/><path d="M0 0l-9 -4v8z" transform="translate(208.4 188)"/><path d="M0 0l-9 -4v8z" transform="translate(269.2 124) rotate(-61.19)"/></g>
+<g class="qv-dot"><circle cx="62" cy="108" r="4"/><circle cx="170" cy="44" r="4"/><circle cx="278" cy="108" r="4"/><circle cx="234" cy="188" r="4"/><circle cx="106" cy="188" r="4"/></g>
+<g class="qv-badge"><circle cx="116" cy="76" r="9.5"/><circle cx="224" cy="76" r="9.5"/><circle cx="84" cy="148" r="9.5"/><circle cx="170" cy="188" r="9.5"/><circle cx="256" cy="148" r="9.5"/></g>
+<g class="qv-n" text-anchor="middle"><text x="116" y="80">1</text><text x="224" y="80">2</text><text x="84" y="152">3</text><text x="170" y="192">4</text><text x="256" y="152">5</text></g>
+<g class="qv-l qv-i" text-anchor="middle"><text x="170" y="30">(ab)(cd)</text><text x="46" y="88">((ab)c)d</text><text x="294" y="88">a(b(cd))</text><text x="96" y="211">(a(bc))d</text><text x="244" y="211">a((bc)d)</text></g>
+<g class="qv-s" text-anchor="middle"><text x="170" y="124">a homotopy between</text><text x="170" y="141">the two routes</text></g>
+</svg>
+</div>
+</div>
+<table class="qv-table">
+<thead><tr><th scope="col">Edge</th><th scope="col">joins</th><th scope="col">by the homotopy</th></tr></thead>
+<tbody>
+<tr><th scope="row">1</th><td>\(((ab)c)d\) and \((ab)(cd)\)</td><td>\(h(ab,c,d)\)</td></tr>
+<tr><th scope="row">2</th><td>\((ab)(cd)\) and \(a(b(cd))\)</td><td>\(h(a,b,cd)\)</td></tr>
+<tr><th scope="row">3</th><td>\(((ab)c)d\) and \((a(bc))d\)</td><td>\(h(a,b,c)\,d\)</td></tr>
+<tr><th scope="row">4</th><td>\((a(bc))d\) and \(a((bc)d)\)</td><td>\(h(a,bc,d)\)</td></tr>
+<tr><th scope="row">5</th><td>\(a((bc)d)\) and \(a(b(cd))\)</td><td>\(a\,h(b,c,d)\)</td></tr>
+</tbody>
+</table>
+<figcaption class="qh-fig-caption">In the small pictures the ringed pair of fields is brought together first. Write \(h(a,b,c)\) for the homotopy between the two products of three fields, so that \(d\,h(a,b,c)=(ab)c-a(bc)\) when \(d\) kills \(a\), \(b\) and \(c\). With four fields each edge of the pentagon is one such homotopy, with a product of two fields as one of its inputs or with a fourth field multiplied on. Edges 1 and 2 form one route between the extreme products, and edges 3, 4 and 5 form the other. The shaded face is the further homotopy, an operation on four fields, which compares the two routes.</figcaption>
+</figure>

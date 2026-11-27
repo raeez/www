@@ -1,0 +1,124 @@
+{
+  "schema": "quantum-holography-native-edition/1",
+  "edition": "release-v32",
+  "commit": "10e600d37c86a62c3080b373af9478309c3cc4e9",
+  "base_public_commit": "f4a409ead1939da17462f4da6d3930b7c9894575",
+  "primary_parent_commit": "f4a409ead1939da17462f4da6d3930b7c9894575",
+  "primary_repository": "https://github.com/raeez/www",
+  "public_reader": "https://raeez.com/quantum-holography/",
+  "content_id": "de4605a366807cba1f7be1d9cdbba2e51e90d22369e02684e1c7b00fce1aa7cc",
+  "native_inputs": 67,
+  "native_changed_files": [
+    "compiler/quantum-holography-status/atlas.py",
+    "compiler/quantum-holography-status/monograph.py",
+    "compiler/quantum-holography-status/status.py",
+    "compiler/quantum-holography-status/tests/test_atlas.py",
+    "content/quantum-holography-status/atlas.json",
+    "content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+    "content/quantum-holography-status/chapters/14-branes.md",
+    "content/quantum-holography-status/content.json",
+    "content/quantum-holography-status/reader-data/manifest.json"
+  ],
+  "public_exports": {
+    "primary": {
+      "url": "https://raeez.com/quantum-holography/",
+      "commit": "10e600d37c86a62c3080b373af9478309c3cc4e9",
+      "files": {
+        "index.html": {
+          "sha256": "31d88808a503cd1c6aa16663564a9368d5540034d3af4c9df716707dfa879412",
+          "bytes": 7323655
+        },
+        "reference.html": {
+          "sha256": "40455a16c19867c31853d53dd6fcfd5d99bed810cdd9f6603f0158370ce9c359",
+          "bytes": 5127621
+        },
+        "atlas.html": {
+          "sha256": "d97b2b53c5a2d748128f9528972039f4b8756e1fda547d0be6d48eec07e76b3d",
+          "bytes": 11782025
+        },
+        "reader-index.js": {
+          "sha256": "289f9b3f8d95780285dfc9f5155fd6d7b5f68a73464389e6f412cb44f8f35331",
+          "bytes": 18923152
+        }
+      },
+      "attachments": {
+        "introduction.pdf": {
+          "sha256": "5860bf6b3a15d7688f1c09434afd12ff0e3754a95bf5719e104910813c414be1",
+          "bytes": 989043
+        },
+        "celestial-current-product.pdf": {
+          "sha256": "5ba2cc78f2b862b0cb77cddf3385efad376fc2a1c942d8bd4c8ed899ef1b7390",
+          "bytes": 818884
+        },
+        "celestial-residue.pdf": {
+          "sha256": "30a5f9f3da8791197d744f2bea3a28016b5f69b7bf01b9846eede32602021dbf",
+          "bytes": 1157630
+        },
+        "interacting-theories.pdf": {
+          "sha256": "ca842a2bee43350f23f864b9bdb16d18144569163d6d277030844919721f8956",
+          "bytes": 2067239
+        },
+        "critical-points-and-sphere-insertions.pdf": {
+          "sha256": "0a07e71181bd73547f4a451de1914e68ec30880c3b6914cff795ef65d1314ceb",
+          "bytes": 234395
+        },
+        "chiral-yangians.pdf": {
+          "sha256": "8d2e27ae2b8a5a949c8fcacecf38371750df7cef970fd0c20d2be34514156c2a",
+          "bytes": 4906702
+        }
+      }
+    },
+    "standalone_build": {
+      "files": {
+        "index.html": {
+          "sha256": "962bfdb42578265c032d012d498e7f08e62169d2f401ee421bace1abb68abe45",
+          "bytes": 7323126
+        },
+        "reference.html": {
+          "sha256": "f3f605c59fc1a221289c33b878149bf2cb7a98c8ee65e228b15f6a5db53a9fba",
+          "bytes": 5127092
+        },
+        "atlas.html": {
+          "sha256": "4f1fb398333ddc1e7fb1add0ceb217f57630ed55b21a82b5147548999a2121a1",
+          "bytes": 11781496
+        },
+        "reader-index.js": {
+          "sha256": "289f9b3f8d95780285dfc9f5155fd6d7b5f68a73464389e6f412cb44f8f35331",
+          "bytes": 18923152
+        }
+      },
+      "attachments": {
+        "introduction.pdf": {
+          "sha256": "5860bf6b3a15d7688f1c09434afd12ff0e3754a95bf5719e104910813c414be1",
+          "bytes": 989043
+        },
+        "celestial-current-product.pdf": {
+          "sha256": "5ba2cc78f2b862b0cb77cddf3385efad376fc2a1c942d8bd4c8ed899ef1b7390",
+          "bytes": 818884
+        },
+        "celestial-residue.pdf": {
+          "sha256": "30a5f9f3da8791197d744f2bea3a28016b5f69b7bf01b9846eede32602021dbf",
+          "bytes": 1157630
+        },
+        "interacting-theories.pdf": {
+          "sha256": "ca842a2bee43350f23f864b9bdb16d18144569163d6d277030844919721f8956",
+          "bytes": 2067239
+        },
+        "critical-points-and-sphere-insertions.pdf": {
+          "sha256": "0a07e71181bd73547f4a451de1914e68ec30880c3b6914cff795ef65d1314ceb",
+          "bytes": 234395
+        },
+        "chiral-yangians.pdf": {
+          "sha256": "8d2e27ae2b8a5a949c8fcacecf38371750df7cef970fd0c20d2be34514156c2a",
+          "bytes": 4906702
+        }
+      }
+    }
+  },
+  "reader_runtime": {
+    "reader": "controls/reader-v18.js",
+    "reference": "controls/status-v18.js",
+    "bookReader": "controls/reader-book-math-notices.js"
+  },
+  "verification": "verification/PUBLICATION.json"
+}
