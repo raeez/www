@@ -1,0 +1,78 @@
+{
+  "schema": "quantum-holography-native-edition/1",
+  "edition": "release-v28.1",
+  "commit": "04dbd695741f1437957ff8951b87ef1d41d0f5b0",
+  "base_public_commit": "b158247ddaef4d5b24c030f883e8f0aa4c31a9d3",
+  "primary_parent_commit": "b158247ddaef4d5b24c030f883e8f0aa4c31a9d3",
+  "primary_repository": "https://github.com/raeez/www",
+  "public_reader": "https://raeez.com/quantum-holography/",
+  "content_id": "50f386466135277af47ffda0c07b3cda649b24fa940b98502c7d38b85360be47",
+  "native_inputs": 64,
+  "native_changed_files": [
+    "compiler/quantum-holography-status/reader-runtime/reader-book.js",
+    "compiler/quantum-holography-status/reader-runtime/reader-companions.js",
+    "compiler/quantum-holography-status/reader.js"
+  ],
+  "public_exports": {
+    "primary": {
+      "url": "https://raeez.com/quantum-holography/",
+      "commit": "04dbd695741f1437957ff8951b87ef1d41d0f5b0",
+      "files": {
+        "index.html": {
+          "sha256": "05d67930414975ed6ee2497756613b9d7d6b683d2e1f490b1e1cca141e7c8c8c",
+          "bytes": 5640556
+        },
+        "reference.html": {
+          "sha256": "f8317dbb06ad30a33e384bfb95a8b7e8f483d83ed7fb36831ad33c566fafe61c",
+          "bytes": 5084103
+        },
+        "atlas.html": {
+          "sha256": "c9a6a368950eaa78c5b6a1cf098f3622706654eeeea79cabe220b5c307147532",
+          "bytes": 11484815
+        },
+        "reader-index.js": {
+          "sha256": "56520348b9be61c6264e04d428c85d6c47910f9c139cff8c3ca0ffb025c7461d",
+          "bytes": 6071865
+        }
+      },
+      "attachments": {
+        "introduction.pdf": {
+          "sha256": "7eeb8b3841670ef2beec7d347316fdac32373840771cd100273fe9e614ad6d19",
+          "bytes": 987069
+        }
+      }
+    },
+    "standalone_build": {
+      "files": {
+        "index.html": {
+          "sha256": "f92a4a8339dbc0e17812d555ddfbb9fe62fcbad3b9be77e6ba0514daee51822c",
+          "bytes": 5640027
+        },
+        "reference.html": {
+          "sha256": "19af41a5fccfd7012daa7709359e1e2cf9f629464ceb6dac2ddc10e4b75beb5c",
+          "bytes": 5083574
+        },
+        "atlas.html": {
+          "sha256": "a25a3de74d878406c63c21041dc1afbbf992aee436af6d1b2c757c40de91202f",
+          "bytes": 11484286
+        },
+        "reader-index.js": {
+          "sha256": "56520348b9be61c6264e04d428c85d6c47910f9c139cff8c3ca0ffb025c7461d",
+          "bytes": 6071865
+        }
+      },
+      "attachments": {
+        "introduction.pdf": {
+          "sha256": "7eeb8b3841670ef2beec7d347316fdac32373840771cd100273fe9e614ad6d19",
+          "bytes": 987069
+        }
+      }
+    }
+  },
+  "reader_runtime": {
+    "reader": "controls/reader-v18.js",
+    "reference": "controls/status-v18.js",
+    "bookReader": "controls/reader-book-math-notices.js"
+  },
+  "verification": "verification/PUBLICATION.json"
+}
