@@ -1,0 +1,178 @@
+{
+  "schema": "quantum-holography-reader-edition/1",
+  "edition": "v18",
+  "utc": "2026-11-18T01:36:47.515599+00:00",
+  "commit": "85a5c7a9e3a1be8873c33f86f8c105b186e31920",
+  "base_public_commit": "93ab244444a78ad247e167dc0c8657154e37051b",
+  "public_reader": "https://research.momentum.inc/quantum-holography/",
+  "content_id": "16fbea77cd7a60f0ec900eaae2a7cb0bab082213da33b749272f2e591864b490",
+  "scientific_horizons": [
+    "2026-11-18T00:33:16.419585Z",
+    "2026-11-18T01:00:18.782514Z"
+  ],
+  "full_rebuild_matches_published": {
+    "index.html": {
+      "sha256": "d4a94ab5232f0307e2c22acc5cbda5c5851d462e6eab9440d13caf6bd65d5280",
+      "bytes": 4839760
+    },
+    "reference.html": {
+      "sha256": "ff375b9d1ce90d29499dfcb5f49350f6ce00566a7592c2b9983fe21f88e8e9a7",
+      "bytes": 5020623
+    },
+    "atlas.html": {
+      "sha256": "f1076a0d9e6c0b2612190cb632fa170df4df1969098db0e00d2a1932d94e2365",
+      "bytes": 11394879
+    },
+    "reader-index.js": {
+      "sha256": "f36bfbe9aa3b06c2d99718f8140360f6b2804a9e98a16aaf956f7232992cd35b",
+      "bytes": 5835244
+    }
+  },
+  "source_manifest": {
+    "path": "SOURCE-MANIFEST.json",
+    "bytes": 11339,
+    "sha256": "9806881629e839ec4a7840eec5d5140fee6ce1c5d365784552ceca2fc25ec241"
+  },
+  "native_inputs": 54,
+  "reviewed_author_files": 9,
+  "native_source_readback": {
+    "path": "verification/NATIVE-SOURCE.json",
+    "bytes": 16310,
+    "sha256": "fb3b7f06cd344c3326fe01852629043f494ec2fdc14a98a0698726e7ac17ca13"
+  },
+  "archived_inputs": {
+    "path": "verification/INPUTS.json",
+    "bytes": 43842,
+    "sha256": "beb8b43afc4d536a8d32d6f9852b3cdb5544486189ab2fe9ffa7a53cc448be35"
+  },
+  "native_scientific_contract": {
+    "path": "verification/SOURCE-CONTRACT.json",
+    "bytes": 306608,
+    "sha256": "43ce6f50cf0d561ca286457399056ab1667757ce9a3b3ffc1bf2fbb9866709ce"
+  },
+  "fixed_rebuild": {
+    "path": "rebuild.py",
+    "bytes": 546,
+    "sha256": "b4e4350f6c74890895ffd6c899edacc328e777c857e1123336824f6ce24c8522"
+  },
+  "normal_build_command": {
+    "path": "tools/build_reader.py",
+    "bytes": 7221,
+    "sha256": "df7976f9439523931961c69dd3c100a1050778cdbccbd839a7a8765c4d288b1e"
+  },
+  "reproduction": {
+    "path": "verification/REPRODUCTION.json",
+    "bytes": 741,
+    "sha256": "93dd687357f3c23a4a3331ab912a0ca02629bc84bdca80519fb918699e696999"
+  },
+  "research_source_versions": {
+    "path": "verification/RESEARCH-SOURCES.json",
+    "bytes": 29717,
+    "sha256": "3474bc89895306fee7593ecec27b3fba978d8a280acac2d979ab1bd01ced7681"
+  },
+  "scientific_reviews": [
+    {
+      "path": "verification/0733-SCIENCE.md",
+      "bytes": 6861,
+      "sha256": "6eb2cf9c2df9dc305c9f2b7210ad8ad43158f78fb4c17dcfb215596a85d112d3"
+    },
+    {
+      "path": "verification/0800-SCIENCE.md",
+      "bytes": 5648,
+      "sha256": "53568dd03608d9bd2b74d43d7492c7b3e095ab5030793ed02232392c935bed48"
+    }
+  ],
+  "publication": {
+    "path": "verification/PUBLICATION.json",
+    "bytes": 2317,
+    "sha256": "9258c51dfbe5f06ff6b3d435116249489a85ea81b1db5772d94ee60676e3f8f1"
+  },
+  "canonical": {
+    "path": "verification/V18-CANONICAL-READBACK.json",
+    "bytes": 1249,
+    "sha256": "c613158a4ecc14c88788f050544ff2cb1844249283f85a1614b6055563e728d3"
+  },
+  "book_readback": {
+    "path": "verification/BARE-READBACK.json",
+    "bytes": 408,
+    "sha256": "9beddff26a2d54fc4c4ffa4c3d68a373d37151bc7622aba210def4b7fd70db6c"
+  },
+  "historical_address_test": {
+    "path": "verification/V18-CHECKED-RUNTIME.json",
+    "bytes": 4753,
+    "sha256": "7c05a5816c32f011c90bd9cb6f2c69db0fe5af0932939850d50efdb74b870693"
+  },
+  "continuing_history": {
+    "path": "compatibility/current-history.json",
+    "bytes": 5395,
+    "sha256": "05e62ee05a2cc3bf88c00a4ee7fd7d77a608e27f1ca77cadd58bfd2dae77225e"
+  },
+  "post_issue_parity": {
+    "path": "verification/V18-CURRENT-HISTORY-PARITY.json",
+    "bytes": 862,
+    "sha256": "02bf8a40fa5dc10e292ec58da630476a21ab9bbc48cd3652ab8bc04c5a655f19"
+  },
+  "post_issue_runtime": {
+    "path": "verification/V18-CURRENT-HISTORY-RUNTIME.json",
+    "bytes": 5276,
+    "sha256": "71e9564de4143cf8e4cb59bba0c42e0ec94282f9cb429cf1e2344aec1daad350"
+  },
+  "frozen_build_history": {
+    "path": "compatibility/history.json",
+    "bytes": 4480,
+    "sha256": "2cb997b439030d8eeab2cdf063b6e8d885f5098da10c897a12e0dadafed1fc4e"
+  },
+  "notation": {
+    "path": "verification/FINAL-NOTATION.json",
+    "bytes": 1510,
+    "sha256": "b29da9d5b57205969956c5b6efe09e40c1c2bb80a50f8197adf092eb09755713"
+  },
+  "science_on_rendered_pages": {
+    "path": "verification/FINAL-SCIENCE.json",
+    "bytes": 730,
+    "sha256": "9c013918009d41aa1342c7da3dd22c450db18bb671c15caf9f63ef9fa8cc7552"
+  },
+  "content_parity": {
+    "path": "verification/V18-CHECKED-CONTENT.json",
+    "bytes": 628,
+    "sha256": "7a6f5ce842534f884adfb9a8182f75aea4c4f9851609d39126b6473c52161e1d"
+  },
+  "link_and_map_checks": {
+    "path": "verification/FINAL-LINKS.json",
+    "bytes": 774,
+    "sha256": "1e492a76598975c0ffeff245f1b3a1dd7cff52274f38f808f13a0b161e10c748"
+  },
+  "scientific_search_and_navigation": {
+    "path": "verification/READER-PATH-CHECK.json",
+    "bytes": 759545,
+    "sha256": "0d3406cd85bc2267b72400448a9e7d66b965fd264700a71d7c11e3a717fb7b31"
+  },
+  "reader_checks": 4701,
+  "public_shape": {
+    "chapters": 18,
+    "authored_heading_destinations": 249,
+    "marked_subsection_search_units": 118,
+    "terms": 85,
+    "results": 70,
+    "claims": 1098,
+    "graph_nodes": 1098,
+    "graph_edges": 225,
+    "reading_paths": 35,
+    "diagrams": 13,
+    "source_links": 192,
+    "legacy_explicit_public_link_discoveries": 42,
+    "search_units": 6967
+  },
+  "native_formula_count": 23342,
+  "native_math_errors": 0,
+  "front_expressions": 38,
+  "front_displays": 3,
+  "final_links": 30197,
+  "post_issue_runtime_checks": 26,
+  "native_visual_status": "Existing native Opus seat awaits authentic shared allowance.",
+  "native_visual_evidence": {
+    "path": "verification/native-visual/BOUND-READINESS.json",
+    "bytes": 10656,
+    "sha256": "674f4ad0cf8b1880c90975295ed5165ad9984e9e2a0e89164707eb79d761cd8a"
+  }
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "PAIR-W4-AFFINE-TERNARY",
+    "result": "PASS",
+    "checked_path": "/tmp/paired-math-dispatch-20261118/astra/p11-exceptional-w4-algebra/resident-higher/AFFINE-TERNARY.md",
+    "sha256": "2776d1f845453f3d5b0f792cc4acdbbe6a2d732b21e485ae60f00f8b5267954a",
+    "locator": "lines 3\u201323",
+    "scope": "The independently defined formal exterior affine source, marked cohomology map f, and actual associative two-dimensional ternary restriction kernel. Strict countermodels forget the pinned orbit involution.",
+    "reason": "Fresh ordinary graded Hochschild calculation gives relative dimensions 19/26, differential rank 11, constrained block rank 26 and surviving dimension two. The two suspended permutation sums jointly separate this kernel. The two elementary ternaries are closed and have no self-insertion or affine restriction.",
+    "check_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-involution/PROOF.md",
+    "check_sha256": "16f1927ad54ca4dfb0917c6999675cf52b6f1cbf726c94364f6aac7cacdce521",
+    "replay_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-involution/replay.py",
+    "replay_sha256": "f72e8afbe5fc08c8a15fee9f597dd751ae85485feb9960013eb49bf01845585b",
+    "output_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-involution/CALCULATION.json",
+    "output_sha256": "febacc2e5e8fbb5f0b6dc995599a3eff04ca7019740650968993bbf72d546347"
+  },
+  {
+    "id": "PAIR-W4-ABSOLUTE-TERNARY",
+    "result": "PASS",
+    "checked_path": "/tmp/paired-math-dispatch-20261118/astra/p11-exceptional-w4-algebra/resident-higher/AFFINE-TERNARY.md",
+    "sha256": "2776d1f845453f3d5b0f792cc4acdbbe6a2d732b21e485ae60f00f8b5267954a",
+    "locator": "the seven named coordinates at lines 9\u201319 and the absolute-obstruction paragraph at line 25",
+    "scope": "The seven coordinates use the displayed suspended representatives after vanishing on (a,a,a), before any affine morphism or geometric diagram constraints.",
+    "reason": "All seven representatives are cocycles and independent modulo coboundaries in the ordinary convention. Enumerating all insertions leaves exactly x0*x2 on (a,a,a,a,b) to az. The five target coordinates have a rank-four boundary space with annihilator (1,1,1,1,1). When the product vanishes this ternary square vanishes as a cochain and the higher operations may be zero.",
+    "check_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-involution/PROOF.md",
+    "check_sha256": "16f1927ad54ca4dfb0917c6999675cf52b6f1cbf726c94364f6aac7cacdce521",
+    "replay_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-involution/absolute_replay.py",
+    "replay_sha256": "b70bbca16b102be66bf23705c1c3e519a35ccb23604e18058589d053cb052e49",
+    "output_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-involution/ABSOLUTE-CONTROL.json",
+    "output_sha256": "5bf0370dd35565c77a2bcb9754547530e569004aa92f2613be748c3e02f8e1ff"
+  },
+  {
+    "id": "PAIR-W4-EQUIVARIANT",
+    "result": "PASS",
+    "checked_path": "/tmp/paired-math-dispatch-20261118/astra/p11-exceptional-w4-algebra/resident-higher/QUARTIC.md",
+    "sha256": "5eedff9ea303f84082a6cc2ad0530bccaa4483536b59afbb9c313a98a5cf5101",
+    "locator": "conditional proposition and proof, lines 3\u201323",
+    "scope": "Assuming the stated marked diagram acts on an enhanced affine morphism and the target character table is plus on 1,a,c,ac and minus on b,ab,u,au,v,av,z,az. This verdict checks the conditional algebra. An independent verdict on the native geometric realization of those hypotheses has a distinct subject.",
+    "reason": "Independent unsuspended calculation gives zero invariant ternary cochains, quartic differential ranks 9 and 4, affine incoming rank 6, stacked rank 13, one constrained quartic class, and a separating alternating four-term ordinary detector (all plus after suspension). Arity five has no invariant operations and larger arities have no degree slot. Both quartic values occur on auxiliary marked models. The actual gamma value is unmeasured.",
+    "check_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-involution/PROOF.md",
+    "check_sha256": "16f1927ad54ca4dfb0917c6999675cf52b6f1cbf726c94364f6aac7cacdce521",
+    "replay_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-involution/replay.py",
+    "replay_sha256": "f72e8afbe5fc08c8a15fee9f597dd751ae85485feb9960013eb49bf01845585b",
+    "output_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-involution/CALCULATION.json",
+    "output_sha256": "febacc2e5e8fbb5f0b6dc995599a3eff04ca7019740650968993bbf72d546347"
+  }
+]

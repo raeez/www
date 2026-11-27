@@ -1,0 +1,159 @@
+{
+  "schema": "qh-first-principles-downstream-build/1",
+  "status": "MECHANICAL_CHECKS_COMPLETE",
+  "source_audit_failures": [],
+  "math_formulas": 23342,
+  "math_errors": 0,
+  "commands": [
+    {
+      "step": "split",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-reference.py",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/combined.html",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public",
+        "--book-name",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T01:07:04.621792+00:00",
+      "completed_utc": "2026-11-18T01:07:05.977451+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/split.log"
+    },
+    {
+      "step": "metadata",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/set_page_metadata.py",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public"
+      ],
+      "started_utc": "2026-11-18T01:07:05.977569+00:00",
+      "completed_utc": "2026-11-18T01:07:06.275301+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/metadata.log"
+    },
+    {
+      "step": "index",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/reader-index.cjs",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public/reader-index.js",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public/index.html",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public/reference.html",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public/atlas.html"
+      ],
+      "started_utc": "2026-11-18T01:07:06.298881+00:00",
+      "completed_utc": "2026-11-18T01:07:26.396167+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/index.log"
+    },
+    {
+      "step": "public_check",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/check_public.py",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/PUBLIC-FILES-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T01:07:26.396566+00:00",
+      "completed_utc": "2026-11-18T01:07:32.262323+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/public_check.log"
+    },
+    {
+      "step": "v14_consumer_check",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/consumer/check.cjs",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/V14-CONSUMER-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T01:07:32.262428+00:00",
+      "completed_utc": "2026-11-18T01:07:46.630546+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/v14_consumer_check.log"
+    },
+    {
+      "step": "split_checks",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-checks.cjs",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T01:07:46.630960+00:00",
+      "completed_utc": "2026-11-18T01:08:09.234004+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/split_checks.log"
+    },
+    {
+      "step": "reader_page",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "--page",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public/index.html"
+      ],
+      "started_utc": "2026-11-18T01:08:09.234263+00:00",
+      "completed_utc": "2026-11-18T01:09:10.178825+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/reader_page.log"
+    },
+    {
+      "step": "reader_fixtures",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/workspace/compiler/quantum-holography-status/tests/reader.test.cjs"
+      ],
+      "started_utc": "2026-11-18T01:09:10.179349+00:00",
+      "completed_utc": "2026-11-18T01:09:30.295801+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/reader_fixtures.log"
+    }
+  ],
+  "heading_metadata": {
+    "path": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/build/HEADING-METADATA.json",
+    "sha256": "8658a05273a816c3f5ff4b053290e43558db7908eece6293512b71f2ce18c3ff",
+    "bytes": 3328
+  },
+  "public_files": {
+    "index.html": {
+      "path": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public/index.html",
+      "sha256": "d389eef51bb1ff8df6457a69552311c307eef3aaca7df8738d8d161decbdf156",
+      "bytes": 4389462
+    },
+    "reference.html": {
+      "path": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public/reference.html",
+      "sha256": "5d0de2579bf4dce71f8a8587092d4427ff7f81bc8ecc59831224b53be21eb70d",
+      "bytes": 4655230
+    },
+    "atlas.html": {
+      "path": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public/atlas.html",
+      "sha256": "0d37c60f134cc603fb57c9be4eeb550e62ce2e1f7bf65117211d41cccd0b2998",
+      "bytes": 11260687
+    },
+    "reader-index.js": {
+      "path": "/private/tmp/qh-research-reader-0733-20261118/builds/a100ed6791fe4ebe7a86ab371cdd30a6f2fdf4e93b4432f858bb36ae72bb07bf/public/reader-index.js",
+      "sha256": "2c3f4047c91253dbc8af787b2b56f00668a2f8c5207d14fccebbd3aca137b741",
+      "bytes": 5847181
+    }
+  },
+  "bad_local_links": [],
+  "private_or_attribution_hit_count": 0,
+  "native_visual_qa": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "release_candidate": false
+}

@@ -1,0 +1,562 @@
+\chapter{The ramified Miura parameter}
+\label{rpd:chapter}
+
+The Miura $W_4$ algebra has central charge $3-60a^2$.
+The simultaneous substitutions $a\mapsto-a$ and $a_i\mapsto-a_i$
+for its four Miura currents preserve the central charge and change
+the sign of the state of weight three. At $a=0$ this symmetry fixes
+the parameter and still
+acts nontrivially on the states. A family indexed only by central
+charge must therefore be distinguished from the family with this
+specified symmetry.
+
+Put $A=\mathbb C[t]$, $R=\mathbb C[a]$, with $t\mapsto a^2$, and work on
+$X_R=\mathbb A^1_R$ with coordinate $z$, translation $T=\partial_z$, and
+density $dz$. The parameters have cohomological degree and weight zero,
+and $T$ raises weight by one. Tensor products in this chapter are tensor products of
+field state modules unless stated otherwise. They do not replace cut
+convolution or the diagonal tensor of geometric coefficient systems.
+In particular, their vertex vacuum does not identify the scalar cut
+unit $K$ with the local geometric vacuum $J$.
+
+\section{The polynomial family and its symmetry}
+
+We use the Miura fields $U_0=\mathbf1$, $U_2,U_3,U_4$ and the curved dual
+of Theorem~\ref{w4d:thm:main}. Write
+\[
+ \Gamma_0=S,\qquad \Gamma_2=\gamma_2,\quad
+ \Gamma_3=\gamma_3,\quad\Gamma_4=\gamma_4.
+\]
+Every $U_i$ is even of cohomological degree zero. Every $\Gamma_i$ is odd
+of degree one, with weight $1-i$. The scalar-dual state $S$ is not the
+vertex vacuum. Modes are normalized by
+$Y(x,u)y=\sum_n x_{(n)}y\,u^{-n-1}$. In particular, the normal product is
+the $(-1)$-product. The curvature convention is
+\[
+ d=S_{(0)}|_B,\qquad w=\tfrac12S_{(0)}S,
+ \qquad d^2=w_{(0)},\qquad dw\in TB.
+\]
+The scalar-extended generator bundle $N_R^\circ$ is free of rank four
+on $X_R$, with frame $e_0,e_2,e_3,e_4$. Its duality is contravariant:
+\[
+ \check N_R^\circ=s^{-1}\mathcal{H}om_{\mathcal O_{X_R}}(N_R^\circ,\mathcal O_{X_R})
+       \otimes\omega_{X_R}^{-1}.
+\]
+The canonical line here is relative to $R$:
+$\omega_{X_R}^{-1}$ denotes $\omega_{X_R/R}^{-1}$.
+The shift $s^{-1}$ places the dual generators in cohomological degree one.
+On $X_R^2=X_R\times_{\operatorname{Spec}R}X_R$, the external
+two-generator pairing takes values in $s^{-2}\omega_{X_R^2/R}^{-1}$. The local pole coordinate is
+$u=z_1-z_2$; its sign is fixed, and the relations are extended from
+$u\ne0$ across that diagonal by the stated lattices. No real boundary
+or orientation-reversing operation on the curve is used. This finite
+locally free duality is not the continuous dual of the full ordered
+coefficient coalgebra.
+
+Give $U_s$ weight and filtration degree $s$.
+For the odd generators use the positive filtration
+\[
+ \delta(S)=9,\qquad\delta(\gamma_2)=5,\qquad
+ \delta(\gamma_3)=3,\qquad\delta(\gamma_4)=1,
+ \qquad\delta(T)=0.
+\]
+The full coupling and its induced operator are
+\[
+ q=\sum_{s=2}^4U_s\otimes\gamma_s,\qquad
+ e=\mathbf1\otimes S+q,\qquad
+ Q=e_{(0)}|_{V\otimes B}=d+q_{(0)}.
+\]
+One has $e_{(n)}e=0$ for all $n\geq0$, and consequently $Q^2=0$,
+by Proposition~\ref{w4d:prop:coupling}. The exact state $e$, including
+its derivatives, is part of the data. No augmentation to $R$ is specified.
+
+\begin{lemma}[Polynomial PBW extension]\label{rpd:lem:polynomial}
+The universal Miura datum and its curved field dual admit free
+$R$-forms $V_R$, $B_R\subset B_R^\circ$ with the full generic ordered PBW
+bases. All modes, translation, the inclusion, $S,d,w$, and $e$ preserve
+these forms. For every commutative $R$-algebra $D$, their scalar
+extensions are the universal field algebras of the specialized
+presentations. This includes nonflat $D$.
+\end{lemma}
+\begin{proof}
+Take the $R$-spans of the ordered PBW words inside the generic algebras
+over $\mathbb C(a)$, using Propositions~\ref{w4d:prop:lattice}
+and~\ref{w4d:prop:dual-PBW}. The coefficient tables
+\ref{w4d:tab:C} and~\ref{w4d:tab:E} have entries in $\mathbb Q[a]$.
+The primal relation matrix $M$ has diagonal entries one and satisfies
+$(1-M)^4=0$. Its inverse is therefore
+$M^{-1}=\sum_{j=0}^3(1-M)^j$. The annihilator matrix
+$D_M=M^{-\mathrm t}$ therefore has entries in $R[u^{-1}]$,
+and $MD_M^{\mathrm t}=1$ holds over that ring.
+
+Normal ordering of a fixed product uses finitely many reductions.
+Every dual correction has $m=k+l-i-j\geq2$ and lowers the
+filtration by $2m$. A primal correction lowers the filtration by
+$m=i+j-k-l\geq2$. Wrongly ordered
+creation modes are exchanged using the commutator, and a repeated odd
+creation mode is half its commutator. The only numerical divisions are
+by nonzero rational integers. The reductions therefore have
+coefficients in $R$ and terminate for each pair of finite states.
+All modes preserve the indicated $R$-spans.
+
+The generic PBW words are linearly independent, so these spans are
+free. Every vertex identity is an identity between elements of these
+free modules and holds after extension to $\mathbb C(a)$; hence it holds
+over $R$. The same argument applies to the curvature and coupling
+identities. After extension to any $D$, the normal-ordering relations
+still span the ordered words. The free base-changed model gives their
+linear independence, so the universal presentation maps isomorphically
+to that model. No flatness of $D$ is used.
+The finite relation lattices and their annihilators also commute with
+this base change: the specialized matrices still give dual free frames,
+by $MD_M^{\mathrm t}=1$. This argument uses no interchange with an
+infinite pro-limit.\qedhere
+\end{proof}
+
+This assertion concerns universal PBW algebras. It does not identify a
+specialization with a simple quotient or with the image of a
+specialized free-field representation. It also does not construct the
+completed geometric bar comparison.
+
+\begin{lemma}[Signed symmetry]\label{rpd:lem:symmetry}
+There is a semilinear involution $\sigma$ of these three algebras
+such that
+\[
+ \sigma(a)=-a,\qquad \sigma(U_s)=(-1)^sU_s,
+ \qquad \sigma(\Gamma_s)=(-1)^s\Gamma_s.
+\]
+It commutes with translation, fixes the vacuum and $S,d,w,e$, and
+preserves every mode and the inclusion $B_R\subset B_R^\circ$.
+\end{lemma}
+\begin{proof}
+On the Miura expression the simultaneous change $a\mapsto-a$ and
+$a_i\mapsto-a_i$ multiplies each of the four factors by $-1$.
+Comparing the coefficients of $(aT)^{4-s}$ gives the stated primal
+sign. For the relation matrices, indexed by ordered pairs from
+$I=\{0,2,3,4\}$, put
+\[
+ P_{ij,ij}=(-1)^{i+j}.
+\]
+Their coefficient identities are
+\[
+ M(-a)=PM(a)P,\qquad D_M(-a)=PD_M(a)P.
+\]
+Indeed each coefficient from row $ij$ to column $kl$ has parameter
+parity $i+j+k+l$; this is visible term by term in both polynomial
+tables. Thus the universal relations are preserved. The maps extend
+to all states, and applying them twice is the identity. Since $S$ is
+fixed, its zero mode and half-self-product are fixed. Each summand
+$U_s\otimes\gamma_s$ has two equal signs, so $e$ is fixed.\qedhere
+\end{proof}
+
+The sign in this lemma is not ghost parity. For example,
+$\gamma_2$ and $\gamma_4$ are odd states fixed by $\sigma$.
+
+\section{Descent and the fixed fibre}
+
+\begin{definition}\label{rpd:def:system}
+A \emph{marked field system} over a commutative $\mathbb C$-algebra $D$
+consists of unital graded vertex superalgebras $V$ and
+$B\subset B^\circ$, their translations and weight gradings, positive
+generator filtrations, a degree-one state $S\in B^\circ$, and a
+degree-one state $e\in V\otimes_D B^\circ$.
+Require $S_{(n)}B\subset B$ and $S_{(n)}S\in B$ for $n\geq0$,
+the curved identities for $d=S_{(0)}|_B$ and
+$w=S_{(0)}S/2$, and $e_{(n)}e=0$ for every $n\geq0$.
+Require also $e-\mathbf1\otimes S\in V\otimes_D B$; then
+$e_{(0)}$ preserves $V\otimes_D B$ and squares to zero there.
+Morphisms preserve every mode, translation, grading, filtration,
+inclusion, vacuum and the two marked states $S,e$.
+They preserve $d,w$ exactly. They need not preserve the names of
+generators; derivatives and composites may occur in their images.
+The Miura system just constructed is denoted by $\mathcal F_R$.
+Its state modules are direct sums of finite PBW words with arbitrary
+finite jets.
+\end{definition}
+
+To allow resolutions, give these state modules a second, resolution
+grading $r$, retaining the ghost grading $g$. The tensor signs use
+total parity $r+g$ modulo two. A resolution has a $D$-linear
+derivation $\partial$ of bidegree $(1,0)$ and weight zero,
+commuting with translation and preserving the filtration, with
+\[
+ \partial^2=0,\qquad \partial S=\partial e=0,
+ \qquad \partial d+d\partial=0.
+\]
+Here $S,e$ have bidegree $(0,1)$, $w$ has bidegree $(0,2)$,
+and $d$ has bidegree $(0,1)$. The original system has resolution
+degree zero and $\partial=0$. The curved derivation $d$ is not
+used to define resolution cohomology.
+
+Invert the morphisms that are quasi-isomorphisms for $\partial$
+on each of the three state complexes. Equivalences and coherent
+homotopies below are taken in this localization. Use representatives
+whose underlying state complexes are K-flat when forming derived
+scalar extensions. In the equivariant category the morphisms and
+homotopies intertwine the specified parameter action. These choices
+allow acyclic resolution states and invertible filtered changes of
+fields while retaining the underlying derived fibre representation.
+They impose no field/bar comparison as an entry hypothesis.
+
+\begin{definition}\label{rpd:def:descent}
+A \emph{coarse descent} of the signed system $\mathcal F_R$ is a
+field system $\mathcal D$ over $A$ and an equivalence
+\[
+ \theta:R\otimes_A^{\mathbf L}\mathcal D\simeq\mathcal F_R
+\]
+in this category, identifying the canonical semilinear action on the
+scalar factor with $\sigma$. The induced comparison over
+$R\otimes_A R$ must satisfy the parameter \v{C}ech cocycle, with
+its coherent homotopies for resolved systems.
+\end{definition}
+
+\begin{theorem}[Failure of coarse-parameter descent]
+\label{rpd:thm:descent}
+The signed universal Miura $W_4$ field system has no descent from
+$R=\mathbb C[a]$ to $A=\mathbb C[a^2]$ in the preceding category.
+The same obstruction persists after equivariant filtered changes of
+states and after equivariant resolution equivalences. The system descends after
+inverting $a^2$, and it defines a field system on the quotient stack
+$[\operatorname{Spec}R/\mu_2]$ without inverting $a$.
+\end{theorem}
+\begin{proof}
+The parameter \v{C}ech relation is
+\[
+ R\otimes_A R=\mathbb C[a,b]/(a^2-b^2).
+\]
+Its diagonal $b=a$ and its reflection graph $b=-a$ meet at
+$a=b=0$. A descent comparison restricts to the identity on the
+diagonal and to the specified action on the reflection graph.
+On $\gamma_3$ these restrictions at their intersection would be
+$\gamma_3$ and $-\gamma_3$. Their difference is
+$2\gamma_3\ne0$, by the free PBW basis in
+Lemma~\ref{rpd:lem:polynomial}.
+
+The same obstruction can be expressed on a derived fibre. For a
+pulled-back $A$-complex $C$, associativity of derived scalar extension
+gives an equivariant identification
+\[
+ \mathbb C\otimes_R^{\mathbf L}
+       (R\otimes_A^{\mathbf L}C)
+ \simeq \mathbb C\otimes_A^{\mathbf L}C.
+\]
+Compute the right side using a K-flat $A$-representative of $C$.
+The canonical involution changes only the $R$-factor before restriction;
+after restriction it is the identity on every term. This remains true
+if $C$ is not flat over $A$. The fibre of
+$B_R$ has a nonzero $(-1)$-eigenclass $\gamma_3$ in resolution
+cohomology $H^0_\partial$. An equivariant equivalence induces an
+isomorphism of these representations. No change of frame, homotopy,
+or acyclic resolution can turn that representation into the identity
+representation. This also proves the assertion for homotopy-coherent
+descent, rather than only strict descent.
+
+After inverting $a^2$, the two graphs are disjoint and the cover is a
+$\mu_2$-torsor. On a PBW word $v$ of sign $(-1)^\varepsilon$, the
+comparison $p_1^*\mathcal F_R\longrightarrow p_2^*\mathcal F_R$,
+where $p_1,p_2$ are the two projections from the parameter fibre
+product, is
+\[
+ \Theta_{a,b}(v)=(b/a)^\varepsilon v.
+\]
+Its restrictions are the identity and the involution. Since
+$(b/a)^2=1$, coefficient covariance proves preservation of all modes
+and of the coupling. On three parameter lifts its cocycle is the
+identity $(h/b)^\varepsilon(b/a)^\varepsilon=(h/a)^\varepsilon$.
+Here $h$ is the third parameter coordinate. An explicit descended
+system is obtained by taking the invariant field algebras over
+$A[t^{-1}]$. Positive PBW words remain a basis, while a negative word
+$v$ is replaced by $av$; their pullback comparison is invertible
+because $a$ is invertible. Its exact coupling is
+\[
+ e'=\mathbf1\otimes S+U_2\otimes\gamma_2+U_4\otimes\gamma_4
+       +t^{-1}(aU_3)\otimes(a\gamma_3).
+\]
+Its pullback is $e$. All mode, curvature and coupling identities follow
+by the injective faithfully flat scalar extension, and the invariant
+subalgebras carry the restricted translation, inclusion and vacuum.
+Without
+inverting $a$, the action itself still supplies descent along the
+atlas of the quotient stack. That action groupoid is different from
+the \v{C}ech relation of the coarse parameter space at the branch.
+\qedhere
+\end{proof}
+
+This theorem does not exclude a form obtained by forgetting the signed
+action or choosing a different lift of parameter reflection. It also
+does not assert invariance under a localization that retains only the
+cohomology of the coupled differential $Q$.
+
+\section{The comparison map and the coupling}
+
+Let $\mathcal P_+$ and $\mathcal P_-$ be the PBW words on which the
+constant sign part of $\sigma$ is respectively $+1$ and $-1$.
+Derivatives have the sign of the state they differentiate. Normal
+words are exact eigenvectors, because $\sigma$ is a vertex
+homomorphism.
+
+\begin{proposition}[Invariant comparison]
+\label{rpd:prop:invariants}
+For $B_R$, the invariant module is
+\[
+ B_R^\sigma=\bigoplus_{v\in\mathcal P_+}A v
+       \;\oplus\bigoplus_{v\in\mathcal P_-}A(av).
+\]
+The natural field homomorphism
+\[
+ \lambda:R\otimes_A B_R^\sigma\longrightarrow B_R,
+ \qquad r\otimes x\longmapsto rx,
+\]
+acts by $1$ on a positive word and by $a$ on a negative word. It is
+injective, and
+\[
+ H^0\operatorname{Cone}(\lambda)
+   =\bigoplus_{v\in\mathcal P_-}R/(a)\,v,
+ \qquad H^{-1}\operatorname{Cone}(\lambda)=0.
+\]
+On the derived fibre at $a=0$, every negative word contributes one
+copy of $\mathbb C$ in each of resolution degrees $-1$ and $0$.
+\end{proposition}
+\begin{proof}
+An invariant coefficient of a positive word is an even polynomial in
+$a$, hence lies in $A$. An invariant coefficient of a negative word is
+an odd polynomial, hence lies in $aA$. This proves the decomposition
+and the formula for $\lambda$. Multiplication by $a$ on $R$ is
+injective with cokernel $R/(a)$. Since $R$ is free of rank two over
+$A$, the source tensor product is already the derived tensor product.
+On a negative word, tensoring the two-term cone with $R/(a)$ makes
+its differential zero,
+which proves the assertion about the derived fibre.
+
+The cone is independent of the PBW frame used to compute it.
+Averaging by $(1+\sigma)/2$ makes invariants exact on the underlying
+$A$-complexes, and $R$ is flat over $A$. Naturality of $\lambda$
+therefore identifies its cones under equivariant resolution
+quasi-isomorphisms. A system pulled back from $A$ has an invertible
+$\lambda$, since $(R\otimes_A C)^\sigma=C$ with its canonical
+action. Thus the displayed cone is also an intrinsic necessary
+obstruction to coarse descent in the specified category.
+
+The same argument applies to $V_R$ and $B_R^\circ$ with their own
+PBW bases.\qedhere
+\end{proof}
+
+\begin{proposition}[Tensor comparison]\label{rpd:prop:tensor}
+
+The natural comparison
+\[
+ \mu:V_R^\sigma\otimes_A B_R^\sigma
+       \longrightarrow (V_R\otimes_R B_R)^\sigma
+\]
+has matrix $\operatorname{diag}(1,1,1,t)$ on the sign sectors
+$(+,+),(+,-),(-,+),(-,-)$, in that order.
+Its cokernel is a copy of $A/(t)$ for each negative--negative pair of
+PBW words. In particular, the invariant coupling term
+$U_3\otimes\gamma_3$ is not in its image.
+
+The same comparison with $B_R^\circ$ has the same four-sector form.
+Consequently the full exact coupling $e$ does not lift to
+$V_R^\sigma\otimes_A(B_R^\circ)^\sigma$.
+\end{proposition}
+\begin{proof}
+
+For a positive--negative or negative--positive pair, the factor $a$
+already occurs in the invariant basis of the target. On a
+negative--negative pair the source basis is $(av)\otimes(ab)$ and
+the target basis is $v\otimes b$. The map is multiplication by
+$a^2=t$. PBW independence prevents other pairs from supplying the
+missing coefficient.\qedhere
+\end{proof}
+
+The map $\lambda$ preserves every mode. Its cone measures the states
+that its source fails to recover.
+
+\begin{example}\label{rpd:ex:collision}
+For a concrete nonlinear operation put $\chi=\gamma_4$ and
+$p=\chi_{(-1)}\chi_{(-2)}\mathbf1$. The dual relation gives
+\[
+ \gamma_{3,(0)}\gamma_3=\tfrac34p,\qquad
+ (a\gamma_3)_{(0)}(a\gamma_3)=\tfrac34t\,p.
+\]
+The state $p$ is nonzero: its two odd creation pairs are distinct.
+Thus invariants do not remove the noncommutative relation, but they
+multiply its coefficient by the ramified parameter. The state $a\gamma_3$
+is a free $A$-basis element of the invariant module: its class modulo
+$t$ is nonzero there, even though $\lambda$ sends that class to zero
+in the target fibre at $a=0$.
+\end{example}
+
+The full coupled algebra $(V_R\otimes B_R,Q)^\sigma$ does exist over
+$A$. Proposition~\ref{rpd:prop:tensor} says that it cannot be
+identified with the tensor product of separately invariant factors
+by the natural comparison. Existence of an invariant total coupling
+is not a descent theorem for its two factors.
+
+\section{Completion, curvature, and changes of fields}
+
+Put $\widehat A=\mathbb C[[t]]$ and $\widehat R=\mathbb C[[a]]$.
+Complete the field modules in the parameter, not in PBW word length:
+\[
+ \widehat B=\varprojlim_n B_R/a^nB_R.
+\]
+An element is a family of PBW coefficients tending to zero
+$a$-adically: modulo each $a^n$, only finitely many coefficients
+are nonzero. This is a restricted family, not an unrestricted product
+of state spaces. Locality is required at each finite parameter
+precision. Completed tensor products here mean inverse limits of the
+corresponding tensor products modulo $t^m$, or equivalently along the
+cofinal tower $a^{2m}$. The gradings extend by continuous projections
+to the homogeneous components; only adically restricted sums of such
+components are allowed. These are topological field algebras, with
+the vertex identities and locality imposed modulo every parameter power.
+
+Invariants commute with this inverse limit, since they are the
+equalizer of $\sigma$ and the identity. Exactness of averaging
+identifies $\widehat B^{\sigma}$ with the $t$-adic completion of
+$B_R^\sigma$. The completed comparisons are
+\[
+ \widehat\lambda:\widehat R\widehat\otimes_{\widehat A}
+       \widehat B^\sigma\longrightarrow\widehat B,
+ \qquad
+ \widehat\mu:\widehat V^\sigma\widehat\otimes_{\widehat A}
+       \widehat B^\sigma
+ \longrightarrow(\widehat V\widehat\otimes_{\widehat R}\widehat B)^\sigma.
+\]
+
+\begin{proposition}\label{rpd:prop:completion}
+The completed comparison $\widehat\lambda$ is still injective and has
+cokernel $\bigoplus_{v\in\mathcal P_-}\mathbb C v$. The completed
+tensor comparison still acts by $t$ on every negative--negative
+sector. Neither completion restores descent at the branch.
+\end{proposition}
+\begin{proof}
+On each negative PBW coefficient the first map is multiplication by
+$a$ on $\mathbb C[[a]]$. Division by $a$ of a restricted family all
+of whose coefficients are divisible by $a$ remains a restricted
+family. Thus its image consists exactly of negative families with
+zero constant coefficient. Only finitely many constant coefficients
+can be nonzero, proving the stated cokernel and injectivity.
+
+At precision $a^{2m}$, multiplication by $a$ has kernel generated by
+$a^{2m-1}$ and cokernel $\mathbb C$. The kernel maps to zero at the
+previous even precision. The finite kernels therefore do not give a
+kernel in the limit. The tensor assertion follows coefficientwise
+from multiplication by $a^2=t$ on the negative--negative sector.
+This direct description specifies the passage to the inverse limit.
+
+For resolved completed systems, $\widehat R$ is free of rank two
+over $\widehat A$, so its completed scalar extension is the ordinary
+finite-free scalar extension on complete state modules. The derived
+branch fibre of a pulled-back system again has trivial involution.
+Multiplication by $a$ is injective on $\widehat B$, and
+$\widehat B/a\widehat B$ is the direct sum of the residual PBW words.
+The two-term free resolution of $\mathbb C$ over $\widehat R$
+therefore identifies this quotient with the derived fibre of
+$\widehat B$. Its class $\gamma_3$ remains nonzero and negative.
+The representation argument of Theorem~\ref{rpd:thm:descent}
+excludes descent after every permitted equivariant resolution.\qedhere
+\end{proof}
+
+\begin{example}\label{rpd:ex:scalar}
+The scalar term is retained at the obstructed fibre. Put $L=-U_2$
+as in the Miura normalization. At $a=0$ the
+central charge is $3$, so $L_{(3)}L=\tfrac32\mathbf1$. A unital vertex
+augmentation to the scalars would send its left side to zero and its
+right side to $3/2$, and therefore cannot exist. The marked vacuum is
+nevertheless nonzero and is fixed by the involution. The curvature
+witness specializes to
+\[
+ d^2\chi=w_{(0)}\chi
+   =\tfrac32\gamma_{2,(-4)}\chi_{(-1)}\chi_{(-2)}\mathbf1\ne0.
+\]
+Replacing $w$ by $2w$, while keeping $d$ fixed, gives the nonzero defect
+$-\tfrac32\gamma_{2,(-4)}\chi_{(-1)}\chi_{(-2)}\mathbf1$.
+These identities specialize Proposition~\ref{w4d:prop:curvature};
+the three creation pairs are distinct, so the displayed state is
+nonzero by Lemma~\ref{rpd:lem:polynomial}.
+\end{example}
+
+A primary change of fields does not remove the obstruction. The
+primary denominator $37-300a^2$ of Proposition~\ref{w4d:prop:primary}
+equals $37$ at the branch. The change is therefore defined on the
+open set where that denominator is invertible, and on the completed
+branch neighbourhood. Its odd dual state is
+\[
+ \eta_3=\gamma_3-\tfrac a2T\chi,
+ \qquad \sigma(\eta_3)=-\eta_3,
+ \qquad \eta_3|_{a=0}=\gamma_3.
+\]
+Any invertible equivariant change of states conjugates the action on
+the fibre and preserves its nontrivial negative eigenspace. In
+transporting the coupling one must retain both its nonlinear
+composite term and its total derivative, as in the exact primary
+coupling formula; a coupling modulo translation is not the marked
+coupling used here.
+
+The three loci relevant to these arguments are distinct:
+\[
+ \begin{array}{c|c|c}
+  &a^2&c\\ \hline
+ \text{ramification}&0&3\\
+ \text{vanishing curvature}&1/20&0\\
+ \text{primary denominator zero}&37/300&-22/5.
+ \end{array}
+\]
+Every nonnegative product $S_{(n)}S$ vanishes on the middle locus, as
+follows from the common factor $20a^2-1$ in the scalar-dual row.
+The Miura tables have no denominator at the third locus, so the
+universal polynomial specialization exists there as well.
+
+\section{The geometric comparison over the parameter stack}
+
+The preceding construction concerns field state modules on a fixed
+coordinate chart. Question~\ref{w4d:qn:bar} asks for the additional
+comparison with completed ordered collision coefficients. Such a
+comparison must preserve cut convolution and the diagonal tensor,
+their separate units $K,J$, and the supported operations. The
+nonconsecutive stratum $13|2$, normal derivatives and spectator states
+are part of those operations.
+
+\begin{corollary}\label{rpd:cor:geometric}
+Suppose a geometric enhancement of $\mathcal F_R$ has an equivariant
+state-extraction functor that preserves equivalences and commutes
+with derived pullback along $A\to R$. If its extraction is equivalent
+to the signed system $\mathcal F_R$, the enhancement has no coarse
+descent whose extracted comparison is a field-system comparison of
+Definition~\ref{rpd:def:descent}.
+\end{corollary}
+\begin{proof}
+Applying extraction to such a descent would produce the descent of
+$\mathcal F_R$ excluded by Theorem~\ref{rpd:thm:descent}.
+\end{proof}
+
+\begin{question}\label{rpd:qn:geometric}
+Does the field/bar comparison of Question~\ref{w4d:qn:bar} admit an
+equivariant construction over $[\operatorname{Spec}R/\mu_2]$, with
+independently defined state extraction and coherent parameter
+base-change maps? Can its supported collision maps, its unit and
+counit, and both geometric product comparisons be constructed there,
+retaining the exact coupling and the nonempty vacuum?
+\end{question}
+
+The quotient-stack field system supplies the parameter action required
+by this question. The coefficient maps and a cooperation compatible
+with the chiral product remain to be constructed.
+
+Translation is already null-homotopic for $Q$ over $R$.
+The degree-minus-one vertex derivation $h$ of
+Proposition~\ref{w4d:prop:cartan} is determined by
+\[
+ h\gamma_2=-\mathbf1,\qquad h\gamma_3=h\gamma_4=0,
+\]
+and is extended by zero on $V_R$. On a PBW word it removes an
+occurrence of the creation mode $\gamma_{2,(-1)}$ with coefficient
+$(-1)^{r+1}$, where $r$ is the number of preceding odd factors,
+and sums over such occurrences. Hence it preserves $B_R$.
+The identity $[Q,h]=T_V+T_B$ holds after extension to $\mathbb C(a)$,
+and therefore on $V_R\otimes_R B_R$, which is free over $R$.
+Moreover $h$ commutes with $\sigma$: the derivations $h$ and
+$\sigma h\sigma$ have the same values on the generators.
+Question~\ref{w4d:qn:topologization} asks for a geometric realization
+of this Cartan homotopy on $\mathbb R\times X$, preserving the full
+coupling and the collision products.

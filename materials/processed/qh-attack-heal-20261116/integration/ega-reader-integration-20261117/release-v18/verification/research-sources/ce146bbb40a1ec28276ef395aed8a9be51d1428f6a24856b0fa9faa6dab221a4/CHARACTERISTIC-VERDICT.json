@@ -1,0 +1,16 @@
+{
+  "id": "PAIR-W4-CHARACTERISTIC",
+  "result": "PASS",
+  "checked_path": "/tmp/paired-math-dispatch-20261118/astra/p11-exceptional-w4-algebra/resident-higher/CHARACTERISTIC.md",
+  "sha256": "2adec28c836f16f64dc2fdf2794bc595de520581b22dfa0e4e0bb53590bf3773",
+  "locator": "lines 3\u201325, regular-bimodule characteristic map after strict unital ordinary normalization",
+  "scope": "The image of the Hochschild characteristic map from the regular derived bimodule of the exceptional End algebra, with the proved equivariant quartic normal form. No lift of a in that native bimodule has been constructed.",
+  "reason": "Insert each constant into all four slots of the sole suspended quartic. For gamma nonzero only a,u contribute, yielding 3 gamma on (a,a,u) or gamma on (a,a,a) into az. Converting to ordinary graded Hochschild signs, the respective binary coboundary ranks rise from 6 to 7 and 0 to 1 upon augmentation by those vectors. Higher changes cannot alter this arity-three obstruction. The ten other homogeneous basis vectors are constant Hochschild cocycles, whereas all twelve lift when gamma vanishes. Mixed degree-eight classes have the obstruction of their u component. The auxiliary zero and nonzero flat models exhibit both possibilities.",
+  "check_path": "/private/tmp/astra62-frontier-successor-20261118/checks/w4-involution/characteristic_replay.py",
+  "check_sha256": "e42d84b96e3b0f7e32f98ede69e20e5a3a6c9f713a857ec57eeeb8dd152a8009",
+  "replay_path": "/private/tmp/astra62-frontier-successor-20261118/checks/w4-involution/characteristic_replay.py",
+  "replay_sha256": "e42d84b96e3b0f7e32f98ede69e20e5a3a6c9f713a857ec57eeeb8dd152a8009",
+  "output_path": "/private/tmp/astra62-frontier-successor-20261118/checks/w4-involution/CHARACTERISTIC-RECHECK.json",
+  "output_sha256": "f9fff2705906dcdefc5b3e523fa8d28d23b479ee105715ca035951ce6102dfa7",
+  "residual": "The original one-sided Yoneda action on coefficient modules supplies neither the two-sided characteristic lift nor its vanishing obstruction."
+}

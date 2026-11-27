@@ -1,0 +1,911 @@
+\chapter{The curved dual of the \texorpdfstring{$W_4$}{W4} algebra}
+\label{w4d:chapter}
+\begingroup
+\newcommand{\wfourword}[4]{\langle #1,#2;#3,#4\rangle}
+\newcommand{\wfourpair}[2]{\mathopen{:}#1#2\mathclose{:}}
+
+In the $W_3$ dual, the only singular generator product takes values in a
+central subalgebra. The $W_4$ algebra gives a curved dual whose ghost
+brackets themselves interact. Its three Miura generators still have
+quadratic--linear--scalar relations. Their finite relation matrix gives
+the dual by inverse transpose; the regular pairing of the two relation
+frames gives the full chiral twisting equation.
+
+The construction keeps the vacuum and all jets. It answers the $W_4$
+presentation question of Question~\ref{wdr:qn:higher} on the affine line.
+The comparison with the completed ordered bar dual will require maps on
+every collision stratum, as stated in Question~\ref{w4d:qn:bar}.
+
+\section{Conventions and the statement}
+Put $k=\mathbb C(\alpha)$, $X=\mathbb A^1_k$, and $T=\partial_z$. All tensor symmetries are the ordinary Koszul super symmetries. Set $I=\{0,2,3,4\}$ and $U_0=\mathbf1$. The even Heisenberg generators obey
+\[
+ \sum_{i=1}^4a_i=0,\qquad
+ a_i(z)a_j(w)\sim\frac{\delta_{ij}-1/4}{(z-w)^2}.
+\]
+Define the fields $U_s$ by the right-nested, normally ordered differential operator
+\[
+ :\!(\alpha T+a_1)(\alpha T+a_2)(\alpha T+a_3)(\alpha T+a_4)\!:
+   =\sum_{s=0}^4 U_s(\alpha T)^{4-s},
+ \qquad U_1=0,
+\]
+with each $T$ moved to the right. Write $V$ for their vertex subalgebra. Modes are fixed by
+$Y(x,u)y=\sum_{n\in\mathbb Z}x_{(n)}y\,u^{-n-1}$; thus $\operatorname{PP}$ retains precisely the negative powers of $u$.
+
+\begin{theorem}\label{w4d:thm:main}
+There is a locally free QLS datum $(N\oplus\mathbf1^\circ,P^\circ)$
+on $X$, in the sense of Definition~\ref{kdx:def:qls}, with
+$\operatorname{rank}N=3$ and $\operatorname{rank}P^\circ=16$, whose
+unital universal quotient is $V$. The matrix of its annihilator
+lattice is the inverse transpose of the relation matrix.
+
+The annihilator defines a vertex superalgebra $B^\circ$, freely generated in the PBW sense by odd states
+\[
+ \Gamma_0=S,\qquad\Gamma_2=\gamma_2,\quad\Gamma_3=\gamma_3,\quad\Gamma_4=\gamma_4,
+ \qquad |\Gamma_i|=1,\quad\operatorname{wt}(\Gamma_i)=1-i.
+\]
+The subalgebra $B$ on $\gamma_2,\gamma_3,\gamma_4$ embeds in $B^\circ$ and is the quadratic dual of the projected quadratic datum. Every nonnegative product of $S$ with $B$ lies in $B$, and every nonnegative self-product of $S$ lies in $B$.
+
+With
+\[
+ d=S_{(0)}|_B,\qquad w=\tfrac12S_{(0)}S,
+ \qquad q=\sum_{s=2}^4U_s\otimes\gamma_s,
+\]
+the triple $(B,d,w)$ is curved in the sense of Definition~\ref{wdr:def:curved}, and
+\[
+ d^2=w_{(0)},\quad dw\in TB,\quad S_{(0)}S=2w,
+ \qquad (S+q)_{(n)}(S+q)=0\quad(n\geq0).
+\]
+In particular $(V\otimes B,Q)$ with $Q=d+q_{(0)}$ is an ordinary square-zero differential vertex superalgebra.
+
+For every unital vertex superalgebra $C$ concentrated in cohomological degree zero, the assignment $f\mapsto (f(U_2),f(U_3),f(U_4))$ is a natural bijection
+\[
+ \operatorname{Hom}_{\mathrm{VA}}(V,C)\ \simeq\
+ \left\{(x_2,x_3,x_4)\in C_{\bar0}^3:
+ (S+\textstyle\sum_s x_s\otimes\gamma_s)_{(n)}
+ (S+\textstyle\sum_s x_s\otimes\gamma_s)=0\ \forall n\geq0\right\}.
+\]
+This assertion concerns couplings of the displayed generator-linear form; it is not a claim about all degree-one states with arbitrary ghost derivatives.
+\end{theorem}
+
+The proof has two parts. A finite calculation over $\mathbb Q[\alpha]$ establishes the nonlinear generator identities. The PBW theorem and a regular coevaluation then give the all-state algebra and its universal property. All composites retain their defining relations.
+
+\section{The Miura normalization and the \texorpdfstring{$U_4$}{U4} self-product}
+\subsection{Convention dictionary}
+Zhu's negative-contraction Heisenberg variables and parameter, denoted here by $a_i^Z$ and $\alpha_Z$, are related to the present ones by
+\begin{equation}\label{w4d:eq:dictionary}
+ a_i^Z=\mathrm i a_i,\qquad \alpha_Z=\mathrm i\alpha,
+ \qquad U_s^Z=\mathrm i^sU_s.
+\end{equation}
+Indeed the four factors acquire an overall $\mathrm i^4$, while the rightmost differential power acquires $\mathrm i^{4-s}$. The stress field and central charge are
+\begin{equation}\label{w4d:eq:stress}
+ L=U_2^Z=-U_2,\qquad c=3-60\alpha^2.
+\end{equation}
+Direct Wick contraction gives $L_{(0)}L=TL$, $L_{(1)}L=2L$, $L_{(2)}L=0$, and $L_{(3)}L=c/2$. These formulas fix both the sign and the stress convention before any other coefficient is imported from \cite{w4d:Zhu}.
+
+For compactness in the next formulas set $a=\alpha$ and
+\[
+ N_{ij}=(U_i)_{(-1)}U_j,\quad
+ J_2=(U_2)_{(-3)}U_2,\quad J_4=(U_2)_{(-2)}U_3.
+\]
+Thus the two higher regular coefficients are not divided or replaced by products of formal independent composites.
+
+\begin{proposition}\label{w4d:prop:44}
+Write $\operatorname{PP} Y(U_4,u)U_4=\sum_{p=1}^8A_pu^{-p}$. The even coefficients are
+\begin{align}
+ A_8&=\frac{c(5-180a^2+2016a^4)}{32}\mathbf1,\label{w4d:eq:A8}\\
+ A_6&=-\frac54(1-12a^2)^2U_2,\\
+ A_4&=\frac34a^2(7-60a^2)T^2U_2-3a(1-6a^2)TU_3
+       +3(1-4a^2)U_4+\frac{5-36a^2}{8}N_{22},\\
+ A_2&=\frac{a^2(1-60a^2)}{16}T^4U_2+3a^3T^3U_3
+       +\frac{1-6a^2}{2}T^2U_4+\frac{3a}{2}TN_{23}\notag\\
+    &\hspace{5mm}-\frac{1+36a^2}{8}J_2-3aJ_4-2N_{24}+\frac34N_{33}.
+\end{align}
+The odd coefficients are
+\[
+ A_7=0,\quad A_5=\tfrac12TA_6,\quad
+ A_3=\tfrac12TA_4-\tfrac1{24}T^3A_6,\quad
+ A_1=\tfrac12TA_2-\tfrac1{24}T^3A_4+\tfrac1{240}T^5A_6.
+\]
+These are precisely Zhu's equation (12) after \eqref{w4d:eq:dictionary}.
+\end{proposition}
+\begin{proof}
+The regular coefficients $\widetilde\Lambda_1,\ldots,\widetilde\Lambda_6$ in that equation become, in order,
+\[
+ N_{22},\quad J_2,\quad \mathrm iN_{23},\quad\mathrm iJ_4,
+ \quad -N_{24},\quad -N_{33}.
+\]
+Substitute these and \eqref{w4d:eq:dictionary}. Self-skewsymmetry gives
+$2A_p=\sum_{r\geq1}(-1)^{r+1}T^rA_{p+r}/r!$ for odd $p$, which yields the displayed odd coefficients.
+
+For an independent evaluation, eliminate $a_4=-a_1-a_2-a_3$ and use the following exhaustive Wick rule. A contraction between $T^ra_i$ on the left and $T^sa_j$ on the right is
+\begin{equation}\label{w4d:eq:wick}
+ (\delta_{ij}-1/4)(-1)^r(r+s+1)!\,u^{-r-s-2}.
+\end{equation}
+Sum over all partial cross-matchings of the factors and Taylor-expand every uncontracted left factor by $e^{uT}$. The coefficient of each Fock monomial agrees with the displayed $A_p$, for all eight poles. This is a finite polynomial identity, evaluated by the recurrence of Section~\ref{w4d:app:finite}. In particular the degree-six Fock monomial $a_1^4a_2^2$ in the $u^{-2}$ coefficient detects the term $\tfrac34N_{33}$: removing just this quadratic term leaves coefficient $3/4$. Thus quadratic terms cannot be omitted merely because a different choice of generators is preferred.
+\end{proof}
+
+\section{The QLS relation lattice}\label{w4d:sec:lattice}
+Let $N^\circ=N\oplus\mathbf1^\circ$ have local frame $e_i$, $i\in I$, where $e_0$ is the scalar generator and $e_s$ maps to $U_s$. Write $j:X^2\setminus\Delta_X\hookrightarrow X^2$ for the complement of the diagonal. On $X^2$ put $u=z_1-z_2$ and $e_{ij}=e_i\boxtimes e_j$. Define
+\begin{equation}\label{w4d:eq:primal-lattice}
+ r_{ij}=e_{ij}-\sum_{k,l\in I} C_{ij}^{kl}
+                  u^{-(i+j-k-l)}e_{kl}\quad(i,j\ne0),
+ \qquad r_{0j}=e_{0j},\quad r_{i0}=e_{i0}.
+\end{equation}
+The nonzero coefficients for $i\leq j$ are in Table~\ref{w4d:tab:C}. All unlisted coefficients vanish; reversed rows are specified by
+\begin{equation}\label{w4d:eq:flip}
+ C_{ji}^{lk}=(-1)^{i+j-k-l}C_{ij}^{kl}.
+\end{equation}
+Every correction has $m=i+j-k-l\geq2$. Let $M$ be the sixteen-by-sixteen matrix $r=Me$, and let $P^\circ$ be the $\mathcal O_{X^2}$-span of its rows. Write $qP^\circ$ for its projection to $j_*j^*(N\boxtimes N)$.
+\begingroup\small\renewcommand{\arraystretch}{1.24}
+\begin{longtable}{@{}ccc>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\caption{Primal coefficients: $m=i+j-k-l$.}\label{w4d:tab:C}\\
+\toprule $ij$ & $kl$ & $m$ & $C_{ij}^{kl}$ \\ \midrule\endfirsthead
+\toprule $ij$ & $kl$ & $m$ & $C_{ij}^{kl}$ \\ \midrule\endhead
+\bottomrule\endfoot
+$22$ & $00$ & $4$ & $\frac{3}{2} - 30 a^{2}$ \\
+$22$ & $02$ & $2$ & $-1$ \\
+$22$ & $20$ & $2$ & $-1$ \\
+$23$ & $00$ & $5$ & $- 6 a \left(20 a^{2} - 1\right)$ \\
+$23$ & $02$ & $3$ & $- 4 a$ \\
+$23$ & $03$ & $2$ & $-2$ \\
+$23$ & $30$ & $2$ & $-1$ \\
+$24$ & $00$ & $6$ & $- 9 a^{2} \left(20 a^{2} - 1\right)$ \\
+$24$ & $02$ & $4$ & $\frac{\left(1 - 6 a\right) \left(6 a + 1\right)}{4}$ \\
+$24$ & $03$ & $3$ & $- 3 a$ \\
+$24$ & $04$ & $2$ & $-3$ \\
+$24$ & $40$ & $2$ & $-1$ \\
+$33$ & $00$ & $6$ & $\frac{\left(20 a^{2} - 1\right) \left(72 a^{2} + 1\right)}{2}$ \\
+$33$ & $02$ & $4$ & $12 a^{2}$ \\
+$33$ & $03$ & $3$ & $2 a$ \\
+$33$ & $04$ & $2$ & $-2$ \\
+$33$ & $20$ & $4$ & $12 a^{2}$ \\
+$33$ & $22$ & $2$ & $1$ \\
+$33$ & $30$ & $3$ & $- 2 a$ \\
+$33$ & $40$ & $2$ & $-2$ \\
+$34$ & $00$ & $7$ & $\frac{3 a \left(20 a^{2} - 1\right) \left(48 a^{2} + 1\right)}{2}$ \\
+$34$ & $02$ & $5$ & $a \left(48 a^{2} - 1\right)$ \\
+$34$ & $03$ & $4$ & $12 a^{2}$ \\
+$34$ & $04$ & $3$ & $6 a$ \\
+$34$ & $20$ & $5$ & $12 a^{3}$ \\
+$34$ & $22$ & $3$ & $a$ \\
+$34$ & $23$ & $2$ & $\frac{1}{2}$ \\
+$34$ & $40$ & $3$ & $- 2 a$ \\
+$44$ & $00$ & $8$ & $\frac{\left(3 - 60 a^{2}\right) \left(2016 a^{4} + 564 a^{2} - 1\right)}{32}$ \\
+$44$ & $02$ & $6$ & $\frac{\left(- 6 a^{2} - 1\right) \left(60 a^{2} - 1\right)}{4}$ \\
+$44$ & $03$ & $5$ & $- 3 a \left(6 a^{2} + 1\right)$ \\
+$44$ & $04$ & $4$ & $- 6 a^{2} - 1$ \\
+$44$ & $20$ & $6$ & $\frac{\left(- 6 a^{2} - 1\right) \left(60 a^{2} - 1\right)}{4}$ \\
+$44$ & $22$ & $4$ & $- \frac{9 a^{2}}{2} - \frac{1}{8}$ \\
+$44$ & $23$ & $3$ & $- \frac{3 a}{2}$ \\
+$44$ & $24$ & $2$ & $-1$ \\
+$44$ & $30$ & $5$ & $3 a \left(6 a^{2} + 1\right)$ \\
+$44$ & $32$ & $3$ & $\frac{3 a}{2}$ \\
+$44$ & $33$ & $2$ & $\frac{3}{4}$ \\
+$44$ & $40$ & $4$ & $- 6 a^{2} - 1$ \\
+$44$ & $42$ & $2$ & $-1$ \\
+\end{longtable}\endgroup
+
+
+\begin{proposition}\label{w4d:prop:lattice}
+The module $P^\circ$ is locally free of rank sixteen, agrees with $N^\circ\boxtimes N^\circ$ off the diagonal, has poles of order at most eight, and satisfies the QLS unit-intersection condition. Its unital chiral quotient is $V$.
+\end{proposition}
+\begin{proof}
+Order pairs by their sum $i+j$. The matrix $M$ is triangular with diagonal one, hence determinant one. Consequently its rows are a free lattice and give a basis after inverting $u$. Its nine-by-nine nonunit block is likewise triangular with diagonal one. A linear combination of the rows whose nonunit projection vanishes therefore has all nine nonunit coefficients zero. Its remaining seven coefficients are regular. This proves exactly
+\[
+ P^\circ\cap j_*j^*(N\boxtimes\mathbf1^\circ\oplus
+ \mathbf1^\circ\boxtimes N\oplus\mathbf1^\circ\boxtimes\mathbf1^\circ)
+ =N\boxtimes\mathbf1^\circ\oplus\mathbf1^\circ\boxtimes N
+   \oplus\mathbf1^\circ\boxtimes\mathbf1^\circ.
+\]
+The generators of the lattice are genuine chiral relations. To verify this, let $F_{ij}(u)=Y(U_i,u)U_j$. Apply \eqref{w4d:eq:wick} to the nine expressions
+\begin{equation}\label{w4d:eq:primal-residual}
+ \operatorname{PP}\left(F_{ij}(u)-\sum_{kl}C_{ij}^{kl}u^{-m}F_{kl}(u)\right).
+\end{equation}
+All coefficients vanish. A finite verification with the recurrence of Section~\ref{w4d:app:finite} has respectively $22,62,62,167,167,167,375,375,766$ coefficient rows, in the order $22,23,32,24,42,33,34,43,44$. Their unique solutions are Table~\ref{w4d:tab:C}; uniqueness is not needed for the definition of the lattice. The leading scalar coefficient of $r_{44}$ is not $A_8$: the lower full products in \eqref{w4d:eq:primal-residual} themselves have poles. Confusing these two coefficients would give an incorrect lattice.
+
+It remains to prove that these relations present $V$, rather than only hold in it. Give $U_s$ filtration degree $s$ and give $T$ degree zero. Each relation expresses a singular product in strictly lower filtration, since every $m$ is at least two. Recursively expanding the shifted lower products therefore determines all generator singular products, and the usual iterate and quasi-commutativity identities span the quotient by ordered normally ordered monomials in the jets $T^rU_s$.
+
+These monomials are linearly independent in the Heisenberg realization. Filter it by the number of elementary Heisenberg factors. The leading term of $U_s$ is the elementary symmetric polynomial $e_s(a_1,a_2,a_3,a_4)$ on $\sum_i a_i=0$. The three polynomials $e_2,e_3,e_4$ have nonzero Jacobian on the locus of distinct roots. At any finite jet order their prolonged Jacobian is block triangular with repeated copies of this same invertible Jacobian. Hence all finite sets of jets $T^re_s$ are algebraically independent. Distinct ordered monomials in $T^rU_s$ have independent leading terms. The spanning map from the universal quotient to $V$ is therefore injective as well as surjective. This also verifies the PBW hypotheses of the nonlinear enveloping framework of \cite{wdr:DSK}*{Theorem 3.9} on this carrier.
+
+With \eqref{w4d:eq:dictionary}, the resulting universal presentation is Zhu's quantum Miura presentation of universal $W_4$, extended to $\mathbb C(\alpha)$. It is the universal algebra, not an additional simple quotient at a special central charge.
+\end{proof}
+
+\subsection{Density factors and the annihilator}
+The right $D_X$ generators are $N_\omega=N\otimes\omega_X$. The cohomologically shifted dual is
+\[
+ \check N^\circ=s^{-1}(N^\circ)^\vee\otimes\omega_X^{-1},
+ \qquad
+ \langle-,-\rangle:
+ (N^\circ\boxtimes N^\circ)\otimes(\check N^\circ\boxtimes\check N^\circ)
+ \longrightarrow s^{-2}\omega_{X^2}^{-1}.
+\]
+Here $s^{-1}$ raises the degree of the even generator to one. In the fixed coordinate, $e_s$ has affine density type $\omega^{-s}$, so its dual generator has density type $s^{-1}\omega^{s-1}$, or field weight $1-s$. The scalar-dual state has type $s^{-1}\omega^{-1}$ and field weight one. These are local affine transformation types, not a declaration that nonprimary generators split into primary line bundles on an arbitrary curve.
+
+Define $D=M^{-\mathrm t}$. Then
+\begin{equation}\label{w4d:eq:dual-lattice}
+ t_{ij}=\Gamma_i\boxtimes\Gamma_j+
+       \sum_{k,l}E_{ij}^{kl}u^{-(k+l-i-j)}\Gamma_k\boxtimes\Gamma_l,
+ \qquad (t_{ij})=D(\Gamma_i\boxtimes\Gamma_j).
+\end{equation}
+The independent nonzero rows of $E$ are in Table~\ref{w4d:tab:E}, with
+$E_{ji}^{lk}=(-1)^{k+l-i-j}E_{ij}^{kl}$ for reversed rows. All corrections have $k,l\ne0$ and $k+l-i-j\geq2$.
+\begingroup\small\renewcommand{\arraystretch}{1.24}
+\begin{longtable}{@{}ccc>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\caption{Annihilator coefficients: $m=k+l-i-j$.}\label{w4d:tab:E}\\
+\toprule $ij$ & $kl$ & $m$ & $E_{ij}^{kl}$ \\ \midrule\endfirsthead
+\toprule $ij$ & $kl$ & $m$ & $E_{ij}^{kl}$ \\ \midrule\endhead
+\bottomrule\endfoot
+$00$ & $22$ & $4$ & $\frac{3}{2} - 30 a^{2}$ \\
+$00$ & $23$ & $5$ & $- 6 a \left(20 a^{2} - 1\right)$ \\
+$00$ & $24$ & $6$ & $- 9 a^{2} \left(20 a^{2} - 1\right)$ \\
+$00$ & $32$ & $5$ & $6 a \left(20 a^{2} - 1\right)$ \\
+$00$ & $33$ & $6$ & $\left(6 a - 1\right) \left(6 a + 1\right) \left(20 a^{2} - 1\right)$ \\
+$00$ & $34$ & $7$ & $3 a \left(20 a^{2} - 1\right) \left(24 a^{2} - 1\right)$ \\
+$00$ & $42$ & $6$ & $- 9 a^{2} \left(20 a^{2} - 1\right)$ \\
+$00$ & $43$ & $7$ & $- 3 a \left(20 a^{2} - 1\right) \left(24 a^{2} - 1\right)$ \\
+$00$ & $44$ & $8$ & $\frac{\left(3 - 60 a^{2}\right) \left(2016 a^{4} - 180 a^{2} + 5\right)}{32}$ \\
+$02$ & $22$ & $2$ & $-1$ \\
+$02$ & $23$ & $3$ & $- 4 a$ \\
+$02$ & $24$ & $4$ & $\frac{\left(1 - 6 a\right) \left(6 a + 1\right)}{4}$ \\
+$02$ & $33$ & $4$ & $12 a^{2} - 1$ \\
+$02$ & $34$ & $5$ & $4 a \left(12 a^{2} - 1\right)$ \\
+$02$ & $43$ & $5$ & $- a \left(12 a^{2} - 1\right)$ \\
+$02$ & $44$ & $6$ & $- \frac{5 \left(12 a^{2} - 1\right)^{2}}{8}$ \\
+$03$ & $23$ & $2$ & $-2$ \\
+$03$ & $24$ & $3$ & $- 3 a$ \\
+$03$ & $32$ & $2$ & $-1$ \\
+$03$ & $33$ & $3$ & $2 a$ \\
+$03$ & $34$ & $4$ & $12 a^{2} - 1$ \\
+$03$ & $43$ & $4$ & $- \frac{1}{2}$ \\
+$03$ & $44$ & $5$ & $- 3 a \left(6 a^{2} - 1\right)$ \\
+$04$ & $24$ & $2$ & $-3$ \\
+$04$ & $33$ & $2$ & $-2$ \\
+$04$ & $34$ & $3$ & $6 a$ \\
+$04$ & $42$ & $2$ & $-1$ \\
+$04$ & $43$ & $3$ & $2 a$ \\
+$04$ & $44$ & $4$ & $\frac{\left(3 - 6 a\right) \left(2 a + 1\right)}{2}$ \\
+$22$ & $33$ & $2$ & $1$ \\
+$22$ & $34$ & $3$ & $a$ \\
+$22$ & $43$ & $3$ & $- a$ \\
+$22$ & $44$ & $4$ & $\frac{5}{8} - \frac{9 a^{2}}{2}$ \\
+$23$ & $34$ & $2$ & $\frac{1}{2}$ \\
+$23$ & $44$ & $3$ & $- \frac{3 a}{2}$ \\
+$24$ & $44$ & $2$ & $-1$ \\
+$33$ & $44$ & $2$ & $\frac{3}{4}$ \\
+\end{longtable}\endgroup
+
+
+\begin{proposition}\label{w4d:prop:annihilator}
+The rows \eqref{w4d:eq:dual-lattice} are exactly $P^{\circ\perp}$, with its density factor $s^{-2}\omega_{X^2}^{-1}$ understood. They form a locally free lattice with the required off-diagonal restriction. The rows indexed by $i,j\ne0$ give $(qP^\circ)^\perp$.
+\end{proposition}
+\begin{proof}
+The matrix identity $MD^{\mathrm t}=1$ shows that $r_{ij}$ and $t_{ij}$ are dual frames for the pairing into $s^{-2}\omega_{X^2}^{-1}$. Regular pairings against every $r_{ij}$ are therefore equivalent to regular coefficients in the $t$-frame. This proves the annihilator assertion, not merely an inclusion. The block form, with the seven unit rows first, is
+\[
+ M=\begin{pmatrix}1&0\\ L_0&A\end{pmatrix},\qquad
+ D=\begin{pmatrix}1&-L_0^{\mathrm t}A^{-\mathrm t}\\0&A^{-\mathrm t}\end{pmatrix}.
+\]
+Thus the nonunit dual rows are the inverse transpose of the projected quadratic block. Direct inversion gives Table~\ref{w4d:tab:E}; the identity $MD^{\mathrm t}=1$ verifies all its coefficients.
+\end{proof}
+
+\section{The scalar-extended dual vertex algebra}\label{w4d:sec:dual}
+For $n\geq0$ impose the following finite recursive singular-product rule:
+\begin{equation}\label{w4d:eq:mode-rule}
+ (\Gamma_i)_{(n)}\Gamma_j
+   =-\sum_{kl}E_{ij}^{kl}(\Gamma_k)_{(n-m)}\Gamma_l,
+ \qquad m=k+l-i-j.
+\end{equation}
+For $r\geq0$, $(\Gamma_k)_{(-r-1)}\Gamma_l=(T^r\Gamma_k)_{(-1)}\Gamma_l/r!$.
+For positive indices on the right use \eqref{w4d:eq:mode-rule} again. Give the four generators filtration degrees
+\begin{equation}\label{w4d:eq:dual-filtration}
+ \delta(S)=9,\quad\delta(\gamma_2)=5,\quad\delta(\gamma_3)=3,
+ \quad\delta(\gamma_4)=1,\qquad\delta(T)=0.
+\end{equation}
+Every correction lowers the total filtration by $2m\geq4$, so the recursion and normal ordering terminate. Section~\ref{w4d:app:modes} gives the expanded singular products, with reversed products supplied by super-skewsymmetry; these formulas determine every generating singular product.
+
+\begin{lemma}\label{w4d:lem:jacobi}
+The operation \eqref{w4d:eq:mode-rule} satisfies generator super-skewsymmetry and the nonlinear Jacobi identities modulo the enveloping relations of strictly lower filtration.
+\end{lemma}
+\begin{proof}
+The needed reductions are the commutator and iterate formulas
+\begin{align}
+ [x_{(m)},y_{(n)}\}&=\sum_{r\geq0}\binom mr(x_{(r)}y)_{(m+n-r)},\label{w4d:eq:comm}\\
+ (x_{(-p)}v)_{(n)}b
+ &=\sum_{r\geq0}\binom{p+r-1}{r}\left[
+ x_{(-p-r)}v_{(n+r)}b
+ -(-1)^{p+|v|}v_{(n-p-r)}x_{(r)}b\right],\quad |x|=1.\label{w4d:eq:iterate}
+\end{align}
+Use these to reduce to lexicographically increasing, distinct creation pairs $(i,p)$ in words $\Gamma_{i,(-p)}\cdots\mathbf1$, $p\geq1$. Repeated equal odd creation pairs are replaced by half their commutator. Each replacement term of a wrong ordering has lower filtration \eqref{w4d:eq:dual-filtration}. These reductions express equality modulo the enveloping relations; confluence is not assumed in order to establish Jacobi.
+
+A degree-$d$ normal word has weight at least $b_d$, the sum of the $d$ smallest entries of the multiset
+$\{1-i+r:i\in I,r\geq0\}$. In particular $b_2=-5$ and $b_3=-7$. Therefore the only possibly nonzero generator skew identities have $0\leq n\leq6-i-j$, and the only possibly nonzero generator Jacobi identities have $m,n\geq0$ and $m+n\leq8-i-j-k$. There are 41 and 438 such identities, respectively.
+
+For these finite ranges substitute Table~\ref{w4d:tab:E} into
+\begin{align*}
+ K_{ij,n}&=(\Gamma_i)_{(n)}\Gamma_j-
+  \sum_{r\geq0}\frac{(-1)^{n+r}}{r!}T^r(\Gamma_j)_{(n+r)}\Gamma_i,\\
+ J_{ijk;mn}&=(\Gamma_i)_{(m)}((\Gamma_j)_{(n)}\Gamma_k)
+ +(\Gamma_j)_{(n)}((\Gamma_i)_{(m)}\Gamma_k)\\
+ &\hspace{10mm}-\sum_{r=0}^{m}\binom mr
+ ((\Gamma_i)_{(r)}\Gamma_j)_{(m+n-r)}\Gamma_k.
+\end{align*}
+Reduction by \eqref{w4d:eq:comm}--\eqref{w4d:eq:iterate} gives zero in every case over $\mathbb Q[\alpha]$. Section~\ref{w4d:app:finite} specifies the complete finite algorithm. The bounds above prove that no omitted generator identity can be nonzero. The reduction uses only identities of the enveloping relation module, so zero normal form here proves membership in that module, which is the Jacobi condition required by \cite{wdr:DSK}*{Theorem 3.9}.
+
+For an explicit nonzero intermediate value, write
+$[i,p;j,q;k,r]=\Gamma_{i,(-p)}\Gamma_{j,(-q)}\Gamma_{k,(-r)}\mathbf1$.
+The two sides of the $222;00$ identity agree with
+\begin{align*}
+ 2\gamma_{2,(0)}(\gamma_{2,(0)}\gamma_2)
+  &=(\gamma_{2,(0)}\gamma_2)_{(0)}\gamma_2\\
+  &=[3,1;3,2;4,2]+2[3,1;3,3;4,1]
+    +3\alpha[3,1;4,1;4,4]\\
+  &\quad+\alpha[3,1;4,2;4,3]-3\alpha[3,2;4,1;4,3]
+    -4\alpha[3,3;4,1;4,2]+\tfrac12[4,1;4,2;4,4].
+\end{align*}
+This nonzero common value exhibits the interaction between the ghost brackets.
+\end{proof}
+
+\begin{proposition}\label{w4d:prop:dual-PBW}
+The universal vertex superalgebra $B^\circ$ defined by \eqref{w4d:eq:mode-rule} exists and has the ordered odd-jet PBW basis. The subalgebra $B$ on the three non-scalar-dual generators embeds, and its defining lattice is $(qP^\circ)^\perp$. Moreover $S_{(n)}B\subset B$ for $n\geq0$ and $S_{(n)}S\in B$ for every $n\geq0$. The algebra $B$ is noncommutative: with $\chi=\gamma_4$,
+\[
+ (\gamma_2)_{(0)}\chi=-\chi_{(-1)}\chi_{(-2)}\mathbf1,
+ \qquad (\gamma_3)_{(0)}\gamma_3=
+ \tfrac34\chi_{(-1)}\chi_{(-2)}\mathbf1.
+\]
+\end{proposition}
+\begin{proof}
+Put $R=\bigoplus_{i\in I}k[T]\Gamma_i$. Its filtration degrees
+\eqref{w4d:eq:dual-filtration} are positive, and the bracket is strictly
+lower filtered and sesquilinear. To apply the nonlinear PBW theorem,
+choose tensor-algebra lifts $P_{ij}(\lambda)$ of the brackets computed
+in Lemma~\ref{w4d:lem:jacobi}. Since every $\Gamma_i$ is odd, replace them by
+\[
+ \widetilde P_{ij}(\lambda)
+ =\tfrac12\bigl(P_{ij}(\lambda)+P_{ji}(-\lambda-T)\bigr).
+\]
+This lift is exactly super-skew. Its difference from $P_{ij}$ belongs
+to the lower-filtration relation module by that lemma. Induction on
+the positive filtration therefore identifies the two enveloping
+relation modules: in each reduction, a change of bracket is already a
+relation at a smaller filtration. The same induction preserves the
+Jacobi congruences. This is the passage from the weaker skew convention
+of \cite{wdr:DSK}*{Remark~3.8} to Definition~3.6 there.
+Theorem~3.9 of that paper now gives $B^\circ$ and the ordered odd-jet
+basis. Its associated graded is the exterior differential algebra on
+the four odd generators, with the vacuum as its nonzero degree-zero
+basis vector.
+
+Every correction in Table~\ref{w4d:tab:E} involves only indices $2,3,4$. The relations for these three generators thus close among themselves. Their PBW words are a subset of the basis of $B^\circ$, proving injectivity. Proposition~\ref{w4d:prop:annihilator} identifies their lattice. The same table shows that each $S_{(n)}\Gamma_i$, $i\ne0$, and each $S_{(n)}S$ lies in $B$. Sesquilinearity, the commutator formula and the noncommutative Wick formula extend the first assertion to every derivative and normally ordered product in $B$. This proves the scalar-dual preservation and self-product conditions of QLS dualizability \cite{kdx:GLZ}*{Definitions 4.10--4.15}. The displayed products follow from the $24$ and $33$ rows. Their common ordered word is nonzero by PBW.
+\end{proof}
+
+\section{Curvature and the complete chiral coupling}\label{w4d:sec:curvature}
+Set $A=S_{(0)}S$ and $w=A/2$. The explicit formula for $A$ is the $(0,0,0)$ row of Section~\ref{w4d:app:modes}; the three $(0,s,0)$ rows give the complete derivation $d\gamma_s$. The operation $d$ extends uniquely as a vertex derivation.
+
+\begin{proposition}\label{w4d:prop:curvature}
+One has $d^2=w_{(0)}$ on every state of $B$, and
+\begin{equation}\label{w4d:eq:bianchi}
+ dw=T v,\qquad
+ v=\frac16\sum_{j=1}^{8}\frac{(-1)^{j+1}}{j!}
+       T^{j-1}\bigl(S_{(j)}(S_{(0)}S)\bigr)\in B.
+\end{equation}
+The curvature action is nonzero over $k$.
+\end{proposition}
+\begin{proof}
+The zero-mode supercommutator in $B^\circ$ gives
+$2S_{(0)}^2=(S_{(0)}S)_{(0)}$, hence the first identity on all states. Jacobi applied to $S,S,S$ gives $2S_{(0)}A=A_{(0)}S$. Super-skewsymmetry, with $A$ even, gives
+\[
+ A_{(0)}S=-S_{(0)}A+\sum_{j\geq1}\frac{(-1)^{j+1}}{j!}T^j(S_{(j)}A).
+\]
+These equations give \eqref{w4d:eq:bianchi}. The upper bound eight follows from degree three and minimum weight $-7$. This also supplies an actual primitive, not only a quotient statement.
+
+For a nonzero action, put $\chi=\gamma_4$. Exact reduction gives
+\begin{align}\label{w4d:eq:curvature-witness}
+ w_{(0)}\chi=d^2\chi
+ &=\frac c2\gamma_{2,(-4)}\chi_{(-1)}\chi_{(-2)}\mathbf1
+ -2c\alpha\gamma_{3,(-5)}\chi_{(-1)}\chi_{(-2)}\mathbf1\notag\\
+ &\qquad+3c\alpha^2\chi_{(-1)}\chi_{(-2)}\chi_{(-6)}\mathbf1.
+\end{align}
+These are distinct PBW words and $c=3-60\alpha^2$ is nonzero in $k$. In particular changing only $w$ to $2w$ leaves defect $-w_{(0)}\chi$, whose first coefficient is $-c/2$; changing only $w$ to $-w$ leaves coefficient $c$. Thus the half-curvature normalization is detected by the actual $W_4$ dual.
+\end{proof}
+
+\begin{proposition}\label{w4d:prop:coupling}
+Let $e=S+q=\sum_{i\in I}U_i\otimes\Gamma_i$. Then $e_{(n)}e=0$ for all $n\geq0$. Consequently
+\[
+ dq+\tfrac12q_{(0)}q+w\in T(V\otimes B),\qquad Q^2=0.
+\]
+\end{proposition}
+\begin{proof}
+Write $F=(Y(U_i,u)U_j)_{ij}$ and $G=(Y(\Gamma_i,u)\Gamma_j)_{ij}$. Since every $U_i$ is even, the tensor OPE has no extra cross sign. The matrix identity gives
+\begin{equation}\label{w4d:eq:pair-factorization}
+ Y(e,u)e=F^{\mathrm t}G=(MF)^{\mathrm t}(M^{-\mathrm t}G).
+\end{equation}
+Both vector factors on the right are regular: their principal parts are exactly the primal and dual lattice relations. Their product is regular. This is the coevaluation proof of the full chiral identity, in the twisted-pair construction of \cite{kdx:GLZ}*{Proposition 5.10}; it is not an inference from its zero mode.
+
+There is also a finite direct verification of this identity in the present realization. The degree of $e$ is one and its weight is one. A degree-two state of $V\otimes B^\circ$ has weight at least $-5$. Thus only $n=0,\ldots,6$ can contribute to $e_{(n)}e$. Exact contraction and the dual mode recurrence give zero in all seven modes. The independent proof \eqref{w4d:eq:pair-factorization} applies to the whole Laurent product.
+
+At $n=0$, super-skewsymmetry makes $q_{(0)}S-S_{(0)}q$ a total derivative. Divide the resulting equation by two to obtain the displayed consequence. Alternatively $Q$ is the restriction of $e_{(0)}$ to $V\otimes B$; preservation follows from Proposition~\ref{w4d:prop:dual-PBW}. The identity $2e_{(0)}^2=(e_{(0)}e)_{(0)}=0$ proves $Q^2=0$ directly. The curved derivation $d$ alone does not define ordinary cohomology.
+\end{proof}
+
+\section{Faithful relation detection and universality}\label{w4d:sec:universal}
+PBW independence does not make a chosen relation lattice equal to the
+full kernel of the chiral operation. The additional condition is
+effectivity in \cite{kdx:GLZ}*{Definition~5.6}.
+
+\begin{proposition}\label{w4d:prop:ineffective}
+The dual graph datum is not effective. The section
+$u^{-1}\chi\boxtimes\chi$, with $\chi=\gamma_4$, belongs to the kernel
+of its chiral operation and not to $P^{\circ\perp}$.
+\end{proposition}
+\begin{proof}
+The products $\chi_{(n)}\chi$ vanish for $n\geq0$, and odd
+skewsymmetry gives $\chi_{(-1)}\chi=0$. Thus
+$u^{-1}Y(\chi,u)\chi$ is regular. The triangular dual relation frame
+expresses this section only with coefficient $u^{-1}$ in its $44$
+row, which is not regular.
+\end{proof}
+
+The universal property will instead follow from the leading odd jets
+and the skewsymmetry of the target products.
+
+\begin{lemma}[Odd-jet detection]\label{w4d:lem:odd-detection}
+Let $R_{ij}(u)$ be Laurent series with coefficients in a characteristic-zero vector space with an operator $T$, having finite principal parts, and satisfying
+$R_{ji}(u)=e^{uT}R_{ij}(-u)$. Let $\xi_i$ be independent odd differential generators. If
+\[
+ \operatorname{PP}\sum_{ij}R_{ij}(u)(e^{uT}\xi_i)\xi_j=0
+\]
+in the free exterior differential algebra, then every $R_{ij}$ is regular. The same assertion holds for any fixed collection of unordered pairs separately.
+\end{lemma}
+\begin{proof}
+For $i\ne j$ the coefficient of $(T\xi_i)\xi_j$ is $uR_{ij}(u)$; the analogous coefficient with $i,j$ interchanged is independent. For $i=j$ the coefficient of $(T\xi_i)\xi_i$ is $uR_{ii}(u)$. Each $R_{ij}$ therefore has at most a simple pole. The coefficient of $\xi_i\xi_j$ for $i<j$ is $R_{ij}-R_{ji}$. Its simple-pole coefficient is twice that of $R_{ij}$, by the transported skew identity. For a diagonal pair the same skew identity makes its simple-pole coefficient equal its negative. Characteristic zero eliminates every remaining pole. The proof uses independent jet monomials, not a quotient by total derivatives.
+\end{proof}
+
+\begin{proof}[Proof of the universal assertion in Theorem~\ref{w4d:thm:main}]
+Take even states $x_s$ in $C$ and $x_0=\mathbf1$. Put
+\[
+ F^x_{ij}(u)=Y(x_i,u)x_j,\qquad R=MF^x,\qquad H=M^{-\mathrm t}G.
+\]
+The vector $H$ is regular. Its component $H_{ij}$ has leading dual-filtration symbol
+$(e^{uT}\xi_i)\xi_j$, of filtration $18-2(i+j)$, and every correction has strictly lower filtration. The seven unit components of $R$ are always regular. By \eqref{w4d:eq:flip} and vertex skewsymmetry,
+\[
+ R_{ji}(u)=e^{uT_C}R_{ij}(-u).
+\]
+Assume the full coupling equation. Then $\operatorname{PP}\sum R_{ij}\otimes H_{ij}=0$, by \eqref{w4d:eq:pair-factorization}. Its highest possible nonunit filtration is the $22$ component. Pass to the associated graded PBW algebra and apply Lemma~\ref{w4d:lem:odd-detection}: $R_{22}$ is regular. Its whole contribution can now be discarded from principal parts because $H_{22}$ is regular. Repeat at pair sums $5,6,7,8$. At each sum the distinct unordered ghost pairs are independent, and the same lemma applies. Thus all nine components $R_{ij}$ are regular.
+
+The assignment $U_s\mapsto x_s$ therefore kills the complete relation lattice, not only a scalar or a zero-mode shadow. Proposition~\ref{w4d:prop:lattice} extends it uniquely to a homomorphism $V\to C$. Conversely any such homomorphism transports Proposition~\ref{w4d:prop:coupling}. The constructions are mutually inverse and natural in $C$.
+
+If $C$ has no conformal grading, no artificial bound $n\leq6$ is imposed on its trial couplings. The recognition assertion quantifies over every nonnegative product; locality makes the principal part finite for each tuple. This completes the proof of Theorem~\ref{w4d:thm:main}.
+\end{proof}
+
+\begin{corollary}[Recognition by the twisting equation]
+\label{w4d:cor:zero-mode-recognition}
+For every ordinary vertex algebra $C$ over $k=\mathbb C(\alpha)$ and
+every tuple $x_2,x_3,x_4\in C$, put
+$q_x=\sum_{s=2}^4x_s\otimes\gamma_s$. The following conditions
+are equivalent:
+\begin{enumerate}
+\item The assignment $U_s\mapsto x_s$ extends to a vertex map $V\to C$.
+\item One has
+\[
+ dq_x+\tfrac12(q_x)_{(0)}q_x+\mathbf1\otimes w
+       \in T(C\otimes B).
+\]
+\item One has $(S+q_x)_{(n)}(S+q_x)=0$ for every $n\geq0$.
+\end{enumerate}
+The map in the first condition is unique. No weight grading or uniform
+pole-order bound on $C$ is required.
+\end{corollary}
+\begin{proof}
+The source has its even homogeneous quadratic--linear--scalar PBW
+presentation, and Proposition~\ref{w4d:prop:dual-PBW} supplies the
+quadratic odd PBW recipient with complementary weights.
+Proposition~\ref{w4d:prop:coupling} gives canonical twisting in $V\otimes B$.
+Theorem~\ref{npt:s:thm:recovery} therefore identifies the first two
+conditions, including uniqueness.
+
+A source map carries the canonical full identity to the third condition.
+Conversely, its zero mode and odd skewsymmetry give
+\[
+ 0=2w+2dq_x+(q_x)_{(0)}q_x+TH_x,
+ \qquad H_x=\sum_{n\geq1}\frac{(-1)^n}{n!}
+                         T^{n-1}S_{(n)}q_x.
+\]
+The preservation $S_{(n)}B\subset B$ places $H_x$ in $C\otimes B$,
+and locality makes the sum finite. Thus the third condition implies
+the second on its stated carrier. This equivalence does not identify
+the resulting field dual with an ordered collision bar construction.
+\end{proof}
+
+\section{Primary fields and changes of presentation}\label{w4d:sec:primary}
+Set $\Delta=22+5c=37-300\alpha^2$ and
+\[
+ d_0=\frac{480\alpha^4-124\alpha^2+3}{8(300\alpha^2-37)},
+ \qquad e_0=-\frac{108\alpha^2-5}{4(300\alpha^2-37)}.
+\]
+Define
+\begin{equation}\label{w4d:eq:primary}
+ W=U_3-\alpha TU_2,\qquad
+ H=U_4-\tfrac\alpha2TU_3+d_0T^2U_2+e_0\wfourpair{U_2}{U_2}.
+\end{equation}
+\begin{proposition}\label{w4d:prop:primary}
+The fields $W,H$ are primary of weights three and four. Their
+coefficients are the unique ones of the displayed triangular form,
+and the change from $U_2,U_3,U_4$ to $L,W,H$ is invertible over
+$\mathbb C[\alpha,\Delta^{-1}]$.
+\end{proposition}
+\begin{proof}
+One has $L_{(0)}W=TW$, $L_{(1)}W=3W$ and $L_{(n)}W=0$ for $n\geq2$, and similarly for $H$ with weight four. To verify these identities, multiply the second expression by $8(300\alpha^2-37)$ before applying \eqref{w4d:eq:wick}; all resulting coefficients are polynomials and vanish exactly. The three-column linear system for the corrections $TU_3,T^2U_2,\wfourpair{U_2}{U_2}$ has a minor $-24(300\alpha^2-37)$, proving uniqueness of this triangular primary ansatz. Triangular substitution gives the inverse below. In Zhu's convention these primary fields are $W^Z=-\mathrm i W$ and $H^Z=H$.
+\end{proof}
+
+The only extra localization for this primary change is $\Delta^{-1}$. The strict Miura lattice, dual lattice, derivation and curvature themselves have coefficients in $\mathbb Q[\alpha]$ and require no parameter denominator beyond the given field $\mathbb C(\alpha)$. No further normalization of primary two-point functions is made, so no square root or additional exceptional factor is implicit.
+
+The inverse of \eqref{w4d:eq:primary} is
+\[
+ U_2=-L,\quad U_3=W-\alpha TL,\quad
+ U_4=H+\tfrac\alpha2TW+(d_0-\tfrac{\alpha^2}{2})T^2L-e_0\wfourpair LL.
+\]
+Consequently the \emph{exact} coupling in these generators is
+\begin{align}\label{w4d:eq:primary-coupling}
+ q={}&-L\gamma_2+W\gamma_3-\alpha(TL)\gamma_3
+   +H\gamma_4+\tfrac\alpha2(TW)\gamma_4\notag\\
+ &+(d_0-\tfrac{\alpha^2}{2})(T^2L)\gamma_4-e_0\wfourpair LL\gamma_4.
+\end{align}
+Products between source and ghost factors denote tensor products. Writing $\kappa=d_0-\alpha^2/2$ and
+\[
+ \eta_2=-\gamma_2+\alpha T\gamma_3+\kappa T^2\gamma_4,
+ \quad\eta_3=\gamma_3-\tfrac\alpha2T\gamma_4,\quad\eta_4=\gamma_4,
+\]
+one may equivalently write
+\[
+ q=L\eta_2+W\eta_3+H\eta_4-e_0\wfourpair LL\gamma_4+TF,
+ \quad
+ F=-\alpha L\gamma_3+\tfrac\alpha2W\gamma_4
+       +\kappa\bigl((TL)\gamma_4-LT\gamma_4\bigr).
+\]
+Both the nonlinear term and the displayed total derivative belong to the exact field-level comparison. Dropping $TF$ preserves the zero mode but is not justified for the full chiral Maurer--Cartan equation. Dropping the nonlinear term changes even that comparison. Cubic terms obtained by substituting primary generators into other OPEs are therefore not obstructions to the quadratic Miura construction.
+
+\subsection{Filtered resolution changes}
+An invertible change of generators with every dependent composite relation retained preserves the presented vertex algebra and transports its exact coupling. It need not preserve a chosen finite quadratic lattice, a three-generator linear coupling ansatz, or an individual formula for $d$ and $w$.
+
+\begin{proposition}\label{w4d:prop:filtered-comparison}
+Let $K\to K'$ be a map of complete separated descending filtered
+complexes, compatible with the quotient towers. Suppose the induced
+filtration on each quotient is finite and the maps on associated
+graded complexes are quasi-isomorphisms. Then the map on homotopy
+inverse limits is a quasi-isomorphism. The same holds for ordinary
+inverse limits if the quotient towers have vanishing higher derived
+limits; degreewise surjectivity suffices. If their pieces are perfect,
+derived duality also preserves each finite-stage comparison.
+\end{proposition}
+\begin{proof}
+Induction on the finite filtration proves the comparison on each
+quotient. Taking the homotopy limit preserves this levelwise
+equivalence. The derived-limit hypothesis identifies homotopy limits
+with ordinary limits. On perfect pieces derived duality is an
+antiequivalence, so it preserves the finite-stage comparisons.
+\end{proof}
+
+Applied to genuine resolutions, with their algebra operations, units and relation maps already intertwined, this principle preserves the resolved object and its represented comparison. It does not identify arbitrary finite lattices, curvature representatives, or transferred higher operations. In particular the existence of the strict construction here does not assert that every transferred higher operation in every model vanishes. No nonzero higher-operation obstruction is needed or inferred.
+
+\section{Curve data and the remaining geometric comparison}\label{w4d:sec:curve}
+On the chosen affine line, weak translation equivariance gives the corresponding unital chiral algebras in right $D_X$-modules, with the density factors of Section~\ref{w4d:sec:lattice}. The chiral operations, the inclusion $B\hookrightarrow B^\circ$, and the canonical section $(S+q)\,dz$ are the operations actually constructed. Affine rescaling follows from the field weights and the homogeneous pole orders in both tables.
+
+For explicit nonlinear coordinate data, the positive Virasoro modes preserve the four-dimensional space spanned by $1,U_2,U_3,U_4$. With $L_m=L_{(m+1)}$ the nonzero positive actions are
+\[
+\begin{array}{c|ccc}
+ &U_2&U_3&U_4\\\hline
+L_1&0&4\alpha U_2&3\alpha U_3\\
+L_2&-c\mathbf1/2&0&(36\alpha^2-1)U_2/4\\
+L_3&0&-2c\alpha\mathbf1&0\\
+L_4&0&0&-3c\alpha^2\mathbf1
+\end{array}
+\]
+and $L_0U_s=sU_s$, $L_m\mathbf1=0$. Higher entries vanish. These follow directly from the $2s$ rows of the primal OPE, and can also be checked by \eqref{w4d:eq:wick}.
+
+Choose the formal-coordinate representation whose infinitesimal action sends $t^{m+1}\partial_t$ to $-L_m$. For a coordinate change $z'=f(z)$, let $H_f(z)$ denote its action for the centered formal germ $f(z+t)-f(z)$. The local primal frame changes by $H_f$, while the dual frame changes by
+\[
+ \Gamma'=(f')^{-1}H_f^{-\mathrm t}\Gamma.
+\]
+The scalar component may mix with the other ghost components; it is not a primary scalar fixed independently of them. This formula preserves the pairing into $\omega^{-1}$ and makes the total coevaluation transform as a field of weight one. The complete annihilator transports by the inverse transpose.
+Under nonlinear coordinates the original strict relation lattices
+need not be invariant. Theorem~\ref{w4c:thm:descent} proves
+invariance of their defining operation ideals and constructs the
+field algebras on a smooth curve.
+
+\begin{question}\label{w4d:qn:descent}
+Can the curved field dual on a smooth curve of
+Theorem~\ref{w4c:thm:descent} carry a cooperation compatible with
+its chiral product, twisting density and supported collision maps?
+\end{question}
+The finite inverse transpose constructs the annihilator pairing.
+A cooperation requires a further map and its compatibility at
+collisions.
+
+\begin{question}\label{w4d:qn:bar}
+Can the relation detector of Section~\ref{w4d:sec:universal} be extended
+to the completed ordered collision coefficient systems, with a
+comparison to the universal ordered bar twisting datum on every
+configuration of positions? Specify the completion and construct the
+source extension, collision maps, unit and counit, preserving the
+nonempty vertex vacuum and the chosen bar unit. Does this comparison
+identify the quadratic field dual with a field realization of the
+ordered bar dual, with their operations preserved?
+\end{question}
+
+The spin-two ghost supplies a homotopy for translation. The reason
+is visible in the differential: in $d\gamma_i$, the only term
+containing an undifferentiated $\gamma_2$ is
+$-\gamma_{2,(-1)}T\gamma_i$. Removing that ghost therefore gives
+$T\gamma_i$.
+
+\begin{proposition}\label{w4d:prop:cartan}
+There is a degree-minus-one vertex derivation $h$ of $B$, determined by
+\[
+ h\gamma_2=-\mathbf1,\qquad h\gamma_3=h\gamma_4=0.
+\]
+It satisfies
+\[
+ h^2=0,\qquad [h,T_B]=0,\qquad [d,h]=T_B.
+\]
+Extend it to $V\otimes B$ by zero on $V$. For the exact coupling
+$q$ and the differential $Q=d+q_{(0)}$ of
+Proposition~\ref{w4d:prop:coupling}, one has
+\[
+ hq=L,\qquad [Q,h]=T_V+T_B.
+\]
+These are identities on the full vertex superalgebra, with every
+vertex product retained. In particular translation acts by zero
+on $H^\bullet(V\otimes B,Q)$. Every induced product except the
+$(-1)$-product vanishes; the latter makes cohomology a unital
+graded-commutative algebra.
+\end{proposition}
+
+\begin{proof}
+Every nonnegative product of two generators of $B$ is a normally
+ordered polynomial in the jets of $\gamma_3,\gamma_4$ alone, by
+Section~\ref{w4d:app:modes}. Adjoin an odd constant $\epsilon$ of
+degree one, with $\epsilon^2=0$ and $T\epsilon=0$. The assignments
+\[
+ \gamma_2\longmapsto\gamma_2-\epsilon\mathbf1,
+ \qquad\gamma_3\longmapsto\gamma_3,
+ \qquad\gamma_4\longmapsto\gamma_4
+\]
+preserve all generating singular products. Indeed the added scalar
+has no nonnegative products, and the right sides of the relations
+are unchanged. The universal presentation of
+Proposition~\ref{w4d:prop:dual-PBW} therefore gives an automorphism
+of $B\otimes\Lambda(\epsilon)$, with the opposite shift as inverse.
+Its coefficient of $\epsilon$, written on the left, is $h$.
+Thus $h$ is a vertex derivation and commutes with translation.
+The even derivation $h^2$ vanishes on the generators, hence is zero.
+
+In each of the three displayed formulas for $d\gamma_i$ in
+Section~\ref{w4d:app:modes}, every occurrence of $\gamma_2$ outside
+$-\gamma_{2,(-1)}T\gamma_i$ is differentiated. Since
+$hT^r\gamma_2=0$ for $r\geq1$, it follows that
+$h(d\gamma_i)=T\gamma_i$. Also $d(h\gamma_i)=0$.
+Both $[d,h]$ and $T_B$ are derivations, so equality on the
+generators proves equality on $B$.
+
+The exact coupling gives $hq=-U_2=L$.
+The derivation identity for a zero mode gives
+$[q_{(0)},h]=(hq)_{(0)}=L_{(0)}$.
+The stress field acts by $L_{(0)}=T_V$ on $V$.
+Adding this identity to $[d,h]=T_B$ proves the assertion for $Q$.
+For a $Q$-cocycle $x$, it reads $Tx=Q(hx)$, proving the
+translation assertion. If $x,y$ are $Q$-cocycles and $n\ne-1$,
+sesquilinearity gives
+\[
+ x_{(n)}y=-\frac{1}{n+1}(Tx)_{(n+1)}y
+       =Q\!\left(-\frac{1}{n+1}(hx)_{(n+1)}y\right).
+\]
+Skewsymmetry and quasi-associativity therefore reduce on cohomology
+to graded commutativity and associativity of the $(-1)$-product.
+\end{proof}
+
+The homotopy uses the ghost vertex relations and the exact Miura
+coupling. It makes no assertion that positive conformal weights
+are acyclic or that a geometric field theory has been constructed.
+
+\begin{question}\label{w4d:qn:topologization}
+Can the Cartan homotopy of Proposition~\ref{w4d:prop:cartan}
+be realized by a theory on $\mathbb R\times X$ whose chiral
+observables are $(V\otimes B,Q)$? The realization must preserve
+the full coupling and the products on the collision strata.
+\end{question}
+Proposition~\ref{w4d:prop:cartan} supplies the algebraic translation
+homotopy. Its compatibility with a geometric factorization theory
+is the remaining comparison.
+
+\section{Finite exact polynomial verification}\label{w4d:app:finite}
+The coefficient identities above are finite polynomial identities. The following recurrences specify their evaluation. All states are finite sparse sums; coefficient rings are $\mathbb Q[\alpha]$ or $\mathbb Q(\alpha)$, with characteristic zero throughout.
+
+\subsection{The Heisenberg recurrence}
+Represent $T^ra_i$ by the pair $(i,r)$, $i=1,2,3$, and a Fock monomial by a sorted tuple of such pairs. Eliminate $a_4$ linearly. Translation replaces each pair $(i,r)$ in turn by $(i,r+1)$ and sums the results, with multiplicity. Miura multiplication is obtained from the right by
+\[
+ C_{n+1}^{\mathrm{new}}\mathrel{+}=C_n,\qquad
+ C_n^{\mathrm{new}}\mathrel{+}=a_iC_n+\alpha TC_n,
+\]
+starting with $C_0=1$. For an OPE, recursively choose either no contraction for the first left factor, or its contraction with each available right factor, using \eqref{w4d:eq:wick}. When no left factor remains, Taylor-expand the residual left factors. For a specified finite Laurent interval this recursion is finite and is exactly Wick's theorem, including all multiplicities and all regular terms that can shift into poles.
+
+For a primal row $ij$, the possible correction columns have $i+j-k-l\geq2$. Extract every monomial coefficient of \eqref{w4d:eq:primal-residual}; the result is a finite linear system. One may select independent rows at $\alpha=1$ for efficiency, but the selected system is solved over $\mathbb Q(\alpha)$ and its proposed solution is substituted into \emph{every row over that field}. No identity is accepted from its value at the specialization. The resulting coefficients lie in $\mathbb Q[\alpha]$ and are Table~\ref{w4d:tab:C}. Matrix inversion then gives Table~\ref{w4d:tab:E} and checks $MD^{\mathrm t}=1$ exactly.
+
+\subsection{The odd-mode recurrence}
+An ordered dual word is a tuple of distinct creation pairs $(i,p)$, with $p\geq1$. An empty tuple represents the nonzero vacuum. For a generator acting on such a word, use \eqref{w4d:eq:comm}; a generator acting on the vacuum is zero at nonnegative mode and is its creation state at negative mode. A wrong ordering of two creation pairs is exchanged with the odd sign and its commutator; an equal pair is half its commutator. For the mode of a longer left word use \eqref{w4d:eq:iterate}. For a single differentiated generator use
+\[
+ (\Gamma_{i,(-p)}\mathbf1)_{(n)}
+  =(-1)^{p-1}\binom{n}{p-1}(\Gamma_i)_{(n-p+1)}.
+\]
+Here binomial coefficients with negative upper entry use
+$\binom{-h}{r}=(-1)^r\binom{h+r-1}{r}$. Translation on a creation mode replaces $p$ by $p+1$ and multiplies by $p$.
+
+The singular input rule is \eqref{w4d:eq:mode-rule}. The sum in the first term of \eqref{w4d:eq:iterate} stops when the proposed state has weight below $b_{|v|+|b|}$; the second stops when the generator action has weight below $b_{1+|b|}$. These are bounds in the formal normal-word span and do not require PBW independence in advance. All other recursion either shortens a word or lowers \eqref{w4d:eq:dual-filtration}. This specifies a terminating rational-polynomial algorithm.
+
+Evaluate $K$ and $J$ in the ranges of Lemma~\ref{w4d:lem:jacobi} with this algorithm. Each coefficient is the zero polynomial. Separately evaluate $d^2\gamma_s-w_{(0)}\gamma_s$ for $s=2,3,4$, $dw-Tv$ for \eqref{w4d:eq:bianchi}, and $e_{(n)}e$ for $0\leq n\leq6$. These are again zero polynomials. The formula \eqref{w4d:eq:bianchi} specifies the primitive $v$ as a finite polynomial in modes. Its reduction has 114 ordered cubic terms.
+
+The proof of the extension to all states is Proposition~\ref{w4d:prop:dual-PBW}, the zero-mode derivation identities and the regular coevaluation identity \eqref{w4d:eq:pair-factorization}. A finite list of generator calculations, without those structural arguments, would not establish the theorem.
+
+\section{Expanded generating singular products}\label{w4d:app:modes}
+Use the PBW notation
+\[
+ \wfourword{i}{p}{j}{q}=\Gamma_{i,(-p)}\Gamma_{j,(-q)}\mathbf1,
+ \qquad (i,p)<(j,q).
+\]
+Every mode below is fully expanded in this basis; coefficients are polynomials in $a=\alpha$. Unlisted nonnegative modes vanish. Reversed generating products are specified by
+\[
+ (\Gamma_j)_{(n)}\Gamma_i
+  =\sum_{r\geq0}\frac{(-1)^{n+r}}{r!}T^r
+     (\Gamma_i)_{(n+r)}\Gamma_j.
+\]
+This formula, including the displayed finite mode bounds, gives every ordered generating singular product. In particular the $(0,s,0)$ products define $d\gamma_s$ and half the $(0,0,0)$ product is $w$.
+\begin{align*}
+(\Gamma_0)_{(0)}\Gamma_0 &={} \left(- \frac{3 \left(20 a^{2} - 1\right)}{2}\right)\wfourword{2}{1}{2}{4} + \left(6 a \left(20 a^{2} - 1\right)\right)\wfourword{2}{1}{3}{5}\\
+&\quad {}+ \left(- 9 a^{2} \left(20 a^{2} - 1\right)\right)\wfourword{2}{1}{4}{6} + \left(6 a \left(20 a^{2} - 1\right)\right)\wfourword{2}{5}{3}{1}\\
+&\quad {}+ \left(9 a^{2} \left(20 a^{2} - 1\right)\right)\wfourword{2}{6}{4}{1}\\
+&\quad {}+ \left(\frac{\left(20 a^{2} - 1\right) \left(72 a^{2} + 13\right)}{2}\right)\wfourword{3}{1}{3}{6}\\
+&\quad {}+ \left(- \frac{3 a \left(20 a^{2} - 1\right) \left(48 a^{2} + 11\right)}{2}\right)\wfourword{3}{1}{4}{7}\\
+&\quad {}+ \left(\frac{9 \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{2}{3}{5} + \left(- 9 a \left(20 a^{2} - 1\right)\right)\wfourword{3}{2}{4}{6}\\
+&\quad {}+ \left(\frac{3 \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{3}{3}{4}\\
+&\quad {}+ \left(- \frac{3 a \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{3}{4}{5} + \left(3 a \left(20 a^{2} - 1\right)\right)\wfourword{3}{4}{4}{4}\\
+&\quad {}+ \left(\frac{9 a \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{5}{4}{3} + \left(3 a \left(20 a^{2} - 1\right)\right)\wfourword{3}{6}{4}{2}\\
+&\quad {}+ \left(- \frac{3 a \left(20 a^{2} - 1\right) \left(48 a^{2} - 1\right)}{2}\right)\wfourword{3}{7}{4}{1}\\
+&\quad {}+ \left(- \frac{9 \left(20 a^{2} - 1\right) \left(672 a^{4} + 892 a^{2} + 193\right)}{32}\right)\wfourword{4}{1}{4}{8}\\
+&\quad {}+ \left(- \frac{15 \left(20 a^{2} - 1\right) \left(84 a^{2} + 23\right)}{8}\right)\wfourword{4}{2}{4}{7}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(108 a^{2} + 37\right)}{4}\right)\wfourword{4}{3}{4}{6}\\
+&\quad {}+ \left(- \frac{9 \left(20 a^{2} - 1\right) \left(44 a^{2} + 17\right)}{16}\right)\wfourword{4}{4}{4}{5}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(1)}\Gamma_0 &={} \left(- \frac{3 \left(20 a^{2} - 1\right)}{2}\right)\wfourword{2}{1}{2}{3} + \left(6 a \left(20 a^{2} - 1\right)\right)\wfourword{2}{1}{3}{4}\\
+&\quad {}+ \left(- 9 a^{2} \left(20 a^{2} - 1\right)\right)\wfourword{2}{1}{4}{5} + \left(6 a \left(20 a^{2} - 1\right)\right)\wfourword{2}{4}{3}{1}\\
+&\quad {}+ \left(9 a^{2} \left(20 a^{2} - 1\right)\right)\wfourword{2}{5}{4}{1}\\
+&\quad {}+ \left(\left(20 a^{2} - 1\right) \left(36 a^{2} + 5\right)\right)\wfourword{3}{1}{3}{5}\\
+&\quad {}+ \left(- \frac{3 a \left(20 a^{2} - 1\right) \left(48 a^{2} + 7\right)}{2}\right)\wfourword{3}{1}{4}{6}\\
+&\quad {}+ \left(3 \left(20 a^{2} - 1\right)\right)\wfourword{3}{2}{3}{4} + \left(- \frac{9 a \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{2}{4}{5}\\
+&\quad {}+ \left(\frac{3 a \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{3}{4}{4}\\
+&\quad {}+ \left(\frac{9 a \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{4}{4}{3}\\
+&\quad {}+ \left(\frac{9 a \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{5}{4}{2}\\
+&\quad {}+ \left(- \frac{9 a \left(4 a - 1\right) \left(4 a + 1\right) \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{6}{4}{1}\\
+&\quad {}+ \left(- \frac{27 \left(20 a^{2} - 1\right) \left(224 a^{4} + 228 a^{2} + 35\right)}{32}\right)\wfourword{4}{1}{4}{7}\\
+&\quad {}+ \left(- \frac{9 \left(20 a^{2} - 1\right) \left(26 a^{2} + 5\right)}{2}\right)\wfourword{4}{2}{4}{6}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(276 a^{2} + 65\right)}{16}\right)\wfourword{4}{3}{4}{5}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(2)}\Gamma_0 &={} \left(- \frac{3 \left(20 a^{2} - 1\right)}{2}\right)\wfourword{2}{1}{2}{2} + \left(6 a \left(20 a^{2} - 1\right)\right)\wfourword{2}{1}{3}{3}\\
+&\quad {}+ \left(- 9 a^{2} \left(20 a^{2} - 1\right)\right)\wfourword{2}{1}{4}{4} + \left(6 a \left(20 a^{2} - 1\right)\right)\wfourword{2}{3}{3}{1}\\
+&\quad {}+ \left(9 a^{2} \left(20 a^{2} - 1\right)\right)\wfourword{2}{4}{4}{1}\\
+&\quad {}+ \left(\frac{\left(20 a^{2} - 1\right) \left(72 a^{2} + 7\right)}{2}\right)\wfourword{3}{1}{3}{4}\\
+&\quad {}+ \left(- 6 a \left(12 a^{2} + 1\right) \left(20 a^{2} - 1\right)\right)\wfourword{3}{1}{4}{5}\\
+&\quad {}+ \left(\frac{3 \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{2}{3}{3}\\
+&\quad {}+ \left(- \frac{3 a \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{2}{4}{4} + \left(3 a \left(20 a^{2} - 1\right)\right)\wfourword{3}{3}{4}{3}\\
+&\quad {}+ \left(\frac{9 a \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{4}{4}{2}\\
+&\quad {}+ \left(- 6 a \left(12 a^{2} - 1\right) \left(20 a^{2} - 1\right)\right)\wfourword{3}{5}{4}{1}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(2016 a^{4} + 1620 a^{2} + 155\right)}{32}\right)\wfourword{4}{1}{4}{6}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(468 a^{2} + 55\right)}{16}\right)\wfourword{4}{2}{4}{5}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(36 a^{2} + 5\right)}{4}\right)\wfourword{4}{3}{4}{4}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(3)}\Gamma_0 &={} \left(6 a \left(20 a^{2} - 1\right)\right)\wfourword{2}{1}{3}{2} + \left(- 9 a^{2} \left(20 a^{2} - 1\right)\right)\wfourword{2}{1}{4}{3}\\
+&\quad {}+ \left(6 a \left(20 a^{2} - 1\right)\right)\wfourword{2}{2}{3}{1} + \left(9 a^{2} \left(20 a^{2} - 1\right)\right)\wfourword{2}{3}{4}{1}\\
+&\quad {}+ \left(\frac{\left(20 a^{2} - 1\right) \left(72 a^{2} + 1\right)}{2}\right)\wfourword{3}{1}{3}{3}\\
+&\quad {}+ \left(- \frac{3 a \left(20 a^{2} - 1\right) \left(48 a^{2} + 1\right)}{2}\right)\wfourword{3}{1}{4}{4}\\
+&\quad {}+ \left(3 a \left(20 a^{2} - 1\right)\right)\wfourword{3}{3}{4}{2}\\
+&\quad {}+ \left(- \frac{3 a \left(20 a^{2} - 1\right) \left(48 a^{2} - 5\right)}{2}\right)\wfourword{3}{4}{4}{1}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(2016 a^{4} + 1236 a^{2} + 11\right)}{32}\right)\wfourword{4}{1}{4}{5}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(84 a^{2} + 1\right)}{4}\right)\wfourword{4}{2}{4}{4}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(4)}\Gamma_0 &={} \left(12 a \left(20 a^{2} - 1\right)\right)\wfourword{2}{1}{3}{1} + \left(- 9 a^{2} \left(20 a^{2} - 1\right)\right)\wfourword{2}{1}{4}{2}\\
+&\quad {}+ \left(9 a^{2} \left(20 a^{2} - 1\right)\right)\wfourword{2}{2}{4}{1}\\
+&\quad {}+ \left(\frac{\left(20 a^{2} - 1\right) \left(72 a^{2} + 1\right)}{2}\right)\wfourword{3}{1}{3}{2}\\
+&\quad {}+ \left(- \frac{3 a \left(20 a^{2} - 1\right) \left(48 a^{2} + 1\right)}{2}\right)\wfourword{3}{1}{4}{3}\\
+&\quad {}+ \left(- \frac{9 a \left(4 a - 1\right) \left(4 a + 1\right) \left(20 a^{2} - 1\right)}{2}\right)\wfourword{3}{3}{4}{1}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(2016 a^{4} + 1044 a^{2} + 7\right)}{32}\right)\wfourword{4}{1}{4}{4}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(96 a^{2} + 1\right)}{8}\right)\wfourword{4}{2}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(5)}\Gamma_0 &={} \left(- \frac{3 a \left(20 a^{2} - 1\right) \left(48 a^{2} + 1\right)}{2}\right)\wfourword{3}{1}{4}{2}\\
+&\quad {}+ \left(- \frac{3 a \left(20 a^{2} - 1\right) \left(48 a^{2} + 1\right)}{2}\right)\wfourword{3}{2}{4}{1}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(2016 a^{4} + 564 a^{2} - 1\right)}{32}\right)\wfourword{4}{1}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(6)}\Gamma_0 &={} \left(- 3 a \left(20 a^{2} - 1\right) \left(48 a^{2} + 1\right)\right)\wfourword{3}{1}{4}{1}\\
+&\quad {}+ \left(- \frac{3 \left(20 a^{2} - 1\right) \left(2016 a^{4} + 564 a^{2} - 1\right)}{32}\right)\wfourword{4}{1}{4}{2}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(0)}\Gamma_2 &={} -\wfourword{2}{1}{2}{2} + \left(4 a\right)\wfourword{2}{3}{3}{1} + \left(\frac{\left(6 a - 1\right) \left(6 a + 1\right)}{4}\right)\wfourword{2}{4}{4}{1}\\
+&\quad {}+ \left(2 \left(6 a^{2} + 1\right)\right)\wfourword{3}{1}{3}{4} + \left(- 3 a \left(4 a^{2} + 1\right)\right)\wfourword{3}{1}{4}{5} + \wfourword{3}{2}{3}{3}\\
+&\quad {}+ \left(- a\right)\wfourword{3}{2}{4}{4} + \left(- a\right)\wfourword{3}{4}{4}{2} + \left(- 48 a^{3}\right)\wfourword{3}{5}{4}{1}\\
+&\quad {}+ \left(- \frac{5 \left(72 a^{4} + 42 a^{2} + 7\right)}{4}\right)\wfourword{4}{1}{4}{6}\\
+&\quad {}+ \left(- \frac{7 \left(36 a^{2} + 7\right)}{8}\right)\wfourword{4}{2}{4}{5}\\
+&\quad {}+ \left(- \frac{9 \left(4 a^{2} + 1\right)}{4}\right)\wfourword{4}{3}{4}{4}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(1)}\Gamma_2 &={} \left(4 a\right)\wfourword{2}{2}{3}{1} + \left(\frac{\left(6 a - 1\right) \left(6 a + 1\right)}{4}\right)\wfourword{2}{3}{4}{1}\\
+&\quad {}+ \left(12 a^{2}\right)\wfourword{3}{1}{3}{3} + \left(- 12 a^{3}\right)\wfourword{3}{1}{4}{4}\\
+&\quad {}+ \left(- 3 a \left(4 a - 1\right) \left(4 a + 1\right)\right)\wfourword{3}{4}{4}{1}\\
+&\quad {}+ \left(- \frac{3 a^{2} \left(60 a^{2} + 17\right)}{2}\right)\wfourword{4}{1}{4}{5} + \left(- 18 a^{2}\right)\wfourword{4}{2}{4}{4}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(2)}\Gamma_2 &={} \left(4 a\right)\wfourword{2}{1}{3}{1} + \left(\frac{\left(6 a - 1\right) \left(6 a + 1\right)}{4}\right)\wfourword{2}{2}{4}{1}\\
+&\quad {}+ \left(12 a^{2}\right)\wfourword{3}{1}{3}{2} + \left(- 12 a^{3}\right)\wfourword{3}{1}{4}{3}\\
+&\quad {}+ \left(- 3 a \left(4 a - 1\right) \left(4 a + 1\right)\right)\wfourword{3}{3}{4}{1}\\
+&\quad {}+ \left(- \frac{3 a^{2} \left(60 a^{2} + 11\right)}{2}\right)\wfourword{4}{1}{4}{4} + \left(- 9 a^{2}\right)\wfourword{4}{2}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(3)}\Gamma_2 &={} \left(\frac{\left(6 a - 1\right) \left(6 a + 1\right)}{4}\right)\wfourword{2}{1}{4}{1} + \left(- 12 a^{3}\right)\wfourword{3}{1}{4}{2}\\
+&\quad {}+ \left(- a \left(48 a^{2} - 1\right)\right)\wfourword{3}{2}{4}{1}\\
+&\quad {}+ \left(- \frac{9 a^{2} \left(20 a^{2} + 1\right)}{2}\right)\wfourword{4}{1}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(4)}\Gamma_2 &={} \left(- a \left(60 a^{2} - 1\right)\right)\wfourword{3}{1}{4}{1}\\
+&\quad {}+ \left(- \frac{\left(6 a^{2} + 1\right) \left(60 a^{2} - 1\right)}{4}\right)\wfourword{4}{1}{4}{2}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(0)}\Gamma_3 &={} -\wfourword{2}{1}{3}{2} + \left(2\right)\wfourword{2}{2}{3}{1} + \left(3 a\right)\wfourword{2}{3}{4}{1} + \left(2 a\right)\wfourword{3}{1}{3}{3}\\
+&\quad {}+ \left(- \frac{1}{2}\right)\wfourword{3}{3}{4}{2} + \left(- 12 a^{2}\right)\wfourword{3}{4}{4}{1}\\
+&\quad {}+ \left(- 6 a \left(3 a^{2} + 1\right)\right)\wfourword{4}{1}{4}{5} + \left(- \frac{9 a}{2}\right)\wfourword{4}{2}{4}{4}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(1)}\Gamma_3 &={} \wfourword{2}{1}{3}{1} + \left(3 a\right)\wfourword{2}{2}{4}{1} + \left(2 a\right)\wfourword{3}{1}{3}{2} + \left(- \frac{24 a^{2} - 1}{2}\right)\wfourword{3}{3}{4}{1}\\
+&\quad {}+ \left(- \frac{3 a \left(12 a^{2} + 1\right)}{2}\right)\wfourword{4}{1}{4}{4} + \left(- \frac{3 a}{2}\right)\wfourword{4}{2}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(2)}\Gamma_3 &={} \left(3 a\right)\wfourword{2}{1}{4}{1} + \left(- 12 a^{2}\right)\wfourword{3}{2}{4}{1} + \left(- 18 a^{3}\right)\wfourword{4}{1}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(3)}\Gamma_3 &={} \left(- 12 a^{2}\right)\wfourword{3}{1}{4}{1} + \left(- 3 a \left(6 a^{2} + 1\right)\right)\wfourword{4}{1}{4}{2}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(0)}\Gamma_4 &={} -\wfourword{2}{1}{4}{2} + \left(3\right)\wfourword{2}{2}{4}{1} + \left(-2\right)\wfourword{3}{1}{3}{2} + \left(2 a\right)\wfourword{3}{1}{4}{3}\\
+&\quad {}+ \left(- 6 a\right)\wfourword{3}{3}{4}{1} + \left(- 3 \left(2 a^{2} - 1\right)\right)\wfourword{4}{1}{4}{4} + \left(\frac{1}{2}\right)\wfourword{4}{2}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(1)}\Gamma_4 &={} \left(2\right)\wfourword{2}{1}{4}{1} + \left(2 a\right)\wfourword{3}{1}{4}{2} + \left(- 6 a\right)\wfourword{3}{2}{4}{1}\\
+&\quad {}+ \left(1 - 6 a^{2}\right)\wfourword{4}{1}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_0)_{(2)}\Gamma_4 &={} \left(- 4 a\right)\wfourword{3}{1}{4}{1} + \left(- 6 a^{2} - 1\right)\wfourword{4}{1}{4}{2}
+\end{align*}
+\begin{align*}
+(\Gamma_2)_{(0)}\Gamma_2 &={} \wfourword{3}{1}{3}{2} + \left(- a\right)\wfourword{3}{1}{4}{3} + \left(- a\right)\wfourword{3}{3}{4}{1}\\
+&\quad {}+ \left(- \frac{36 a^{2} + 13}{8}\right)\wfourword{4}{1}{4}{4} + \left(- \frac{3}{4}\right)\wfourword{4}{2}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_2)_{(1)}\Gamma_2 &={} \left(- a\right)\wfourword{3}{1}{4}{2} + \left(- a\right)\wfourword{3}{2}{4}{1} + \left(- \frac{36 a^{2} + 1}{8}\right)\wfourword{4}{1}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_2)_{(2)}\Gamma_2 &={} \left(- 2 a\right)\wfourword{3}{1}{4}{1} + \left(- \frac{36 a^{2} + 1}{8}\right)\wfourword{4}{1}{4}{2}
+\end{align*}
+\begin{align*}
+(\Gamma_2)_{(0)}\Gamma_3 &={} \left(- \frac{1}{2}\right)\wfourword{3}{2}{4}{1} + \left(- \frac{3 a}{2}\right)\wfourword{4}{1}{4}{3}
+\end{align*}
+\begin{align*}
+(\Gamma_2)_{(1)}\Gamma_3 &={} \left(- \frac{1}{2}\right)\wfourword{3}{1}{4}{1} + \left(- \frac{3 a}{2}\right)\wfourword{4}{1}{4}{2}
+\end{align*}
+\begin{align*}
+(\Gamma_2)_{(0)}\Gamma_4 &={} -\wfourword{4}{1}{4}{2}
+\end{align*}
+\begin{align*}
+(\Gamma_3)_{(0)}\Gamma_3 &={} \left(\frac{3}{4}\right)\wfourword{4}{1}{4}{2}
+\end{align*}
+
+
+\endgroup

@@ -1,0 +1,136 @@
+{
+  "schema": "reader-public-history/1",
+  "repository": "/Users/raeez/www-worktrees/2026-11-17-qh-research-publication",
+  "publicPath": "quantum-holography",
+  "controls": {
+    "baseline/reader.js": {
+      "sha256": "8020a5faa091f1d94c92616456e174dee85cd06de5ce4383016bfd7455a37ab5",
+      "bytes": 115539
+    },
+    "baseline/status.js": {
+      "sha256": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5",
+      "bytes": 113263
+    },
+    "controls/reader.js": {
+      "sha256": "8ca1a421ab0999dc02544e5a7bc1e20a5259ea299896b1ab96e2ba246cca2fb7",
+      "bytes": 117612
+    },
+    "controls/status.js": {
+      "sha256": "59cbc2d0b7a6d7613a8f85b30b4c61955585ef0b33f52b23aed0cae3dbbde64b",
+      "bytes": 113307
+    },
+    "controls/reader-v18.js": {
+      "sha256": "9431e9ed270952c374314aecdc55d3208de5a3688bde72353642b8a52861193a",
+      "bytes": 117944
+    },
+    "controls/status-v18.js": {
+      "sha256": "4973f1eabe680ab36390d2f5fb8514cdb8f22586511763198a6cffe3b2f86fab",
+      "bytes": 114571
+    }
+  },
+  "editions": [
+    {
+      "edition": "v14",
+      "commit": "1bb5537744d4526287b611f9552c9aacaaaca610",
+      "pins": {
+        "atlas.html": {
+          "sha256": "8d8a8de5b6e903daa14aab8375066daccc3947558f965fba4753921b8e4530f0",
+          "bytes": 10233854
+        },
+        "index.html": {
+          "sha256": "0e5e12b16a27694472cd933f33a7416070049db1b81d349da4f1b37fd61a18b3",
+          "bytes": 3377729
+        },
+        "reader-index.js": {
+          "sha256": "6a94ff3cc1f3d178b3c2718921777a3baefbaf5fabc4954bee14edc2e81e1c6e",
+          "bytes": 4985027
+        },
+        "reference.html": {
+          "sha256": "755bba3c9b434076375b6110d6b1a1cedac1af74bba0e68e887f1f1bfbd94f47",
+          "bytes": 3944323
+        }
+      }
+    },
+    {
+      "edition": "v15",
+      "commit": "3123ea8cbb82d603df7cfaab1ec09986ab5f0dc6",
+      "pins": {
+        "atlas.html": {
+          "sha256": "fb38e95131c7084e61b92ed850473cdcc5f9c1aa2f59e72ce7ed3d0789b42b2c",
+          "bytes": 11228809
+        },
+        "index.html": {
+          "sha256": "4d7370b01cc92dc022fb4d72a93cb089732b344191d9e18f19e88232e44fa7b2",
+          "bytes": 4064383
+        },
+        "reader-index.js": {
+          "sha256": "0678f266c510a13856d398ce29d1704dc1850c0e6454d601aeeb9e7a10c11bc5",
+          "bytes": 5756039
+        },
+        "reference.html": {
+          "sha256": "41d9a33a9e02e8eafc33ac32f01a4e504db7c1b2d74b2dcb281a8d45f030b9ce",
+          "bytes": 4541133
+        }
+      }
+    },
+    {
+      "edition": "v16",
+      "commit": "e7c95a26057c6722281dfb17c2d7593a991b7858",
+      "pins": {
+        "index.html": {
+          "sha256": "36fece54682177bd040bb31b9c111cf91779cde70370d50a0b064bed45ba1c17",
+          "bytes": 4720934
+        },
+        "reference.html": {
+          "sha256": "36936afb25cb9de8092eda5d730bc36bff5e9a6cfa5e5f77def5b18ed95120a4",
+          "bytes": 4949475
+        },
+        "atlas.html": {
+          "sha256": "bca739e7a98b2a12579e54ed497c8c7914cb3093c8c765152537324db1189ad7",
+          "bytes": 11360100
+        },
+        "reader-index.js": {
+          "sha256": "214ca280f24b133d90cc5b3f582c94e164abe3dee881b1bf0d25b7f1b8b8c304",
+          "bytes": 5776446
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v16-raw-index.js",
+        "sha256": "2aaa4b7c28fa11b1f1829c28c21f2248db89dace79aba6548b6ac5b4d506707d",
+        "bytes": 5787605
+      }
+    },
+    {
+      "edition": "v17",
+      "commit": "93ab244444a78ad247e167dc0c8657154e37051b",
+      "pins": {
+        "index.html": {
+          "sha256": "0b6e6424b12ed0a69c2663fe1d3bc0ed91eaa4ae6f616e61d0b2cae6a38bb511",
+          "bytes": 4763225
+        },
+        "reference.html": {
+          "sha256": "045755e54c2e0d5bef8b4b3742837611d82f92b4670c5beed8256cabd6e79cfa",
+          "bytes": 4994304
+        },
+        "atlas.html": {
+          "sha256": "af6cbb4398f971b4e57051c38c3950bfa9e4f945cf3cbaa4aeeb2a406135dffc",
+          "bytes": 11366986
+        },
+        "reader-index.js": {
+          "sha256": "7ae83778cc42b1ad93cebdce1e5a4affff922d767b9befd85d31ce6f8aedb9b3",
+          "bytes": 5799169
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v17-raw-index.js",
+        "sha256": "b9753806578f0415306b29f5849b904724833cb427858557a55a966f3aa54f9a",
+        "bytes": 5810692
+      }
+    }
+  ],
+  "runtime": {
+    "reader": "controls/reader-v18.js",
+    "reference": "controls/status-v18.js"
+  },
+  "matchIssuedEnclosures": true
+}

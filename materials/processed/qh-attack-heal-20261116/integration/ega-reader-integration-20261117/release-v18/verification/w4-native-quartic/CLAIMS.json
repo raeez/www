@@ -1,0 +1,50 @@
+[
+  {
+    "id": "PAIR-W4-NATIVE-MODE-LIE",
+    "package": "p11-exceptional-w4-algebra",
+    "title": "Coefficient modes compare the commutator with the genuine smooth Yoneda dg algebra",
+    "statement": "At tau=-3/2, the weight-zero coupled BRST Lie algebra maps quasi-isomorphically to the commutator dg Lie algebra of the graded opposite of the ordinary smooth vacuum derived endomorphisms, via its actual (-1)-modes on every coefficient.",
+    "scope": "All smooth weak modules; signed opposite via pro-precomposition. The normal product on states is used only through its Lie commutator.",
+    "locator": "lines 5\u201337, 72\u201380",
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-native-quartic/PROOF.md",
+    "sha256": "a1aaee21068789b04a7f42c3389fa0b7e334d98fd0e89d1fc919563e0d33fc0e",
+    "check_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-native-quartic-independent/VERDICT.json",
+    "check_sha256": "ab2cc8c84293764eb12db4ee8d5c667390b09cf1ca48cf6d10fb176d0dcc7b91"
+  },
+  {
+    "id": "PAIR-W4-TRANSLATION-IDEAL",
+    "package": "p11-exceptional-w4-algebra",
+    "title": "The native translation image is an acyclic Lie ideal",
+    "statement": "The complete weight-zero bracket lands in T K(V)_{-1}. The native BRST negative-weight cohomology vanishes and translation is injective by the highest differential PBW jet, so the quotient Lie algebra is abelian and quasi-isomorphic to the original.",
+    "scope": "Internal-weight minus-one source and zero-weight recipient on the noncritical specialized polynomial three-ghost complex.",
+    "locator": "lines 39\u201356",
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-native-quartic/PROOF.md",
+    "sha256": "a1aaee21068789b04a7f42c3389fa0b7e334d98fd0e89d1fc919563e0d33fc0e",
+    "check_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-native-quartic-independent/VERDICT.json",
+    "check_sha256": "ab2cc8c84293764eb12db4ee8d5c667390b09cf1ca48cf6d10fb176d0dcc7b91"
+  },
+  {
+    "id": "PAIR-W4-NATIVE-QUARTIC",
+    "package": "p11-exceptional-w4-algebra",
+    "title": "The native quartic is zero and each exceptional vacuum endomorphism algebra is associatively formal",
+    "statement": "On three copies of the marked a and one of u, symmetrization gives 6 gamma az. The genuine commutator algebra is homotopy abelian and az is nonzero, hence gamma=0. The previously verified marked normal form then gives ordinary strictly unital associative formality at -3/2 and via the enhanced comparisons at all four exceptional fibres.",
+    "scope": "Universal principal W4 vacuum, all smooth weak modules. The independent local coefficient-level equivariant nullhomotopy and independently marked reciprocal DS comparison remain separate.",
+    "locator": "lines 58\u201370",
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-native-quartic/PROOF.md",
+    "sha256": "a1aaee21068789b04a7f42c3389fa0b7e334d98fd0e89d1fc919563e0d33fc0e",
+    "check_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-native-quartic-independent/VERDICT.json",
+    "check_sha256": "ab2cc8c84293764eb12db4ee8d5c667390b09cf1ca48cf6d10fb176d0dcc7b91"
+  },
+  {
+    "id": "PAIR-W4-CHARACTERISTIC-ONTO",
+    "package": "p11-exceptional-w4-algebra",
+    "title": "Every exceptional vacuum class has a two-sided characteristic lift",
+    "statement": "The Hochschild characteristic map of the actual derived vacuum endomorphism algebra is surjective on all twelve dimensions because the actual gamma is zero. In particular a and u lift.",
+    "scope": "The existence of these lifts is obtained by transport from the formal algebra. Raw one-sided Yoneda coefficient modes are not asserted to be strict central bimodule cochains.",
+    "locator": "line 70 and earlier characteristic theorem",
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-native-quartic/PROOF.md",
+    "sha256": "a1aaee21068789b04a7f42c3389fa0b7e334d98fd0e89d1fc919563e0d33fc0e",
+    "check_path": "/tmp/astra62-frontier-successor-20261118/checks/w4-native-quartic-independent/VERDICT.json",
+    "check_sha256": "ab2cc8c84293764eb12db4ee8d5c667390b09cf1ca48cf6d10fb176d0dcc7b91"
+  }
+]
