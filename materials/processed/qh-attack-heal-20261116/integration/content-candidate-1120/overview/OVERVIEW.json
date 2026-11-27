@@ -1,0 +1,89 @@
+{
+  "title": "Quantum holography and associative chiral Koszul duality",
+  "subtitle": "Fields, dualities, fusion, bulk observables and quantum states across the programme.",
+  "asOf": "2026-11-16T11:20:00Z",
+  "lead": [
+    "The programme asks how algebras of fields, their representations, bulk observables and quantum states are related by maps that preserve singular composition. Ordered configurations record where insertions meet and which input comes first. The comparison must carry those operations, their units and their higher homotopies.",
+    "Bar–cobar equivalences, curved mode duals and explicit free-field models provide a common foundation. Full module comparisons, canonical-vacuum recognition, formal quantum fields and analytic sewing are established on specified domains. Their exact coefficient categories, pointings and completions determine what can be composed.",
+    "The examples range from Heisenberg, affine and Virasoro algebras to quantum vertex algebras, Hall constructions, branes, higher-dimensional currents and gravity. Integral arithmetic operations and the full Weil trace form another branch. These subjects share comparison problems; a result in one recipient does not identify a different recipient by itself.",
+    "This is an account of the whole programme at the stated date. Each example retains its established results, conditional extensions, concrete failures and remaining targets. The questions ask for the next actual map or construction, with the data it must preserve."
+  ],
+  "essay_lead": "The same field, dual or state can have several mathematical realizations. The programme compares their actual operations and domains.",
+  "orientation": {
+    "title": "How the programme fits together",
+    "explanation": [
+      "A field algebra describes products and singular coefficients. A configuration object also records collisions, cuts and normal derivatives. A module category records the actions and fusion of representations. A bulk theory supplies its own observables, and a prepared state supplies amplitudes on those observables. The central task is to construct comparisons between these independently defined objects.",
+      "The example table reads each family through algebra and geometry, its dual, module comparison, fusion, bulk operations, lines, states and the physical comparison. A positive entry in one column supplies the result at its stated scope; it does not fill the other columns automatically.",
+      "Two distinctions recur. Configuration arity counts insertion positions, while deformation order counts powers of a formal parameter. Algebraic states, formal parameter completion and a continuous energy or mode completion are also different domains. A theorem states which of these it uses.",
+      "The choice of unit matters. The empty configuration, an occupied vacuum, a source pointing and a physical cap are different data. Their comparison can retain nonzero higher classes even when a scalar trace or an underlying complex agrees."
+    ],
+    "programmeFamilies": [
+      {
+        "id": "overview-fields-and-representations",
+        "title": "Fields and their representations",
+        "familyIds": [
+          "heisenberg",
+          "affine-generic",
+          "affine-rational",
+          "affine-critical",
+          "virasoro",
+          "w-algebras",
+          "yangians-yang-double",
+          "trigonometric-elliptic"
+        ],
+        "text": "Free currents, affine and Virasoro systems, W-algebras and quantum vertex algebras test duality, module localization, exchange and fusion on concrete algebraic or completed carriers."
+      },
+      {
+        "id": "overview-geometric-algebras",
+        "title": "Geometry, Hall algebras and branes",
+        "familyIds": [
+          "hall-shuffle",
+          "d3-branes",
+          "m2-branes",
+          "m5-branes",
+          "k3",
+          "six-sphere-and-local-models"
+        ],
+        "text": "Hall correspondences, Hilbert schemes, matrix complexes, Miura algebras, compact K3 coefficients and symplectic examples require comparisons that preserve geometric operations, parity, orientation and untraced states."
+      },
+      {
+        "id": "overview-bulk-and-defects",
+        "title": "Bulk observables, defects and gravity",
+        "familyIds": [
+          "celestial-self-dual-gauge",
+          "celestial-gravity",
+          "gravity-liouville",
+          "six-dimensional-holomorphic-chern-simons",
+          "four-dimensional-chern-simons"
+        ],
+        "text": "Celestial currents, higher-dimensional gauge theories and gravity require independently constructed bulk actions, line or surface operations, analytic sewing and source-dependent state preparation."
+      },
+      {
+        "id": "overview-arithmetic",
+        "title": "Arithmetic traces and integral coefficients",
+        "familyIds": [
+          "arithmetic"
+        ],
+        "text": "The arithmetic branch compares integral normal and Frobenius operations with a prospective native field theory, and asks for positivity and a positive realization of the complete Weil functional on its full test domain."
+      }
+    ],
+    "readerGuidance": [
+      {
+        "title": "Start with an object or a question",
+        "text": "Choose an example to see its several constructions together, or begin with a decisive question to see the comparison still required."
+      },
+      {
+        "title": "Read the domain with the conclusion",
+        "text": "The hypotheses identify the actor, pointing, coefficient ring, support and completion. Checked and conditional conclusions keep those qualifications; a scoped negative result excludes its specified construction."
+      },
+      {
+        "title": "Use the source graph precisely",
+        "text": "A mathematical arrow records a relation supported by its source. An editorial reading path is an order for reading and does not assert an additional dependency."
+      },
+      {
+        "title": "Keep partial results in view",
+        "text": "A remaining physical or global comparison can contain strong completed subproblems. Read the positive constructions beside the exact boundary that still needs a map."
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "status": "PASS",
+  "cutoff_utc": "2026-11-16T11:20:00Z",
+  "scope": "Exact frozen inputs, source-bound public schema and legacy composition, mathematical markup. Distinct scientific/source review and all site integration remain with root.",
+  "lanes": [
+    {
+      "lane": "native",
+      "manifest": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/native/FINAL-PINS.json",
+        "sha256": "a5f83e709ec89d0ad970aed84683e70c75694f3faf03f5b2fb6d12c6cf1480c8",
+        "bytes": 53514
+      },
+      "verified_files": 101,
+      "validation": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/native/VALIDATION.json",
+        "sha256": "428fe075fe7a5fb045c49b26838329521d72f919a43811c9e6ae66fba9da349c",
+        "bytes": 53065
+      }
+    },
+    {
+      "lane": "operations",
+      "manifest": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/operations/FINAL-PINS.json",
+        "sha256": "e3f841d55f49da3d38f955dbc4c8888b42fedd041069c7a3926db204ade1b6a0",
+        "bytes": 167479
+      },
+      "verified_files": 512,
+      "validation": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/operations/VALIDATION.json",
+        "sha256": "d5d73929c680c368f98c60d9fafdd6c1293d827cb0a050c902e39ff1bf8b58d4",
+        "bytes": 3065
+      }
+    },
+    {
+      "lane": "centres",
+      "manifest": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/centres/FINAL-PINS.json",
+        "sha256": "fe392d870656c513102f6a3eb5de276923b5c79fca642fb99a95abec731a130e",
+        "bytes": 29895
+      },
+      "verified_files": 103,
+      "validation": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/centres/VALIDATION.json",
+        "sha256": "4845e7a78ac2cf282e4638670577f90cbe11a085b56222616273cb03b3d67e06",
+        "bytes": 23675
+      }
+    },
+    {
+      "lane": "binary",
+      "manifest": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/binary/FINAL-PINS.json",
+        "sha256": "3a34df4e31f42e17b77b4b4f0e93cfb30f22b008666c4a4a36999a4fb40ca01b",
+        "bytes": 81822
+      },
+      "verified_files": 14,
+      "validation": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/binary/VALIDATION.json",
+        "sha256": "67c37fab22580c4d4e8ec62312a28afa77149e26ff6619e8931e1e11c0e74407",
+        "bytes": 1666
+      }
+    },
+    {
+      "lane": "quantum",
+      "manifest": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/quantum/FINAL-PINS.json",
+        "sha256": "9fdd64af6ba76373e3a8879adf6ec290a57281c5f50cfb395d748de679ef20a0",
+        "bytes": 106871
+      },
+      "verified_files": 317,
+      "validation": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/quantum/VALIDATION.json",
+        "sha256": "71ad18b7cd5eba8aecf8fa34284ad0e9429eacd03b89c0112a2c6650bedd516b",
+        "bytes": 1568
+      }
+    },
+    {
+      "lane": "analytic",
+      "manifest": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/analytic/FINAL-PINS.json",
+        "sha256": "831212c2d41564235aa40e1eeb0f32bfd93cb5be4d9d1851aaa7771b6bd5dd7f",
+        "bytes": 48301
+      },
+      "verified_files": 126,
+      "validation": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/analytic/VALIDATION.json",
+        "sha256": "de82cec4e3410bcd4035fdea4f61dbec5f6ead1847320c870e5d124c1e4dcf6c",
+        "bytes": 10294
+      }
+    },
+    {
+      "lane": "gravity",
+      "manifest": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/gravity/FINAL-PINS.json",
+        "sha256": "742676c55b5faf7c234e2400ddc95068232093b4b36cf9320257b6ee887e15bc",
+        "bytes": 129533
+      },
+      "verified_files": 550,
+      "validation": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/gravity/VALIDATION.json",
+        "sha256": "4fe218f178a7131df3e35f0d0280cb01b8456ea2f63f191ce90756fdc091f3bc",
+        "bytes": 993
+      }
+    },
+    {
+      "lane": "main/induction",
+      "manifest": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/main/induction/FINAL-PINS.json",
+        "sha256": "4f8bd7234ad283706f04db9d1e0ab36274a808f73ee4d7876560d9af50cd470a",
+        "bytes": 26984
+      },
+      "verified_files": 65,
+      "validation": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/main/induction/VALIDATION.json",
+        "sha256": "b4f6b4d994e7aacb2cb9206b711a5092aec4b86fd86f74fda1bf15cef85cfcf5",
+        "bytes": 10275
+      }
+    },
+    {
+      "lane": "main/unframed",
+      "manifest": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/main/unframed/FINAL-PINS.json",
+        "sha256": "c3ffcedadb2f8b55da673661667f4ad9010008dd3eee7cb09071f0042aa92e2e",
+        "bytes": 32684
+      },
+      "verified_files": 62,
+      "validation": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/main/unframed/VALIDATION.json",
+        "sha256": "4fd0927ecf66bfd2530a434af9a3d055bed3616a2d938f9727372ff26ed886fa",
+        "bytes": 22892
+      }
+    },
+    {
+      "lane": "overview",
+      "manifest": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/overview/FINAL-PINS.json",
+        "sha256": "827b49dec795d4bf3b83c133807409430a54fb8f8b262b5aa890b0921603a144",
+        "bytes": 4245
+      },
+      "verified_files": 16,
+      "validation": {
+        "path": "/private/tmp/programme-public-content-0835-20261116/overview/VALIDATION.json",
+        "sha256": "f7c2f8b176fc4eac0ea0a16aee9776b237cb8a9fbd3d5244dced6467d2a53e2d",
+        "bytes": 2824
+      }
+    }
+  ],
+  "atlas_validation": {
+    "path": "/private/tmp/programme-public-content-0835-20261116/ATLAS-VALIDATION.json",
+    "sha256": "4635d61b8e6423a1e74a9a102be0a3ad453f391682fcc969cc1ecb3d92ae2a10",
+    "bytes": 418
+  },
+  "public_validation": {
+    "path": "/private/tmp/programme-public-content-0835-20261116/PUBLIC-VALIDATION.json",
+    "sha256": "574f8faa4f0aee16c37e61fb59837f758cc03cd583a56da2b1113bf7c126dbde",
+    "bytes": 1180
+  },
+  "math_expressions": 3278,
+  "math_errors": [],
+  "renderer": {
+    "path": "/Users/raeez/www-worktrees/2026-11-15-qh-frontier-2203/compiler/quantum-holography-tracker/tex2mathml.cjs",
+    "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+    "bytes": 881
+  },
+  "original_scientific_freezes_unchanged": true,
+  "canonical_native_public_release_writes": false
+}

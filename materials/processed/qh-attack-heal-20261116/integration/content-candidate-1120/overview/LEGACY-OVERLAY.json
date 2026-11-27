@@ -1,0 +1,1018 @@
+{
+  "schema": "programme-guarded-legacy-overlay/v1",
+  "cutoff_utc": "2026-11-16T11:20:00Z",
+  "baseline": {
+    "path": "/tmp/programme-public-content-0835-20261116/baseline/content.json",
+    "sha256": "39eebb2c101f072177700716fe9f4a9f9de61c5c2d5595f8e813854a14b40934",
+    "bytes": 568939,
+    "frozen_path": "/tmp/programme-public-content-0835-20261116/overview/evidence/39eebb2c101f072177700716fe9f4a9f9de61c5c2d5595f8e813854a14b40934-content.json"
+  },
+  "changes": [
+    {
+      "id": "legacy-rows-1-summary",
+      "pointer": "/rows/1/summary",
+      "before": "Universal affine algebras have a curved point dual, a supported module comparison and a collision product on finite Weyl filtrations. The finite-dimensional top category has the KZ associator and quantum-group braiding; identifying these algebraic constructions with an independently defined Chern–Simons boundary functor remains open.",
+      "after": "Universal affine algebras have a curved point dual and a full unbounded algebraic module equivalence at every level after the exact induction-detected localization. Collision products on finite Weyl filtrations, the KZ associator and quantum-group braiding retain their stated domains. Finite native horizontal families and interior tree sewing have actual comparison maps; the geometric collision boundary and an independently defined Chern–Simons boundary functor remain separate.",
+      "claimIds": [
+        "induction-full-equivalence",
+        "induction-algebraic-weak-class",
+        "horizontal-all-finite-native-diagrams",
+        "horizontal-polynomial-dual-inverse",
+        "horizontal-tree-cochain-equivalence",
+        "horizontal-boundary-restriction-failure",
+        "horizontal-geometric-boundary-lattice"
+      ]
+    },
+    {
+      "id": "legacy-rows-1-cells-modules-note",
+      "pointer": "/rows/1/cells/modules/note",
+      "before": "Semiderived smooth and induction-detected supported categories",
+      "after": "Full unbounded termwise-smooth induction equivalence with its exact detected weak class",
+      "claimIds": [
+        "induction-full-equivalence",
+        "induction-algebraic-weak-class"
+      ]
+    },
+    {
+      "id": "legacy-rows-2-summary",
+      "pointer": "/rows/2/summary",
+      "before": "At noncritical rational levels the universal affine collision product is identified with vertex tensor products, using fusion lattices at resonance. Positive-integral simple modules have an additional derived loop-space factor in the universal category; curved duality and quantum-group comparisons for broader simple quotients remain open.",
+      "after": "At noncritical rational levels the universal affine collision product is identified with vertex tensor products, using fusion lattices at resonance. Positive-integral simple modules have an additional derived loop-space factor in the universal category; curved duality and quantum-group comparisons for broader simple quotients remain open. The full unbounded universal algebraic induction comparison uses its exact detected localization; the ordinary first-kind unit and completed-energy comparison have different domains.",
+      "claimIds": [
+        "induction-full-equivalence",
+        "induction-algebraic-weak-class",
+        "induction-unit-model",
+        "induction-critical-unit-failure",
+        "induction-cellular-coreflector",
+        "induction-kernel-localization",
+        "induction-local-unit-comparison",
+        "induction-completed-equivalence"
+      ]
+    },
+    {
+      "id": "legacy-rows-2-cells-modules-note",
+      "pointer": "/rows/2/cells/modules/note",
+      "before": "Universal smooth categories with explicit localization",
+      "after": "Full unbounded universal smooth comparison after induction-detected localization",
+      "claimIds": [
+        "induction-full-equivalence",
+        "induction-algebraic-weak-class"
+      ]
+    },
+    {
+      "id": "legacy-rows-3-summary",
+      "pointer": "/rows/3/summary",
+      "before": "The universal critical algebra remains curved on the dual side, and its smooth vacuum self-extensions contain differential forms on opers. Presentable categorical self-duality survives, but the compact category has no right Serre functor; collision fusion and lines over opers remain open.",
+      "after": "The universal critical algebra remains curved on the dual side, and its smooth vacuum self-extensions contain differential forms on opers. Corrected algebraic induction remains an equivalence after its exact detected localization. Under the specified native first-kind hypotheses, a nonzero ordinary critical telescope has zero smooth realization, so the ordinary global unit fails. Presentable categorical self-duality survives, but the compact category has no right Serre functor; collision fusion and lines over opers remain open.",
+      "claimIds": [
+        "induction-full-equivalence",
+        "induction-algebraic-weak-class",
+        "induction-unit-model",
+        "induction-critical-unit-failure",
+        "induction-cellular-coreflector",
+        "induction-kernel-localization",
+        "induction-local-unit-comparison"
+      ]
+    },
+    {
+      "id": "legacy-rows-3-cells-modules-note",
+      "pointer": "/rows/3/cells/modules/note",
+      "before": "Semiderived smooth and supported categories at critical level",
+      "after": "Corrected induction equivalence; ordinary critical unit failure under the stated native hypotheses",
+      "claimIds": [
+        "induction-full-equivalence",
+        "induction-algebraic-weak-class",
+        "induction-unit-model",
+        "induction-critical-unit-failure",
+        "induction-cellular-coreflector",
+        "induction-kernel-localization",
+        "induction-local-unit-comparison"
+      ]
+    },
+    {
+      "id": "legacy-rows-4-summary",
+      "pointer": "/rows/4/summary",
+      "before": "Universal Virasoro algebras have a curved point dual and an all-charge supported module comparison. Finite degenerate sectors have represented Ward products. Completed local principal sewing exists above charge one, and a geometric tree comparison exists above twenty-five. The later H-conditional five-point collar admits four completed inputs with natural spectral associators. A represented continuous fusion category and domains stable under arbitrary iterated collisions remain open. Separately, the torus partner measure has a complete Bergman realization and prescribed trace at the real-domain point \\(c=33\\), \\(P_0=0\\), \\(h_0=4/3\\); generic partner reciprocity remains open.",
+      "after": "Universal Virasoro algebras have a curved point dual, an all-charge supported module comparison and a charge classification of the ordinary reflected null class. Finite degenerate sectors have represented Ward products. Under H and the retained analytic hypotheses, five-point sewing covers the full ordered interior, every placement of one vacuum has completed unit triangles, and fixed positive inputs have a representing recipient for the declared rational Ward operations. An intrinsic source assignment for arbitrary recipient objects and repeated collisions remains open. The geometric tree theorem at fixed c>25 and the one-screening torus realization at c=33, P₀=0, h₀=4/3 retain their separate scopes; generic partner reciprocity remains open.",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category",
+        "virasoro-charge-equality",
+        "virasoro-charge-obstruction"
+      ]
+    },
+    {
+      "id": "legacy-rows-4-cells-states-note",
+      "pointer": "/rows/4/cells/states/note",
+      "before": "Completed local principal sewing and four-completed-input collar coherence under H for c>1; geometric tree sector for c>25; physical state preparation remains separate",
+      "after": "Full five-point interior and mixed vacuum sewing under H for c>1; separate geometric tree sector for c>25; physical state preparation remains open",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category"
+      ]
+    },
+    {
+      "id": "legacy-rows-7-summary",
+      "pointer": "/rows/7/summary",
+      "before": "Scalar trigonometric fields and multiplicative scalar bar duality are established, and finite-dimensional Yangian and quantum-loop categories have a meromorphic comparison at their stated parameters. The elliptic two-torsion branch now has a local/formal cubic quantum vertex algebra on all polynomial jets. A common global coefficient category, native collision/duality comparisons and higher-order extensions remain open.",
+      "after": "Scalar trigonometric fields, multiplicative scalar bar duality and the stated finite-dimensional Yangian/quantum-loop comparison are established. The selected elliptic trace quotient has all-order quantum vertex fields on P[[ℏ]], with P algebraic in the jets. It matches the full native fields through degree five and exchange through degree six. A chosen sixth field exists separately at finite precision; its identification with the all-order coefficient, the common native coefficient category and the global comparisons remain open.",
+      "claimIds": [
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison",
+        "quantum-common-category-question"
+      ]
+    },
+    {
+      "id": "legacy-rows-7-cells-object-note",
+      "pointer": "/rows/7/cells/object/note",
+      "before": "Scalar and matrix trigonometric fields at finite precision in multiplicative rings; full elliptic field comparison remains open",
+      "after": "Selected elliptic trace-quotient fields at every formal order; full native quintic prefix and a separately chosen sixth field",
+      "claimIds": [
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison"
+      ]
+    },
+    {
+      "id": "legacy-rows-14-summary",
+      "pointer": "/rows/14/summary",
+      "before": "The half-space stress theory has ordinary two-root jet limits, the actual first-jet source square and selected normal-relative, complete-endpoint and tangential-overlap comparisons. Continuous principal sewing now includes four-completed-input collar coherence, rapid-vacuum compatibility and a resolved nested norm at its stated hypotheses. The full admissible stress diagram and a state prepared by independent Einstein-gravity amplitudes remain open.",
+      "after": "The half-space stress theory has ordinary/first-normal operations for finite words in affine e,h,f and the independent ghost c, excluding antighost b, with further fixed-jet and selected second-normal comparisons on their stated domains. Native finite sourced Gaussian pushforwards and the common relative heat calculation retain their actual kinetic, determinant and ghost terms. Continuous Virasoro sewing includes the full five-point interior and mixed vacuum units under H. The full admissible physical stress diagram, independent cap normalization and states prepared by Einstein-gravity amplitudes remain open.",
+      "claimIds": [
+        "gravity-normal-affine-current-finite-words",
+        "gravity-normal-finite-cartan-ghost-words",
+        "gravity-normal-all-fixed-jet-independent-heights",
+        "gravity-selected-second-normal-grouped-ward",
+        "decisive-native-finite-gaussian-cut",
+        "gravity-common-relative-heat",
+        "gravity-all-face-physical-comparison",
+        "gravity-physical-normalization",
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category"
+      ]
+    },
+    {
+      "id": "legacy-rows-14-cells-fusion-note",
+      "pointer": "/rows/14/cells/fusion/note",
+      "before": "Completed local principal sewing and spectral-label pentagon for c>1; geometric tree sector for c>25; universal represented product remains open",
+      "after": "Full five-point interior and mixed vacuum units under H; fixed-positive-input Ward representation; arbitrary recipient sources remain open",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category"
+      ]
+    },
+    {
+      "id": "legacy-rows-14-cells-states-note",
+      "pointer": "/rows/14/cells/states/note",
+      "before": "Conditional trace classification and prescribed cap limits; two-point and low-order jet positivity; nonminimal \\(0<c<1\\) excluded at large genus",
+      "after": "Finite sourced Gaussian and normalized zero-level contour states on their declared domains; the physical cap normalization and common sewing domain remain open",
+      "claimIds": [
+        "decisive-native-finite-gaussian-cut",
+        "gravity-zero-level-insertions",
+        "gravity-zero-level-contours",
+        "gravity-original-cycle-collapse",
+        "gravity-physical-normalization",
+        "gravity-all-face-physical-comparison"
+      ]
+    },
+    {
+      "id": "legacy-rows-15-summary",
+      "pointer": "/rows/15/summary",
+      "before": "Continuous spectral duality and integral arithmetic jet constructions are established on their own coefficient spaces. Positivity on every compact support interval and an arithmetic realization preserving field operations remain open.",
+      "after": "Continuous spectral duality, integral arithmetic jets and a trace-class realization of the complete Weil functional are established on their declared coefficient and test spaces. The ordinary-positive critical-spectrum representation retains an exact remainder, whose universal vanishing remains open. Positivity on every compact support interval and a native arithmetic realization preserving field operations are further comparisons.",
+      "claimIds": [
+        "decisive-weil-full-trace-and-remainder",
+        "decisive-arithmetic-integral-positive"
+      ]
+    },
+    {
+      "id": "legacy-rows-15-cells-states-note",
+      "pointer": "/rows/15/cells/states/note",
+      "before": "Weil positivity for complex \\(L^2\\) support length at most \\(31/10\\)",
+      "after": "Weil positivity on the stated finite support window; full trace realization with an unresolved positive critical-spectrum remainder",
+      "claimIds": [
+        "decisive-weil-full-trace-and-remainder"
+      ]
+    },
+    {
+      "id": "legacy-rows-16-summary",
+      "pointer": "/rows/16/summary",
+      "before": "A rank-two family of perfect complexes on a Kummer K3 surface times an elliptic curve admits strong orientation data. Numerical reduced invariants have modular formulas; a comparison preserving compact Hall operations and a cyclic state remains open.",
+      "after": "A rank-two family of perfect complexes on a Kummer K3 surface times an elliptic curve admits strong orientation data, and local reduced flag comparisons retain their stated geometric operations. Numerical reduced invariants have modular formulas. The BPS and Gritsenko–Nikulin candidates have different imaginary-root spaces; a full compact Hall comparison must preserve parity, the invariant form and a cyclic state.",
+      "claimIds": [
+        "decisive-igusa-real-and-local-positive",
+        "decisive-igusa-parity-obstruction"
+      ]
+    },
+    {
+      "id": "legacy-rows-18-summary",
+      "pointer": "/rows/18/summary",
+      "before": "Polynomial higher currents have explicit induced-module calculations. Paired Gaussian surface realization and regular abelian elliptic pushforward retain all finite marked diagrams. Cubic native current comparison and confined elliptic currents give further partial results. The interacting bulk, defect map, and full relative cubic attachment remain separate.",
+      "after": "Polynomial higher currents have explicit induced-module calculations. Paired Gaussian surface realization and regular abelian elliptic pushforward retain all finite marked diagrams. Free elliptic cubic reduction has all sixteen histories on its polynomial-Thom carrier, a transverse projection and the stated supported prefixes and partner. The full relative cubic comparison on the original fixed recipient, the interacting bulk and the defect map remain separate.",
+      "claimIds": [
+        "analytic-elliptic-history-core",
+        "analytic-elliptic-transverse-projection",
+        "analytic-elliptic-supported-partner",
+        "analytic-elliptic-supported-prefix",
+        "analytic-elliptic-fixed-relative-cubic"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-0-why",
+      "pointer": "/frontier/questions/0/why",
+      "before": "A structure on the vector space of states does not specify how insertions move, collide or act on boundary modules. The comparison would identify which higher operations belong to the geometric bulk and whether they agree with the pairing obtained from the boundary construction.",
+      "after": "A structure on the vector space of states does not specify how insertions move, collide or act on boundary modules. The comparison would identify which higher operations belong to the geometric bulk and whether they agree with the pairing obtained from the boundary construction. The selected finite native horizontal families and interior tree comparisons supply actual operations on their domains. The unchanged algebraic chains still retain geometric boundary poles, so they do not provide the whole regular/localized/supported comparison.",
+      "claimIds": [
+        "horizontal-all-finite-native-diagrams",
+        "horizontal-polynomial-dual-inverse",
+        "horizontal-tree-cochain-equivalence",
+        "horizontal-boundary-restriction-failure",
+        "horizontal-geometric-boundary-lattice"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-2-why",
+      "pointer": "/frontier/questions/2/why",
+      "before": "The Casimir residue on a charge top fixes only the first part of the comparison. The line construction must also carry the nonlinear homotopies and all descendants through collision and fusion, on explicitly specified completions where the comparison maps and homotopies are continuous.",
+      "after": "The Casimir residue on a charge top fixes only the first part of the comparison. The line construction must also carry the nonlinear homotopies and all descendants through collision and fusion, on explicitly specified completions where the comparison maps and homotopies are continuous. In the stated simple ADE level range, the finite native family and its normalized higher inverse now retain the unary, Cartan, translation, binary and unit data. Extending those comparisons to the full geometric collision boundary still requires a compatible chain lattice.",
+      "claimIds": [
+        "horizontal-all-finite-native-diagrams",
+        "horizontal-polynomial-dual-inverse",
+        "horizontal-tree-cochain-equivalence",
+        "horizontal-boundary-restriction-failure",
+        "horizontal-geometric-boundary-lattice"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-3-question-text",
+      "pointer": "/frontier/questions/3/question/text",
+      "before": "Construct an independently defined field recipient for the completed coefficient dual, with both binary orders, curvature, both vacuum insertions, normal derivatives, and nonconsecutive collisions. Compare its module tensor product with the transported coefficient tensor. The native \\(\\mathfrak{gl}_2\\) test modulo \\(\\hbar^3\\) must retain composite marks and actual evaluation. Polar field existence alone does not identify that native map.",
+      "after": "Compare the constructed marked evaluation with the independently defined physical field right adjoint on the full completed recipient. Retain both smooth rooted current actions, both binary orders, curvature, both vacuum insertions, normal derivatives and nonconsecutive collisions, and identify the native module tensor product with the transported coefficient tensor. The four-colour test through ℂ[ℏ]/(ℏ³) at fixed K≠−2 already has an actual evaluation with its composite marks and prescribed quadratic and cubic columns. The remaining comparison must respect its single ghost cutoff, lower Laurent bound and finite right support at each source slice.",
+      "claimIds": [
+        "native-ordered-rooted-carrier",
+        "native-global-cartan-carrier",
+        "native-marked-values",
+        "native-laurent-middle-boundary",
+        "native-physical-comparison-remaining"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-3-why",
+      "pointer": "/frontier/questions/3/why",
+      "before": "The coefficient equivalence already exists. Field extraction must retain the extension classes and operations that the equivalence transports.",
+      "after": "The marked coefficient-to-field evaluation now exists on its declared completed domain. Identifying it with the physical right adjoint and native supported products still requires a map between independently defined recipients.",
+      "claimIds": [
+        "native-marked-values",
+        "native-physical-comparison-remaining"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-4-question-text",
+      "pointer": "/frontier/questions/4/question/text",
+      "before": "Construct an independently defined native coefficient recipient on a curve times a real line that preserves the local vacuum, interval homotopies, all collision faces and Weiss descent. Compare the checked three-position contact-image cofiber with that recipient while preserving its marked polar-vacuum extension, complete relative contacts and proper-pair maps. Extend the comparison beyond its finite-pole and polynomial-state domains, and settle the original unscaled zero-inclusive target; the invertible-level construction does not supply it. Extend the computed unrestricted scalar current cohomology and its evaluation to the required state-valued and topological domains without discarding the three escaping modules. Extend independent-root forest calculus to nonroot landings, dependent normals and all native substitutions.",
+      "after": "Compare the full joint mixed-current carrier and its actual admitted operations with an independently defined physical coefficient recipient on a curve times a real line. Preserve the local vacuum, interval homotopies, every required collision face, Weiss descent and the three escaping coefficient modules. The full contact telescope, all finite scalar Gaussian graphs in the stated proper subcritical tame class, contact-image composition and one-height fusion now have concrete constructions. Extend beyond that chosen extension class to the required nontransverse identifications, arbitrary cut motions, completed state-valued domains and the original unscaled zero-inclusive target. Retain contact towers for longer graphs and their actual differential; Gaussian existence does not imply closedness.",
+      "claimIds": [
+        "mixed-joint-carrier-moments",
+        "mixed-full-contact-telescope",
+        "mixed-all-finite-gaussian-kernels",
+        "mixed-intrinsic-image-composition",
+        "mixed-stronger-physical-comparison",
+        "mixed-tame-and-completed-boundary",
+        "mixed-full-native-gaussian-assembly",
+        "mixed-finite-cycle-contact-tower",
+        "mixed-nonzero-graph-contacts",
+        "claim-mixed-height-trace-native-fusion-p1",
+        "claim-mixed-height-trace-native-fusion-r1"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-4-why",
+      "pointer": "/frontier/questions/4/why",
+      "before": "Actual contact images now supply a marked three-position comparison at invertible level. Its finite domains, nonzero source kernel and chosen recipient leave the independent all-position and zero-inclusive native comparisons to be constructed. The unrestricted scalar escaping modules remain part of the original domain.",
+      "after": "The finite native Gaussian and contact operations now compose on their full admitted kernels, while the joint coefficient carrier retains the escaping modules. A physical all-position comparison must identify that recipient and its extension class, with the original zero-inclusive and unrestricted completion requirements still explicit.",
+      "claimIds": [
+        "mixed-joint-carrier-moments",
+        "mixed-full-contact-telescope",
+        "mixed-all-finite-gaussian-kernels",
+        "mixed-intrinsic-image-composition",
+        "mixed-stronger-physical-comparison",
+        "mixed-tame-and-completed-boundary"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-5-question-text",
+      "pointer": "/frontier/questions/5/question/text",
+      "before": "Compare the specified rooted and relative-resolution action spaces with genuine localized actions, retaining points, paths, higher homotopies, and substitutions. Independently verify the proposed full unframed mapping comparison with multiple outputs and pure-vacuum blocks, then identify its computed reduced fibres with the actual unital matching fibres in the bounded atlas model. For the two-colour recognition problem, assemble the available binary nullhomotopies into a natural homotopy of full coalgebra actions. In the two-colour problem retain the uniform-source secondary class, the designated-cut and propagating-insertion hypotheses, and the remaining comparisons between independently prescribed cuts.",
+      "after": "Determine the remaining comparisons between the actual rooted, pointed and genuine action recipients. Full two-colour recognition is established for canonical Chevalley actors of arbitrary unbounded unital dg chiral algebras on the affine line in characteristic zero, including induced vertex actors with unrestricted translation. Preserve the complete pointing path and all ordered coherences when comparing more general actors, altered pointings or independently prescribed cuts. For the nonzero-level Heisenberg centre, prove the remaining incoming tame coverage, including matching-limit roofs, and identify the actual roof-to-genuine-action map q_B. Keep the critical underlying coalgebra mapping problem separate: full transverse augmentation fails at a simple critical level, whereas critical sl₂ has distinct zero-central-character components χ_t; the Koszul extension reaches exactly the component of χ₀. The remaining task is the full fibre classification and the specified genuine comparisons, with their units and higher paths retained.",
+      "claimIds": [
+        "binary-nonconstant-recognition-integration",
+        "binary-general-recognition-boundary",
+        "binary-prescribed-mixed-cut-comparison",
+        "decisive-centre-objectwise-coherence",
+        "decisive-centre-base-change",
+        "unframed-critical-transverse-obstruction",
+        "unframed-zero-character-family",
+        "unframed-koszul-restriction-image",
+        "unframed-fibre-classification-remaining"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-5-why",
+      "pointer": "/frontier/questions/5/why",
+      "before": "Available centres represent different functors. Algebraic nonrepresentability constrains the full pointed-action target without excluding every physical or rooted recipient.",
+      "after": "Canonical binary recognition, roof-based Heisenberg actions and underlying critical coalgebra maps have different actors and retained operations. Their established results coexist with nonzero higher fibre classes and altered-pointing obstructions. The unresolved comparisons must preserve the exact recipient and pointing rather than infer a genuine action from an underlying map.",
+      "claimIds": [
+        "binary-nonconstant-recognition-integration",
+        "binary-surviving-singleton-class",
+        "binary-augmented-pointing-negative",
+        "decisive-centre-base-change",
+        "unframed-full-gauge-and-binary-scope"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-7-question-text",
+      "pointer": "/frontier/questions/7/question/text",
+      "before": "Construct one positioned coefficient category containing the required rational, multiplicative, elliptic and monodromic fields, with genuine mixed tensors, independent colour-resolved binary operations, collision descent, supported cut/unit/normal maps, full-turn holonomy and reconstruction. Use the established local/formal all-polynomial elliptic cubic field through \\(\\mathbb C[\\hbar]/(\\hbar^4)\\) as an instance, retaining its actual lower fields and admitted all-state exchange. Construct its marked KZ/associator and native/global comparison maps, and solve the separate all-polynomial quartic and higher-order extension problems on explicit domains.",
+      "after": "Construct one native positioned coefficient category containing the rational, multiplicative, elliptic and monodromic instances, with genuine mixed tensors and independently defined colour-operation spaces. Compare multiplication, collision descent, supported cuts, units, every finite normal derivative, full-turn holonomy and reconstruction with the actual fields. Retain the existing marked irrational sl₂ KZ instance and its three channels. The selected elliptic trace quotient already has all-order fields on P[[ℏ]] matching the complete native quintic prefix; identify the separately chosen sixth field and the required normalized native moment actions with that realization, then construct the remaining global and physical comparisons.",
+      "claimIds": [
+        "quantum-common-category-question",
+        "nonrational-marked-kz",
+        "nonrational-supported-forests",
+        "elliptic-moments-higher-native-comparison",
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-7-why",
+      "pointer": "/frontier/questions/7/why",
+      "before": "The elliptic branch now supplies an actual local/formal cubic quantum vertex algebra on all polynomial jets, beyond the exchange calculation. The remaining programme arrows are the common coefficient category, native supported operations, marked instance maps and higher precision.",
+      "after": "Actual mixed coefficient objects, generated supported operations, the marked KZ instance and the selected all-order elliptic fields are available. The remaining category must have its own genuine mixed tensors and native operation spaces, with field, moment and global comparison maps on their exact domains.",
+      "claimIds": [
+        "nonrational-mixed-category",
+        "nonrational-supported-forests",
+        "nonrational-marked-kz",
+        "quantum-common-category-question",
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-8-question-text",
+      "pointer": "/frontier/questions/8/question/text",
+      "before": "Extend the nonabelian polar exchange to the fifth parameter coefficient and then to all orders. Separately, construct the common continuous higher-operad comparison with its inverse after changing the permitted unary and wheel data. Retain the essential higher classical source operations forced by the Lie-arity-four obstruction.",
+      "after": "Identify the chosen full sixth elliptic field with the coefficient of the all-order realization of its fixed quintic prefix, and complete the separately normalized native moment and global comparisons. Keep the common continuous higher-operad comparison and its inverse as a distinct target, with the permitted unary and wheel data specified. The Hamiltonian Lie-arity-four obstruction still requires the essential higher classical source operations.",
+      "claimIds": [
+        "elliptic-chosen-sixth-comparison",
+        "elliptic-moments-higher-native-comparison",
+        "quantum-common-category-question"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-8-why",
+      "pointer": "/frontier/questions/8/why",
+      "before": "Parameter order and configuration arity are independent. Existing all-finite collision families do not raise the precision of the quantum exchange.",
+      "after": "The selected elliptic fields now exist at every formal parameter order. Configuration arity, deformation order, moment actions and global coefficient recipients remain different comparisons; none is supplied by a generating exchange identity alone.",
+      "claimIds": [
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison",
+        "elliptic-moments-higher-native-comparison"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-9-question-text",
+      "pointer": "/frontier/questions/9/question/text",
+      "before": "Construct a differential-stable admissible diagram for independently resolved roots, their normal derivatives, collision faces, and quantum companions. Compare it with the independently prescribed stress action on one common test domain. Extend the supported weight-five construction through weight nine, then compare the native all-depth line and its boundary endpoint.",
+      "after": "Construct the full differential-stable admissible stress diagram for independently resolved roots, normal derivatives, collision faces and quantum companions, and compare it with the independently prescribed physical action on one common test domain. Retain the established finite-word operations in affine e,h,f and the independent ghost c, excluding antighost b, their ordinary and first-normal limits, all fixed-jet independent-height comparisons and the selected second-normal identities. The full correction quotient, remaining normal and overlap operations, all-depth line and physical boundary endpoint must belong to the same compatible analytic diagram.",
+      "claimIds": [
+        "gravity-normal-affine-current-finite-words",
+        "gravity-normal-finite-cartan-ghost-words",
+        "gravity-normal-all-fixed-jet-independent-heights",
+        "gravity-selected-second-normal-grouped-ward",
+        "gravity-all-face-physical-comparison"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-9-why",
+      "pointer": "/frontier/questions/9/why",
+      "before": "The ordinary first-jet source square, two independent holomorphic jets and selected normal-relative, complete-endpoint and tangential-overlap operations now exist. The full admissible class and correction quotient, all normal operations and independent-height-ratio collar still need a common analytic diagram.",
+      "after": "The finite-word and jet constructions retain their actual source and normal terms. They do not identify every admissible operation, overlap and physical endpoint on one common domain. The original Hodge heat obstruction and the changed compact carrier also remain distinct.",
+      "claimIds": [
+        "gravity-normal-affine-current-finite-words",
+        "gravity-normal-layer-boundary",
+        "gravity-physical-hodge-obstruction",
+        "gravity-changed-carrier-heat",
+        "gravity-all-face-physical-comparison"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-10-question-text",
+      "pointer": "/frontier/questions/10/question/text",
+      "before": "Construct the cubic comparison on the full intersection with the lower maps fixed. Extend the established joint two-root relation rows to the actual remaining polynomial and exterior history words. Construct the compact endpoint and independent projected, localization and harmonic comparisons, then verify every term of the attachment equation. Retain all anchor triples, normal directions, and branch intersections.",
+      "after": "Construct the full relative cubic homotopy on the original fixed elliptic current recipient with the lower maps and marking prisms held fixed. Incorporate all sixteen polynomial-Thom histories, the realized transverse projection, supported prefixes and the fresh-normal-degree-zero supported partner with its admitted finite old jets. Extend these results to the complete generated history and incidence diagram, all required after-contact applications, coefficient boundaries and source-open terms, the compact endpoint and independent localization and harmonic comparisons. Verify every term of the original attachment equation on that common domain.",
+      "claimIds": [
+        "analytic-elliptic-history-core",
+        "analytic-elliptic-transverse-projection",
+        "analytic-elliptic-supported-partner",
+        "analytic-elliptic-supported-prefix",
+        "analytic-elliptic-fixed-relative-cubic"
+      ]
+    },
+    {
+      "id": "legacy-frontier-questions-10-why",
+      "pointer": "/frontier/questions/10/why",
+      "before": "The specified relation rows now admit arbitrary finite right jets, and the marked all-top s and bare eta rows have their actual source equations and faces. These partials do not construct every history word, the compact endpoint or the independent projected arrows.",
+      "after": "The polynomial-Thom history core and the stated transverse and supported comparisons are established. The remaining relative homotopy must preserve the original recipient and lower maps across the full generated diagram. A nonzero supported point current with zero proper trace does not by itself obstruct that homotopy.",
+      "claimIds": [
+        "analytic-elliptic-history-core",
+        "analytic-elliptic-transverse-projection",
+        "analytic-elliptic-supported-partner",
+        "analytic-elliptic-supported-prefix",
+        "analytic-elliptic-fixed-relative-cubic"
+      ]
+    },
+    {
+      "id": "legacy-decisive-questions-0-question-text",
+      "pointer": "/decisive/questions/0/question/text",
+      "before": "Construct a filtered realization of the transverse relative bar or module-Hom of independently defined endpoint modules, and compare its continuous dual with the polynomial line algebra. The comparison must preserve the positive filtration, actual module-linear mapping complexes, numerical and Jordan charge sectors, the distinct empty unit and occupied vacuum, both ordered binary charts, spectral tensorators and the total position connection. It must induce the original field comparison and the independently normalized associator. The first deciding construction is the regular/localized/supported Taylor square with both derived vacuum specializations; extend it to the \\(13|2\\) branch before asserting a common collision theory.",
+      "after": "Construct a common smooth native endpoint recipient and identify its filtered transverse bar or module-Hom dual with the polynomial line algebra. Preserve the positive filtration, actual module-linear mapping complexes, numerical and Jordan charge sectors, the distinct empty unit and occupied vacuum, both ordered binary charts, spectral tensorators and the total position connection. The original field comparison and independently normalized associator must be induced by this map. Incorporate the existing global polynomial atlas, formal polar adjunctions and finite native horizontal families, then construct their compatible regular/localized/supported collision assembly, including nonconsecutive branches and the geometric boundary.",
+      "claimIds": [
+        "endpoint-global-polynomial-descent-p1",
+        "endpoint-global-polynomial-descent-p2",
+        "endpoint-independent-formal-recipient-p1",
+        "endpoint-smooth-and-source-comparisons",
+        "horizontal-all-finite-native-diagrams",
+        "horizontal-polynomial-dual-inverse",
+        "horizontal-tree-cochain-equivalence",
+        "horizontal-boundary-restriction-failure",
+        "horizontal-geometric-boundary-lattice"
+      ]
+    },
+    {
+      "id": "legacy-decisive-questions-1-question-text",
+      "pointer": "/decisive/questions/1/question/text",
+      "before": "For the universal affine cochain system with nondegenerate shifted form \\(\\beta=\\kappa+\\operatorname{Kill}/2\\), construct the regular, localized and supported configuration-operation complexes carrying the native product, the specified secondary operation and an independently defined boundary action. Solve the relative four-face equations \\(\\delta F_4=E_4\\), \\(rF_4-\\delta G_4=h_{\\mathrm{proper}}\\) on \\(12|3|4\\) and \\(12|34\\) in that actual recipient, with the prescribed separated homotopy. In the mixed-current realization, retain the original unrestricted global distribution domain and its branch-support data; a germ comparison or a globally bounded normal-order replacement does not settle it. The next mixed-current construction must select its intermediate-state object independently, carry actual supported products and arbitrary cut changes on that object, and retain the new normal classes under the required coefficient and completion maps.",
+      "after": "For the universal affine cochain system with nondegenerate shifted form β=κ+Kill/2, construct the full regular, localized and supported configuration-operation complexes carrying the native product, the specified secondary operation and an independently defined boundary action. Solve the required relative four-face equations δF₄=E₄ and rF₄−δG₄=h_proper on 12|3|4 and 12|34 in that recipient, with its prescribed separated homotopy. In the mixed-current comparison, retain the original global coefficient domain and branch support, including all three escaping modules. The admitted finite Gaussian and contact-image compositions now exist. Identify their actual intermediate-state object with the independent physical recipient, and extend through the required cut motions, nontransverse identifications and coefficient/completion maps.",
+      "claimIds": [
+        "mixed-joint-carrier-moments",
+        "mixed-full-contact-telescope",
+        "mixed-all-finite-gaussian-kernels",
+        "mixed-intrinsic-image-composition",
+        "mixed-stronger-physical-comparison",
+        "mixed-tame-and-completed-boundary"
+      ]
+    },
+    {
+      "id": "legacy-decisive-questions-4-why",
+      "pointer": "/decisive/questions/4/why",
+      "before": "This would turn the affine/Virasoro relation into a comparison of independently defined quantum observables and defects. With the further Einstein source dictionary, it would identify named physical stress and line measurements. It would not by itself fix a filling measure or a prepared quantum state.",
+      "after": "This would turn the affine/Virasoro relation into a comparison of independently defined quantum observables and defects. With the further Einstein source dictionary, it would identify named physical stress and line measurements. It would not by itself fix a filling measure or a prepared quantum state. Ordinary/first-normal constructions for finite words in affine e,h,f and the independent ghost c, excluding antighost b, already supply substantial parts of the native diagram. The full singular operation, physical parameter and endpoint comparison still have to agree on the same source and domain.",
+      "claimIds": [
+        "gravity-normal-affine-current-finite-words",
+        "gravity-normal-finite-cartan-ghost-words",
+        "gravity-all-face-physical-comparison"
+      ]
+    },
+    {
+      "id": "legacy-decisive-questions-6-question-text",
+      "pointer": "/decisive/questions/6/question/text",
+      "before": "Construct the full sourced affine Gaussian pushforward \\(\\Pi_\\epsilon=(1\\otimes I_{Q,\\epsilon})J_{R,\\epsilon}\\) on the prescribed coefficient cutoff, retaining relative fields, ghosts, residual pairs, even cycle and bilinear semidensity. Prove \\(T_{\\mathrm{st}}(\\epsilon,\\delta)\\Pi_\\epsilon=\\Pi_\\delta T_{\\mathrm{DS}}(\\epsilon,\\delta)\\), its source and disk-cut compatibility, and equality of independently prepared caps on a determining family of inserted observables. First test the differentiated source/heat square on the explicit field \\(\\psi\\), including the quartet, and the external cut endpoint on the cap. Then remove the two cutoffs independently in one common graph domain and compare phase and normalization.",
+      "after": "Compare the constructed finite sourced affine Gaussian pushforward with independently prepared physical caps on a determining family of inserted observables. Retain relative fields, ghosts, residual pairs, the even integration cycle, kinetic Green term, determinants, Pfaffians and bilinear semidensity. Extend the actual source/heat and disk-cut comparisons to one common domain, then remove the two cutoffs independently and identify the nonzero cap normalization and phase. The changed compact heat carrier and the normalized zero-level contours must be compared with the original physical preparation; they do not define its normalization by themselves.",
+      "claimIds": [
+        "decisive-native-finite-gaussian-cut",
+        "gravity-smooth-observable-gaussian",
+        "gravity-common-relative-heat",
+        "gravity-physical-hodge-obstruction",
+        "gravity-changed-carrier-heat",
+        "gravity-zero-level-contours",
+        "gravity-physical-normalization",
+        "gravity-all-face-physical-comparison"
+      ]
+    },
+    {
+      "id": "legacy-decisive-questions-7-question-text",
+      "pointer": "/decisive/questions/7/question/text",
+      "before": "Embed the rational, trigonometric, elliptic and monodromic instances in one positioned differential-module coefficient category with genuine mixed tensors, marked restrictions, units and supported collisions. Define its colour-resolved binary operation spaces independently and compare their multiplication, principal parts and every finite normal derivative with the fields. For irrational \\(\\mathfrak{sl}_2\\), construct the actual normalized KZ connection and the associator comparison in the \\(12|3\\), \\(1|23\\) and \\(13|2\\) channels. A first test is a mixed binary tensor followed by the nonconsecutive supported collision, retaining reverse paths, inverse pairings and the specified target gauge. Quartic and all-order elliptic fields require their own nonlinear compatibility equations.",
+      "after": "Embed the rational, trigonometric, elliptic and monodromic instances in one native positioned differential-module coefficient category with genuine mixed tensors, marked restrictions, units and supported collisions. Define its colour-resolved operation spaces independently and compare multiplication, principal parts and every finite normal derivative with the fields. Retain the actual marked irrational sl₂ KZ connection, associator and three collision channels, including reverse paths, inverse pairings and the specified target gauge. The selected elliptic source already has all-order fields. Its separately chosen sixth field, normalized native moment actions and global realization still require their precise comparison maps.",
+      "claimIds": [
+        "quantum-common-category-question",
+        "nonrational-marked-kz",
+        "nonrational-mixed-category",
+        "elliptic-moments-higher-native-comparison",
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison"
+      ]
+    },
+    {
+      "id": "legacy-decisive-questions-11-question-text",
+      "pointer": "/decisive/questions/11/question/text",
+      "before": "On the original six-field free elliptic carrier, construct the complete relative comparison \\(H_3=(P_3,Q_3,R_{3,\\mathrm{rel}})\\), retaining fixed lower coefficients, both harmonic colours, vacua and the lower-face prism. Control all sixteen compact histories as whole composites and identify them with the independently specified projected contacts, coordinate and localization maps. Evaluate the actual attachment \\(\\Omega_0P_3+\\Omega_1P_2+\\Omega_2P_1+\\Omega_3P_0\\). The first unresolved test is the after-first-collision composite \\(A_{(2,\\{2,3\\})}^{\\mathrm{sh,after}\\,1}h_1\\delta_1^\\emptyset f_\\emptyset(\\eta_tF)\\), including its \\(s\\)-coefficient, coefficient boundaries and labelled alternatives. Separately limited factors cannot replace its joint contact limit.",
+      "after": "On the original fixed six-field elliptic current recipient, construct the full relative cubic homotopy H₃, including P₃, Q₃ and the relative R₃ component, while retaining the prescribed lower coefficients, both harmonic colours, vacua and lower marking prisms. Incorporate all sixteen histories on the polynomial-Thom carrier, the realized transverse projection and supported partner at fresh-normal degree zero with its finite old jets. Extend to the complete generated history words, all branch and incidence maps, the twelve u and twelve w after-contact application templates, full coefficient boundaries and source-open terms, localization rows and compact endpoint. Evaluate the actual attachment Ω₀P₃+Ω₁P₂+Ω₂P₁+Ω₃P₀ on that common domain; separately limited factors do not replace the required joint contact maps.",
+      "claimIds": [
+        "analytic-elliptic-history-core",
+        "analytic-elliptic-transverse-projection",
+        "analytic-elliptic-supported-partner",
+        "analytic-elliptic-supported-prefix",
+        "analytic-elliptic-fixed-relative-cubic"
+      ]
+    },
+    {
+      "id": "rooted-binary-action-extraction",
+      "pointer": "/frontier/questions/5/known/0/text",
+      "before": "Over a characteristic-zero field on the affine line, an actual pointed coalgebra action on the two-idempotent factorizing system gives the rooted branch homotopies and a colour-diagonal projector at every arity. The rooted linear-diagram comparison now retains the ordered collision maps and kills the primary unmixed two-vacuum class; the uniform-source secondary class \\(\\ell\\rho^{\\prime}\\) remains. The constructed simultaneous pure-wall insertions for \\(P(M,M^{\\prime})\\star D\\), with arbitrary differential modules, connected factorizing \\(D\\) and canonical all-vacuum pointing, give underlying coefficient nullity at every arity except for the canonical all-vacuum \\(P\\)/no-\\(D\\) component fixed by the pointing. A separate arity-four argument kills the common mixed-source winding for arbitrary unbounded singleton objects. If the normalized singleton is constant and has an actual global propagating insertion with its prescribed vacuum-first cut comparison, the mixed-source binary relative filler exists with the fixed singleton path, one designated ordered cut and both collision branches. The exterior actor \\(\\Lambda(\\xi)\\), \\(|\\xi|=1\\), has a discrete \\(k^2\\) torsor of final binary fillers. Nonconstant or nonpropagating sources, independently prescribed reverse cuts, uniform-source secondary data and higher coherent assembly remain before full recognition.",
+      "after": "Over a characteristic-zero field on the affine line, an actual pointed coalgebra action on the two-idempotent factorizing system gives the rooted branch homotopies and a colour-diagonal projector at every arity. The rooted linear-diagram comparison now retains the ordered collision maps and kills the primary unmixed two-vacuum class; the uniform-source secondary class \\(\\ell\\rho^{\\prime}\\) remains. The constructed simultaneous pure-wall insertions for \\(P(M,M^{\\prime})\\star D\\), with arbitrary differential modules, connected factorizing \\(D\\) and canonical all-vacuum pointing, give underlying coefficient nullity at every arity except for the canonical all-vacuum \\(P\\)/no-\\(D\\) component fixed by the pointing. A separate arity-four argument kills the common mixed-source winding for arbitrary unbounded singleton objects. If the normalized singleton is constant and has an actual global propagating insertion with its prescribed vacuum-first cut comparison, the mixed-source binary relative filler exists with the fixed singleton path, one designated ordered cut and both collision branches. The exterior actor \\(\\Lambda(\\xi)\\), \\(|\\xi|=1\\), has a discrete \\(k^2\\) torsor of final binary fillers. Full recognition is now established for every canonical Chevalley actor of an arbitrary unbounded unital dg chiral algebra, including induced vertex actors with unrestricted translation. It retains the full pointing path and all ordered higher coherences. The displayed k² torsor concerns a different relative filler problem, and the nonzero uniform-source secondary belongs to its altered pointing. General pointed actors and independently prescribed mixed-cut primitives retain their separate comparison problems.",
+      "claimIds": [
+        "binary-nonconstant-recognition-integration",
+        "binary-nonvacuum-filler-torsor",
+        "binary-augmented-pointing",
+        "binary-general-recognition-boundary",
+        "binary-prescribed-mixed-cut-comparison"
+      ]
+    },
+    {
+      "id": "rooted-binary-action-extraction-title",
+      "pointer": "/frontier/questions/5/known/0/title",
+      "before": "Relative binary fillers for two-colour actions",
+      "after": "Canonical two-colour recognition and its relative filler scopes",
+      "claimIds": [
+        "binary-nonconstant-recognition-integration",
+        "binary-nonvacuum-filler-torsor"
+      ]
+    },
+    {
+      "id": "decisive-binary-mapping-pointing",
+      "pointer": "/decisive/questions/2/known/10/text",
+      "before": "Coherent connected coalgebra maps with unbounded coefficients have finite-arity totalization models and a global inverse-limit mapping space; coherent word cylinders also retain paths and pointings. Genuine-vacuum right and left cut constructions give relative primitives and uniform winding nullity. A separate all-arity pointing has a nonzero insertion defect even on the projected image, so a prescribed disjoint insertion need not extend. That example does not provide a counterexample to full action recognition, whose general relative fillers remain to be constructed.",
+      "after": "Coherent connected coalgebra maps with unbounded coefficients have finite-arity totalization models and a global inverse-limit mapping space; coherent word cylinders also retain paths and pointings. Genuine-vacuum right and left cut constructions give relative primitives and uniform winding nullity. A separate all-arity pointing has a nonzero insertion defect even on the projected image, so a prescribed disjoint insertion need not extend. For canonical Chevalley actors of arbitrary unbounded unital dg chiral algebras on the affine line, full pointed coalgebra maps and full pointed actions are now equivalent by multiplication and evaluation at the genuine unit. The theorem retains the whole pointing path, arbitrary coherent coassociative maps between these actors, ordered cuts and every higher cell. The altered-pointing example is outside that conclusion; recognition for an arbitrary unrelated actor or pointing remains a separate comparison.",
+      "claimIds": [
+        "binary-nonconstant-recognition-integration",
+        "binary-augmented-pointing-negative",
+        "binary-general-recognition-boundary"
+      ]
+    },
+    {
+      "id": "decisive-binary-mapping-pointing-title",
+      "pointer": "/decisive/questions/2/known/10/title",
+      "before": "Binary action models retain the full pointing",
+      "after": "Full canonical binary recognition retains the complete pointing",
+      "claimIds": [
+        "binary-nonconstant-recognition-integration"
+      ]
+    },
+    {
+      "id": "decisive-binary-regular-bridges",
+      "pointer": "/decisive/questions/2/known/13/text",
+      "before": "The uniform wrong-colour comparison is constructed for arbitrary unbounded actors on its designated ordered cut. Every unbounded constant commutative unital dg algebra with zero translation has a regular bridge retaining both cuts, both old collision branches and the complete pointing. The supported projection is null-homotopic before coefficient Hom for every unbounded coefficient complex; applying it to a mixed operation still requires its actual ternary map and four witnesses. A constant nonvacuum filler can have a discrete two-dimensional scalar torsor. General nonconstant mixed attachments and full higher recognition remain open.",
+      "after": "The uniform wrong-colour comparison is constructed for arbitrary unbounded actors on its designated ordered cut. Every unbounded constant commutative unital dg algebra with zero translation has a regular bridge retaining both cuts, both old collision branches and the complete pointing. The supported projection is null-homotopic before coefficient Hom for every unbounded coefficient complex; applying it to a mixed operation still requires its actual ternary map and four witnesses. A constant nonvacuum filler can have a discrete two-dimensional scalar torsor. The canonical nonconstant Chevalley case now has full recognition with arbitrary unbounded coefficients and unrestricted vertex translation. Its inverse is unit evaluation, with complete pointing paths and all ordered coherences retained. The constant k² filler torsor and nonzero colour-preserving higher mapping classes remain in their own recipients. General actors, altered pointings and independently prescribed mixed cuts still require their stated comparisons.",
+      "claimIds": [
+        "binary-nonconstant-recognition-integration",
+        "binary-nonvacuum-filler-torsor",
+        "binary-surviving-singleton-class",
+        "binary-general-recognition-boundary",
+        "binary-prescribed-mixed-cut-comparison"
+      ]
+    },
+    {
+      "id": "decisive-binary-regular-bridges-title",
+      "pointer": "/decisive/questions/2/known/13/title",
+      "before": "Binary bridges extend to unbounded constant actors",
+      "after": "Constant bridges and full canonical nonconstant recognition",
+      "claimIds": [
+        "binary-constant-regular-bridge",
+        "binary-nonconstant-recognition-integration"
+      ]
+    },
+    {
+      "id": "centre-surjective-base-tame-comparison",
+      "pointer": "/frontier/questions/5/known/1/text",
+      "before": "Over \\(\\mathbb C\\), retain the nonzero-level rank-one Heisenberg boundary, the exterior actor \\(B=\\Lambda(\\epsilon)\\) with \\(|\\epsilon|=1\\) and \\(d\\epsilon=T\\epsilon=0\\), ordinary algebraic tensors and localization at state quasi-isomorphisms. For a surjective base arrow \\(a:d\\to d^{\\prime}\\) in the specified Heisenberg action comparison, let \\(G_d^a\\) be the full subcategory where the dg vertex ideal generated by \\(h(\\ker a)\\) is acyclic. Quotienting by that ideal proves \\[N G_{d^{\\prime}}\\simeq N G_d^a,\\] preserving both cocycle legs, all refinements and every admissible target link. A base section retracts the full transition and makes it injective on components and all based homotopy groups. The displayed split object and specified pullbacks are tame. The remaining inclusion \\(N G_d^a\\to N G_d\\) is still undecided, including higher homotopy even if every component meets the tame subcategory. A functorial incoming tame refinement \\(c(g)\\to g\\) would suffice and can be made surjective by a mapping-path construction. Relative free/PBW exactness is one possible method, not a necessary or equivalent criterion. The ideal-valued monotonicity test only excludes outgoing arrows to tame objects; it excludes neither incoming refinements nor zigzags. Non-surjective and full required transitions, \\(\\lambda_B\\), the separate nilpotent inclusion and the actual \\(q_B\\) comparison remain open.",
+      "after": "Over \\(\\mathbb C\\), retain the nonzero-level rank-one Heisenberg boundary, the exterior actor \\(B=\\Lambda(\\epsilon)\\) with \\(|\\epsilon|=1\\) and \\(d\\epsilon=T\\epsilon=0\\), ordinary algebraic tensors and localization at state quasi-isomorphisms. For a surjective base arrow \\(a:d\\to d^{\\prime}\\) in the specified Heisenberg action comparison, let \\(G_d^a\\) be the full subcategory where the dg vertex ideal generated by \\(h(\\ker a)\\) is acyclic. Quotienting by that ideal proves \\[N G_{d^{\\prime}}\\simeq N G_d^a,\\] preserving both cocycle legs, all refinements and every admissible target link. A base section retracts the full transition and makes it injective on components and all based homotopy groups. The displayed split object and specified pullbacks are tame. The remaining inclusion \\(N G_d^a\\to N G_d\\) is still undecided, including higher homotopy even if every component meets the tame subcategory. Actual mapping paths and finite matching pullbacks show that objectwise incoming tame coverage is sufficient for the full split nerve comparison, without a global selecting functor. That coverage must include the constructed matching-limit roofs and remains unproved. Every arbitrary base arrow factors through a surjective one with the other factor inducing a nerve homotopy equivalence, so the remaining base-transition problem reduces to surjective arrows. Relative free/PBW exactness is one possible method; the ideal-valued monotonicity test only excludes outgoing arrows to tame objects. The full nilpotent inclusion, strict-coslice comparison and actual q_B with its specified unit homotopy remain separate.",
+      "claimIds": [
+        "decisive-centre-objectwise-coherence",
+        "centre-arbitrary-base-reduction",
+        "decisive-centre-base-change"
+      ]
+    },
+    {
+      "id": "decisive-induction-full-unbounded",
+      "pointer": "/decisive/questions/0/known/2/text",
+      "before": "For every finite-dimensional simple complex Lie algebra and every level, including critical level, corrected induction gives the full unbounded enhanced equivalence after exactly the induction-detected class W_F is inverted. Restricted twisted coinduction supplies the inverse, dg adjunction, unit, counit and triangle identities on the termwise-smooth source with ordinary direct-sum tensors. W_F is a proper subclass of ordinary line-module quasi-isomorphisms. The first-kind Hom comparison, its contragredient mark, the separate all-energy marked comparison, completions and geometric fusion are different targets.",
+      "after": "For every finite-dimensional simple complex Lie algebra and every level, including critical level, corrected induction gives the full unbounded enhanced equivalence after exactly the induction-detected class W_F is inverted. Restricted twisted coinduction supplies the inverse, dg adjunction, unit, counit and triangle identities on the termwise-smooth source with ordinary direct-sum tensors. W_F is a proper subclass of ordinary line-module quasi-isomorphisms. The separate first-kind unit now has an actual full Hom model on every ordinary unbounded input under the stated coherent native-action and tensor–Hom hypotheses. At simple critical level those hypotheses give a nonzero ordinary telescope with zero smooth realization, so that global unit fails. The marked all-energy, completed-energy and geometric fusion comparisons keep their own carriers and weak classes. Localization at the realization kernel and the exact cellular approximation are constructed; the local unit is not known to be invertible on every local source.",
+      "claimIds": [
+        "induction-unit-model",
+        "induction-critical-unit-failure",
+        "induction-cellular-coreflector",
+        "induction-kernel-localization",
+        "induction-local-unit-comparison",
+        "induction-marked-all-energy",
+        "induction-completed-equivalence"
+      ]
+    },
+    {
+      "id": "decisive-induction-all-energy-intrinsic",
+      "pointer": "/decisive/questions/0/known/4/text",
+      "before": "For every finite-dimensional simple complex Lie algebra, every level and every finite horizontal top, the actual contragredient object and its normalized marked arrow are identified in every energy. At raw level zero the vacuum arrow has rank one, and its entire cone is computed. The full induction null class is the explicit thick, direct-sum-closed class generated by exact totalizations and ghost-zero inflated acyclic smooth current modules. The original unbounded equivalence retains its prescribed localization; ambient derived-Hom and completion comparisons are separate.",
+      "after": "For every finite-dimensional simple complex Lie algebra, every level and every finite horizontal top, the actual contragredient object and its normalized marked arrow are identified in every energy. At raw level zero the vacuum arrow has rank one, and its entire cone is computed. The full induction null class is the explicit thick, direct-sum-closed class generated by exact totalizations and ghost-zero inflated acyclic smooth current modules. The original unbounded equivalence retains its prescribed localization. The ordinary first-kind adjunction has its own full Hom model under the stated native hypotheses, with critical global unit failure and a remaining local-unit comparison. The completed-energy equivalence also has a different carrier and weak class.",
+      "claimIds": [
+        "induction-unit-model",
+        "induction-critical-unit-failure",
+        "induction-cellular-coreflector",
+        "induction-kernel-localization",
+        "induction-local-unit-comparison",
+        "induction-completed-equivalence"
+      ]
+    },
+    {
+      "id": "decisive-induction-complete-support",
+      "pointer": "/decisive/questions/0/known/8/text",
+      "before": "The complete induction equivalence uses degreewise products of discrete energy fibres, continuous module maps and separate degreewise lower energy bounds and, for every ε>0, a bound e≥L_ε−εq² for q≥0, with no negative-tail growth bound. Its actual unit and counit are continuous vector-complex deformation equivalences. Ordinary quasi-isomorphisms lie in its detected weak class, strictly at every simple critical level; equality holds in the specified energy-preserving and termwise bounded-above cases. This differs from the original algebraic induction theorem, whose detected class is strictly smaller than ordinary quasi-isomorphisms. The separate first-kind roof remains conditional on its native inputs, with a common termwise lower energy bound and finite cohomology fibres.",
+      "after": "The complete induction equivalence uses degreewise products of discrete energy fibres, continuous module maps and separate degreewise lower energy bounds and, for every ε>0, a bound e≥L_ε−εq² for q≥0, with no negative-tail growth bound. Its actual unit and counit are continuous vector-complex deformation equivalences. Ordinary quasi-isomorphisms lie in its detected weak class, strictly at every simple critical level; equality holds in the specified energy-preserving and termwise bounded-above cases. This differs from the original algebraic induction theorem, whose detected class is strictly smaller than ordinary quasi-isomorphisms. The earlier bounded first-kind roof retains its native hypotheses, common termwise lower energy bound and finite cohomology fibres. A separate full ordinary unbounded unit model is now constructed under the specified coherent native-action and tensor–Hom assumptions. It has critical global unit failure, an exact cellular coreflector and localization at its realization kernel, with the remaining local-unit equivalence unproved.",
+      "claimIds": [
+        "induction-unit-model",
+        "induction-critical-unit-failure",
+        "induction-cellular-coreflector",
+        "induction-kernel-localization",
+        "induction-local-unit-comparison"
+      ]
+    },
+    {
+      "id": "decisive-reflected-unbounded-continuous",
+      "pointer": "/decisive/questions/3/known/2/text",
+      "before": "For all unbounded smooth jointly positive-nilpotent Virasoro complexes, the reflected null class is the restriction-preimage of standard coacyclic comodules. It equals ordinary acyclics when the module charge is 13+6(ν+ν⁻¹), with ν nonzero and nonrational; an actual complex proves strictness at line charge zero. A linearly compact contragredient category supplies continuous duality, multiplicative derived endomorphisms and the transposed adjunction. The ordinary full dual fails the required smoothness and fullness. The native induction and supported-operation comparisons remain additional.",
+      "after": "For full unbounded smooth jointly nilpotent Virasoro complexes, the reflected null class is the restriction-preimage of standard coacyclic comodules. It equals ordinary acyclics exactly outside the exceptional line charges c=1−6(p−q)²/(pq), with coprime p,q≥2; at each exceptional charge an actual acyclic telescope retains a reflected class. Continuous opposition, smooth/continuous adjunctions and multiplicative derived endomorphisms have their stated intrinsic domains. Full ambient torsion also has an unbounded native-induction comparison. At separated supports the actual continuous tensorator is a chain homeomorphism with finite-arity coherences. The native supported-induction kernel is explicit, but its equality with ordinary acyclics or with the coacyclic class remains a different question; the reflected charge classification does not decide it.",
+      "claimIds": [
+        "virasoro-charge-equality",
+        "virasoro-charge-obstruction",
+        "virasoro-opposition-bridge",
+        "virasoro-smooth-continuous-adjunction",
+        "virasoro-ambient-torsion",
+        "virasoro-separated-spectral-tensorator",
+        "virasoro-native-kernel",
+        "virasoro-native-kernel-question"
+      ]
+    },
+    {
+      "id": "decisive-elliptic-cubic-fields",
+      "pointer": "/decisive/questions/7/known/0/text",
+      "before": "Over \\(A_4=\\mathbb C[\\hbar]/(\\hbar^4)\\), the fixed \\(\\mathfrak{sl}_2\\) differential-polynomial state space \\(P=\\operatorname{Sym}(\\bigoplus_{m\\ge0}\\mathfrak{sl}_2^{(m)})\\) has local/formal cubic fields with weak associativity and locality, the original midpoint second-order field and \\(K=r_0^2/8-r_0'/2\\), and the exact admitted all-state cubic exchange. Independent input and output jets and arbitrary polynomial degrees are retained. Every admitted skew, shift-covariant differential biderivation \\(N\\), including nonlinear outputs, is realized by \\(\\delta S_3=N\\), \\(\\delta Y_3=-M_zN/2\\). Admission includes finite meromorphic state span, period laws and cubic hexagons. This supplies the cubic fields; it does not supply the common category, supported comparison or all-order theory.",
+      "after": "Over \\(A_4=\\mathbb C[\\hbar]/(\\hbar^4)\\), the fixed \\(\\mathfrak{sl}_2\\) differential-polynomial state space \\(P=\\operatorname{Sym}(\\bigoplus_{m\\ge0}\\mathfrak{sl}_2^{(m)})\\) has local/formal cubic fields with weak associativity and locality, the original midpoint second-order field and \\(K=r_0^2/8-r_0'/2\\), and the exact admitted all-state cubic exchange. Independent input and output jets and arbitrary polynomial degrees are retained. Every admitted skew, shift-covariant differential biderivation \\(N\\), including nonlinear outputs, is realized by \\(\\delta S_3=N\\), \\(\\delta Y_3=-M_zN/2\\). Admission includes finite meromorphic state span, period laws and cubic hexagons. This cubic theorem retains the whole admitted family of N. A separately selected trace-quotient source now has all-order fields on P[[ℏ]], matching the complete fixed native fields through degree five and exchange through degree six. That theorem does not assert an all-order extension of every admitted cubic N. The common native category, separately normalized moment and global comparisons remain open.",
+      "claimIds": [
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison",
+        "quantum-common-category-question",
+        "elliptic-moments-higher-native-comparison"
+      ]
+    },
+    {
+      "id": "decisive-elliptic-quartic-yang-baxter",
+      "pointer": "/decisive/questions/7/known/1/text",
+      "before": "For the admitted elliptic cubic correction with generator kernel u=Uell, the canonical S4=R⁴/24+(RU+UR)/2 satisfies quartic Yang–Baxter on every algebraic polynomial state and independent input jet. It retains unitarity, vacuum, shifts, both periods and finite meromorphic state span. The every-order defect-propagation theorem requires its lower field equations. Quartic field hexagons, a compatible Y4, locality and associativity, coherent higher fields and the common native category remain separate.",
+      "after": "For the admitted elliptic cubic correction with generator kernel u=Uell, the canonical S4=R⁴/24+(RU+UR)/2 satisfies quartic Yang–Baxter on every algebraic polynomial state and independent input jet. It retains unitarity, vacuum, shifts, both periods and finite meromorphic state span. The every-order defect-propagation theorem requires its lower field equations. The selected repaired quartic field now extends through a full native quintic prefix and a chosen sixth field; the prefix also has an all-order realization. The earlier zero and half quartic choices retain their fifth-hexagon obstructions, so the existence theorem does not validate every quartic choice. Equality with the chosen sixth field and the common native category remain separate comparisons.",
+      "claimIds": [
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison",
+        "elliptic-quartic-choice-obstructions",
+        "quantum-common-category-question"
+      ]
+    },
+    {
+      "id": "decisive-mixed-coefficient-category",
+      "pointer": "/decisive/questions/7/known/2/text",
+      "before": "Actual KZ–Gaussian objects carry all three collision channels and finite normal transfers. Their contextual-cut category retains the original Gaussian maps and generated native monodromic maps, with a restricted morphism class. Bounded current and jet stages admit continuous Gaussian gauges and residues; unrestricted normal completion fails that continuity. Effective column-completed balanced symbols and changing-frame semilinear periods are also constructed. Fixed-moment two-sided exchange and the full ambient-Hom target retain specific obstructions. Native higher fields and the full common category remain additional.",
+      "after": "Actual KZ–Gaussian objects carry all three collision channels and finite normal transfers. Their contextual-cut category retains the original Gaussian maps and generated native monodromic maps, with a restricted morphism class. Bounded current and jet stages admit continuous Gaussian gauges and residues; unrestricted normal completion fails that continuity. Effective column-completed balanced symbols and changing-frame semilinear periods are also constructed. Fixed-moment two-sided exchange and the full ambient-Hom target retain specific obstructions. Generated supported operations and the precisely marked irrational sl₂ KZ instance are actual constructions. The selected elliptic source also has all-order fields with its full native quintic prefix. The remaining common category must define genuine mixed tensors and independent colour-operation spaces, with native field, moment and global comparison maps.",
+      "claimIds": [
+        "nonrational-supported-forests",
+        "nonrational-marked-kz",
+        "quantum-common-category-question",
+        "elliptic-moments-higher-native-comparison",
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison"
+      ]
+    },
+    {
+      "id": "decisive-elliptic-quartic-fields",
+      "pointer": "/decisive/questions/7/known/3/text",
+      "before": "The sl2 elliptic core now has actual all-polynomial fields through A5, including arbitrary independent input jets, all output components, quartic exchange hexagons and the stated product bounds. Exact transport preserves the fixed lower fields and quadratic kernel. Changed-singleton compatible moments are separately constructed only through A4; a fixed-singleton recipient has its own cubic-order obstruction. Neutral rational-QVA and marked sl2 KZ instances have actual supported coefficient operations. Full universal colour operations, all-order fields, global periods and analytic or physical sewing remain additional.",
+      "after": "The sl2 elliptic core now has actual all-polynomial fields through A5, including arbitrary independent input jets, all output components, quartic exchange hexagons and the stated product bounds. Exact transport preserves the fixed lower fields and quadratic kernel. Compatible moments now exist for the repaired quintic theory through ℂ[ℏ]/(ℏ⁶), with every finite fusion sequence, all independent jets and spectators retained. The actual all-order trace source and its state normalization have moment actions with the full frames. The exact-matrix application to a separately normalized higher native prefix remains a further comparison. The fixed-singleton cubic obstruction persists. Neutral rational and marked sl₂ KZ instances have actual supported operations, and the selected elliptic native quintic prefix has all-order fields plus a separately chosen sixth field. Full native colour operations, the specified higher moment/global comparisons and analytic or physical sewing remain open.",
+      "claimIds": [
+        "elliptic-moments-repaired-quintic",
+        "elliptic-moments-source-actions",
+        "elliptic-moments-normalized-source",
+        "elliptic-moments-higher-native-comparison",
+        "elliptic-moments-fixed-singleton-obstruction",
+        "nonrational-marked-kz",
+        "quantum-common-category-question",
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison"
+      ]
+    },
+    {
+      "id": "decisive-elliptic-quartic-fields-title",
+      "pointer": "/decisive/questions/7/known/3/title",
+      "before": "Elliptic fields reach quartic precision",
+      "after": "Higher elliptic fields and their exact moment comparisons",
+      "claimIds": [
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison",
+        "elliptic-moments-repaired-quintic"
+      ]
+    },
+    {
+      "id": "decisive-fivepoint-primary-hulls",
+      "pointer": "/decisive/questions/9/known/2/text",
+      "before": "Under the retained principal-label and boundary-input H hypotheses, the primary scalar extreme-tree sewing series converges absolutely in the two-label Hilbert space for 0<x,y<1 and xy<exp(−s0), equivalently z1<exp(−s0). Reflection gives the opposite extreme tree for 1−z2<exp(−s0), with the same s0. These scalar logarithmic hulls supplement the four-completed-input collar theorem; they do not enlarge every completed-input tree domain or establish general interior sewing.",
+      "after": "Under the retained principal-label and boundary-input H hypotheses, the primary scalar extreme-tree sewing series converges absolutely in the two-label Hilbert space for 0<x,y<1 and xy<exp(−s0), equivalently z1<exp(−s0). Reflection gives the opposite extreme tree for 1−z2<exp(−s0), with the same s0. These are scalar primary hulls with their own fixed bounds. Separately, under H, the canonical analytic estimates and the independent label pentagon, the full five-point comparison now covers the real ordered interior and its specified complex domains with four entire-energy inputs and uncut internal labels. Mixed completed vacuum sewings and their coefficient-one unit triangles retain their declared stages.",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category"
+      ]
+    },
+    {
+      "id": "decisive-trivalent-spectral-gram",
+      "pointer": "/decisive/questions/9/known/3/text",
+      "before": "For real charge above one, the completed trivalent Ward quotient is the smooth compactly supported spectral test space, and continuous scalar Ward forms are exactly distributions. Under the specified collar hypotheses, fusion-compatible smooth test spaces admit point and derivative evaluation and actual compositions on strict energy domains. Multiplicity integration gives a positive trace-class Gram form with nonzero off-diagonal entries. The algebraic vacuum quotient is the spectral diagonal with its exact density normalization. The full descendant interior estimate and binary categorical universal product remain separate.",
+      "after": "For real charge above one, the completed trivalent Ward quotient is the smooth compactly supported spectral test space, and continuous scalar Ward forms are exactly distributions. Under the specified collar hypotheses, fusion-compatible smooth test spaces admit point and derivative evaluation and actual compositions on strict energy domains. Multiplicity integration gives a positive trace-class Gram form with nonzero off-diagonal entries. The algebraic vacuum quotient is the spectral diagonal with its exact density normalization. The full five-point interior theorem is now available under its retained hypotheses. For two fixed positive point-module inputs, a common recipient represents the declared full rational Ward operations into the specified Gaussian, positive-spectral, meromorphic and vacuum targets. An intrinsic source assignment for arbitrary recipient objects and iterated collisions remains open; the whole common recipient does not admit the actual outer primary sewing.",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category",
+        "analytic-whole-recipient-outer-failure"
+      ]
+    },
+    {
+      "id": "decisive-two-radii-canonical-fibres",
+      "pointer": "/decisive/questions/9/known/4/text",
+      "before": "Under the inherited normalized four-point and vacuum-row hypothesis H, principal Ward vertices have two arbitrary strict endpoint radii for every real c>1, with uncut endpoint spectra and level sums. Canonical every-fibre Gaussian bounds and Hilbert–Schmidt holomorphy retain strict damping margins and a sufficient middle-input stage. Completed vacuum sectors also have their full trivalent Ward quotient table and continuous rational Ward graph actions. A binary universal product, arbitrary distributional seams, unit triangles and analytic principal-vacuum comparison remain separate.",
+      "after": "Under the inherited normalized four-point and vacuum-row hypothesis H, principal Ward vertices have two arbitrary strict endpoint radii for every real c>1, with uncut endpoint spectra and level sums. Canonical every-fibre Gaussian bounds and Hilbert–Schmidt holomorphy retain strict damping margins and a sufficient middle-input stage. Completed vacuum sectors also have their full trivalent Ward quotient table and continuous rational Ward graph actions. Every placement of one vacuum now has its completed mixed sewing and coefficient-one unit triangles on the admitted stages. Full mixed rational Ward identities, nuclear graph sources and a fixed-positive-input representing recipient are established. Arbitrary recipient inputs and general distributional seams remain additional; a cap on nonnegative Sobolev exponents requires the strict threshold s+t>1/2 and fails on the energy-only Hilbert source.",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category",
+        "analytic-nuclear-vacuum-graph",
+        "analytic-spectral-cap-threshold",
+        "analytic-energy-only-cap-failure"
+      ]
+    },
+    {
+      "id": "decisive-elliptic-cubic-inputs",
+      "pointer": "/decisive/questions/11/known/0/text",
+      "before": "The untraced detector, its vanishing proper central trace and its primitive in the full central de Rham carrier are explicit. The canonical cubic cone, marked \\(\\eta,s\\) object rows, contact limits with all anchors and repaired finite independent holomorphic right jets are established on their declared diagrams. The cone obeys its six-path chain identity, and \\(\\Omega_3=0\\) in the stated residue presentation. These results leave the complete compact-history coefficients, projected/localization comparison and harmonic roof to be assembled; a primitive in a larger carrier does not provide the fixed relative filler.",
+      "after": "The untraced detector, its vanishing proper central trace and its primitive in the full central de Rham carrier are explicit. The canonical cubic cone, marked \\(\\eta,s\\) object rows, contact limits with all anchors and repaired finite independent holomorphic right jets are established on their declared diagrams. The cone obeys its six-path chain identity, and \\(\\Omega_3=0\\) in the stated residue presentation. All sixteen cubic histories are now constructed on the specified polynomial-Thom carrier, together with their scalar-coordinate prisms. The first transverse projection and stated supported partner are realized. The full relative filler still requires the original fixed current recipient, the complete generated history and incidence diagram, compact endpoint and prescribed lower maps. A primitive in a larger carrier does not supply that fixed relative homotopy.",
+      "claimIds": [
+        "analytic-elliptic-history-core",
+        "analytic-elliptic-transverse-projection",
+        "analytic-elliptic-supported-partner",
+        "analytic-elliptic-supported-prefix",
+        "analytic-elliptic-fixed-relative-cubic"
+      ]
+    },
+    {
+      "id": "decisive-elliptic-eight-incoming",
+      "pointer": "/decisive/questions/11/known/1/text",
+      "before": "The original elliptic Thom cube has all eight current limits on its algebraic union of finite polynomial, exterior, jet and coefficient stages, with the repaired saturated estimate and unchanged anchors and outputs. Complete localization matrices, contact-coordinate cylinders and the classical harmonic free comparison are constructed. The two-row cubic filler and fixed-lower attachment retain their independent source-map and lower-prism hypotheses. Full mixed histories, prescribed residue-current bridges and the fixed cubic harmonic/path comparison remain additional.",
+      "after": "The original elliptic Thom cube has all eight current limits on its algebraic union of finite polynomial, exterior, jet and coefficient stages, with the repaired saturated estimate and unchanged anchors and outputs. Complete localization matrices, contact-coordinate cylinders and the classical harmonic free comparison are constructed. The two-row cubic filler and fixed-lower attachment retain their independent source-map and lower-prism hypotheses. The polynomial-Thom carrier now has all sixteen histories. Its first transverse projection and fresh-normal-degree-zero supported partner with admitted finite old jets are realized. The full original generated history diagram, remaining after-contact applications and fixed lower harmonic/path comparison retain their separate relative requirements.",
+      "claimIds": [
+        "analytic-elliptic-history-core",
+        "analytic-elliptic-transverse-projection",
+        "analytic-elliptic-supported-partner",
+        "analytic-elliptic-supported-prefix",
+        "analytic-elliptic-fixed-relative-cubic"
+      ]
+    },
+    {
+      "id": "decisive-elliptic-current-and-collar",
+      "pointer": "/decisive/questions/11/known/2/text",
+      "before": "Independent graph-current maps, sixteen compact histories on their stated carrier and one field-normal collar limit are constructed with the original anchors and outputs. A specified fourth-order point current is nonzero even though its proper central trace vanishes. The original relative H3 still requires full source normalization, branch and incidence comparisons, compact homotopy domains and fixed lower marking prisms. The surviving point current alone is not an H3 obstruction.",
+      "after": "Independent graph-current maps, sixteen compact histories on their stated carrier and one field-normal collar limit are constructed with the original anchors and outputs. Two stated supported prefixes have actual fourth-order point currents whose proper central traces vanish. The first augmented edge agrees in its prescribed order; reversing that order retains additional terms. The original relative H3 still requires full source normalization, branch and incidence comparisons, compact homotopy domains and fixed lower marking prisms. The surviving point current alone is not an H3 obstruction.",
+      "claimIds": [
+        "analytic-elliptic-supported-prefix",
+        "analytic-elliptic-earlier-supported-pair",
+        "analytic-elliptic-augmented-edge"
+      ]
+    },
+    {
+      "id": "principal-collar-pentagon",
+      "pointer": "/rows/4/statements/8/text",
+      "before": "For real \\(c>1\\), positive principal momenta and the stated positive Shapovalov and four-point boundary-input hypothesis \\(H\\), five independently constructed sewing maps extend to all four completed inputs on one entire-energy Fréchet domain. They take values in a fixed regularized output space over the five collar strips. A finite input exponent may depend on a compact position set; the sufficient collar widths remain non-effective. The five flip identities hold on their overlaps, and the independent spectral-label pentagon gives collar coherence. The corresponding typed positive spectral category has natural bounded spectral morphisms and closed unitary associators, with inverses on the same output energy scales. Its mode domain has compact total-output spectrum and finite output level; intermediate spectra need not be compact. Full integer-mode Ward covariance includes the normally convergent negative-mode sum on strengthened inputs. External spectral measures remain multiplicities, and fusion retains its canonical output measure. The generating function has radius at least one; the stated removable singularity at \\(c=25\\) still refutes universal exact radius one. Point-label evaluation, collision-closed entire inputs, a rational-Ward universal property, all unit triangles and general interior or higher-arity sewing remain open.",
+      "after": "For real \\(c>1\\), positive principal momenta and the stated positive Shapovalov and four-point boundary-input hypothesis \\(H\\), five independently constructed sewing maps extend to all four completed inputs on one entire-energy Fréchet domain. They take values in a fixed regularized output space over the five collar strips. A finite input exponent may depend on a compact position set; the sufficient collar widths remain non-effective. The five flip identities hold on their overlaps, and the independent spectral-label pentagon gives collar coherence. The corresponding typed positive spectral category has natural bounded spectral morphisms and closed unitary associators, with inverses on the same output energy scales. Its mode domain has compact total-output spectrum and finite output level; intermediate spectra need not be compact. Full integer-mode Ward covariance includes the normally convergent negative-mode sum on strengthened inputs. External spectral measures remain multiplicities, and fusion retains its canonical output measure. The generating function has radius at least one; the stated removable singularity at \\(c=25\\) still refutes universal exact radius one. Separate results now give full five-point interior sewing under H and the retained analytic hypotheses, point and meromorphic target recipients, full mixed rational Ward identities and coefficient-one units for every placement of one vacuum. Fixed positive point-module inputs have a common representing recipient for the declared operations. The remaining categorical question is an intrinsic source assignment for arbitrary recipient objects and repeated collisions; higher-arity interior sewing keeps its additional domain requirements.",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category",
+        "analytic-point-meromorphic-recipients"
+      ]
+    },
+    {
+      "id": "completed-fourpoint-descendants",
+      "pointer": "/rows/4/statements/9/text",
+      "before": "For real central charge in a compact subset of \\((1,\\infty)\\) and positive principal momenta, all-descendant middle-leg doubling gives a common completed four-point comparison under the stated boundary-input hypothesis. All three finite input legs lie in weighted Hilbert spaces with exponent \\(t>T_K\\), depending on the position compact. The spectator/output exponent remains \\(s>\\max(A_0/2,\\log L/2)\\). The construction is bounded in the prescribed direct-integral Hilbert and Bochner \\(L^1\\) targets and retains the actual channel branches. Its atomless decomposable operator is not globally Hilbert–Schmidt. Arbitrary-completed-input five-point coherence, a universal collision category, unit triangles and all-arity interior sewing remain additional results.",
+      "after": "For real central charge in a compact subset of \\((1,\\infty)\\) and positive principal momenta, all-descendant middle-leg doubling gives a common completed four-point comparison under the stated boundary-input hypothesis. All three finite input legs lie in weighted Hilbert spaces with exponent \\(t>T_K\\), depending on the position compact. The spectator/output exponent remains \\(s>\\max(A_0/2,\\log L/2)\\). The construction is bounded in the prescribed direct-integral Hilbert and Bochner \\(L^1\\) targets and retains the actual channel branches. Its atomless decomposable operator is not globally Hilbert–Schmidt. A separate five-point theorem now admits four entire-energy inputs across the full ordered interior under H and the retained analytic hypotheses. Mixed completed vacuum sewings have their coefficient-one unit triangles, and fixed positive inputs have a representing Ward recipient. Arbitrary recipient sources, repeated collisions and all-arity interior sewing retain their further requirements.",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category"
+      ]
+    },
+    {
+      "id": "completed-vacuum-and-nested-norm",
+      "pointer": "/rows/4/statements/11/text",
+      "before": "Under the same real \\(c>1\\) analytic and boundary-input hypotheses, a rapid completed vacuum module \\(V_\\nu\\) acts on finite exponential principal-input stages on the stated strict annuli. Its two placements are \\(Y(\\omega,z)\\) and \\(e^{zL_{-1}}Y(\\omega,-z)\\), with the prescribed translation margins; the vacuum vector has coefficient one. Actual Ward compatibility extends to completed inputs with all principal spectra retained. Separately, for fixed positive external labels the resolved three-input vector retains its intermediate multiplicity label and satisfies \\(\\|V\\|^2=2^{-1/2}N\\); the vector \\(2^{1/4}V\\) has norm squared \\(N\\). The proof sums the outer vacuum series after the finite Ward operations and then continues the resulting holomorphic pairing. It does not flatten both raw vacuum series into one unrestricted absolute double series or compute the norm after integrating out multiplicity. Categorical unit triangles and a natural exponential replacement for \\(V_\\nu\\) remain separate.",
+      "after": "Under the same real \\(c>1\\) analytic and boundary-input hypotheses, a rapid completed vacuum module \\(V_\\nu\\) acts on finite exponential principal-input stages on the stated strict annuli. Its two placements are \\(Y(\\omega,z)\\) and \\(e^{zL_{-1}}Y(\\omega,-z)\\), with the prescribed translation margins; the vacuum vector has coefficient one. Actual Ward compatibility extends to completed inputs with all principal spectra retained. Separately, for fixed positive external labels the resolved three-input vector retains its intermediate multiplicity label and satisfies \\(\\|V\\|^2=2^{-1/2}N\\); the vector \\(2^{1/4}V\\) has norm squared \\(N\\). The proof sums the outer vacuum series after the finite Ward operations and then continues the resulting holomorphic pairing. It does not flatten both raw vacuum series into one unrestricted absolute double series or compute the norm after integrating out multiplicity. Coefficient-one unit triangles now hold for all four mixed vacuum placements on their specified rapid or strengthened endpoint stages. This does not replace the rapid vacuum source by an arbitrary exponential source or make every common-recipient output an input to another sewing.",
+      "claimIds": [
+        "analytic-mixed-sewings-units",
+        "analytic-arbitrary-source-category",
+        "analytic-whole-recipient-outer-failure"
+      ]
+    },
+    {
+      "id": "principal-completed-local-sewing",
+      "pointer": "/rows/4/statements/7/text",
+      "before": "For every real \\(c>1\\), compact-uniform three-leg estimates give exponentially weighted input maps, a nonempty two-successive-insertion domain with strict radius loss, and a local five-principal sewing germ. Internal momentum tails remain uncut. The stated four-point boundary-input hypothesis is retained where used. At each fixed \\(c>25\\), a separate geometric theorem supplies finite-tree local sewing and principal-marked sphere-tree Hilbert/channel comparison on Teichmüller space. It retains the Schwarzian and decoration lines and internal-momentum-dependent phases. These results do not construct a category representing all continuous Ward products or a globally stable external completion.",
+      "after": "For every real \\(c>1\\), compact-uniform three-leg estimates give exponentially weighted input maps, a nonempty two-successive-insertion domain with strict radius loss, and a local five-principal sewing germ. Internal momentum tails remain uncut. The stated four-point boundary-input hypothesis is retained where used. At each fixed \\(c>25\\), a separate geometric theorem supplies finite-tree local sewing and principal-marked sphere-tree Hilbert/channel comparison on Teichmüller space. It retains the Schwarzian and decoration lines and internal-momentum-dependent phases. The later fixed-positive-input theorem gives a common recipient representing the declared continuous rational Ward operations, and full five-point interior sewing holds under its stated H and analytic hypotheses. An intrinsic source category for arbitrary recipient objects, stable under the required repeated collisions, remains open.",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category"
+      ]
+    },
+    {
+      "id": "reflected-virasoro-category",
+      "pointer": "/rows/4/statements/12/text",
+      "before": "For every complex charge \\(c\\), the specified line dg algebra \\(Y_c\\) acts coherently on the resolution and weight-pro carrier of \\(W_{26-c}\\). The actual right-action map preserves differential and opposite composition. It gives the declared cohomologically bounded-below enhanced equivalence, including the full subcategory of bounded-below smooth Virasoro complexes of charge \\(26-c\\) whose cohomology is jointly nilpotent under the positive subalgebra \\(\\mathfrak n_2\\); no lower internal-energy bound is imposed. The inverse, unit and counit are explicit. The regular module maps to \\(W\\), the universal-vacuum mark to \\(V_{26-c}\\), and the augmentation to the restricted contragredient \\(D_\\sigma V_{26-c}\\). The internal weight completion and derived bimodule comparison are essential; this is not a strict full action on the degree-zero module alone. The unbounded null class, relation to the different charge-\\(c\\) induction localization, native collision maps and physical realization remain separate.",
+      "after": "For every complex charge \\(c\\), the specified line dg algebra \\(Y_c\\) acts coherently on the resolution and weight-pro carrier of \\(W_{26-c}\\). The actual right-action map preserves differential and opposite composition. It gives the declared cohomologically bounded-below enhanced equivalence, including the full subcategory of bounded-below smooth Virasoro complexes of charge \\(26-c\\) whose cohomology is jointly nilpotent under the positive subalgebra \\(\\mathfrak n_2\\); no lower internal-energy bound is imposed. The inverse, unit and counit are explicit. The regular module maps to \\(W\\), the universal-vacuum mark to \\(V_{26-c}\\), and the augmentation to the restricted contragredient \\(D_\\sigma V_{26-c}\\). The internal weight completion and derived bimodule comparison are essential; this is not a strict full action on the degree-zero module alone. The full unbounded reflected null class is now classified by the line charge: ordinary acyclics occur away from the stated coprime minimal-series values, and actual acyclic telescopes retain reflected classes at those values. Native supported induction has a separately computed kernel and continuous separated tensorator. The relation between its weak class and ordinary equivalences, the remaining collision comparisons and physical realization retain their own targets.",
+      "claimIds": [
+        "virasoro-charge-equality",
+        "virasoro-charge-obstruction",
+        "virasoro-native-kernel",
+        "virasoro-native-kernel-question",
+        "virasoro-separated-spectral-tensorator"
+      ]
+    },
+    {
+      "id": "elliptic-cubic-exchange-and-partial-field",
+      "pointer": "/rows/7/statements/7/text",
+      "before": "For the fixed elliptic two-torsion kernel on the algebraic differential polynomial state space \\(P=\\operatorname{Sym}(\\bigoplus_{m\\ge0}\\mathfrak{sl}_2^{(m)})\\), the local/formal state-field map is constructed through \\(\\mathbb C[\\hbar]/(\\hbar^4)\\). It retains the original midpoint second-order symbol and \\(K=r_0^2/8-r_0^{\\prime}/2\\), together with the exact admitted normalized all-state cubic exchange. The four-factor and product-pole arguments give actual generating locality with a collision bound independent of spectator polynomial degree and jet orders, and reconstruction gives weak associativity on all polynomial states with independent jets and full outputs. Admitted exchange retains finite meromorphic state span per input, vacuum, shifts, period laws, unitarity and both cubic hexagons. Every admitted skew shift-covariant differential biderivation \\(N\\), including nonlinear or jet-valued generator outputs, is also realized by \\(\\delta S_3=N\\), \\(\\delta Y_3=-M_zN/2\\). The exact midpoint/endpoint gauge preserves the declared recipients. This is a finite-precision local/formal theorem: the common global coefficient category, native supported collision/cut/unit maps, KZ/associator comparison, quartic all-polynomial extension and all orders remain separate. The normalized zero homogeneous exchange correction does not solve the distinct quartic Yang–Baxter equation.",
+      "after": "For the fixed elliptic two-torsion kernel on the algebraic differential polynomial state space \\(P=\\operatorname{Sym}(\\bigoplus_{m\\ge0}\\mathfrak{sl}_2^{(m)})\\), the local/formal state-field map is constructed through \\(\\mathbb C[\\hbar]/(\\hbar^4)\\). It retains the original midpoint second-order symbol and \\(K=r_0^2/8-r_0^{\\prime}/2\\), together with the exact admitted normalized all-state cubic exchange. The four-factor and product-pole arguments give actual generating locality with a collision bound independent of spectator polynomial degree and jet orders, and reconstruction gives weak associativity on all polynomial states with independent jets and full outputs. Admitted exchange retains finite meromorphic state span per input, vacuum, shifts, period laws, unitarity and both cubic hexagons. Every admitted skew shift-covariant differential biderivation \\(N\\), including nonlinear or jet-valued generator outputs, is also realized by \\(\\delta S_3=N\\), \\(\\delta Y_3=-M_zN/2\\). The exact midpoint/endpoint gauge preserves the declared recipients. The whole admitted cubic family keeps that finite-precision scope. A selected repaired native prefix now has all-order local formal fields on P[[ℏ]], agreeing with Y₀ through Y₅ and S₀ through S₆, and a chosen sixth field is separately constructed at precision ℂ[ℏ]/(ℏ⁷). Generated supported coefficient operations and the precisely marked KZ instance also exist. The common native category, equality with the chosen sixth field, separately normalized higher moment application and global comparisons remain open. The normalized zero homogeneous exchange correction does not solve the distinct quartic Yang–Baxter equation.",
+      "claimIds": [
+        "elliptic-critical-trace-source",
+        "elliptic-allorder-native-prefix",
+        "quantum-native-a7-fields",
+        "elliptic-chosen-sixth-comparison",
+        "nonrational-supported-forests",
+        "nonrational-marked-kz",
+        "quantum-common-category-question",
+        "elliptic-moments-higher-native-comparison"
+      ]
+    },
+    {
+      "id": "confined-elliptic-cubic-currents",
+      "pointer": "/rows/18/statements/4/text",
+      "before": "In free elliptic reduction on the fixed six-field carrier, confined cubic distributional limits, the central de Rham primitive and raw eight-face cube lift remain. The specified one-lower-row incoming \\(\\eta/s\\) relation module now admits arbitrary finite independent holomorphic right state jets, all anchors and fixed smooth joint coefficients, retaining the actual coefficient differential. The third Green-pair derivatives are transferred by \\(\\partial_U+\\partial_V\\) before the annular estimates; the unrepaired differentiated moment estimate is not used. Separate marked-object rows give the all-top \\(s\\) and bare \\(\\eta\\) source equations and all joint faces at this scope. Critical moments are signed, and high compact-anchor jets still need integration by parts rather than a universal absolute-moment bound. The canonical cubic cone and contraction at every defined contact order are available from the specified source. The full relative comparison still requires broader polynomial and exterior history words, arbitrary intermediate outputs, the cubic compact endpoint and independent projected, contact, localization and harmonic arrows with fixed lower faces. Exactness in the full de Rham carrier does not imply exactness in the smaller supported Dolbeault complex.",
+      "after": "In free elliptic reduction on the fixed six-field carrier, confined cubic distributional limits, the central de Rham primitive and raw eight-face cube lift remain. The specified one-lower-row incoming \\(\\eta/s\\) relation module now admits arbitrary finite independent holomorphic right state jets, all anchors and fixed smooth joint coefficients, retaining the actual coefficient differential. The third Green-pair derivatives are transferred by \\(\\partial_U+\\partial_V\\) before the annular estimates; the unrepaired differentiated moment estimate is not used. Separate marked-object rows give the all-top \\(s\\) and bare \\(\\eta\\) source equations and all joint faces at this scope. Critical moments are signed, and high compact-anchor jets still need integration by parts rather than a universal absolute-moment bound. The canonical cubic cone and contraction at every defined contact order are available from the specified source. All sixteen histories now exist on the specified polynomial-Thom carrier, with the first transverse projection and the fresh-normal-degree-zero supported partner on its admitted finite old jets. The full relative comparison still requires the original fixed current recipient, its complete generated history and incidence diagram, the remaining after-contact applications and coefficient boundaries, compact endpoint and independent arrows with the lower marking held fixed. Exactness in the full de Rham carrier does not imply exactness in the smaller supported Dolbeault complex.",
+      "claimIds": [
+        "analytic-elliptic-history-core",
+        "analytic-elliptic-transverse-projection",
+        "analytic-elliptic-supported-partner",
+        "analytic-elliptic-supported-prefix",
+        "analytic-elliptic-fixed-relative-cubic"
+      ]
+    },
+    {
+      "id": "legacy-rows-4-statements-6-text",
+      "pointer": "/rows/4/statements/6/text",
+      "before": "For real \\(c>1\\), extend the four-completed-input five-point collar maps and their natural typed spectral associators to a category representing the full trivalent Ward functor. The available collar theorem retains \\(H\\), the independent label pentagon, compact-dependent finite input exponents and a fixed regularized output. Construct input domains stable under all admitted repeated collisions, compatible inverse domains and normalized categorical unit triangles, and prove the full representing property. General interior and higher-arity sewing remain separate. Preserve the existing completed local sewing and the geometric \\(c>25\\) tree sector.",
+      "after": "For real c>1, construct an intrinsic admissible source assignment for arbitrary objects of the common continuous Ward recipient, and prove the corresponding represented fusion category with compatible repeated collisions and inverse domains. Fixed positive point-module inputs already have a representing recipient; full five-point interior sewing, entangled mixed Ward identities and coefficient-one vacuum units hold on their declared stages under H and the retained analytic hypotheses. The actual outer primary sewing does not extend to the whole common recipient, so its finer cluster-quotient source must be retained in the categorical construction. Preserve the separate geometric tree theorem at fixed c>25.",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category",
+        "analytic-whole-recipient-outer-failure",
+        "analytic-proper-annular-sewing"
+      ]
+    },
+    {
+      "id": "legacy-rows-4-statements-6-title",
+      "pointer": "/rows/4/statements/6/title",
+      "before": "Continuous represented fusion and five-point sewing",
+      "after": "Continuous fusion with arbitrary recipient inputs",
+      "claimIds": [
+        "analytic-arbitrary-source-category"
+      ]
+    },
+    {
+      "id": "legacy-open-1-statements-2-text",
+      "pointer": "/open/1/statements/2/text",
+      "before": "For real \\(c>1\\), extend the existing four-completed-input collar sewing and its natural typed spectral associators to a category representing the full trivalent Ward functor. Construct input spaces stable under all admitted repeated insertions, compatible inverse domains and normalized categorical unit triangles. Retain \\(H\\), the independent label pentagon and the stated energy margins where used, and preserve the separate geometric tree theorem at fixed \\(c>25\\). The collar theorem and rapid completed-vacuum identities do not establish these general categorical properties or arbitrary interior and higher-arity sewing.",
+      "after": "For real c>1, construct an intrinsic admissible source assignment for arbitrary objects of the common continuous Ward recipient, and prove the corresponding represented fusion category with compatible repeated collisions and inverse domains. Fixed positive point-module inputs already have a representing recipient; full five-point interior sewing, entangled mixed Ward identities and coefficient-one vacuum units hold on their declared stages under H and the retained analytic hypotheses. The actual outer primary sewing does not extend to the whole common recipient, so its finer cluster-quotient source must be retained in the categorical construction. Preserve the separate geometric tree theorem at fixed c>25.",
+      "claimIds": [
+        "analytic-fivepoint-interior",
+        "analytic-mixed-sewings-units",
+        "analytic-completed-mixed-ward",
+        "analytic-fixed-input-representation",
+        "analytic-arbitrary-source-category",
+        "analytic-whole-recipient-outer-failure",
+        "analytic-proper-annular-sewing"
+      ]
+    }
+  ],
+  "preservation": {
+    "family_ids": [
+      "heisenberg",
+      "affine-generic",
+      "affine-rational",
+      "affine-critical",
+      "virasoro",
+      "w-algebras",
+      "yangians-yang-double",
+      "trigonometric-elliptic",
+      "hall-shuffle",
+      "celestial-self-dual-gauge",
+      "celestial-gravity",
+      "d3-branes",
+      "m2-branes",
+      "m5-branes",
+      "gravity-liouville",
+      "arithmetic",
+      "k3",
+      "six-sphere-and-local-models",
+      "six-dimensional-holomorphic-chern-simons",
+      "four-dimensional-chern-simons"
+    ],
+    "decisive_ids": [
+      "d-native-interface",
+      "d-supported-bulk-actions",
+      "d-centre-base-change",
+      "d-reduction-interface",
+      "d-native-stress",
+      "d-open-closed-reconstruction",
+      "d-native-states",
+      "d-nonrational-common-category",
+      "d-critical-quantization",
+      "d-partner-hilbert",
+      "d-closed-genus-kernel",
+      "d-elliptic-relative-cubic",
+      "d-critical-hall",
+      "d-surface-independent-dual",
+      "d-cubic-surface-bulk",
+      "d-hamiltonian-e2",
+      "d-arithmetic-native-operations",
+      "d-weil-positive-state",
+      "d-compact-igusa-source",
+      "d-igusa-states-section",
+      "d-mixed-string-reconstruction",
+      "d-interacting-curve"
+    ],
+    "exact_before_guards": true,
+    "automatic_lane_claim_fields_excluded": true,
+    "new_scientific_units": false,
+    "new_mathematical_dependency_edges": false
+  }
+}
