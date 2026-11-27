@@ -1,0 +1,74 @@
+{
+  "schema": "quantum-holography-native-edition/1",
+  "edition": "release-v26",
+  "commit": "52e85117170ae241e92778dc56530f5b3d74ef03",
+  "base_public_commit": "bcf39304da74d3904baebc86708e2e0b87f54154",
+  "primary_parent_commit": "bcf39304da74d3904baebc86708e2e0b87f54154",
+  "primary_repository": "https://github.com/raeez/www",
+  "public_reader": "https://raeez.com/quantum-holography/",
+  "content_id": "191f68c8f12cd4bcae8fed563e4fb6f4877703f08b69b93affca07fa869b9b3b",
+  "native_inputs": 61,
+  "native_changed_files": [
+    "compiler/quantum-holography-status/monograph.py",
+    "compiler/quantum-holography-status/status.py",
+    "compiler/quantum-holography-status/visual.css",
+    "content/quantum-holography-status/chapters/01-physical-questions.md",
+    "content/quantum-holography-status/chapters/03-local-fields.md",
+    "content/quantum-holography-status/chapters/11-states-and-lines.md",
+    "content/quantum-holography-status/reader-data/fig-energy-two-exchange.html",
+    "content/quantum-holography-status/reader-data/fig-front-cuts.html",
+    "content/quantum-holography-status/reader-data/fig-front-routes.html",
+    "content/quantum-holography-status/reader-data/fig-schur-readings.html",
+    "content/quantum-holography-status/reader-data/manifest.json"
+  ],
+  "public_exports": {
+    "primary": {
+      "url": "https://raeez.com/quantum-holography/",
+      "commit": "52e85117170ae241e92778dc56530f5b3d74ef03",
+      "files": {
+        "index.html": {
+          "sha256": "cff2cc8b0714129fcaf0b645676251dce0cfb8a14ff41d4f6f79b53cb0cde463",
+          "bytes": 5479062
+        },
+        "reference.html": {
+          "sha256": "b1c459cd48d6f298550a1edcb8610f07af450f5fcb6156faa0df7c066e23f573",
+          "bytes": 5081869
+        },
+        "atlas.html": {
+          "sha256": "27b9f94a34ec34c35940029201ba13ffd2b1f63f63c9ff96b62b86e4f835ce1c",
+          "bytes": 11482581
+        },
+        "reader-index.js": {
+          "sha256": "56520348b9be61c6264e04d428c85d6c47910f9c139cff8c3ca0ffb025c7461d",
+          "bytes": 6071865
+        }
+      }
+    },
+    "standalone_build": {
+      "files": {
+        "index.html": {
+          "sha256": "1cce9f122cdcaa7dd0fab77f4784bcf58db6b1ef4bb63042dc3ee393f90c6cd8",
+          "bytes": 5478533
+        },
+        "reference.html": {
+          "sha256": "96c8081386d82d103eace40b1882dc82204a4381949c8c1f18cea9be580ebccd",
+          "bytes": 5081340
+        },
+        "atlas.html": {
+          "sha256": "3481800b72a90e977052e40b7c920db5fe85bc7e333a4ae3bf03c00c71446192",
+          "bytes": 11482052
+        },
+        "reader-index.js": {
+          "sha256": "56520348b9be61c6264e04d428c85d6c47910f9c139cff8c3ca0ffb025c7461d",
+          "bytes": 6071865
+        }
+      }
+    }
+  },
+  "reader_runtime": {
+    "reader": "controls/reader-v18.js",
+    "reference": "controls/status-v18.js",
+    "bookReader": "controls/reader-book-math-notices.js"
+  },
+  "verification": "verification/PUBLICATION.json"
+}

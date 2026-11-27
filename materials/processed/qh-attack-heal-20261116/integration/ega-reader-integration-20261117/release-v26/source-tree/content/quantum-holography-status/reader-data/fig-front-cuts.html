@@ -1,0 +1,42 @@
+<figure class="qh-fig qv" id="fig-front-cuts" aria-labelledby="fig-front-cuts-title">
+<div class="qh-fig-head"><p class="qh-fig-title" id="fig-front-cuts-title">A word of three fields, its two cuts, and where both cuts fail</p></div>
+<p class="qv-sr">Five arrangements of three labelled points on a curve are shown, each with the two cuts of the word one, two, three. The cut after the first label separates when the first point differs from the second and from the third. The cut after the second label separates when the third point differs from the first and from the second. When the three points are distinct both cuts separate. When only the first and second points coincide, or only the second and third, one cut still separates. When the first and third points coincide both cuts fail, wherever the second point lies.</p>
+<ul class="qv-cases">
+<li class="qv-case">
+<p class="qv-case-h">Three distinct points</p>
+<svg class="qv-svg" viewBox="0 0 120 46" style="--qv-w:120" aria-hidden="true" focusable="false"><path class="qv-axis" d="M8 30H112"/><g class="qv-dot"><circle cx="28" cy="30" r="4.4"/><circle cx="60" cy="30" r="4.4"/><circle cx="92" cy="30" r="4.4"/></g><g class="qv-v" text-anchor="middle"><text x="28" y="16">1</text><text x="60" y="16">2</text><text x="92" y="16">3</text></g></svg>
+<p class="qv-cut"><span class="qv-word">1<span class="qv-bar" role="img" aria-label="cut"></span>2 3</span><span class="qv-yes">separates</span></p>
+<p class="qv-cut"><span class="qv-word">1 2<span class="qv-bar" role="img" aria-label="cut"></span>3</span><span class="qv-yes">separates</span></p>
+<p class="qv-verdict">Both cuts separate.</p>
+</li>
+<li class="qv-case">
+<p class="qv-case-h">First and second coincide</p>
+<svg class="qv-svg" viewBox="0 0 120 46" style="--qv-w:120" aria-hidden="true" focusable="false"><path class="qv-axis" d="M8 30H112"/><circle class="qv-ink" cx="40" cy="30" r="8.5"/><g class="qv-dot"><circle cx="40" cy="30" r="4.4"/><circle cx="92" cy="30" r="4.4"/></g><g class="qv-v" text-anchor="middle"><text x="40" y="16">1, 2</text><text x="92" y="16">3</text></g></svg>
+<p class="qv-cut"><span class="qv-word">1<span class="qv-bar" role="img" aria-label="cut"></span>2 3</span><span class="qv-no">fails</span></p>
+<p class="qv-cut"><span class="qv-word">1 2<span class="qv-bar" role="img" aria-label="cut"></span>3</span><span class="qv-yes">separates</span></p>
+<p class="qv-verdict">One cut separates.</p>
+</li>
+<li class="qv-case">
+<p class="qv-case-h">Second and third coincide</p>
+<svg class="qv-svg" viewBox="0 0 120 46" style="--qv-w:120" aria-hidden="true" focusable="false"><path class="qv-axis" d="M8 30H112"/><circle class="qv-ink" cx="80" cy="30" r="8.5"/><g class="qv-dot"><circle cx="28" cy="30" r="4.4"/><circle cx="80" cy="30" r="4.4"/></g><g class="qv-v" text-anchor="middle"><text x="28" y="16">1</text><text x="80" y="16">2, 3</text></g></svg>
+<p class="qv-cut"><span class="qv-word">1<span class="qv-bar" role="img" aria-label="cut"></span>2 3</span><span class="qv-yes">separates</span></p>
+<p class="qv-cut"><span class="qv-word">1 2<span class="qv-bar" role="img" aria-label="cut"></span>3</span><span class="qv-no">fails</span></p>
+<p class="qv-verdict">One cut separates.</p>
+</li>
+<li class="qv-case is-hit">
+<p class="qv-case-h">First and third coincide</p>
+<svg class="qv-svg" viewBox="0 0 120 46" style="--qv-w:120" aria-hidden="true" focusable="false"><path class="qv-axis" d="M8 30H112"/><circle class="qv-ink" cx="40" cy="30" r="8.5"/><g class="qv-dot"><circle cx="40" cy="30" r="4.4"/><circle cx="92" cy="30" r="4.4"/></g><g class="qv-v" text-anchor="middle"><text x="40" y="16">1, 3</text><text x="92" y="16">2</text></g></svg>
+<p class="qv-cut"><span class="qv-word">1<span class="qv-bar" role="img" aria-label="cut"></span>2 3</span><span class="qv-no">fails</span></p>
+<p class="qv-cut"><span class="qv-word">1 2<span class="qv-bar" role="img" aria-label="cut"></span>3</span><span class="qv-no">fails</span></p>
+<p class="qv-verdict">No cut separates.</p>
+</li>
+<li class="qv-case is-hit">
+<p class="qv-case-h">All three coincide</p>
+<svg class="qv-svg" viewBox="0 0 120 46" style="--qv-w:120" aria-hidden="true" focusable="false"><path class="qv-axis" d="M8 30H112"/><circle class="qv-ink" cx="60" cy="30" r="8.5"/><circle class="qv-dot" cx="60" cy="30" r="4.4"/><g class="qv-v" text-anchor="middle"><text x="60" y="16">1, 2, 3</text></g></svg>
+<p class="qv-cut"><span class="qv-word">1<span class="qv-bar" role="img" aria-label="cut"></span>2 3</span><span class="qv-no">fails</span></p>
+<p class="qv-cut"><span class="qv-word">1 2<span class="qv-bar" role="img" aria-label="cut"></span>3</span><span class="qv-no">fails</span></p>
+<p class="qv-verdict">No cut separates.</p>
+</li>
+</ul>
+<figcaption class="qh-fig-caption">A cut of the word separates when no point of its left block coincides with a point of its right block. On those configurations the bar coefficient is the tensor product of the coefficients of the two blocks. Both cuts fail exactly when the first and third points coincide, and the second point may then lie anywhere on the curve. The algebra coefficient on three labels is supported on these configurations.</figcaption>
+</figure>
