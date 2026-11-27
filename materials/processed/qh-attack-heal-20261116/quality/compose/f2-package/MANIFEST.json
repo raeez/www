@@ -1,0 +1,60 @@
+{
+ "base": {
+  "description": "root's integration with the foundation's final F1 and F2 applied",
+  "root_integration": "foundation 695ff9a8; quality build wrapper 7419f94a and audit 2e857726; baseline status.js",
+  "f1": {
+   "patch": "f1-status-language.patch",
+   "sha256": "9613254535445e7ad38c6f591b403309a89f4dd87ed24b2a79f24fba143a6ad8"
+  },
+  "f2": {
+   "patch": "f2-successor-fields.patch",
+   "sha256": "3f2c449364146401c292d05e72e101795dd2adf94e065ed4d902a12ce5462655",
+   "candidates": {
+    "compiler/quantum-holography-status/status.py": "c7a924e6710bc51d7d8f56d5b2b78376e71941c8de0528b19469aa5152d91ce4",
+    "compiler/quantum-holography-status/status.css": "b496f5f5bf323f6125b69f873055880c27ec2114cf7d5dbd96b778fa3fecd48d",
+    "compiler/quantum-holography-status/status-print.css": "8373d792c454933efb93c865b4375fa25cd99a3b9e0fb71235c26c2f7cec746b",
+    "content/quantum-holography-status/page.json": "f0a6edc563b353a03cdd39a4352ccd26b6aff53b83ebfc6dc82b8f9ea099a9a9"
+   }
+  },
+  "unchanged_pins": {
+   "compiler/build-quantum-holography-status.py": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf",
+   "compiler/quantum-holography-status/status.js": "ef3581907e176897da4a644f61038c147295fae8256cf8ba9a930bd5ab95e12e",
+   "content/quantum-holography-status/page.json": "f0a6edc563b353a03cdd39a4352ccd26b6aff53b83ebfc6dc82b8f9ea099a9a9",
+   "content/quantum-holography-status/content.json": "39eebb2c101f072177700716fe9f4a9f9de61c5c2d5595f8e813854a14b40934",
+   "content/quantum-holography-status/essay.md": "457e4c4ce75972cf929a4cfeba4f4e83a7aab37f640b50d69f18dc78c93a4f60"
+  }
+ },
+ "patch": {
+  "name": "QUALITY-ON-F1F2.diff",
+  "sha256": "2d617690107a50e3a0d6cb1b3b932e343e4eeac492f0526101ba21f01f368362"
+ },
+ "files": [
+  {
+   "path": "compiler/quantum-holography-status/status.py",
+   "before_sha256": "c7a924e6710bc51d7d8f56d5b2b78376e71941c8de0528b19469aa5152d91ce4",
+   "after_sha256": "2114d75b0c82b5bde8b1b4a5509935647734088c84d4640d88deda6e874c1d04",
+   "hunks": 20
+  },
+  {
+   "path": "compiler/quantum-holography-status/status.css",
+   "before_sha256": "b496f5f5bf323f6125b69f873055880c27ec2114cf7d5dbd96b778fa3fecd48d",
+   "after_sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+   "hunks": 3
+  },
+  {
+   "path": "compiler/quantum-holography-status/status-print.css",
+   "before_sha256": "8373d792c454933efb93c865b4375fa25cd99a3b9e0fb71235c26c2f7cec746b",
+   "after_sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+   "hunks": 1
+  },
+  {
+   "path": "compiler/quantum-holography-status/audit.py",
+   "before_sha256": "2e85772650b669e01bb4a15d84dda6dc351a07e8b0fb2b0ac8a0c905d0c3965c",
+   "after_sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+   "hunks": 8
+  }
+ ],
+ "withdrawn": {
+  "STATUS-LANGUAGE.diff": "superseded by F1 (same five status labels; F1 also removes cell_glosses)"
+ }
+}

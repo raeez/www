@@ -1,0 +1,654 @@
+{
+ "html": "compose/f1f2/current/atlas-composed.html",
+ "html_sha256": "23e44c21de82198c71ce2f6723be5c495bd29c9ce84a09db5c9212813060f294",
+ "html_bytes": 9166070,
+ "checks": {
+  "Q03-csp": {
+   "pass": true,
+   "csp": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; font-src data:; img-src data:; base-uri 'none'; form-action 'none'"
+  },
+  "Q06": {
+   "pass": false,
+   "content_statements": 295,
+   "dom_statements": 295,
+   "counts": {
+    "checked": 204,
+    "pending": 0,
+    "conditional": 10,
+    "refuted form": 1,
+    "conjecture": 0,
+    "heuristic": 0,
+    "open": 76,
+    "published": 4
+   },
+   "tally": {
+    "checked": null,
+    "refuted form": null,
+    "conditional": null,
+    "open": null,
+    "published": null
+   },
+   "problems": [
+    {
+     "i": 9,
+     "id": "decisive-native-interface",
+     "problem": "data-status checked != open"
+    },
+    {
+     "i": 9,
+     "id": "decisive-native-interface",
+     "problem": "chip \"Established\""
+    },
+    {
+     "i": 9,
+     "id": "decisive-native-interface",
+     "problem": "class statement st-checked"
+    },
+    {
+     "i": 9,
+     "id": "decisive-native-interface",
+     "problem": "anchor s-a-free-field-with-two-independent-parameters != s-decisive-native-interface"
+    },
+    {
+     "i": 10,
+     "id": "decisive-endpoint-two-corings",
+     "problem": "anchor s-fock-modules-and-rational-coinvariants != s-decisive-endpoint-two-corings"
+    },
+    {
+     "i": 11,
+     "id": "decisive-separated-wick",
+     "problem": "anchor s-grading-changes-the-derived-endomorphisms != s-decisive-separated-wick"
+    },
+    {
+     "i": 12,
+     "id": "decisive-induction-full-unbounded",
+     "problem": "anchor s-the-gaussian-bulk-and-its-boundary-current != s-decisive-induction-full-unbounded"
+    },
+    {
+     "i": 13,
+     "id": "decisive-finite-quotient-point-duality",
+     "problem": "anchor s-vacuum-extensions-detect-the-heisenberg-level != s-decisive-finite-quotient-point-duality"
+    },
+    {
+     "i": 14,
+     "id": "decisive-induction-all-energy-intrinsic",
+     "problem": "data-status open != checked"
+    },
+    {
+     "i": 14,
+     "id": "decisive-induction-all-energy-intrinsic",
+     "problem": "chip \"Remaining\""
+    },
+    {
+     "i": 14,
+     "id": "decisive-induction-all-energy-intrinsic",
+     "problem": "class statement st-open"
+    },
+    {
+     "i": 14,
+     "id": "decisive-induction-all-energy-intrinsic",
+     "problem": "anchor s-a-comparison-preserving-the-vacuum-and-its-operations != s-decisive-induction-all-energy-intrinsic"
+    },
+    {
+     "i": 15,
+     "id": "decisive-native-r3-covariant-recipient",
+     "problem": "hypotheses 0 rendered of 2"
+    },
+    {
+     "i": 15,
+     "id": "decisive-native-r3-covariant-recipient",
+     "problem": "anchor s-hyperbolic-genus-identity != s-decisive-native-r3-covariant-recipient"
+    },
+    {
+     "i": 16,
+     "id": "decisive-fullbar-wilson-parameter",
+     "problem": "anchor s-hyperbolic-character-average != s-decisive-fullbar-wilson-parameter"
+    },
+    {
+     "i": 17,
+     "id": "decisive-geometric-left-vacuum",
+     "problem": "anchor s-hyperbolic-all-genus != s-decisive-geometric-left-vacuum"
+    },
+    {
+     "i": 18,
+     "id": "decisive-induction-complete-support",
+     "problem": "anchor s-scalar-average-obstruction != s-decisive-induction-complete-support"
+    },
+    {
+     "i": 19,
+     "id": "decisive-native-resolved-evaluation",
+     "problem": "hypotheses 0 rendered of 4"
+    },
+    {
+     "i": 19,
+     "id": "decisive-native-resolved-evaluation",
+     "problem": "anchor s-rank-four-genus-masses != s-decisive-native-resolved-evaluation"
+    },
+    {
+     "i": 20,
+     "id": "decisive-horizontal-one-family",
+     "problem": "anchor s-rank-four-character != s-decisive-horizontal-one-family"
+    },
+    {
+     "i": 21,
+     "id": "decisive-endpoint-native-coefficients",
+     "problem": "anchor s-endpoint-algebraic-recipient != s-decisive-endpoint-native-coefficients"
+    },
+    {
+     "i": 22,
+     "id": "native-right-linear-augmentation",
+     "problem": "hypotheses 0 rendered of 2"
+    },
+    {
+     "i": 22,
+     "id": "native-right-linear-augmentation",
+     "problem": "anchor s-endpoint-derived-and-hybrid-coring != s-native-right-linear-augmentation"
+    },
+    {
+     "i": 23,
+     "id": "native-state-input-diagram",
+     "problem": "hypotheses 0 rendered of 4"
+    },
+    {
+     "i": 23,
+     "id": "native-state-input-diagram",
+     "problem": "anchor s-endpoint-separated-wick-and-primitive != s-native-state-input-diagram"
+    },
+    {
+     "i": 24,
+     "id": "native-sampled-cohomology-kernel",
+     "problem": "data-status checked != refuted form"
+    },
+    {
+     "i": 24,
+     "id": "native-sampled-cohomology-kernel",
+     "problem": "chip \"Established\""
+    },
+    {
+     "i": 24,
+     "id": "native-sampled-cohomology-kernel",
+     "problem": "class statement st-checked"
+    },
+    {
+     "i": 24,
+     "id": "native-sampled-cohomology-kernel",
+     "problem": "hypotheses 0 rendered of 2"
+    },
+    {
+     "i": 24,
+     "id": "native-sampled-cohomology-kernel",
+     "problem": "anchor s-the-raw-level-curved-point-dual != s-native-sampled-cohomology-kernel"
+    },
+    {
+     "i": 25,
+     "id": "induction-nonrational-global-equivalence",
+     "problem": "data-status checked != conditional"
+    },
+    {
+     "i": 25,
+     "id": "induction-nonrational-global-equivalence",
+     "problem": "chip \"Established\""
+    },
+    {
+     "i": 25,
+     "id": "induction-nonrational-global-equivalence",
+     "problem": "class statement st-checked"
+    },
+    {
+     "i": 25,
+     "id": "induction-nonrational-global-equivalence",
+     "problem": "hypotheses 0 rendered of 4"
+    },
+    {
+     "i": 25,
+     "id": "induction-nonrational-global-equivalence",
+     "problem": "anchor s-kz-fusion-with-an-explicit-collision-comparison != s-induction-nonrational-global-equivalence"
+    },
+    {
+     "i": 26,
+     "id": "native-polar-diagram-order-five",
+     "problem": "data-status checked != open"
+    },
+    {
+     "i": 26,
+     "id": "native-polar-diagram-order-five",
+     "problem": "chip \"Established\""
+    },
+    {
+     "i": 26,
+     "id": "native-polar-diagram-order-five",
+     "problem": "class statement st-checked"
+    },
+    {
+     "i": 26,
+     "id": "native-polar-diagram-order-five",
+     "problem": "hypotheses 0 rendered of 2"
+    },
+    {
+     "i": 26,
+     "id": "native-polar-diagram-order-five",
+     "problem": "anchor s-an-affine-endomorphism-obstruction != s-native-polar-diagram-order-five"
+    }
+   ],
+   "problem_count": 714
+  },
+  "Q07": {
+   "pass": true,
+   "rows": 20,
+   "grid_rows": 20,
+   "problems": [],
+   "problem_count": 0,
+   "aria_labels_with_tex": 0
+  },
+  "Q10": {
+   "pass": false,
+   "missing": [
+    {
+     "where": "statement 9 decisive-native-interface",
+     "field": "text",
+     "chunk": "Nativeformalendpointduality,completefinitecharge-profilebars,chargedsmoothoperatordiagramsandtheregulargeometriccomparis"
+    },
+    {
+     "where": "statement 9 decisive-native-interface",
+     "field": "text",
+     "chunk": "dualwiththepolynomiallinealgebra.Preservethepositivefiltration,actualmodule-linearmappingcomplexes,numericalandJordancha"
+    },
+    {
+     "where": "statement 9 decisive-native-interface",
+     "field": "title",
+     "chunk": "Realizethecoefficientdualthroughnativeendpointoperations"
+    },
+    {
+     "where": "statement 10 decisive-endpoint-two-corings",
+     "field": "text",
+     "chunk": "ForthepolynomialHeisenbergpointalgebra,theordinaryderivedkernelisthelocal-cohomologycoring"
+    },
+    {
+     "where": "statement 10 decisive-endpoint-two-corings",
+     "field": "text",
+     "chunk": ",withimagethe"
+    },
+    {
+     "where": "statement 10 decisive-endpoint-two-corings",
+     "field": "text",
+     "chunk": "-power-supportedsector.Aseparateproduct-bar/hybridhomotopy–derivedenhancementhasthediagonalKoszulcoringandretainseveryal"
+    },
+    {
+     "where": "statement 10 decisive-endpoint-two-corings",
+     "field": "title",
+     "chunk": "Twopoint-kerneltheoriesarealreadydistinguished"
+    },
+    {
+     "where": "statement 11 decisive-separated-wick",
+     "field": "text",
+     "chunk": "Onfullyseparatedconfigurations,thereducedexteriormodelhasastrictlyunitalfinite"
+    },
+    {
+     "where": "statement 11 decisive-separated-wick",
+     "field": "text",
+     "chunk": "automorphismandinverse,withfiniteinsertionsforarbitraryfinitecommutingchargematrices,includingJordanblocks.Theabsolutesp"
+    },
+    {
+     "where": "statement 11 decisive-separated-wick",
+     "field": "title",
+     "chunk": "Separatedchargetransporthasfinitehigheroperations"
+    },
+    {
+     "where": "statement 12 decisive-induction-full-unbounded",
+     "field": "text",
+     "chunk": "Foreveryfinite-dimensionalsimplecomplexLiealgebraandeverylevel,includingcriticallevel,algebraicinductiongivesthefullunbo"
+    },
+    {
+     "where": "statement 12 decisive-induction-full-unbounded",
+     "field": "text",
+     "chunk": "isinverted.Restrictedtwistedcoinductionsuppliestheinverseandmarkedadjunction;"
+    },
+    {
+     "where": "statement 12 decisive-induction-full-unbounded",
+     "field": "text",
+     "chunk": "isapropersubclassofordinaryline-modulequasi-isomorphisms.Theseparateordinaryfirst-kindadjunctionhasafullHommodelunderits"
+    },
+    {
+     "where": "statement 12 decisive-induction-full-unbounded",
+     "field": "text",
+     "chunk": "parametersitsactualunitisinvertibleoneveryordinaryunboundedsource,anditsimageisexactly"
+    },
+    {
+     "where": "statement 12 decisive-induction-full-unbounded",
+     "field": "text",
+     "chunk": "intheungradedconventionand"
+    },
+    {
+     "where": "statement 12 decisive-induction-full-unbounded",
+     "field": "text",
+     "chunk": "inthegradedconvention.Underthecoherentnative-actionandactualadjunctioninputs,togetherwiththeactualunitandfullsmooth/alge"
+    },
+    {
+     "where": "statement 12 decisive-induction-full-unbounded",
+     "field": "title",
+     "chunk": "Algebraicinductionisanequivalenceateverylevel"
+    },
+    {
+     "where": "statement 13 decisive-finite-quotient-point-duality",
+     "field": "text",
+     "chunk": "Forthegeneral-linearYangdoubleofrankn≥2ateachfinitequantumprecision,pointdualityholdsbetweentermwiseR_N-freecomplexesofs"
+    },
+    {
+     "where": "statement 13 decisive-finite-quotient-point-duality",
+     "field": "title",
+     "chunk": "Finite-quotientpointdualityincludescriticallevel"
+    },
+    {
+     "where": "statement 14 decisive-induction-all-energy-intrinsic",
+     "field": "text",
+     "chunk": "Foreveryfinite-dimensionalsimplecomplexLiealgebra,everylevelandeveryfinitehorizontaltop,theactualcontragredientobjectand"
+    },
+    {
+     "where": "statement 14 decisive-induction-all-energy-intrinsic",
+     "field": "title",
+     "chunk": "Inductionpreservesthemarkedcomparisonineveryenergy"
+    },
+    {
+     "where": "statement 15 decisive-native-r3-covariant-recipient hypothesis 0",
+     "field": "hypothesis",
+     "problem": "container missing"
+    },
+    {
+     "where": "statement 15 decisive-native-r3-covariant-recipient hypothesis 1",
+     "field": "hypothesis",
+     "problem": "container missing"
+    },
+    {
+     "where": "statement 15 decisive-native-r3-covariant-recipient",
+     "field": "text",
+     "chunk": "Forthefour-colournativesystemover"
+    },
+    {
+     "where": "statement 15 decisive-native-r3-covariant-recipient",
+     "field": "text",
+     "chunk": ",thecoefficientderivativeidentityholdsateveryexteriorlength,jetorderandnumericallevel.Itssecond-orderexteriordifferentia"
+    },
+    {
+     "where": "statement 15 decisive-native-r3-covariant-recipient",
+     "field": "text",
+     "chunk": "hasbothrootedactions,markeddegree"
+    },
+    {
+     "where": "statement 15 decisive-native-r3-covariant-recipient",
+     "field": "text",
+     "chunk": "andascalar-vacuumdgretract.Whole-carriermarkedevaluationatfixednoncriticallevelissuppliedbyaseparatetheorem.Scope:Allfou"
+    },
+    {
+     "where": "statement 15 decisive-native-r3-covariant-recipient",
+     "field": "title",
+     "chunk": "Nativecoefficientsandtheirindependentrecipient"
+    },
+    {
+     "where": "statement 16 decisive-fullbar-wilson-parameter",
+     "field": "text",
+     "chunk": "Theselectedbinarycollisionextendstoeveryfinitefull-bararitywithliteraltreeandblockfaces,sourceunitsandtheprescribedmixed"
+    },
+    {
+     "where": "statement 16 decisive-fullbar-wilson-parameter",
+     "field": "title",
+     "chunk": "FullbarsretaintheselectedunarymapsandWilsonroofs"
+    },
+    {
+     "where": "statement 17 decisive-geometric-left-vacuum",
+     "field": "text",
+     "chunk": "AtnonzeroHeisenberglevel,theprescribedpolarizedinducedleftvacuumisequivalenttothegeometricvacuummodulewithitsleftaction,"
+    },
+    {
+     "where": "statement 17 decisive-geometric-left-vacuum",
+     "field": "title",
+     "chunk": "Thepolarizedgeometricleftvacuumisidentified"
+    },
+    {
+     "where": "statement 18 decisive-induction-complete-support",
+     "field": "text",
+     "chunk": "Thecompleteinductionequivalenceusesdegreewiseproductsofdiscreteenergyfibres,continuousmodulemaps,separatedegreewiselower"
+    },
+    {
+     "where": "statement 18 decisive-induction-complete-support",
+     "field": "text",
+     "chunk": ",abound"
+    },
+    {
+     "where": "statement 18 decisive-induction-complete-support",
+     "field": "text",
+     "chunk": ",withnonegative-tailgrowthbound.Itsactualunitandcounitarecontinuousvector-complexdeformationequivalences.Ordinaryquasi-i"
+    },
+    {
+     "where": "statement 18 decisive-induction-complete-support",
+     "field": "title",
+     "chunk": "Completedinductionhasitsownsupporttheorem"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation hypothesis 0",
+     "field": "hypothesis",
+     "problem": "container missing"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation hypothesis 1",
+     "field": "hypothesis",
+     "problem": "container missing"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation hypothesis 2",
+     "field": "hypothesis",
+     "problem": "container missing"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation hypothesis 3",
+     "field": "hypothesis",
+     "problem": "container missing"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation",
+     "field": "text",
+     "chunk": "Ateachfixednumerical"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation",
+     "field": "text",
+     "chunk": "over"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation",
+     "field": "text",
+     "chunk": ",with"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation",
+     "field": "text",
+     "chunk": ",isanactualcontinuousdgbimoduleevaluationforthefullsmoothnativealgebra.Itisdefinedoneveryhomogeneouselementoftheorderedp"
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation",
+     "field": "text",
+     "chunk": "normalizationareseparate."
+    },
+    {
+     "where": "statement 19 decisive-native-resolved-evaluation",
+     "field": "title",
+     "chunk": "Amarkedevaluationonthecompletedorderedsource"
+    },
+    {
+     "where": "statement 20 decisive-horizontal-one-family",
+     "field": "text",
+     "chunk": "Asingleselectedfamilyhasitsexactunarymap,nativeCartanclosure,physicalfacetsandunits,Wilsonandright-affine-barroofs,binar"
+    },
+    {
+     "where": "statement 20 decisive-horizontal-one-family",
+     "field": "text",
+     "chunk": ",withlongrootsofsquaredlengthtwo,"
+    },
+    {
+     "where": "statement 20 decisive-horizontal-one-family",
+     "field": "text",
+     "chunk": "andreflectedaffinelevel"
+    },
+    {
+     "where": "statement 20 decisive-horizontal-one-family",
+     "field": "text",
+     "chunk": ".Ontheoriginalpoint-sourcepolynomialpositive-weightcontinuousbarduals,shufflerestrictionhasan"
+    },
+    {
+     "where": "statement 20 decisive-horizontal-one-family",
+     "field": "text",
+     "chunk": "inverseandapolynomialhomotopysatisfyingbothrelativeidentities.Contractiblehigherchoicesintheproductwiseexternalparameter"
+    },
+    {
+     "where": "statement 20 decisive-horizontal-one-family",
+     "field": "text",
+     "chunk": "example,exactunarydataallowinequivalentternaryclassesoverthesamefixedtensorbase;nonondegenerate-"
+    },
+    {
+     "where": "statement 20 decisive-horizontal-one-family",
+     "field": "text",
+     "chunk": "orvarying-baseobstructionisasserted.Furthercompletedsourcesandlargergeometricvacuumorblockrecipientsretaintheirseparatec"
+    },
+    {
+     "where": "statement 20 decisive-horizontal-one-family",
+     "field": "title",
+     "chunk": "Onefinitehorizontalfamilycarriesthenativecomparisons"
+    },
+    {
+     "where": "statement 21 decisive-endpoint-native-coefficients",
+     "field": "text",
+     "chunk": "AtnonzeroHeisenberglevel,actualnativepolynomialchargedcutequivalences,fullcharge-changingHomcomplexes,nativeenergyclosur"
+    },
+    {
+     "where": "statement 21 decisive-endpoint-native-coefficients",
+     "field": "title",
+     "chunk": "Endpointcoefficientcomparisonspreservenativeattachments"
+    },
+    {
+     "where": "statement 22 native-right-linear-augmentation hypothesis 0",
+     "field": "hypothesis",
+     "problem": "container missing"
+    },
+    {
+     "where": "statement 22 native-right-linear-augmentation hypothesis 1",
+     "field": "hypothesis",
+     "problem": "container missing"
+    },
+    {
+     "where": "statement 22 native-right-linear-augmentation",
+     "field": "text",
+     "chunk": "Theexactorderedaugmentationadmitsacontinuousstrongdeformationretractionlinearfortheactualcompletedright"
+    },
+    {
+     "where": "statement 22 native-right-linear-augmentation",
+     "field": "text",
+     "chunk": "-action.Itshomotopyis"
+    }
+   ],
+   "missing_count": 2547
+  },
+  "Q11-complete-payload": {
+   "pass": true,
+   "unrendered_count": 0,
+   "by_field": {},
+   "sample": []
+  },
+  "Q08": {
+   "pass": false,
+   "math_elements": 11577,
+   "annotations": 11576,
+   "distinct_content_tex": 1789,
+   "tex_errors": 0,
+   "content_tex_not_rendered": [],
+   "content_tex_not_rendered_count": 0,
+   "annotations_not_in_content": [
+    "\\Gamma_Mr_{I,0}^{\\rm Ch}",
+    "\\xi_0^I",
+    "A((u))\\otimes_{R_3,\\mathrm{alg}}A_R",
+    "a_s^*=-c_s",
+    "b_r^*=c_{-r}",
+    "N_{P,M}",
+    "A_yA_x",
+    "U\\otimes U^r",
+    "S_I=A_{0,\\mathrm{alg}}eA_{0,\\mathrm{alg}}\\oplus A_{0,\\mathrm{alg}}rA_{0,\\mathrm{alg}}",
+    "-\\mathrm{id}",
+    "\\operatorname{dist}(D,0)>2\\epsilon",
+    "H=H_{123}",
+    "L_P(D)",
+    "E_P(D)=\\operatorname{coker}(\\bar\\partial:L_P^0\\to L_P^1)",
+    "M=\\mathbb R_t\\times\\mathbb C_z",
+    "X_I=M^I",
+    "dt_i",
+    "d\\bar z_i",
+    "r-2",
+    "r-1"
+   ]
+  },
+  "Q08-raw-tex": {
+   "pass": true,
+   "count": 0,
+   "sample": []
+  },
+  "Q15-tex-in-names": {
+   "pass": true,
+   "count": 0,
+   "sample": []
+  },
+  "Q09": {
+   "pass": true,
+   "ids": 2899,
+   "expected": 383,
+   "duplicates": [],
+   "missing": [],
+   "broken_hrefs": [],
+   "statement_id_collisions": [],
+   "baseline_ids_lost": [],
+   "baseline_ids_lost_count": 0,
+   "statements_without_anchor": 0
+  },
+  "Q04": {
+   "pass": true,
+   "hard_hits": 0,
+   "review_hits": 3,
+   "scans": {
+    "closed_source_paths_whole_doc": [],
+    "private_paths_whole_doc": [],
+    "internal_path_words_whole_doc": [],
+    "hex_hashes_whole_doc": [],
+    "model_tool_names_reader": [],
+    "hard_patterns_in_tex": [],
+    "model_tool_names_script": [],
+    "process_words_reader": [
+     "iscarded higher-charge ideal. This gives genuine low-charge progress while leaving universal all-charge exact interpolat",
+     "iscarded higher-charge ideal. This gives genuine low-charge progress while leaving universal all-charge exact interpolat",
+     "992); Dong–Lepowsky (1993); Costello–Gwilliam (2016, author draft); Gwilliam–Rabinovich–Williams (2020, preprint).Establ"
+    ],
+    "version_tokens_reader": [],
+    "percentages_reader": [],
+    "external_gate_visible": [],
+    "source_fragments_checked": 0,
+    "source_fragment_hits": []
+   }
+  },
+  "Q05": {
+   "pass": true,
+   "hits": []
+  }
+ },
+ "inputs": {
+  "content_sha256": "6d8d82057edbc732e260972470f299f8c9916216311729ac81c69331b44891bd",
+  "essay_sha256": "0f35958c6a64e03627a71c9289a838c5eb26790e619d601b4403c231d15e85f6"
+ },
+ "summary": {
+  "Q03-csp": "PASS",
+  "Q06": "FAIL",
+  "Q07": "PASS",
+  "Q10": "FAIL",
+  "Q11-complete-payload": "PASS",
+  "Q08": "FAIL",
+  "Q08-raw-tex": "PASS",
+  "Q15-tex-in-names": "PASS",
+  "Q09": "PASS",
+  "Q04": "PASS",
+  "Q05": "PASS"
+ }
+}
