@@ -1,0 +1,28 @@
+G1-G3 checks, 2026-11-16T20:53Z. Native note IMAGE-05 90cf8b79…; screenshot gaussian-release-v4-375-light afd779d9…; author manifest 342bef123fe00c77… (copy: manifest-snapshot.json)
+
+unit (tests/test_figures.py, with that manifest snapshot): Ran 28 tests in 1.936s OK 
+jsdom g-fixture.html: 9 pass, all passed
+jsdom g-manifest.html (that snapshot): 9 pass, all passed
+
+Candidate build: a copy of root's integration tree (compiler/ and content/quantum-holography-status/, taken 17 Nov ~03:55 WIB, holding the installed five-model set, monograph v5, reader2a and the C5 atlas) with the three repaired figure files; built --no-fonts:
+math: 17475 formulas (17476 rendering jobs; errors: 0)
+audit failures: 0
+  G1 density readout: one typeset 1; no '=' and no output. The other two integrals: formula = value.
+  G2 density caption: 'This density has mean [math] and variance [math]; its total integral is one.' (the record's conditional_mean and conditional_variance, typeset; every word unchanged)
+  G3 the page's own CSS, read rule by rule: no host p-rule can indent or justify a figure paragraph (the two that reach it, .mg-sec h4 + p and .mg-sec h5 + p, set text-indent: 0 !important); the figure's labels of one rank are one element (Parameters; Integral over the real line x3)
+  book (jsdom, with the reader script): figures: 5 | live: 5
+  book (jsdom, with the reader script): reader on: true
+  book (jsdom, with the reader script): elements with data-chapter and an id: 18 | of them figures: 0
+  book (jsdom, with the reader script): figures with data-section: 0 | titles for the reader: 5
+  book (jsdom, with the reader script): cohomology t=-1 chosen: negative | h shown: true
+  book (jsdom, with the reader script): infinite N=6 on-cells (finite): 6
+  book (jsdom, with the reader script): figure links: #eq-gaussian-integral #eq-gaussian-moments #eq-conditional-product-defect #eq-current-singularity #eq-local-expansions #eq-cohomology-jump #eq-sequence-tensor-map | unresolved: none
+  book (jsdom, with the reader script): script errors: none
+
+Not judged here: the page image. The repaired figure at 375 CSS px is for native QA.
+
+Rechecked on foundation v6 (2026-11-16T20:55Z): a copy of the integration tree with monograph.py 605723ba…, monograph.css fc180108…, reader delta 2a, the installed five-model set and the C5 atlas.
+  check_figures_g.py --before: as expected; git apply figures-g1-g3.patch; --after: as expected
+  math: 17475 formulas (17476 rendering jobs; errors: 0)
+  audit failures: 0
+  G1, G2 and G3 as above, in the v6 page and its CSS; the reader with the five figures as above (5 live, 18 chapters with no figure among them, 7 links resolved, no script errors).

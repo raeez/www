@@ -1,0 +1,1339 @@
+diff --git a/compiler/quantum-holography-status/figures.py b/compiler/quantum-holography-status/figures.py
+new file mode 100644
+index 0000000..1a8e54b
+--- /dev/null
++++ b/compiler/quantum-holography-status/figures.py
+@@ -0,0 +1,568 @@
++"""Figures of the reader: the author's figure records drawn as figures, with their controls.
++
++The reader places a figure with the one-line hook `::: figure <figure-id>` in a chapter and calls
++render(record, ctx) for the record of that id in reader-data/manifest.json (FIGURE-RECORD-CONTRACT.md). The
++figure's DOM id is the record id verbatim; the element carries data-figure and data-qh-figure (the id) and
++data-figure-type (the record's type). Every word and formula a figure shows is the author's record: title,
++caption, control labels and display windows, output and domain labels, the validity message, the profiles
++with their captions and integrals, and the state labels and series. The atlas lane adds only layout, the
++drawing, the controls themselves and the evaluation of the authored formulas. Nothing listed under
++prohibited_inferences is drawn; a plotted window is never presented as a whole integral. A record this
++component cannot honour fails the build with each problem named, and no guessed figure is ever drawn.
++
++Models drawn now (record field `model`): gaussian-elimination and two-expansions.
++"""
++import html
++import json
++import math
++import re
++
++MODELS = ('gaussian-elimination', 'two-expansions')
++CONSTANTS = {'pi': math.pi}
++FUNCTIONS = ('sqrt', 'exp')
++WORDS = {'controls': 'Parameters', 'outputs': 'Values at these parameters', 'equations': 'Equations',
++         'integral': 'Integral over the real line'}
++
++
++# Formulas ---------------------------------------------------------------------------------------------------
++# The authored linear syntax: numbers, names, + - * / ^, juxtaposition, f(...), |...|, comparisons, `and`, and
++# sum_(condition)term. Parsed once into a tree that is typeset (TeX, symbol for symbol) and evaluated.
++
++TOKEN = re.compile(r'\s*(?:(\d+(?:\.\d+)?)|([A-Za-z]+)|(<=|>=|!=|==|[-+*/^()<>=|_,]))')
++
++
++class FormulaError(ValueError):
++    pass
++
++
++def tokens(text):
++    out, i = [], 0
++    while i < len(text):
++        if text[i].isspace():
++            i += 1
++            continue
++        m = TOKEN.match(text, i)
++        if not m or m.end() == i:
++            raise FormulaError(f'cannot read {text[i:]!r}')
++        num, name, op = m.groups()
++        out.append(('num', num) if num else ('name', name) if name else ('op', op))
++        i = m.end()
++    return out
++
++
++class Parser:
++    def __init__(self, text, names):
++        self.toks = tokens(text)
++        self.i = 0
++        self.names = set(names) | set(CONSTANTS) | {'hbar'}
++        self.in_abs = 0
++
++    def peek(self, kind=None, value=None):
++        if self.i >= len(self.toks):
++            return None
++        t = self.toks[self.i]
++        if (kind and t[0] != kind) or (value and t[1] != value):
++            return None
++        return t
++
++    def take(self, kind=None, value=None):
++        t = self.peek(kind, value)
++        if not t:
++            raise FormulaError(f'expected {value or kind} at token {self.i}')
++        self.i += 1
++        return t
++
++    def parse(self):
++        node = self.conj()
++        if self.i != len(self.toks):
++            raise FormulaError(f'unread input from token {self.i}')
++        return node
++
++    def conj(self):
++        node = self.cmp()
++        while self.peek('name', 'and'):
++            self.i += 1
++            node = ['and', node, self.cmp()]
++        return node
++
++    def cmp(self):
++        left = self.add()
++        t = self.peek('op')
++        if t and t[1] in ('<', '>', '<=', '>=', '!=', '=='):
++            self.i += 1
++            return ['cmp', t[1], left, self.add()]
++        return left
++
++    def add(self):
++        if self.peek('op', '-'):  # a leading minus applies to the whole first term: -c*x/b = -(c x / b)
++            self.i += 1
++            node = ['neg', self.mul()]
++        else:
++            node = self.mul()
++        while self.peek('op') and self.peek('op')[1] in '+-':
++            op = self.take('op')[1]
++            node = ['add' if op == '+' else 'sub', node, self.mul()]
++        return node
++
++    def starts_atom(self):
++        t = self.peek()
++        if t is None or (t[0] == 'name' and t[1] == 'and'):
++            return False
++        return t[0] in ('num', 'name') or (t[0] == 'op' and (t[1] == '(' or (t[1] == '|' and not self.in_abs)))
++
++    def mul(self):
++        node = self.unary()
++        while True:
++            t = self.peek('op')
++            if t and t[1] in '*/':
++                self.i += 1
++                node = ['mul' if t[1] == '*' else 'div', node, self.unary()]
++            elif self.starts_atom():
++                node = ['mul', node, self.unary()]  # juxtaposition
++            else:
++                return node
++
++    def unary(self):
++        if self.peek('op', '-'):
++            self.i += 1
++            return ['neg', self.unary()]
++        return self.power()
++
++    def power(self):
++        base = self.atom()
++        if self.peek('op', '^'):
++            self.i += 1
++            return ['pow', base, self.unary()]
++        return base
++
++    def atom(self):
++        t = self.peek()
++        if t is None:
++            raise FormulaError('formula ends early')
++        if t[0] == 'num':
++            self.i += 1
++            return ['num', float(t[1]) if '.' in t[1] else int(t[1])]
++        if t[0] == 'op' and t[1] == '(':
++            self.i += 1
++            node = self.conj()
++            self.take('op', ')')
++            return ['group', node]
++        if t[0] == 'op' and t[1] == '|':
++            self.i += 1
++            self.in_abs += 1
++            node = self.add()
++            self.in_abs -= 1
++            self.take('op', '|')
++            return ['abs', node]
++        if t[0] == 'name':
++            self.i += 1
++            name = t[1]
++            if name == 'sum' and self.peek('op', '_'):
++                self.i += 1
++                self.take('op', '(')
++                cond = self.cmp()
++                self.take('op', ')')
++                return ['sum', cond, self.mul()]
++            if name in FUNCTIONS and self.peek('op', '('):
++                self.i += 1
++                arg = self.conj()
++                self.take('op', ')')
++                return ['call', name, arg]
++            if name in self.names or len(name) == 1:
++                return ['var', name]
++            node = ['var', name[0]]  # juxtaposed single-letter names, e.g. "ab" in "ab>c^2"
++            for ch in name[1:]:
++                node = ['mul', node, ['var', ch]]
++            return node
++        raise FormulaError(f'unexpected {t[1]!r}')
++
++
++def parse(text, names=()):
++    return Parser(str(text), names).parse()
++
++
++def variables(node):
++    if node[0] == 'var':
++        return {node[1]}
++    out = set()
++    for part in node[1:]:
++        if isinstance(part, list):
++            out |= variables(part)
++    return out
++
++
++PREC = {'and': -1, 'cmp': 0, 'add': 1, 'sub': 1, 'neg': 1, 'mul': 2, 'div': 3, 'pow': 4, 'sum': 1}
++
++
++def tex(node):
++    """The authored formula in TeX, symbol for symbol."""
++    k = node[0]
++    if k == 'num':
++        return str(node[1])
++    if k == 'var':
++        return {'hbar': r'\hbar', 'pi': r'\pi'}.get(node[1], node[1])
++    if k == 'group':
++        inner = node[1]
++        return tex(inner) if inner[0] in ('var', 'num', 'call', 'abs', 'pow', 'group') else f'\\left({tex(inner)}\\right)'
++    if k == 'abs':
++        return f'\\lvert {tex(node[1])}\\rvert'
++    if k == 'neg':
++        return '-' + wrap(node[1], 2)
++    if k in ('add', 'sub'):
++        return f'{tex(node[1])}{"+" if k == "add" else "-"}{wrap(node[2], 1 if k == "add" else 2)}'
++    if k == 'mul':
++        return f'{wrap(node[1], 2)} {wrap(node[2], 2)}'
++    if k == 'div':
++        return f'\\frac{{{tex(unbracket(node[1]))}}}{{{tex(unbracket(node[2]))}}}'
++    if k == 'pow':
++        return f'{wrap(node[1], 5)}^{{{tex(unbracket(node[2]))}}}'
++    if k == 'call':
++        if node[1] == 'sqrt':
++            return f'\\sqrt{{{tex(unbracket(node[2]))}}}'
++        return f'\\{node[1]}\\left({tex(unbracket(node[2]))}\\right)'
++    if k == 'cmp':
++        op = {'<': '<', '>': '>', '<=': r'\le', '>=': r'\ge', '!=': r'\ne', '==': '='}[node[1]]
++        return f'{tex(node[2])} {op} {tex(node[3])}'
++    if k == 'and':
++        return f'{tex(node[1])},\\ {tex(node[2])}'
++    if k == 'sum':
++        return f'\\sum_{{{tex(node[1])}}} {tex(node[2])}'
++    raise FormulaError(f'cannot typeset {k}')
++
++
++def unbracket(node):
++    return node[1] if node[0] == 'group' else node
++
++
++def wrap(node, prec):
++    inner = tex(node)
++    if PREC.get(node[0], 9) < prec and node[0] != 'group':
++        return f'\\left({inner}\\right)'
++    return inner
++
++
++def value(node, env):
++    """The authored formula evaluated at the parameters; None where it has no number (a series)."""
++    k = node[0]
++    if k == 'num':
++        return float(node[1])
++    if k == 'var':
++        return env.get(node[1], CONSTANTS.get(node[1]))
++    if k in ('group', 'abs', 'neg'):
++        v = value(node[1], env)
++        if k == 'group':
++            return v
++        if v is None or isinstance(v, bool):
++            return None
++        return abs(v) if k == 'abs' else -v
++    if k in ('add', 'sub', 'mul', 'div', 'pow'):
++        a, b = value(node[1], env), value(node[2], env)
++        if a is None or b is None or isinstance(a, bool) or isinstance(b, bool):
++            return None
++        try:
++            return {'add': lambda: a + b, 'sub': lambda: a - b, 'mul': lambda: a * b,
++                    'div': lambda: a / b, 'pow': lambda: a ** b}[k]()
++        except (ZeroDivisionError, OverflowError, ValueError):
++            return None
++    if k == 'call':
++        v = value(node[2], env)
++        if v is None or isinstance(v, bool):
++            return None
++        if node[1] == 'sqrt':
++            return math.sqrt(v) if v >= 0 else None
++        if node[1] == 'exp':
++            return math.exp(v) if v < 700 else None
++    if k == 'cmp':
++        a, b = value(node[2], env), value(node[3], env)
++        if a is None or b is None:
++            return None
++        return {'<': a < b, '>': a > b, '<=': a <= b, '>=': a >= b, '!=': a != b, '==': a == b}[node[1]]
++    if k == 'and':
++        return value(node[1], env) is True and value(node[2], env) is True
++    return None
++
++
++def math_inline(t):
++    return '\\(' + t + '\\)'
++
++
++def fmt(v):
++    if v is None:
++        return ''
++    if v != 0 and (abs(v) >= 1000 or abs(v) < 0.001):
++        return f'{v:.3g}'
++    return f'{v:.3f}'.rstrip('0').rstrip('.')
++
++
++# Checks ----------------------------------------------------------------------------------------------------
++
++def check(record):
++    """Problems of a record: each names the figure and the field. Any problem fails the build."""
++    problems = []
++    rid = record.get('id', '?')
++
++    def err(text):
++        problems.append(f'figure {rid}: {text}')
++    if not re.match(r'^[a-z0-9]+(-[a-z0-9]+)*$', str(rid)):
++        err('id must be lower-case words joined by hyphens')
++    for key in ('title', 'caption', 'chapter_id', 'type'):
++        if not isinstance(record.get(key), str) or not record[key].strip():
++            err(f'{key} is required')
++    model = record.get('model')
++    if model not in MODELS:
++        err(f'model {model!r} is not one this component draws ({", ".join(MODELS)})')
++        return problems
++    for ref in record.get('equation_refs') or []:
++        if ref not in (record.get('equation_anchors') or {}):
++            err(f'equation {ref} has no anchor in equation_anchors')
++    labels = record.get('labels') or {}
++    if model == 'gaussian-elimination':
++        params = record.get('parameters') or {}
++        controls = record.get('controls') or {}
++        names = list(params)
++        for name in record.get('permitted_controls') or []:
++            c = controls.get(name)
++            if name not in params:
++                err(f'permitted control {name!r} is not a parameter')
++            if not c or not all(k in c for k in ('initial', 'min', 'max', 'step', 'label')):
++                err(f'control {name!r} needs initial, min, max, step and label')
++            elif not (c['min'] <= c['initial'] <= c['max']) or c['step'] <= 0:
++                err(f'control {name!r}: its initial value lies outside its window, or its step is not positive')
++        for name in names:
++            if name not in controls:
++                err(f'parameter {name!r} has no control with an initial value')
++        env = {n: float((controls.get(n) or {}).get('initial', 0)) for n in names}
++        allowed = set(names) | set(CONSTANTS)
++        validity = record.get('validity') or {}
++        if not validity.get('rule') or not validity.get('message'):
++            err('validity needs a rule and a message')
++        else:
++            try:
++                node = parse(validity['rule'], names)
++                if variables(node) - allowed:
++                    err(f'validity uses {sorted(variables(node) - allowed)}, which are not parameters')
++                elif value(node, env) is not True:
++                    err('the initial parameters break the validity rule')
++            except FormulaError as e:
++                err(f'validity: {e}')
++        if 'domain' not in labels:
++            err('labels.domain is required')
++        for key, formula in (record.get('outputs') or {}).items():
++            if key not in labels:
++                err(f'output {key} has no label')
++            try:
++                node = parse(formula, names)
++            except FormulaError as e:
++                err(f'output {key}: {e}')
++                continue
++            if variables(node) - allowed:
++                err(f'output {key} uses {sorted(variables(node) - allowed)}, which are not parameters')
++            elif value(node, env) is None:
++                err(f'output {key} has no value at the initial parameters')
++        for j, p in enumerate(record.get('profiles') or []):
++            for key in ('id', 'label', 'variable', 'formula', 'integral_over_real_line', 'caption'):
++                if not p.get(key):
++                    err(f'profiles[{j}].{key} is required')
++            try:
++                f = parse(p.get('formula', ''), names + [p.get('variable', '')])
++                i = parse(p.get('integral_over_real_line', ''), names)
++                if variables(f) - allowed - {p.get('variable')} or variables(i) - allowed:
++                    err(f'profiles[{j}] uses names that are neither parameters nor its variable')
++            except FormulaError as e:
++                err(f'profiles[{j}]: {e}')
++    else:
++        states = record.get('states') or []
++        ids = [s.get('id') for s in states]
++        if len(states) < 2:
++            err('two-expansions needs its authored states')
++        for j, st in enumerate(states):
++            for key in ('id', 'condition', 'series', 'label'):
++                if not st.get(key):
++                    err(f'states[{j}].{key} is required')
++            for key in ('condition', 'series'):
++                try:
++                    parse(st.get(key, ''))
++                except FormulaError as e:
++                    err(f'states[{j}].{key}: {e}')
++        if record.get('initial_state') not in ids:
++            err('initial_state must name one of the states')
++        for key in ('domain', 'series', 'pole', 'no_value'):
++            if key not in labels:
++                err(f'labels.{key} is required')
++    try:
++        import audit
++        texts = [record.get('title'), record.get('caption')] + [str(v) for v in labels.values()]
++        texts += [c.get('label') for c in (record.get('controls') or {}).values()]
++        texts += [p.get(k) for p in record.get('profiles') or [] for k in ('label', 'caption')]
++        texts += [s.get('label') for s in record.get('states') or []] + [(record.get('validity') or {}).get('message')]
++        for t in texts:
++            for pattern, why, flags in audit.FORBIDDEN:
++                m = re.search(pattern, t or '', flags)
++                if m:
++                    err(f'{why} {m.group(0)!r} in {(t or "")[:60]!r}')
++    except ImportError:
++        pass
++    return problems
++
++
++# Drawing ---------------------------------------------------------------------------------------------------
++# Drawn from the authored formulas only; the script redraws with the same geometry (figures.js). A profile is a
++# curve over a finite window of its variable: no area is filled, so a window never reads as a whole integral;
++# the integral over the real line is the authored formula and its value, written under the curve.
++
++PANEL_W, PANEL_H, PAD, SPAN = 300, 150, 18, 4.0
++
++
++def window_x(t):
++    return PAD + (t + SPAN) / (2 * SPAN) * (PANEL_W - 2 * PAD)
++
++
++def profile_path(node, var, env, scale):
++    pts = []
++    for i in range(161):
++        t = -SPAN + 2 * SPAN * i / 160
++        v = value(node, dict(env, **{var: t}))
++        v = 0.0 if v is None or isinstance(v, bool) else v
++        pts.append((window_x(t), PANEL_H - PAD - min(v / scale, 1.06) * (PANEL_H - 2 * PAD - 8)))
++    return 'M' + ' L'.join(f'{x:.1f} {y:.1f}' for x, y in pts)
++
++
++def is_density(p):
++    return str(p.get('integral_over_real_line')).strip() == '1'
++
++
++def profile_scale(p, node, env):
++    """Unnormalized weights share the vertical scale 0..1, so their peaks compare; a density uses its own peak."""
++    if not is_density(p):
++        return 1.0
++    peak = max((value(node, dict(env, **{p['variable']: t / 40})) or 0) for t in range(-160, 161))
++    return peak or 1.0
++
++
++def profile_svg(record, p, env):
++    names = list(record['parameters'])
++    node = parse(p['formula'], names + [p['variable']])
++    base = PANEL_H - PAD
++    marks = ''
++    outs = record.get('outputs') or {}
++    if p['variable'] == 'y' and 'conditional_mean' in outs:
++        mean = value(parse(outs['conditional_mean'], names), env)
++        x = window_x(max(-SPAN, min(SPAN, mean)))
++        marks += f'<line class="qh-fig-mean" data-part="mean" x1="{x:.1f}" y1="{PAD - 4}" x2="{x:.1f}" y2="{base}"/>'
++        if is_density(p) and 'conditional_variance' in outs:
++            sd = math.sqrt(value(parse(outs['conditional_variance'], names), env))
++            l, r = window_x(max(-SPAN, mean - sd)), window_x(min(SPAN, mean + sd))
++            marks = (f'<rect class="qh-fig-band" data-part="band" x="{l:.1f}" y="{PAD}" width="{max(0, r - l):.1f}" '
++                     f'height="{base - PAD}"/>' + marks)
++    return (f'<svg class="qh-fig-svg" viewBox="0 0 {PANEL_W} {PANEL_H}" aria-hidden="true" focusable="false">{marks}'
++            f'<path class="qh-fig-curve" data-part="curve" d="{profile_path(node, p["variable"], env, profile_scale(p, node, env))}"/>'
++            f'<path class="qh-fig-axis" d="M{PAD - 6} {base}H{PANEL_W - PAD + 6}"/>'
++            f'<path class="qh-fig-axis" d="M{PANEL_W / 2:.1f} {base}v4"/>'
++            f'<path class="qh-fig-axis qh-fig-more" d="M{PAD - 6} {base}l5 -3v6zM{PANEL_W - PAD + 6} {base}l-5 -3v6z"/>'
++            f'<text class="qh-fig-tick" x="{PANEL_W / 2:.1f}" y="{PANEL_H - 2}" text-anchor="middle">0</text>'
++            f'<text class="qh-fig-tick qh-fig-var" x="{PANEL_W - PAD}" y="{PANEL_H - 2}" text-anchor="end">{html.escape(p["variable"])}</text></svg>')
++
++
++def plane_svg(state):
++    """At a fixed z: the circle |w| = |z| between the two conditions, the region of the chosen expansion, and the
++    collision pole w = z on the circle, drawn without a value."""
++    W, H, cx, cy, r = 300, 220, 140, 110, 72
++    inside = state['condition'].replace(' ', '').startswith('|w|<')
++    region = (f'<circle class="qh-fig-region" data-part="region" cx="{cx}" cy="{cy}" r="{r}"/>' if inside else
++              f'<path class="qh-fig-region" data-part="region" fill-rule="evenodd" '
++              f'd="M2 2H{W - 2}V{H - 2}H2Z M{cx + r} {cy}a{r} {r} 0 1 0 -{2 * r} 0a{r} {r} 0 1 0 {2 * r} 0Z"/>')
++    px, py = cx + r * math.cos(-0.62), cy + r * math.sin(-0.62)
++    return (f'<svg class="qh-fig-svg qh-fig-plane" viewBox="0 0 {W} {H}" aria-hidden="true" focusable="false">{region}'
++            f'<circle class="qh-fig-boundary" cx="{cx}" cy="{cy}" r="{r}"/>'
++            f'<path class="qh-fig-axis" d="M{cx - r - 34} {cy}H{cx + r + 34}M{cx} {cy + r + 22}V{cy - r - 22}"/>'
++            f'<circle class="qh-fig-origin" cx="{cx}" cy="{cy}" r="2.4"/>'
++            f'<g class="qh-fig-pole" transform="translate({px:.1f} {py:.1f})"><circle r="6.5"/>'
++            f'<path d="M-3.4 -3.4L3.4 3.4M3.4 -3.4L-3.4 3.4"/></g></svg>')
++
++
++# Rendering -------------------------------------------------------------------------------------------------
++
++def render(record, ctx):
++    """One figure, for the reader to place where the chapter's hook stands. A record with any problem renders
++    nothing and fails the build with each problem named."""
++    problems = check(record)
++    if problems:
++        return {'html': '', 'problems': problems}
++    rid = record['id']
++    rich = (lambda t: ctx.rich(t, terms=False)) if hasattr(ctx, 'rich') else (lambda t: html.escape(t))
++    anchors = record.get('equation_anchors') or {}
++    refs = ''
++    if record.get('equation_refs'):
++        refs = (f'<p class="qh-fig-refs"><span class="qh-fig-label">{WORDS["equations"]}</span> '
++                + ' '.join(f'<a href="#{html.escape(anchors[e])}">({html.escape(e)})</a>' for e in record['equation_refs']) + '</p>')
++    head = f'<div class="qh-fig-head"><p class="qh-fig-title">{rich(record["title"])}</p>{refs}</div>'
++    labels = record.get('labels') or {}
++    if record['model'] == 'gaussian-elimination':
++        names = list(record['parameters'])
++        controls = record['controls']
++        env = {n: float(controls[n]['initial']) for n in names}
++        outputs = {k: parse(f, names) for k, f in record['outputs'].items()}
++        profiles = [{'id': p['id'], 'variable': p['variable'], 'formula': parse(p['formula'], names + [p['variable']]),
++                     'integral': parse(p['integral_over_real_line'], names), 'density': is_density(p)}
++                    for p in record.get('profiles') or []]
++        config = {'model': record['model'], 'names': names, 'controls': controls, 'outputs': outputs,
++                  'rule': parse(record['validity']['rule'], names), 'profiles': profiles,
++                  'mean': outputs.get('conditional_mean'), 'variance': outputs.get('conditional_variance'),
++                  'window': [PANEL_W, PANEL_H, PAD, SPAN]}
++        ctrl = ''.join(
++            f'<li class="qh-fig-control" data-param="{html.escape(n)}">'
++            f'<label class="qh-fig-control-label" for="{rid}--{html.escape(n)}">{rich(controls[n]["label"])}</label>'
++            f'<output class="qh-fig-value" data-value="{html.escape(n)}">{fmt(env[n])}</output></li>'
++            for n in record.get('permitted_controls') or names)
++        rows = ''.join(
++            f'<tr data-output="{html.escape(k)}"><th scope="row">{rich(labels[k])}</th>'
++            f'<td class="qh-fig-formula">{rich(math_inline(tex(node)))}</td>'
++            f'<td class="qh-fig-num"><output class="qh-fig-value" data-value="{html.escape(k)}">{fmt(value(node, env))}</output></td></tr>'
++            for k, node in outputs.items())
++        panels = ''.join(
++            f'<div class="qh-fig-profile" data-profile="{html.escape(p["id"])}">'
++            f'<p class="qh-fig-profile-label">{rich(p["label"])}</p>{profile_svg(record, p, env)}'
++            f'<p class="qh-fig-integral"><span class="qh-fig-label">{WORDS["integral"]}</span> '
++            f'{rich(math_inline(tex(parse(p["integral_over_real_line"], names))))} '
++            f'<span class="qh-fig-eq">=</span> <output class="qh-fig-value" data-value="profile:{html.escape(p["id"])}">'
++            f'{fmt(value(parse(p["integral_over_real_line"], names), env))}</output></p>'
++            f'<p class="qh-fig-profile-caption">{rich(p["caption"])}</p></div>'
++            for p in record.get('profiles') or [])
++        body = (f'<div class="qh-fig-body"><div class="qh-fig-side">'
++                f'<p class="qh-fig-label">{WORDS["controls"]}</p><ul class="qh-fig-controls">{ctrl}</ul>'
++                f'<p class="qh-fig-domain">{rich(labels["domain"])}</p>'
++                f'<p class="qh-fig-invalid" role="status" aria-live="polite" hidden>{rich(record["validity"]["message"])}</p>'
++                f'</div><div class="qh-fig-stage"><div class="qh-fig-profiles">{panels}</div>'
++                f'<table class="qh-fig-outputs"><caption class="qh-fig-label">{WORDS["outputs"]}</caption><tbody>{rows}</tbody></table>'
++                f'</div></div>')
++    else:
++        states = record['states']
++        first = next(s for s in states if s['id'] == record['initial_state'])
++        config = {'model': record['model'], 'initial': record['initial_state'],
++                  'states': [{'id': s['id'], 'condition': s['condition']} for s in states]}
++        items = ''.join(
++            f'<li class="qh-fig-state" data-state="{html.escape(s["id"])}"' + (' aria-current="true"' if s is first else '') + '>'
++            f'<p class="qh-fig-state-label">{rich(s["label"])}</p>'
++            f'<p class="qh-fig-cond">{rich(math_inline(tex(parse(s["condition"]))))}</p>'
++            f'<div class="qh-fig-series"><p class="qh-fig-label">{rich(labels["series"])}</p>'
++            f'{rich(chr(92) + "[" + tex(parse(s["series"])) + chr(92) + "]")}</div></li>'
++            for s in states)
++        body = (f'<div class="qh-fig-body"><div class="qh-fig-side">'
++                f'<p class="qh-fig-label">{rich(labels["domain"])}</p><ol class="qh-fig-states">{items}</ol></div>'
++                f'<div class="qh-fig-stage">{plane_svg(first)}'
++                f'<p class="qh-fig-pole-label"><span class="qh-fig-pole-key" aria-hidden="true"></span>{rich(labels["pole"])}</p>'
++                f'<p class="qh-fig-note">{rich(labels["no_value"])}</p></div></div>')
++    cfg = html.escape(json.dumps(config, separators=(',', ':'), ensure_ascii=False), quote=True)
++    return {'html': (f'<figure class="qh-fig" id="{rid}" data-figure="{rid}" data-qh-figure="{rid}" '
++                     f'data-figure-type="{html.escape(record["type"])}" data-figure-model="{html.escape(record["model"])}" '
++                     f'data-chapter="{html.escape(record.get("chapter_id", ""))}" data-section="{html.escape(record.get("section_id", ""))}" '
++                     f'data-config="{cfg}">{head}{body}'
++                     f'<figcaption class="qh-fig-caption">{rich(record["caption"])}</figcaption></figure>'),
++            'problems': []}
++
++
++def assets():
++    """The stylesheet and script the reader includes once on a page that places a figure."""
++    from pathlib import Path
++    here = Path(__file__).resolve().parent
++    return {'css': (here / 'figures.css').read_text(encoding='utf-8'), 'js': (here / 'figures.js').read_text(encoding='utf-8')}
+diff --git a/compiler/quantum-holography-status/figures.css b/compiler/quantum-holography-status/figures.css
+new file mode 100644
+index 0000000..7f73650
+--- /dev/null
++++ b/compiler/quantum-holography-status/figures.css
+@@ -0,0 +1,91 @@
++/* Figures of the reader. One figure answers the question of its section: a quiet head
++   (title, equation links), the authored controls and values beside the drawing in the golden proportion
++   (1 : 1.618), and the authored caption under it. One accent marks what the controls change (the mean, the
++   chosen region, the pole); every other line is ink. The page's tokens give colour, type and rhythm. */
++.qh-fig { margin: calc(var(--text-base) * 1.55 * 1.5) 0; padding: calc(var(--text-base) * 1.55 * .5) 0 0; border-top: 1px solid var(--rule);
++          --fig-au: calc(var(--text-base) * 1.55); }
++.qh-fig-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: calc(var(--fig-au) * .25) 16px;
++               margin: 0 0 calc(var(--fig-au) * .5); }
++.qh-fig-title { margin: 0; font-size: calc(var(--text-base) * 1.08); font-weight: 600; line-height: 1.28; }
++.qh-fig-refs { margin: 0; font-size: var(--text-xs); color: var(--ink-3); }
++.qh-fig-refs a { color: var(--ink-2); }
++.qh-fig-label { margin: 0 0 calc(var(--fig-au) * .25); font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
++                font-weight: 400; text-align: left; }
++.qh-fig-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .75) 28px; align-items: start; }
++@media (min-width: 46rem) { .qh-fig-body { grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr); } }
++.qh-fig-side, .qh-fig-stage { min-width: 0; }
++
++/* Controls: an authored label, the current value, the range input (added by the script) */
++.qh-fig-controls { list-style: none; margin: 0 0 calc(var(--fig-au) * .5); padding: 0; display: grid; grid-template-columns: minmax(0, 1fr);
++                   gap: calc(var(--fig-au) * .25); }
++.qh-fig-control { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; column-gap: 12px; }
++.qh-fig-control-label { font-size: var(--text-sm); color: var(--ink-2); line-height: 1.35; }
++.qh-fig-control input[type="range"] { grid-column: 1 / -1; width: 100%; margin: 2px 0 0; accent-color: var(--accent); }
++.qh-fig-value { font-variant-numeric: lining-nums tabular-nums; color: var(--ink); }
++.qh-fig-domain { margin: 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); font-style: italic; }
++.qh-fig-invalid { margin: calc(var(--fig-au) * .25) 0 0; padding: calc(var(--fig-au) * .25) 10px; border-left: 2px solid var(--accent);
++                  background: var(--accent-soft); font-size: var(--text-xs); line-height: 1.45; color: var(--ink); }
++.qh-fig-invalid[hidden] { display: none; }
++
++/* Profiles: one curve per authored function, over a finite window of its variable; the real-line integral is the
++   authored formula, written under the curve (no area is filled, so a window never reads as the whole mass). */
++.qh-fig-profiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .5) 20px; }
++@container (min-width: 40rem) { .qh-fig-profiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
++@media (min-width: 72rem) { .qh-fig-profiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
++.qh-fig-profile { min-width: 0; }
++.qh-fig-profile-label { margin: 0 0 2px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
++.qh-fig-integral { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-2); }
++.qh-fig-integral .qh-fig-label { display: block; margin: 0; }
++.qh-fig-profile-caption { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
++.qh-fig-svg { display: block; width: 100%; height: auto; overflow: visible; }
++.qh-fig-curve { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
++.qh-fig-axis { fill: none; stroke: var(--ink-4); stroke-width: 1; }
++.qh-fig-more { fill: var(--ink-4); stroke: none; }
++.qh-fig-mean { stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 3 3; }
++.qh-fig-band { fill: var(--accent-soft); }
++.qh-fig-tick { font-family: var(--font-ui); font-size: 11px; fill: var(--ink-3); }
++.qh-fig-var { font-style: italic; font-family: var(--font-text); font-size: 13px; }
++
++/* Values at the current parameters: label, the authored formula, its value */
++.qh-fig-outputs { width: 100%; margin: calc(var(--fig-au) * .75) 0 0; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.35; }
++.qh-fig-outputs caption { caption-side: top; }
++.qh-fig-outputs th, .qh-fig-outputs td { padding: calc(var(--fig-au) * .25) 8px; border-top: 1px solid var(--rule-soft); vertical-align: middle;
++                                         text-align: left; font-weight: 400; }
++.qh-fig-outputs th { color: var(--ink-2); width: 34%; }
++.qh-fig-num { text-align: right !important; width: 5.5em; }
++.qh-fig-formula { overflow-x: auto; }
++
++/* Two expansion domains: the authored states; the chosen one carries the accent rule */
++.qh-fig-states { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .5); }
++.qh-fig-state { min-width: 0; padding: calc(var(--fig-au) * .25) 0 calc(var(--fig-au) * .25) 12px; border-left: 2px solid var(--rule-soft); }
++.qh-fig-state[aria-current="true"] { border-left-color: var(--accent); }
++.qh-fig-live .qh-fig-state:not([aria-current="true"]) .qh-fig-series { color: var(--ink-3); }
++.qh-fig-state-label { margin: 0; font-size: var(--text-sm); font-weight: 600; }
++.qh-fig-cond { margin: 2px 0 0; font-size: var(--text-sm); color: var(--ink-2); }
++.qh-fig-series { margin: calc(var(--fig-au) * .25) 0 0; overflow-x: auto; }
++.qh-fig-series .qh-fig-label { margin: 0; }
++.qh-fig-choose { font: inherit; color: inherit; background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 12px;
++                 cursor: pointer; text-align: left; }
++.qh-fig-choose:hover { border-color: var(--ink-4); }
++.qh-fig-choose[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
++.qh-fig-region { fill: var(--accent-soft); }
++.qh-fig-boundary { fill: none; stroke: var(--ink-2); stroke-width: 1.2; stroke-dasharray: 5 4; }
++.qh-fig-origin { fill: var(--ink-3); }
++.qh-fig-pole circle { fill: var(--paper-3); stroke: var(--accent); stroke-width: 1.6; }
++.qh-fig-pole path { stroke: var(--accent); stroke-width: 1.6; }
++.qh-fig-pole-label { display: flex; align-items: center; gap: 8px; margin: calc(var(--fig-au) * .25) 0 0; font-size: var(--text-sm); }
++.qh-fig-pole-key { width: 11px; height: 11px; border-radius: 50%; border: 1.6px solid var(--accent); flex: none; }
++.qh-fig-note { margin: 2px 0 0; font-size: var(--text-xs); color: var(--ink-3); font-style: italic; }
++
++.qh-fig-caption { margin: calc(var(--fig-au) * .75) 0 0; max-width: var(--measure); font-size: var(--text-sm); line-height: 1.5; color: var(--ink-2); }
++
++@media print {
++  .qh-fig { break-inside: avoid; page-break-inside: avoid; }
++  .qh-fig input[type="range"], .qh-fig-invalid { display: none !important; }
++  .qh-fig-choose { border: 0; padding: 0; background: none; box-shadow: none; }
++  .qh-fig-region, .qh-fig-band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
++}
++@media (forced-colors: active) {
++  .qh-fig-mean, .qh-fig-pole circle, .qh-fig-pole path { stroke: Highlight; }
++  .qh-fig-region, .qh-fig-band { fill: Canvas; stroke: Highlight; }
++}
+diff --git a/compiler/quantum-holography-status/figures.js b/compiler/quantum-holography-status/figures.js
+new file mode 100644
+index 0000000..9a7b842
+--- /dev/null
++++ b/compiler/quantum-holography-status/figures.js
+@@ -0,0 +1,179 @@
++/* Figures of the reader: controls for the author's figure records (the server draws the initial state, which is
++   complete without this script and in print). A Gaussian figure gets one range input per permitted control,
++   inside the authored display window; a proposed value that breaks the authored validity rule is refused, the
++   authored message is shown, and the previous valid values stay. Every value shown is an authored formula
++   evaluated at the current parameters. An expansion figure switches only between its authored states. */
++(function () {
++  'use strict';
++  var doc = document;
++  function all(sel, root) { return Array.prototype.slice.call((root || doc).querySelectorAll(sel)); }
++  var CONST = { pi: Math.PI };
++
++  /* The authored formula evaluated at the parameters, as on the server: null where it has no number. */
++  function val(n, env) {
++    var k = n[0], a, b;
++    if (k === 'num') return +n[1];
++    if (k === 'var') return Object.prototype.hasOwnProperty.call(env, n[1]) ? env[n[1]] : (n[1] in CONST ? CONST[n[1]] : null);
++    if (k === 'group') return val(n[1], env);
++    if (k === 'abs' || k === 'neg') {
++      a = val(n[1], env);
++      if (a === null || typeof a === 'boolean') return null;
++      return k === 'abs' ? Math.abs(a) : -a;
++    }
++    if (k === 'add' || k === 'sub' || k === 'mul' || k === 'div' || k === 'pow') {
++      a = val(n[1], env); b = val(n[2], env);
++      if (a === null || b === null || typeof a === 'boolean' || typeof b === 'boolean') return null;
++      if (k === 'add') return a + b;
++      if (k === 'sub') return a - b;
++      if (k === 'mul') return a * b;
++      if (k === 'div') return b === 0 ? null : a / b;
++      return Math.pow(a, b);
++    }
++    if (k === 'call') {
++      a = val(n[2], env);
++      if (a === null || typeof a === 'boolean') return null;
++      if (n[1] === 'sqrt') return a >= 0 ? Math.sqrt(a) : null;
++      if (n[1] === 'exp') return a < 700 ? Math.exp(a) : null;
++      return null;
++    }
++    if (k === 'cmp') {
++      a = val(n[2], env); b = val(n[3], env);
++      if (a === null || b === null) return null;
++      return { '<': a < b, '>': a > b, '<=': a <= b, '>=': a >= b, '!=': a !== b, '==': a === b }[n[1]];
++    }
++    if (k === 'and') return val(n[1], env) === true && val(n[2], env) === true;
++    return null;
++  }
++  function fmt(v) {
++    if (v === null || v === undefined || typeof v === 'boolean' || !isFinite(v)) return '';
++    if (v !== 0 && (Math.abs(v) >= 1000 || Math.abs(v) < 0.001)) return v.toPrecision(3);
++    return v.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
++  }
++  function copy(o) { var r = {}; for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) r[k] = o[k]; return r; }
++
++  function gaussian(fig, cfg) {
++    var W = cfg.window[0], H = cfg.window[1], PAD = cfg.window[2], SPAN = cfg.window[3];
++    var env = {};
++    cfg.names.forEach(function (n) { env[n] = +cfg.controls[n].initial; });
++    var note = fig.querySelector('.qh-fig-invalid');
++    function wx(t) { return PAD + (t + SPAN) / (2 * SPAN) * (W - 2 * PAD); }
++    function curve(p) {
++      var scale = 1, i, t, v, pts = [], local = copy(env);
++      if (p.density) {
++        scale = 0;
++        for (i = -160; i <= 160; i++) { local[p.variable] = i / 40; v = val(p.formula, local) || 0; if (v > scale) scale = v; }
++        scale = scale || 1;
++      }
++      for (i = 0; i <= 160; i++) {
++        t = -SPAN + 2 * SPAN * i / 160;
++        local[p.variable] = t;
++        v = val(p.formula, local);
++        if (v === null || typeof v === 'boolean') v = 0;
++        pts.push(wx(t).toFixed(1) + ' ' + (H - PAD - Math.min(v / scale, 1.06) * (H - 2 * PAD - 8)).toFixed(1));
++      }
++      return 'M' + pts.join(' L');
++    }
++    function update() {
++      all('output[data-value]', fig).forEach(function (o) {
++        var key = o.getAttribute('data-value'), v = null;
++        if (key.indexOf('profile:') === 0) {
++          cfg.profiles.forEach(function (p) { if ('profile:' + p.id === key) v = val(p.integral, env); });
++        } else if (Object.prototype.hasOwnProperty.call(cfg.outputs, key)) v = val(cfg.outputs[key], env);
++        else if (Object.prototype.hasOwnProperty.call(env, key)) v = env[key];
++        o.textContent = fmt(v);
++      });
++      var mean = cfg.mean ? val(cfg.mean, env) : null;
++      var sd = cfg.variance ? Math.sqrt(val(cfg.variance, env)) : null;
++      cfg.profiles.forEach(function (p) {
++        var box = fig.querySelector('.qh-fig-profile[data-profile="' + p.id + '"] svg');
++        if (!box) return;
++        var c = box.querySelector('[data-part="curve"]');
++        if (c) c.setAttribute('d', curve(p));
++        var m = box.querySelector('[data-part="mean"]');
++        if (m && mean !== null) { var x = wx(Math.max(-SPAN, Math.min(SPAN, mean))).toFixed(1); m.setAttribute('x1', x); m.setAttribute('x2', x); }
++        var band = box.querySelector('[data-part="band"]');
++        if (band && mean !== null && sd !== null) {
++          var l = wx(Math.max(-SPAN, mean - sd)), r = wx(Math.min(SPAN, mean + sd));
++          band.setAttribute('x', l.toFixed(1)); band.setAttribute('width', Math.max(0, r - l).toFixed(1));
++        }
++      });
++    }
++    all('.qh-fig-control[data-param]', fig).forEach(function (li) {
++      var n = li.getAttribute('data-param'), c = cfg.controls[n];
++      if (!c) return;
++      var input = doc.createElement('input');
++      input.type = 'range';
++      input.id = fig.id + '--' + n;
++      input.min = String(c.min); input.max = String(c.max); input.step = String(c.step); input.value = String(env[n]);
++      input.setAttribute('aria-valuetext', fmt(env[n]));
++      li.appendChild(input);
++      input.addEventListener('input', function () {
++        var trial = copy(env);
++        trial[n] = +input.value;
++        if (val(cfg.rule, trial) === true) {
++          env = trial;
++          if (note) note.hidden = true;
++          input.setAttribute('aria-valuetext', fmt(env[n]));
++          update();
++        } else {
++          input.value = String(env[n]); /* refused: the previous valid values stay, and the authored message says why */
++          if (note) note.hidden = false;
++        }
++      });
++    });
++    fig.classList.add('qh-fig-live');
++    update();
++  }
++
++  function expansions(fig, cfg) {
++    var svg = fig.querySelector('.qh-fig-plane');
++    var W = 300, H = 220, cx = 140, cy = 110, r = 72;
++    function region(state) {
++      var inside = state.condition.replace(/\s+/g, '').indexOf('|w|<') === 0;
++      var NS = 'http://www.w3.org/2000/svg', el;
++      if (inside) {
++        el = doc.createElementNS(NS, 'circle');
++        el.setAttribute('cx', cx); el.setAttribute('cy', cy); el.setAttribute('r', r);
++      } else {
++        el = doc.createElementNS(NS, 'path');
++        el.setAttribute('fill-rule', 'evenodd');
++        el.setAttribute('d', 'M2 2H' + (W - 2) + 'V' + (H - 2) + 'H2Z M' + (cx + r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 -' + (2 * r) +
++                             ' 0a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0Z');
++      }
++      el.setAttribute('class', 'qh-fig-region');
++      el.setAttribute('data-part', 'region');
++      return el;
++    }
++    function choose(id) {
++      cfg.states.forEach(function (s) {
++        var li = fig.querySelector('.qh-fig-state[data-state="' + s.id + '"]');
++        var b = li && li.querySelector('button.qh-fig-choose');
++        if (li) { if (s.id === id) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current'); }
++        if (b) b.setAttribute('aria-pressed', s.id === id ? 'true' : 'false');
++        if (s.id === id && svg) {
++          var old = svg.querySelector('[data-part="region"]');
++          if (old) svg.replaceChild(region(s), old);
++        }
++      });
++    }
++    all('.qh-fig-state[data-state]', fig).forEach(function (li) {
++      var id = li.getAttribute('data-state'), label = li.querySelector('.qh-fig-state-label');
++      if (!label) return;
++      var b = doc.createElement('button');
++      b.type = 'button';
++      b.className = 'qh-fig-choose';
++      while (label.firstChild) b.appendChild(label.firstChild);
++      label.appendChild(b);
++      b.addEventListener('click', function () { choose(id); });
++    });
++    fig.classList.add('qh-fig-live');
++    choose(cfg.initial);
++  }
++
++  all('figure[data-figure][data-config]').forEach(function (fig) {
++    var cfg;
++    try { cfg = JSON.parse(fig.getAttribute('data-config')); } catch (e) { return; }
++    if (cfg.model === 'gaussian-elimination') gaussian(fig, cfg);
++    else if (cfg.model === 'two-expansions') expansions(fig, cfg);
++  });
++})();
+diff --git a/compiler/quantum-holography-status/tests/test_figures.py b/compiler/quantum-holography-status/tests/test_figures.py
+new file mode 100644
+index 0000000..bd4a67c
+--- /dev/null
++++ b/compiler/quantum-holography-status/tests/test_figures.py
+@@ -0,0 +1,157 @@
++"""Tests of figures.py against the figure record contract (FIGURE-RECORD-CONTRACT.md): identity, verbatim
++authored text, the three distinct profile integrals, validity, the two expansion states, and named problems.
++The fixture copies the shapes and formulas of the authored records; its reader-facing words are synthetic. Set
++QH_READER_MANIFEST to an author manifest to render its real figure records as well."""
++import copy
++import html
++import json
++import os
++import re
++import sys
++import unittest
++from pathlib import Path
++
++HERE = Path(__file__).resolve().parent
++sys.path.insert(0, str(HERE.parent))
++sys.dont_write_bytecode = True
++import figures as F  # noqa: E402
++
++RECORDS = {r['id']: r for r in json.loads((HERE / 'fixtures' / 'figures-synthetic.json').read_text(encoding='utf-8'))['figures']}
++GAUSS, EXP = RECORDS['fig-synthetic-gaussian'], RECORDS['fig-synthetic-expansions']
++
++
++class Ctx:
++    def rich(self, text, terms=True):
++        return html.escape(text, quote=False)
++
++
++def render(record):
++    return F.render(record, Ctx())
++
++
++def integrate(node, var, env, lo=-40.0, hi=40.0, n=80000):
++    h = (hi - lo) / n
++    return sum((F.value(node, dict(env, **{var: lo + h * i})) or 0.0) for i in range(n + 1)) * h
++
++
++class Formulas(unittest.TestCase):
++    def test_typesetting_keeps_every_symbol(self):
++        names = ['x', 'a', 'b', 'c', 'hbar']
++        self.assertEqual(F.tex(F.parse('a-c^2/b', names)), r'a-\frac{c^{2}}{b}')
++        self.assertEqual(F.tex(F.parse('sqrt(2*pi*hbar/b)', names)), r'\sqrt{\frac{2 \pi \hbar}{b}}')
++        self.assertEqual(F.tex(F.parse('-c*x/b', names)), r'-\frac{c x}{b}')
++        self.assertEqual(F.tex(F.parse('ab>c^2', names)), 'a b > c^{2}')
++        self.assertEqual(F.tex(F.parse('z!=w')), r'z \ne w', 'a control word is never glued to the next letter')
++        self.assertIn(r'\sum_{n \ge 0}', F.tex(F.parse('sum_(n>=0)(n+1)*w^n/z^(n+2)')))
++
++    def test_evaluation(self):
++        env = {'a': 2.0, 'b': 1.0, 'c': 0.5, 'x': 1.0, 'hbar': 1.0}
++        names = list(env)
++        self.assertAlmostEqual(F.value(F.parse('a-c^2/b', names), env), 1.75)
++        self.assertAlmostEqual(F.value(F.parse('-c*x/b', names), env), -0.5)
++        self.assertIs(F.value(F.parse('b>0 and hbar>0 and a*b>c^2', names), env), True)
++        self.assertIs(F.value(F.parse('b>0 and hbar>0 and a*b>c^2', names), dict(env, c=2.0)), False)
++
++
++class Gaussian(unittest.TestCase):
++    def setUp(self):
++        self.out = render(GAUSS)
++        self.html = self.out['html']
++
++    def test_identity_and_hooks(self):
++        self.assertEqual(self.out['problems'], [])
++        tag = re.match(r'<figure [^>]*>', self.html).group(0)
++        for attr in ('id="fig-synthetic-gaussian"', 'data-figure="fig-synthetic-gaussian"', 'data-qh-figure="fig-synthetic-gaussian"',
++                     'data-figure-type="authored_formula"', 'data-figure-model="gaussian-elimination"'):
++            self.assertIn(attr, tag)
++        self.assertNotIn('id="fig-fig-', self.html, 'no second prefix')
++        self.assertIn('href="#eq-synthetic-one">(1.1)</a>', self.html, 'equation links use the authored anchors')
++
++    def test_every_authored_word_verbatim_and_nothing_invented(self):
++        texts = [GAUSS['title'], GAUSS['caption'], GAUSS['validity']['message']] + list(GAUSS['labels'].values())
++        texts += [c['label'] for c in GAUSS['controls'].values()] + [p[k] for p in GAUSS['profiles'] for k in ('label', 'caption')]
++        for t in texts:
++            self.assertIn(html.escape(t, quote=False), self.html)
++        self.assertNotIn(GAUSS['prohibited_inferences'][0], self.html)
++        self.assertIn('class="qh-fig-invalid" role="status" aria-live="polite" hidden', self.html)
++
++    def test_all_five_controls_with_their_windows(self):
++        cfg = json.loads(html.unescape(re.search(r'data-config="([^"]*)"', self.html).group(1)))
++        self.assertEqual(sorted(cfg['controls']), ['a', 'b', 'c', 'hbar', 'x'])
++        self.assertEqual(len(re.findall(r'<li class="qh-fig-control"', self.html)), 5)
++        self.assertEqual(cfg['controls']['hbar']['max'], 2)
++
++    def test_three_profiles_three_integrals_no_conflation(self):
++        # The density integrates to 1, the centred weight to the Gaussian factor, the original weight to Z_y(x):
++        # each authored integral is checked against its own formula, and no area is filled.
++        env = {n: float(GAUSS['controls'][n]['initial']) for n in GAUSS['parameters']}
++        names = list(GAUSS['parameters'])
++        for p in GAUSS['profiles']:
++            node = F.parse(p['formula'], names + [p['variable']])
++            want = F.value(F.parse(p['integral_over_real_line'], names), env)
++            self.assertAlmostEqual(integrate(node, p['variable'], env), want, places=4, msg=p['id'])
++        self.assertEqual(len(re.findall(r'<div class="qh-fig-profile"', self.html)), 3)
++        self.assertNotIn('qh-fig-area', self.html, 'no filled area: a window is not the whole mass')
++        density = re.search(r'data-profile="synthetic-density".*?</div>', self.html, re.S).group(0)
++        self.assertIn('data-value="profile:synthetic-density">1</output>', density)
++
++    def test_named_problems(self):
++        bad = copy.deepcopy(GAUSS); bad['model'] = 'composition-domains'
++        self.assertTrue(any('is not one this component draws' in p for p in render(bad)['problems']))
++        bad = copy.deepcopy(GAUSS); del bad['labels']['normalization']
++        self.assertTrue(any('output normalization has no label' in p for p in render(bad)['problems']))
++        bad = copy.deepcopy(GAUSS); bad['controls']['c']['initial'] = 1.9
++        self.assertTrue(any('break the validity rule' in p for p in render(bad)['problems']))
++        bad = copy.deepcopy(GAUSS); del bad['equation_anchors']['1.2']
++        self.assertTrue(any('equation 1.2 has no anchor' in p for p in render(bad)['problems']))
++        self.assertEqual(render(bad)['html'], '', 'a record with a problem draws nothing')
++
++
++class Expansions(unittest.TestCase):
++    def setUp(self):
++        self.out = render(EXP)
++        self.html = self.out['html']
++
++    def test_two_authored_states_initial_chosen_no_truncation(self):
++        self.assertEqual(self.out['problems'], [])
++        self.assertEqual(len(re.findall(r'<li class="qh-fig-state"', self.html)), 2)
++        self.assertIn('data-state="w-inside-z" aria-current="true"', self.html)
++        self.assertNotIn('<input', self.html, 'no truncation control')
++        for t in [s['label'] for s in EXP['states']] + list(EXP['labels'].values()):
++            self.assertIn(html.escape(t, quote=False), self.html)
++        self.assertIn('class="qh-fig-pole"', self.html)
++        self.assertIn(r'\sum_{n \ge 0}', self.html)
++
++    def test_states_are_required(self):
++        bad = copy.deepcopy(EXP); bad['initial_state'] = 'nowhere'
++        self.assertTrue(any('initial_state' in p for p in render(bad)['problems']))
++
++
++class Assets(unittest.TestCase):
++    def test_shipped_style_and_script_carry_no_forbidden_word(self):
++        try:
++            import audit
++        except ImportError:
++            self.skipTest('audit.py is not beside figures.py')
++        a = F.assets()
++        for name in ('css', 'js'):
++            hits = [m.group(0) for pattern, why, flags in audit.FORBIDDEN for m in re.finditer(pattern, a[name], flags)
++                    if not (name == 'css' and why == 'percentage')]
++            self.assertEqual(hits, [], name)
++        self.assertNotRegex(a['js'], r'pushState|replaceState|location\.(?:hash|href)\s*=(?!=)', 'figures never write the address')
++
++
++class AuthorManifest(unittest.TestCase):
++    def test_the_authors_records_render_without_a_problem(self):
++        path = os.environ.get('QH_READER_MANIFEST')
++        if not path or not Path(path).exists():
++            self.skipTest('QH_READER_MANIFEST is not set')
++        for r in json.loads(Path(path).read_text(encoding='utf-8')).get('figures') or []:
++            if r.get('model') in F.MODELS:
++                out = render(r)
++                self.assertEqual(out['problems'], [], r['id'])
++                self.assertTrue(out['html'].startswith(f'<figure class="qh-fig" id="{r["id"]}"'))
++
++
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/compiler/quantum-holography-status/tests/figures.test.cjs b/compiler/quantum-holography-status/tests/figures.test.cjs
+new file mode 100644
+index 0000000..bc4662c
+--- /dev/null
++++ b/compiler/quantum-holography-status/tests/figures.test.cjs
+@@ -0,0 +1,80 @@
++/* Reader tests of figures.js in jsdom: node figures.test.cjs <preview.html>. jsdom is read from NODE_PATH. */
++'use strict';
++const fs = require('fs');
++const assert = require('assert');
++const { JSDOM } = require('jsdom');
++const PAGE = fs.readFileSync(process.argv[2], 'utf8');
++function load() { return new JSDOM(PAGE, { runScripts: 'dangerously', pretendToBeVisual: true }).window; }
++function input(w, el, v) { el.value = String(v); el.dispatchEvent(new w.Event('input', { bubbles: true })); }
++const tests = [];
++function test(name, fn) { tests.push({ name, fn }); }
++
++test('Gaussian: every permitted control is a range input inside its authored window', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="gaussian-elimination"]');
++  if (!fig) return 'SKIP';
++  const cfg = JSON.parse(fig.getAttribute('data-config'));
++  const inputs = fig.querySelectorAll('input[type="range"]');
++  assert.equal(inputs.length, Object.keys(cfg.controls).length);
++  for (const i of inputs) {
++    const n = i.id.split('--').pop(), c = cfg.controls[n];
++    assert.equal(+i.min, c.min); assert.equal(+i.max, c.max); assert.equal(+i.step, c.step); assert.equal(+i.value, c.initial);
++    assert.ok(fig.querySelector(`label[for="${i.id}"]`), 'each control keeps its authored label');
++  }
++});
++
++test('Gaussian: a value inside the validity rule updates every authored value', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="gaussian-elimination"]');
++  if (!fig) return 'SKIP';
++  const a = fig.querySelector('input[id$="--a"]');
++  input(w, a, 3);
++  const k = fig.querySelector('output[data-value="effective_stiffness"]');
++  if (k) assert.equal(k.textContent, '2.75', 'a - c^2/b at a=3, b=1, c=0.5');
++  assert.equal(fig.querySelector('output[data-value="a"]').textContent, '3');
++  assert.ok(fig.querySelector('.qh-fig-invalid').hidden);
++});
++
++test('Gaussian: a value outside the rule is refused, the authored message shows, the previous values stay', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="gaussian-elimination"]');
++  if (!fig) return 'SKIP';
++  const c = fig.querySelector('input[id$="--c"]');
++  const before = Array.from(fig.querySelectorAll('output[data-value]')).map(o => o.textContent);
++  input(w, c, 1.9);  /* a=2, b=1: ab = 2 < 3.61 */
++  assert.equal(+c.value, 0.5, 'the control returns to the previous valid value');
++  assert.equal(fig.querySelector('.qh-fig-invalid').hidden, false, 'the authored message is shown');
++  assert.deepEqual(Array.from(fig.querySelectorAll('output[data-value]')).map(o => o.textContent), before, 'no value changed');
++});
++
++test('Gaussian: the three profiles keep their own integrals', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="gaussian-elimination"]');
++  if (!fig) return 'SKIP';
++  const cfg = JSON.parse(fig.getAttribute('data-config'));
++  const dens = cfg.profiles.find(p => p.density);
++  if (dens) assert.equal(fig.querySelector(`output[data-value="profile:${dens.id}"]`).textContent, '1');
++  input(w, fig.querySelector('input[id$="--b"]'), 2);
++  if (dens) assert.equal(fig.querySelector(`output[data-value="profile:${dens.id}"]`).textContent, '1', 'a density integrates to one at every b');
++  assert.equal(fig.querySelectorAll('.qh-fig-area').length, 0, 'no filled area');
++});
++
++test('Expansions: the choice moves between the two authored states only, and redraws the region', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="two-expansions"]');
++  if (!fig) return 'SKIP';
++  const buttons = fig.querySelectorAll('button.qh-fig-choose');
++  assert.equal(buttons.length, 2);
++  assert.equal(fig.querySelectorAll('input').length, 0, 'no truncation control');
++  buttons[1].click();
++  const states = fig.querySelectorAll('.qh-fig-state');
++  assert.equal(states[1].getAttribute('aria-current'), 'true');
++  assert.equal(states[0].hasAttribute('aria-current'), false);
++  const region = fig.querySelector('[data-part="region"]');
++  assert.equal(region.localName, 'path', 'the exterior region');
++  buttons[0].click();
++  assert.equal(fig.querySelector('[data-part="region"]').localName, 'circle', 'the disk again');
++});
++
++let failed = 0, skipped = 0;
++for (const t of tests) {
++  try { const r = t.fn(); if (r === 'SKIP') { skipped++; console.log('SKIP ' + t.name); } else console.log('PASS ' + t.name); }
++  catch (e) { failed++; console.log('FAIL ' + t.name + '\n      ' + String(e && e.message || e).split('\n').slice(0, 4).join('\n      ')); }
++}
++console.log(failed ? failed + ' failed' : 'all passed' + (skipped ? '; ' + skipped + ' skipped' : ''));
++process.exit(failed ? 1 : 0);
+diff --git a/compiler/quantum-holography-status/tests/figures_page.py b/compiler/quantum-holography-status/tests/figures_page.py
+new file mode 100644
+index 0000000..f679553
+--- /dev/null
++++ b/compiler/quantum-holography-status/tests/figures_page.py
+@@ -0,0 +1,59 @@
++"""A preview page of figure records, for the reader tests and for native visual QA (not a product page).
++
++    python3 figures_page.py <records.json or manifest.json> <out.html> [<compiler dir with status.py>]
++
++With a compiler dir, the text and TeX of every record go through that tree's renderer (Build.rich, then the
++MathML substitution) and its stylesheet supplies the page's tokens; without one, TeX is left as written."""
++import html
++import json
++import sys
++from pathlib import Path
++
++HERE = Path(__file__).resolve().parent
++sys.path.insert(0, str(HERE.parent))
++import figures as F  # noqa: E402
++
++
++def main(argv):
++    records = json.loads(Path(argv[1]).read_text(encoding='utf-8')).get('figures') or []
++    out = Path(argv[2])
++    css, ctx, finish = '', None, (lambda s: s)
++    if len(argv) > 3:
++        tree = Path(argv[3]).resolve()
++        sys.path.insert(0, str(tree))
++        import status  # noqa: E402
++        page = json.loads((tree.parent.parent / 'content' / 'quantum-holography-status' / 'page.json').read_text(encoding='utf-8'))
++        build = status.Build(tree.parent.parent / 'content' / 'quantum-holography-status', page, {}, None)
++
++        class Ctx:
++            def rich(self, text, terms=False):
++                return build.rich(text, terms=False)
++        ctx = Ctx()
++        css = (tree / 'status.css').read_text(encoding='utf-8')
++
++        def finish(s):
++            build.math.render()
++            return build.math.substitute(s)
++    else:
++        class Ctx:
++            def rich(self, text, terms=False):
++                return html.escape(text, quote=False)
++        ctx = Ctx()
++    parts, problems = [], []
++    for r in records:
++        if r.get('model') not in F.MODELS:
++            continue
++        o = F.render(r, ctx)
++        problems += o['problems']
++        parts.append(o['html'])
++    a = F.assets()
++    body = finish('\n'.join(parts))
++    out.write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
++                   f'<title>Figure preview</title><style>{css}\n{a["css"]}\nmain{{max-width:72rem;margin:0 auto;padding:16px}}</style></head>'
++                   f'<body><main>{body}</main><script>{a["js"]}</script></body></html>', encoding='utf-8')
++    print(f'{len(parts)} figures; problems: {problems}')
++    return 1 if problems else 0
++
++
++if __name__ == '__main__':
++    sys.exit(main(sys.argv))
+diff --git a/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json b/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json
+new file mode 100644
+index 0000000..8fb490b
+--- /dev/null
++++ b/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json
+@@ -0,0 +1,162 @@
++{
++ "figures": [
++  {
++   "id": "fig-synthetic-gaussian",
++   "chapter_id": "ch01",
++   "section_id": "synthetic-section",
++   "type": "authored_formula",
++   "model": "gaussian-elimination",
++   "title": "Synthetic Gaussian title",
++   "caption": "Synthetic Gaussian caption.",
++   "equation_refs": [
++    "1.1",
++    "1.2"
++   ],
++   "equation_anchors": {
++    "1.1": "eq-synthetic-one",
++    "1.2": "eq-synthetic-two"
++   },
++   "parameters": {
++    "x": "real",
++    "a": "real",
++    "b": "positive real",
++    "c": "real",
++    "hbar": "positive real; default1"
++   },
++   "domain": "ab>c^2",
++   "outputs": {
++    "effective_stiffness": "a-c^2/b",
++    "normalization": "sqrt(2*pi*hbar/b)",
++    "conditional_mean": "-c*x/b",
++    "conditional_variance": "hbar/b",
++    "integrated_weight": "sqrt(2*pi*hbar/b)*exp(-(a-c^2/b)*x^2/(2*hbar))"
++   },
++   "permitted_controls": [
++    "a",
++    "b",
++    "c",
++    "x",
++    "hbar"
++   ],
++   "prohibited_inferences": [
++    "Synthetic prohibited inference"
++   ],
++   "controls": {
++    "a": {
++     "initial": 2,
++     "min": 0.25,
++     "max": 4,
++     "step": 0.05,
++     "label": "Synthetic label a"
++    },
++    "b": {
++     "initial": 1,
++     "min": 0.25,
++     "max": 4,
++     "step": 0.05,
++     "label": "Synthetic label b"
++    },
++    "c": {
++     "initial": 0.5,
++     "min": -2,
++     "max": 2,
++     "step": 0.05,
++     "label": "Synthetic label c"
++    },
++    "x": {
++     "initial": 1,
++     "min": -2,
++     "max": 2,
++     "step": 0.05,
++     "label": "Synthetic label x"
++    },
++    "hbar": {
++     "initial": 1,
++     "min": 0.25,
++     "max": 2,
++     "step": 0.05,
++     "label": "Synthetic label hbar"
++    }
++   },
++   "labels": {
++    "domain": "Synthetic domain label",
++    "effective_stiffness": "Synthetic stiffness label",
++    "normalization": "Synthetic normalization label",
++    "conditional_mean": "Synthetic mean label",
++    "conditional_variance": "Synthetic variance label",
++    "integrated_weight": "Synthetic weight label"
++   },
++   "validity": {
++    "rule": "b>0 and hbar>0 and a*b>c^2",
++    "on_invalid": "retain_previous_valid_state",
++    "message": "Synthetic validity message."
++   },
++   "profiles": [
++    {
++     "id": "synthetic-density",
++     "label": "Synthetic density label",
++     "variable": "y",
++     "formula": "sqrt(b/(2*pi*hbar))*exp(-b*(y+c*x/b)^2/(2*hbar))",
++     "integral_over_real_line": "1",
++     "caption": "Synthetic density caption."
++    },
++    {
++     "id": "synthetic-centred",
++     "label": "Synthetic centred label",
++     "variable": "u",
++     "formula": "exp(-b*u^2/(2*hbar))",
++     "integral_over_real_line": "sqrt(2*pi*hbar/b)",
++     "caption": "Synthetic centred caption."
++    },
++    {
++     "id": "synthetic-original",
++     "label": "Synthetic original label",
++     "variable": "y",
++     "formula": "exp(-(a*x^2/2+c*x*y+b*y^2/2)/hbar)",
++     "integral_over_real_line": "sqrt(2*pi*hbar/b)*exp(-(a-c^2/b)*x^2/(2*hbar))",
++     "caption": "Synthetic original caption."
++    }
++   ]
++  },
++  {
++   "id": "fig-synthetic-expansions",
++   "chapter_id": "ch01",
++   "section_id": "synthetic-section-two",
++   "type": "authored_formula",
++   "model": "two-expansions",
++   "title": "Synthetic expansions title",
++   "caption": "Synthetic expansions caption.",
++   "equation_refs": [
++    "1.5"
++   ],
++   "equation_anchors": {
++    "1.5": "eq-synthetic-five"
++   },
++   "domain": "z!=w",
++   "states": [
++    {
++     "id": "w-inside-z",
++     "condition": "|w|<|z|",
++     "series": "sum_(n>=0)(n+1)*w^n/z^(n+2)",
++     "label": "Synthetic inside label"
++    },
++    {
++     "id": "z-inside-w",
++     "condition": "|z|<|w|",
++     "series": "sum_(n>=0)(n+1)*z^n/w^(n+2)",
++     "label": "Synthetic outside label"
++    }
++   ],
++   "initial_state": "w-inside-z",
++   "prohibited_inferences": [
++    "Synthetic prohibited inference"
++   ],
++   "labels": {
++    "domain": "Synthetic region label",
++    "series": "Synthetic series label",
++    "pole": "Synthetic pole label",
++    "no_value": "Synthetic no-value label"
++   }
++  }
++ ]
++}
+\ No newline at end of file

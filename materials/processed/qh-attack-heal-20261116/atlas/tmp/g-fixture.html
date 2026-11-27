@@ -1,0 +1,493 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Figure preview</title><style>
+/* Figures of the reader. One figure answers the question of its section: a quiet head (the title and the links to
+   the chapter's equations), the record's domain and controls beside the drawing in the golden proportion
+   (1 : 1.618) when the figure is wide enough, and the authored caption under it. Layout follows the figure's own
+   width (a container), so a figure set in the reading column stacks rather than shrinking its labels.
+
+   Every mark keeps one meaning. Ink is a defined map, a curve or a label. The accent marks what the reader's
+   choice changes or singles out: the mean, the chosen region, the pole, the surviving basis vectors, the nonzero
+   entries, the unit. No dashed line is used: dashes are reserved for open comparisons. The page's tokens give
+   colour, type and rhythm. */
+.qh-fig { container-type: inline-size; margin: calc(var(--text-base) * 1.55 * 1.5) 0; padding: calc(var(--text-base) * 1.55 * .5) 0 0;
+          border-top: 1px solid var(--rule); --fig-au: calc(var(--text-base) * 1.55); }
+/* Inside a figure the host page's paragraph rules do not apply: no first-line indent and no justification. These
+   selectors outrank a host's `p` and `p + p` rules whatever the order of the stylesheets, and the figure's own
+   spacing rules below are scoped to .qh-fig for the same reason. */
+figure.qh-fig p, figure.qh-fig p + p { text-indent: 0; text-align: left; }
+.qh-fig-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: calc(var(--fig-au) * .25) 16px;
+               margin: 0 0 calc(var(--fig-au) * .5); }
+.qh-fig-title { margin: 0; font-size: calc(var(--text-base) * 1.08); font-weight: 600; line-height: 1.28; }
+.qh-fig-refs { margin: 0; font-size: var(--text-xs); color: var(--ink-3); }
+.qh-fig-refs a { color: var(--ink-2); }
+.qh-fig .qh-fig-label { margin: 0 0 calc(var(--fig-au) * .25); font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+                font-weight: 400; text-align: left; }
+.qh-fig-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .75) 28px; align-items: start; }
+@container (min-width: 40rem) { .qh-fig-body:not(.qh-fig-body-single) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr); } }
+.qh-fig-body-single { gap: calc(var(--fig-au) * .6); }
+.qh-fig-side, .qh-fig-stage { min-width: 0; }
+.qh-fig-stage { container-type: inline-size; }
+.qh-fig-domain { margin: 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); max-width: var(--measure); }
+.qh-fig-side .qh-fig-domain { margin-bottom: calc(var(--fig-au) * .5); }
+.qh-fig .qh-fig-note { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); font-style: italic; }
+.qh-fig .qh-fig-explanation { display: block; margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); }
+.qh-fig-strong { font-weight: 600; color: var(--ink); }
+
+/* Controls: an authored label, the current value, the range input (added by the script) */
+.qh-fig-controls { list-style: none; margin: 0 0 calc(var(--fig-au) * .5); padding: 0; display: grid; grid-template-columns: minmax(0, 1fr);
+                   gap: calc(var(--fig-au) * .25); }
+.qh-fig-control { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; column-gap: 12px; }
+.qh-fig-control-label { font-size: var(--text-sm); color: var(--ink-2); line-height: 1.35; }
+.qh-fig-control input[type="range"] { grid-column: 1 / -1; width: 100%; margin: 2px 0 0; accent-color: var(--accent); }
+.qh-fig-value { font-variant-numeric: lining-nums tabular-nums; color: var(--ink); }
+.qh-fig .qh-fig-invalid { margin: calc(var(--fig-au) * .25) 0 0; padding: calc(var(--fig-au) * .25) 10px; border-left: 2px solid var(--accent);
+                  background: var(--accent-soft); font-size: var(--text-xs); line-height: 1.45; color: var(--ink); }
+.qh-fig-invalid[hidden] { display: none; }
+.qh-fig button:focus-visible, .qh-fig input:focus-visible { outline: 2px solid var(--focus, var(--accent)); outline-offset: 2px; }
+
+/* Drawings: SVG at its natural size or smaller, never enlarged, so labels keep the size they were set at */
+.qh-fig-svg { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--font-text); }
+.qh-fig-svg text { fill: var(--ink); }
+.qh-fig-tick { font-family: var(--font-ui); font-size: 12px; fill: var(--ink-3) !important; font-variant-numeric: lining-nums tabular-nums; }
+.qh-fig-var { font-style: italic; font-family: var(--font-text); font-size: 14px; }
+.qh-fig-axis { fill: none; stroke: var(--ink-4); stroke-width: 1; }
+.qh-fig-more { fill: var(--ink-4); stroke: none; }
+.qh-fig-map { fill: none; stroke: var(--ink-2); stroke-width: 1.35; }
+.qh-fig-head-mark { fill: var(--ink-2); }
+.qh-fig-map-label { font-size: 14px; font-style: italic; fill: var(--ink-2) !important; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.qh-fig-mark-label { font-size: 13px; fill: var(--ink-2) !important; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.qh-fig-node-text { font-size: 17px; font-style: italic; }
+.qh-fig-sub { font-size: .74em; }
+
+/* Profiles: one curve per authored function over a finite window of its variable; the real-line integral is the
+   authored formula, written under the curve (no area is filled, so a window never reads as the whole mass). */
+.qh-fig-profiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .6) 20px; }
+@container (min-width: 50rem) { .qh-fig-profiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.qh-fig-profile { min-width: 0; max-width: 26rem; }
+.qh-fig-profile .qh-fig-svg { max-width: 360px; }
+.qh-fig .qh-fig-profile-label { margin: 0 0 2px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
+.qh-fig .qh-fig-integral { margin: 4px 0 0; }
+.qh-fig .qh-fig-integral .qh-fig-label { margin: 0; }
+.qh-fig .qh-fig-integral-value { margin: 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink); }
+.qh-fig .qh-fig-profile-caption { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
+.qh-fig-curve { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+.qh-fig-mean { stroke: var(--accent); stroke-width: 1.4; }
+
+/* Values at the current parameters, and tables of parallel facts */
+.qh-fig-outputs { width: 100%; margin: calc(var(--fig-au) * .75) 0 0; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.35; }
+.qh-fig-outputs caption { caption-side: top; }
+.qh-fig-outputs th, .qh-fig-outputs td { padding: calc(var(--fig-au) * .25) 8px; border-top: 1px solid var(--rule-soft); vertical-align: top;
+                                         text-align: left; font-weight: 400; }
+.qh-fig-outputs thead th { font-size: var(--text-xs); color: var(--ink-3); border-top: 0; vertical-align: bottom; }
+.qh-fig-outputs tbody th { color: var(--ink-2); width: 34%; }
+.qh-fig-num { text-align: right !important; width: 5.5em; }
+.qh-fig-formula { overflow-x: auto; }
+
+/* States: the authored cases; the chosen one carries the accent rule */
+.qh-fig-states { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .5); }
+.qh-fig-state { min-width: 0; padding: calc(var(--fig-au) * .25) 0 calc(var(--fig-au) * .25) 12px; border-left: 2px solid var(--rule-soft); }
+.qh-fig-state[aria-current="true"] { border-left-color: var(--accent); }
+.qh-fig-live .qh-fig-state:not([aria-current="true"]) .qh-fig-series { color: var(--ink-3); }
+.qh-fig-live .qh-fig-states-compact { gap: calc(var(--fig-au) * .25); }
+.qh-fig-live .qh-fig-state:not([aria-current="true"]) .qh-fig-per-state { display: none; }
+.qh-fig-state-label { margin: 0; font-size: var(--text-sm); font-weight: 600; }
+.qh-fig .qh-fig-cond { margin: 2px 0 0; font-size: var(--text-sm); color: var(--ink-2); }
+.qh-fig-series { margin: calc(var(--fig-au) * .25) 0 0; overflow-x: auto; }
+.qh-fig-series .qh-fig-label { margin: 0; }
+.qh-fig-per-state { margin-top: 4px; }
+.qh-fig .qh-fig-matrix { margin: 4px 0; overflow-x: auto; }
+.qh-fig .qh-fig-homotopy { margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); }
+.qh-fig-homotopy .qh-fig-label { display: block; margin: 0; }
+.qh-fig-choose, .qh-fig-key-button { font: inherit; color: inherit; background: none; border: 1px solid var(--rule); border-radius: 999px;
+                                     padding: 3px 12px; cursor: pointer; text-align: left; }
+.qh-fig-choose:hover, .qh-fig-key-button:hover { border-color: var(--ink-4); }
+.qh-fig-choose[aria-pressed="true"], .qh-fig-key-button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft);
+                                                                               box-shadow: inset 0 0 0 1px var(--accent); }
+
+/* Two expansion domains in the w-plane at a fixed z */
+.qh-fig-plane { max-width: 360px; }
+.qh-fig-region { fill: var(--accent-soft); }
+.qh-fig-boundary { fill: none; stroke: var(--ink-3); stroke-width: 1.1; }
+.qh-fig-origin { fill: var(--ink-3); }
+.qh-fig-region-label { font-size: 15px; font-style: italic; fill: var(--ink) !important; }
+.qh-fig-pole circle { fill: var(--paper-3); stroke: var(--accent); stroke-width: 1.6; }
+.qh-fig-pole path { stroke: var(--accent); stroke-width: 1.6; }
+
+/* The cohomology jump: the complex on its basis; rings mark the vectors that survive in cohomology, here and in
+   the table */
+.qh-fig-complex { max-width: 460px; }
+.qh-fig-col-label { font-size: 14px; fill: var(--ink-2) !important; }
+.qh-fig-zero { font-size: 17px; fill: var(--ink-2) !important; }
+.qh-fig-ring { fill: var(--paper-3); stroke: var(--ink-4); stroke-width: 1; transition: fill .2s, stroke .2s; }
+.qh-fig-basis.is-alive .qh-fig-ring { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.qh-fig-homotopy-arc { fill: none; stroke: var(--ink-3); stroke-width: 1.1; }
+.qh-fig-head-h { fill: var(--ink-3); }
+.qh-fig-h-label { font-size: 13.5px; font-style: italic; fill: var(--ink-2) !important; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; }
+.qh-fig-dims td { white-space: nowrap; }
+.qh-fig-dims tbody tr[aria-current="true"] > * { background: var(--accent-soft); }
+.qh-fig-dims tbody tr[aria-current="true"] th { color: var(--ink); font-weight: 600; }
+.qh-fig-dim { display: inline-block; min-width: 1.2em; font-variant-numeric: lining-nums tabular-nums; }
+.qh-fig-chip { display: inline-block; margin: 0 0 0 4px; padding: 0 6px; border: 1.5px solid var(--accent); border-radius: 999px;
+               background: var(--accent-soft); font-style: italic; font-size: .92em; line-height: 1.4; }
+
+/* The infinite rank: the finite diagonal beside its coordinatewise limit, in one viewport */
+.qh-fig-pair { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .75) 32px; }
+@container (min-width: 34rem) { .qh-fig-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.qh-fig-col { min-width: 0; }
+.qh-fig .qh-fig-col-head { margin: 0 0 4px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
+.qh-fig-col .qh-fig-control { margin: 0 0 6px; max-width: 280px; }
+.qh-fig-grid { max-width: 260px; }
+.qh-fig-cell rect { fill: var(--paper-3); stroke: var(--rule-soft); stroke-width: 1; transition: fill .15s, stroke .15s; }
+.qh-fig-cell text { font-family: var(--font-ui); font-size: 12px; fill: var(--ink-4) !important; font-variant-numeric: lining-nums tabular-nums; }
+.qh-fig-cell.is-on rect { fill: var(--accent-soft); stroke: var(--accent); }
+.qh-fig-cell.is-on text { fill: var(--ink) !important; font-weight: 600; font-size: 13px; }
+.qh-fig-bracket { fill: none; stroke: var(--ink-3); stroke-width: 1.2; }
+.qh-fig-continues { font-size: 17px; fill: var(--ink-4) !important; }
+.qh-fig-continues.is-on { fill: var(--accent) !important; }
+.qh-fig-convergence { margin: 0; font-size: var(--text-base); line-height: 1.5; color: var(--ink); max-width: var(--measure); }
+.qh-fig-compare td, .qh-fig-compare th[scope="col"] { width: 33%; }
+
+/* The adjunction triangles: the key, the two triangles side by side, the criteria */
+.qh-fig-legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--text-sm); color: var(--ink-2); }
+.qh-fig-key { display: inline-flex; align-items: center; gap: 8px; }
+.qh-fig-key-button { display: inline-flex; align-items: center; gap: 8px; }
+.qh-fig-swatch { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--ink-2); }
+.qh-fig-key.is-unit .qh-fig-swatch { border-top-color: var(--accent); }
+.qh-fig-key.is-counit .qh-fig-swatch { border-top-color: var(--ink); border-top-width: 2.5px; }
+.qh-fig-sym.is-unit { color: var(--accent); }
+.qh-fig-triangle { max-width: 320px; }
+.qh-fig-arrow .qh-fig-map { stroke: var(--ink-3); stroke-width: 1.2; }
+.qh-fig-arrow.is-unit .qh-fig-map { stroke: var(--accent); stroke-width: 1.7; }
+.qh-fig-arrow.is-counit .qh-fig-map { stroke: var(--ink); stroke-width: 1.7; }
+.qh-fig-head-mark.is-unit { fill: var(--accent); }
+.qh-fig-head-mark.is-counit { fill: var(--ink); }
+.qh-fig-arrow.is-unit .qh-fig-map-label { fill: var(--accent) !important; }
+.qh-fig-arrow.is-counit .qh-fig-map-label { fill: var(--ink) !important; }
+.qh-fig-arrow { transition: opacity .2s; }
+.qh-fig[data-emphasis="unit"] .qh-fig-arrow:not(.is-unit), .qh-fig[data-emphasis="counit"] .qh-fig-arrow:not(.is-counit) { opacity: .25; }
+.qh-fig .qh-fig-equation { margin: 6px 0 0; font-size: var(--text-base); font-style: italic; color: var(--ink); }
+.qh-fig-properties td { width: 50%; }
+
+.qh-fig-caption { margin: calc(var(--fig-au) * .75) 0 0; max-width: var(--measure); font-size: var(--text-sm); line-height: 1.5; color: var(--ink-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .qh-fig-ring, .qh-fig-cell rect, .qh-fig-arrow { transition: none; }
+}
+@media print {
+  .qh-fig { break-inside: avoid; page-break-inside: avoid; }
+  .qh-fig input[type="range"], .qh-fig-invalid { display: none !important; }
+  .qh-fig-live .qh-fig-state .qh-fig-per-state { display: block !important; }
+  .qh-fig-choose, .qh-fig-key-button { border: 0; padding: 0; background: none; box-shadow: none; }
+  .qh-fig-region, .qh-fig-basis.is-alive .qh-fig-ring, .qh-fig-cell.is-on rect, .qh-fig-chip, .qh-fig-dims tbody tr[aria-current="true"] > * {
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .qh-fig .qh-fig-arrow { opacity: 1 !important; }
+}
+@media (forced-colors: active) {
+  .qh-fig-mean, .qh-fig-pole circle, .qh-fig-pole path, .qh-fig-arrow.is-unit .qh-fig-map { stroke: Highlight; }
+  .qh-fig-region { fill: Canvas; stroke: Highlight; }
+  .qh-fig-basis.is-alive .qh-fig-ring, .qh-fig-cell.is-on rect { fill: Canvas; stroke: Highlight; stroke-width: 2.5; }
+  .qh-fig-head-mark, .qh-fig-head-mark.is-unit, .qh-fig-head-mark.is-counit { fill: CanvasText; }
+  .qh-fig-chip { border-color: Highlight; }
+}
+
+main{max-width:72rem;margin:0 auto;padding:16px}</style></head><body><main><figure class="qh-fig" id="fig-synthetic-gaussian" data-figure="fig-synthetic-gaussian" data-qh-figure="fig-synthetic-gaussian" data-figure-type="authored_formula" data-figure-model="gaussian-elimination" data-figure-chapter="ch01" data-figure-section="synthetic-section" data-config="{&quot;model&quot;:&quot;gaussian-elimination&quot;,&quot;names&quot;:[&quot;x&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;hbar&quot;],&quot;controls&quot;:{&quot;a&quot;:{&quot;initial&quot;:2,&quot;min&quot;:0.25,&quot;max&quot;:4,&quot;step&quot;:0.05,&quot;label&quot;:&quot;Synthetic label a&quot;},&quot;b&quot;:{&quot;initial&quot;:1,&quot;min&quot;:0.25,&quot;max&quot;:4,&quot;step&quot;:0.05,&quot;label&quot;:&quot;Synthetic label b&quot;},&quot;c&quot;:{&quot;initial&quot;:0.5,&quot;min&quot;:-2,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;label&quot;:&quot;Synthetic label c&quot;},&quot;x&quot;:{&quot;initial&quot;:1,&quot;min&quot;:-2,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;label&quot;:&quot;Synthetic label x&quot;},&quot;hbar&quot;:{&quot;initial&quot;:1,&quot;min&quot;:0.25,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;label&quot;:&quot;Synthetic label hbar&quot;}},&quot;outputs&quot;:{&quot;effective_stiffness&quot;:[&quot;sub&quot;,[&quot;var&quot;,&quot;a&quot;],[&quot;div&quot;,[&quot;pow&quot;,[&quot;var&quot;,&quot;c&quot;],[&quot;num&quot;,2]],[&quot;var&quot;,&quot;b&quot;]]],&quot;normalization&quot;:[&quot;call&quot;,&quot;sqrt&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;mul&quot;,[&quot;num&quot;,2],[&quot;var&quot;,&quot;pi&quot;]],[&quot;var&quot;,&quot;hbar&quot;]],[&quot;var&quot;,&quot;b&quot;]]],&quot;conditional_mean&quot;:[&quot;neg&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;var&quot;,&quot;c&quot;],[&quot;var&quot;,&quot;x&quot;]],[&quot;var&quot;,&quot;b&quot;]]],&quot;conditional_variance&quot;:[&quot;div&quot;,[&quot;var&quot;,&quot;hbar&quot;],[&quot;var&quot;,&quot;b&quot;]],&quot;integrated_weight&quot;:[&quot;mul&quot;,[&quot;call&quot;,&quot;sqrt&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;mul&quot;,[&quot;num&quot;,2],[&quot;var&quot;,&quot;pi&quot;]],[&quot;var&quot;,&quot;hbar&quot;]],[&quot;var&quot;,&quot;b&quot;]]],[&quot;call&quot;,&quot;exp&quot;,[&quot;neg&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;group&quot;,[&quot;sub&quot;,[&quot;var&quot;,&quot;a&quot;],[&quot;div&quot;,[&quot;pow&quot;,[&quot;var&quot;,&quot;c&quot;],[&quot;num&quot;,2]],[&quot;var&quot;,&quot;b&quot;]]]],[&quot;pow&quot;,[&quot;var&quot;,&quot;x&quot;],[&quot;num&quot;,2]]],[&quot;group&quot;,[&quot;mul&quot;,[&quot;num&quot;,2],[&quot;var&quot;,&quot;hbar&quot;]]]]]]]},&quot;rule&quot;:[&quot;and&quot;,[&quot;and&quot;,[&quot;cmp&quot;,&quot;&gt;&quot;,[&quot;var&quot;,&quot;b&quot;],[&quot;num&quot;,0]],[&quot;cmp&quot;,&quot;&gt;&quot;,[&quot;var&quot;,&quot;hbar&quot;],[&quot;num&quot;,0]]],[&quot;cmp&quot;,&quot;&gt;&quot;,[&quot;mul&quot;,[&quot;var&quot;,&quot;a&quot;],[&quot;var&quot;,&quot;b&quot;]],[&quot;pow&quot;,[&quot;var&quot;,&quot;c&quot;],[&quot;num&quot;,2]]]],&quot;profiles&quot;:[{&quot;id&quot;:&quot;synthetic-density&quot;,&quot;variable&quot;:&quot;y&quot;,&quot;formula&quot;:[&quot;mul&quot;,[&quot;call&quot;,&quot;sqrt&quot;,[&quot;div&quot;,[&quot;var&quot;,&quot;b&quot;],[&quot;group&quot;,[&quot;mul&quot;,[&quot;mul&quot;,[&quot;num&quot;,2],[&quot;var&quot;,&quot;pi&quot;]],[&quot;var&quot;,&quot;hbar&quot;]]]]],[&quot;call&quot;,&quot;exp&quot;,[&quot;neg&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;var&quot;,&quot;b&quot;],[&quot;pow&quot;,[&quot;group&quot;,[&quot;add&quot;,[&quot;var&quot;,&quot;y&quot;],[&quot;div&quot;,[&quot;mul&quot;,[&quot;var&quot;,&quot;c&quot;],[&quot;var&quot;,&quot;x&quot;]],[&quot;var&quot;,&quot;b&quot;]]]],[&quot;num&quot;,2]]],[&quot;group&quot;,[&quot;mul&quot;,[&quot;num&quot;,2],[&quot;var&quot;,&quot;hbar&quot;]]]]]]],&quot;integral&quot;:[&quot;num&quot;,1],&quot;density&quot;:true,&quot;mean&quot;:true},{&quot;id&quot;:&quot;synthetic-centred&quot;,&quot;variable&quot;:&quot;u&quot;,&quot;formula&quot;:[&quot;call&quot;,&quot;exp&quot;,[&quot;neg&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;var&quot;,&quot;b&quot;],[&quot;pow&quot;,[&quot;var&quot;,&quot;u&quot;],[&quot;num&quot;,2]]],[&quot;group&quot;,[&quot;mul&quot;,[&quot;num&quot;,2],[&quot;var&quot;,&quot;hbar&quot;]]]]]],&quot;integral&quot;:[&quot;call&quot;,&quot;sqrt&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;mul&quot;,[&quot;num&quot;,2],[&quot;var&quot;,&quot;pi&quot;]],[&quot;var&quot;,&quot;hbar&quot;]],[&quot;var&quot;,&quot;b&quot;]]],&quot;density&quot;:false,&quot;mean&quot;:false},{&quot;id&quot;:&quot;synthetic-original&quot;,&quot;variable&quot;:&quot;y&quot;,&quot;formula&quot;:[&quot;call&quot;,&quot;exp&quot;,[&quot;neg&quot;,[&quot;div&quot;,[&quot;group&quot;,[&quot;add&quot;,[&quot;add&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;var&quot;,&quot;a&quot;],[&quot;pow&quot;,[&quot;var&quot;,&quot;x&quot;],[&quot;num&quot;,2]]],[&quot;num&quot;,2]],[&quot;mul&quot;,[&quot;mul&quot;,[&quot;var&quot;,&quot;c&quot;],[&quot;var&quot;,&quot;x&quot;]],[&quot;var&quot;,&quot;y&quot;]]],[&quot;div&quot;,[&quot;mul&quot;,[&quot;var&quot;,&quot;b&quot;],[&quot;pow&quot;,[&quot;var&quot;,&quot;y&quot;],[&quot;num&quot;,2]]],[&quot;num&quot;,2]]]],[&quot;var&quot;,&quot;hbar&quot;]]]],&quot;integral&quot;:[&quot;mul&quot;,[&quot;call&quot;,&quot;sqrt&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;mul&quot;,[&quot;num&quot;,2],[&quot;var&quot;,&quot;pi&quot;]],[&quot;var&quot;,&quot;hbar&quot;]],[&quot;var&quot;,&quot;b&quot;]]],[&quot;call&quot;,&quot;exp&quot;,[&quot;neg&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;group&quot;,[&quot;sub&quot;,[&quot;var&quot;,&quot;a&quot;],[&quot;div&quot;,[&quot;pow&quot;,[&quot;var&quot;,&quot;c&quot;],[&quot;num&quot;,2]],[&quot;var&quot;,&quot;b&quot;]]]],[&quot;pow&quot;,[&quot;var&quot;,&quot;x&quot;],[&quot;num&quot;,2]]],[&quot;group&quot;,[&quot;mul&quot;,[&quot;num&quot;,2],[&quot;var&quot;,&quot;hbar&quot;]]]]]]],&quot;density&quot;:false,&quot;mean&quot;:false}],&quot;mean&quot;:[&quot;neg&quot;,[&quot;div&quot;,[&quot;mul&quot;,[&quot;var&quot;,&quot;c&quot;],[&quot;var&quot;,&quot;x&quot;]],[&quot;var&quot;,&quot;b&quot;]]],&quot;window&quot;:[300,150,18,4.0]}"><div class="qh-fig-head"><p class="qh-fig-title" data-block-title>Synthetic Gaussian title</p><p class="qh-fig-refs"><span class="qh-fig-label">Equations</span> <a href="#eq-synthetic-one">(1.1)</a> <a href="#eq-synthetic-two">(1.2)</a></p></div><div class="qh-fig-body"><div class="qh-fig-side"><p class="qh-fig-label">Parameters</p><ul class="qh-fig-controls"><li class="qh-fig-control" data-param="a"><label class="qh-fig-control-label" for="fig-synthetic-gaussian--a">Synthetic label a</label><output class="qh-fig-value" data-value="a">2</output></li><li class="qh-fig-control" data-param="b"><label class="qh-fig-control-label" for="fig-synthetic-gaussian--b">Synthetic label b</label><output class="qh-fig-value" data-value="b">1</output></li><li class="qh-fig-control" data-param="c"><label class="qh-fig-control-label" for="fig-synthetic-gaussian--c">Synthetic label c</label><output class="qh-fig-value" data-value="c">0.5</output></li><li class="qh-fig-control" data-param="x"><label class="qh-fig-control-label" for="fig-synthetic-gaussian--x">Synthetic label x</label><output class="qh-fig-value" data-value="x">1</output></li><li class="qh-fig-control" data-param="hbar"><label class="qh-fig-control-label" for="fig-synthetic-gaussian--hbar">Synthetic label hbar</label><output class="qh-fig-value" data-value="hbar">1</output></li></ul><p class="qh-fig-domain">Synthetic domain label</p><p class="qh-fig-invalid" role="status" aria-live="polite" hidden>Synthetic validity message.</p></div><div class="qh-fig-stage"><div class="qh-fig-profiles"><div class="qh-fig-profile" data-profile="synthetic-density"><p class="qh-fig-profile-label">Synthetic density label</p><svg class="qh-fig-svg" viewBox="0 0 300 150" aria-hidden="true" focusable="false"><path class="qh-fig-curve" data-part="curve" d="M18.0 131.8 L19.6 131.7 L21.3 131.7 L22.9 131.6 L24.6 131.5 L26.2 131.5 L27.9 131.4 L29.6 131.3 L31.2 131.1 L32.9 131.0 L34.5 130.8 L36.1 130.6 L37.8 130.4 L39.4 130.2 L41.1 129.9 L42.8 129.6 L44.4 129.2 L46.1 128.8 L47.7 128.4 L49.4 127.9 L51.0 127.3 L52.6 126.7 L54.3 126.0 L55.9 125.3 L57.6 124.5 L59.2 123.6 L60.9 122.6 L62.6 121.5 L64.2 120.3 L65.9 119.0 L67.5 117.7 L69.1 116.2 L70.8 114.6 L72.4 112.9 L74.1 111.0 L75.8 109.1 L77.4 107.0 L79.1 104.8 L80.7 102.5 L82.4 100.1 L84.0 97.6 L85.6 95.0 L87.3 92.2 L89.0 89.4 L90.6 86.5 L92.2 83.5 L93.9 80.4 L95.5 77.3 L97.2 74.1 L98.9 70.9 L100.5 67.7 L102.1 64.5 L103.8 61.3 L105.5 58.1 L107.1 55.0 L108.8 52.0 L110.4 49.0 L112.0 46.2 L113.7 43.5 L115.4 40.9 L117.0 38.5 L118.6 36.2 L120.3 34.1 L122.0 32.3 L123.6 30.7 L125.2 29.3 L126.9 28.1 L128.6 27.2 L130.2 26.5 L131.9 26.1 L133.5 26.0 L135.1 26.1 L136.8 26.5 L138.4 27.2 L140.1 28.1 L141.8 29.3 L143.4 30.7 L145.1 32.3 L146.7 34.1 L148.3 36.2 L150.0 38.5 L151.7 40.9 L153.3 43.5 L155.0 46.2 L156.6 49.0 L158.2 52.0 L159.9 55.0 L161.5 58.1 L163.2 61.3 L164.8 64.5 L166.5 67.7 L168.2 70.9 L169.8 74.1 L171.5 77.3 L173.1 80.4 L174.8 83.5 L176.4 86.5 L178.0 89.4 L179.7 92.2 L181.3 95.0 L183.0 97.6 L184.7 100.1 L186.3 102.5 L188.0 104.8 L189.6 107.0 L191.2 109.1 L192.9 111.0 L194.5 112.9 L196.2 114.6 L197.8 116.2 L199.5 117.7 L201.2 119.0 L202.8 120.3 L204.5 121.5 L206.1 122.6 L207.8 123.6 L209.4 124.5 L211.0 125.3 L212.7 126.0 L214.3 126.7 L216.0 127.3 L217.7 127.9 L219.3 128.4 L221.0 128.8 L222.6 129.2 L224.2 129.6 L225.9 129.9 L227.5 130.2 L229.2 130.4 L230.8 130.6 L232.5 130.8 L234.2 131.0 L235.8 131.1 L237.5 131.3 L239.1 131.4 L240.8 131.5 L242.4 131.5 L244.0 131.6 L245.7 131.7 L247.3 131.7 L249.0 131.8 L250.7 131.8 L252.3 131.8 L254.0 131.9 L255.6 131.9 L257.2 131.9 L258.9 131.9 L260.5 131.9 L262.2 131.9 L263.9 132.0 L265.5 132.0 L267.1 132.0 L268.8 132.0 L270.5 132.0 L272.1 132.0 L273.8 132.0 L275.4 132.0 L277.1 132.0 L278.7 132.0 L280.4 132.0 L282.0 132.0"/><line class="qh-fig-mean" data-part="mean" x1="133.5" y1="14" x2="133.5" y2="132"/><text class="qh-fig-mark-label" data-part="mean-label" x="138.5" y="11" text-anchor="start">Synthetic mean label</text><path class="qh-fig-axis" d="M12 132H288"/><path class="qh-fig-axis" d="M150.0 132v4"/><path class="qh-fig-more" d="M12 132l5 -3v6zM288 132l-5 -3v6z"/><text class="qh-fig-tick" x="150.0" y="148" text-anchor="middle">0</text><text class="qh-fig-tick qh-fig-var" x="282" y="148" text-anchor="end">y</text></svg><div class="qh-fig-integral"><p class="qh-fig-label">Integral over the real line</p><p class="qh-fig-integral-value">\(1\)</p></div><p class="qh-fig-profile-caption">Synthetic density caption: mean \(-\frac{c x}{b}\) and variance \(\frac{\hbar}{b}\); a b and 1/t stay as written.</p></div><div class="qh-fig-profile" data-profile="synthetic-centred"><p class="qh-fig-profile-label">Synthetic centred label</p><svg class="qh-fig-svg" viewBox="0 0 300 150" aria-hidden="true" focusable="false"><path class="qh-fig-curve" data-part="curve" d="M18.0 132.0 L19.6 132.0 L21.3 131.9 L22.9 131.9 L24.6 131.9 L26.2 131.9 L27.9 131.9 L29.6 131.9 L31.2 131.8 L32.9 131.8 L34.5 131.8 L36.1 131.7 L37.8 131.7 L39.4 131.6 L41.1 131.5 L42.8 131.5 L44.4 131.4 L46.1 131.3 L47.7 131.1 L49.4 131.0 L51.0 130.8 L52.6 130.6 L54.3 130.4 L55.9 130.2 L57.6 129.9 L59.2 129.6 L60.9 129.2 L62.6 128.8 L64.2 128.4 L65.9 127.9 L67.5 127.3 L69.1 126.7 L70.8 126.0 L72.4 125.3 L74.1 124.5 L75.8 123.6 L77.4 122.6 L79.1 121.5 L80.7 120.3 L82.4 119.0 L84.0 117.7 L85.6 116.2 L87.3 114.6 L89.0 112.9 L90.6 111.0 L92.2 109.1 L93.9 107.0 L95.5 104.8 L97.2 102.5 L98.9 100.1 L100.5 97.6 L102.1 95.0 L103.8 92.2 L105.5 89.4 L107.1 86.5 L108.8 83.5 L110.4 80.4 L112.0 77.3 L113.7 74.1 L115.4 70.9 L117.0 67.7 L118.6 64.5 L120.3 61.3 L122.0 58.1 L123.6 55.0 L125.2 52.0 L126.9 49.0 L128.6 46.2 L130.2 43.5 L131.9 40.9 L133.5 38.5 L135.1 36.2 L136.8 34.1 L138.4 32.3 L140.1 30.7 L141.8 29.3 L143.4 28.1 L145.1 27.2 L146.7 26.5 L148.3 26.1 L150.0 26.0 L151.7 26.1 L153.3 26.5 L155.0 27.2 L156.6 28.1 L158.2 29.3 L159.9 30.7 L161.5 32.3 L163.2 34.1 L164.8 36.2 L166.5 38.5 L168.2 40.9 L169.8 43.5 L171.5 46.2 L173.1 49.0 L174.8 52.0 L176.4 55.0 L178.0 58.1 L179.7 61.3 L181.3 64.5 L183.0 67.7 L184.7 70.9 L186.3 74.1 L188.0 77.3 L189.6 80.4 L191.2 83.5 L192.9 86.5 L194.5 89.4 L196.2 92.2 L197.8 95.0 L199.5 97.6 L201.2 100.1 L202.8 102.5 L204.5 104.8 L206.1 107.0 L207.8 109.1 L209.4 111.0 L211.0 112.9 L212.7 114.6 L214.3 116.2 L216.0 117.7 L217.7 119.0 L219.3 120.3 L221.0 121.5 L222.6 122.6 L224.2 123.6 L225.9 124.5 L227.5 125.3 L229.2 126.0 L230.8 126.7 L232.5 127.3 L234.2 127.9 L235.8 128.4 L237.5 128.8 L239.1 129.2 L240.8 129.6 L242.4 129.9 L244.0 130.2 L245.7 130.4 L247.3 130.6 L249.0 130.8 L250.7 131.0 L252.3 131.1 L254.0 131.3 L255.6 131.4 L257.2 131.5 L258.9 131.5 L260.5 131.6 L262.2 131.7 L263.9 131.7 L265.5 131.8 L267.1 131.8 L268.8 131.8 L270.5 131.9 L272.1 131.9 L273.8 131.9 L275.4 131.9 L277.1 131.9 L278.7 131.9 L280.4 132.0 L282.0 132.0"/><path class="qh-fig-axis" d="M12 132H288"/><path class="qh-fig-axis" d="M150.0 132v4"/><path class="qh-fig-more" d="M12 132l5 -3v6zM288 132l-5 -3v6z"/><text class="qh-fig-tick" x="150.0" y="148" text-anchor="middle">0</text><text class="qh-fig-tick qh-fig-var" x="282" y="148" text-anchor="end">u</text></svg><div class="qh-fig-integral"><p class="qh-fig-label">Integral over the real line</p><p class="qh-fig-integral-value">\(\sqrt{\frac{2 \pi \hbar}{b}}\) <span class="qh-fig-eq">=</span> <output class="qh-fig-value" data-value="profile:synthetic-centred">2.507</output></p></div><p class="qh-fig-profile-caption">Synthetic centred caption.</p></div><div class="qh-fig-profile" data-profile="synthetic-original"><p class="qh-fig-profile-label">Synthetic original label</p><svg class="qh-fig-svg" viewBox="0 0 300 150" aria-hidden="true" focusable="false"><path class="qh-fig-curve" data-part="curve" d="M18.0 131.9 L19.6 131.9 L21.3 131.9 L22.9 131.8 L24.6 131.8 L26.2 131.8 L27.9 131.7 L29.6 131.7 L31.2 131.6 L32.9 131.6 L34.5 131.5 L36.1 131.4 L37.8 131.3 L39.4 131.2 L41.1 131.1 L42.8 131.0 L44.4 130.8 L46.1 130.7 L47.7 130.5 L49.4 130.3 L51.0 130.1 L52.6 129.8 L54.3 129.5 L55.9 129.2 L57.6 128.9 L59.2 128.5 L60.9 128.1 L62.6 127.6 L64.2 127.1 L65.9 126.6 L67.5 126.0 L69.1 125.4 L70.8 124.7 L72.4 124.0 L74.1 123.3 L75.8 122.4 L77.4 121.6 L79.1 120.7 L80.7 119.7 L82.4 118.7 L84.0 117.7 L85.6 116.6 L87.3 115.4 L89.0 114.2 L90.6 113.0 L92.2 111.8 L93.9 110.5 L95.5 109.2 L97.2 107.9 L98.9 106.5 L100.5 105.2 L102.1 103.9 L103.8 102.5 L105.5 101.2 L107.1 99.9 L108.8 98.6 L110.4 97.4 L112.0 96.2 L113.7 95.1 L115.4 94.0 L117.0 93.0 L118.6 92.1 L120.3 91.2 L122.0 90.4 L123.6 89.8 L125.2 89.2 L126.9 88.7 L128.6 88.3 L130.2 88.0 L131.9 87.9 L133.5 87.8 L135.1 87.9 L136.8 88.0 L138.4 88.3 L140.1 88.7 L141.8 89.2 L143.4 89.8 L145.1 90.4 L146.7 91.2 L148.3 92.1 L150.0 93.0 L151.7 94.0 L153.3 95.1 L155.0 96.2 L156.6 97.4 L158.2 98.6 L159.9 99.9 L161.5 101.2 L163.2 102.5 L164.8 103.9 L166.5 105.2 L168.2 106.5 L169.8 107.9 L171.5 109.2 L173.1 110.5 L174.8 111.8 L176.4 113.0 L178.0 114.2 L179.7 115.4 L181.3 116.6 L183.0 117.7 L184.7 118.7 L186.3 119.7 L188.0 120.7 L189.6 121.6 L191.2 122.4 L192.9 123.3 L194.5 124.0 L196.2 124.7 L197.8 125.4 L199.5 126.0 L201.2 126.6 L202.8 127.1 L204.5 127.6 L206.1 128.1 L207.8 128.5 L209.4 128.9 L211.0 129.2 L212.7 129.5 L214.3 129.8 L216.0 130.1 L217.7 130.3 L219.3 130.5 L221.0 130.7 L222.6 130.8 L224.2 131.0 L225.9 131.1 L227.5 131.2 L229.2 131.3 L230.8 131.4 L232.5 131.5 L234.2 131.6 L235.8 131.6 L237.5 131.7 L239.1 131.7 L240.8 131.8 L242.4 131.8 L244.0 131.8 L245.7 131.9 L247.3 131.9 L249.0 131.9 L250.7 131.9 L252.3 131.9 L254.0 131.9 L255.6 132.0 L257.2 132.0 L258.9 132.0 L260.5 132.0 L262.2 132.0 L263.9 132.0 L265.5 132.0 L267.1 132.0 L268.8 132.0 L270.5 132.0 L272.1 132.0 L273.8 132.0 L275.4 132.0 L277.1 132.0 L278.7 132.0 L280.4 132.0 L282.0 132.0"/><path class="qh-fig-axis" d="M12 132H288"/><path class="qh-fig-axis" d="M150.0 132v4"/><path class="qh-fig-more" d="M12 132l5 -3v6zM288 132l-5 -3v6z"/><text class="qh-fig-tick" x="150.0" y="148" text-anchor="middle">0</text><text class="qh-fig-tick qh-fig-var" x="282" y="148" text-anchor="end">y</text></svg><div class="qh-fig-integral"><p class="qh-fig-label">Integral over the real line</p><p class="qh-fig-integral-value">\(\sqrt{\frac{2 \pi \hbar}{b}} \exp\left(-\frac{\left(a-\frac{c^{2}}{b}\right) x^{2}}{2 \hbar}\right)\) <span class="qh-fig-eq">=</span> <output class="qh-fig-value" data-value="profile:synthetic-original">1.045</output></p></div><p class="qh-fig-profile-caption">Synthetic original caption.</p></div></div><table class="qh-fig-outputs"><caption class="qh-fig-label">Values at these parameters</caption><tbody><tr data-output="effective_stiffness"><th scope="row">Synthetic stiffness label</th><td class="qh-fig-formula">\(a-\frac{c^{2}}{b}\)</td><td class="qh-fig-num"><output class="qh-fig-value" data-value="effective_stiffness">1.75</output></td></tr><tr data-output="normalization"><th scope="row">Synthetic normalization label</th><td class="qh-fig-formula">\(\sqrt{\frac{2 \pi \hbar}{b}}\)</td><td class="qh-fig-num"><output class="qh-fig-value" data-value="normalization">2.507</output></td></tr><tr data-output="conditional_mean"><th scope="row">Synthetic mean label</th><td class="qh-fig-formula">\(-\frac{c x}{b}\)</td><td class="qh-fig-num"><output class="qh-fig-value" data-value="conditional_mean">-0.5</output></td></tr><tr data-output="conditional_variance"><th scope="row">Synthetic variance label</th><td class="qh-fig-formula">\(\frac{\hbar}{b}\)</td><td class="qh-fig-num"><output class="qh-fig-value" data-value="conditional_variance">1</output></td></tr><tr data-output="integrated_weight"><th scope="row">Synthetic weight label</th><td class="qh-fig-formula">\(\sqrt{\frac{2 \pi \hbar}{b}} \exp\left(-\frac{\left(a-\frac{c^{2}}{b}\right) x^{2}}{2 \hbar}\right)\)</td><td class="qh-fig-num"><output class="qh-fig-value" data-value="integrated_weight">1.045</output></td></tr></tbody></table></div></div><figcaption class="qh-fig-caption">Synthetic Gaussian caption.</figcaption></figure>
+<figure class="qh-fig" id="fig-synthetic-expansions" data-figure="fig-synthetic-expansions" data-qh-figure="fig-synthetic-expansions" data-figure-type="authored_formula" data-figure-model="two-expansions" data-figure-chapter="ch01" data-figure-section="synthetic-section-two" data-config="{&quot;model&quot;:&quot;two-expansions&quot;,&quot;initial&quot;:&quot;w-inside-z&quot;,&quot;plane&quot;:[360,232,150,120,76],&quot;states&quot;:[{&quot;id&quot;:&quot;w-inside-z&quot;,&quot;inside&quot;:true,&quot;text&quot;:&quot;|w| &lt; |z|&quot;,&quot;at&quot;:[112,104,&quot;middle&quot;]},{&quot;id&quot;:&quot;z-inside-w&quot;,&quot;inside&quot;:false,&quot;text&quot;:&quot;|z| &lt; |w|&quot;,&quot;at&quot;:[14,26,&quot;start&quot;]}]}"><div class="qh-fig-head"><p class="qh-fig-title" data-block-title>Synthetic expansions title</p><p class="qh-fig-refs"><span class="qh-fig-label">Equations</span> <a href="#eq-synthetic-five">(1.5)</a></p></div><div class="qh-fig-body"><div class="qh-fig-side"><p class="qh-fig-label">Synthetic region label</p><ol class="qh-fig-states"><li class="qh-fig-state" data-state="w-inside-z" aria-current="true"><p class="qh-fig-state-label">Synthetic inside label</p><p class="qh-fig-cond">\(\lvert w\rvert &lt; \lvert z\rvert\)</p><div class="qh-fig-series"><p class="qh-fig-label">Synthetic series label</p>\[\sum_{n \ge 0} \frac{\left(n+1\right) w^{n}}{z^{n+2}}\]</div></li><li class="qh-fig-state" data-state="z-inside-w"><p class="qh-fig-state-label">Synthetic outside label</p><p class="qh-fig-cond">\(\lvert z\rvert &lt; \lvert w\rvert\)</p><div class="qh-fig-series"><p class="qh-fig-label">Synthetic series label</p>\[\sum_{n \ge 0} \frac{\left(n+1\right) z^{n}}{w^{n+2}}\]</div></li></ol></div><div class="qh-fig-stage"><svg class="qh-fig-svg qh-fig-plane" viewBox="0 0 360 232" role="img" aria-label="|w| &lt; |z|; Synthetic pole label"><circle class="qh-fig-region" data-part="region" cx="150" cy="120" r="76"/><circle class="qh-fig-boundary" cx="150" cy="120" r="76"/><path class="qh-fig-axis" d="M44 120H256M150 216V24"/><circle class="qh-fig-origin" cx="150" cy="120" r="2.4"/><text class="qh-fig-tick" x="144" y="135" text-anchor="end">0</text><text class="qh-fig-region-label" data-part="region-label" x="112" y="104" text-anchor="middle">|w| &lt; |z|</text><g class="qh-fig-pole" transform="translate(191.1 56.0)"><circle r="6.5"/><path d="M-3.4 -3.4L3.4 3.4M3.4 -3.4L-3.4 3.4"/></g><text class="qh-fig-mark-label qh-fig-pole-text" x="203.1" y="48.0">Synthetic pole label</text></svg><p class="qh-fig-note">Synthetic no-value label</p></div></div><figcaption class="qh-fig-caption">Synthetic expansions caption.</figcaption></figure>
+<figure class="qh-fig" id="fig-synthetic-cohomology" data-figure="fig-synthetic-cohomology" data-qh-figure="fig-synthetic-cohomology" data-figure-type="authored_finite_states" data-figure-model="cohomology-jump" data-figure-chapter="ch05" data-figure-section="synthetic-section-three" data-config="{&quot;model&quot;:&quot;cohomology-jump&quot;,&quot;initial&quot;:&quot;zero&quot;,&quot;paths&quot;:{&quot;v&quot;:&quot;M132 92H326&quot;,&quot;zero&quot;:&quot;M132 92H212&quot;},&quot;mids&quot;:{&quot;v&quot;:229.0,&quot;zero&quot;:172.0},&quot;states&quot;:[{&quot;id&quot;:&quot;negative&quot;,&quot;toV&quot;:true,&quot;alive&quot;:[&quot;u₂&quot;,&quot;v₂&quot;],&quot;h&quot;:&quot;Synthetic contraction at minus one&quot;},{&quot;id&quot;:&quot;zero&quot;,&quot;toV&quot;:false,&quot;alive&quot;:[&quot;u₁&quot;,&quot;u₂&quot;,&quot;v₁&quot;,&quot;v₂&quot;],&quot;h&quot;:&quot;&quot;},{&quot;id&quot;:&quot;positive&quot;,&quot;toV&quot;:true,&quot;alive&quot;:[&quot;u₂&quot;,&quot;v₂&quot;],&quot;h&quot;:&quot;Synthetic contraction at one&quot;}]}"><div class="qh-fig-head"><p class="qh-fig-title" data-block-title>Synthetic cohomology title</p><p class="qh-fig-refs"><a href="#eq-synthetic-complex">Equation</a></p></div><div class="qh-fig-body"><div class="qh-fig-side"><p class="qh-fig-domain">Synthetic complex domain sentence.</p><ol class="qh-fig-states qh-fig-states-compact"><li class="qh-fig-state" data-state="negative"><p class="qh-fig-state-label">Synthetic t negative</p><div class="qh-fig-per-state"><p class="qh-fig-matrix">\(\operatorname{diag}(t,0)=\begin{pmatrix}-1&amp;0\\0&amp;0\end{pmatrix}\)</p><p class="qh-fig-homotopy"><span class="qh-fig-label">Synthetic contraction label</span><span class="qh-fig-homotopy-text">Synthetic contraction at minus one</span></p></div></li><li class="qh-fig-state" data-state="zero" aria-current="true"><p class="qh-fig-state-label">Synthetic t zero</p><div class="qh-fig-per-state"><p class="qh-fig-matrix">\(\operatorname{diag}(t,0)=\begin{pmatrix}0&amp;0\\0&amp;0\end{pmatrix}\)</p><p class="qh-fig-homotopy"><span class="qh-fig-label">Synthetic contraction label</span><span class="qh-fig-homotopy-text">Synthetic no contraction</span></p></div></li><li class="qh-fig-state" data-state="positive"><p class="qh-fig-state-label">Synthetic t positive</p><div class="qh-fig-per-state"><p class="qh-fig-matrix">\(\operatorname{diag}(t,0)=\begin{pmatrix}1&amp;0\\0&amp;0\end{pmatrix}\)</p><p class="qh-fig-homotopy"><span class="qh-fig-label">Synthetic contraction label</span><span class="qh-fig-homotopy-text">Synthetic contraction at one</span></p></div></li></ol></div><div class="qh-fig-stage"><svg class="qh-fig-svg qh-fig-complex" viewBox="0 0 460 232" role="img" aria-label="Synthetic degree zero; Synthetic degree one; u₁ ↦ t v₁; u₂ ↦ 0"><defs><marker id="fig-synthetic-cohomology--arrow" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 7.6 4 0 7.4z" class="qh-fig-head-mark"/></marker><marker id="fig-synthetic-cohomology--arrow-h" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 7.6 4 0 7.4z" class="qh-fig-head-h"/></marker></defs><text class="qh-fig-col-label" x="110" y="24" text-anchor="middle">Synthetic degree zero</text><text class="qh-fig-col-label" x="350" y="24" text-anchor="middle">Synthetic degree one</text><path class="qh-fig-map" data-part="first" d="M132 92H212" marker-end="url(#fig-synthetic-cohomology--arrow)"/><text class="qh-fig-zero" data-part="first-zero" x="226" y="97" text-anchor="middle">0</text><text class="qh-fig-map-label" data-part="first-label" x="172" y="80" text-anchor="middle">u₁ ↦ t v₁</text><path class="qh-fig-map" d="M132 192H212" marker-end="url(#fig-synthetic-cohomology--arrow)"/><text class="qh-fig-zero" x="226" y="197" text-anchor="middle">0</text><text class="qh-fig-map-label" x="172" y="180" text-anchor="middle">u₂ ↦ 0</text><path class="qh-fig-homotopy-arc" data-part="h" d="M338 108C300 150 160 150 124 109" marker-end="url(#fig-synthetic-cohomology--arrow-h)" display="none"/><text class="qh-fig-h-label" data-part="h-label" x="230" y="156" text-anchor="middle" display="none"></text><g class="qh-fig-basis is-alive" data-basis="u₁" transform="translate(110 92)"><circle class="qh-fig-ring" r="17"/><text class="qh-fig-node-text" y="5" text-anchor="middle">u₁</text></g><g class="qh-fig-basis is-alive" data-basis="u₂" transform="translate(110 192)"><circle class="qh-fig-ring" r="17"/><text class="qh-fig-node-text" y="5" text-anchor="middle">u₂</text></g><g class="qh-fig-basis is-alive" data-basis="v₁" transform="translate(350 92)"><circle class="qh-fig-ring" r="17"/><text class="qh-fig-node-text" y="5" text-anchor="middle">v₁</text></g><g class="qh-fig-basis is-alive" data-basis="v₂" transform="translate(350 192)"><circle class="qh-fig-ring" r="17"/><text class="qh-fig-node-text" y="5" text-anchor="middle">v₂</text></g></svg><table class="qh-fig-outputs qh-fig-dims"><thead><tr><td></td><th scope="col">Synthetic H0 label</th><th scope="col">Synthetic H1 label</th><th scope="col" class="qh-fig-num">Synthetic Euler label</th></tr></thead><tbody><tr data-state-row="negative"><th scope="row">Synthetic t negative</th><td><span class="qh-fig-dim">1</span><span class="qh-fig-chip">u₂</span></td><td><span class="qh-fig-dim">1</span><span class="qh-fig-chip">v₂</span></td><td class="qh-fig-num">0</td></tr><tr data-state-row="zero" aria-current="true"><th scope="row">Synthetic t zero</th><td><span class="qh-fig-dim">2</span><span class="qh-fig-chip">u₁</span><span class="qh-fig-chip">u₂</span></td><td><span class="qh-fig-dim">2</span><span class="qh-fig-chip">v₁</span><span class="qh-fig-chip">v₂</span></td><td class="qh-fig-num">0</td></tr><tr data-state-row="positive"><th scope="row">Synthetic t positive</th><td><span class="qh-fig-dim">1</span><span class="qh-fig-chip">u₂</span></td><td><span class="qh-fig-dim">1</span><span class="qh-fig-chip">v₂</span></td><td class="qh-fig-num">0</td></tr></tbody></table></div></div><figcaption class="qh-fig-caption">Synthetic cohomology caption.</figcaption></figure>
+<figure class="qh-fig" id="fig-synthetic-infinite" data-figure="fig-synthetic-infinite" data-qh-figure="fig-synthetic-infinite" data-figure-type="authored_formula" data-figure-model="infinite-rank" data-figure-chapter="ch08" data-figure-section="synthetic-section-four" data-config="{&quot;model&quot;:&quot;infinite-rank&quot;,&quot;n&quot;:8,&quot;control&quot;:{&quot;initial&quot;:3,&quot;min&quot;:1,&quot;max&quot;:8,&quot;step&quot;:1,&quot;label&quot;:&quot;Synthetic N label&quot;},&quot;grids&quot;:[{&quot;id&quot;:&quot;finite-truncation&quot;,&quot;rule&quot;:[&quot;and&quot;,[&quot;cmp&quot;,&quot;==&quot;,[&quot;var&quot;,&quot;i&quot;],[&quot;var&quot;,&quot;j&quot;]],[&quot;cmp&quot;,&quot;&lt;&quot;,[&quot;var&quot;,&quot;i&quot;],[&quot;var&quot;,&quot;N&quot;]]]},{&quot;id&quot;:&quot;coordinatewise-limit&quot;,&quot;rule&quot;:[&quot;cmp&quot;,&quot;==&quot;,[&quot;var&quot;,&quot;i&quot;],[&quot;var&quot;,&quot;j&quot;]]}],&quot;rank&quot;:{&quot;id&quot;:&quot;finite-truncation&quot;,&quot;formula&quot;:[&quot;var&quot;,&quot;N&quot;]}}"><div class="qh-fig-head"><p class="qh-fig-title" data-block-title>Synthetic infinite title</p><p class="qh-fig-refs"><a href="#eq-synthetic-map">Equation</a></p></div><div class="qh-fig-body qh-fig-body-single"><p class="qh-fig-domain">Synthetic infinite domain sentence.</p><div class="qh-fig-pair"><div class="qh-fig-col" data-state="finite-truncation"><p class="qh-fig-col-head">Synthetic finite label</p><div class="qh-fig-control" data-param="N"><label class="qh-fig-control-label" for="fig-synthetic-infinite--N">Synthetic N label</label><output class="qh-fig-value" data-value="N">3</output></div><svg class="qh-fig-svg qh-fig-grid" data-grid="finite-truncation" viewBox="0 0 244 244" role="img" aria-label="Synthetic finite label. Synthetic viewport label"><text class="qh-fig-tick" x="42" y="20" text-anchor="middle">0</text><text class="qh-fig-tick" x="21" y="44" text-anchor="end">0</text><text class="qh-fig-tick" x="66" y="20" text-anchor="middle">1</text><text class="qh-fig-tick" x="21" y="68" text-anchor="end">1</text><text class="qh-fig-tick" x="90" y="20" text-anchor="middle">2</text><text class="qh-fig-tick" x="21" y="92" text-anchor="end">2</text><text class="qh-fig-tick" x="114" y="20" text-anchor="middle">3</text><text class="qh-fig-tick" x="21" y="116" text-anchor="end">3</text><text class="qh-fig-tick" x="138" y="20" text-anchor="middle">4</text><text class="qh-fig-tick" x="21" y="140" text-anchor="end">4</text><text class="qh-fig-tick" x="162" y="20" text-anchor="middle">5</text><text class="qh-fig-tick" x="21" y="164" text-anchor="end">5</text><text class="qh-fig-tick" x="186" y="20" text-anchor="middle">6</text><text class="qh-fig-tick" x="21" y="188" text-anchor="end">6</text><text class="qh-fig-tick" x="210" y="20" text-anchor="middle">7</text><text class="qh-fig-tick" x="21" y="212" text-anchor="end">7</text><g class="qh-fig-cell is-on" data-i="0" data-j="0"><rect x="31.5" y="29.5" width="21" height="21" rx="2.5"/><text x="42" y="44.5" text-anchor="middle">1</text></g><g class="qh-fig-cell" data-i="0" data-j="1"><rect x="55.5" y="29.5" width="21" height="21" rx="2.5"/><text x="66" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="2"><rect x="79.5" y="29.5" width="21" height="21" rx="2.5"/><text x="90" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="3"><rect x="103.5" y="29.5" width="21" height="21" rx="2.5"/><text x="114" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="4"><rect x="127.5" y="29.5" width="21" height="21" rx="2.5"/><text x="138" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="5"><rect x="151.5" y="29.5" width="21" height="21" rx="2.5"/><text x="162" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="6"><rect x="175.5" y="29.5" width="21" height="21" rx="2.5"/><text x="186" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="7"><rect x="199.5" y="29.5" width="21" height="21" rx="2.5"/><text x="210" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="0"><rect x="31.5" y="53.5" width="21" height="21" rx="2.5"/><text x="42" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell is-on" data-i="1" data-j="1"><rect x="55.5" y="53.5" width="21" height="21" rx="2.5"/><text x="66" y="68.5" text-anchor="middle">1</text></g><g class="qh-fig-cell" data-i="1" data-j="2"><rect x="79.5" y="53.5" width="21" height="21" rx="2.5"/><text x="90" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="3"><rect x="103.5" y="53.5" width="21" height="21" rx="2.5"/><text x="114" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="4"><rect x="127.5" y="53.5" width="21" height="21" rx="2.5"/><text x="138" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="5"><rect x="151.5" y="53.5" width="21" height="21" rx="2.5"/><text x="162" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="6"><rect x="175.5" y="53.5" width="21" height="21" rx="2.5"/><text x="186" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="7"><rect x="199.5" y="53.5" width="21" height="21" rx="2.5"/><text x="210" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="0"><rect x="31.5" y="77.5" width="21" height="21" rx="2.5"/><text x="42" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="1"><rect x="55.5" y="77.5" width="21" height="21" rx="2.5"/><text x="66" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell is-on" data-i="2" data-j="2"><rect x="79.5" y="77.5" width="21" height="21" rx="2.5"/><text x="90" y="92.5" text-anchor="middle">1</text></g><g class="qh-fig-cell" data-i="2" data-j="3"><rect x="103.5" y="77.5" width="21" height="21" rx="2.5"/><text x="114" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="4"><rect x="127.5" y="77.5" width="21" height="21" rx="2.5"/><text x="138" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="5"><rect x="151.5" y="77.5" width="21" height="21" rx="2.5"/><text x="162" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="6"><rect x="175.5" y="77.5" width="21" height="21" rx="2.5"/><text x="186" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="7"><rect x="199.5" y="77.5" width="21" height="21" rx="2.5"/><text x="210" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="0"><rect x="31.5" y="101.5" width="21" height="21" rx="2.5"/><text x="42" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="1"><rect x="55.5" y="101.5" width="21" height="21" rx="2.5"/><text x="66" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="2"><rect x="79.5" y="101.5" width="21" height="21" rx="2.5"/><text x="90" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="3"><rect x="103.5" y="101.5" width="21" height="21" rx="2.5"/><text x="114" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="4"><rect x="127.5" y="101.5" width="21" height="21" rx="2.5"/><text x="138" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="5"><rect x="151.5" y="101.5" width="21" height="21" rx="2.5"/><text x="162" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="6"><rect x="175.5" y="101.5" width="21" height="21" rx="2.5"/><text x="186" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="7"><rect x="199.5" y="101.5" width="21" height="21" rx="2.5"/><text x="210" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="0"><rect x="31.5" y="125.5" width="21" height="21" rx="2.5"/><text x="42" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="1"><rect x="55.5" y="125.5" width="21" height="21" rx="2.5"/><text x="66" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="2"><rect x="79.5" y="125.5" width="21" height="21" rx="2.5"/><text x="90" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="3"><rect x="103.5" y="125.5" width="21" height="21" rx="2.5"/><text x="114" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="4"><rect x="127.5" y="125.5" width="21" height="21" rx="2.5"/><text x="138" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="5"><rect x="151.5" y="125.5" width="21" height="21" rx="2.5"/><text x="162" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="6"><rect x="175.5" y="125.5" width="21" height="21" rx="2.5"/><text x="186" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="7"><rect x="199.5" y="125.5" width="21" height="21" rx="2.5"/><text x="210" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="0"><rect x="31.5" y="149.5" width="21" height="21" rx="2.5"/><text x="42" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="1"><rect x="55.5" y="149.5" width="21" height="21" rx="2.5"/><text x="66" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="2"><rect x="79.5" y="149.5" width="21" height="21" rx="2.5"/><text x="90" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="3"><rect x="103.5" y="149.5" width="21" height="21" rx="2.5"/><text x="114" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="4"><rect x="127.5" y="149.5" width="21" height="21" rx="2.5"/><text x="138" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="5"><rect x="151.5" y="149.5" width="21" height="21" rx="2.5"/><text x="162" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="6"><rect x="175.5" y="149.5" width="21" height="21" rx="2.5"/><text x="186" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="7"><rect x="199.5" y="149.5" width="21" height="21" rx="2.5"/><text x="210" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="0"><rect x="31.5" y="173.5" width="21" height="21" rx="2.5"/><text x="42" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="1"><rect x="55.5" y="173.5" width="21" height="21" rx="2.5"/><text x="66" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="2"><rect x="79.5" y="173.5" width="21" height="21" rx="2.5"/><text x="90" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="3"><rect x="103.5" y="173.5" width="21" height="21" rx="2.5"/><text x="114" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="4"><rect x="127.5" y="173.5" width="21" height="21" rx="2.5"/><text x="138" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="5"><rect x="151.5" y="173.5" width="21" height="21" rx="2.5"/><text x="162" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="6"><rect x="175.5" y="173.5" width="21" height="21" rx="2.5"/><text x="186" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="7"><rect x="199.5" y="173.5" width="21" height="21" rx="2.5"/><text x="210" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="0"><rect x="31.5" y="197.5" width="21" height="21" rx="2.5"/><text x="42" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="1"><rect x="55.5" y="197.5" width="21" height="21" rx="2.5"/><text x="66" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="2"><rect x="79.5" y="197.5" width="21" height="21" rx="2.5"/><text x="90" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="3"><rect x="103.5" y="197.5" width="21" height="21" rx="2.5"/><text x="114" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="4"><rect x="127.5" y="197.5" width="21" height="21" rx="2.5"/><text x="138" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="5"><rect x="151.5" y="197.5" width="21" height="21" rx="2.5"/><text x="162" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="6"><rect x="175.5" y="197.5" width="21" height="21" rx="2.5"/><text x="186" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="7"><rect x="199.5" y="197.5" width="21" height="21" rx="2.5"/><text x="210" y="212.5" text-anchor="middle">0</text></g><path class="qh-fig-bracket" d="M31 28H27V220H31"/><text class="qh-fig-continues" data-part="beyond" x="225" y="235">⋱</text><text class="qh-fig-tick qh-fig-var" x="228" y="20">j</text><text class="qh-fig-tick qh-fig-var" x="21" y="236" text-anchor="end">i</text></svg><p class="qh-fig-explanation">Synthetic finite explanation.</p></div><div class="qh-fig-col" data-state="coordinatewise-limit"><p class="qh-fig-col-head">Synthetic limit label</p><svg class="qh-fig-svg qh-fig-grid" data-grid="coordinatewise-limit" viewBox="0 0 244 244" role="img" aria-label="Synthetic limit label. Synthetic viewport label"><text class="qh-fig-tick" x="42" y="20" text-anchor="middle">0</text><text class="qh-fig-tick" x="21" y="44" text-anchor="end">0</text><text class="qh-fig-tick" x="66" y="20" text-anchor="middle">1</text><text class="qh-fig-tick" x="21" y="68" text-anchor="end">1</text><text class="qh-fig-tick" x="90" y="20" text-anchor="middle">2</text><text class="qh-fig-tick" x="21" y="92" text-anchor="end">2</text><text class="qh-fig-tick" x="114" y="20" text-anchor="middle">3</text><text class="qh-fig-tick" x="21" y="116" text-anchor="end">3</text><text class="qh-fig-tick" x="138" y="20" text-anchor="middle">4</text><text class="qh-fig-tick" x="21" y="140" text-anchor="end">4</text><text class="qh-fig-tick" x="162" y="20" text-anchor="middle">5</text><text class="qh-fig-tick" x="21" y="164" text-anchor="end">5</text><text class="qh-fig-tick" x="186" y="20" text-anchor="middle">6</text><text class="qh-fig-tick" x="21" y="188" text-anchor="end">6</text><text class="qh-fig-tick" x="210" y="20" text-anchor="middle">7</text><text class="qh-fig-tick" x="21" y="212" text-anchor="end">7</text><g class="qh-fig-cell is-on" data-i="0" data-j="0"><rect x="31.5" y="29.5" width="21" height="21" rx="2.5"/><text x="42" y="44.5" text-anchor="middle">1</text></g><g class="qh-fig-cell" data-i="0" data-j="1"><rect x="55.5" y="29.5" width="21" height="21" rx="2.5"/><text x="66" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="2"><rect x="79.5" y="29.5" width="21" height="21" rx="2.5"/><text x="90" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="3"><rect x="103.5" y="29.5" width="21" height="21" rx="2.5"/><text x="114" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="4"><rect x="127.5" y="29.5" width="21" height="21" rx="2.5"/><text x="138" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="5"><rect x="151.5" y="29.5" width="21" height="21" rx="2.5"/><text x="162" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="6"><rect x="175.5" y="29.5" width="21" height="21" rx="2.5"/><text x="186" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="0" data-j="7"><rect x="199.5" y="29.5" width="21" height="21" rx="2.5"/><text x="210" y="44.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="0"><rect x="31.5" y="53.5" width="21" height="21" rx="2.5"/><text x="42" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell is-on" data-i="1" data-j="1"><rect x="55.5" y="53.5" width="21" height="21" rx="2.5"/><text x="66" y="68.5" text-anchor="middle">1</text></g><g class="qh-fig-cell" data-i="1" data-j="2"><rect x="79.5" y="53.5" width="21" height="21" rx="2.5"/><text x="90" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="3"><rect x="103.5" y="53.5" width="21" height="21" rx="2.5"/><text x="114" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="4"><rect x="127.5" y="53.5" width="21" height="21" rx="2.5"/><text x="138" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="5"><rect x="151.5" y="53.5" width="21" height="21" rx="2.5"/><text x="162" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="6"><rect x="175.5" y="53.5" width="21" height="21" rx="2.5"/><text x="186" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="1" data-j="7"><rect x="199.5" y="53.5" width="21" height="21" rx="2.5"/><text x="210" y="68.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="0"><rect x="31.5" y="77.5" width="21" height="21" rx="2.5"/><text x="42" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="1"><rect x="55.5" y="77.5" width="21" height="21" rx="2.5"/><text x="66" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell is-on" data-i="2" data-j="2"><rect x="79.5" y="77.5" width="21" height="21" rx="2.5"/><text x="90" y="92.5" text-anchor="middle">1</text></g><g class="qh-fig-cell" data-i="2" data-j="3"><rect x="103.5" y="77.5" width="21" height="21" rx="2.5"/><text x="114" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="4"><rect x="127.5" y="77.5" width="21" height="21" rx="2.5"/><text x="138" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="5"><rect x="151.5" y="77.5" width="21" height="21" rx="2.5"/><text x="162" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="6"><rect x="175.5" y="77.5" width="21" height="21" rx="2.5"/><text x="186" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="2" data-j="7"><rect x="199.5" y="77.5" width="21" height="21" rx="2.5"/><text x="210" y="92.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="0"><rect x="31.5" y="101.5" width="21" height="21" rx="2.5"/><text x="42" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="1"><rect x="55.5" y="101.5" width="21" height="21" rx="2.5"/><text x="66" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="2"><rect x="79.5" y="101.5" width="21" height="21" rx="2.5"/><text x="90" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell is-on" data-i="3" data-j="3"><rect x="103.5" y="101.5" width="21" height="21" rx="2.5"/><text x="114" y="116.5" text-anchor="middle">1</text></g><g class="qh-fig-cell" data-i="3" data-j="4"><rect x="127.5" y="101.5" width="21" height="21" rx="2.5"/><text x="138" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="5"><rect x="151.5" y="101.5" width="21" height="21" rx="2.5"/><text x="162" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="6"><rect x="175.5" y="101.5" width="21" height="21" rx="2.5"/><text x="186" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="3" data-j="7"><rect x="199.5" y="101.5" width="21" height="21" rx="2.5"/><text x="210" y="116.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="0"><rect x="31.5" y="125.5" width="21" height="21" rx="2.5"/><text x="42" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="1"><rect x="55.5" y="125.5" width="21" height="21" rx="2.5"/><text x="66" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="2"><rect x="79.5" y="125.5" width="21" height="21" rx="2.5"/><text x="90" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="3"><rect x="103.5" y="125.5" width="21" height="21" rx="2.5"/><text x="114" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell is-on" data-i="4" data-j="4"><rect x="127.5" y="125.5" width="21" height="21" rx="2.5"/><text x="138" y="140.5" text-anchor="middle">1</text></g><g class="qh-fig-cell" data-i="4" data-j="5"><rect x="151.5" y="125.5" width="21" height="21" rx="2.5"/><text x="162" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="6"><rect x="175.5" y="125.5" width="21" height="21" rx="2.5"/><text x="186" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="4" data-j="7"><rect x="199.5" y="125.5" width="21" height="21" rx="2.5"/><text x="210" y="140.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="0"><rect x="31.5" y="149.5" width="21" height="21" rx="2.5"/><text x="42" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="1"><rect x="55.5" y="149.5" width="21" height="21" rx="2.5"/><text x="66" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="2"><rect x="79.5" y="149.5" width="21" height="21" rx="2.5"/><text x="90" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="3"><rect x="103.5" y="149.5" width="21" height="21" rx="2.5"/><text x="114" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="4"><rect x="127.5" y="149.5" width="21" height="21" rx="2.5"/><text x="138" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell is-on" data-i="5" data-j="5"><rect x="151.5" y="149.5" width="21" height="21" rx="2.5"/><text x="162" y="164.5" text-anchor="middle">1</text></g><g class="qh-fig-cell" data-i="5" data-j="6"><rect x="175.5" y="149.5" width="21" height="21" rx="2.5"/><text x="186" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="5" data-j="7"><rect x="199.5" y="149.5" width="21" height="21" rx="2.5"/><text x="210" y="164.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="0"><rect x="31.5" y="173.5" width="21" height="21" rx="2.5"/><text x="42" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="1"><rect x="55.5" y="173.5" width="21" height="21" rx="2.5"/><text x="66" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="2"><rect x="79.5" y="173.5" width="21" height="21" rx="2.5"/><text x="90" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="3"><rect x="103.5" y="173.5" width="21" height="21" rx="2.5"/><text x="114" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="4"><rect x="127.5" y="173.5" width="21" height="21" rx="2.5"/><text x="138" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="6" data-j="5"><rect x="151.5" y="173.5" width="21" height="21" rx="2.5"/><text x="162" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell is-on" data-i="6" data-j="6"><rect x="175.5" y="173.5" width="21" height="21" rx="2.5"/><text x="186" y="188.5" text-anchor="middle">1</text></g><g class="qh-fig-cell" data-i="6" data-j="7"><rect x="199.5" y="173.5" width="21" height="21" rx="2.5"/><text x="210" y="188.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="0"><rect x="31.5" y="197.5" width="21" height="21" rx="2.5"/><text x="42" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="1"><rect x="55.5" y="197.5" width="21" height="21" rx="2.5"/><text x="66" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="2"><rect x="79.5" y="197.5" width="21" height="21" rx="2.5"/><text x="90" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="3"><rect x="103.5" y="197.5" width="21" height="21" rx="2.5"/><text x="114" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="4"><rect x="127.5" y="197.5" width="21" height="21" rx="2.5"/><text x="138" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="5"><rect x="151.5" y="197.5" width="21" height="21" rx="2.5"/><text x="162" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell" data-i="7" data-j="6"><rect x="175.5" y="197.5" width="21" height="21" rx="2.5"/><text x="186" y="212.5" text-anchor="middle">0</text></g><g class="qh-fig-cell is-on" data-i="7" data-j="7"><rect x="199.5" y="197.5" width="21" height="21" rx="2.5"/><text x="210" y="212.5" text-anchor="middle">1</text></g><path class="qh-fig-bracket" d="M31 28H27V220H31"/><text class="qh-fig-continues is-on" data-part="beyond" x="225" y="235">⋱</text><text class="qh-fig-tick qh-fig-var" x="228" y="20">j</text><text class="qh-fig-tick qh-fig-var" x="21" y="236" text-anchor="end">i</text></svg><p class="qh-fig-explanation">Synthetic limit explanation.</p></div></div><p class="qh-fig-note">Synthetic viewport label</p><p class="qh-fig-convergence">Synthetic convergence label</p><table class="qh-fig-outputs qh-fig-compare"><thead><tr><td></td><th scope="col">Synthetic finite label</th><th scope="col">Synthetic limit label</th></tr></thead><tbody><tr><th scope="row">Synthetic rank label</th><td><output class="qh-fig-value" data-value="rank:finite-truncation">3</output></td><td>infinite</td></tr><tr><th scope="row">Synthetic tensor label</th><td>yes</td><td>no</td></tr><tr><th scope="row">Synthetic completion label</th><td>yes</td><td>yes</td></tr></tbody></table></div><figcaption class="qh-fig-caption">Synthetic infinite caption.</figcaption></figure>
+<figure class="qh-fig" id="fig-synthetic-adjunction" data-figure="fig-synthetic-adjunction" data-qh-figure="fig-synthetic-adjunction" data-figure-type="authored_diagram" data-figure-model="adjunction-triangles" data-figure-chapter="ch06" data-figure-section="synthetic-section-five" data-config="{&quot;model&quot;:&quot;adjunction-triangles&quot;,&quot;initial&quot;:&quot;left-triangle&quot;,&quot;states&quot;:[&quot;left-triangle&quot;,&quot;right-triangle&quot;]}"><div class="qh-fig-head"><p class="qh-fig-title" data-block-title>Synthetic adjunction title</p></div><div class="qh-fig-body qh-fig-body-single"><ul class="qh-fig-legend"><li class="qh-fig-key" data-key="F"><span class="qh-fig-key-text">Synthetic left F</span></li><li class="qh-fig-key" data-key="G"><span class="qh-fig-key-text">Synthetic right G</span></li><li class="qh-fig-key is-unit" data-key="eta"><span class="qh-fig-swatch" aria-hidden="true"></span><span class="qh-fig-key-text">Synthetic unit <span class="qh-fig-sym is-unit">η</span>: id<sub>C</sub> → GF</span></li><li class="qh-fig-key is-counit" data-key="epsilon"><span class="qh-fig-swatch" aria-hidden="true"></span><span class="qh-fig-key-text">Synthetic counit <span class="qh-fig-sym is-counit">ε</span>: FG → id<sub>D</sub></span></li></ul><p class="qh-fig-domain">Synthetic adjunction domain sentence.</p><ol class="qh-fig-pair qh-fig-triangles"><li class="qh-fig-col" data-state="left-triangle"><p class="qh-fig-col-head">Synthetic left triangle</p><svg class="qh-fig-svg qh-fig-triangle" viewBox="0 0 300 196" role="img" aria-label="ε_FX ∘ F(η_X) = id_FX"><defs><marker id="fig-synthetic-adjunction--left-triangle--arrow" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 7.6 4 0 7.4z" class="qh-fig-head-mark"/></marker><marker id="fig-synthetic-adjunction--left-triangle--unit" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 7.6 4 0 7.4z" class="qh-fig-head-mark is-unit"/></marker><marker id="fig-synthetic-adjunction--left-triangle--counit" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 7.6 4 0 7.4z" class="qh-fig-head-mark is-counit"/></marker></defs><g class="qh-fig-arrow is-unit"><path class="qh-fig-map" d="M54.1 145.0L137.9 53.2" marker-end="url(#fig-synthetic-adjunction--left-triangle--unit)"/><text class="qh-fig-map-label" x="86.4" y="90.3" text-anchor="end">F(η<tspan class="qh-fig-sub" dy="4">X</tspan><tspan dy="-4">)</tspan></text></g><g class="qh-fig-arrow is-counit"><path class="qh-fig-map" d="M160.1 51.0L243.9 142.8" marker-end="url(#fig-synthetic-adjunction--left-triangle--counit)"/><text class="qh-fig-map-label" x="211.6" y="88.1" text-anchor="start">ε<tspan class="qh-fig-sub" dy="4">FX</tspan></text></g><g class="qh-fig-arrow"><path class="qh-fig-map" d="M62.2 156.0L234.8 156.0" marker-end="url(#fig-synthetic-adjunction--left-triangle--arrow)"/><text class="qh-fig-map-label" x="148.5" y="183.0" text-anchor="middle">id<tspan class="qh-fig-sub" dy="4">FX</tspan></text></g><text class="qh-fig-node-text" x="44" y="161" text-anchor="middle">FX</text><text class="qh-fig-node-text" x="150" y="45" text-anchor="middle">FGFX</text><text class="qh-fig-node-text" x="256" y="161" text-anchor="middle">FX</text></svg><p class="qh-fig-equation"><span class="qh-fig-sym is-counit">ε</span><sub>FX</sub> ∘ F(<span class="qh-fig-sym is-unit">η</span><sub>X</sub>) = id<sub>FX</sub></p><p class="qh-fig-explanation">Synthetic meaning of Synthetic left triangle.</p></li><li class="qh-fig-col" data-state="right-triangle"><p class="qh-fig-col-head">Synthetic right triangle</p><svg class="qh-fig-svg qh-fig-triangle" viewBox="0 0 300 196" role="img" aria-label="G(ε_Y) ∘ η_GY = id_GY"><defs><marker id="fig-synthetic-adjunction--right-triangle--arrow" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 7.6 4 0 7.4z" class="qh-fig-head-mark"/></marker><marker id="fig-synthetic-adjunction--right-triangle--unit" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 7.6 4 0 7.4z" class="qh-fig-head-mark is-unit"/></marker><marker id="fig-synthetic-adjunction--right-triangle--counit" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 7.6 4 0 7.4z" class="qh-fig-head-mark is-counit"/></marker></defs><g class="qh-fig-arrow is-unit"><path class="qh-fig-map" d="M54.1 145.0L137.9 53.2" marker-end="url(#fig-synthetic-adjunction--right-triangle--unit)"/><text class="qh-fig-map-label" x="86.4" y="90.3" text-anchor="end">η<tspan class="qh-fig-sub" dy="4">GY</tspan></text></g><g class="qh-fig-arrow is-counit"><path class="qh-fig-map" d="M160.1 51.0L243.9 142.8" marker-end="url(#fig-synthetic-adjunction--right-triangle--counit)"/><text class="qh-fig-map-label" x="211.6" y="88.1" text-anchor="start">G(ε<tspan class="qh-fig-sub" dy="4">Y</tspan><tspan dy="-4">)</tspan></text></g><g class="qh-fig-arrow"><path class="qh-fig-map" d="M62.2 156.0L234.8 156.0" marker-end="url(#fig-synthetic-adjunction--right-triangle--arrow)"/><text class="qh-fig-map-label" x="148.5" y="183.0" text-anchor="middle">id<tspan class="qh-fig-sub" dy="4">GY</tspan></text></g><text class="qh-fig-node-text" x="44" y="161" text-anchor="middle">GY</text><text class="qh-fig-node-text" x="150" y="45" text-anchor="middle">GFGY</text><text class="qh-fig-node-text" x="256" y="161" text-anchor="middle">GY</text></svg><p class="qh-fig-equation">G(<span class="qh-fig-sym is-counit">ε</span><sub>Y</sub>) ∘ <span class="qh-fig-sym is-unit">η</span><sub>GY</sub> = id<sub>GY</sub></p><p class="qh-fig-explanation">Synthetic meaning of Synthetic right triangle.</p></li></ol><table class="qh-fig-outputs qh-fig-properties"><thead><tr><th scope="col">Hypothesis</th><th scope="col">Equivalent statement</th></tr></thead><tbody><tr><td>Synthetic hypothesis on <span class="qh-fig-sym is-unit">η</span><sub>X</sub>.</td><td><span class="qh-fig-strong">Synthetic statement one.</span><span class="qh-fig-explanation">Synthetic explanation one.</span></td></tr><tr><td>Synthetic hypothesis on <span class="qh-fig-sym is-counit">ε</span><sub>Y</sub>.</td><td><span class="qh-fig-strong">Synthetic statement two.</span><span class="qh-fig-explanation">Synthetic explanation two.</span></td></tr></tbody></table></div><figcaption class="qh-fig-caption">Synthetic adjunction caption.</figcaption></figure></main><script>/* Figures of the reader: controls for the author's figure records. The server draws each figure's initial state,
+   which is complete without this script and in print. Every value shown is an authored formula evaluated at the
+   current parameters, and every state is one the record lists.
+   - Gaussian: one range input per permitted control, inside the authored display window. A proposed value that
+     breaks the authored validity rule is refused; the authored message is shown and the previous valid values
+     stay.
+   - Expansions: a choice between the two authored regions.
+   - Cohomology jump: a choice between the authored values of t; the drawing, the matrix and the table follow.
+   - Infinite rank: the authored control N redraws the finite diagonal beside its limit.
+   - Adjunction: the key's unit and counit entries, pressed, pick out the arrows built from them. */
+(function () {
+  'use strict';
+  var doc = document;
+  var NS = 'http://www.w3.org/2000/svg';
+  function all(sel, root) { return Array.prototype.slice.call((root || doc).querySelectorAll(sel)); }
+  var CONST = { pi: Math.PI };
+
+  /* The authored formula evaluated at the parameters, as on the server: null where it has no number. */
+  function val(n, env) {
+    var k = n[0], a, b;
+    if (k === 'num') return +n[1];
+    if (k === 'var') return Object.prototype.hasOwnProperty.call(env, n[1]) ? env[n[1]] : (n[1] in CONST ? CONST[n[1]] : null);
+    if (k === 'group') return val(n[1], env);
+    if (k === 'abs' || k === 'neg') {
+      a = val(n[1], env);
+      if (a === null || typeof a === 'boolean') return null;
+      return k === 'abs' ? Math.abs(a) : -a;
+    }
+    if (k === 'add' || k === 'sub' || k === 'mul' || k === 'div' || k === 'pow') {
+      a = val(n[1], env); b = val(n[2], env);
+      if (a === null || b === null || typeof a === 'boolean' || typeof b === 'boolean') return null;
+      if (k === 'add') return a + b;
+      if (k === 'sub') return a - b;
+      if (k === 'mul') return a * b;
+      if (k === 'div') return b === 0 ? null : a / b;
+      return Math.pow(a, b);
+    }
+    if (k === 'call') {
+      a = val(n[2], env);
+      if (a === null || typeof a === 'boolean') return null;
+      if (n[1] === 'sqrt') return a >= 0 ? Math.sqrt(a) : null;
+      if (n[1] === 'exp') return a < 700 ? Math.exp(a) : null;
+      return null;
+    }
+    if (k === 'cmp') {
+      a = val(n[2], env); b = val(n[3], env);
+      if (a === null || b === null) return null;
+      return { '<': a < b, '>': a > b, '<=': a <= b, '>=': a >= b, '!=': a !== b, '==': a === b }[n[1]];
+    }
+    if (k === 'and') return val(n[1], env) === true && val(n[2], env) === true;
+    return null;
+  }
+  function fmt(v) {
+    if (v === null || v === undefined || typeof v === 'boolean' || !isFinite(v)) return '';
+    if (v !== 0 && (Math.abs(v) >= 1000 || Math.abs(v) < 0.001)) return v.toPrecision(3);
+    return v.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+  }
+  function copy(o) { var r = {}; for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) r[k] = o[k]; return r; }
+  function show(el, on) { if (!el) return; if (on) el.removeAttribute('display'); else el.setAttribute('display', 'none'); }
+
+  /* A range input for an authored control, added to its list item after the label and the value. */
+  function rangeFor(fig, li, name, c, value) {
+    var input = doc.createElement('input');
+    input.type = 'range';
+    input.id = fig.id + '--' + name;
+    input.min = String(c.min); input.max = String(c.max); input.step = String(c.step); input.value = String(value);
+    input.setAttribute('aria-valuetext', fmt(value));
+    li.appendChild(input);
+    return input;
+  }
+
+  /* The authored states as buttons: each state's label becomes a button that chooses it. */
+  function stateButtons(fig, choose) {
+    all('.qh-fig-state[data-state]', fig).forEach(function (li) {
+      var id = li.getAttribute('data-state'), label = li.querySelector('.qh-fig-state-label');
+      if (!label) return;
+      var b = doc.createElement('button');
+      b.type = 'button';
+      b.className = 'qh-fig-choose';
+      while (label.firstChild) b.appendChild(label.firstChild);
+      label.appendChild(b);
+      b.addEventListener('click', function () { choose(id); });
+    });
+  }
+  function markCurrent(fig, id) {
+    all('.qh-fig-state[data-state]', fig).forEach(function (li) {
+      var on = li.getAttribute('data-state') === id, b = li.querySelector('button.qh-fig-choose');
+      if (on) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current');
+      if (b) b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    all('[data-state-row]', fig).forEach(function (tr) {
+      if (tr.getAttribute('data-state-row') === id) tr.setAttribute('aria-current', 'true'); else tr.removeAttribute('aria-current');
+    });
+  }
+
+  function gaussian(fig, cfg) {
+    var W = cfg.window[0], H = cfg.window[1], PAD = cfg.window[2], SPAN = cfg.window[3];
+    var env = {};
+    cfg.names.forEach(function (n) { env[n] = +cfg.controls[n].initial; });
+    var note = fig.querySelector('.qh-fig-invalid');
+    function wx(t) { return PAD + (t + SPAN) / (2 * SPAN) * (W - 2 * PAD); }
+    function curve(p) {
+      var scale = 1, i, t, v, pts = [], local = copy(env);
+      if (p.density) {
+        scale = 0;
+        for (i = -160; i <= 160; i++) { local[p.variable] = i / 40; v = val(p.formula, local) || 0; if (v > scale) scale = v; }
+        scale = scale || 1;
+      }
+      for (i = 0; i <= 160; i++) {
+        t = -SPAN + 2 * SPAN * i / 160;
+        local[p.variable] = t;
+        v = val(p.formula, local);
+        if (v === null || typeof v === 'boolean') v = 0;
+        pts.push(wx(t).toFixed(1) + ' ' + (H - PAD - Math.min(v / scale, 1.06) * (H - 2 * PAD - 8)).toFixed(1));
+      }
+      return 'M' + pts.join(' L');
+    }
+    function update() {
+      all('output[data-value]', fig).forEach(function (o) {
+        var key = o.getAttribute('data-value'), v = null;
+        if (key.indexOf('profile:') === 0) {
+          cfg.profiles.forEach(function (p) { if ('profile:' + p.id === key) v = val(p.integral, env); });
+        } else if (Object.prototype.hasOwnProperty.call(cfg.outputs, key)) v = val(cfg.outputs[key], env);
+        else if (Object.prototype.hasOwnProperty.call(env, key)) v = env[key];
+        o.textContent = fmt(v);
+      });
+      var mean = cfg.mean ? val(cfg.mean, env) : null;
+      cfg.profiles.forEach(function (p) {
+        var box = fig.querySelector('.qh-fig-profile[data-profile="' + p.id + '"] svg');
+        if (!box) return;
+        var c = box.querySelector('[data-part="curve"]');
+        if (c) c.setAttribute('d', curve(p));
+        var m = box.querySelector('[data-part="mean"]'), ml = box.querySelector('[data-part="mean-label"]');
+        if (m && mean !== null) {
+          var x = wx(Math.max(-SPAN, Math.min(SPAN, mean))), right = x > W / 2;
+          m.setAttribute('x1', x.toFixed(1)); m.setAttribute('x2', x.toFixed(1));
+          if (ml) { ml.setAttribute('x', (right ? x - 5 : x + 5).toFixed(1)); ml.setAttribute('text-anchor', right ? 'end' : 'start'); }
+        }
+      });
+    }
+    all('.qh-fig-control[data-param]', fig).forEach(function (li) {
+      var n = li.getAttribute('data-param'), c = cfg.controls[n];
+      if (!c) return;
+      var input = rangeFor(fig, li, n, c, env[n]);
+      input.addEventListener('input', function () {
+        var trial = copy(env);
+        trial[n] = +input.value;
+        if (val(cfg.rule, trial) === true) {
+          env = trial;
+          if (note) note.hidden = true;
+          input.setAttribute('aria-valuetext', fmt(env[n]));
+          update();
+        } else {
+          input.value = String(env[n]); /* refused: the previous valid values stay, and the authored message says why */
+          if (note) note.hidden = false;
+        }
+      });
+    });
+    fig.classList.add('qh-fig-live');
+    update();
+  }
+
+  function expansions(fig, cfg) {
+    var svg = fig.querySelector('.qh-fig-plane');
+    var W = cfg.plane[0], H = cfg.plane[1], cx = cfg.plane[2], cy = cfg.plane[3], r = cfg.plane[4];
+    function region(state) {
+      var el;
+      if (state.inside) {
+        el = doc.createElementNS(NS, 'circle');
+        el.setAttribute('cx', cx); el.setAttribute('cy', cy); el.setAttribute('r', r);
+      } else {
+        el = doc.createElementNS(NS, 'path');
+        el.setAttribute('fill-rule', 'evenodd');
+        el.setAttribute('d', 'M2 2H' + (W - 2) + 'V' + (H - 2) + 'H2Z M' + (cx + r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 -' + (2 * r) +
+                             ' 0a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0Z');
+      }
+      el.setAttribute('class', 'qh-fig-region');
+      el.setAttribute('data-part', 'region');
+      return el;
+    }
+    function choose(id) {
+      markCurrent(fig, id);
+      cfg.states.forEach(function (s) {
+        if (s.id !== id || !svg) return;
+        var old = svg.querySelector('[data-part="region"]');
+        if (old) svg.replaceChild(region(s), old);
+        var label = svg.querySelector('[data-part="region-label"]');
+        if (label) {
+          label.textContent = s.text;
+          label.setAttribute('x', s.at[0]); label.setAttribute('y', s.at[1]); label.setAttribute('text-anchor', s.at[2]);
+        }
+        svg.setAttribute('aria-label', s.text + '; ' + (svg.getAttribute('aria-label') || '').split('; ').slice(1).join('; '));
+      });
+    }
+    stateButtons(fig, choose);
+    fig.classList.add('qh-fig-live');
+    choose(cfg.initial);
+  }
+
+  function cohomology(fig, cfg) {
+    var svg = fig.querySelector('.qh-fig-complex');
+    function choose(id) {
+      markCurrent(fig, id);
+      cfg.states.forEach(function (s) {
+        if (s.id !== id || !svg) return;
+        var first = svg.querySelector('[data-part="first"]');
+        if (first) first.setAttribute('d', s.toV ? cfg.paths.v : cfg.paths.zero);
+        show(svg.querySelector('[data-part="first-zero"]'), !s.toV);
+        var fl = svg.querySelector('[data-part="first-label"]');
+        if (fl) fl.setAttribute('x', Math.round(s.toV ? cfg.mids.v : cfg.mids.zero));
+        show(svg.querySelector('[data-part="h"]'), !!s.h);
+        var hl = svg.querySelector('[data-part="h-label"]');
+        if (hl) { hl.textContent = s.h; show(hl, !!s.h); }
+        all('.qh-fig-basis[data-basis]', svg).forEach(function (g) {
+          g.classList.toggle('is-alive', s.alive.indexOf(g.getAttribute('data-basis')) >= 0);
+        });
+      });
+    }
+    stateButtons(fig, choose);
+    fig.classList.add('qh-fig-live');
+    choose(cfg.initial);
+  }
+
+  function infinite(fig, cfg) {
+    var env = { N: +cfg.control.initial };
+    function update() {
+      cfg.grids.forEach(function (g) {
+        var svg = fig.querySelector('svg[data-grid="' + g.id + '"]');
+        if (!svg) return;
+        all('.qh-fig-cell', svg).forEach(function (cell) {
+          var e = copy(env);
+          e.i = +cell.getAttribute('data-i'); e.j = +cell.getAttribute('data-j');
+          var on = val(g.rule, e) === true, t = cell.querySelector('text');
+          cell.classList.toggle('is-on', on);
+          if (t) t.textContent = on ? '1' : '0';
+        });
+        var beyond = svg.querySelector('[data-part="beyond"]');
+        if (beyond) { var e2 = copy(env); e2.i = cfg.n; e2.j = cfg.n; beyond.classList.toggle('is-on', val(g.rule, e2) === true); }
+      });
+      var o = fig.querySelector('output[data-value="N"]');
+      if (o) o.textContent = fmt(env.N);
+      var rank = fig.querySelector('output[data-value="rank:' + cfg.rank.id + '"]');
+      if (rank && cfg.rank.formula) rank.textContent = fmt(val(cfg.rank.formula, env));
+    }
+    var li = fig.querySelector('.qh-fig-control[data-param="N"]');
+    if (li) {
+      var input = rangeFor(fig, li, 'N', cfg.control, env.N);
+      input.addEventListener('input', function () {
+        env = { N: +input.value };
+        input.setAttribute('aria-valuetext', fmt(env.N));
+        update();
+      });
+    }
+    fig.classList.add('qh-fig-live');
+    update();
+  }
+
+  function adjunction(fig) {
+    var keys = all('.qh-fig-key[data-key="eta"], .qh-fig-key[data-key="epsilon"]', fig);
+    var pinned = '';
+    function emphasise(which) {
+      if (which) fig.setAttribute('data-emphasis', which); else fig.removeAttribute('data-emphasis');
+    }
+    keys.forEach(function (li) {
+      var which = li.getAttribute('data-key') === 'eta' ? 'unit' : 'counit';
+      var text = li.querySelector('.qh-fig-key-text');
+      if (!text) return;
+      var b = doc.createElement('button');
+      b.type = 'button';
+      b.className = 'qh-fig-key-button';
+      b.setAttribute('aria-pressed', 'false');
+      while (li.firstChild) b.appendChild(li.firstChild);
+      li.appendChild(b);
+      b.addEventListener('click', function () {
+        pinned = pinned === which ? '' : which;
+        keys.forEach(function (k) {
+          var kb = k.querySelector('button');
+          var kw = k.getAttribute('data-key') === 'eta' ? 'unit' : 'counit';
+          if (kb) kb.setAttribute('aria-pressed', pinned === kw ? 'true' : 'false');
+        });
+        emphasise(pinned);
+      });
+      b.addEventListener('mouseenter', function () { if (!pinned) emphasise(which); });
+      b.addEventListener('mouseleave', function () { if (!pinned) emphasise(''); });
+    });
+    fig.classList.add('qh-fig-live');
+  }
+
+  var MODELS = { 'gaussian-elimination': gaussian, 'two-expansions': expansions, 'cohomology-jump': cohomology,
+                 'infinite-rank': infinite, 'adjunction-triangles': adjunction };
+  all('figure[data-figure][data-config]').forEach(function (fig) {
+    var cfg;
+    try { cfg = JSON.parse(fig.getAttribute('data-config')); } catch (e) { return; }
+    if (fig.classList.contains('qh-fig-live') || !MODELS[cfg.model]) return;
+    MODELS[cfg.model](fig, cfg);
+  });
+})();
+</script></body></html>

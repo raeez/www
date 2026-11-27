@@ -1,0 +1,291 @@
+diff --git a/compiler/quantum-holography-status/figures.css b/compiler/quantum-holography-status/figures.css
+index a5acaf4..2e9e01f 100644
+--- a/compiler/quantum-holography-status/figures.css
++++ b/compiler/quantum-holography-status/figures.css
+@@ -9,12 +9,16 @@
+    colour, type and rhythm. */
+ .qh-fig { container-type: inline-size; margin: calc(var(--text-base) * 1.55 * 1.5) 0; padding: calc(var(--text-base) * 1.55 * .5) 0 0;
+           border-top: 1px solid var(--rule); --fig-au: calc(var(--text-base) * 1.55); }
++/* Inside a figure the host page's paragraph rules do not apply: no first-line indent and no justification. These
++   selectors outrank a host's `p` and `p + p` rules whatever the order of the stylesheets, and the figure's own
++   spacing rules below are scoped to .qh-fig for the same reason. */
++figure.qh-fig p, figure.qh-fig p + p { text-indent: 0; text-align: left; }
+ .qh-fig-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: calc(var(--fig-au) * .25) 16px;
+                margin: 0 0 calc(var(--fig-au) * .5); }
+ .qh-fig-title { margin: 0; font-size: calc(var(--text-base) * 1.08); font-weight: 600; line-height: 1.28; }
+ .qh-fig-refs { margin: 0; font-size: var(--text-xs); color: var(--ink-3); }
+ .qh-fig-refs a { color: var(--ink-2); }
+-.qh-fig-label { margin: 0 0 calc(var(--fig-au) * .25); font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
++.qh-fig .qh-fig-label { margin: 0 0 calc(var(--fig-au) * .25); font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+                 font-weight: 400; text-align: left; }
+ .qh-fig-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .75) 28px; align-items: start; }
+ @container (min-width: 40rem) { .qh-fig-body:not(.qh-fig-body-single) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr); } }
+@@ -23,8 +27,8 @@
+ .qh-fig-stage { container-type: inline-size; }
+ .qh-fig-domain { margin: 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); max-width: var(--measure); }
+ .qh-fig-side .qh-fig-domain { margin-bottom: calc(var(--fig-au) * .5); }
+-.qh-fig-note { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); font-style: italic; }
+-.qh-fig-explanation { display: block; margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); }
++.qh-fig .qh-fig-note { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); font-style: italic; }
++.qh-fig .qh-fig-explanation { display: block; margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); }
+ .qh-fig-strong { font-weight: 600; color: var(--ink); }
+ 
+ /* Controls: an authored label, the current value, the range input (added by the script) */
+@@ -34,7 +38,7 @@
+ .qh-fig-control-label { font-size: var(--text-sm); color: var(--ink-2); line-height: 1.35; }
+ .qh-fig-control input[type="range"] { grid-column: 1 / -1; width: 100%; margin: 2px 0 0; accent-color: var(--accent); }
+ .qh-fig-value { font-variant-numeric: lining-nums tabular-nums; color: var(--ink); }
+-.qh-fig-invalid { margin: calc(var(--fig-au) * .25) 0 0; padding: calc(var(--fig-au) * .25) 10px; border-left: 2px solid var(--accent);
++.qh-fig .qh-fig-invalid { margin: calc(var(--fig-au) * .25) 0 0; padding: calc(var(--fig-au) * .25) 10px; border-left: 2px solid var(--accent);
+                   background: var(--accent-soft); font-size: var(--text-xs); line-height: 1.45; color: var(--ink); }
+ .qh-fig-invalid[hidden] { display: none; }
+ .qh-fig button:focus-visible, .qh-fig input:focus-visible { outline: 2px solid var(--focus, var(--accent)); outline-offset: 2px; }
+@@ -59,10 +63,11 @@
+ @container (min-width: 50rem) { .qh-fig-profiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+ .qh-fig-profile { min-width: 0; max-width: 26rem; }
+ .qh-fig-profile .qh-fig-svg { max-width: 360px; }
+-.qh-fig-profile-label { margin: 0 0 2px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
+-.qh-fig-integral { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-2); }
+-.qh-fig-integral .qh-fig-label { display: block; margin: 0; }
+-.qh-fig-profile-caption { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
++.qh-fig .qh-fig-profile-label { margin: 0 0 2px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
++.qh-fig .qh-fig-integral { margin: 4px 0 0; }
++.qh-fig .qh-fig-integral .qh-fig-label { margin: 0; }
++.qh-fig .qh-fig-integral-value { margin: 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink); }
++.qh-fig .qh-fig-profile-caption { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
+ .qh-fig-curve { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+ .qh-fig-mean { stroke: var(--accent); stroke-width: 1.4; }
+ 
+@@ -84,12 +89,12 @@
+ .qh-fig-live .qh-fig-states-compact { gap: calc(var(--fig-au) * .25); }
+ .qh-fig-live .qh-fig-state:not([aria-current="true"]) .qh-fig-per-state { display: none; }
+ .qh-fig-state-label { margin: 0; font-size: var(--text-sm); font-weight: 600; }
+-.qh-fig-cond { margin: 2px 0 0; font-size: var(--text-sm); color: var(--ink-2); }
++.qh-fig .qh-fig-cond { margin: 2px 0 0; font-size: var(--text-sm); color: var(--ink-2); }
+ .qh-fig-series { margin: calc(var(--fig-au) * .25) 0 0; overflow-x: auto; }
+ .qh-fig-series .qh-fig-label { margin: 0; }
+ .qh-fig-per-state { margin-top: 4px; }
+-.qh-fig-matrix { margin: 4px 0; overflow-x: auto; }
+-.qh-fig-homotopy { margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); }
++.qh-fig .qh-fig-matrix { margin: 4px 0; overflow-x: auto; }
++.qh-fig .qh-fig-homotopy { margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); }
+ .qh-fig-homotopy .qh-fig-label { display: block; margin: 0; }
+ .qh-fig-choose, .qh-fig-key-button { font: inherit; color: inherit; background: none; border: 1px solid var(--rule); border-radius: 999px;
+                                      padding: 3px 12px; cursor: pointer; text-align: left; }
+@@ -127,7 +132,7 @@
+ .qh-fig-pair { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .75) 32px; }
+ @container (min-width: 34rem) { .qh-fig-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+ .qh-fig-col { min-width: 0; }
+-.qh-fig-col-head { margin: 0 0 4px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
++.qh-fig .qh-fig-col-head { margin: 0 0 4px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
+ .qh-fig-col .qh-fig-control { margin: 0 0 6px; max-width: 280px; }
+ .qh-fig-grid { max-width: 260px; }
+ .qh-fig-cell rect { fill: var(--paper-3); stroke: var(--rule-soft); stroke-width: 1; transition: fill .15s, stroke .15s; }
+@@ -158,7 +163,7 @@
+ .qh-fig-arrow.is-counit .qh-fig-map-label { fill: var(--ink) !important; }
+ .qh-fig-arrow { transition: opacity .2s; }
+ .qh-fig[data-emphasis="unit"] .qh-fig-arrow:not(.is-unit), .qh-fig[data-emphasis="counit"] .qh-fig-arrow:not(.is-counit) { opacity: .25; }
+-.qh-fig-equation { margin: 6px 0 0; font-size: var(--text-base); font-style: italic; color: var(--ink); }
++.qh-fig .qh-fig-equation { margin: 6px 0 0; font-size: var(--text-base); font-style: italic; color: var(--ink); }
+ .qh-fig-properties td { width: 50%; }
+ 
+ .qh-fig-caption { margin: calc(var(--fig-au) * .75) 0 0; max-width: var(--measure); font-size: var(--text-sm); line-height: 1.5; color: var(--ink-2); }
+diff --git a/compiler/quantum-holography-status/figures.py b/compiler/quantum-holography-status/figures.py
+index bcb982d..a35b5f5 100644
+--- a/compiler/quantum-holography-status/figures.py
++++ b/compiler/quantum-holography-status/figures.py
+@@ -1034,6 +1034,58 @@ def head_html(record, rich, words):
+     return f'<div class="qh-fig-head"><p class="qh-fig-title" data-block-title>{rich(record["title"])}</p>{side}</div>'
+ 
+ 
++def plain_formula_prose(node):
++    """An authored formula as the author spells it in a sentence: -c*x/b as -cx/b, hbar/b as ħ/b."""
++    k = node[0]
++    if k == 'var':
++        return {'hbar': '\u0127', 'pi': '\u03c0'}.get(node[1], node[1])
++    if k == 'num':
++        return str(node[1])
++    if k == 'neg':
++        return '-' + plain_formula_prose(node[1])
++    if k == 'mul':
++        return plain_formula_prose(node[1]) + plain_formula_prose(node[2])
++    if k == 'div':
++        return plain_formula_prose(node[1]) + '/' + plain_formula_prose(node[2])
++    if k == 'pow':
++        return plain_formula_prose(node[1]) + '^' + plain_formula_prose(node[2])
++    if k == 'group':
++        return '(' + plain_formula_prose(node[1]) + ')'
++    if k in ('add', 'sub'):
++        return plain_formula_prose(node[1]) + ('+' if k == 'add' else '-') + plain_formula_prose(node[2])
++    if k == 'call':
++        return node[1] + '(' + plain_formula_prose(node[2]) + ')'
++    raise FormulaError(f'cannot spell {k}')
++
++
++def prose_formulas(text, formulas):
++    """An authored sentence with each of the record's own formulas that it spells in plain text (the caption's
++    -cx/b and ħ/b) set as that formula, typeset like the figure's equations. Only the record's formulas are matched,
++    whole and at least three characters long; every other character of the sentence stays as written."""
++    if any(d in text for d in ('\\(', '\\[', '$')):
++        return text
++    forms = {}
++    for node in formulas:
++        try:
++            spelled = plain_formula_prose(node)
++        except FormulaError:
++            continue
++        if len(spelled) >= 3:
++            forms.setdefault(spelled, tex(node))
++    if not forms:
++        return text
++    pattern = re.compile(r'(?<![\w/^])(' + '|'.join(re.escape(f) for f in sorted(forms, key=len, reverse=True)) + r')(?![\w/^])')
++    return pattern.sub(lambda m: '\\(' + forms[m.group(1)] + '\\)', text)
++
++
++def caption_text(record):
++    """The figure caption as authored; for the Gaussian figure, its own output formulas typeset where it spells them."""
++    if record.get('model') != 'gaussian-elimination':
++        return record['caption']
++    names = list(record.get('parameters') or {})
++    return prose_formulas(record['caption'], [parse(f, names) for f in (record.get('outputs') or {}).values()])
++
++
+ def render_gaussian(record, rich, words):
+     rid, labels = record['id'], record.get('labels') or {}
+     names = list(record['parameters'])
+@@ -1057,14 +1109,22 @@ def render_gaussian(record, rich, words):
+         f'<td class="qh-fig-formula">{rich(math_inline(tex(node)))}</td>'
+         f'<td class="qh-fig-num"><output class="qh-fig-value" data-value="{attr(k)}">{fmt(value(node, env))}</output></td></tr>'
+         for k, node in outputs.items())
++    formulas = list(outputs.values())
++
++    def integral(p):
++        """The authored integral over the real line under the figure's label for it. A constant (the density's 1) is
++        its own value and is written once; any other integral is its formula and its value at the parameters."""
++        node = parse(p['integral_over_real_line'], names)
++        shown = rich(math_inline(tex(node)))
++        if variables(node):
++            shown += (f' <span class="qh-fig-eq">=</span> <output class="qh-fig-value" data-value="profile:{attr(p["id"])}">'
++                      f'{fmt(value(node, env))}</output>')
++        return (f'<div class="qh-fig-integral"><p class="qh-fig-label">{esc(words["integral"])}</p>'
++                f'<p class="qh-fig-integral-value">{shown}</p></div>')
+     panels = ''.join(
+         f'<div class="qh-fig-profile" data-profile="{attr(p["id"])}">'
+         f'<p class="qh-fig-profile-label">{rich_label(p["label"], rich)}</p>{profile_svg(record, p, env)}'
+-        f'<p class="qh-fig-integral"><span class="qh-fig-label">{esc(words["integral"])}</span> '
+-        f'{rich(math_inline(tex(parse(p["integral_over_real_line"], names))))} '
+-        f'<span class="qh-fig-eq">=</span> <output class="qh-fig-value" data-value="profile:{attr(p["id"])}">'
+-        f'{fmt(value(parse(p["integral_over_real_line"], names), env))}</output></p>'
+-        f'<p class="qh-fig-profile-caption">{rich_label(p["caption"], rich)}</p></div>'
++        f'{integral(p)}<p class="qh-fig-profile-caption">{rich_label(prose_formulas(p["caption"], formulas), rich)}</p></div>'
+         for p in record.get('profiles') or [])
+     body = (f'<div class="qh-fig-body"><div class="qh-fig-side">'
+             f'<p class="qh-fig-label">{esc(words["controls"])}</p><ul class="qh-fig-controls">{ctrl}</ul>'
+@@ -1116,7 +1176,7 @@ def render(record, ctx):
+                      f'data-figure-type="{attr(record["type"])}" data-figure-model="{attr(record["model"])}" '
+                      f'data-figure-chapter="{attr(record.get("chapter_id", ""))}" data-figure-section="{attr(record.get("section_id", ""))}" '
+                      f'data-config="{cfg}">{head_html(record, rich, words)}{body}'
+-                     f'<figcaption class="qh-fig-caption">{rich_label(record["caption"], rich)}</figcaption></figure>'),
++                     f'<figcaption class="qh-fig-caption">{rich_label(caption_text(record), rich)}</figcaption></figure>'),
+             'problems': []}
+ 
+ 
+diff --git a/compiler/quantum-holography-status/tests/figures.test.cjs b/compiler/quantum-holography-status/tests/figures.test.cjs
+index 0f1753f..c7fdb63 100644
+--- a/compiler/quantum-holography-status/tests/figures.test.cjs
++++ b/compiler/quantum-holography-status/tests/figures.test.cjs
+@@ -44,14 +44,20 @@ test('Gaussian: a value outside the rule is refused, the authored message shows,
+   assert.deepEqual(Array.from(fig.querySelectorAll('output[data-value]')).map(o => o.textContent), before, 'no value changed');
+ });
+ 
+-test('Gaussian: the three profiles keep their own integrals', () => {
++test('Gaussian: the three profiles keep their own integrals; a constant one is written once', () => {
+   const w = load(), fig = w.document.querySelector('figure[data-figure-model="gaussian-elimination"]');
+   if (!fig) return 'SKIP';
+   const cfg = JSON.parse(fig.getAttribute('data-config'));
+-  const dens = cfg.profiles.find(p => p.density);
+-  if (dens) assert.equal(fig.querySelector(`output[data-value="profile:${dens.id}"]`).textContent, '1');
++  const dens = cfg.profiles.find(p => p.density), other = cfg.profiles.find(p => !p.density);
++  const read = id => fig.querySelector(`.qh-fig-profile[data-profile="${id}"] .qh-fig-integral-value`);
++  if (dens) {
++    assert.equal(read(dens.id).querySelector('output'), null, 'the constant has no readout of its own');
++    assert.equal(read(dens.id).textContent.includes('='), false, 'never "1 = 1"');
++  }
++  const before = other && read(other.id).querySelector('output').textContent;
+   input(w, fig.querySelector('input[id$="--b"]'), 2);
+-  if (dens) assert.equal(fig.querySelector(`output[data-value="profile:${dens.id}"]`).textContent, '1', 'a density integrates to one at every b');
++  if (dens) assert.equal(read(dens.id).querySelector('output'), null, 'a density integrates to one at every b');
++  if (other) assert.notEqual(read(other.id).querySelector('output').textContent, before, 'the other integrals follow b');
+   assert.equal(fig.querySelectorAll('.qh-fig-area').length, 0, 'no filled area');
+ });
+ 
+diff --git a/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json b/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json
+index c20acaa..6023a2e 100644
+--- a/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json
++++ b/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json
+@@ -98,7 +98,7 @@
+      "variable": "y",
+      "formula": "sqrt(b/(2*pi*hbar))*exp(-b*(y+c*x/b)^2/(2*hbar))",
+      "integral_over_real_line": "1",
+-     "caption": "Synthetic density caption."
++     "caption": "Synthetic density caption: mean -cx/b and variance ħ/b; a b and 1/t stay as written."
+     },
+     {
+      "id": "synthetic-centred",
+diff --git a/compiler/quantum-holography-status/tests/test_figures.py b/compiler/quantum-holography-status/tests/test_figures.py
+index dfa32f3..704ba16 100644
+--- a/compiler/quantum-holography-status/tests/test_figures.py
++++ b/compiler/quantum-holography-status/tests/test_figures.py
+@@ -121,7 +121,9 @@ class Gaussian(unittest.TestCase):
+ 
+     def test_every_authored_word_verbatim_and_nothing_invented(self):
+         texts = [GAUSS['title'], GAUSS['caption'], GAUSS['validity']['message']] + list(GAUSS['labels'].values())
+-        texts += [c['label'] for c in GAUSS['controls'].values()] + [p[k] for p in GAUSS['profiles'] for k in ('label', 'caption')]
++        texts += [c['label'] for c in GAUSS['controls'].values()] + [p['label'] for p in GAUSS['profiles']]
++        formulas = [F.parse(f, list(GAUSS['parameters'])) for f in GAUSS['outputs'].values()]
++        texts += [F.prose_formulas(p['caption'], formulas) for p in GAUSS['profiles']]
+         for t in texts:
+             self.assertIn(html.escape(t, quote=False), self.html)
+         self.assertNotIn(GAUSS['prohibited_inferences'][0], self.html)
+@@ -141,8 +143,39 @@ class Gaussian(unittest.TestCase):
+             want = F.value(F.parse(p['integral_over_real_line'], names), env)
+             self.assertAlmostEqual(integrate(node, p['variable'], env), want, places=4, msg=p['id'])
+         self.assertEqual(len(re.findall(r'<div class="qh-fig-profile"', self.html)), 3)
+-        density = re.search(r'data-profile="synthetic-density".*?</div>', self.html, re.S).group(0)
+-        self.assertIn('data-value="profile:synthetic-density">1</output>', density)
++
++    def test_each_integral_is_written_once_under_the_same_label_as_the_others(self):
++        # G1: the density's authored integral is the constant 1; it is written once ("1", never "1 = 1"). Every
++        # other integral is its authored formula and its value at the parameters.
++        label = '<p class="qh-fig-label">Integral over the real line</p>'
++        panel = {seg.split('"', 1)[0]: seg for seg in self.html.split('<div class="qh-fig-profile" data-profile="')[1:]}
++        density = panel['synthetic-density'].split('<table', 1)[0]
++        self.assertIn(f'<div class="qh-fig-integral">{label}<p class="qh-fig-integral-value">\\(1\\)</p></div>', density)
++        self.assertNotIn('<output', density)
++        centred = panel['synthetic-centred']
++        self.assertRegex(centred, r'<p class="qh-fig-integral-value">\\\(\\sqrt\{[^<]*\\\) <span class="qh-fig-eq">=</span> '
++                                  r'<output class="qh-fig-value" data-value="profile:synthetic-centred">2\.507</output></p>')
++        # G3: labels of one rank are one element: the parameters' label and each integral's label
++        self.assertIn('<p class="qh-fig-label">Parameters</p>', self.html)
++        self.assertEqual(self.html.count(label), 3)
++
++    def test_the_records_own_formulas_are_typeset_where_a_caption_spells_them(self):
++        # G2: "-cx/b" and "ħ/b" in an authored caption are the record's outputs conditional_mean and
++        # conditional_variance; they are set as those formulas. Nothing else changes: a single symbol and a formula
++        # the record does not have ("1/t") stay as written, and no word is added or removed.
++        cap = re.search(r'data-profile="synthetic-density".*?<p class="qh-fig-profile-caption">(.*?)</p>', self.html, re.S).group(1)
++        self.assertEqual(cap, 'Synthetic density caption: mean \\(-\\frac{c x}{b}\\) and variance \\(\\frac{\\hbar}{b}\\); a b and 1/t stay as written.')
++        back = re.sub(r'\\\(-\\frac\{c x\}\{b\}\\\)', '-cx/b', re.sub(r'\\\(\\frac\{\\hbar\}\{b\}\\\)', '\u0127/b', cap))
++        self.assertEqual(back, next(p for p in GAUSS['profiles'] if p['id'] == 'synthetic-density')['caption'])
++        self.assertEqual(F.prose_formulas('mean \\(x\\) and -cx/b', []), 'mean \\(x\\) and -cx/b', 'a caption with TeX goes through whole')
++
++    def test_the_host_pages_paragraph_rules_stop_at_the_figure(self):
++        # G3: a host's p + p indent, justification and p margins do not reach the figure's own paragraphs.
++        css = (HERE.parent / 'figures.css').read_text(encoding='utf-8')
++        self.assertIn('figure.qh-fig p, figure.qh-fig p + p { text-indent: 0; text-align: left; }', css)
++        for k in ('label', 'invalid', 'profile-label', 'profile-caption', 'note', 'explanation', 'cond', 'matrix', 'homotopy',
++                  'col-head', 'equation', 'integral', 'integral-value'):
++            self.assertRegex(css, rf'\n\.qh-fig \.qh-fig-{k} \{{[^}}]*margin', k)
+ 
+     def test_the_mean_carries_its_authored_label_on_the_density_only(self):
+         density = re.search(r'data-profile="synthetic-density".*?</div>', self.html, re.S).group(0)

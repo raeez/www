@@ -1,0 +1,341 @@
+{
+ "note": "Structure only (ids, numbers, titles, prerequisites, routes), copied from the reader manifest for the reader tests; no chapter text.",
+ "source_sha256": "16a3f0dff9ca0c886a36189e6dbbe17a50f267dea6d5a7b504029bbe29511455",
+ "schema": "qh-reader/v1",
+ "title": "Chiral Quantum Groups and Holography",
+ "subtitle": "Local operations, duality and reconstruction",
+ "audience": "Mathematicians and theoretical physicists entering the programme",
+ "parts": [
+  {
+   "id": "p1",
+   "title": "Observables, representations and locality",
+   "chapter_ids": [
+    "ch01",
+    "ch02",
+    "ch03",
+    "ch04"
+   ]
+  },
+  {
+   "id": "p2",
+   "title": "Duality and centres",
+   "chapter_ids": [
+    "ch05",
+    "ch06",
+    "ch07"
+   ]
+  },
+  {
+   "id": "p3",
+   "title": "Operations and their domains",
+   "chapter_ids": [
+    "ch08",
+    "ch09",
+    "ch10",
+    "ch11"
+   ]
+  },
+  {
+   "id": "p4",
+   "title": "Geometric and arithmetic realizations",
+   "chapter_ids": [
+    "ch12",
+    "ch13",
+    "ch14",
+    "ch15",
+    "ch16"
+   ]
+  },
+  {
+   "id": "p5",
+   "title": "Reconstruction and open problems",
+   "chapter_ids": [
+    "ch17",
+    "ch18"
+   ]
+  }
+ ],
+ "chapters": [
+  {
+   "id": "ch01",
+   "part_id": "p1",
+   "number": 1,
+   "title": "Boundary observables and reconstruction",
+   "prerequisites": [],
+   "summary": "What boundary observables must retain if they are to determine bulk operations and quantum states."
+  },
+  {
+   "id": "ch02",
+   "part_id": "p1",
+   "number": 2,
+   "title": "Algebras, modules and combining systems",
+   "prerequisites": [
+    "ch01"
+   ],
+   "summary": "Multiplication composes observables; coproducts combine their actions; associators, braidings and adjunctions specify the resulting comparisons."
+  },
+  {
+   "id": "ch03",
+   "part_id": "p1",
+   "number": 3,
+   "title": "Local fields on a curve",
+   "prerequisites": [
+    "ch02"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch04",
+   "part_id": "p1",
+   "number": 4,
+   "title": "Factorization and collision geometry",
+   "prerequisites": [
+    "ch03"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch05",
+   "part_id": "p2",
+   "number": 5,
+   "title": "Bar constructions and coherent operations",
+   "prerequisites": [
+    "ch02",
+    "ch04"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch06",
+   "part_id": "p2",
+   "number": 6,
+   "title": "Derived adjunctions and induction",
+   "prerequisites": [
+    "ch05"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch07",
+   "part_id": "p2",
+   "number": 7,
+   "title": "Actions and derived centres",
+   "prerequisites": [
+    "ch04",
+    "ch05",
+    "ch06"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch08",
+   "part_id": "p3",
+   "number": 8,
+   "title": "Tensor products, support and completion",
+   "prerequisites": [
+    "ch05",
+    "ch06"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch09",
+   "part_id": "p3",
+   "number": 9,
+   "title": "Ordered boundary operations and mixed theories",
+   "prerequisites": [
+    "ch04",
+    "ch05",
+    "ch08"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch10",
+   "part_id": "p3",
+   "number": 10,
+   "title": "Analytic sewing and conformal blocks",
+   "prerequisites": [
+    "ch03",
+    "ch04",
+    "ch08"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch11",
+   "part_id": "p3",
+   "number": 11,
+   "title": "States, determinant lines and quantum fields",
+   "prerequisites": [
+    "ch01",
+    "ch05",
+    "ch08",
+    "ch09",
+    "ch10"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch12",
+   "part_id": "p4",
+   "number": 12,
+   "title": "Quantum groups and nonlinear chiral algebras",
+   "prerequisites": [
+    "ch02",
+    "ch03",
+    "ch04",
+    "ch05",
+    "ch08"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch13",
+   "part_id": "p4",
+   "number": 13,
+   "title": "Geometric reconstruction and rational examples",
+   "prerequisites": [
+    "ch04",
+    "ch06",
+    "ch07",
+    "ch12"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch14",
+   "part_id": "p4",
+   "number": 14,
+   "title": "Branes and open–closed operations",
+   "prerequisites": [
+    "ch05",
+    "ch06",
+    "ch09",
+    "ch11"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch15",
+   "part_id": "p4",
+   "number": 15,
+   "title": "Hall geometry and compact states",
+   "prerequisites": [
+    "ch04",
+    "ch05",
+    "ch12",
+    "ch13"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch16",
+   "part_id": "p4",
+   "number": 16,
+   "title": "Arithmetic traces and positivity",
+   "prerequisites": [
+    "ch01",
+    "ch05",
+    "ch08",
+    "ch15"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch17",
+   "part_id": "p5",
+   "number": 17,
+   "title": "From boundary operations to bulk reconstruction",
+   "prerequisites": [
+    "ch06",
+    "ch07",
+    "ch09",
+    "ch10",
+    "ch11",
+    "ch12",
+    "ch14"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "ch18",
+   "part_id": "p5",
+   "number": 18,
+   "title": "The strongest remaining questions",
+   "prerequisites": [
+    "ch07",
+    "ch08",
+    "ch11",
+    "ch12",
+    "ch13",
+    "ch14",
+    "ch15",
+    "ch16",
+    "ch17"
+   ],
+   "summary": ""
+  }
+ ],
+ "routes": [
+  {
+   "id": "algebra-geometry",
+   "title": "Algebra and geometry",
+   "chapter_ids": [
+    "ch01",
+    "ch02",
+    "ch03",
+    "ch04",
+    "ch05",
+    "ch06",
+    "ch07",
+    "ch08",
+    "ch12",
+    "ch13",
+    "ch15"
+   ]
+  },
+  {
+   "id": "field-theory",
+   "title": "Field theory",
+   "chapter_ids": [
+    "ch01",
+    "ch02",
+    "ch03",
+    "ch04",
+    "ch05",
+    "ch06",
+    "ch07",
+    "ch08",
+    "ch09",
+    "ch10",
+    "ch11",
+    "ch12",
+    "ch14",
+    "ch17"
+   ]
+  },
+  {
+   "id": "arithmetic",
+   "title": "Arithmetic",
+   "chapter_ids": [
+    "ch01",
+    "ch02",
+    "ch03",
+    "ch04",
+    "ch05",
+    "ch06",
+    "ch07",
+    "ch08",
+    "ch12",
+    "ch13",
+    "ch15",
+    "ch16"
+   ]
+  }
+ ],
+ "figure_ids": [
+  "fig-gaussian-reduction",
+  "fig-local-expansions"
+ ]
+}

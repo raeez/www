@@ -1,0 +1,24 @@
+Figure components: final checks, 2026-11-16T19:36Z
+author manifest snapshot sha256 a8dd97f6790f553f36a64442e6ecc0d772fe482baff8e5a9aa7e99cab305086b
+
+unit, atlas worktree (with the audit.py beside it; no test skipped): exit 0 Ran 25 tests in 1.774s OK 
+unit, copy of root's integrated compiler with its audit.py (no test skipped): exit 0 Ran 25 tests in 1.887s OK 
+preview fixture.html: 5 figures; problems: []
+preview manifest-plain.html: 5 figures; problems: []
+preview manifest-mathml.html (root renderer, MathML): 5 figures; problems: []
+jsdom fixture.html: all passed (9 pass)
+jsdom manifest-plain.html: all passed (9 pass)
+jsdom manifest-mathml.html: all passed (9 pass)
+
+In-book check: a copy of foundation's staged monograph source (materials/processed/qh-attack-heal-20261116/foundation/monograph/src, read only), with these three figure files, the author's current chapters and this manifest snapshot; built --no-fonts --allow-draft into tmp/reader-build/out (exit 0).
+math: 16507 formulas (16508 rendering jobs; errors: 0)
+figure lines in the build report:
+  FAIL reader: figure fig-state-line-cap is placed but not rendered
+  book (jsdom, with the reader script): figures: 5 | live: 5
+  book (jsdom, with the reader script): reader on: true
+  book (jsdom, with the reader script): elements with data-chapter and an id: 18 | of them figures: 0
+  book (jsdom, with the reader script): figures with data-section: 0 | titles for the reader: 5
+  book (jsdom, with the reader script): cohomology t=-1 chosen: negative | h shown: true
+  book (jsdom, with the reader script): infinite N=6 on-cells (finite): 6
+  book (jsdom, with the reader script): figure links: #eq-gaussian-integral #eq-gaussian-moments #eq-conditional-product-defect #eq-current-singularity #eq-local-expansions #eq-cohomology-jump #eq-sequence-tensor-map | unresolved: none
+  book (jsdom, with the reader script): script errors: none
