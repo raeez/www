@@ -1,0 +1,445 @@
+Introduction
+What a contour measures
+A contour on a surface can measure more than the charge it encloses. Let   be a holomorphic current in a coordi‐
+nate disk. Suppose that two insertions of this current have the singular product
+Here   is the vacuum field,   is the level, and the two sides have the same polar part at  . Integrate around   with a
+holomorphic weight  . The residue of   is  . A constant weight gives zero. The weight
+measures  . Replacing the two fields by a value at coincidence would lose the quantity the contour
+measures. The free current
+Draw a second contour around the first. Integration in the two possible orders defines two operations on any state
+inserted at the centre of the disk. As one contour passes the other, their difference is the integral of the polar part at the
+crossing. In a coordinate centred at the insertion, put  . The inner residue with weight   is
+. The remaining residue with weight   consequently gives
+Positive and negative modes of the same frequency can detect one another. A current acting on its vacuum, a contour
+enclosing two fields, and an operator on states are three uses of the same local product. Even in this example it matters
+on which side of an insertion a contour lies.
+Now put the disk in the boundary of a three-dimensional space. An interior insertion and a boundary experiment
+can be specified independently. Suppose the interior contains a line ending at the centre of the disk. What is its charge,
+how does it act on a second line, and what state does the filling of the disk prepare? A boundary description ought to
+predict each answer using operations available on the disk. The comparison has to hold also when two ends come
+together. Otherwise two successive calculations of the same measurement could give different answers according to
+when the ends were joined.
+This is the reconstruction problem in its simplest form. Given a boundary condition, construct its fields on open
+subsets of a curve, their collision operations and the sectors on which they act. Given a second boundary condition and
+an interface between the two, ask which sectors cross the interface and which measurements one can recover on the
+return journey. Finally cut a filling across that boundary. Does pairing the two independently prepared states reproduce
+the amplitude computed before the cut? An affirmative answer would identify far more than a space of charges. It
+would identify positions and their collision limits, spaces of maps between sectors, products of lines, and the value of
+an experiment with its insertions still present. There is an algebraic reconstruction theorem on a curve. For an
+augmented algebra of coefficient complexes on ordered configurations, with scalar coefficient in arity zero, consecutive
+cuts recover its multiplication, all its associativity homotopies and the full spaces of maps to other such algebras. There
+is also a physical calculation. At level one, a pair of opposite abelian charge lines and an independently sourced
+harmonic disk give the same normalized joint Gaussian law for the positive harmonic coordinates on the boundary. Do
+all compatible actions on a boundary arise from the physical bulk? Does the agreement of normalized states extend to
+the absolute pairing of two fillings? Those questions require further constructions.
+What can be recovered by cutting
+For three fields in a fixed order there are two ways to make successive binary collisions. One brings   to   and their
+product to  , the other brings   to   first. Each prescription starts near its own diagonal in the space of three marked
+points. On a domain where both can be compared, write their products as   and  . When the fields form a
+cochain complex with differential  , the comparison itself can be an operation. For closed inputs a degree-minus-one
+operation   gives
+Thus the products agree on cohomology. A fourth field can be multiplied with  , so the choice of   still enters
+the next calculation. The five parenthesizations of four fields form a pentagon. Its two paths must be related by a
+further homotopy. An   multiplication keeps these operations and their compatibility at every number of inputs.
+At two points one can already see why the extension to a collision requires a choice. Hold the centre fixed, and let
+the difference of the two positions describe a small circle. If parallel transport on a fibre   around that circle is  , its
+cellular cochain complex is  . For a one-dimensional complex fibre and  , this complex is acyclic. For
+, a copy of the fibre survives in each of degrees zero and one. There is also the possibility of placing a complex at
+the collision itself. Its restriction to the punctured disk vanishes. Knowing every value and every continuation at
+distinct points therefore leaves a question even when every continuation is trivial. One must specify what is placed on
+the diagonal and how it attaches to the surrounding fields. The normal link of a collision
+What makes this multiplication chiral is the geometry on which it acts. On a smooth complex algebraic curve  ,
+use complexes of right algebraic  -modules on each  . Their underlying sheaves are quasi-coherent, differential oper‐
+ators act in the marked positions, and the complexes have compatible extraordinary pullbacks along the diagonals that
+merge consecutive labels. The word   records the order of multiplication. A cut after   separates two blocks. It is
+available on the open set   where each point of the first block is distinct from every point of the second. Points
+within a block may coincide. In the ordered word model, form the bar construction   of an augmented coherent
+multiplication  . It records strings of inputs and applies the products and their homotopies to consecutive entries. On
+degree-zero elements of the augmentation ideal of an ordinary associative algebra its product differential sends
+to  . The next differential gives the difference of the two triple products. For an associative chiral algebra
+in this model, cutting the string gives an equivalence on the separating open. Writing   and using   for derived
+external tensor product, the factorization condition is
+Choose a convolution for ordered configurations. It combines two coefficient systems by placing their inputs in
+separate blocks and extending the external product from the open where those blocks are disjoint. At two points let
+be that open inclusion. The binary multiplication of positive inputs is an actual map of
+complexes on  ,
+The source allows the two input fields to develop a singularity as they approach each other. We must specify the target
+on all of  , its collision identification  , and the arrow across the diagonal. Knowing the map off the
+diagonal alone cannot say how a class supported at the collision attaches. In all arities an associative chiral algebra is an
+augmented  -algebra for the chosen convolution whose bar coalgebra factorizes. Here   means an ordered multipli‐
+cation with the associativity homotopies just described. The augmentation is to the unit supported on the empty
+configuration. Its ideal is positive, meaning that the ideal has zero empty coefficient. Factorization has the following
+meaning. For each admissible division  , the coproduct on the bar coefficients must induce the restriction
+equivalence displayed for  , on the open where every point of   is distinct from every point of  . Equivalently, a
+separated pair of clusters can be read independently by its two sets of bar coefficients.
+Which divisions are admissible depends on the geometry. For a word in one fixed order, convolution uses consecu‐
+tive cuts, and a monotone collision combines neighbours. The full ordered configuration space glues a chart for every
+total order and allows collision maps with ordered fibres. Its symmetric monoidal convolution sums over all ordered
+decompositions into subsets. Restrict to a single increasing chart and project onto the consecutive summands to
+recover the word coalgebra. This projection need not be an equivalence. One can see what a nonconsecutive collision
+contributes without constructing a coalgebra. Put   and consider  .
+Around   the first residue, in  , is  , giving iterated residue  . Around   first the form has no generic
+pole, giving  . Around   first the coefficient is  , giving  . The three flags sum to zero, the residue identity
+for the chiral Lie bracket. Equating the first two answers would erase the contribution from the first and third points.
+The associativity of consecutive cuts is a different comparison, between the two bracketings of an ordered product.
+Associative products on configurations
+To see where a class of the consecutive-cut coalgebra can survive in cobar, keep the fields in the order  . When
+the first two points meet away from the third, the cut   is still available. When the last two meet away from the
+first, one can use  . At a meeting of the first and third points every cut separates a pair at the same position. Both
+cuts fail along the entire diagonal  , even where the middle point lies elsewhere.
+How much of the multiplication survives the passage to cuts? Give the empty configuration coefficient  , with its
+specified augmentation on the algebra and coaugmentation on the coalgebra. The reduced coefficients then have posi‐
+tive arity. A word of length   admits at most   nonempty blocks, so the iterated reduced constructions terminate at
+each arity. For a smooth separated algebraic curve of finite type, the resulting inverse theorem concerns the sequence of
+coefficient complexes. Bar and cobar are inverse equivalences between connected augmented algebras and connected
+counital coaugmented coalgebras for consecutive cuts, with their full derived spaces of maps. For a factorizing coalgebra
+the reduced three-input cobar coefficient vanishes wherever  . Along  , its support depends on the coalge‐
+bra. To carry the construction through a collision, observe that a cut inside a block of labels being identified disappears,
+while a cut between two such blocks descends to the corresponding cut of the shorter word. A comparison with fields
+constructed from a different theory must in addition identify their vacuum, translations and collision operations.
+Recovering the algebra from cuts
+There is a short reason why putting the cuts back gives the original object. A term in cobar of bar is a word of
+words. Flatten it to a string of   nonempty pieces. In the associated graded complex each gap is either inside one word
+or between two words. The differential which changes that choice gives the two copies of the same coefficient, joined by
+the identity, at every gap. For  , pair terms at the first gap. They contract in pairs with opposite incidence signs. The
+single piece survives. At a configuration of   points there can be at most   nonempty pieces, so this calculation finishes
+in each arity even for a coefficient complex unbounded in both cohomological directions. It is this finiteness which
+allows one to say that maps and their homotopies also come back. There is no operation in the argument which assigns
+a state space to an arbitrary line or prescribes a value for an independent field at the collision.
+A symmetry on a pair of states
+A different question arises when a symmetry acts on two independently prepared systems. Which current acts on their
+tensor product? If   and   have levels   and their mixed product is regular, their sum has double-pole coefficient
+. Writing   for the algebra of a free current of level  , the simultaneous action comes from
+The direction and levels of this map are forced by the double pole. A unital field map from   to the scalars would have
+to preserve it, so the regularity of scalar fields would force  . The augmentation at the empty configuration in the
+bar theorem belongs to the geometric coefficient system. In a chiral quantum group the coproduct must preserve
+the field products, give compatible actions on three systems and respect exchange when their positions move. These
+requirements concern the tensor product of systems. Cutting a string in the bar construction alone supplies no
+such action.
+The plus sign in the level has a representation-theoretic meaning. Let the two currents act on spaces   and  . On
+, their sum acts by  . The mixed commutators vanish, so the contour commutator on the
+tensor product has central coefficient  . Pullback along the displayed algebra map is the tensor product of
+these representations. Three such systems give the same current whichever pair is combined first. Moving two insertion
+points around one another asks a further question. The interchange should be an operator on the two representations,
+should respect their fields as the positions vary, and should agree with moving past a pair one point at a time. These are
+the reasons to ask for a coproduct, translation and an exchange operator in one structure.
+To formulate this requirement for any associative chiral algebra, specify how two independent systems are
+combined at the same positions, writing their tensor product as  . To multiply in it, one must interchange the
+middle two inputs before multiplying in the respective factors. In chiral geometry this interchange acts on the configu‐
+ration extensions, on a common domain for their poles and supports. A chiral coproduct is then an algebra map
+, with coherent coassociativity and a counit to the unit of  , or a family which combines levels. For colli‐
+sion coefficients one can tensor the two bar coalgebras on the diagonal and transport back by cobar, obtaining
+. To identify this product with the tensor of fields carrying an exchange, one still has to
+construct an interchange with those fields. The free current illustrates why cutting   at separated positions and acting
+on a pair of systems solve different problems.
+There is a class in which this compatibility is a theorem. Take a Hopf algebra over   with bijective antipode and a
+translation   that is both a derivation and a coderivation and satisfies  , where   is its counit. A unitary spectral
+coquasitriangular form   pairs two inputs in Laurent polynomials in their separation  . It is multiplicative against the
+coproduct, differentiates under translation, and implements an exchange whose reverse is its inverse. For Hopf auto‐
+morphisms   preserving the translation and the form, these data construct a field algebra   at each such level  .
+Writing   for the Hopf coproduct, the maps for combining levels form a coassociative family
+The tensor product on the right uses   when a field in one factor passes a field in the other. With that contraction
+included, applying   to a product gives the product of the images, with its full dependence on  . Exchanging the
+product with a third field is the composite of the two exchanges with its factors. This is the field hexagon. The spectral
+field and coproduct
+Write   for the field of   evaluated on  , and   for the field on the two factors with their cross-contrac‐
+tion. The equation tested by a coproduct   and the equation tested by exchange   have the following forms.
+Coproduct compatibility is
+For  , the hexagon reads
+The counit for this family is at the identity level. The last factor of the hexagon is expanded in nonnegative powers of
+. It exchanges the first and third fields at their actual separation. The other exchange uses the separation of the second
+and third. Thus the translation between the two centres of expansion enters the symmetry even before one chooses
+a representation.
+The range of this construction matters for familiar fields. In the   algebra let   be the stress field, let   have spin
+three and write    for the regular product obtained after subtracting the singular terms. At central charge   with
+, the double pole of   contains
+A description by single modes and scalars now encounters an elementary difficulty. In the regular normalization of the
+spin-three generator  , a commutator on the vacuum has a term   independent of the term proportional to  .
+A basis of ordered creation modes separates these two states even at  , where the displayed normalization by
+breaks down. Retaining the quadratic term changes the dual fields too. Their regular product acquires a derivative
+correction, and the differential of the curved dual squares to an operation of its curvature. For universal algebras with
+finitely many free even generators and homogeneous quadratic, linear and scalar brackets under the stated weight
+hypotheses, this construction recovers maps of fields from the corresponding coupling equation. A description of
+continuous modules or of the fusion of physical lines would require more. The spin-three calculation
+Which representations cross an interface
+One way of finding representations is to pass through an interface at which two theories meet. The simplest example is
+an  -  bimodule  . A state in a left  -module   passes to  , a left  -module. Going back from an  -module
+gives the complex of responses  . Denote these operations by   and  . The unit   sends   to
+the response  . The counit   evaluates a response on an element of the interface. These maps ask
+two different experimental questions. Can every original state and every map between original states be recovered?
+Which states on the far side can actually be prepared in this way? If  ,   and  , every complex
+comes back unchanged on the first journey. On the second,   comes back as  . Thus even perfect recovery
+in one direction specifies a sector on the other side.
+There is a theorem with this shape for the nonabelian currents. Let   be simple,   its dual Coxeter number and
+an irrational shifted level, meaning  . Write   for the affine mode algebra at level   and   for
+the polynomial differential graded line algebra. Induce from a vector killed by the strictly positive currents, leaving the
+constant currents free to act. The resulting affine module is
+Supply its coherent right  -action, the smooth comparison on its endomorphisms and the compatible Taylor cutoffs
+and tensor–Hom adjunction of the affine realization. The unit is then an equivalence for every unbounded  -complex.
+Its image consists precisely of the smooth affine complexes generated by   under shifts, cones, coproducts and retracts,
+including energy shifts in the graded convention.
+The reason a finite calculation reaches unbounded complexes here is quite different from the arity bound for bar
+and cobar. Let   be the positive-weight ideal of  ,  , and   the number of positive roots. Each successive
+nonzero factor of   raises the length in a finite Bruhat order. The derived tensor power of   over   of length
+vanishes, while the power of length   can survive. For   one has a nonzero cube and a zero fourth power. This gives a
+finite resolution of the unit comparison by comparisons on coefficients inflated from  . It also explains why one must
+ask again at rational shifted level. At raw   level  , there is an infinite direct-limit complex killed by reduction to
+which still passes through the interface and returns intact. At the critical raw level  , assuming its smooth realization
+and the unit theorem on complexes bounded below in energy, there are nonzero complexes killed by the affine
+realization itself. An independently defined physical induction and restriction would have to realize these maps on their
+original domains and carry the product of two lines through the interface. The affine interface
+A different route begins with the geometry of the modules. For an ordinary unital chiral algebra on a smooth sepa‐
+rated algebraic curve, take the complete families of ordinary modules with arbitrary classical parameter schemes.
+Inserting the empty unit in those families gives the vacuum on all configurations. The two-point residue of that
+vacuum retrieves the original chiral multiplication, including its extension to a collision. Classical parameters matter. A
+module supported at the origin can have zero ordinary fibre and a nonzero first derived fibre. In the coordinate model
+, the transverse parameter acts as  . Its cokernel is zero and its kernel is the constants. Ordinary restric‐
+tion sees the cokernel, whereas derived restriction retains both. This round trip therefore proves something different
+from the equivalence on consecutive-cut coefficient sequences. It starts with the complete ordinary family, including
+the collision information that the open configuration alone does not specify. Vacuum and geometric reconstruction
+Joining two insertions
+Suppose we know exactly which sectors cross. To join two operations, the outgoing sector of the first must agree with
+the incoming sector of the second. This principle gives an explicit tensor construction for the simple Virasoro minimal
+models at coprime integers  . Let   be their finitely many simple modules and work with finite direct sums.
+For a marked point the full rational stress Ward identities impose the action of vector fields meromorphic at the inser‐
+tions. Taking the part which obeys the relations of the simple algebra and then taking the restricted contragredient gives
+the representing tensor product  . Each fusion channel now has two ends. If   is the set of simples, put
+The fibre is a bimodule over  . In its tensor product over  , the two adjacent idempotents satisfy
+unless  . Precisely the composable channels survive. Composition with the associator gives the tensor comparison,
+and semisimplicity makes it invertible. This reconstructs a finite weak Hopf algebra acting on the fibres. Its tensor unit
+is  , and the coproduct of the identity projects an ordinary tensor onto the matching end labels. In the Ising model,
+the two ways through   really are different intermediate states. An ordinary vector-space fibre which
+requires the dimension of   to be a positive integer would have to solve  . The two ends of a channel
+For a continuum of intermediate labels there is an analytic question before one can even compare two ways of join‐
+ing. Take the Virasoro positive principal representations at real  , with highest weight   for
+. If the amplitudes on opposite sides of a circle take values   on the descendant  , that level contributes
+. The denominator comes from commuting   past   on the normalized highest vector. At every higher
+level one must use the inverse of its full bilinear Gram matrix, and then integrate over the intermediate labels. Fix a
+compact set   on the logarithmic coordinate cover of   and an output energy exponent
+throughout  . Under the normalized boundary hypothesis and the two-radius estimates, a finite input
+energy exponent   makes the left-associated sewing of these   positive insertions a holomorphic Hilbert–Schmidt
+operator. No intermediate spectral or descendant cutoff remains. The strict gaps between radii supply the energy esti‐
+mates which make that assertion possible. With a normalized unitary four-point comparison and pentagon on the posi‐
+tive labels, changing the finite tree acts unitarily on the intermediate labels and fixes the output representation. Each
+initial tree expansion converges in its own radial region.
+One might try to feed the result of such a sewing straight into the next operation as an elementary input. In the
+positive entire-energy source, even a collision of two highest vectors can fail that test after any fixed finite propagation.
+Its primary coefficient decays at best exponentially in  , while the source tests all positive exponential weights. There
+is a simpler algebraic instance of the same issue. The series   is defined with coefficients rational in the
+shape variable  . Setting   gives outer exponents  , which have no lower bound. Thus agreement of the
+integrands on separated points, or convergence for one prescribed sewing, leaves a genuine domain question when a
+cluster is used again. A common coefficient space for both compositions is part of the comparison. The domain of
+a collision
+From an interior operation to a centre
+We can now return to the disk, with an interior of its own. A commutative algebra of classical fields equipped with a
+singular Poisson bracket on the curve is called a coisson algebra. At one point the singular bracket with a fixed insertion
+is a derivation of the commutative product. Exchanging the two points translates the expansion coordinate and gives
+the corresponding rule in the other argument. The Jacobi identity relates the residues of three insertions. In the abelian
+mixed theory on   one can see how a boundary bracket arises from an action. Put  . At degree zero
+there is a partial connection   in the   directions and a field   with a   factor. The quadratic density is
+The full field complex includes gauge parameters and antifields. Set the tangential restriction of the first field to zero
+and leave the second field free. Contracting a compactly supported normal profile gives a boundary current. With the
+residue integral divided by   and the sign of this action, its double-pole coefficient is  . The boundary contour
+thus reads a coefficient of the interior action. Translation in the real direction is part of the differential, yet bringing two
+insertions to equal height creates a contact term in the Ward identity. Thus the prescription for moving an interior
+operation to the boundary must specify its support even in a free theory. The mixed half-space
+Holography asks which operations and states on a boundary can be obtained from a field theory in the space it
+bounds. In a free holomorphic–topological half-space, a test field supported strictly above the boundary has zero
+boundary restriction. Multiply it by a boundary input before integrating out the transverse fields and there can be a
+contraction. On polynomial current states  , a test tuned to harmonic   acts by   at quantum
+current level one. Each occurrence of   gives one possible contraction. This computes an interior action on the
+boundary cochains. To determine a state one must also specify its preparation.
+What single object could receive every such compatible action? For an ordinary algebra  , a natural operation on all
+left modules is determined by its value on the regular module. If that value on   is  , naturality under the maps
+sending   to   gives  . On the regular module,  -linearity sends   to  , while naturality under right multipli‐
+cation sends it to  . Thus   lies in the ordinary centre. Passing to complexes gives the derived centre
+. On a curve an insertion has a position. One can bring it to a second insertion and then split
+the surrounding configuration. A recipient for such actions must compare both operations, their orders and their
+homotopies. A scalar in the ordinary centre has no argument in which to record a moving point.
+There is a positive calculation between the ordinary centre and the proposed geometric one. Take the two-colour
+Chevalley coalgebra associated to the algebra of two orthogonal idempotents, and let the operations on it be parame‐
+trized by the Chevalley coalgebra of an unbounded differential graded chiral algebra on the affine line in characteristic
+zero, with a closed horizontal unit. Choose a coherent pointing on this parameter coalgebra. To a character respecting
+the pointing, associate multiplication by that character. Evaluating an action on the target unit goes back. For this
+family the two maps are inverse equivalences of the full pointed mapping spaces. This recovers the action and its homo‐
+topies from its value on the unit. A terminal recipient for every holomorphic field theory would have to account for a
+larger class of actions. An action recovered from its unit
+This leads to the holomorphic–topological centre conjecture. For a unital holomorphic factorization algebra   on
+a smooth complex  -fold, with specified supported density coefficients, there should be a mixed factorization algebra
+, topological in one real direction and holomorphic in   complex directions. It is to act unitally at each
+point and be terminal among the diagonal actions preserving the coefficients, collisions, factorization and supports. If it
+exists, any such action of a bulk   factors through it by a map  , with a contractible space of
+choices. The independent assertion that a given physical bulk is this centre asks whether its own map   is an equiva‐
+lence. The category in the existence question is differentiable. For the prescribed algebraic pointed-action functor of the
+nonzero-level Heisenberg coalgebra, representability already fails. It is open whether that obstruction persists in the
+differentiable setting. Pointed actions and collision compatibility
+What then does an observer following a line encounter? Two small insertions on it may be composed in their order
+along the line. A local operator can approach the line from a transverse complex direction. Describing the line by a
+module should preserve both experiments, including their dependence on separation. The line-operator conjecture
+begins with the hypothesis that the local algebra is geometrically realized by the convolution cobar of an augmented
+transverse monoid  , with its vacuum, product and local insertions on the specified collision domains. Form its bar
+coalgebra and realize its one-position coefficient in complete complexes by a strong monoidal functor   preserving the
+bar realization. If continuous duality transposes the completed tensor powers used by the operations, one can form
+The conjecture gives this algebra the structure of a shifted differential graded Yangian and identifies lines, under
+matching finiteness conditions, with its admissible continuous modules. Line fusion is to be tensor product via the
+spectral coproduct. The comparison should carry translation, the vacuum line and the local insertions at a line to their
+module operations. Under bar duality the degree-minus-one bracket of local fields should correspond to the degree-one
+twist of the coproduct. The abelian sum of levels gives a case where one can write the action on two states. The nonra‐
+tional affine theorem gives a case where the original unit on complexes is invertible. Combining these conclusions for a
+physical line would require the same interface to preserve the two orders of tensor product on their actual domains.
+Lines, products and geometric insertions
+What is retained at an open end
+A brane provides another way to compare the operators seen on the two sides of a boundary condition. On a stack of
+D3 branes, protected operators on a complex line   in the four-dimensional worldvolume form a vertex algebra. There
+are two independent constructions within this sector. One imposes the gauge constraint and takes degree-zero relative
+BRST cohomology of polynomial fields. The other first goes to the stable moment quotient, the Hilbert scheme
+of points on an auxiliary complex surface, and then takes the torus-finite global sections of its sheaf of chiral
+fields and specializes the quantum parameter to one. The polynomial operators inject into these sections. Their image is
+the kernel of a fermionic zero mode  . There is a weight-zero odd section   with  . This single evaluation
+detects the missing global field. At rank one it is the distinction between the full   pair and the algebra generated by
+, since differentiating loses the constant mode of  . Thus putting the same local contractions into two construc‐
+tions can give different spaces of global operators. An identification with a separately constructed bulk must determine
+which space it acts on. The polynomial and global brane operators
+For the surface defect of the M5 system there is also an explicit product. For independent currents in two groups,
+the corresponding Miura differential operators multiply in their written order. Factoring the rank-  operator as
+gives a coassociative rank-addition map. Composition of three differential operators proves its associativity
+without moving the surfaces. Identifying this map with fusion of the actual defects in five dimensions calls for their
+quantization, the Ward identities and the normalization of their mixed insertion. There is a reason to insist on the inter‐
+mediate defect. If   is its algebra of operators, joining two copies along   gives  . Even a surjection can
+leave a class invisible in the ordinary product and in its first derived correction. For the quiver   with
+in traversal order, kill vertex 2. The resolution at vertex 1 has projectives at vertices  . After tensoring with
+the remaining simple module it becomes   in degrees  . The algebraic M2 particle junction exhibits
+this same separation for  , nonzero numerical   and zero Cherednik deformation. Its coupling sends a Weyl
+observable to the sum of its actions on the   particles. The first Tor group vanishes. Capping a class in the second Tor
+group with the scalar central extension of the Weyl Lie algebra maps onto the full particle algebra, with a bimodule
+splitting. It detects the flux left by joining the two ends. Identifying this cap with an insertion in the five-dimensional
+interval is a further comparison. What the joined interface retains
+One can keep such intermediate choices in geometry by recording the object together with the way it was assem‐
+bled. In Hall multiplication the two inputs prescribe the quotient and the subobject in an exact sequence. The output
+is obtained by integrating over the possible subobjects of the middle term. Over  , every extension of two one-dimen‐
+sional vector spaces splits. Nevertheless the coefficient of their product on   is  , one for each line in the plane. In
+dimension three either bracketing integrates over the same flags of a line in a plane, which proves associativity of this
+product. With sheaves as coefficients one needs an actual map on the extension correspondence before integrating. If
+records the ends and   the middle, the critical Hall multiplication calls for a morphism  .
+Comparing it with a local field operation requires transporting the square roots of the determinant lines and the
+moment parameters on the flags. The scalar product after integration cannot specify this map. Extensions and
+their flags
+This distinction can be measured on a compact surface. For a K3 surface  , the two ends of a relative Donaldson–
+Thomas tube carry states in  , the cohomology of its Hilbert scheme of   points. Pair a state at each
+end and insert a divisor   in the interior. The reduced virtual correspondence defines an operator   in curve class  .
+Closing the tube contracts its two ends against the Poincaré diagonal. The resulting reduced scalar series is
+when  . Closure even changes the multiple-cover coefficient. After the specified cohomo‐
+logical identifications, each cover in the operator formula has coefficient one. The factor   for a cover of degree
+appears upon dividing by the divisor intersection at closure.
+What can one do with three open ends that this trace cannot do? At  , choose a rational section   and a fibre
+on an elliptic K3, so  ,   and  . The first reduced multiplication in section class has an explicit
+expression on all twenty-four states. For the Poincaré pairing  , the expression is
+In particular  . Choose isotropic classes   perpendicular to   and satisfying  .
+Add the cyclic first-order term  . The fibre row is unchanged. For fixed  , the change in the
+multiplication operator has trace  . Yet the three-boundary experiment with   changes from
+zero to one. The geometric three-boundary calculation selects  . Every first multiplication trace together with the fibre
+row would still have allowed the rival. A comparison between Hall multiplication and compact states must recover this
+uncontracted operation and its orientation, even if it already reproduces the closed Igusa series. The three-boundary
+reading on a K3
+Preparing a state at the boundary
+The compact example keeps three states at their respective ends. In a field theory one must also be able to prepare the
+states used to make such a distinction. For the free current the two calculations can be done on different spaces. In the
+current Fock space the negative mode  ,  , multiplies by a variable  . Its adjoint   satisfies the contour
+commutator at level one. On the disk, let   be independent centred complex Gaussian coordinates of variance  . The
+substitution   is an isometry on holomorphic polynomials. Indeed both norms of the occupation monomial
+are the square root of  . It extends to the two Hilbert completions. One can test the isometry on an
+observable sensitive to phase. The unit vectors   and   have the same separate occupation
+
+statistics. The operator   interchanges   and   with coefficient two, so its expectations in those
+vectors are   and  . On the disk the same two values are the expectations of  . It is a joint measurement
+of two harmonics. The isometry alone, however, supplies no field-theoretic preparation of a given state. To compare
+preparations one must find a state on each side by its own equations.
+In the free abelian Chern–Simons half-space theory at level one, put two oriented charge lines of strengths
+above the points   of a marked unit disk, with   real and  . Use constant framing, subtract self-contractions,
+and take the prescribed limit of outgoing separations in a fixed real direction. The current on an outer contour sees
+. The unweighted residue is zero. Weighting by  , as in the first contour calculation, gives the
+eigenvalue   of the positive current mode for  . Independently, take a real harmonic field   on the disk
+with constant mode zero, and write  . Weight its Gaussian law by   and normalize.
+Completing the square gives   and  . The squared modulus of the normalized ray wave‐
+function, multiplied by the vacuum Gaussian density, gives this same law on every finite set of harmonics and hence on
+the full sequence. Neutral rays and a sourced disk
+Here one can derive the equality of laws directly. The contour gives   for each  . Their common
+solution is fixed up to its constant term and has the form
+On the disk, set   and  . The squared modulus of this exponential under the
+Fock isometry, divided by its vacuum expectation, gives the probability measure
+Independently, the real harmonic source at   adds   to the logarithm of the disk weight. Completing the
+square in each coordinate gives precisely the same measure. Since  , the holomorphic exponen‐
+tials converge in the disk Hilbert norm and their normalized squared moduli converge in  . It is the whole density,
+including correlations between modes, which the two preparations agree on.
+Propagating through a cylinder of length   damps harmonic   by  ,  . The normalized overlap of the
+prepared state with its propagated state is   on both sides. The factor   in the ray amplitude
+cancels from this measurement. An absolute cutting law must keep the vacuum amplitude as well.
+For   these lines have zero total charge but prepare a state different from the vacuum. In fact the first two
+harmonic means determine where the marked line ended and what charge it carried. With   and  , its
+position is   and its charge is  . Varying the collar length separates frequencies because the successive
+powers   damp them at different rates. At   the normalized overlap is one, as it must be for a unit vector. Sending
+down to zero leaves  , its squared vacuum overlap. Neither measurement can fix a common scalar multi‐
+plying an unnormalized filling. An absolute amplitude asks a question which the normalized state, even if known on
+every mode, cannot decide.
+Arithmetic supplies an independent test of what a trace can measure. On logarithmic scale, dilation becomes trans‐
+lation. For a compact smooth test   write  . The Weil explicit formula evaluates the same func‐
+tional   by its polar, real-place and prime-power terms, or as   over zeros of the completed zeta func‐
+tion, where  . These descriptions suggest taking a quotient by the relations from integer theta summa‐
+tion before any individual zero has been specified. For the test algebra with all derivatives integrable against  ,
+, and a Hilbert weight  , the quotient operator is trace class and its trace is  . This
+applies in particular to each compact smooth test above. A smoothing homotopy computes the same number as a
+supertrace. On a second Hilbert space one can realize the zeros for which   is real, equivalently  , by a posi‐
+tive star representation of the same test algebra modulo its closed theta ideal. A zero of multiplicity   contributes on
+separate layers. The difference of the two traces is exactly
+If the two traces agreed on every compact smooth test, then   would be the trace of a positive operator for
+each such  , where   denotes convolution and  . By the Weil positivity criterion this would imply the
+Riemann hypothesis. Conversely the remainder vanishes if every zero lies on the critical line. The quotient trace is a
+theorem without that assumption. It supplies neither positivity on every test nor a product for colliding arithmetic
+insertions. Here the distinction between a trace, a positive state and local operations can be posed without assuming
+any bulk dual. The full trace and the positive representation
+The amplitude before and after a cut
+Return finally to the physical filling. If the amplitude takes values in a line, its value on the empty insertion is itself a
+section of that line. Where this section is nonzero, dividing every correlation by the empty value gives a normalized
+state. To undo this division when gluing two pieces one needs an identification of their amplitude lines, the pairing on
+the states at the common boundary, and the unnormalized value on the vacuum. A bulk observable   may be
+measured before the cut or passed to the boundary by its action. An absolute cutting law says that the two indepen‐
+dently defined functionals have equal values on these corresponding insertions, including  . This is the additional
+information lost by the normalized cylinder measurement.
+On a solid torus with fixed metric and density, a quadratic gravitational model admits a normalized calculation
+after removal of the mode cutoff. Take a torus multiplier of modulus strictly between zero and one, nonzero coupling,
+positive  , and a sufficiently small smooth integrable source of zero normal trace admitting a smooth solution of the
+Ward equations. The cutoff even fields converge in mean square and almost surely in a space of distributions. Their
+limit has a Gaussian law, and graded Wick contraction gives the moments involving odd fields. In a reflected realization
+with a spectral gap, smooth source bounds and finite action integrals, heat regularization gives a nonzero local section
+of the vacuum line, the one-dimensional space in which the unnormalized vacuum amplitude takes its values. This
+determines how the normalization varies near a reference. The absolute geometric cutting law remains open already in
+this quadratic model. Each geometric half must prepare its own state, and pairing those states must reproduce the
+uncut amplitude, including its phase and its response to insertions. For interacting quantum gravity that comparison
+must also respect the interaction terms. A common phase of the entire amplitude cancels in every probability. A relative
+phase between components of a single normalized state can survive, even when the occupations of its modes have iden‐
+tical distributions in two preparations. The gravitational cutting problem
+A precise conjecture formulates this question for gravity. Fix a formal neighbourhood of an Einstein–Cartan solu‐
+tion with invertible coframe, its real form and boundary polarization. Fix the admitted regions, collars and cuts and a
+common ring for the quantum parameters. The full reconstruction conjecture in this perturbative sector asks first for
+independently renormalized bulk observables satisfying the quantum master and boundary Ward identities. Write
+for the geometric category of the admitted boundary conditions and their operators in the matched reduced current
+theory. Its geometric centre would represent coherent actions on this category, with their dependence on position,
+compatible with composition and collision. The local diagonal centre instead acts on the boundary field algebra   at
+coincident points. For each admitted region  , the conjecture asserts both equivalences in the diagram
+where the first map is the coherent action of the independently defined bulk and the second identifies the two recipi‐
+ents. Both comparisons must preserve contacts, their homotopies and assembly of regions. Second, the admitted
+boundary objects should generate the prescribed physical sector, with its products of lines, vacuum and insertions.
+Third, there should be an intertwiner between independently defined bulk and boundary state spaces which carries the
+filling functionals and intertwines their sewing pairings. For an admitted filling let   and   be those two function‐
+als. In the identified amplitude line one should have
+for every admitted insertion  , and the same equality after sewing. At   it compares the absolute vacuum ampli‐
+tudes. The conjecture is made in the fixed perturbative sector, with its specified cuts. Summing over topologies is a
+further physical question. The state and the gravitational cap
+The first contour measured a derivative which vanished with constant weight. The three-boundary K3 experiment
+distinguished two products on which every specified trace agreed. The sourced neutral disk can be distinguished from
+the vacuum even though they have the same total charge, and its entire normalized law still leaves the absolute vacuum
+amplitude free. In each case a boundary calculation acquires its force from knowing which insertion was made, which
+operation was kept, and which states it can distinguish. For connected ordered coefficients there is a theorem that the
+cuts suffice. For the level-one disk one can give the independent preparations and compare them on every harmonic
+coordinate. For a gravitational filling the action, the states it can prepare, and the amplitude of a cut must all be identi‐
+fied in the same theory. That is what it would mean to recover an interior from its boundary.
