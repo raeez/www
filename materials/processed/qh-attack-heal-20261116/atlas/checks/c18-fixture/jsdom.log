@@ -1,0 +1,22 @@
+PASS start: the script runs, nothing is selected, the pane shows its message
+PASS RT2/RT3: an index link selects its claim through the address, with statement, hypotheses and every relation
+PASS INV4: every edge is listed once at each end with its direction, and drawn once in the map
+PASS RT9: Back and Forward move between selections made by links
+PASS RT9: arriving with #atlas-c-<id> shows that claim and the page raises no unknown-address notice
+PASS RT9: an address that leaves the atlas leaves nothing selected; another atlas part keeps the claim
+PASS a link from a claim to a statement of the page goes through qh:navigate, which the page handles
+PASS RT8/INV5: filters by words, domain and status; the count line names no number; the map dims the rest
+PASS RT6: arrows move through the index; Escape in the pane returns focus to the claim in the index
+SKIP RT6: with the glossary card open from the pane, Escape closes the card first and keeps the selection: glossary buttons are off inside the atlas (atlas.py TERMS) while the foundation mount reserves .term
+PASS RT5: Follow walks a path joined by recorded relations claim by claim, in stage order, and Leave ends it
+PASS RT3: hiding a relation type in the pane hides it there only and names it
+PASS the page search finds the atlas claims it is offered, and following a result shows the claim in the pane
+OBSERVED Back after a row toggle of the page (the toggle replaces the history entry): address after the toggle #row-heisenberg; selection kept until the next address change: alpha-base; after Back: null
+PASS the map with its key is the first part, and the parts are named apart from the page's own sections
+PASS RT8: the filter reads title, statement, hypotheses and source only, and says so
+PASS RT7: a sheet the reader closed stays closed when the page announces its search or filter state
+PASS RT6/RT9: Back and Forward with focus in the pane move focus to the claim shown
+PASS RT7: on a narrow screen the sheet closes when keyboard focus leaves it for the page
+PASS RT5: the Follow bar names the kind of the path it follows; stages put their heading before their joins
+PASS no number of claims, percentage or progress word anywhere in the atlas after the checks above
+all passed; 1 skipped

@@ -1,0 +1,53 @@
+test_a_declared_match_the_page_cannot_show_fails_the_build (test_atlas.Markup) ... ok
+test_a_long_domain_runs_over_several_columns (test_atlas.Markup) ... ok
+test_a_scoped_negative_claim_lists_its_scope (test_atlas.Markup) ... ok
+test_atlas_statuses_are_said_to_be_the_atlas_own (test_atlas.Markup) ... ok
+test_conventions_come_first_and_each_claim_links_to_them (test_atlas.Markup) ... ok
+test_editorial_and_joined_paths_are_labelled_by_what_is_checked (test_atlas.Markup) ... ok
+test_every_claim_reference_carries_its_number (test_atlas.Markup) ... ok
+test_every_supplied_text_sits_in_a_supplied_class (test_atlas.Markup) ... ok
+test_glossary_buttons_in_the_text_and_never_inside_a_link (test_atlas.Markup) ... ok
+test_interface_words_travel_in_the_template (test_atlas.Markup) ... ok
+test_map_lines_start_at_their_source_and_end_at_their_target (test_atlas.Markup) ... ok
+test_namespace_and_attribute_quoting (test_atlas.Markup) ... ok
+test_no_count_presented_as_progress (test_atlas.Markup) ... ok
+test_quality_hooks (test_atlas.Markup) ... ok
+test_scoped_negative_claims_are_offered_to_the_page_search_with_the_page_status (test_atlas.Markup) ... ok
+test_script_and_styles_make_no_request (test_atlas.Markup) ... ok
+test_search_units_are_offered_to_the_page (test_atlas.Markup) ... ok
+test_shipped_script_and_styles_carry_no_forbidden_word (test_atlas.Markup) ... ok
+test_stage_heading_comes_before_its_joins_and_the_rail_has_no_arrow (test_atlas.Markup) ... ok
+test_statuses_and_hypotheses_are_shown_as_supplied (test_atlas.Markup) ... ok
+test_the_index_shows_each_claims_own_status_label (test_atlas.Markup) ... ok
+test_the_key_shows_the_page_status_that_matches_scoped_negative (test_atlas.Markup) ... ok
+test_the_map_and_key_come_first (test_atlas.Markup) ... ok
+test_the_map_keeps_its_own_size_on_screen (test_atlas.Markup) ... ok
+test_the_reader_tests_know_every_supplied_class (test_atlas.Markup) ... ok
+test_whole_page_builds_with_the_atlas_and_passes_the_audit (test_atlas.Mounted) ... ok
+test_comparisons (test_atlas.Negative) ... ok
+test_conditional_claims_name_their_hypotheses (test_atlas.Negative) ... ok
+test_ids (test_atlas.Negative) ... ok
+test_missing_keys_and_schema (test_atlas.Negative) ... ok
+test_paths_joined_by_recorded_relations (test_atlas.Negative) ... ok
+test_reader_safety_of_every_string (test_atlas.Negative) ... ok
+test_references (test_atlas.Negative) ... ok
+test_titles_are_unique (test_atlas.Negative) ... ok
+test_typed_vocabulary (test_atlas.Negative) ... ok
+test_types_are_checked_before_use (test_atlas.Negative) ... ok
+test_unknown_keys_at_every_level (test_atlas.Negative) ... ok
+test_a_reader_finding_fails_the_build_but_still_draws_the_atlas (test_atlas.Valid) ... ok
+test_an_unknown_field_fails_the_build_and_is_named (test_atlas.Valid) ... ok
+test_comparison_ids_may_be_omitted_and_are_then_derived (test_atlas.Valid) ... ok
+test_derived_ids_cannot_collide (test_atlas.Valid) ... ok
+test_fixture_is_valid_and_renders (test_atlas.Valid) ... ok
+test_ids_already_on_the_page_are_refused (test_atlas.Valid) ... ok
+test_interface_words_meet_the_reader_rules (test_atlas.Valid) ... ok
+test_invalid_data_renders_nothing (test_atlas.Valid) ... ok
+test_more_relation_types_than_line_styles_are_drawn_plain_and_said_so (test_atlas.Valid) ... ok
+test_page_labels_replace_interface_words (test_atlas.Valid) ... ok
+test_question_links_conventions_and_notes (test_atlas.Valid) ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 5.220s
+
+OK

@@ -1,0 +1,413 @@
+{
+ "schema": "programme-scientific-atlas-public/v1",
+ "asOf": "2026-11-16",
+ "domains": [
+  {
+   "id": "alpha",
+   "label": "Synthetic domain alpha",
+   "summary": "Synthetic summary for interface tests. Nothing in this file is a claim of the programme.",
+   "conventions": [
+    "Synthetic convention: \\(X_n\\) is the synthetic object of degree \\(n\\)."
+   ],
+   "relatedQuestionIds": [
+    "d-native-interface"
+   ]
+  },
+  {
+   "id": "beta",
+   "label": "Synthetic domain beta",
+   "summary": "Synthetic summary for interface tests, with a formula \\(X_n \\to Y_n\\)."
+  },
+  {
+   "id": "gamma",
+   "label": "Synthetic domain gamma",
+   "summary": "Synthetic summary for interface tests."
+  }
+ ],
+ "claims": [
+  {
+   "id": "alpha-base",
+   "domainId": "alpha",
+   "title": "Synthetic base claim",
+   "statement": "Synthetic statement for interface tests: for every \\(n \\ge 1\\) the object \\(X_n\\) is defined.",
+   "status": {
+    "code": "checked",
+    "label": "Synthetic checked label"
+   },
+   "hypotheses": [
+    "\\(n \\ge 1\\)"
+   ],
+   "comparisonIds": [
+    "k-alpha"
+   ]
+  },
+  {
+   "id": "alpha-lift",
+   "domainId": "alpha",
+   "title": "Synthetic lift of \\(X_n\\) to \\(\\widehat{X}_n\\)",
+   "statement": "Synthetic statement: the object \\(X_n\\) lifts to \\(\\widehat{X}_n\\). This sentence names a weak module only to test the glossary card.",
+   "status": {
+    "code": "checked",
+    "label": "Synthetic checked label"
+   },
+   "hypotheses": [
+    "\\(X_n\\) is defined",
+    "A synthetic finiteness hypothesis"
+   ],
+   "sourceLabel": "Synthetic Theorem 1",
+   "comparisonIds": [
+    "k-alpha"
+   ]
+  },
+  {
+   "id": "alpha-conditional",
+   "domainId": "alpha",
+   "title": "Synthetic conditional implication",
+   "statement": "Synthetic statement: if the synthetic hypothesis holds, then \\(X_n\\) is finite.",
+   "status": {
+    "code": "conditional",
+    "label": "Synthetic conditional label"
+   },
+   "hypotheses": [
+    "The synthetic hypothesis \\(H\\) holds"
+   ]
+  },
+  {
+   "id": "alpha-negative",
+   "domainId": "alpha",
+   "title": "No synthetic section in rank one",
+   "statement": "Synthetic negative statement: in rank \\(r = 1\\) no section of \\(\\pi\\) exists.",
+   "status": {
+    "code": "scoped_negative",
+    "label": "Synthetic negative label"
+   },
+   "hypotheses": [
+    "Synthetic scope: the synthetic objects of degree at most two."
+   ],
+   "comparisonIds": [
+    "k-alpha"
+   ]
+  },
+  {
+   "id": "alpha-remaining",
+   "domainId": "alpha",
+   "title": "Synthetic comparison of \\(X_n\\) and \\(Y_n\\)",
+   "statement": "Synthetic statement of a comparison that remains to be made.",
+   "status": {
+    "code": "remaining",
+    "label": "Synthetic remaining label"
+   },
+   "hypotheses": [],
+   "comparisonIds": [
+    "k-alpha"
+   ]
+  },
+  {
+   "id": "beta-hub",
+   "domainId": "beta",
+   "title": "A deliberately long synthetic title that tests how the atlas wraps a claim title across several lines in the map, the index, the pane and print",
+   "statement": "Synthetic statement with a display formula:\n\n\\[ \\sum_{k=0}^{n} \\binom{n}{k} x^k y^{n-k} = (x+y)^n \\]\n\nand a second paragraph after it.",
+   "status": {
+    "code": "checked",
+    "label": "Synthetic checked label"
+   },
+   "hypotheses": [
+    "A synthetic hypothesis with a long formula \\(\\mathcal{F}_{n} \\otimes_{\\mathcal{O}} \\mathcal{G}_{n} \\cong \\mathcal{H}_{n}\\)"
+   ]
+  },
+  {
+   "id": "beta-cond",
+   "domainId": "beta",
+   "title": "Synthetic conditional with two hypotheses",
+   "statement": "Synthetic statement: under both hypotheses the map \\(f\\) is an isomorphism.",
+   "status": {
+    "code": "conditional",
+    "label": "Synthetic conditional label"
+   },
+   "hypotheses": [
+    "First synthetic hypothesis",
+    "Second synthetic hypothesis"
+   ],
+   "comparisonIds": [
+    "k-across"
+   ]
+  },
+  {
+   "id": "beta-remaining",
+   "domainId": "beta",
+   "title": "Synthetic remaining comparison",
+   "statement": "Synthetic statement of a remaining comparison.",
+   "status": {
+    "code": "remaining",
+    "label": "Synthetic remaining label"
+   },
+   "hypotheses": []
+  },
+  {
+   "id": "beta-isolated",
+   "domainId": "beta",
+   "title": "Synthetic claim with no recorded relation",
+   "statement": "Synthetic statement with no edge into it or out of it.",
+   "status": {
+    "code": "checked",
+    "label": "Synthetic checked label"
+   },
+   "hypotheses": [],
+   "comparisonIds": []
+  },
+  {
+   "id": "beta-linked",
+   "domainId": "beta",
+   "title": "Synthetic claim linked to a statement of the page",
+   "statement": "Synthetic statement that tests the link to a statement of the page only.",
+   "status": {
+    "code": "checked",
+    "label": "Synthetic checked label"
+   },
+   "hypotheses": [],
+   "statementRef": "hyperbolic-siegel-weil"
+  },
+  {
+   "id": "gamma-a",
+   "domainId": "gamma",
+   "title": "Synthetic gamma claim",
+   "statement": "Synthetic statement in the third domain.",
+   "status": {
+    "code": "checked",
+    "label": "Synthetic checked label"
+   },
+   "hypotheses": [
+    "\\(n \\ge 2\\)"
+   ]
+  },
+  {
+   "id": "gamma-b",
+   "domainId": "gamma",
+   "title": "Synthetic gamma comparison",
+   "statement": "Synthetic statement of a remaining comparison in the third domain.",
+   "status": {
+    "code": "remaining",
+    "label": "Synthetic remaining label"
+   },
+   "hypotheses": []
+  },
+  {
+   "id": "gamma-neg",
+   "domainId": "gamma",
+   "title": "Synthetic negative result in the third domain",
+   "statement": "Synthetic negative statement in the third domain.",
+   "status": {
+    "code": "scoped_negative",
+    "label": "Synthetic negative label"
+   },
+   "hypotheses": [
+    "Synthetic scope: the synthetic objects of degree at most two."
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "id": "e-base-lift",
+   "source": "alpha-base",
+   "target": "alpha-lift",
+   "relation": "uses",
+   "label": "is used in the proof of",
+   "scope": ""
+  },
+  {
+   "id": "e-base-hub",
+   "source": "alpha-base",
+   "target": "beta-hub",
+   "relation": "uses",
+   "label": "is used in the proof of",
+   "scope": "Synthetic scope: for \\(n \\ge 2\\) only."
+  },
+  {
+   "id": "e-lift-hub",
+   "source": "alpha-lift",
+   "target": "beta-hub",
+   "relation": "uses",
+   "label": "is used in the proof of",
+   "scope": ""
+  },
+  {
+   "id": "e-cond-hub",
+   "source": "alpha-conditional",
+   "target": "beta-hub",
+   "relation": "uses",
+   "label": "is used in the proof of",
+   "scope": "Synthetic scope: under the synthetic hypothesis."
+  },
+  {
+   "id": "e-gamma-hub",
+   "source": "gamma-a",
+   "target": "beta-hub",
+   "relation": "uses",
+   "label": "is used in the proof of",
+   "scope": ""
+  },
+  {
+   "id": "e-neg-remaining",
+   "source": "alpha-negative",
+   "target": "alpha-remaining",
+   "relation": "obstructs",
+   "label": "is an obstruction to",
+   "scope": "Synthetic scope: in rank one."
+  },
+  {
+   "id": "e-hub-gamma",
+   "source": "beta-hub",
+   "target": "gamma-a",
+   "relation": "specializes",
+   "label": "specialises to",
+   "scope": ""
+  },
+  {
+   "id": "e-cond-remaining",
+   "source": "beta-cond",
+   "target": "beta-remaining",
+   "relation": "uses",
+   "label": "is used in the proof of",
+   "scope": ""
+  },
+  {
+   "id": "e-lift-gammab",
+   "source": "alpha-lift",
+   "target": "gamma-b",
+   "relation": "specializes",
+   "label": "specialises to",
+   "scope": ""
+  },
+  {
+   "id": "e-neg-cond",
+   "source": "gamma-neg",
+   "target": "beta-cond",
+   "relation": "obstructs",
+   "label": "is an obstruction to",
+   "scope": ""
+  },
+  {
+   "id": "e-linked-remaining",
+   "source": "beta-linked",
+   "target": "alpha-remaining",
+   "relation": "compares",
+   "label": "is compared with",
+   "scope": ""
+  },
+  {
+   "id": "e-base-cond",
+   "source": "alpha-base",
+   "target": "alpha-conditional",
+   "relation": "specializes",
+   "label": "specialises to",
+   "scope": ""
+  }
+ ],
+ "comparisons": [
+  {
+   "id": "k-alpha",
+   "domainId": "alpha",
+   "title": "Synthetic comparison within domain alpha",
+   "overview": "Synthetic overview for interface tests.",
+   "establishedClaimIds": [
+    "alpha-base",
+    "alpha-lift"
+   ],
+   "conditionalClaimIds": [
+    "alpha-conditional"
+   ],
+   "scopedNegativeClaimIds": [
+    "alpha-negative"
+   ],
+   "remainingClaimIds": [
+    "alpha-remaining"
+   ],
+   "questionId": "d-native-interface"
+  },
+  {
+   "id": "k-across",
+   "domainId": "beta",
+   "title": "Synthetic comparison across domains",
+   "overview": "Synthetic overview with an empty list of scoped negatives.",
+   "establishedClaimIds": [
+    "beta-hub",
+    "gamma-a"
+   ],
+   "conditionalClaimIds": [
+    "beta-cond"
+   ],
+   "scopedNegativeClaimIds": [],
+   "remainingClaimIds": [
+    "beta-remaining",
+    "gamma-b"
+   ]
+  }
+ ],
+ "readingPaths": [
+  {
+   "id": "p-orientation",
+   "title": "Synthetic editorial path",
+   "kind": "editorial_orientation",
+   "summary": "Synthetic editorial order for interface tests.",
+   "stages": [
+    {
+     "label": "Begin with the base claim",
+     "description": "Synthetic stage description.",
+     "claimIds": [
+      "alpha-base"
+     ]
+    },
+    {
+     "label": "A stage of context only",
+     "description": "Synthetic stage without claims.",
+     "claimIds": []
+    },
+    {
+     "label": "Then the remaining comparisons",
+     "description": "",
+     "claimIds": [
+      "alpha-remaining",
+      "beta-remaining"
+     ]
+    }
+   ],
+   "note": "Synthetic note on the order of this path."
+  },
+  {
+   "id": "p-relations",
+   "title": "Synthetic path along recorded relations",
+   "kind": "source_bound_dependency_path",
+   "summary": "Synthetic path whose stages are joined by recorded relations.",
+   "stages": [
+    {
+     "label": "The base",
+     "description": "Synthetic stage.",
+     "claimIds": [
+      "alpha-base"
+     ]
+    },
+    {
+     "label": "The lift",
+     "description": "Synthetic stage.",
+     "claimIds": [
+      "alpha-lift"
+     ]
+    },
+    {
+     "label": "The long claim",
+     "description": "Synthetic stage.",
+     "claimIds": [
+      "beta-hub"
+     ]
+    },
+    {
+     "label": "Its specialisation",
+     "description": "Synthetic stage.",
+     "claimIds": [
+      "gamma-a"
+     ]
+    }
+   ]
+  }
+ ]
+}

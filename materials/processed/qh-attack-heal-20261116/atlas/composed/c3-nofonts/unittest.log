@@ -1,0 +1,31 @@
+test_editorial_and_joined_paths_are_labelled_by_what_is_checked (test_atlas.Markup) ... ok
+test_every_claim_reference_carries_its_number (test_atlas.Markup) ... ok
+test_interface_words_travel_in_the_template (test_atlas.Markup) ... ok
+test_map_lines_start_at_their_source_and_end_at_their_target (test_atlas.Markup) ... ok
+test_namespace_and_attribute_quoting (test_atlas.Markup) ... ok
+test_no_count_presented_as_progress (test_atlas.Markup) ... ok
+test_quality_hooks (test_atlas.Markup) ... ok
+test_script_and_styles_make_no_request (test_atlas.Markup) ... ok
+test_statuses_and_hypotheses_are_shown_as_supplied (test_atlas.Markup) ... ok
+test_whole_page_builds_with_the_atlas_and_passes_the_audit (test_atlas.Mounted) ... ok
+test_comparisons (test_atlas.Negative) ... ok
+test_conditional_claims_name_their_hypotheses (test_atlas.Negative) ... ok
+test_ids (test_atlas.Negative) ... ok
+test_missing_keys_and_schema (test_atlas.Negative) ... ok
+test_paths_joined_by_recorded_relations (test_atlas.Negative) ... ok
+test_reader_safety_of_every_string (test_atlas.Negative) ... ok
+test_references (test_atlas.Negative) ... ok
+test_titles_are_unique (test_atlas.Negative) ... ok
+test_typed_vocabulary (test_atlas.Negative) ... ok
+test_types_are_checked_before_use (test_atlas.Negative) ... ok
+test_unknown_keys_at_every_level (test_atlas.Negative) ... ok
+test_comparison_ids_may_be_omitted_and_are_then_derived (test_atlas.Valid) ... ok
+test_fixture_is_valid_and_renders (test_atlas.Valid) ... ok
+test_ids_already_on_the_page_are_refused (test_atlas.Valid) ... ok
+test_invalid_data_renders_nothing (test_atlas.Valid) ... ok
+test_page_labels_replace_interface_words (test_atlas.Valid) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 4.679s
+
+OK

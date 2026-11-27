@@ -1,0 +1,25 @@
+PASS start: the script runs, nothing is selected, the pane shows its prompt
+FAIL RT2/RT3: an index link selects its claim through the address, with statement, hypotheses and every relation
+      Expected values to be strictly equal:
+      
+      null !== 'beta-hub'
+      
+PASS INV4: every edge is listed once at each end with its direction, and drawn once in the map
+PASS RT9: Back and Forward move between selections made by links
+PASS RT9: arriving with #atlas-c-<id> shows that claim and the page raises no unknown-address notice
+PASS RT9: an address that leaves the atlas leaves nothing selected; another atlas part keeps the claim
+PASS a link from a claim to a statement of the page goes through qh:navigate, which the page handles
+PASS RT8/INV5: filters by words, domain and status; the count line names no number; the map dims the rest
+FAIL RT6: arrows move through the index; Escape in the pane returns focus to the claim in the index
+      The expression evaluated to a falsy value:
+      
+        assert.ok(t.classList.contains('atlas-claim-title'))
+      
+PASS RT6: with the glossary card open from the pane, Escape closes the card first and keeps the selection
+PASS RT5: Follow walks a path joined by recorded relations claim by claim, in stage order, and Leave ends it
+PASS RT3: hiding a relation type in the pane hides it there only and names it
+PASS the page search leaves the atlas alone (interaction isolation): atlas-only words find nothing
+      (address after the row toggle: #row-heisenberg; selection kept until the next address change: alpha-base; after Back: null)
+PASS a row toggle of the page replaces the address; the atlas follows the address it is given
+PASS no number of claims, percentage or progress word anywhere in the atlas after the checks above
+2 failed
