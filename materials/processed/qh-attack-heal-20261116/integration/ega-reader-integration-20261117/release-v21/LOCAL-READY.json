@@ -1,0 +1,110 @@
+{
+  "status": "READY_FOR_ISSUE",
+  "edition": "release-v21",
+  "utc": "2026-11-18T08:11:34.210883+00:00",
+  "base_public_commit": "627861ecafa9844fb274dcfd55f2c0ce2ba9bd5c",
+  "content_id": "e96584ae32f36369b14df440dcb48e8da7d69166362f529a4467321567574e34",
+  "source_identity": "73f769e9f28c87d4a1ec13dfabf171c84614447af3a51e93566b291fb4c18e89",
+  "scientific_horizon_utc": "2026-11-18T02:32:40.214455Z",
+  "compiled_directory": "/tmp/qh-reader-pedagogy-20261118/technical/normal-final/release",
+  "public_files": {
+    "index.html": {
+      "sha256": "916a1a6db44808c235303eadbf65aa9bf0101d28d731bc627103baf913fbb770",
+      "bytes": 5082278
+    },
+    "reference.html": {
+      "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+      "bytes": 5068537
+    },
+    "atlas.html": {
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088
+    },
+    "reader-index.js": {
+      "sha256": "b6833dfec873fbe4faabdcd74ae69acc90a503183f15fcd4619cf0ace2802e28",
+      "bytes": 5953633
+    }
+  },
+  "receipts": {
+    "EXPECTED-PUBLIC.json": {
+      "sha256": "1e5823c472af262a6f6d22f8a4109245fb9c68bf7c1d7228c6c65b95b23d3e9d",
+      "bytes": 517
+    },
+    "SOURCE-MANIFEST.json": {
+      "sha256": "29494d2be4411aa99b6f97a55986d6128d1d6d9e5f0642dc55a2531cbdb3d02d",
+      "bytes": 11689
+    },
+    "compatibility/history.json": {
+      "sha256": "0ca0f45d9088b7f76c1b4fe76f63fdf9c3fa1401069dee16271020d68e499baa",
+      "bytes": 7225
+    },
+    "rebuild.py": {
+      "sha256": "b4e4350f6c74890895ffd6c899edacc328e777c857e1123336824f6ce24c8522",
+      "bytes": 546
+    },
+    "reader-bindings/reading-contract.json": {
+      "sha256": "fd4cce6eb545b9a395b5da3b34343d12092fd006d8e5df8dd1c248dcae73852f",
+      "bytes": 135
+    },
+    "tools/build_reader.py": {
+      "sha256": "0a2f2514b3462dc247cbdedd0f80e62cf16791f1a3ecf4ad31bfa51b3f355a69",
+      "bytes": 7700
+    },
+    "tools/check_notation.cjs": {
+      "sha256": "55f9e3f583862969f28522868b55c76d5177584320f7a8c7c55634a64dd99c51",
+      "bytes": 5189
+    },
+    "tools/source_reading.py": {
+      "sha256": "cec88bfd63a7b4ed4f3ed373d6b2b84665190862723b41d8fbb539dd50cb410d",
+      "bytes": 2445
+    },
+    "verification/ACCEPTED-INPUTS.json": {
+      "sha256": "ebec587f60f129dd76e3c2691d4900a5b252b190be8f033cd37432765b9c2f44",
+      "bytes": 15504
+    },
+    "verification/REPRODUCTION.json": {
+      "sha256": "b2517bfb9efb8221063f15b96622f0a1839ba7b5329d6f6a33ed78bb71db3fed",
+      "bytes": 1502
+    },
+    "verification/NATIVE-SOURCE.json": {
+      "sha256": "06d726c48c3693a5f711a0d797cb53e08282fa2eca002b36be4ffd0c337031dc",
+      "bytes": 18024
+    },
+    "verification/RAW-SCIENCE.json": {
+      "sha256": "acc5e7787ca1846cd4cc1d892559743e817de53f677123de55b5ba9b3d1a3ed5",
+      "bytes": 2897
+    },
+    "verification/FINAL-SCIENCE.json": {
+      "sha256": "c9d2fed71c4dac1fd05024bfadd9ce8fc4063328dfcfc5818a5024dcac181fc1",
+      "bytes": 2897
+    },
+    "verification/FINAL-LINKS.json": {
+      "sha256": "7fbb81cb606f138f6555b1b1b41354ed21b397ddf654d03524da6326cc729175",
+      "bytes": 774
+    },
+    "verification/FINAL-NOTATION.json": {
+      "sha256": "f689374db0761182fd142be1bd239a331d942e35b0e4ed26b3b130d4f3635f10",
+      "bytes": 2690
+    },
+    "verification/V21-PARITY.json": {
+      "sha256": "285dca9bbe12f8f56c5193fa1616cf824a787c49569a35c51fe2cef3e521c5a3",
+      "bytes": 37274
+    },
+    "verification/V21-ROUTES.json": {
+      "sha256": "309c170c72836acfa2f43c43aa56f20508707d1257411bb4056a93bba53b0cce",
+      "bytes": 2740
+    },
+    "verification/FRONT-FIGURE-HANDOFF.md": {
+      "sha256": "d914d254136f8a49b914463d0a86bb3e6119dc6545df8ac5a5bb134ea6a087b5",
+      "bytes": 9879
+    },
+    "verification/FRONT-FIGURE-STATE.json": {
+      "sha256": "8bee8620cad50336e6989e3eae19cec64250d42116a5c3505c42464786cfa904",
+      "bytes": 10894
+    },
+    "verification/FINAL-CH02-CH07-READBACK.json": {
+      "sha256": "8c91087afe0d3cddd49111eb8b90d2839b7faead70a81124a04d81ae843071da",
+      "bytes": 1433
+    }
+  }
+}

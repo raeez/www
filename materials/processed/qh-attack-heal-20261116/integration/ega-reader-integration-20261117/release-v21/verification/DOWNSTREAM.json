@@ -1,0 +1,159 @@
+{
+  "schema": "qh-first-principles-downstream-build/1",
+  "status": "MECHANICAL_CHECKS_COMPLETE",
+  "source_audit_failures": [],
+  "math_formulas": 24110,
+  "math_errors": 0,
+  "commands": [
+    {
+      "step": "split",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-reference.py",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/combined.html",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public",
+        "--book-name",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T07:47:00.651787+00:00",
+      "completed_utc": "2026-11-18T07:47:02.013833+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/split.log"
+    },
+    {
+      "step": "metadata",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/set_page_metadata.py",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public"
+      ],
+      "started_utc": "2026-11-18T07:47:02.014037+00:00",
+      "completed_utc": "2026-11-18T07:47:02.136128+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/metadata.log"
+    },
+    {
+      "step": "index",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/reader-index.cjs",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public/reader-index.js",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public/index.html",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public/reference.html",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public/atlas.html"
+      ],
+      "started_utc": "2026-11-18T07:47:02.156612+00:00",
+      "completed_utc": "2026-11-18T07:47:27.688450+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/index.log"
+    },
+    {
+      "step": "public_check",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/check_public.py",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/PUBLIC-FILES-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T07:47:27.708943+00:00",
+      "completed_utc": "2026-11-18T07:47:34.543846+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/public_check.log"
+    },
+    {
+      "step": "v14_consumer_check",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/consumer/check.cjs",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/V14-CONSUMER-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T07:47:34.543962+00:00",
+      "completed_utc": "2026-11-18T07:47:51.211199+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/v14_consumer_check.log"
+    },
+    {
+      "step": "split_checks",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-checks.cjs",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T07:47:51.211433+00:00",
+      "completed_utc": "2026-11-18T07:48:19.681258+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/split_checks.log"
+    },
+    {
+      "step": "reader_page",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "--page",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public/index.html"
+      ],
+      "started_utc": "2026-11-18T07:48:19.681495+00:00",
+      "completed_utc": "2026-11-18T07:49:26.274901+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/reader_page.log"
+    },
+    {
+      "step": "reader_fixtures",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/workspace/compiler/quantum-holography-status/tests/reader.test.cjs"
+      ],
+      "started_utc": "2026-11-18T07:49:26.275064+00:00",
+      "completed_utc": "2026-11-18T07:49:49.413170+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/reader_fixtures.log"
+    }
+  ],
+  "heading_metadata": {
+    "path": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/build/HEADING-METADATA.json",
+    "sha256": "8da502b4c85deacb8a800181090c5081b0302aab6d709db202f5e3cf6275f8d4",
+    "bytes": 3458
+  },
+  "public_files": {
+    "index.html": {
+      "path": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public/index.html",
+      "sha256": "0b765babb2b4db6bf76903c391201c26f7f5f11297b559a561244087b58f3b75",
+      "bytes": 4605818
+    },
+    "reference.html": {
+      "path": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public/reference.html",
+      "sha256": "699eeb5102ea860832dea002467120ef963917386e615148676ef8c0b551b7e3",
+      "bytes": 4700127
+    },
+    "atlas.html": {
+      "path": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public/atlas.html",
+      "sha256": "191a470ec650c72ac4cd71543ed41d1d8ac101d3a48521b5e904214f63cc99c4",
+      "bytes": 11336897
+    },
+    "reader-index.js": {
+      "path": "/private/tmp/qh-reader-pedagogy-20261118/technical/normal-final/public/reader-index.js",
+      "sha256": "7b6ef3118a8e6860932941261aba8be9e8b40941688773e6e823adebd6841153",
+      "bytes": 5966887
+    }
+  },
+  "bad_local_links": [],
+  "private_or_attribution_hit_count": 0,
+  "native_visual_qa": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "release_candidate": false
+}

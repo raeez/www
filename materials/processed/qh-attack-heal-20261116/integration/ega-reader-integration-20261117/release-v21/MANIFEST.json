@@ -1,0 +1,71 @@
+{
+  "schema": "quantum-holography-reader-edition/1",
+  "edition": "v21",
+  "utc": "2026-11-18T08:10:46.293129+00:00",
+  "public_reader": "https://research.momentum.inc/quantum-holography/",
+  "commit": "9556e30f229c48a8294378d81a8b84e1f62732c6",
+  "base_public_commit": "627861ecafa9844fb274dcfd55f2c0ce2ba9bd5c",
+  "scientific_horizon_utc": "2026-11-18T02:32:40.214455Z",
+  "content_id": "e96584ae32f36369b14df440dcb48e8da7d69166362f529a4467321567574e34",
+  "native_inputs": 56,
+  "full_rebuild_matches_published": {
+    "index.html": {
+      "sha256": "916a1a6db44808c235303eadbf65aa9bf0101d28d731bc627103baf913fbb770",
+      "bytes": 5082278
+    },
+    "reference.html": {
+      "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+      "bytes": 5068537
+    },
+    "atlas.html": {
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088
+    },
+    "reader-index.js": {
+      "sha256": "b6833dfec873fbe4faabdcd74ae69acc90a503183f15fcd4619cf0ace2802e28",
+      "bytes": 5953633
+    }
+  },
+  "chapters": 18,
+  "search_units": 7086,
+  "historic_locators_verified": 8460,
+  "local_links_checked": 30388,
+  "math_errors": 0,
+  "authored_opening_figure": [
+    {
+      "id": "fig-front-exchange",
+      "after_paragraph": 4,
+      "file": "fig-front-exchange.html"
+    }
+  ],
+  "native_visual_status": "Native Opus figure delivered. Deployed desktop and narrow viewport inspection awaiting an identified authorized device.",
+  "receipts": {
+    "EXPECTED-PUBLIC.json": "1e5823c472af262a6f6d22f8a4109245fb9c68bf7c1d7228c6c65b95b23d3e9d",
+    "SOURCE-MANIFEST.json": "29494d2be4411aa99b6f97a55986d6128d1d6d9e5f0642dc55a2531cbdb3d02d",
+    "compatibility/history.json": "0ca0f45d9088b7f76c1b4fe76f63fdf9c3fa1401069dee16271020d68e499baa",
+    "rebuild.py": "b4e4350f6c74890895ffd6c899edacc328e777c857e1123336824f6ce24c8522",
+    "reader-bindings/reading-contract.json": "fd4cce6eb545b9a395b5da3b34343d12092fd006d8e5df8dd1c248dcae73852f",
+    "tools/build_reader.py": "0a2f2514b3462dc247cbdedd0f80e62cf16791f1a3ecf4ad31bfa51b3f355a69",
+    "tools/check_notation.cjs": "55f9e3f583862969f28522868b55c76d5177584320f7a8c7c55634a64dd99c51",
+    "tools/source_reading.py": "cec88bfd63a7b4ed4f3ed373d6b2b84665190862723b41d8fbb539dd50cb410d",
+    "verification/ACCEPTED-INPUTS.json": "ebec587f60f129dd76e3c2691d4900a5b252b190be8f033cd37432765b9c2f44",
+    "verification/REPRODUCTION.json": "b2517bfb9efb8221063f15b96622f0a1839ba7b5329d6f6a33ed78bb71db3fed",
+    "verification/NATIVE-SOURCE.json": "06d726c48c3693a5f711a0d797cb53e08282fa2eca002b36be4ffd0c337031dc",
+    "verification/RAW-SCIENCE.json": "acc5e7787ca1846cd4cc1d892559743e817de53f677123de55b5ba9b3d1a3ed5",
+    "verification/FINAL-SCIENCE.json": "c9d2fed71c4dac1fd05024bfadd9ce8fc4063328dfcfc5818a5024dcac181fc1",
+    "verification/FINAL-LINKS.json": "7fbb81cb606f138f6555b1b1b41354ed21b397ddf654d03524da6326cc729175",
+    "verification/FINAL-NOTATION.json": "f689374db0761182fd142be1bd239a331d942e35b0e4ed26b3b130d4f3635f10",
+    "verification/V21-PARITY.json": "285dca9bbe12f8f56c5193fa1616cf824a787c49569a35c51fe2cef3e521c5a3",
+    "verification/V21-ROUTES.json": "309c170c72836acfa2f43c43aa56f20508707d1257411bb4056a93bba53b0cce",
+    "verification/FRONT-FIGURE-HANDOFF.md": "d914d254136f8a49b914463d0a86bb3e6119dc6545df8ac5a5bb134ea6a087b5",
+    "verification/FRONT-FIGURE-STATE.json": "8bee8620cad50336e6989e3eae19cec64250d42116a5c3505c42464786cfa904",
+    "verification/FINAL-CH02-CH07-READBACK.json": "8c91087afe0d3cddd49111eb8b90d2839b7faead70a81124a04d81ae843071da",
+    "LOCAL-READY.json": "e760199cb32090fbdf0093e03c853d0dbe2ac43d9b10db7e139c72fdb6f378b1",
+    "compatibility/current-history.json": "b232994f7d5e69eff12ab641e5bf38fcc949a498152468e2f3e3a712ea45b47a",
+    "verification/PUSH.json": "c9f2a7d85e0449cb35e9af01738bbb113582c5f6cb97e568956ff27a03437462",
+    "verification/PUBLICATION.json": "a5582708981db4fd5e40a76c728b10692aac605732fe7f02dccdf702e78447b5",
+    "verification/BARE-READBACK.json": "f90c4ffee35c07150f8885d3635d7c32f62c56d67d43497c815a04fe4baf0160",
+    "verification/EDITABLE-INSTALLED.json": "acd67daed75450eb109471178124d4b9a643770f0e104f6ec55da938c168735d",
+    "verification/NATIVE-INSTALL-PLAN.json": "e395831ea40f16cd794c3c3650da784c3ac8d82efffc12a14eb423352e00e4f0"
+  }
+}

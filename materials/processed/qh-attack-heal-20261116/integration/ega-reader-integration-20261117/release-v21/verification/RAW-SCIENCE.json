@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "files": {
+    "index.html": "0b765babb2b4db6bf76903c391201c26f7f5f11297b559a561244087b58f3b75",
+    "reference.html": "699eeb5102ea860832dea002467120ef963917386e615148676ef8c0b551b7e3",
+    "atlas.html": "191a470ec650c72ac4cd71543ed41d1d8ac101d3a48521b5e904214f63cc99c4"
+  },
+  "post656": {
+    "routes": [
+      {
+        "page": "index.html",
+        "id": "ch11-independent-meridian-measure",
+        "title": "A fixed quantum measure on a nonflat meridian",
+        "type": "chapter-heading"
+      },
+      {
+        "page": "atlas.html",
+        "id": "atlas-c-independent-affine-meridian-measure",
+        "title": "An independently normalized finite quantum measure on a nonflat meridian",
+        "type": "atlas-claim",
+        "claim": "independent-affine-meridian-measure",
+        "grade": {
+          "code": "checked",
+          "label": "Established"
+        },
+        "searchGrade": false
+      },
+      {
+        "page": "atlas.html",
+        "id": "atlas-c-exceptional-w4-two-sided-characteristic-cocycles",
+        "title": "Two-sided characteristic cocycles on the exceptional coefficient resolution",
+        "type": "atlas-claim",
+        "claim": "exceptional-w4-two-sided-characteristic-cocycles",
+        "grade": {
+          "code": "checked",
+          "label": "Established"
+        },
+        "searchGrade": false
+      },
+      {
+        "page": "reference.html",
+        "id": "s-finite-quantum-measure-on-a-nonflat-meridian",
+        "title": "A fixed quantum measure distinguishes two Ward fillings",
+        "type": "reference-statement",
+        "grade": "checked"
+      },
+      {
+        "page": "reference.html",
+        "id": "s-two-sided-cocycles-on-the-original-w4-coefficients",
+        "title": "Two-sided cocycles on the original exceptional vacuum complex",
+        "type": "reference-statement",
+        "grade": "checked"
+      }
+    ],
+    "scientificProbes": [
+      {
+        "page": "index.html",
+        "id": "ch11"
+      },
+      {
+        "page": "index.html",
+        "id": "ch12"
+      }
+    ]
+  },
+  "searchable_reviewed_claims": [
+    "coupled-irregular-four-point-flags",
+    "w4-marked-quartic-negative-three-halves",
+    "k3-straight-products-over-the-marked-field",
+    "sphere-binary-higher-transport",
+    "sourced-affine-meridian-transfer",
+    "classical-affine-meridian-flux",
+    "k3-prepared-cubic-probes",
+    "k3-null-lifts-and-pairwise-cubics"
+  ],
+  "checks": [
+    "signed sphere transport matrix and secondary differential",
+    "classical flux, action, normalization and three ordered readings",
+    "K3 preparation assumptions and separate review status",
+    "all eight flag image and target tuples",
+    "signed quartic obstruction, vanishing and Hochschild consequence",
+    "sharp Witt-index bound and two complex components",
+    "positive-width norm bound and finite interpolation"
+  ]
+}
