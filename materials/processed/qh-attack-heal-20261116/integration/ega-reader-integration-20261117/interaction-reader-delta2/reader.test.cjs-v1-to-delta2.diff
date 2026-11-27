@@ -1,0 +1,238 @@
+--- a/reader.test.cjs (reader-v1)
++++ b/reader.test.cjs (reader-delta2)
+@@ -67,8 +67,15 @@
+     <nav data-chapter-end aria-label="Next">${prev ? `<a rel="prev" href="#${prev.id}">Chapter ${prev.number}</a>` : ''}${next ? `<a rel="next" href="#${next.id}">Chapter ${next.number} · ${esc(next.title)}</a>` : ''}</nav>
+   </article>`;
+ }
++const ATLAS_IDS = n => ['atlas', 'atlas-h'].concat(Array.from({ length: n }, (_, i) => 'atlas-c-' + (i + 1)));
++function pagesMap(o) {
++  return { book: 'book.html', title: BOOK.title, index: 'reader-index.js', pages: [
++    { href: 'reference.html', parts: [{ id: 'results', title: 'Principal results' }], ids: ['results', 'results-h', 's-old-1'] },
++    { href: 'atlas.html', parts: [{ id: 'atlas', title: 'Atlas' }], ids: ATLAS_IDS(o.atlasUnits == null ? 40 : o.atlasUnits) }] };
++}
+ function book(o) {
+   o = o || {};
++  if (o.companion) return companionPage(o);
+   const list = BOOK.chapters.filter(c => !o.chapters || o.chapters.includes(c.id));
+   const labels = Object.entries(o.labels || {}).map(([k, v]) => ` data-label-${k}="${esc(v)}"`).join('');
+   const count = o.chapterCount ? ` data-chapter-count="${o.chapterCount}"` : '';
+@@ -106,9 +113,9 @@
+   <section id="glossary" data-reference aria-labelledby="glossary-h"><h2 id="glossary-h">Glossary</h2>
+     <dl><dt id="gl-vacuum">vacuum</dt><dd>Gloss words for the vacuum. See <a href="#def-ch01">Definition 1.1</a>.</dd>
+         <dt id="gl-lantern">lantern</dt><dd>Gloss words for the lantern.</dd></dl></section>
+-  <section id="results" data-reference aria-labelledby="results-h"><h2 id="results-h">Principal results</h2>
++  ${o.split ? '' : `<section id="results" data-reference aria-labelledby="results-h"><h2 id="results-h">Principal results</h2>
+     <div class="statement" id="s-old-1"><h3 class="statement-title">Old statement one</h3><p>Old statement text about the vacuum.</p></div></section>
+-  <section id="atlas" data-reference data-atlas-mount aria-labelledby="atlas-h"><h2 id="atlas-h">Atlas</h2><div class="atlas-body"><ol>${atlas}</ol></div></section>
++  <section id="atlas" data-reference data-atlas-mount aria-labelledby="atlas-h"><h2 id="atlas-h">Atlas</h2><div class="atlas-body"><ol>${atlas}</ol></div></section>`}
+   ${o.tracker ? `<section data-reference id="examples" class="section" aria-labelledby="examples-h"><h2 id="examples-h">Examples</h2>
+     <details class="row" id="row-alpha"><summary><span class="row-num">1</span><span class="row-name">Row alpha</span></summary>
+       <div class="statement" id="s-in-row"><h3 class="statement-title">Statement inside a row</h3><p>Row statement words.</p></div></details>
+@@ -117,10 +124,25 @@
+     <dl class="glossary"><div class="gloss" id="term-ox"><dt>ox</dt><dd>Gloss words for the ox.</dd></div></dl></section>` : ''}
+ </main>
+ ${o.tracker ? '<div class="card" id="card" role="dialog" aria-modal="false" hidden><div class="card-inner"></div></div>' : ''}
++${o.split ? `<script type="application/json" id="reader-pages">${JSON.stringify(pagesMap(o))}</script>` : ''}
+ ${redirects}${atlasStub}
+ ${o.status && !o.statusAfter ? `<script>${STATUS}</script>` : ''}
+ <script>${SCRIPT}</script>
+ ${o.status && o.statusAfter ? `<script>${STATUS}</script>` : ''}
++</body></html>`;
++}
++
++function companionPage(o) {
++  const n = o.atlasUnits == null ? 40 : o.atlasUnits;
++  const parts = o.companion === 'atlas'
++    ? `<section id="atlas" data-reference data-atlas-mount aria-labelledby="atlas-h"><h2 id="atlas-h">Atlas</h2><div class="atlas-body"><ol>${Array.from({ length: n }, (_, i) =>
++        `<li id="atlas-c-${i + 1}" data-qh-unit data-qh-unit-title="Claim ${i + 1}" data-qh-unit-place="Domain ${1 + (i % 4)}"><p>Claim ${i + 1} of the fixture atlas concerns the vacuum.</p><a href="#atlas-c-${i + 2}">next claim</a> <a href="book.html#ch05">Chapter 5</a></li>`).join('')}</ol></div></section>`
++    : `<section id="results" data-reference aria-labelledby="results-h"><h2 id="results-h">Principal results</h2>
++    <div class="statement" id="s-old-1"><h3 class="statement-title">Old statement one</h3><p>Old statement text about the vacuum. See <a href="#ch05">Chapter 5</a> and <a href="#atlas-c-2">claim 2</a>.</p></div></section>`;
++  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(BOOK.title)}</title></head><body>
++<main id="main" data-reader data-reader-book="book.html">${parts}</main>
++<script type="application/json" id="reader-pages">${JSON.stringify(pagesMap(o))}</script>
++<script>${SCRIPT}</script>
+ </body></html>`;
+ }
+ 
+@@ -134,7 +156,7 @@
+   vc.on('jsdomError', e => { if (!/Not implemented: navigation/.test(String(e && e.message))) errors.push(String(e && e.message || e)); });
+   vc.on('error', (...a) => errors.push('console.error: ' + a.join(' ')));
+   const dom = new JSDOM(o.html || book(o.book), {
+-    url: BASE + (o.url || ''),
++    url: (o.page ? BASE.replace('book.html', o.page) : BASE) + (o.url || ''),
+     runScripts: 'dangerously',
+     pretendToBeVisual: true,
+     virtualConsole: vc,
+@@ -149,6 +171,9 @@
+         ['localStorage', 'sessionStorage'].forEach(name => Object.defineProperty(w, name, { configurable: true, get() { throw new Error('storage denied'); } }));
+       }
+       if (o.storageSeed) Object.keys(o.storageSeed).forEach(k => w.localStorage.setItem(k, o.storageSeed[k]));
++      if (o.index) w.QH_READER_INDEX = o.index;
++      w.__left = [];
++      w.addEventListener('qh:leave', e => { w.__left.push(JSON.parse(JSON.stringify(e.detail))); e.preventDefault(); }, true);
+       if (o.before) o.before(w);
+     }
+   });
+@@ -815,6 +840,7 @@
+   await type(p, 'x^{2}');
+   const hrefs = hitLinks(p).map(a => a.getAttribute('href'));
+   assert.ok(hrefs.includes('#eq-ch01'), hrefs.slice(0, 5).join(' '));
++  assert.ok(!hrefs.some(h => /^#ch\d+$/.test(h)), 'a chapter is not found by the formulae of its text: ' + hrefs.filter(h => /^#ch\d+$/.test(h)).join(' '));
+   assert.equal(p.d.querySelectorAll('[id^="eq-"][id*="-p"]').length, 0, 'no address given inside an equation');
+   noErrors(p);
+ });
+@@ -1035,9 +1061,154 @@
+     const props = Array.from({ length: el.style.length }, (_, i) => el.style[i]).filter(prop => !prop.startsWith('--'));
+     assert.deepEqual(props, [], el.tagName + ' has ' + el.getAttribute('style'));
+   });
++  noErrors(p);
++});
++
++
++/* ---------------------------------------------------------------- the reference in companion pages */
++
++async function buildIndex(o) {
++  /* As the index tool does: each page's units as the reader builds them, addressed in that page. */
++  const p = load({ book: Object.assign({}, o || {}) });
++  await settle();
++  const ev = new p.w.CustomEvent('qh:reader-units', { detail: {} });
++  p.d.dispatchEvent(ev);
++  const units = plain(ev.detail.units).map(x => Object.assign(x, { page: x.group === 'results' ? 'reference.html' : x.group === 'atlas' ? 'atlas.html' : 'book.html' }));
+   noErrors(p);
++  return { units };
++}
++
++test('index: the reader gives its units for the index, each with its address, place and words', async () => {
++  const idx = await buildIndex();
++  const byGroup = {};
++  idx.units.forEach(x => { byGroup[x.group] = (byGroup[x.group] || 0) + 1; });
++  assert.ok(byGroup.ch01 > 5 && byGroup.atlas === 40 && byGroup.results >= 2, JSON.stringify(byGroup));
++  const ch = idx.units.find(x => x.id === 'ch03');
++  assert.equal(ch.groupKind, 'chapter');
++  assert.equal(ch.groupNumber, '3');
++  assert.equal(ch.groupTitle, BOOK.chapters[2].title);
++  const claim = idx.units.find(x => x.id === 'atlas-c-7');
++  assert.equal(claim.title, 'Claim 7');
++  assert.match(claim.text, /vacuum/);
+ });
+ 
++test('split: the book page holds only the book; an address of a companion page is forwarded there in place of this entry', async () => {
++  const p = load({ url: '#s-old-1', book: { split: true } });
++  await settle();
++  assert.equal(p.d.querySelectorAll('[data-atlas-mount], #results').length, 0);
++  assert.deepEqual(plain(p.w.__left), [{ url: 'reference.html#s-old-1', how: 'replace' }]);
++  noErrors(p);
++});
++
++test('split: a link to a companion page leaves for it, and the entry left keeps the place for Back', async () => {
++  const p = load({ url: '#ch04', book: { split: true } });
++  await settle();
++  click($(p, '.reader-contents-toggle'));
++  const a = $(p, '#contents a[href="#atlas"]');
++  a.focus();
++  click(a);
++  assert.deepEqual(plain(p.w.__left), [{ url: 'atlas.html#atlas', how: 'assign' }]);
++  const st = p.w.history.state.reader;
++  assert.equal(st.id.indexOf('ch04'), 0);
++  assert.ok(st.focus, 'the control used is kept');
++  noErrors(p);
++});
++
++test('split: the search reaches the companion pages through the index: chapters first, then the parts in the map\'s order', async () => {
++  const index = await buildIndex({ atlasUnits: 300 });
++  const p = load({ book: { split: true, atlasUnits: 300 }, index });
++  await settle();
++  click($(p, '.reader-search-toggle'));
++  await type(p, 'vacuum');
++  const groups = $$(p, '#reader-results .reader-group').map(g => g.getAttribute('data-group')).filter(g => g !== 'best');
++  assert.deepEqual(groups, ['ch01', 'ch06', 'ch11', 'glossary', 'results', 'atlas']);
++  const atlasLinks = [...$(p, '.reader-group[data-group="atlas"]').querySelectorAll('.reader-hit-link')];
++  assert.equal(atlasLinks.length, 3);
++  assert.match(atlasLinks[0].getAttribute('href'), /^atlas\.html#atlas-c-\d+$/);
++  assert.equal(text($(p, '.reader-scope[data-scope="atlas"] .reader-scope-count')), '300');
++  assert.equal(text($(p, '.reader-group[data-group="atlas"] .reader-group-where')), 'Atlas');
++  noErrors(p);
++});
++
++test('split: a result in a companion page leaves for it with the search kept in the entry left; coming back reopens it on that result', async () => {
++  const index = await buildIndex();
++  const p = load({ url: '#ch02', book: { split: true }, index });
++  await settle();
++  click($(p, '.reader-search-toggle'));
++  await type(p, 'Claim 17');
++  const link = hitLinks(p).find(a => a.getAttribute('href') === 'atlas.html#atlas-c-17');
++  assert.ok(link);
++  click(link);
++  assert.deepEqual(plain(p.w.__left), [{ url: 'atlas.html#atlas-c-17', how: 'assign' }]);
++  const st = plain(p.w.history.state.reader);
++  assert.equal(st.q, 'Claim 17');
++  assert.equal(st.panel, 1);
++  assert.equal(st.hit, 'atlas-c-17');
++  assert.match(p.w.location.search, /q=Claim/);
++  const back = load({ url: p.w.location.search + p.w.location.hash, book: { split: true }, index,
++    before(w) { w.history.replaceState({ reader: st }, ''); } });
++  await settle();
++  await sleep(100);
++  assert.equal($(back, '#reader-search').hidden, false);
++  assert.equal(back.d.activeElement && back.d.activeElement.getAttribute('href'), 'atlas.html#atlas-c-17');
++  noErrors(p); noErrors(back);
++});
++
++test('split: the index is loaded as a script when the search first opens, and its results join the list', async () => {
++  const index = await buildIndex();
++  const p = load({ book: { split: true } });
++  await settle();
++  click($(p, '.reader-search-toggle'));
++  const sc = $(p, 'script[data-reader-index]');
++  assert.ok(sc && sc.getAttribute('src') === 'reader-index.js', 'one script, from the map');
++  await type(p, 'vacuum');
++  assert.ok(!$(p, '.reader-group[data-group="atlas"]'), 'not before it has loaded');
++  p.w.QH_READER_INDEX = index;
++  sc.dispatchEvent(new p.w.Event('load'));
++  await sleep(50);
++  assert.ok($(p, '.reader-group[data-group="atlas"]'), 'the atlas results join');
++  noErrors(p);
++});
++
++test('split: an index that cannot be loaded is said, and the book\'s own results remain', async () => {
++  const p = load({ book: { split: true } });
++  await settle();
++  click($(p, '.reader-search-toggle'));
++  $(p, 'script[data-reader-index]').dispatchEvent(new p.w.Event('error'));
++  await type(p, 'vacuum');
++  assert.match(text($(p, '#reader-search-status')), /could not be searched from here/);
++  assert.ok(hitLinks(p).length > 0);
++  noErrors(p);
++});
++
++test('companion: a companion page opens on its first part; its bar leads to the book\'s title page and back to the place last read', async () => {
++  const p = load({ page: 'reference.html', book: { companion: 'reference' },
++    storageSeed: { 'qh-reader-place': JSON.stringify({ id: 'ch08-s1', title: 'Chapter 8 · ' + BOOK.chapters[7].title + ' · 8.1 First section of chapter 8', at: 1 }) } });
++  await settle();
++  assert.deepEqual(shown(p), ['results']);
++  assert.equal($(p, '.reader-home').getAttribute('href'), 'book.html#front');
++  assert.equal(text($(p, '.reader-home')), BOOK.title);
++  const ret = $(p, '.reader-prev');
++  assert.equal(ret.hidden, false);
++  assert.equal(ret.getAttribute('href'), 'book.html#ch08-s1');
++  assert.match(ret.getAttribute('aria-label'), /^Back to the text: Chapter 8 · /);
++  click($(p, '#s-old-1 a[href="#ch05"]'));
++  assert.deepEqual(plain(p.w.__left), [{ url: 'book.html#ch05', how: 'assign' }]);
++  click($(p, '#s-old-1 a[href="#atlas-c-2"]'));
++  assert.deepEqual(plain(p.w.__left)[1], { url: 'atlas.html#atlas-c-2', how: 'assign' });
++  noErrors(p);
++});
++
++test('companion: from the atlas page a link written to the book\'s page is followed as a change of page, keeping the place', async () => {
++  const p = load({ page: 'atlas.html', url: '#atlas-c-3', book: { companion: 'atlas' } });
++  await settle();
++  assert.deepEqual(shown(p), ['atlas']);
++  const out = $(p, '#atlas-c-3 a[href="book.html#ch05"]');
++  click(out);
++  assert.deepEqual(plain(p.w.__left), [{ url: 'https://example.org/book.html#ch05', how: 'assign' }]);
++  noErrors(p);
++});
++
+ /* ---------------------------------------------------------------- the built page (--page <file.html>)
+ 
+    The same reading flow, checked on the page as built from the author's chapters: every served chapter by its

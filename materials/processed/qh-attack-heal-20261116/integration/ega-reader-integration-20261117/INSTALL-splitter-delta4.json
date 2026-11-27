@@ -1,0 +1,19 @@
+{
+ "at": "2026-11-16T21:32:39+00:00",
+ "by": "website owner (foundation session 67e78388, claude5)",
+ "from": "interaction lane, reader-delta4 (README.txt), relayed by root",
+ "guard": "GUARD-SPLITTER-DELTA4.sh 701535e7bd7ab1350e6fdbb7e7ac3c07a8970e96b454971a513c2ca0f63e61e5: --check \"reader-delta4 tools verified\"; folder SHA256SUMS all OK",
+ "installed_as": "production tools copied whole to interaction-reader-delta4/tools/ in this folder (the guard's own production route: \"Production runs the tools from reader-delta4/tools/\"); no tree file changes",
+ "tools": {
+  "reader-index.cjs": "90cee2b6d1e49819983b31e66336b45a5cb9ce94f8d88fb9c74ab595907ca59f",
+  "split-checks.cjs": "3048eb47f1fe7fce92faae7955f1e26ff9840633bfa079d9e1cb6c007f756af3",
+  "split-reference.py": "cd104f4a5dcf458f98290ee21ac4f4fefe47795e84fd6016c0fa06ee845c7637",
+  "with-reader.py": "3e4bd66dec6897bc65d8526edf92e69299f5b97802cf3b739e533abdb9906a11"
+ },
+ "verified_effect_on_release": {
+  "pages_outside_page_map_and_head_titles": "byte-identical to release v7 (delta 2 splitter) for all three pages",
+  "atlas_map": "5,577 -> 3,133 entries; 1,215 distinct values removed, 0 of them element ids; they are values of data-claim-id, data-domain-id, data-edge-id, data-comparison-id and data-path-id attributes (the README names only data-edge-id)",
+  "addresses": "atlas claim addresses are element ids #atlas-c-<claim id> (atlas.js CLAIM rule), all kept; the only element id outside the map is main (the page frame, outside the parts, absent in v7 too)",
+  "public_check": "0 map entries without an element id (v7: 2,444)"
+ }
+}

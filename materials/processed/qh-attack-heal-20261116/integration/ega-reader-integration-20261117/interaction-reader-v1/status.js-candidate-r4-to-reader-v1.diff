@@ -1,0 +1,89 @@
+--- a/status.js (candidate-r4)
++++ b/status.js (reader-v1)
+@@ -2,6 +2,10 @@
+   'use strict';
+   var root = document.documentElement;
+   var doc = document;
++  /* Beside the monograph reader ([data-reader]) this script keeps what only it serves: the term and scope cards, the
++     example table's keys, the filters, the disclosures and their history, and print. The place shown, the address, the
++     search, the notices and the reading place are the reader's. */
++  var READER = !!doc.querySelector('[data-reader]');
+   function all(selector, context) { return Array.prototype.slice.call((context || doc).querySelectorAll(selector)); }
+   function media(query) { return !!(window.matchMedia && window.matchMedia(query).matches); }
+   function smooth() { return media('(prefers-reduced-motion: reduce)') ? 'auto' : 'smooth'; }
+@@ -1271,7 +1275,7 @@
+     return units;
+   }
+   function indexWhenIdle() {
+-    if (units) return;
++    if (units || READER) return;
+     if (!pending) { building = []; pending = jobs(); }
+     /* Where idle callbacks are missing, slices of about 8 ms with the page free in between. */
+     var idle = window.requestIdleCallback || function (fn) {
+@@ -1872,7 +1876,7 @@
+     find.scrollIntoView({ block: 'start', behavior: smooth() });
+   }
+ 
+-  build();
++  if (!READER) build();
+   if (input) {
+     doc.addEventListener('keydown', function (event) {
+       var altGraph = event.getModifierState && event.getModifierState('AltGraph');
+@@ -1996,6 +2000,7 @@
+     return unit && shared(unit) && main.contains(unit) ? unit : null;
+   }
+   function savePlace() {
++    if (READER) return;
+     var u = placeNow();
+     if (u) keep(PLACE, JSON.stringify({ id: u.id, title: placeTitle(u), at: Date.now() }));
+   }
+@@ -2032,7 +2037,7 @@
+      announced when they appear. */
+   var noticeBox = null;
+   var noticeKind = null;
+-  if (main) {
++  if (main && !READER) {
+     noticeBox = element('div', 'qh-notice');
+     noticeBox.setAttribute('role', 'status');
+     main.insertBefore(noticeBox, main.firstChild);
+@@ -2095,6 +2100,7 @@
+     } catch (e) { /* no CustomEvent */ }
+   }
+   doc.addEventListener('qh:navigate', function (event) {
++    if (READER) return;
+     var id = event.detail && event.detail.id;
+     var el = typeof id === 'string' && id ? doc.getElementById(id) : null;
+     if (!el || !shared(el)) return; /* not an anchor of the page */
+@@ -2185,6 +2191,12 @@
+     announce();
+   }
+   window.addEventListener('popstate', function (event) {
++    if (READER) {
++      var kept = qhOf(event.state);
++      if (refilter) refilter();
++      if (kept.open) restoreOpen(kept.open);
++      return;
++    }
+     /* A search typed just before Back belongs to the entry that was left, not to this one. */
+     clearTimeout(addressTimer);
+     pendingAddress = null;
+@@ -2212,14 +2224,16 @@
+       requestAnimationFrame(function () { if (to.isConnected && reachable(to)) focusQuietly(to); });
+     }
+   });
+-  window.addEventListener('hashchange', function () { openTarget(false); });
++  window.addEventListener('hashchange', function () { if (!READER) openTarget(false); });
+ 
+   var arrivalState = qhOf(history.state);
+   try {
+     fromURL(true);
+   } finally {
+     if (arrivalState.open && navigationType() !== 'navigate') restoreOpen(arrivalState.open);
+-    openTarget(true);
+-    if (!location.hash && !active() && !shownStatuses().length && navigationType() === 'navigate') offerPlace();
++    if (!READER) {
++      openTarget(true);
++      if (!location.hash && !active() && !shownStatuses().length && navigationType() === 'navigate') offerPlace();
++    }
+   }
+ })();

@@ -1,0 +1,21 @@
+ok   P1 the page has [data-reader] and the reader ran
+ok   P1 chapters served — ch01 ch02 ch03 ch04 ch05 ch06 ch07 ch08 ch09 ch10 ch11 ch12 ch13 ch14 ch15 ch16 ch17 ch18
+ok   P1 no duplicate id
+ok   P1 each chapter has its title as {id}-h
+ok   P1 every equation id holds its formula (not an empty marker) — 101 equations; empty: 
+ok   P1 figures carry their manifest id, data-figure and data-qh-figure — 18 figures: fig-gaussian-reduction fig-local-expansions fig-programme-overview fig-ordered-cut-support fig-cohomology-jump fig-connected-bar-cobar fig-adjunction-triangles fig-four-step-descent fig-programme-context-duality fig-character-action-comparison fig-infinite-rank fig-programme-context-quantum fig-spectral-coproduct fig-hall-correspondence fig-programme-context-arithmetic fig-weil-trace-remainder fig-state-line-cap fig-programme-context-reconstruction
+ok   P2 a bare visit shows the title page, every place hidden
+ok   P2 the atlas is not in the default view
+ok   P3 Begin and Next go through every served chapter in order, one at a time — ch01 ch02 ch03 ch04 ch05 ch06 ch07 ch08 ch09 ch10 ch11 ch12 ch13 ch14 ch15 ch16 ch17 ch18
+ok   P3 each chapter from the contents shows alone with its number in the bar
+ok   P3 the bar names the first chapter as "Chapter n · title", the number not repeated in the title — Chapter 1 · Boundary observables and reconstruction
+ok   P4 every in-page link outside the atlas resolves — 822 links; unresolved: 
+ok   P5 cross-references in running text open a reminder with their target (an equation with its formula) — 40 of 40; failed: 
+ok   P6 each chapter is found by its title among the first results
+ok   P6 paragraphs are found by their own words, as a phrase — 20 of 20; missed: 
+ok   P6 results list the chapters before the reference — ch17
+ok   P7 no script error
+ok   P8 a fresh visit to #reduction-must-retain-the-measurements shows its place and reaches it — ch01
+ok   P8 a fresh visit to #fig-gaussian-reduction shows its place and reaches it — ch01
+
+19 of 19 checks passed on index.html

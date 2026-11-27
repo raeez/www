@@ -1,0 +1,11 @@
+--- a/compiler/quantum-holography-status/reader.js
++++ b/compiler/quantum-holography-status/reader.js
+@@ -1696,7 +1696,7 @@
+     pending = null;
+     return units;
+   }
+-  /* The other pages' places, from the search index (reader-index.js, loaded as a script when the search first opens):
++  /* The other pages' places, from the companion index (loaded as a script when the search first opens):
+      each unit as the reader built it in its own page, addressed in that page. */
+   var remoteLoaded = false;
+   var remoteFailed = false;
