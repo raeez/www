@@ -1,0 +1,236 @@
+{
+  "schema": "whole-current-public-review-read-ledger/v1",
+  "completed_utc": "2026-11-16T16:34:35.354728+00:00",
+  "baseline_reads": {
+    "path": "/tmp/programme-public-fidelity-1120-20261116/BASELINE-READS.json",
+    "sha256": "f268460a282b4fdffb53e3da7f72c2b49036d0e3aa379d3d11e42131e2907c1c",
+    "bytes": 6922
+  },
+  "global_reads": {
+    "path": "/tmp/programme-public-fidelity-1120-20261116/current/global/READS.json",
+    "sha256": "633f0e5f23fb307bef91779145d9230b7bf9e4f69045416266a3cfcf710f0b42",
+    "bytes": 3298
+  },
+  "all_returned_prose_reports_read": [
+    {
+      "scope": "native",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/native/FINAL-PINS.json",
+        "sha256": "ff3b685a59aea7f07d0460bfe4b032c347c6994d4afa06d6e4e6a66ababceeee",
+        "bytes": 6868
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/native/CHECK.md",
+        "sha256": "5890474a8ddcb82ff272ebb7b49cac9d5a814862a56aa849e106d060ca7bbcfb",
+        "bytes": 7390
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "induction and retained unframed",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/induction/FINAL-PINS.json",
+        "sha256": "45936e7ec70683b6fd80557ab7d18e6bec5de1f9914beb0ac721b7992ee40039",
+        "bytes": 17175
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/induction/CHECK.md",
+        "sha256": "a9d2936f9e834089fff450042fb58bc7f08744a2aa1913f46ea6312ebba85302",
+        "bytes": 8422
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "analytic",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/analytic/correction-f1f2/FINAL-PINS.json",
+        "sha256": "f9bcc783c3592d85694d84b253408dcb90f865081c3bf9a2b8b739d53344f77c",
+        "bytes": 9207
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/analytic/correction-f1f2/CHECK.md",
+        "sha256": "e0e3a3a591961cda9bc20d7136ddbc22ccbf17b8b432ae88f77806f0b4c4c106",
+        "bytes": 3843
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "quantum",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/quantum/addendum/FINAL-PINS.json",
+        "sha256": "443df920184162556a11ae96e87ffd628d6d903fe69fc8c5eee5a8b4d27391a7",
+        "bytes": 4314
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/quantum/addendum/CHECK.md",
+        "sha256": "3385af931a1d0a1edc828a9186811485a7162c2e5280727cf1a20de86385f938",
+        "bytes": 2581
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "gravity",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/gravity/addendum/v2/FINAL-PINS.json",
+        "sha256": "bb25693a9c6d7aec31c7b4bb02bd187a1feddd0902eb29c550505b220c30d621",
+        "bytes": 1906
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/gravity/addendum/v2/CHECK.md",
+        "sha256": "426a40a169a4e99215de3cecda1f8e41b4c15cd2ba5afef9c324a81515a5668c",
+        "bytes": 2032
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "binary",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/binary/correction-v1/FINAL-PINS.json",
+        "sha256": "3c05db6265cbbc1c9229e0d90a4f7b8d4ba7f1c62396d06b094909a53efe68ef",
+        "bytes": 3287
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/binary/correction-v1/CHECK.md",
+        "sha256": "93bd4d85d650e32ce77dee8c78188d8e0ae8daa619698b943793a038a8388e0d",
+        "bytes": 2532
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "centres",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/centres/repair-v1/FINAL-PINS.json",
+        "sha256": "7ff3bc12120ca33762253db97ec4383f1e8597016375977fa5ed6681458e0a7b",
+        "bytes": 3268
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/centres/repair-v1/CHECK.md",
+        "sha256": "3cbd7838587e11b7aeb4f1c24ffae7d8bd04602b00648af1f905a24c21c47723",
+        "bytes": 3017
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "operations",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/operations/correction/FINAL-PINS.json",
+        "sha256": "d8fc65d82b88093e49839e42a51a9936ad5a93470629f1af4b2c88e71a2e515d",
+        "bytes": 4135
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/operations/correction/CHECK.md",
+        "sha256": "a3f6a8eef0fcdb43eebcbda9d70558d45670372717873a7a7e31e69244bef510",
+        "bytes": 4934
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "geometric additions",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/g04/FINAL-PINS.json",
+        "sha256": "a22db5d19f514be72a9ff94e4d2d789e43bdef957af81d73f5b51484fe586f5a",
+        "bytes": 9335
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/g04/CHECK.md",
+        "sha256": "1710240793be4c5afa544ffa2e1bbfa281ace4a55db67140f4efd0003be965fa",
+        "bytes": 4753
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "grand quantum qualifications",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/grand-quantum/FINAL-PINS.json",
+        "sha256": "9ab9a7e3146b81de9931d623124e1246f2432b45f654f67e938de886b65760ff",
+        "bytes": 5045
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/grand-quantum/CHECK.md",
+        "sha256": "302f97e9dbcb28548582e2e7ff290c202f5ed4a7e6ab2894a142a25735819458",
+        "bytes": 3229
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "global prose and incorporation scope",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/global/FINAL-PINS.json",
+        "sha256": "39eb11f18bfbd26522d7f8159b8dc88e77b43109d99ed6ee72d279295ab6b474",
+        "bytes": 2586
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/global/CHECK.md",
+        "sha256": "c759b903e945c232e4d55c45da822a4628cf4be07b3eada533899eff5d35943f",
+        "bytes": 6142
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    }
+  ],
+  "final_direct_reads": [
+    {
+      "artifact": "/tmp/programme-public-current-delivery-1350-v1-20261116/HANDOFF.md",
+      "scope": "Complete"
+    },
+    {
+      "artifact": "/tmp/programme-public-current-delivery-1350-v1-20261116/DELIVERY.json",
+      "scope": "Complete"
+    },
+    {
+      "artifact": "/tmp/programme-public-current-delivery-1350-v1-20261116/coordination/GRAND-DETAIL-REBINDING.json",
+      "scope": "Schema, purpose and row coverage read; every107record mechanically compared to previously reviewed source and finalvalues."
+    },
+    {
+      "artifact": "/tmp/programme-public-current-delivery-1350-v1-20261116/coordination/PRESERVATION-AND-BINDINGS.json",
+      "scope": "Schema, source types, all4status transitions and correspondence semantics read;501object records mechanically compared."
+    },
+    {
+      "artifact": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/atlas.json",
+      "scope": "All4changed-status records read in full; all other values are exact copies of the separately reviewed owner values verified by source-to-composition replay."
+    },
+    {
+      "artifact": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/content.json",
+      "scope": "Nine outstanding baseline propagation contexts in CHECK.json read fully; complete9/20/22 global values reused from exact scoped globalreceipt and matchedfinaloutput."
+    },
+    {
+      "artifact": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/essay.md",
+      "scope": "Exact finalglobal accepted bytes; originalwholeessay and all6refinement contexts already read in pinnedglobal ledger."
+    }
+  ],
+  "mechanical_only": [
+    "All3776deliverymembers",
+    "6406explicitpackage/ownerpins",
+    "403declaredchanges264appendsandexactsourcevalues",
+    "2743and1143exactdelta replays",
+    "107finalcrosswalkrecordbindings",
+    "501new/preservedobjectbindings",
+    "3755custodycopy mappings",
+    "109inheritedfamilylocator/statusretention",
+    "9536delimitedformula renders"
+  ],
+  "delegated_source_read_boundary": "Each scoped reviewer read the exact primary statements/hypotheses and complete decisive independent conclusions in their assigned new/changed slice. The parent read their returned reports and exact corrections. No assertion that every source proof body or copied file was independently reread.",
+  "no_new_source_audit": true,
+  "no_visual_verdict": true
+}

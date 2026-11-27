@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "draft_mode": false,
+  "errors": [],
+  "grand_conflicts": 0,
+  "pending_owner_seals": [],
+  "counts": {
+    "domains": 9,
+    "claims": 714,
+    "comparisons": 63,
+    "edges": 83,
+    "readingPaths": 22
+  },
+  "authored_changes": 403,
+  "appended_objects": 264,
+  "generated_legacy_mirrors": 8,
+  "preserved_original_content_ids": 260,
+  "explicit_legacy_ids_added": 98,
+  "all_current_content_ids": 372,
+  "principal": 9,
+  "families": 20,
+  "decisive_questions": 22,
+  "math_expressions": 9536,
+  "math_errors": 0,
+  "math_renderer": {
+    "path": "/Users/raeez/www-worktrees/2026-11-15-qh-frontier-2203/compiler/quantum-holography-tracker/tex2mathml.cjs",
+    "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+    "bytes": 881
+  },
+  "math_input_sha256": "14d54a9b0fd929d67f27a94024eea3c0eaa9d90d252635f86ad07a958808e50d",
+  "math_output_sha256": "11e0010ddda975b37c0ec6aaaf385ad58a90689b7c730a3d05c20ae8d387d40f",
+  "math_validation_scope": "TeX parsing only; visual/interface acceptance remains separate.",
+  "output_files": [
+    {
+      "path": "/private/tmp/programme-public-current-successor-20261116/composed/atlas.json",
+      "sha256": "577e3cb68df02b92d78ecadf37506bd06741a5e423a4d2c13519dd88ebb95521",
+      "bytes": 1349984
+    },
+    {
+      "path": "/private/tmp/programme-public-current-successor-20261116/composed/content.json",
+      "sha256": "6d8d82057edbc732e260972470f299f8c9916216311729ac81c69331b44891bd",
+      "bytes": 522727
+    },
+    {
+      "path": "/private/tmp/programme-public-current-successor-20261116/composed/essay.md",
+      "sha256": "0f35958c6a64e03627a71c9289a838c5eb26790e619d601b4403c231d15e85f6",
+      "bytes": 33214
+    }
+  ],
+  "known_correction_gates": {
+    "path": "/private/tmp/programme-public-current-successor-20261116/INTEGRATION-REVIEW-GATES.json",
+    "sha256": "cde2a32ee772ce28d3fa46bd18db41ce11ffdd837366aa88299fff1975dd55c7",
+    "bytes": 3055
+  },
+  "open_correction_gates": [],
+  "independent_whole_public_fidelity_acceptance": "Separate accountable receipt required; this validation is mechanical."
+}

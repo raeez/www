@@ -1,0 +1,396 @@
+{
+  "schema": "whole-current-public-fidelity-verdict/v1",
+  "completed_utc": "2026-11-16T16:34:35.354728+00:00",
+  "verdict": "PASS",
+  "review_complete": true,
+  "scientific_cutoff_utc": "2026-11-16T13:50:00Z",
+  "candidate_manifest": {
+    "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/FINAL-PINS.json",
+    "sha256": "63cb835d4a6c7d7187b5cc729f7ba3eb16ef65df665ed149cb62ff17b0d0d85f",
+    "bytes": 880581
+  },
+  "accepted_reader_files": [
+    {
+      "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/content.json",
+      "sha256": "6d8d82057edbc732e260972470f299f8c9916216311729ac81c69331b44891bd",
+      "bytes": 522727,
+      "role": "Accepted reader file"
+    },
+    {
+      "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/atlas.json",
+      "sha256": "577e3cb68df02b92d78ecadf37506bd06741a5e423a4d2c13519dd88ebb95521",
+      "bytes": 1349984,
+      "role": "Accepted reader file"
+    },
+    {
+      "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/essay.md",
+      "sha256": "0f35958c6a64e03627a71c9289a838c5eb26790e619d601b4403c231d15e85f6",
+      "bytes": 33214,
+      "role": "Accepted reader file"
+    }
+  ],
+  "scoped_reviews": [
+    {
+      "scope": "native",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/native/FINAL-PINS.json",
+        "sha256": "ff3b685a59aea7f07d0460bfe4b032c347c6994d4afa06d6e4e6a66ababceeee",
+        "bytes": 6868
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/native/CHECK.md",
+        "sha256": "5890474a8ddcb82ff272ebb7b49cac9d5a814862a56aa849e106d060ca7bbcfb",
+        "bytes": 7390
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "induction and retained unframed",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/induction/FINAL-PINS.json",
+        "sha256": "45936e7ec70683b6fd80557ab7d18e6bec5de1f9914beb0ac721b7992ee40039",
+        "bytes": 17175
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/induction/CHECK.md",
+        "sha256": "a9d2936f9e834089fff450042fb58bc7f08744a2aa1913f46ea6312ebba85302",
+        "bytes": 8422
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "analytic",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/analytic/correction-f1f2/FINAL-PINS.json",
+        "sha256": "f9bcc783c3592d85694d84b253408dcb90f865081c3bf9a2b8b739d53344f77c",
+        "bytes": 9207
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/analytic/correction-f1f2/CHECK.md",
+        "sha256": "e0e3a3a591961cda9bc20d7136ddbc22ccbf17b8b432ae88f77806f0b4c4c106",
+        "bytes": 3843
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "quantum",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/quantum/addendum/FINAL-PINS.json",
+        "sha256": "443df920184162556a11ae96e87ffd628d6d903fe69fc8c5eee5a8b4d27391a7",
+        "bytes": 4314
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/quantum/addendum/CHECK.md",
+        "sha256": "3385af931a1d0a1edc828a9186811485a7162c2e5280727cf1a20de86385f938",
+        "bytes": 2581
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "gravity",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/gravity/addendum/v2/FINAL-PINS.json",
+        "sha256": "bb25693a9c6d7aec31c7b4bb02bd187a1feddd0902eb29c550505b220c30d621",
+        "bytes": 1906
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/gravity/addendum/v2/CHECK.md",
+        "sha256": "426a40a169a4e99215de3cecda1f8e41b4c15cd2ba5afef9c324a81515a5668c",
+        "bytes": 2032
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "binary",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/binary/correction-v1/FINAL-PINS.json",
+        "sha256": "3c05db6265cbbc1c9229e0d90a4f7b8d4ba7f1c62396d06b094909a53efe68ef",
+        "bytes": 3287
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/binary/correction-v1/CHECK.md",
+        "sha256": "93bd4d85d650e32ce77dee8c78188d8e0ae8daa619698b943793a038a8388e0d",
+        "bytes": 2532
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "centres",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/centres/repair-v1/FINAL-PINS.json",
+        "sha256": "7ff3bc12120ca33762253db97ec4383f1e8597016375977fa5ed6681458e0a7b",
+        "bytes": 3268
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/centres/repair-v1/CHECK.md",
+        "sha256": "3cbd7838587e11b7aeb4f1c24ffae7d8bd04602b00648af1f905a24c21c47723",
+        "bytes": 3017
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "operations",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/operations/correction/FINAL-PINS.json",
+        "sha256": "d8fc65d82b88093e49839e42a51a9936ad5a93470629f1af4b2c88e71a2e515d",
+        "bytes": 4135
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/operations/correction/CHECK.md",
+        "sha256": "a3f6a8eef0fcdb43eebcbda9d70558d45670372717873a7a7e31e69244bef510",
+        "bytes": 4934
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "geometric additions",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/g04/FINAL-PINS.json",
+        "sha256": "a22db5d19f514be72a9ff94e4d2d789e43bdef957af81d73f5b51484fe586f5a",
+        "bytes": 9335
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/g04/CHECK.md",
+        "sha256": "1710240793be4c5afa544ffa2e1bbfa281ace4a55db67140f4efd0003be965fa",
+        "bytes": 4753
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "grand quantum qualifications",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/grand-quantum/FINAL-PINS.json",
+        "sha256": "9ab9a7e3146b81de9931d623124e1246f2432b45f654f67e938de886b65760ff",
+        "bytes": 5045
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/grand-quantum/CHECK.md",
+        "sha256": "302f97e9dbcb28548582e2e7ff290c202f5ed4a7e6ab2894a142a25735819458",
+        "bytes": 3229
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    },
+    {
+      "scope": "global prose and incorporation scope",
+      "status": "PASS_AT_EXACT_REVIEWED_SCOPE",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/global/FINAL-PINS.json",
+        "sha256": "39eb11f18bfbd26522d7f8159b8dc88e77b43109d99ed6ee72d279295ab6b474",
+        "bytes": 2586
+      },
+      "report": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/global/CHECK.md",
+        "sha256": "c759b903e945c232e4d55c45da822a4628cf4be07b3eada533899eff5d35943f",
+        "bytes": 6142
+      },
+      "returned_prose_read_complete": true,
+      "original_required_reviews_preserved": true
+    }
+  ],
+  "closed_baseline": {
+    "manifest": {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/BASELINE-FINAL-PINS.json",
+      "sha256": "af544cd41279f5341c42cb922b288ea7cf1e543e4f8dbd30206647bec883f788",
+      "bytes": 5324
+    },
+    "original_status": "REPAIR_REQUIRED",
+    "retrospective_verdict_unchanged": true,
+    "final_repairs": "All required baseline and later bounded findings resolved by exact ordered contracts and final propagation checks."
+  },
+  "composition": {
+    "schema": "independent-final-public-composition-check/v1",
+    "checked_utc": "2026-11-16T16:28:35.764949+00:00",
+    "status": "PASS",
+    "scope": "Exact public composition, declared source values, identity/graph/status bookkeeping and transcription; independent mathematical fidelity is supplied by the separately bound lane and global receipts. No source theorem rerun or site rendering.",
+    "candidate_final_manifest": "/tmp/programme-public-current-delivery-1350-v1-20261116/FINAL-PINS.json",
+    "candidate_final_sha256": "63cb835d4a6c7d7187b5cc729f7ba3eb16ef65df665ed149cb62ff17b0d0d85f",
+    "counts": {
+      "checks": 2619,
+      "owner_and_output_pins": 6406,
+      "declared_changes": 403,
+      "appends": 264,
+      "claims": 714,
+      "old_claims_retained": 503,
+      "old_edges_retained": 53,
+      "new_edges": 30,
+      "original_content_ids": 260,
+      "explicit_new_legacy_ids": 98,
+      "math_expressions": 9536
+    },
+    "status_changes": [
+      {
+        "id": "elliptic-moments-higher-native-comparison",
+        "before": {
+          "code": "remaining",
+          "label": "Remaining comparison"
+        },
+        "after": {
+          "code": "checked",
+          "label": "Checked conclusion"
+        }
+      },
+      {
+        "id": "quantum-native-a7-higher-compatibility",
+        "before": {
+          "code": "remaining",
+          "label": "Remaining comparison"
+        },
+        "after": {
+          "code": "scoped_negative",
+          "label": "Scoped negative"
+        }
+      },
+      {
+        "id": "elliptic-chosen-sixth-comparison",
+        "before": {
+          "code": "remaining",
+          "label": "Remaining comparison"
+        },
+        "after": {
+          "code": "scoped_negative",
+          "label": "Scoped negative"
+        }
+      },
+      {
+        "id": "analytic-elliptic-conditional-native-comparison",
+        "before": {
+          "code": "conditional",
+          "label": "Conditional implication"
+        },
+        "after": {
+          "code": "remaining",
+          "label": "Remaining comparison"
+        }
+      }
+    ],
+    "errors": []
+  },
+  "final_delta_and_binding_check": {
+    "schema": "final-public-delta-and-rebinding-check/v1",
+    "checked_utc": "2026-11-16T16:30:41.810422+00:00",
+    "status": "PASS",
+    "candidate_final_sha256": "63cb835d4a6c7d7187b5cc729f7ba3eb16ef65df665ed149cb62ff17b0d0d85f",
+    "exact_delta_replays": [
+      {
+        "file": "DELTA-FROM-1120.json",
+        "changes": 2743,
+        "errors": []
+      },
+      {
+        "file": "DELTA-FROM-CORRECTED-BASELINE.json",
+        "changes": 1143,
+        "errors": []
+      }
+    ],
+    "grand_rows": 29,
+    "grand_detailed_target_occurrences": 107,
+    "changed_crosswalk_occurrences_since_author_snapshot": [
+      {
+        "row": "OBS-07",
+        "id": "operations-truncated-lattice-late-failure",
+        "artifact": "atlas.json",
+        "pointer": "/claims/663"
+      },
+      {
+        "row": "V2-V8-CATEGORY",
+        "id": "genuine-bulk-actions-question",
+        "artifact": "content.json",
+        "pointer": "/frontier/questions/5/question"
+      },
+      {
+        "row": "FX-COUSIN",
+        "id": "centre-residue-comparison-remaining",
+        "artifact": "atlas.json",
+        "pointer": "/claims/239"
+      },
+      {
+        "row": "FX-TOWER",
+        "id": "centre-residue-comparison-remaining",
+        "artifact": "atlas.json",
+        "pointer": "/claims/239"
+      },
+      {
+        "row": "FX-TOWER",
+        "id": "centre-aritywise-pole-class-death",
+        "artifact": "atlas.json",
+        "pointer": "/claims/711"
+      },
+      {
+        "row": "F10-D7-REFUTATION",
+        "id": "centre-residue-comparison-remaining",
+        "artifact": "atlas.json",
+        "pointer": "/claims/239"
+      },
+      {
+        "row": "FX-GPT-LATE",
+        "id": "centre-residue-comparison-remaining",
+        "artifact": "atlas.json",
+        "pointer": "/claims/239"
+      },
+      {
+        "row": "FX-GPT-LATE",
+        "id": "centre-finite-homogeneity-transitions",
+        "artifact": "atlas.json",
+        "pointer": "/claims/702"
+      }
+    ],
+    "new_and_preserved_object_binding_checks": 501,
+    "custody_copy_mappings": 3755,
+    "inherited_locators": 109,
+    "inherited_status_changes": [],
+    "errors": []
+  },
+  "baseline_remaining_propagation": {
+    "status": "PASS",
+    "final_values_read": [
+      "/rows/3/cells/modules/note",
+      "/frontier/questions/7/question/text",
+      "/decisive/questions/0/known/2/text",
+      "/decisive/questions/7/known/1/text",
+      "/decisive/questions/7/known/2/text",
+      "/decisive/questions/7/known/3/text",
+      "/decisive/questions/0/known/10/text",
+      "/frontier/questions/2/why",
+      "/decisive/questions/2/known/5/text"
+    ],
+    "four_status_transition_claims_read_complete": true,
+    "global_row_summary_and_essay_reused_from_final_global_PASS": true,
+    "all_recorded_process_residual_values_replaced": true
+  },
+  "remaining_required_findings": [],
+  "review_limits": [
+    "The closed historical affine full-proof version was not recovered; the complete narrow adoption/check and preserved Proposition6.2 supplied the stated baseline scope.",
+    "The native finite-input completion-evidence caveat is retained; pre-cutoff inclusion is owner-bound and not inferred from mtime.",
+    "Closed grand/source proof audits were reused, not reopened.",
+    "Formula rendering is transcription evidence, not visual website/PDF acceptance."
+  ],
+  "authority": {
+    "public_content_fidelity": true,
+    "new_mathematical_adoption": false,
+    "source_or_candidate_mutation": false,
+    "source_proof_or_closed_control_rerun": false,
+    "site_render_or_interaction_acceptance": false,
+    "publication_or_release": false,
+    "root_owns_integration_and_release": true
+  }
+}

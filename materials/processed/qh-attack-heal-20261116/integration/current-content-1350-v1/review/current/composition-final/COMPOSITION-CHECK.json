@@ -1,0 +1,68 @@
+{
+  "schema": "independent-final-public-composition-check/v1",
+  "checked_utc": "2026-11-16T16:28:35.764949+00:00",
+  "status": "PASS",
+  "scope": "Exact public composition, declared source values, identity/graph/status bookkeeping and transcription; independent mathematical fidelity is supplied by the separately bound lane and global receipts. No source theorem rerun or site rendering.",
+  "candidate_final_manifest": "/tmp/programme-public-current-delivery-1350-v1-20261116/FINAL-PINS.json",
+  "candidate_final_sha256": "63cb835d4a6c7d7187b5cc729f7ba3eb16ef65df665ed149cb62ff17b0d0d85f",
+  "counts": {
+    "checks": 2619,
+    "owner_and_output_pins": 6406,
+    "declared_changes": 403,
+    "appends": 264,
+    "claims": 714,
+    "old_claims_retained": 503,
+    "old_edges_retained": 53,
+    "new_edges": 30,
+    "original_content_ids": 260,
+    "explicit_new_legacy_ids": 98,
+    "math_expressions": 9536
+  },
+  "status_changes": [
+    {
+      "id": "elliptic-moments-higher-native-comparison",
+      "before": {
+        "code": "remaining",
+        "label": "Remaining comparison"
+      },
+      "after": {
+        "code": "checked",
+        "label": "Checked conclusion"
+      }
+    },
+    {
+      "id": "quantum-native-a7-higher-compatibility",
+      "before": {
+        "code": "remaining",
+        "label": "Remaining comparison"
+      },
+      "after": {
+        "code": "scoped_negative",
+        "label": "Scoped negative"
+      }
+    },
+    {
+      "id": "elliptic-chosen-sixth-comparison",
+      "before": {
+        "code": "remaining",
+        "label": "Remaining comparison"
+      },
+      "after": {
+        "code": "scoped_negative",
+        "label": "Scoped negative"
+      }
+    },
+    {
+      "id": "analytic-elliptic-conditional-native-comparison",
+      "before": {
+        "code": "conditional",
+        "label": "Conditional implication"
+      },
+      "after": {
+        "code": "remaining",
+        "label": "Remaining comparison"
+      }
+    }
+  ],
+  "errors": []
+}

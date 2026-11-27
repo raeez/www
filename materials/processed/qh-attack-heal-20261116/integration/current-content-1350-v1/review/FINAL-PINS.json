@@ -1,0 +1,136 @@
+{
+  "schema": "whole-current-public-source-fidelity-final-pins/v1",
+  "sealed_utc": "2026-11-16T16:35:21.372773+00:00",
+  "verdict": "PASS",
+  "review_complete": true,
+  "scientific_cutoff_utc": "2026-11-16T13:50:00Z",
+  "accepted_candidate_manifest": {
+    "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/FINAL-PINS.json",
+    "sha256": "63cb835d4a6c7d7187b5cc729f7ba3eb16ef65df665ed149cb62ff17b0d0d85f",
+    "bytes": 880581
+  },
+  "accepted_reader_files": [
+    {
+      "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/content.json",
+      "sha256": "6d8d82057edbc732e260972470f299f8c9916216311729ac81c69331b44891bd",
+      "bytes": 522727,
+      "role": "Accepted reader file"
+    },
+    {
+      "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/atlas.json",
+      "sha256": "577e3cb68df02b92d78ecadf37506bd06741a5e423a4d2c13519dd88ebb95521",
+      "bytes": 1349984,
+      "role": "Accepted reader file"
+    },
+    {
+      "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/essay.md",
+      "sha256": "0f35958c6a64e03627a71c9289a838c5eb26790e619d601b4403c231d15e85f6",
+      "bytes": 33214,
+      "role": "Accepted reader file"
+    }
+  ],
+  "files": [
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/CHECK.md",
+      "sha256": "c9fec0b352213710b35feb60de40e82140accca3e72396b925786daed5da632d",
+      "bytes": 6630
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/CHECK.json",
+      "sha256": "bf6d64ac7574109f0e4c6f66a6a1d12ea18bc5d2d06c0e95eeede0ab4be4f328",
+      "bytes": 14823
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/READS.json",
+      "sha256": "f67c42ba442e4eda6b7231be4d3973f76d0afbff795f0c06e54be72245e48e02",
+      "bytes": 10257
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/SOURCE-PINS.json",
+      "sha256": "98382b255f880916877ba7649137695d91754d94d211aa77b6b9c68113ff5223",
+      "bytes": 22836
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/RETURN-INTEGRITY.json",
+      "sha256": "44e88510128ded375fad6fdc759b1af529ca1e71c8d9185781afbf96ca39914d",
+      "bytes": 7068
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/INPUT-OUTPUT-INTEGRITY.json",
+      "sha256": "42b568a121a8996c5c5002b26303c9d9ef38708d28423e51d6b9e4c30ca5071e",
+      "bytes": 3722
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/BINARY-CENTRE-CORRECTION-INTEGRITY.json",
+      "sha256": "93f323d531469ef05eaae1b2eaf6fed29ad2b671fdd5ad8a87ea3432a9c7d9c3",
+      "bytes": 525
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/verify_final_composition.py",
+      "sha256": "6636b3d27b8a1dd9a05a4e86fb8f7c7461cc5155251d4765a6b041072625e6c7",
+      "bytes": 18071
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/composition-final/BASELINE-PROCESS-RESIDUALS.json",
+      "sha256": "af88e68b2d1515438fa38a5a36363181400bd093ee6557c2cf600bda32fbf9e5",
+      "bytes": 6376
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/composition-final/CHECKS.json",
+      "sha256": "050076be69c78502713a09dbb12985c0ddf8638bc15806f7f0f5e22c1a21a537",
+      "bytes": 390900
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/composition-final/COMPOSITION-CHECK.json",
+      "sha256": "7fdc4bd64f778906e7f1f8842f0075c6a5fd388d351f3df77051bf0c1bd7c12f",
+      "bytes": 1995
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/composition-final/COMPOSITION-DIFFERENCES.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/composition-final/DECLARED-SOURCE-VALUES.json",
+      "sha256": "f964f73b306bf29099c4377efd08487fd6ef0bf9048333999e947ab5bab41e85",
+      "bytes": 147001
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/composition-final/DELTA-AND-BINDING-CHECK.json",
+      "sha256": "d763f6659abf6449ce4fa50623ceffd27fefb416b54c2ec2a9c3f945115e787c",
+      "bytes": 2006
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/composition-final/FINAL-CROSSWALK-RECORD-CHECKS.json",
+      "sha256": "c26ced7f22706cc54ea735ae49e1e2247f8f007f0f29876e0d00d7137afe7dc5",
+      "bytes": 14163
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/composition-final/FINAL-INHERITED-LOCATORS.json",
+      "sha256": "06124d6d1b24e46c1a891d509e5ec6531f5a60a31505133611fb813552036510",
+      "bytes": 36107
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/composition-final/GUARDS.json",
+      "sha256": "4929771bb7a56b4ffdd19060075fcedd1bbb469364f1b626b6912e5f02eed976",
+      "bytes": 45231
+    },
+    {
+      "path": "/tmp/programme-public-fidelity-1120-20261116/current/composition-final/TRANSCRIPTION-CHECK.json",
+      "sha256": "2e149b5a5a2e52760b9c88c2b1cba36259c73cd1fcfd5e5d7133017bbf5ea35e",
+      "bytes": 129
+    }
+  ],
+  "count": 18,
+  "sourcepin_count": 75,
+  "sourcepins_match": true,
+  "all11_scoped_review_closures_bound": true,
+  "all_required_content_findings_resolved": true,
+  "all_original_seals_preserved": true,
+  "proof_or_closed_control_reaudit": false,
+  "candidate_source_site_git_external_mutations": false,
+  "new_mathematical_adoption": false,
+  "visual_site_pdf_or_release_acceptance": false,
+  "root_owns_site_integration_and_release": true,
+  "self_excluded": true
+}

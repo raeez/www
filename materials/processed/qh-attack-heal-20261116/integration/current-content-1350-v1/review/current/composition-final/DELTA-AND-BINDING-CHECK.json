@@ -1,0 +1,75 @@
+{
+  "schema": "final-public-delta-and-rebinding-check/v1",
+  "checked_utc": "2026-11-16T16:30:41.810422+00:00",
+  "status": "PASS",
+  "candidate_final_sha256": "63cb835d4a6c7d7187b5cc729f7ba3eb16ef65df665ed149cb62ff17b0d0d85f",
+  "exact_delta_replays": [
+    {
+      "file": "DELTA-FROM-1120.json",
+      "changes": 2743,
+      "errors": []
+    },
+    {
+      "file": "DELTA-FROM-CORRECTED-BASELINE.json",
+      "changes": 1143,
+      "errors": []
+    }
+  ],
+  "grand_rows": 29,
+  "grand_detailed_target_occurrences": 107,
+  "changed_crosswalk_occurrences_since_author_snapshot": [
+    {
+      "row": "OBS-07",
+      "id": "operations-truncated-lattice-late-failure",
+      "artifact": "atlas.json",
+      "pointer": "/claims/663"
+    },
+    {
+      "row": "V2-V8-CATEGORY",
+      "id": "genuine-bulk-actions-question",
+      "artifact": "content.json",
+      "pointer": "/frontier/questions/5/question"
+    },
+    {
+      "row": "FX-COUSIN",
+      "id": "centre-residue-comparison-remaining",
+      "artifact": "atlas.json",
+      "pointer": "/claims/239"
+    },
+    {
+      "row": "FX-TOWER",
+      "id": "centre-residue-comparison-remaining",
+      "artifact": "atlas.json",
+      "pointer": "/claims/239"
+    },
+    {
+      "row": "FX-TOWER",
+      "id": "centre-aritywise-pole-class-death",
+      "artifact": "atlas.json",
+      "pointer": "/claims/711"
+    },
+    {
+      "row": "F10-D7-REFUTATION",
+      "id": "centre-residue-comparison-remaining",
+      "artifact": "atlas.json",
+      "pointer": "/claims/239"
+    },
+    {
+      "row": "FX-GPT-LATE",
+      "id": "centre-residue-comparison-remaining",
+      "artifact": "atlas.json",
+      "pointer": "/claims/239"
+    },
+    {
+      "row": "FX-GPT-LATE",
+      "id": "centre-finite-homogeneity-transitions",
+      "artifact": "atlas.json",
+      "pointer": "/claims/702"
+    }
+  ],
+  "new_and_preserved_object_binding_checks": 501,
+  "custody_copy_mappings": 3755,
+  "inherited_locators": 109,
+  "inherited_status_changes": [],
+  "errors": []
+}

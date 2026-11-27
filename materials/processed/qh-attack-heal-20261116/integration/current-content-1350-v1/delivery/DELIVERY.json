@@ -1,0 +1,234 @@
+{
+  "schema": "current-public-reader-delivery/v1",
+  "created_utc": "2026-11-16T16:26:28.155294+00:00",
+  "evidence_boundary_utc": "2026-11-16T13:50:00Z",
+  "scope": "Current reader content and exact private composition/source custody; root owns final review, site integration and release.",
+  "public_files": [
+    {
+      "path": "/private/tmp/programme-public-current-delivery-1350-v1-20261116/public/content.json",
+      "sha256": "6d8d82057edbc732e260972470f299f8c9916216311729ac81c69331b44891bd",
+      "bytes": 522727
+    },
+    {
+      "path": "/private/tmp/programme-public-current-delivery-1350-v1-20261116/public/atlas.json",
+      "sha256": "577e3cb68df02b92d78ecadf37506bd06741a5e423a4d2c13519dd88ebb95521",
+      "bytes": 1349984
+    },
+    {
+      "path": "/private/tmp/programme-public-current-delivery-1350-v1-20261116/public/essay.md",
+      "sha256": "0f35958c6a64e03627a71c9289a838c5eb26790e619d601b4403c231d15e85f6",
+      "bytes": 33214
+    }
+  ],
+  "mechanical_validation": {
+    "path": "/private/tmp/programme-public-current-delivery-1350-v1-20261116/coordination/VALIDATION.json",
+    "sha256": "85b21e7e3ae1203b0aec79ea19b60b6d1bc32c7728fc2c87bd109fca93acf506",
+    "bytes": 2120
+  },
+  "preservation_and_bindings": {
+    "path": "/private/tmp/programme-public-current-delivery-1350-v1-20261116/coordination/PRESERVATION-AND-BINDINGS.json",
+    "sha256": "3527e1f790ea1e99715e03c41ff69799d5217e4faf44ee1bbaaa7758af57adf7",
+    "bytes": 238932
+  },
+  "exact_original_baseline_delta": {
+    "path": "/private/tmp/programme-public-current-delivery-1350-v1-20261116/coordination/DELTA-FROM-1120.json",
+    "sha256": "ba9e2357fa172e60b6b012eced1a02dae5a030b8d1dcd96eb815ea79448943e3",
+    "bytes": 1837012
+  },
+  "exact_corrected_baseline_delta": {
+    "path": "/private/tmp/programme-public-current-delivery-1350-v1-20261116/coordination/DELTA-FROM-CORRECTED-BASELINE.json",
+    "sha256": "7b86b60aff9dcc041dec8e23d3eac047df886f7563e2b50f5bbc1e855c92b54a",
+    "bytes": 946383
+  },
+  "source_custody_path_map": {
+    "path": "/private/tmp/programme-public-current-delivery-1350-v1-20261116/coordination/CUSTODY-PATH-MAP.json",
+    "sha256": "7e3ed4fa69930259702b829357b205208338112fa29244c2b41e7c64fc623527",
+    "bytes": 1549663
+  },
+  "grand_detailed_current_rebinding": {
+    "path": "/private/tmp/programme-public-current-delivery-1350-v1-20261116/coordination/GRAND-DETAIL-REBINDING.json",
+    "sha256": "745c5fffffb03ec25ef604ea31854b1670fc0b1f3d5ad445ff7dc28cf7c2c03c",
+    "bytes": 83321
+  },
+  "owner_manifests": [
+    {
+      "lane": "foundations",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/foundations/FINAL-PINS.json",
+        "sha256": "7a79239e198c77b361bd0590c9af568b0b7011a9f3e2382127b146a9c8f219b4",
+        "bytes": 4855
+      },
+      "verified_file_count": 17
+    },
+    {
+      "lane": "foundations/v4-addendum",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/foundations/v4-addendum/FINAL-PINS.json",
+        "sha256": "c70235066ce9ec255836e5d03f2b455b12614ace1c206a88773a612fe789e1f7",
+        "bytes": 1374
+      },
+      "verified_file_count": 4
+    },
+    {
+      "lane": "foundations/review-correction-v1",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/foundations/review-correction-v1/FINAL-PINS.json",
+        "sha256": "3d67f1078453e6e884f2e3259e44d37ac57b88f664edd64640b5f20929561fd3",
+        "bytes": 7539
+      },
+      "verified_file_count": 20
+    },
+    {
+      "lane": "analytic",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/analytic/FINAL-PINS.json",
+        "sha256": "a313f29f516352bfb7bd47bb16e8bb4afbf3ae141e543aecf030c3afe690a3fc",
+        "bytes": 103927
+      },
+      "verified_file_count": 265
+    },
+    {
+      "lane": "analytic/correction-f1f2",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/analytic/correction-f1f2/FINAL-PINS.json",
+        "sha256": "f15f4c6e781a809a7d9d753b9ea8dbc462bce818127e39201ef739711bc14b3a",
+        "bytes": 17367
+      },
+      "verified_file_count": 53
+    },
+    {
+      "lane": "quantum-gravity",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/quantum-gravity/FINAL-PINS.json",
+        "sha256": "d342f754fd607efdc7b9a4682fbe4475dc6f681615090bbf58962496bf003587",
+        "bytes": 7959
+      },
+      "verified_file_count": 23
+    },
+    {
+      "lane": "quantum-gravity/fidelity-addendum-v1",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/quantum-gravity/fidelity-addendum-v1/FINAL-PINS.json",
+        "sha256": "3f7679577140d0926f0207712ff03df043061b1aa790f1dd621a7518d07d32a8",
+        "bytes": 6672
+      },
+      "verified_file_count": 17
+    },
+    {
+      "lane": "quantum-gravity/fidelity-addendum-v2",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/quantum-gravity/fidelity-addendum-v2/FINAL-PINS.json",
+        "sha256": "96e74fd4791ab68aa98154cd3430976ff93ebfb070aa49dc4f5680f346dba134",
+        "bytes": 3808
+      },
+      "verified_file_count": 13
+    },
+    {
+      "lane": "quantum-gravity/fidelity-reviewed-handoff",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/quantum-gravity/fidelity-reviewed-handoff/FINAL-PINS.json",
+        "sha256": "fc080df994146ddeffdd881e932d8858e4c85129e94b797f0118ec171ea09adf",
+        "bytes": 9279
+      },
+      "verified_file_count": 33
+    },
+    {
+      "lane": "operations",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/operations/FINAL-PINS.json",
+        "sha256": "831b3253433097e0255446b2b5fb432f349838c6e16fee23864c5b0002c25537",
+        "bytes": 573689
+      },
+      "verified_file_count": 1792
+    },
+    {
+      "lane": "operations-fidelity-correction-v1",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/operations-fidelity-correction-v1/FINAL-PINS.json",
+        "sha256": "72f3d40f3a69efa2d197218d7009693ec52603d537390ed50e971e7624b43212",
+        "bytes": 22134
+      },
+      "verified_file_count": 70
+    },
+    {
+      "lane": "binary-centres",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/binary-centres/FINAL-PINS.json",
+        "sha256": "629cf4d7ea71cdac9c04bd74ece59b111048ecfd20ca5fd6e3d40c952908eef8",
+        "bytes": 8356
+      },
+      "verified_file_count": 25
+    },
+    {
+      "lane": "binary-centres/fidelity-repair-v1",
+      "manifest": {
+        "path": "/private/tmp/programme-public-current-successor-20261116/binary-centres/fidelity-repair-v1/FINAL-PINS.json",
+        "sha256": "593a01113888845df6d6a8b6823b1be50703f15de29c72bc3bd39f1227a28d5c",
+        "bytes": 28268
+      },
+      "verified_file_count": 91
+    },
+    {
+      "lane": "grand-synthesis",
+      "manifest": {
+        "path": "/tmp/programme-grand-synthesis-20261116T1240Z/public-projection/review-candidate-v1/MANIFEST.json",
+        "sha256": "5ba66bc66a7ed15af5f6548c5f301aed3d9ebc36e6708fad12f999eb229db9f5",
+        "bytes": 23703
+      },
+      "verified_file_count": 107
+    },
+    {
+      "lane": "grand-source-refinements-v1",
+      "manifest": {
+        "path": "/tmp/programme-grand-synthesis-20261116T1240Z/public-projection/review-correction-v1/FINAL-PINS.json",
+        "sha256": "6fcdc7ff26e74cd46bc16cbeac5b8a3fc2069c34a94f6721d6226571e862962c",
+        "bytes": 2306
+      },
+      "verified_file_count": 12
+    },
+    {
+      "lane": "grand-source-refinements-v2",
+      "manifest": {
+        "path": "/tmp/programme-grand-synthesis-20261116T1240Z/public-projection/review-correction-v2/FINAL-PINS.json",
+        "sha256": "0a2ebce57b5ef8bf9d615660c6a73bb1ea1e5da781b099037c64e11a93a16052",
+        "bytes": 1464
+      },
+      "verified_file_count": 8
+    },
+    {
+      "lane": "independent-global-source-fidelity",
+      "manifest": {
+        "path": "/tmp/programme-public-fidelity-1120-20261116/current/global/FINAL-PINS.json",
+        "sha256": "39eb11f18bfbd26522d7f8159b8dc88e77b43109d99ed6ee72d279295ab6b474",
+        "bytes": 2586
+      },
+      "verified_file_count": 8
+    },
+    {
+      "lane": "grand-reviewed-delivery",
+      "manifest": {
+        "path": "/tmp/programme-grand-synthesis-20261116T1240Z/public-projection/reviewed-handoff/FINAL-PINS.json",
+        "sha256": "d9cda6cac98d5bf135da7beb814d3b835feef0d1188d4184af3b2a38abd07948",
+        "bytes": 2574
+      },
+      "verified_file_count": 15
+    }
+  ],
+  "counts": {
+    "domains": 9,
+    "claims": 714,
+    "comparisons": 63,
+    "edges": 83,
+    "readingPaths": 22
+  },
+  "principal_results": 9,
+  "families": 20,
+  "decisive_questions": 22,
+  "retained_explicit_legacy_ids": 260,
+  "formerly_implicit_ids_made_explicit": 98,
+  "all_counts_describe_reader_records_not_theorems_or_novelty": true,
+  "scientific_reproof_or_new_adoption": false,
+  "shared_or_canonical_writes": false,
+  "site_visual_acceptance_or_release": false,
+  "whole_public_fidelity_receipt_is_separate": true
+}

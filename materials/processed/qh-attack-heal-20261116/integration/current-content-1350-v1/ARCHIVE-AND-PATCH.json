@@ -1,0 +1,33 @@
+{
+  "created_utc": "2026-11-16T16:37:31.048512+00:00",
+  "archived_delivery_files": 3776,
+  "all_archive_hashes_match": true,
+  "archived_review_files": 18,
+  "location_prefixes": {
+    "/tmp/programme-public-current-delivery-1350-v1-20261116": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/current-content-1350-v1/delivery",
+    "/tmp/programme-public-fidelity-1120-20261116": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/current-content-1350-v1/review"
+  },
+  "guarded_patch_sha256": "a363e01f7e1a113ca1dcb81a2ad2b72d1762390d511b9da615acbbb692f7f459",
+  "files": [
+    {
+      "path": "content/quantum-holography-status/content.json",
+      "before_sha256": "39eebb2c101f072177700716fe9f4a9f9de61c5c2d5595f8e813854a14b40934",
+      "after_sha256": "6d8d82057edbc732e260972470f299f8c9916216311729ac81c69331b44891bd",
+      "candidate": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/current-content-1350-v1/delivery/public/content.json"
+    },
+    {
+      "path": "content/quantum-holography-status/atlas.json",
+      "before_sha256": null,
+      "after_sha256": "577e3cb68df02b92d78ecadf37506bd06741a5e423a4d2c13519dd88ebb95521",
+      "candidate": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/current-content-1350-v1/delivery/public/atlas.json"
+    },
+    {
+      "path": "content/quantum-holography-status/essay.md",
+      "before_sha256": "457e4c4ce75972cf929a4cfeba4f4e83a7aab37f640b50d69f18dc78c93a4f60",
+      "after_sha256": "0f35958c6a64e03627a71c9289a838c5eb26790e619d601b4403c231d15e85f6",
+      "candidate": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/current-content-1350-v1/delivery/public/essay.md"
+    }
+  ],
+  "patch_dry_run": "PASS",
+  "applied": false
+}
