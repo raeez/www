@@ -1,0 +1,87 @@
+{
+ "at": "2026-11-16T23:45:19Z",
+ "owner": "website owner (foundation session 67e78388, on claude4)",
+ "status": "RELEASE CANDIDATE v9: every automated check passes; native QA of items 5 and 6 pending (root re-capture, then QA); items 1-4 carry v8 passes (rendering proven unchanged)",
+ "supersedes": "RELEASE-CANDIDATE-v8.json (v8: QA NOT CLEAR on G4, A2, A6)",
+ "delta_from_v8": "atlas lane v8 repair (G4, A2, A6 with G5): guard check_v8_repair.py e9f3ab13fdc5f900692a972da99b91c056d6b00334fc21cbc5527ec30a774e26, patch atlas-v8-repair.patch 586ab9b4a7be4ca8119fea53c86f1eb5e1b81343187d7d8f24b5f7dcecab86c8; INSTALL-atlas-v8-repair.json",
+ "compiler": {
+  "atlas.css": "adb4339082f7a55c722a51bf89650e47a157576a22c08b4eb2abbb3d951d934b",
+  "atlas.js": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684",
+  "atlas.py": "c15d27b233912dc0b125629885c1f5dbdfb21830b6ca5d1b1039f656bb8c9934",
+  "audit.py": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+  "figures.css": "3f65beb93fdfac44e49d7d45a5878630a5dd90fc82b3d35b4192d141214747b2",
+  "figures.js": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965",
+  "figures.py": "5f86ba434f0574b6b50a61e1bee471c32a7a14464b262ccb34b9ffe590ee7e7b",
+  "monograph.css": "fc18010834409a891b5c7f68436d691f19c41509fc44315e0e6891ead716dcf9",
+  "monograph.py": "605723ba68b64f091ec524b1c3af7f684900415dae8989f2bf9996d0db751656",
+  "reader.js": "40ed4eb4fa623bb765c5e2b5249e0445969742b03614e878fb626462a810a0c9",
+  "status-print.css": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+  "status.css": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+  "status.js": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5",
+  "status.py": "b0bf38e632fe337938e796d6271bdc6341eeade3aefd8d1f42369016639d3bdc",
+  "tests/atlas.test.cjs": "a67087f1aab82465cedb0f5e16ef8ff431d6c8ca629e736803f2aa35830bec52",
+  "tests/figures.test.cjs": "2d76aabae3161f876b54ab683052a4d0827fb4cdcbb4204c32ef1a04438894ff",
+  "tests/figures_page.py": "8ac23dc036107435dc8adba1fc2c5e0a7d79e9f75fbffe6e13614f66bf30a73a",
+  "tests/interaction.test.cjs": "8a92a7a42d023168bbbb45b6d6ad65d36389254461bbc267e5aa442d4967b279",
+  "tests/reader.test.cjs": "708ef3dd098fb7fe7845456ff9c46f8fbeabdac445ba616ab4528d2005aceac9",
+  "tests/test_atlas.py": "acca56e1eae4be315677ad611104e168decd981b6cfbe974504176d8ee3138bb",
+  "tests/test_figures.py": "f8a5a3b0cd2567ee57df8d7cd56eb263ba1137a201b210afe95f4a1eb3345140"
+ },
+ "combined": {
+  "path": "/tmp/qh-ega-root-native-20261117/release-v9/combined.html",
+  "sha256": "c5dde51475f8c2d5e80b3ea7f99ce4e09dda7190edc21b26db91a7fe0b1e21d6",
+  "build_audit": "PASS, 17,478 formulas, 0 TeX errors"
+ },
+ "site": {
+  "index.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v9/index.html",
+   "sha256": "702aca5cd4bde739ddb12c88b93ee7a31e13386a0ca3efc68056d2fbf6b2fd36",
+   "bytes": 3195576
+  },
+  "reference.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v9/reference.html",
+   "sha256": "0c9363d393d0a1e940fe2be34d978aa943c7f65b6028958f6674d3c8bd9d8cf1",
+   "bytes": 3761307
+  },
+  "atlas.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v9/atlas.html",
+   "sha256": "7b043c0bf1ef7a7b350070f224cb8ba18d0ea97cbd5ef6d2721a2eb11a94e40d",
+   "bytes": 9813387
+  },
+  "reader-index.js": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v9/reader-index.js",
+   "sha256": "4d6cdd5f39dc193e24b2eac5d3bf4c14abf924ddc4c6bbf977d1c81cbc1c1bc0",
+   "bytes": 4726595
+  }
+ },
+ "checks": {
+  "split": "12 of 12",
+  "page": "19 of 19",
+  "reader_tests": "70 of 70",
+  "figures_unit": "30 of 30",
+  "atlas_unit": "56 of 56",
+  "figures_jsdom_on_v9": "all passed",
+  "public": "0 hits; 21,433 links and map ids, 0 bad; 3 external (canonical links)"
+ },
+ "confinement_v8_to_v9": {
+  "index.html": "changed only: the Gaussian figure (chapter 1 identical outside it), the figures script, the style block",
+  "reference.html": "changed only: the style block",
+  "atlas.html": "changed only: the atlas script, section#atlas, the style block",
+  "style_block": "41 rules differ, all scoped to the atlas or the figures",
+  "search_index": "1 unit changed: fig-gaussian-reduction",
+  "consequence": "items 1-4 render as in v8; their v8 QA passes carry over"
+ },
+ "publication_checkout": {
+  "path": "/Users/raeez/www-worktrees/2026-11-17-qh-publication",
+  "staged_uncommitted": {
+   "index.html": "702aca5cd4bde739ddb12c88b93ee7a31e13386a0ca3efc68056d2fbf6b2fd36",
+   "reference.html": "0c9363d393d0a1e940fe2be34d978aa943c7f65b6028958f6674d3c8bd9d8cf1",
+   "atlas.html": "7b043c0bf1ef7a7b350070f224cb8ba18d0ea97cbd5ef6d2721a2eb11a94e40d",
+   "reader-index.js": "4d6cdd5f39dc193e24b2eac5d3bf4c14abf924ddc4c6bbf977d1c81cbc1c1bc0",
+   ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+ },
+ "preserved": {
+  "release-v8": "/tmp/qh-ega-root-native-20261117/site/release-v8 (read-only) and RELEASE-CANDIDATE-v8.json"
+ }
+}
