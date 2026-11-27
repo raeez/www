@@ -1,0 +1,71 @@
+{
+ "at": "2026-11-17T13:15:28Z",
+ "owner": "website owner (foundation session 67e78388, claude4, Opus 5.5 max; claude4 Fable 100% used at 13:12:55Z)",
+ "status": "LOCAL PREVIEW v11 (first-opening correction). Every automated check passes; not cleared: native capture and QA of the changed views pending; not published",
+ "supersedes_as_preview": "v10 (kept frozen, read-only, with its inputs in content-v10-inputs/)",
+ "delta_from_v10": {
+  "authority": "first-opening packet SEAL aa6f027325ff798ef2fbb59031a2962cfc11f62bc0dcd7199f504b41199c7897; receipt /tmp/qh-reader-object-revision-check-20261117/first-opening/RECEIPT.json PASS_SOURCE_FIDELITY",
+  "operations": [
+   "OPEN-AUDIENCE",
+   "OPEN-FRONT",
+   "OPEN-CH01"
+  ],
+  "install_record": "first-opening-v11/INSTALL-first-opening.json",
+  "site_base": "https://research.momentum.inc/quantum-holography/ (root); canonical and og:url on each page"
+ },
+ "inputs": {
+  "manifest": "b398fc8c1de12c6a9b52cc2a9d70eea899eb0582ae7491d56cb189d6703dc17c",
+  "chapter1": "5f9dedd905940c9a2740bff71acfafdb5d6ac160fee102a86d91aa9af89ad2fe",
+  "page.json": "9799d3b1572b85e3cbc06fa7f8e775e33b77fe7f1d38737597a66b19388d9e37",
+  "supplement": "7e97fcdd2613a685f0f31d6ca328612a02fcf089163153a0e8260e22b24b71e9"
+ },
+ "compiler": {
+  "monograph.py": "487bb1ab5269733851fe55544000225b53fbb25165a86c933cbc516252b6dc14",
+  "monograph.css": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52",
+  "status.py": "6fa05e99f46649abd80ca34279eb2bc032df38adf968004bb66975162231904e",
+  "reader.js": "40ed4eb4fa623bb765c5e2b5249e0445969742b03614e878fb626462a810a0c9",
+  "status.js": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5",
+  "atlas.js": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684",
+  "figures.js": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965"
+ },
+ "combined": {
+  "sha256": "9fb99ff982933516ce67c10724f32ecd60d518bc1eb54509e223d604997bf290",
+  "build_audit": "PASS, 17,661 formulas, 0 TeX errors"
+ },
+ "site": {
+  "index.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v11/index.html",
+   "sha256": "059de6ac6aa9a587748efa1b7eb09d6b064294ffe06b70bfb18a0c4fc24399a1",
+   "bytes": 3198021
+  },
+  "reference.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v11/reference.html",
+   "sha256": "41915202af042eb6bbb7453beae5d65bfa317133f6fd56fa238c826735bed95f",
+   "bytes": 3851109
+  },
+  "atlas.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v11/atlas.html",
+   "sha256": "9c17cc2b287c260da0c831f9a28cae5fecebe1e8788d2ec2eef9b6a81b668f38",
+   "bytes": 9815505
+  },
+  "reader-index.js": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v11/reader-index.js",
+   "sha256": "1663cc4b0f2c97b394ed66fd108e279b10841d28d153e643372446bfe93e7253",
+   "bytes": 4764347
+  }
+ },
+ "checks": {
+  "first_opening_guards": "4 of 4 HTML guards pass; no audience element; search: old Chapter 1 text 0, new 1, old audience 0, removed front paragraph 0",
+  "split": "12 of 12",
+  "page": "19 of 19",
+  "reader_tests": "70 of 70",
+  "index": "5,675 units",
+  "public": "0 hits; 21,465 links and map ids, 0 bad",
+  "supplement": "still exact (ALL PASS)"
+ },
+ "confinement_v10_to_v11": "each page identical to v10 outside header#front, article#ch01, the canonical link and og:url",
+ "not_done": [
+  "native capture and QA of the changed views (title page, Chapter 1) and the pending items of v10",
+  "staging into any publication checkout (root publishes through research.momentum.inc)"
+ ]
+}
