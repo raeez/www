@@ -1,0 +1,2085 @@
+diff --git a/compiler/quantum-holography-status/figures.py b/compiler/quantum-holography-status/figures.py
+index 1a8e54b..bcb982d 100644
+--- a/compiler/quantum-holography-status/figures.py
++++ b/compiler/quantum-holography-status/figures.py
+@@ -2,26 +2,35 @@
+ 
+ The reader places a figure with the one-line hook `::: figure <figure-id>` in a chapter and calls
+ render(record, ctx) for the record of that id in reader-data/manifest.json (FIGURE-RECORD-CONTRACT.md). The
+-figure's DOM id is the record id verbatim; the element carries data-figure and data-qh-figure (the id) and
+-data-figure-type (the record's type). Every word and formula a figure shows is the author's record: title,
++figure's DOM id is the record id verbatim; the element carries data-figure and data-qh-figure (the id),
++data-figure-type (the record's type) and data-figure-chapter and data-figure-section (the record's chapter and
++section; the reader's own data-chapter and data-section mark its chapters and sections, never a figure). Its title
++carries data-block-title, the reader's name for the figure in its search and reminders. Every word and formula a figure shows is the author's record: title,
+ caption, control labels and display windows, output and domain labels, the validity message, the profiles
+ with their captions and integrals, and the state labels and series. The atlas lane adds only layout, the
+ drawing, the controls themselves and the evaluation of the authored formulas. Nothing listed under
+ prohibited_inferences is drawn; a plotted window is never presented as a whole integral. A record this
+ component cannot honour fails the build with each problem named, and no guessed figure is ever drawn.
+ 
+-Models drawn now (record field `model`): gaussian-elimination and two-expansions.
++Models drawn (record field `model`, the five the visual contract authorizes): gaussian-elimination,
++two-expansions, cohomology-jump, infinite-rank and adjunction-triangles. Labels written with an underscore
++subscript (η_X, ε_FX) are set with the subscript lowered; no other change is made to an authored string.
+ """
+ import html
+ import json
+ import math
+ import re
+ 
+-MODELS = ('gaussian-elimination', 'two-expansions')
++MODELS = ('gaussian-elimination', 'two-expansions', 'cohomology-jump', 'infinite-rank', 'adjunction-triangles')
++TYPES = ('authored_formula', 'authored_finite_states', 'authored_diagram')
++STATE_MODELS = ('two-expansions', 'cohomology-jump', 'infinite-rank', 'adjunction-triangles')
+ CONSTANTS = {'pi': math.pi}
+ FUNCTIONS = ('sqrt', 'exp')
++# The interface words, the only words a figure adds to the author's record; the page may replace any of them
++# (ctx.words), as it may the reader's own.
+ WORDS = {'controls': 'Parameters', 'outputs': 'Values at these parameters', 'equations': 'Equations',
+-         'integral': 'Integral over the real line'}
++         'equation': 'Equation', 'integral': 'Integral over the real line', 'yes': 'yes', 'no': 'no',
++         'hypothesis': 'Hypothesis', 'equivalent': 'Equivalent statement'}
+ 
+ 
+ # Formulas ---------------------------------------------------------------------------------------------------
+@@ -88,9 +97,9 @@ class Parser:
+     def cmp(self):
+         left = self.add()
+         t = self.peek('op')
+-        if t and t[1] in ('<', '>', '<=', '>=', '!=', '=='):
++        if t and t[1] in ('<', '>', '<=', '>=', '!=', '==', '='):
+             self.i += 1
+-            return ['cmp', t[1], left, self.add()]
++            return ['cmp', '==' if t[1] == '=' else t[1], left, self.add()]
+         return left
+ 
+     def add(self):
+@@ -312,6 +321,11 @@ def check(record):
+     if model not in MODELS:
+         err(f'model {model!r} is not one this component draws ({", ".join(MODELS)})')
+         return problems
++    if record.get('type') not in TYPES:
++        err(f'type {record.get("type")!r} is not one this component draws')
++    if model in ('cohomology-jump', 'infinite-rank', 'adjunction-triangles'):
++        problems += check_finite(record, err)
++        return problems + reader_rules(record, err)
+     for ref in record.get('equation_refs') or []:
+         if ref not in (record.get('equation_anchors') or {}):
+             err(f'equation {ref} has no anchor in equation_anchors')
+@@ -384,35 +398,257 @@ def check(record):
+                     parse(st.get(key, ''))
+                 except FormulaError as e:
+                     err(f'states[{j}].{key}: {e}')
++            try:
++                inside_disk(st.get('condition', ''))
++            except FormulaError as e:
++                err(f'states[{j}]: {e}')
+         if record.get('initial_state') not in ids:
+             err('initial_state must name one of the states')
+         for key in ('domain', 'series', 'pole', 'no_value'):
+             if key not in labels:
+                 err(f'labels.{key} is required')
++    return problems + reader_rules(record, err)
++
++
++def strings(record):
++    """Every reader-facing string of a record, for the page's reader rules."""
++    out = [record.get('title'), record.get('caption'), record.get('domain') if isinstance(record.get('domain'), str) else None]
++    out += [str(v) for v in (record.get('labels') or {}).values()]
++    out += [c.get('label') for c in (record.get('controls') or {}).values()]
++    out += [p.get(k) for p in record.get('profiles') or [] for k in ('label', 'caption')]
++    for st in record.get('states') or []:
++        out += [st.get(k) for k in ('label', 'homotopy', 'equation', 'meaning', 'explanation') if isinstance(st.get(k), str)]
++        out += [n.get('label') for n in st.get('nodes') or []] + [a.get('label') for a in st.get('arrows') or []]
++    out += [p.get(k) for p in record.get('properties') or [] for k in ('hypothesis', 'equivalent_statement', 'explanation')]
++    out.append((record.get('validity') or {}).get('message'))
++    return [t for t in out if t]
++
++
++def reader_rules(record, err):
+     try:
+         import audit
+-        texts = [record.get('title'), record.get('caption')] + [str(v) for v in labels.values()]
+-        texts += [c.get('label') for c in (record.get('controls') or {}).values()]
+-        texts += [p.get(k) for p in record.get('profiles') or [] for k in ('label', 'caption')]
+-        texts += [s.get('label') for s in record.get('states') or []] + [(record.get('validity') or {}).get('message')]
+-        for t in texts:
+-            for pattern, why, flags in audit.FORBIDDEN:
+-                m = re.search(pattern, t or '', flags)
+-                if m:
+-                    err(f'{why} {m.group(0)!r} in {(t or "")[:60]!r}')
+     except ImportError:
+-        pass
+-    return problems
++        return []
++    for t in strings(record):
++        for pattern, why, flags in audit.FORBIDDEN:
++            m = re.search(pattern, t, flags)
++            if m:
++                err(f'{why} {m.group(0)!r} in {t[:60]!r}')
++    return []
++
++
++def problems_so_far(record):
++    """True when a state of a cohomology record lacks the fields the basis check reads."""
++    return any(not isinstance((st.get('surviving_basis') or {}).get(k), list) for st in record.get('states') or [] for k in ('H0', 'H1'))
++
++
++def check_finite(record, err):
++    """The finite-state models: every field the drawing reads, and the record's own arithmetic (returned to the
++    author when it disagrees, never corrected here)."""
++    model = record['model']
++    labels = record.get('labels') or {}
++    states = record.get('states') or []
++    ids = [s.get('id') for s in states]
++    if len(states) < 2 or len(set(ids)) != len(ids):
++        err('the states must be at least two, with distinct ids')
++    if record.get('initial_state') not in ids:
++        err('initial_state must name one of the states')
++    need = {'cohomology-jump': ('degree_zero', 'degree_one', 'first_arrow', 'second_arrow', 'H0', 'H1', 'Euler_characteristic', 'homotopy'),
++            'infinite-rank': ('finite', 'limit', 'rank', 'tensor_membership', 'completion_membership', 'viewport', 'convergence'),
++            'adjunction-triangles': ('F', 'G', 'eta', 'epsilon', 'left_triangle', 'right_triangle')}[model]
++    for key in need:
++        if key not in labels:
++            err(f'labels.{key} is required')
++    for j, st in enumerate(states):
++        if not st.get('label'):
++            err(f'states[{j}].label is required')
++        if model == 'cohomology-jump':
++            m = st.get('differential_matrix')
++            if not (isinstance(m, list) and len(m) == 2 and all(isinstance(r, list) and len(r) == 2 for r in m)):
++                err(f'states[{j}].differential_matrix must be 2 by 2')
++                continue
++            det = m[0][0] * m[1][1] - m[0][1] * m[1][0]
++            rank = 2 if det else (1 if any(v for r in m for v in r) else 0)
++            for key in ('rank', 'H0_dim', 'H1_dim', 'Euler_characteristic', 'homotopy', 'surviving_basis'):
++                if key not in st:
++                    err(f'states[{j}].{key} is required')
++            if st.get('rank') != rank:
++                err(f'states[{j}]: rank {st.get("rank")} disagrees with its matrix (rank {rank})')
++            if st.get('H0_dim') != 2 - rank or st.get('H1_dim') != 2 - rank:
++                err(f'states[{j}]: the cohomology dimensions disagree with the rank')
++            if st.get('Euler_characteristic') != (st.get('H0_dim') or 0) - (st.get('H1_dim') or 0):
++                err(f'states[{j}]: the Euler characteristic is not dim H0 - dim H1')
++            sb = st.get('surviving_basis') or {}
++            if len(sb.get('H0') or []) != st.get('H0_dim') or len(sb.get('H1') or []) != st.get('H1_dim'):
++                err(f'states[{j}]: the surviving basis disagrees with the dimensions')
++            if m[0][1] or m[1][0] or m[1][1]:
++                err(f'states[{j}]: the drawing shows diag(t,0); this matrix has another nonzero entry')
++        elif model == 'infinite-rank':
++            for key in ('entry_rule', 'rank', 'explanation'):
++                if not st.get(key):
++                    err(f'states[{j}].{key} is required')
++            for key in ('algebraic_tensor_member', 'completion_member'):
++                if not isinstance(st.get(key), bool):
++                    err(f'states[{j}].{key} must be true or false')
++            try:
++                parse(st.get('entry_rule', ''), ('i', 'j', 'N'))
++            except FormulaError as e:
++                err(f'states[{j}].entry_rule: {e}')
++        else:
++            nodes = {n.get('id') for n in st.get('nodes') or []}
++            if len(st.get('nodes') or []) != 3 or not all(n.get('label') for n in st.get('nodes') or []):
++                err(f'states[{j}] needs its three labelled nodes')
++            for a in st.get('arrows') or []:
++                if a.get('from') not in nodes or a.get('to') not in nodes or not a.get('label'):
++                    err(f'states[{j}]: an arrow needs a label and endpoints among its nodes')
++            for key in ('equation', 'meaning'):
++                if not st.get(key):
++                    err(f'states[{j}].{key} is required')
++    if model == 'cohomology-jump' and not problems_so_far(record):
++        us, vs = basis_names(record)
++        if len(us) != 2 or len(vs) != 2:
++            err('each degree needs two basis vectors, named in the states\' surviving bases')
++        elif not (labels.get('first_arrow', '').startswith(us[0]) and vs[0] in labels.get('first_arrow', '')
++                  and labels.get('second_arrow', '').startswith(us[1])):
++            err('labels.first_arrow and labels.second_arrow must name the first and second basis vectors')
++    if model == 'infinite-rank':
++        outs = record.get('outputs') or {}
++        ranks = sorted(str(st.get('rank')) for st in states)
++        if ranks != sorted([str(outs.get('finite_rank')), str(outs.get('limit_rank'))]):
++            err('the states\' ranks must be outputs.finite_rank and outputs.limit_rank, one each')
++        c = (record.get('controls') or {}).get('N') or {}
++        if not all(k in c for k in ('initial', 'min', 'max', 'step', 'label')):
++            err('controls.N needs initial, min, max, step and label')
++        if not isinstance((record.get('outputs') or {}).get('viewport_size'), int):
++            err('outputs.viewport_size must be a whole number')
++    if model == 'adjunction-triangles':
++        for j, p in enumerate(record.get('properties') or []):
++            for key in ('hypothesis', 'equivalent_statement', 'explanation'):
++                if not p.get(key):
++                    err(f'properties[{j}].{key} is required')
++    return []
+ 
+ 
+ # Drawing ---------------------------------------------------------------------------------------------------
+-# Drawn from the authored formulas only; the script redraws with the same geometry (figures.js). A profile is a
+-# curve over a finite window of its variable: no area is filled, so a window never reads as a whole integral;
+-# the integral over the real line is the authored formula and its value, written under the curve.
++# Every mark a figure draws has its meaning in the figure. A curve is an authored function over a finite window of
++# its variable; no area is filled, so a window never reads as a whole integral. A solid arrow is a defined map and
++# carries its authored label. A ring marks a basis vector the record lists as surviving in cohomology, and the
++# same ring marks that vector's name in the table. A cell holds the matrix entry its authored rule gives. Dashes
++# are kept for open comparisons and are not used here. The script redraws with the same geometry.
+ 
+ PANEL_W, PANEL_H, PAD, SPAN = 300, 150, 18, 4.0
++SUB = re.compile(r'_([A-Za-z0-9′\']+)')
++CMP_TEXT = {'<': '<', '>': '>', '<=': '≤', '>=': '≥', '!=': '≠', '==': '='}
++
++
++def esc(t):
++    return html.escape(str(t), quote=False)
++
++
++def attr(t):
++    return html.escape(str(t), quote=True)
++
++
++def sub_html(text):
++    """An authored label with its underscore subscripts lowered (eta_X, id_FX, Z_y(x)); every character kept."""
++    out, i = [], 0
++    for m in SUB.finditer(text):
++        out.append(esc(text[i:m.start()]))
++        out.append(f'<sub>{esc(m.group(1))}</sub>')
++        i = m.end()
++    out.append(esc(text[i:]))
++    return ''.join(out)
++
++
++def sub_svg(text):
++    """The same for SVG text: a lowered tspan, and the baseline restored for what follows it."""
++    out, i, low = [], 0, False
++    for m in SUB.finditer(text):
++        before = text[i:m.start()]
++        if before:
++            out.append(f'<tspan dy="-4">{esc(before)}</tspan>' if low else esc(before))
++            low = False
++        out.append(f'<tspan class="qh-fig-sub" dy="{0 if low else 4}">{esc(m.group(1))}</tspan>')
++        low = True
++        i = m.end()
++    if text[i:]:
++        out.append(f'<tspan dy="-4">{esc(text[i:])}</tspan>' if low else esc(text[i:]))
++    return ''.join(out)
+ 
+ 
++def rich_label(text, rich):
++    """An authored label through the page's renderer, its underscore subscripts lowered. A label that carries TeX
++    of its own goes through whole."""
++    if not SUB.search(text) or any(d in text for d in ('\\(', '\\[', '$')):
++        return rich(text)
++    out, i = [], 0
++    for m in SUB.finditer(text):
++        if m.start() > i:
++            out.append(rich(text[i:m.start()]))
++        out.append(f'<sub>{esc(m.group(1))}</sub>')
++        i = m.end()
++    if i < len(text):
++        out.append(rich(text[i:]))
++    return ''.join(out)
++
++
++def tint(markup, symbols):
++    """Marks each occurrence of a symbol (eta, epsilon) with the class its arrows carry, so that a symbol in an
++    equation or the key and the arrows built from it share one colour."""
++    for sym, cls in symbols.items():
++        if sym:
++            markup = markup.replace(sym, f'<span class="{cls}">{sym}</span>')
++    return markup
++
++
++def marker(mid, cls='qh-fig-head-mark'):
++    return (f'<marker id="{mid}" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="7" markerHeight="7" '
++            f'markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 7.6 4 0 7.4z" class="{cls}"/></marker>')
++
++
++def plain_formula(node):
++    """A short authored formula as text for a drawing, symbol for symbol: |w|<|z| is set |w| < |z|."""
++    k = node[0]
++    if k == 'var':
++        return node[1]
++    if k == 'num':
++        return str(node[1])
++    if k == 'abs':
++        return f'|{plain_formula(node[1])}|'
++    if k == 'group':
++        return f'({plain_formula(node[1])})'
++    if k == 'neg':
++        return '−' + plain_formula(node[1])
++    if k == 'cmp':
++        return f'{plain_formula(node[2])} {CMP_TEXT[node[1]]} {plain_formula(node[3])}'
++    if k in ('add', 'sub'):
++        return f'{plain_formula(node[1])} {"+" if k == "add" else chr(0x2212)} {plain_formula(node[2])}'
++    if k == 'mul':
++        return plain_formula(node[1]) + plain_formula(node[2])
++    raise FormulaError(f'cannot set {k} in a drawing')
++
++
++def inside_disk(condition):
++    """True for |w| < |z| (w inside the circle of radius |z|), False for |z| < |w|, read from the authored
++    condition; any other condition is returned to the author."""
++    n = parse(condition)
++    if n[0] == 'cmp' and n[1] in ('<', '>') and n[2][0] == 'abs' and n[3][0] == 'abs':
++        a, b = n[2][1], n[3][1]
++        if a == ['var', 'w'] and b == ['var', 'z']:
++            return n[1] == '<'
++        if a == ['var', 'z'] and b == ['var', 'w']:
++            return n[1] == '>'
++    raise FormulaError(f'the condition {condition!r} is not a comparison of |w| with |z|')
++
++
++def output_tex(text):
++    """An authored output written as a function name and arguments, diag(t,0), set as an operator name."""
++    m = re.fullmatch(r'([A-Za-z]+)\((.*)\)', text.strip())
++    return f'\\operatorname{{{m.group(1)}}}({m.group(2)})' if m else text
++
++
++# The Gaussian profiles
++
+ def window_x(t):
+     return PAD + (t + SPAN) / (2 * SPAN) * (PANEL_W - 2 * PAD)
+ 
+@@ -439,125 +675,448 @@ def profile_scale(p, node, env):
+     return peak or 1.0
+ 
+ 
++def mean_mark(x, label):
++    """The conditional mean on the density, as a line with its authored label attached at its head."""
++    right = x > PANEL_W / 2
++    return (f'<line class="qh-fig-mean" data-part="mean" x1="{x:.1f}" y1="{PAD - 4}" x2="{x:.1f}" y2="{PANEL_H - PAD}"/>'
++            f'<text class="qh-fig-mark-label" data-part="mean-label" x="{x - 5 if right else x + 5:.1f}" y="{PAD - 7}" '
++            f'text-anchor="{"end" if right else "start"}">{sub_svg(label)}</text>')
++
++
+ def profile_svg(record, p, env):
+     names = list(record['parameters'])
+     node = parse(p['formula'], names + [p['variable']])
+     base = PANEL_H - PAD
++    outs, labels = record.get('outputs') or {}, record.get('labels') or {}
+     marks = ''
+-    outs = record.get('outputs') or {}
+-    if p['variable'] == 'y' and 'conditional_mean' in outs:
++    if is_density(p) and p['variable'] == 'y' and 'conditional_mean' in outs and labels.get('conditional_mean'):
+         mean = value(parse(outs['conditional_mean'], names), env)
+-        x = window_x(max(-SPAN, min(SPAN, mean)))
+-        marks += f'<line class="qh-fig-mean" data-part="mean" x1="{x:.1f}" y1="{PAD - 4}" x2="{x:.1f}" y2="{base}"/>'
+-        if is_density(p) and 'conditional_variance' in outs:
+-            sd = math.sqrt(value(parse(outs['conditional_variance'], names), env))
+-            l, r = window_x(max(-SPAN, mean - sd)), window_x(min(SPAN, mean + sd))
+-            marks = (f'<rect class="qh-fig-band" data-part="band" x="{l:.1f}" y="{PAD}" width="{max(0, r - l):.1f}" '
+-                     f'height="{base - PAD}"/>' + marks)
+-    return (f'<svg class="qh-fig-svg" viewBox="0 0 {PANEL_W} {PANEL_H}" aria-hidden="true" focusable="false">{marks}'
++        marks = mean_mark(window_x(max(-SPAN, min(SPAN, mean))), labels['conditional_mean'])
++    return (f'<svg class="qh-fig-svg" viewBox="0 0 {PANEL_W} {PANEL_H}" aria-hidden="true" focusable="false">'
+             f'<path class="qh-fig-curve" data-part="curve" d="{profile_path(node, p["variable"], env, profile_scale(p, node, env))}"/>'
+-            f'<path class="qh-fig-axis" d="M{PAD - 6} {base}H{PANEL_W - PAD + 6}"/>'
++            f'{marks}<path class="qh-fig-axis" d="M{PAD - 6} {base}H{PANEL_W - PAD + 6}"/>'
+             f'<path class="qh-fig-axis" d="M{PANEL_W / 2:.1f} {base}v4"/>'
+-            f'<path class="qh-fig-axis qh-fig-more" d="M{PAD - 6} {base}l5 -3v6zM{PANEL_W - PAD + 6} {base}l-5 -3v6z"/>'
++            f'<path class="qh-fig-more" d="M{PAD - 6} {base}l5 -3v6zM{PANEL_W - PAD + 6} {base}l-5 -3v6z"/>'
+             f'<text class="qh-fig-tick" x="{PANEL_W / 2:.1f}" y="{PANEL_H - 2}" text-anchor="middle">0</text>'
+-            f'<text class="qh-fig-tick qh-fig-var" x="{PANEL_W - PAD}" y="{PANEL_H - 2}" text-anchor="end">{html.escape(p["variable"])}</text></svg>')
+-
+-
+-def plane_svg(state):
+-    """At a fixed z: the circle |w| = |z| between the two conditions, the region of the chosen expansion, and the
+-    collision pole w = z on the circle, drawn without a value."""
+-    W, H, cx, cy, r = 300, 220, 140, 110, 72
+-    inside = state['condition'].replace(' ', '').startswith('|w|<')
+-    region = (f'<circle class="qh-fig-region" data-part="region" cx="{cx}" cy="{cy}" r="{r}"/>' if inside else
+-              f'<path class="qh-fig-region" data-part="region" fill-rule="evenodd" '
+-              f'd="M2 2H{W - 2}V{H - 2}H2Z M{cx + r} {cy}a{r} {r} 0 1 0 -{2 * r} 0a{r} {r} 0 1 0 {2 * r} 0Z"/>')
+-    px, py = cx + r * math.cos(-0.62), cy + r * math.sin(-0.62)
+-    return (f'<svg class="qh-fig-svg qh-fig-plane" viewBox="0 0 {W} {H}" aria-hidden="true" focusable="false">{region}'
++            f'<text class="qh-fig-tick qh-fig-var" x="{PANEL_W - PAD}" y="{PANEL_H - 2}" text-anchor="end">{esc(p["variable"])}</text></svg>')
++
++
++# The two expansions: the w-plane at a fixed z
++
++PLANE = (360, 232, 150, 120, 76)  # width, height, centre x, centre y, radius |z|
++
++
++def region_shape(inside):
++    W, H, cx, cy, r = PLANE
++    if inside:
++        return f'<circle class="qh-fig-region" data-part="region" cx="{cx}" cy="{cy}" r="{r}"/>'
++    return (f'<path class="qh-fig-region" data-part="region" fill-rule="evenodd" '
++            f'd="M2 2H{W - 2}V{H - 2}H2Z M{cx + r} {cy}a{r} {r} 0 1 0 -{2 * r} 0a{r} {r} 0 1 0 {2 * r} 0Z"/>')
++
++
++def region_label_at(inside):
++    """Where the chosen region's condition is written: inside the disk, in its upper left quadrant, clear of the
++    axes and the circle; outside it, in the upper left corner."""
++    W, H, cx, cy, r = PLANE
++    return (cx - 38, cy - 16, 'middle') if inside else (14, 26, 'start')
++
++
++def plane_svg(state, labels):
++    """The chosen region with its authored condition written in it, the circle between the two conditions, and
++    the collision pole w = z on that circle with its authored label; no value is drawn at the pole."""
++    W, H, cx, cy, r = PLANE
++    inside = inside_disk(state['condition'])
++    lx, ly, anchor = region_label_at(inside)
++    px, py = cx + r * math.cos(-1.0), cy + r * math.sin(-1.0)
++    cond = plain_formula(parse(state['condition']))
++    return (f'<svg class="qh-fig-svg qh-fig-plane" viewBox="0 0 {W} {H}" role="img" aria-label="{attr(cond + "; " + labels["pole"])}">'
++            f'{region_shape(inside)}'
+             f'<circle class="qh-fig-boundary" cx="{cx}" cy="{cy}" r="{r}"/>'
+-            f'<path class="qh-fig-axis" d="M{cx - r - 34} {cy}H{cx + r + 34}M{cx} {cy + r + 22}V{cy - r - 22}"/>'
++            f'<path class="qh-fig-axis" d="M{cx - r - 30} {cy}H{cx + r + 30}M{cx} {cy + r + 20}V{cy - r - 20}"/>'
+             f'<circle class="qh-fig-origin" cx="{cx}" cy="{cy}" r="2.4"/>'
++            f'<text class="qh-fig-tick" x="{cx - 6}" y="{cy + 15}" text-anchor="end">0</text>'
++            f'<text class="qh-fig-region-label" data-part="region-label" x="{lx}" y="{ly}" text-anchor="{anchor}">{esc(cond)}</text>'
+             f'<g class="qh-fig-pole" transform="translate({px:.1f} {py:.1f})"><circle r="6.5"/>'
+-            f'<path d="M-3.4 -3.4L3.4 3.4M3.4 -3.4L-3.4 3.4"/></g></svg>')
++            f'<path d="M-3.4 -3.4L3.4 3.4M3.4 -3.4L-3.4 3.4"/></g>'
++            f'<text class="qh-fig-mark-label qh-fig-pole-text" x="{px + 12:.1f}" y="{py - 8:.1f}">{sub_svg(labels["pole"])}</text></svg>')
++
++
++# The cohomology jump: the complex on its authored basis
++
++CJ = {'W': 460, 'H': 232, 'x0': 110, 'x1': 350, 'y1': 92, 'y2': 192, 'zero': 226}
++
++
++def basis_names(record):
++    """The basis of each degree, read from the states' surviving bases (at the jump every basis vector survives)."""
++    h0 = sorted({n for st in record['states'] for n in (st.get('surviving_basis') or {}).get('H0') or []})
++    h1 = sorted({n for st in record['states'] for n in (st.get('surviving_basis') or {}).get('H1') or []})
++    return h0, h1
++
++
++def first_arrow(to_v):
++    """The first summand's arrow: to v1 where the matrix entry is nonzero, to 0 where it is zero."""
++    c = CJ
++    end = c['x1'] - 24 if to_v else c['zero'] - 14
++    return f'M{c["x0"] + 22} {c["y1"]}H{end}', (c['x0'] + 22 + end) / 2
++
++
++def complex_svg(record, st):
++    c, labels, rid = CJ, record['labels'], record['id']
++    us, vs = basis_names(record)
++    alive = set(st['surviving_basis']['H0']) | set(st['surviving_basis']['H1'])
++    to_v = st['differential_matrix'][0][0] != 0
++    d1, mid1 = first_arrow(to_v)
++    hide_zero = ' display="none"' if to_v else ''
++    hide_h = '' if to_v else ' display="none"'
++    h_text = st['homotopy'] if to_v else ''
++
++    def node(name, x, y):
++        return (f'<g class="qh-fig-basis{" is-alive" if name in alive else ""}" data-basis="{attr(name)}" transform="translate({x} {y})">'
++                f'<circle class="qh-fig-ring" r="17"/><text class="qh-fig-node-text" y="5" text-anchor="middle">{esc(name)}</text></g>')
++    name = '; '.join([labels['degree_zero'], labels['degree_one'], labels['first_arrow'], labels['second_arrow']])
++    zero_end = c['zero'] - 14
++    return (f'<svg class="qh-fig-svg qh-fig-complex" viewBox="0 0 {c["W"]} {c["H"]}" role="img" aria-label="{attr(name)}">'
++            f'<defs>{marker(rid + "--arrow")}{marker(rid + "--arrow-h", "qh-fig-head-h")}</defs>'
++            f'<text class="qh-fig-col-label" x="{c["x0"]}" y="24" text-anchor="middle">{esc(labels["degree_zero"])}</text>'
++            f'<text class="qh-fig-col-label" x="{c["x1"]}" y="24" text-anchor="middle">{esc(labels["degree_one"])}</text>'
++            f'<path class="qh-fig-map" data-part="first" d="{d1}" marker-end="url(#{rid}--arrow)"/>'
++            f'<text class="qh-fig-zero" data-part="first-zero" x="{c["zero"]}" y="{c["y1"] + 5}" text-anchor="middle"{hide_zero}>0</text>'
++            f'<text class="qh-fig-map-label" data-part="first-label" x="{mid1:.0f}" y="{c["y1"] - 12}" text-anchor="middle">{esc(labels["first_arrow"])}</text>'
++            f'<path class="qh-fig-map" d="M{c["x0"] + 22} {c["y2"]}H{zero_end}" marker-end="url(#{rid}--arrow)"/>'
++            f'<text class="qh-fig-zero" x="{c["zero"]}" y="{c["y2"] + 5}" text-anchor="middle">0</text>'
++            f'<text class="qh-fig-map-label" x="{(c["x0"] + 22 + zero_end) / 2:.0f}" y="{c["y2"] - 12}" text-anchor="middle">{esc(labels["second_arrow"])}</text>'
++            f'<path class="qh-fig-homotopy-arc" data-part="h" d="M{c["x1"] - 12} {c["y1"] + 16}C{c["x1"] - 50} {c["y1"] + 58} '
++            f'{c["x0"] + 50} {c["y1"] + 58} {c["x0"] + 14} {c["y1"] + 17}" marker-end="url(#{rid}--arrow-h)"{hide_h}/>'
++            f'<text class="qh-fig-h-label" data-part="h-label" x="{(c["x0"] + c["x1"]) / 2:.0f}" y="{c["y1"] + 64}" text-anchor="middle"{hide_h}>{esc(h_text)}</text>'
++            + node(us[0], c['x0'], c['y1']) + node(us[1], c['x0'], c['y2'])
++            + node(vs[0], c['x1'], c['y1']) + node(vs[1], c['x1'], c['y2']) + '</svg>')
++
++
++def matrix_tex(m):
++    return r'\begin{pmatrix}' + r'\\'.join('&'.join(str(v) for v in row) for row in m) + r'\end{pmatrix}'
++
++
++def state_items(states, initial, inner):
++    """The authored states as a list; the script turns each label into a button. Without the script every state is
++    shown in full, the initial one marked current."""
++    return ''.join(
++        f'<li class="qh-fig-state" data-state="{attr(st["id"])}"' + (' aria-current="true"' if st['id'] == initial else '') + '>'
++        f'<p class="qh-fig-state-label">{esc(st["label"])}</p>{inner(st)}</li>' for st in states)
++
++
++def render_cohomology(record, rich, words):
++    """The two-term complex on its authored basis for the chosen value of t: the first summand's arrow goes to v1
++    where the state's matrix entry is nonzero and to 0 where it is zero; the contraction, where the state gives one,
++    is drawn back from v1 to u1 with the state's own formula; the vectors the state lists as surviving are ringed.
++    Beside it, the state's matrix and contraction text; under it, the dimensions and Euler characteristic of every
++    state, with the surviving vectors named."""
++    labels, states, initial = record['labels'], record['states'], record['initial_state']
++    cur = next(st for st in states if st['id'] == initial)
++    differential = output_tex((record.get('outputs') or {}).get('differential', ''))
++
++    def inner(st):
++        tex_src = '\\(' + (differential + '=' if differential else '') + matrix_tex(st['differential_matrix']) + '\\)'
++        return (f'<div class="qh-fig-per-state"><p class="qh-fig-matrix">{rich(tex_src)}</p>'
++                f'<p class="qh-fig-homotopy"><span class="qh-fig-label">{esc(labels["homotopy"])}</span>'
++                f'<span class="qh-fig-homotopy-text">{esc(st["homotopy"])}</span></p></div>')
++
++    def chips(names):
++        return ''.join(f'<span class="qh-fig-chip">{esc(n)}</span>' for n in names)
++    rows = ''.join(
++        f'<tr data-state-row="{attr(st["id"])}"' + (' aria-current="true"' if st['id'] == initial else '') + '>'
++        f'<th scope="row">{esc(st["label"])}</th>'
++        f'<td><span class="qh-fig-dim">{st["H0_dim"]}</span>{chips(st["surviving_basis"]["H0"])}</td>'
++        f'<td><span class="qh-fig-dim">{st["H1_dim"]}</span>{chips(st["surviving_basis"]["H1"])}</td>'
++        f'<td class="qh-fig-num">{st["Euler_characteristic"]}</td></tr>' for st in states)
++    table = (f'<table class="qh-fig-outputs qh-fig-dims"><thead><tr><td></td>'
++             f'<th scope="col">{esc(labels["H0"])}</th><th scope="col">{esc(labels["H1"])}</th>'
++             f'<th scope="col" class="qh-fig-num">{esc(labels["Euler_characteristic"])}</th></tr></thead><tbody>{rows}</tbody></table>')
++    body = (f'<div class="qh-fig-body"><div class="qh-fig-side"><p class="qh-fig-domain">{esc(record["domain"])}</p>'
++            f'<ol class="qh-fig-states qh-fig-states-compact">{state_items(states, initial, inner)}</ol></div>'
++            f'<div class="qh-fig-stage">{complex_svg(record, cur)}{table}</div></div>')
++    us, vs = basis_names(record)
++    first_mid = {True: first_arrow(True)[1], False: first_arrow(False)[1]}
++    config = {'model': 'cohomology-jump', 'initial': initial,
++              'paths': {'v': first_arrow(True)[0], 'zero': first_arrow(False)[0]}, 'mids': {'v': first_mid[True], 'zero': first_mid[False]},
++              'states': [{'id': st['id'], 'toV': st['differential_matrix'][0][0] != 0,
++                          'alive': st['surviving_basis']['H0'] + st['surviving_basis']['H1'],
++                          'h': st['homotopy'] if st['differential_matrix'][0][0] != 0 else ''} for st in states]}
++    return body, config
++
++
++# The infinite rank: the finite diagonal and its coordinatewise limit, each in the same finite viewport
++
++GRID = {'cell': 24, 'left': 30, 'top': 28}
++
++
++def grid_svg(part, rule, env, n, name):
++    """A viewport of rows and columns 0 to n-1. Each cell holds the entry the state's authored rule gives (1 or 0);
++    the bracket opens on the left only and the mark at the lower right says the matrix continues; that mark carries
++    the accent where the rule gives 1 on the diagonal beyond the viewport."""
++    g = GRID
++    size = n * g['cell']
++    W, H = g['left'] + size + 22, g['top'] + size + 24
++    out = []
++    for k in range(n):
++        out.append(f'<text class="qh-fig-tick" x="{g["left"] + k * g["cell"] + g["cell"] / 2:.0f}" y="{g["top"] - 8}" text-anchor="middle">{k}</text>'
++                   f'<text class="qh-fig-tick" x="{g["left"] - 9}" y="{g["top"] + k * g["cell"] + g["cell"] / 2 + 4:.0f}" text-anchor="end">{k}</text>')
++    for i in range(n):
++        for j in range(n):
++            on = value(rule, dict(env, i=i, j=j)) is True
++            x, y = g['left'] + j * g['cell'], g['top'] + i * g['cell']
++            out.append(f'<g class="qh-fig-cell{" is-on" if on else ""}" data-i="{i}" data-j="{j}">'
++                       f'<rect x="{x + 1.5}" y="{y + 1.5}" width="{g["cell"] - 3}" height="{g["cell"] - 3}" rx="2.5"/>'
++                       f'<text x="{x + g["cell"] / 2:.0f}" y="{y + g["cell"] / 2 + 4.5:.1f}" text-anchor="middle">{1 if on else 0}</text></g>')
++    beyond = value(rule, dict(env, i=n, j=n)) is True
++    b = g['left'] - 3
++    out.append(f'<path class="qh-fig-bracket" d="M{b + 4} {g["top"]}H{b}V{g["top"] + size}H{b + 4}"/>'
++               f'<text class="qh-fig-continues{" is-on" if beyond else ""}" data-part="beyond" x="{g["left"] + size + 3}" '
++               f'y="{g["top"] + size + 15}">⋱</text>'
++               f'<text class="qh-fig-tick qh-fig-var" x="{g["left"] + size + 6}" y="{g["top"] - 8}">j</text>'
++               f'<text class="qh-fig-tick qh-fig-var" x="{g["left"] - 9}" y="{g["top"] + size + 16}" text-anchor="end">i</text>')
++    return (f'<svg class="qh-fig-svg qh-fig-grid" data-grid="{attr(part)}" viewBox="0 0 {W} {H}" role="img" '
++            f'aria-label="{attr(name)}">' + ''.join(out) + '</svg>')
++
++
++def rank_value(st, env):
++    """The state's authored rank evaluated at the control (N), or its authored word where it has no number."""
++    try:
++        v = value(parse(st['rank'], ('N',)), env)
++    except FormulaError:
++        v = None
++    return fmt(v) if isinstance(v, float) else esc(st['rank'])
++
++
++def infinite_pair(record):
++    by_rank = {st['rank']: st for st in record['states']}
++    outs = record['outputs']
++    return by_rank[outs['finite_rank']], by_rank[outs['limit_rank']]
++
++
++def render_infinite(record, rich, words):
++    """The finite diagonal D(N), with the authored control N, beside its coordinatewise limit, both in the same
++    authored viewport; under them the authored convergence statement and a table of the two states' ranks and
++    memberships. A state is shown with the label its rank names in the record (finite_rank or limit_rank)."""
++    labels, outs, rid = record['labels'], record['outputs'], record['id']
++    n = outs['viewport_size']
++    ctl = record['controls']['N']
++    env = {'N': float(ctl['initial'])}
++    fin, lim = infinite_pair(record)
++    rules = {st['id']: parse(st['entry_rule'], ('i', 'j', 'N')) for st in (fin, lim)}
++
++    def column(st, key, control=''):
++        return (f'<div class="qh-fig-col" data-state="{attr(st["id"])}">'
++                f'<p class="qh-fig-col-head">{esc(labels[key])}</p>{control}'
++                f'{grid_svg(st["id"], rules[st["id"]], env, n, labels[key] + ". " + labels["viewport"])}'
++                f'<p class="qh-fig-explanation">{esc(st["explanation"])}</p></div>')
++    control = (f'<div class="qh-fig-control" data-param="N">'
++               f'<label class="qh-fig-control-label" for="{rid}--N">{esc(ctl["label"])}</label>'
++               f'<output class="qh-fig-value" data-value="N">{fmt(env["N"])}</output></div>')
++
++    def yes(b):
++        return words['yes'] if b else words['no']
++    table = (f'<table class="qh-fig-outputs qh-fig-compare"><thead><tr><td></td>'
++             f'<th scope="col">{esc(labels["finite"])}</th><th scope="col">{esc(labels["limit"])}</th></tr></thead><tbody>'
++             f'<tr><th scope="row">{esc(labels["rank"])}</th>'
++             f'<td><output class="qh-fig-value" data-value="rank:{attr(fin["id"])}">{rank_value(fin, env)}</output></td>'
++             f'<td>{rank_value(lim, env)}</td></tr>'
++             f'<tr><th scope="row">{esc(labels["tensor_membership"])}</th><td>{yes(fin["algebraic_tensor_member"])}</td>'
++             f'<td>{yes(lim["algebraic_tensor_member"])}</td></tr>'
++             f'<tr><th scope="row">{esc(labels["completion_membership"])}</th><td>{yes(fin["completion_member"])}</td>'
++             f'<td>{yes(lim["completion_member"])}</td></tr></tbody></table>')
++    body = (f'<div class="qh-fig-body qh-fig-body-single"><p class="qh-fig-domain">{esc(record["domain"])}</p>'
++            f'<div class="qh-fig-pair">{column(fin, "finite", control)}{column(lim, "limit")}</div>'
++            f'<p class="qh-fig-note">{esc(labels["viewport"])}</p>'
++            f'<p class="qh-fig-convergence">{esc(labels["convergence"])}</p>{table}</div>')
++    try:
++        fin_rank = parse(fin['rank'], ('N',))
++    except FormulaError:
++        fin_rank = None
++    config = {'model': 'infinite-rank', 'n': n, 'control': ctl,
++              'grids': [{'id': st['id'], 'rule': rules[st['id']]} for st in (fin, lim)],
++              'rank': {'id': fin['id'], 'formula': fin_rank}}
++    return body, config
++
++
++# The adjunction triangles
++
++def clearance(half_w, ux, uy, half_h=11.0):
++    """How far along the direction (ux, uy) a label box of these half sizes reaches from its centre."""
++    tx = half_w / abs(ux) if abs(ux) > 1e-9 else float('inf')
++    ty = half_h / abs(uy) if abs(uy) > 1e-9 else float('inf')
++    return min(tx, ty)
++
++
++def greek(text):
++    return next((ch for ch in text if 'Ͱ' <= ch <= 'Ͽ'), '')
++
++
++def triangle_svg(rid, st, eta, eps):
++    """A triangle identity as a commutative triangle: the start at the lower left, the middle object at the top, the
++    end at the lower right, every arrow with its authored label set beside it, outside the triangle. Arrows built
++    from the unit carry the unit's colour and arrows built from the counit the counit's, as in the key."""
++    W, H = 300, 196
++    order = [nd['id'] for nd in st['nodes']]
++    names = {nd['id']: nd['label'] for nd in st['nodes']}
++    pos = {order[0]: (44, 156), order[1]: (150, 40), order[2]: (256, 156)}
++    cx, cy = 150, 117
++    half = {k: 4.6 * len(names[k]) + 9 for k in order}
++    marks = {'': rid + '--' + st['id'] + '--arrow', 'is-unit': rid + '--' + st['id'] + '--unit',
++             'is-counit': rid + '--' + st['id'] + '--counit'}
++    parts = []
++    for a in st['arrows']:
++        (x1, y1), (x2, y2) = pos[a['from']], pos[a['to']]
++        d = math.hypot(x2 - x1, y2 - y1)
++        ux, uy = (x2 - x1) / d, (y2 - y1) / d
++        s1, s2 = clearance(half[a['from']], ux, uy), clearance(half[a['to']], ux, uy) + 3
++        ax, ay, bx, by = x1 + ux * s1, y1 + uy * s1, x2 - ux * s2, y2 - uy * s2
++        mx, my = (ax + bx) / 2, (ay + by) / 2
++        nx, ny = -uy, ux
++        if (mx + nx - cx) ** 2 + (my + ny - cy) ** 2 < (mx - cx) ** 2 + (my - cy) ** 2:
++            nx, ny = -nx, -ny
++        lx, ly = mx + nx * 13, my + ny * 13 + (4 if ny >= 0 else 0) + (10 if ny > 0.9 else 0)
++        anchor = 'middle' if abs(nx) < 0.3 else ('start' if nx > 0 else 'end')
++        cls = 'is-unit' if eta and eta in a['label'] else ('is-counit' if eps and eps in a['label'] else '')
++        parts.append(f'<g class="qh-fig-arrow{" " + cls if cls else ""}">'
++                     f'<path class="qh-fig-map" d="M{ax:.1f} {ay:.1f}L{bx:.1f} {by:.1f}" marker-end="url(#{marks[cls]})"/>'
++                     f'<text class="qh-fig-map-label" x="{lx:.1f}" y="{ly:.1f}" text-anchor="{anchor}">{sub_svg(a["label"])}</text></g>')
++    nodes = ''.join(f'<text class="qh-fig-node-text" x="{pos[k][0]}" y="{pos[k][1] + 5}" text-anchor="middle">{sub_svg(names[k])}</text>'
++                    for k in order)
++    defs = (marker(marks['']) + marker(marks['is-unit'], 'qh-fig-head-mark is-unit') +
++            marker(marks['is-counit'], 'qh-fig-head-mark is-counit'))
++    return (f'<svg class="qh-fig-svg qh-fig-triangle" viewBox="0 0 {W} {H}" role="img" aria-label="{attr(st["equation"])}">'
++            f'<defs>{defs}</defs>{"".join(parts)}{nodes}</svg>')
++
++
++def render_adjunction(record, rich, words):
++    """The key to the adjunction's data (its two functors, unit and counit, in the record's words), the record's
++    domain sentence, the two triangle identities side by side, each with its authored equation and meaning, and
++    the authored criteria comparing invertibility of the unit or counit with full faithfulness and equivalence."""
++    labels, states, rid = record['labels'], record['states'], record['id']
++    eta, eps = greek(labels['eta']), greek(labels['epsilon'])
++    symbols = {eta: 'qh-fig-sym is-unit', eps: 'qh-fig-sym is-counit'}
++    keys = []
++    for key, cls in (('F', ''), ('G', ''), ('eta', 'is-unit'), ('epsilon', 'is-counit')):
++        swatch = '<span class="qh-fig-swatch" aria-hidden="true"></span>' if cls else ''
++        keys.append(f'<li class="qh-fig-key{" " + cls if cls else ""}" data-key="{key}">{swatch}'
++                    f'<span class="qh-fig-key-text">{tint(sub_html(labels[key]), symbols)}</span></li>')
++    triangles = ''.join(
++        f'<li class="qh-fig-col" data-state="{attr(st["id"])}"><p class="qh-fig-col-head">{esc(st["label"])}</p>'
++        f'{triangle_svg(rid, st, eta, eps)}<p class="qh-fig-equation">{tint(sub_html(st["equation"]), symbols)}</p>'
++        f'<p class="qh-fig-explanation">{esc(st["meaning"])}</p></li>' for st in states)
++    props = ''.join(
++        f'<tr><td>{tint(sub_html(p["hypothesis"]), symbols)}</td><td><span class="qh-fig-strong">{sub_html(p["equivalent_statement"])}</span>'
++        f'<span class="qh-fig-explanation">{sub_html(p["explanation"])}</span></td></tr>' for p in record.get('properties') or [])
++    table = (f'<table class="qh-fig-outputs qh-fig-properties"><thead><tr><th scope="col">{esc(words["hypothesis"])}</th>'
++             f'<th scope="col">{esc(words["equivalent"])}</th></tr></thead><tbody>{props}</tbody></table>') if props else ''
++    body = (f'<div class="qh-fig-body qh-fig-body-single"><ul class="qh-fig-legend">{"".join(keys)}</ul>'
++            f'<p class="qh-fig-domain">{esc(record["domain"])}</p>'
++            f'<ol class="qh-fig-pair qh-fig-triangles">{triangles}</ol>{table}</div>')
++    return body, {'model': 'adjunction-triangles', 'initial': record['initial_state'], 'states': [st['id'] for st in states]}
++
++
++FINITE_RENDERERS = {'cohomology-jump': render_cohomology, 'infinite-rank': render_infinite,
++                    'adjunction-triangles': render_adjunction}
+ 
+ 
+ # Rendering -------------------------------------------------------------------------------------------------
+ 
++def head_html(record, rich, words):
++    """The title (marked data-block-title, the reader's name for the figure in its search and reminders) and the
++    links to the chapter's equations: a printed number links as (1.3); an anchor of an unnumbered display links
++    under the interface word for an equation."""
++    anchors = record.get('equation_anchors') or {}
++    refs = record.get('equation_refs') or []
++    links = [f'<a href="#{attr(anchors[e])}">({esc(e)})</a>' for e in refs]
++    links += [f'<a href="#{attr(a)}">{esc(words["equation"])}</a>' for k, a in anchors.items() if k not in refs]
++    label = f'<span class="qh-fig-label">{esc(words["equations"])}</span> ' if refs else ''
++    side = f'<p class="qh-fig-refs">{label}{" ".join(links)}</p>' if links else ''
++    return f'<div class="qh-fig-head"><p class="qh-fig-title" data-block-title>{rich(record["title"])}</p>{side}</div>'
++
++
++def render_gaussian(record, rich, words):
++    rid, labels = record['id'], record.get('labels') or {}
++    names = list(record['parameters'])
++    controls = record['controls']
++    env = {n: float(controls[n]['initial']) for n in names}
++    outputs = {k: parse(f, names) for k, f in record['outputs'].items()}
++    profiles = [{'id': p['id'], 'variable': p['variable'], 'formula': parse(p['formula'], names + [p['variable']]),
++                 'integral': parse(p['integral_over_real_line'], names), 'density': is_density(p),
++                 'mean': is_density(p) and p['variable'] == 'y'}
++                for p in record.get('profiles') or []]
++    config = {'model': record['model'], 'names': names, 'controls': controls, 'outputs': outputs,
++              'rule': parse(record['validity']['rule'], names), 'profiles': profiles,
++              'mean': outputs.get('conditional_mean'), 'window': [PANEL_W, PANEL_H, PAD, SPAN]}
++    ctrl = ''.join(
++        f'<li class="qh-fig-control" data-param="{attr(n)}">'
++        f'<label class="qh-fig-control-label" for="{rid}--{attr(n)}">{rich_label(controls[n]["label"], rich)}</label>'
++        f'<output class="qh-fig-value" data-value="{attr(n)}">{fmt(env[n])}</output></li>'
++        for n in record.get('permitted_controls') or names)
++    rows = ''.join(
++        f'<tr data-output="{attr(k)}"><th scope="row">{rich_label(labels[k], rich)}</th>'
++        f'<td class="qh-fig-formula">{rich(math_inline(tex(node)))}</td>'
++        f'<td class="qh-fig-num"><output class="qh-fig-value" data-value="{attr(k)}">{fmt(value(node, env))}</output></td></tr>'
++        for k, node in outputs.items())
++    panels = ''.join(
++        f'<div class="qh-fig-profile" data-profile="{attr(p["id"])}">'
++        f'<p class="qh-fig-profile-label">{rich_label(p["label"], rich)}</p>{profile_svg(record, p, env)}'
++        f'<p class="qh-fig-integral"><span class="qh-fig-label">{esc(words["integral"])}</span> '
++        f'{rich(math_inline(tex(parse(p["integral_over_real_line"], names))))} '
++        f'<span class="qh-fig-eq">=</span> <output class="qh-fig-value" data-value="profile:{attr(p["id"])}">'
++        f'{fmt(value(parse(p["integral_over_real_line"], names), env))}</output></p>'
++        f'<p class="qh-fig-profile-caption">{rich_label(p["caption"], rich)}</p></div>'
++        for p in record.get('profiles') or [])
++    body = (f'<div class="qh-fig-body"><div class="qh-fig-side">'
++            f'<p class="qh-fig-label">{esc(words["controls"])}</p><ul class="qh-fig-controls">{ctrl}</ul>'
++            f'<p class="qh-fig-domain">{rich_label(labels["domain"], rich)}</p>'
++            f'<p class="qh-fig-invalid" role="status" aria-live="polite" hidden>{rich_label(record["validity"]["message"], rich)}</p>'
++            f'</div><div class="qh-fig-stage"><div class="qh-fig-profiles">{panels}</div>'
++            f'<table class="qh-fig-outputs"><caption class="qh-fig-label">{esc(words["outputs"])}</caption><tbody>{rows}</tbody></table>'
++            f'</div></div>')
++    return body, config
++
++
++def render_expansions(record, rich, words):
++    labels, states = record['labels'], record['states']
++    first = next(s for s in states if s['id'] == record['initial_state'])
++    config = {'model': record['model'], 'initial': record['initial_state'], 'plane': list(PLANE),
++              'states': [{'id': s['id'], 'inside': inside_disk(s['condition']), 'text': plain_formula(parse(s['condition'])),
++                          'at': list(region_label_at(inside_disk(s['condition'])))} for s in states]}
++    items = ''.join(
++        f'<li class="qh-fig-state" data-state="{attr(s["id"])}"' + (' aria-current="true"' if s is first else '') + '>'
++        f'<p class="qh-fig-state-label">{rich_label(s["label"], rich)}</p>'
++        f'<p class="qh-fig-cond">{rich(math_inline(tex(parse(s["condition"]))))}</p>'
++        f'<div class="qh-fig-series"><p class="qh-fig-label">{rich_label(labels["series"], rich)}</p>'
++        f'{rich(chr(92) + "[" + tex(parse(s["series"])) + chr(92) + "]")}</div></li>'
++        for s in states)
++    body = (f'<div class="qh-fig-body"><div class="qh-fig-side">'
++            f'<p class="qh-fig-label">{rich_label(labels["domain"], rich)}</p><ol class="qh-fig-states">{items}</ol></div>'
++            f'<div class="qh-fig-stage">{plane_svg(first, labels)}'
++            f'<p class="qh-fig-note">{rich_label(labels["no_value"], rich)}</p></div></div>')
++    return body, config
++
++
++RENDERERS = {'gaussian-elimination': render_gaussian, 'two-expansions': render_expansions}
++RENDERERS.update(FINITE_RENDERERS)
++
++
+ def render(record, ctx):
+     """One figure, for the reader to place where the chapter's hook stands. A record with any problem renders
+-    nothing and fails the build with each problem named."""
++    nothing and fails the build with each problem named. ctx gives rich(text) (the page's renderer) and may give
++    words, a dict replacing any interface word of WORDS."""
+     problems = check(record)
+     if problems:
+         return {'html': '', 'problems': problems}
+     rid = record['id']
+-    rich = (lambda t: ctx.rich(t, terms=False)) if hasattr(ctx, 'rich') else (lambda t: html.escape(t))
+-    anchors = record.get('equation_anchors') or {}
+-    refs = ''
+-    if record.get('equation_refs'):
+-        refs = (f'<p class="qh-fig-refs"><span class="qh-fig-label">{WORDS["equations"]}</span> '
+-                + ' '.join(f'<a href="#{html.escape(anchors[e])}">({html.escape(e)})</a>' for e in record['equation_refs']) + '</p>')
+-    head = f'<div class="qh-fig-head"><p class="qh-fig-title">{rich(record["title"])}</p>{refs}</div>'
+-    labels = record.get('labels') or {}
+-    if record['model'] == 'gaussian-elimination':
+-        names = list(record['parameters'])
+-        controls = record['controls']
+-        env = {n: float(controls[n]['initial']) for n in names}
+-        outputs = {k: parse(f, names) for k, f in record['outputs'].items()}
+-        profiles = [{'id': p['id'], 'variable': p['variable'], 'formula': parse(p['formula'], names + [p['variable']]),
+-                     'integral': parse(p['integral_over_real_line'], names), 'density': is_density(p)}
+-                    for p in record.get('profiles') or []]
+-        config = {'model': record['model'], 'names': names, 'controls': controls, 'outputs': outputs,
+-                  'rule': parse(record['validity']['rule'], names), 'profiles': profiles,
+-                  'mean': outputs.get('conditional_mean'), 'variance': outputs.get('conditional_variance'),
+-                  'window': [PANEL_W, PANEL_H, PAD, SPAN]}
+-        ctrl = ''.join(
+-            f'<li class="qh-fig-control" data-param="{html.escape(n)}">'
+-            f'<label class="qh-fig-control-label" for="{rid}--{html.escape(n)}">{rich(controls[n]["label"])}</label>'
+-            f'<output class="qh-fig-value" data-value="{html.escape(n)}">{fmt(env[n])}</output></li>'
+-            for n in record.get('permitted_controls') or names)
+-        rows = ''.join(
+-            f'<tr data-output="{html.escape(k)}"><th scope="row">{rich(labels[k])}</th>'
+-            f'<td class="qh-fig-formula">{rich(math_inline(tex(node)))}</td>'
+-            f'<td class="qh-fig-num"><output class="qh-fig-value" data-value="{html.escape(k)}">{fmt(value(node, env))}</output></td></tr>'
+-            for k, node in outputs.items())
+-        panels = ''.join(
+-            f'<div class="qh-fig-profile" data-profile="{html.escape(p["id"])}">'
+-            f'<p class="qh-fig-profile-label">{rich(p["label"])}</p>{profile_svg(record, p, env)}'
+-            f'<p class="qh-fig-integral"><span class="qh-fig-label">{WORDS["integral"]}</span> '
+-            f'{rich(math_inline(tex(parse(p["integral_over_real_line"], names))))} '
+-            f'<span class="qh-fig-eq">=</span> <output class="qh-fig-value" data-value="profile:{html.escape(p["id"])}">'
+-            f'{fmt(value(parse(p["integral_over_real_line"], names), env))}</output></p>'
+-            f'<p class="qh-fig-profile-caption">{rich(p["caption"])}</p></div>'
+-            for p in record.get('profiles') or [])
+-        body = (f'<div class="qh-fig-body"><div class="qh-fig-side">'
+-                f'<p class="qh-fig-label">{WORDS["controls"]}</p><ul class="qh-fig-controls">{ctrl}</ul>'
+-                f'<p class="qh-fig-domain">{rich(labels["domain"])}</p>'
+-                f'<p class="qh-fig-invalid" role="status" aria-live="polite" hidden>{rich(record["validity"]["message"])}</p>'
+-                f'</div><div class="qh-fig-stage"><div class="qh-fig-profiles">{panels}</div>'
+-                f'<table class="qh-fig-outputs"><caption class="qh-fig-label">{WORDS["outputs"]}</caption><tbody>{rows}</tbody></table>'
+-                f'</div></div>')
+-    else:
+-        states = record['states']
+-        first = next(s for s in states if s['id'] == record['initial_state'])
+-        config = {'model': record['model'], 'initial': record['initial_state'],
+-                  'states': [{'id': s['id'], 'condition': s['condition']} for s in states]}
+-        items = ''.join(
+-            f'<li class="qh-fig-state" data-state="{html.escape(s["id"])}"' + (' aria-current="true"' if s is first else '') + '>'
+-            f'<p class="qh-fig-state-label">{rich(s["label"])}</p>'
+-            f'<p class="qh-fig-cond">{rich(math_inline(tex(parse(s["condition"]))))}</p>'
+-            f'<div class="qh-fig-series"><p class="qh-fig-label">{rich(labels["series"])}</p>'
+-            f'{rich(chr(92) + "[" + tex(parse(s["series"])) + chr(92) + "]")}</div></li>'
+-            for s in states)
+-        body = (f'<div class="qh-fig-body"><div class="qh-fig-side">'
+-                f'<p class="qh-fig-label">{rich(labels["domain"])}</p><ol class="qh-fig-states">{items}</ol></div>'
+-                f'<div class="qh-fig-stage">{plane_svg(first)}'
+-                f'<p class="qh-fig-pole-label"><span class="qh-fig-pole-key" aria-hidden="true"></span>{rich(labels["pole"])}</p>'
+-                f'<p class="qh-fig-note">{rich(labels["no_value"])}</p></div></div>')
++    rich = (lambda t: ctx.rich(t, terms=False)) if hasattr(ctx, 'rich') else esc
++    words = dict(WORDS, **(getattr(ctx, 'words', None) or {}))
++    body, config = RENDERERS[record['model']](record, rich, words)
+     cfg = html.escape(json.dumps(config, separators=(',', ':'), ensure_ascii=False), quote=True)
+     return {'html': (f'<figure class="qh-fig" id="{rid}" data-figure="{rid}" data-qh-figure="{rid}" '
+-                     f'data-figure-type="{html.escape(record["type"])}" data-figure-model="{html.escape(record["model"])}" '
+-                     f'data-chapter="{html.escape(record.get("chapter_id", ""))}" data-section="{html.escape(record.get("section_id", ""))}" '
+-                     f'data-config="{cfg}">{head}{body}'
+-                     f'<figcaption class="qh-fig-caption">{rich(record["caption"])}</figcaption></figure>'),
++                     f'data-figure-type="{attr(record["type"])}" data-figure-model="{attr(record["model"])}" '
++                     f'data-figure-chapter="{attr(record.get("chapter_id", ""))}" data-figure-section="{attr(record.get("section_id", ""))}" '
++                     f'data-config="{cfg}">{head_html(record, rich, words)}{body}'
++                     f'<figcaption class="qh-fig-caption">{rich_label(record["caption"], rich)}</figcaption></figure>'),
+             'problems': []}
+ 
+ 
+diff --git a/compiler/quantum-holography-status/figures.css b/compiler/quantum-holography-status/figures.css
+index 7f73650..a5acaf4 100644
+--- a/compiler/quantum-holography-status/figures.css
++++ b/compiler/quantum-holography-status/figures.css
+@@ -1,9 +1,14 @@
+-/* Figures of the reader. One figure answers the question of its section: a quiet head
+-   (title, equation links), the authored controls and values beside the drawing in the golden proportion
+-   (1 : 1.618), and the authored caption under it. One accent marks what the controls change (the mean, the
+-   chosen region, the pole); every other line is ink. The page's tokens give colour, type and rhythm. */
+-.qh-fig { margin: calc(var(--text-base) * 1.55 * 1.5) 0; padding: calc(var(--text-base) * 1.55 * .5) 0 0; border-top: 1px solid var(--rule);
+-          --fig-au: calc(var(--text-base) * 1.55); }
++/* Figures of the reader. One figure answers the question of its section: a quiet head (the title and the links to
++   the chapter's equations), the record's domain and controls beside the drawing in the golden proportion
++   (1 : 1.618) when the figure is wide enough, and the authored caption under it. Layout follows the figure's own
++   width (a container), so a figure set in the reading column stacks rather than shrinking its labels.
++
++   Every mark keeps one meaning. Ink is a defined map, a curve or a label. The accent marks what the reader's
++   choice changes or singles out: the mean, the chosen region, the pole, the surviving basis vectors, the nonzero
++   entries, the unit. No dashed line is used: dashes are reserved for open comparisons. The page's tokens give
++   colour, type and rhythm. */
++.qh-fig { container-type: inline-size; margin: calc(var(--text-base) * 1.55 * 1.5) 0; padding: calc(var(--text-base) * 1.55 * .5) 0 0;
++          border-top: 1px solid var(--rule); --fig-au: calc(var(--text-base) * 1.55); }
+ .qh-fig-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: calc(var(--fig-au) * .25) 16px;
+                margin: 0 0 calc(var(--fig-au) * .5); }
+ .qh-fig-title { margin: 0; font-size: calc(var(--text-base) * 1.08); font-weight: 600; line-height: 1.28; }
+@@ -12,8 +17,15 @@
+ .qh-fig-label { margin: 0 0 calc(var(--fig-au) * .25); font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+                 font-weight: 400; text-align: left; }
+ .qh-fig-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .75) 28px; align-items: start; }
+-@media (min-width: 46rem) { .qh-fig-body { grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr); } }
++@container (min-width: 40rem) { .qh-fig-body:not(.qh-fig-body-single) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr); } }
++.qh-fig-body-single { gap: calc(var(--fig-au) * .6); }
+ .qh-fig-side, .qh-fig-stage { min-width: 0; }
++.qh-fig-stage { container-type: inline-size; }
++.qh-fig-domain { margin: 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); max-width: var(--measure); }
++.qh-fig-side .qh-fig-domain { margin-bottom: calc(var(--fig-au) * .5); }
++.qh-fig-note { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); font-style: italic; }
++.qh-fig-explanation { display: block; margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); }
++.qh-fig-strong { font-weight: 600; color: var(--ink); }
+ 
+ /* Controls: an authored label, the current value, the range input (added by the script) */
+ .qh-fig-controls { list-style: none; margin: 0 0 calc(var(--fig-au) * .5); padding: 0; display: grid; grid-template-columns: minmax(0, 1fr);
+@@ -22,70 +34,151 @@
+ .qh-fig-control-label { font-size: var(--text-sm); color: var(--ink-2); line-height: 1.35; }
+ .qh-fig-control input[type="range"] { grid-column: 1 / -1; width: 100%; margin: 2px 0 0; accent-color: var(--accent); }
+ .qh-fig-value { font-variant-numeric: lining-nums tabular-nums; color: var(--ink); }
+-.qh-fig-domain { margin: 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); font-style: italic; }
+ .qh-fig-invalid { margin: calc(var(--fig-au) * .25) 0 0; padding: calc(var(--fig-au) * .25) 10px; border-left: 2px solid var(--accent);
+                   background: var(--accent-soft); font-size: var(--text-xs); line-height: 1.45; color: var(--ink); }
+ .qh-fig-invalid[hidden] { display: none; }
++.qh-fig button:focus-visible, .qh-fig input:focus-visible { outline: 2px solid var(--focus, var(--accent)); outline-offset: 2px; }
++
++/* Drawings: SVG at its natural size or smaller, never enlarged, so labels keep the size they were set at */
++.qh-fig-svg { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--font-text); }
++.qh-fig-svg text { fill: var(--ink); }
++.qh-fig-tick { font-family: var(--font-ui); font-size: 12px; fill: var(--ink-3) !important; font-variant-numeric: lining-nums tabular-nums; }
++.qh-fig-var { font-style: italic; font-family: var(--font-text); font-size: 14px; }
++.qh-fig-axis { fill: none; stroke: var(--ink-4); stroke-width: 1; }
++.qh-fig-more { fill: var(--ink-4); stroke: none; }
++.qh-fig-map { fill: none; stroke: var(--ink-2); stroke-width: 1.35; }
++.qh-fig-head-mark { fill: var(--ink-2); }
++.qh-fig-map-label { font-size: 14px; font-style: italic; fill: var(--ink-2) !important; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
++.qh-fig-mark-label { font-size: 13px; fill: var(--ink-2) !important; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
++.qh-fig-node-text { font-size: 17px; font-style: italic; }
++.qh-fig-sub { font-size: .74em; }
+ 
+-/* Profiles: one curve per authored function, over a finite window of its variable; the real-line integral is the
++/* Profiles: one curve per authored function over a finite window of its variable; the real-line integral is the
+    authored formula, written under the curve (no area is filled, so a window never reads as the whole mass). */
+-.qh-fig-profiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .5) 20px; }
+-@container (min-width: 40rem) { .qh-fig-profiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+-@media (min-width: 72rem) { .qh-fig-profiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+-.qh-fig-profile { min-width: 0; }
++.qh-fig-profiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .6) 20px; }
++@container (min-width: 50rem) { .qh-fig-profiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
++.qh-fig-profile { min-width: 0; max-width: 26rem; }
++.qh-fig-profile .qh-fig-svg { max-width: 360px; }
+ .qh-fig-profile-label { margin: 0 0 2px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
+ .qh-fig-integral { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-2); }
+ .qh-fig-integral .qh-fig-label { display: block; margin: 0; }
+ .qh-fig-profile-caption { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
+-.qh-fig-svg { display: block; width: 100%; height: auto; overflow: visible; }
+ .qh-fig-curve { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+-.qh-fig-axis { fill: none; stroke: var(--ink-4); stroke-width: 1; }
+-.qh-fig-more { fill: var(--ink-4); stroke: none; }
+-.qh-fig-mean { stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 3 3; }
+-.qh-fig-band { fill: var(--accent-soft); }
+-.qh-fig-tick { font-family: var(--font-ui); font-size: 11px; fill: var(--ink-3); }
+-.qh-fig-var { font-style: italic; font-family: var(--font-text); font-size: 13px; }
++.qh-fig-mean { stroke: var(--accent); stroke-width: 1.4; }
+ 
+-/* Values at the current parameters: label, the authored formula, its value */
++/* Values at the current parameters, and tables of parallel facts */
+ .qh-fig-outputs { width: 100%; margin: calc(var(--fig-au) * .75) 0 0; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.35; }
+ .qh-fig-outputs caption { caption-side: top; }
+-.qh-fig-outputs th, .qh-fig-outputs td { padding: calc(var(--fig-au) * .25) 8px; border-top: 1px solid var(--rule-soft); vertical-align: middle;
++.qh-fig-outputs th, .qh-fig-outputs td { padding: calc(var(--fig-au) * .25) 8px; border-top: 1px solid var(--rule-soft); vertical-align: top;
+                                          text-align: left; font-weight: 400; }
+-.qh-fig-outputs th { color: var(--ink-2); width: 34%; }
++.qh-fig-outputs thead th { font-size: var(--text-xs); color: var(--ink-3); border-top: 0; vertical-align: bottom; }
++.qh-fig-outputs tbody th { color: var(--ink-2); width: 34%; }
+ .qh-fig-num { text-align: right !important; width: 5.5em; }
+ .qh-fig-formula { overflow-x: auto; }
+ 
+-/* Two expansion domains: the authored states; the chosen one carries the accent rule */
++/* States: the authored cases; the chosen one carries the accent rule */
+ .qh-fig-states { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .5); }
+ .qh-fig-state { min-width: 0; padding: calc(var(--fig-au) * .25) 0 calc(var(--fig-au) * .25) 12px; border-left: 2px solid var(--rule-soft); }
+ .qh-fig-state[aria-current="true"] { border-left-color: var(--accent); }
+ .qh-fig-live .qh-fig-state:not([aria-current="true"]) .qh-fig-series { color: var(--ink-3); }
++.qh-fig-live .qh-fig-states-compact { gap: calc(var(--fig-au) * .25); }
++.qh-fig-live .qh-fig-state:not([aria-current="true"]) .qh-fig-per-state { display: none; }
+ .qh-fig-state-label { margin: 0; font-size: var(--text-sm); font-weight: 600; }
+ .qh-fig-cond { margin: 2px 0 0; font-size: var(--text-sm); color: var(--ink-2); }
+ .qh-fig-series { margin: calc(var(--fig-au) * .25) 0 0; overflow-x: auto; }
+ .qh-fig-series .qh-fig-label { margin: 0; }
+-.qh-fig-choose { font: inherit; color: inherit; background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 12px;
+-                 cursor: pointer; text-align: left; }
+-.qh-fig-choose:hover { border-color: var(--ink-4); }
+-.qh-fig-choose[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
++.qh-fig-per-state { margin-top: 4px; }
++.qh-fig-matrix { margin: 4px 0; overflow-x: auto; }
++.qh-fig-homotopy { margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); }
++.qh-fig-homotopy .qh-fig-label { display: block; margin: 0; }
++.qh-fig-choose, .qh-fig-key-button { font: inherit; color: inherit; background: none; border: 1px solid var(--rule); border-radius: 999px;
++                                     padding: 3px 12px; cursor: pointer; text-align: left; }
++.qh-fig-choose:hover, .qh-fig-key-button:hover { border-color: var(--ink-4); }
++.qh-fig-choose[aria-pressed="true"], .qh-fig-key-button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft);
++                                                                               box-shadow: inset 0 0 0 1px var(--accent); }
++
++/* Two expansion domains in the w-plane at a fixed z */
++.qh-fig-plane { max-width: 360px; }
+ .qh-fig-region { fill: var(--accent-soft); }
+-.qh-fig-boundary { fill: none; stroke: var(--ink-2); stroke-width: 1.2; stroke-dasharray: 5 4; }
++.qh-fig-boundary { fill: none; stroke: var(--ink-3); stroke-width: 1.1; }
+ .qh-fig-origin { fill: var(--ink-3); }
++.qh-fig-region-label { font-size: 15px; font-style: italic; fill: var(--ink) !important; }
+ .qh-fig-pole circle { fill: var(--paper-3); stroke: var(--accent); stroke-width: 1.6; }
+ .qh-fig-pole path { stroke: var(--accent); stroke-width: 1.6; }
+-.qh-fig-pole-label { display: flex; align-items: center; gap: 8px; margin: calc(var(--fig-au) * .25) 0 0; font-size: var(--text-sm); }
+-.qh-fig-pole-key { width: 11px; height: 11px; border-radius: 50%; border: 1.6px solid var(--accent); flex: none; }
+-.qh-fig-note { margin: 2px 0 0; font-size: var(--text-xs); color: var(--ink-3); font-style: italic; }
++
++/* The cohomology jump: the complex on its basis; rings mark the vectors that survive in cohomology, here and in
++   the table */
++.qh-fig-complex { max-width: 460px; }
++.qh-fig-col-label { font-size: 14px; fill: var(--ink-2) !important; }
++.qh-fig-zero { font-size: 17px; fill: var(--ink-2) !important; }
++.qh-fig-ring { fill: var(--paper-3); stroke: var(--ink-4); stroke-width: 1; transition: fill .2s, stroke .2s; }
++.qh-fig-basis.is-alive .qh-fig-ring { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
++.qh-fig-homotopy-arc { fill: none; stroke: var(--ink-3); stroke-width: 1.1; }
++.qh-fig-head-h { fill: var(--ink-3); }
++.qh-fig-h-label { font-size: 13.5px; font-style: italic; fill: var(--ink-2) !important; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; }
++.qh-fig-dims td { white-space: nowrap; }
++.qh-fig-dims tbody tr[aria-current="true"] > * { background: var(--accent-soft); }
++.qh-fig-dims tbody tr[aria-current="true"] th { color: var(--ink); font-weight: 600; }
++.qh-fig-dim { display: inline-block; min-width: 1.2em; font-variant-numeric: lining-nums tabular-nums; }
++.qh-fig-chip { display: inline-block; margin: 0 0 0 4px; padding: 0 6px; border: 1.5px solid var(--accent); border-radius: 999px;
++               background: var(--accent-soft); font-style: italic; font-size: .92em; line-height: 1.4; }
++
++/* The infinite rank: the finite diagonal beside its coordinatewise limit, in one viewport */
++.qh-fig-pair { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .75) 32px; }
++@container (min-width: 34rem) { .qh-fig-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
++.qh-fig-col { min-width: 0; }
++.qh-fig-col-head { margin: 0 0 4px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
++.qh-fig-col .qh-fig-control { margin: 0 0 6px; max-width: 280px; }
++.qh-fig-grid { max-width: 260px; }
++.qh-fig-cell rect { fill: var(--paper-3); stroke: var(--rule-soft); stroke-width: 1; transition: fill .15s, stroke .15s; }
++.qh-fig-cell text { font-family: var(--font-ui); font-size: 12px; fill: var(--ink-4) !important; font-variant-numeric: lining-nums tabular-nums; }
++.qh-fig-cell.is-on rect { fill: var(--accent-soft); stroke: var(--accent); }
++.qh-fig-cell.is-on text { fill: var(--ink) !important; font-weight: 600; font-size: 13px; }
++.qh-fig-bracket { fill: none; stroke: var(--ink-3); stroke-width: 1.2; }
++.qh-fig-continues { font-size: 17px; fill: var(--ink-4) !important; }
++.qh-fig-continues.is-on { fill: var(--accent) !important; }
++.qh-fig-convergence { margin: 0; font-size: var(--text-base); line-height: 1.5; color: var(--ink); max-width: var(--measure); }
++.qh-fig-compare td, .qh-fig-compare th[scope="col"] { width: 33%; }
++
++/* The adjunction triangles: the key, the two triangles side by side, the criteria */
++.qh-fig-legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--text-sm); color: var(--ink-2); }
++.qh-fig-key { display: inline-flex; align-items: center; gap: 8px; }
++.qh-fig-key-button { display: inline-flex; align-items: center; gap: 8px; }
++.qh-fig-swatch { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--ink-2); }
++.qh-fig-key.is-unit .qh-fig-swatch { border-top-color: var(--accent); }
++.qh-fig-key.is-counit .qh-fig-swatch { border-top-color: var(--ink); border-top-width: 2.5px; }
++.qh-fig-sym.is-unit { color: var(--accent); }
++.qh-fig-triangle { max-width: 320px; }
++.qh-fig-arrow .qh-fig-map { stroke: var(--ink-3); stroke-width: 1.2; }
++.qh-fig-arrow.is-unit .qh-fig-map { stroke: var(--accent); stroke-width: 1.7; }
++.qh-fig-arrow.is-counit .qh-fig-map { stroke: var(--ink); stroke-width: 1.7; }
++.qh-fig-head-mark.is-unit { fill: var(--accent); }
++.qh-fig-head-mark.is-counit { fill: var(--ink); }
++.qh-fig-arrow.is-unit .qh-fig-map-label { fill: var(--accent) !important; }
++.qh-fig-arrow.is-counit .qh-fig-map-label { fill: var(--ink) !important; }
++.qh-fig-arrow { transition: opacity .2s; }
++.qh-fig[data-emphasis="unit"] .qh-fig-arrow:not(.is-unit), .qh-fig[data-emphasis="counit"] .qh-fig-arrow:not(.is-counit) { opacity: .25; }
++.qh-fig-equation { margin: 6px 0 0; font-size: var(--text-base); font-style: italic; color: var(--ink); }
++.qh-fig-properties td { width: 50%; }
+ 
+ .qh-fig-caption { margin: calc(var(--fig-au) * .75) 0 0; max-width: var(--measure); font-size: var(--text-sm); line-height: 1.5; color: var(--ink-2); }
+ 
++@media (prefers-reduced-motion: reduce) {
++  .qh-fig-ring, .qh-fig-cell rect, .qh-fig-arrow { transition: none; }
++}
+ @media print {
+   .qh-fig { break-inside: avoid; page-break-inside: avoid; }
+   .qh-fig input[type="range"], .qh-fig-invalid { display: none !important; }
+-  .qh-fig-choose { border: 0; padding: 0; background: none; box-shadow: none; }
+-  .qh-fig-region, .qh-fig-band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
++  .qh-fig-live .qh-fig-state .qh-fig-per-state { display: block !important; }
++  .qh-fig-choose, .qh-fig-key-button { border: 0; padding: 0; background: none; box-shadow: none; }
++  .qh-fig-region, .qh-fig-basis.is-alive .qh-fig-ring, .qh-fig-cell.is-on rect, .qh-fig-chip, .qh-fig-dims tbody tr[aria-current="true"] > * {
++    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
++  .qh-fig .qh-fig-arrow { opacity: 1 !important; }
+ }
+ @media (forced-colors: active) {
+-  .qh-fig-mean, .qh-fig-pole circle, .qh-fig-pole path { stroke: Highlight; }
+-  .qh-fig-region, .qh-fig-band { fill: Canvas; stroke: Highlight; }
++  .qh-fig-mean, .qh-fig-pole circle, .qh-fig-pole path, .qh-fig-arrow.is-unit .qh-fig-map { stroke: Highlight; }
++  .qh-fig-region { fill: Canvas; stroke: Highlight; }
++  .qh-fig-basis.is-alive .qh-fig-ring, .qh-fig-cell.is-on rect { fill: Canvas; stroke: Highlight; stroke-width: 2.5; }
++  .qh-fig-head-mark, .qh-fig-head-mark.is-unit, .qh-fig-head-mark.is-counit { fill: CanvasText; }
++  .qh-fig-chip { border-color: Highlight; }
+ }
+diff --git a/compiler/quantum-holography-status/figures.js b/compiler/quantum-holography-status/figures.js
+index 9a7b842..e642ee5 100644
+--- a/compiler/quantum-holography-status/figures.js
++++ b/compiler/quantum-holography-status/figures.js
+@@ -1,11 +1,17 @@
+-/* Figures of the reader: controls for the author's figure records (the server draws the initial state, which is
+-   complete without this script and in print). A Gaussian figure gets one range input per permitted control,
+-   inside the authored display window; a proposed value that breaks the authored validity rule is refused, the
+-   authored message is shown, and the previous valid values stay. Every value shown is an authored formula
+-   evaluated at the current parameters. An expansion figure switches only between its authored states. */
++/* Figures of the reader: controls for the author's figure records. The server draws each figure's initial state,
++   which is complete without this script and in print. Every value shown is an authored formula evaluated at the
++   current parameters, and every state is one the record lists.
++   - Gaussian: one range input per permitted control, inside the authored display window. A proposed value that
++     breaks the authored validity rule is refused; the authored message is shown and the previous valid values
++     stay.
++   - Expansions: a choice between the two authored regions.
++   - Cohomology jump: a choice between the authored values of t; the drawing, the matrix and the table follow.
++   - Infinite rank: the authored control N redraws the finite diagonal beside its limit.
++   - Adjunction: the key's unit and counit entries, pressed, pick out the arrows built from them. */
+ (function () {
+   'use strict';
+   var doc = document;
++  var NS = 'http://www.w3.org/2000/svg';
+   function all(sel, root) { return Array.prototype.slice.call((root || doc).querySelectorAll(sel)); }
+   var CONST = { pi: Math.PI };
+ 
+@@ -50,6 +56,42 @@
+     return v.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+   }
+   function copy(o) { var r = {}; for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) r[k] = o[k]; return r; }
++  function show(el, on) { if (!el) return; if (on) el.removeAttribute('display'); else el.setAttribute('display', 'none'); }
++
++  /* A range input for an authored control, added to its list item after the label and the value. */
++  function rangeFor(fig, li, name, c, value) {
++    var input = doc.createElement('input');
++    input.type = 'range';
++    input.id = fig.id + '--' + name;
++    input.min = String(c.min); input.max = String(c.max); input.step = String(c.step); input.value = String(value);
++    input.setAttribute('aria-valuetext', fmt(value));
++    li.appendChild(input);
++    return input;
++  }
++
++  /* The authored states as buttons: each state's label becomes a button that chooses it. */
++  function stateButtons(fig, choose) {
++    all('.qh-fig-state[data-state]', fig).forEach(function (li) {
++      var id = li.getAttribute('data-state'), label = li.querySelector('.qh-fig-state-label');
++      if (!label) return;
++      var b = doc.createElement('button');
++      b.type = 'button';
++      b.className = 'qh-fig-choose';
++      while (label.firstChild) b.appendChild(label.firstChild);
++      label.appendChild(b);
++      b.addEventListener('click', function () { choose(id); });
++    });
++  }
++  function markCurrent(fig, id) {
++    all('.qh-fig-state[data-state]', fig).forEach(function (li) {
++      var on = li.getAttribute('data-state') === id, b = li.querySelector('button.qh-fig-choose');
++      if (on) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current');
++      if (b) b.setAttribute('aria-pressed', on ? 'true' : 'false');
++    });
++    all('[data-state-row]', fig).forEach(function (tr) {
++      if (tr.getAttribute('data-state-row') === id) tr.setAttribute('aria-current', 'true'); else tr.removeAttribute('aria-current');
++    });
++  }
+ 
+   function gaussian(fig, cfg) {
+     var W = cfg.window[0], H = cfg.window[1], PAD = cfg.window[2], SPAN = cfg.window[3];
+@@ -83,30 +125,23 @@
+         o.textContent = fmt(v);
+       });
+       var mean = cfg.mean ? val(cfg.mean, env) : null;
+-      var sd = cfg.variance ? Math.sqrt(val(cfg.variance, env)) : null;
+       cfg.profiles.forEach(function (p) {
+         var box = fig.querySelector('.qh-fig-profile[data-profile="' + p.id + '"] svg');
+         if (!box) return;
+         var c = box.querySelector('[data-part="curve"]');
+         if (c) c.setAttribute('d', curve(p));
+-        var m = box.querySelector('[data-part="mean"]');
+-        if (m && mean !== null) { var x = wx(Math.max(-SPAN, Math.min(SPAN, mean))).toFixed(1); m.setAttribute('x1', x); m.setAttribute('x2', x); }
+-        var band = box.querySelector('[data-part="band"]');
+-        if (band && mean !== null && sd !== null) {
+-          var l = wx(Math.max(-SPAN, mean - sd)), r = wx(Math.min(SPAN, mean + sd));
+-          band.setAttribute('x', l.toFixed(1)); band.setAttribute('width', Math.max(0, r - l).toFixed(1));
++        var m = box.querySelector('[data-part="mean"]'), ml = box.querySelector('[data-part="mean-label"]');
++        if (m && mean !== null) {
++          var x = wx(Math.max(-SPAN, Math.min(SPAN, mean))), right = x > W / 2;
++          m.setAttribute('x1', x.toFixed(1)); m.setAttribute('x2', x.toFixed(1));
++          if (ml) { ml.setAttribute('x', (right ? x - 5 : x + 5).toFixed(1)); ml.setAttribute('text-anchor', right ? 'end' : 'start'); }
+         }
+       });
+     }
+     all('.qh-fig-control[data-param]', fig).forEach(function (li) {
+       var n = li.getAttribute('data-param'), c = cfg.controls[n];
+       if (!c) return;
+-      var input = doc.createElement('input');
+-      input.type = 'range';
+-      input.id = fig.id + '--' + n;
+-      input.min = String(c.min); input.max = String(c.max); input.step = String(c.step); input.value = String(env[n]);
+-      input.setAttribute('aria-valuetext', fmt(env[n]));
+-      li.appendChild(input);
++      var input = rangeFor(fig, li, n, c, env[n]);
+       input.addEventListener('input', function () {
+         var trial = copy(env);
+         trial[n] = +input.value;
+@@ -127,11 +162,10 @@
+ 
+   function expansions(fig, cfg) {
+     var svg = fig.querySelector('.qh-fig-plane');
+-    var W = 300, H = 220, cx = 140, cy = 110, r = 72;
++    var W = cfg.plane[0], H = cfg.plane[1], cx = cfg.plane[2], cy = cfg.plane[3], r = cfg.plane[4];
+     function region(state) {
+-      var inside = state.condition.replace(/\s+/g, '').indexOf('|w|<') === 0;
+-      var NS = 'http://www.w3.org/2000/svg', el;
+-      if (inside) {
++      var el;
++      if (state.inside) {
+         el = doc.createElementNS(NS, 'circle');
+         el.setAttribute('cx', cx); el.setAttribute('cy', cy); el.setAttribute('r', r);
+       } else {
+@@ -145,35 +179,119 @@
+       return el;
+     }
+     function choose(id) {
++      markCurrent(fig, id);
+       cfg.states.forEach(function (s) {
+-        var li = fig.querySelector('.qh-fig-state[data-state="' + s.id + '"]');
+-        var b = li && li.querySelector('button.qh-fig-choose');
+-        if (li) { if (s.id === id) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current'); }
+-        if (b) b.setAttribute('aria-pressed', s.id === id ? 'true' : 'false');
+-        if (s.id === id && svg) {
+-          var old = svg.querySelector('[data-part="region"]');
+-          if (old) svg.replaceChild(region(s), old);
++        if (s.id !== id || !svg) return;
++        var old = svg.querySelector('[data-part="region"]');
++        if (old) svg.replaceChild(region(s), old);
++        var label = svg.querySelector('[data-part="region-label"]');
++        if (label) {
++          label.textContent = s.text;
++          label.setAttribute('x', s.at[0]); label.setAttribute('y', s.at[1]); label.setAttribute('text-anchor', s.at[2]);
+         }
++        svg.setAttribute('aria-label', s.text + '; ' + (svg.getAttribute('aria-label') || '').split('; ').slice(1).join('; '));
+       });
+     }
+-    all('.qh-fig-state[data-state]', fig).forEach(function (li) {
+-      var id = li.getAttribute('data-state'), label = li.querySelector('.qh-fig-state-label');
+-      if (!label) return;
++    stateButtons(fig, choose);
++    fig.classList.add('qh-fig-live');
++    choose(cfg.initial);
++  }
++
++  function cohomology(fig, cfg) {
++    var svg = fig.querySelector('.qh-fig-complex');
++    function choose(id) {
++      markCurrent(fig, id);
++      cfg.states.forEach(function (s) {
++        if (s.id !== id || !svg) return;
++        var first = svg.querySelector('[data-part="first"]');
++        if (first) first.setAttribute('d', s.toV ? cfg.paths.v : cfg.paths.zero);
++        show(svg.querySelector('[data-part="first-zero"]'), !s.toV);
++        var fl = svg.querySelector('[data-part="first-label"]');
++        if (fl) fl.setAttribute('x', Math.round(s.toV ? cfg.mids.v : cfg.mids.zero));
++        show(svg.querySelector('[data-part="h"]'), !!s.h);
++        var hl = svg.querySelector('[data-part="h-label"]');
++        if (hl) { hl.textContent = s.h; show(hl, !!s.h); }
++        all('.qh-fig-basis[data-basis]', svg).forEach(function (g) {
++          g.classList.toggle('is-alive', s.alive.indexOf(g.getAttribute('data-basis')) >= 0);
++        });
++      });
++    }
++    stateButtons(fig, choose);
++    fig.classList.add('qh-fig-live');
++    choose(cfg.initial);
++  }
++
++  function infinite(fig, cfg) {
++    var env = { N: +cfg.control.initial };
++    function update() {
++      cfg.grids.forEach(function (g) {
++        var svg = fig.querySelector('svg[data-grid="' + g.id + '"]');
++        if (!svg) return;
++        all('.qh-fig-cell', svg).forEach(function (cell) {
++          var e = copy(env);
++          e.i = +cell.getAttribute('data-i'); e.j = +cell.getAttribute('data-j');
++          var on = val(g.rule, e) === true, t = cell.querySelector('text');
++          cell.classList.toggle('is-on', on);
++          if (t) t.textContent = on ? '1' : '0';
++        });
++        var beyond = svg.querySelector('[data-part="beyond"]');
++        if (beyond) { var e2 = copy(env); e2.i = cfg.n; e2.j = cfg.n; beyond.classList.toggle('is-on', val(g.rule, e2) === true); }
++      });
++      var o = fig.querySelector('output[data-value="N"]');
++      if (o) o.textContent = fmt(env.N);
++      var rank = fig.querySelector('output[data-value="rank:' + cfg.rank.id + '"]');
++      if (rank && cfg.rank.formula) rank.textContent = fmt(val(cfg.rank.formula, env));
++    }
++    var li = fig.querySelector('.qh-fig-control[data-param="N"]');
++    if (li) {
++      var input = rangeFor(fig, li, 'N', cfg.control, env.N);
++      input.addEventListener('input', function () {
++        env = { N: +input.value };
++        input.setAttribute('aria-valuetext', fmt(env.N));
++        update();
++      });
++    }
++    fig.classList.add('qh-fig-live');
++    update();
++  }
++
++  function adjunction(fig) {
++    var keys = all('.qh-fig-key[data-key="eta"], .qh-fig-key[data-key="epsilon"]', fig);
++    var pinned = '';
++    function emphasise(which) {
++      if (which) fig.setAttribute('data-emphasis', which); else fig.removeAttribute('data-emphasis');
++    }
++    keys.forEach(function (li) {
++      var which = li.getAttribute('data-key') === 'eta' ? 'unit' : 'counit';
++      var text = li.querySelector('.qh-fig-key-text');
++      if (!text) return;
+       var b = doc.createElement('button');
+       b.type = 'button';
+-      b.className = 'qh-fig-choose';
+-      while (label.firstChild) b.appendChild(label.firstChild);
+-      label.appendChild(b);
+-      b.addEventListener('click', function () { choose(id); });
++      b.className = 'qh-fig-key-button';
++      b.setAttribute('aria-pressed', 'false');
++      while (li.firstChild) b.appendChild(li.firstChild);
++      li.appendChild(b);
++      b.addEventListener('click', function () {
++        pinned = pinned === which ? '' : which;
++        keys.forEach(function (k) {
++          var kb = k.querySelector('button');
++          var kw = k.getAttribute('data-key') === 'eta' ? 'unit' : 'counit';
++          if (kb) kb.setAttribute('aria-pressed', pinned === kw ? 'true' : 'false');
++        });
++        emphasise(pinned);
++      });
++      b.addEventListener('mouseenter', function () { if (!pinned) emphasise(which); });
++      b.addEventListener('mouseleave', function () { if (!pinned) emphasise(''); });
+     });
+     fig.classList.add('qh-fig-live');
+-    choose(cfg.initial);
+   }
+ 
++  var MODELS = { 'gaussian-elimination': gaussian, 'two-expansions': expansions, 'cohomology-jump': cohomology,
++                 'infinite-rank': infinite, 'adjunction-triangles': adjunction };
+   all('figure[data-figure][data-config]').forEach(function (fig) {
+     var cfg;
+     try { cfg = JSON.parse(fig.getAttribute('data-config')); } catch (e) { return; }
+-    if (cfg.model === 'gaussian-elimination') gaussian(fig, cfg);
+-    else if (cfg.model === 'two-expansions') expansions(fig, cfg);
++    if (fig.classList.contains('qh-fig-live') || !MODELS[cfg.model]) return;
++    MODELS[cfg.model](fig, cfg);
+   });
+ })();
+diff --git a/compiler/quantum-holography-status/tests/test_figures.py b/compiler/quantum-holography-status/tests/test_figures.py
+index bd4a67c..dfa32f3 100644
+--- a/compiler/quantum-holography-status/tests/test_figures.py
++++ b/compiler/quantum-holography-status/tests/test_figures.py
+@@ -1,7 +1,8 @@
+-"""Tests of figures.py against the figure record contract (FIGURE-RECORD-CONTRACT.md): identity, verbatim
+-authored text, the three distinct profile integrals, validity, the two expansion states, and named problems.
+-The fixture copies the shapes and formulas of the authored records; its reader-facing words are synthetic. Set
+-QH_READER_MANIFEST to an author manifest to render its real figure records as well."""
++"""Tests of figures.py against the figure record contract (FIGURE-RECORD-CONTRACT.md) and the scientific visual
++contract: identity, verbatim authored text, the three distinct profile integrals, validity, the authored states of
++each model, the meaning of every mark, and named problems. The fixture copies the shapes, formulas, matrices and
++rules of the author's records; its reader-facing words are synthetic. Set QH_READER_MANIFEST to an author manifest
++to render its real figure records as well."""
+ import copy
+ import html
+ import json
+@@ -18,6 +19,7 @@ import figures as F  # noqa: E402
+ 
+ RECORDS = {r['id']: r for r in json.loads((HERE / 'fixtures' / 'figures-synthetic.json').read_text(encoding='utf-8'))['figures']}
+ GAUSS, EXP = RECORDS['fig-synthetic-gaussian'], RECORDS['fig-synthetic-expansions']
++COH, INF, ADJ = RECORDS['fig-synthetic-cohomology'], RECORDS['fig-synthetic-infinite'], RECORDS['fig-synthetic-adjunction']
+ 
+ 
+ class Ctx:
+@@ -25,8 +27,12 @@ class Ctx:
+         return html.escape(text, quote=False)
+ 
+ 
+-def render(record):
+-    return F.render(record, Ctx())
++def render(record, ctx=None):
++    return F.render(record, ctx or Ctx())
++
++
++def config(markup):
++    return json.loads(html.unescape(re.search(r'data-config="([^"]*)"', markup).group(1)))
+ 
+ 
+ def integrate(node, var, env, lo=-40.0, hi=40.0, n=80000):
+@@ -34,6 +40,12 @@ def integrate(node, var, env, lo=-40.0, hi=40.0, n=80000):
+     return sum((F.value(node, dict(env, **{var: lo + h * i})) or 0.0) for i in range(n + 1)) * h
+ 
+ 
++def problems_of(record, change):
++    bad = copy.deepcopy(record)
++    change(bad)
++    return render(bad)['problems']
++
++
+ class Formulas(unittest.TestCase):
+     def test_typesetting_keeps_every_symbol(self):
+         names = ['x', 'a', 'b', 'c', 'hbar']
+@@ -43,6 +55,7 @@ class Formulas(unittest.TestCase):
+         self.assertEqual(F.tex(F.parse('ab>c^2', names)), 'a b > c^{2}')
+         self.assertEqual(F.tex(F.parse('z!=w')), r'z \ne w', 'a control word is never glued to the next letter')
+         self.assertIn(r'\sum_{n \ge 0}', F.tex(F.parse('sum_(n>=0)(n+1)*w^n/z^(n+2)')))
++        self.assertEqual(F.plain_formula(F.parse('|w|<|z|')), '|w| < |z|')
+ 
+     def test_evaluation(self):
+         env = {'a': 2.0, 'b': 1.0, 'c': 0.5, 'x': 1.0, 'hbar': 1.0}
+@@ -51,6 +64,54 @@ class Formulas(unittest.TestCase):
+         self.assertAlmostEqual(F.value(F.parse('-c*x/b', names), env), -0.5)
+         self.assertIs(F.value(F.parse('b>0 and hbar>0 and a*b>c^2', names), env), True)
+         self.assertIs(F.value(F.parse('b>0 and hbar>0 and a*b>c^2', names), dict(env, c=2.0)), False)
++        rule = F.parse('i=j and i<N', ('i', 'j', 'N'))
++        self.assertIs(F.value(rule, {'i': 2.0, 'j': 2.0, 'N': 3.0}), True)
++        self.assertIs(F.value(rule, {'i': 3.0, 'j': 3.0, 'N': 3.0}), False)
++
++    def test_subscripts_are_lowered_and_nothing_else_changes(self):
++        self.assertEqual(F.sub_html('ε_FX ∘ F(η_X) = id_FX'),
++                         'ε<sub>FX</sub> ∘ F(η<sub>X</sub>) = id<sub>FX</sub>')
++        self.assertEqual(F.sub_html('Integrated fixed-x weight Z_y(x)'), 'Integrated fixed-x weight Z<sub>y</sub>(x)')
++        svg = F.sub_svg('F(η_X)')
++        self.assertEqual(re.sub(r'<[^>]+>', '', svg), 'F(ηX)')
++        self.assertIn('dy="4">X</tspan><tspan dy="-4">)</tspan>', svg, 'the baseline returns after a subscript')
++
++
++class Element(unittest.TestCase):
++    def test_identity_hooks_and_reader_vocabulary(self):
++        for r in RECORDS.values():
++            out = render(r)
++            self.assertEqual(out['problems'], [], r['id'])
++            tag = re.match(r'<figure [^>]*>', out['html']).group(0)
++            for attr in (f'id="{r["id"]}"', f'data-figure="{r["id"]}"', f'data-qh-figure="{r["id"]}"',
++                         f'data-figure-type="{r["type"]}"', f'data-figure-model="{r["model"]}"', f'data-figure-chapter="{r["chapter_id"]}"'):
++                self.assertIn(attr, tag)
++            # the reader's own vocabulary marks chapters and sections; a figure never carries it
++            self.assertNotRegex(tag, r'\sdata-(?:chapter|section)=')
++            # the order the foundation checks: the id before data-figure
++            self.assertRegex(out['html'], rf'<figure\b[^>]*\bid="{re.escape(r["id"])}"[^>]*\bdata-figure\b')
++            self.assertIn('class="qh-fig-title" data-block-title>', out['html'], 'the reader names a figure by its title')
++            self.assertNotIn('id="fig-fig-', out['html'], 'no second prefix')
++
++    def test_no_id_is_used_twice_on_a_page_of_every_figure(self):
++        page = ''.join(render(r)['html'] for r in RECORDS.values())
++        ids = re.findall(r'\sid="([^"]+)"', page)
++        self.assertEqual(len(ids), len(set(ids)), sorted({i for i in ids if ids.count(i) > 1}))
++        for ref in set(re.findall(r'url\(#([^)]+)\)', page)):
++            self.assertIn(ref, ids, 'every arrowhead names a marker of its own drawing')
++
++    def test_equation_links(self):
++        self.assertIn('href="#eq-synthetic-one">(1.1)</a>', render(GAUSS)['html'], 'a printed number links as itself')
++        self.assertIn('href="#eq-synthetic-complex">Equation</a>', render(COH)['html'], 'an unnumbered display links by the interface word')
++        self.assertIn('href="#eq-synthetic-complex">Gleichung</a>', render(COH, type('C', (Ctx,), {'words': {'equation': 'Gleichung'}})())['html'],
++                      'the page may replace an interface word')
++
++    def test_marks_keep_their_meaning(self):
++        css = (HERE.parent / 'figures.css').read_text(encoding='utf-8')
++        self.assertNotIn('stroke-dasharray', css, 'dashes are reserved for open comparisons')
++        page = ''.join(render(r)['html'] for r in RECORDS.values())
++        self.assertNotIn('qh-fig-band', page, 'no band without an authored label')
++        self.assertNotIn('qh-fig-area', page, 'no filled area: a window is not the whole mass')
+ 
+ 
+ class Gaussian(unittest.TestCase):
+@@ -58,15 +119,6 @@ class Gaussian(unittest.TestCase):
+         self.out = render(GAUSS)
+         self.html = self.out['html']
+ 
+-    def test_identity_and_hooks(self):
+-        self.assertEqual(self.out['problems'], [])
+-        tag = re.match(r'<figure [^>]*>', self.html).group(0)
+-        for attr in ('id="fig-synthetic-gaussian"', 'data-figure="fig-synthetic-gaussian"', 'data-qh-figure="fig-synthetic-gaussian"',
+-                     'data-figure-type="authored_formula"', 'data-figure-model="gaussian-elimination"'):
+-            self.assertIn(attr, tag)
+-        self.assertNotIn('id="fig-fig-', self.html, 'no second prefix')
+-        self.assertIn('href="#eq-synthetic-one">(1.1)</a>', self.html, 'equation links use the authored anchors')
+-
+     def test_every_authored_word_verbatim_and_nothing_invented(self):
+         texts = [GAUSS['title'], GAUSS['caption'], GAUSS['validity']['message']] + list(GAUSS['labels'].values())
+         texts += [c['label'] for c in GAUSS['controls'].values()] + [p[k] for p in GAUSS['profiles'] for k in ('label', 'caption')]
+@@ -76,14 +128,12 @@ class Gaussian(unittest.TestCase):
+         self.assertIn('class="qh-fig-invalid" role="status" aria-live="polite" hidden', self.html)
+ 
+     def test_all_five_controls_with_their_windows(self):
+-        cfg = json.loads(html.unescape(re.search(r'data-config="([^"]*)"', self.html).group(1)))
++        cfg = config(self.html)
+         self.assertEqual(sorted(cfg['controls']), ['a', 'b', 'c', 'hbar', 'x'])
+         self.assertEqual(len(re.findall(r'<li class="qh-fig-control"', self.html)), 5)
+         self.assertEqual(cfg['controls']['hbar']['max'], 2)
+ 
+     def test_three_profiles_three_integrals_no_conflation(self):
+-        # The density integrates to 1, the centred weight to the Gaussian factor, the original weight to Z_y(x):
+-        # each authored integral is checked against its own formula, and no area is filled.
+         env = {n: float(GAUSS['controls'][n]['initial']) for n in GAUSS['parameters']}
+         names = list(GAUSS['parameters'])
+         for p in GAUSS['profiles']:
+@@ -91,19 +141,23 @@ class Gaussian(unittest.TestCase):
+             want = F.value(F.parse(p['integral_over_real_line'], names), env)
+             self.assertAlmostEqual(integrate(node, p['variable'], env), want, places=4, msg=p['id'])
+         self.assertEqual(len(re.findall(r'<div class="qh-fig-profile"', self.html)), 3)
+-        self.assertNotIn('qh-fig-area', self.html, 'no filled area: a window is not the whole mass')
+         density = re.search(r'data-profile="synthetic-density".*?</div>', self.html, re.S).group(0)
+         self.assertIn('data-value="profile:synthetic-density">1</output>', density)
+ 
++    def test_the_mean_carries_its_authored_label_on_the_density_only(self):
++        density = re.search(r'data-profile="synthetic-density".*?</div>', self.html, re.S).group(0)
++        self.assertIn('data-part="mean"', density)
++        self.assertIn('data-part="mean-label"', density)
++        self.assertIn('Synthetic mean label', density)
++        self.assertEqual(self.html.count('data-part="mean"'), 1)
++
+     def test_named_problems(self):
+-        bad = copy.deepcopy(GAUSS); bad['model'] = 'composition-domains'
+-        self.assertTrue(any('is not one this component draws' in p for p in render(bad)['problems']))
+-        bad = copy.deepcopy(GAUSS); del bad['labels']['normalization']
+-        self.assertTrue(any('output normalization has no label' in p for p in render(bad)['problems']))
+-        bad = copy.deepcopy(GAUSS); bad['controls']['c']['initial'] = 1.9
+-        self.assertTrue(any('break the validity rule' in p for p in render(bad)['problems']))
+-        bad = copy.deepcopy(GAUSS); del bad['equation_anchors']['1.2']
+-        self.assertTrue(any('equation 1.2 has no anchor' in p for p in render(bad)['problems']))
++        self.assertTrue(any('is not one this component draws' in p for p in problems_of(GAUSS, lambda r: r.update(model='composition-domains'))))
++        self.assertTrue(any('output normalization has no label' in p for p in problems_of(GAUSS, lambda r: r['labels'].pop('normalization'))))
++        self.assertTrue(any('break the validity rule' in p for p in problems_of(GAUSS, lambda r: r['controls']['c'].update(initial=1.9))))
++        self.assertTrue(any('equation 1.2 has no anchor' in p for p in problems_of(GAUSS, lambda r: r['equation_anchors'].pop('1.2'))))
++        bad = copy.deepcopy(GAUSS)
++        bad['equation_anchors'].pop('1.2')
+         self.assertEqual(render(bad)['html'], '', 'a record with a problem draws nothing')
+ 
+ 
+@@ -113,18 +167,108 @@ class Expansions(unittest.TestCase):
+         self.html = self.out['html']
+ 
+     def test_two_authored_states_initial_chosen_no_truncation(self):
+-        self.assertEqual(self.out['problems'], [])
+         self.assertEqual(len(re.findall(r'<li class="qh-fig-state"', self.html)), 2)
+         self.assertIn('data-state="w-inside-z" aria-current="true"', self.html)
+         self.assertNotIn('<input', self.html, 'no truncation control')
+         for t in [s['label'] for s in EXP['states']] + list(EXP['labels'].values()):
+             self.assertIn(html.escape(t, quote=False), self.html)
+-        self.assertIn('class="qh-fig-pole"', self.html)
+         self.assertIn(r'\sum_{n \ge 0}', self.html)
+ 
+-    def test_states_are_required(self):
+-        bad = copy.deepcopy(EXP); bad['initial_state'] = 'nowhere'
+-        self.assertTrue(any('initial_state' in p for p in render(bad)['problems']))
++    def test_labels_attached_to_their_marks(self):
++        plane = re.search(r'<svg class="qh-fig-svg qh-fig-plane".*?</svg>', self.html, re.S).group(0)
++        self.assertIn('data-part="region-label"', plane)
++        self.assertIn('>|w| &lt; |z|</text>', plane, 'the region carries its authored condition')
++        self.assertIn('Synthetic pole label</text>', plane, 'the pole carries its authored label')
++        self.assertEqual(config(self.html)['states'][1], {'id': 'z-inside-w', 'inside': False, 'text': '|z| < |w|', 'at': [14, 26, 'start']})
++
++    def test_states_are_required_and_read(self):
++        self.assertTrue(any('initial_state' in p for p in problems_of(EXP, lambda r: r.update(initial_state='nowhere'))))
++        self.assertTrue(any('not a comparison of |w| with |z|' in p for p in problems_of(EXP, lambda r: r['states'][0].update(condition='|w|<2'))))
++
++
++class Cohomology(unittest.TestCase):
++    def setUp(self):
++        self.html = render(COH)['html']
++
++    def test_the_initial_state_is_drawn_from_its_matrix(self):
++        svg = re.search(r'<svg class="qh-fig-svg qh-fig-complex".*?</svg>', self.html, re.S).group(0)
++        # t = 0: the first arrow ends at 0, there is no contraction, and all four basis vectors survive
++        self.assertIn(f'data-part="first" d="{F.first_arrow(False)[0]}"', svg)
++        self.assertNotIn('data-part="first-zero" x="226" y="97" text-anchor="middle" display="none"', svg)
++        self.assertRegex(svg, r'data-part="h"[^>]*display="none"')
++        self.assertEqual(len(re.findall(r'class="qh-fig-basis is-alive"', svg)), 4)
++        for t in ('Synthetic degree zero', 'Synthetic degree one', 'u₁ ↦ t v₁', 'u₂ ↦ 0'):
++            self.assertIn(t, svg)
++
++    def test_every_state_its_matrix_contraction_dimensions_and_survivors(self):
++        self.assertEqual(len(re.findall(r'<li class="qh-fig-state"', self.html)), 3)
++        self.assertEqual(self.html.count(r'\begin{pmatrix}'), 3)
++        self.assertIn(r'\operatorname{diag}(t,0)=\begin{pmatrix}-1&amp;0\\0&amp;0\end{pmatrix}', self.html)
++        rows = re.findall(r'<tr data-state-row="([^"]+)"', self.html)
++        self.assertEqual(rows, ['negative', 'zero', 'positive'])
++        zero = re.search(r'<tr data-state-row="zero".*?</tr>', self.html, re.S).group(0)
++        self.assertEqual(re.findall(r'class="qh-fig-chip">([^<]+)<', zero), ['u₁', 'u₂', 'v₁', 'v₂'])
++        for st in COH['states']:
++            self.assertIn(st['homotopy'], self.html)
++        cfg = config(self.html)
++        self.assertEqual([s['h'] for s in cfg['states']], ['Synthetic contraction at minus one', '', 'Synthetic contraction at one'])
++        self.assertEqual([s['toV'] for s in cfg['states']], [True, False, True])
++
++    def test_the_records_arithmetic_is_returned_to_the_author_when_it_disagrees(self):
++        self.assertTrue(any('disagrees with its matrix' in p for p in problems_of(COH, lambda r: r['states'][0].update(rank=0))))
++        self.assertTrue(any('cohomology dimensions disagree' in p for p in problems_of(COH, lambda r: r['states'][1].update(H0_dim=1))))
++        self.assertTrue(any('another nonzero entry' in p for p in problems_of(COH, lambda r: r['states'][0].update(differential_matrix=[[-1, 0], [0, 2]]))))
++        self.assertTrue(any('must name the first and second basis vectors' in p
++                            for p in problems_of(COH, lambda r: r['labels'].update(first_arrow='v₁ ↦ u₁'))))
++
++
++class InfiniteRank(unittest.TestCase):
++    def setUp(self):
++        self.html = render(INF)['html']
++
++    def grid(self, part):
++        return re.search(rf'<svg class="qh-fig-svg qh-fig-grid" data-grid="{part}".*?</svg>', self.html, re.S).group(0)
++
++    def test_both_states_in_one_viewport_by_their_rules(self):
++        fin, lim = self.grid('finite-truncation'), self.grid('coordinatewise-limit')
++        self.assertEqual(re.findall(r'class="qh-fig-cell is-on" data-i="(\d)" data-j="(\d)"', fin), [('0', '0'), ('1', '1'), ('2', '2')])
++        self.assertEqual(len(re.findall(r'class="qh-fig-cell is-on"', lim)), 8)
++        self.assertEqual(len(re.findall(r'class="qh-fig-cell', fin)), 64)
++        self.assertNotIn('qh-fig-continues is-on', fin, 'beyond the viewport D(N) is zero')
++        self.assertIn('qh-fig-continues is-on', lim, 'beyond the viewport the identity continues')
++
++    def test_ranks_memberships_and_words(self):
++        table = re.search(r'<table class="qh-fig-outputs qh-fig-compare">.*?</table>', self.html, re.S).group(0)
++        self.assertIn('data-value="rank:finite-truncation">3</output>', table)
++        self.assertIn('<td>infinite</td>', table)
++        self.assertEqual(re.findall(r'<td>(yes|no)</td>', table), ['yes', 'no', 'yes', 'yes'])
++        for t in list(INF['labels'].values()) + [s['explanation'] for s in INF['states']] + [INF['domain'], INF['controls']['N']['label']]:
++            self.assertIn(html.escape(t, quote=False), self.html)
++
++    def test_ranks_must_match_the_outputs(self):
++        self.assertTrue(any('finite_rank and outputs.limit_rank' in p for p in problems_of(INF, lambda r: r['states'][1].update(rank='countable'))))
++
++
++class Adjunction(unittest.TestCase):
++    def setUp(self):
++        self.html = render(ADJ)['html']
++
++    def test_two_triangles_their_arrows_and_the_key(self):
++        tris = re.findall(r'<svg class="qh-fig-svg qh-fig-triangle".*?</svg>', self.html, re.S)
++        self.assertEqual(len(tris), 2)
++        for t in tris:
++            self.assertEqual(len(re.findall(r'<g class="qh-fig-arrow', t)), 3)
++        self.assertEqual(re.findall(r'<g class="qh-fig-arrow( is-unit| is-counit)?">', tris[0]), [' is-unit', ' is-counit', ''])
++        self.assertEqual(re.findall(r'<g class="qh-fig-arrow( is-unit| is-counit)?">', tris[1]), [' is-unit', ' is-counit', ''])
++        self.assertIn('<span class="qh-fig-sym is-counit">ε</span><sub>FX</sub> ∘ F(<span class="qh-fig-sym is-unit">η</span><sub>X</sub>) = id<sub>FX</sub>', self.html)
++        self.assertEqual(re.findall(r'data-key="(\w+)"', self.html), ['F', 'G', 'eta', 'epsilon'])
++
++    def test_criteria_and_domain(self):
++        rows = re.search(r'<table class="qh-fig-outputs qh-fig-properties">.*?</table>', self.html, re.S).group(0)
++        self.assertEqual(rows.count('<tr>'), 3)
++        for p in ADJ['properties']:
++            self.assertIn(p['equivalent_statement'], rows)
++        self.assertIn(ADJ['domain'], self.html)
+ 
+ 
+ class Assets(unittest.TestCase):
+@@ -146,11 +290,14 @@ class AuthorManifest(unittest.TestCase):
+         path = os.environ.get('QH_READER_MANIFEST')
+         if not path or not Path(path).exists():
+             self.skipTest('QH_READER_MANIFEST is not set')
++        seen = []
+         for r in json.loads(Path(path).read_text(encoding='utf-8')).get('figures') or []:
+             if r.get('model') in F.MODELS:
+                 out = render(r)
+                 self.assertEqual(out['problems'], [], r['id'])
+                 self.assertTrue(out['html'].startswith(f'<figure class="qh-fig" id="{r["id"]}"'))
++                seen.append(r['model'])
++        self.assertEqual(sorted(set(seen)), sorted(F.MODELS), 'every authorized model has an authored record')
+ 
+ 
+ if __name__ == '__main__':
+diff --git a/compiler/quantum-holography-status/tests/figures.test.cjs b/compiler/quantum-holography-status/tests/figures.test.cjs
+index bc4662c..0f1753f 100644
+--- a/compiler/quantum-holography-status/tests/figures.test.cjs
++++ b/compiler/quantum-holography-status/tests/figures.test.cjs
+@@ -71,6 +71,72 @@ test('Expansions: the choice moves between the two authored states only, and red
+   assert.equal(fig.querySelector('[data-part="region"]').localName, 'circle', 'the disk again');
+ });
+ 
++test('Expansions: the chosen region carries its own condition', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="two-expansions"]');
++  if (!fig) return 'SKIP';
++  const cfg = JSON.parse(fig.getAttribute('data-config'));
++  fig.querySelectorAll('button.qh-fig-choose')[1].click();
++  assert.equal(fig.querySelector('[data-part="region-label"]').textContent, cfg.states[1].text);
++  assert.equal(fig.querySelector('[data-part="region-label"]').getAttribute('text-anchor'), cfg.states[1].at[2]);
++  fig.querySelectorAll('button.qh-fig-choose')[0].click();
++  assert.equal(+fig.querySelector('[data-part="region-label"]').getAttribute('x'), cfg.states[0].at[0], 'back inside the disk');
++});
++
++test('Cohomology: each value of t redraws the complex from its own matrix, contraction and survivors', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="cohomology-jump"]');
++  if (!fig) return 'SKIP';
++  const cfg = JSON.parse(fig.getAttribute('data-config'));
++  const buttons = Array.from(fig.querySelectorAll('button.qh-fig-choose'));
++  assert.equal(buttons.length, cfg.states.length);
++  cfg.states.forEach((s, k) => {
++    buttons[k].click();
++    const svg = fig.querySelector('.qh-fig-complex');
++    assert.equal(svg.querySelector('[data-part="first"]').getAttribute('d'), s.toV ? cfg.paths.v : cfg.paths.zero, s.id);
++    assert.equal(svg.querySelector('[data-part="first-zero"]').hasAttribute('display'), s.toV, 'the 0 target only where the entry is zero');
++    assert.equal(svg.querySelector('[data-part="h"]').hasAttribute('display'), !s.h, 'the contraction only where the state gives one');
++    assert.equal(svg.querySelector('[data-part="h-label"]').textContent, s.h);
++    const alive = Array.from(svg.querySelectorAll('.qh-fig-basis.is-alive')).map(g => g.getAttribute('data-basis')).sort();
++    assert.deepEqual(alive, s.alive.slice().sort());
++    assert.equal(fig.querySelector('tr[aria-current="true"]').getAttribute('data-state-row'), s.id);
++    assert.equal(fig.querySelector('.qh-fig-state[aria-current="true"]').getAttribute('data-state'), s.id);
++    assert.equal(buttons[k].getAttribute('aria-pressed'), 'true');
++  });
++});
++
++test('Infinite rank: N redraws the finite diagonal and its rank; the limit does not move', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="infinite-rank"]');
++  if (!fig) return 'SKIP';
++  const cfg = JSON.parse(fig.getAttribute('data-config'));
++  const input = fig.querySelector('input[type="range"][id$="--N"]');
++  assert.equal(+input.min, cfg.control.min); assert.equal(+input.max, cfg.control.max); assert.equal(+input.value, cfg.control.initial);
++  const fin = fig.querySelector('svg[data-grid="' + cfg.grids[0].id + '"]'), lim = fig.querySelector('svg[data-grid="' + cfg.grids[1].id + '"]');
++  const limBefore = lim.innerHTML;
++  input.value = '5'; input.dispatchEvent(new w.Event('input', { bubbles: true }));
++  const on = Array.from(fin.querySelectorAll('.qh-fig-cell.is-on')).map(c => c.getAttribute('data-i') + c.getAttribute('data-j'));
++  assert.deepEqual(on, ['00', '11', '22', '33', '44']);
++  assert.equal(fin.querySelector('.qh-fig-cell[data-i="4"][data-j="4"] text').textContent, '1');
++  assert.equal(fin.querySelector('.qh-fig-cell[data-i="5"][data-j="5"] text').textContent, '0');
++  assert.equal(fig.querySelector('output[data-value="rank:' + cfg.rank.id + '"]').textContent, '5');
++  assert.equal(fig.querySelector('output[data-value="N"]').textContent, '5');
++  assert.equal(lim.innerHTML, limBefore, 'the limit is the same at every N');
++  assert.equal(fin.querySelector('[data-part="beyond"]').classList.contains('is-on'), false);
++});
++
++test('Adjunction: the unit and counit keys pick out the arrows built from them', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="adjunction-triangles"]');
++  if (!fig) return 'SKIP';
++  const unit = fig.querySelector('.qh-fig-key[data-key="eta"] button'), counit = fig.querySelector('.qh-fig-key[data-key="epsilon"] button');
++  assert.ok(unit && counit, 'the two keys are buttons');
++  unit.click();
++  assert.equal(fig.getAttribute('data-emphasis'), 'unit'); assert.equal(unit.getAttribute('aria-pressed'), 'true');
++  counit.click();
++  assert.equal(fig.getAttribute('data-emphasis'), 'counit'); assert.equal(unit.getAttribute('aria-pressed'), 'false');
++  counit.click();
++  assert.equal(fig.hasAttribute('data-emphasis'), false, 'pressed again, the emphasis is released');
++  assert.equal(fig.querySelectorAll('.qh-fig-arrow.is-unit').length, 2);
++  assert.equal(fig.querySelectorAll('.qh-fig-arrow.is-counit').length, 2);
++});
++
+ let failed = 0, skipped = 0;
+ for (const t of tests) {
+   try { const r = t.fn(); if (r === 'SKIP') { skipped++; console.log('SKIP ' + t.name); } else console.log('PASS ' + t.name); }
+diff --git a/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json b/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json
+index 8fb490b..c20acaa 100644
+--- a/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json
++++ b/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json
+@@ -157,6 +157,325 @@
+     "pole": "Synthetic pole label",
+     "no_value": "Synthetic no-value label"
+    }
++  },
++  {
++   "id": "fig-synthetic-cohomology",
++   "chapter_id": "ch05",
++   "section_id": "synthetic-section-three",
++   "type": "authored_finite_states",
++   "model": "cohomology-jump",
++   "title": "Synthetic cohomology title",
++   "caption": "Synthetic cohomology caption.",
++   "parameters": {
++    "t": "synthetic parameter description"
++   },
++   "domain": "Synthetic complex domain sentence.",
++   "outputs": {
++    "differential": "diag(t,0)",
++    "H0": "kernel of diag(t,0)",
++    "H1": "cokernel of diag(t,0)",
++    "Euler_characteristic": "dim(H0)-dim(H1)"
++   },
++   "labels": {
++    "degree_zero": "Synthetic degree zero",
++    "degree_one": "Synthetic degree one",
++    "first_arrow": "u₁ ↦ t v₁",
++    "second_arrow": "u₂ ↦ 0",
++    "H0": "Synthetic H0 label",
++    "H1": "Synthetic H1 label",
++    "Euler_characteristic": "Synthetic Euler label",
++    "homotopy": "Synthetic contraction label"
++   },
++   "permitted_controls": [
++    "state"
++   ],
++   "initial_state": "zero",
++   "states": [
++    {
++     "id": "negative",
++     "label": "Synthetic t negative",
++     "t": -1,
++     "differential_matrix": [
++      [
++       -1,
++       0
++      ],
++      [
++       0,
++       0
++      ]
++     ],
++     "rank": 1,
++     "H0_dim": 1,
++     "H1_dim": 1,
++     "Euler_characteristic": 0,
++     "homotopy": "Synthetic contraction at minus one",
++     "surviving_basis": {
++      "H0": [
++       "u₂"
++      ],
++      "H1": [
++       "v₂"
++      ]
++     }
++    },
++    {
++     "id": "zero",
++     "label": "Synthetic t zero",
++     "t": 0,
++     "differential_matrix": [
++      [
++       0,
++       0
++      ],
++      [
++       0,
++       0
++      ]
++     ],
++     "rank": 0,
++     "H0_dim": 2,
++     "H1_dim": 2,
++     "Euler_characteristic": 0,
++     "homotopy": "Synthetic no contraction",
++     "surviving_basis": {
++      "H0": [
++       "u₁",
++       "u₂"
++      ],
++      "H1": [
++       "v₁",
++       "v₂"
++      ]
++     }
++    },
++    {
++     "id": "positive",
++     "label": "Synthetic t positive",
++     "t": 1,
++     "differential_matrix": [
++      [
++       1,
++       0
++      ],
++      [
++       0,
++       0
++      ]
++     ],
++     "rank": 1,
++     "H0_dim": 1,
++     "H1_dim": 1,
++     "Euler_characteristic": 0,
++     "homotopy": "Synthetic contraction at one",
++     "surviving_basis": {
++      "H0": [
++       "u₂"
++      ],
++      "H1": [
++       "v₂"
++      ]
++     }
++    }
++   ],
++   "equation_refs": [],
++   "equation_anchors": {
++    "synthetic-complex": "eq-synthetic-complex"
++   },
++   "prohibited_inferences": [
++    "Synthetic prohibited inference"
++   ]
++  },
++  {
++   "id": "fig-synthetic-infinite",
++   "chapter_id": "ch08",
++   "section_id": "synthetic-section-four",
++   "type": "authored_formula",
++   "model": "infinite-rank",
++   "title": "Synthetic infinite title",
++   "caption": "Synthetic infinite caption.",
++   "parameters": {
++    "N": "synthetic",
++    "i": "synthetic",
++    "j": "synthetic"
++   },
++   "domain": "Synthetic infinite domain sentence.",
++   "controls": {
++    "N": {
++     "initial": 3,
++     "min": 1,
++     "max": 8,
++     "step": 1,
++     "label": "Synthetic N label"
++    }
++   },
++   "permitted_controls": [
++    "N",
++    "state"
++   ],
++   "initial_state": "finite-truncation",
++   "labels": {
++    "finite": "Synthetic finite label",
++    "limit": "Synthetic limit label",
++    "rank": "Synthetic rank label",
++    "tensor_membership": "Synthetic tensor label",
++    "completion_membership": "Synthetic completion label",
++    "viewport": "Synthetic viewport label",
++    "convergence": "Synthetic convergence label"
++   },
++   "outputs": {
++    "finite_entry": "synthetic",
++    "limit_entry": "synthetic",
++    "finite_rank": "N",
++    "limit_rank": "infinite",
++    "viewport_size": 8
++   },
++   "states": [
++    {
++     "id": "finite-truncation",
++     "label": "Synthetic finite state",
++     "entry_rule": "i=j and i<N",
++     "rank": "N",
++     "algebraic_tensor_member": true,
++     "completion_member": true,
++     "explanation": "Synthetic finite explanation."
++    },
++    {
++     "id": "coordinatewise-limit",
++     "label": "Synthetic limit state",
++     "entry_rule": "i=j",
++     "rank": "infinite",
++     "algebraic_tensor_member": false,
++     "completion_member": true,
++     "explanation": "Synthetic limit explanation."
++    }
++   ],
++   "equation_refs": [],
++   "equation_anchors": {
++    "synthetic-map": "eq-synthetic-map"
++   },
++   "prohibited_inferences": [
++    "Synthetic prohibited inference"
++   ]
++  },
++  {
++   "id": "fig-synthetic-adjunction",
++   "chapter_id": "ch06",
++   "section_id": "synthetic-section-five",
++   "type": "authored_diagram",
++   "model": "adjunction-triangles",
++   "title": "Synthetic adjunction title",
++   "caption": "Synthetic adjunction caption.",
++   "domain": "Synthetic adjunction domain sentence.",
++   "parameters": {
++    "X": "synthetic",
++    "Y": "synthetic"
++   },
++   "labels": {
++    "F": "Synthetic left F",
++    "G": "Synthetic right G",
++    "eta": "Synthetic unit η: id_C → GF",
++    "epsilon": "Synthetic counit ε: FG → id_D",
++    "left_triangle": "Synthetic left triangle",
++    "right_triangle": "Synthetic right triangle"
++   },
++   "permitted_controls": [
++    "state"
++   ],
++   "initial_state": "left-triangle",
++   "states": [
++    {
++     "id": "left-triangle",
++     "label": "Synthetic left triangle",
++     "nodes": [
++      {
++       "id": "fx-start",
++       "label": "FX"
++      },
++      {
++       "id": "fgfx",
++       "label": "FGFX"
++      },
++      {
++       "id": "fx-end",
++       "label": "FX"
++      }
++     ],
++     "arrows": [
++      {
++       "from": "fx-start",
++       "to": "fgfx",
++       "label": "F(η_X)"
++      },
++      {
++       "from": "fgfx",
++       "to": "fx-end",
++       "label": "ε_FX"
++      },
++      {
++       "from": "fx-start",
++       "to": "fx-end",
++       "label": "id_FX"
++      }
++     ],
++     "equation": "ε_FX ∘ F(η_X) = id_FX",
++     "meaning": "Synthetic meaning of Synthetic left triangle."
++    },
++    {
++     "id": "right-triangle",
++     "label": "Synthetic right triangle",
++     "nodes": [
++      {
++       "id": "gy-start",
++       "label": "GY"
++      },
++      {
++       "id": "gfgy",
++       "label": "GFGY"
++      },
++      {
++       "id": "gy-end",
++       "label": "GY"
++      }
++     ],
++     "arrows": [
++      {
++       "from": "gy-start",
++       "to": "gfgy",
++       "label": "η_GY"
++      },
++      {
++       "from": "gfgy",
++       "to": "gy-end",
++       "label": "G(ε_Y)"
++      },
++      {
++       "from": "gy-start",
++       "to": "gy-end",
++       "label": "id_GY"
++      }
++     ],
++     "equation": "G(ε_Y) ∘ η_GY = id_GY",
++     "meaning": "Synthetic meaning of Synthetic right triangle."
++    }
++   ],
++   "properties": [
++    {
++     "hypothesis": "Synthetic hypothesis on η_X.",
++     "equivalent_statement": "Synthetic statement one.",
++     "explanation": "Synthetic explanation one."
++    },
++    {
++     "hypothesis": "Synthetic hypothesis on ε_Y.",
++     "equivalent_statement": "Synthetic statement two.",
++     "explanation": "Synthetic explanation two."
++    }
++   ],
++   "equation_refs": [],
++   "equation_anchors": {},
++   "prohibited_inferences": [
++    "Synthetic prohibited inference"
++   ]
+   }
+  ]
+ }
+\ No newline at end of file
