@@ -1,0 +1,100 @@
+{
+  "schema": "chapter-source-bindings-v1",
+  "chapter": "08-completions",
+  "recorded_utc": "2026-11-16T18:54:16.042950+00:00",
+  "sources": [
+    {
+      "path": "/tmp/programme-strategic-packages-20261117/LATEST-STOCK.md",
+      "sha256": "07881666761d8e3a9e214277db98c14ece8fbd32b7d151a03f4b7f387549d6ce",
+      "bytes": 12412,
+      "reading_scope": "full; discovery and dated scope only"
+    },
+    {
+      "path": "/tmp/programme-total-synthesis-20261116T1620Z/integrated-handoffs/operations/REPORT.md",
+      "sha256": "be6756fcd4c78338aef8eb5a5a7c8cff517bfdceeacb14bab1f79a88e7ee8c16",
+      "bytes": 46694,
+      "reading_scope": "selective prior accepted exposition, with original handoff carried"
+    },
+    {
+      "path": "/tmp/horizontal-full-realization-20261116/coordination/fable-boundary-20261116/inputs/s01-line-boundary-derived-functor.tex",
+      "sha256": "f9f4ebfeb41eb29affbed3b1b93a466d76e22d2e98a1f7a65634b57ef3bc9884",
+      "bytes": 20953,
+      "reading_scope": "lines 36–275, affine definitions, lifts and endomorphism comparison"
+    },
+    {
+      "path": "/tmp/horizontal-full-realization-20261116/geometric-boundary/regular-extension/dual-calculation/incoming-bar/PROOF-v1.md",
+      "sha256": "8bf06f1bc9254c2d71ac16bb9baa23ffbf6ae81d10f73c51612291efea56a096",
+      "bytes": 16189,
+      "reading_scope": "lines 1–180, actual incoming bar, contraction and start of rational tensorator; remainder reused through finite-puncture and diagrams sources"
+    },
+    {
+      "path": "/tmp/horizontal-full-realization-20261116/geometric-boundary/regular-extension/finite-puncture-recipient/FINITE-PUNCTURE-RECIPIENT-v1.tex",
+      "sha256": "7814d82b04643277e80ba5114c66e00c15fe8219839b2e885d53ff3185fff069",
+      "bytes": 40319,
+      "reading_scope": "full 1–956, original definition, statement, mechanisms and exclusions",
+      "bounded_revision_reread": "lines 1-115 and 857-899, equations (4)-(8) and (46)-(47)"
+    },
+    {
+      "path": "/tmp/horizontal-full-realization-20261116/geometric-boundary/regular-extension/integration/DIAGRAMS-v2.md",
+      "sha256": "574ac1918e4a0cb3458ce92e122a9b7316e522cd6585270f1b7dadf341a607d6",
+      "bytes": 34942,
+      "reading_scope": "full 1–883, current comparison diagrams and retained scopes"
+    },
+    {
+      "path": "/tmp/horizontal-full-realization-20261116/geometric-boundary/checks/finite-puncture-recipient-v1/CHECK.md",
+      "sha256": "d4b7741f62efc4818f202fbcbfc38157d2f11bfaccb4d18653ae55992b6a4e99",
+      "bytes": 34460,
+      "reading_scope": "lines 1–150; scope, prerequisite, map and support verification; no new proof review claimed"
+    },
+    {
+      "path": "/tmp/horizontal-full-realization-20261116/geometric-boundary/checks/integration-diagrams-v1/notation-delta-v2/CHECK.md",
+      "sha256": "6f879395aa65b46dbd0baa7d7f3fd41f061ce647a99b1e6f64b231b192c89d8f",
+      "bytes": 3560,
+      "reading_scope": "full; exact current diagram scope and notation"
+    },
+    {
+      "path": "/tmp/horizontal-full-realization-20261116/geometric-boundary/coordination/CHECKED-INCREMENTS-v13.json",
+      "sha256": "febd59026293ad42814db66fe9b527501086922c1eefe5c0e72ec52e00ccc7ea",
+      "bytes": 624634,
+      "reading_scope": "selected records and exact source paths; not counted as substantive full reading"
+    }
+  ],
+  "new_mathematical_research": false,
+  "closed_proof_or_control_rerun": false,
+  "status": "expository source consumption; not an independent adoption",
+  "bounded_revision": {
+    "recorded_utc": "2026-11-16T19:35:51.873033+00:00",
+    "reviewed_input": {
+      "path": "/tmp/qh-ega-exposition-20261117/coordination/operations/revisions/bounded-definitions-20261117/08-completions.md",
+      "sha256": "2e237b2017f40e86d511786f161186383464f63f7bd2f2ad4821decbdbfbc843",
+      "bytes": 21305
+    },
+    "successor": {
+      "path": "/tmp/qh-ega-exposition-20261117/chapters/08-completions.md",
+      "sha256": "20ea60cc49d774a1f41300f9de6d5611eb54695e7fcd9ea4357af9233cf356f5",
+      "bytes": 21744
+    },
+    "changes": [
+      {
+        "finding": "Q was used before its tensor-product differential was identified",
+        "repair": "Defined d_Y and induced degree-one Q on (Y tensor Y)((q)), coefficientwise with Q(q)=0",
+        "source": "FINITE-PUNCTURE-RECIPIENT-v1.tex equations (4), (5), (7), and the dg tensor sign convention"
+      },
+      {
+        "finding": "Hom display omitted the backslash in left",
+        "repair": "Corrected \\operatorname{Hom}_K\\!left( to \\operatorname{Hom}_K\\!\\left("
+      },
+      {
+        "finding": "Translation tau_x lacked a source-generator definition",
+        "repair": "Inserted finite binomial translation on B_n and c_n, extended multiplicatively",
+        "source": "FINITE-PUNCTURE-RECIPIENT-v1.tex equations (6), (46), (47)"
+      }
+    ],
+    "scope": "Existing reviewer requested definition/type corrections only; no proof, theorem range, completion or domain extension",
+    "independent_reading": {
+      "status": "PASS",
+      "reference": "/tmp/qh-ega-exposition-20261117/coordination/operations/CH08-09-BOUNDED-REVIEW.json",
+      "chapter_sha256": "20ea60cc49d774a1f41300f9de6d5611eb54695e7fcd9ea4357af9233cf356f5"
+    }
+  }
+}

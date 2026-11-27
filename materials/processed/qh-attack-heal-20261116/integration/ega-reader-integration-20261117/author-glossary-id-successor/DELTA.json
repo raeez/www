@@ -1,0 +1,55 @@
+{
+  "schema": "qh-ega-render-integration-delta/v1",
+  "created_utc": "2026-11-16T20:09:08.526277+00:00",
+  "parent_author_freeze": {
+    "path": "/tmp/qh-ega-exposition-20261117/coordination/final/CANDIDATE-FREEZE.json",
+    "sha256": "6cd56a40129655df3290bf9f99f53e740fb0868898e0617663f5742ccc80b275",
+    "bytes": 6580
+  },
+  "source_manifest": {
+    "path": "/tmp/qh-ega-exposition-20261117/reader-data/manifest.json",
+    "sha256": "342bef123fe00c7702178b44df688fb4a764e212e172aaca6987b7d81bd14555",
+    "bytes": 320678
+  },
+  "replacement_manifest": {
+    "path": "/tmp/qh-ega-exposition-20261117/coordination/render-integration-successor/reader-data/manifest.json",
+    "sha256": "9493008a7dbb9f5f0e5394f44ea382757a0c58f42ceb037fcff6b61af417d5e3",
+    "bytes": 320693
+  },
+  "only_semantic_delta": {
+    "pointer": "terms[term=cap].id",
+    "before": "term-cap",
+    "after": "term-cap-reconstruction",
+    "reason": "Legacy atlas already defines term-cap; preserve old anchor and provide a distinct reader glossary anchor."
+  },
+  "unchanged": "All 18 chapter bytes, all mathematical text/definitions, anchors within chapters, result records, figures, diagrams, reference targets, routes and introductory prose. No references to the former term record id occur elsewhere in the author payload.",
+  "reported_working_links": [
+    {
+      "chapter": "ch11",
+      "lines": [
+        78,
+        276
+      ],
+      "literal": "\\right](0)",
+      "disposition": "Function evaluation in display mathematics; not a link."
+    },
+    {
+      "chapter": "ch12",
+      "lines": [
+        162
+      ],
+      "literal": "[z,z^{-1}]((w))",
+      "disposition": "Iterated Laurent-series coefficient notation inside inline mathematics; not a link."
+    },
+    {
+      "chapter": "ch16",
+      "lines": [
+        70
+      ],
+      "literal": "[z^{m-1}](ab)",
+      "disposition": "Coefficient extraction in display mathematics; not a link."
+    }
+  ],
+  "reader_rendering_requirement": "Link validation/projection must skip mathematical spans and preserve those original expressions; no mathematical source edit is appropriate.",
+  "authority": "Metadata collision repair only; no new research, adoption or release."
+}

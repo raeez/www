@@ -1,0 +1,555 @@
+{
+  "purpose": "Exact editorial source bindings for chapter 06. These are custody and reading records, not new mathematical review or formal adoption.",
+  "created_utc": "2026-11-16T19:10:44.579888+00:00",
+  "chapter": {
+    "path": "/tmp/qh-ega-exposition-20261117/chapters/06-duality-and-induction.md",
+    "sha256": "f59cc94b7753c8f7a581a005bcaec8504475968d3d4624a1bad8d1087767f698"
+  },
+  "scope": "Author chapter 06 from closed sources. No new theorem, proof rerun, scientific adoption, held-candidate use, new worker or UI design.",
+  "terminal_stock": {
+    "path": "/tmp/induction-full-realization-20261116/global_unit/TERMINAL-CUMULATIVE-ACCEPTED-MANIFEST.json",
+    "sha256": "eec58bc10370938e87342132860e838d613dcada2de7d339d70c5f36cb72d6bc",
+    "bytes": 1089326,
+    "expected_in_terminal_or_final_receipt": [],
+    "matches_recorded_hash": null
+  },
+  "separate_held_list": {
+    "path": "/tmp/induction-full-realization-20261116/global_unit/TERMINAL-HELD-CANDIDATES-AND-REMAINING-TARGETS.json",
+    "sha256": "85aec823cb1bffd06cb3fed04a62785b7c031da8d929539eb15e59e6cffbcb62",
+    "bytes": 25126,
+    "expected_in_terminal_or_final_receipt": [
+      "85aec823cb1bffd06cb3fed04a62785b7c031da8d929539eb15e59e6cffbcb62"
+    ],
+    "matches_recorded_hash": true
+  },
+  "held_boundary": "One-step raw-minus3 core is not used as a theorem. Full unbounded torsion-image equality and H-fibre nilpotence remain open. No all-simple nonrational unit theorem inferred.",
+  "sources": [
+    {
+      "id": "algebra-and-action",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/first_kind/inputs/line-boundary-derived-functor.tex",
+        "sha256": "f9f4ebfeb41eb29affbed3b1b93a466d76e22d2e98a1f7a65634b57ef3bc9884",
+        "bytes": 20953,
+        "expected_in_terminal_or_final_receipt": [
+          "f9f4ebfeb41eb29affbed3b1b93a466d76e22d2e98a1f7a65634b57ef3bc9884"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": null,
+      "reading_scope": "Generator lifts, affine level, cohomological and internal degrees, algebraic/smooth distinction. Read affine resolution/lifts and cited source formulas; original smooth realization remains an explicit premise."
+    },
+    {
+      "id": "smooth-realization-hypotheses",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/first_kind/PROOF-v2.md",
+        "sha256": "8b3f4839a22bed582a66c1157703d18075256e275695132193d56c1dd26b8c19",
+        "bytes": 40231,
+        "expected_in_terminal_or_final_receipt": [
+          "8b3f4839a22bed582a66c1157703d18075256e275695132193d56c1dd26b8c19"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": null,
+      "reading_scope": "Section 0 read for the full prescribed smooth action, common-cutoff Taylor resolutions and actual adjunction. No existence or coherence theorem recertified."
+    },
+    {
+      "id": "all-level-inflated-unit",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/higher_rank_inflated_base/PROOF.md",
+        "sha256": "8a00f4ec510de28699cd573eda2cdca0fe574e0b078eb78c3b0a20fe8dcbf434",
+        "bytes": 33700,
+        "expected_in_terminal_or_final_receipt": [
+          "8a00f4ec510de28699cd573eda2cdca0fe574e0b078eb78c3b0a20fe8dcbf434"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_higher_rank_inflated_base/CHECK.json",
+        "sha256": "b6af87c1a2cd703480100a9d323dcf601b8ba548fee5ba634fb18100b3d59b9f",
+        "bytes": 44004,
+        "expected_in_terminal_or_final_receipt": [
+          "b6af87c1a2cd703480100a9d323dcf601b8ba548fee5ba634fb18100b3d59b9f"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Sections 0–1 and 3–4 read for all-type/all-level cofree model, original action, arbitrary unbounded H/R unit, and genuine K-injectivity mechanism."
+    },
+    {
+      "id": "finite-tensor-descent",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/finite_tensor_nilpotence_reduction/PROOF.md",
+        "sha256": "a37c0523cc76b0a4f25622f38453d2583d4fd44b4e59ecff225cf009cbc60972",
+        "bytes": 20108,
+        "expected_in_terminal_or_final_receipt": [
+          "a37c0523cc76b0a4f25622f38453d2583d4fd44b4e59ecff225cf009cbc60972"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_finite_tensor_nilpotence/CHECK.json",
+        "sha256": "aba90984918d4afd0462134013f39b0c97ad674fbf81c7a688116a6207cb415f",
+        "bytes": 16797,
+        "expected_in_terminal_or_final_receipt": [
+          "aba90984918d4afd0462134013f39b0c97ad674fbf81c7a688116a6207cb415f"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Theorems A–B, hypotheses, relative-bar/tower maps, two-sided K-flatness and dual-number boundary read. No closed calculations rerun."
+    },
+    {
+      "id": "finite-map-descent",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/raw_minus3/unit_investigation/finite_descent_criterion/PROOF.md",
+        "sha256": "e186b8de1e9336e36384f18d0c2f5e662995b4a41faf20ea2856f440e5809d9d",
+        "bytes": 16230,
+        "expected_in_terminal_or_final_receipt": [
+          "e186b8de1e9336e36384f18d0c2f5e662995b4a41faf20ea2856f440e5809d9d"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_finite_bimodule_descent/CHECK.json",
+        "sha256": "cf0de3d07e5cfcfba23e92883902824cb4b96ebb2222b3bfb74287a0d5e6516f",
+        "bytes": 13885,
+        "expected_in_terminal_or_final_receipt": [
+          "cf0de3d07e5cfcfba23e92883902824cb4b96ebb2222b3bfb74287a0d5e6516f"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Theorem 1.1 and finite bimodule cofiber/retract proof read, including actual left H-actions and fixed natural nullhomotopy. No native H-fibre nullity assumed."
+    },
+    {
+      "id": "sl3-fourth-power",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/sl3_nilpotence_upper_bound/affine_transition_revision-v2/PROOF.md",
+        "sha256": "6406e27ec8f5d9698af49cc4b9b0e4a2b9011f088af7e1e4f0d222bae563fa3b",
+        "bytes": 33800,
+        "expected_in_terminal_or_final_receipt": [
+          "6406e27ec8f5d9698af49cc4b9b0e4a2b9011f088af7e1e4f0d222bae563fa3b"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_sl3_fourth_power/successor-v2/CHECK.json",
+        "sha256": "b3512b16af06e2909f911c82229197fb009695bd800ba7ad7f83cbac0606d122",
+        "bytes": 14172,
+        "expected_in_terminal_or_final_receipt": [
+          "b3512b16af06e2909f911c82229197fb009695bd800ba7ad7f83cbac0606d122"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Exact final theorem and sections 1–6 read: full nonrational complex parameter range, actual-cochain comparison, strong-linkage/Bruhat direction, parabolic double cosets, four-transition bound and actual bimodule conclusion. Closed proof and finite controls not rerun."
+    },
+    {
+      "id": "hc-detection",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/sl3_nilpotence_upper_bound/hc_verma_conservativity/PROOF.md",
+        "sha256": "64c5224d598fa1fc137196e8cb53b9b7cb1990e7b137254468719b04d482e4c5",
+        "bytes": 17423,
+        "expected_in_terminal_or_final_receipt": [
+          "64c5224d598fa1fc137196e8cb53b9b7cb1990e7b137254468719b04d482e4c5"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_hc_verma_conservativity/CHECK.json",
+        "sha256": "c89adc32c2eece5a96fbded7b7e1293cea774a78dcf51a14df9b0d97a76909bc",
+        "bytes": 14950,
+        "expected_in_terminal_or_final_receipt": [
+          "c89adc32c2eece5a96fbded7b7e1293cea774a78dcf51a14df9b0d97a76909bc"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Definition of the algebraic Harish–Chandra category and bounded detection hypotheses read; exact use also read in final fourth-power proof. No unrestricted derived conservativity assertion."
+    },
+    {
+      "id": "sl3-cube",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/sl3_higher_tensor_powers/CUBE-PROOF.md",
+        "sha256": "7c2578033a184f9ad714889b327a79419b3de166bff8154aea659fff723d3810",
+        "bytes": 12999,
+        "expected_in_terminal_or_final_receipt": [
+          "7c2578033a184f9ad714889b327a79419b3de166bff8154aea659fff723d3810"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_sl3_tensor_cube/CHECK.json",
+        "sha256": "6e5ad2101f7eb0eaaba1b766da09dd31cc6a94df800ac017c6cfae3697ee5067",
+        "bytes": 16438,
+        "expected_in_terminal_or_final_receipt": [
+          "6e5ad2101f7eb0eaaba1b766da09dd31cc6a94df800ac017c6cfae3697ee5067"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Theorem and native word B1 tensor B2 tensor B1 read. Only closed nonvanishing/minimal-exponent consequence consumed; witness calculation not rerun."
+    },
+    {
+      "id": "sl3-global-unit",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/sl3_global_unit/PROOF.md",
+        "sha256": "9768fb50c1a81245b59d7f9be48f7229ddd0e35616f1744096b07021694c9c73",
+        "bytes": 24063,
+        "expected_in_terminal_or_final_receipt": [
+          "9768fb50c1a81245b59d7f9be48f7229ddd0e35616f1744096b07021694c9c73"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_sl3_global_unit/CHECK.json",
+        "sha256": "0d8d68c5cf2848add415d24c724f6c368010858dcad405f36ad274ecc1191e3f",
+        "bytes": 27307,
+        "expected_in_terminal_or_final_receipt": [
+          "0d8d68c5cf2848add415d24c724f6c368010858dcad405f36ad274ecc1191e3f"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Complete theorem, native hypotheses, four-step application, actual finite tower, all-source unit, relative compactness, localizing image and original-counit consequences read. No all-simple unit theorem inferred."
+    },
+    {
+      "id": "sl2-global-unit",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/irrational_global_unit_revision-v2/PROOF.md",
+        "sha256": "6cc1a041cf182bf6e237f3e68f1e212637f1b7f94db1af2caee1969e5bf4fb47",
+        "bytes": 23879,
+        "expected_in_terminal_or_final_receipt": [
+          "6cc1a041cf182bf6e237f3e68f1e212637f1b7f94db1af2caee1969e5bf4fb47"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_irrational_global_unit/CHECK.json",
+        "sha256": "d933b3c07f4c80bd1c8459e5c8cc1195340fc920f01bf132846ee4da2d450d5d",
+        "bytes": 45439,
+        "expected_in_terminal_or_final_receipt": [
+          "d933b3c07f4c80bd1c8459e5c8cc1195340fc920f01bf132846ee4da2d450d5d"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Parameter/native-input statement and theorem read; two-factor result used at its closed nonrational sl2 scope and with conditional realization unchanged."
+    },
+    {
+      "id": "critical-kernel",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/unit_counterexample/PROOF.md",
+        "sha256": "58a839f4ebd9c57b8ddc4362a3fbd05c8cd0dd2bf506c971a606fbbe9ed4112a",
+        "bytes": 21342,
+        "expected_in_terminal_or_final_receipt": [
+          "58a839f4ebd9c57b8ddc4362a3fbd05c8cd0dd2bf506c971a606fbbe9ed4112a"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/check_unit_counterexample/CHECK.json",
+        "sha256": "2e6828b254e48d70816cca2ba35dc047bd7893090b082b5c8a58f60beb091663",
+        "bytes": 23751,
+        "expected_in_terminal_or_final_receipt": [
+          "2e6828b254e48d70816cca2ba35dc047bd7893090b082b5c8a58f60beb091663"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Sections 0–4 and scope read: actual lower-energy premise, perfect E, critical classes, algebraic telescope and nonzero source/zero affine image mechanism."
+    },
+    {
+      "id": "negative-integer-kernels",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/negative_integer_unit/PROOF.md",
+        "sha256": "e2f5f22ad39be90a42934b7a1082facdeccc88428c68f6400acc53ee114b7a1e",
+        "bytes": 7276,
+        "expected_in_terminal_or_final_receipt": [
+          "e2f5f22ad39be90a42934b7a1082facdeccc88428c68f6400acc53ee114b7a1e"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_negative_integer_unit/COMBINED-CHECK.json",
+        "sha256": "7ef4b2cff78ddfeff170306c82fc25965fc4c414f54932e08946162f95adb3f0",
+        "bytes": 15519,
+        "expected_in_terminal_or_final_receipt": [
+          "7ef4b2cff78ddfeff170306c82fc25965fc4c414f54932e08946162f95adb3f0"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Parameters, actual native hypotheses, source family and telescope theorem read for raw sl2 levels -4,-5,... only."
+    },
+    {
+      "id": "all-simple-negative-kernel",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/all_simple_negative/PROOF.md",
+        "sha256": "5e98de69016e717043c0bfa13aa351287f08a4726a5ec2c0f59f50dbd834fbf7",
+        "bytes": 21551,
+        "expected_in_terminal_or_final_receipt": [
+          "5e98de69016e717043c0bfa13aa351287f08a4726a5ec2c0f59f50dbd834fbf7"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_all_simple_negative/CHECK.json",
+        "sha256": "3166f97bbf6efe2b18bc90fc5c65e4477928baf4c61fc99174a61b6775ca83d8",
+        "bytes": 14690,
+        "expected_in_terminal_or_final_receipt": [
+          "3166f97bbf6efe2b18bc90fc5c65e4477928baf4c61fc99174a61b6775ca83d8"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "All-simple raw -2h-dual parameter and retained native/lower-energy assumptions read; only the closed kernel theorem is used, without rederiving the category-O extensions."
+    },
+    {
+      "id": "raw-minus3-R-obstruction",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/raw_minus3/unit_investigation/r_augmentation_obstruction/PROOF.md",
+        "sha256": "d82da318ab63536f39407dc914b01bc03b2956932ff7b0502f3c0bbeece528e8",
+        "bytes": 12601,
+        "expected_in_terminal_or_final_receipt": [
+          "d82da318ab63536f39407dc914b01bc03b2956932ff7b0502f3c0bbeece528e8"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_raw_minus3_r_augmentation/CHECK.json",
+        "sha256": "5e353f18b1aaea78cfae91f5867fa33e110984cdb73eb77f609f92b25241ee26",
+        "bytes": 29943,
+        "expected_in_terminal_or_final_receipt": [
+          "5e353f18b1aaea78cfae91f5867fa33e110984cdb73eb77f609f92b25241ee26"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Complete construction and result read: actual B-linear cycles, Verma injections, all finite R-fibre maps nonzero, R-base-change null telescope, nonzero H and affine images. No full-unit failure inferred."
+    },
+    {
+      "id": "raw-minus3-induced-unit",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/raw_minus3/unit_investigation/induced_complex_interface/PROOF.md",
+        "sha256": "cff6a298464e56436f3b57552cd6e526d60b66d187fc6f27a52740a31ddd39fb",
+        "bytes": 23598,
+        "expected_in_terminal_or_final_receipt": [
+          "cff6a298464e56436f3b57552cd6e526d60b66d187fc6f27a52740a31ddd39fb"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/noncritical_unit/check_raw_minus3_induced_complex/CHECK.json",
+        "sha256": "4bc86aef5af50bb0b2a56819a1562a3b7915b3e8bc6b223237515da859908463",
+        "bytes": 35076,
+        "expected_in_terminal_or_final_receipt": [
+          "4bc86aef5af50bb0b2a56819a1562a3b7915b3e8bc6b223237515da859908463"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Exact theorem/hypotheses read for all unbounded horizontal R-induced coefficients, with accepted amplitude input and native coherence retained."
+    },
+    {
+      "id": "torsion-cellularity",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/torsion_recipient_revision-v2/PROOF.md",
+        "sha256": "d02a8355496b2a9b750f8ec975bc743ad9bfd5a0dfa01bcb0be71b4a1f843115",
+        "bytes": 28091,
+        "expected_in_terminal_or_final_receipt": [
+          "d02a8355496b2a9b750f8ec975bc743ad9bfd5a0dfa01bcb0be71b4a1f843115"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/check_torsion_recipient/CHECK.json",
+        "sha256": "3e3e167890f4fd355df397f2bc9d68fda5462db1ad0bfbeedcc2bc08177db561",
+        "bytes": 42096,
+        "expected_in_terminal_or_final_receipt": [
+          "3e3e167890f4fd355df397f2bc9d68fda5462db1ad0bfbeedcc2bc08177db561"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Definitions, finite quotient filtration, Proposition 3.1, actual torsion adjunction and theorem scopes read. Full cohomological torsion/cellular equality remains open."
+    },
+    {
+      "id": "joint-torsion-failure",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/torsion_full_comparison/pro_system_attack/joint_promotion/PROOF.md",
+        "sha256": "6eb3ced53dd1f339a5376a50e8e03c4bddd10c50f0e00d4b1f70f968c9f88229",
+        "bytes": 20495,
+        "expected_in_terminal_or_final_receipt": [
+          "6eb3ced53dd1f339a5376a50e8e03c4bddd10c50f0e00d4b1f70f968c9f88229"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/check_joint_torsion_failure/CHECK.json",
+        "sha256": "25cf768bddc5ebdf239cfec0af60bf80805789a23cfa2a8cdcbc8a2f068f6939",
+        "bytes": 20868,
+        "expected_in_terminal_or_final_receipt": [
+          "25cf768bddc5ebdf239cfec0af60bf80805789a23cfa2a8cdcbc8a2f068f6939"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Full theorem, positive-current category, graded/ungraded quotient and raw-zero affine transfer boundary read. No transfer to nonzero raw form or other simple types."
+    },
+    {
+      "id": "finite-quotient-local-duality",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/torsion_full_comparison/pro_system_attack/essential_image/LOCAL-DUALITY-RESEARCH.md",
+        "sha256": "767f8a061025311297da206b69b9e103a779316f2a86e84f4a5f7f3299bcb205",
+        "bytes": 6653,
+        "expected_in_terminal_or_final_receipt": [
+          "767f8a061025311297da206b69b9e103a779316f2a86e84f4a5f7f3299bcb205"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/check_finite_quotient_local_duality/CHECK.json",
+        "sha256": "34aa2499a779ef2ada8f24d5aa0ad6a9dba18a7369087b89a348ecaea6a6cef4",
+        "bytes": 17831,
+        "expected_in_terminal_or_final_receipt": [
+          "34aa2499a779ef2ada8f24d5aa0ad6a9dba18a7369087b89a348ecaea6a6cef4"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Full research lemma, bounded coefficient proof and actual counit read together with required supplement. No arbitrary-unbounded or affine extension."
+    },
+    {
+      "id": "finite-quotient-models",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/torsion_full_comparison/pro_system_attack/essential_image/LOCAL-DUALITY-DETAILS.md",
+        "sha256": "6b24e3e86dd2583f271740c0d8480ef85c86c68eb30ac07c9df12b81143e33a4",
+        "bytes": 6109,
+        "expected_in_terminal_or_final_receipt": [
+          "6b24e3e86dd2583f271740c0d8480ef85c86c68eb30ac07c9df12b81143e33a4"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/check_finite_quotient_local_duality/CHECK.json",
+        "sha256": "34aa2499a779ef2ada8f24d5aa0ad6a9dba18a7369087b89a348ecaea6a6cef4",
+        "bytes": 17831,
+        "expected_in_terminal_or_final_receipt": [
+          "34aa2499a779ef2ada8f24d5aa0ad6a9dba18a7369087b89a348ecaea6a6cef4"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Complete strict bounded model/finite filtration/coregular action and counit supplement read; determinant energy and degree shift retained."
+    },
+    {
+      "id": "graded-quotient",
+      "source": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/torsion_full_comparison/pro_system_attack/essential_image/WITNESS-QUOTIENT.md",
+        "sha256": "b58919bfcc8803d123b1d31d31c751d1c3b686126841315acaaeb63426bff339",
+        "bytes": 5132,
+        "expected_in_terminal_or_final_receipt": [
+          "b58919bfcc8803d123b1d31d31c751d1c3b686126841315acaaeb63426bff339"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-full-realization-20261116/global_unit/check_graded_witness_quotient/CHECK.json",
+        "sha256": "acedf5991ea6cf53652162c0b75837e9d434c8bea885be8cec21edb60ba161ce",
+        "bytes": 16985,
+        "expected_in_terminal_or_final_receipt": [
+          "acedf5991ea6cf53652162c0b75837e9d434c8bea885be8cec21edb60ba161ce"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Result and exact independent check sections 1–2 read for graded positive-current cellular quotient, nonzero actual derived torsion and termwise zero torsion. Full original proof not claimed reread."
+    },
+    {
+      "id": "corrected-induction-SOURCE-PROOF-01.md",
+      "source": {
+        "path": "/tmp/induction-saved-intake-20261116/final-090130aa1d714705a9de56f91b8dccdc9c50a7a6d0146500d153f8feb26d4d90/SOURCE-PROOF-01.md",
+        "sha256": "43141900e102118d8fb652893154bdf029f8979b9b563ff2e1924523b997d313",
+        "bytes": 17386,
+        "expected_in_terminal_or_final_receipt": [
+          "43141900e102118d8fb652893154bdf029f8979b9b563ff2e1924523b997d313"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-saved-intake-20261116/final-check/CHECK.json",
+        "sha256": "ab34e9af1a39d0ba4c7a5177d808eb5fcfdd309021bf71f93e41c17abe7f25f7",
+        "bytes": 6557,
+        "expected_in_terminal_or_final_receipt": [
+          "ab34e9af1a39d0ba4c7a5177d808eb5fcfdd309021bf71f93e41c17abe7f25f7"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Exact statement, source weak-equivalence class, actual functors and final theorem read; no optional unverified reference imported. Complete final receipt carries the earlier full review. Original proofs not rechecked."
+    },
+    {
+      "id": "corrected-induction-SOURCE-PROOF-02.md",
+      "source": {
+        "path": "/tmp/induction-saved-intake-20261116/final-090130aa1d714705a9de56f91b8dccdc9c50a7a6d0146500d153f8feb26d4d90/SOURCE-PROOF-02.md",
+        "sha256": "090130aa1d714705a9de56f91b8dccdc9c50a7a6d0146500d153f8feb26d4d90",
+        "bytes": 20751,
+        "expected_in_terminal_or_final_receipt": [
+          "090130aa1d714705a9de56f91b8dccdc9c50a7a6d0146500d153f8feb26d4d90"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-saved-intake-20261116/final-check/CHECK.json",
+        "sha256": "ab34e9af1a39d0ba4c7a5177d808eb5fcfdd309021bf71f93e41c17abe7f25f7",
+        "bytes": 6557,
+        "expected_in_terminal_or_final_receipt": [
+          "ab34e9af1a39d0ba4c7a5177d808eb5fcfdd309021bf71f93e41c17abe7f25f7"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Exact statement, source weak-equivalence class, actual functors and final theorem read; no optional unverified reference imported. Complete final receipt carries the earlier full review. Original proofs not rechecked."
+    },
+    {
+      "id": "corrected-induction-SOURCE-RESULT.md",
+      "source": {
+        "path": "/tmp/induction-saved-intake-20261116/final-090130aa1d714705a9de56f91b8dccdc9c50a7a6d0146500d153f8feb26d4d90/SOURCE-RESULT.md",
+        "sha256": "0d10f27822f39ff7a0e1e171bc408be4514a467a937cbc8d3dfd186eb0afae96",
+        "bytes": 10196,
+        "expected_in_terminal_or_final_receipt": [
+          "0d10f27822f39ff7a0e1e171bc408be4514a467a937cbc8d3dfd186eb0afae96"
+        ],
+        "matches_recorded_hash": true
+      },
+      "independent_receipt": {
+        "path": "/tmp/induction-saved-intake-20261116/final-check/CHECK.json",
+        "sha256": "ab34e9af1a39d0ba4c7a5177d808eb5fcfdd309021bf71f93e41c17abe7f25f7",
+        "bytes": 6557,
+        "expected_in_terminal_or_final_receipt": [
+          "ab34e9af1a39d0ba4c7a5177d808eb5fcfdd309021bf71f93e41c17abe7f25f7"
+        ],
+        "matches_recorded_hash": true
+      },
+      "reading_scope": "Exact statement, source weak-equivalence class, actual functors and final theorem read; no optional unverified reference imported. Complete final receipt carries the earlier full review. Original proofs not rechecked."
+    }
+  ],
+  "primary_literature": [
+    {
+      "title": "Stacks Project, Example 22.33.6",
+      "url": "https://stacks.math.columbia.edu/tag/0BYX",
+      "read": "Opened exact page; scalar extension/restriction adjunction."
+    },
+    {
+      "title": "Stacks Project, Section 13.31",
+      "url": "https://stacks.math.columbia.edu/tag/070G",
+      "read": "Opened exact definition and bounded-below/product K-injective statements."
+    },
+    {
+      "title": "Frenkel–Teleman, Self-extensions of Verma modules and differential forms on opers, Theorem 4.4",
+      "url": "https://arxiv.org/abs/math/0401428",
+      "read": "Primary landing page opened. Exact theorem use, product and deformation-coordinate identifications read in closed critical-kernel source; no full primary-paper reread claimed."
+    },
+    {
+      "title": "Fiebig, The combinatorics of category O for symmetrizable Kac–Moody algebras, v2",
+      "url": "https://arxiv.org/abs/math/0305378v2",
+      "read": "Primary landing page opened. Precise Theorem 2.2 and sections 2.3–2.4 use read in exact final fourth-power proof; no new review of category O literature."
+    }
+  ],
+  "verification": {
+    "inline_and_display_delimiters_balanced": true,
+    "manuscript_firewall_inspected": true,
+    "elementary_examples": "The two-term free resolution and dual-number tensor example are explanatory algebra, not new programme results. No closed calculation rerun.",
+    "rendering": "Parent owns assembled reader rendering and the standard adjunction figure; writer supplies only its authorized anchor/hook.",
+    "independent_prose_review": "Full-body reading of prior version found no substantive scope/map repair; this two-location definition successor awaits the existing reader."
+  },
+  "editorial_revision": {
+    "previous_sha256": "22d43de2f01b684f110135830cf128a3f01336956d20969eee438ae24c2aca67",
+    "preserved_copy": "/tmp/qh-ega-exposition-20261117/coordination/native-induction/revisions/06-22d43de2f01b684f110135830cf128a3f01336956d20969eee438ae24c2aca67.md",
+    "successor_sha256": "f59cc94b7753c8f7a581a005bcaec8504475968d3d4624a1bad8d1087767f698",
+    "changed_scope": "Define diagonal Cartan, upper-triangular positive roots and rho as half their sum at the first affine-root paragraph; state integer N>=1 at the finite quotient. No theorem/map/hypothesis scope change.",
+    "reviewer_findings": "Existing full-body prose reader found no substantive scope/map repair; requested only these two definition completions.",
+    "independent_successor_review": "Pending exact bounded delta with /root/public_projection_fidelity."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "chapter_id": "ch04",
+  "chapter": {
+    "path": "/tmp/qh-ega-exposition-20261117/chapters/04-factorization.md",
+    "sha256": "f14ecc530ad7f76b944288cdc37bd0be4eebb14cb789270b06d67a565478e5b9",
+    "bytes": 13837
+  },
+  "source_basis": "Classical prerequisites and elementary worked calculations; no new programme theorem or scientific adoption.",
+  "sources": [
+    {
+      "path": "/Users/raeez/library/programme/text/beilinson-drinfeld-2004-chiral-algebras.txt",
+      "sha256": "63760ce33ac518db6785f8624a305dc066438c28665695e367efa829bf75712f",
+      "actual_reading": "Complete primary text excerpts: 0.14–0.15;3.1.1–3.1.2;3.3.1–3.3.3;3.4.2–3.4.12;3.5.8–3.5.15. Printed pages8–9,157–158,165–166,174–184,197–200. Additional lines adjacent to excerpts were read, without a claim of full-book reading.",
+      "proof_reading_limits": "For the factorization equivalence the complete printed proof3.4.10–12 was read; its earlier general D-module prerequisites are used as standard background, not reread in full."
+    }
+  ],
+  "claims": {
+    "4.1-4.4": "BD3.1.1–2: precise opens, operation spaces and composition domains.",
+    "4.5": "Elementary residue derivative formula, tested with a missing-factorial mutation.",
+    "4.6": "BD3.5.9–15: full OPE and classical chiral-Lie correspondence, not an identification with ordered associative duality.",
+    "4.7-4.8 and theorem": "BD3.4.2–12: ordinary sheaf conditions, compatible unit/factorization, canonical connection, full equivalence and its Chevalley–Cousin proof mechanism.",
+    "collision support example": "Ordinary sheaf restriction, kernel and cokernel example; the derived localization triangle is deferred to chapter05 to preserve definition order.",
+    "4.9-4.10": "Elementary three-point set calculation for consecutive-cut domains, compared with the existing chapter05 geometry; finite check detects replacement by small diagonal."
+  },
+  "elementary_checks": "/tmp/qh-ega-exposition-20261117/coordination/opening/CH03-04-EXAMPLE-CHECKS.json",
+  "independent_editorial_review": "pending",
+  "rendered_inspection": "pending assembled owner build",
+  "syntax_problems": [],
+  "narrow_review_repairs": [
+    "Diagonal map described as inserting repeated coordinates rather than collapsing in the arrow direction.",
+    "Derived localization paragraph deferred to chapter05; ordinary support example retained; subsequent equation numbers adjusted."
+  ]
+}

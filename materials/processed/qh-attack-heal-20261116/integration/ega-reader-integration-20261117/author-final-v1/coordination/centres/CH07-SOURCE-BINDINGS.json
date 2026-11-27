@@ -1,0 +1,1512 @@
+{
+  "schema": "chapter-source-bindings-v1",
+  "chapter": "07-actions-and-centres",
+  "recorded_utc": "2026-11-16T19:30:11.625690+00:00",
+  "chapter_bytes": {
+    "path": "/tmp/qh-ega-exposition-20261117/chapters/07-actions-and-centres.md",
+    "sha256": "a58d093388e7ca57a4e9df7af216cb07a12dc216aabda8f536a705934b8810e5",
+    "bytes": 28161,
+    "lines": 265
+  },
+  "reader_citations": [
+    {
+      "label": "ordered-collision coalgebra construction",
+      "target": "/tmp/binary-full-realization-20261116/categorical-generation/sources/ordered-1160d4c213a2.tex",
+      "path": "/tmp/binary-full-realization-20261116/categorical-generation/sources/ordered-1160d4c213a2.tex",
+      "sha256": "1160d4c213a252348c0893c8a2fd57a06f8d5f5cb3bbc54cef23789dc864e6e4",
+      "bytes": 224874,
+      "lines": 4193
+    },
+    {
+      "label": "Arbitrary-pointing recognition",
+      "target": "/tmp/binary-full-realization-20261116/arbitrary-pointing-recognition/THEOREM.md",
+      "path": "/tmp/binary-full-realization-20261116/arbitrary-pointing-recognition/THEOREM.md",
+      "sha256": "a8df492300c80f48d480ed70dfc46df14a6a2326eae96cfc0e84bc82b611e988",
+      "bytes": 3524,
+      "lines": 98
+    },
+    {
+      "label": "Radical reduction",
+      "target": "/tmp/binary-full-realization-20261116/projected-pointing-reduction/THEOREM.md",
+      "path": "/tmp/binary-full-realization-20261116/projected-pointing-reduction/THEOREM.md",
+      "sha256": "4821ed4dd8437ef41f8097b6ee70597e8898084ab5349ccda22c59bad1b0bb17",
+      "bytes": 2636,
+      "lines": 80
+    },
+    {
+      "label": "Unitization from an ordinary horizontal representative",
+      "target": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/ordinary-horizontal-representative/THEOREM.md",
+      "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/ordinary-horizontal-representative/THEOREM.md",
+      "sha256": "f7302922b148162634ad114dd8bf81e5a616ad6100789dc1a759f07cce7b8ecd",
+      "bytes": 2663,
+      "lines": 85
+    },
+    {
+      "label": "Commutative algebras with connection",
+      "target": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/commutative-connection/THEOREM.md",
+      "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/commutative-connection/THEOREM.md",
+      "sha256": "a8f4daff6c162e95ed25c960a8e40270feb102a3c4680083eed516c469024dce",
+      "bytes": 3350,
+      "lines": 107
+    },
+    {
+      "label": "Odd-degree exterior sources",
+      "target": "/tmp/centre-v1-source-independent-20261116/extensions/odd-degree/PROOF.md",
+      "path": "/tmp/centre-v1-source-independent-20261116/extensions/odd-degree/PROOF.md",
+      "sha256": "81cb043ae37623b0403daac6b144cc49a406027d474be82c29eef950e36b4ab1",
+      "bytes": 17492,
+      "lines": 323
+    },
+    {
+      "label": "Logarithmic quotient construction",
+      "target": "/tmp/centre-v1-source-independent-20261116/extensions/two-generator/colored-log/PROOF-v2.md",
+      "path": "/tmp/centre-v1-source-independent-20261116/extensions/two-generator/colored-log/PROOF-v2.md",
+      "sha256": "a45b5e9059efb51966204b0b1c791d4cf4e803564c4f1c00ad03b78174791888",
+      "bytes": 31517,
+      "lines": 369
+    },
+    {
+      "label": "Three-spectator proof",
+      "target": "/tmp/centre-fx-r0plus-continuation-20261116/r3-arbitrary-total/PROOF.md",
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/r3-arbitrary-total/PROOF.md",
+      "sha256": "9ad405e385e07f6ec94bf9884f2caf4f98299c6add006986cbe43f3cf3370cc7",
+      "bytes": 15209,
+      "lines": 341
+    },
+    {
+      "label": "four-spectator charge-five proof",
+      "target": "/tmp/centre-fx-r0plus-continuation-20261116/r4-charge5-total/CONDITIONAL-INTEGRATION.md",
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/r4-charge5-total/CONDITIONAL-INTEGRATION.md",
+      "sha256": "45610c8b81bd6dfe2623fd88a24b85ff240ff40bd10487bfeb5575169b0fe9c1",
+      "bytes": 9966,
+      "lines": 111
+    },
+    {
+      "label": "First compatibility defect",
+      "target": "/tmp/centre-fx-r0plus-continuation-20261116/positive-general/uniform-simple-first-defect/PROOF.md",
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/positive-general/uniform-simple-first-defect/PROOF.md",
+      "sha256": "b7c08827c6f8ca58cc499deee62929948cb3a67dc2c4e250e7640399bd608a57",
+      "bytes": 22371,
+      "lines": 504
+    },
+    {
+      "label": "The fixed-bound residue class",
+      "target": "/tmp/centre-fx-r0plus-continuation-20261116/two-spectators/COUNTEREXAMPLE.md",
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/two-spectators/COUNTEREXAMPLE.md",
+      "sha256": "55381b5a3b8bb93259eb5f94f622eb8a665bc8db3f14e2e8f7550f12e6ef120e",
+      "bytes": 11288,
+      "lines": 180
+    },
+    {
+      "label": "Three-block filling",
+      "target": "/tmp/binary-full-realization-20261116/coherent-recognition/action-diagram/mark-transport/higher-detectors/cut-associativity/actual-residue/ACTUAL-RESIDUE-NULLHOMOTOPY.md",
+      "path": "/tmp/binary-full-realization-20261116/coherent-recognition/action-diagram/mark-transport/higher-detectors/cut-associativity/actual-residue/ACTUAL-RESIDUE-NULLHOMOTOPY.md",
+      "sha256": "289988b02c3b770dd7bc7e293bab8a6658560e512e384179c1ab9deca8ba8d89",
+      "bytes": 28214,
+      "lines": 680
+    },
+    {
+      "label": "Separated-base primitive comparison",
+      "target": "/tmp/binary-full-realization-20261116/universal-vacuum/rooted-transport/old-comparison/wrong-vacuum-edge/closed-corner/v2/PROOF.md",
+      "path": "/tmp/binary-full-realization-20261116/universal-vacuum/rooted-transport/old-comparison/wrong-vacuum-edge/closed-corner/v2/PROOF.md",
+      "sha256": "71334f866fd342dccda5ad8e32706cdbfc526a5aa2dc32b99d2322fa1285df6a",
+      "bytes": 31893,
+      "lines": 540
+    }
+  ],
+  "external_primary_sources": [
+    {
+      "label": "Higher Algebra, §5.3.1",
+      "target": "https://www.math.ias.edu/~lurie/papers/HA.pdf",
+      "reading_scope": "Primary web source consulted in the preceding drafting phase, as recorded in CHECKPOINT.txt; targeted section/background only, not a full-book reading.",
+      "archived_copy": false
+    },
+    {
+      "label": "Gerstenhaber’s construction",
+      "target": "https://www.sas.rochester.edu/mth/sites/doug-ravenel/otherpapers/Ger63.pdf",
+      "reading_scope": "Primary web source consulted in the preceding drafting phase, as recorded in CHECKPOINT.txt; targeted section/background only, not a full-book reading.",
+      "archived_copy": false
+    }
+  ],
+  "sources": [
+    {
+      "path": "/tmp/binary-full-realization-20261116/arbitrary-pointing-recognition/PROOF.md",
+      "sha256": "23d61ea0dcbafcb098d5af09900a865e89016d19ec9ed35a5fc6c2736a2ffc7d",
+      "bytes": 23607,
+      "lines": 711,
+      "matches_supplied_hash": true,
+      "reading_level": "prior_full",
+      "reading_scope": "full decisive theorem/proof/independent-check read in prior task phase; preserved as earlier consumption, not a fresh reading or proof rerun."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/arbitrary-pointing-recognition/THEOREM.md",
+      "sha256": "a8df492300c80f48d480ed70dfc46df14a6a2326eae96cfc0e84bc82b611e988",
+      "bytes": 3524,
+      "lines": 98,
+      "matches_supplied_hash": true,
+      "reading_level": "prior_full",
+      "reading_scope": "Full theorem, proof and independent CHECK consumed in the completed synthesis task, exact read inherited from the pinned READS.json; no rerun."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/categorical-generation/sources/ordered-1160d4c213a2.tex",
+      "sha256": "1160d4c213a252348c0893c8a2fd57a06f8d5f5cb3bbc54cef23789dc864e6e4",
+      "bytes": 224874,
+      "lines": 4193,
+      "reading_level": "selected",
+      "reading_scope": "Current direct read lines 1828–1878 and 3210–3254; coalgebra category and diagonal tensor. Other portions are not claimed as fully reread."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-integration/CAPSULE.md",
+      "sha256": "e1387ad649939f6af6959db71360b9386a4fb64efe8bdd911779492a979cffde",
+      "bytes": 4696,
+      "lines": 26,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-integration/CHECK.md",
+      "sha256": "7d2ad7d4b947d2162d075de345f7dfe53947e92392a3a9b4558462da262a6586",
+      "bytes": 19021,
+      "lines": 203,
+      "matches_supplied_hash": true,
+      "reading_level": "selected",
+      "reading_scope": "Beginning and action-integration mechanism through line 110 consumed before drafting; exact scope also read from the final roster."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-integration/FINAL-VERIFICATION.json",
+      "sha256": "7c9719802a3d6959c7e4587fd47a2627205e4ce5bc7cf247ccb588f49669beb7",
+      "bytes": 27006,
+      "lines": 482,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-integration/FINDINGS-FINAL.json",
+      "sha256": "67e6bd83a9e0cfa6f00ad1f61ebbf107f92360104a813f462379657c73a66fa1",
+      "bytes": 16542,
+      "lines": 194,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-integration/KERNEL-GATE.json",
+      "sha256": "fcaa45317b9325329a69e579bec305f2635d25d50c23a4261e72a7e4e54bd3ba",
+      "bytes": 3762,
+      "lines": 64,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-integration/SOURCE-PINS.json",
+      "sha256": "1bc8d870c1a4d6e25827687c42cdb156efcc35fdf46a032181c5749dbef4fe4f",
+      "bytes": 28992,
+      "lines": 427,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-kernel/CAPSULE.md",
+      "sha256": "b0b95271edbaabb2c2a0b09bb3acd863a61e262aab135b7f0c0fdeb0cf767185",
+      "bytes": 4158,
+      "lines": 18,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-kernel/CHECK.md",
+      "sha256": "37b5a9f430063386b718a93706f34711c40a3a6803f7a45f46de6c92b04e0e8f",
+      "bytes": 15300,
+      "lines": 110,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-kernel/FINAL-VERIFICATION.json",
+      "sha256": "81f5164e96a609547b5266fbbe6f89315fee755219a59c2176c63c3e5e1d7d1c",
+      "bytes": 70527,
+      "lines": 1423,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-kernel/REVIEW-FINDINGS.json",
+      "sha256": "e39b82e7111108478debd5a1ca6eda3198ff83200be64206eef4de0a9b05ca00",
+      "bytes": 12724,
+      "lines": 155,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-kernel/REVIEW-FREEZE.json",
+      "sha256": "0ef5f1cdc27cfa908a19fe89c9ebc7ddcc3a570cacf9fa7bad558b21d9d46d70",
+      "bytes": 4558,
+      "lines": 108,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/actual-residue-kernel/SOURCE-PINS.json",
+      "sha256": "cd44aae28778cec5178225f3665f06311a24ab8dcfaeaa23ceecc3737303cc24",
+      "bytes": 22801,
+      "lines": 347,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/arbitrary-pointing-recognition-integration/CAPSULE.md",
+      "sha256": "984bc11838b78fdd19b613c035189bb5de8a6e15bc552e0b41bd2290c95f8bf0",
+      "bytes": 2685,
+      "lines": 19,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/arbitrary-pointing-recognition-integration/CHECK.md",
+      "sha256": "8d9661714d7eacaeb167b8a7520be129e3541844ecaeb0ebf8a4be26b490c055",
+      "bytes": 17451,
+      "lines": 105,
+      "matches_supplied_hash": true,
+      "reading_level": "prior_full",
+      "reading_scope": "full decisive theorem/proof/independent-check read in prior task phase; preserved as earlier consumption, not a fresh reading or proof rerun."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/arbitrary-pointing-recognition-integration/FINAL-VERIFICATION.json",
+      "sha256": "cb426b05f8ae7df823121fe9812ad7cbe5d4596b8ed6c96705c3474e009cad60",
+      "bytes": 40646,
+      "lines": 1025,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/arbitrary-pointing-recognition-integration/REVIEW-FREEZE.json",
+      "sha256": "bba2795b4be7f6e384f671ae0fbf68fb1e79aab890f197cb5a10e67682b27d0b",
+      "bytes": 4505,
+      "lines": 88,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/arbitrary-pointing-recognition-integration/SOURCE-PINS.json",
+      "sha256": "208ba526762023ea0db920a0efae39455d3b61053cdf8a3e2355d09994ed7346",
+      "bytes": 26903,
+      "lines": 387,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/closed-corner-comparison/CAPSULE.md",
+      "sha256": "7490d0aa718895422675292ba5cf9bd7cee0803080978c4e63024c5822420151",
+      "bytes": 4928,
+      "lines": 20,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/closed-corner-comparison/CHECK.md",
+      "sha256": "cf87f931aff7bd7d5344f7e1cf29bb5ca1ae2f823ba903ad7b94d82c2b753a32",
+      "bytes": 21714,
+      "lines": 178,
+      "matches_supplied_hash": true,
+      "reading_level": "selected",
+      "reading_scope": "Lines 1–100 consumed before drafting; separate coherent cocommutativity and old separated-base scope retained."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/closed-corner-comparison/FINAL-VERIFICATION.json",
+      "sha256": "90ebe035e068d3aad4c835cc3957257f39a5352b2924d34bd71a88247dffc8f1",
+      "bytes": 79362,
+      "lines": 1722,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/closed-corner-comparison/PDF-QA.json",
+      "sha256": "ef79eeb8a1dc02d691fd1e291641babcea32bef491e4fbe26ba823780c3f888e",
+      "bytes": 7459,
+      "lines": 142,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/closed-corner-comparison/REVIEW-FREEZE.json",
+      "sha256": "b738efa670aa94b6291b86d8d4fe07cfb84f5e21225e07cc71deedbd7540dbc4",
+      "bytes": 5186,
+      "lines": 97,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/closed-corner-comparison/SOURCE-PINS.json",
+      "sha256": "ed6f9eeb42ff47961695bd2224d74103c158fc2597480b362331096448c6aa20",
+      "bytes": 119219,
+      "lines": 2615,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/commutative-connection-recognition/CAPSULE.md",
+      "sha256": "b5f2a5b1f454740f45616d1feb3618cb9a0ad56e7994e5d51a5b7cd00fa6338a",
+      "bytes": 3231,
+      "lines": 11,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/commutative-connection-recognition/CHECK.md",
+      "sha256": "cab128fcd143aff5c321affc7eb432b92f23ea36e6b9a4c233b036e037843a00",
+      "bytes": 14943,
+      "lines": 126,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/commutative-connection-recognition/FINAL-VERIFICATION.json",
+      "sha256": "1fdb731151847638044e1b5e144a31d6c95e55eca4967b41c18c9d1a1d8d5176",
+      "bytes": 34905,
+      "lines": 818,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/commutative-connection-recognition/REVIEW-FREEZE.json",
+      "sha256": "09b5ae42bc8710ddeee7cb55a1fec47587fa7ec04f94d48ad4d5ec149298e5af",
+      "bytes": 5046,
+      "lines": 101,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/commutative-connection-recognition/SOURCE-PINS.json",
+      "sha256": "a3283b9ae4133d657f3ad2a9c9153d1e4a65a319ffe2ae7fd949a24eb3612ca4",
+      "bytes": 27889,
+      "lines": 429,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/derived-singleton-ghost/CAPSULE.md",
+      "sha256": "495969f77ca0036a0f577a70747ab9c0b3f9744e52c33098194f7c700a49e2ce",
+      "bytes": 4696,
+      "lines": 17,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/derived-singleton-ghost/CHECK.md",
+      "sha256": "3203b0ed98be5db72b79aa0a6dd1a2ccbe530bae5217f278dad9e5893811aaef",
+      "bytes": 15007,
+      "lines": 146,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/derived-singleton-ghost/FINAL-VERIFICATION.json",
+      "sha256": "00923b82ac9b7a600f8bfcd19978397c289d111b4371cf5cf3c7f78a891758ab",
+      "bytes": 30944,
+      "lines": 656,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/derived-singleton-ghost/SEAL.json",
+      "sha256": "40ef1f8229fe0d50022084c12fcc05e0165e9ced86f9cb775762e072233ec56a",
+      "bytes": 5569,
+      "lines": 134,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/derived-singleton-ghost/SOURCE-INSPECTION.json",
+      "sha256": "c36cc9aba1e61f6cbc4630ee1fee77e7bf3111c74eb9ce6c96f8d76371b18110",
+      "bytes": 1457,
+      "lines": 63,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/derived-singleton-ghost/SOURCE-PINS.json",
+      "sha256": "ab9c1b7eba6f95bf6447213d13008efb7c68187287d3782e5cff38652700d87f",
+      "bytes": 25246,
+      "lines": 432,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/ordinary-horizontal-integration/CAPSULE.md",
+      "sha256": "91ffa7030b8915010f70f6dacb9f0829aa9c55830a063b4592c24a2ffa983248",
+      "bytes": 5320,
+      "lines": 13,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/ordinary-horizontal-integration/CHECK.md",
+      "sha256": "985e779623a6676159ee557b2f3df8f44852e3c3965f2cdea6d4bc45c4d336ab",
+      "bytes": 16884,
+      "lines": 146,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/ordinary-horizontal-integration/DEPENDENCY-ACCEPTANCE.json",
+      "sha256": "05a2447da16fe070f8f736cb439ae55c45b159c86033d4751680d6a857d74064",
+      "bytes": 3290,
+      "lines": 34,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/ordinary-horizontal-integration/FINAL-VERIFICATION.json",
+      "sha256": "aba354f1cf92bf6b9179cf78e954d0ceb67b19c85e8c3e209c9dc09cb5f3e0c5",
+      "bytes": 56967,
+      "lines": 1413,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/ordinary-horizontal-integration/REVIEW-FREEZE.json",
+      "sha256": "d3aa111a4ecc5530fe3654a5a13564567db43cc264dc383d12b3065e72d0e6e4",
+      "bytes": 6654,
+      "lines": 121,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/ordinary-horizontal-integration/SOURCE-PINS.json",
+      "sha256": "cac0f0312f8ce3689ca351b37fcef3a004776480892b942d09d20a4f3c4bbc82",
+      "bytes": 29569,
+      "lines": 431,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/projected-pointing-reduction/CAPSULE.md",
+      "sha256": "923319dbb862364da23ef80410a14cc0e423695abb445ebaf005f7ad1132cb9e",
+      "bytes": 2644,
+      "lines": 13,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/projected-pointing-reduction/CHECK.md",
+      "sha256": "eab975a3e7d47dd0fdc2911a93e446deb39060ad29f96ff34be8dabfb46675c4",
+      "bytes": 11409,
+      "lines": 106,
+      "matches_supplied_hash": true,
+      "reading_level": "prior_full",
+      "reading_scope": "full decisive theorem/proof/independent-check read in prior task phase; preserved as earlier consumption, not a fresh reading or proof rerun."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/projected-pointing-reduction/REVIEW-FREEZE.json",
+      "sha256": "604d57049ae8009929d8309fb68550de373b81783e3e99729c1d282091bf18a5",
+      "bytes": 3986,
+      "lines": 77,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/checks/projected-pointing-reduction/SOURCE-PINS.json",
+      "sha256": "ba1323b549655c66b3a2f0a6cbb8e07b1b0ba4020900c72ad76a11753f4822d4",
+      "bytes": 14913,
+      "lines": 232,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/coherent-recognition/action-diagram/mark-transport/higher-detectors/cut-associativity/actual-residue/ACTUAL-RESIDUE-NULLHOMOTOPY.md",
+      "sha256": "289988b02c3b770dd7bc7e293bab8a6658560e512e384179c1ab9deca8ba8d89",
+      "bytes": 28214,
+      "lines": 680,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_and_receipt",
+      "reading_scope": "Primary source bound to accepted units actual-residue-kernel and actual-residue-integration. Editorial scope and mechanism consumed from CHECK through line 110, recorded in CHECKPOINT.txt; no claim to a new full 680-line proof read."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/coordination/accepted-rosters/POST-CUTOFF-ACCEPTED-91c332414cf7ba052a1a3444c412851c0dbd9b424f16157e343f6d2962e4247d.json",
+      "sha256": "91c332414cf7ba052a1a3444c412851c0dbd9b424f16157e343f6d2962e4247d",
+      "bytes": 161184,
+      "lines": 3287,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/commutative-connection/EXAMPLE.md",
+      "sha256": "dcd3cf285e6a0cf2c664996c22749f799f11141998808cb06062e1ed838759fd",
+      "bytes": 2727,
+      "lines": 89,
+      "matches_supplied_hash": true,
+      "reading_level": "full",
+      "reading_scope": "Full current example read during final source-binding QA; no recomputation or independent proof review."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/commutative-connection/PROOF.md",
+      "sha256": "38c2d15ac3b1b1986d78251a26125f1d5129231491bdf0177d1d1e5430b275b3",
+      "bytes": 11663,
+      "lines": 363,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/commutative-connection/THEOREM.md",
+      "sha256": "a8f4daff6c162e95ed25c960a8e40270feb102a3c4680083eed516c469024dce",
+      "bytes": 3350,
+      "lines": 107,
+      "matches_supplied_hash": true,
+      "reading_level": "full",
+      "reading_scope": "Full current theorem read during final source-binding QA."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/derived-singleton/PROOF.md",
+      "sha256": "212f822483fc5297f3b7bb44591fb153e23a2791fd6c2a81b0dc64c22609de43",
+      "bytes": 10173,
+      "lines": 361,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/derived-singleton/THEOREM.md",
+      "sha256": "e8a2b4f1e900a0cea510077ab409eb1e0b08e45ffb7433bb8c49ec6651e8ec66",
+      "bytes": 2541,
+      "lines": 80,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/ordinary-horizontal-representative/PROOF-v2.md",
+      "sha256": "b1985b18972fff18616e9628fe3231c0d2c85694e1559fcc6ea47e182426d73f",
+      "bytes": 8468,
+      "lines": 309,
+      "matches_supplied_hash": true,
+      "reading_level": "full",
+      "reading_scope": "Full current proof consumed before drafting, as recorded in CHECKPOINT.txt; source b1985b18. Editorial consumption only."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/ordinary-horizontal-representative/THEOREM.md",
+      "sha256": "f7302922b148162634ad114dd8bf81e5a616ad6100789dc1a759f07cce7b8ecd",
+      "bytes": 2663,
+      "lines": 85,
+      "matches_supplied_hash": true,
+      "reading_level": "full",
+      "reading_scope": "Full current theorem consumed before chapter drafting; exact f7302922 bytes and ordinary-cohomology hypothesis recorded in CHECKPOINT.txt."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/projected-pointing-reduction/PROOF.md",
+      "sha256": "009268604a0924d0f13def1dfbd1fec5640720fc09e283ab3b247e1846ced71b",
+      "bytes": 10898,
+      "lines": 320,
+      "matches_supplied_hash": true,
+      "reading_level": "prior_full",
+      "reading_scope": "full decisive theorem/proof/independent-check read in prior task phase; preserved as earlier consumption, not a fresh reading or proof rerun."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/projected-pointing-reduction/THEOREM.md",
+      "sha256": "4821ed4dd8437ef41f8097b6ee70597e8898084ab5349ccda22c59bad1b0bb17",
+      "bytes": 2636,
+      "lines": 80,
+      "matches_supplied_hash": true,
+      "reading_level": "full",
+      "reading_scope": "Theorem fully consumed in this editorial task as recorded in CHECKPOINT.txt; earlier proof/CHECK full consumption retained from pinned READS.json."
+    },
+    {
+      "path": "/tmp/binary-full-realization-20261116/universal-vacuum/rooted-transport/old-comparison/wrong-vacuum-edge/closed-corner/v2/PROOF.md",
+      "sha256": "71334f866fd342dccda5ad8e32706cdbfc526a5aa2dc32b99d2322fa1285df6a",
+      "bytes": 31893,
+      "lines": 540,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_and_receipt",
+      "reading_scope": "Primary source bound to final accepted closed-corner comparison. Editorial hypothesis/mechanism read through its CHECK lines 1–100, recorded in CHECKPOINT.txt; no fresh full proof read claimed."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/final-cumulative-accepted-handoff/ACCEPTED-MANIFEST.json",
+      "sha256": "85a85a0dfe30b3b025ee923525ee810c3e931781c5d03e5acc2d2be7265e44d0",
+      "bytes": 170261,
+      "lines": 2895,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/review-dependency-closure/DEPENDENCY-CLOSURE.md",
+      "sha256": "c9f4db5a30db170f890eefed9e7b1fa780c2945385afa5f76a07ff79722e26d4",
+      "bytes": 12570,
+      "lines": 115,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/review-dependency-closure/SOURCE-PINS.json",
+      "sha256": "5771f427eead70ffd0b14f934015e4cac6688596969b2b06a09027b2d7b5b612",
+      "bytes": 18379,
+      "lines": 333,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/review-dependency-closure/inputs/reviews/f10/CHECK.md",
+      "sha256": "71a9df302ef57c818b2d56c77ac7c276dc5fe877e993b024dabc58e611e689aa",
+      "bytes": 26780,
+      "lines": 214,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/review-dependency-closure/inputs/reviews/f10/RETURN.md",
+      "sha256": "ce1912610842c514297aea0175816d10780262db32e98ba6176a2e132ecbd623",
+      "bytes": 7940,
+      "lines": 72,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/review-dependency-closure/inputs/reviews/f11/REPAIR.md",
+      "sha256": "6c089848d29cc65829336a44e875b5997ad9d8b1323931d112714b7a2ca76faa",
+      "bytes": 3625,
+      "lines": 45,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/review-dependency-closure/inputs/reviews/f11/RETURN.md",
+      "sha256": "4e675ddf17e1d1d7c4906ee719f670c5279ff38f47c665ac1c3d2bdef6a791bb",
+      "bytes": 8991,
+      "lines": 104,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/review-dependency-closure/inputs/reviews/r7/CHECK.md",
+      "sha256": "3ffb328dd67960204b9a43b2a044cd7f30221c36fde13b37d9f23b773942bc7e",
+      "bytes": 28022,
+      "lines": 139,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/review-dependency-closure/inputs/reviews/r7/DUALITY-AND-BOUNDS.md",
+      "sha256": "2a9bd29dc7e48474593aacef730ae2e0b09cdc97a0d060a62ceb1d51a92be138",
+      "bytes": 8818,
+      "lines": 86,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/triangle-b111-review-candidate/inputs/D6-PROOF.md",
+      "sha256": "aac4edfb76bcf3315faa6debcad4b26ccf4b630cba4933600fad16248b4dfeb2",
+      "bytes": 56244,
+      "lines": 534,
+      "reading_level": "selected",
+      "reading_scope": "Sections 1.1–1.3 and charge-one proof read before drafting; lines 39–79 reread at final QA. Only definitions and charge-one calculation used. Lines 52–69 reread for the bounded indexed-relation repair. Historical status list and later unrepaired assertions are not imported."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-bzero-review/CHECK.md",
+      "sha256": "8f523e1e598901b9f86d884a0d971544084dac239c3faf47a2e67ac50b6d3b55",
+      "bytes": 22242,
+      "lines": 211,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-bzero-review/INPUT-PINS.json",
+      "sha256": "2db4586578c685867c42585ca595674fd22ab8540b05f70fada5fab6196bdfe0",
+      "bytes": 4411,
+      "lines": 76,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-bzero-review/OUTPUT-PINS.json",
+      "sha256": "725c8732f155e250063d35d382d1c8eea663b22acdeec7969c77afcc07af047a",
+      "bytes": 2198,
+      "lines": 51,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-bzero-review/READ-SCOPE.md",
+      "sha256": "82ffb96b9a9b55cbdea0f19a8083d3a38cf7e934fd8b27b2fd0f1ce145b8ca60",
+      "bytes": 2098,
+      "lines": 15,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-bzero-review/REPAIR.md",
+      "sha256": "3b93fd05eaede1262ad59a70fb306f0cb669b123b23b409bfcaf4c2f8dc1483d",
+      "bytes": 5807,
+      "lines": 49,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-bzero-review/RETURN.md",
+      "sha256": "6d371da455cd1e856b18907eaaf7fa96ce64ad3569e286311329622332c68e5b",
+      "bytes": 2314,
+      "lines": 19,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r2-positive-review/CHECK.md",
+      "sha256": "004de224276f585e226f598190d156e60320967012313bd1bcf4634bea09627d",
+      "bytes": 22995,
+      "lines": 170,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r2-positive-review/INPUT-PINS.json",
+      "sha256": "57c8180d5e01b611c936a56ce3edc26dda3b64eff5cb5a68a1a0896123bfe426",
+      "bytes": 10491,
+      "lines": 189,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r2-positive-review/OUTPUT-PINS.json",
+      "sha256": "da2eff921bd914f88361f41469f70f90e31eefd37e0f7ec9d6e6fee600a2314a",
+      "bytes": 5168,
+      "lines": 141,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r2-positive-review/REPAIR.md",
+      "sha256": "645d001422432cb5f4c404114269378168348139b386f6f8ac2f375a7b375b2e",
+      "bytes": 6323,
+      "lines": 46,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r2-positive-review/RETURN.md",
+      "sha256": "6922a901074a5e5912d6b71cfe737591beae2cbf6cb0e22585fffcc0fcae106a",
+      "bytes": 4551,
+      "lines": 33,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r3-arbitrary-total-review/CHECK.md",
+      "sha256": "537fb9ec1ba0c410cb33e3b7fc137de6b45b43aa27aceafbf3975beadd493a5d",
+      "bytes": 19181,
+      "lines": 211,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r3-arbitrary-total-review/DEPENDENCY-BINDING.json",
+      "sha256": "04bbbf1a76aa55e88463ef5c808b1f4da8bd5ec76546c074a17fc0cfc4d4ac81",
+      "bytes": 7830,
+      "lines": 186,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r3-arbitrary-total-review/INPUT-PINS.json",
+      "sha256": "91c4fa01ec667c734a3776b00bf9d013112306ee383e8081b716a3bc1723de7f",
+      "bytes": 20972,
+      "lines": 322,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r3-arbitrary-total-review/INTEGRATION-RECEIPT.json",
+      "sha256": "065d331b75160a23f5efa97befd9ce3ec0ba02dcec3ef041873ec9d0d89d5abe",
+      "bytes": 10197,
+      "lines": 232,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r3-arbitrary-total-review/OUTPUT-PINS.json",
+      "sha256": "705adfbcd4fcf36bfde301814e19ccf1f17be47f661ab7fb12f51bb380e084c6",
+      "bytes": 3689,
+      "lines": 97,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r3-arbitrary-total-review/READ-SCOPE.md",
+      "sha256": "79d6de50ec73dbbdd02fbe03036fa49fc7910bd25c7033b0bd2a57226d98073d",
+      "bytes": 7148,
+      "lines": 68,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r3-arbitrary-total-review/RETURN.md",
+      "sha256": "50ced18e5ec5995d52740648dd766b00bebb39685ac97f50592b9734680b135b",
+      "bytes": 2632,
+      "lines": 27,
+      "matches_supplied_hash": true,
+      "reading_level": "full",
+      "reading_scope": "Full final RETURN consumed before drafting, as recorded in CHECKPOINT.txt; not a fresh independent check."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r4-charge5-total-review/CHECK.md",
+      "sha256": "3a31a0df3f501fbe04d36a06a6395b144668352967a35dc1289fab7fb40c9fbd",
+      "bytes": 16210,
+      "lines": 305,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r4-charge5-total-review/INPUT-PINS.json",
+      "sha256": "d84f93cc2151e9395cc427f1e1368ce9aafc0827fe7576e690c8cec1a390372a",
+      "bytes": 14354,
+      "lines": 255,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r4-charge5-total-review/OUTPUT-PINS.json",
+      "sha256": "ce07bea219a805b7a8c61f158a8d4ebdbdfb664b4638d659d5271c44aed66c06",
+      "bytes": 2326,
+      "lines": 65,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r4-charge5-total-review/READ-SCOPE.md",
+      "sha256": "0fd91a847b5260297a8ca1d63a36e3c2316d3f307543fd00becaeaa3f40a9ea8",
+      "bytes": 5924,
+      "lines": 81,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r4-charge5-total-review/RECEIPT.json",
+      "sha256": "be7e02eb1694dc3344f7fe0126c49b394b9643528a0385819d04ca0de2e7122a",
+      "bytes": 5155,
+      "lines": 96,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r4-charge5-total-review/RETURN.md",
+      "sha256": "600d22bfc1db62f1cee64b1129d708c235c96a4ead319f7339e8204a51255509",
+      "bytes": 2483,
+      "lines": 51,
+      "matches_supplied_hash": true,
+      "reading_level": "full",
+      "reading_scope": "Full final RETURN consumed before drafting, as recorded in CHECKPOINT.txt; not a fresh independent check."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-first-defect-review/CHECK.md",
+      "sha256": "5ddd4c4c71d818b0f35c1c0a401e3cfb05c16b40df9944df66616b651c38529c",
+      "bytes": 28886,
+      "lines": 244,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-first-defect-review/DEPENDENCY-BINDING.json",
+      "sha256": "1444844d4012b51617f69c441aaac2fecb13315db4b4df5c7bc77d392a18d343",
+      "bytes": 7446,
+      "lines": 143,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-first-defect-review/DEPENDENCY-CLOSURE.md",
+      "sha256": "04c3433cb86005b53c4fa3d0ce94353299b7627ae88af1be6aea1ccdbf2d7fcf",
+      "bytes": 5711,
+      "lines": 87,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-first-defect-review/INPUT-PINS.json",
+      "sha256": "df7cb493ed716eb6f9e13d6fc1420ff7f8a94704e3a621089ee92025f3831e22",
+      "bytes": 30339,
+      "lines": 661,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-first-defect-review/OUTPUT-PINS.json",
+      "sha256": "83759f9c9888a631d740a6d346098b7311a4c0d17e1f17f22be8d0550899eb69",
+      "bytes": 6795,
+      "lines": 178,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-first-defect-review/READ-SCOPE.md",
+      "sha256": "64e57189dd820c3738b63ce0e02371c032be10245966172f5848de0a004f2233",
+      "bytes": 7165,
+      "lines": 40,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-first-defect-review/RECEIPT.json",
+      "sha256": "bd6ce8da33ca58dbdd43ff890bfba07ade2872f3bbc860a21741f5b908f56457",
+      "bytes": 8706,
+      "lines": 166,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-first-defect-review/RETURN.md",
+      "sha256": "eb869d80998d989bca7377ad165a460226fc8f942516e3c93b7551215e32a88f",
+      "bytes": 2447,
+      "lines": 24,
+      "matches_supplied_hash": true,
+      "reading_level": "full",
+      "reading_scope": "Full final RETURN consumed before drafting, as recorded in CHECKPOINT.txt; not a fresh independent check."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-first-defect-review/SCALAR-BINDING.json",
+      "sha256": "b0eb7ef536f76975d7a84cf777816fbe43c18a96bde85eee367cedacc44529eb",
+      "bytes": 2098,
+      "lines": 44,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-incidence-bridge-review/CHECK.md",
+      "sha256": "381fa3d77e4422814a4be7c815bd81352cbca15f5ee16c8f6f6eda524b9beca7",
+      "bytes": 22750,
+      "lines": 447,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-incidence-bridge-review/INPUT-PINS.json",
+      "sha256": "cbc399fd9849cfca3f2d78967bd3d3cede774afca980fcce155597ab10a3dd97",
+      "bytes": 9379,
+      "lines": 173,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-incidence-bridge-review/OUTPUT-PINS.json",
+      "sha256": "c50566045944338f5668d94cfb744a44152b6af6e2bb6f6ed11123a3f4dab2a0",
+      "bytes": 2308,
+      "lines": 55,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-incidence-bridge-review/READ-SCOPE.md",
+      "sha256": "9e512494efef33988bbcecfec8df7156c883e370de16c38f7ec0d35f4a714724",
+      "bytes": 3174,
+      "lines": 54,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-incidence-bridge-review/RECEIPT.json",
+      "sha256": "204761305bfbf9a9a9e3b1aeb32282d2fb5b460dbded1432814bcce566d3d6f9",
+      "bytes": 6208,
+      "lines": 123,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-incidence-bridge-review/RETURN.md",
+      "sha256": "ac064fe5410e285343a9dabcb4caf9b52bce129cf642c248ec6845d0d75f94e6",
+      "bytes": 2018,
+      "lines": 41,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/positive-general/BZERO.md",
+      "sha256": "a01c269ea258d5012c6c29026e4bdc67e94ddfad0579238c2b85f6eea41624d8",
+      "bytes": 14630,
+      "lines": 164,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/positive-general/PROOF.md",
+      "sha256": "daa1c7466fecc33725ae05b9539ad4528c3a38ebb896cfb4b01b87fe596f7f3a",
+      "bytes": 21310,
+      "lines": 180,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/positive-general/joint-image/uniform-simple-incidence/UNIFORM-RAW-COEFFICIENT-BOUND.md",
+      "sha256": "4f12fc177a8f22b1b40fdcb1655b7dc7b70f479c190e9106b09092e56a9c3bbc",
+      "bytes": 23749,
+      "lines": 583,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/positive-general/uniform-simple-first-defect/PROOF.md",
+      "sha256": "b7c08827c6f8ca58cc499deee62929948cb3a67dc2c4e250e7640399bd608a57",
+      "bytes": 22371,
+      "lines": 504,
+      "matches_supplied_hash": true,
+      "reading_level": "selected",
+      "reading_scope": "Lines 1–210 and full final RETURN consumed before drafting, as recorded in CHECKPOINT.txt; later proof lines not claimed as fully reread. Final acceptance discharges the source’s historical conditional input."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/r3-arbitrary-total/PROOF.md",
+      "sha256": "9ad405e385e07f6ec94bf9884f2caf4f98299c6add006986cbe43f3cf3370cc7",
+      "bytes": 15209,
+      "lines": 341,
+      "matches_supplied_hash": true,
+      "reading_level": "full",
+      "reading_scope": "Full 341-line current proof consumed before drafting at 9ad405e3, as recorded in CHECKPOINT.txt; no new proof judgment."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/r4-charge5-total/CONDITIONAL-INTEGRATION.md",
+      "sha256": "45610c8b81bd6dfe2623fd88a24b85ff240ff40bd10487bfeb5575169b0fe9c1",
+      "bytes": 9966,
+      "lines": 111,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_and_receipt",
+      "reading_scope": "Exact primary source bound. Scope consumed through the full final RETURN and accepting receipt; not represented as a fresh full source-proof read."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/two-spectators/COUNTEREXAMPLE.md",
+      "sha256": "55381b5a3b8bb93259eb5f94f622eb8a665bc8db3f14e2e8f7550f12e6ef120e",
+      "bytes": 11288,
+      "lines": 180,
+      "reading_level": "selected",
+      "reading_scope": "Current direct read lines 1–70: exact fixed-bound statement, source identity and first cocycle mechanism. Full F10/R7 acceptance retained through exact source-bound composition; no new counterexample calculation."
+    },
+    {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/two-spectators/POSITIVE-PROOF.md",
+      "sha256": "bbfd0fd0b3495d7d49b1c9e0ed93d15f490e0fc600ff5b76deb535fcb1f99edc",
+      "bytes": 24074,
+      "lines": 249,
+      "matches_supplied_hash": true,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/centre-v1-source-independent-20261116/extensions/odd-degree/PROOF.md",
+      "sha256": "81cb043ae37623b0403daac6b144cc49a406027d474be82c29eef950e36b4ab1",
+      "bytes": 17492,
+      "lines": 323,
+      "matches_supplied_hash": true,
+      "reading_level": "selected",
+      "reading_scope": "Current direct read lines 1–180: full statement, exact input list, even arity regrading, quotient tower and start of correlation grading. Remainder not claimed as reread."
+    },
+    {
+      "path": "/tmp/centre-v1-source-independent-20261116/extensions/two-generator/colored-log/PROOF-v2.md",
+      "sha256": "a45b5e9059efb51966204b0b1c791d4cf4e803564c4f1c00ad03b78174791888",
+      "bytes": 31517,
+      "lines": 369,
+      "matches_supplied_hash": true,
+      "reading_level": "prior_full_plus_selected",
+      "reading_scope": "Full proof consumed in earlier synthesis at exact a45b5e90 bytes, recorded in pinned READS.json; lines 1–120 reread during this chapter task as recorded in CHECKPOINT.txt."
+    },
+    {
+      "path": "/tmp/programme-strategic-packages-20261117/LATEST-STOCK.md",
+      "sha256": "07881666761d8e3a9e214277db98c14ece8fbd32b7d151a03f4b7f387549d6ce",
+      "bytes": 12412,
+      "lines": 34,
+      "reading_level": "full",
+      "reading_scope": "Dated source navigation and current accepted scope; no mathematical authority inferred from a summary alone."
+    },
+    {
+      "path": "/tmp/programme-total-synthesis-20261116T1620Z/handoffs/centres-binary/READS.json",
+      "sha256": "b80e044af22246f1e081c529e6b6a3b5f0c2971fe9c7eb900390056e8c44aefe",
+      "bytes": 22464,
+      "lines": 365,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/programme-total-synthesis-20261116T1620Z/handoffs/centres-binary/SOURCES.json",
+      "sha256": "02549fd5f913434bc5637b34c43177405a64531aa012544154a54c3b209a27c2",
+      "bytes": 608846,
+      "lines": 9914,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    },
+    {
+      "path": "/tmp/qh-ega-exposition-20261117/coordination/centres/CHECKPOINT.txt",
+      "sha256": "e77bff4bc76c175606ab9f54dbffe4f88ed3e70b4389bccb35db48d6b8739cd9",
+      "bytes": 3392,
+      "lines": 7,
+      "reading_level": "binding_only",
+      "reading_scope": "Exact bytes and metadata bound; full substantive reading of this file is not claimed. Selected scope metadata was consumed where recorded separately."
+    }
+  ],
+  "scope_authorities": {
+    "binary_roster": {
+      "path": "/tmp/binary-full-realization-20261116/coordination/accepted-rosters/POST-CUTOFF-ACCEPTED-91c332414cf7ba052a1a3444c412851c0dbd9b424f16157e343f6d2962e4247d.json",
+      "sha256": "91c332414cf7ba052a1a3444c412851c0dbd9b424f16157e343f6d2962e4247d",
+      "bytes": 161184,
+      "lines": 3287
+    },
+    "binary_cumulative_units": 91,
+    "binary_selected_units": [
+      {
+        "unit": "projected-pointing-reduction",
+        "accepted_utc": "2026-11-16T13:35:00.365281+00:00",
+        "accepted_scope": "For EVERY actualcoassociativepointing u onP(M)tensor!C_V, arbitraryunboundedrightDmodule M and genuineunitalnativechiralV, BOTHcompletecharacter/actionspaces reduce to actualprojected(C_V,v=hu) withallhigherpaths/parameters. No v≈νassumed; actualbinarytargetprimary/unpointednormalization placeallfourfibresinunitcomponents. RecognitionIFFprojectedbase only. DoesNOTprove recognitionforall v orarbitraryactors, erasehigherpointingdata, orchoosenaturalpresentations.",
+        "proofs": [
+          {
+            "path": "/tmp/binary-full-realization-20261116/projected-pointing-reduction/THEOREM.md",
+            "sha256": "4821ed4dd8437ef41f8097b6ee70597e8898084ab5349ccda22c59bad1b0bb17",
+            "bytes": 2636
+          },
+          {
+            "path": "/tmp/binary-full-realization-20261116/projected-pointing-reduction/PROOF.md",
+            "sha256": "009268604a0924d0f13def1dfbd1fec5640720fc09e283ab3b247e1846ced71b",
+            "bytes": 10898
+          }
+        ]
+      },
+      {
+        "unit": "arbitrary-pointing-recognition-integration",
+        "accepted_utc": "2026-11-16T14:50:11.563127+00:00",
+        "accepted_scope": "Every actual coherent coassociative v:J→C_V on the native main-diagonal Chevalley actor of any unbounded genuine-unit dg chiral V over the characteristic-zero affine line. Intrinsic Theta/Psi are inverse equivalences of BOTH complete pointed character/action spaces, including full pointing paths and all higher cells. Intrinsic inverse homotopy is natural on the FULL stated subcategory, including maps that preserve neither auxiliary genuine vacua nor presentations. No full v≈nu comparison, strict/Lie/cocommutative replacement, or arbitrary-factorizing-actor recognition is assumed or concluded.",
+        "proofs": [
+          {
+            "path": "/tmp/binary-full-realization-20261116/arbitrary-pointing-recognition/THEOREM.md",
+            "sha256": "a8df492300c80f48d480ed70dfc46df14a6a2326eae96cfc0e84bc82b611e988",
+            "bytes": 3524
+          },
+          {
+            "path": "/tmp/binary-full-realization-20261116/arbitrary-pointing-recognition/PROOF.md",
+            "sha256": "23d61ea0dcbafcb098d5af09900a865e89016d19ec9ed35a5fc6c2736a2ffc7d",
+            "bytes": 23607
+          }
+        ]
+      },
+      {
+        "unit": "commutative-connection-recognition",
+        "accepted_utc": "2026-11-16T16:39:54.312082+00:00",
+        "accepted_scope": "Every arbitrary-unbounded quasicoherent nonunital commutative dg O_A1 algebra with compatible connection, and every actual coherent coassociative pointing on its native CE actor. Both full unitization restriction fibres and intrinsic natural recognition. Entire derived singleton is controlled; higher pointing cells retained. Characteristic zero, A1, arbitrary compatible connection with no flatness/constant-state/rank/boundedness hypothesis. Actual example has coherent CE pointing but no strict horizontal representative of its ordinary unit class. No general noncommutative chiral splitting or arbitrary-factorizing-actor recognition.",
+        "proofs": [
+          {
+            "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/commutative-connection/THEOREM.md",
+            "sha256": "a8f4daff6c162e95ed25c960a8e40270feb102a3c4680083eed516c469024dce",
+            "bytes": 3350
+          },
+          {
+            "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/commutative-connection/PROOF.md",
+            "sha256": "38c2d15ac3b1b1986d78251a26125f1d5129231491bdf0177d1d1e5430b275b3",
+            "bytes": 11663
+          },
+          {
+            "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/commutative-connection/EXAMPLE.md",
+            "sha256": "dcd3cf285e6a0cf2c664996c22749f799f11141998808cb06062e1ed838759fd",
+            "bytes": 2727
+          }
+        ]
+      },
+      {
+        "unit": "actual-residue-kernel",
+        "accepted_utc": "2026-11-16T17:02:08.665020+00:00",
+        "accepted_scope": "Lemma1 equations(7)-(27),source80-405 only; actual restricted source and both mixed full-Spencer kernel functionals, proper restrictions/insertions/naturality before arbitrary unbounded Hom; no equations (28)–(48) action integration verdict, no empty-retained vertex, root/mark change, cross-block collision, arbitrary longer-word compatibility or full recognition.",
+        "proofs": [
+          {
+            "path": "/tmp/binary-full-realization-20261116/coherent-recognition/action-diagram/mark-transport/higher-detectors/cut-associativity/actual-residue/ACTUAL-RESIDUE-NULLHOMOTOPY.md",
+            "sha256": "289988b02c3b770dd7bc7e293bab8a6658560e512e384179c1ab9deca8ba8d89",
+            "bytes": 28214
+          }
+        ]
+      },
+      {
+        "unit": "actual-residue-integration",
+        "accepted_utc": "2026-11-16T17:16:40.269904+00:00",
+        "accepted_scope": "Actual action-generated ell and epsilon residue primitives and exact original pointed three-block boundary filling, equations (28)–(48), for arbitrary unbounded pointed factorizing coassociative actors over a characteristic-zero affine line. Fixed root, marks and cut; original K and omega retained, all action parameters and allowed internal A/B/C collision faces. Full mixed-Spencer kernel supplied by separate accepted unit87. No universal kernel nullity, actor Ext vanishing, cocommutativity hypothesis, actor exchange, vacuum fusion, root/mark change, cross-block collision, arbitrary longer-word coherence or full recognition.",
+        "proofs": [
+          {
+            "path": "/tmp/binary-full-realization-20261116/coherent-recognition/action-diagram/mark-transport/higher-detectors/cut-associativity/actual-residue/ACTUAL-RESIDUE-NULLHOMOTOPY.md",
+            "sha256": "289988b02c3b770dd7bc7e293bab8a6658560e512e384179c1ab9deca8ba8d89",
+            "bytes": 28214
+          }
+        ]
+      },
+      {
+        "unit": "derived-singleton-ghost",
+        "accepted_utc": "2026-11-16T16:57:59.321800+00:00",
+        "accepted_scope": "For native main-diagonal CE actors of arbitrary unbounded possibly nonunital dg chiral W on a characteristic-zero affine line: ordinary-zero arbitrary derived singleton xi gives a ghost primary r^xi on every internal degree, retaining the secondary. Full genuine-unit residue identities hold. For an actual coherent coassociative pointing u, an ordinary-zero or genuine-unit ordinary singleton upgrades to zero or that unit in full derived singleton Hom. In the zero case both complete character/action fibres are empty. No canonical or family nullhomotopy, arbitrary derived centrality, chiral splitting, unitization or wider recognition.",
+        "proofs": [
+          {
+            "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/derived-singleton/THEOREM.md",
+            "sha256": "e8a2b4f1e900a0cea510077ab409eb1e0b08e45ffb7433bb8c49ec6651e8ec66",
+            "bytes": 2541
+          },
+          {
+            "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/derived-singleton/PROOF.md",
+            "sha256": "212f822483fc5297f3b7bb44591fb153e23a2791fd6c2a81b0dc64c22609de43",
+            "bytes": 10173
+          }
+        ]
+      },
+      {
+        "unit": "closed-corner-comparison",
+        "accepted_utc": "2026-11-16T17:29:08.817260+00:00",
+        "accepted_scope": "On old separated base d!=0, under supplied coherent cocommutative underlying F, with actual u and alpha only coassociative: specified natural P_nu=Delta_LEFT+A_original-T has dP_nu=nu=n-Pi for ORIGINAL primitives; its composite fills nu(1-r0)r1. Arbitrary unbounded old coefficients, both actual endpoints and full parameter/pointing data retained. L1 is correct-LEFT and is never right r1.",
+        "proofs": [
+          {
+            "path": "/tmp/binary-full-realization-20261116/universal-vacuum/rooted-transport/old-comparison/wrong-vacuum-edge/closed-corner/v2/PROOF.md",
+            "sha256": "71334f866fd342dccda5ad8e32706cdbfc526a5aa2dc32b99d2322fa1285df6a",
+            "bytes": 31893
+          }
+        ]
+      },
+      {
+        "unit": "ordinary-horizontal-integration",
+        "accepted_utc": "2026-11-16T17:35:57.929815+00:00",
+        "accepted_scope": "Arbitrary unbounded, possibly noncommutative/nonconstant nonunital dg chiral W over characteristic-zero affine line, with actual coherent coassociative u and existence of a strict closed horizontal degree-zero a satisfying ONLY H0(a)=H0(u1) as the ordinary cohomology D-module map. Both complete original unitization restriction fibres and intrinsic recognition/full-subcategory naturality, retaining entire u/i u and all higher cells/parameters. No full derived u1=a hypothesis.",
+        "proofs": [
+          {
+            "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/ordinary-horizontal-representative/THEOREM.md",
+            "sha256": "f7302922b148162634ad114dd8bf81e5a616ad6100789dc1a759f07cce7b8ecd",
+            "bytes": 2663
+          },
+          {
+            "path": "/tmp/binary-full-realization-20261116/nonunital-ce-recognition/ordinary-horizontal-representative/PROOF-v2.md",
+            "sha256": "b1985b18972fff18616e9628fe3231c0d2c85694e1559fcc6ea47e182426d73f",
+            "bytes": 8468
+          }
+        ]
+      }
+    ],
+    "fx_manifest": {
+      "path": "/tmp/centre-fx-r0plus-continuation-20261116/coordination/final-cumulative-accepted-handoff/ACCEPTED-MANIFEST.json",
+      "sha256": "85a85a0dfe30b3b025ee923525ee810c3e931781c5d03e5acc2d2be7265e44d0",
+      "bytes": 170261,
+      "lines": 2895
+    },
+    "fx_selected_scopes": [
+      {
+        "id": "independent-bzero-review",
+        "scope": "All-r/all-q strict n<q for b=0; arbitrary-bound EXTENSION Lemmas 4–7 and exact q3/q4 conclusions, with mandatory repairs and retained inputs.",
+        "status": {
+          "BZERO": "ACCEPTED with b_j=0 restriction and retained accepted-input assumptions",
+          "EXTENSION": "ACCEPTED for Lemmas4-7 and the exact q3/q4/strictq3 scopes"
+        },
+        "receipts": []
+      },
+      {
+        "id": "independent-r2-positive-review",
+        "scope": "Original D6 r=2, arbitrary nonnegative b,N, positive odd mu, all q>=2: H^n=0 for n<q, with the explicit L7 descent repair. Relative characterization retains its hypotheses.",
+        "status": "Complete independent r2 positive-relative-degree review; no adoption",
+        "receipts": []
+      },
+      {
+        "id": "independent-r4-charge5-total-review",
+        "scope": "Original D6 r4 b1111 mu1 q5, all nonnegative N: H^n=0 for n<5 over the whole base and in every homogeneity.",
+        "status": "PASS_EXACT_R4_B1111_MU1_Q5_STRICT_LOWER_PLACE_TOTAL_VANISHING",
+        "receipts": [
+          {
+            "artifact": {
+              "source_path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r4-charge5-total-review/RECEIPT.json",
+              "copied_path": "artifacts/be7e02eb1694dc33--independent-r4-charge5-total-review--RECEIPT.json",
+              "sha256": "be7e02eb1694dc3344f7fe0126c49b394b9643528a0385819d04ca0de2e7122a",
+              "bytes": 5155,
+              "role": "scoped authoritative receipt"
+            },
+            "status": "PASS_EXACT_R4_B1111_MU1_Q5_STRICT_LOWER_PLACE_TOTAL_VANISHING",
+            "accepted_utc": "2026-11-16T16:49:37.665970+00:00",
+            "scope": {
+              "spectators": 4,
+              "b": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "mu": 1,
+              "charge_q": 5,
+              "spectator_pair_bounds_N": "every prescribed collection of nonnegative integers N_ij",
+              "total_places": "n<5 only; n=2s+i",
+              "homogeneities": "all, with original gauge/denominator shifts and common C[Z] translation retained",
+              "base": "whole polynomial spectator base at original D6 finite bounds and signed exchange conditions"
+            }
+          }
+        ]
+      },
+      {
+        "id": "independent-r3-arbitrary-total-review",
+        "scope": "Original D6 r3, all nonnegative b,N, positive odd mu and q>=2: H^n=0 for n<q over the whole base and in every homogeneity.",
+        "status": "PASS_ORIGINAL_D6_R3_ARBITRARY_B_N_ODD_MU_STRICT_N_LT_Q",
+        "receipts": [
+          {
+            "artifact": {
+              "source_path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-r3-arbitrary-total-review/INTEGRATION-RECEIPT.json",
+              "copied_path": "artifacts/065d331b75160a23--independent-r3-arbitrary-total-review--INTEGRATION-RECEIPT.json",
+              "sha256": "065d331b75160a23f5efa97befd9ce3ec0ba02dcec3ef041873ec9d0d89d5abe",
+              "bytes": 10197,
+              "role": "scoped authoritative receipt"
+            },
+            "status": "PASS_ORIGINAL_D6_R3_ARBITRARY_B_N_ODD_MU_STRICT_N_LT_Q",
+            "accepted_utc": "2026-11-16T17:05:40.626083+00:00",
+            "scope": {
+              "complex": "original D6 ordered rational-form complex D(3;q)",
+              "definition_source_sha256": "aac4edfb76bcf3315faa6debcad4b26ccf4b630cba4933600fad16248b4dfeb2",
+              "spectators": 3,
+              "b": "every triple of nonnegative integers b_1,b_2,b_3",
+              "N": "every triple of nonnegative integers N_12,N_13,N_23",
+              "mu": "every positive odd integer",
+              "q": "every integer q>=2",
+              "cohomological_places": "strict n<q",
+              "conclusion": "H^n(D(3;q))=0",
+              "differential": "full original d_w plus epsilon-weighted left marked residues",
+              "whole_polynomial_spectator_base": true,
+              "every_homogeneity": true,
+              "n_equals_q_included": false,
+              "q_zero_or_one_included": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "independent-uniform-incidence-bridge-review",
+        "scope": "Actual raw one-p coefficient pd<=2 for all r>=1,m>=2,b_j=1,mu1,N0, full and reduced bases; exact algebra interface discharged. No E/G or amplitude claim.",
+        "status": "PASS_UNIFORM_RAW_COEFFICIENT_BOUND",
+        "receipts": [
+          {
+            "artifact": {
+              "source_path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-incidence-bridge-review/RECEIPT.json",
+              "copied_path": "artifacts/204761305bfbf9a9--independent-uniform-incidence-bridge-review--RECEIPT.json",
+              "sha256": "204761305bfbf9a9a9e3b1aeb32282d2fb5b460dbded1432814bcce566d3d6f9",
+              "bytes": 6208,
+              "role": "scoped authoritative receipt"
+            },
+            "status": "PASS_UNIFORM_RAW_COEFFICIENT_BOUND",
+            "accepted_utc": "2026-11-16T17:27:56.685711+00:00",
+            "scope": {
+              "spectator_count_r": "every integer r>=1",
+              "marked_count_m": "every integer m>=2",
+              "all_b_j": 1,
+              "mu": 1,
+              "all_N_ij": 0,
+              "full_base": "R=C[lambda_1,...,lambda_r,c_1,...,c_m]",
+              "reduced_base": "R_red=C[x_2,...,x_r,tilde_c_1,...,tilde_c_m]",
+              "translation": "R=R_red[Z], Z=lambda_1; actual C_raw=C_raw,red tensor_C C[Z]",
+              "homogeneities": "all natural weights and original denominator/common-gauge shifts retained"
+            }
+          }
+        ]
+      },
+      {
+        "id": "independent-uniform-first-defect-review",
+        "scope": "Actual first defect E_(r,m)=0 and literal ideal-intersection identity for all r>=1,m>=0,b_j=1,mu1,N0; exact UI bound discharged. No second-defect, amplitude or total claim.",
+        "status": "PASS_UNIFORM_FIRST_DEFECT_ALL_R_ALL_M_B1_MU1_N0_WITH_UI_BOUND",
+        "receipts": [
+          {
+            "artifact": {
+              "source_path": "/tmp/centre-fx-r0plus-continuation-20261116/independent-uniform-first-defect-review/RECEIPT.json",
+              "copied_path": "artifacts/bd6ce8da33ca58db--independent-uniform-first-defect-review--RECEIPT.json",
+              "sha256": "bd6ce8da33ca58dbdd43ff890bfba07ade2872f3bbc860a21741f5b908f56457",
+              "bytes": 8706,
+              "role": "scoped authoritative receipt"
+            },
+            "status": "PASS_UNIFORM_FIRST_DEFECT_ALL_R_ALL_M_B1_MU1_N0_WITH_UI_BOUND",
+            "accepted_utc": "2026-11-16T17:33:59.412889+00:00",
+            "scope": {
+              "r": "every integer r>=1",
+              "m": "every integer m>=0",
+              "all_b_j": 1,
+              "mu": 1,
+              "all_D6_N_ij": 0,
+              "scalar_D2_exponents": 3,
+              "base": "S=C[z_1,...,z_r,c_1,...,c_m], full polynomial base",
+              "P": "actual shared monic marked polynomial; P=1 for m0",
+              "homogeneities": "every natural weight; common translation retained"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "hash_mismatches": [],
+  "new_mathematical_research": false,
+  "closed_proof_or_control_rerun": false,
+  "new_workers": false,
+  "independent_mathematical_adoption": false
+}

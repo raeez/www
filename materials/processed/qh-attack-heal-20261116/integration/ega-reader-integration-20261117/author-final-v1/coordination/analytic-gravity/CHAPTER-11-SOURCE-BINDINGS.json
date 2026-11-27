@@ -1,0 +1,108 @@
+{
+  "chapter": "11-states-and-lines",
+  "written_utc": "2026-11-16T19:10:01.396209+00:00",
+  "chapter_path": "/tmp/qh-ega-exposition-20261117/chapters/11-states-and-lines.md",
+  "chapter_sha256": "c0025947d674be7ee82ff99c8c394e0376c5e35baacc9291079497196e65b292",
+  "sources": [
+    {
+      "path": "/tmp/gravity-full-realization-20261116/all-face-insertion/coupled-normalization/ORDINARY-WARD-AND-FULL-SOURCE-HEAT.md",
+      "sha256": "f32d32cd5d25d99ae573d17b3c90415e089fb5673ed822a76b2c95f36e34437f",
+      "bytes": 33800,
+      "lines": 386,
+      "reading_scope": "Full source read across ranges 1\u201350, 51\u2013129, 130\u2013245 and 245\u2013386, with cumulative acceptance scope parsed; no proof/control rerun.",
+      "accepted_primary_pin_match": true,
+      "accepted_binding_family": "ordinary-ward-full-source-heat"
+    },
+    {
+      "path": "/tmp/gravity-full-realization-20261116/native-state/low-traces/COMMON-HEAT-HOMOTOPY.md",
+      "sha256": "f4b633a240cd213d72e199bea7aa92a7f8e82c465815846c1efcfbc55ed56a57",
+      "bytes": 13578,
+      "lines": 264,
+      "reading_scope": "Full source read in ranges 1\u2013185 and 186\u2013264; full exact independent conclusion and scope record also read; no controls rerun.",
+      "accepted_primary_pin_match": true,
+      "accepted_binding_family": "G0"
+    },
+    {
+      "path": "/tmp/gravity-full-realization-20261116/native-state/ordinary-numerical-gaussian/PROOF.md",
+      "sha256": "4c9f8c6d3e6327cee8f85402d8576af5345ad6aff11a056e28aabdcf5b712ede",
+      "bytes": 42167,
+      "lines": 742,
+      "reading_scope": "Full mathematical source read in contiguous ranges 1\u2013195, 195\u2013387, 388\u2013621 and 622\u2013790; no proof/control rerun.",
+      "accepted_primary_pin_match": true,
+      "accepted_binding_family": "G6"
+    },
+    {
+      "path": "/tmp/gravity-full-realization-20261116/native-state/original-riesz-finite/PROOF.md",
+      "sha256": "9ae4b9c8c2b706bd58d17f5bb3e1f5a0c8b42f18c7b557dbe68aa6df835027d5",
+      "bytes": 48907,
+      "lines": 736,
+      "reading_scope": "Sections 5\u20136 and 8 read directly (lines 298\u2013470 and 600\u2013752); initial definitions and finite source hypotheses consumed through corrected integrated report and exact independent scope record. Remaining source not claimed fully read.",
+      "accepted_primary_pin_match": true,
+      "accepted_binding_family": "G4"
+    },
+    {
+      "path": "/tmp/gravity-full-realization-20261116/native-state/original-vacuum-finite-part/PROOF.md",
+      "sha256": "b6b038f1d4d5127206d8369a33afce6bcf99a97a1d81b0de01e700e4a77c7baf",
+      "bytes": 47036,
+      "lines": 1116,
+      "reading_scope": "Read lines 1\u2013170, 474\u2013625 and 797\u20131116: original operator/domains, heat theorem and finite part, shell maps/anchor/local line, Green identity, exclusions and references. Symbol-recursion proof sections and intermediate source-jet details not claimed fully read.",
+      "accepted_primary_pin_match": true,
+      "accepted_binding_family": "original-numerical-heat-finite-part-and-local-vacuum-line"
+    },
+    {
+      "path": "/tmp/gravity-full-realization-20261116/native-state/original-vacuum-finite-part/addenda/SOURCE-CONNECTION-SIGN.md",
+      "sha256": "07414accabb4eb9ff030972b1eef1bb90d56f58536a30c23c5a709ad708959ec",
+      "bytes": 2322,
+      "lines": 62,
+      "reading_scope": "Full mandatory mathematical companion read and its plus connection counterterm used explicitly.",
+      "accepted_primary_pin_match": true,
+      "accepted_binding_family": "original-numerical-heat-finite-part-and-local-vacuum-line"
+    }
+  ],
+  "operational_scope_bindings": [
+    {
+      "path": "/tmp/programme-strategic-packages-20261117/LATEST-STOCK.md",
+      "sha256": "07881666761d8e3a9e214277db98c14ece8fbd32b7d151a03f4b7f387549d6ce",
+      "bytes": 12412
+    },
+    {
+      "path": "/tmp/programme-total-synthesis-20261116T1620Z/integrated-handoffs/quantum-analytic-gravity/REPORT.md",
+      "sha256": "136ddc11ecb5301151f285f84213b19248f95d3d83713e50d8863e7e0558810f",
+      "bytes": 43914
+    },
+    {
+      "path": "/tmp/gravity-full-realization-20261116/coordination/CUMULATIVE-ACCEPTED-STOCK-20261116T1735Z.json",
+      "sha256": "d9061529c0e31ca905a24b0c2387a557b6fa58a77719e4d186b564d1ae55842f",
+      "bytes": 58950
+    },
+    {
+      "path": "/tmp/gravity-full-realization-20261116/coordination/TERMINAL-ACCEPTED-VERSUS-HELD-20261116T181317Z.json",
+      "sha256": "974ad7a29a1a401cafd127c94e9a87b29d2e319e1455f062c23f246b57bc5a05",
+      "bytes": 10079
+    }
+  ],
+  "primary_literature": [
+    {
+      "url": "https://arxiv.org/abs/hep-th/9205088",
+      "reading": "Primary title/abstract/bibliographic record; used for general finite BV geometry only."
+    },
+    {
+      "url": "https://link.springer.com/article/10.1007/BF01086022",
+      "reading": "Publisher bibliographic record; cited for determinant-line setting, not as an independent proof of the programme heat or line theorem."
+    }
+  ],
+  "retained_boundaries": [
+    "Actual numerical Ward filling supplied; ordinary Gaussian source has zero normal trace and a single small C1 inverse neighbourhood.",
+    "Original reflected heat has its separate small C4(mu)+C1(T) domain and fixed coefficient adjoint.",
+    "Connection counterterm added, response counterterm subtracted; full boundary Green term retained.",
+    "Ordinary full-source Ward/heat comparison is formal at chi0/chi1, fixed finite PBW/holomorphic-jet stages, height zero before incoming normal differentiation, full W1 retained.",
+    "Five frozen unreviewed gravity packets are not premises; no sharp-cutoff, numerical source-varying Ward, marked Cartan, two-group cycle or multigroup theorem promoted.",
+    "Normalized state, based local renormalized line, unnormalized infinite phase, spatial sewing and physical cap remain distinct."
+  ],
+  "new_mathematical_research": false,
+  "proof_or_control_rerun": false,
+  "independent_editorial_review": "NO_REMAINING_STANDALONE_REPAIR on exact successor bytes; full predecessor plus complete successor diff reading by /root/public_projection_fidelity.",
+  "rendered_reader_inspection": "Pending parent-owned reader build; no UI/design edited.",
+  "review_repair": "Replaced three ambiguous positive-sector phrases by reflection-even/invariant terminology; original positive source-zero spectrum, positive heat times and bounds unchanged.",
+  "independent_review_disposition": "/tmp/qh-ega-exposition-20261117/coordination/analytic-gravity/REVIEW-DISPOSITION-R1.json"
+}
