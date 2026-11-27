@@ -38,3 +38,7 @@ The compiler's `dist/feed.xml` is separate from the root `feed.xml`. Check the i
 Check `writing.html`, `feed.xml`, `sitemap.xml`, and `llms.txt` when a page change affects those indexes.
 For instruction-only changes, review the diff and referenced paths.
 Report local output, external-source freshness, and publication status separately.
+
+## British English
+
+Use British English for all new writing and for every passage you rewrite or patch. This applies across all works for Luke Pearson and Raeez Lorgat, including papers, books, notes, correspondence and website copy. Preserve quotations, published titles, code identifiers and historical originals verbatim.
