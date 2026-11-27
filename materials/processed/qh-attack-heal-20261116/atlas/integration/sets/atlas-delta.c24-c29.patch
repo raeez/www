@@ -1,0 +1,427 @@
+diff --git a/compiler/quantum-holography-status/atlas.py b/compiler/quantum-holography-status/atlas.py
+index 4ba5c4c..b7abcca 100644
+--- a/compiler/quantum-holography-status/atlas.py
++++ b/compiler/quantum-holography-status/atlas.py
+@@ -23,8 +23,10 @@ from pathlib import Path
+ HERE = Path(__file__).resolve().parent
+ SCHEMA = 'programme-scientific-atlas-public/v1'
+ CODES = ['checked', 'conditional', 'scoped_negative', 'remaining']
+-# Statement statuses of the page that match an atlas status (the content owner's contract): shown in the key.
+-PAGE_STATUS = {'scoped_negative': 'refuted form'}
++# The page's status for each atlas status (the content owner's status-language ruling): the visible word is chosen by
++# the stored code and is the same on the page (Established, Conditional, Remaining, Scoped negative), and the colours
++# are the page's semantic colours of these legacy codes. Per-record status labels are display aliases, never shown.
++PAGE_STATUS = {'checked': 'checked', 'conditional': 'conditional', 'remaining': 'open', 'scoped_negative': 'refuted form'}
+ BUCKETS = [('establishedClaimIds', 'checked'), ('conditionalClaimIds', 'conditional'),
+            ('scopedNegativeClaimIds', 'scoped_negative'), ('remainingClaimIds', 'remaining')]
+ PATH_KINDS = ['editorial_orientation', 'source_bound_dependency_path']
+@@ -43,10 +45,9 @@ INDEX_LONG = 40  # above this many claims the index scrolls in its own box on sc
+ SUPPLIED_CLASSES = (
+     'atlas-link-title', 'atlas-claim-title', 'atlas-statement', 'atlas-hyps', 'atlas-item-hyps', 'atlas-domain-summary',
+     'atlas-overview', 'atlas-path-summary', 'atlas-path-note', 'atlas-stage-desc', 'atlas-stage-label', 'atlas-rel-label',
+-    'atlas-rel-scope', 'atlas-status-text', 'atlas-status-own', 'atlas-note-text', 'atlas-claim-domain', 'atlas-track',
+-    'atlas-domain-h', 'atlas-comparison-h', 'atlas-path-h', 'atlas-key-own', 'atlas-conventions', 'atlas-claim-group-h',
+-    'atlas-row-domain', 'atlas-col-domain', 'atlas-domain-comps', 'atlas-rel-names', 'atlas-rel-name',
+-    'atlas-key-page-label')
++    'atlas-rel-scope', 'atlas-note-text', 'atlas-claim-domain', 'atlas-track',
++    'atlas-domain-h', 'atlas-comparison-h', 'atlas-path-h', 'atlas-conventions', 'atlas-claim-group-h',
++    'atlas-row-domain', 'atlas-col-domain', 'atlas-domain-comps', 'atlas-rel-names', 'atlas-rel-name')
+ # Glossary buttons inside the atlas text (never inside a link): the page's glossary card opens from them. The
+ # foundation mount does not reserve the classes that ctx.rich itself emits (term, math-*), and the interaction
+ # script shares the card of a .term[data-term] with the atlas. With an older foundation that reserved .term, set
+@@ -99,9 +100,9 @@ LABELS = {
+     'key_relations_none': 'No relation between claims is recorded.',
+     'key_plain': 'Relations past the eighth type share the plain line; each is named in the lists of its claims.',
+     'more': 'Show the rest of this group',
+-    'key_separate': ('These four statuses and their square marks belong to the atlas. The other marks on this page are '
+-                     'the statuses of its statements; where one matches an atlas status, the key shows it beside that status.'),
+-    'key_page': 'On the statement cards of the page:',
++    'key_separate': ('The four statuses are those of the whole page. The atlas marks them with squares; beside each is the '
++                     'mark that the statement cards and the table give the same status.'),
++    'key_page': 'Its mark on the statement cards and in the table:',
+     'part_map': 'Map',
+     'part_domains': 'Domains',
+     'part_claims': 'Claims',
+@@ -121,7 +122,6 @@ LABELS = {
+     'gloss_conditional': 'An implication that holds under the hypotheses listed with it, at least one of which is not established.',
+     'gloss_scoped_negative': 'A negative result, established within its stated scope.',
+     'gloss_remaining': 'Not settled: a comparison that remains to be made.',
+-    'key_label': 'Labels used:',
+     'key_plain_all': ('Each line is a recorded relation, drawn in one style; the lists of each claim name the relation '
+                       'and give its scope.'),
+     'conventions': 'Conventions',
+@@ -145,7 +145,6 @@ LABELS = {
+     'col_status': 'Status',
+     'col_in': 'Into',
+     'col_out': 'From',
+-    'status': 'Status:',
+     'hypotheses': 'Hypotheses',
+     'hypotheses_inline': 'Hypotheses:',
+     'hypotheses_none': 'None listed.',
+@@ -175,8 +174,7 @@ LABELS = {
+     'js_tip_to': '\u2192',
+     'js_tip_from': '\u2190',
+     'js_tip_more': 'Every relation is listed with the claim.',
+-    'js_filter_note': ('The filter reads the titles, statements, hypotheses, status labels and source statements of the '
+-                       'claims in the atlas.'),
++    'js_filter_note': 'The filter reads the titles, statements, hypotheses and source statements of the claims in the atlas.',
+     'js_domain': 'Domain',
+     'js_status': 'Status',
+     'js_clear': 'Clear',
+@@ -240,7 +238,7 @@ def render(data, ctx):
+         return {'html': '', 'problems': [f'atlas id used twice: {i}' for i in twice] +
+                 [f'atlas id already used on the page: {i}' for i in sorted(taken)]}
+     return {'html': body, 'title': labels['heading'], 'kicker': labels['kicker'], 'nav_label': labels['nav'],
+-            'css': stylesheet(), 'js': script(), 'problems': problems}
++            'css': stylesheet(), 'js': script(), 'problems': problems + renderer.problems}
+ 
+ 
+ def cls(code):
+@@ -459,7 +457,7 @@ class Atlas:
+                     code = None
+                 label = self.text(st, 'label', where + '.status')
+                 if code and label and label not in self.status_labels.setdefault(code, []):
+-                    self.status_labels[code].append(label)  # each claim's own label is shown with the claim
++                    self.status_labels[code].append(label)  # display aliases: kept and checked, never shown (the code chooses the word)
+             hyps = c.get('hypotheses')
+             if not isinstance(hyps, list) or not all(isinstance(h, str) and h.strip() for h in hyps):
+                 if 'hypotheses' in c:
+@@ -662,6 +660,7 @@ class Renderer:
+         self.a = atlas
+         self.L = labels
+         self.uses = {}  # anchor -> times used; two uses is a problem
++        self.problems = []  # reader findings of the renderer (the build fails; a draft still draws)
+ 
+     def esc(self, key, **kw):
+         text = self.L[key]
+@@ -752,10 +751,7 @@ class Renderer:
+     def key(self):
+         items = []
+         for code in CODES:
+-            supplied = self.a.status_labels.get(code) or []
+-            own = (f' <span class="atlas-key-own"><span class="atlas-note-label">{self.esc("key_label")}</span> '
+-                   f'{"; ".join(self.rich(x, terms=False) for x in supplied)}</span>') if supplied else ''
+-            own += self.page_status(code)
++            own = self.page_status(code)
+             items.append(f'<div class="atlas-key-item" data-key-status="{code}"><dt>{mark(code)}<span>{self.esc("group_" + code)}'
+                          f'</span></dt><dd>{self.esc("gloss_" + code)}{own}</dd></div>')
+         if self.a.relations and any(k == LINE_STYLES for _, k, _ in self.a.relations.values()):
+@@ -782,16 +778,25 @@ class Renderer:
+                 f'<div class="atlas-key-relations"><p class="atlas-key-sub">{self.esc("key_relations")}</p>{rels}</div>'
+                 f'</div></div>')
+ 
++    def unit_status(self, code):
++        """For the page search: every claim is offered with the page status of its atlas status (data-qh-unit-status),
++        so the page's status filters find it and its result shows the page's mark and word for that status."""
++        page = PAGE_STATUS.get(code)
++        return f' data-qh-unit-status="{html.escape(page)}"' if page else ''
++
+     def page_status(self, code):
+-        """The statement status of the page that matches an atlas status, with the page's own mark and label, read
+-        from the page (ctx.status_labels, ctx.mark). The content owner gives one match: a checked negative result in
+-        its scope is 'scoped_negative' in the atlas and 'refuted form' on the page's statement cards."""
++        """The page's mark for the page status of an atlas status (PAGE_STATUS), read from the page (ctx.mark). The word
++        is the same on both sides and is chosen by the stored code."""
+         page = PAGE_STATUS.get(code)
+-        labels = getattr(self.ctx, 'status_labels', None) or {}
+-        if not page or page not in labels or not hasattr(self.ctx, 'mark'):
++        if not page:
++            return ''
++        drawn = self.ctx.mark(page) if hasattr(self.ctx, 'mark') else ''
++        if not drawn:
++            # The alias is the content owner's ruling: a page that cannot show it fails the build, never silently.
++            if any(c['code'] == code for c in self.a.claims):
++                self.problems.append(f'the page has no mark for its status {page!r}, the page status of the atlas status {code!r}')
+             return ''
+-        return (f' <span class="atlas-key-page"><span class="atlas-note-label">{self.esc("key_page")}</span> '
+-                f'{self.ctx.mark(page)}<span class="atlas-key-page-label">{html.escape(labels[page])}</span></span>')
++        return f' <span class="atlas-key-page"><span class="atlas-note-label">{self.esc("key_page")}</span> {drawn}</span>'
+ 
+     def domains(self):
+         a = self.a
+@@ -915,8 +920,7 @@ class Renderer:
+                         f'<span class="atlas-link-title">{self.title(c)}</span></a>'
+                         f'<span class="atlas-row-domain">{label}</span></th>'
+                         f'<td class="atlas-col-domain"><a href="#atlas-d-{d["id"]}">{label}</a></td>'
+-                        f'<td class="atlas-col-status">{mark(c["code"])}<span>{self.esc("group_" + c["code"])}</span>'
+-                        f'<span class="atlas-status-own">{self.rich(c["label"], terms=False)}</span></td>'
++                        f'<td class="atlas-col-status">{mark(c["code"])}<span>{self.esc("group_" + c["code"])}</span></td>'
+                         f'<td class="atlas-col-n">{len(a.into[c["id"]])}</td><td class="atlas-col-n">{len(a.out[c["id"]])}</td></tr>')
+         self.anchor('atlas-index')
+         long = ' atlas-index-long' if len(a.claims) > INDEX_LONG else ''
+@@ -967,15 +971,13 @@ class Renderer:
+             notes.append(f'<p class="atlas-note"><a class="atlas-conv-link" href="#atlas-d-{d["id"]}--conv">'
+                          f'{self.esc("conventions_link")}</a></p>')
+         return (f'<article class="atlas-claim as-{cls(code)}" id="{aid}" data-claim-id="{cid}" data-status-code="{code}" '
+-                f'data-domain-id="{d["id"]}" data-number="{a.number[cid]}" data-qh-unit aria-labelledby="{aid}--h">'
++                f'data-domain-id="{d["id"]}" data-number="{a.number[cid]}" data-qh-unit{self.unit_status(code)} aria-labelledby="{aid}--h">'
+                 f'<header class="atlas-claim-head"><p class="atlas-claim-meta">'
+                 f'<span class="atlas-chip ac-{cls(code)}">{mark(code)}<span class="atlas-chip-group">'
+                 f'{self.esc("group_" + code)}</span></span>'
+                 f'<span class="atlas-claim-no">{self.esc("number")} {a.number[cid]}</span>'
+                 f'<span class="atlas-claim-domain"><a href="#atlas-d-{d["id"]}">{self.rich(d["label"], terms=False)}</a></span></p>'
+-                f'<h5 class="atlas-claim-title" id="{aid}--h" data-qh-unit-title>{self.title(c)}</h5>'
+-                f'<p class="atlas-status-label"><span class="atlas-note-label">{self.esc("status")}</span> '
+-                f'<span class="atlas-status-text">{self.rich(c["label"], terms=False)}</span></p></header>'
++                f'<h5 class="atlas-claim-title" id="{aid}--h" data-qh-unit-title>{self.title(c)}</h5></header>'
+                 f'<div class="atlas-statement">{self.paragraphs(c["statement"])}</div>'
+                 f'<div class="atlas-hyp-block"><p class="atlas-sub-h">{self.esc("hypotheses")}</p>{hyps}</div>'
+                 f'{"".join(notes)}{self.relations(c, "in")}{self.relations(c, "out")}</article>')
+diff --git a/compiler/quantum-holography-status/atlas.css b/compiler/quantum-holography-status/atlas.css
+index f11098b..3923422 100644
+--- a/compiler/quantum-holography-status/atlas.css
++++ b/compiler/quantum-holography-status/atlas.css
+@@ -114,9 +114,8 @@
+ .atlas-key-item { min-width: 0; }
+ .atlas-key-item dt { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: var(--text-sm); }
+ .atlas-key-item dd { margin: 0 0 0 calc(.95em + 8px); color: var(--ink-2); font-size: var(--text-xs); line-height: 1.45; }
+-.atlas-key-own { display: block; color: var(--ink-3); }
+ .atlas-key-page { display: block; color: var(--ink-3); }
+-.atlas-key-page .mark { width: 12px; height: 12px; margin: 0 .3em 0 .2em; vertical-align: -.12em; color: var(--st-refuted-form); }
++.atlas-key-page .mark { width: 12px; height: 12px; margin: 0 .3em 0 .2em; vertical-align: -.12em; }  /* coloured by the page's .mark-<status> */
+ .atlas-key-note { margin: var(--au-h) 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
+ .atlas-rel-key { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--au-q); font-size: var(--text-sm); color: var(--ink-2); }
+ .atlas-rel-key li { display: flex; align-items: center; gap: 10px; min-width: 0; }
+@@ -196,7 +195,6 @@
+ .atlas-table .atlas-col-n { width: 3.6em; text-align: right; font-variant-numeric: lining-nums tabular-nums; color: var(--ink-2); }
+ .atlas-table .atlas-col-status { white-space: nowrap; color: var(--ink-2); }
+ .atlas-table .atlas-col-status .atlas-mark { margin-right: .4em; }
+-.atlas-status-own { display: block; white-space: normal; font-size: var(--text-xs); line-height: 1.35; color: var(--ink-3); }
+ .atlas-table .atlas-col-domain { color: var(--ink-2); }
+ .atlas-table .atlas-col-domain a { color: inherit; }
+ .atlas-table th.atlas-col-claim { min-width: 12em; }
+@@ -241,7 +239,6 @@
+ .atlas-claim-no { color: var(--ink-3); letter-spacing: .06em; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+ .atlas-claim-domain a, .atlas-claim-domain { color: var(--ink-3); }
+ .atlas-claim-title { font-size: calc(var(--text-base) * 1.08); font-weight: 600; line-height: 1.28; margin: 0 0 var(--au-q); outline-offset: 3px; }
+-.atlas-status-label { margin: 0 0 var(--au-h); font-size: var(--text-sm); color: var(--ink-2); }
+ .atlas-statement { line-height: 1.58; }
+ .atlas-statement p { margin: 0 0 var(--au-h); }
+ .atlas-hyp-block { margin: 0 0 var(--au-h); padding: var(--au-h) 0 0; border-top: 1px solid var(--rule-soft); }
+diff --git a/compiler/quantum-holography-status/atlas.js b/compiler/quantum-holography-status/atlas.js
+index d0f881c..87f1b86 100644
+--- a/compiler/quantum-holography-status/atlas.js
++++ b/compiler/quantum-holography-status/atlas.js
+@@ -79,7 +79,7 @@
+   var order = [];
+   /* The filter reads a claim's title, statement, hypotheses and source statement, and nothing else. */
+   var TIP_RELATIONS = 6; /* relations named in the map tip; the pane lists every one */
+-  var SEARCHED = '.atlas-claim-title, .atlas-statement, .atlas-hyps, .atlas-status-text, .atlas-note-source';
++  var SEARCHED = '.atlas-claim-title, .atlas-statement, .atlas-hyps, .atlas-note-source';
+   function hayOf(article) {
+     return fold(all(SEARCHED, article).map(function (n) { return textOf(n, '.atlas-note-label') + ' ' + texOf(n); }).join(' '));
+   }
+diff --git a/compiler/quantum-holography-status/tests/test_atlas.py b/compiler/quantum-holography-status/tests/test_atlas.py
+index 0f4fca6..25c56fd 100644
+--- a/compiler/quantum-holography-status/tests/test_atlas.py
++++ b/compiler/quantum-holography-status/tests/test_atlas.py
+@@ -274,10 +274,11 @@ class Markup(unittest.TestCase):
+                          sorted((p['id'], p['kind']) for p in FIXTURE['readingPaths']))
+         self.assertEqual(len(re.findall(r'data-claim-id="', h)), len(FIXTURE['claims']), 'data-claim-id marks the claims only')
+ 
+-    def test_statuses_and_hypotheses_are_shown_as_supplied(self):
++    def test_status_words_by_code_and_hypotheses_as_supplied(self):
+         for c in FIXTURE['claims']:
+             art = re.search(rf'<article class="atlas-claim [^"]*" id="atlas-c-{c["id"]}".*?</article>', self.html, re.S).group(0)
+-            self.assertIn(html.escape(c['status']['label'], quote=False), art)
++            self.assertIn(f'<span class="atlas-chip-group">{atlas.LABELS["group_" + c["status"]["code"]]}</span>', art,
++                          'the status word chosen by the stored code')
+             self.assertEqual(art.count('<li>'), len(c['hypotheses']), 'one plain list item per hypothesis')
+             if not c['hypotheses']:
+                 self.assertIn('None listed.', art)
+@@ -289,8 +290,8 @@ class Markup(unittest.TestCase):
+         self.assertNotIn('.atlas-stage + .atlas-stage::after', self.out['css'])
+         self.assertIn('Stage 4 is joined to stage 3 by', self.html)
+ 
+-    def test_atlas_statuses_are_said_to_be_the_atlas_own(self):
+-        self.assertIn('belong to the atlas', self.html)
++    def test_the_four_statuses_are_said_to_be_the_page_statuses(self):
++        self.assertIn('The four statuses are those of the whole page', self.html)
+         self.assertIn('at least one of which is not established', self.html)
+ 
+     def test_editorial_and_joined_paths_are_labelled_by_what_is_checked(self):
+@@ -419,24 +420,44 @@ class Markup(unittest.TestCase):
+         beta = re.search(r'<article class="atlas-claim[^"]*" id="atlas-c-beta-isolated".*?</article>', self.html, re.S).group(0)
+         self.assertNotIn('--conv', beta, 'a domain without conventions gets no link')
+ 
+-    def test_the_index_shows_each_claims_own_status_label(self):
+-        row = re.search(r'<tr id="atlas-r-alpha-base".*?</tr>', self.html, re.S).group(0)
+-        label = next(c for c in FIXTURE['claims'] if c['id'] == 'alpha-base')['status']['label']
+-        self.assertIn(f'<span class="atlas-status-own">{html.escape(label)}</span>', row)
+-
+-    def test_the_key_shows_the_page_status_that_matches_scoped_negative(self):
+-        item = re.search(r'<div class="atlas-key-item" data-key-status="scoped_negative">.*?</div>', self.html, re.S).group(0)
+-        self.assertIn('<span class="atlas-key-page">', item)
+-        self.assertIn('class="mark mark-refuted-form"', item, "the page's own mark for 'refuted form'")
+-        self.assertIn('<span class="atlas-key-page-label">Refuted as first posed</span>', item, "the page's own label")
+-        others = re.findall(r'<div class="atlas-key-item" data-key-status="(?:checked|conditional|remaining)">.*?</div>', self.html, re.S)
+-        self.assertTrue(others and all('atlas-key-page' not in o for o in others), 'no match is claimed for the other statuses')
+-        page_marks = re.findall(r'<svg class="mark ', self.html)
+-        in_key = re.findall(r'<span class="atlas-key-page">.*?</span></span>', self.html, re.S)
+-        self.assertEqual(len(page_marks), sum(x.count('<svg class="mark ') for x in in_key), 'page marks appear only in the key match')
+-        bare = Ctx(); bare.status_labels = {}
+-        self.assertNotIn('atlas-key-page"', atlas.render(copy.deepcopy(FIXTURE), bare)['html'], 'no match without the page label')
+-        self.assertIn('--as-negative: var(--st-refuted-form)', self.out['css'], "the page's refuted-form colour")
++    def test_status_words_follow_the_stored_code_never_the_record_label(self):
++        # The status-language ruling: the visible word is chosen by the stored code; per-record labels are display
++        # aliases and appear nowhere on the page.
++        for c in FIXTURE['claims']:
++            self.assertNotIn(html.escape(c['status']['label']), self.html, c['id'])
++        words = {atlas.LABELS['group_' + k] for k in atlas.CODES}
++        self.assertEqual(words, {'Established', 'Conditional', 'Remaining', 'Scoped negative'})
++        chips = re.findall(r'<span class="atlas-chip-group">([^<]*)</span>', self.html)
++        self.assertTrue(chips and set(chips) <= words)
++        cells = re.findall(r'<td class="atlas-col-status">.*?<span>([^<]*)</span></td>', self.html)
++        self.assertTrue(cells and set(cells) <= words)
++
++    def test_the_key_shows_the_page_mark_of_every_status(self):
++        for code, legacy in atlas.PAGE_STATUS.items():
++            item = re.search(rf'<div class="atlas-key-item" data-key-status="{code}">.*?</div>', self.html, re.S).group(0)
++            self.assertIn(f'class="mark mark-{legacy.replace(" ", "-")}"', item, code)
++        self.assertEqual(atlas.PAGE_STATUS, {'checked': 'checked', 'conditional': 'conditional', 'remaining': 'open',
++                                             'scoped_negative': 'refuted form'}, 'the ruling\'s aliases')
++        page_marks = len(re.findall(r'<svg class="mark ', self.html))
++        in_key = sum(x.count('<svg class="mark ') for x in re.findall(r'<div class="atlas-key-item"[^>]*>.*?</div>', self.html, re.S))
++        self.assertEqual(page_marks, in_key, 'page marks appear only in the key')
++        self.assertIn('--as-negative: var(--st-refuted-form)', self.out['css'])
++        self.assertIn('--as-remaining: var(--st-open)', self.out['css'])
++
++    def test_an_alias_the_page_cannot_show_fails_the_build(self):
++        class NoMarks(Ctx):
++            def mark(self, status, label=None):
++                return ''
++        out = atlas.render(copy.deepcopy(FIXTURE), NoMarks())
++        self.assertTrue(any("has no mark for its status 'refuted form'" in p for p in out['problems']), 'never dropped silently')
++        self.assertTrue(out['html'], 'a reader finding: a draft still draws')
++
++    def test_every_claim_is_offered_to_the_page_search_with_its_page_status(self):
++        tags = re.findall(r'<article class="atlas-claim[^"]*"[^>]*>', self.html)
++        self.assertTrue(tags)
++        for tag in tags:
++            code = re.search(r'data-status-code="([a-z_]+)"', tag).group(1)
++            self.assertIn(f'data-qh-unit-status="{atlas.PAGE_STATUS[code]}"', tag)
+ 
+     def test_a_scoped_negative_claim_lists_its_scope(self):
+         neg = next(c['id'] for c in FIXTURE['claims'] if c['status']['code'] == 'scoped_negative')
+@@ -495,15 +516,20 @@ class Mounted(unittest.TestCase):
+         root = SRC.parent.parent
+         content = root / 'content' / 'quantum-holography-status'
+         page = json.loads((content / 'page.json').read_text(encoding='utf-8'))
+-        with tempfile.TemporaryDirectory(dir=os.environ.get('ATLAS_TEST_TMP')) as tmp:
+-            folder = Path(tmp)
+-            for name in ('content.json', 'essay.md'):
+-                (folder / name).symlink_to(content / name)
+-            (folder / 'atlas.json').write_text(json.dumps(FIXTURE), encoding='utf-8')
+-            build = status.Build(folder, page, {}, None, atlas_module=SRC / 'atlas.py')
+-            markup = build.run()
+-            result = audit.run(build, markup)
+-        self.assertEqual(result['failures'], [])
++        def run(with_atlas):
++            with tempfile.TemporaryDirectory(dir=os.environ.get('ATLAS_TEST_TMP')) as tmp:
++                folder = Path(tmp)
++                for name in ('content.json', 'essay.md'):
++                    (folder / name).symlink_to(content / name)
++                if with_atlas:
++                    (folder / 'atlas.json').write_text(json.dumps(FIXTURE), encoding='utf-8')
++                build = status.Build(folder, page, {}, None, atlas_module=SRC / 'atlas.py')
++                markup = build.run()
++                return markup, audit.run(build, markup)
++        _, alone = run(False)
++        markup, result = run(True)
++        # The atlas adds no failure to the page's own audit (the page's content may carry findings of its own).
++        self.assertEqual(sorted(result['failures']), sorted(alone['failures']))
+         self.assertEqual(result['math_errors'], 0)
+         self.assertEqual(len(re.findall(r'<section [^>]*\bdata-atlas-mount[ >]', markup)), 1, 'one mounted atlas section')
+         nav = re.search(r'<nav class="nav".*?</nav>', markup, re.S).group(0)
+diff --git a/compiler/quantum-holography-status/tests/atlas.test.cjs b/compiler/quantum-holography-status/tests/atlas.test.cjs
+index 83b8a45..26fe671 100644
+--- a/compiler/quantum-holography-status/tests/atlas.test.cjs
++++ b/compiler/quantum-holography-status/tests/atlas.test.cjs
+@@ -130,7 +130,14 @@ test('RT2/RT3: an index link selects its claim through the address, with stateme
+   assert.equal(p.w.location.hash, '#atlas-c-' + hub);
+   assert.equal(selected(p), hub);
+   const art = p.d.getElementById('atlas-c-' + hub);
+-  assert.ok(art.querySelector('.atlas-status-label').textContent.includes(claimById[hub].status.label));
++  /* The status-language ruling: the word is chosen by the stored code, and the page status by the alias map. */
++  const WORD = { checked: 'Established', conditional: 'Conditional', remaining: 'Remaining', scoped_negative: 'Scoped negative' };
++  const ALIAS = { checked: 'checked', conditional: 'conditional', remaining: 'open', scoped_negative: 'refuted form' };
++  const code = claimById[hub].status.code;
++  assert.equal(art.querySelector('.atlas-chip-group').textContent.trim(), WORD[code]);
++  assert.equal(art.getAttribute('data-qh-unit-status'), ALIAS[code]);
++  assert.ok(!art.textContent.includes(claimById[hub].status.label) || claimById[hub].status.label === WORD[code],
++            'the per-record label is not shown');
+   assert.equal(art.querySelectorAll('.atlas-hyps li').length, claimById[hub].hypotheses.length);
+   const listed = dir => Array.from(art.querySelectorAll(`.atlas-rel-block[data-dir="${dir}"] .atlas-rel`)).map(li => li.getAttribute('data-edge-id')).sort();
+   assert.deepEqual(listed('in'), inOf(hub));
+@@ -237,7 +244,7 @@ test('RT8/INV5: filters by words, domain and status; the count line names no num
+   q.dispatchEvent(new p.w.Event('input', { bubbles: true }));
+   await sleep(160);
+   const rows = () => Array.from(p.d.querySelectorAll('.atlas-table tbody tr')).filter(r => !r.hidden).map(r => r.getAttribute('data-claim-ref'));
+-  const want = DATA.claims.filter(c => (c.title + ' ' + c.statement + ' ' + c.hypotheses.join(' ') + ' ' + c.status.label + ' ' + (c.sourceLabel || '')).toLowerCase().includes('lift')).map(c => c.id);
++  const want = DATA.claims.filter(c => (c.title + ' ' + c.statement + ' ' + c.hypotheses.join(' ') + ' ' + (c.sourceLabel || '')).toLowerCase().includes('lift')).map(c => c.id);
+   assert.deepEqual(rows(), want);
+   assert.doesNotMatch(p.d.querySelector('.atlas-count').textContent, /\d/);
+   p.d.querySelector('.atlas-clear').click();
+@@ -358,6 +365,38 @@ test('the page search finds the atlas claims it is offered, and following a resu
+   assert.equal(p.d.activeElement, p.d.querySelector(`#atlas-c-${target.id} .atlas-claim-title`), 'focus on the claim heading');
+ });
+ 
++test('the page search, filtered by a status, keeps the atlas claims of that status (by the ruling\'s aliases) and names it', async () => {
++  const p = load();
++  await settle();
++  const q = p.d.getElementById('find-q');
++  if (!q) { SKIP.reason = 'the page offers no search field'; return SKIP; }
++  const ALIAS = { scoped_negative: 'refuted form', checked: 'checked', conditional: 'conditional', remaining: 'open' };
++  const plain = c => !/\\[(\[]/.test(c.title) && c.title.split(' ').length > 2;
++  let facet = null, neg = null;
++  for (const code of Object.keys(ALIAS)) {
++    const f = p.d.querySelector(`.filter[data-status-facet="${ALIAS[code]}"]`);
++    const c = DATA.claims.find(x => x.status.code === code && plain(x));
++    if (f && c) { facet = f; neg = c; break; }
++  }
++  if (!facet) { SKIP.reason = 'the page offers no status filter for a status of the atlas claims'; return SKIP; }
++  const other = DATA.claims.find(c => ALIAS[c.status.code] !== ALIAS[neg.status.code] && plain(c));
++  const hits = async (c) => {
++    q.focus();
++    q.value = '"' + c.title + '"';
++    q.dispatchEvent(new p.w.Event('input', { bubbles: true }));
++    await sleep(300);
++    return Array.from(p.d.querySelectorAll('.find-results a')).filter(a => a.getAttribute('href') === '#atlas-c-' + c.id);
++  };
++  if (facet.getAttribute('aria-pressed') !== 'true') facet.click();
++  await sleep(200);
++  const found = await hits(neg);
++  assert.ok(found.length, 'the status filter keeps the atlas claim of that status');
++  const word = Array.from(facet.childNodes).map(n => n.textContent).join('').replace(/\s+/g, ' ').trim();
++  const item = found[0].closest('li') || found[0];
++  assert.ok(item.textContent.includes(word), "the result names the page's word for the status: " + word);
++  if (other) assert.equal((await hits(other)).length, 0, 'an atlas claim of another status is not kept by this filter');
++});
++
+ observe('Back after a row toggle of the page (the toggle replaces the history entry)', async () => {
+   const p = load();
+   await settle();
+@@ -384,7 +423,7 @@ test('the map with its key is the first part, and the parts are named apart from
+   assert.deepEqual(mine.filter(t => page.has(t) && t !== 'Atlas'), [], 'no atlas part shares a name with a section of the page');
+ });
+ 
+-test('RT8: the filter reads title, statement, hypotheses, status label and source only, and says so', async () => {
++test('RT8: the filter reads title, statement, hypotheses and source only, and says so', async () => {
+   const p = load();
+   await settle();
+   const q = p.d.getElementById('atlas-q');
+@@ -392,13 +431,8 @@ test('RT8: the filter reads title, statement, hypotheses, status label and sourc
+   q.value = 'listed';
+   q.dispatchEvent(new p.w.Event('input', { bubbles: true }));
+   await sleep(160);
+-  assert.deepEqual(rows(), DATA.claims.filter(c => /listed/i.test(c.title + ' ' + c.statement + ' ' + c.hypotheses.join(' ') + ' ' + c.status.label + ' ' + (c.sourceLabel || ''))).map(c => c.id),
++  assert.deepEqual(rows(), DATA.claims.filter(c => /listed/i.test(c.title + ' ' + c.statement + ' ' + c.hypotheses.join(' ') + ' ' + (c.sourceLabel || ''))).map(c => c.id),
+                    'interface words such as None listed. are not searched');
+-  const labelled = DATA.claims.find(c => !DATA.claims.some(o => o !== c && o.status.label === c.status.label)) || DATA.claims[0];
+-  q.value = '"' + labelled.status.label + '"';
+-  q.dispatchEvent(new p.w.Event('input', { bubbles: true }));
+-  await sleep(160);
+-  assert.ok(rows().includes(labelled.id), 'a claim is found by its own status label');
+   const src = DATA.claims.find(c => c.sourceLabel);
+   if (src) {
+     q.value = src.sourceLabel;

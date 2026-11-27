@@ -1,0 +1,50 @@
+--- a/compiler/quantum-holography-status/status.py
++++ b/compiler/quantum-holography-status/status.py
+@@ -676,6 +676,10 @@
+         changes = self.changes(c)
+         key = self.section('status', L['key'], self.key(c), cls='key-section', kicker=L['key_kicker'])
+         principal = self.principal(c)
++        atlas_section = ''
++        if (self.folder / 'atlas.json').exists():  # the research atlas
++            import atlas  # here: atlas.py imports status
++            atlas_section = atlas.section(self, self.folder)
+         decisive = self.frontier(c, 'decisive')
+         frontier = self.frontier(c)
+         examples = self.rows(c)
+@@ -685,6 +689,8 @@
+         terms = self.glossary()
+ 
+         nav_items = [('programme', L['nav_programme']), ('results', L['nav_results'])]
++        if atlas_section:
++            nav_items.append(('atlas', atlas.labels_for(self.page)['nav']))
+         if decisive:
+             nav_items.append(('decisive', L['nav_decisive']))
+         if frontier:
+@@ -705,7 +711,7 @@
+                 f'<nav class="nav" aria-label="{html.escape(L["on_page"])}"><ul>{nav}</ul></nav>'
+                 f'<button type="button" class="theme" aria-label="{html.escape(L["theme"])}" title="{html.escape(L["theme"])}">'
+                 f'{icon("theme")}</button></div></div>'
+-                f'<main id="main" tabindex="-1">{cover}{changes}{key}{principal}{decisive}{frontier}{examples}{failures}{open_}{essay}{terms}</main>'
++                f'<main id="main" tabindex="-1">{cover}{changes}{key}{principal}{atlas_section}{decisive}{frontier}{examples}{failures}{open_}{essay}{terms}</main>'
+                 f'<footer class="foot"><div class="foot-inner"><p>{html.escape(self.page["author"])} · '
+                 f'<time datetime="{html.escape(c["as_of"])}">{html.escape(long_date(c["as_of"]))}</time></p>'
+                 f'<p><a href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a> · '
+@@ -719,6 +725,8 @@
+ 
+         # The print sheet follows the screen sheet, so that its rules win at equal specificity.
+         css = (HERE / 'status.css').read_text(encoding='utf-8') + '\n' + (HERE / 'status-print.css').read_text(encoding='utf-8')
++        if atlas_section:
++            css += '\n' + atlas.stylesheet()
+         js = (HERE / 'status.js').read_text(encoding='utf-8')
+         fonts = self.font_faces(body)
+         title_text = strip_tags(self.math_free(c['title']))
+@@ -742,7 +750,8 @@
+             "<script>try{var t=localStorage.getItem('qh-theme');if(t==='dark'||t==='light')"
+             "document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>\n"
+             f'<style>{fonts}\n{css}</style>\n</head>\n')
+-        return head + f'<body>\n{body}\n<script>{js}</script>\n</body>\n</html>\n'
++        extra = f'<script>{atlas.script()}</script>\n' if atlas_section else ''
++        return head + f'<body>\n{body}\n<script>{js}</script>\n{extra}</body>\n</html>\n'
+ 
+     def math_free(self, text):
+         return MATH_RE.sub(lambda m: m.group(1) or m.group(2) or '', text or '')

@@ -1,0 +1,334 @@
+[('fig-gaussian-reduction', 'gaussian-elimination', 'ch01'), ('fig-local-expansions', 'two-expansions', 'ch01'), ('fig-cohomology-jump', 'cohomology-jump', 'ch05'), ('fig-infinite-rank', 'infinite-rank', 'ch08'), ('fig-adjunction-triangles', 'adjunction-triangles', 'ch06')]
+===== fig-cohomology-jump
+{
+ "id": "fig-cohomology-jump",
+ "chapter_id": "ch05",
+ "section_id": "cohomology-and-parameters",
+ "type": "authored_finite_states",
+ "model": "cohomology-jump",
+ "title": "A constant Euler characteristic with changing cohomology",
+ "caption": "The complex has differential diag(t,0) from degree zero to degree one. Its two cohomology dimensions jump at t=0, although their alternating sum remains zero. The contraction of the first summand uses 1/t and does not extend across zero.",
+ "parameters": {
+  "t": "complex parameter; the display uses the three real representatives -1, 0 and 1"
+ },
+ "domain": "A two-term complex of complex vector spaces in degrees 0 and 1; no other differential is present.",
+ "outputs": {
+  "differential": "diag(t,0)",
+  "H0": "kernel of diag(t,0)",
+  "H1": "cokernel of diag(t,0)",
+  "Euler_characteristic": "dim(H0)-dim(H1)"
+ },
+ "labels": {
+  "degree_zero": "Degree 0: C u₁ ⊕ C u₂",
+  "degree_one": "Degree 1: C v₁ ⊕ C v₂",
+  "first_arrow": "u₁ ↦ t v₁",
+  "second_arrow": "u₂ ↦ 0",
+  "H0": "Dimension of H⁰",
+  "H1": "Dimension of H¹",
+  "Euler_characteristic": "Euler characteristic",
+  "homotopy": "Contraction on the first summand"
+ },
+ "permitted_controls": [
+  "state"
+ ],
+ "initial_state": "zero",
+ "states": [
+  {
+   "id": "negative",
+   "label": "t = −1",
+   "t": -1,
+   "differential_matrix": [
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "rank": 1,
+   "H0_dim": 1,
+   "H1_dim": 1,
+   "Euler_characteristic": 0,
+   "homotopy": "h(v₁) = −u₁; h(v₂) = 0",
+   "surviving_basis": {
+    "H0": [
+     "u₂"
+    ],
+    "H1": [
+     "v₂"
+    ]
+   }
+  },
+  {
+   "id": "zero",
+   "label": "t = 0",
+   "t": 0,
+   "differential_matrix": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "rank": 0,
+   "H0_dim": 2,
+   "H1_dim": 2,
+   "Euler_characteristic": 0,
+   "homotopy": "No contraction of the first summand exists at t = 0.",
+   "surviving_basis": {
+    "H0": [
+     "u₁",
+     "u₂"
+    ],
+    "H1": [
+     "v₁",
+     "v₂"
+    ]
+   }
+  },
+  {
+   "id": "positive",
+   "label": "t = 1",
+   "t": 1,
+   "differential_matrix": [
+    [
+     1,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "rank": 1,
+   "H0_dim": 1,
+   "H1_dim": 1,
+   "Euler_characteristic": 0,
+   "homotopy": "h(v₁) = u₁; h(v₂) = 0",
+   "surviving_basis": {
+    "H0": [
+     "u₂"
+    ],
+    "H1": [
+     "v₂"
+    ]
+   }
+  }
+ ],
+ "equation_refs": [],
+ "equation_anchors": {
+  "two-term-complex": "eq-cohomology-jump"
+ },
+ "prohibited_inferences": [
+  "Constant Euler characteristic implies constant cohomology.",
+  "A contraction involving 1/t extends to t=0.",
+  "This elementary example proves a programme-specific comparison theorem."
+ ]
+}
+===== fig-infinite-rank
+{
+ "id": "fig-infinite-rank",
+ "chapter_id": "ch08",
+ "section_id": "tensor-completion-and-rank",
+ "type": "authored_formula",
+ "model": "infinite-rank",
+ "title": "Finite diagonal tensors and their coordinatewise limit",
+ "caption": "For V equal to the space of all complex sequences, V ⊗ V consists of finite-rank matrices. The finite diagonals D⁽ᴺ⁾ converge coordinatewise to the infinite identity matrix, which lies in the specified completion and has infinite rank. Every displayed matrix is only a finite viewport.",
+ "parameters": {
+  "N": "positive integer; displayed range 1 through 8",
+  "i": "nonnegative integer row index",
+  "j": "nonnegative integer column index"
+ },
+ "domain": "V = product over n≥0 of C. The algebraic tensor image has the coordinatewise topology inherited from the full matrix product. Its completion is the full product over (i,j)≥0 of C.",
+ "controls": {
+  "N": {
+   "initial": 3,
+   "min": 1,
+   "max": 8,
+   "step": 1,
+   "label": "Number N of nonzero diagonal entries"
+  }
+ },
+ "permitted_controls": [
+  "N",
+  "state"
+ ],
+ "initial_state": "finite-truncation",
+ "labels": {
+  "finite": "Finite diagonal D⁽ᴺ⁾",
+  "limit": "Infinite identity δᵢⱼ",
+  "rank": "Rank of the full matrix",
+  "tensor_membership": "Belongs to V ⊗ V",
+  "completion_membership": "Belongs to the coordinatewise completion",
+  "viewport": "Displayed rows and columns: 0 through 7",
+  "convergence": "For each fixed pair (i,j), D⁽ᴺ⁾ᵢⱼ eventually equals δᵢⱼ."
+ },
+ "outputs": {
+  "finite_entry": "1 if i=j and i<N, otherwise 0",
+  "limit_entry": "1 if i=j, otherwise 0",
+  "finite_rank": "N",
+  "limit_rank": "infinite",
+  "viewport_size": 8
+ },
+ "states": [
+  {
+   "id": "finite-truncation",
+   "label": "Finite diagonal D⁽ᴺ⁾",
+   "entry_rule": "i=j and i<N",
+   "rank": "N",
+   "algebraic_tensor_member": true,
+   "completion_member": true,
+   "explanation": "D⁽ᴺ⁾ = sum from i=0 to N−1 of eᵢ ⊗ eᵢ, where eᵢ is the sequence supported at i."
+  },
+  {
+   "id": "coordinatewise-limit",
+   "label": "Coordinatewise limit δᵢⱼ",
+   "entry_rule": "i=j",
+   "rank": "infinite",
+   "algebraic_tensor_member": false,
+   "completion_member": true,
+   "explanation": "Every finite initial diagonal is present, so the column space has arbitrarily large finite-dimensional subspaces."
+  }
+ ],
+ "equation_refs": [],
+ "equation_anchors": {
+  "tensor-map": "eq-sequence-tensor-map"
+ },
+ "prohibited_inferences": [
+  "A finite viewport determines the rank of an infinite matrix.",
+  "The coordinatewise completion equals an unspecified projective or topological tensor product.",
+  "Convergence coordinate by coordinate establishes convergence in every topology."
+ ]
+}
+===== fig-adjunction-triangles
+{
+ "id": "fig-adjunction-triangles",
+ "chapter_id": "ch06",
+ "section_id": "adjunction-comparison-maps",
+ "type": "authored_diagram",
+ "model": "adjunction-triangles",
+ "title": "The two triangle identities of an adjunction",
+ "caption": "For F left adjoint to G, the unit η and counit ε satisfy two identities. These identities hold for every adjunction. Invertibility of the unit or counit is an additional property, with the consequences stated below.",
+ "domain": "Categories C and D with an adjunction F:C→D, G:D→C. X belongs to C and Y belongs to D. The chapter writes Φ and Ψ for its particular F and G.",
+ "parameters": {
+  "X": "object of C",
+  "Y": "object of D"
+ },
+ "labels": {
+  "F": "Left adjoint F",
+  "G": "Right adjoint G",
+  "eta": "Unit η: id_C → GF",
+  "epsilon": "Counit ε: FG → id_D",
+  "left_triangle": "Triangle at FX",
+  "right_triangle": "Triangle at GY"
+ },
+ "permitted_controls": [
+  "state"
+ ],
+ "initial_state": "left-triangle",
+ "states": [
+  {
+   "id": "left-triangle",
+   "label": "Triangle at FX",
+   "nodes": [
+    {
+     "id": "fx-start",
+     "label": "FX"
+    },
+    {
+     "id": "fgfx",
+     "label": "FGFX"
+    },
+    {
+     "id": "fx-end",
+     "label": "FX"
+    }
+   ],
+   "arrows": [
+    {
+     "from": "fx-start",
+     "to": "fgfx",
+     "label": "F(η_X)"
+    },
+    {
+     "from": "fgfx",
+     "to": "fx-end",
+     "label": "ε_FX"
+    },
+    {
+     "from": "fx-start",
+     "to": "fx-end",
+     "label": "id_FX"
+    }
+   ],
+   "equation": "ε_FX ∘ F(η_X) = id_FX",
+   "meaning": "Applying F to the unit and then evaluating by the counit recovers the original object FX."
+  },
+  {
+   "id": "right-triangle",
+   "label": "Triangle at GY",
+   "nodes": [
+    {
+     "id": "gy-start",
+     "label": "GY"
+    },
+    {
+     "id": "gfgy",
+     "label": "GFGY"
+    },
+    {
+     "id": "gy-end",
+     "label": "GY"
+    }
+   ],
+   "arrows": [
+    {
+     "from": "gy-start",
+     "to": "gfgy",
+     "label": "η_GY"
+    },
+    {
+     "from": "gfgy",
+     "to": "gy-end",
+     "label": "G(ε_Y)"
+    },
+    {
+     "from": "gy-start",
+     "to": "gy-end",
+     "label": "id_GY"
+    }
+   ],
+   "equation": "G(ε_Y) ∘ η_GY = id_GY",
+   "meaning": "Applying the unit and then G to the counit recovers the original object GY."
+  }
+ ],
+ "properties": [
+  {
+   "hypothesis": "Every component η_X is an isomorphism.",
+   "equivalent_statement": "F is fully faithful.",
+   "explanation": "For every pair X,X′, F induces a bijection on their morphism sets."
+  },
+  {
+   "hypothesis": "Every component ε_Y is an isomorphism.",
+   "equivalent_statement": "G is fully faithful.",
+   "explanation": "For every pair Y,Y′, G induces a bijection on their morphism sets."
+  },
+  {
+   "hypothesis": "Both η and ε are natural isomorphisms.",
+   "equivalent_statement": "F and G give inverse equivalences of C and D.",
+   "explanation": "Both comparison maps are invertible on their entire displayed categories."
+  }
+ ],
+ "equation_refs": [],
+ "equation_anchors": {},
+ "prohibited_inferences": [
+  "Every adjunction is an equivalence.",
+  "An arbitrary evaluation map is the counit of the displayed adjunction.",
+  "An adjunction counit is a coalgebra counit or a numerical vacuum state."
+ ]
+}
