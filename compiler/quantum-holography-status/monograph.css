@@ -1,0 +1,803 @@
+/* The monograph: a book in parts and chapters, read one chapter at a time by the reader script, with the former status page
+   kept whole as its reference volume. It shares the page's tokens: the type, the 1.2 scale, the paper
+   and ink, the accent, and one set of status marks and colours, used here only for mathematical status.
+   Proportion: one reading measure of 28 body sizes (about 70 characters of this face); a margin column for the chapter's place
+   in the book; numbers of sections and chapters hang in the left margin on a wide screen; space in quarters, halves
+   and multiples of the body line. The book's map is one grid of columns (a column per chapter, a narrower gap
+   between parts) shared by the front matter's map, its routes and every chapter's locator. */
+:root {
+  --mg-measure: calc(var(--text-base) * 28);
+  --mg-aside: 15rem;
+  --mg-gap: clamp(28px, 3.6vw, 56px);
+  --mg-frame: calc(var(--mg-measure) + var(--mg-gap) + var(--mg-aside));
+  --mg-hang: 3.4rem;
+  --mg-bg: var(--paper);
+  --text-ch: calc(var(--text-base) * 2.0736);
+  --text-ch-no: calc(var(--text-base) * 3.583);
+  --sh-edge: color-mix(in srgb, var(--ink) 24%, transparent);
+}
+
+/* The reading bar: served with the site's link (and, for a page without its script, links to the contents and
+   the reference); the reader script adds the book's title, where the reader is, the previous and next chapter and search. */
+.mg-bar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: .25rem 1rem; min-height: var(--bar);
+          padding: 6px max(var(--gutter), env(safe-area-inset-left)); background: var(--bar-bg);
+          border-bottom: 1px solid var(--rule-soft); -webkit-backdrop-filter: saturate(1.2) blur(8px); backdrop-filter: saturate(1.2) blur(8px);
+          font-size: var(--text-sm); line-height: var(--lh-compact); }
+.mg-bar a { text-decoration: none; color: var(--ink-2); }
+.mg-bar a:hover { color: var(--accent); }
+.mg-site { flex: none; color: var(--ink-3) !important; font-variant-caps: all-small-caps; letter-spacing: .06em; font-size: 1.06em; }
+.mg-bar-static { display: flex; gap: 1rem; margin-left: auto; }
+body:has(main[data-reader-on]) .mg-bar-static { display: none; }
+.reader-home { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink) !important;
+               font-style: italic; padding-left: 1rem; border-left: 1px solid var(--rule); }
+.reader-contents-toggle { flex: 1 1 auto; min-width: 0; display: flex; align-items: baseline; gap: .6rem; padding: 6px 10px; margin: 0;
+                          border: 1px solid transparent; border-radius: 5px; background: transparent; cursor: pointer; text-align: left;
+                          color: var(--ink-2); line-height: var(--lh-compact); }
+.reader-contents-toggle:hover, .reader-contents-toggle[aria-expanded='true'] { background: var(--paper-2); color: var(--ink); }
+.reader-contents-word { flex: none; font-variant-caps: all-small-caps; letter-spacing: .06em; color: var(--ink-3); font-size: 1.06em; }
+.reader-position { flex: 1 1 auto; min-width: 0; display: flex; align-items: baseline; gap: .45rem; overflow: hidden; white-space: nowrap; }
+.reader-position > span { overflow: hidden; text-overflow: ellipsis; }
+.reader-position > span:empty { display: none; }
+.reader-position-part { flex: none; color: var(--ink-3); }
+.reader-position-chapter { flex: none; color: var(--ink); }
+.reader-position-title { flex: 0 1 auto; color: var(--ink); font-style: italic; }
+.reader-position-section { flex: 0 1 auto; color: var(--ink-3); }
+.reader-position-part:not(:empty) + .reader-position-chapter:not(:empty)::before,
+.reader-position-title:not(:empty) + .reader-position-section:not(:empty)::before { content: '·'; margin-right: .45rem; color: var(--ink-4); }
+.reader-route { display: flex; align-items: baseline; gap: .5rem; color: var(--ink-3); white-space: nowrap; }
+.reader-route[hidden] { display: none; }
+.reader-route-leave, .reader-notice-close, .reader-notice-action, .reader-search-close, .reader-peek-close {
+  font: inherit; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); border-radius: 4px; padding: 2px 8px; cursor: pointer; }
+.reader-route-leave:hover, .reader-notice-close:hover, .reader-notice-action:hover, .reader-search-close:hover, .reader-peek-close:hover {
+  background: var(--paper-2); color: var(--ink); }
+.reader-prev, .reader-next { flex: 0 1 auto; min-width: 0; max-width: 26rem; display: flex; align-items: baseline; gap: .4rem; padding: 6px 8px;
+                             border-radius: 5px; white-space: nowrap; overflow: hidden; }
+.reader-prev[hidden], .reader-next[hidden] { display: none; }
+.reader-prev:hover, .reader-next:hover { background: var(--paper-2); }
+.reader-step-label { flex: none; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .05em; }
+.reader-step-title { overflow: hidden; text-overflow: ellipsis; color: var(--ink-2); }
+.reader-step-arrow { flex: none; color: var(--ink-3); }
+.reader-search-toggle { flex: none; font: inherit; padding: 5px 12px; border: 1px solid var(--rule); border-radius: 999px; background: transparent;
+                        color: var(--ink-2); cursor: pointer; }
+.reader-search-toggle:hover, .reader-search-toggle[aria-expanded='true'] { background: var(--paper-2); color: var(--ink); }
+
+/* Notices (the reader's place, an address the book does not have): on the reading frame, never full-bleed. */
+.reader-notices { max-width: var(--mg-frame); margin: 0 auto; padding: 0 var(--gutter); }
+.reader-notices:empty { display: none; }
+.reader-notice { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; margin: var(--s3) 0 0; padding: .6rem 1rem;
+                 background: var(--paper-2); border: 1px solid var(--rule-soft); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0;
+                 font-size: var(--text-sm); line-height: var(--lh-compact); }
+.reader-notice p { margin: 0; }
+.reader-notice-text { flex: 1 1 20rem; color: var(--ink-2); }
+.reader-notice-actions { display: flex; gap: .5rem; }
+
+/* Places: the reader script shows one; the others are hidden until found. */
+main[data-reader] { display: block; padding-bottom: var(--s6); }
+main[data-reader] > [hidden='until-found'] { content-visibility: hidden; }
+/* While a page whose reader will run is still loading, its places are not laid out; the reader shows one of them as
+   soon as it starts. (The mark on the root is set in the head, and taken away if no reader starts.) A telephone then
+   lays out only what it shows and stays free to paint the page as it is scrolled. */
+html[data-reader-js] main[data-reader]:not([data-reader-on]) > :is(article[data-chapter], section[data-reference]) { content-visibility: hidden; }
+[data-revealed] { animation: mg-revealed 2.4s ease-out 1; border-radius: 3px; }
+@keyframes mg-revealed { from { box-shadow: 0 0 0 .4em color-mix(in srgb, var(--accent) 22%, transparent); background-color: color-mix(in srgb, var(--accent-soft) 70%, transparent); } }
+@media (prefers-reduced-motion: reduce) { [data-revealed] { animation: none; outline: 2px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 4px; } }
+
+/* The front matter ---------------------------------------------------------------------------------------------- */
+.mg-front { max-width: calc(76rem + 2 * var(--gutter)); margin: 0 auto; padding: var(--s6) var(--gutter) var(--s4); }
+/* The title page uses the chapters' frame: the reading column, and the margin column with the book at a glance. */
+.mg-front-frame { display: grid; grid-template-columns: minmax(0, var(--mg-measure)) var(--mg-gap) var(--mg-aside); align-items: start;
+                  max-width: var(--mg-frame); margin: 0 auto; }
+.mg-front-main { grid-column: 1; min-width: 0; }
+.mg-front-rail { grid-column: 3; grid-row: 1; padding-top: calc(var(--s6) + .5rem); font-size: var(--text-sm); line-height: var(--lh-compact); color: var(--ink-2); }
+.mg-rail-block + .mg-routes { margin-top: var(--s3); padding-top: var(--s2); border-top: 1px solid var(--rule-soft); }
+.mg-rail-h { margin: 0 0 .5rem; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .07em; }
+.mg-glance { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.mg-glance a { display: grid; grid-template-columns: 1.9rem minmax(0, 1fr); align-items: baseline; color: var(--ink); text-decoration: none; }
+.mg-glance a:hover .mg-glance-title { color: var(--accent); text-decoration: underline; text-decoration-thickness: .06em; }
+.mg-glance-no { color: var(--accent); font-variant-caps: all-small-caps; letter-spacing: .06em; }
+.mg-glance-ch { display: block; padding-left: 1.9rem; color: var(--ink-3); }
+.mg-front-rail .mg-routes { margin-top: var(--s3); }
+.mg-front-rail .mg-route { display: block; }
+.mg-front-rail .mg-route-list { display: block; }
+.mg-front-title-block { margin-bottom: var(--s5); }
+.mg-front-title { margin: 0 0 var(--s2); font-size: calc(var(--text-base) * 2.986); font-weight: 400; line-height: var(--lh-title);
+                  letter-spacing: -.012em; text-wrap: balance; }
+.mg-front-subtitle { margin: 0 0 var(--s3); font-size: var(--text-h3b); font-style: italic; color: var(--ink-2); line-height: var(--lh-display); }
+.mg-front-audience { margin: 0 0 var(--s1); color: var(--ink-2); }
+.mg-front-byline { margin: 0; color: var(--ink-3); font-size: var(--text-sm); font-variant-caps: all-small-caps; letter-spacing: .06em; }
+
+/* The map of the book: a column per part, a box per chapter (number and title), and a line from a chapter to each
+   later chapter that draws on it directly. Lines are quiet and thinner than the boxes' rules; one chapter under the
+   pointer or focus lights its own lines. Where the figure is too narrow for the titles, it gives way to the contents. */
+.mg-front-intro, .mg-front-abstract { max-width: var(--mg-measure); margin: 0 0 var(--s5); }
+.mg-front-intro p, .mg-front-abstract p { margin: 0; text-wrap: pretty; }
+.mg-front-intro p + p, .mg-front-abstract p + p { text-indent: 1.5em; }
+.mg-front-intro .mg-lead { margin-bottom: var(--s2); }
+.mg-front-intro .mg-lead + p { text-indent: 0; }
+.mg-bookmap { margin: 0 0 var(--s3); container-type: inline-size; }
+.mg-map-h { margin: 0 0 var(--s2); font-variant-caps: all-small-caps; letter-spacing: .06em; color: var(--ink-3); font-size: var(--text-sm); }
+.mg-bm-stage { position: relative; }
+.mg-bm-parts { display: grid; align-items: end; list-style: none; margin: 0 0 .6rem; padding: 0; }
+.mg-bm-part { display: flex; align-items: flex-end; height: 100%; padding-bottom: .35rem; border-bottom: 1.5px solid var(--ink-3);
+              font-size: var(--text-sm); line-height: var(--lh-compact); }
+.mg-bm-part a { color: var(--ink-2); text-decoration: none; overflow-wrap: normal; word-break: normal; hyphens: manual; }
+.mg-bm-part a:hover { color: var(--accent); }
+.mg-bm-partno { display: block; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .08em; }
+.mg-bm-parttitle { display: block; text-wrap: balance; }
+.mg-bm-plot { position: relative; }
+.mg-bm-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.mg-bm-edge { fill: none; stroke: var(--ink-3); stroke-opacity: .8; stroke-width: 1.2; vector-effect: non-scaling-stroke; stroke-linejoin: round; transition: stroke .15s, opacity .15s; }
+.mg-bm-tip { position: absolute; width: 0; height: 0; color: var(--ink-3); transition: color .15s, opacity .15s; }
+.mg-bm-tip.is-right { transform: translate(-100%, -50%); border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+.mg-bm-tip.is-down { transform: translate(-50%, -100%); border-top: 8px solid currentColor; border-left: 5px solid transparent; border-right: 5px solid transparent; }
+.mg-bm-box { position: absolute; display: flex; align-items: center; gap: .38em; padding: .3em .46em; border: 1.3px solid var(--rule);
+             border-radius: 6px; background: var(--paper); color: var(--ink); text-decoration: none; transition: border-color .15s, opacity .15s; }
+.mg-bm-no, .mg-bm-title { font-size: var(--text-sm); line-height: 1.22; }
+.mg-bm-box:hover, .mg-bm-box:focus-visible { border-color: var(--accent); }
+.mg-bm-no { flex: none; color: var(--accent); font-variant-numeric: lining-nums tabular-nums; min-width: 1.2em; }
+.mg-bookmap .mg-map-h { margin-bottom: var(--s3); }
+.mg-bm-title { min-width: 0; overflow-wrap: normal; hyphens: manual; -webkit-hyphens: manual; }
+.mg-map-cap { margin-top: var(--s2); color: var(--ink-3); font-size: var(--text-sm); max-width: var(--mg-measure); }
+.mg-map-cap:empty { display: none; }
+@container (max-width: 52em) { .mg-bm-stage, .mg-map-h, .mg-map-cap { display: none; } }
+.mg-routes { margin: var(--s3) 0 0; }
+.mg-routes-h { margin: 0 0 var(--s1); font-variant-caps: all-small-caps; letter-spacing: .06em; color: var(--ink-3); font-size: var(--text-sm); }
+.mg-route-list-all { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
+.mg-route { display: flex; flex-wrap: wrap; gap: 0 .8rem; align-items: baseline; }
+.mg-route-name { font-style: italic; color: var(--ink); text-decoration: none; }
+.mg-route-name:hover, .mg-route-name:focus-visible { color: var(--accent); text-decoration: underline; }
+.mg-route-list { color: var(--ink-3); font-size: var(--text-sm); }
+
+/* The chapter's locator: the same map, quiet, with this chapter, what it draws on and what draws on it. */
+.mg-locator { margin: 0; }
+.mg-locator-plot { display: grid; grid-template-rows: 2.4rem auto; }
+/* The locator's own arcs and row of chapters (these rules were shared with the former map and are kept here). */
+.mg-locator .mg-map-arcs { grid-row: 1; grid-column: 1 / -1; width: 100%; height: 100%; overflow: visible; display: block; }
+.mg-arc { fill: none; stroke: var(--ink-4); stroke-opacity: .55; stroke-width: 1.05; vector-effect: non-scaling-stroke; }
+.mg-ch-aside .mg-dot { font-size: 0; gap: 0; }
+.mg-ch-aside .mg-dot.is-here { font-size: 12px; gap: 3px; }
+.mg-locator .mg-arc { stroke-width: 1; }
+.mg-locator .mg-arc.is-quiet { stroke-opacity: .16; }
+.mg-locator .mg-arc.is-in { stroke: var(--accent); stroke-opacity: .95; stroke-width: 1.6; }
+.mg-locator .mg-arc.is-out { stroke: var(--ink-3); stroke-opacity: .7; stroke-dasharray: 1.2 3.2; stroke-linecap: round; }
+.mg-dots { grid-row: 2; grid-column: 1 / -1; display: grid; list-style: none; margin: 0; padding: 0; }
+.mg-dot { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 12px; line-height: 1; color: var(--ink-4);
+          font-variant-numeric: lining-nums tabular-nums; }
+.mg-dot::before { content: ''; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: color-mix(in srgb, var(--ink-4) 55%, transparent); }
+.mg-dot.is-pre::before { background: var(--paper); box-shadow: inset 0 0 0 1.6px var(--accent); width: 9px; height: 9px; margin-top: -4.5px; }
+.mg-dot.is-post::before { background: var(--paper); box-shadow: inset 0 0 0 1.2px var(--ink-3); width: 8px; height: 8px; margin-top: -4px; }
+.mg-dot.is-here::before { background: var(--accent); width: 13px; height: 13px; margin-top: -6.5px; }
+.mg-dot.is-here, .mg-dot.is-pre { color: var(--ink-2); }
+.mg-dot.is-here span { color: var(--accent); font-weight: 600; }
+
+.mg-locator-key { display: flex; flex-wrap: wrap; gap: .2rem 1.1rem; margin: .45rem 0 0; font-size: 12.5px; line-height: 1.3; color: var(--ink-3); }
+.mg-key { display: inline-flex; align-items: center; gap: .4rem; }
+.mg-key::before { content: ''; flex: none; border-radius: 50%; }
+.mg-key-here::before { width: 11px; height: 11px; background: var(--accent); }
+.mg-key-pre::before { width: 9px; height: 9px; box-shadow: inset 0 0 0 1.6px var(--accent); }
+.mg-key-post::before { width: 8px; height: 8px; box-shadow: inset 0 0 0 1.2px var(--ink-3); }
+.mg-key-note:empty { display: none; }
+.mg-post { margin: 0; }
+.mg-post a { color: var(--accent); text-decoration: none; font-variant-numeric: lining-nums tabular-nums; padding: 0 .1rem; }
+.mg-post a:hover { text-decoration: underline; }
+.mg-marks { margin: var(--s4) auto 0; padding-top: var(--s2); border-top: 1px solid var(--rule-soft); max-width: var(--mg-frame); }
+.mg-marks-h { margin: 0 0 .4rem; font-variant-caps: all-small-caps; letter-spacing: .06em; color: var(--ink-3); font-size: var(--text-sm); }
+.mg-marks-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem 1.4rem; }
+.mg-marks-list li { display: inline-flex; align-items: center; gap: .4rem; }
+.mg-marks-note { margin: .4rem 0 0; color: var(--ink-3); font-size: var(--text-sm); }
+
+/* The contents ------------------------------------------------------------------------------------------------- */
+.mg-toc { max-width: calc(var(--mg-frame) + 8rem); margin: 0 auto; padding: var(--s4) var(--gutter) var(--s5); }
+.mg-toc-h { margin: 0 0 var(--s4); font-size: var(--text-h2); font-weight: 400; line-height: var(--lh-display);
+            padding-bottom: var(--s2); border-bottom: 1px solid var(--rule); }
+.mg-toc-parts { list-style: none; margin: 0; padding: 0; }
+.mg-toc-part { margin: 0 0 var(--s5); display: grid; grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr); column-gap: var(--mg-gap); }
+.mg-toc-part-head { grid-column: 1; margin: 0; padding-top: .35rem; line-height: var(--lh-compact); }
+.mg-toc-part-no { display: block; font-variant-caps: all-small-caps; letter-spacing: .08em; color: var(--ink-3); font-size: var(--text-sm); }
+.mg-toc-part-title { display: block; font-size: var(--text-h3); line-height: var(--lh-display); text-wrap: balance; }
+.mg-toc-part-summary { grid-column: 1; margin: var(--s2) 0 0; color: var(--ink-3); font-size: var(--text-sm); }
+.mg-toc-chapters { grid-column: 2; grid-row: 1 / span 2; list-style: none; margin: 0; padding: 0; }
+.mg-toc-ch { position: relative; padding: .35rem 0 var(--s3) 3.2rem; }
+.mg-toc-ch + .mg-toc-ch { border-top: 1px solid var(--rule-soft); padding-top: var(--s2); }
+.mg-toc-link { display: block; text-decoration: none; color: var(--ink); font-size: var(--text-h3); line-height: var(--lh-display); }
+.mg-toc-link:hover .mg-toc-title { color: var(--accent); text-decoration: underline; text-decoration-thickness: .05em; text-underline-offset: .2em; }
+.mg-toc-no { position: absolute; left: 0; width: 2.4rem; text-align: right; color: var(--accent); font-variant-numeric: lining-nums proportional-nums; }
+.mg-toc-ch[data-unwritten] .mg-toc-link, .mg-toc-ch[data-unwritten] .mg-toc-no { color: var(--ink-3); }
+.mg-toc-summary { margin: .3rem 0 0; color: var(--ink-2); font-size: var(--text-sm); max-width: var(--mg-measure); }
+.mg-toc-uses { margin: .25rem 0 0; color: var(--ink-3); font-size: var(--text-sm); }
+.mg-toc-uses-h { font-variant-caps: all-small-caps; letter-spacing: .05em; margin-right: .3rem; }
+.mg-toc-uses a { color: var(--ink-2); }
+.mg-toc-sections { list-style: none; margin: .35rem 0 0; padding: 0; font-size: var(--text-sm); line-height: var(--lh-compact); color: var(--ink-3); }
+.mg-toc-sections li { display: inline; }
+.mg-toc-sections li + li::before { content: '·'; margin: 0 .45em; color: var(--ink-4); }
+.mg-toc-sections a { color: var(--ink-3); text-decoration: none; }
+.mg-toc-sections a:hover { color: var(--accent); text-decoration: underline; }
+.mg-toc-sections a[aria-current] { color: var(--ink); }
+.mg-toc-sections .mg-sec-no { color: var(--ink-4); margin-right: .2em; }
+.mg-toc-link[aria-current='page'] .mg-toc-title { font-style: italic; }
+.mg-toc-ref { display: grid; grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr); column-gap: var(--mg-gap);
+              padding-top: var(--s3); border-top: 1px solid var(--rule); }
+.mg-toc-ref .mg-toc-part-head { padding-top: 0; }
+.mg-toc-ref-note { grid-column: 1; margin: var(--s1) 0 0; color: var(--ink-3); font-size: var(--text-sm); }
+.mg-toc-ref-note:empty { display: none; }
+.mg-toc-ref-list { grid-column: 2; grid-row: 1 / span 2; list-style: none; margin: 0; padding: 0; columns: 2 16rem; column-gap: var(--mg-gap); }
+.mg-toc-ref-list li { break-inside: avoid; padding: .15rem 0; }
+.mg-toc-ref-list a { color: var(--ink-2); text-decoration: none; }
+.mg-toc-ref-list a:hover { color: var(--accent); text-decoration: underline; }
+.mg-print-overview { display: none; }
+
+/* The contents opened from the reading bar, over a chapter. */
+[data-reader-toc][data-drawer] { position: fixed; z-index: 35; top: calc(var(--reader-bar-h, var(--bar)) + 6px); left: max(8px, calc(50% - var(--mg-frame) / 2 - 2rem));
+                                 width: min(46rem, calc(100vw - 16px)); max-height: calc(100vh - var(--reader-bar-h, var(--bar)) - 16px); overflow: auto;
+                                 padding: var(--s3) var(--s3) var(--s4); margin: 0; background: var(--paper-3); border: 1px solid var(--rule);
+                                 border-radius: 8px; box-shadow: var(--shadow); overscroll-behavior: contain; }
+[data-reader-toc][data-drawer] .mg-toc-h { font-size: var(--text-h3b); margin-bottom: var(--s3); }
+[data-reader-toc][data-drawer] .mg-toc-part { grid-template-columns: minmax(0, 1fr); margin-bottom: var(--s3); }
+[data-reader-toc][data-drawer] .mg-toc-chapters { grid-column: 1; grid-row: auto; margin-top: var(--s1); }
+[data-reader-toc][data-drawer] .mg-toc-summary, [data-reader-toc][data-drawer] .mg-toc-uses { display: none; }
+[data-reader-toc][data-drawer] .mg-toc-ch { padding-bottom: var(--s2); }
+[data-reader-toc][data-drawer] .mg-toc-link { font-size: var(--text-base); }
+[data-reader-toc][data-drawer] .mg-toc-ref { grid-template-columns: minmax(0, 1fr); }
+[data-reader-toc][data-drawer] .mg-toc-ref-list { grid-column: 1; grid-row: auto; columns: 1; margin-top: var(--s1); }
+[data-reader-toc] [aria-current='page'] { color: var(--ink); }
+[data-reader-toc] li[data-current] > .mg-toc-link .mg-toc-no { font-weight: 600; }
+
+/* A chapter -------------------------------------------------------------------------------------------------------- */
+.mg-chapter { max-width: calc(var(--mg-frame) + 2 * var(--gutter)); margin: 0 auto; padding: var(--s5) var(--gutter) 0; }
+.mg-ch-head { margin-bottom: var(--s3); }
+.mg-ch-kicker { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; margin: 0; padding-bottom: .45rem;
+                border-bottom: 1px solid var(--rule-soft); font-size: var(--text-sm); color: var(--ink-3); line-height: var(--lh-compact); }
+.mg-ch-part { color: var(--ink-2); text-decoration: none; }
+.mg-ch-part:hover { color: var(--accent); }
+.mg-ch-partno, .mg-ch-pos { font-variant-caps: all-small-caps; letter-spacing: .07em; }
+.mg-ch-partno { color: var(--ink-3); margin-right: .3rem; }
+.mg-ch-titleblock { position: relative; margin: var(--s2) 0 0; }
+.mg-ch-title { margin: 0; font-weight: 400; font-size: var(--text-ch); line-height: var(--lh-display);
+               letter-spacing: -.008em; max-width: calc(var(--mg-measure) + 4rem); text-wrap: balance; }
+.mg-ch-no { margin: 0 0 .05em; font-size: var(--text-ch-no); line-height: 1; color: var(--accent); font-variant-numeric: lining-nums proportional-nums; }
+
+.mg-ch-frame { display: grid; grid-template-columns: minmax(0, var(--mg-measure)) var(--mg-gap) var(--mg-aside); align-items: start; }
+.mg-ch-open { grid-column: 1; grid-row: 1; }
+.mg-ch-aside { grid-column: 3; grid-row: 1; font-size: var(--text-sm); line-height: var(--lh-compact); color: var(--ink-2); padding-top: .35rem; }
+.mg-ch-text { grid-column: 1 / -1; grid-row: 2; max-width: var(--mg-measure); }
+.mg-ch-frame > .mg-ch-text:first-child, .mg-ch-frame > .mg-ch-aside:first-child + .mg-ch-text { grid-row: 2; }
+.mg-aside-block { padding: 0 0 var(--s3); }
+.mg-aside-block + .mg-aside-block { padding-top: var(--s2); border-top: 1px solid var(--rule-soft); }
+.mg-aside-h { margin: 0 0 .4rem; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .07em; }
+.mg-pre, .mg-terms, .mg-ch-toc { list-style: none; margin: 0; padding: 0; display: grid; gap: .3rem; }
+.mg-pre a, .mg-ch-toc a { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); align-items: baseline; color: var(--ink-2); text-decoration: none; }
+.mg-pre a:hover .mg-pre-title, .mg-ch-toc a:hover .mg-sec-title { color: var(--accent); text-decoration: underline; text-decoration-thickness: .06em; }
+.mg-pre-no { color: var(--accent); font-variant-numeric: lining-nums tabular-nums; }
+.mg-ch-toc .mg-sec-no { color: var(--ink-4); font-variant-numeric: lining-nums tabular-nums; }
+.mg-terms { display: flex; flex-wrap: wrap; gap: .25rem .4rem; }
+.mg-terms li { padding: .05rem .45rem; border: 1px solid var(--rule); border-radius: 999px; font-style: italic; color: var(--ink-2); }
+
+/* Running text: a book's paragraphs, indented after the first; a paragraph that continues after a display is not. */
+.mg-ch-open, .mg-ch-text, .mg-front-intro, .mg-front-abstract, .mg-gl-entry, .mg-ri-entry { hyphens: auto; -webkit-hyphens: auto;
+  hyphenate-limit-chars: 8 4 4; -webkit-hyphenate-limit-before: 4; -webkit-hyphenate-limit-after: 4; }
+.mg-lead { hyphens: manual !important; -webkit-hyphens: manual !important; }
+.mg-ch-open p, .mg-ch-text p { margin: 0; text-wrap: pretty; }
+.mg-ch-open p + p, .mg-ch-text p + p, .mg-display + p:not(.mg-cont), .mg-list + p:not(.mg-cont) { text-indent: 1.5em; }
+.mg-ch-text p.mg-cont, .mg-ch-open p.mg-cont { text-indent: 0; }
+.mg-lead { font-size: var(--text-lead); line-height: 1.5; color: var(--ink); margin-bottom: var(--s2) !important; text-indent: 0 !important; }
+.mg-lead + p { text-indent: 0 !important; }
+.mg-ch-open { padding-bottom: var(--s3); }
+.mg-ch-text strong, .mg-ch-open strong { font-weight: 600; }
+.mg-ch-text a, .mg-ch-open a { text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.mg-eqref { font-variant-numeric: lining-nums; text-decoration: none; color: var(--accent); }
+.mg-eqref:hover { text-decoration: underline; }
+
+.mg-sec { margin-top: var(--s5); }
+.mg-sec-head { position: relative; margin: 0 0 var(--s2); font-size: var(--text-h3b); font-weight: 600; line-height: var(--lh-display);
+               text-wrap: balance; hyphens: manual; }
+.mg-sec-head .mg-sec-no { color: var(--accent); font-weight: 400; font-variant-numeric: lining-nums tabular-nums; margin-right: .25em; }
+.mg-sec h4, .mg-sec h5 { margin: var(--s4) 0 var(--s1); font-size: var(--text-h3); font-weight: 400; font-style: italic; line-height: var(--lh-display); }
+.mg-sec h4 + p, .mg-sec h5 + p, .mg-sec-head + p { text-indent: 0 !important; }
+
+/* Displays: centred on the measure with the authored number at the right; a formula wider than its box scrolls with a
+   shadow at each edge it can scroll past (both themes, no script), and one estimated wide (--fw, written by the
+   build) is set a little smaller and may take the margin column, where the chapter leaves it free. */
+.mg-display { margin: .8em 0; }
+.mg-display.has-tag { display: grid; grid-template-columns: 3.4em minmax(0, 1fr) 3.4em; align-items: center; }
+.mg-display.has-tag > .math-display { grid-column: 2; }
+.mg-tag { grid-column: 3; justify-self: end; color: var(--ink-3); font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+.mg-display .math-display { margin: 0; padding: .2em 0; }
+.math-display, .math-long {
+  background:
+    linear-gradient(90deg, var(--mg-bg) 35%, transparent) left center / 1.6em 100% no-repeat local,
+    linear-gradient(270deg, var(--mg-bg) 35%, transparent) right center / 1.6em 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, var(--sh-edge), transparent) left center / .7em 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, var(--sh-edge), transparent) right center / .7em 100% no-repeat scroll;
+  background-color: transparent;
+}
+.mg-display math[style*='--fw'] { font-size: clamp(.86em, calc(100cqi / (var(--fw) * .84)), 1em); }
+.mg-display { container-type: inline-size; }
+.mg-display:has(math[style*='--fw']) { container-type: normal; }
+.mg-display:has(math[style*='--fw']) > .math-display { container-type: inline-size; }
+
+/* Results, definitions and examples: the label is the author's lead-in, run into the first paragraph, with the status
+   mark of the atlas; a rule at the left in the status's colour, dashed where the question is open. */
+.mg-env { position: relative; margin: var(--s3) 0; padding: .1rem 0 .1rem 1rem; border-left: 2px solid var(--rule); }
+.mg-env > p:first-child, .mg-env > .mg-env-alone + * { text-indent: 0 !important; }
+.mg-env-label { font-weight: 600; color: var(--ink); hyphens: manual; }
+.mg-env-label .mark { margin-right: .32em; vertical-align: -.12em; }
+.mg-env-alone { margin-bottom: .2em !important; }
+.mg-env-theorem { border-left-color: var(--st-checked); }
+.mg-env-conditional { border-left-color: var(--st-conditional); }
+.mg-env-conjecture { border-left: 2px dashed var(--st-conjecture); }
+.mg-env-heuristic { border-left: 2px dotted var(--st-heuristic); }
+.mg-env-open { border-left: 2px dashed var(--st-open); }
+.mg-env-counterexample { border-left-color: var(--st-refuted-form); }
+.mg-env-definition { --mg-bg: color-mix(in srgb, var(--accent-soft) 55%, var(--paper)); border-left-color: var(--accent);
+                     background: var(--mg-bg); padding: .55rem 1rem .6rem; border-radius: 0 6px 6px 0; }
+.mg-env-example { --mg-bg: var(--paper-2); border-left: 0; background: var(--mg-bg); padding: .6rem 1rem .7rem; border-radius: 6px; }
+.mg-env-remark, .mg-env-construction { border-left: 0; padding-left: 0; }
+.mg-env-remark .mg-env-label, .mg-env-construction .mg-env-label { font-weight: 400; font-style: italic; }
+.mg-env p + p { text-indent: 1.5em; }
+.mg-proof { margin: var(--s2) 0 var(--s3); }
+.mg-proof .mg-env-label { font-weight: 400; font-style: italic; }
+.mg-qed { float: right; margin-left: 1em; color: var(--ink-3); }
+.mg-qed-line { text-align: right; }
+
+/* Statement kinds and statuses, told apart without relying on colour. The rule at the left gives the status by its
+   line as well as its colour: solid where proved, doubled where conditional, dashed where conjectural or open, dotted
+   where heuristic. The frame gives the kind: a theorem is framed, a proposition carries the full rule, a lemma a
+   lighter one, a corollary stands indented under what it follows from; a conjecture is framed in dashes, and an open
+   problem is framed in dashes with its question set below its label. The author's label names the kind and the
+   status in words, and the mark before it repeats the status in shape. */
+.mg-env[data-status='proved'] { border-left: 3px solid var(--st-checked); }
+.mg-env[data-status='conditional'] { border-left: 4px double var(--st-conditional); }
+.mg-env[data-status='conjecture'] { border-left: 3px dashed var(--st-conjecture); }
+.mg-env[data-status='heuristic'] { border-left: 3px dotted var(--st-heuristic); }
+.mg-env[data-status='open'] { border-left: 3px dashed var(--st-open); }
+.mg-env[data-status='refuted-form'] { border-left: 3px solid var(--st-refuted-form); }
+.mg-env[data-kind='theorem'], .mg-env[data-kind='conjecture'], .mg-env[data-kind='open-problem'], .mg-env[data-kind='open-question'] {
+  padding: .6rem 1rem .65rem; border-top: 1px solid var(--rule); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  border-radius: 0 var(--radius) var(--radius) 0; }
+.mg-env[data-kind='theorem'] { --mg-bg: color-mix(in srgb, var(--paper-2) 55%, var(--paper)); background: var(--mg-bg); }
+.mg-env[data-kind='conjecture'] { border-top-style: dashed; border-right-style: dashed; border-bottom-style: dashed;
+  border-top-color: color-mix(in srgb, var(--st-conjecture) 40%, var(--rule)); border-right-color: color-mix(in srgb, var(--st-conjecture) 40%, var(--rule));
+  border-bottom-color: color-mix(in srgb, var(--st-conjecture) 40%, var(--rule)); }
+.mg-env[data-kind='open-problem'], .mg-env[data-kind='open-question'] { border-top-style: dashed; border-right-style: dashed; border-bottom-style: dashed;
+  border-top-color: color-mix(in srgb, var(--st-open) 40%, var(--rule)); border-right-color: color-mix(in srgb, var(--st-open) 40%, var(--rule));
+  border-bottom-color: color-mix(in srgb, var(--st-open) 40%, var(--rule)); }
+.mg-env[data-kind='open-problem'] > p:first-child > .mg-env-label, .mg-env[data-kind='open-question'] > p:first-child > .mg-env-label {
+  display: block; margin-bottom: .2rem; }
+.mg-env[data-kind='definition'] { border-left-width: 3px; }
+.mg-env[data-kind='proposition'] { padding-top: .15rem; padding-bottom: .15rem; }
+.mg-env[data-kind='lemma']:not([data-status='conditional']) { border-left-width: 2px; padding-left: calc(1rem + 1px); }
+.mg-env[data-kind='lemma'] .mg-env-label { font-weight: 600; font-style: italic; }
+.mg-env[data-kind='corollary'] { margin-left: 1.5rem; }
+.mg-env[data-kind='corollary']:not([data-status='conditional']) { border-left-width: 2px; }
+/* A proof: a hairline along its whole length, its label in italics, its end marked. */
+.mg-proof { padding-left: .9rem; border-left: 1px solid var(--rule); }
+.reader-proof-skip { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.reader-proof-skip:focus { position: static; left: auto; width: auto; height: auto; overflow: visible; display: inline-block;
+  margin: 0 0 .35rem; padding: .15rem .7rem; font: inherit; font-size: var(--text-sm); color: var(--accent); background: var(--paper-2);
+  border: 1px solid var(--rule); border-radius: 999px; }
+
+/* A term the author has linked to its definition: a quiet dotted underline in the text's own colour, solid while its
+   definition is shown. The defining passage, when it is on the screen already, is outlined meanwhile. */
+main a[data-ref='definition'] { color: inherit; text-decoration-line: underline; text-decoration-style: dotted;
+  text-decoration-color: color-mix(in srgb, var(--accent) 80%, transparent); text-decoration-thickness: 1px; text-underline-offset: .2em;
+  border-radius: 2px; }
+main a[data-ref='definition']:hover, main a[data-ref='definition']:focus-visible, main a[data-ref='definition'][aria-expanded='true'],
+main a[data-ref='definition'][aria-describedby~='reader-define-text'] {
+  color: inherit; text-decoration-style: solid; background: color-mix(in srgb, var(--accent-soft) 80%, transparent); }
+[data-definition-near] { outline: 2px solid color-mix(in srgb, var(--accent) 50%, transparent); outline-offset: 4px; border-radius: 3px; }
+/* A formula kept whole that is wider than its line on a narrow screen (marked by the reader script) scrolls in place. */
+.nobr.reader-wide { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle;
+  overscroll-behavior-x: contain; }
+.reader-return { margin: .5rem 0 var(--s3); text-indent: 0 !important; }
+.reader-return-button { font: inherit; font-size: var(--text-sm); color: var(--accent); background: transparent; border: 1px solid var(--rule);
+  border-radius: 999px; padding: .2rem .85rem; cursor: pointer; }
+.reader-return-button::before { content: '↩\00a0' / ''; }
+.reader-return-button:hover { background: var(--paper-2); }
+
+.mg-list { margin: .5em 0 .6em; padding-left: 1.6em; }
+.mg-list li { margin: .15em 0; padding-left: .2em; }
+.mg-list li > p { text-indent: 0 !important; }
+.mg-quote { margin: var(--s2) 0; padding-left: 1.2em; border-left: 1px solid var(--rule); color: var(--ink-2); }
+.mg-table-wrap { margin: var(--s3) 0; overflow-x: auto; }
+.mg-table { border-collapse: collapse; font-size: var(--text-sm); line-height: var(--lh-compact); margin: 0 auto; }
+.mg-table thead th { border-bottom: 1px solid var(--ink-3); font-weight: 600; text-align: left; }
+.mg-table th, .mg-table td { padding: .35rem .8rem; vertical-align: baseline; }
+.mg-table tbody tr:last-child td { border-bottom: 1px solid var(--ink-3); }
+.mg-table { border-top: 1px solid var(--ink-3); }
+.mg-rule { border: 0; border-top: 1px solid var(--rule); margin: var(--s4) 0; }
+.mg-code { font-size: var(--text-sm); background: var(--paper-2); padding: .6rem .8rem; border-radius: 4px; overflow-x: auto; }
+.mg-transition { margin-top: var(--s4); padding-top: var(--s2); border-top: 1px solid var(--rule-soft); }
+
+/* A figure (the atlas lane's component inside): a full block of the chapter, taking the margin column when the chapter
+   leaves it free. */
+.mg-figure { margin: var(--s4) 0; }
+.mg-figure > figure { margin: 0; }
+
+/* An authored diagram: nodes are page text over the edges; each edge has its arrowhead (none when undirected) and its
+   number at its middle, and the lists under it state everything in full. One visual language per kind, never colour
+   alone: a defined map is a solid line with a solid head; a functor a solid line with an open chevron; a construction
+   a solid double line whose label is written on it; an open comparison, and only an open comparison, is dashed (in
+   the open colour, with a hollow head); a reading relation is dotted and grey, navigation and never a map. */
+.mg-diagram { margin: 0; container-type: inline-size; --mg-bg: var(--paper); }
+.mg-dg-title { margin: 0 0 .35rem; font-weight: 600; text-indent: 0 !important; }
+.mg-dg-legend { list-style: none; margin: 0 0 var(--s2); padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1.2rem;
+                font-size: var(--text-sm); line-height: var(--lh-compact); color: var(--ink-2); }
+.mg-dg-key { display: inline-flex; align-items: center; gap: .45rem; }
+.mg-dg-sample { flex: none; width: 2.2em; height: 0; border-top: 1.5px solid var(--ink-2); position: relative; }
+.mg-dg-key.is-functor .mg-dg-sample { border-top-width: 1.5px; }
+.mg-dg-key.is-functor .mg-dg-sample::after { content: ''; position: absolute; right: -1px; top: -4.6px; width: 6px; height: 6px;
+                                             border-top: 1.5px solid var(--ink-2); border-right: 1.5px solid var(--ink-2); transform: rotate(45deg); }
+.mg-dg-key.is-construction .mg-dg-sample { border-top: 4.5px double var(--ink-2); }
+.mg-dg-key.is-open_comparison .mg-dg-sample { border-top: 1.5px dashed var(--st-open); }
+.mg-dg-key.is-reading_relation .mg-dg-sample { border-top: 2px dotted var(--ink-4); }
+.mg-dg-key.is-equivalence .mg-dg-sample { border-top-width: 2.4px; border-color: var(--ink); }
+/* A drawing is never set below 0.78 of its size, where node boxes would meet; a narrower figure scrolls it inside its
+   own box, with a shadow at each edge it can scroll past. Layers run left to right only where the figure is wide
+   enough for all of them (k = the number of layers), else top to bottom. */
+.mg-dg-stage { position: relative; margin: 0 auto var(--s2); overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain;
+  background:
+    linear-gradient(90deg, var(--mg-bg) 35%, transparent) left center / 2em 100% no-repeat local,
+    linear-gradient(270deg, var(--mg-bg) 35%, transparent) right center / 2em 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, var(--sh-edge), transparent) left center / .8em 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, var(--sh-edge), transparent) right center / .8em 100% no-repeat scroll; }
+.mg-dg-plot { position: relative; width: max(min(100%, var(--dg-w)), var(--dg-min)); margin: 0 auto; }
+.mg-dg-plot.is-vertical { display: none; }
+.mg-dg-stage.is-tall .mg-dg-plot.is-vertical { display: block; }
+@container (max-width: 374px) { .mg-dg-stage.k2 .mg-dg-plot.is-horizontal { display: none; } .mg-dg-stage.k2 .mg-dg-plot.is-vertical { display: block; } }
+@container (max-width: 562px) { .mg-dg-stage.k3 .mg-dg-plot.is-horizontal { display: none; } .mg-dg-stage.k3 .mg-dg-plot.is-vertical { display: block; } }
+@container (max-width: 749px) { .mg-dg-stage.k4 .mg-dg-plot.is-horizontal { display: none; } .mg-dg-stage.k4 .mg-dg-plot.is-vertical { display: block; } }
+@container (max-width: 936px) { .mg-dg-stage.k5 .mg-dg-plot.is-horizontal { display: none; } .mg-dg-stage.k5 .mg-dg-plot.is-vertical { display: block; } }
+.mg-dg-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.mg-dg-edge { fill: none; stroke: var(--ink-2); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.mg-dg-head { fill: var(--ink-2); stroke: none; }
+.mg-dg-head.is-functor { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.mg-dg-edge.is-construction { stroke-width: 4.6; }
+.mg-dg-rail { fill: none; stroke: var(--mg-bg); stroke-width: 1.8; vector-effect: non-scaling-stroke; }
+.mg-dg-edge.is-equivalence { stroke: var(--ink); stroke-width: 2.4; }
+.mg-dg-head.is-equivalence { fill: var(--ink); }
+.mg-dg-edge.is-open_comparison { stroke: var(--st-open); stroke-dasharray: 6 5; }
+.mg-dg-head.is-open_comparison { fill: var(--paper); stroke: var(--st-open); stroke-width: 1.4; }
+.mg-dg-edge.is-reading_relation { stroke: var(--ink-4); stroke-width: 1.2; stroke-dasharray: 1.5 4; stroke-linecap: round; }
+.mg-dg-head.is-reading_relation { fill: var(--ink-4); }
+.mg-dg-node { position: absolute; transform: translate(-50%, -50%); width: max-content; max-width: 9.5em; padding: .3em .65em;
+              border: 1.3px solid var(--ink-3); border-radius: 6px; background: var(--paper); color: var(--ink); text-align: center;
+              font-size: var(--text-sm); line-height: var(--lh-compact); hyphens: manual; z-index: 1; }
+.mg-dg-node.is-highlighted { border: 2px solid var(--accent); background: color-mix(in srgb, var(--accent-soft) 60%, var(--paper)); }
+.mg-dg-node-formula { display: block; margin-top: .15em; color: var(--ink-2); }
+.mg-dg-badge { position: absolute; transform: translate(-50%, -50%); min-width: 1.45em; padding: 0 .3em; border-radius: 999px;
+               background: var(--paper); border: 1px solid var(--rule); color: var(--ink-2); font-size: 12.5px; line-height: 1.45;
+               text-align: center; font-variant-numeric: lining-nums tabular-nums; z-index: 2; }
+.mg-dg-badge.is-construction { border-radius: 6px; max-width: 12em; width: max-content; padding: .1em .45em; text-align: left; }
+.mg-dg-badge-words { display: inline; margin-left: .35em; color: var(--ink); }
+.mg-dg-badge.is-open_comparison { border-color: var(--st-open); color: var(--st-open); }
+.mg-dg-badge.is-reading_relation { border-style: dotted; color: var(--ink-3); }
+.mg-dg-caption { margin: 0 0 var(--s2); color: var(--ink-2); font-size: var(--text-sm); text-indent: 0; }
+.mg-dg-recstatus { margin: 0 0 .5rem; font-size: var(--text-sm); color: var(--ink-2); display: flex; gap: .35em; align-items: center; text-indent: 0 !important; }
+.mg-dg-block { margin: 0 0 .7rem; font-size: var(--text-sm); line-height: 1.45; }
+.mg-dg-h { margin: 0 0 .2rem; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .06em; text-indent: 0 !important; }
+.mg-dg-ul { margin: 0; padding-left: 1.2em; }
+.mg-dg-ul li { margin: .1rem 0; }
+.mg-dg-eqs { list-style: none; padding-left: 0; }
+.mg-dg-rels { list-style: none; padding-left: 0; }
+.mg-dg-rel-status { display: inline-flex; align-items: center; gap: .3em; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .04em; }
+.mg-dg-not { padding: .45rem .7rem; border-left: 2px solid var(--rule); background: var(--paper-2); --mg-bg: var(--paper-2); }
+.mg-dg-list { list-style: none; margin: 0 0 var(--s2); padding: 0; font-size: var(--text-sm); line-height: var(--lh-compact); display: grid; gap: .45rem; }
+.mg-dg-item { display: grid; grid-template-columns: 1.9em minmax(0, 1fr); gap: .45rem; align-items: baseline; }
+.mg-dg-n { justify-self: center; min-width: 1.45em; padding: 0 .3em; border-radius: 999px; border: 1px solid var(--rule); text-align: center;
+           color: var(--ink-2); font-size: 12.5px; line-height: 1.45; font-variant-numeric: lining-nums tabular-nums; }
+.mg-dg-item.is-open_comparison .mg-dg-n { border-color: var(--st-open); color: var(--st-open); }
+.mg-dg-item.is-reading_relation .mg-dg-n { border-style: dotted; }
+.mg-dg-ends { color: var(--ink); }
+.mg-dg-arrow { color: var(--ink-3); margin: 0 .15em; }
+.mg-dg-label { color: var(--ink); }
+.mg-dg-kind { color: var(--ink-3); font-style: italic; }
+.mg-dg-status { display: inline-flex; align-items: center; gap: .3em; margin-left: .35em; color: var(--ink-2); }
+.mg-dg-hyp { display: block; margin-top: .15rem; color: var(--ink-2); }
+.mg-dg-hyp-h { font-variant-caps: all-small-caps; letter-spacing: .05em; color: var(--ink-3); margin-right: .25em; }
+.mg-dg-nodes { list-style: none; margin: 0 0 var(--s2); padding: 0; font-size: var(--text-sm); line-height: 1.4; display: grid; gap: .35rem; }
+.mg-dg-nd { padding-left: .7rem; border-left: 2px solid var(--rule-soft); }
+.mg-dg-nd.is-highlighted { border-left-color: var(--accent); }
+.mg-dg-nd-name { display: block; color: var(--ink); }
+.mg-dg-desc { display: block; color: var(--ink-2); }
+.mg-dg-more { margin: 0 0 var(--s2); font-size: var(--text-sm); }
+.mg-dg-more > summary { cursor: pointer; color: var(--accent); margin-bottom: .4rem; }
+@media print {
+  .mg-dg-stage { overflow: visible; background: none; }
+  .mg-dg-plot { width: min(100%, var(--dg-w)); }
+  .mg-dg-more > :not(summary) { display: block !important; }
+  .mg-dg-more > summary { display: none; }
+}
+
+/* The end of a chapter: the next chapter as the continuation of the argument, the previous one quietly. */
+.mg-ch-end { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: var(--s3) var(--mg-gap); margin: var(--s5) 0 0;
+             padding: var(--s3) 0 0; border-top: 1px solid var(--rule); max-width: var(--mg-frame); }
+.mg-ch-end a { display: block; padding: .6rem .2rem; text-decoration: none; color: var(--ink); border-radius: 6px; }
+.mg-end-prev { grid-column: 1; align-self: start; }
+.mg-end-next { grid-column: 2; padding: .8rem 1.1rem !important; background: var(--paper-2); }
+.mg-end-next:hover { background: color-mix(in srgb, var(--accent-soft) 70%, var(--paper-2)); }
+.mg-end-prev:hover .mg-end-title { color: var(--accent); }
+.mg-end-dir { display: block; color: var(--ink-3); font-size: var(--text-sm); font-variant-caps: all-small-caps; letter-spacing: .07em; margin-bottom: .2rem; }
+.mg-end-ch { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .55rem; align-items: baseline; }
+.mg-end-no { color: var(--accent); font-variant-numeric: lining-nums; }
+.mg-end-next .mg-end-ch { font-size: var(--text-h3b); line-height: var(--lh-display); }
+.mg-end-next .mg-end-no { font-size: 1.3em; }
+.mg-end-prev .mg-end-ch { color: var(--ink-2); }
+.mg-end-summary { display: block; margin-top: .4rem; color: var(--ink-2); font-style: italic; }
+
+/* The glossary and the index of results: the author's records, each linked to its place in the chapters. */
+.mg-glossary, .mg-results-index { max-width: calc(var(--mg-measure) + 2 * var(--gutter)); margin: 0 auto; padding: var(--s5) var(--gutter) var(--s4); }
+.mg-ref-h { margin: 0 0 var(--s2); font-size: var(--text-h2); font-weight: 400; line-height: var(--lh-display); }
+.mg-ref-note { margin: 0 0 var(--s4); color: var(--ink-3); font-size: var(--text-sm); }
+.mg-ref-note:empty { display: none; }
+.mg-gl-entry { padding: var(--s2) 0 var(--s3); border-top: 1px solid var(--rule-soft); hyphens: auto; }
+.mg-gl-head { margin: 0 0 .35rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem 1rem; }
+.mg-gl-term { font-style: normal; font-weight: 600; font-size: var(--text-h3); }
+.mg-gl-where, .mg-ri-where { color: var(--ink-3); font-size: var(--text-sm); }
+.mg-gl-where a, .mg-ri-where a { color: var(--ink-2); }
+.mg-gl-def p, .mg-ri-statement p { margin: 0; text-wrap: pretty; }
+.mg-gl-def p + p, .mg-ri-statement p + p { text-indent: 1.5em; }
+.mg-gl-def p.mg-cont, .mg-ri-statement p.mg-cont { text-indent: 0; }
+.mg-ri-ch { margin: var(--s4) 0 var(--s1); font-size: var(--text-h3); font-weight: 400; display: flex; gap: .55em; align-items: baseline; }
+.mg-ri-no { color: var(--accent); font-variant-numeric: lining-nums; }
+.mg-ri-ch a { color: var(--ink); text-decoration: none; }
+.mg-ri-ch a:hover { color: var(--accent); text-decoration: underline; }
+.mg-ri-entry { margin: 0 0 var(--s3); padding-left: 1rem; border-left: 2px solid var(--rule); hyphens: auto; }
+.mg-ri-theorem { border-left-color: var(--st-checked); }
+.mg-ri-conditional { border-left-color: var(--st-conditional); }
+.mg-ri-conjecture { border-left: 2px dashed var(--st-conjecture); }
+.mg-ri-heuristic { border-left: 2px dotted var(--st-heuristic); }
+.mg-ri-counterexample { border-left-color: var(--st-refuted-form); }
+.mg-ri-open { border-left: 2px dashed var(--st-open); }
+.mg-ri-head { margin: 0 0 .25rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem .7rem; }
+.mg-ri-head .mark { align-self: center; }
+.mg-ri-title { font-weight: 600; color: var(--ink); text-decoration: none; }
+.mg-ri-title:hover { color: var(--accent); text-decoration: underline; }
+.mg-ri-status { color: var(--ink-3); font-size: var(--text-sm); font-variant-caps: all-small-caps; letter-spacing: .05em; }
+
+/* The reference volume: the former page, unchanged inside; its overview is one place of the reader. */
+.mg-ref-overview { display: block; }
+.essay .essay-byline { text-align: center; text-indent: 0; }
+
+/* Reminders for cross-references (the reader script), a card beside the link; a bottom sheet on a narrow screen. */
+.reader-peek { position: fixed; z-index: 40; display: flex; flex-direction: column; box-sizing: border-box;
+               left: clamp(8px, var(--peek-x, 8px), calc(100vw - min(30rem, calc(100vw - 16px)) - 8px));
+               --peek-anchor-y: clamp(0px, var(--peek-y, 80px), 100vh);
+               top: calc(var(--peek-anchor-y) + 8px); width: min(30rem, calc(100vw - 16px));
+               max-height: min(60vh, 32rem, calc(100vh - var(--peek-anchor-y) - 16px)); overflow: auto;
+               padding: .7rem 1rem .8rem; background: var(--paper-3); color: var(--ink); border: 1px solid var(--rule); border-radius: 8px;
+               box-shadow: var(--shadow); font-size: var(--text-sm); line-height: 1.45; --mg-bg: var(--paper-3); }
+.reader-peek[hidden] { display: none; }
+.reader-peek[data-placement='above'] { top: auto; bottom: calc(100vh - var(--peek-anchor-y) + 8px);
+                                      max-height: min(60vh, 32rem, calc(var(--peek-anchor-y) - 16px)); }
+.reader-peek-head { display: flex; flex: none; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .4rem; }
+.reader-peek-where { margin: 0; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .06em; }
+.reader-peek-close { padding: 0 .5rem; line-height: 1.4; }
+.reader-peek-body { min-height: 0; overflow: auto; overscroll-behavior: contain; }
+.reader-peek-body > * { margin-top: 0; }
+.reader-peek-body .mg-env, .reader-peek-body .mg-display { margin: .3rem 0; }
+.reader-peek-foot { flex: none; margin: .6rem 0 0; }
+.reader-peek-go { color: var(--accent); }
+/* A term's definition: the reminder in its brief form, the definition's name over the author's statement of it, its
+   place above and the way to the passage below. Shown on hover or by keys it has no close button; kept open, it has.
+   On a narrow screen it is the same sheet as any reminder, and the page makes room under it. */
+.reader-peek[data-term] { width: min(25rem, calc(100vw - 16px));
+  left: clamp(8px, var(--peek-x, 8px), calc(100vw - min(25rem, calc(100vw - 16px)) - 8px)); }
+.reader-peek[data-term][data-placement='side'] { top: var(--peek-y, 80px); bottom: auto;
+  max-height: min(60vh, 32rem, calc(100vh - var(--peek-y, 80px) - 16px)); }
+.reader-peek[data-term]:not([role='dialog']) .reader-peek-close { display: none; }
+.reader-define-title { margin: 0 0 .2rem; font-weight: 600; color: var(--ink); }
+.reader-define-text { margin: 0; color: var(--ink-2); }
+.reader-peek[data-term] .reader-peek-foot { margin-top: .5rem; }
+.reader-peek[data-term] .reader-peek-go::after { content: '\00a0→' / ''; }
+.reader-peek-body[tabindex]:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+main[data-reader][data-sheet-open] { padding-bottom: calc(var(--s6) + var(--reader-sheet-room, 0px)); }
+
+/* Search (the reader script): a panel under the reading bar. */
+.reader-search { position: absolute; left: 0; right: 0; top: 100%; max-height: calc(100vh - var(--reader-bar-h, var(--bar)) - 12px); overflow: auto;
+                 padding: var(--s3) max(var(--gutter), calc(50% - var(--mg-frame) / 2)); background: var(--paper-3);
+                 border-bottom: 1px solid var(--rule); box-shadow: var(--shadow); font-size: var(--text-base); overscroll-behavior: contain; }
+.reader-search[hidden] { display: none; }
+.reader-search-field { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .6rem; }
+.reader-search-label { flex: 0 1 auto; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .06em; }
+.reader-search-input { flex: 1 1 14rem; min-width: 10rem; font: inherit; padding: .45rem .7rem; border: 1px solid var(--rule); border-radius: 6px;
+                       background: var(--paper); color: var(--ink); }
+.reader-search-close { flex: none; }
+@media (max-width: 640px) {
+  .reader-search-label { flex: 1 0 100%; }
+  .reader-search-input { flex: 1 1 0; min-width: 0; }
+}
+.reader-search-input:focus { outline: 2px solid var(--focus); outline-offset: 1px; }
+.reader-search-scopes { display: flex; flex-wrap: wrap; gap: .35rem; margin: .7rem 0 .2rem; }
+.reader-scope { font: inherit; font-size: var(--text-sm); padding: 2px 10px; border: 1px solid var(--rule); border-radius: 999px; background: transparent;
+                color: var(--ink-2); cursor: pointer; }
+.reader-scope[aria-pressed='true'] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.reader-scope-count { margin-left: .35rem; color: inherit; opacity: .7; font-variant-numeric: lining-nums tabular-nums; }
+.reader-search-status { margin: .4rem 0; color: var(--ink-3); font-size: var(--text-sm); }
+.reader-group { margin: var(--s2) 0 0; }
+.reader-group-head { margin: 0 0 .3rem; color: var(--ink-3); font-size: var(--text-sm); font-variant-caps: all-small-caps; letter-spacing: .06em; }
+.reader-hits { list-style: none; margin: 0; padding: 0; }
+.reader-hit-link { display: block; padding: .45rem .6rem; border-radius: 5px; text-decoration: none; color: var(--ink); }
+.reader-hit-link:hover, .reader-hit-link:focus-visible { background: var(--paper-2); }
+.reader-hit-title { display: block; }
+.reader-hit-where { display: block; color: var(--ink-3); font-size: var(--text-sm); }
+.reader-hit-text { display: block; color: var(--ink-2); font-size: var(--text-sm); }
+.reader-hit mark, .reader-hit-text mark { background: color-mix(in srgb, var(--accent-soft) 85%, transparent); color: inherit; border-radius: 2px; }
+
+/* Wide screens: numbers of chapters and sections hang in the left margin; figures and wide displays take the margin
+   column beside the text. */
+@media (min-width: 1181px) {
+  .mg-ch-title { padding-left: 0; }
+  .mg-ch-no { position: absolute; right: calc(100% + 1.1rem); top: 0; font-size: var(--text-ch); line-height: var(--lh-display); margin: 0; }
+  .mg-sec-head .mg-sec-no { position: absolute; right: calc(100% + 1rem); top: .08em; margin: 0; font-size: .82em; }
+  .mg-ch-text .mg-figure, .mg-ch-text .mg-display:has(math[style*='--fw']) { margin-right: calc(-1 * (var(--mg-gap) + var(--mg-aside))); }
+}
+/* Up to a very wide window the bar gives its room to where the reader is: the previous and next links keep their
+   words and arrows and drop the neighbouring chapters' titles. */
+@media (max-width: 1480px) { body:not(:has(main[data-reader-view='front'])) :is(.reader-prev, .reader-next) .reader-step-title { display: none; } }
+body:has(main[data-reader-view='front']) .reader-next { max-width: 42rem; }
+/* Below that, the chapter's margin column moves above its text, as one band. */
+@media (max-width: 1180px) {
+  .mg-ch-frame { grid-template-columns: minmax(0, 1fr); max-width: var(--mg-measure); }
+  .mg-ch-aside { grid-column: 1; grid-row: 2; display: flex; flex-wrap: wrap; gap: 0 2rem; padding: var(--s2) 0 var(--s1); margin: 0 0 var(--s2);
+                 border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft); }
+  .mg-aside-block { flex: 1 1 13rem; padding-bottom: var(--s2); }
+  .mg-aside-block + .mg-aside-block { border-top: 0; padding-top: 0; }
+  .mg-aside-toc, .mg-aside-map { flex-basis: 100%; }
+  .mg-ch-aside .mg-dot { font-size: 12px; gap: 3px; }
+  .mg-ch-aside .mg-locator-plot { grid-template-rows: 2.8rem auto; }
+  .mg-ch-open { grid-row: 1; }
+  .mg-ch-text { grid-row: 3 !important; }
+  .mg-ch-end { max-width: var(--mg-measure); }
+  .mg-toc-part, .mg-toc-ref { grid-template-columns: minmax(0, 1fr); }
+  .mg-front-frame { grid-template-columns: minmax(0, 1fr); max-width: var(--mg-measure); margin: 0; }
+  .mg-front-rail { grid-column: 1; grid-row: 2; padding: var(--s2) 0 var(--s1); margin: 0 0 var(--s4); border-top: 1px solid var(--rule-soft);
+                   border-bottom: 1px solid var(--rule-soft); display: flex; flex-wrap: wrap; gap: 0 2.5rem; }
+  .mg-front-rail > * { flex: 1 1 14rem; }
+  .mg-rail-block + .mg-routes { margin-top: 0; padding-top: 0; border-top: 0; }
+  .mg-toc-chapters, .mg-toc-ref-list { grid-column: 1; grid-row: auto; margin-top: var(--s2); }
+  .mg-toc-part-summary, .mg-toc-ref-note { grid-column: 1; }
+  .reader-home { display: none; }
+}
+@media (max-width: 860px) {
+  .mg-site { display: none; }
+  .reader-step-title { display: none; }
+  .reader-position-part, .reader-position-section { display: none; }
+  .reader-position-chapter::before { content: none !important; }
+}
+@media (max-width: 640px) {
+  .mg-front { padding-top: var(--s4); }
+  .mg-front-title { font-size: calc(var(--text-base) * 2.2); }
+  .mg-ch-title { font-size: calc(var(--text-base) * 1.6); }
+  .mg-ch-no { font-size: calc(var(--text-base) * 2.4); }
+  .mg-ch-end { grid-template-columns: minmax(0, 1fr); }
+  .mg-end-prev, .mg-end-next { grid-column: 1; }
+  .mg-end-next { order: -1; }
+  .mg-display.has-tag { grid-template-columns: minmax(0, 1fr) auto; column-gap: .6em; }
+  .mg-display.has-tag > .math-display { grid-column: 1; }
+  .mg-tag { grid-column: 2; }
+  .mg-env { padding-left: .75rem; }
+  .mg-env-example, .mg-env-definition { padding-right: .75rem; }
+  .mg-locator-plot { grid-template-rows: 1.9rem auto; }
+  .mg-dot { font-size: 0; gap: 0; }
+  .mg-dot.is-here { font-size: 12px; gap: 3px; }
+  .reader-step-label { display: none; }
+  .reader-contents-word { display: none; }
+  .reader-position-title { display: none; }
+  body:has(main[data-reader-on]) .mg-ch-pos { display: none; }
+  .reader-peek:not([hidden]) { left: 8px; right: 8px; width: auto; top: auto; bottom: 8px; max-height: 55vh; border-radius: 10px; }
+}
+@media (max-width: 480px) {
+  .mg-toc-ch { padding-left: 2.4rem; }
+  .mg-toc-no { width: 1.8rem; }
+  .reader-search-toggle { padding: 4px 9px; }
+}
+
+/* Print: the place being read (with the reader script: the title page and contents, one chapter, or one reference
+   place); without the script, the whole book, chapter after chapter from new pages, and no reference volume. Notices,
+   the bar and the reader's panels never print. */
+@media print {
+  :root { --mg-measure: 100%; --mg-bg: #fff; }
+  .mg-bar, .reader-bar, .reader-notices, .reader-peek, .reader-search, .skip, .reader-return, .reader-proof-skip { display: none !important; }
+  [data-definition-near] { outline: 0; }
+  .nobr.reader-wide { display: inline; overflow: visible; }
+  main[data-reader] > [hidden] { display: none !important; }
+  main[data-reader][data-reader-view='reference'] > :not([data-reference]):not(.reader-notices) { display: none !important; }
+  main[data-reader-view] > .mg-chapter[data-current] { break-before: auto; }
+  main[data-reader]:not([data-reader-view='reference']) > [data-reference] { display: none !important; }
+  .mg-toc-ref-list li:has(.mg-print-overview) > a[href="#programme-overview"] { display: none; }
+  main:not([data-reader-on]) .mg-print-overview { display: inline; }
+  .mg-front { padding: 0 0 6mm; max-width: none; }
+  .mg-front-title { font-size: 30pt; }
+  .mg-bookmap { break-inside: avoid; }
+  .mg-bm-box { border-color: #999; }
+  .mg-toc { break-before: page; padding: 0; max-width: none; }
+  .mg-toc-part { break-inside: auto; }
+  .mg-chapter { break-before: page; padding: 0; max-width: none; }
+  .mg-ch-frame { grid-template-columns: minmax(0, 1fr); }
+  .mg-ch-aside { grid-column: 1; grid-row: 2; display: flex; flex-wrap: wrap; gap: 0 8mm; border-top: .5pt solid #999; border-bottom: .5pt solid #999; margin-bottom: 4mm; }
+  .mg-aside-toc { display: none; }
+  .mg-ch-open { grid-row: 1; }
+  .mg-ch-text { grid-row: 3 !important; }
+  .mg-ch-text p, .mg-ch-open p { text-align: justify; }
+  .mg-ch-no { position: static; }
+  .mg-sec-head .mg-sec-no { position: static; }
+  .mg-sec-head { break-after: avoid; }
+  .mg-env, .mg-display, .mg-figure { break-inside: avoid; }
+  .math-display, .math-long { background: none !important; overflow: visible !important; }
+  .mg-ch-end { display: none; }
+  .mg-locator { break-inside: avoid; }
+  [data-reader-toc][data-drawer] { position: static; box-shadow: none; border: 0; max-height: none; width: auto; }
+  a { color: inherit; text-decoration: none; }
+}
+
+/* Required by the reader script (the interaction lane's monograph-css-required, six rules, verbatim). */
+/* 1. The search's live region repeats the result count for screen readers once typing pauses; the visible count is
+      #reader-search-status. Without this rule the count is shown twice. */
+.reader-search-news {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* 2. Where a search result leads, the words searched for are marked (CSS Highlight API); without a rule they are not. */
+::highlight(reader-find) { background-color: var(--accent-soft); color: inherit; }
+@media (forced-colors: active) { ::highlight(reader-find) { background-color: Mark; color: MarkText; } }
+
+/* 3. "n more in Chapter 5 / in the Atlas": the control that opens the rest of a group of results (the reference parts
+      show three results first). Without a rule it is an unstyled system button. */
+.reader-group-more {
+  margin: .3rem 0 0;
+  padding: .15rem 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: var(--text-sm);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+  cursor: pointer;
+}
+.reader-group-more:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* 4. A group head names its place, its title and its number of results; the number is marked as a count. */
+.reader-group-title { font-variant-caps: normal; letter-spacing: 0; font-style: italic; color: var(--ink-2); }
+.reader-group-count { font-variant-numeric: tabular-nums; }
+.reader-group-count::before { content: '· '; }
+
+/* 5. A scope with no result for the query reads as such. */
+.reader-scope[data-none]:not([aria-pressed='true']) { color: var(--ink-4); }
+
+/* 6. Where the browser cannot find text hidden until found, the reader hides the places not shown with plain hidden;
+      no display rule of the page may show them. */
+main[data-reader] > [hidden]:not([hidden='until-found']) { display: none !important; }
+
+/* A supplied supplement in the reference: the reference's own section head, unnumbered,
+   with the supplement's date beneath its title; its text in the book's measure and paragraph rhythm. */
+.mg-supplement .section-head .mg-supp-date { margin: .3em 0 0; color: var(--ink-3); font-size: var(--text-sm);
+  font-variant-numeric: lining-nums; letter-spacing: .02em; }
+.mg-supp-text { max-width: var(--mg-measure); }
+.mg-supp-text p { margin: 0; text-wrap: pretty; hyphens: auto; -webkit-hyphens: auto; }
+.mg-supp-text p + p, .mg-supp-text .mg-display + p { text-indent: 1.5em; }
+.mg-supp-sec { margin-top: var(--s4); }
+.mg-supp-sec:first-child { margin-top: var(--s3); }
+.mg-supp-sec > .mg-sec-head + p { text-indent: 0; }
+
+/* The introductory chapter shares the measure, typography and navigation of the book. */
+.mg-introduction-title { margin: 0 0 var(--s1); font-size: var(--text-h3b); line-height: var(--lh-display); }
+.mg-introduction-nav { display: flex; flex-wrap: wrap; gap: .4em 1.1em; font-size: var(--text-sm); }
+.mg-toc-opening { margin: 0 0 var(--s3); }
+.mg-introduction-contents { margin: var(--s2) 0 var(--s3); color: var(--ink-2); font-size: var(--text-sm); }
+.mg-introduction-contents summary { cursor: pointer; width: fit-content; }
+.mg-introduction-contents ol { margin: .6em 0; padding-inline-start: 1.45em; }
+.mg-introduction-contents li { margin: .22em 0; }
+.mg-introduction-text .mg-sec-head { margin: var(--s4) 0 var(--s2); }
+.mg-introduction-text > :first-child { margin-top: 0; }
+#opening-question { scroll-margin-block-start: 5rem; }
+.mg-introduction { margin-bottom: var(--s2); }
+@media print { .mg-introduction-nav, .mg-introduction-contents { display: none; } }

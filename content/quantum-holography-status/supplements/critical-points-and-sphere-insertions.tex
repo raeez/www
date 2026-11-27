@@ -1,0 +1,286 @@
+\documentclass{momentum}
+\input{sphere-print-preamble}
+\begin{document}
+\maketitle
+
+\noindent
+Take one complex field \(x\) with potential \(W_t(x)=x^3/3-tx\), where
+\(t\) is a complex parameter. A critical point is a solution of
+\(W_t'(x)=0\). Here the equation is \(x^2=t\). For \(t\ne0\) the two
+solutions are \(s\) and \(-s\), with \(s^2=t\). They meet at the origin
+when \(t=0\). Can a correlation function on the sphere follow the two
+solutions through their collision?
+
+In the B-twisted Landau--Ginzburg theory a supersymmetry acts on local
+fields by a differential \(Q_{\mathrm B}\) with \(Q_{\mathrm B}^2=0\).
+Fields annihilated by \(Q_{\mathrm B}\), taken modulo fields of the form \(Q_{\mathrm B}a\),
+give the protected local observables. A polynomial \(f(x)\) represents
+such an observable and can be inserted at a point of the sphere.
+Fix the holomorphic volume form \(dx\). The sphere correlation function
+for this insertion is the sum of the residues of \(f(x)\,dx/W_t'(x)\)
+at the critical points \cite{vafa}.
+A residue is the coefficient of \(du/u\) in a local coordinate \(u\)
+vanishing at the point. At a simple zero \(\alpha\) of \(W_t'\) it is
+\(f(\alpha)/W_t''(\alpha)\). For the cubic the two contributions are
+\(f(s)/(2s)\) and \(-f(-s)/(2s)\). Inserting \(1\) gives zero, inserting
+\(x\) gives one, and inserting \(x^3\) gives \(s^2=t\).
+As \(s\) tends to zero, the two vacuum weights \(1/(2s)\) and \(-1/(2s)\)
+diverge separately. With \(f\) inserted, their contributions add to
+\((f(s)-f(-s))/(2s)\), a divided difference with limit \(f'(0)\).
+At the collision this is precisely the residue of \(f(x)\,dx/x^2\).
+In particular \(x^3\) records the splitting parameter right up to the
+collision. What if the midpoint of the roots can also move?
+
+\section{Reconstructing the marked potential}
+
+Allow the linear as well as the constant coefficient of the critical
+equation to vary. Write it as
+\(P(x)=x^2+ax+b=0\). By keeping \(x\) marked we mean that the same
+polynomial in the same coordinate will be inserted for each choice of
+\(a,b\). Write \(\tau(f)\) for its sphere value, still with volume \(dx\).
+At distinct roots \(\alpha,\beta\) the two residues give
+\[
+  \tau(f)=\frac{f(\alpha)-f(\beta)}{\alpha-\beta}.
+\]
+In particular \(\tau(1)=0\) and \(\tau(x)=1\). Adding a multiple of \(P\)
+to \(f\) adds a polynomial differential to \(f\,dx/P\). The added
+differential is regular at both roots and has zero residue there. We can therefore use \(x^2=-ax-b\) inside any
+sphere insertion. Set \(M_r=\tau(x^r)\). Reduction first of \(x^2\) and
+then of \(x^3=-ax^2-bx\) gives
+\[
+ M_2=-a,\qquad M_3=a^2-b,\qquad
+ a=-M_2,\qquad b=M_2^2-M_3 .
+\]
+For roots \(1,3\) the weights are \(-1/2,1/2\). The two readings are
+\(4,13\), so the recovered polynomial is \(x^2-4x+3\). At a double root \(r\), the form is \(f(x)\,dx/(x-r)^2\), with residue
+\(f'(r)\). Thus \(M_2=2r\) and \(M_3=3r^2\). The same two readings
+recover \(a=-2r\) and \(b=r^2\), the coefficients of \((x-r)^2\).
+
+The reduction of powers used only that the leading coefficient of the
+critical polynomial was one. Division by such a monic polynomial makes
+sense with coefficients in any commutative \(\mathbb Q\)-algebra \(R\),
+even when a root cannot be chosen in \(R\). Let
+\(P(x)=x^d+a_{d-1}x^{d-1}+\cdots+a_0\), \(d\ge1\), be the derivative
+of a potential \(W\), with \(W(0)=0\). The closed fields form the
+\emph{Jacobi algebra} \(A=R[x]/(P)\). Its elements have unique
+representatives of degree less than \(d\). Define \(\tau(f)\) as the
+coefficient of \(x^{d-1}\) in this remainder. To see the residue in this
+definition, expand \(f/P\) in descending powers of \(x\). Its polynomial
+part has no \(x^{-1}\) term, and dividing the remainder by the monic
+denominator makes its \(x^{d-1}\) coefficient the coefficient of
+\(x^{-1}\) in \(f/P\). Over \(\mathbb C\) this equals the sum of the
+finite residues of \(f\,dx/P\), including those at multiple roots.
+
+The moments \(M_0,\ldots,M_{d-2}\) vanish and \(M_{d-1}=1\).
+For \(j\ge0\) the relation \(x^jP(x)=0\) in \(A\) gives
+\(M_{d+j}+a_{d-1}M_{d+j-1}+\cdots+a_0M_j=0\).
+At \(j=0\) only two terms survive, so \(a_{d-1}=-M_d\).
+For \(d\ge2\) the next equation gives
+\(a_{d-2}=-M_{d+1}-a_{d-1}M_d\).
+At each step the new coefficient multiplies \(M_{d-1}=1\), and all
+coefficients of higher powers of \(x\) are already known. Thus the
+\(d\) fixed insertions \(x^d,\ldots,x^{2d-1}\) recover \(P\) over \(R\).
+The same recurrence determines every later moment. Collecting them in
+a formal variable \(z\) gives
+\begin{equation}
+ \sum_{r\ge0} M_r z^r
+  =\frac{z^{d-1}}{1+a_{d-1}z+\cdots+a_0z^d}.
+ \label{eq:moments}
+\end{equation}
+Integrating the recovered \(P\) gives \(W\) with the chosen value
+\(W(0)=0\). Adding a constant to \(W\) leaves all the sphere readings
+unchanged, since the residue uses its derivative.
+
+Could a smaller set of insertions detect the same coefficients? Take
+a characteristic-zero field \(k\) and vary \(x^d\) to
+\(x^d+\epsilon q(x)\), where \(\deg q<d\) and \(\epsilon^2=0\).
+The coefficient of \(\epsilon\) records a first-order variation.
+Inverting the denominator gives \(x^{-d}-\epsilon q(x)x^{-2d}\).
+Thus the change in the sphere reading is
+\begin{equation}
+ \tau_{x^d+\epsilon q}(f)-\tau_{x^d}(f)
+   =-\epsilon [x^{2d-1}]\bigl(f(x)q(x)\bigr),
+ \label{eq:tangent}
+\end{equation}
+where brackets extract the indicated coefficient. Each fixed polynomial
+insertion gives one linear functional on the \(d\) coefficients of \(q\).
+Fewer than \(d\) such functionals have a common nonzero kernel. For fixed
+monomial insertions one can say exactly which readings are indispensable.
+If the power \(x^j\) is missing, with \(d\le j\le2d-1\), take
+\(q=x^{2d-1-j}\). Among all powers of \(x\), only \(x^j\) detects this
+variation. Thus every one of \(x^d,\ldots,x^{2d-1}\) is necessary for a
+reconstruction by fixed monomial insertions over all parameter rings.
+
+\section{The diagonal and the handle}
+
+The readings now determine the entire sphere pairing. Two insertions
+\(f,h\) have the joint value \(\tau(fh)\). How does this pairing tell us
+what to insert for a handle? Cutting the handle open produces two
+boundary circles. To sew them back together one sums a basis of states
+on one circle against the dual basis on the other. At our first double
+point, \(P=x^2\), the sphere gives \(\tau(1)=\tau(x^2)=0\) and
+\(\tau(x)=1\). Its pairing on \(1,x\) has matrix
+\(\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)\).
+The dual to \(1\) is \(x\), and the dual to \(x\) is \(1\). Sewing
+therefore places \(1\otimes x+x\otimes1\) on the two circles.
+Writing \(x,y\) for the coordinates on the first and second factors,
+this is \(x+y=(x^2-y^2)/(x-y)\).
+
+For general \(P\) the same divided difference defines the diagonal class
+\[
+ \mathcal D(x,y)=\frac{P(x)-P(y)}{x-y}\quad\text{in } A\otimes_R A .
+\]
+First divide in the polynomial ring \(R[x,y]\), where the numerator is
+a multiple of \(x-y\). Then impose \(P(x)=P(y)=0\). In \(A\otimes_R A\)
+it obeys \((x-y)\mathcal D=0\), so \(f(x)\mathcal D=f(y)\mathcal D\).
+Its coefficient of \(x^{d-1}\) is one. Applying the sphere functional
+in the first variable consequently gives
+\((\tau_x\otimes1)(f(x)\mathcal D)=f(y)\), the defining property of
+the inverse pairing. In the power basis the same conclusion follows
+from \(\tau(x^{i+j})=0\) for \(i+j<d-1\) and
+\(\tau(x^{i+j})=1\) for \(i+j=d-1\). Reversing the column order gives
+a triangular matrix with unit diagonal.
+
+Joining the two circles multiplies their labels in \(A\), which sets
+\(y=x\) and sends \(\mathcal D\) to \(e=P'(x)\). Thus a handle inserts
+one copy of \(e\). Write \(A_g(f)\) for the closed amplitude on a
+connected surface with \(g\) handles, where \(f\) is the product of
+its marked fields. Write \(m_h\) for multiplication by \(h\) in \(A\).
+Repeated sewing gives
+\begin{equation}
+ A_g(f)=\tau(fe^g),\qquad
+ A_{g+1}(f)=\Tr_{A/R}(m_fm_e^g).
+ \label{eq:handle}
+\end{equation}
+Indeed, if \(u_i,v_i\) are dual bases, then
+\(e=\sum_i u_i v_i\) and \(\Tr(m_h)=\sum_i\tau(v_i h u_i)=\tau(he)\).
+In particular the torus with no insertions has amplitude
+\(\Tr_{A/R}(m_1)=d\).
+What if the potential is multiplied by a scalar while \(dx\) stays fixed?
+For \(W=x^D\), \(D\ge2\), the denominator in the residue is
+\(D x^{D-1}\). Relative to \(W=x^D/D\) this divides \(\tau\) by \(D\)
+and multiplies its inverse pairing and \(e\) by \(D\). Their product
+in the torus amplitude still gives \(D-1\).
+
+The higher genera can now be obtained from a single finite matrix.
+As a formal series, \(\sum_{g\ge0}A_g(f)z^g=\tau((1-zm_e)^{-1}f)\).
+The adjugate formula gives a denominator \(\det(1-zm_e)\) of degree
+at most \(d\) with constant term one. Reduction by monic \(P\), extraction
+of one coefficient and multiplication in \(A\) use only ring operations.
+The sewing formulas therefore commute with every change \(R\to R'\)
+of parameter ring. This includes specializing two distinct roots to a
+double root.
+
+\section{The fibre at a collision}
+
+Consider a fibre over an algebraically closed field \(k\) of characteristic zero.
+The local part of \(A\) at a root \(\alpha\) of multiplicity \(m\) is
+\(k[u]/(u^m)\), with \(u=x-\alpha\). Factoring off this multiplicity gives
+\(P(x)=(x-\alpha)^m V(x)\) with \(V(\alpha)\ne0\). On the sphere the contribution of this root
+is the coefficient of \(u^{m-1}\) in \(f(\alpha+u)/V(\alpha+u)\).
+On a surface of positive genus formula \eqref{eq:handle} gives the
+ordinary trace of multiplication by \(h=f(P')^{g-1}\) on this local
+algebra. In the basis \(1,u,\ldots,u^{m-1}\) its matrix is triangular
+with the constant \(h(\alpha)\) on each diagonal entry. A simple root
+therefore contributes \(f(\alpha)P'(\alpha)^{g-1}\), also at \(g=0\)
+by the residue formula. A multiple root contributes \(m f(\alpha)\)
+at \(g=1\). For \(g\ge2\) its contribution vanishes because \(P'(\alpha)=0\).
+
+How does that vanishing look before specialization? Over \(k[t]\) take
+\(W_t=x^{d+1}/(d+1)-tx\) with \(d\ge2\). Now \(x^d=t\) and \(e=d x^{d-1}\). For \(r,g\ge0\),
+the sphere insertion corresponding to \(x^r\) on the surface with
+\(g\) handles is \(x^r e^g=d^g x^{r+(d-1)g}\). Each group of \(d\)
+powers of \(x\) contributes one factor of \(t\). Exactly \(d-1\)
+powers of \(x\) have to remain for the sphere trace to survive.
+The number of groups must therefore be
+\(h=(r+(d-1)g-(d-1))/d\). This gives
+\begin{equation}
+ A_g(x^r)=
+ \begin{cases}
+ d^g t^h,&h\in\mathbb Z_{\ge0},\\
+ 0,&\text{otherwise}.
+ \end{cases}
+ \label{eq:family}
+\end{equation}
+For the vacuum \(r=0\), the condition on \(h\) singles out \(g=1+jd\)
+with \(j\ge0\). Summing these terms gives
+\(\sum_{g\ge0} A_g(1)z^g=dz/(1-d^d t^{d-1}z^d)\).
+For the cubic that opened the calculation, \(A_3(1)=8t\).
+Set \(t=\epsilon\) with \(\epsilon^2=0\). The underlying point
+has \(t=0\), but the amplitude over the parameter ring is \(8\epsilon\).
+
+For a sum of potentials in independent coordinates \(x_i\), use the
+ordered product volume form. The quotient by their separate critical
+equations is the tensor product of the one-variable algebras. The residue
+trace and its inverse pairing factor, so the amplitude for
+\(\prod_i x_i^{r_i}\) is the product of \eqref{eq:family} for
+the individual \(d_i,t_i\), including when only some \(t_i\) vanish.
+
+Which critical points can support a boundary condition at a specified
+value of the potential? The sphere
+used \(W'\), whereas a boundary at value \(w\) depends on \(W-w\).
+Return to the critical roots \(1,3\). With \(W(0)=0\) their potential is
+\(W=x(x-3)^2/3\), so \(W(1)=4/3\) and \(W(3)=0\). Both points contribute
+to the closed torus amplitude of two. A boundary at value zero can
+see a critical point on its own fibre only at \(3\).
+
+In this model a finite free boundary condition at value \(w\) is a
+matrix factorization. It consists of a finite free module with an
+even and an odd part, and an odd matrix \(Q\) interchanging the two
+parts such that \(Q^2=(W-w)1\). At \(x=3\), write \(u=x-3\) and
+complete at \(u=0\), using the formal power series ring \(k[[u]]\).
+Take one copy of that ring in each parity. The two maps in \(Q\) are
+multiplication by \(u\) and by \(u(u+3)/3\). Their product is \(W\).
+The identity of the boundary would be homotopic to zero if some odd
+matrix \(H\) satisfied \(QH+HQ=1\). Both maps in \(Q\) vanish at \(u=0\),
+so this equality would give \(0=1\) there. The boundary survives.
+Over \(W=0\) the first map presents the residue field \(k[[u]]/(u)\).
+Alternating the two maps continues its resolution. This factorization,
+called the stabilization of the residue field, generates the local
+category \cite[Thm.~4.1]{dyck}.
+
+What happens to such a boundary when its fibre contains no critical
+point? For the family in \eqref{eq:family} over the rational function field
+\(k(t)\), every critical root satisfies \(\alpha^d=t\). Its critical
+value is \(-dt\alpha/(d+1)\), which is nonzero. Thus \(W_t\) and \(W_t'\)
+have no common root. At value zero choose polynomials \(b,c\) with
+\(bW_t+cW_t'=1\). Differentiating \(Q^2=W_t1\) gives
+\(Q\,\partial_xQ+(\partial_xQ)Q=W_t'1\). Hence
+\[
+ H=\tfrac12 bQ+c\,\partial_xQ,\qquad QH+HQ=1 .
+\]
+Every such boundary factorization is contractible on this generic
+fibre, while the closed torus amplitude is \(d\).
+
+Return to the boundary that survives at \(3\). Its local ring of
+closed fields is \(k[[u]]/(u(u+2))=k\), since \(u+2\) is a unit.
+One sees this ring on the boundary side by putting the same theory on
+both sides of a line and letting it act by the identity. Use the completed local coefficient ring \(k[[x-3,y-3]]\), so that both
+field coordinates lie near \(3\). Put \(v=(W(x)-W(y))/(x-y)\), a
+polynomial viewed in this ring. The two maps
+\(x-y\) and \(v\) multiply to \(W(x)-W(y)\) and form the matrix
+factorization for this identity defect. Its even endomorphisms in
+cohomology are scalars modulo \(x-y\) and \(v\). An even diagonal
+endomorphism must have equal entries to commute with the two maps,
+and an odd homotopy changes that common entry by a combination
+of the two maps. Setting \(y=x\) gives \(v(x,x)=W'(x)\) and hence
+the local Jacobi algebra \cite[Prop.~6.3 and Cor.~6.4--6.5]{dyck}.
+The calculation identifies the cohomology ring of the defect. On a disk,
+one also needs a trace on boundary morphisms, given by the Kapustin--Li
+residue \cite[Thm.~3.4 and \S5.1, Eq.~(33)]{dm}. The local calculation
+accounts for the vacuum at \(3\). To recover the closed torus amplitude
+of two, one must also include the sector at critical value \(4/3\),
+supported at \(1\).
+
+\begin{thebibliography}{9}\small
+\bibitem{vafa} C.~Vafa, \emph{Topological Landau--Ginzburg models},
+Modern Phys.\ Lett.\ A \textbf{6} (1991), 337--346.
+\href{https://doi.org/10.1142/S0217732391000324}{doi:10.1142/S0217732391000324}.
+\bibitem{dyck} T.~Dyckerhoff, \emph{Compact generators in categories of
+matrix factorizations}, Duke Math.\ J.\ \textbf{159} (2011), 223--274.
+\href{https://arxiv.org/abs/0904.4713}{arXiv:0904.4713}.
+\bibitem{dm} T.~Dyckerhoff and D.~Murfet, \emph{The
+Kapustin--Li formula revisited}, Adv.\ Math.\ \textbf{231} (2012),
+1858--1885. \href{https://arxiv.org/abs/1004.0687}{arXiv:1004.0687}.
+\end{thebibliography}
+\end{document}

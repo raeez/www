@@ -1,0 +1,28 @@
+\usepackage{unicode-math}
+\setmathfont{Garamond-Math.otf}
+\XeTeXgenerateactualtext=1
+\setstretch{1.13}
+
+\title{Critical points and sphere insertions}
+\author{Raeez Lorgat}
+\date{May 27, 2025}
+\shorttitle{Critical points and sphere insertions}
+\hypersetup{
+  pdftitle={Critical points and sphere insertions},
+  pdfauthor={Raeez Lorgat},
+  pdfsubject={Closed amplitudes and marked reconstruction in Landau–Ginzburg theory},
+  pdflang={en}
+}
+
+\usepackage{etoolbox}
+\patchcmd{\maketitle}
+  {\thetitle\par}
+  {\thetitle\par\vspace{0.25em}%
+   {\fontsize{15pt}{18pt}\selectfont Closed amplitudes in a Landau--Ginzburg family\par}}
+  {}{\PackageError{sphere-print}{Missing title insertion point}{}}
+\pretocmd{\thebibliography}{\phantomsection\addcontentsline{toc}{section}{\refname}}
+  {}{\PackageError{sphere-print}{Missing bibliography insertion point}{}}
+\apptocmd{\thebibliography}{\raggedright}
+  {}{\PackageError{sphere-print}{Missing bibliography formatting point}{}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Res}{\operatorname{Res}}

@@ -1,0 +1,397 @@
+[
+  {
+    "scope": "ch02",
+    "id": "ch02-passage-6d795867c574472efa93",
+    "paragraph": "On three \\(H\\)-modules the vector-space reassociation is an intertwiner by (2.3). With four modules we can reassociate successive triples in two ways. Both paths go from"
+  },
+  {
+    "scope": "ch05",
+    "id": "ch05-passage-de92c8ba096bede86f99",
+    "paragraph": "A chain map is a **quasi-isomorphism** if it induces an isomorphism on every cohomology group. The ordinary **derived category** formally makes these maps invertible. We will also retain the derived mapping complexes, obtained by resolving the inputs as necessary, rather than keeping only their degree-zero cohomology. This enhanced form of the derived category remembers homotopies and homotopies between them; it is the meaning intended when the geometric theorem below refers to higher mapping spaces."
+  },
+  {
+    "scope": "ch08",
+    "id": "ch08-passage-1ab2c3562c70af0a0d81",
+    "paragraph": "To define the independent current complex, split rational currents into polynomial currents \\(\\mathfrak p=\\mathfrak g[u]\\) and proper currents \\(x/(u-a_i)^s\\), \\(s\\geq1\\). “Proper” here means vanishing at infinity. Set"
+  },
+  {
+    "scope": "ch08",
+    "id": "ch08-passage-ea349ae5359d3303308e",
+    "paragraph": "where \\(\\circ\\) likewise means the direct-sum dual of finite total-pole-index pieces. A cochain takes exterior arguments from both summands of the rational currents. The polynomial arguments remain as inputs to the Hom below. The restricted dual records the proper pole arguments. For a smooth affine test complex \\(X\\), define"
+  },
+  {
+    "scope": "ch08",
+    "id": "ch08-passage-d140957f02e0bb392f94",
+    "paragraph": "where both intersections use the symmetric expansion. At each outer coefficient, membership in \\(N_{\\mathrm{fac}}\\) means a finite algebraic sum of tensors of the two completed cluster factors. The intersection is a dg \\(Y_{D_*}\\)-module with maps to the radial and factorized endpoints. In general it is not a \\(D_{\\mathrm{con}}\\)-module: the conic series \\(\\sum_{n\\ge0}q^{2n}(s_1s_2)^{-n}\\) becomes \\(\\sum_{n\\ge0}p_1^np_2^n\\) at outer order zero. Its coefficient matrix is the infinite identity from the [finite-rank example](#tensor-completion-and-rank). No finite sum of products of inner scalar series has that matrix. [The scalar ring of the factorized intersection](#atlas-c-horizontal-four-point-factorized-intersection)."
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-passage-3fade0da05e210108bcc",
+    "paragraph": "The first identity is the endpoint term from differentiating the upward ray. Each field is a smooth family of distributions in the internal variables. Normal ordering means multiplication in independent internal variables followed by particle symmetrization. It introduces no extra contraction at coincident external endpoints."
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-passage-9370a90eca2b7b23c3a9",
+    "paragraph": "For \\(n_{ij}=(t_j-t_i,z_i-z_j)\\), the nonzero cross contractions are"
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-passage-710ecd5e58f95067683e",
+    "paragraph": "A supporting flat records which real coordinates are equal and which complex coordinates are equal. It is thus described by a partition of each set of coordinates. Compatibility means that the real partition refines the complex one: equality in height is imposed only within a complex block. Scalar rays and marked one-forms \\(Q_m\\) join distinct complex blocks. Gates \\(H(h)\\) compare real blocks inside a complex block. One also allows finite holomorphic derivatives of the top normal delta currents."
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-passage-61255faeff7790f28f51",
+    "paragraph": "Call an edge marked when its contraction supplies a \\(Q_m\\) one-form to the ordered wedge. A wedge of these forms uses a normal degree for each mark. To count the available directions for a set \\(A\\) of marked edges, let \\(p_A\\) be the real rank of its height forms and \\(k_A\\) the complex rank of its complex forms. The nonzero admissible case requires \\(|A|<p_A+k_A\\) for every nonempty marked subset; violating this inequality gives the zero whole kernel. A marked set is closed if it contains every marked edge whose height and complex forms both lie in the respective spans for this set. A critical contact comes from a nonempty closed set with"
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-passage-f8cc933503ea3f4a5e62",
+    "paragraph": "For two disjoint sets of labels the Gaussian product \\(\\star\\) sums all matchings between the two blocks, keeps each unmatched field, and symmetrizes its coefficient particles with the graded signs. It closes on this space and is associative with those signs. Its Ward defect"
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-passage-d38ca773567d353edaa3",
+    "paragraph": "Scale the circuit heights by"
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-passage-deb3a1267e5541868caa",
+    "paragraph": "leaving spectator heights and all complex coordinates unchanged. At positive scale this gives a distributional pullback. Write \\(\\mathcal P\\) for this pullback on the parameter cylinder. Its endpoint \\(\\operatorname{sp}_0\\) is the horizontal restriction of the limiting total form. The cylinder integral also uses the coefficient of \\(d\\lambda\\). Both require estimates as the height map loses rank at zero. In particular,"
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-passage-0890ccdd75e9b74e6658",
+    "paragraph": "During this motion a spectator can meet one of the moving fields. The relative support \\(Z\\) was chosen for the three circuit mixed diagonals, times the full spectator parameter space. A new spectator contact can occur in the ambient first component. The second component must stay supported on that same \\(Z\\) throughout the motion."
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-passage-3c7beb2239f8befe4f3d",
+    "paragraph": "The height test used an actual ray representative. On a disk with an interval collar, integration along the interval loses the choice of representative even for a smooth field. How much of a product survives that integration? Write \\(p\\) for integration along the interval \\(I\\). For a compact profile \\(\\theta_a\\) with \\(\\int_I\\theta_a(t)\\,dt=1\\), the section is \\(s_a(\\alpha)=\\alpha\\,\\theta_a(t)\\,dt\\), so \\(ps_a=1\\). Changing the profile from \\(a\\) to \\(b\\) gives"
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-passage-c23e2d8bb3e7e1641bdb",
+    "paragraph": "For every integer \\(N\\ge1\\) and positive heat scale, the vanishing of the polarized cubic invariant \\((a,b,c)\\mapsto\\operatorname{Tr}_{V_N}(\\rho_N(a)\\rho_N(b)\\rho_N(c))_{\\mathrm{sym}}\\), the average over the six orders, cancels the scalar wheel anomaly. This gives a nontrivial quantum higher Lie current map from \\(\\Omega_c^{0,\\bullet}(\\mathbb C^2,\\mathfrak g_N)\\) to the compact quadratic distribution observables of the free matter theory. Its components satisfy the master equation, with formal \\(\\hbar\\) and completion in background weight. With \\(N=0\\) the same quotients give \\(V_0=\\mathfrak g_0=0\\), so every positive-arity current is zero. [*Hamiltonian jets and quantum currents*, finite-current theorem](#ref-ch09-13). The cancellation concerns complete scalar wheels; individual ordered traces need not vanish."
+  },
+  {
+    "scope": "ch10",
+    "id": "ch10-passage-cfd2372db0edb23c9da2",
+    "paragraph": "For a positive principal label \\(p\\), let \\(H_p\\) be the Hilbert completion of the irreducible highest-weight module with highest vector \\(\\Omega_p\\) and weight"
+  },
+  {
+    "scope": "ch10",
+    "id": "ch10-passage-3a2d3cd60e3a419a8de0",
+    "paragraph": "Its level-\\(N\\) subspace has energy \\(h_p+N\\). A descendant is a vector obtained by applying negative modes to \\(\\Omega_p\\). Positive Hilbert forms control convergence; the contractions used in sewing are the complex-bilinear invariant forms, with their inverse Gram matrices. For example, normalize the invariant bilinear form by \\((\\Omega_p,\\Omega_p)=1\\). At level one there is just the state \\(L_{-1}\\Omega_p\\). Its Gram matrix has the single entry"
+  },
+  {
+    "scope": "ch10",
+    "id": "ch10-passage-5dc0aa31ef4558263520",
+    "paragraph": "Suppose that a further field is inserted at \\(z\\). Its two inputs play different roles. One state was already at the origin and has only the decay delivered by the previous sewing. The other is a newly supplied state at \\(z\\) and may be taken in a stronger input norm. Write \\(\\ell_z=-\\log|z|\\). Fix the stationary input exponent \\(r\\) and the output exponent \\(s\\). If"
+  },
+  {
+    "scope": "ch10",
+    "id": "ch10-passage-39d3c7dba198b463f522",
+    "paragraph": "Here \\(e\\) is the final momentum. The squared norm integrates the squared \\(H_e[s]\\)-norm over \\(e\\) and all the \\(k_i\\). For \\(d=3\\), the section at \\((k_2,e)\\) is obtained by using the first vertex at \\(k_2\\) as the stationary input to the second. The label \\(k_2\\) remains available for pairing with a spectral test. Only the final representation carries the output energy weight. On the input side, write \\(\\mathcal H_{\\mathbf p}[t]\\) for the completed Hilbert tensor product of the \\(H_{p_i}[t]\\). Its inner product on elementary tensors is the product of the inner products in the factors."
+  },
+  {
+    "scope": "ch10",
+    "id": "ch10-passage-b5aae4049acf17d24ae7",
+    "paragraph": "The unit coefficients are one. With the stationary input written first, the binary unit formulas are"
+  },
+  {
+    "scope": "ch10",
+    "id": "ch10-passage-bb41e9dd75353bac967d",
+    "paragraph": "Here \\(M^\\vee\\) is the complex-bilinear dual of the Hilbert multiplicity. To read an output, pair it with a momentum packet in \\(M^\\vee\\) and a vacuum test in \\(G\\). Uniform convergence on bounded sets of such tensor tests defines the strong-dual topology. The proof first constructs fixed-label kernels, then uses annular composition and Möbius transport. [*A vacuum output for finite positive words*](#ref-ch10-06)."
+  },
+  {
+    "scope": "ch10",
+    "id": "ch10-passage-c287ac8dd28773db6057",
+    "paragraph": "For a positive spectral object \\(Y\\), use its specified separable spectral realization on \\((0,\\infty)\\), with scalar measure \\(\\nu_Y\\) and measurable Hilbert multiplicities \\(M_p\\). The Virasoro modes act on the representation factor and leave the multiplicities fixed. Put"
+  },
+  {
+    "scope": "ch10",
+    "id": "ch10-passage-03f6590775070a85f474",
+    "paragraph": "Near the vacuum root \\(p_+=iQ/2\\), take the coordinate \\(p=p_+-i\\eta^2\\). The meromorphic output \\(\\mathscr M\\) consists of germs \\(F(\\eta)=\\eta^{-1}v+g(\\eta)\\), with residue in the vacuum submodule and regular part bounded and holomorphic on one of the prescribed small discs in a weak Hilbert level space. Its level weights are \\(e^{-m\\omega(N)}\\), where \\(\\omega(N)=1+Np(N)\\) and \\(p(N)\\) is the partition number; the disc and stage are allowed to shrink and weaken together. Two representatives give the same germ when they agree on a smaller disc. Use the locally convex inductive limit of these disc and energy stages. Vacuum outputs are the spaces \\(V(M)\\) already defined."
+  },
+  {
+    "scope": "ch10",
+    "id": "ch10-passage-c728a0d082e62ed32a92",
+    "paragraph": "The stress test must be able to reach the vacuum from the complex momentum variable after summing the levels. Recall that \\(p_+=iQ/2\\) is the upper root of \\(h(p)=0\\). In the local parameter \\(p=p_+-i\\eta^2\\), a marked equal-label pair can have a simple pole in \\(\\eta\\). Write \\(N\\) for the oscillator level. Besides its positive section in \\(X_s\\), a marked cluster \\(X\\in R_{a,a}\\) has a vacuum component \\(v_X\\) and a meromorphic component \\(P_{\\mathrm{an}}X\\). Require \\(v_X\\) to have finite physical vacuum norm \\(\\|e^{sN}v_X\\|_V\\). For its meromorphic component require an even holomorphic numerator on one disc on which"
+  },
+  {
+    "scope": "ch15",
+    "id": "ch15-definition-passage-bb8809e3750427cb",
+    "paragraph": "The trace in (15.5) has identified the two ends. To find out how states multiply, keep a third fibre of \\(S\\times\\mathbb P^1\\) at \\(1\\), in addition to \\(0,\\infty\\). Insert \\(a,b,c\\in H_d\\) independently at the three fibres. Their reduced relative invariant, summed with weights \\((-r)^m\\), is trilinear in these classes. Fix \\(a,b\\) and vary \\(c\\). By nondegeneracy there is a unique output \\(\\mu_{\\beta,d}(r)(a,b)\\) whose pairing with \\(c\\) is that invariant."
+  },
+  {
+    "scope": "ch15",
+    "id": "ch15-definition-passage-4d096fa68b70d062",
+    "paragraph": "A scalar pair of pants can test the cubic only on states one can prepare. Work over a characteristic-zero field \\(K\\) with formal parameter \\(t\\), and set \\(V=H^2(S,K)\\), \\(E=\\langle C,F\\rangle^\\perp\\). The intersection form \\(q\\) is perfect on the 20-dimensional space \\(E\\). The original rational marking has signature \\((2,18)\\) after extension to \\(\\mathbb R\\). Compare the fixed section product (15.8), added with coefficient \\(t\\) to the cup product, with its deformation by \\(t\\lambda\\nu_u\\). Here \\(0\\ne\\lambda\\in K\\), \\(0\\ne u\\in E\\) and \\(q(u,u)=0\\). Three copies of a marked middle state \\(x\\) change the genus-zero scalar by \\(t\\lambda q(u,x_E)^3\\), where \\(x_E\\) is its orthogonal projection."
+  },
+  {
+    "scope": "ch16",
+    "id": "ch16-definition-passage-b383f508b08451ce",
+    "paragraph": "Convolution and involution are"
+  },
+  {
+    "scope": "ch16",
+    "id": "ch16-definition-passage-677800fef840d77a",
+    "paragraph": "How can a quotient constructed from the integers retain the derivative at a double zero? Start with an even Schwartz function \\(\\phi\\) on the line. At each logarithmic scale \\(x\\), evaluate it at the nonzero points of the dilated lattice \\(e^x\\mathbb Z\\) and add. Evenness pairs \\(m\\) with \\(-m\\), giving \\(2\\sum_{m\\ge1}\\phi(me^x)\\). At large \\(x\\) the sum decays. At small scales the lattice becomes dense, so decay at the other end requires two conditions. Put \\(S=\\mathscr S(\\mathbb R)^{\\mathrm{even}}\\) and"
+  },
+  {
+    "scope": "ch16",
+    "id": "ch16-definition-passage-c7f8107952cf344d",
+    "paragraph": "Here \\(\\gamma\\) ranges over the real centered zeros and \\(m_\\gamma\\) is their multiplicity. In the form \\(\\sigma_n(f^**g)\\) each term is \\(\\overline{\\widehat f(\\gamma)}\\widehat g(\\gamma)\\). Quotient the test algebra by its zero-norm vectors and complete to obtain \\(G_n\\). On the \\(n\\)th layer, \\(f\\) acts by multiplying the \\(\\gamma\\) coordinate by \\(\\widehat f(\\gamma)\\). Thus conjugate reflection of the test acts by the Hilbert adjoint. The direct sum \\(G_{\\mathrm{crit}}=\\bigoplus_nG_n\\) carries the continuous ordinary star representation"
+  },
+  {
+    "scope": "ch06",
+    "id": "ch06-definition-passage-70472a30828580ee",
+    "paragraph": "To test the unit on a module with zero ghost action, we want one positive-current invariant for each coefficient vector. There is a model in which that invariant can be evaluated on the empty word \\(1\\). Take the dual of each homogeneous piece of the enveloping algebra of the positive currents and form their direct sum,"
+  },
+  {
+    "scope": "ch06",
+    "id": "ch06-definition-passage-44554431ba9a9cf9",
+    "paragraph": "Write \\(\\operatorname{Loc}(W)\\) for the smallest full stable subcategory containing \\(W\\) and closed under arbitrary coproducts and retracts. In the internally graded case use all energy shifts:"
+  },
+  {
+    "scope": "ch06",
+    "id": "ch06-definition-passage-0ac71f79f90d101f",
+    "paragraph": "Then the actual unit is an equivalence,"
+  },
+  {
+    "scope": "ch07",
+    "id": "ch07-definition-passage-bfa63e4ef7ad72f6",
+    "paragraph": "Normalize the eliminated polarization by choosing its unit-strength test \\(u_1\\) with \\(P_2(u_1,i(v))=1\\), and insert \\(u=\\kappa u_1\\). In the shifted field convention \\(\\zeta^2=-1\\), the boundary inclusion on \\(\\alpha\\) carries the factor \\(-\\zeta\\), and \\(u_1\\) carries \\(\\zeta^{-1}\\). The sign of the normal contraction then gives \\(P_2(u,i(v))=\\kappa\\,\\tau_{\\mathbb C}(\\phi\\alpha)=\\kappa\\), while \\(p(u)=0\\). Only one pair can contract. Consequently"
+  },
+  {
+    "scope": "ch07",
+    "id": "ch07-definition-passage-15cbe6319a8695c9",
+    "paragraph": "For a dg chiral algebra \\(V\\), form its main-diagonal Chevalley coalgebra \\(C_V\\) by attaching a \\(V\\)-coefficient to each block of a partition, at the common position of that block. Two labels give a term with two separate \\(V\\)-inputs and a term with one input at the merged position. The differential combines the internal differential with the merger induced by the chiral product. A closed horizontal unit in \\(V\\) satisfying the vacuum identities supplies a pointing of \\(C_V\\). It also supplies contractions in the mapping complexes. We can use those contractions even when the action we are testing specifies a different pointing \\(u\\)."
+  },
+  {
+    "scope": "ch07",
+    "id": "ch07-definition-passage-0ca409af8889485f",
+    "paragraph": "Fix a target \\(B\\in\\mathcal V\\). A strict map out of \\(\\Lambda(\\epsilon)\\), with \\(\\epsilon\\) of odd degree \\(a\\) and \\(d\\epsilon=T\\epsilon=0\\), sends \\(\\epsilon\\) to a closed, translation-invariant state. On a resolution a closed lift can instead have translation \\(Tb=db'\\). The complex of such pairs is the homotopy fibre \\(B^{hT}\\) of \\(T:B\\to B\\). In the ordinary vertex category the full source comparison is"
+  },
+  {
+    "scope": "ch07",
+    "id": "ch07-definition-passage-5ced5603bf4398ad",
+    "paragraph": "Take the nonzero-level Heisenberg vertex algebra \\(H=V_\\kappa\\), normalized by \\(J_{(1)}J=\\kappa\\mathbf1\\). To act on a current state, an exterior source \\(B=\\Lambda(\\epsilon)\\), with \\(|\\epsilon|=1\\) and \\(d\\epsilon=T\\epsilon=0\\), now has a second input from \\(H\\). Put \\(X=B\\otimes H\\). Restriction along the map \\(j:H\\to X\\) given by \\(j(h)=1\\otimes h\\) must recover the identity of \\(H\\), with its specified path. In the same ordinary dg vertex localization the comparison therefore has target the genuine unit fibre"
+  },
+  {
+    "scope": "ch17",
+    "id": "ch17-definition-passage-9e2dbeef31a6c8cf",
+    "paragraph": "A chiral centre representing this action functor would carry a universal action from which every admitted action is pulled back. Existence depends on the boundary. For the full category of pointed factorizing actions on the Chevalley coalgebra of the nonzero-level Heisenberg boundary, two maps built from exterior actors and the derivation \\(\\partial_{p_1}\\) remain distinct after every map out of their target. The vacuum would force the corresponding degree-zero operation to be a module map. Differentiation in \\(p_1\\) cannot be linear over multiplication by \\(p_1\\), since their commutator is the identity. A terminal action would equalize them up to homotopy. This rules out a representing action for that particular functor. For a boundary whose action functor *is* represented by \\(Z_{\\mathrm{ch}}\\), a physical reconstruction still needs a morphism \\(r:\\mathcal O_{\\mathrm{bulk}}\\to Z_{\\mathrm{ch}}\\) inducing its independently defined supported bulk insertions, products and restrictions. [The Heisenberg obstruction](07-actions-and-centres.md#ch07-the-remaining-comparison)"
+  },
+  {
+    "scope": "ch07",
+    "id": "ch07-definition-passage-84a796fb35efed99",
+    "paragraph": "Take a normal one-form of integral one above the boundary profile, in the field component killed by \\(p\\). Choose its compact tangential function \\(\\phi\\) and the compactly supported \\((0,1)\\)-form \\(\\alpha\\) of the boundary current \\(v\\) with"
+  },
+  {
+    "scope": "ch06",
+    "id": "ch06-definition-passage-4c30501373f80489",
+    "paragraph": "The central generator acts as \\(1\\). The scalar \\(-k-h^\\vee\\) is the **raw affine level**, the coefficient of the central cocycle in this normalization. Write \\(s=-k\\) for the **shifted level**, so that the raw scalar level is \\(s-h^\\vee\\). The mode algebra here has no degree derivation. Its internal energy grading assigns energy \\(-r\\) to \\(xt^r\\)."
+  },
+  {
+    "scope": "ch07",
+    "id": "ch07-definition-passage-6eb00d5da078ee56",
+    "paragraph": "There is another way for evaluation on a vacuum to lose an operation. In the four-current complex for \\(\\mathfrak{gl}_2\\), take the current colours \\(H,E,F,I\\), where \\(I\\) is the trace, and work modulo \\(\\hbar^3\\) over \\(R_3=\\mathbb C[\\hbar]/(\\hbar^3)\\). Besides the current states, the complex has odd ghost states. Multiplying the output of a normalized closed field by a closed trace ghost produces a degree-one class. Its scalar vacuum coefficient vanishes, but the constant term of its full value on the two vacua recovers the trace ghost itself. Acting on that same output and pairing against a dual ghost coefficient are different operations. In the pairing, a trace creator on the field acts by contraction on the dual coefficient."
+  },
+  {
+    "scope": "ch19",
+    "id": "ch19-definition-passage-4bd765b7d268c37d",
+    "paragraph": "The identity defect transmits a boundary condition unchanged. As a kernel between two copies of the one-variable theory it is a factorization over \\(k[[x,y]]\\), with off-diagonal entries \\(x-y\\) and"
+  },
+  {
+    "scope": "ch17",
+    "id": "ch17-definition-passage-e053ecf53a32a257",
+    "paragraph": "An element of this differential graded fibre product consists of an endomorphism of nonnegative ghost degree and a current coefficient with the same induced action on \\(M_3/F^1M_3\\). On a two-input cochain the left action is on its output and the right action is on its rooted argument, with the Koszul sign. Both preserve the corner sequence. On the shifted marked source \\(\\mathcal N_3[1]\\), let both actions factor through \\(q\\). This choice is called inflation along \\(q\\)."
+  },
+  {
+    "scope": "ch07",
+    "id": "ch07-definition-passage-528ec097e2e1f04b",
+    "paragraph": "The source is the nerve \\(N\\) of the category of action roofs. Its points are described below, its edges are maps of the two resolutions respecting the action, and composable edges give its higher simplices. The maps of the two resolutions commute with their structure maps and with the action. All boundary arrows under \\(H\\), including energy-changing arrows, enter the comparison."
+  },
+  {
+    "scope": "ch09",
+    "id": "ch09-definition-passage-dfcb6cf384092038",
+    "paragraph": "Two ways of bringing the last pair of fields together on a compact elliptic source give maps into the same space of outputs. One keeps the normal current until the compact evaluation. The other projects the normal first. In the six-field cubic construction, let \\(A_\\epsilon:N\\to\\mathcal Y\\) be the original compact output and \\(E_\\epsilon:J_q\\to\\mathcal Y\\) the separately specified evaluation. Here \\(N\\) retains the unreduced normal variables, \\(J_q\\) is the complex after projecting the selected collision normal \\(q\\), and \\(\\epsilon\\) is the regularization parameter of the compact maps. The signed contraction \\(N\\rightleftarrows J_q\\) has section \\(j_q\\), projection \\(g_q\\), and homotopy \\(H_q\\). A further root–central contraction \\(J_q\\rightleftarrows\\mathscr G\\) has section \\(j_r\\), projection \\(g_r\\), and homotopy \\(h_r\\). The target retains the central outputs, both harmonic components and the full parameter-form coefficients. Let \\(\\delta_u\\) be the degree-one unreduced contact from the prescribed six-field source, and \\(\\delta_c=g_q\\delta_u\\) its projected contact. The two contraction identities are \\(\\partial H_q=1-j_qg_q\\) and \\(\\partial h_r=1-j_rg_r\\). Inserting the first in \\(A_\\epsilon\\delta_u\\), then the second in \\((A_\\epsilon j_q-E_\\epsilon)\\delta_c\\), gives on their common domain"
+  },
+  {
+    "scope": "ch11",
+    "id": "ch11-definition-passage-b48008d871d28e81",
+    "paragraph": "Under them, the projection \\(P_F\\) to the \\(F\\)-current component has inserted finite part"
+  },
+  {
+    "scope": "ch07",
+    "id": "ch07-definition-passage-fe0b11dc9d63cc6b",
+    "paragraph": "A roof consists of a degreewise surjective state quasi-isomorphism \\(p:P\\to B\\), an admissible state quasi-isomorphism \\(i:H\\to W\\), and a vertex map \\(c:P\\to\\operatorname{Com}(W)\\). The actor resolution \\(P\\) can be unbounded. Admissibility on the boundary requires a bounded-below direct-sum energy grading on \\(W\\) preserved by \\(i,d\\), with \\(E(a_{(n)}b)=E(a)+E(b)-n-1\\) on homogeneous products and locally nilpotent \\(i(J)_{(0)}\\). The commutant consists of states killed by all nonnegative modes of \\(i(J)\\). The two commuting images give \\(a(x\\otimes h)=c(x)_{(-1)}i(h)\\). Inverting \\(i\\) and \\(p\\otimes1\\) gives the value \\(i^{-1}a(p\\otimes1)^{-1}\\) of \\(q_B\\) on this roof. On \\(1\\otimes h\\) the map \\(a\\) restricts precisely to \\(i\\). This supplies the unit path and explains why a change of resolution must respect both legs."
+  },
+  {
+    "scope": "ch11",
+    "id": "ch11-definition-passage-362ad1e90e8bc5c5",
+    "paragraph": "The joint law of the amplitudes \\(Z_n\\) is what a familiar instrument records. An ideal heterodyne receiver measures both quadratures of one oscillator mode. In each run it returns a complex number \\(\\alpha\\), with probability density \\(\\langle\\alpha|\\rho|\\alpha\\rangle/\\pi\\), where \\(|\\alpha\\rangle\\) is the coherent state of amplitude \\(\\alpha\\). For the \\(n\\)th harmonic put \\(Z_n=\\sqrt n\\,\\bar\\alpha_n\\). The vacuum then gives \\(Z_n\\) the Gaussian law of variance \\(n\\), and a state with amplitude \\(F\\) gives the law \\(|F(Z)|^2\\,d\\mu\\). The law of the disk is therefore the law of heterodyne readings of all the harmonics, and the preceding theorem says that these readings determine the state."
+  },
+  {
+    "scope": "ch03",
+    "id": "ch03-definition-passage-5654de686e2bea71",
+    "paragraph": "The double pole of two currents measures \\(k=\\kappa\\). To read a charge, keep this nonzero numerical level fixed and prepare the endpoint of a rank-one Wilson ray of charge \\(a\\) in Gaussian abelian Chern–Simons theory. The source couples to the integral of the gauge one-form along the ray oriented into the half-space. Take the endpoint at \\(z=0\\), use a ray vertical near the boundary current tests and surround it by a positively oriented contour. The contraction of the source with a current gives \\(a\\,dz/z\\). Its residue after weighting by \\(z^n\\) is \\(a\\) for \\(n=0\\) and zero otherwise. Thus only the zero mode of the vacuum action shifts."
+  },
+  {
+    "scope": "ch11",
+    "id": "ch11-definition-passage-4000710c2010babe",
+    "paragraph": "The disk heat kernel used the cylinder length to propagate a state between two boundary circles. To study a vacuum amplitude on a torus boundary, glue together the ends of a three-dimensional shell. Take \\(0<|q|<1\\), \\(\\kappa\\in\\mathbb C^\\times\\) and \\(\\hbar>0\\). The identification contracts normal distance by \\(|q|\\) and multiplies the complex coordinate by \\(q\\), so the filling is"
+  },
+  {
+    "scope": "ch11",
+    "id": "ch11-definition-passage-d539c157aa081be1",
+    "paragraph": "Choose a finite spectral window of \\(\\Delta_C\\) containing complete singular pairs \\(d_Cu_{j,\\ell}=\\sigma_{j,\\ell}v_{j,\\ell}\\). Denote the included pairs by \\(\\Lambda\\) and their span by \\(C_\\Lambda\\). Each retained even pair contributes one complex integration coordinate, and each odd pair retains its order in the Berezin integral. Apply \\(M_\\mu\\) to their actual finite integration cycles. The cyclic chain identity above proves the action equality before any covariance is assigned. Each even action becomes \\(\\sum|w_{j,\\ell}|^2\\), and its unnormalized factor in the transported coefficient frame is"
+  },
+  {
+    "scope": "ch11",
+    "id": "ch11-definition-passage-77e76911993278ec",
+    "paragraph": "The Ward equations make \\(\\mathcal J\\) closed and the relative condition makes its pullback to the physical annulus zero. Consequently its integral can be measured on any intermediate meridian \\(Y\\), including one where the source varies. With increasing-radius orientation and the negative input first, the raw relative harmonic on the reference hemisphere gives"
+  },
+  {
+    "scope": "ch11",
+    "id": "ch11-definition-passage-7b8126c9dad30b32",
+    "paragraph": "Let \\(J_L^0\\) be the classical insertion at positive heat scale \\(L\\), \\(q_{\\mathrm{cl}}\\) the actual boundary differential, and \\(Q_L^0\\) the bulk differential. Then"
+  },
+  {
+    "scope": "ch12",
+    "id": "ch12-definition-passage-e6d232bc8c21d432",
+    "paragraph": "In the mini-twistor action \\(u\\) becomes a fibre coordinate of \\(M=\\operatorname{Tot}_{\\mathbb P^1}\\mathcal O(2)\\). The transition between the charts is \\(z=t^{-1}\\), \\(w=ut^{-2}\\). Zeng identifies the sphere algebra with a closed algebra of maps from \\(U(\\mathfrak g[u,t^{\\pm1}])\\) to the spectral completion of \\(U(u^{-1}\\mathfrak g[u^{-1},t^{\\pm1}])\\), subject to the Ward identities on both charts. Its multiplication is the Koppinen product. Filtering a block by the polynomial degree of the coordinate states it detects gives the completed commutative associated graded"
+  },
+  {
+    "scope": "ch12",
+    "id": "ch12-definition-passage-1a12579c635c0152",
+    "paragraph": "For an integral bilinear form \\(B\\) on \\(\\Lambda\\) put \\(F(a,b)=q^{B(a,b)}\\) and \\(\\chi(a,b)=F(a,b)/F(b,a)\\). The scalars are \\(k[h,q^{\\pm1}]\\) over a characteristic-zero field. Writing \\(q=e^\\eta\\) gives the formal expansion at \\(q=1\\). For homogeneous states and for every output bidegree put"
+  },
+  {
+    "scope": "ch12",
+    "id": "ch12-definition-passage-64a5ed9b627211c4",
+    "paragraph": "The standard Zhu algebra of the chiral cotangent Yangian at every level is \\(H=A\\#_\\rho U(\\mathfrak a)\\), where \\(A=\\mathcal O(G_-)\\) and \\(\\mathfrak a=\\mathfrak g[u]\\). There is a basis in which one can say exactly which states have the same image. Take polynomial coordinates \\(x_\\alpha\\) on the negative-loop group, an ordered basis \\(e_i\\) of the polynomial currents, and the standard vertex grading in which the functions have weight zero and \\(J_{e_i}\\) has weight one. Write \\(q\\) for the Zhu projection and \\(T\\) for translation in the vertex coordinate."
+  },
+  {
+    "scope": "ch12",
+    "id": "ch12-definition-passage-3a7f71260bf45eaf",
+    "paragraph": "A regular function on \\(G_-\\) is polynomial in finitely many loop coefficients. Write \\(A=\\mathcal O(G_-)\\) and let the subscripts \\(+\\) and \\(-\\) denote the two projections. The same decomposition of \\(\\operatorname{Ad}_{g^{-1}}\\xi\\) supplies a new polynomial current and a tangent vector at \\(g\\),"
+  },
+  {
+    "scope": "ch07",
+    "id": "ch07-definition-passage-f0653756b23409f0",
+    "paragraph": "The Heisenberg test kept a boundary current in place while the exterior input varied. To study more general tensor-source resolutions, keep additional field insertions at labelled positions \\(z_1,\\ldots,z_r\\). These are the **spectators**. A residue can move an auxiliary mark \\(w_a\\) onto one of them. Whether a form has a primitive depends on the pole orders allowed before and after that collision. Write \\(b_j\\ge0\\) for the basic bound at spectator \\(j\\), \\(N_{ij}\\ge0\\) for a pair of spectators, and \\(\\mu\\) for the positive odd bound on marked pairs."
+  },
+  {
+    "scope": "ch12",
+    "id": "ch12-definition-passage-7fc7876457789d41",
+    "paragraph": "Take the level-zero chiral cotangent Yangian for \\(GL_N\\). For independent loops \\(P,Q=I+O(u^{-1})\\), the coproduct of the matrix of coordinate currents is"
+  },
+  {
+    "scope": "ch12",
+    "id": "ch12-definition-passage-b6f1078e680b44d6",
+    "paragraph": "For the comodule obstruction the parameter \\(h\\) belonged to a field where it was invertible. For rational matrix *fields* we work over \\(R=\\mathbb C[[\\hbar]]\\) and keep the fibre at \\(\\hbar=0\\). At any precision \\(d\\) we can expand a shifted pole modulo \\(\\hbar^d\\). For example,"
+  },
+  {
+    "scope": "ch12",
+    "id": "ch12-definition-passage-c289e238eae7accb",
+    "paragraph": "Take \\(X=\\mathbb A^1_{\\mathbb C}\\). A **run** of a configuration is a maximal consecutive string of equal positions. Let \\(P_n\\) be the subsets of \\(\\{1,\\ldots,n-1\\}\\), ordered by inclusion. The map \\(p_n:X^n\\to P_n\\) records the gaps \\(z_i\\ne z_{i+1}\\). For a unital algebra \\(H\\) over \\(\\mathbb C\\), put"
+  },
+  {
+    "scope": "ch12",
+    "id": "ch12-definition-passage-7215ce7879ed9f36",
+    "paragraph": "Write \\(T(u)=1+\\sum_{r\\ge1}t^{(r)}u^{-r}\\) for the negative loop and \\(L_\\xi\\) for the invariant current with polynomial label \\(\\xi\\in\\mathfrak{gl}_N[u]\\). Give functions and their vertex derivatives order zero. Let \\(P_d V\\) consist of the PBW words in Zeng's vertex envelope \\(V\\) with at most \\(d\\) invariant current letters, counting a derivative of a current as one letter. In the Rees algebra \\(V_h=\\sum_{d\\ge0}h^dP_d V\\) write \\(J_\\xi=hL_\\xi\\). A PBW word with \\(d\\) current letters gives a basis element after multiplication by \\(h^d\\). In particular \\(J_\\xi\\) has a nonzero symbol at \\(h=0\\) for \\(\\xi\\ne0\\). The current-current and current-function residues are \\(hJ_{[\\xi,\\nu]}\\) and \\(h\\rho_\\xi f\\), respectively, with \\(\\rho\\) the dressing action above. The coproduct \\(\\Delta_h\\) on a function is pullback by loop multiplication. Its formula on \\(J_\\xi\\) has one current in each summand, so it preserves total PBW order. [Zeng, Theorems 2.6 and 5.5](https://arxiv.org/html/2610.10202v2)"
+  },
+  {
+    "scope": "ch12",
+    "id": "ch12-definition-passage-987d190a82ef3a95",
+    "paragraph": "For two fields \\(a,b\\), the normal product \\(:ab:=a_{(-1)}b\\) is the constant coefficient of \\(Y(a,z)b\\). At coincidence it is what remains after subtracting all poles and taking the regular value. A product of a ghost with a constraint below is taken in precisely this sense."
+  },
+  {
+    "scope": "ch11",
+    "id": "ch11-density-wave-power-sum",
+    "paragraph": "If \\(f\\) is a symmetric polynomial, then \\(f\\psi_0\\) is again antisymmetric. It describes fermions which have been moved upward in momentum. The simplest symmetric polynomials are the power sums"
+  },
+  {
+    "scope": "ch02",
+    "id": "ch02-pullback-on-functions",
+    "paragraph": "Composing a function with \\(\\mu\\) gives the pullback"
+  },
+  {
+    "scope": "ch12",
+    "id": "ch12-ising-marked-exchange",
+    "paragraph": "For three input spins with total output \\(\\sigma\\), the first two can fuse through \\(\\mathbf1\\) or through \\(\\psi\\). Either channel can then fuse with the third spin to give \\(\\sigma\\). Keep these two paths as the basis for the exchange. The two basis vectors correspond to \\((\\sigma\\sigma)_{\\mathbf1}\\sigma\\) and \\((\\sigma\\sigma)_\\psi\\sigma\\). A half-turn here means positive analytic continuation of the two insertions through angle \\(\\pi\\) in the marked chiral blocks. In the real trivalent basis, with \\(\\zeta=e^{\\pi i/8}\\), the positive half-turn of the first pair and the change of fusion channel have matrices"
+  },
+  {
+    "scope": "ch03",
+    "id": "ch03-charge-as-zero-mode",
+    "paragraph": "The vector \\(|a\\rangle\\) has no oscillator excitations. Excite the second harmonic once to prepare \\(p_2|a\\rangle\\). The unweighted contour acts by \\(J_0\\), so it sends this state to \\(a\\,p_2|a\\rangle\\). Its charge eigenvalue is the same \\(a\\) as on \\(|a\\rangle\\). Weighting the contour by \\(z^2\\) applies \\(J_2\\) instead. It removes the excitation and gives \\(2k|a\\rangle\\). The coefficient \\(2k\\) thus measures the oscillator response at the fixed level \\(k\\)."
+  },
+  {
+    "scope": "ch02",
+    "id": "ch02-jacobi-identity",
+    "paragraph": "Over any field \\(k\\), a Lie algebra \\(\\mathfrak g\\) has an alternating bilinear bracket with \\([x,[y,z]]+[y,[z,x]]+[z,[x,y]]=0\\), the Jacobi identity. Alternation requires \\([x,x]=0\\), including in characteristic two where a symmetric bracket alone need not vanish on \\((x,x)\\). To make products of its operators, form the universal enveloping algebra \\(U(\\mathfrak g)\\), generated linearly by \\(\\mathfrak g\\) with unit and relations"
+  },
+  {
+    "scope": "ch04",
+    "id": "ch04-normal-monodromy",
+    "paragraph": "For two points on the complex line, hold their common position fixed and move their difference around zero. A small punctured disk of differences retracts onto a circle. Suppose a locally constant family of vector spaces has fibre \\(E\\) there and a trip around the circle returns vectors by a linear map \\(C:E\\to E\\). The circle has one vertex and one oriented edge. A vector \\(v\\) assigned to that vertex returns as \\(Cv\\), so the cellular cochains are"
+  },
+  {
+    "scope": "ch05",
+    "id": "ch05-conilpotence",
+    "paragraph": "Deconcatenation on \\([a|b|c]\\) produces at most three nonempty factors. For a counital coaugmented dg coalgebra \\(C=k\\oplus\\bar C\\), write \\(1\\) for the image of the coaugmentation and \\(\\bar C\\) for the kernel of the counit. On \\(c\\in\\bar C\\), remove \\(1\\otimes c+c\\otimes1\\) from \\(\\Delta c\\) to obtain the reduced coproduct \\(\\bar\\Delta c\\). The coalgebra is **conilpotent** if sufficiently many iterated reduced coproducts kill each element. The three-letter bound illustrates this for the tensor coalgebra."
+  },
+  {
+    "scope": "ch14",
+    "id": "ch14-mini-twistor-line-space",
+    "paragraph": "An oriented line in Euclidean three-space is determined by its direction and its point closest to the origin. The space of these lines is the mini-twistor surface \\(M=\\operatorname{Tot}_{\\mathbb P^1}\\mathcal O(2)\\). A marked point on the line gives a real coordinate \\(t\\), its signed distance from the closest point. Thus the correspondence space is smoothly \\(\\mathbb R_t\\times M\\). The sphere of lines marked at the origin is the surface \\(S=\\{t=0,u=0\\}\\), where \\(u\\) denotes the tautological fibre coordinate. A framed gauge defect on \\(S\\) gives a classical realization of spectral loop coordinates and their dressing action."
+  },
+  {
+    "scope": "ch14",
+    "id": "ch14-abelian-linking-fluxes",
+    "paragraph": "For example a pure \\(u^{-1}\\) pole of \\(A\\) with coefficient \\(f(z)\\) contributes \\(f(z)\\) to the unweighted linking integral and zero to every positive moment. A pole of the dual field \\(b\\) can be varied while holding this reading fixed. The two sets of normalized measurements use the same small outward sphere,"
+  },
+  {
+    "scope": "ch19",
+    "id": "ch19-jacobi-ring",
+    "paragraph": "Changing the boundary representatives moved the mixed coefficient to a different word. Which operation of the boundary category can represent a bulk field independently of these choices? In the cubic example every \\(h(x)\\) acts on the cohomology of the two-state boundary by \\(h(0)\\,1\\). On the bulk side, in \\(r\\) formal coordinates the gradient equations define a Koszul complex on odd generators \\(\\xi_i\\) with \\(d\\xi_i=\\partial_i W\\). At an isolated critical point the gradient is a regular sequence, so its cohomology is the Jacobi ring \\(\\operatorname{Jac}(W)=k[[x_1,\\ldots,x_r]]/(\\partial_1W,\\ldots,\\partial_rW)\\). To account for the surviving cubic class of \\(x\\), the boundary action must also act coherently on the maps between boundaries. [The bulk action on modules](#bulk-action-and-centre)"
+  },
+  {
+    "id": "ch12-principal-slodowy-slice",
+    "scope": "ch12",
+    "paragraph": "This plane is the principal Slodowy slice \\(f+\\ker(\\operatorname{ad}e)\\), where \\(e=2(E_{12}+E_{23})\\) and \\([e,f]=\\operatorname{diag}(2,0,-2)\\). The traceless matrices commuting with \\(e\\) are spanned by \\(e,e^2\\), the two directions of the plane. Tangents to the coadjoint orbit at \\(f\\) are the commutators \\([A,f]\\). The differentials \\(du_f(V)=\\operatorname{tr}(fV)/2\\) and \\(dv_f(V)=\\operatorname{tr}(f^2V)\\) vanish on them. On \\(E_{12}+E_{23},E_{13}\\) their two columns are \\((1,0),(0,1)\\). Since the centralizer of the single Jordan block \\(f\\) in \\(\\mathfrak{sl}_3\\) has dimension two, the orbit has dimension six. These two directions therefore give a transverse plane in dimension eight. Conjugating by \\(\\operatorname{diag}(t,1,t^{-1})\\) and multiplying by \\(t\\) fixes \\(f\\) and sends \\((u,v)\\) to \\((t^2u,t^3v)\\). The finite calculation accounts for the degrees two and three. The singular products require fields on a disk. [Arakawa, §§2.2–2.8](https://arxiv.org/pdf/1605.00138#page=5)"
+  },
+  {
+    "id": "ch12-principal-brst-complex",
+    "scope": "ch12",
+    "paragraph": "The antighost \\(b_3\\) has \\(Qb_3=J_3\\). On \\(\\gamma^3\\) the last term gives \\(-:\\gamma^1\\gamma^2:\\), canceling the commutator of the first two constraint currents in \\(Q^2\\). For example \\(Qb_1=J_1-\\mathbf1-:\\gamma^2b_3:\\) and \\(QJ_1=-:\\gamma^2J_3:\\). The odd Leibniz rule gives the opposite term from \\(Q(-:\\gamma^2b_3:)\\), so \\(Q^2b_1=0\\). The central pairing vanishes on the strictly upper triangular Lie algebra. This gives the Becchi–Rouet–Stora–Tyutin (BRST) complex. Its degree-zero cohomology, the closed degree-zero fields modulo the images of fields of degree minus one, is the universal principal \\(W^k(\\mathfrak{sl}_3)\\)."
+  },
+  {
+    "id": "ch12-ordered-miura-generators",
+    "scope": "ch12",
+    "paragraph": "For \\(k\\ne-3\\) the quantum Miura map gives explicit representatives. Choose a square root of \\(k+3\\), put \\(\\alpha=(k+2)/\\sqrt{k+3}\\), and take traceless Heisenberg currents \\(H_1+H_2+H_3=0\\) with contraction \\((\\delta_{ij}-1/3)/(z-w)^2\\). Write \\(T\\) for the derivative in the insertion coordinate. In the ordered normally ordered product below, move the formal symbol \\(D\\) to the right with \\(DH_i=H_iD+\\alpha TH_i\\). Keeping \\(D\\) as a symbol defines the coefficients even at \\(\\alpha=0\\). They satisfy"
+  },
+  {
+    "id": "ch12-regular-spin-three-field",
+    "scope": "ch12",
+    "paragraph": "The same nonlinear term can be tested at the exceptional charge. Put \\(a=(22+5c)/16\\) and choose the regular field \\(U=\\sqrt3\\,X\\). Away from \\(a=0\\), \\(U=\\sqrt a\\,W\\) with compatible signs. Multiplying the \\(WW\\) bracket by \\(a\\) gives polynomial coefficients because \\(a\\beta=1\\). Specializing these coefficients at \\(c=-22/5\\), corresponding to \\(k=-4/3\\) or \\(-12/5\\), leaves double and simple poles \\(2\\Lambda\\) and \\(T\\Lambda\\). The regular universal vacuum has the independent generator \\(U\\) also in this fibre. Relations in a simple quotient require a separate calculation. [Al-Ali and Linshaw, equations (3.3)–(3.5)](https://arxiv.org/pdf/1608.06255#page=4)"
+  },
+  {
+    "id": "ch12-w3-field-maps",
+    "scope": "ch12",
+    "paragraph": "The construction supplies a finite translation primitive for \\(dw\\). To test a proposed map of fields into an ordinary vertex algebra \\(V\\), choose an image \\(y_i\\in V\\) for each source generator \\(x_i\\). Pair these images with the corresponding odd generators \\(c_i\\) of \\(B\\), giving the degree-one state \\(q=\\sum_i y_i\\otimes c_i\\). The images extend to a vertex-algebra map precisely when"
+  },
+  {
+    "id": "ch12-w3-smooth-module-adjunction",
+    "scope": "ch12",
+    "paragraph": "At fixed central charge \\(c\\), let \\(\\mathcal S_c\\) denote the category of smooth modules. Given a complex \\(M\\) of such modules, \\(K_cM\\) is the free graded contramodule \\(B_c[[M]]\\) with its twisting connection. In the other direction the smooth coinduction \\(F_cQ\\) consists of the continuous linear maps from \\(A_c\\) to the graded pieces of \\(Q\\) taken as discrete spaces, with the opposite twisting term in the differential. The resulting functors are adjoint as differential graded functors"
+  },
+  {
+    "id": "ch18-passage-ddd3daf2773b467885a6",
+    "scope": "ch18",
+    "paragraph": "Consider real central charge \\(c>1\\) and positive principal labels. Assume the normalized algebraic four-point channel sewings, their canonical spectral \\(L^2\\) vectors, the real unitary channel transform and the positive-label pentagon of Chapter 10. At outer separation one take \\(s<0\\) and input exponents \\(r,t>\\log 2\\), with \\(t\\) sufficiently large for the moving leg. Fix nonzero inner separations \\(\\zeta_1,\\zeta_2\\) with \\(r<-\\log|\\zeta_1|\\) and \\(t<-\\log|\\zeta_2|\\), and continue the coordinate logarithms together from the positive ordered configurations. The receiving graph domain controls the norm of each energy-weighted positive section in both \\(C_0\\) and \\(L^2(d\\nu)\\), together with its full marked tuple, including the meromorphic germ and the vacuum component. This allows two independently formed composites to sew, including a balanced diagonal vacuum coefficient. The positive channel has two independent intermediate momenta. The vacuum channel retains their common momentum \\(p\\). On two ground packets the vacuum block, normalized to one on highest vectors, gives the pointwise product \\(f(p)g(p)\\) of their amplitudes. The weighted supremum bound on one section and the weighted square-integral bound on the other control the resolved vacuum output. Three positive composites can also be rotated in their common strict radial overlap on these compatible logarithms."
+  }
+]
