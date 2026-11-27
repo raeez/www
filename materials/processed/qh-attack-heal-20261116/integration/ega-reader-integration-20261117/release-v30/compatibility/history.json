@@ -1,0 +1,539 @@
+{
+  "schema": "reader-public-history/1",
+  "repository": "/Users/raeez/www-worktrees/2026-11-17-qh-research-publication",
+  "publicPath": "quantum-holography",
+  "controls": {
+    "baseline/reader.js": {
+      "sha256": "c3dc108d47c691b4f536d08d5f46b95e2e658a8250e7eeb11471ee5797274807",
+      "bytes": 120583
+    },
+    "baseline/status.js": {
+      "sha256": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5",
+      "bytes": 113263
+    },
+    "controls/reader.js": {
+      "sha256": "8ca1a421ab0999dc02544e5a7bc1e20a5259ea299896b1ab96e2ba246cca2fb7",
+      "bytes": 117612
+    },
+    "controls/status.js": {
+      "sha256": "59cbc2d0b7a6d7613a8f85b30b4c61955585ef0b33f52b23aed0cae3dbbde64b",
+      "bytes": 113307
+    },
+    "controls/reader-v18.js": {
+      "sha256": "8320b12d5511bdb32e78f60c750b1405bf06883ea28530dde2b21ce513f6b1be",
+      "bytes": 122988
+    },
+    "controls/status-v18.js": {
+      "sha256": "4973f1eabe680ab36390d2f5fb8514cdb8f22586511763198a6cffe3b2f86fab",
+      "bytes": 114571
+    },
+    "controls/reader-v23-book.js": {
+      "sha256": "51e1b83e523c68193012c87fb7e8b1716aa768a3ef2128f4da96421cc771feb8",
+      "bytes": 118474
+    },
+    "controls/reader-book-math-notices.js": {
+      "sha256": "85d43ddbb04a3375dea7f22e91264a3de0cb76ad39e4ad278cf20babb9ef678b",
+      "bytes": 124349
+    }
+  },
+  "editions": [
+    {
+      "edition": "v14",
+      "commit": "1bb5537744d4526287b611f9552c9aacaaaca610",
+      "pins": {
+        "atlas.html": {
+          "sha256": "8d8a8de5b6e903daa14aab8375066daccc3947558f965fba4753921b8e4530f0",
+          "bytes": 10233854
+        },
+        "index.html": {
+          "sha256": "0e5e12b16a27694472cd933f33a7416070049db1b81d349da4f1b37fd61a18b3",
+          "bytes": 3377729
+        },
+        "reader-index.js": {
+          "sha256": "6a94ff3cc1f3d178b3c2718921777a3baefbaf5fabc4954bee14edc2e81e1c6e",
+          "bytes": 4985027
+        },
+        "reference.html": {
+          "sha256": "755bba3c9b434076375b6110d6b1a1cedac1af74bba0e68e887f1f1bfbd94f47",
+          "bytes": 3944323
+        }
+      }
+    },
+    {
+      "edition": "v15",
+      "commit": "3123ea8cbb82d603df7cfaab1ec09986ab5f0dc6",
+      "pins": {
+        "atlas.html": {
+          "sha256": "fb38e95131c7084e61b92ed850473cdcc5f9c1aa2f59e72ce7ed3d0789b42b2c",
+          "bytes": 11228809
+        },
+        "index.html": {
+          "sha256": "4d7370b01cc92dc022fb4d72a93cb089732b344191d9e18f19e88232e44fa7b2",
+          "bytes": 4064383
+        },
+        "reader-index.js": {
+          "sha256": "0678f266c510a13856d398ce29d1704dc1850c0e6454d601aeeb9e7a10c11bc5",
+          "bytes": 5756039
+        },
+        "reference.html": {
+          "sha256": "41d9a33a9e02e8eafc33ac32f01a4e504db7c1b2d74b2dcb281a8d45f030b9ce",
+          "bytes": 4541133
+        }
+      }
+    },
+    {
+      "edition": "v16",
+      "commit": "e7c95a26057c6722281dfb17c2d7593a991b7858",
+      "pins": {
+        "index.html": {
+          "sha256": "36fece54682177bd040bb31b9c111cf91779cde70370d50a0b064bed45ba1c17",
+          "bytes": 4720934
+        },
+        "reference.html": {
+          "sha256": "36936afb25cb9de8092eda5d730bc36bff5e9a6cfa5e5f77def5b18ed95120a4",
+          "bytes": 4949475
+        },
+        "atlas.html": {
+          "sha256": "bca739e7a98b2a12579e54ed497c8c7914cb3093c8c765152537324db1189ad7",
+          "bytes": 11360100
+        },
+        "reader-index.js": {
+          "sha256": "214ca280f24b133d90cc5b3f582c94e164abe3dee881b1bf0d25b7f1b8b8c304",
+          "bytes": 5776446
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v16-raw-index.js",
+        "sha256": "2aaa4b7c28fa11b1f1829c28c21f2248db89dace79aba6548b6ac5b4d506707d",
+        "bytes": 5787605
+      }
+    },
+    {
+      "edition": "v17",
+      "commit": "93ab244444a78ad247e167dc0c8657154e37051b",
+      "pins": {
+        "index.html": {
+          "sha256": "0b6e6424b12ed0a69c2663fe1d3bc0ed91eaa4ae6f616e61d0b2cae6a38bb511",
+          "bytes": 4763225
+        },
+        "reference.html": {
+          "sha256": "045755e54c2e0d5bef8b4b3742837611d82f92b4670c5beed8256cabd6e79cfa",
+          "bytes": 4994304
+        },
+        "atlas.html": {
+          "sha256": "af6cbb4398f971b4e57051c38c3950bfa9e4f945cf3cbaa4aeeb2a406135dffc",
+          "bytes": 11366986
+        },
+        "reader-index.js": {
+          "sha256": "7ae83778cc42b1ad93cebdce1e5a4affff922d767b9befd85d31ce6f8aedb9b3",
+          "bytes": 5799169
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v17-raw-index.js",
+        "sha256": "b9753806578f0415306b29f5849b904724833cb427858557a55a966f3aa54f9a",
+        "bytes": 5810692
+      }
+    },
+    {
+      "edition": "v18",
+      "commit": "85a5c7a9e3a1be8873c33f86f8c105b186e31920",
+      "pins": {
+        "index.html": {
+          "sha256": "d4a94ab5232f0307e2c22acc5cbda5c5851d462e6eab9440d13caf6bd65d5280",
+          "bytes": 4839760
+        },
+        "reference.html": {
+          "sha256": "ff375b9d1ce90d29499dfcb5f49350f6ce00566a7592c2b9983fe21f88e8e9a7",
+          "bytes": 5020623
+        },
+        "atlas.html": {
+          "sha256": "f1076a0d9e6c0b2612190cb632fa170df4df1969098db0e00d2a1932d94e2365",
+          "bytes": 11394879
+        },
+        "reader-index.js": {
+          "sha256": "f36bfbe9aa3b06c2d99718f8140360f6b2804a9e98a16aaf956f7232992cd35b",
+          "bytes": 5835244
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v18-raw-index.js",
+        "sha256": "2c3f4047c91253dbc8af787b2b56f00668a2f8c5207d14fccebbd3aca137b741",
+        "bytes": 5847181
+      }
+    },
+    {
+      "edition": "v19",
+      "commit": "6cea9e69a77b2b2aac2f76cbdd932b63f1481583",
+      "pins": {
+        "index.html": {
+          "sha256": "0562932f2117e42d10ce2e58a073ad171c88df7ce7c099319c930f342265f313",
+          "bytes": 4915208
+        },
+        "reference.html": {
+          "sha256": "a743d4105217a1cf773ac1853838b8f856c713c0b4217ff5580c83d08d9c190b",
+          "bytes": 5032883
+        },
+        "atlas.html": {
+          "sha256": "1d4d2078a15f685d39978d0655d906acf1ae71d6c22ac5b000addcbe41d8c05b",
+          "bytes": 11443369
+        },
+        "reader-index.js": {
+          "sha256": "519c5254bc80e173eb1ffe9ac0589ab0f84676c3280b2c9d9a8121b682646cfb",
+          "bytes": 5879383
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v19-raw-index.js",
+        "sha256": "ea461a8fe38b8150c80f04333667f1b46daeb7d44383881b8b14890d0a721cdd",
+        "bytes": 5891723
+      }
+    },
+    {
+      "edition": "v20",
+      "commit": "627861ecafa9844fb274dcfd55f2c0ce2ba9bd5c",
+      "pins": {
+        "index.html": {
+          "sha256": "8104f3db49f6fe1db88bb6a71fc9e58e05fb1e23854890682c2bc70fea62bc3f",
+          "bytes": 4960720
+        },
+        "reference.html": {
+          "sha256": "dd94fdcdde69edd437e81333948ce21382c6b39c9d96da009ffe51223ff9617d",
+          "bytes": 5048340
+        },
+        "atlas.html": {
+          "sha256": "96b9541102d7d902b8e6e3f9a7d27fb80b2575b98b9d3836f92b33ec84c3f7bc",
+          "bytes": 11466239
+        },
+        "reader-index.js": {
+          "sha256": "4fef537a4d113a6a24046c64b9ea854a318f96bc9ecfdf27e53609a7c668cc5c",
+          "bytes": 5904273
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v20-raw-index.js",
+        "sha256": "c2a99f863ab42a093de9e07a82ebb1dc7e7d73adc208fea8189fb05357cf2f47",
+        "bytes": 5916891
+      }
+    },
+    {
+      "edition": "v21",
+      "commit": "9556e30f229c48a8294378d81a8b84e1f62732c6",
+      "pins": {
+        "index.html": {
+          "sha256": "916a1a6db44808c235303eadbf65aa9bf0101d28d731bc627103baf913fbb770",
+          "bytes": 5082278
+        },
+        "reference.html": {
+          "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+          "bytes": 5068537
+        },
+        "atlas.html": {
+          "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+          "bytes": 11472088
+        },
+        "reader-index.js": {
+          "sha256": "b6833dfec873fbe4faabdcd74ae69acc90a503183f15fcd4619cf0ace2802e28",
+          "bytes": 5953633
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v21-raw-index.js",
+        "sha256": "7b6ef3118a8e6860932941261aba8be9e8b40941688773e6e823adebd6841153",
+        "bytes": 5966887
+      }
+    },
+    {
+      "edition": "v22",
+      "commit": "12a06276b0d8d44301d9dac307410c33db45154a",
+      "pins": {
+        "index.html": {
+          "sha256": "f6b5a56cc36e1161c356a56142d58ecbdaa0a3e7a49767271be19abd1d6335e5",
+          "bytes": 5097280
+        },
+        "reference.html": {
+          "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+          "bytes": 5068537
+        },
+        "atlas.html": {
+          "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+          "bytes": 11472088
+        },
+        "reader-index.js": {
+          "sha256": "4bf1c1685168b17582852d9113c651ee421051f4074ee8e1043adf3382cad5d9",
+          "bytes": 5957374
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v22-raw-index.js",
+        "sha256": "4d251ae85d48f5a0dbb329549c401395f91b5f07f7cad45dc40d8a192b2d889e",
+        "bytes": 5970603
+      }
+    },
+    {
+      "edition": "v23",
+      "commit": "1130a902f8977789d1a180ac4bf4107afc03e0dd",
+      "pins": {
+        "index.html": {
+          "sha256": "2b04856bfc2bb4349eececfc98c6d58348f2f88813d31725e7167292c8df85bc",
+          "bytes": 5192889
+        },
+        "reference.html": {
+          "sha256": "1054b707c975ad9a3a7604c38f07e19e641046da412c81cc4176fe15320de530",
+          "bytes": 5071331
+        },
+        "atlas.html": {
+          "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+          "bytes": 11472088
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v23-raw-index.js",
+        "sha256": "2624bae40d4da5944d58ee827769e351acdc3e4b3dd1c9d91beeb2e2981199e0",
+        "bytes": 6002132
+      }
+    },
+    {
+      "edition": "v24",
+      "commit": "facf114ea0d62f59eb1cce7c46064d03f561c12f",
+      "pins": {
+        "index.html": {
+          "sha256": "53c6b4c090cb25bcb30d6cefc5f35c1573e9f4e7966d2c2efc78b66fc620cfe0",
+          "bytes": 5192993
+        },
+        "reference.html": {
+          "sha256": "02f555b74e0fceb955851fe3724cb8ab4a4b40a728734cd4a8e06c8da63a88c9",
+          "bytes": 5071435
+        },
+        "atlas.html": {
+          "sha256": "a46cacb61b98ee79b167557075d5e2b175e019a867394a372967b45db3106da4",
+          "bytes": 11472147
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v24-raw-index.js",
+        "sha256": "2624bae40d4da5944d58ee827769e351acdc3e4b3dd1c9d91beeb2e2981199e0",
+        "bytes": 6002132
+      }
+    },
+    {
+      "edition": "v25",
+      "commit": "bcf39304da74d3904baebc86708e2e0b87f54154",
+      "repository": "/Users/raeez/www",
+      "pins": {
+        "index.html": {
+          "sha256": "86dc4735f91e4b6d0e92a505b54f7f3f97e9b24839db7a5a0a89962ab16d6bea",
+          "bytes": 5241221
+        },
+        "reference.html": {
+          "sha256": "e81860eb1d2514526c96d2d528254622d2dccbf006677170867b6bc05755fa5d",
+          "bytes": 5071940
+        },
+        "atlas.html": {
+          "sha256": "44e521b85c83b5e829cab7fab17353a31afe9236fd97fff4e56ea26aea528526",
+          "bytes": 11472652
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v25-raw-index.js",
+        "sha256": "2624bae40d4da5944d58ee827769e351acdc3e4b3dd1c9d91beeb2e2981199e0",
+        "bytes": 6002132
+      },
+      "standalone": {
+        "repository": "/Users/raeez/www-worktrees/2026-11-17-qh-research-publication",
+        "commit": "17317c4066012b85a202a5d9fb4240ecb6cb9b55",
+        "pins": {
+          "index.html": {
+            "sha256": "4b877ff7450746584f1e0bf247e3bf682a1bb6b3d60fca959338f23484169e8a",
+            "bytes": 5240692
+          },
+          "reference.html": {
+            "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701",
+            "bytes": 5071411
+          },
+          "atlas.html": {
+            "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594",
+            "bytes": 11472123
+          },
+          "reader-index.js": {
+            "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+            "bytes": 5988098
+          }
+        }
+      },
+      "primaryMount": {
+        "url": "https://raeez.com/quantum-holography/",
+        "packageSha256": "809d9d10ec09f81cc2dd012f6025d11cc336fd4b735be39b2c1a3627b3ef108f"
+      },
+      "standaloneUrl": "https://research.momentum.inc/quantum-holography/"
+    },
+    {
+      "edition": "v26",
+      "commit": "52e85117170ae241e92778dc56530f5b3d74ef03",
+      "repository": "/Users/raeez/www",
+      "pins": {
+        "index.html": {
+          "sha256": "cff2cc8b0714129fcaf0b645676251dce0cfb8a14ff41d4f6f79b53cb0cde463",
+          "bytes": 5479062
+        },
+        "reference.html": {
+          "sha256": "b1c459cd48d6f298550a1edcb8610f07af450f5fcb6156faa0df7c066e23f573",
+          "bytes": 5081869
+        },
+        "atlas.html": {
+          "sha256": "27b9f94a34ec34c35940029201ba13ffd2b1f63f63c9ff96b62b86e4f835ce1c",
+          "bytes": 11482581
+        },
+        "reader-index.js": {
+          "sha256": "56520348b9be61c6264e04d428c85d6c47910f9c139cff8c3ca0ffb025c7461d",
+          "bytes": 6071865
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v26-raw-index.js",
+        "sha256": "89eb728ee83a034761d4be7b82862d0df7d2358c04db61659ee52b27e9358682",
+        "bytes": 6086311
+      }
+    },
+    {
+      "edition": "v28",
+      "commit": "b158247ddaef4d5b24c030f883e8f0aa4c31a9d3",
+      "repository": "/Users/raeez/www",
+      "pins": {
+        "index.html": {
+          "sha256": "47355e73710582ee1bf42033f917326117f918ef246885aab9b8d59d5db62f1c",
+          "bytes": 5639958
+        },
+        "reference.html": {
+          "sha256": "21992410ab507778e9bb3bcec6de4a7bb6f44d280c2355095e3b5554dc5ceb6c",
+          "bytes": 5083505
+        },
+        "atlas.html": {
+          "sha256": "e4d977d9aa9aa63593841f7a0af6c2f0210692c201b253f011e4831898956966",
+          "bytes": 11484217
+        },
+        "reader-index.js": {
+          "sha256": "56520348b9be61c6264e04d428c85d6c47910f9c139cff8c3ca0ffb025c7461d",
+          "bytes": 6071865
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v28-raw-index.js",
+        "sha256": "89eb728ee83a034761d4be7b82862d0df7d2358c04db61659ee52b27e9358682",
+        "bytes": 6086311
+      }
+    },
+    {
+      "edition": "v28.1",
+      "commit": "04dbd695741f1437957ff8951b87ef1d41d0f5b0",
+      "repository": "/Users/raeez/www",
+      "pins": {
+        "index.html": {
+          "sha256": "05d67930414975ed6ee2497756613b9d7d6b683d2e1f490b1e1cca141e7c8c8c",
+          "bytes": 5640556
+        },
+        "reference.html": {
+          "sha256": "f8317dbb06ad30a33e384bfb95a8b7e8f483d83ed7fb36831ad33c566fafe61c",
+          "bytes": 5084103
+        },
+        "atlas.html": {
+          "sha256": "c9a6a368950eaa78c5b6a1cf098f3622706654eeeea79cabe220b5c307147532",
+          "bytes": 11484815
+        },
+        "reader-index.js": {
+          "sha256": "56520348b9be61c6264e04d428c85d6c47910f9c139cff8c3ca0ffb025c7461d",
+          "bytes": 6071865
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v28.1-raw-index.js",
+        "sha256": "89eb728ee83a034761d4be7b82862d0df7d2358c04db61659ee52b27e9358682",
+        "bytes": 6086311
+      }
+    },
+    {
+      "edition": "v29",
+      "commit": "5047984766ff9027a50b4e894381241a85b697f2",
+      "repository": "/Users/raeez/www",
+      "pins": {
+        "index.html": {
+          "sha256": "def6f635bbbb817b0b58a78e474d5ae2eb59018e171b4ec6527b1bd49f13bce7",
+          "bytes": 6266164
+        },
+        "reference.html": {
+          "sha256": "4d7ed80f5618b6794026610bf7f31f32aee461f4a8e3e927bdbf6db5f185dbd3",
+          "bytes": 5114292
+        },
+        "atlas.html": {
+          "sha256": "3cdb352a41bfad8d6de9a99e2939a6e3eb732be346bafd3e18e9fb0001c1d82b",
+          "bytes": 11558112
+        },
+        "reader-index.js": {
+          "sha256": "61e5401570e43723e0baea0a4e4a2d1201a7c73a65c76ac907a5402b458b2b97",
+          "bytes": 17454513
+        }
+      },
+      "rawIndex": {
+        "path": "controls/v29-raw-index.js",
+        "sha256": "357c2d3ec0fb1884f9374d25cdbf955642b539c5cf88a3e0325a1c33bb16df26",
+        "bytes": 17472158
+      }
+    }
+  ],
+  "runtime": {
+    "reader": "controls/reader-v18.js",
+    "reference": "controls/status-v18.js",
+    "bookReader": "controls/reader-book-math-notices.js"
+  },
+  "matchIssuedEnclosures": true,
+  "reviewedPassageSuccessors": [
+    {
+      "page": "index.html",
+      "from": "ch04-passage-4c330d8efe43bf930e8c",
+      "priorIdentity": "dff8274204dbb08d9b2553d22c3b3e097782a7949777ba8f758f61ff514add1c",
+      "to": "ch04-passage-58169c0376132dec521c"
+    },
+    {
+      "page": "index.html",
+      "from": "ch12-passage-ea4d57b1e0b6319164a1",
+      "priorIdentity": "bd1fa75b6223d73e31f408e5ebdd0644161c765692ea3045198c89258b7551ac",
+      "to": "ch12-passage-94aa463b505ca4493752"
+    },
+    {
+      "page": "index.html",
+      "from": "ch13-passage-8dd7e025669dd7f8169d",
+      "priorIdentity": "3159474d390a2c68c82f39bd0fc0a83cf12f8054f78413c79d0e4e9c7444a43c",
+      "to": "ch13-passage-bc3d4ea6453e425b1e51"
+    },
+    {
+      "page": "index.html",
+      "from": "ch18-passage-0341b220fd85a73f79de",
+      "priorIdentity": "287b550ae6b1ed8d692e0f07f0314cd3463d60c65fe38cdf2d20c0cfe8e22a3f",
+      "to": "ch18-passage-92042b6dd7325f1151f0"
+    },
+    {
+      "page": "reference.html",
+      "from": "examples-passage-b1ab0d9ab88e6a6cfd51",
+      "priorIdentity": "ca54022ff6e3f81e640eb7e55b0b72ceca0a79b81c5a3d27621a7410394eba6b",
+      "to": "examples-passage-2aaf1119e6e49af77af3"
+    },
+    {
+      "page": "reference.html",
+      "from": "examples-passage-ccbb35f2a1d0c95f0dba",
+      "priorIdentity": "d2662a74ba1782649a1841284c4d3e98d08dd278a7b81b2753c68a909eb3c5ed",
+      "to": "examples-passage-c71f019fb7f392d8b05f"
+    }
+  ]
+}

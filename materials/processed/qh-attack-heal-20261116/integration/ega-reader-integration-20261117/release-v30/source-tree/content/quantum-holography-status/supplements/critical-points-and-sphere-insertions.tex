@@ -1,0 +1,184 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb}
+\usepackage[a4paper,margin=28mm,top=24mm,bottom=24mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Critical points and sphere insertions},
+ pdfsubject={Closed amplitudes and marked reconstruction in Landau--Ginzburg theory}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Res}{\operatorname{Res}}
+\setlength{\parindent}{1.1em}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE Critical points and sphere insertions\par}
+\smallskip
+{\large Closed amplitudes in a Landau--Ginzburg family\par}
+\end{center}
+
+\noindent
+Consider the cubic potential \(W_t=x^3/3-tx\). For \(t\ne0\) its two
+critical points are \(\sqrt t\) and \(-\sqrt t\). In the topologically
+twisted theory the sphere weights of these vacua are
+\(1/(2\sqrt t)\) and \(-1/(2\sqrt t)\). Each diverges as the vacua
+meet. Their sum is zero. Inserting \(x\) multiplies each weight by
+its own critical point, and the sum becomes one. Inserting \(x^3\)
+instead gives \(t\). This sphere amplitude reads off the splitting
+parameter throughout the family and stays regular at the collision.
+
+This elementary example has an exact converse. Fix a coordinate, a
+volume form \(dx\), and a monic critical equation of degree \(d\).
+There are \(d\) sphere insertions which recover the entire equation
+over the parameter ring. The same measurements determine amplitudes
+at every genus. They remain meaningful for multiple critical points
+and for nilpotent variations of the potential.
+
+\section{The diagonal and the handle}
+
+Let \(R\) be a commutative \(\mathbb Q\)-algebra, and let
+\[
+ P(x)=W'(x)=x^d+a_{d-1}x^{d-1}+\cdots+a_0,\qquad W(0)=0,\quad d\ge1 .
+\]
+The closed algebra \(A=R[x]/(P)\) is free on \(1,x,\ldots,x^{d-1}\).
+Write \(\tau(f)\) for the coefficient of \(x^{d-1}\) in the remainder
+of \(f\) upon division by \(P\). Equivalently, \(\tau(f)\) is the
+coefficient of \(x^{-1}\) in the expansion of \(f(x)/P(x)\) at
+infinity. Over \(\mathbb C\) the residue theorem gives
+\[
+ \tau(f)=\sum_{P(\alpha)=0}
+ \Res_{x=\alpha}\frac{f(x)\,dx}{P(x)} .
+\]
+The formula with remainders defines this trace on every fibre at once.
+It fixes the normalization of the protected sphere amplitudes
+\cite{vafa}.
+
+To attach a handle one needs the class of the diagonal. In
+\(A\otimes_R A\), with coordinates \(x,y\) on its two factors, set
+\[
+ \mathcal D(x,y)=\frac{P(x)-P(y)}{x-y}.
+\]
+This divided difference is a polynomial. It satisfies
+\((x-y)\mathcal D=0\), and its coefficient of \(x^{d-1}\) is one.
+It follows that
+\[
+ (\tau_x\otimes 1)\bigl(f(x)\mathcal D(x,y)\bigr)=f(y).
+\]
+Thus \(\mathcal D\) is the inverse of the pairing \(\tau(fh)\).
+The Gram matrix gives another way to see perfectness. Its entries
+\(\tau(x^{i+j})\) vanish for \(i+j<d-1\) and equal one for
+\(i+j=d-1\).
+
+Closing the two legs of the diagonal sets \(y=x\). The resulting
+handle element is \(e=P'(x)\). For a product \(f\) of marked
+insertions, the genus-\(g\) amplitude is consequently
+\begin{equation}
+ A_g(f)=\tau\bigl(fP'^{\,g}\bigr),\qquad
+ A_{g+1}(f)=\Tr_{A/R}\bigl(m_f m_{P'}^{\,g}\bigr) .
+ \label{eq:handle}
+\end{equation}
+Here \(m_f\) is multiplication by \(f\). For the second equality
+choose dual bases for the trace and take the ordinary matrix
+trace of multiplication. The contraction joins the same two legs.
+Every operation in this calculation commutes with arbitrary changes
+of \(R\). The handle has a resolvent over \(R\). Its power series
+is \(\sum_g A_g(f)z^g=\tau((1-zm_{P'})^{-1}f)\),
+with denominator \(\det(1-zm_{P'})\).
+For the convention \(W=x^{D}\), division by \(W'=Dx^{D-1}\)
+scales the trace by \(1/D\) and the handle by \(D\) relative to
+\(W=x^{D}/D\). The torus amplitude remains \(D-1\).
+
+\section{Reconstructing the marked potential}
+
+Let \(M_r=A_0(x^r)\). The first \(d-1\) moments vanish and
+\(M_{d-1}=1\). Multiplication of \(P(x)=0\) by \(x^j\) gives a
+recurrence for the remaining moments, or equivalently
+\begin{equation}
+ \sum_{r\ge0} M_r z^r
+  =\frac{z^{d-1}}{1+a_{d-1}z+\cdots+a_0z^d}.
+ \label{eq:moments}
+\end{equation}
+The first \(d\) coefficients following \(M_{d-1}\) determine the
+denominator by triangular inversion. Hence the \(d\) sphere
+insertions \(x^d,\ldots,x^{2d-1}\) recover every coefficient of \(P\).
+Integration recovers \(W\) with the stated constant.
+
+The number of independent measurements is sharp among fixed
+polynomial insertions valid over every parameter ring. To see what
+an insertion can detect, deform \(P=x^d\) to \(x^d+\epsilon q(x)\)
+over \(k[\epsilon]/(\epsilon^2)\), with \(\deg q<d\) and \(k\) a
+field of characteristic zero. Expanding the inverse critical equation
+at infinity gives
+\begin{equation}
+ \delta\tau(f)=-\epsilon[x^{2d-1}]\bigl(f(x)q(x)\bigr).
+ \label{eq:tangent}
+\end{equation}
+Each fixed sphere insertion supplies one linear functional on the
+\(d\)-dimensional space of \(q\)'s. Fewer than \(d\) have a common
+nonzero kernel. There is a stronger conclusion for monomials. If
+\(x^k\) with \(d\le k\le 2d-1\) is missing, take \(q=x^{2d-1-k}\).
+Among all monomials only \(x^k\) detects this first-order variation.
+Arbitrarily high powers cannot replace the missing measurement on
+this fibre.
+
+\section{The fibre at a collision}
+
+For a simple root \(\alpha\), contraction onto its idempotent gives
+\(A_g(f)_\alpha=f(\alpha)P'(\alpha)^{g-1}\). For a root of
+multiplicity \(m>1\), write \(P=(x-\alpha)^m U(x)\), with
+\(U(\alpha)\ne0\). The local sphere contribution is the coefficient
+of \(z^{m-1}\) in \(f(\alpha+z)/U(\alpha+z)\). The genus-one
+contribution is \(m f(\alpha)\) by the local multiplication trace in
+\eqref{eq:handle}. At higher genus that trace contains \(P'(\alpha)=0\)
+and hence vanishes on the field-valued fibre.
+
+One can follow this vanishing throughout the family
+\[
+ W_t=\frac{x^{d+1}}{d+1}-tx,\qquad x^d=t,\qquad d\ge2 .
+\]
+Since \(e=d x^{d-1}\), set \(h=(r+(d-1)g-(d-1))/d\). Reduction of
+the insertion \(x^r e^g\) gives, at every genus,
+\begin{equation}
+ A_g(x^r)=
+ \begin{cases}d^g t^h,& h\in\mathbb Z_{\ge0},\\
+                0,&\text{otherwise}.\end{cases}
+ \qquad
+ \sum_{g\ge0} A_g(1)z^g=\frac{d z}{1-d^d t^{d-1}z^d}.
+ \label{eq:family}
+\end{equation}
+For the cubic, the genus-three vacuum amplitude is \(8t\). Taking
+\(t=\epsilon\) gives \(8\epsilon\), although the genus-three
+amplitude vanishes on the underlying point. For a sum of potentials
+in independent coordinates the diagonal and trace are tensor
+products. The answer for \(\prod_i x_i^{r_i}\) is the product of
+\eqref{eq:family} for the pairs \(d_i,t_i\), including fibres on which
+only some of the critical points have coalesced.
+
+The choice of sector matters. Over \(k(t)\) the critical values of
+\(W_t\) are \(-dt\alpha/(d+1)\), all nonzero. The polynomial \(W_t\)
+and its derivative are coprime. Choose \(u,v\) with \(uW_t+vW_t'=1\).
+For a polynomial matrix factorization \(Q^2=W_t\,1\), differentiation
+gives \(\{Q,\partial_x Q\}=W_t'\,1\), so
+\[
+ \bigl\{Q,\tfrac12uQ+v\,\partial_xQ\bigr\}=1 .
+\]
+The category of finite free factorizations at value zero is
+therefore contractible on this generic fibre. The closed theory of
+the entire critical scheme still has \(A_1(1)=d\). Comparing it with
+matrix factorizations requires selecting the corresponding critical
+values and supports. For a fixed isolated critical point the
+stabilized boundary, its endomorphism algebra and the identity
+defect supply this protected comparison \cite{dyck,dm}.
+
+\begin{thebibliography}{9}\small
+\bibitem{vafa} C.~Vafa, \emph{Topological Landau--Ginzburg models},
+Modern Phys.\ Lett.\ A \textbf{6} (1991), 337--346.
+\href{https://doi.org/10.1142/S0217732391000324}{doi:10.1142/S0217732391000324}.
+\bibitem{dyck} T.~Dyckerhoff, \emph{Compact generators in categories of
+matrix factorizations}, Duke Math.\ J.\ \textbf{159} (2011), 223--274.
+\href{https://arxiv.org/abs/0904.4713}{arXiv:0904.4713}.
+\bibitem{dm} T.~Dyckerhoff and D.~Murfet, \emph{The
+Kapustin--Li formula revisited}, Adv.\ Math.\ \textbf{231} (2012),
+1858--1885. \href{https://arxiv.org/abs/1004.0687}{arXiv:1004.0687}.
+\end{thebibliography}
+\end{document}

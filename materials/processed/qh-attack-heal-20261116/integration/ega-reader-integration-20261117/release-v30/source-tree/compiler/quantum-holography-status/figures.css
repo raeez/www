@@ -1,0 +1,197 @@
+/* Figures of the reader. One figure answers the question of its section: a quiet head (the title and the links to
+   the chapter's equations), the record's domain and controls beside the drawing in the golden proportion
+   (1 : 1.618) when the figure is wide enough, and the authored caption under it. Layout follows the figure's own
+   width (a container), so a figure set in the reading column stacks rather than shrinking its labels.
+
+   Every mark keeps one meaning. Ink is a defined map, a curve or a label. The accent marks what the reader's
+   choice changes or singles out: the mean, the chosen region, the pole, the surviving basis vectors, the nonzero
+   entries, the unit. No dashed line is used: dashes are reserved for open comparisons. The page's tokens give
+   colour, type and rhythm. */
+.qh-fig { container-type: inline-size; margin: calc(var(--text-base) * 1.55 * 1.5) 0; padding: calc(var(--text-base) * 1.55 * .5) 0 0;
+          border-top: 1px solid var(--rule); --fig-au: calc(var(--text-base) * 1.55); }
+/* Inside a figure the host page's paragraph rules do not apply: no first-line indent and no justification. These
+   selectors outrank a host's `p` and `p + p` rules whatever the order of the stylesheets, and the figure's own
+   spacing rules below are scoped to .qh-fig for the same reason. */
+figure.qh-fig p, figure.qh-fig p + p { text-indent: 0; text-align: left; }
+.qh-fig-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: calc(var(--fig-au) * .25) 16px;
+               margin: 0 0 calc(var(--fig-au) * .5); }
+.qh-fig-title { margin: 0; font-size: calc(var(--text-base) * 1.08); font-weight: 600; line-height: 1.28; }
+.qh-fig-refs { margin: 0; font-size: var(--text-xs); color: var(--ink-3); }
+.qh-fig-refs a { color: var(--ink-2); }
+.qh-fig .qh-fig-label { margin: 0 0 calc(var(--fig-au) * .25); font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+                font-weight: 400; text-align: left; }
+.qh-fig-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .75) 28px; align-items: start; }
+@container (min-width: 40rem) { .qh-fig-body:not(.qh-fig-body-single) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr); } }
+.qh-fig-body-single { gap: calc(var(--fig-au) * .6); }
+.qh-fig-side, .qh-fig-stage { min-width: 0; }
+.qh-fig-stage { container-type: inline-size; }
+.qh-fig-domain { margin: 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); max-width: var(--measure); }
+.qh-fig-side .qh-fig-domain { margin-bottom: calc(var(--fig-au) * .5); }
+.qh-fig .qh-fig-note { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); font-style: italic; }
+.qh-fig .qh-fig-explanation { display: block; margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); }
+.qh-fig-strong { font-weight: 600; color: var(--ink); }
+
+/* Controls: an authored label, the current value, the range input (added by the script) */
+.qh-fig-controls { list-style: none; margin: 0 0 calc(var(--fig-au) * .5); padding: 0; display: grid; grid-template-columns: minmax(0, 1fr);
+                   gap: calc(var(--fig-au) * .25); }
+.qh-fig-control { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; column-gap: 12px; }
+.qh-fig-control-label { font-size: var(--text-sm); color: var(--ink-2); line-height: 1.35; }
+.qh-fig-control input[type="range"] { grid-column: 1 / -1; width: 100%; margin: 2px 0 0; accent-color: var(--accent); }
+.qh-fig-value { font-variant-numeric: lining-nums tabular-nums; color: var(--ink); }
+.qh-fig .qh-fig-invalid { margin: calc(var(--fig-au) * .25) 0 0; padding: calc(var(--fig-au) * .25) 10px; border-left: 2px solid var(--accent);
+                  background: var(--accent-soft); font-size: var(--text-xs); line-height: 1.45; color: var(--ink); }
+.qh-fig-invalid[hidden] { display: none; }
+.qh-fig button:focus-visible, .qh-fig input:focus-visible { outline: 2px solid var(--focus, var(--accent)); outline-offset: 2px; }
+
+/* Drawings: SVG at its natural size or smaller, never enlarged, so labels keep the size they were set at */
+.qh-fig-svg { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--font-text); }
+.qh-fig-svg text { fill: var(--ink); }
+.qh-fig-tick { font-family: var(--font-ui); font-size: 12px; fill: var(--ink-3) !important; font-variant-numeric: lining-nums tabular-nums; }
+.qh-fig-var { font-style: italic; font-family: var(--font-text); font-size: 14px; }
+.qh-fig-axis { fill: none; stroke: var(--ink-4); stroke-width: 1; }
+.qh-fig-more { fill: var(--ink-4); stroke: none; }
+.qh-fig-map { fill: none; stroke: var(--ink-2); stroke-width: 1.35; }
+.qh-fig-head-mark { fill: var(--ink-2); }
+.qh-fig-map-label { font-size: 14px; font-style: italic; fill: var(--ink-2) !important; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.qh-fig-mark-label { font-size: 13px; fill: var(--ink-2) !important; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.qh-fig-node-text { font-size: 17px; font-style: italic; }
+.qh-fig-sub { font-size: .74em; }
+
+/* Profiles: one curve per authored function over a finite window of its variable, every curve on one vertical
+   scale, stated on each plot by its labelled ticks and a hairline at each nonzero tick, so heights compare across
+   the plots. The real-line integral is written under the curve as one equation (no area is filled, so a window
+   never reads as the whole mass). */
+.qh-fig-profiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .6) 20px; }
+@container (min-width: 50rem) { .qh-fig-profiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.qh-fig .qh-fig-scale-note { grid-column: 1 / -1; margin: 0; }
+.qh-fig-profile { min-width: 0; max-width: 26rem; }
+.qh-fig-profile .qh-fig-svg { max-width: 360px; }
+.qh-fig-profile .qh-fig-tick { font-size: 14px; }
+.qh-fig-profile .qh-fig-var { font-size: 15px; }
+.qh-fig-guide { fill: none; stroke: var(--rule); stroke-width: 1; }
+.qh-fig .qh-fig-profile-label { margin: 0 0 2px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
+.qh-fig .qh-fig-integral { margin: 4px 0 0; }
+.qh-fig .qh-fig-integral .qh-fig-label { margin: 0; }
+.qh-fig .qh-fig-integral-value { margin: 0; font-size: var(--text-sm); line-height: 1.6; color: var(--ink); }
+.qh-fig-seg { display: inline-block; max-width: 100%; white-space: nowrap; vertical-align: middle; }
+.qh-fig .qh-fig-profile-caption { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
+.qh-fig-curve { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+.qh-fig-mean { stroke: var(--accent); stroke-width: 1.4; }
+
+/* Values at the current parameters, and tables of parallel facts */
+.qh-fig-outputs { width: 100%; margin: calc(var(--fig-au) * .75) 0 0; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.35; }
+.qh-fig-outputs caption { caption-side: top; }
+.qh-fig-outputs th, .qh-fig-outputs td { padding: calc(var(--fig-au) * .25) 8px; border-top: 1px solid var(--rule-soft); vertical-align: top;
+                                         text-align: left; font-weight: 400; }
+.qh-fig-outputs thead th { font-size: var(--text-xs); color: var(--ink-3); border-top: 0; vertical-align: bottom; }
+.qh-fig-outputs tbody th { color: var(--ink-2); width: 34%; }
+.qh-fig-num { text-align: right !important; width: 5.5em; }
+.qh-fig-formula { overflow-x: auto; }
+
+/* States: the authored cases; the chosen one carries the accent rule */
+.qh-fig-states { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .5); }
+.qh-fig-state { min-width: 0; padding: calc(var(--fig-au) * .25) 0 calc(var(--fig-au) * .25) 12px; border-left: 2px solid var(--rule-soft); }
+.qh-fig-state[aria-current="true"] { border-left-color: var(--accent); }
+.qh-fig-live .qh-fig-state:not([aria-current="true"]) .qh-fig-series { color: var(--ink-3); }
+.qh-fig-live .qh-fig-states-compact { gap: calc(var(--fig-au) * .25); }
+.qh-fig-live .qh-fig-state:not([aria-current="true"]) .qh-fig-per-state { display: none; }
+.qh-fig-state-label { margin: 0; font-size: var(--text-sm); font-weight: 600; }
+.qh-fig .qh-fig-cond { margin: 2px 0 0; font-size: var(--text-sm); color: var(--ink-2); }
+.qh-fig-series { margin: calc(var(--fig-au) * .25) 0 0; overflow-x: auto; }
+.qh-fig-series .qh-fig-label { margin: 0; }
+.qh-fig-per-state { margin-top: 4px; }
+.qh-fig .qh-fig-matrix { margin: 4px 0; overflow-x: auto; }
+.qh-fig .qh-fig-homotopy { margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink-2); }
+.qh-fig-homotopy .qh-fig-label { display: block; margin: 0; }
+.qh-fig-choose, .qh-fig-key-button { font: inherit; color: inherit; background: none; border: 1px solid var(--rule); border-radius: 999px;
+                                     padding: 3px 12px; cursor: pointer; text-align: left; }
+.qh-fig-choose:hover, .qh-fig-key-button:hover { border-color: var(--ink-4); }
+.qh-fig-choose[aria-pressed="true"], .qh-fig-key-button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft);
+                                                                               box-shadow: inset 0 0 0 1px var(--accent); }
+
+/* Two expansion domains in the w-plane at a fixed z */
+.qh-fig-plane { max-width: 360px; }
+.qh-fig-region { fill: var(--accent-soft); }
+.qh-fig-boundary { fill: none; stroke: var(--ink-3); stroke-width: 1.1; }
+.qh-fig-origin { fill: var(--ink-3); }
+.qh-fig-region-label { font-size: 15px; font-style: italic; fill: var(--ink) !important; }
+.qh-fig-pole circle { fill: var(--paper-3); stroke: var(--accent); stroke-width: 1.6; }
+.qh-fig-pole path { stroke: var(--accent); stroke-width: 1.6; }
+
+/* The cohomology jump: the complex on its basis; rings mark the vectors that survive in cohomology, here and in
+   the table */
+.qh-fig-complex { max-width: 460px; }
+.qh-fig-col-label { font-size: 14px; fill: var(--ink-2) !important; }
+.qh-fig-zero { font-size: 17px; fill: var(--ink-2) !important; }
+.qh-fig-ring { fill: var(--paper-3); stroke: var(--ink-4); stroke-width: 1; transition: fill .2s, stroke .2s; }
+.qh-fig-basis.is-alive .qh-fig-ring { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.qh-fig-homotopy-arc { fill: none; stroke: var(--ink-3); stroke-width: 1.1; }
+.qh-fig-head-h { fill: var(--ink-3); }
+.qh-fig-h-label { font-size: 13.5px; font-style: italic; fill: var(--ink-2) !important; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; }
+.qh-fig-dims td { white-space: nowrap; }
+.qh-fig-dims tbody tr[aria-current="true"] > * { background: var(--accent-soft); }
+.qh-fig-dims tbody tr[aria-current="true"] th { color: var(--ink); font-weight: 600; }
+.qh-fig-dim { display: inline-block; min-width: 1.2em; font-variant-numeric: lining-nums tabular-nums; }
+.qh-fig-chip { display: inline-block; margin: 0 0 0 4px; padding: 0 6px; border: 1.5px solid var(--accent); border-radius: 999px;
+               background: var(--accent-soft); font-style: italic; font-size: .92em; line-height: 1.4; }
+
+/* The infinite rank: the finite diagonal beside its coordinatewise limit, in one viewport */
+.qh-fig-pair { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .75) 32px; }
+@container (min-width: 34rem) { .qh-fig-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.qh-fig-col { min-width: 0; }
+.qh-fig .qh-fig-col-head { margin: 0 0 4px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
+.qh-fig-col .qh-fig-control { margin: 0 0 6px; max-width: 280px; }
+.qh-fig-grid { max-width: 260px; }
+.qh-fig-cell rect { fill: var(--paper-3); stroke: var(--rule-soft); stroke-width: 1; transition: fill .15s, stroke .15s; }
+.qh-fig-cell text { font-family: var(--font-ui); font-size: 12px; fill: var(--ink-4) !important; font-variant-numeric: lining-nums tabular-nums; }
+.qh-fig-cell.is-on rect { fill: var(--accent-soft); stroke: var(--accent); }
+.qh-fig-cell.is-on text { fill: var(--ink) !important; font-weight: 600; font-size: 13px; }
+.qh-fig-bracket { fill: none; stroke: var(--ink-3); stroke-width: 1.2; }
+.qh-fig-continues { font-size: 17px; fill: var(--ink-4) !important; }
+.qh-fig-continues.is-on { fill: var(--accent) !important; }
+.qh-fig-convergence { margin: 0; font-size: var(--text-base); line-height: 1.5; color: var(--ink); max-width: var(--measure); }
+.qh-fig-compare td, .qh-fig-compare th[scope="col"] { width: 33%; }
+
+/* The adjunction triangles: the key, the two triangles side by side, the criteria */
+.qh-fig-legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--text-sm); color: var(--ink-2); }
+.qh-fig-key { display: inline-flex; align-items: center; gap: 8px; }
+.qh-fig-key-button { display: inline-flex; align-items: center; gap: 8px; }
+.qh-fig-swatch { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--ink-2); }
+.qh-fig-key.is-unit .qh-fig-swatch { border-top-color: var(--accent); }
+.qh-fig-key.is-counit .qh-fig-swatch { border-top-color: var(--ink); border-top-width: 2.5px; }
+.qh-fig-sym.is-unit { color: var(--accent); }
+.qh-fig-triangle { max-width: 320px; }
+.qh-fig-arrow .qh-fig-map { stroke: var(--ink-3); stroke-width: 1.2; }
+.qh-fig-arrow.is-unit .qh-fig-map { stroke: var(--accent); stroke-width: 1.7; }
+.qh-fig-arrow.is-counit .qh-fig-map { stroke: var(--ink); stroke-width: 1.7; }
+.qh-fig-head-mark.is-unit { fill: var(--accent); }
+.qh-fig-head-mark.is-counit { fill: var(--ink); }
+.qh-fig-arrow.is-unit .qh-fig-map-label { fill: var(--accent) !important; }
+.qh-fig-arrow.is-counit .qh-fig-map-label { fill: var(--ink) !important; }
+.qh-fig-arrow { transition: opacity .2s; }
+.qh-fig[data-emphasis="unit"] .qh-fig-arrow:not(.is-unit), .qh-fig[data-emphasis="counit"] .qh-fig-arrow:not(.is-counit) { opacity: .25; }
+.qh-fig .qh-fig-equation { margin: 6px 0 0; font-size: var(--text-base); font-style: italic; color: var(--ink); }
+.qh-fig-properties td { width: 50%; }
+
+.qh-fig-caption { margin: calc(var(--fig-au) * .75) 0 0; max-width: var(--measure); font-size: var(--text-sm); line-height: 1.5; color: var(--ink-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .qh-fig-ring, .qh-fig-cell rect, .qh-fig-arrow { transition: none; }
+}
+@media print {
+  .qh-fig { break-inside: avoid; page-break-inside: avoid; }
+  .qh-fig input[type="range"], .qh-fig-invalid { display: none !important; }
+  .qh-fig-live .qh-fig-state .qh-fig-per-state { display: block !important; }
+  .qh-fig-choose, .qh-fig-key-button { border: 0; padding: 0; background: none; box-shadow: none; }
+  .qh-fig-region, .qh-fig-basis.is-alive .qh-fig-ring, .qh-fig-cell.is-on rect, .qh-fig-chip, .qh-fig-dims tbody tr[aria-current="true"] > * {
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .qh-fig .qh-fig-arrow { opacity: 1 !important; }
+}
+@media (forced-colors: active) {
+  .qh-fig-mean, .qh-fig-pole circle, .qh-fig-pole path, .qh-fig-arrow.is-unit .qh-fig-map { stroke: Highlight; }
+  .qh-fig-region { fill: Canvas; stroke: Highlight; }
+  .qh-fig-basis.is-alive .qh-fig-ring, .qh-fig-cell.is-on rect { fill: Canvas; stroke: Highlight; stroke-width: 2.5; }
+  .qh-fig-head-mark, .qh-fig-head-mark.is-unit, .qh-fig-head-mark.is-counit { fill: CanvasText; }
+  .qh-fig-guide { stroke: GrayText; }
+  .qh-fig-chip { border-color: Highlight; }
+}
