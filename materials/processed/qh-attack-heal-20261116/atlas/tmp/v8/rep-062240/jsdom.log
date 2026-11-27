@@ -1,0 +1,31 @@
+PASS start: the script runs, nothing is selected, the pane shows its message
+PASS RT2/RT3: an index link selects its claim through the address, with statement, hypotheses and every relation
+PASS INV4: every edge is listed once at each end with its direction, and drawn once in the map
+PASS RT9: Back and Forward move between selections made by links
+PASS RT9: arriving with #atlas-c-<id> shows that claim and the page raises no unknown-address notice
+PASS RT9: an address that leaves the atlas leaves nothing selected; another atlas part keeps the claim
+SKIP a link from a claim to a statement of the page goes through qh:navigate, which the page handles: no claim of this atlas.json has a statementRef to a statement of the page
+PASS RT8/INV5: filters by words, domain and status; the count line names no number; the map dims the rest
+PASS RT6: arrows move through the index; Escape in the pane returns focus to the claim in the index
+PASS RT6: with the glossary card open from the pane, Escape closes the card first and keeps the selection
+SKIP RT5: Follow walks a path joined by recorded relations claim by claim, in stage order, and Leave ends it: this atlas.json has no path of kind source_bound_dependency_path
+PASS RT3: hiding a relation type in the pane hides it there only and names it
+SKIP the page search finds the atlas claims it is offered, and following a result shows the claim in the pane: the page offers no search field
+SKIP the page search, filtered by a status, keeps the atlas claims of that status (by the ruling's aliases) and names it: the page offers no search field
+OBSERVED Back after a row toggle of the page (the toggle replaces the history entry): address after the toggle #row-heisenberg; selection kept until the next address change: decisive-native-r3-covariant-recipient; after Back: brane-local-geometric-comparisons
+PASS the map with its key is the first part, and the parts are named apart from the page's own sections
+PASS RT8: the filter reads title, statement, hypotheses and source only, and says so
+PASS RT7: a sheet the reader closed stays closed when the page announces its search or filter state
+PASS RT6/RT9: Back and Forward with focus in the pane move focus to the claim shown
+PASS RT7: on a narrow screen the sheet closes when keyboard focus leaves it for the page
+SKIP RT5: the Follow bar names the kind of the path it follows; stages put their heading before their joins: this atlas.json has no path of kind source_bound_dependency_path
+PASS a question link reads as the heading of the question it leads to
+PASS A4-IN-06: Tab past the glossary card from the last control of a claim never lands in a claim the pane hides
+PASS C1: comparisons, paths and domain claims start folded; an address, a search result and print open them
+PASS C16: the map is one tab stop; the arrow keys move over its claims, announce them, and Enter shows the claim
+PASS C19: Previous and Next keep the keyboard on the path bar
+PASS A6: on a wide screen the pane has a column of its own while shown; Close and Escape give it back; the head with Close leads
+PASS A2: the pane places the claim in a locator of the whole atlas by its number, and returns to it in the map
+PASS the map shows the relations of the claim selected only, and the filter dims the lines of the claims it hides
+PASS no number of claims, percentage or progress word anywhere in the atlas after the checks above
+all passed; 5 skipped

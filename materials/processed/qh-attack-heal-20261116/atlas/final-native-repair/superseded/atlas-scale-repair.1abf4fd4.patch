@@ -1,0 +1,442 @@
+diff --git a/compiler/quantum-holography-status/atlas.py b/compiler/quantum-holography-status/atlas.py
+index b7abcca..2e95f15 100644
+--- a/compiler/quantum-holography-status/atlas.py
++++ b/compiler/quantum-holography-status/atlas.py
+@@ -40,6 +40,7 @@ LABEL_RE = re.compile(r'\b(?:thm|prop|lem|lemma|def|defn|cor|sec|eq|rem|conj|ex|
+ LINE_STYLES = 8  # the first eight relation types have their own line styles (.rk-0 to .rk-7); later ones share .rk-8
+ GROUP_SHOWN = 8  # a group of more claims shows its first eight and keeps the rest in a disclosure
+ INDEX_LONG = 40  # above this many claims the index scrolls in its own box on screen (atlas.css)
++MAP_ROWS = 28  # the map is at most this many rows of marks tall (about one screen); wider maps scroll across
+ # Classes of the elements whose text is the content owner's (titles, statements, hypotheses, labels, summaries),
+ # as distinct from the atlas's own interface words. The gate scans and the tests read this one list.
+ SUPPLIED_CLASSES = (
+@@ -131,6 +132,9 @@ LABELS = {
+     'questions_related': 'Related questions on this page:',
+     'question_link': 'a question on this page',
+     'domain_comparisons': 'Comparisons in this domain:',
++    'domain_fold': 'Conventions, claims and comparisons of this domain',
++    'domain_fold_plain': 'Claims and comparisons of this domain',
++    'same_hyps': 'Same hypotheses as No. {n}.',
+     'map': 'Claims and recorded relations, by domain',
+     'map_caption': ('Each mark is a claim, numbered as in the index; a long domain runs over several columns. Each line '
+                     'is a recorded relation, with its arrow at the second claim of the relation.'),
+@@ -713,19 +717,26 @@ class Renderer:
+         return (f'<a class="atlas-link" href="#atlas-c-{cid}">{self.num(cid)}'
+                 f'{mark(c["code"], label)}<span class="atlas-link-title">{self.title(c)}</span></a>')
+ 
+-    def item(self, cid):
+-        """A claim in a grouped list; a conditional claim and a scoped negative keep their hypotheses."""
++    def item(self, cid, seen=None):
++        """A claim in a grouped list; a conditional claim and a scoped negative keep their hypotheses. Within one
++        comparison (seen), a list of hypotheses already shown is named by the claim that shows it, not repeated."""
+         c = self.a.claim[cid]
+         hyps = ''
++        key = tuple(c['hypotheses'])
++        if seen is not None and c['code'] in ('conditional', 'scoped_negative') and key and key in seen:
++            return (f'<li>{self.link(cid)}<p class="atlas-item-same">'
++                    f'{self.esc("same_hyps", n=self.a.number[seen[key]])}</p></li>')
++        if seen is not None and key:
++            seen.setdefault(key, cid)
+         if c['code'] in ('conditional', 'scoped_negative') and c['hypotheses']:
+             lis = ''.join(f'<li>{self.rich(h)}</li>' for h in c['hypotheses'])
+             hyps = (f'<div class="atlas-item-hyps"><span class="atlas-note-label">{self.esc("hypotheses_inline")}</span>'
+                     f'<ol>{lis}</ol></div>')
+         return f'<li>{self.link(cid)}{hyps}</li>'
+ 
+-    def group(self, code, members, kind='group'):
+-        shown = ''.join(self.item(cid) for cid in members[:GROUP_SHOWN])
+-        rest = ''.join(self.item(cid) for cid in members[GROUP_SHOWN:])
++    def group(self, code, members, kind='group', seen=None):
++        shown = ''.join(self.item(cid, seen) for cid in members[:GROUP_SHOWN])
++        rest = ''.join(self.item(cid, seen) for cid in members[GROUP_SHOWN:])
+         body = (f'<ul class="atlas-claimlist">{shown}</ul>' if shown
+                 else f'<p class="atlas-none">{self.esc("none_listed")}</p>')
+         if rest:
+@@ -821,7 +832,9 @@ class Renderer:
+                          f'<h4 class="atlas-domain-h" id="{did}--h" data-qh-unit-title><a class="anchor" href="#{did}">'
+                          f'{self.rich(d["label"], terms=False)}</a></h4>'
+                          f'<div class="atlas-domain-summary prose">{self.paragraphs(d["summary"])}</div>'
+-                         f'{conv}<div class="atlas-groups">{groups}</div>{comps}</article>')
++                         f'<details class="atlas-fold atlas-domain-fold"><summary class="atlas-fold-h atlas-more-h">'
++                         f'{self.esc("domain_fold" if conv else "domain_fold_plain")}</summary>'
++                         f'{conv}<div class="atlas-groups">{groups}</div>{comps}</details></article>')
+         return self.part('atlas-domains', self.L['part_domains'], f'<div class="atlas-domains">{"".join(cards)}</div>',
+                          lead='lead_domains')
+ 
+@@ -843,11 +856,13 @@ class Renderer:
+         def widths(rows):
+             return [max(-(-max(n, 1) // rows) * col_w, min_lane) for n in counts]
+ 
+-        rows = tallest
++        rows = None
+         for r in range(min(12, tallest), tallest + 1):
+             if sum(widths(r)) <= budget:
+                 rows = r
+                 break
++        # At most MAP_ROWS rows, so the map keeps a screen's height; an atlas too wide for the budget scrolls across.
++        rows = min(rows or tallest, MAP_ROWS)
+         lane_ws = widths(rows)
+         width = sum(lane_ws)
+         height = top * 2 + (rows - 1) * row_h + 18
+@@ -1024,14 +1039,17 @@ class Renderer:
+             kid = self.anchor(f'atlas-k-{k["id"]}')
+             self.anchor(f'{kid}--h')
+             d = a.domain[k['domainId']]
+-            buckets = ''.join(self.group(code, members, kind='bucket') for code, members in k['buckets'])
+-            out.append(f'<article class="atlas-comparison" id="{kid}" data-comparison-id="{k["id"]}" data-qh-unit aria-labelledby="{kid}--h">'
++            seen = {}
++            buckets = ''.join(self.group(code, members, kind='bucket', seen=seen) for code, members in k['buckets'])
++            out.append(f'<details class="atlas-fold atlas-comparison" id="{kid}" data-comparison-id="{k["id"]}" data-qh-unit '
++                       f'aria-labelledby="{kid}--h"><summary class="atlas-fold-h">'
++                       f'<span class="atlas-claim-domain">{self.rich(d["label"], terms=False)}</span>'
++                       f'<h4 class="atlas-comparison-h" id="{kid}--h" data-qh-unit-title>{self.rich(k["title"], terms=False)}</h4>'
++                       f'</summary><div class="atlas-fold-body">'
+                        f'<p class="atlas-claim-domain"><a href="#atlas-d-{d["id"]}">{self.rich(d["label"], terms=False)}</a></p>'
+-                       f'<h4 class="atlas-comparison-h" id="{kid}--h" data-qh-unit-title><a class="anchor" href="#{kid}">'
+-                       f'{self.rich(k["title"], terms=False)}</a></h4>'
+                        f'<div class="atlas-overview prose">{self.paragraphs(k["overview"])}</div>'
+                        f'{self.question_links(k["question"], "question_own")}{self.question_links(k["questions"], "questions_related")}'
+-                       f'<div class="atlas-buckets">{buckets}</div></article>')
++                       f'<div class="atlas-buckets">{buckets}</div></div></details>')
+         return self.part('atlas-comparisons', self.L['part_comparisons'], f'<div class="atlas-comparisons">{"".join(out)}</div>',
+                          lead='lead_comparisons')
+ 
+@@ -1064,13 +1082,15 @@ class Renderer:
+                               f'<h5 class="atlas-stage-h"><span class="atlas-stage-n">{self.esc("stage", n=j + 1)}</span> '
+                               f'<span class="atlas-stage-label">{self.rich(s["label"], terms=False)}</span></h5>'
+                               f'{join}{desc}{claims}</li>')
+-            out.append(f'<article class="atlas-path {"ap-dependency" if dep else "ap-editorial"}" id="{pid}" '
++            tag = f'<span class="atlas-kind-tag">{self.esc("path_dependency" if dep else "path_editorial")}</span>'
++            out.append(f'<details class="atlas-fold atlas-path {"ap-dependency" if dep else "ap-editorial"}" id="{pid}" '
+                        f'data-path-id="{p["id"]}" data-path-kind="{p["kind"]}" data-qh-unit aria-labelledby="{pid}--h">'
+-                       f'<h4 class="atlas-path-h" id="{pid}--h" data-qh-unit-title><a class="anchor" href="#{pid}">'
+-                       f'{self.rich(p["title"], terms=False)}</a></h4>'
++                       f'<summary class="atlas-fold-h">{tag}'
++                       f'<h4 class="atlas-path-h" id="{pid}--h" data-qh-unit-title>{self.rich(p["title"], terms=False)}</h4>'
++                       f'</summary><div class="atlas-fold-body">'
+                        f'{kind}<div class="atlas-path-summary prose">{self.paragraphs(p["summary"])}</div>'
+                        + (f'<p class="atlas-path-note">{self.rich(p["note"])}</p>' if p['note'].strip() else '') +
+-                       f'<ol class="atlas-stages">{"".join(stages)}</ol></article>')
++                       f'<ol class="atlas-stages">{"".join(stages)}</ol></div></details>')
+         return self.part('atlas-paths', self.L['part_paths'], f'<div class="atlas-paths">{"".join(out)}</div>',
+                          lead='lead_paths')
+ 
+diff --git a/compiler/quantum-holography-status/atlas.css b/compiler/quantum-holography-status/atlas.css
+index 3923422..ac627f6 100644
+--- a/compiler/quantum-holography-status/atlas.css
++++ b/compiler/quantum-holography-status/atlas.css
+@@ -75,12 +75,14 @@
+    domain runs over several columns of marks. On screen the drawing keeps its own size (13 px numbers, the
+    page's small type) and scrolls in its box when the box is narrower; in print it is fitted to the column. */
+ .atlas-map { position: relative; margin: 0 0 var(--au-h); min-width: 0; }
+-.atlas-map-scroll { overflow-x: auto; overscroll-behavior-x: contain; border: 1px solid var(--rule-soft); border-radius: var(--radius); background: var(--paper-3); }
++.atlas-map-scroll { overflow: auto; max-height: min(56rem, 84vh); overscroll-behavior: contain; border: 1px solid var(--rule-soft); border-radius: var(--radius);
++                    background: var(--paper-3); }
++.atlas-tracks:not(.atlas-tracks-foot) { position: sticky; top: 0; z-index: 1; background: var(--paper-3); }
+ .atlas-map-inner { width: calc(var(--map-w) * 1px); margin: 0 auto; padding: 0 0 2px; }
+ .atlas-tracks { display: grid; border-bottom: 1px solid var(--rule-soft); }
+ .atlas-tracks-foot { border-bottom: 0; border-top: 1px solid var(--rule-soft); }
+ .atlas-track { padding: var(--au-q) 6px; text-align: center; font-size: var(--text-xs); letter-spacing: .02em; line-height: 1.25; color: var(--ink-2);
+-              text-decoration: none; overflow-wrap: break-word; hyphens: auto; -webkit-hyphens: auto; }
++              text-decoration: none; overflow-wrap: break-word; hyphens: manual; -webkit-hyphens: manual; }
+ .atlas-track:nth-child(even) { background: var(--as-band); }
+ .atlas-track:hover { color: var(--accent); text-decoration: underline; }
+ .atlas-map-svg { display: block; width: 100%; height: auto; overflow: visible; }
+@@ -259,13 +261,29 @@
+ 
+ /* Comparisons: the four lists, each under its own status rule: one column in a narrow box, two by two
+    from 30rem, four across from 62rem of the atlas column (that is, with no pane open on a wide screen). */
+-.atlas-comparisons { display: grid; gap: var(--au-1); }
+-.atlas-comparison { min-width: 0; padding-top: var(--au-h); border-top: 1px solid var(--rule); }
++.atlas-comparisons, .atlas-paths { display: grid; gap: 0 28px; grid-template-columns: minmax(0, 1fr); align-items: start; }
++@container atlas-main (min-width: 44rem) { .atlas-comparisons, .atlas-paths { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
++.atlas-fold { min-width: 0; }
++.atlas-comparisons > .atlas-fold[open], .atlas-paths > .atlas-fold[open] { grid-column: 1 / -1; }
++.atlas-fold > summary { list-style: none; cursor: pointer; position: relative; display: block; padding: var(--au-q) 0 var(--au-q) 1.4em;
++                        border-top: 1px solid var(--rule-soft); }
++.atlas-fold > summary::-webkit-details-marker { display: none; }
++.atlas-fold > summary::before { content: ''; position: absolute; left: .2em; top: calc(var(--au-q) + .55em); width: .45em; height: .45em;
++                                border-right: 1.5px solid var(--ink-3); border-bottom: 1.5px solid var(--ink-3); transform: rotate(-45deg); }
++.atlas-fold[open] > summary::before { transform: rotate(45deg); }
++.atlas-fold > summary:hover .atlas-comparison-h, .atlas-fold > summary:hover .atlas-path-h { color: var(--accent); }
++.atlas-fold > summary .atlas-comparison-h, .atlas-fold > summary .atlas-path-h { margin: 0; }
++.atlas-fold > summary .atlas-claim-domain, .atlas-fold > summary .atlas-kind-tag { display: inline-block; margin: 0 0 2px; font-size: var(--text-xs); }
++.atlas-fold-body { padding: 0 0 var(--au-1) 1.4em; }
++.atlas-domain-fold { margin-top: var(--au-q); }
++.atlas-domain-fold > summary { border-top: 1px solid var(--rule-soft); }
++.atlas-item-same { margin: 0 0 var(--au-q) 1.9em; font-size: var(--text-xs); color: var(--ink-3); font-style: italic; }
++.atlas-comparison { min-width: 0; }
+ .atlas-comparison > .atlas-claim-domain { margin: 0; font-size: var(--text-xs); }
+ .atlas-comparison-h { font-size: var(--text-h3); line-height: 1.24; margin: 0 0 var(--au-q); }
+ .atlas-overview { color: var(--ink-2); font-size: var(--text-sm); line-height: 1.5; }
+ .atlas-overview p { margin: 0 0 var(--au-h); }
+-.atlas-buckets { display: grid; gap: var(--au-h); grid-template-columns: minmax(0, 1fr); }
++.atlas-buckets { display: grid; gap: var(--au-h); grid-template-columns: minmax(0, 1fr); align-items: start; }
+ @container atlas-main (min-width: 30rem) { .atlas-buckets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+ @container atlas-main (min-width: 62rem) { .atlas-buckets { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+ .atlas-bucket { min-width: 0; padding: var(--au-q) 10px var(--au-h) 11px; border: 1px solid var(--rule-soft); border-radius: var(--radius); background: var(--paper-3);
+@@ -276,8 +294,7 @@
+ 
+ /* Reading paths: an editorial order is a dotted rail; a path joined by recorded relations is a solid
+    rail. The rail carries no arrow: the direction of each joining relation is given in its sentence. */
+-.atlas-paths { display: grid; gap: var(--au-1); }
+-.atlas-path { min-width: 0; padding-top: var(--au-h); border-top: 1px solid var(--rule); }
++.atlas-path { min-width: 0; }
+ .atlas-path-h { font-size: var(--text-h3); line-height: 1.24; margin: 0 0 var(--au-q); }
+ .atlas-path-kind { margin: 0 0 var(--au-q); font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
+ .atlas-kind-tag { display: inline-block; margin-right: .4em; padding: 0 8px; border: 1px solid var(--ink-4); border-radius: 999px; letter-spacing: .06em;
+@@ -332,15 +349,14 @@
+                                                         border: 0; border-left: 3px solid var(--as); border-radius: 0; }
+ .atlas-js .atlas-claims-full .atlas-claim.is-selected::before { content: none; }
+ 
++/* On a wide screen the pane is a panel over the right of the page (the golden share of the width, at most 40rem), so
++   selecting a claim never reflows the atlas; Close and Escape put it away. */
+ @media (min-width: 1000px) {
+-  .atlas-js.has-pane { display: grid; grid-template-columns: minmax(0, 1.618fr) minmax(20rem, 1fr); column-gap: clamp(20px, 2.4vw, 36px); align-items: start; }
+-  .atlas-js.has-pane > .atlas-main { grid-column: 1; grid-row: 1; }
+-  .atlas-js.has-pane > .atlas-claims-full { grid-column: 2; grid-row: 1; }
+-  .atlas-js:not(.has-pane) > .atlas-claims-full { display: none; }
+-  .atlas-js > .atlas-claims-full { position: sticky; top: calc(var(--bar) + var(--au-h)); max-height: calc(100vh - var(--bar) - var(--au-1)); overflow: auto;
+-                                   margin-top: 0; padding: var(--au-h) calc(var(--au-h) * 1.15) var(--au-1); background: var(--paper-3);
+-                                   border: 1px solid var(--rule-soft); border-radius: var(--radius); overscroll-behavior: contain; }
+-  .atlas-js .atlas-pane-close { display: none; }
++  .atlas-js > .atlas-claims-full { position: fixed; z-index: 35; top: calc(var(--bar) + var(--au-h)); right: clamp(12px, 2vw, 32px);
++                                   bottom: var(--au-h); width: min(38.2vw, 40rem); overflow: auto; margin: 0;
++                                   padding: var(--au-h) calc(var(--au-h) * 1.15) var(--au-1); background: var(--paper-3);
++                                   border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); overscroll-behavior: contain; }
++  .atlas-js > .atlas-claims-full:not(.has-selection), .atlas-js > .atlas-claims-full.is-closed { display: none; }
+ }
+ @media (max-width: 999.98px) {
+   .atlas-js > .atlas-claims-full { position: fixed; z-index: 35; left: 0; right: 0; bottom: 0; max-height: min(78vh, 46rem); overflow: auto;
+@@ -383,7 +399,12 @@
+   #atlas { break-before: page; page-break-before: always; padding-top: 0; }
+   .atlas-parts, .atlas-tools, .atlas-pane-head, .atlas-pane-empty, .atlas-pathbar, .atlas-hood, .atlas-path-tools, .atlas-tip { display: none !important; }
+   .atlas-js, .atlas-js.has-pane { display: block; }
+-  details.atlas-more::details-content { content-visibility: visible; }
++  .atlas details::details-content { content-visibility: visible; }
++  .atlas-fold > summary { padding-left: 0; break-after: avoid; page-break-after: avoid; }
++  .atlas-fold > summary::before { content: none; }
++  .atlas-comparisons, .atlas-paths { grid-template-columns: minmax(0, 1fr); }
++  .atlas-map-scroll { max-height: none; }
++  .atlas-tracks:not(.atlas-tracks-foot) { position: static; }
+   .atlas-more-h { display: none; }
+   .atlas-js > .atlas-claims-full { position: static; max-height: none; overflow: visible; margin: 0; padding: var(--au-2) 0 0; border: 0; box-shadow: none; background: none; display: block !important; }
+   .atlas-js .atlas-claims-full > .atlas-part-head, .atlas-js .atlas-claim-group-h { display: block; }
+diff --git a/compiler/quantum-holography-status/atlas.js b/compiler/quantum-holography-status/atlas.js
+index 87f1b86..4f66b0c 100644
+--- a/compiler/quantum-holography-status/atlas.js
++++ b/compiler/quantum-holography-status/atlas.js
+@@ -558,10 +558,29 @@
+     try { t.focus({ preventScroll: true }); } catch (e) { t.focus(); }
+   }
+   var lastAddress = null;
++  /* Comparisons, reading paths and the claims of each domain are folded (details.atlas-fold). An address, a link or
++     a search result that leads inside a fold opens it; a target that was hidden in a closed fold is then scrolled to. */
++  function unfold(target) {
++    var hidden = false;
++    for (var n = target; n && n !== mount; n = n.parentElement) {
++      if (n.localName === 'details' && !n.open) {
++        if (n !== target) hidden = true;
++        n.open = true;
++      }
++    }
++    return hidden;
++  }
++  function unfoldAddress(arrival) {
++    var hid = decode(location.hash.slice(1));
++    var target = hid ? doc.getElementById(hid) : null;
++    if (!target || !mount.contains(target) || full.contains(target)) return;
++    if (unfold(target) || arrival) target.scrollIntoView({ block: 'start', behavior: 'auto' });
++  }
+   function sync(arrival) {
+     var address = location.hash;
+     var changed = address !== lastAddress;
+     lastAddress = address;
++    if (changed) unfoldAddress(arrival);
+     var id = addressClaim();
+     if (id) {
+       var was = current;
+@@ -589,7 +608,12 @@
+   mount.addEventListener('qh:reveal', function (event) {
+     var id = event.detail && event.detail.id;
+     var m = typeof id === 'string' ? CLAIM.exec(id) : null;
+-    if (!m || !claims[m[1]]) return;
++    if (!m || !claims[m[1]]) {
++      /* Another atlas unit (a comparison, a path, a domain): opened in place, then left to the page to scroll to. */
++      var unit = typeof id === 'string' ? doc.getElementById(id) : null;
++      if (unit && mount.contains(unit)) unfold(unit);
++      return;
++    }
+     event.preventDefault();
+     if (current !== m[1]) select(m[1]);
+     lastAddress = location.hash;
+@@ -681,7 +705,7 @@
+     var card = doc.getElementById('card');
+     if (card && !card.hidden) return; /* the page's term card closes first, by its own handler */
+     event.preventDefault();
+-    if (!wide()) full.classList.add('is-closed');
++    full.classList.add('is-closed');
+     back();
+   });
+ 
+@@ -807,7 +831,7 @@
+   /* Printing opens the atlas's own disclosures (the page leaves the atlas alone) and restores them afterwards. */
+   var opened = null;
+   window.addEventListener('beforeprint', function () {
+-    opened = all('details.atlas-more', body).filter(function (d) { return !d.open; });
++    opened = all('details', body).filter(function (d) { return !d.open; });
+     opened.forEach(function (d) { d.open = true; });
+   });
+   window.addEventListener('afterprint', function () {
+@@ -815,11 +839,8 @@
+     opened = null;
+   });
+ 
+-  /* The pane follows the width of the window: beside the atlas when wide, a sheet when narrow. */
+-  window.addEventListener('resize', function () {
+-    if (wide()) full.classList.remove('is-closed');
+-    markScrollers(body);
+-  });
++  /* The pane lies over the page: a panel at the right when the window is wide, a sheet at the foot when narrow. */
++  window.addEventListener('resize', function () { markScrollers(body); });
+ 
+   /* Links to questions of the page take the question's own heading as their text. */
+   all('a.atlas-question-link[data-question-ref]', body).forEach(function (a) {
+diff --git a/compiler/quantum-holography-status/tests/test_atlas.py b/compiler/quantum-holography-status/tests/test_atlas.py
+index 25c56fd..6d053bd 100644
+--- a/compiler/quantum-holography-status/tests/test_atlas.py
++++ b/compiler/quantum-holography-status/tests/test_atlas.py
+@@ -313,7 +313,7 @@ class Markup(unittest.TestCase):
+     def test_search_units_are_offered_to_the_page(self):
+         for kind, prefix in (('claims', 'atlas-c-'), ('domains', 'atlas-d-'), ('comparisons', 'atlas-k-'), ('readingPaths', 'atlas-p-')):
+             for item in FIXTURE[kind]:
+-                unit = re.search(rf'<article [^>]*id="{prefix}{item["id"]}"[^>]*>', self.html).group(0)
++                unit = re.search(rf'<(?:article|details) [^>]*id="{prefix}{item["id"]}"[^>]*>', self.html).group(0)
+                 self.assertIn('data-qh-unit', unit, item['id'])
+         self.assertEqual(self.html.count('data-qh-unit-title'), sum(len(FIXTURE[k]) for k in ('claims', 'domains', 'comparisons', 'readingPaths')))
+ 
+@@ -332,7 +332,9 @@ class Markup(unittest.TestCase):
+         for name in ('css', 'js'):
+             text = self.out[name]
+             for t in (text, re.sub(r'[_-]', ' ', text)):
+-                hits = [m.group(0) for pattern, why, flags in audit.FORBIDDEN for m in re.finditer(pattern, t, flags)]
++                hits = [m.group(0) for pattern, why, flags in audit.FORBIDDEN for m in re.finditer(pattern, t, flags)
++                        # a CSS length or gradient stop in per cent is not a reader-visible percentage
++                        if not (name == 'css' and why == 'percentage' and m.group(0).rstrip().endswith('%'))]
+                 self.assertEqual(hits, [], name)
+ 
+     def test_the_map_keeps_its_own_size_on_screen(self):
+@@ -459,6 +461,45 @@ class Markup(unittest.TestCase):
+             code = re.search(r'data-status-code="([a-z_]+)"', tag).group(1)
+             self.assertIn(f'data-qh-unit-status="{atlas.PAGE_STATUS[code]}"', tag)
+ 
++    def test_the_atlas_keeps_its_scale_long_parts_folded_and_the_map_a_screen_tall(self):
++        # Native QA C1/C2: at 955 claims in 12 domains the map was 8,192 px tall and the comparisons, paths and domain
++        # lists ran open. Comparisons and paths are folded disclosures (their anchors on the details), each domain's
++        # conventions, claims and comparisons are folded under its summary, and the map is at most MAP_ROWS rows tall.
++        for item in FIXTURE['comparisons']:
++            self.assertRegex(self.html, rf'<details class="atlas-fold atlas-comparison" id="atlas-k-{item["id"]}"')
++        for item in FIXTURE['readingPaths']:
++            self.assertRegex(self.html, rf'<details class="atlas-fold atlas-path [^"]*" id="atlas-p-{item["id"]}"')
++        self.assertEqual(self.html.count('<details class="atlas-fold atlas-domain-fold">'), len(FIXTURE['domains']))
++        self.assertNotRegex(self.html, r'<details class="atlas-fold[^"]*"[^>]* open', 'every fold starts closed')
++        def wide(d):
++            for i in range(12):
++                d['domains'].append({'id': f'extra-{i}', 'label': f'Synthetic extra domain {i}', 'summary': 'Synthetic.'})
++            for i in range(300):
++                d['claims'].append({'id': f'extra-claim-{i}', 'domainId': 'gamma', 'title': f'Synthetic wide claim {i}',
++                                    'statement': 'Synthetic statement.', 'status': {'code': 'checked', 'label': 'Synthetic label'},
++                                    'hypotheses': []})
++        out = atlas.render(mutated(wide), Ctx())
++        self.assertEqual(out['problems'], [])
++        h = int(re.search(r'<svg class="atlas-map-svg" viewBox="0 0 \d+ (\d+)"', out['html']).group(1))
++        self.assertLessEqual(h, 18 * 2 + (atlas.MAP_ROWS - 1) * 26 + 18, 'the map keeps a screen height when it cannot fit the width')
++
++    def test_a_hypothesis_list_repeated_in_one_comparison_is_named_once(self):
++        def same(d):
++            hyps = ['Synthetic shared hypothesis one.', 'Synthetic shared hypothesis two.']
++            k = d['comparisons'][0]
++            ids = [cid for b in ('conditionalClaimIds', 'scopedNegativeClaimIds') for cid in (k.get(b) or [])]
++            for cid in ids:
++                claim(d, cid)['hypotheses'] = list(hyps)
++            return ids
++        data = copy.deepcopy(FIXTURE); ids = same(data)
++        if len(ids) < 2:
++            self.skipTest('the fixture comparison lists fewer than two conditional or negative claims')
++        out = atlas.render(data, Ctx())
++        fold = re.search(rf'<details class="atlas-fold atlas-comparison" id="atlas-k-{data["comparisons"][0]["id"]}".*?</details>', out['html'], re.S).group(0)
++        self.assertEqual(fold.count('Synthetic shared hypothesis one.'), 1, 'shown once in the comparison')
++        self.assertIn('Same hypotheses as No.', fold)
++        self.assertGreaterEqual(out['html'].count('Synthetic shared hypothesis one.'), len(ids), 'every claim still lists them in full')
++
+     def test_a_scoped_negative_claim_lists_its_scope(self):
+         neg = next(c['id'] for c in FIXTURE['claims'] if c['status']['code'] == 'scoped_negative')
+         out = atlas.render(mutated(lambda d: claim(d, neg).update(hypotheses=[])), Ctx())
+@@ -516,20 +557,25 @@ class Mounted(unittest.TestCase):
+         root = SRC.parent.parent
+         content = root / 'content' / 'quantum-holography-status'
+         page = json.loads((content / 'page.json').read_text(encoding='utf-8'))
++        # A content that names its atlas (content.json scientific_atlas) gets the synthetic atlas under that name.
++        pointer = json.loads((content / 'content.json').read_text(encoding='utf-8')).get('scientific_atlas') or {}
++        fixture = dict(FIXTURE, **{k: pointer[k] for k in ('schema', 'asOf') if k in pointer})
++
+         def run(with_atlas):
+             with tempfile.TemporaryDirectory(dir=os.environ.get('ATLAS_TEST_TMP')) as tmp:
+                 folder = Path(tmp)
+                 for name in ('content.json', 'essay.md'):
+                     (folder / name).symlink_to(content / name)
+                 if with_atlas:
+-                    (folder / 'atlas.json').write_text(json.dumps(FIXTURE), encoding='utf-8')
++                    (folder / 'atlas.json').write_text(json.dumps(fixture), encoding='utf-8')
+                 build = status.Build(folder, page, {}, None, atlas_module=SRC / 'atlas.py')
+                 markup = build.run()
+                 return markup, audit.run(build, markup)
+         _, alone = run(False)
+         markup, result = run(True)
+-        # The atlas adds no failure to the page's own audit (the page's content may carry findings of its own).
+-        self.assertEqual(sorted(result['failures']), sorted(alone['failures']))
++        # The atlas adds no failure to the page's own audit (the page's content may carry findings of its own, and a
++        # content that names an atlas fails without one).
++        self.assertEqual([f for f in result['failures'] if f not in alone['failures']], [])
+         self.assertEqual(result['math_errors'], 0)
+         self.assertEqual(len(re.findall(r'<section [^>]*\bdata-atlas-mount[ >]', markup)), 1, 'one mounted atlas section')
+         nav = re.search(r'<nav class="nav".*?</nav>', markup, re.S).group(0)
+diff --git a/compiler/quantum-holography-status/tests/atlas.test.cjs b/compiler/quantum-holography-status/tests/atlas.test.cjs
+index 26fe671..f539539 100644
+--- a/compiler/quantum-holography-status/tests/atlas.test.cjs
++++ b/compiler/quantum-holography-status/tests/atlas.test.cjs
+@@ -549,6 +549,34 @@ test('A4-IN-06: Tab past the glossary card from the last control of a claim neve
+   assert.ok(!card.contains(at), 'focus has left the closed card');
+ });
+ 
++test('C1: comparisons, paths and domain claims start folded; an address, a search result and print open them', async () => {
++  const p = load();
++  await settle();
++  const folds = Array.from(p.d.querySelectorAll('#atlas details.atlas-fold'));
++  assert.ok(folds.length >= DATA.comparisons.length + DATA.readingPaths.length + DATA.domains.length, 'every long part is folded');
++  assert.ok(folds.every(d => !d.open), 'all folds start closed');
++  const k = DATA.comparisons[0];
++  p.w.location.hash = '#atlas-k-' + k.id;
++  await settle();
++  assert.equal(p.d.getElementById('atlas-k-' + k.id).open, true, 'the address opens its comparison');
++  const conv = DATA.domains.find(d => (d.conventions || []).length);
++  if (conv) {
++    p.w.location.hash = '#atlas-d-' + conv.id + '--conv';
++    await settle();
++    assert.equal(p.d.getElementById('atlas-d-' + conv.id + '--conv').closest('details').open, true, 'a target inside a fold opens it');
++  }
++  const path = DATA.readingPaths[0];
++  const unit = p.d.getElementById('atlas-p-' + path.id);
++  unit.dispatchEvent(new p.w.CustomEvent('qh:reveal', { bubbles: true, cancelable: true, detail: { id: unit.id } }));
++  assert.equal(unit.open, true, 'a search result opens its path');
++  const closed = Array.from(p.d.querySelectorAll('#atlas details')).filter(d => !d.open);
++  p.w.dispatchEvent(new p.w.Event('beforeprint'));
++  assert.ok(closed.every(d => d.open), 'print opens every fold');
++  p.w.dispatchEvent(new p.w.Event('afterprint'));
++  assert.ok(closed.every(d => !d.open), 'and closes them again after');
++  assert.ok(!p.d.querySelector('.atlas-js.has-pane .atlas-main[style]'), 'no layout change is written');
++});
++
+ test('no number of claims, percentage or progress word anywhere in the atlas after the checks above', async () => {
+   const p = load({ wide: true });
+   await settle();

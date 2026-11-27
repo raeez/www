@@ -1,0 +1,298 @@
+diff --git a/compiler/quantum-holography-status/atlas.css b/compiler/quantum-holography-status/atlas.css
+index 6c54f25..49b991c 100644
+--- a/compiler/quantum-holography-status/atlas.css
++++ b/compiler/quantum-holography-status/atlas.css
+@@ -29,11 +29,8 @@
+ 
+ /* Status marks: the atlas's own family of squares. The atlas colours are the page's status colours: Scoped negative
+    takes the colour of 'refuted form', the statement status of the page that matches it. */
+-.atlas-mark { width: .95em; height: .95em; flex: none; vertical-align: -.12em; }
+-.atlas .am-checked { color: var(--as-checked); }
+-.atlas .am-conditional { color: var(--as-conditional); }
+-.atlas .am-scoped-negative { color: var(--as-negative); }
+-.atlas .am-remaining { color: var(--as-remaining); }
++/* Status marks are the page's (.mark, .mark-<status>, from the page's stylesheet), sized here where the atlas sets
++   them; on the map, .atlas-node-mark carries the page's colour class for its status. */
+ .atlas-vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+ 
+ /* Head of the section: the introduction and the parts, in the reading column */
+@@ -123,8 +120,6 @@
+ .atlas-key-item { min-width: 0; }
+ .atlas-key-item dt { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: var(--text-sm); }
+ .atlas-key-item dd { margin: 0 0 0 calc(.95em + 8px); color: var(--ink-2); font-size: var(--text-xs); line-height: 1.45; }
+-.atlas-key-page { display: block; color: var(--ink-3); }
+-.atlas-key-page .mark { width: 12px; height: 12px; margin: 0 .3em 0 .2em; vertical-align: -.12em; }  /* coloured by the page's .mark-<status> */
+ .atlas-key-note { margin: var(--au-h) 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
+ .atlas-rel-key { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--au-q); font-size: var(--text-sm); color: var(--ink-2); }
+ .atlas-rel-key li { display: flex; align-items: center; gap: 10px; min-width: 0; }
+@@ -155,7 +150,7 @@
+ .atlas-num { display: inline-block; min-width: 1.5em; color: var(--ink-3); font-size: var(--text-xs); text-align: right;
+              font-variant-numeric: lining-nums tabular-nums; }
+ .atlas-link { color: var(--ink); text-decoration: none; }
+-.atlas-link .atlas-mark { margin: 0 .3em 0 .25em; }
++.atlas-link .mark { margin: 0 .3em 0 .25em; }
+ .atlas-link:hover .atlas-link-title, .atlas-link:focus-visible .atlas-link-title { color: var(--accent); text-decoration: underline;
+   text-decoration-thickness: .06em; text-underline-offset: .18em; }
+ .atlas-claimlist { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--au-q); grid-template-columns: minmax(0, 1fr); }
+@@ -163,7 +158,7 @@
+ .atlas-link-title { min-width: 0; overflow-wrap: break-word; }
+ .atlas-claimlist .atlas-link { display: grid; grid-template-columns: 1.6em auto minmax(0, 1fr); align-items: baseline; column-gap: 2px;
+                                padding: 1px 4px 1px 0; border-radius: 4px; line-height: 1.32; }
+-.atlas-claimlist .atlas-link .atlas-mark { align-self: center; margin: 0 .35em 0 .2em; }
++.atlas-claimlist .atlas-link .mark { align-self: center; margin: 0 .35em 0 .2em; }
+ .atlas-claimlist .atlas-link:hover { background: var(--paper-2); }
+ .atlas-more { margin-top: var(--au-q); }
+ .atlas-more-h { cursor: pointer; color: var(--accent); font-size: var(--text-xs); letter-spacing: .04em; }
+@@ -205,7 +200,7 @@
+ .atlas-table .atlas-col-num { width: 2.6em; text-align: right; color: var(--ink-3); font-variant-numeric: lining-nums tabular-nums; padding-right: 4px; }
+ .atlas-table .atlas-col-n { width: 3.6em; text-align: right; font-variant-numeric: lining-nums tabular-nums; color: var(--ink-2); }
+ .atlas-table .atlas-col-status { white-space: nowrap; color: var(--ink-2); }
+-.atlas-table .atlas-col-status .atlas-mark { margin-right: .4em; }
++.atlas-table .atlas-col-status .mark { margin-right: .4em; }
+ .atlas-table .atlas-col-domain { color: var(--ink-2); }
+ .atlas-table .atlas-col-domain a { color: inherit; }
+ .atlas-table th.atlas-col-claim { min-width: 12em; }
+@@ -229,7 +224,7 @@
+                   cursor: pointer; text-align: left; }
+ .atlas-chip-btn:hover { border-color: var(--ink-4); color: var(--ink); }
+ .atlas-chip-btn[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); box-shadow: inset 0 0 0 1px var(--accent); }
+-.atlas-chip-btn .atlas-mark { width: 12px; height: 12px; }
++.atlas-chip-btn .mark { width: 12px; height: 12px; }
+ .atlas-count { margin: 0; font-size: var(--text-sm); color: var(--ink-3); }
+ 
+ /* A claim in full */
+@@ -246,7 +241,7 @@
+ .atlas-claim-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--au-q) 12px; margin: 0 0 var(--au-q); font-size: var(--text-xs); }
+ .atlas-chip { display: inline-flex; align-items: center; gap: 6px; padding: 1px 9px 1px 7px; border-radius: 999px; color: var(--as);
+               background: color-mix(in srgb, var(--as) 11%, transparent); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+-.atlas-chip .atlas-mark { width: 12px; height: 12px; }
++.atlas-chip .mark { width: 12px; height: 12px; }
+ .atlas-claim-no { color: var(--ink-3); letter-spacing: .06em; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+ .atlas-claim-domain a, .atlas-claim-domain { color: var(--ink-3); }
+ .atlas-claim-title { font-size: calc(var(--text-base) * 1.08); font-weight: 600; line-height: 1.28; margin: 0 0 var(--au-q); outline-offset: 3px; }
+diff --git a/compiler/quantum-holography-status/atlas.py b/compiler/quantum-holography-status/atlas.py
+index b853079..cc94f03 100644
+--- a/compiler/quantum-holography-status/atlas.py
++++ b/compiler/quantum-holography-status/atlas.py
+@@ -72,17 +72,9 @@ SHAPE = {
+     'stage': ({'label', 'description', 'claimIds'}, set()),
+ }
+ 
+-# Status marks of the atlas: a family of squares, apart from the page's circles, so that an atlas
+-# status does not take over the definition that the page's key gives to a mark. Filled marks are
+-# settled results (a scoped negative is a settled negative result, not a refuted claim); outlined
+-# marks are a conditional implication (with its condition inside) and a remaining comparison.
+-MARKS = {
+-    'checked': '<rect x="2.6" y="2.6" width="10.8" height="10.8" fill="currentColor"/>',
+-    'conditional': '<rect x="3.3" y="3.3" width="9.4" height="9.4" fill="none" stroke="currentColor" stroke-width="1.6"/>'
+-                   '<rect x="6.1" y="6.1" width="3.8" height="3.8" fill="currentColor"/>',
+-    'scoped_negative': '<path fill="currentColor" fill-rule="evenodd" d="M2.6 2.6h10.8v10.8H2.6zM4.8 7.1h6.4v1.8H4.8z"/>',
+-    'remaining': '<rect x="3.3" y="3.3" width="9.4" height="9.4" fill="none" stroke="currentColor" stroke-width="1.6"/>',
+-}
++# Status marks: the page's own. The atlas draws each status with the page's mark for its page status
++# (PAGE_STATUS), as the page draws it (ctx.mark), so the page and the atlas have one mark system and the key needs
++# no sentence to translate between two. The word beside a mark is chosen by the stored code, as before.
+ 
+ # Interface words (design). page.json may replace any of them: a label 'atlas_<key>' replaces <key>,
+ # and the page's own 'atlas', 'atlas_kicker' and 'nav_atlas' replace the heading, kicker and nav label.
+@@ -101,9 +93,7 @@ LABELS = {
+     'key_relations_none': 'No relation between claims is recorded.',
+     'key_plain': 'Relations past the eighth type share the plain line; each is named in the lists of its claims.',
+     'more': 'Show the rest of this group',
+-    'key_separate': ('The four statuses are those of the whole page. The atlas marks them with squares; beside each is the '
+-                     'mark that the statement cards and the table give the same status.'),
+-    'key_page': 'Its mark on the statement cards and in the table:',
++    'key_separate': 'The four statuses are those of the whole page.',
+     'part_map': 'Map',
+     'part_domains': 'Domains',
+     'part_claims': 'Claims',
+@@ -251,13 +241,6 @@ def cls(code):
+     return code.replace('_', '-')
+ 
+ 
+-def mark(code, label=None):
+-    title = f'<title>{html.escape(label)}</title>' if label else ''
+-    attrs = f' role="img" aria-label="{html.escape(label)}"' if label else ' aria-hidden="true"'
+-    return (f'<svg class="atlas-mark am am-{cls(code)}" viewBox="0 0 16 16" width="16" height="16"{attrs} '
+-            f'focusable="false">{title}{MARKS[code]}</svg>')
+-
+-
+ # Validation -------------------------------------------------------------------------------------
+ 
+ def validate(data, ctx=None):
+@@ -667,6 +650,29 @@ class Renderer:
+         self.L = labels
+         self.uses = {}  # anchor -> times used; two uses is a problem
+         self.problems = []  # reader findings of the renderer (the build fails; a draft still draws)
++        self.unmarked = set()  # page statuses the page could not draw, each reported once
++
++    def mark(self, code, label=None):
++        """The page's mark for an atlas status: the mark of its page status (PAGE_STATUS), drawn by the page (ctx.mark),
++        labelled when a label is given. Without a page (ctx without mark) no mark is drawn and the word stands alone.
++        A page that cannot draw a status's mark fails the build: the alias is the content owner's ruling."""
++        page = PAGE_STATUS.get(code)
++        if not page or not hasattr(self.ctx, 'mark'):
++            return ''
++        drawn = self.ctx.mark(page, label) if label else self.ctx.mark(page)
++        if not drawn and page not in self.unmarked:
++            self.unmarked.add(page)
++            self.problems.append(f'the page has no mark for its status {page!r}, the page status of the atlas status {code!r}')
++        return drawn or ''
++
++    def glyph(self, code):
++        """The same mark as SVG content for a map node: the inner drawing of the page's mark, in a group that carries
++        the page's colour class for that status (mark-<status>), at the node's left."""
++        page = PAGE_STATUS.get(code)
++        m = re.match(r'<svg\b[^>]*>(?:<title>.*?</title>)?(.*)</svg>\s*$', self.mark(code), re.S)
++        if not page or not m:
++            return ''
++        return f'<g class="atlas-node-mark mark-{page.replace(" ", "-")}" transform="translate(-19 -6) scale(.75)">{m.group(1)}</g>'
+ 
+     def esc(self, key, **kw):
+         text = self.L[key]
+@@ -717,7 +723,7 @@ class Renderer:
+         # (the claim's own label is shown with the claim); in a grouped list the group heading names it.
+         label = self.L['group_' + c['code']] if labelled else None
+         return (f'<a class="atlas-link" href="#atlas-c-{cid}">{self.num(cid)}'
+-                f'{mark(c["code"], label)}<span class="atlas-link-title">{self.title(c)}</span></a>')
++                f'{self.mark(c["code"], label)}<span class="atlas-link-title">{self.title(c)}</span></a>')
+ 
+     def item(self, cid, seen=None):
+         """A claim in a grouped list; a conditional claim and a scoped negative keep their hypotheses. Within one
+@@ -745,7 +751,7 @@ class Renderer:
+             body += (f'<details class="atlas-more"><summary class="atlas-more-h">{self.esc("more")}</summary>'
+                      f'<ul class="atlas-claimlist">{rest}</ul></details>')
+         prefix = 'ag' if kind == 'group' else 'ab'
+-        return (f'<div class="atlas-{kind} {prefix}-{cls(code)}"><h5 class="atlas-group-h">{mark(code)}'
++        return (f'<div class="atlas-{kind} {prefix}-{cls(code)}"><h5 class="atlas-group-h">{self.mark(code)}'
+                 f'<span>{self.esc("group_" + code)}</span></h5>{body}</div>')
+ 
+     def part(self, pid, title, body, extra_cls='', lead=None):
+@@ -764,9 +770,8 @@ class Renderer:
+     def key(self):
+         items = []
+         for code in CODES:
+-            own = self.page_status(code)
+-            items.append(f'<div class="atlas-key-item" data-key-status="{code}"><dt>{mark(code)}<span>{self.esc("group_" + code)}'
+-                         f'</span></dt><dd>{self.esc("gloss_" + code)}{own}</dd></div>')
++            items.append(f'<div class="atlas-key-item" data-key-status="{code}"><dt>{self.mark(code)}<span>{self.esc("group_" + code)}'
++                         f'</span></dt><dd>{self.esc("gloss_" + code)}</dd></div>')
+         if self.a.relations and any(k == LINE_STYLES for _, k, _ in self.a.relations.values()):
+             # Too many types for distinct line styles: one plain line; each relation is named where it is listed.
+             names = sorted(self.a.relations.items(), key=lambda kv: ' / '.join(kv[1][0]).lower())
+@@ -797,19 +802,6 @@ class Renderer:
+         page = PAGE_STATUS.get(code)
+         return f' data-qh-unit-status="{html.escape(page)}"' if page else ''
+ 
+-    def page_status(self, code):
+-        """The page's mark for the page status of an atlas status (PAGE_STATUS), read from the page (ctx.mark). The word
+-        is the same on both sides and is chosen by the stored code."""
+-        page = PAGE_STATUS.get(code)
+-        if not page:
+-            return ''
+-        drawn = self.ctx.mark(page) if hasattr(self.ctx, 'mark') else ''
+-        if not drawn:
+-            # The alias is the content owner's ruling: a page that cannot show it fails the build, never silently.
+-            if any(c['code'] == code for c in self.a.claims):
+-                self.problems.append(f'the page has no mark for its status {page!r}, the page status of the atlas status {code!r}')
+-            return ''
+-        return f' <span class="atlas-key-page"><span class="atlas-note-label">{self.esc("key_page")}</span> {drawn}</span>'
+ 
+     def domains(self):
+         a = self.a
+@@ -897,7 +889,7 @@ class Renderer:
+             nodes.append(f'<a class="atlas-node an-{cls(c["code"])}" href="#atlas-c-{c["id"]}" tabindex="-1" '
+                          f'data-claim-ref="{c["id"]}" transform="translate({x:.1f} {y:.1f})">'
+                          f'<rect class="atlas-pill" x="-{half}" y="-9" width="{2 * half}" height="18" rx="9"/>'
+-                         f'<g class="am-{cls(c["code"])}" transform="translate(-19 -6) scale(.75)">{MARKS[c["code"]]}</g>'
++                         f'{self.glyph(c["code"])}'
+                          f'<text x="7" y="4.5">{a.number[c["id"]]}</text></a>')
+         grid = ' '.join(f'{w}fr' for w in lane_ws)
+         heads = ''.join(f'<a class="atlas-track" href="#atlas-d-{d["id"]}">{self.rich(d["label"], terms=False)}</a>' for d in lanes)
+@@ -942,7 +934,7 @@ class Renderer:
+                         f'<span class="atlas-link-title">{self.title(c)}</span></a>'
+                         f'<span class="atlas-row-domain">{label}</span></th>'
+                         f'<td class="atlas-col-domain"><a href="#atlas-d-{d["id"]}">{label}</a></td>'
+-                        f'<td class="atlas-col-status">{mark(c["code"])}<span>{self.esc("group_" + c["code"])}</span></td>'
++                        f'<td class="atlas-col-status">{self.mark(c["code"])}<span>{self.esc("group_" + c["code"])}</span></td>'
+                         f'<td class="atlas-col-n">{len(a.into[c["id"]])}</td><td class="atlas-col-n">{len(a.out[c["id"]])}</td></tr>')
+         self.anchor('atlas-index')
+         long = ' atlas-index-long' if len(a.claims) > INDEX_LONG else ''
+@@ -995,7 +987,7 @@ class Renderer:
+         return (f'<article class="atlas-claim as-{cls(code)}" id="{aid}" data-claim-id="{cid}" data-status-code="{code}" '
+                 f'data-domain-id="{d["id"]}" data-number="{a.number[cid]}" data-qh-unit{self.unit_status(code)} aria-labelledby="{aid}--h">'
+                 f'<header class="atlas-claim-head"><p class="atlas-claim-meta">'
+-                f'<span class="atlas-chip ac-{cls(code)}">{mark(code)}<span class="atlas-chip-group">'
++                f'<span class="atlas-chip ac-{cls(code)}">{self.mark(code)}<span class="atlas-chip-group">'
+                 f'{self.esc("group_" + code)}</span></span>'
+                 f'<span class="atlas-claim-no">{self.esc("number")} {a.number[cid]}</span>'
+                 f'<span class="atlas-claim-domain"><a href="#atlas-d-{d["id"]}">{self.rich(d["label"], terms=False)}</a></span></p>'
+diff --git a/compiler/quantum-holography-status/tests/test_atlas.py b/compiler/quantum-holography-status/tests/test_atlas.py
+index 2e38a9d..9631c71 100644
+--- a/compiler/quantum-holography-status/tests/test_atlas.py
++++ b/compiler/quantum-holography-status/tests/test_atlas.py
+@@ -54,8 +54,12 @@ class Ctx:
+         return out
+ 
+     def mark(self, status, label=None):
++        """Like the page's mark(): the page's svg with its colour class, a title and a name when labelled."""
+         cls = status.replace(' ', '-')
+-        return f'<svg class="mark mark-{cls}" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"></svg>'
++        title = f'<title>{html.escape(label)}</title>' if label else ''
++        attrs = f' role="img" aria-label="{html.escape(label)}"' if label else ' aria-hidden="true"'
++        return (f'<svg class="mark mark-{cls}" viewBox="0 0 16 16" width="16" height="16"{attrs} focusable="false">'
++                f'{title}<circle data-page-mark="{cls}" cx="8" cy="8" r="5"/></svg>')
+ 
+     def anchor_for(self, statement_id):
+         return '#s-' + statement_id if statement_id in self._statements else None
+@@ -440,12 +444,47 @@ class Markup(unittest.TestCase):
+             self.assertIn(f'class="mark mark-{legacy.replace(" ", "-")}"', item, code)
+         self.assertEqual(atlas.PAGE_STATUS, {'checked': 'checked', 'conditional': 'conditional', 'remaining': 'open',
+                                              'scoped_negative': 'refuted form'}, 'the ruling\'s aliases')
+-        page_marks = len(re.findall(r'<svg class="mark ', self.html))
+-        in_key = sum(x.count('<svg class="mark ') for x in re.findall(r'<div class="atlas-key-item"[^>]*>.*?</div>', self.html, re.S))
+-        self.assertEqual(page_marks, in_key, 'page marks appear only in the key')
+         self.assertIn('--as-negative: var(--st-refuted-form)', self.out['css'])
+         self.assertIn('--as-remaining: var(--st-open)', self.out['css'])
+ 
++    def test_one_mark_system_the_pages(self):
++        # C5: every status mark in the atlas is the page's mark for the status's page alias, drawn by the page
++        # (ctx.mark); no mark of the atlas's own remains, and the key needs no sentence to translate between two.
++        self.assertNotIn('atlas-mark', self.html)
++        self.assertNotRegex(self.html, r'class="am[ -"]')
++        self.assertNotIn('atlas-mark', self.out['css'])
++        self.assertNotRegex(self.out['css'], r'\.am-')
++        self.assertNotIn('key_page', atlas.LABELS)
++        self.assertEqual(atlas.LABELS['key_separate'], 'The four statuses are those of the whole page.', 'no translation between two systems')
++        self.assertNotIn('squares', self.html)
++        code = {c['id']: c['status']['code'] for c in FIXTURE['claims']}
++        slug = {k: v.replace(' ', '-') for k, v in atlas.PAGE_STATUS.items()}
++        links = re.findall(r'<a class="atlas-link" href="#atlas-c-([^"]+)">(.*?)</a>', self.html, re.S)
++        marked = [(cid, body) for cid, body in links if '<svg' in body]
++        self.assertTrue(marked)
++        for cid, body in marked:
++            self.assertIn(f'<svg class="mark mark-{slug[code[cid]]}"', body, cid)
++        for cid, body in re.findall(r'<a class="atlas-node [^"]*"[^>]*data-claim-ref="([^"]+)"[^>]*>(.*?)</a>', self.html, re.S):
++            self.assertIn(f'<g class="atlas-node-mark mark-{slug[code[cid]]}" transform="translate(-19 -6) scale(.75)">'
++                          f'<circle data-page-mark="{slug[code[cid]]}"', body, cid)
++            self.assertNotIn('<title>', body, 'the map node is named by its link, not by its mark')
++        for k, body in re.findall(r'<span class="atlas-chip ac-([a-z-]+)">(.*?)</span></span>', self.html, re.S):
++            self.assertIn(f'class="mark mark-{slug[k.replace("-", "_")]}"', body, k)
++        for k, cell in re.findall(r'<tr id="[^"]+" data-claim-ref="([^"]+)">.*?<td class="atlas-col-status">(.*?)</td>', self.html, re.S):
++            self.assertIn(f'class="mark mark-{slug[code[k]]}"', cell, k)
++        # a labelled mark (a list not grouped by status) is named by its status word, as the page names its marks
++        labelled = re.findall(r'<svg class="mark mark-[a-z-]+" [^>]*role="img" aria-label="([^"]+)"', self.html)
++        self.assertTrue(set(labelled) <= {atlas.LABELS['group_' + k] for k in atlas.CODES})
++
++    def test_without_a_page_no_mark_is_drawn_and_the_word_stands(self):
++        class Plain(Ctx):
++            pass
++        Plain.mark = property(lambda self: (_ for _ in ()).throw(AttributeError('mark')))
++        out = atlas.render(copy.deepcopy(FIXTURE), Plain())
++        self.assertNotIn('<svg class="mark', out['html'])
++        self.assertIn(atlas.LABELS['group_checked'], out['html'])
++        self.assertEqual([p for p in out['problems'] if 'no mark' in p], [])
++
+     def test_an_alias_the_page_cannot_show_fails_the_build(self):
+         class NoMarks(Ctx):
+             def mark(self, status, label=None):
