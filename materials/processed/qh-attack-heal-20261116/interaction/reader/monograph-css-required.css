@@ -1,0 +1,51 @@
+/* REQUIRED for reader.js as frozen in reader-r1: append to the foundation's monograph stylesheet
+   materials/processed/qh-attack-heal-20261116/foundation/monograph/src/compiler/quantum-holography-status/monograph.css
+   (checked against sha256 7d58f2b91c9763b6… and the built book.html 1ffe6054…, whose styles already cover every other
+   class reader.js creates, and whose html { scroll-padding-top } keeps arrivals clear of the bar).
+   Each rule is needed by present behaviour; none is optional. */
+
+/* 1. The search's live region repeats the result count for screen readers once typing pauses; the visible count is
+      #reader-search-status. Without this rule the count is shown twice. */
+.reader-search-news {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* 2. Where a search result leads, the words searched for are marked (CSS Highlight API); without a rule they are not. */
+::highlight(reader-find) { background-color: var(--accent-soft); color: inherit; }
+@media (forced-colors: active) { ::highlight(reader-find) { background-color: Mark; color: MarkText; } }
+
+/* 3. "n more in Chapter 5 / in the Atlas": the control that opens the rest of a group of results (the reference parts
+      show three results first). Without a rule it is an unstyled system button. */
+.reader-group-more {
+  margin: .3rem 0 0;
+  padding: .15rem 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: var(--text-sm);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+  cursor: pointer;
+}
+.reader-group-more:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* 4. A group head names its place, its title and its number of results; the number is marked as a count. */
+.reader-group-title { font-variant-caps: normal; letter-spacing: 0; font-style: italic; color: var(--ink-2); }
+.reader-group-count { font-variant-numeric: tabular-nums; }
+.reader-group-count::before { content: '· '; }
+
+/* 5. A scope with no result for the query reads as such. */
+.reader-scope[data-none]:not([aria-pressed='true']) { color: var(--ink-4); }
+
+/* 6. Where the browser cannot find text hidden until found, the reader hides the places not shown with plain hidden;
+      no display rule of the page may show them. */
+main[data-reader] > [hidden]:not([hidden='until-found']) { display: none !important; }

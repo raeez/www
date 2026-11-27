@@ -1,0 +1,167 @@
+{
+  "schema": "reader-dom",
+  "revision": 3,
+  "data_schema": "qh-reader/v1",
+  "inputs_sha256": {
+    "READER-ARCHITECTURE.md": "d6e881b17bf399773870d6ad2508b0d49a430c257402425eca7c456c7117b3f0",
+    "SCIENTIFIC-VISUAL-CONTRACT.md": "cc340b38970f86bcaea65fdca3b34067268edf2af383f4666fae59964788e953",
+    "FIGURE-RECORD-CONTRACT.md": "d711aac04d92a674eca900618ed5f0040a2b9005118c731186e5e7e55c77e013",
+    "AUTHOR-CONTRACT.md": "cda7fc3f64fe7ada38781ee1d7fb23fe1d0e9f5d730eec4bda75d8a3ccbeaccc",
+    "manifest.json": "16a3f0dff9ca0c886a36189e6dbbe17a50f267dea6d5a7b504029bbe29511455",
+    "chapters/01-physical-questions.md": "74bacba897073991ee94dec1cef301d970c82a87adb35382fb83005e5c6eb067",
+    "foundation CHAPTER-MARKUP.md": "d78c75d7d33ea41ecba7dc7cc17576c0d2d53f34a6b6ed524230494bfb5e9db9",
+    "PROGRAMME-DIAGRAM-CONTRACT.md": "c678539dca26de4f5f81c61e134f6981f0d354f938197bd067496380045852d7",
+    "reader-data/diagram-records.json": "c96f67dffcc2b01889dda297f4548c45e51e0f8580bc4ea82e972cd0739fc4b8",
+    "manifest.json (current)": "a8dd97f6790f553f36a64442e6ecc0d772fe482baff8e5a9aa7e99cab305086b",
+    "foundation book.html (checked)": "1ffe60540bb6e6320652ec6426e062ee398b09e29094896a7e036490960e2841"
+  },
+  "served": {
+    "root": "main#main[data-reader] (optional data-chapter-count, data-label-<key>)",
+    "front": "header#front[data-reader-front] > h1 (title), subtitle, audience; optional a[data-route][data-route-chapters] from manifest routes",
+    "contents": "nav#contents[data-reader-toc][aria-labelledby=contents-h]; li[data-part] > span#{part}-title; li > a[href=#{chapter}][data-chapter-link]; optional nested section links",
+    "chapter": "article#{chapter id}[data-chapter][data-part][data-number][aria-labelledby={chapter id}-h] > h2#{chapter id}-h",
+    "chapter_parts": {
+      "kicker": "[data-chapter-kicker] (optional)",
+      "prerequisites": "nav[data-prerequisites] a[href=#{chapter id}]",
+      "summary": "[data-chapter-summary] (optional)",
+      "end": "nav[data-chapter-end] a[rel=prev], a[rel=next]"
+    },
+    "section": "section#{heading id}[data-section][aria-labelledby={heading id}-h] > h3#{heading id}-h (### nested with h4)",
+    "environment": "div[data-env={definition|theorem|proposition|lemma|corollary|conditional|conjecture|heuristic|example|counterexample|construction|remark|notation|convention|open-problem|question|proof}][id] > [data-block-title] (numbered label line); optional dfn; [data-term] and [data-result] read as other names",
+    "equation": "div.math-display#eq-… holding the formula and its number (never an empty marker)",
+    "figure": "figure#{manifest id verbatim}[data-figure][data-qh-figure][data-figure-type] > figcaption (author's caption); optional [data-block-title]; owns its controls",
+    "reference": "section#{id}[data-reference][aria-labelledby]: #glossary (dl > dt[id] + dd), #atlas[data-atlas-mount], and the old reference DOM kept whole with its old ids",
+    "cross_reference": "a[href=#{id}] in running text opens a reminder; optional data-ref={kind}; data-ref=none keeps an ordinary link; links in nav navigate; links in [data-chapter-kicker] navigate",
+    "optional": {
+      "bar_slot": "[data-reader-bar]",
+      "redirects": "script#reader-redirects[type=application/json] {old: new} (fallback only)"
+    },
+    "strict_hooks": "a chapter is article[data-chapter] (not nested), a section is section[data-section]; components may carry data-chapter/data-section values",
+    "diagram": "same hook as figures; node definition links a[href=#{section id}] open a reminder of that section; SVG text labels searched"
+  },
+  "created": {
+    "bar": ".reader-bar > a#reader-home.reader-home, button#reader-contents-toggle.reader-contents-toggle > (.reader-contents-word, .reader-position > .reader-position-part, .reader-position-chapter, .reader-position-title, .reader-position-section), span.reader-route > .reader-route-text, button.reader-route-leave, a#reader-prev.reader-prev[rel=prev], a#reader-next.reader-next[rel=next] (> .reader-step-arrow, .reader-step-label, .reader-step-title), button#reader-search-toggle.reader-search-toggle, #reader-search",
+    "notices": "main > div.reader-notices[role=status] (first child, always present) > div.reader-notice[data-notice=resume|unknown] > p.reader-notice-text[tabindex=-1], p.reader-notice-actions > (a|button).reader-notice-action, button.reader-notice-close",
+    "peek": "body > div#reader-peek.reader-peek[role=dialog][aria-label][data-placement=below|above][data-kind] > .reader-peek-head > (p#reader-peek-where.reader-peek-where, button.reader-peek-close), .reader-peek-body, p.reader-peek-foot > a.reader-peek-go; style --peek-x, --peek-y",
+    "search": "div#reader-search.reader-search[role=search] > .reader-search-field > (label.reader-search-label, input#reader-q.reader-search-input, button.reader-search-close), .reader-search-scopes[role=toolbar] > button.reader-scope[data-scope][aria-pressed][data-none] > (.reader-scope-label, .reader-scope-count), p#reader-search-status.reader-search-status, p.reader-search-news[role=status], #reader-results.reader-results",
+    "results": ".reader-group[data-group=best|{place id}] > p.reader-group-head > (.reader-group-where, .reader-group-title, .reader-group-count), ol.reader-hits > li.reader-hit > a.reader-hit-link > (.reader-hit-where, .reader-hit-title, .reader-hit-text > mark, .math-long, .reader-hit-formula), button.reader-group-more",
+    "theme": "button#reader-theme.theme.reader-theme (only when the page serves no .theme): page label and icon; data-theme on the root and localStorage qh-theme; one switch per press"
+  },
+  "states": {
+    "main[data-reader-view]": "front|chapter|reference",
+    "[data-current]": "the shown place; the current chapter's li in the contents",
+    "[hidden=until-found]": "every other place and the title page",
+    "#contents[hidden]": "closed outside the title page",
+    "#contents[data-drawer]": "opened from the bar",
+    "a[aria-current=page|location]": "current chapter link | section at the top of the screen",
+    "[data-revealed]": "the element an address led to",
+    ".reader-bar[data-search-open]": "search open",
+    ":root --reader-bar-h": "measured bar height",
+    "::highlight(reader-find)": "search words in the place a result led to"
+  },
+  "events": {
+    "from_reader": {
+      "qh:chapter": "{id, number, part} on document",
+      "qh:state": "{q, view, id} on document after every change of address",
+      "qh:reveal": "{id}, cancelable, on a target inside [data-atlas-mount]"
+    },
+    "to_reader": {
+      "qh:navigate": "{id}, bubbles, cancelable",
+      "qh:unknown-anchor": "{id}, cancelable",
+      "qh:content-changed": "rebuild search units"
+    },
+    "atlas_links": "links inside [data-atlas-mount] are left to the atlas"
+  },
+  "storage": {
+    "localStorage": {
+      "qh-reader-place": "{id, title, at}"
+    },
+    "sessionStorage": {
+      "qh-reader-route": "{id, name, list}"
+    }
+  },
+  "label_keys": [
+    "reading",
+    "front",
+    "contents",
+    "part",
+    "chapter",
+    "chapter-of",
+    "reference",
+    "previous",
+    "next",
+    "begin",
+    "return",
+    "previous-chapter",
+    "next-chapter",
+    "begin-chapter",
+    "return-to",
+    "search",
+    "search-label",
+    "search-placeholder",
+    "search-in",
+    "all",
+    "chapters",
+    "best",
+    "none",
+    "one",
+    "many",
+    "too-short",
+    "more-in",
+    "in-formula",
+    "close",
+    "go-to",
+    "unknown",
+    "search-for",
+    "resume",
+    "resume-go",
+    "route",
+    "leave-route"
+  ],
+  "open_points_for_root": {
+    "R1": "equation id on the display block, never an empty marker",
+    "R2": "section[data-section] wrappers with h3#{id}-h (reader degrades to heading ids)",
+    "R3": "data-env with the CHAPTER-MARKUP class; [data-block-title] on the numbered label line",
+    "R4": "main[data-chapter-count] from the manifest while chapters arrive",
+    "R5": "done: status.js reader mode; include status.js before reader.js",
+    "R6": "C10 on the old tracker page is fixed by serving terms as links (proposal P5); monograph cross-references are inline links",
+    "R7": "append reader/monograph-css-required.css to monograph.css"
+  },
+  "qa_items": {
+    "C12": "notice markup above; styled in reader-css-proposal.css",
+    "C17": "chapters first in the book's order, reference last and collapsed to 3 with more",
+    "C18": "five bar controls at any width",
+    "C1/C14": "atlas hidden until found unless addressed",
+    "C10": "see R6"
+  },
+  "status_js_reader_mode": {
+    "active_when": "[data-reader] exists",
+    "keeps": [
+      "term and scope cards (#card)",
+      "example table keys",
+      "filters",
+      "expand buttons",
+      "disclosures and their history",
+      "print"
+    ],
+    "leaves_to_reader": [
+      "place",
+      "address",
+      "Back/Forward",
+      "search",
+      "notices",
+      "reading place",
+      "\"/\" key"
+    ],
+    "script_order": "status.js before reader.js",
+    "without_status_js": "term buttons open their glossary entry in the reader reminder; table cells and filters inert"
+  },
+  "css_required": "reader/monograph-css-required.css appended to the foundation monograph.css (six rules); reader-css-proposal.css is reference only",
+  "evidence": {
+    "fixture_tests": "57 of 57",
+    "page_checks_on_built_book_b83033f3_with_status_js": "19 of 20 (the failing check is a renderer attribute: fig-state-line-cap lacks data-qh-figure)",
+    "mutations": "11 of 11 caught",
+    "status_js_reader_mode_on_tracker_builds": "92 of 92 on each of five builds"
+  },
+  "titles": "chapter title = heading without a first element holding only the chapter number; other headings read with a space between parts (QA O3)"
+}

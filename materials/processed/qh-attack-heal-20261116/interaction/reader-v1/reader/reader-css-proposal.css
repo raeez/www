@@ -1,0 +1,407 @@
+/* Reader: the states reader.js sets and the elements it creates.
+   A proposal for the monograph stylesheet, which owns it. It uses only the page's tokens
+   (--paper, --ink, --accent, --rule, --s1 … --s6, --text-*, --gutter, --measure, --radius, --shadow, --bar-bg,
+   --font-ui), so it follows the light and dark themes. reader.js injects no style of its own; it sets the classes
+   and attributes below, plus --reader-bar-h on the root and --peek-x/--peek-y on the reminder. */
+
+/* ---------------------------------------------------------------- places */
+
+/* A place not shown takes no room. Where the browser finds hidden text, it keeps the place (content-visibility: hidden
+   from the browser); elsewhere the reader sets plain hidden, which no display rule of the page may undo. */
+[data-reader] > [hidden='until-found'] { margin: 0 !important; padding: 0 !important; border: 0 !important; }
+[data-reader] [hidden]:not([hidden='until-found']) { display: none !important; }
+[data-reader] [id] { scroll-margin-top: calc(var(--reader-bar-h, var(--bar, 50px)) + var(--s2)); }
+
+/* Arrival: the element an address or a result led to is lit briefly; focus moved there by the reader shows a ring
+   only for a keyboard. */
+[data-reader] [data-revealed] { animation: reader-arrive 1.8s ease-out 1; border-radius: 2px; }
+@keyframes reader-arrive { from { background-color: var(--accent-soft); } to { background-color: transparent; } }
+[data-reader] [tabindex='-1']:focus { outline: none; }
+[data-reader] [tabindex='-1']:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+::highlight(reader-find) { background-color: var(--accent-soft); color: inherit; }
+
+/* ---------------------------------------------------------------- the reading bar: a running head */
+
+.reader-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: var(--bar, 50px);
+  padding: 0 var(--gutter);
+  background: var(--bar-bg);
+  -webkit-backdrop-filter: saturate(1.2) blur(10px);
+  backdrop-filter: saturate(1.2) blur(10px);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  line-height: var(--lh-compact);
+  color: var(--ink-2);
+}
+.reader-bar a, .reader-bar button { -webkit-tap-highlight-color: transparent; }
+.reader-bar a:focus-visible, .reader-bar button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.reader-home {
+  flex: 0 1 auto;
+  max-width: 17rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--ink);
+  text-decoration: none;
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track);
+}
+.reader-home:hover { color: var(--accent); }
+
+/* The place is the contents' control: "Part II · Chapter 6 of 18 · title · section". */
+.reader-contents-toggle {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: .6em;
+  margin: 0;
+  padding: .4em .7em;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.reader-contents-toggle:hover { border-color: var(--rule); }
+.reader-contents-toggle[aria-expanded='true'] { border-color: var(--rule); background: var(--paper-2); }
+.reader-contents-word { flex: 0 0 auto; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: var(--track); }
+.reader-contents-word::after {
+  content: '';
+  display: inline-block;
+  width: .42em;
+  height: .42em;
+  margin-left: .45em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-.22em) rotate(45deg);
+}
+.reader-contents-toggle[aria-expanded='true'] .reader-contents-word::after { transform: translateY(.05em) rotate(225deg); }
+.reader-position { display: flex; align-items: baseline; gap: .5em; min-width: 0; white-space: nowrap; overflow: hidden; }
+.reader-position[hidden], .reader-position > span:empty { display: none; }
+.reader-position-part { flex: 0 0 auto; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: var(--track); }
+.reader-position-chapter { flex: 0 0 auto; color: var(--ink); font-variant-numeric: lining-nums; }
+.reader-position-title, .reader-position-section { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.reader-position-title { flex: 0 1 auto; color: var(--ink-2); }
+.reader-position-section { flex: 1 1 0; color: var(--ink-3); font-style: italic; }
+.reader-position-title::before, .reader-position-section::before { content: '·'; margin-right: .5em; color: var(--ink-4); font-style: normal; }
+
+.reader-prev, .reader-next {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35em;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0 .55em;
+  border-radius: var(--radius);
+  color: var(--accent);
+  text-decoration: none;
+}
+.reader-prev[hidden], .reader-next[hidden] { display: none; }
+.reader-prev:hover, .reader-next:hover { background: var(--accent-soft); }
+.reader-step-arrow { font-size: 1.15em; line-height: 1; }
+/* A step shows where it goes ("← Chapter 5"); "Begin" and "Back to the text" also show their word. The chapter title
+   is in the link's accessible name and at the chapter's end, not repeated in the bar. */
+.reader-step-label, .reader-step-n, .reader-step-title { display: none; }
+.reader-step-chapter { white-space: nowrap; font-variant-numeric: lining-nums; }
+.reader-prev[data-step='return'] .reader-step-label, .reader-next[data-step='begin'] .reader-step-label { display: inline; }
+.reader-next[data-step='begin'] .reader-step-label::after, .reader-prev[data-step='return'] .reader-step-label::after { content: ':'; }
+
+/* Where the place is in the whole book: a mark per chapter, grouped by part; only the chapter shown is filled, so it
+   reads as a position, never as progress. */
+.reader-locator { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 5px; align-self: center; }
+.reader-locator[hidden] { display: none; }
+.reader-locator-part { display: inline-flex; gap: 2px; }
+.reader-locator-chapter { width: 5px; height: 11px; border-radius: 1px; box-shadow: inset 0 0 0 1px var(--rule); }
+.reader-locator-chapter[data-current] { background: var(--accent); box-shadow: none; }
+
+.reader-route { flex: 0 1 auto; display: inline-flex; align-items: baseline; gap: .5em; min-width: 0; color: var(--ink-3); white-space: nowrap; }
+.reader-route[hidden] { display: none; }
+.reader-route-text { overflow: hidden; text-overflow: ellipsis; font-style: italic; }
+.reader-route-leave, .reader-notice-action, .reader-notice-close, .reader-search-close, .reader-group-more {
+  margin: 0;
+  padding: .2em 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+  cursor: pointer;
+}
+
+.reader-search-toggle {
+  flex: 0 0 auto;
+  min-height: 2.75rem;
+  padding: 0 .9em;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--paper-3);
+  color: var(--ink-2);
+  font: inherit;
+  cursor: pointer;
+}
+.reader-search-toggle:hover, .reader-search-toggle[aria-expanded='true'] { border-color: var(--accent); color: var(--ink); }
+@media (hover: hover) and (pointer: fine) {
+  .reader-search-toggle::after {
+    content: '/';
+    margin-left: .6em;
+    padding: 0 .4em;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    color: var(--ink-4);
+    font-size: .85em;
+  }
+}
+
+/* ---------------------------------------------------------------- the contents, opened from the bar */
+
+[data-reader-view] #contents[data-drawer] {
+  position: fixed;
+  z-index: 45;
+  top: var(--reader-bar-h, var(--bar, 50px));
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: min(30rem, 100vw);
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--s3) var(--gutter) var(--s5);
+  background: var(--paper-3);
+  border-right: 1px solid var(--rule);
+  box-shadow: var(--shadow);
+}
+#contents li[data-current] > a { color: var(--ink); }
+#contents a[aria-current='page'] { box-shadow: inset 3px 0 0 var(--accent); padding-left: .6em; font-weight: 600; }
+#contents a[aria-current='location'] { color: var(--accent); }
+[data-reader-view] #contents[data-drawer] li[data-part] li:not([data-current]) > ol { display: none; } /* sections of the current chapter only */
+
+/* ---------------------------------------------------------------- notices (a returning reader, an unknown address) */
+
+.reader-notices:empty { display: none; }
+.reader-notice {
+  box-sizing: border-box;
+  max-width: var(--measure);
+  margin: var(--s3) max(var(--gutter), calc((100% - var(--measure)) / 2)) 0;
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+.reader-notice-text { margin: 0; }
+.reader-notice-text:focus { outline: none; }
+.reader-notice-actions { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); margin: var(--s1) 0 0; }
+.reader-notice-close { color: var(--ink-3); }
+
+/* ---------------------------------------------------------------- the reminder beside a cross-reference */
+
+.reader-peek {
+  position: fixed;
+  z-index: 60;
+  box-sizing: border-box;
+  width: min(34rem, calc(100vw - 2 * var(--gutter)));
+  left: clamp(var(--gutter), var(--peek-x, 0px), calc(100vw - min(34rem, calc(100vw - 2 * var(--gutter))) - var(--gutter)));
+  top: calc(var(--peek-y, 0px) + 8px);
+  max-height: min(70vh, 40rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--s2) var(--s3);
+  background: var(--paper-3);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-size: var(--text-sm);
+}
+.reader-peek[hidden] { display: none; }
+.reader-peek[data-placement='above'] { top: auto; bottom: calc(100vh - var(--peek-y, 0px) + 8px); }
+.reader-peek-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2);
+  margin-bottom: var(--s2);
+  padding-bottom: var(--s1);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.reader-peek-where { margin: 0; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: var(--track); }
+.reader-peek-where:focus { outline: none; }
+.reader-peek-where:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.reader-peek-close {
+  flex: 0 0 auto;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  margin: -.4em -.5em -.4em 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--ink-3);
+  font: inherit;
+  font-size: 1.35em;
+  line-height: 1;
+  cursor: pointer;
+}
+.reader-peek-close:hover { background: var(--paper-2); color: var(--ink); }
+.reader-peek-body > * { margin: 0 0 var(--s2); }
+.reader-peek-body > :last-child { margin-bottom: 0; }
+.reader-peek-title { color: var(--ink); font-weight: 600; }
+.reader-peek-body .math-display, .reader-peek-body math[display='block'] { overflow-x: auto; overflow-y: hidden; }
+.reader-peek-body ul, .reader-peek-body ol { padding-left: 1.2em; }
+.reader-peek-foot { margin: var(--s2) 0 0; text-align: right; }
+.reader-peek-go { color: var(--accent); }
+.reader-peek-go::after { content: ' →'; }
+
+/* ---------------------------------------------------------------- search */
+
+.reader-search {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 50;
+  box-sizing: border-box;
+  max-height: calc(100vh - var(--reader-bar-h, var(--bar, 50px)));
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--s3) var(--gutter) var(--s4);
+  background: var(--paper-3);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: var(--shadow);
+  font-size: var(--text-base);
+}
+.reader-search[hidden] { display: none; }
+.reader-search > * { max-width: 46rem; margin-left: auto; margin-right: auto; }
+.reader-search-field { display: flex; align-items: center; gap: var(--s2); }
+.reader-search-label, .reader-search-news {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.reader-search-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: .45em .65em;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-lead);
+}
+.reader-search-input:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; border-color: var(--accent); }
+.reader-search-close { flex: 0 0 auto; color: var(--ink-3); }
+.reader-search-scopes { display: flex; flex-wrap: wrap; gap: .4em; margin-top: var(--s2); }
+.reader-scope {
+  padding: .2em .85em;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.reader-scope:hover { border-color: var(--accent); }
+.reader-scope[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--paper-3); }
+.reader-scope[data-none]:not([aria-pressed='true']) { color: var(--ink-4); }
+.reader-scope-count { margin-left: .15em; font-variant-numeric: tabular-nums; opacity: .8; }
+.reader-scope-count:empty { display: none; }
+.reader-search-status { margin: var(--s2) 0 0; color: var(--ink-3); font-size: var(--text-sm); }
+.reader-search-status:empty { display: none; }
+.reader-results[hidden] { display: none; }
+.reader-group { margin-top: var(--s2); padding-top: var(--s2); border-top: 1px solid var(--rule-soft); }
+.reader-group-head { margin: 0 0 var(--s1); color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: var(--track); }
+.reader-group[data-group='best'] .reader-group-head { color: var(--accent); }
+.reader-group-title { font-variant-caps: normal; letter-spacing: 0; font-style: italic; color: var(--ink-2); }
+.reader-group-count { font-variant-numeric: tabular-nums; }
+.reader-group-count::before { content: '· '; }
+.reader-hits { margin: 0; padding: 0; list-style: none; }
+.reader-hit-link {
+  display: block;
+  margin: 0 calc(-1 * var(--s1));
+  padding: .45em var(--s1);
+  border-radius: var(--radius);
+  color: var(--ink);
+  text-decoration: none;
+}
+.reader-hit-link:hover { background: var(--paper-2); }
+.reader-hit-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 0; background: var(--accent-soft); }
+.reader-hit-where { display: block; color: var(--ink-3); font-size: var(--text-sm); }
+.reader-hit-title { display: block; color: var(--ink); }
+.reader-hit-text { display: block; color: var(--ink-2); font-size: var(--text-sm); }
+.reader-hit-text .math-long { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; }
+.reader-hit-formula { font-style: italic; }
+.reader-results mark { background: var(--accent-soft); color: inherit; border-radius: 2px; }
+.reader-group-more { margin-top: var(--s1); font-size: var(--text-sm); }
+
+/* ---------------------------------------------------------------- narrow screens */
+
+@media (max-width: 760px) {
+  .reader-bar { gap: .25em; padding: 0 12px; }
+  .reader-home, .reader-contents-word, .reader-position-part, .reader-position-title, .reader-route-text, .reader-locator { display: none; }
+  .reader-step-chapter, .reader-prev[data-step='return'] .reader-step-label, .reader-next[data-step='begin'] .reader-step-label { display: none; }
+  .reader-step-n { display: inline; font-variant-numeric: lining-nums; }
+  .reader-position-section { display: none; }
+  .reader-contents-toggle { padding: .4em .5em; }
+  .reader-contents-toggle .reader-position-chapter::after {
+    content: '';
+    display: inline-block;
+    width: .42em;
+    height: .42em;
+    margin-left: .45em;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-.22em) rotate(45deg);
+  }
+  [data-reader-view] #contents[data-drawer] { width: 100vw; border-right: 0; }
+  .reader-search { position: fixed; top: var(--reader-bar-h, var(--bar, 50px)); bottom: 0; max-height: none; padding: var(--s2) 16px var(--s4); }
+  .reader-peek, .reader-peek[data-placement='above'] {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    width: auto;
+    max-height: 75vh;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 0;
+    padding: var(--s2) 16px calc(var(--s3) + env(safe-area-inset-bottom, 0px));
+  }
+  .reader-notice { margin-left: 16px; margin-right: 16px; }
+}
+
+/* ---------------------------------------------------------------- motion, contrast, print */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reader] [data-revealed] { animation: none; }
+}
+@media (forced-colors: active) {
+  .reader-bar, .reader-peek, .reader-search, .reader-notice, [data-reader-view] #contents[data-drawer] { border: 1px solid CanvasText; }
+  .reader-scope[aria-pressed='true'] { outline: 2px solid Highlight; }
+  #contents a[aria-current='page'] { outline: 1px solid LinkText; }
+  .reader-locator-chapter { border: 1px solid CanvasText; box-shadow: none; }
+  .reader-locator-chapter[data-current] { background: Highlight; }
+  ::highlight(reader-find) { background-color: Mark; color: MarkText; }
+}
+@media print {
+  .reader-bar, .reader-notices, .reader-peek, .reader-search { display: none !important; }
+  [data-reader-view] #contents[data-drawer] { display: none !important; }
+}
