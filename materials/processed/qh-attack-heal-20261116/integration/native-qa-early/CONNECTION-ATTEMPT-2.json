@@ -1,0 +1,90 @@
+{
+  "schema": "qh-primary-native-qa/connection-v1",
+  "attempt": 2,
+  "trigger": "Root follow-up: normal native per-task/site prompts are within user authorization; report exact prompts that require root or user interaction. Attempt 1 evidence is kept unchanged in CONNECTION.json (sha256 89eec1f15e2d4d84bcdd043cf65eb980dd910880382c7294370907eb49f806bd).",
+  "outcome": "CONNECTED",
+  "calls_in_order": [
+    {
+      "n": 1,
+      "tool": "mcp__claude-in-chrome__list_connected_browsers",
+      "input": {},
+      "status": "ok",
+      "result_verbatim": "[{\"deviceId\":\"e6a29ed8-0496-44e9-b2b2-1f8b9f60786f\",\"name\":\"Browser 1\",\"osPlatform\":\"macOS\",\"connectedAt\":1794835884804,\"isLocal\":true,\"inUse\":true}]",
+      "connectedAt_utc": "2026-11-16T13:31:24Z"
+    },
+    {
+      "n": 2,
+      "tool": "mcp__claude-in-chrome__tabs_context_mcp",
+      "input": {
+        "createIfEmpty": true
+      },
+      "status": "ok",
+      "result_verbatim": "{\"availableTabs\":[{\"tabId\":1307149979,\"title\":\"New Tab\",\"url\":\"chrome://newtab/\"}],\"tabGroupId\":90502873}\n\nTab Context:\n- Available tabs:\n  • tabId 1307149979: \"New Tab\" (\"chrome://newtab/\")"
+    }
+  ],
+  "calls_window_utc": "after 2026-11-16T13:33:57Z and before 2026-11-16T13:35:15Z",
+  "selection": "One browser connected and already inUse; select_browser and switch_browser not needed and not called.",
+  "approval_prompts": "none at any step of attempt 2: no per-site, file-access, script or connection prompt appeared; nothing requires root or user interaction from this attempt",
+  "window_resize": {
+    "result_verbatim": "Successfully resized window containing tab 1307149979 to 1400x1000 pixels (and later 1280x900)",
+    "effect": "none: viewport stayed 1728x997 (outer equals inner, screenY 120); the second task tab reported 894x749 (screenY 1117). Most likely a window manager re-tiles; not changed. Exact widths came from site/frame.html iframes instead."
+  },
+  "local_server": {
+    "bind": "127.0.0.1:47613 (loopback only, verified with lsof)",
+    "served_dir": "/tmp/qh-primary-native-qa-20261116/site (frozen candidate, frozen baseline, frame.html harness only)",
+    "pid": 96362,
+    "started_utc": "about 2026-11-16T13:36Z",
+    "stopped_utc": "2026-11-16T13:55Z (SIGTERM by this session; port verified free)",
+    "requests": "20 GET, 1 HEAD, 1 404 (a browser request just after a page load, almost certainly the favicon); log in server.log"
+  },
+  "browser_state_changes_and_restoration": [
+    "localStorage 'qh-theme' on origin http://127.0.0.1:47613 was set by the page's own theme control and by the harness; removed at the end (keysLeft 0)",
+    "one word ('vacuum') typed into the page's local search box in a task tab; URL ?q=vacuum lived only in that tab, which is closed",
+    "two task-owned tabs closed at the end; the tab group was auto-removed; no other tab or window was touched"
+  ],
+  "candidate_change_during_qa": "The lane rebuilt foundation/preview.html at 2026-11-16T13:37:47Z to sha256 15ff3966ca4f63ff71b060f63b89b26f3c7e44610a87226f4c3efbc7a861c78a (614 changed CSS lines; markup changed). All visual QA covers the frozen b57caa1e copy; the new build was compared statically only (see QA-FINDINGS.md).",
+  "qa_record": "QA-FINDINGS.md; evidence images in shots/",
+  "refusals": [
+    {
+      "tool": "browser_batch [resize_window {width:1400,height:1000,tabId:1307149979}, navigate file:///tmp/qh-primary-native-qa-20261116/candidate/preview.html, screenshot]",
+      "stopped_at": "item 1, resize_window, while the tab was on chrome://newtab/",
+      "result_verbatim": "Can't interact with browser-internal or unparseable URLs. Navigate to a web page first."
+    },
+    {
+      "tool": "navigate",
+      "input": {
+        "url": "file:///tmp/qh-primary-native-qa-20261116/candidate/preview.html",
+        "tabId": 1307149979
+      },
+      "result_verbatim": "Can't interact with browser-internal or unparseable URLs. Navigate to a web page first.",
+      "reading": "The native extension does not open file:// URLs here. Enabling it would need Chrome's per-extension 'Allow access to file URLs' toggle, a global permission change outside this assignment; not attempted. Route taken instead, per root's follow-up that normal native per-site prompts are within user authorization: the same frozen bytes served from 127.0.0.1 only."
+    }
+  ],
+  "task_owned": {
+    "tab_group": 90502873,
+    "tabs": [
+      1307149979,
+      1307149992
+    ],
+    "note": "1307149979 created by tabs_context_mcp(createIfEmpty); 1307149992 created by tabs_create_mcp. Both closed by this session at the end; group auto-removed. No other tab touched."
+  },
+  "host_processes_at_attempt_start": {
+    "/Applications/Claude.app/Contents/Helpers/chrome-native-host": 11,
+    "/Users/raeez/.claude/chrome/chrome-native-host": 0
+  },
+  "frozen_copies_for_inspection": {
+    "candidate": {
+      "copy": "/tmp/qh-primary-native-qa-20261116/candidate/preview.html",
+      "source": "foundation/preview.html",
+      "sha256": "b57caa1ee3621dc7d636a42fdaa2e23beee80f5ab9b59b9bd841f1b2100cc045",
+      "equal_to_VERIFY_md": true
+    },
+    "baseline": {
+      "copy": "/tmp/qh-primary-native-qa-20261116/baseline/preview.html",
+      "source": "foundation/baseline/preview.html",
+      "sha256": "6a86e7fdbd91c03f72b78745348d6a8437ad044dfb2546637e2de490af664df2",
+      "equal_to_EVALUATION_PLAN_md": true
+    },
+    "why": "The foundation author is still working; byte-identical frozen copies keep every observation tied to one hash. The page is a single offline file (CSP default-src 'none'; fonts and images as data URIs), so the copy renders as the source does."
+  }
+}

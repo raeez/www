@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Width harness</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #3a3a3a; color: #e6e6e6; font: 12px/1.3 -apple-system, system-ui, sans-serif; }
+  .row { display: flex; gap: 14px; padding: 0 8px; height: 100%; align-items: stretch; }
+  .cell { display: flex; flex-direction: column; flex: none; }
+  .label { height: 18px; line-height: 18px; white-space: nowrap; overflow: hidden; }
+  iframe { border: 0; outline: 1px solid #9a9a9a; flex: 1; display: block; }
+</style>
+</head>
+<body>
+<div class="row" id="row"></div>
+<script>
+  // Loads the unchanged pages under test into iframes of exact CSS widths.
+  // Width media queries inside an iframe evaluate against the iframe's own width.
+  const p = new URLSearchParams(location.search);
+  const w = Math.max(240, Math.min(1700, parseInt(p.get('w') || '375', 10)));
+  const allowed = new Set(['candidate', 'baseline']);
+  const pages = (p.get('pages') || 'candidate').split(',').filter(n => allowed.has(n));
+  const hash = /^[A-Za-z0-9_-]+$/.test(p.get('hash') || '') ? '#' + p.get('hash') : '';
+  const theme = p.get('theme') || 'auto';
+  try {
+    if (theme === 'light' || theme === 'dark') localStorage.setItem('qh-theme', theme);
+    else localStorage.removeItem('qh-theme');
+  } catch (e) {}
+  const row = document.getElementById('row');
+  for (const name of pages) {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    cell.style.width = w + 'px';
+    const label = document.createElement('div');
+    label.className = 'label';
+    label.textContent = name + ' · ' + w + 'px · theme ' + theme + (hash ? ' · ' + hash : '');
+    const f = document.createElement('iframe');
+    f.name = name;
+    f.title = name;
+    f.style.width = w + 'px';
+    f.src = name + '/preview.html' + hash;
+    cell.append(label, f);
+    row.append(cell);
+  }
+</script>
+</body>
+</html>
