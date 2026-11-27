@@ -1,0 +1,309 @@
+{
+  "issued_v19_commit": "6cea9e69a77b2b2aac2f76cbdd932b63f1481583",
+  "base_directory": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v19/source-tree/content/quantum-holography-status",
+  "candidate_directory": "authors",
+  "files": [
+    {
+      "file": "atlas.json",
+      "before_sha256": "e6148c0f09fc27373d4da5921eaa2c4f77ed2cc8f1623c79800730f17b65e39c",
+      "after_sha256": "5f92648e8aee7de985d8647313255d8d5c3de23ec01c54048a538c883747a132",
+      "bytes_after": 2032222,
+      "changes": [
+        {
+          "change": "replace",
+          "location": "/asOf",
+          "old": "2026-11-18T01:15:59Z",
+          "new": "2026-11-18T02:32:40.214455Z"
+        },
+        {
+          "change": "replace",
+          "location": "/claims/classical-affine-meridian-flux/hypotheses/1",
+          "old": "These calculations concern a marked classical flux and saddle action. Quantum gluing, an independently chosen interface measure, the fixed-regulator determinant and its absolute phase remain separate.",
+          "new": "These calculations concern a marked classical flux and saddle action. On a chosen finite subspace the two individual half-densities, signed gluing integral and a relative filling phase can also be specified. The continuum measure and its absolute cap phase remain separate."
+        },
+        {
+          "change": "add",
+          "location": "/claims/exceptional-w4-two-sided-characteristic-cocycles",
+          "new": {
+            "id": "exceptional-w4-two-sided-characteristic-cocycles",
+            "domainId": "algebra-geometry",
+            "title": "Two-sided characteristic cocycles on the exceptional coefficient resolution",
+            "statement": "For \\(y=v_-\\) in degree nine at \\(\\tau=k+4=-3/2\\), or \\(y=z_+\\) in degree twelve at \\(\\tau=3/2\\), the original endomorphism algebra of the BRST coefficient functor admits explicit normalized regular-bimodule Hochschild cocycles in every arity. They have \\(F_0=sO_y\\), \\(F_1(sQ)=-|y|\\,sO_y\\) and \\(F_1(sT)=(-1)^{|y|}sO_{H_cy}\\), where \\(T=[Q,H_c]\\). Both endpoint compositions occur. Graded commutativity and the absence of cohomology in the higher obstruction degrees suffice for these two generators.",
+            "status": {
+              "code": "checked",
+              "label": "Established"
+            },
+            "hypotheses": [
+              "Use the universal principal \\(W^k(\\mathfrak{sl}_4)\\) and all smooth weak coefficients. In the negative raw ghost basis \\(\\delta_2=-\\gamma_2/\\tau\\), the signed primitive deletes the spin-two letter with multiplier \\(2/3\\). Its first coefficient is \\(122031\\bmod 1000003\\). On the positive fibre the specified vacuum-matter Cartan coefficients are exactly \\(+1\\) for \\(a_+=h_{3,0}\\) and \\(-1\\) for \\(z_+\\).",
+              "For the positive affine three-class, previously established fixed-fibre associative formality gives consistency of a \\(31\\times41\\) system of rank nine. Two fixed diagonal minors have determinant \\(+1\\). Three arity-two and six arity-three native values suffice. Their numerical evaluations, a native cochain for the extra degree-eight class and identification of the separately normalized reduction maps remain open."
+            ],
+            "comparisonIds": [
+              "sc1620-alg-nonlinear-w"
+            ]
+          }
+        },
+        {
+          "change": "add",
+          "location": "/claims/independent-affine-meridian-measure",
+          "new": {
+            "id": "independent-affine-meridian-measure",
+            "domainId": "gravity",
+            "title": "An independently normalized finite quantum measure on a nonflat meridian",
+            "statement": "Two solid-torus Ward fillings agree near every face, corner and cut and have equal critical actions on each half. A fixed compact current and conjugate give bulk couplings \\(B_1=1-i\\epsilon,\\ B_2=B_R=1\\). Fix the two oriented input frames and independent half-densities. For one frequency-five meridian pair the sewn moment is \\(Z_{j;k,\\ell}=e^{-S_{\\rm cl}/\\hbar}\\delta_{k\\ell}(-\\hbar)^k k!/(B_jB_R)\\). At \\(\\epsilon=1/8\\) the ratio of the two unnormalized vacua is \\((64+8i)/65\\) with phase \\(\\arctan(1/8)\\). Sampling both dilation-related bulk supports exchanges the two diagonal couplings and gives ratio one.",
+            "status": {
+              "code": "checked",
+              "label": "Established"
+            },
+            "hypotheses": [
+              "Use \\(q=1/2,\\ \\kappa\\ne0,\\ \\hbar>0\\), a common nonflat meridian, source-free exterior collars and the same oriented classical boundary primitives. The sources differ in disjoint interior patches in the left half. The fixed bulk contour is \\(x=w,\\ y=\\bar w\\). The negative-first Green pairing calibrates the seam, whose signed contour is \\(b=-\\bar a\\).",
+              "For five frequencies \\(2,\\ldots,6\\) use compact charges \\(\\pm17\\), the product half-densities and the prescribed positive Virasoro identification, \\(c>25\\). If \\(L\\) is the collar width, the unnormalized ordered and projected stress values are \\(Z_{\\rm vac}\\) times \\(4ce^{-5L},\\,14ce^{-5L},\\,(62c/7)e^{-6L}\\). The regulator is fixed before comparing the fillings. The full sourced boundary measure, its continuum limit and absolute cap phase are open."
+            ],
+            "comparisonIds": [
+              "d-native-states"
+            ]
+          }
+        },
+        {
+          "change": "replace",
+          "location": "/claims/sc1620-alg-w-localization-remaining/statement",
+          "old": "The \\(W_3\\) curved comparison requires independently specified localized null classes, an invertible unit and counit and comparison with dual quantum reduction. The exceptional \\(W_4\\) vacuum is associatively formal at the four shifted levels, and every class at the marked \\(-3/2\\) fibre has a derived two-sided lift. The remaining problems include explicit lifts in the original resolution, compatibility of the two independently pinned reciprocal Drinfeld–Sokolov reductions, and a local nullhomotopy before integrating the degree-seven orbit operation. The general invariant-Tor comparison remains conjectural.",
+          "new": "The \\(W_3\\) curved comparison requires independently specified localized null classes, an invertible unit and counit and comparison with dual quantum reduction. The exceptional \\(W_4\\) vacuum is associatively formal at the four shifted levels, and every class at the marked \\(-3/2\\) fibre has a derived two-sided lift. The remaining problems include evaluation of the nine native coefficients for \\(a_+\\) at \\(3/2\\), an original two-sided representative for the additional degree-eight class, compatibility of the two independently pinned reciprocal Drinfeld–Sokolov reductions and a local nullhomotopy before integrating the degree-seven orbit operation. The general invariant-Tor comparison remains conjectural."
+        },
+        {
+          "change": "replace",
+          "location": "/claims/sc1620-alg-w-localization-remaining/title",
+          "old": "Nonlinear localization and explicit two-sided vacuum lifts",
+          "new": "Nonlinear localization and the remaining vacuum cochains"
+        },
+        {
+          "change": "replace",
+          "location": "/claims/sourced-affine-meridian-transfer/hypotheses/1",
+          "old": "With the supplied positive Virasoro vacuum marks at \\(c>25\\), put \\(\\eta=e^{-L-i\\lambda(f_1-f_0)}\\). The two ordered weight-five measurements are \\(4c\\eta^5\\) and \\(14c\\eta^5\\), and the orthogonalized weight-six measurement is \\(62c\\eta^6/7\\). An independently fixed quantum regulator and compact cap remain to be compared.",
+          "new": "With the supplied positive Virasoro vacuum marks at \\(c>25\\), put \\(\\eta=e^{-L-i\\lambda(f_1-f_0)}\\). The two ordered weight-five measurements are \\(4c\\eta^5\\) and \\(14c\\eta^5\\), and the orthogonalized weight-six measurement is \\(62c\\eta^6/7\\). A separately fixed one- or five-mode measure gives additional results for specified interior Ward fillings. The comparison of full regulators with the compact cap remains open."
+        },
+        {
+          "change": "replace",
+          "location": "/claims/w4-marked-quartic-negative-three-halves/hypotheses/0",
+          "old": "The quartic evaluation itself uses the marked affine reduction and the integrated \\(2\\theta^\\vee\\) orbit at \\(k+4=-3/2\\). Reciprocal vertex-algebra equivalence and complementary duality of the compact shifted vacuum transport the underlying associative result, with opposite composition where required. An explicit two-sided cochain and comparison of separately pinned reductions require additional data.",
+          "new": "The quartic evaluation itself uses the marked affine reduction and the integrated \\(2\\theta^\\vee\\) orbit at \\(k+4=-3/2\\). Reciprocal vertex-algebra equivalence and complementary duality of the compact shifted vacuum transport the underlying associative result, with opposite composition where required. Explicit two-sided representatives now exist on the original coefficients for the marked degree-nine negative and degree-twelve positive classes. The comparison of separately pinned reductions requires additional data."
+        },
+        {
+          "change": "replace",
+          "location": "/comparisons/d-native-states/establishedClaimIds",
+          "old": [
+            "decisive-native-finite-gaussian-cut",
+            "gravity-ordinary-reduced-inverse",
+            "gravity-smooth-observable-gaussian",
+            "gravity-sharp-finite-returns",
+            "decisive-physical-boundary-heat",
+            "gravity-changed-carrier-heat",
+            "gravity-common-relative-heat",
+            "gravity-first-source-filling",
+            "gravity-full-native-cauchy",
+            "gravity-polarized-finite-collar",
+            "gravity-finite-periodic-residual",
+            "gravity-reduced-trace",
+            "gravity-zero-frequency-sewing",
+            "gravity-nonzero-frequency-sewing",
+            "gravity-zero-level-kernel",
+            "gravity-zero-level-relative-scalar",
+            "gravity-zero-level-insertions",
+            "gravity-zero-level-contours",
+            "gravity-fixed-level-linear-corner",
+            "decisive-normal-forests-and-interface",
+            "gravity-local-based-gaussian",
+            "gravity-local-quartet-phase",
+            "gravity-local-source-heat",
+            "gravity-local-riesz-gaussian-line",
+            "gravity-local-riesz-renormalized-section",
+            "gravity-formal-filling-zero",
+            "gravity-original-cutoff-positive-heat",
+            "gravity-original-two-heat-placement",
+            "gravity-original-local-placement-factor",
+            "gravity-numerical-fixed-adjoint-heat",
+            "gravity-numerical-ward-contraction",
+            "gravity-numerical-positive-time-scalar",
+            "sourced-affine-meridian-transfer",
+            "classical-affine-meridian-flux"
+          ],
+          "new": [
+            "decisive-native-finite-gaussian-cut",
+            "gravity-ordinary-reduced-inverse",
+            "gravity-smooth-observable-gaussian",
+            "gravity-sharp-finite-returns",
+            "decisive-physical-boundary-heat",
+            "gravity-changed-carrier-heat",
+            "gravity-common-relative-heat",
+            "gravity-first-source-filling",
+            "gravity-full-native-cauchy",
+            "gravity-polarized-finite-collar",
+            "gravity-finite-periodic-residual",
+            "gravity-reduced-trace",
+            "gravity-zero-frequency-sewing",
+            "gravity-nonzero-frequency-sewing",
+            "gravity-zero-level-kernel",
+            "gravity-zero-level-relative-scalar",
+            "gravity-zero-level-insertions",
+            "gravity-zero-level-contours",
+            "gravity-fixed-level-linear-corner",
+            "decisive-normal-forests-and-interface",
+            "gravity-local-based-gaussian",
+            "gravity-local-quartet-phase",
+            "gravity-local-source-heat",
+            "gravity-local-riesz-gaussian-line",
+            "gravity-local-riesz-renormalized-section",
+            "gravity-formal-filling-zero",
+            "gravity-original-cutoff-positive-heat",
+            "gravity-original-two-heat-placement",
+            "gravity-original-local-placement-factor",
+            "gravity-numerical-fixed-adjoint-heat",
+            "gravity-numerical-ward-contraction",
+            "gravity-numerical-positive-time-scalar",
+            "sourced-affine-meridian-transfer",
+            "classical-affine-meridian-flux",
+            "independent-affine-meridian-measure"
+          ]
+        },
+        {
+          "change": "replace",
+          "location": "/comparisons/d-native-states/overview",
+          "old": "Finite native collar and sewing integrals coexist with three precise analytic constructions: the formal original-cutoff heat prescription, numerical fixed-adjoint heat on weighted coefficients, and an independently anchored Gaussian line on local/Riesz paired carriers. Their phases, boundary contacts and normalization conventions remain distinct. The original physical cap requires the remaining coefficient-cutoff, cut-domain and unnormalized-line comparisons.",
+          "new": "Finite native collar and sewing integrals coexist with three precise analytic constructions: the formal original-cutoff heat prescription, numerical fixed-adjoint heat on weighted coefficients, and an independently anchored Gaussian line on local/Riesz paired carriers. Their phases, boundary contacts and normalization conventions remain distinct. The original physical cap requires the remaining coefficient-cutoff, cut-domain and unnormalized-line comparisons. On a nonflat meridian a fixed finite quantum regulator with independent half-densities detects a relative filling phase. Its symmetric two-patch control has ratio one."
+        },
+        {
+          "change": "replace",
+          "location": "/comparisons/sc1620-alg-nonlinear-w/establishedClaimIds",
+          "old": [
+            "sc1620-alg-w3-bar",
+            "sc1620-alg-w4-exceptional",
+            "w4-first-bocksteins",
+            "w4-yoneda",
+            "nw-07",
+            "w4-marked-quartic-negative-three-halves"
+          ],
+          "new": [
+            "sc1620-alg-w3-bar",
+            "sc1620-alg-w4-exceptional",
+            "w4-first-bocksteins",
+            "w4-yoneda",
+            "nw-07",
+            "w4-marked-quartic-negative-three-halves",
+            "exceptional-w4-two-sided-characteristic-cocycles"
+          ]
+        },
+        {
+          "change": "replace",
+          "location": "/comparisons/sc1620-alg-nonlinear-w/overview",
+          "old": "The regular \\(W_3\\) mode bar recognizes the entire weak-module heart. At \\(c=-22/5\\) a nonzero module is invisible to the vacuum in derived Hom. The exceptional universal \\(W_4\\) fibres have a twelve-dimensional graded vacuum Ext algebra in all weak modules. The degree-seven class annihilates all of degree eight, and both local torsion summands have length one. The marked quartic vanishes at shifted level \\(-3/2\\), and ordinary associative formality transports to the three other exceptional fibres. Explicit two-sided representatives, marked reduction comparisons and the independently defined polarized nonlinear localization remain open.",
+          "new": "The regular \\(W_3\\) mode bar recognizes the entire weak-module heart. At \\(c=-22/5\\) a nonzero module is invisible to the vacuum in derived Hom. The exceptional universal \\(W_4\\) fibres have a twelve-dimensional graded vacuum Ext algebra in all weak modules. The degree-seven class annihilates all of degree eight, and both local torsion summands have length one. The marked quartic vanishes at shifted level \\(-3/2\\), and ordinary associative formality transports to the three other exceptional fibres. The degree-nine negative and degree-twelve positive vacuum classes have explicit regular-bimodule Hochschild cocycles in every arity. The positive affine three-class has a determinant formula with nine unevaluated native coefficients. Marked reduction comparisons and the polarized nonlinear localization remain open."
+        }
+      ]
+    },
+    {
+      "file": "content.json",
+      "before_sha256": "fb3d863526170569d2c806dcbf2069aaf4eaa3984754ff61a023e91f04971783",
+      "after_sha256": "bedc90f2cb82467ebbb208d98987181673fa3063086f410c3288d695a82692fd",
+      "bytes_after": 638906,
+      "changes": [
+        {
+          "change": "replace",
+          "location": "/as_of_utc",
+          "old": "2026-11-18T01:15:59Z",
+          "new": "2026-11-18T02:32:40.214455Z"
+        },
+        {
+          "change": "replace",
+          "location": "/decisive/questions/d-native-states/question/text",
+          "old": "For real three-dimensional gravity or for the specified sourced solid-torus theory, choose an independent physical cap and a spatial cut. On the original common space of fields compare its unit, phase, Green covariance, determinant, Pfaffian, ghost quartet and mixed insertions with the boundary pushforward. The normalized quadratic stress pushforward exists under its stated Ward and analytic hypotheses. Changing the source-compatible off-shell covariance changes a normalized two-point function even when the closed linear probes agree. The comparison must either carry the observable representatives with a justified normal-order change or measure a discrepancy on the common fixed insertions. Remove the two cutoffs independently and prove the spatial sewing identity. The independent harmonic disk supplies two finite free examples of this type of measurement.",
+          "new": "For real three-dimensional gravity or for the specified sourced solid-torus theory, choose an independent physical cap and a spatial cut. On the original common space of fields compare its unit, phase, Green covariance, determinant, Pfaffian, ghost quartet and mixed insertions with the boundary pushforward. The normalized quadratic stress pushforward exists under its stated Ward and analytic hypotheses. Changing the source-compatible off-shell covariance changes a normalized two-point function even when the closed linear probes agree. The comparison must either carry the observable representatives with a justified normal-order change or measure a discrepancy on the common fixed insertions. Remove the two cutoffs independently and prove the spatial sewing identity. The independent harmonic disk supplies two finite free examples. On a nonflat solid-torus meridian, one- and five-mode quantum measures also exist. For compact Ward perturbations on opposite sides of the cut, compare the connected mixed derivatives of the logarithms of the sewn and whole-filling amplitudes at a common scale, then remove the regulators. The product of disjoint test planes has zero connected derivative. The propagating fields and their ghost partners can still contribute."
+        },
+        {
+          "change": "replace",
+          "location": "/rows/gravity-liouville/cells/states/note",
+          "old": "Actual finite original Riesz integrals and an infinite normalized numerical original-cycle Radon/Wick state under a supplied Ward filling; the infinite unnormalized line and physical cap/sewing comparison remain open",
+          "new": "Actual finite original Riesz integrals and an infinite normalized numerical original-cycle Radon/Wick state under a supplied Ward filling. A nonflat meridian has independently based one- and five-mode sewing measures. The continuum unnormalized line and physical cap remain open"
+        },
+        {
+          "change": "replace",
+          "location": "/rows/gravity-liouville/statements/classical-affine-flux-and-source-action/text",
+          "old": "At a nonflat intermediate meridian two independently normalized classical halves give the negative-first Green flux \\(-(2M-4)!!R_M/(2M-3)!!\\) for the raw negative harmonic. The exact on-shell action also depends on the interior radial profile. Gluing the quantum halves still requires an interface measure, compatible regulator and determinant-line phase.",
+          "new": "At a nonflat intermediate meridian two independently normalized classical halves give the negative-first Green flux \\(-(2M-4)!!R_M/(2M-3)!!\\) for the raw negative harmonic. The exact on-shell action also depends on the interior radial profile. By 08:15:59 WIB on 18 November 2026 both the classical flux and the on-shell action had been computed. Gluing the full quantum halves requires a regulator-removal comparison and an independently fixed cap phase."
+        },
+        {
+          "change": "add",
+          "location": "/rows/gravity-liouville/statements/finite-quantum-measure-on-a-nonflat-meridian",
+          "new": {
+            "id": "finite-quantum-measure-on-a-nonflat-meridian",
+            "status": "checked",
+            "title": "A fixed quantum measure distinguishes two Ward fillings",
+            "text": "On the \\(q=1/2\\) solid torus two fillings agree on collars of every boundary face and the nonflat middle meridian. Their classical actions agree on each half. Integrating the same compact current and conjugate gives left couplings \\(1-i\\epsilon\\) and \\(1\\), with right coupling \\(1\\) in both preparations. At \\(\\epsilon=1/8\\) the ratio of unnormalized amplitudes is \\((64+8i)/65\\). After vacuum division all signed one-mode moments agree. A symmetric regulator containing both interior tests gives ratio one. Five meridian pairs with independent Gaussian half-densities and the prescribed positive Virasoro marks give \\(Z_{\\rm vac}\\) times \\(4ce^{-5L}\\), \\(14ce^{-5L}\\) and \\((62c/7)e^{-6L}\\). The compact cap still requires the measure on all modes and its regulator-removal limit.",
+            "atlasClaimId": "independent-affine-meridian-measure"
+          }
+        },
+        {
+          "change": "replace",
+          "location": "/rows/w-algebras/cells/bulk/note",
+          "old": "Generic exterior vacuum Ext and associative formality. At the four exceptional \\(W_4\\) levels the graded Yoneda algebra is known, including \\(\\eta_7u=0\\) for the additional class \\(u\\) of degree eight. The marked quartic vanishes at \\(\\tau=-3/2\\). The enhanced vacuum equivalences give ordinary associative formality on all four fibres. Explicit two-sided cocycles and the independently defined physical bulk comparison remain open.",
+          "new": "Generic exterior vacuum Ext and associative formality. At the four exceptional \\(W_4\\) levels the graded Yoneda algebra is known, including \\(\\eta_7u=0\\) for the additional class \\(u\\) of degree eight. The marked quartic vanishes at \\(\\tau=-3/2\\). The enhanced vacuum equivalences give ordinary associative formality on all four fibres. Two-sided cocycles are explicit for \\(v_-\\) at \\(-3/2\\) and \\(z_+\\) at \\(3/2\\). The positive affine three-class has a rank-nine formula. Its nine native readings and the independently defined physical bulk comparison remain open."
+        },
+        {
+          "change": "replace",
+          "location": "/rows/w-algebras/statements/nonlinear-derived-duality-and-exceptional-products/text",
+          "old": "For universal principal \\(W_3\\) and \\(W_4\\) over \\(\\mathbb C\\), construct a polarized completed curved dual, define the null classes on smooth complexes and contramodules, and prove that the twisting adjunction induces an equivalence after localization. The comparison must preserve the vacuum and intertwine quantum Drinfeld–Sokolov reduction; its extension to rational simple quotients remains a separate question. For the exceptional \\(W_4\\) vacuum the four associative fibre endomorphism algebras are formal. At \\(k+4=-3/2\\), give an explicit two-sided cocycle lifting the affine three-class in the original resolution. Determine whether the separately defined reciprocal Drinfeld–Sokolov reductions identify their pinned affine maps, and construct a nullhomotopy of the degree-seven orbit operation on its geometric coefficient before integration.",
+          "new": "For universal principal \\(W_3\\) and \\(W_4\\) over \\(\\mathbb C\\), construct a polarized completed curved dual, define the null classes on smooth complexes and contramodules, and prove that the twisting adjunction induces an equivalence after localization. The comparison must preserve the vacuum and intertwine quantum Drinfeld–Sokolov reduction; its extension to rational simple quotients remains a separate question. For the exceptional \\(W_4\\) vacuum the four associative fibre endomorphism algebras are formal. At \\(k+4=3/2\\), evaluate the nine native obstruction coefficients in the formula for the marked positive affine three-class. Construct a two-sided cochain for the additional degree-eight class in the original resolution and identify the normalization of separately specified affine reduction maps. Determine whether the separately defined reciprocal Drinfeld–Sokolov reductions identify their pinned affine maps, and construct a nullhomotopy of the degree-seven orbit operation on its geometric coefficient before integration."
+        },
+        {
+          "change": "replace",
+          "location": "/rows/w-algebras/statements/nonlinear-derived-duality-and-exceptional-products/title",
+          "old": "Polarized nonlinear duality and explicit two-sided vacuum lifts",
+          "new": "Polarized nonlinear duality and the remaining vacuum cochains"
+        },
+        {
+          "change": "add",
+          "location": "/rows/w-algebras/statements/two-sided-cocycles-on-the-original-w4-coefficients",
+          "new": {
+            "id": "two-sided-cocycles-on-the-original-w4-coefficients",
+            "status": "checked",
+            "title": "Two-sided cocycles on the original exceptional vacuum complex",
+            "text": "For \\(y=v_-\\) in degree nine at \\(k+4=-3/2\\), or \\(y=z_+\\) in degree twelve at \\(k+4=3/2\\), all Hochschild arities are given on the natural endomorphisms of every smooth weak coefficient complex. The constant term is the state mode \\(sO_y\\), and the unary term is fixed on the differential \\(Q\\) and translation \\(T=[Q,H_c]\\). In the negative raw basis \\(H_c\\delta_2=1/\\tau\\), so the signed deletion coefficient is \\(2/3\\). The positive affine state \\(a_+=h_{3,0}\\) has a separate determinant formula using fixed-fibre formality. The \\(31\\times41\\) matrix has rank nine. Three arity-two and six arity-three native evaluations suffice, with both diagonal minors of determinant \\(+1\\). Their nine scalar values remain unexpanded.",
+            "atlasClaimId": "exceptional-w4-two-sided-characteristic-cocycles"
+          }
+        },
+        {
+          "change": "replace",
+          "location": "/scientific_atlas/asOf",
+          "old": "2026-11-18T01:15:59Z",
+          "new": "2026-11-18T02:32:40.214455Z"
+        }
+      ]
+    },
+    {
+      "file": "chapters/11-states-and-lines.md",
+      "before_sha256": "2cebf6c631444f1e9cc8af815c2d802bbab67d91d6977eb80008d0fd04cf3bba",
+      "after_sha256": "62a992b66f55a6b4de9041f79fe9ff8363610f3e57213d13ef4acee46245ffb5",
+      "bytes_after": 55547,
+      "changes": "--- \n+++ \n@@ -674,3 +674,23 @@\n \\]\n-For the twist \\(A=e^{i\\lambda f}\\) the quadratic term is \\(-\\kappa\\lambda^2\\int((f'')^2+4(f')^2)\\,du/32\\). A twist which returns to its starting angle can therefore change the action even when its marked transfer equals the zero-source transfer. The factor \\(e^{-S_{\\mathrm{crit}}/\\hbar}\\) belongs to the classical saddle. Quantum sewing of independently integrated halves across a nonflat interface still requires their common boundary fields, corner half-density, regulator and determinant-line phase. [Classical affine flux and action](#atlas-c-classical-affine-meridian-flux)\n+For the twist \\(A=e^{i\\lambda f}\\) the quadratic term is \\(-\\kappa\\lambda^2\\int((f'')^2+4(f')^2)\\,du/32\\). A twist which returns to its starting angle can therefore change the action even when its marked transfer equals the zero-source transfer. The factor \\(e^{-S_{\\mathrm{crit}}/\\hbar}\\) belongs to the classical saddle. This flux fixes the relative normalization of two classical modes. A quantum pairing also needs a contour and a half-density on each side. By 08:15:59 WIB on 18 November 2026, the sourced transfer, the classical flux and this action had been computed. [Classical affine flux and action](#atlas-c-classical-affine-meridian-flux)\n+\n+### A fixed quantum measure on a nonflat meridian {#ch11-independent-meridian-measure}\n+\n+Two Ward fillings can agree near every boundary face, corner and cut and still have different unnormalized quantum amplitudes. On the \\(q=1/2\\) solid torus take \\(F_j=F_*e^{i\\epsilon g_j}\\), where \\(F_*=zA_*(\\log r)\\) has a small nonzero source near the middle meridian and is the identity coordinate on both exterior collars. The two angular bumps \\(g_1,g_2\\) have disjoint supports inside the left half, related by a dilation of factor \\(16/15\\). All source and field germs agree on the collars. The dilation preserves the integrated critical density on the two patches, so the classical actions agree separately on each half.\n+\n+Fix a compact current and its conjugate on the first patch before choosing the filling. The current coefficient \\(p\\) and conjugate one-form \\(\\beta\\) have angular charges \\(+8,-8\\). The original affine action restricted to their two coefficients \\(x,y\\) is \\(B_jxy\\), up to its critical value. In the convention \\(\\tau(\\omega)=(2\\pi i)^{-1}\\int dz\\wedge\\omega\\), the kinetic term and the affine Poisson term give \\(B_j=\\tau(\\beta\\wedge(Dp+p\\,\\partial_z\\mu_j))\\). On the support of \\(\\beta\\) the first bump has \\(g_1=t\\), so \\(\\partial_z\\mu_1=-i\\epsilon\\,dt\\). The second source vanishes there. Unit-integral test functions with mean \\(t=1\\) give \\(B_1=1-i\\epsilon,\\ B_2=1\\). On the common contour \\(x=w,\\ y=\\bar w\\) the oriented integral is\n+\\[\n+ \\int_{\\mathbb C}e^{-B_j|w|^2/\\hbar}\\frac{d^2w}{\\pi\\hbar}=\\frac{1}{B_j}.\n+\\]\n+An independently prepared pair in the right half has \\(B_R=1\\).\n+\n+At frequency five the negative-first Green pairing of the raw meridian modes is \\(-16/35\\). Rescale the negative mode by \\(-35/16\\) and write \\(a,b\\) for the resulting positive and negative coordinates. In each coordinate \\(v\\) prescribe the half-density \\((\\pi\\hbar)^{-1/2}e^{-|v|^2/(2\\hbar)}|d^2v|^{1/2}\\). On the ordered seam \\(b=-\\bar a\\) their product is the Gaussian density and \\(a^k b^\\ell\\) has a signed Fischer moment. With the opposite exterior polarizations set to zero and \\(S_{\\mathrm{cl}}\\) the sum of the two critical actions, the unnormalized result is\n+\\[\n+ Z_{j;k,\\ell}=\\frac{e^{-S_{\\mathrm{cl}}/\\hbar}}{B_jB_R}\n+                   \\delta_{k\\ell}(-\\hbar)^k k!,\\qquad\n+ \\frac{Z_{1;k,k}}{Z_{2;k,k}}=\\frac1{1-i\\epsilon}.\n+\\]\n+At \\(\\epsilon=1/8\\) the ratio is \\((64+8i)/65\\), with phase \\(\\arctan(1/8)\\simeq0.124355\\) radians. Vacuum division removes the entire difference. Holding the filling fixed and moving only the compact test changes the answer as well. If the same regulator includes both dilation-related tests, the couplings on the two fillings are \\((1-i\\epsilon,1)\\) and \\((1,1-i\\epsilon)\\). Their product integrals have ratio one.\n+\n+For five meridian pairs of frequencies \\(2,\\ldots,6\\), use compact charges \\(\\pm17\\) and the product of the prescribed half-densities. Each half has harmonic frequencies of one sign, so the original cubic action has no neutral term there. With the specified positive Virasoro marks at \\(c>25\\) and unrotated end frames, the two bra orders \\(L_2L_3,L_3L_2\\) against \\(L_{-5}v\\) give \\(Z_{j;0,0}\\,4c e^{-5L}\\) and \\(Z_{j;0,0}\\,14c e^{-5L}\\). The projected weight-six pairing gives \\(Z_{j;0,0}(62c/7)e^{-6L}\\). The interacting identification of the exterior marks is an input. A continuum cap would require a controlled removal of the regulator on the full boundary complex, with its residual modes and absolute phase. The derivation is given in *A fixed finite quantum measure on a non-flat native meridian*, §§1–5. The independent evaluation of these finite integrals is dated 18 November 2026, 08:35:18 WIB. [Independent quantum measure on a meridian](#atlas-c-independent-affine-meridian-measure)\n \n"
+    },
+    {
+      "file": "chapters/12-chiral-quantum-groups.md",
+      "before_sha256": "08d73459e182b5a286015755eaab50c2de2add511f3fbcd12c2c7f21a6118314",
+      "after_sha256": "c8a525364511c2e616e925fc28966ff5565f6fd0523f1cf9ead09cd4f6a857fa",
+      "bytes_after": 51776,
+      "changes": "--- \n+++ \n@@ -488,3 +488,13 @@\n \n-The reciprocal vertex-algebra equivalence and the complementary duality of the compact shifted vacuum, taking the opposite dg algebra where composition reverses, transport ordinary associative formality to \\(3/2,\\,2/3,\\,-2/3\\). At the original marked fibre formality makes the Hochschild characteristic map \\(HH^\\bullet(D,D)\\to H^\\bullet(D)\\) surjective, so every cohomology class has a two-sided derived lift. Explicit lifts in the original Poincaré–Birkhoff–Witt complex remain to be constructed. Further questions are whether the separately defined reciprocal Drinfeld–Sokolov reductions intertwine their pinned affine maps and whether the integrated degree-seven orbit operation has a local nullhomotopy before integration. Formality of the entire level family, and simultaneous formality of the affine morphism with its source and target, are separate comparisons. [CQ12]\n+The reciprocal vertex-algebra equivalence and the complementary duality of the compact shifted vacuum, taking the opposite dg algebra where composition reverses, transport ordinary associative formality to \\(3/2,\\,2/3,\\,-2/3\\). At the original marked fibre formality makes the Hochschild characteristic map \\(HH^\\bullet(D,D)\\to H^\\bullet(D)\\) surjective, so every cohomology class has a two-sided derived lift. Two generators now admit direct representatives on the original coefficient operators. Let \\(A=\\operatorname{Nat}^{\\bullet}(K(-),K(-))\\), with differential \\([Q,-]\\) and product composition. For \\(y=v_-\\), the degree-nine Bockstein at \\(\\tau=-3/2\\), or \\(y=z_+\\), the marked degree-twelve generator at \\(\\tau=3/2\\), let \\(O_y=y_{(-1)}\\) act on each smooth weak coefficient complex. A normalized Hochschild cocycle has constant term \\(F_0=sO_y\\), where \\(s\\) lowers degree by one. For the bar differential \\(b_1+b_2\\), use the contraction \\(K_n\\) of the internal Hom differential in arity \\(n\\) onto its cohomology representatives. Put \\(R_n=[b_2,F_{n-1}]\\) and take \\(F_n=-K_nR_n\\), with the unary normalization on translation described below. The bracket includes composition at both ends of a word and multiplication of adjacent inputs. The unary obstruction vanishes by graded commutativity. For inputs of positive cohomological degrees \\(q_i\\), a higher obstruction could only take values in degree \\(\\sum_iq_i+|y|+1-n\\). For \\(z_+\\) this is at least \\(17\\) in arity two and higher. For \\(v_-\\) it is \\(14\\) or at least \\(16\\). The cohomology vanishes in these degrees. This proves all the equations \\([b_1,F_n]+[b_2,F_{n-1}]=0\\) directly for the two generators.\n+\n+The unary component measures both the BRST differential \\(Q\\) and the simultaneous translation \\(T=[Q,H_c]\\), where \\(H_c\\) is the spin-two ghost contraction normalized by \\(H_c\\gamma_2=-1\\). The normalizations give\n+\\[\n+ F_1(sQ)=-|y|\\,sO_y,\\qquad F_1(sT)=(-1)^{|y|}sO_{H_cy}.\n+\\]\n+In the negative-fibre PBW basis the ghost is \\(\\delta_2=-\\gamma_2/\\tau\\). Its deletion in the signed degree-nine primitive therefore has coefficient \\(-1/\\tau=2/3\\). Modulo \\(1000003\\) the resulting vacuum vector has \\(15657\\) nonzero coefficients. Its first coefficient is \\(122031\\) at vacuum matter and ghost mask \\(4398061191214\\). At the positive fibre the indicated translation primitives have exact coefficients \\(+1\\) for the marked affine state \\(a_+=h_{3,0}\\) at vacuum matter and mask \\(6\\), and \\(-1\\) for \\(z_+\\) at vacuum matter and mask \\(840026912980994\\).\n+\n+The positive degree-three state \\(a_+\\) has an all-arity determinant formula. Here fixed-fibre associative formality proves consistency of the \\(31\\) linear equations in \\(41\\) small-cochain coefficients. Their matrix has rank \\(9\\). In the marked basis \\(a=a_+,\\,b=\\eta_5,\\,c=\\eta_7\\), the first three required values are the arity-two obstruction coefficients on \\((a,b)\\to ac,\\ (a,c)\\to av,\\ (a,c)\\to z\\). After their correction, the other six come from \\((a,a,b)\\) and \\((a,b,a)\\), each with outputs \\(av,z\\), and from \\((a,a,u)\\) and \\((a,u,a)\\), each with output \\(az\\). The two diagonal minors have determinant \\(+1\\), so these prescribed readings suffice to correct every row, including the arity-four rows. The nine scalar values in the original coefficient complex remain unevaluated. Whether a different choice of measurements could use fewer values is open. An explicit lift of the additional degree-eight class \\(u\\) also remains to be constructed.\n+\n+Further questions are whether the separately defined reciprocal Drinfeld–Sokolov reductions intertwine their pinned affine maps and whether the integrated degree-seven orbit operation has a local nullhomotopy before integration. Formality of the entire level family, and simultaneous formality of the affine morphism with its source and target, are separate comparisons. [CQ12]\n \n@@ -516,2 +526,2 @@\n \n-[CQ12] *The first Bocksteins and degree-three products of the exceptional universal W₄ vacuum*, §§2–6, and *The exceptional W₄ vacuum product in degrees seven and eight*, §§1–4. For the equivariant minimal model see *One quartic value decides formality with the marked diagram involution*. The polynomial vacuum complex and its special dimensions are those of [CQ8]. The geometric input at \\(\\tau=-3/2\\) is the diagram action on the filtered Whittaker orbit coefficient and its two integrated rows. The four-insertion and two-sided-lift tests use the same marked vacuum endomorphism algebra. *The native exceptional W₄ quartic vanishes*, §§1–3, gives the coefficient-operator comparison, the translation ideal and the four-input calculation. The quartic calculation is dated 18 November 2026, 08:00:18.782514 WIB.\n+[CQ12] *The first Bocksteins and degree-three products of the exceptional universal W₄ vacuum*, §§2–6, and *The exceptional W₄ vacuum product in degrees seven and eight*, §§1–4. For the equivariant minimal model see *One quartic value decides formality with the marked diagram involution*. The polynomial vacuum complex and its special dimensions are those of [CQ8]. The geometric input at \\(\\tau=-3/2\\) is the diagram action on the filtered Whittaker orbit coefficient and its two integrated rows. The four-insertion and two-sided-lift tests use the same marked vacuum endomorphism algebra. *The native exceptional W₄ quartic vanishes*, §§1–3, gives the coefficient-operator comparison, the translation ideal and the four-input calculation. The quartic calculation is dated 18 November 2026, 08:00:18.782514 WIB. *Two-sided characteristic cocycles in the exceptional \\(W_4\\) coefficient resolution*, §§1–4, and *The affine three-class in the positive native PBW coordinates* give the original cocycles and the spin-two normalization (09:29:34 WIB). *Nine BRST readings determine the original affine characteristic cocycle* gives the rank and the two prescribed minors (09:32:40 WIB).\n"
+    },
+    {
+      "file": "chapters/18-open-problems.md",
+      "before_sha256": "6a561f07a7c00137f054040e44aa801cd6a191402347fa43436e79858d570b7a",
+      "after_sha256": "9d690124c9401d123986ee4dbdbdfd56170f5ae46f155cdf3b1134d408bbfe0c",
+      "bytes_after": 50219,
+      "changes": "--- \n+++ \n@@ -32,3 +32,3 @@\n \n-At the four exceptional shifted levels \\(\\tau=\\pm3/2,\\pm2/3\\), the universal \\(W_4\\) vacuum gives a finite test of what a derived dual retains. The two torsion summands in local-family cohomological degrees nine and twelve are each killed by one power of the local parameter. Indeed the first derivative of the native vacuum differential has a nonzero pairing between the right and left null spaces in outgoing degrees eight and eleven. Each detecting differential has just one nonunit elementary divisor, so that divisor has order one. The reciprocal local-family map transfers the calculation to the reciprocal levels. The coupled vertex operation gives the graded-commutative Yoneda product, including the degree-three strings on either side and \\(\\eta_5\\eta_7=0\\). The product of the degree-seven primitive with the additional degree-eight class vanishes in cohomology. At all four fibres the graded vacuum algebra is \\(\\Lambda(a_3)\\otimes(\\mathbb C\\oplus I)\\), where \\(I^2=0\\) and \\(I\\) has one generator in each degree \\(5,7,8,9,12\\). The transferred \\(m_3(a_3,a_3,a_3)\\) vanishes when the same primitive of \\(a_3^2\\) is used twice. These calculations determine the binary algebra. At \\(\\tau=-3/2\\), the pinned diagram involution and affine comparison leave one potential higher entry \\(b_4(sa_3,sa_3,sa_3,su)=\\gamma\\,s(a_3z)\\). Antisymmetrization gives \\(6\\gamma\\,s(a_3z)\\) on these four labelled inputs. The coefficient modes identify the derived commutator with a dg Lie algebra admitting an abelian quotient by the acyclic translation ideal, so this bracket vanishes and \\(\\gamma=0\\). Ordinary associative formality transports to the other three exceptional fibres. Every vacuum class has a two-sided derived Hochschild lift. Can one exhibit one for \\(a_3\\) in the original resolution, identify the pinned affine maps under the two independently defined reciprocal Drinfeld–Sokolov reductions, or construct the degree-seven nullhomotopy on the local orbit coefficient before integration? [The exceptional vacuum](12-chiral-quantum-groups.md)\n+At the four exceptional shifted levels \\(\\tau=\\pm3/2,\\pm2/3\\), the universal \\(W_4\\) vacuum gives a finite test of what a derived dual retains. The two torsion summands in local-family cohomological degrees nine and twelve are each killed by one power of the local parameter. Indeed the first derivative of the native vacuum differential has a nonzero pairing between the right and left null spaces in outgoing degrees eight and eleven. Each detecting differential has just one nonunit elementary divisor, so that divisor has order one. The reciprocal local-family map transfers the calculation to the reciprocal levels. The coupled vertex operation gives the graded-commutative Yoneda product, including the degree-three strings on either side and \\(\\eta_5\\eta_7=0\\). The product of the degree-seven primitive with the additional degree-eight class vanishes in cohomology. At all four fibres the graded vacuum algebra is \\(\\Lambda(a_3)\\otimes(\\mathbb C\\oplus I)\\), where \\(I^2=0\\) and \\(I\\) has one generator in each degree \\(5,7,8,9,12\\). The transferred \\(m_3(a_3,a_3,a_3)\\) vanishes when the same primitive of \\(a_3^2\\) is used twice. These calculations determine the binary algebra. At \\(\\tau=-3/2\\), the pinned diagram involution and affine comparison leave one potential higher entry \\(b_4(sa_3,sa_3,sa_3,su)=\\gamma\\,s(a_3z)\\). Antisymmetrization gives \\(6\\gamma\\,s(a_3z)\\) on these four labelled inputs. The coefficient modes identify the derived commutator with a dg Lie algebra admitting an abelian quotient by the acyclic translation ideal, so this bracket vanishes and \\(\\gamma=0\\). Ordinary associative formality transports to the other three exceptional fibres. The original two-sided Hochschild cocycles for \\(v_-\\) at \\(\\tau=-3/2\\) and \\(z_+\\) at \\(\\tau=3/2\\) are known in every arity. For the marked positive affine state \\(a_+=h_{3,0}\\), the \\(31\\times41\\) system has rank nine and two prescribed minors of determinant \\(+1\\). Evaluate the three arity-two and six arity-three obstruction coefficients on the original BRST complex. Can one also construct the native cochain lifting the additional degree-eight class \\(u\\), compare the separately pinned reciprocal Drinfeld–Sokolov maps with their affine normalizations, and find a nullhomotopy before integrating the local degree-seven orbit operation? [The exceptional vacuum](12-chiral-quantum-groups.md)\n \n@@ -128,3 +128,11 @@\n \n-A radial Ward source with rigid end collars gives an outer-to-inner transfer \\(R_M=e^{-ML}(A(u_0)/A(u_1))^M\\) on the original affine harmonic states of frequency \\(M\\ge2\\). Independent classical solutions on the two halves give a signed flux \\(c_MR_M\\) even at a nonflat intermediate cut. The on-shell action can distinguish sources with the same end transfer. Comparing independently regulated quantum halves still requires their common corner half-density, residual modes and determinant-line normalization. [The classical flux and action](#ch11-classical-meridian-flux)\n+A radial Ward source with rigid end collars gives an outer-to-inner transfer \\(R_M=e^{-ML}(A(u_0)/A(u_1))^M\\) on the original affine harmonic states of frequency \\(M\\ge2\\). Independent classical solutions on the two halves give a signed flux \\(c_MR_M\\) even at a nonflat intermediate cut. The on-shell action can distinguish sources with the same end transfer. A fixed one-mode quantum measure with independent input half-densities also distinguishes two fillings with the same full boundary germs and the same critical action. Its unnormalized ratio is \\((1-i\\epsilon)^{-1}\\). The regulator that samples both interior patches symmetrically gives ratio one. [The classical flux and action](#ch11-classical-meridian-flux) · [The finite meridian measure](#ch11-independent-meridian-measure)\n+\n+To test propagation, place independent compact Ward perturbations \\(\\alpha,\\beta\\) in opposite halves, away from the common cut. At a fixed regulator scale \\(\\ell\\), compare the connected variations of the independently integrated whole filling and of the sewn states. For either nonzero base vacuum define\n+\\[\n+ C_\\ell=\\left.\\partial_\\alpha\\partial_\\beta\\log\n+ \\frac{Z_\\ell(\\alpha,\\beta)Z_\\ell(0,0)}\n+      {Z_\\ell(\\alpha,0)Z_\\ell(0,\\beta)}\\right|_{(0,0)} .\n+\\]\n+Since the supports are disjoint, local scalar counterterms and separate normalizations of the halves cancel. Two uncoupled compact test planes give \\(C_\\ell=0\\). A two-variable complex Gaussian with diagonal entries \\(1+\\alpha,1+\\beta\\) and common off-diagonal entry \\(r\\in(-1,1)\\) has partition function proportional to \\(((1+\\alpha)(1+\\beta)-r^2)^{-1}\\). This gives \\(C_\\ell=r^2/(1-r^2)^2\\). What are \\(C_\\ell^{\\rm sew}\\) and \\(C_\\ell^{\\rm whole}\\) for the original propagating fields and their ghost partners? Their difference under regulator removal tests sewing. An absolute cap also needs an independently fixed nonzero reference vector and phase. The connected test is formulated in *A connected Ward response across the physical meridian* (18 November 2026, 08:51:50 WIB).\n \n"
+    },
+    {
+      "file": "essay.md",
+      "before_sha256": "395bc5d447bb20986393e413c2246f358b94e11715b7bc555e8633b2d6220fcb",
+      "after_sha256": "7beb2bb19763934fa50d2cf8eb415048cd73e7806fb79163e46e01c25795bb5b",
+      "bytes_after": 80898,
+      "changes": "--- \n+++ \n@@ -116,3 +116,3 @@\n \n-Under the common metric, full reflection, integrability and small-branch hypotheses, the relative heat calculation has vanishing first two native/local coefficient pairs and all common scalar-principal finite parts, \\(\\operatorname{Ber}_4=1\\), and controlled zero limits for the specified stress power/log traces. Original placements, sharp outer factors, the independent base vacuum and absolute phase remain fixed data. A relative function equal to one cannot normalize that independent vacuum. Local Gaussian cycles, finite Fubini maps, determinant lines and finite collars retain their density, orientation and phase conventions; their unnormalized physical-cap comparison still needs the actual cycles, semidensity, scalar and common regulator domain.\n+Under the common metric, full reflection, integrability and small-branch hypotheses, the relative heat calculation has vanishing first two native/local coefficient pairs and all common scalar-principal finite parts, \\(\\operatorname{Ber}_4=1\\), and controlled zero limits for the specified stress power/log traces. Original placements, sharp outer factors, the independent base vacuum and absolute phase remain fixed data. A relative function equal to one cannot normalize that independent vacuum. One can now measure a phase on a particular nonflat meridian of the \\(q=1/2\\) solid torus. Two fillings agree on collars of every face and have the same critical actions. Integrate the same compact current and conjugate on each left half with a separately specified Gaussian half-density on each meridian leg. At \\(\\epsilon=1/8\\) the unnormalized quotient is \\((64+8i)/65\\), although every vacuum-divided harmonic moment agrees. Sampling both dilation-related interior tests gives ratio one. Five marked meridian frequencies carry the ordered stress readings \\(4c e^{-5L}\\), \\(14c e^{-5L}\\) and \\((62c/7)e^{-6L}\\), each multiplied by its own preparation's vacuum. The comparison for a continuum cap must control the removed modes and its independently chosen scale and phase. A connected mixed variation with one source in each half can test that comparison without a choice of local scalar counterterm.\n \n@@ -126,3 +126,3 @@\n \n-Let \\(u\\) be the additional degree-eight class, detected by the first Bockstein. Its Yoneda product with the degree-seven generator satisfies \\(\\eta_7u=0\\) in degree fifteen. At \\(\\tau=3/2\\), rational cocycles representing the degree-seven line and a class with nonzero \\(u\\)-component have total ghost spins at least \\(23\\) and \\(27\\). Their product has spin at least \\(50\\), while every target word has spin at most \\(49\\). The other degree-eight direction is \\(\\eta_3\\eta_5\\), already annihilated by \\(\\eta_7\\). Reciprocal and complementary duality carry the vanishing to the other three fibres. The full graded Yoneda algebra is \\(\\Lambda(\\eta_3)\\otimes(\\mathbb C\\oplus I)\\), where \\(I^2=0\\) and \\(I\\) has one generator in each of degrees \\(5,7,8,9,12\\). Multiplication by \\(\\eta_3\\) gives six two-term strings, with the reverse products given by graded commutativity. At the shifted level \\(\\tau=-3/2\\), the pinned diagram involution and the affine reduction leave one potential quartic \\(\\gamma\\). The antisymmetrized operation on three suspended degree-three inputs and one suspended degree-eight input is \\(6\\gamma\\,s(\\eta_3 z)\\). The actual state modes act on every smooth coefficient complex, and their commutators land in an acyclic translation ideal. Their derived commutator Lie algebra is therefore homotopy abelian. Since \\(\\eta_3z\\) is nonzero, \\(\\gamma=0\\). The vacuum endomorphism dg algebra is formal as an associative algebra, and reciprocal equivalence and complementary duality transport this conclusion to the other three exceptional fibres. All classes have two-sided derived lifts. Explicit cochains in the original resolution, the comparison of the independently defined reciprocal Drinfeld–Sokolov markings and a local orbit nullhomotopy remain open.\n+Let \\(u\\) be the additional degree-eight class, detected by the first Bockstein. Its Yoneda product with the degree-seven generator satisfies \\(\\eta_7u=0\\) in degree fifteen. At \\(\\tau=3/2\\), rational cocycles representing the degree-seven line and a class with nonzero \\(u\\)-component have total ghost spins at least \\(23\\) and \\(27\\). Their product has spin at least \\(50\\), while every target word has spin at most \\(49\\). The other degree-eight direction is \\(\\eta_3\\eta_5\\), already annihilated by \\(\\eta_7\\). Reciprocal and complementary duality carry the vanishing to the other three fibres. The full graded Yoneda algebra is \\(\\Lambda(\\eta_3)\\otimes(\\mathbb C\\oplus I)\\), where \\(I^2=0\\) and \\(I\\) has one generator in each of degrees \\(5,7,8,9,12\\). Multiplication by \\(\\eta_3\\) gives six two-term strings, with the reverse products given by graded commutativity. At the shifted level \\(\\tau=-3/2\\), the pinned diagram involution and the affine reduction leave one potential quartic \\(\\gamma\\). The antisymmetrized operation on three suspended degree-three inputs and one suspended degree-eight input is \\(6\\gamma\\,s(\\eta_3 z)\\). The actual state modes act on every smooth coefficient complex, and their commutators land in an acyclic translation ideal. Their derived commutator Lie algebra is therefore homotopy abelian. Since \\(\\eta_3z\\) is nonzero, \\(\\gamma=0\\). The vacuum endomorphism dg algebra is formal as an associative algebra, and reciprocal equivalence and complementary duality transport this conclusion to the other three exceptional fibres. All classes have two-sided derived lifts. The original coefficient resolution now gives two-sided cocycles in all arities for the degree-nine Bockstein at \\(-3/2\\) and the marked degree-twelve class at \\(3/2\\). Their unary terms act on the actual BRST differential and translation. For the positive affine three-class the \\(31\\times41\\) system has rank nine. Two unit minors reduce its numerical evaluation to three arity-two and six arity-three coefficients. Those values, an explicit lift of the extra degree-eight class, the comparison of independently pinned reciprocal Drinfeld–Sokolov maps and a local orbit nullhomotopy remain to be determined.\n \n"
+    }
+  ]
+}

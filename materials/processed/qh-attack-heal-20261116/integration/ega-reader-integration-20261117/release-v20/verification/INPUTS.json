@@ -1,0 +1,763 @@
+{
+  "utc": "2026-11-18T02:56:46.052706+00:00",
+  "base_commit": "6cea9e69a77b2b2aac2f76cbdd932b63f1481583",
+  "content_id": "3560fb4891f69d92262ee2a5c331af12f7e8a9fb0ded87b716c1e43366f77f00",
+  "input_files": [
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/build-quantum-holography-status.py",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/build-quantum-holography-status.py",
+        "bytes": 4031,
+        "sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/build-quantum-holography-status.py",
+        "bytes": 4031,
+        "sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/atlas.css",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/atlas.css",
+        "bytes": 42478,
+        "sha256": "adb4339082f7a55c722a51bf89650e47a157576a22c08b4eb2abbb3d951d934b"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/atlas.css",
+        "bytes": 42478,
+        "sha256": "adb4339082f7a55c722a51bf89650e47a157576a22c08b4eb2abbb3d951d934b"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/atlas.js",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/atlas.js",
+        "bytes": 50539,
+        "sha256": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/atlas.js",
+        "bytes": 50539,
+        "sha256": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/atlas.py",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/atlas.py",
+        "bytes": 67405,
+        "sha256": "77bad20631e3fc35dd30c606c32c00bda66aaa3d92080956073fdc89ec07a10b"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/atlas.py",
+        "bytes": 67405,
+        "sha256": "77bad20631e3fc35dd30c606c32c00bda66aaa3d92080956073fdc89ec07a10b"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/audit.py",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/audit.py",
+        "bytes": 32431,
+        "sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/audit.py",
+        "bytes": 32431,
+        "sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/figures.css",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/figures.css",
+        "bytes": 15629,
+        "sha256": "3f65beb93fdfac44e49d7d45a5878630a5dd90fc82b3d35b4192d141214747b2"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/figures.css",
+        "bytes": 15629,
+        "sha256": "3f65beb93fdfac44e49d7d45a5878630a5dd90fc82b3d35b4192d141214747b2"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/figures.js",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/figures.js",
+        "bytes": 14779,
+        "sha256": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/figures.js",
+        "bytes": 14779,
+        "sha256": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/figures.py",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/figures.py",
+        "bytes": 64449,
+        "sha256": "5f86ba434f0574b6b50a61e1bee471c32a7a14464b262ccb34b9ffe590ee7e7b"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/figures.py",
+        "bytes": 64449,
+        "sha256": "5f86ba434f0574b6b50a61e1bee471c32a7a14464b262ccb34b9ffe590ee7e7b"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/monograph.css",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/monograph.css",
+        "bytes": 56107,
+        "sha256": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/monograph.css",
+        "bytes": 56107,
+        "sha256": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/monograph.py",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/monograph.py",
+        "bytes": 101779,
+        "sha256": "ac3260c7d2328cd2ee7e59ad0112946b4c7504be4322cf46ddf91a6a81ae71e3"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/monograph.py",
+        "bytes": 101779,
+        "sha256": "ac3260c7d2328cd2ee7e59ad0112946b4c7504be4322cf46ddf91a6a81ae71e3"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/reader.js",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/reader.js",
+        "bytes": 115539,
+        "sha256": "8020a5faa091f1d94c92616456e174dee85cd06de5ce4383016bfd7455a37ab5"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/reader.js",
+        "bytes": 115539,
+        "sha256": "8020a5faa091f1d94c92616456e174dee85cd06de5ce4383016bfd7455a37ab5"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/status-print.css",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/status-print.css",
+        "bytes": 11884,
+        "sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/status-print.css",
+        "bytes": 11884,
+        "sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/status.css",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/status.css",
+        "bytes": 57564,
+        "sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/status.css",
+        "bytes": 57564,
+        "sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/status.js",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/status.js",
+        "bytes": 113263,
+        "sha256": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/status.js",
+        "bytes": 113263,
+        "sha256": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/status.py",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/status.py",
+        "bytes": 83511,
+        "sha256": "6fa05e99f46649abd80ca34279eb2bc032df38adf968004bb66975162231904e"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/status.py",
+        "bytes": 83511,
+        "sha256": "6fa05e99f46649abd80ca34279eb2bc032df38adf968004bb66975162231904e"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/tests/atlas.test.cjs",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/tests/atlas.test.cjs",
+        "bytes": 41843,
+        "sha256": "a67087f1aab82465cedb0f5e16ef8ff431d6c8ca629e736803f2aa35830bec52"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/atlas.test.cjs",
+        "bytes": 41843,
+        "sha256": "a67087f1aab82465cedb0f5e16ef8ff431d6c8ca629e736803f2aa35830bec52"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/tests/figures.test.cjs",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/tests/figures.test.cjs",
+        "bytes": 12278,
+        "sha256": "2d76aabae3161f876b54ab683052a4d0827fb4cdcbb4204c32ef1a04438894ff"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/figures.test.cjs",
+        "bytes": 12278,
+        "sha256": "2d76aabae3161f876b54ab683052a4d0827fb4cdcbb4204c32ef1a04438894ff"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/tests/figures_page.py",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/tests/figures_page.py",
+        "bytes": 2413,
+        "sha256": "8ac23dc036107435dc8adba1fc2c5e0a7d79e9f75fbffe6e13614f66bf30a73a"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/figures_page.py",
+        "bytes": 2413,
+        "sha256": "8ac23dc036107435dc8adba1fc2c5e0a7d79e9f75fbffe6e13614f66bf30a73a"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+        "bytes": 10171,
+        "sha256": "2a5f0c7bc84e66832d6bb48edea0570ff8f28b6d049d6c16388bde4b4b6f9d32"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+        "bytes": 10171,
+        "sha256": "2a5f0c7bc84e66832d6bb48edea0570ff8f28b6d049d6c16388bde4b4b6f9d32"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+        "bytes": 10966,
+        "sha256": "2f137aeb9df0f035da0d89af60b34dfc63337025acf61788dd75e44210fabca2"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+        "bytes": 10966,
+        "sha256": "2f137aeb9df0f035da0d89af60b34dfc63337025acf61788dd75e44210fabca2"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+        "bytes": 5802,
+        "sha256": "17b70de70e7ee5cf757dcce76a4109f61c519bf01b413c23137ff6a21661c659"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+        "bytes": 5802,
+        "sha256": "17b70de70e7ee5cf757dcce76a4109f61c519bf01b413c23137ff6a21661c659"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/tests/interaction.test.cjs",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/tests/interaction.test.cjs",
+        "bytes": 93491,
+        "sha256": "8a92a7a42d023168bbbb45b6d6ad65d36389254461bbc267e5aa442d4967b279"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/interaction.test.cjs",
+        "bytes": 93491,
+        "sha256": "8a92a7a42d023168bbbb45b6d6ad65d36389254461bbc267e5aa442d4967b279"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/tests/reader.test.cjs",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "bytes": 75196,
+        "sha256": "708ef3dd098fb7fe7845456ff9c46f8fbeabdac445ba616ab4528d2005aceac9"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "bytes": 75196,
+        "sha256": "708ef3dd098fb7fe7845456ff9c46f8fbeabdac445ba616ab4528d2005aceac9"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/tests/test_atlas.py",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/tests/test_atlas.py",
+        "bytes": 47086,
+        "sha256": "acca56e1eae4be315677ad611104e168decd981b6cfbe974504176d8ee3138bb"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/test_atlas.py",
+        "bytes": 47086,
+        "sha256": "acca56e1eae4be315677ad611104e168decd981b6cfbe974504176d8ee3138bb"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-status/tests/test_figures.py",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-status/tests/test_figures.py",
+        "bytes": 23983,
+        "sha256": "f8a5a3b0cd2567ee57df8d7cd56eb263ba1137a201b210afe95f4a1eb3345140"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/test_figures.py",
+        "bytes": 23983,
+        "sha256": "f8a5a3b0cd2567ee57df8d7cd56eb263ba1137a201b210afe95f4a1eb3345140"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-tracker/tex2mathml.cjs",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-tracker/tex2mathml.cjs",
+        "bytes": 881,
+        "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-tracker/tex2mathml.cjs",
+        "bytes": 881,
+        "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+        "bytes": 1074,
+        "sha256": "12b4e5592a12baaf50637881f2cb9d66667b26b8d51a73cd8f0d6bcefe176ab6"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+        "bytes": 1074,
+        "sha256": "12b4e5592a12baaf50637881f2cb9d66667b26b8d51a73cd8f0d6bcefe176ab6"
+      }
+    },
+    {
+      "kind": "compiler",
+      "logical_path": "compiler/quantum-holography-tracker/vendor/temml.cjs",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/compiler/quantum-holography-tracker/vendor/temml.cjs",
+        "bytes": 478962,
+        "sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-tracker/vendor/temml.cjs",
+        "bytes": 478962,
+        "sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/atlas.json",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/atlas.json",
+        "bytes": 2032222,
+        "sha256": "5f92648e8aee7de985d8647313255d8d5c3de23ec01c54048a538c883747a132"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/atlas.json",
+        "bytes": 2032222,
+        "sha256": "5f92648e8aee7de985d8647313255d8d5c3de23ec01c54048a538c883747a132"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/01-physical-questions.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/01-physical-questions.md",
+        "bytes": 13337,
+        "sha256": "1deb7b800cf6f907a67f1c32503c072619e0ef7f95e09bf8835284c08444b6a0"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/01-physical-questions.md",
+        "bytes": 13337,
+        "sha256": "1deb7b800cf6f907a67f1c32503c072619e0ef7f95e09bf8835284c08444b6a0"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+        "bytes": 12625,
+        "sha256": "8c42c714f44c273c5ba2d579de2a27c5d54ff80245cfd4554765d02a9686dbba"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+        "bytes": 12625,
+        "sha256": "8c42c714f44c273c5ba2d579de2a27c5d54ff80245cfd4554765d02a9686dbba"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/03-local-fields.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/03-local-fields.md",
+        "bytes": 13535,
+        "sha256": "8f52cf318f3fb4815fd957a1641a659cf072c62b9be247044667e08003abe948"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/03-local-fields.md",
+        "bytes": 13535,
+        "sha256": "8f52cf318f3fb4815fd957a1641a659cf072c62b9be247044667e08003abe948"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/04-factorization.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/04-factorization.md",
+        "bytes": 39337,
+        "sha256": "fe8773c9d7f366381791b93705efe15536815bc32b33659cccc09947492d62c6"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/04-factorization.md",
+        "bytes": 39337,
+        "sha256": "fe8773c9d7f366381791b93705efe15536815bc32b33659cccc09947492d62c6"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+        "bytes": 32959,
+        "sha256": "011482ae5c997a8cf090d45d39ddfe220dccfed95f5007fefe356610a018bf33"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+        "bytes": 32959,
+        "sha256": "011482ae5c997a8cf090d45d39ddfe220dccfed95f5007fefe356610a018bf33"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/06-duality-and-induction.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/06-duality-and-induction.md",
+        "bytes": 51144,
+        "sha256": "a65c9347c588cf581a47a8705e49a6f759d62e42c641237cd4e97bf1ed6c31fc"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/06-duality-and-induction.md",
+        "bytes": 51144,
+        "sha256": "a65c9347c588cf581a47a8705e49a6f759d62e42c641237cd4e97bf1ed6c31fc"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/07-actions-and-centres.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/07-actions-and-centres.md",
+        "bytes": 49154,
+        "sha256": "0a417020c7fc27530fbf589cba05330ede4751a5e312336249c9e40a152452f0"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/07-actions-and-centres.md",
+        "bytes": 49154,
+        "sha256": "0a417020c7fc27530fbf589cba05330ede4751a5e312336249c9e40a152452f0"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/08-completions.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/08-completions.md",
+        "bytes": 46284,
+        "sha256": "570f27fe303262c121ac562f969d9783e0573c1120ea54f8f23fb5d39f19afd0"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/08-completions.md",
+        "bytes": 46284,
+        "sha256": "570f27fe303262c121ac562f969d9783e0573c1120ea54f8f23fb5d39f19afd0"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+        "bytes": 40769,
+        "sha256": "5205e0e44c299ef003a15d9e3540044e8c188ea324ef6f0258a0a564d2024fd4"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+        "bytes": 40769,
+        "sha256": "5205e0e44c299ef003a15d9e3540044e8c188ea324ef6f0258a0a564d2024fd4"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/10-analytic-sewing.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/10-analytic-sewing.md",
+        "bytes": 29888,
+        "sha256": "bc644d497890415b7f8ced151acd12f6c009d8f02c512648971ac84c66dd66f0"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/10-analytic-sewing.md",
+        "bytes": 29888,
+        "sha256": "bc644d497890415b7f8ced151acd12f6c009d8f02c512648971ac84c66dd66f0"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/11-states-and-lines.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/11-states-and-lines.md",
+        "bytes": 55547,
+        "sha256": "62a992b66f55a6b4de9041f79fe9ff8363610f3e57213d13ef4acee46245ffb5"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/11-states-and-lines.md",
+        "bytes": 55547,
+        "sha256": "62a992b66f55a6b4de9041f79fe9ff8363610f3e57213d13ef4acee46245ffb5"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+        "bytes": 51776,
+        "sha256": "c8a525364511c2e616e925fc28966ff5565f6fd0523f1cf9ead09cd4f6a857fa"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+        "bytes": 51776,
+        "sha256": "c8a525364511c2e616e925fc28966ff5565f6fd0523f1cf9ead09cd4f6a857fa"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+        "bytes": 32792,
+        "sha256": "2e6b3c8b6478f0ebb4e280cb98a7c77bfa7e3c670ccd181ba54f586d224e2898"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+        "bytes": 32792,
+        "sha256": "2e6b3c8b6478f0ebb4e280cb98a7c77bfa7e3c670ccd181ba54f586d224e2898"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/14-branes.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/14-branes.md",
+        "bytes": 39194,
+        "sha256": "e79695a05dfa200f8b45bc58028a75db21eae9e25e489529463610b7f8cb7179"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/14-branes.md",
+        "bytes": 39194,
+        "sha256": "e79695a05dfa200f8b45bc58028a75db21eae9e25e489529463610b7f8cb7179"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/15-hall-and-compact.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/15-hall-and-compact.md",
+        "bytes": 51201,
+        "sha256": "cbecce4f4e2f792f829a5f54e7d2e13b3e22739b9eda2e473f9982dcee4be796"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/15-hall-and-compact.md",
+        "bytes": 51201,
+        "sha256": "cbecce4f4e2f792f829a5f54e7d2e13b3e22739b9eda2e473f9982dcee4be796"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/16-arithmetic.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/16-arithmetic.md",
+        "bytes": 36393,
+        "sha256": "7fb82c7c1595affe3a1a75c075754e537a880650bf3105df66cf329e6148217c"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/16-arithmetic.md",
+        "bytes": 36393,
+        "sha256": "7fb82c7c1595affe3a1a75c075754e537a880650bf3105df66cf329e6148217c"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+        "bytes": 38181,
+        "sha256": "0abc64dac2213f2cf1636b9417064da63b8dcfe0d132de7b446f9667d0161ae6"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+        "bytes": 38181,
+        "sha256": "0abc64dac2213f2cf1636b9417064da63b8dcfe0d132de7b446f9667d0161ae6"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/chapters/18-open-problems.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/chapters/18-open-problems.md",
+        "bytes": 50219,
+        "sha256": "9d690124c9401d123986ee4dbdbdfd56170f5ae46f155cdf3b1134d408bbfe0c"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/chapters/18-open-problems.md",
+        "bytes": 50219,
+        "sha256": "9d690124c9401d123986ee4dbdbdfd56170f5ae46f155cdf3b1134d408bbfe0c"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/content.json",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/content.json",
+        "bytes": 638906,
+        "sha256": "bedc90f2cb82467ebbb208d98987181673fa3063086f410c3288d695a82692fd"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/content.json",
+        "bytes": 638906,
+        "sha256": "bedc90f2cb82467ebbb208d98987181673fa3063086f410c3288d695a82692fd"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/essay.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/essay.md",
+        "bytes": 80898,
+        "sha256": "7beb2bb19763934fa50d2cf8eb415048cd73e7806fb79163e46e01c25795bb5b"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/essay.md",
+        "bytes": 80898,
+        "sha256": "7beb2bb19763934fa50d2cf8eb415048cd73e7806fb79163e46e01c25795bb5b"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/page.json",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/page.json",
+        "bytes": 6392,
+        "sha256": "9799d3b1572b85e3cbc06fa7f8e775e33b77fe7f1d38737597a66b19388d9e37"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/page.json",
+        "bytes": 6392,
+        "sha256": "9799d3b1572b85e3cbc06fa7f8e775e33b77fe7f1d38737597a66b19388d9e37"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/reader-data/diagram-records.json",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/reader-data/diagram-records.json",
+        "bytes": 74406,
+        "sha256": "94ca6ef5e08d2452663ce2f5a215ef9c4c31f9149b435b35087c25318cef4f51"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/reader-data/diagram-records.json",
+        "bytes": 74406,
+        "sha256": "94ca6ef5e08d2452663ce2f5a215ef9c4c31f9149b435b35087c25318cef4f51"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/reader-data/manifest.json",
+      "source": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/coordination/derived/content/quantum-holography-status/reader-data/manifest.json",
+        "bytes": 449332,
+        "sha256": "0f9657e5539a0e4d305ab1957371477c463fb29299f5a282bd0603a24bba087a"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/reader-data/manifest.json",
+        "bytes": 449332,
+        "sha256": "0f9657e5539a0e4d305ab1957371477c463fb29299f5a282bd0603a24bba087a"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+        "bytes": 47439,
+        "sha256": "a5437070509802b999f06b95dd99b3a9b28f4a521bdf3a5303163b5d03f0f1d8"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+        "bytes": 47439,
+        "sha256": "a5437070509802b999f06b95dd99b3a9b28f4a521bdf3a5303163b5d03f0f1d8"
+      }
+    },
+    {
+      "kind": "authored_content",
+      "logical_path": "content/quantum-holography-status/supplements/supplements.json",
+      "source": {
+        "path": "/private/tmp/qh-reader-post656-20261118/technical/sources/92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d/source-tree/content/quantum-holography-status/supplements/supplements.json",
+        "bytes": 297,
+        "sha256": "914f7de880a88cb0cc188384d8fdc782efad0053c35ddb99b58952f477d9d0d7"
+      },
+      "staged": {
+        "path": "/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/content/quantum-holography-status/supplements/supplements.json",
+        "bytes": 297,
+        "sha256": "914f7de880a88cb0cc188384d8fdc782efad0053c35ddb99b58952f477d9d0d7"
+      }
+    }
+  ]
+}

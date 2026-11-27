@@ -1,0 +1,32 @@
+{
+  "id": "PAIR-W4-AFFINE-NINE-READINGS",
+  "result": "PASS",
+  "signed_utc": "2026-11-18T02:32:40.214455+00:00",
+  "signed_wib": "2026-11-18T09:32:40.214455+07:00",
+  "constructor": "/root/attack_heal_algebra",
+  "reviewer": "/root/astra_package_dispatch",
+  "checked_path": "/private/tmp/astra62-frontier-successor-20261118/checks/w4-explicit-characteristic/AFFINE-NINE-READINGS.md",
+  "sha256": "fde354154b4c107534650b933adfa2c9c6338996da123e8fe84d8ea1eea4b208",
+  "locator": "Nine chosen observations, D1 and D2 and filtered comparison under Why all the other rows follow",
+  "scope": "Fixed positive fibre τ=3/2, literal a=h3,0, ordinary associative formality already established, previously judged 31×41 native determinant system.",
+  "reason": "The actual transferred Hochschild differential on positive arities is filtered chain-isomorphic to the formal binary one in these degrees. Their total rank is 9. The selected 3×3 and 6×6 diagonal blocks are the asserted signed matrices with determinants +1, so their lower triangular union gives a fixed rank-nine minor. Resolving the specified three then six native inhomogeneous rows suffices.",
+  "remaining": "The nine native inhomogeneous readings are unexpanded. No minimality among all possible independent measurement protocols is proved.",
+  "check_path": "/private/tmp/astra62-frontier-successor-20261118/checks/w4-explicit-characteristic-independent/NINE-READINGS-CHECK.md",
+  "check_sha256": "b782527027db24e0e98a9a8236088b198566b2e403007156371c098878575d29",
+  "independent_replay": {
+    "path": "/private/tmp/astra62-frontier-successor-20261118/checks/w4-explicit-characteristic-independent/NINE-READINGS-REPLAY.json",
+    "sha256": "458da2c7bdcbff85972c8ae2eb17e10af180d1b3c7acbe9a442e7df29ea9ca38",
+    "bytes": 1008
+  },
+  "source_matrices": {
+    "path": "/private/tmp/astra62-frontier-successor-20261118/checks/w4-explicit-characteristic/AFFINE-PIVOTS.json",
+    "sha256": "885b58c7a57913d7d22ff107e744a7d10eb9b7d67944ef022c139d1a389cfbab",
+    "bytes": 670
+  },
+  "original_three_scope_verdict": {
+    "path": "/private/tmp/astra62-frontier-successor-20261118/checks/w4-explicit-characteristic-independent/VERDICTS.json",
+    "sha256": "c9c8b79798c142905347715ab36ced7237a5c8b0833bd271f329d76484afd466",
+    "bytes": 13204
+  },
+  "formal_adoption": false
+}

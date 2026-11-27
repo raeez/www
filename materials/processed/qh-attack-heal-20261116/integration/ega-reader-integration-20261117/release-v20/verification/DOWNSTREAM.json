@@ -1,0 +1,159 @@
+{
+  "schema": "qh-first-principles-downstream-build/1",
+  "status": "MECHANICAL_CHECKS_COMPLETE",
+  "source_audit_failures": [],
+  "math_formulas": 23815,
+  "math_errors": 0,
+  "commands": [
+    {
+      "step": "split",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-reference.py",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/combined.html",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public",
+        "--book-name",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T02:52:03.568462+00:00",
+      "completed_utc": "2026-11-18T02:52:04.846318+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/split.log"
+    },
+    {
+      "step": "metadata",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/set_page_metadata.py",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public"
+      ],
+      "started_utc": "2026-11-18T02:52:04.846405+00:00",
+      "completed_utc": "2026-11-18T02:52:04.954597+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/metadata.log"
+    },
+    {
+      "step": "index",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/reader-index.cjs",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public/reader-index.js",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public/index.html",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public/reference.html",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public/atlas.html"
+      ],
+      "started_utc": "2026-11-18T02:52:04.973412+00:00",
+      "completed_utc": "2026-11-18T02:52:24.434396+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/index.log"
+    },
+    {
+      "step": "public_check",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/check_public.py",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/PUBLIC-FILES-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T02:52:24.434620+00:00",
+      "completed_utc": "2026-11-18T02:52:30.106022+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/public_check.log"
+    },
+    {
+      "step": "v14_consumer_check",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/consumer/check.cjs",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/V14-CONSUMER-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T02:52:30.106113+00:00",
+      "completed_utc": "2026-11-18T02:52:43.572790+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/v14_consumer_check.log"
+    },
+    {
+      "step": "split_checks",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-checks.cjs",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T02:52:43.572988+00:00",
+      "completed_utc": "2026-11-18T02:53:05.235517+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/split_checks.log"
+    },
+    {
+      "step": "reader_page",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "--page",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public/index.html"
+      ],
+      "started_utc": "2026-11-18T02:53:05.235704+00:00",
+      "completed_utc": "2026-11-18T02:54:03.903270+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/reader_page.log"
+    },
+    {
+      "step": "reader_fixtures",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-post656-20261118/technical/normal-build/workspace/compiler/quantum-holography-status/tests/reader.test.cjs"
+      ],
+      "started_utc": "2026-11-18T02:54:03.903457+00:00",
+      "completed_utc": "2026-11-18T02:54:24.103916+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/reader_fixtures.log"
+    }
+  ],
+  "heading_metadata": {
+    "path": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/build/HEADING-METADATA.json",
+    "sha256": "4dca2bd44dd330e423d1a0fe24bee7f41b4b7204607b9845499248bc96e481d5",
+    "bytes": 3457
+  },
+  "public_files": {
+    "index.html": {
+      "path": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public/index.html",
+      "sha256": "eb579961a11fc285895a848ad900ae8ac3118f127040fabdfabb4422eb841662",
+      "bytes": 4507236
+    },
+    "reference.html": {
+      "path": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public/reference.html",
+      "sha256": "805730f36f5a7c86c9948c73645a35f779f83ce3c0314b210573ef1f64bf68af",
+      "bytes": 4681865
+    },
+    "atlas.html": {
+      "path": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public/atlas.html",
+      "sha256": "464185f46d67537fe3eb0d587a1340ebae6d86c95c40db78fdafe2d654f119c6",
+      "bytes": 11331633
+    },
+    "reader-index.js": {
+      "path": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/public/reader-index.js",
+      "sha256": "c2a99f863ab42a093de9e07a82ebb1dc7e7d73adc208fea8189fb05357cf2f47",
+      "bytes": 5916891
+    }
+  },
+  "bad_local_links": [],
+  "private_or_attribution_hit_count": 0,
+  "native_visual_qa": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "release_candidate": false
+}

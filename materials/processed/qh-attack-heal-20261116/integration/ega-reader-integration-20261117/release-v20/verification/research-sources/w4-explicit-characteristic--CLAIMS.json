@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-18 Asia/Jakarta",
+  "scope": "Post-cut mathematical file evidence.",
+  "subjects": {
+    "PROOF.md": "e19f576cd6709d37edd838fc2e1cc96c93a4f14a7b23e11c58d6c3e37bb08c55",
+    "MARKED-AFFINE.md": "70d48fa1d5ac23101ab69fb5ac8d4dd862a080d08550f45e458eefd520c28498",
+    "EVIDENCE.md": "b2c1232ed5181b2ea39694acf5a25fe3d3ae9631b15948cd8c643980b8931fb1",
+    "CHECKS.json": "1b307f9e5add3cfcf9a4aa2bf0acc4b30edd70ac0ae825b89e8d52675140ed31",
+    "CARTAN-PBW.json": "306840cfc27b1a557653d13a2b23c3040fe462741dd4c773a87da73dce658ddc",
+    "NATIVE-MODE.json": "71850284cc976fbc8ab611be538ecdb46971dfae9afdc76610a8c4bb9622acd7",
+    "NEGATIVE-CHAIN.json": "2bfe9341e00d50ecd046eae1809752221be07157e431b7947877088e3aa38953",
+    "SOURCE-PINS.json": "27320cf90b86508da9cb26ce484ee0f9150007cb9bb19a8be6b807c4814a0da6",
+    "verify.py": "c34ec64a5cbe8fab148ec240bee4cb2d12e04d8a660e2582f9e853f33cf301c3",
+    "marked_mode.cpp": "79e982ef1612ffd6950812a50ea23b33edaf4a728e9a16911ec3b1834f3a0408",
+    "negative_inputs.py": "4c193404c5da916cc3724c3cee70642dfabcb1cf0366878b5a1032bb70b911c3",
+    "negative_cartan.cpp": "719d5ffd896d11af9f401f6664e953d7394bf0ad65e15f3e7a443fee87bc13e1",
+    "negative-matter-11.tbl": "b10202e01140b863af22fbf0c3f1341af4479852593255207378ccd486cea7d8",
+    "negative-mark.tbl": "6ff0096a835bbf70570592d48e87b3aaf65e614c074cc0a232200471460cbff1"
+  },
+  "claims": {
+    "PAIR-W4-EXPLICIT-CHARACTERISTIC": {
+      "claim": "Explicit normalized original-coefficient bar cocycles for v at −3/2 and z at +3/2, all arities by independent degree gaps.",
+      "subjects": [
+        "PROOF.md",
+        "CHECKS.json",
+        "CARTAN-PBW.json"
+      ],
+      "condition": "Individual specialized universal vacuum in all smooth weak modules."
+    },
+    "PAIR-W4-EXPLICIT-AFFINE-CHARACTERISTIC": {
+      "claim": "Positive a=h3,0 original-coefficient bar cocycle by a prescribed 31x41 finite linear system, with exact nonzero unary operators.",
+      "subjects": [
+        "MARKED-AFFINE.md",
+        "PROOF.md",
+        "CHECKS.json"
+      ],
+      "condition": "Consistency uses fixed-fibre ordinary formality. The 31x41 numerical matrix is unexpanded."
+    },
+    "PAIR-W4-NATIVE-CARTAN-COHERENCE": {
+      "claim": "The normalized unary correction on simultaneous translation is (-1)^d O_(Hc y). The two actions and Cartan formula hold on arbitrary smooth coefficients. Full weight-one arithmetic checks cover all three marks.",
+      "subjects": [
+        "PROOF.md",
+        "EVIDENCE.md",
+        "NATIVE-MODE.json",
+        "NEGATIVE-CHAIN.json",
+        "CARTAN-PBW.json"
+      ],
+      "condition": "The modular target test is at 1000003, with the raw negative deletion coefficient 1/tau and degree-nine signed multiplier -1/tau=2/3."
+    }
+  },
+  "superseded_initial_primary_sha256": "ab902b2b82ba672b94fec069f546a0db7b92bbc53e304f73fc36933e93d01d98",
+  "correction": "Negative archived raw ghosts require the shifted Cartan coefficient. At the test prime the first retained signed primitive coefficient is 122031. The signed positive rows and negative BRST detector are unaffected."
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "PIM-IM1",
+    "title": "Matched complete native boundary and critical actions",
+    "statement": "The two genuine Ward fillings coincide on open neighborhoods of the entire lateral boundary, both exterior faces and the nonflat seam. The two different compact angular source bumps are dilation translates inside the left half. The critical actions agree separately on both halves.",
+    "scope": "Small real deformation, q=1/2, fixed original affine action and its true physical source graph, common oriented boundary primitives.",
+    "locator": "lines 9-25",
+    "dependencies": [],
+    "package": "02-physical-cap-state",
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-independent-measure/RESULT.md",
+    "sha256": "6f9ba8d869da93c5ab51b8e46ab53b86db910a7d01baaf565193a35b58828479"
+  },
+  {
+    "id": "PIM-IM2",
+    "title": "A directly based finite native current integral",
+    "statement": "On the same two compact a_F and gamma_F fields, with the same contour, coordinate basis and cotangent semidensity, the two native actions are B_j xy with B_1=1-i epsilon and B_2=1. The finite integral is 1/B_j. L plus Q_j L is an actual acyclic cyclic subcomplex of the original Hessian.",
+    "scope": "The gauge fields have compact support away from all faces. The normalized, prescribed test functions have mean t=1. L is fixed, and the required Q_j L completion can depend on the background.",
+    "locator": "lines 27-56",
+    "dependencies": [
+      "PIM-IM1"
+    ],
+    "package": "02-physical-cap-state",
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-independent-measure/RESULT.md",
+    "sha256": "6f9ba8d869da93c5ab51b8e46ab53b86db910a7d01baaf565193a35b58828479"
+  },
+  {
+    "id": "PIM-IM3",
+    "title": "Nonflat independently based quantum sewing and every one-mode moment",
+    "statement": "The independently prepared left positive and right negative marks meet on the measured native symplectic plane. With the common oriented Fischer contour and both individual Gaussian half-densities fixed, Z_{j;k,l}=exp(-Scl/hbar) delta_{kl} (-hbar)^k k!/(B_j B_R), where B_R=1. The unnormalized vacuum and every nonzero diagonal moment have ratio 1/(1-i epsilon). The vacuum-divided marked moments agree.",
+    "scope": "Actual separately evaluated finite halves, one nonflat marked interface pair, source-free exterior ends, declared signed polarization and physical graph. No uniqueness of a measure on the full boundary field space.",
+    "locator": "lines 58-102",
+    "dependencies": [
+      "PIM-IM1",
+      "PIM-IM2",
+      "PNT-N7"
+    ],
+    "package": "02-physical-cap-state",
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-independent-measure/RESULT.md",
+    "sha256": "6f9ba8d869da93c5ab51b8e46ab53b86db910a7d01baaf565193a35b58828479"
+  },
+  {
+    "id": "PIM-IM4",
+    "title": "Interior cutoff placement on a fixed filling and its symmetric control",
+    "statement": "For the entire first filling fixed, placing the finite bulk pair on the first compact patch or its dilation image on the second gives the vacuum comparison 1/(1-i epsilon). With both disjoint pairs included in one fixed regulator, each of the two fillings has the same product 1/(1-i epsilon) and their vacuum comparison is one.",
+    "scope": "The fixed-filling comparison varies only the interior cutoff. The two-filling comparison fixes an exchange-symmetric product regulator. All native boundary data and half-densities stay fixed. No continuum renormalization is claimed.",
+    "locator": "lines 104-108",
+    "dependencies": [
+      "PIM-IM1",
+      "PIM-IM2",
+      "PIM-IM3"
+    ],
+    "package": "02-physical-cap-state",
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-independent-measure/RESULT.md",
+    "sha256": "6f9ba8d869da93c5ab51b8e46ab53b86db910a7d01baaf565193a35b58828479"
+  },
+  {
+    "id": "PIM-IM5",
+    "title": "The prescribed two orders and mixed weight-six experiment on the same finite quantum seam",
+    "statement": "With a compact frequency 17 pair on each half and harmonic modes 2 through 6 on the seam, all half-action cross terms vanish. Equal-energy exterior marks contract to Z_vac exp(-EL) times the calibrated Fischer pairing. The actual unnormalized ordered results are Z_vac times 4c exp(-5L), 14c exp(-5L), and (62c/7) exp(-6L).",
+    "scope": "Five separate action-dual meridian Fischer pairs, definite-sign harmonic modes on each respective half, original exterior unit frames and specified energy-preserving Virasoro marking at c=c_b>25. The original affine bulk is not asserted to derive the interacting marking or the full physical measure. Joint seam measure is specified separately from the half charge-selection rule.",
+    "locator": "lines 110-141",
+    "dependencies": [
+      "PIM-IM1",
+      "PIM-IM2",
+      "PIM-IM3",
+      "PNT-N4"
+    ],
+    "package": "02-physical-cap-state",
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-independent-measure/RESULT.md",
+    "sha256": "6f9ba8d869da93c5ab51b8e46ab53b86db910a7d01baaf565193a35b58828479"
+  }
+]

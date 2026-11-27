@@ -1,0 +1,145 @@
+{
+  "status": "PASS",
+  "files": {
+    "index.html": {
+      "sha256": "8104f3db49f6fe1db88bb6a71fc9e58e05fb1e23854890682c2bc70fea62bc3f",
+      "bytes": 4960720
+    },
+    "reference.html": {
+      "sha256": "dd94fdcdde69edd437e81333948ce21382c6b39c9d96da009ffe51223ff9617d",
+      "bytes": 5048340
+    },
+    "atlas.html": {
+      "sha256": "96b9541102d7d902b8e6e3f9a7d27fb80b2575b98b9d3836f92b33ec84c3f7bc",
+      "bytes": 11466239
+    }
+  },
+  "index": {
+    "sha256": "4fef537a4d113a6a24046c64b9ea854a318f96bc9ecfdf27e53609a7c668cc5c",
+    "bytes": 5904273
+  },
+  "checks": [
+    {
+      "name": "alias maps have one owner and cannot shadow current addresses",
+      "aliases": 4201
+    },
+    {
+      "name": "chapter address keeps the query at startup",
+      "destination": "https://research.momentum.inc/quantum-holography/?q=irregular+collision#ch04-irregular-collision"
+    },
+    {
+      "name": "fresh reload keeps the query and heading"
+    },
+    {
+      "name": "remote claim keeps its query on ownership redirect",
+      "destination": "https://research.momentum.inc/quantum-holography/atlas.html?q=obstruction#atlas-c-horizontal-occupied-deletion-all-slots"
+    },
+    {
+      "name": "companion sends its query back to the book",
+      "destination": "https://research.momentum.inc/quantum-holography/index.html?q=irregular+collision#ch04-irregular-collision"
+    },
+    {
+      "name": "a historical companion address retains its query on the owner redirect",
+      "destination": "https://research.momentum.inc/quantum-holography/reference.html?q=Koszul#examples-p133"
+    },
+    {
+      "name": "a shared bracket query preserves its literal brackets, plus and TeX on startup"
+    },
+    {
+      "name": "a bracket query crosses to an older companion fragment intact",
+      "destination": "https://research.momentum.inc/quantum-holography/reference.html?q=%5Ba_%5Clambda+b%5D%2B%5Bb_%5Clambda+a%5D#examples-p133"
+    },
+    {
+      "name": "a repeated label keeps its v17 address inside its authored statement",
+      "address": "examples-passage-8d9e778d816d13729c70-15"
+    },
+    {
+      "name": "repeated v17 card labels open their separately authored cells",
+      "addresses": [
+        "examples-passage-3f8121a5894569b871ca-5",
+        "examples-passage-3f8121a5894569b871ca-6",
+        "examples-passage-3f8121a5894569b871ca-7",
+        "examples-passage-f707aa7427949e68b1db-3",
+        "examples-passage-3f8121a5894569b871ca-8",
+        "examples-passage-f707aa7427949e68b1db-4"
+      ]
+    },
+    {
+      "name": "a shared bracket query crosses to the retained table card address",
+      "destination": "https://research.momentum.inc/quantum-holography/reference.html?q=%5Ba_%5Clambda+b%5D%2B%5Bb_%5Clambda+a%5D#examples-passage-3f8121a5894569b871ca-5"
+    },
+    {
+      "name": "a shared table note opens its visible cell card and preserves URL and query",
+      "address": "examples-passage-3f8121a5894569b871ca-5"
+    },
+    {
+      "name": "a table search hit shows its card and restores search and keyboard focus through Back and Forward",
+      "address": "row-w-algebras-object-scope",
+      "cell": "W-algebras and quantum Drinfeld–Sokolov reduction, Algebra and geometry: Partial"
+    },
+    {
+      "name": "actual atlas address keeps the query"
+    },
+    {
+      "name": "a companion lazily loads a heading hit from the amended search index"
+    },
+    {
+      "name": "a bookmark first issued in v17 retains its exact fragment",
+      "address": "ch12-passage-698039072b9928038ce4",
+      "first_edition": "v17",
+      "observed_editions": [
+        "v17",
+        "v18",
+        "v19"
+      ]
+    },
+    {
+      "name": "a revised v17 bookmark gives an explicit current locator",
+      "from": "ch18-passage-b7e11236a4f7b9d87ece",
+      "to": "ch18-passage-2d08a84fd52171bf53f3"
+    },
+    {
+      "name": "an unchanged v16 passage keeps its original content address",
+      "address": "ch18-passage-257007e06254976b6e04"
+    },
+    {
+      "name": "a repeated label in an unchanged example row keeps its v16 address",
+      "address": "examples-passage-c14c782dc8694a41b7d2"
+    },
+    {
+      "name": "a materially revised v16 passage offers its actual successor",
+      "from": "ch18-passage-2bc5ee4a0eae303e0289",
+      "to": "ch18-passage-b2797b76cb23bdd0c9a2"
+    },
+    {
+      "name": "search and the historic v14/v15 choice can be shared together"
+    },
+    {
+      "name": "conflicting historic address offers an explicit choice and survives Back",
+      "locators": [
+        "ch05-passage-ca2703aa46a065b1efd2",
+        "ch05-passage-4cf044cc58eed4ed1727"
+      ]
+    },
+    {
+      "name": "a uniquely identifiable v14 passage follows its durable address",
+      "from": "ch01-p11",
+      "to": "ch01-passage-c8e09300fe8b3efb20f3"
+    },
+    {
+      "name": "a uniquely identifiable v15 passage follows its durable address",
+      "from": "ch02-associators-exchange-and-coherence-p14",
+      "to": "ch02-passage-f7cecd84b242e6a8d929"
+    },
+    {
+      "name": "changed reference passage offers its authored locator",
+      "from": "index-ch18-problem-181-p2",
+      "locators": [
+        "index-ch18-problem-181"
+      ]
+    },
+    {
+      "name": "the authored chapter cross-reference still reveals its heading"
+    }
+  ]
+}

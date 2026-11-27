@@ -1,0 +1,82 @@
+{
+  "status": "READY_FOR_ISSUE",
+  "edition": "release-v20",
+  "utc": "2026-11-18T03:17:12.771445+00:00",
+  "base_public_commit": "6cea9e69a77b2b2aac2f76cbdd932b63f1481583",
+  "content_id": "3560fb4891f69d92262ee2a5c331af12f7e8a9fb0ded87b716c1e43366f77f00",
+  "scientific_horizon_utc": "2026-11-18T02:32:40.214455Z",
+  "source_identity": "92316cba84a10240e9402162d9da4ce5e31dd05346ab49b1394539eb60850e1d",
+  "compiled_directory": "/private/tmp/qh-reader-post656-20261118/technical/normal-build/release",
+  "public_files": {
+    "index.html": {
+      "sha256": "8104f3db49f6fe1db88bb6a71fc9e58e05fb1e23854890682c2bc70fea62bc3f",
+      "bytes": 4960720
+    },
+    "reference.html": {
+      "sha256": "dd94fdcdde69edd437e81333948ce21382c6b39c9d96da009ffe51223ff9617d",
+      "bytes": 5048340
+    },
+    "atlas.html": {
+      "sha256": "96b9541102d7d902b8e6e3f9a7d27fb80b2575b98b9d3836f92b33ec84c3f7bc",
+      "bytes": 11466239
+    },
+    "reader-index.js": {
+      "sha256": "4fef537a4d113a6a24046c64b9ea854a318f96bc9ecfdf27e53609a7c668cc5c",
+      "bytes": 5904273
+    }
+  },
+  "receipts": {
+    "EXPECTED-PUBLIC.json": {
+      "sha256": "416b5d73175e6a331d754016dd48a603f1d16e8c0e6ab1ac9a7d1901fc408503",
+      "bytes": 517
+    },
+    "SOURCE-MANIFEST.json": {
+      "sha256": "6a63b27828cd8cfcd217ac1b34ca3f7595d8b8b6313a07c5981f11a17f72bded",
+      "bytes": 11274
+    },
+    "compatibility/history.json": {
+      "sha256": "dc166b35a68e990f410a32766401421d2f0ed22dcec8a81ba37cc880850d52db",
+      "bytes": 6310
+    },
+    "rebuild.py": {
+      "sha256": "b4e4350f6c74890895ffd6c899edacc328e777c857e1123336824f6ce24c8522",
+      "bytes": 546
+    },
+    "verification/ACCEPTED-INPUTS.json": {
+      "sha256": "c139241d6215064f8add9a9e2ec9235688eae29fe408060ee2751f7a770100fd",
+      "bytes": 7887
+    },
+    "verification/REPRODUCTION.json": {
+      "sha256": "948a4c92dc917d7007407834b97363124864597ae884ff2e707e40e4bc0a59f3",
+      "bytes": 1385
+    },
+    "verification/NATIVE-SOURCE.json": {
+      "sha256": "d38cfa751e7ced043dc170332111c8d21acfb5e49d582ccab665a1814afed2b8",
+      "bytes": 11185
+    },
+    "verification/RAW-SCIENCE.json": {
+      "sha256": "c54ae7cd95aaf8e562249918a00771f317eec020f380325683dc888933a146a2",
+      "bytes": 2897
+    },
+    "verification/FINAL-SCIENCE.json": {
+      "sha256": "35779819687fd63adf82753a9c4c09803fb4c71b15b305a8361cada8291e6580",
+      "bytes": 2897
+    },
+    "verification/FINAL-LINKS.json": {
+      "sha256": "551cb321a0e9ced8b511de2df63c2ca0f79456320b8844e0ac30fd28061da17d",
+      "bytes": 774
+    },
+    "verification/FINAL-NOTATION.json": {
+      "sha256": "acce4439457a9cb280393cb2a29b56054ef37f466df65351dd887533223308e0",
+      "bytes": 1509
+    },
+    "verification/V20-PARITY.json": {
+      "sha256": "07b4a4b7bbbfd2dfc43c08bfdf08f4ae0202f1576b9fcb0e7ad5e7646a975e7d",
+      "bytes": 2752
+    },
+    "verification/V20-ROUTES.json": {
+      "sha256": "256d56aff3ca66e46e233c55c3dfce8ecec44337c4f711b94eb9f58ead9e3737",
+      "bytes": 2811
+    }
+  }
+}
