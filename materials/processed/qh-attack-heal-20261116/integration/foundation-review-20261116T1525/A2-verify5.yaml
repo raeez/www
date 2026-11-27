@@ -1,0 +1,54 @@
+# Saved verbatim by the lane lead from R-A2's report (its agent type cannot write files). Full report: attack/A2/verify5-report.md.
+# R-A2, bounded confirmation of the A8-A2 heals (adjudication_R_A2_verify4). Runtime: claude-opus-5-5; CLAUDE_EFFORT=max.
+# No browser; no file written (no scratch files); builds and fixture tests not run. Read-only tool runs (python3 -I -B, no --json)
+# and in-memory calls of the renderer functions (no build, no TeX render, no subprocess, nothing written).
+# Hashes checked: preview.html cc101c07…, foundation.patch 695ff9a8…, GUARD.json c9d1c8cd… (as given); sources equal the guard's
+# candidate hashes (status.py da6f2c36…, status.css b18e2224…, status-print.css 16e274ec…, page.json ae651ec1…);
+# status.js ef358190… and audit.py bf243cb9… unchanged. Diff of status.py against tmp/status.py.before-A8A2: exactly the four heals.
+# Fixture pages read: tests/refuted/out/refuted-fixture.html (22:16:01) and tests/atlas/out/atlas-fixture.html (22:18:30), both newer
+# than status.py (22:15:38).
+# Tools: completeness.py ALL PASS (real content + candidate; refuted fixture); contract_static.py --candidate ALL PASS;
+# fidelity.py ALL PASS; audit.txt PASS.
+
+runtime: {model_id: claude-opus-5-5, effort: max}
+
+verdicts:
+  - id: A8-A2-01
+    verdict: verified-healed
+    static_evidence: "status.py:859 collects the statuses held by family statements and status.py:863 offers family filters only for those, in STATEMENT_STATUSES order. In memory, with 'refuted form' only in a related statement: family filters = checked, conditional, open, published; the overview status line (cover) = checked, refuted form, conditional, open, published. A stale ?show=refuted+form address matches no filter and hides nothing (status.js:1017-1025)."
+    regression: "A9-A2-01 (search facet order)."
+  - id: A8-A2-02
+    verdict: verified-healed
+    static_evidence: "status.py:602-604 adds a build problem for a status used by any statement (all_statements) and missing from status_key. In memory: the problem fires when 'refuted form' is used without a key entry; none on the real content; the compact grid legend (key(c, compact=True)) returns before the check and adds none."
+    integration_note: "The frozen payload's status_key must explain every statement status it uses, or the build fails (by design; status_key is content-owned)."
+  - id: A8-A2-03
+    verdict: invalid (confirmed)
+    static_evidence: "status.css:211-212 .status-chip sets only color: var(--st), with no background. status.css:204 draws the stripe as border-left: 3px solid var(--st). color-mix appears only at status.css:102, 255, 278, 683, 685, none with --st. The tool's measurement against the surface is the chip as drawn. My figure assumed the earlier tint rule, removed by the A3-A3-13 heal."
+  - id: A8-A2-04
+    verdict: verified-healed
+    static_evidence: "tests/atlas/stub_atlas.py maps checked, conditional, remaining to open, scoped_negative to 'refuted form'; an unknown code becomes a problem with no mark. tests/atlas/input/atlas.json holds fixture-scoped-negative-claim (scoped_negative). atlas_test.py:54-55 asserts its mark. The fixture page draws it with mark-refuted-form (the checked claim mark-checked, the remaining claim mark-open)."
+    residual: "No test asserts the refusal of an unknown code (optional)."
+  - id: A8-A2-05
+    verdict: verified-healed
+    static_evidence: "statement() status.py:386-402, fold() :652-662 and changes() :635-636 show an invalid value as itself. In memory: 'refuted' gives class st-unknown and data-status=\"refuted\", no mark, chip text 'refuted', fold line 'T refuted', one build problem. An attribute-breaking value is escaped (data-status=\"x&quot; onmouseover=&quot;y\"). A missing value shows '?'. 'Open problem' appears in none. changes(): no mark for an unknown status, mark-refuted-form for 'refuted form'. The valid 'refuted form' is unchanged (st-refuted-form, novelty and hypotheses kept, no problem)."
+    residual: "No rule styles .st-unknown, so the card has no stripe and the chip inherits the text colour. It appears only in failing builds, which is acceptable."
+
+new_findings:
+  - id: A9-A2-01
+    severity: 5
+    status: valid
+    lens: DOM contract (search facets, consequence of the A8-A2-01 heal)
+    target: "status.js:738-742 (facetSources = family filters, then overview status links not already present)"
+    claim: "The search's status chips follow the overview status line's order."
+    broken_step: "Family filters now omit statuses absent from the families. status.js then appends those statuses' chips after the family statuses. With 'refuted form' only in related statements, the search chips read checked, conditional, open, published, refuted form, while the overview status line reads checked, refuted form, conditional, open, published."
+    evidence_type: line_reference
+    evidence_ref: "status.js:738-742; in-memory rows()/cover() output above"
+    files_read: ["compiler/quantum-holography-status/status.js", "compiler/quantum-holography-status/status.py"]
+    tools_used: ["Read", "python3 -I -B (in memory)"]
+    confidence: high
+    blast_radius: "Cosmetic order difference in the search's status chips, only when a status is held outside the families."
+    minimal_heal: "Cross-lane proposal for status.js: build facetSources from the overview status links (.tally a[data-filter]), which list every page status in STATEMENT_STATUSES order. A CSS order change would split visual order from focus order."
+    residual: "none"
+    deciding_evidence: "Search chips against the overview status line on a payload with a related-only status."
+
+convergence: "Converged for these items: A8-A2-01, -02, -04 and -05 are healed and statically verified, A8-A2-03 is confirmed invalid, and the only new item is a severity-5 cross-lane note (A9-A2-01). Browser acceptance stays with root on the frozen payload."

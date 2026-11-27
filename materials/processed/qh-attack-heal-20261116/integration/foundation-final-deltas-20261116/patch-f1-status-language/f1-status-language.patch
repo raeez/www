@@ -1,0 +1,82 @@
+diff --git a/compiler/quantum-holography-status/status.py b/compiler/quantum-holography-status/status.py
+--- a/compiler/quantum-holography-status/status.py
++++ b/compiler/quantum-holography-status/status.py
+@@ -599,20 +599,16 @@
+             explained.add(st)
+             items.append(f'<div class="key-item"><dt>{mark(st)}<span>{html.escape(self.status_label(st))}'
+                          f'</span></dt><dd>{self.rich(k.get("explanation", ""))}</dd></div>')
++        # Every status the page shows has its entry in the content's key, which names and explains it in the
++        # content owner's words; the page adds no wording of its own for a status (the labels are page.json's,
++        # selected by the stored code).
+         for st in STATEMENT_STATUSES:
+             if st not in explained and any(s.get('status') == st for s in self.all_statements(c)):
+                 self.problems.append(f'status key: statements use {st!r}, which has no entry in content.json status_key')
+-        cells = []
+         for st in CELL_STATUSES:
+             if st in used_cells and st not in explained:
+-                gloss = self.page['cell_glosses'].get(st)
+-                if gloss:
+-                    cells.append(f'<div class="key-item"><dt>{mark(st)}<span>{html.escape(self.status_label(st))}'
+-                                 f'</span></dt><dd>{html.escape(gloss)}</dd></div>')
++                self.problems.append(f'status key: the table uses {st!r}, which has no entry in content.json status_key')
+         extra = ''
+-        if cells:
+-            extra = (f'<p class="key-sub">{html.escape(self.page["labels"]["key_cells"])}</p>'
+-                     f'<dl class="key">{"".join(cells)}</dl>')
+         return f'<dl class="key">{"".join(items)}</dl>{extra}'
+ 
+     def changes(self, c):
+@@ -759,11 +755,10 @@
+     def grid(self, c):
+         L = self.page['labels']
+         columns = {col['id']: col for col in c.get('columns', [])}
+-        # What each status means, as the key gives it (the content's explanation, else the page's gloss),
+-        # repeated in each cell's card so that a mark can be read where it is used.
+-        meaning = {st: html.escape(g) for st, g in self.page['cell_glosses'].items()}
+-        meaning.update({k.get('status'): self.rich(k.get('explanation', ''), terms=False)
+-                        for k in c.get('status_key', []) if k.get('status') in MARKS and k.get('explanation')})
++        # What each status means, as the content's key gives it, repeated in each cell's card so that a mark can be
++        # read where it is used.
++        meaning = {k.get('status'): self.rich(k.get('explanation', ''), terms=False)
++                   for k in c.get('status_key', []) if k.get('status') in MARKS and k.get('explanation')}
+         order = [cid for cid in COLUMNS if cid in columns] or COLUMNS
+         for cid in COLUMNS:
+             if cid not in columns:
+diff --git a/content/quantum-holography-status/page.json b/content/quantum-holography-status/page.json
+--- a/content/quantum-holography-status/page.json
++++ b/content/quantum-holography-status/page.json
+@@ -86,29 +86,20 @@
+     "contents_open": "{n} statements in {g} groups"
+   },
+   "status_labels": {
+-    "checked": "Proved and independently checked",
++    "checked": "Established",
+     "pending": "Proposed",
+     "conditional": "Conditional",
+     "conjecture": "Conjecture",
+     "heuristic": "Heuristic",
+-    "open": "Open problem",
++    "open": "Remaining",
+     "published": "Published",
+-    "partial": "Partly established",
+-    "not posed": "Not yet formulated",
+-    "refuted form": "Refuted as first posed"
++    "partial": "Partial",
++    "not posed": "Not posed",
++    "refuted form": "Scoped negative"
+   },
+   "novelty_labels": {
+     "new": "New",
+     "new assembly of known results": "New assembly of known results",
+     "known": "Known"
+-  },
+-  "cell_glosses": {
+-    "checked": "Proved and independently checked for this example, within the scope given.",
+-    "partial": "Established only for a restricted model, a neighbouring statement or a negative result; the part itself is not established.",
+-    "pending": "A proposed construction has a written argument, with the stated unresolved proof obligations.",
+-    "published": "Known in the literature for this example.",
+-    "open": "Stated precisely and not proved.",
+-    "not posed": "No precise statement has yet been formulated for this example.",
+-    "refuted form": "The statement in the form first posed is false; the scope gives the true replacement where one is known."
+   }
+ }

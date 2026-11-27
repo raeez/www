@@ -1,0 +1,71 @@
+{
+  "applied_utc": "2026-11-16T16:32:03.074269+00:00",
+  "all_hunks_reviewed": true,
+  "all_before_after_guards_match": true,
+  "deltas": [
+    {
+      "delta": "patch-f1-status-language",
+      "patch_sha256": "9613254535445e7ad38c6f591b403309a89f4dd87ed24b2a79f24fba143a6ad8",
+      "before": [
+        {
+          "path": "compiler/quantum-holography-status/status.py",
+          "sha256": "da6f2c362044aefe4207f69e84aee3e2124cad82149ab9772c501e2560594c45"
+        },
+        {
+          "path": "content/quantum-holography-status/page.json",
+          "sha256": "ae651ec18e5798cfe2bc1d1057f20dd89a9c9aa1d2a380dffde74211ccd0bde0"
+        }
+      ],
+      "after": [
+        {
+          "path": "compiler/quantum-holography-status/status.py",
+          "sha256": "493478e6ca5c041d0bcda2ad3cdc69362b7d25b51a8c1fc3521dab8f3b3593ae"
+        },
+        {
+          "path": "content/quantum-holography-status/page.json",
+          "sha256": "9bc4e43e9c3d4e7af78aaf81d161bbb020e1b9f162a51b27daae275f36259893"
+        }
+      ]
+    },
+    {
+      "delta": "patch-f2-successor-fields",
+      "patch_sha256": "3f2c449364146401c292d05e72e101795dd2adf94e065ed4d902a12ce5462655",
+      "before": [
+        {
+          "path": "compiler/quantum-holography-status/status.py",
+          "sha256": "493478e6ca5c041d0bcda2ad3cdc69362b7d25b51a8c1fc3521dab8f3b3593ae"
+        },
+        {
+          "path": "compiler/quantum-holography-status/status.css",
+          "sha256": "b18e2224e1719e3b54beef8e31b74524efe5a472c55cacf2d8325cae583e526f"
+        },
+        {
+          "path": "compiler/quantum-holography-status/status-print.css",
+          "sha256": "16e274ec0ffa471e2eb4999ba059443aaa550787376cf42ea162e37779a3078b"
+        },
+        {
+          "path": "content/quantum-holography-status/page.json",
+          "sha256": "9bc4e43e9c3d4e7af78aaf81d161bbb020e1b9f162a51b27daae275f36259893"
+        }
+      ],
+      "after": [
+        {
+          "path": "compiler/quantum-holography-status/status.py",
+          "sha256": "c7a924e6710bc51d7d8f56d5b2b78376e71941c8de0528b19469aa5152d91ce4"
+        },
+        {
+          "path": "compiler/quantum-holography-status/status.css",
+          "sha256": "b496f5f5bf323f6125b69f873055880c27ec2114cf7d5dbd96b778fa3fecd48d"
+        },
+        {
+          "path": "compiler/quantum-holography-status/status-print.css",
+          "sha256": "8373d792c454933efb93c865b4375fa25cd99a3b9e0fb71235c26c2f7cec746b"
+        },
+        {
+          "path": "content/quantum-holography-status/page.json",
+          "sha256": "f0a6edc563b353a03cdd39a4352ccd26b6aff53b83ebfc6dc82b8f9ea099a9a9"
+        }
+      ]
+    }
+  ]
+}

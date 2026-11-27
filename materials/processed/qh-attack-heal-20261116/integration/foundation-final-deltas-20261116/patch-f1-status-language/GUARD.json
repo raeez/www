@@ -1,0 +1,22 @@
+{
+ "repo_root_marker": "compiler/build-quantum-holography-status.py",
+ "from": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/patch/files",
+ "files": [
+  {
+   "path": "compiler/quantum-holography-status/status.py",
+   "baseline_sha256": "da6f2c362044aefe4207f69e84aee3e2124cad82149ab9772c501e2560594c45",
+   "candidate_sha256": "493478e6ca5c041d0bcda2ad3cdc69362b7d25b51a8c1fc3521dab8f3b3593ae",
+   "baseline_bytes": 65488,
+   "candidate_bytes": 65253
+  },
+  {
+   "path": "content/quantum-holography-status/page.json",
+   "baseline_sha256": "ae651ec18e5798cfe2bc1d1057f20dd89a9c9aa1d2a380dffde74211ccd0bde0",
+   "candidate_sha256": "9bc4e43e9c3d4e7af78aaf81d161bbb020e1b9f162a51b27daae275f36259893",
+   "baseline_bytes": 4813,
+   "candidate_bytes": 4070
+  }
+ ],
+ "patch": "f1-status-language.patch",
+ "patch_sha256": "9613254535445e7ad38c6f591b403309a89f4dd87ed24b2a79f24fba143a6ad8"
+}

@@ -1,0 +1,41 @@
+{
+  "applied_utc": "2026-11-16T15:26:44.465228+00:00",
+  "scope": "Root per-hunk review and application of foundation candidate only; quality overlap, interaction, atlas, current content and final native QA remain pending",
+  "patch_sha256": "695ff9a8294b37470a7542c7444f466a4ba5a6f502a037db94ef2c34769da38c",
+  "guard_sha256": "c9d1c8cde61328a11a97be4916425fe45a489b013d1d95446abc8efa00aebc08",
+  "review_sha256": "9fc8083d0891657ba83ea6cc853cfce92d8e861602a22cec174e6bd102135f29",
+  "files": [
+    {
+      "path": "compiler/quantum-holography-status/status.py",
+      "baseline_sha256": "7e00aab95067023c4b686723227c7f3de17ebab5759ca87e95d46f1ff8a72fc9",
+      "candidate_sha256": "da6f2c362044aefe4207f69e84aee3e2124cad82149ab9772c501e2560594c45",
+      "baseline_bytes": 44450,
+      "candidate_bytes": 65488
+    },
+    {
+      "path": "compiler/quantum-holography-status/status.css",
+      "baseline_sha256": "c83ccb311c754315e4ef2bcad9792c4a3e32e1d648c2aa3dacbda56bf245a1b0",
+      "candidate_sha256": "b18e2224e1719e3b54beef8e31b74524efe5a472c55cacf2d8325cae583e526f",
+      "baseline_bytes": 41550,
+      "candidate_bytes": 55648
+    },
+    {
+      "path": "compiler/quantum-holography-status/status-print.css",
+      "baseline_sha256": "c1e6560a9d4874a48afa522378afdb6e578248e20fce3858627ff0bfb0826015",
+      "candidate_sha256": "16e274ec0ffa471e2eb4999ba059443aaa550787376cf42ea162e37779a3078b",
+      "baseline_bytes": 9692,
+      "candidate_bytes": 11640
+    },
+    {
+      "path": "content/quantum-holography-status/page.json",
+      "baseline_sha256": "02e8ee68c8591c28263b9f7bfb28afd3d3314b1d095447444368dd671dff75a8",
+      "candidate_sha256": "ae651ec18e5798cfe2bc1d1057f20dd89a9c9aa1d2a380dffde74211ccd0bde0",
+      "baseline_bytes": 3966,
+      "candidate_bytes": 4813
+    }
+  ],
+  "all_baseline_guards_matched": true,
+  "all_afterstates_match": true,
+  "python_and_json_parse": true,
+  "publication": false
+}

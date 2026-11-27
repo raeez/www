@@ -1,0 +1,36 @@
+{
+ "repo_root_marker": "compiler/build-quantum-holography-status.py",
+ "from": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation",
+ "files": [
+  {
+   "path": "compiler/quantum-holography-status/status.py",
+   "baseline_sha256": "493478e6ca5c041d0bcda2ad3cdc69362b7d25b51a8c1fc3521dab8f3b3593ae",
+   "candidate_sha256": "c7a924e6710bc51d7d8f56d5b2b78376e71941c8de0528b19469aa5152d91ce4",
+   "baseline_bytes": 65253,
+   "candidate_bytes": 70450
+  },
+  {
+   "path": "compiler/quantum-holography-status/status.css",
+   "baseline_sha256": "b18e2224e1719e3b54beef8e31b74524efe5a472c55cacf2d8325cae583e526f",
+   "candidate_sha256": "b496f5f5bf323f6125b69f873055880c27ec2114cf7d5dbd96b778fa3fecd48d",
+   "baseline_bytes": 55648,
+   "candidate_bytes": 57414
+  },
+  {
+   "path": "compiler/quantum-holography-status/status-print.css",
+   "baseline_sha256": "16e274ec0ffa471e2eb4999ba059443aaa550787376cf42ea162e37779a3078b",
+   "candidate_sha256": "8373d792c454933efb93c865b4375fa25cd99a3b9e0fb71235c26c2f7cec746b",
+   "baseline_bytes": 11640,
+   "candidate_bytes": 11874
+  },
+  {
+   "path": "content/quantum-holography-status/page.json",
+   "baseline_sha256": "9bc4e43e9c3d4e7af78aaf81d161bbb020e1b9f162a51b27daae275f36259893",
+   "candidate_sha256": "f0a6edc563b353a03cdd39a4352ccd26b6aff53b83ebfc6dc82b8f9ea099a9a9",
+   "baseline_bytes": 4070,
+   "candidate_bytes": 4425
+  }
+ ],
+ "patch": "f2-successor-fields.patch",
+ "patch_sha256": "3f2c449364146401c292d05e72e101795dd2adf94e065ed4d902a12ce5462655"
+}

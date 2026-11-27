@@ -1,0 +1,47 @@
+{
+  "observed_utc": "2026-11-16T15:23:58.640519+00:00",
+  "source": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation",
+  "purpose": "Root per-hunk integration review; current candidate copy, not a final release or visual acceptance",
+  "files": {
+    "patch/GUARD.json": {
+      "sha256": "c9d1c8cde61328a11a97be4916425fe45a489b013d1d95446abc8efa00aebc08",
+      "bytes": 1394
+    },
+    "patch/foundation.patch": {
+      "sha256": "695ff9a8294b37470a7542c7444f466a4ba5a6f502a037db94ef2c34769da38c",
+      "bytes": 131825
+    },
+    "patch/apply_guarded.py": {
+      "sha256": "c5341b3a871e55228fd42b7adabeec5ca18dcf1c5d475a2ec654edacf2871498",
+      "bytes": 2056
+    },
+    "INTEGRATION.md": {
+      "sha256": "c47fda853449ac9b30e339ffefff0a1ca4789cdfdb3940f49c33990ce5167313",
+      "bytes": 7362
+    },
+    "REPORT.md": {
+      "sha256": "1f707d3fc8c2f18d35ee501ca6204826df410d5421fb83d5bc71e8c415165237",
+      "bytes": 15737
+    },
+    "CONTRACT.json": {
+      "sha256": "97b349093300d681ec4309dafbafdcf996d966ba3ad85ec837b65b738801e21d",
+      "bytes": 25680
+    },
+    "patch/files/compiler/quantum-holography-status/status.py": {
+      "sha256": "da6f2c362044aefe4207f69e84aee3e2124cad82149ab9772c501e2560594c45",
+      "bytes": 65488
+    },
+    "patch/files/compiler/quantum-holography-status/status.css": {
+      "sha256": "b18e2224e1719e3b54beef8e31b74524efe5a472c55cacf2d8325cae583e526f",
+      "bytes": 55648
+    },
+    "patch/files/compiler/quantum-holography-status/status-print.css": {
+      "sha256": "16e274ec0ffa471e2eb4999ba059443aaa550787376cf42ea162e37779a3078b",
+      "bytes": 11640
+    },
+    "patch/files/content/quantum-holography-status/page.json": {
+      "sha256": "ae651ec18e5798cfe2bc1d1057f20dd89a9c9aa1d2a380dffde74211ccd0bde0",
+      "bytes": 4813
+    }
+  }
+}

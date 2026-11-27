@@ -1,0 +1,786 @@
+--- a/compiler/quantum-holography-status/status.py
++++ b/compiler/quantum-holography-status/status.py
+@@ -17,23 +17,30 @@
+ import re
+ import subprocess
+ import unicodedata
++from html.parser import HTMLParser
+ from pathlib import Path
+ 
+ HERE = Path(__file__).resolve().parent
+ TEX2MATHML = HERE.parent / 'quantum-holography-tracker' / 'tex2mathml.cjs'
+ 
+-STATEMENT_STATUSES = ['checked', 'pending', 'conditional', 'conjecture', 'heuristic', 'open', 'published']
++# 'refuted form' is a checked scoped negative result (the atlas's scoped_negative): the statement as first posed fails,
++# and the statement says where. It is its own status, never read as open.
++STATEMENT_STATUSES = ['checked', 'refuted form', 'pending', 'conditional', 'conjecture', 'heuristic', 'open', 'published']
++# Statuses whose statements show their novelty (new, known): results that carry a proof, positive or negative.
++NOVELTY_STATUSES = ('checked', 'refuted form', 'pending')
+ CELL_STATUSES = ['checked', 'partial', 'pending', 'published', 'open', 'not posed', 'refuted form']
+ COLUMNS = ['object', 'dual', 'modules', 'fusion', 'bulk', 'lines', 'states', 'dictionary']
+ 
+ # Each status has its own shape as well as its own colour, so that the marks read in
+-# monochrome, in print and for readers who do not separate the colours.
++# monochrome, in print and for readers who do not separate the colours. No two marks form a series of fills
++# (empty, quarter, half, full), which would read as a fraction of a proof: a proposed result is a solid diamond
++# (the conjecture's diamond, filled: a proof is claimed), a partly established one a solid triangle. The solid marks
++# share the disc's box, and the disc carries the most ink, so a proved result reads as the strongest mark.
+ MARKS = {
+     'checked': '<circle cx="8" cy="8" r="5.6" fill="currentColor"/>',
+-    'pending': '<circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/>'
+-               '<path d="M8 3a5 5 0 0 1 0 10z" fill="currentColor"/>',
+-    'partial': '<circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/>'
+-               '<path d="M8 8V3a5 5 0 0 1 5 5z" fill="currentColor"/>',
++    'pending': '<path d="M8 2.4 13.6 8 8 13.6 2.4 8z" fill="currentColor"/>',
++    'partial': '<path d="M8 2.6 13.3 11.8H2.7z" fill="currentColor" stroke="currentColor" stroke-width="1.2" '
++               'stroke-linejoin="round"/>',
+     'conditional': '<circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/>'
+                    '<circle cx="8" cy="8" r="2.2" fill="currentColor"/>',
+     'conjecture': '<path d="M8 2.2 13.8 8 8 13.8 2.2 8z" fill="none" stroke="currentColor" stroke-width="1.6" '
+@@ -57,6 +64,8 @@
+           'stroke-linecap="round" stroke-linejoin="round"/>',
+     'chevron': '<path d="m5 6.5 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" '
+                'stroke-linecap="round" stroke-linejoin="round"/>',
++    'search': '<circle cx="6.8" cy="6.8" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/>'
++              '<path d="M10.2 10.2 13.8 13.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
+ }
+ 
+ 
+@@ -110,10 +119,93 @@
+         def one(m):
+             i = int(m.group(1))
+             row = self.out[i]
+-            if 'html' in row:
+-                return row['html']
+-            return f'<code class="tex-error">{html.escape(self.jobs[i]["tex"])}</code>'
++            if 'html' not in row:
++                return f'<code class="tex-error">{html.escape(self.jobs[i]["tex"])}</code>'
++            out = row['html']
++            if self.jobs[i]['display']:
++                # The print sheet sets a wide display formula smaller so that it fits the page: the build
++                # writes its estimated width (em) as --fw on the formulas that may need it.
++                width = mathml_width(out)
++                if width > WIDE_FORMULA_EM:
++                    out = out.replace('style="display:block math;"', f'style="display:block math;--fw:{width:.1f}"', 1)
++            return out
+         return re.sub(r'\x00M(\d+)\x00', one, markup)
++
++
++# Display formulas estimated wider than this (in em) carry --fw for the print sheet. The estimate below,
++# compared with Chrome's rendering of the 54 display formulas of the 16 November 2026 content, gives
++# rendered/estimated widths from 0.62 to 1.10 (median 0.82); only formulas near or above the page width
++# are affected by the print rule.
++WIDE_FORMULA_EM = 38.0
++
++
++class _MathTree(HTMLParser):
++    def __init__(self):
++        super().__init__(convert_charrefs=True)
++        self.root = {'tag': '#', 'attrs': {}, 'kids': [], 'text': ''}
++        self.stack = [self.root]
++
++    def handle_starttag(self, tag, attrs):
++        node = {'tag': tag, 'attrs': dict(attrs), 'kids': [], 'text': ''}
++        self.stack[-1]['kids'].append(node)
++        if tag not in ('mspace', 'none', 'mprescripts'):
++            self.stack.append(node)
++
++    def handle_startendtag(self, tag, attrs):
++        self.stack[-1]['kids'].append({'tag': tag, 'attrs': dict(attrs), 'kids': [], 'text': ''})
++
++    def handle_endtag(self, tag):
++        for k in range(len(self.stack) - 1, 0, -1):
++            if self.stack[k]['tag'] == tag:
++                del self.stack[k:]
++                break
++
++    def handle_data(self, data):
++        self.stack[-1]['text'] += data
++
++
++def mathml_width(markup):
++    """An estimate of a MathML formula's rendered width in em, from its tree: glyph counts for tokens,
++    the wider part of fractions and stacked scripts, scripts at reduced size, spacing around operators."""
++    def w(n, scale=1.0):
++        tag, text, kids = n['tag'], n['text'].strip(), n['kids']
++        if tag in ('annotation', 'annotation-xml'):
++            return 0.0
++        if tag == 'mtext':
++            return 0.48 * len(n['text']) * scale
++        if tag in ('mi', 'mn', 'ms'):
++            if tag == 'mi' and len(text) > 1:
++                return 0.5 * len(text) * scale
++            return sum(0.55 if ch.isascii() and ch.islower() else 0.62 for ch in text) * scale
++        if tag == 'mo':
++            big = n['attrs'].get('largeop') == 'true' or (text and text in '∑∫∏⨁⋃⋂∮')
++            space = 0.3 if text in (',', ';') else 0.0 if n['attrs'].get('form') in ('prefix', 'postfix') or text in '()[]{}|' else 0.5
++            return (len(text) * (1.0 if big else 0.62) + space) * scale
++        if tag == 'mspace':
++            m = re.match(r'([\d.]+)em', n['attrs'].get('width', ''))
++            return (float(m.group(1)) if m else 0.3) * scale
++        if tag == 'mfrac' and len(kids) >= 2:
++            return max(w(kids[0], scale * 0.9), w(kids[1], scale * 0.9)) + 0.3 * scale
++        if tag in ('msub', 'msup') and len(kids) >= 2:
++            return w(kids[0], scale) + 0.72 * w(kids[1], scale)
++        if tag == 'msubsup' and len(kids) >= 3:
++            return w(kids[0], scale) + 0.72 * max(w(kids[1], scale), w(kids[2], scale))
++        if tag in ('munder', 'mover', 'munderover') and kids:
++            return max([w(kids[0], scale)] + [0.72 * w(k, scale) for k in kids[1:]])
++        if tag == 'msqrt':
++            return sum(w(k, scale) for k in kids) + 0.9 * scale
++        if tag == 'mroot' and len(kids) >= 2:
++            return w(kids[0], scale) + 0.9 * scale + 0.5 * w(kids[1], scale)
++        if tag == 'mtable':
++            return max([w(k, scale) for k in kids] or [0.0])
++        if tag == 'mtr':
++            return sum(w(k, scale) for k in kids) + 0.8 * scale * max(len(kids) - 1, 0)
++        if tag == 'semantics':
++            return w(kids[0], scale) if kids else 0.0
++        return sum(w(k, scale) for k in kids)
++    tree = _MathTree()
++    tree.feed(markup)
++    return w(tree.root)
+ 
+ 
+ MATH_RE = re.compile(r'\\\((.+?)\\\)|\\\[(.+?)\\\]', re.S)
+@@ -177,17 +269,61 @@
+         return self.regex.sub(one, escaped_text)
+ 
+ 
++# Classes that status.js or the page layout bind; the atlas uses its own (atlas-*) classes.
++# The classes that ctx.rich() and ctx.mark() emit (term, math-inline, math-long, math-display, nobr, mark) are not reserved:
++# status.js handles them correctly anywhere on the page.
++ATLAS_RESERVED_CLASSES = frozenset({
++    'grid', 'card', 'card-inner', 'filter', 'filters', 'row', 'rows', 'row-name', 'statement', 'statement-head',
++    'statement-title', 'status-chip', 'question', 'question-ask', 'questions', 'known', 'fold', 'failure', 'claim-text',
++    'open-group', 'col-def', 'gloss', 'theme', 'nav', 'find', 'tally', 'cell-btn', 'col-head'})
++
++
++class AtlasContext:
++    """What the atlas renderer may use from the page: its text renderer, its status marks, its labels
++    and the anchors of the statements already on the page. The renderer receives nothing else."""
++
++    def __init__(self, build):
++        self._build = build
++        self.labels = build.page['labels']
++        self.status_labels = build.page['status_labels']
++
++    def rich(self, text, terms=True):
++        """Plain text with TeX and *emphasis* to HTML, through the page's own renderer."""
++        return self._build.rich(text, terms=terms)
++
++    def mark(self, status, label=None):
++        return mark(status, label) if status in MARKS else ''
++
++    @property
++    def anchors(self):
++        return frozenset(self._build.anchors)
++
++    def anchor_for(self, statement_id):
++        """'#s-…' when a statement with this content id is on the page, else None."""
++        sid = 's-' + ident(statement_id or '')
++        return '#' + sid if statement_id and sid in self._build.anchors else None
++
++    def question_anchor(self, question_id):
++        """'#q-…' when a question card with this content id is on the page, else None."""
++        qid = 'q-' + ident(question_id or '')
++        return '#' + qid if question_id and qid in self._build.anchors else None
++
++    ident = staticmethod(ident)
++
++
+ class Build:
+-    def __init__(self, folder, page, text_fonts=None, math_font=None):
++    def __init__(self, folder, page, text_fonts=None, math_font=None, atlas_module=None):
+         self.folder = Path(folder)
+         self.page = page
+         self.text_fonts = text_fonts or {}
+         self.math_font = math_font
++        self.atlas_module = Path(atlas_module) if atlas_module else HERE / 'atlas.py'
+         self.math = Math()
+         self.problems = []
+         self.warnings = []
+         self.anchors = set()
+         self.links = []
++        self.atlas_assets = {'css': '', 'js': ''}
+ 
+     # Text -------------------------------------------------------------------------------
+ 
+@@ -235,37 +371,52 @@
+     def status_label(self, status):
+         return self.page['status_labels'][status]
+ 
++    def part_number(self, n):
++        return self.page['labels'].get('part', '§{n}').format(n=n)
++
+     def statement_id(self, s):
+         sid = (s.get('id') or '').strip()
+         return 's-' + ident(sid) if sid else ''
+ 
+-    def statement(self, s, where, heading='h4', title_override=None, chip=True):
+-        status = s.get('status')
+-        if status not in STATEMENT_STATUSES:
+-            self.problems.append(f'{where}: unknown statement status {status!r}')
+-            status = 'open'
++    def statement(self, s, where, heading='h4', title_override=None, chip=True, context=None):
++        """One statement. `context` is (href, label HTML) of the question, family of examples or group
++        that holds it; that line is shown only when the statement is the target of the address, so a
++        reader who arrives by a link sees where the statement stands. A statement may carry a list of
++        hypotheses (optional field 'hypotheses'), shown as a labelled list before its text."""
++        raw = s.get('status')
++        status = raw if raw in STATEMENT_STATUSES else None
++        if status is None:
++            # Shown as the value it carries, without a mark, never as another status; the build fails on it.
++            self.problems.append(f'{where}: unknown statement status {raw!r}')
+         seen = set()
+-        label = self.status_label(status)
++        label = self.status_label(status) if status else str(raw or '?')
+         title = (s.get('title') or '') if title_override is None else title_override
+         sid = self.statement_id(s)
+         if sid:
+             self.anchors.add(sid)
+         id_attr = f' id="{sid}"' if sid else ''
+         added = ' added' if s.get('added') else ''
+-        out = [f'<article class="statement st-{slug(status)}{added}" data-status="{status}"{id_attr}>']
++        cls = slug(status) if status else 'unknown'
++        out = [f'<article class="statement st-{cls}{added}" data-status="{html.escape(status or str(raw or ""))}"{id_attr}>']
+         out.append('<div class="statement-head">')
+-        out.append(f'<span class="status-chip chip-{slug(status)}">{mark(status)}<span>{html.escape(label)}</span></span>')
++        out.append(f'<span class="status-chip chip-{cls}">{mark(status) if status else ""}<span>{html.escape(label)}</span></span>')
+         if s.get('added') and chip:
+             out.append(f'<span class="added-chip">{html.escape(self.page["labels"]["added"])}</span>')
+         if title:
+             out.append(f'<{heading} class="statement-title">{self.rich(title, seen, terms=False)}</{heading}>')
++        if context and sid:
++            out.append(f'<p class="statement-context"><a href="{context[0]}">{context[1]}</a></p>')
+         out.append('</div>')
++        hypotheses = [h for h in (s.get('hypotheses') or []) if (h or '').strip()]
++        if hypotheses:
++            out.append(f'<div class="statement-hyp"><p class="statement-hyp-label">{html.escape(self.page["labels"]["hypotheses"])}</p>'
++                       f'<ul>{"".join(f"<li>{self.rich(h, seen)}</li>" for h in hypotheses)}</ul></div>')
+         out.append(f'<div class="statement-text">{self.paragraphs(s.get("text", ""), seen)}</div>')
+         notes = []
+         novelty = (s.get('novelty') or '').strip()
+         antecedents = (s.get('antecedents') or '').strip()
+         cite = (s.get('cite') or '').strip()
+-        if status in ('checked', 'pending') and novelty:
++        if status in NOVELTY_STATUSES and novelty:
+             notes.append(f'<span class="note-novelty">{html.escape(self.page["novelty_labels"].get(novelty, novelty))}</span>')
+         if antecedents:
+             notes.append(f'<span class="note-label">{html.escape(self.page["labels"]["antecedents"])}</span> '
+@@ -286,39 +437,128 @@
+             return f'<p>{self.rich(text.strip() if text else "", seen)}</p>'
+         return ''.join(f'<p>{self.rich(b, seen)}</p>' for b in blocks)
+ 
+-    def section(self, sid, title, body, cls='', kicker=None, added=False):
++    def section(self, sid, title, body, cls='', kicker=None, added=False, attrs=''):
+         self.anchors.add(sid)
+-        k = f'<p class="kicker">{html.escape(kicker)}</p>' if kicker else ''
++        # Every section head carries its part number, in the order of the contents (filled in by run(), once the
++        # built sections are known). The kicker's words follow the number where they place the section; words that
++        # only repeat the heading ('Essay' over 'Essay', 'Remaining comparisons' over 'The remaining comparisons')
++        # are not drawn.
++        words = lambda t: {w.rstrip('s') for w in re.findall(r'[a-z]+', (t or '').lower())}  # noqa: E731
++        if kicker and words(kicker) <= words(title):
++            kicker = None
++        role = f' <span class="sep" aria-hidden="true">·</span> {html.escape(kicker)}' if kicker else ''
++        k = f'<p class="kicker"><span class="part-num">\x00PART:{sid}\x00</span>{role}</p>'
+         chip = (f'<p class="section-added"><span class="added-chip">{html.escape(self.page["labels"]["added_section"])}'
+                 f'</span></p>') if added else ''
+-        return (f'<section id="{sid}" class="section {cls}" aria-labelledby="{sid}-h">'
++        return (f'<section id="{sid}" class="section {cls}" aria-labelledby="{sid}-h"{attrs}>'
+                 f'<header class="section-head">{k}<h2 id="{sid}-h"><a class="anchor" href="#{sid}">'
+                 f'{html.escape(title)}</a></h2>{chip}</header>{body}</section>')
+ 
++    def atlas(self):
++        """The atlas mount. The atlas is rendered by a separate module (default atlas.py beside this file)
++        from atlas.json in the input folder, a reader-safe projection supplied with the content. With no
++        atlas.json there is no atlas section and no navigation item. The module's render(data, ctx)
++        returns a dict: 'html' (the section body), optional 'title', 'kicker', 'nav_label', 'css', 'js'
++        and 'problems' (a list of strings, each a build failure). It is called after every other section
++        is built, so ctx.anchor_for() knows every statement anchor on the page."""
++        data_path = self.folder / 'atlas.json'
++        if not data_path.exists():
++            return '', None
++        if not self.atlas_module.exists():
++            self.problems.append(f'atlas.json is present but there is no atlas renderer ({self.atlas_module.name})')
++            return '', None
++        import importlib.util
++        spec = importlib.util.spec_from_file_location('qh_status_atlas', self.atlas_module)
++        module = importlib.util.module_from_spec(spec)
++        spec.loader.exec_module(module)
++        data = json.loads(data_path.read_text(encoding='utf-8'))
++        result = module.render(data, AtlasContext(self)) or {}
++        for problem in result.get('problems') or []:
++            self.problems.append(f'atlas: {problem}')
++        body = result.get('html') or ''
++        if not body.strip():
++            return '', None
++        css, js = result.get('css') or '', result.get('js') or ''
++        if re.search(r'</(script|style)', css + js, re.I):
++            self.problems.append('atlas: its css or js contains a closing </script or </style')
++        used = {c for m in re.finditer(r'\bclass="([^"]*)"', body) for c in m.group(1).split()}
++        clash = sorted(used & ATLAS_RESERVED_CLASSES)
++        if clash:
++            self.problems.append('atlas: markup uses classes that the page script binds: ' + ', '.join(clash))
++        L = self.page['labels']
++        self.atlas_assets = {'css': css, 'js': js}
++        nav_label = result.get('nav_label') or L.get('nav_atlas') or 'Atlas'
++        title = result.get('title') or L.get('atlas') or nav_label
++        kicker = result.get('kicker') or L.get('atlas_kicker')
++        return self.section('atlas', title, body, cls='wide atlas', kicker=kicker, attrs=' data-atlas-mount'), nav_label
++
+     # Sections ---------------------------------------------------------------------------
+ 
+     def cover(self, c):
+         L = self.page['labels']
+         lead = ''.join(f'<p>{self.rich(p)}</p>' for p in c.get('lead', []))
+         counts = self.counts(c)
++        # The statuses on the page, each opening its statements (status.js); not counted, so that the overview
++        # draws no theorem-count inference. It is the overview's one-line legend of the statement marks.
+         stats = ''.join(
+-            f'<li><a href="#examples" data-filter="{st}">{mark(st)}<span class="count">{n}</span>'
++            f'<li><a href="#examples" data-filter="{st}">{mark(st)}'
+             f'<span class="count-label">{html.escape(self.status_label(st))}</span></a></li>'
+             for st, n in counts if n)
+         self.anchors.add('programme')
+-        return (f'<header class="cover" id="programme">'
++        # The overview: the cover, the lead and the contents (placed once every section is built, see run()).
++        # On a wide screen the contents stands in the right margin beside the cover and the lead. The tally stays a
++        # direct child of main: status.js places the search after it.
++        return (f'<div class="overview"><header class="cover" id="programme">'
+                 f'<p class="kicker">{html.escape(L["kicker"])}</p>'
+                 f'<h1>{self.rich(c["title"], terms=False)}</h1>'
+                 f'<p class="subtitle">{self.rich(c.get("subtitle", ""), terms=False)}</p>'
+                 f'<p class="as-of">{html.escape(L["as_of"])} <time datetime="{html.escape(c["as_of"])}">'
+                 f'{html.escape(long_date(c["as_of"]))}</time>'
+-                + (f'<span class="sep" aria-hidden="true"> · </span><a href="#changes">{html.escape(L["changes_link"])}</a>'
++                + (f' <span class="sep" aria-hidden="true">·</span> <a href="#changes">{html.escape(L["changes_link"])}</a>'
+                    if (c.get('changes') or {}).get('items') else '') +
++                f' <span class="sep" aria-hidden="true">·</span> <a href="#contents">{html.escape(L["contents"])}</a>'
+                 '</p>'
+                 f'</header>'
+                 f'<div class="lead prose">{lead}</div>'
++                '\x00CONTENTS\x00</div>'
+                 f'<nav class="tally" aria-label="{html.escape(L["tally"])}"><p class="tally-label">'
+                 f'{html.escape(L["tally"])}</p><ul>{stats}</ul></nav>')
++
++    def contents(self, c, parts):
++        """The page's parts in page order, each with its heading (as the section shows it) and what it
++        holds, counted from the content: the overview's entry points to every section. `parts` maps a
++        section id to its heading for the sections that were built."""
++        L = self.page['labels']
++
++        def many(n, one, more):
++            return L[one] if n == 1 else L[more].format(n=n)
++
++        def questions(key):
++            return [q.get('question') or {} for q in (c.get(key) or {}).get('questions', [])]
++
++        opened = [s for g in c.get('open', []) for s in g.get('statements', [])]
++        # What each part holds, by number: no status counts (the page draws no closure or tally inference).
++        holds = {
++            'atlas': ('', ''),
++            'results': (many(len(c.get('principal', [])), 'statements_one', 'statements_many'), ''),
++            'decisive': (many(len(questions('decisive')), 'questions_one', 'questions_many'), ''),
++            'frontier': (many(len(questions('frontier')), 'comparisons_one', 'comparisons_many'), ''),
++            'examples': (L['contents_examples'].format(rows=len(c.get('rows', [])), cols=len(c.get('columns', []))), ''),
++            'failures': (many(len((c.get('failures') or {}).get('items', [])), 'counterexamples_one', 'counterexamples_many'), ''),
++            'open': (L['contents_open'].format(n=len(opened), g=len(c.get('open', []))), ''),
++            'essay': (L['essay'], ''),
++            'terms': (many(len(self.term_links.entries), 'definitions_one', 'definitions_many'), ''),
++        }
++        items = []
++        # The numeral track fits the longest number label (a worded template such as 'Part {n}' too), the same on every line.
++        track = max((len(self.part_number(i + 1)) for i in range(len(parts))), default=0)
++        for i, (sid, heading) in enumerate(parts.items()):
++            count, mix = holds.get(sid, ('', ''))
++            items.append(f'<li><a href="#{sid}"><span class="contents-num">{html.escape(self.part_number(i + 1))}</span>'
++                         f'<span class="contents-title">{heading}</span>'
++                         f'<span class="contents-holds">{html.escape(count)}{mix}</span></a></li>')
++        return (f'<nav class="contents" id="contents" aria-labelledby="contents-label" style="--contents-num:{track}ch"><p class="contents-label" id="contents-label">'
++                f'{html.escape(L["contents"])}</p><ol>{"".join(items)}</ol></nav>')
+ 
+     def counts(self, c):
+         tally = {s: 0 for s in STATEMENT_STATUSES}
+@@ -359,6 +599,9 @@
+             explained.add(st)
+             items.append(f'<div class="key-item"><dt>{mark(st)}<span>{html.escape(self.status_label(st))}'
+                          f'</span></dt><dd>{self.rich(k.get("explanation", ""))}</dd></div>')
++        for st in STATEMENT_STATUSES:
++            if st not in explained and any(s.get('status') == st for s in self.all_statements(c)):
++                self.problems.append(f'status key: statements use {st!r}, which has no entry in content.json status_key')
+         cells = []
+         for st in CELL_STATUSES:
+             if st in used_cells and st not in explained:
+@@ -389,8 +632,8 @@
+             if not target:
+                 self.problems.append(f'changes item {i}: no statement with id {ref!r}')
+             title = self.rich((target or {}).get('title') or '', terms=False)
+-            status = (target or {}).get('status', 'open')
+-            head = (f'<a class="change-link" href="#s-{ident(ref)}">{mark(status)}<span>{title}</span></a>'
++            status = (target or {}).get('status')
++            head = (f'<a class="change-link" href="#s-{ident(ref)}">{mark(status) if status in STATEMENT_STATUSES else ""}<span>{title}</span></a>'
+                     if target else '')
+             lis.append(f'<li>{head}<p>{self.rich(it.get("text", ""))}</p></li>')
+         since = ch.get('since') or ''
+@@ -402,38 +645,39 @@
+                 f'<h2 id="changes-h" class="changes-title">{html.escape(label)}</h2>'
+                 f'{intro}<ol class="change-list">{"".join(lis)}</ol></aside>')
+ 
+-    def status_mix(self, statements, prefix=''):
+-        """Marks with counts for the statuses of a list of statements, in the fixed status order.
+-
+-        The counts are read with their status names by assistive technology; `prefix` names the list."""
+-        tally = {}
+-        for s in statements:
+-            st = s.get('status') if s.get('status') in STATEMENT_STATUSES else 'open'
+-            tally[st] = tally.get(st, 0) + 1
+-        items = []
+-        for st in STATEMENT_STATUSES:
+-            if tally.get(st):
+-                label = self.status_label(st)
+-                items.append(f'<span class="mix-item mix-{slug(st)}" title="{html.escape(label)}">{mark(st)}'
+-                             f'<span class="mix-n">{tally[st]}</span>'
+-                             f'<span class="visually-hidden"> {html.escape(label)}</span></span>')
+-        if not items:
+-            return ''
+-        lead = f'<span class="visually-hidden">{html.escape(prefix)}: </span>' if prefix else ''
+-        return f'<span class="mix">{lead}{"".join(items)}</span>'
++    def fold(self, s, where, chip=True, context=None):
++        """A related statement reduced to one line, its status and its title, that opens to the whole
++        statement. The statement inside keeps its own markup and anchor; while it is inside the fold its
++        heading is drawn by the line above it."""
++        status = s.get('status') if s.get('status') in STATEMENT_STATUSES else None
++        shown = self.status_label(status) if status else str(s.get('status') or '?')  # an invalid value as itself
++        added = (f'<span class="added-chip">{html.escape(self.page["labels"]["added"])}</span>'
++                 if s.get('added') and chip else '')
++        # The status text is visible for every status but 'checked', the common case, whose mark shows it (the key
++        # and the legend name the mark) and whose text stays in the line's accessible name; so the conditional and
++        # open items stand out in a list of related statements.
++        quiet = ' visually-hidden' if status == 'checked' else ''
++        return (f'<li class="fold-item"><details class="known fold">'
++                f'<summary class="fold-head">{mark(status) if status else ""}<span class="fold-title">{self.rich(s.get("title") or "", terms=False)}'
++                f'</span><span class="fold-status{quiet}">{html.escape(shown)}</span>{added}{icon("chevron")}'
++                f'</summary>{self.statement(s, where, chip=chip, context=context)}</details></li>')
+ 
+     def frontier(self, c, key='frontier'):
+-        """Question cards. The decisive questions are laid out for comparison: on a wide screen the
+-        open question and why it matters stand beside what is established toward it, always shown.
+-        Other question sections keep what is established behind a disclosure."""
++        """Question cards, the same in every question section: the number and title, then the question
++        (its statement, then why it matters) and, beside it on a wide screen, the related statements as
++        a list of lines, each opening to its statement. The list shows every related statement's status
++        and title at once; the texts open one at a time, or all at once with Open all."""
+         fr = c.get(key) or {}
+         questions = fr.get('questions') or []
+         if not questions:
+             return ''
+         L = self.page['labels']
+-        compare = key == 'decisive'
+         out = []
+         index = []
++        # Numbers restart in each question section, so the number's label names the section's kind of item.
++        qlabel = L.get(f'{key}_question') or L.get('question', 'Question')
++        # The index marks each question's own status only where the section's questions differ in status.
++        mixed_status = len({(q.get('question') or {}).get('status') for q in questions}) > 1
+         all_added = all(st.get('added') for q in questions for st in [q.get('question') or {}] + (q.get('known') or []))
+         for i, q in enumerate(questions):
+             qid = 'q-' + ident(q.get('id') or q.get('title') or str(i))
+@@ -450,42 +694,39 @@
+             known = q.get('known') or []
+             n = len(known)
+             count = L['statements_one'] if n == 1 else L['statements_many'].format(n=n)
+-            mix = self.status_mix(known)  # the label is shown beside it
+             kn = ''
+             if known:
+-                inner = ''.join(self.statement(s, f'{key} {i} known {j}', chip=not all_added) for j, s in enumerate(known))
+-                if compare:
+-                    kn = (f'<div class="question-known"><p class="known-head"><span class="known-label">'
+-                          f'{html.escape(L["known"])}</span><span class="row-count">{html.escape(count)}</span>{mix}</p>'
+-                          f'<div class="statements">{inner}</div></div>')
+-                else:
+-                    kn = (f'<details class="known"><summary><span>{html.escape(L["known"])}</span>'
+-                          f'<span class="row-count">{html.escape(count)}</span>{mix}{icon("chevron")}</summary>'
+-                          f'<div class="statements">{inner}</div></details>')
++                where = (f'#{qid}', f'{html.escape(qlabel)} {i + 1} · {self.rich(card_title, terms=False)}')
++                items = ''.join(self.fold(s, f'{key} {i} known {j}', chip=not all_added, context=where)
++                                for j, s in enumerate(known))
++                # The checked items show only their mark (fold()); the head names that mark once, in words.
++                known_key = (f'<span class="known-key" aria-hidden="true">{mark("checked")}<span>{html.escape(self.status_label("checked"))}</span></span>'
++                             if any(st.get('status') == 'checked' for st in known) else '')
++                kn = (f'<div class="question-known"><p class="known-head"><span class="known-label">'
++                      f'{html.escape(L["known"])}</span><span class="row-count">{html.escape(count)}</span>{known_key}</p>'
++                      f'<ul class="statements known-list" role="list">{items}</ul></div>')
+             title_html = self.rich(card_title, terms=False)
+             head = (f'<header class="question-head"><p class="question-num"><span class="question-num-label">'
+-                    f'{html.escape(L.get("question", "Question"))}</span> {i + 1}</p>'
++                    f'{html.escape(qlabel)}</span> {i + 1}</p>'
+                     f'<h3><a class="anchor" href="#{qid}">{title_html}</a></h3></header>')
+-            if compare:
+-                cls = 'question compare' + ('' if known else ' no-known')
+-                out.append(f'<div class="{cls}" id="{qid}">{head}<div class="question-ask">{body}{why}</div>{kn}</div>')
+-            else:
+-                out.append(f'<div class="question" id="{qid}">{head}{body}{why}{kn}</div>')
++            # The label is drawn from its data attribute by the style sheet, so that the page search does not find
++            # 'question' in every card; it is still read by assistive technology and printed.
++            ask = f'<p class="question-ask-label" data-label="{html.escape(L["question_label"])}"></p>' if body else ''
++            cls = 'question compare' + ('' if len(known) > 2 else ' few-known' if known else ' no-known')
++            out.append(f'<div class="{cls}" id="{qid}">{head}<div class="question-ask">{ask}{body}{why}</div>{kn}</div>')
+             # The question's own status leads its index entry, apart from the counts of its related statements.
+             asked = question.get('status') if question.get('status') in STATEMENT_STATUSES else None
+-            own = mark(asked, self.status_label(asked)) if asked else ''
++            own = mark(asked, self.status_label(asked)) if asked and mixed_status else ''
+             index.append(f'<li><a href="#{qid}"><span class="q-index-num">{i + 1}</span>'
+-                         f'<span class="q-index-title">{own}{self.rich(card_title, terms=False)}</span>'
+-                         f'{self.status_mix(known, L["known"]) if known else ""}</a></li>')
++                         f'<span class="q-index-title">{own}{self.rich(card_title, terms=False)}</span></a></li>')
+         intro = f'<div class="section-intro prose">{self.paragraphs(fr["intro"])}</div>' if fr.get('intro') else ''
+-        index_label = L.get('question_index', 'The questions')
++        index_label = L.get(f'{key}_index') or L.get('question_index', 'The questions')
+         # Named by its label and its section's heading, so the two question indexes differ as landmarks.
+-        nav = (f'<nav class="q-index" aria-labelledby="{key}-index-label {key}-h"><p class="q-index-label" id="{key}-index-label">'
+-               f'{html.escape(index_label)}</p><ol>{"".join(index)}</ol></nav>') if len(questions) > 1 else ''
+-        cls = 'questions compare' if compare else 'questions'
+-        return self.section(key, fr.get('heading') or L[key], intro + nav + f'<div class="{cls}">{"".join(out)}</div>',
+-                            cls=('wide decisive' if compare else 'question-section'),
+-                            kicker=L[f'{key}_kicker'], added=all_added)
++        nav = (f'<nav class="q-index" aria-labelledby="{key}-index-label {key}-h"><p class="q-index-head">'
++               f'<span class="q-index-label" id="{key}-index-label">{html.escape(index_label)}</span></p>'
++               f'<ol>{"".join(index)}</ol></nav>') if len(questions) > 1 else ''
++        return self.section(key, fr.get('heading') or L[key], intro + nav + f'<div class="questions compare">{"".join(out)}</div>',
++                            cls=f'wide questions-section {key}', kicker=L[f'{key}_kicker'], added=all_added)
+ 
+     def failures(self, c):
+         fa = c.get('failures') or {}
+@@ -518,14 +759,23 @@
+     def grid(self, c):
+         L = self.page['labels']
+         columns = {col['id']: col for col in c.get('columns', [])}
++        # What each status means, as the key gives it (the content's explanation, else the page's gloss),
++        # repeated in each cell's card so that a mark can be read where it is used.
++        meaning = {st: html.escape(g) for st, g in self.page['cell_glosses'].items()}
++        meaning.update({k.get('status'): self.rich(k.get('explanation', ''), terms=False)
++                        for k in c.get('status_key', []) if k.get('status') in MARKS and k.get('explanation')})
+         order = [cid for cid in COLUMNS if cid in columns] or COLUMNS
+         for cid in COLUMNS:
+             if cid not in columns:
+                 self.problems.append(f'columns: missing column {cid}')
++        # The table is one stop in the tab order (its first column heading); the arrow keys, Home and End move
++        # inside it (status.js), so its other controls take tabindex -1.
++        out_of_tab = ' tabindex="-1"'
+         head = ''.join(
+-            f'<th scope="col"><button type="button" class="col-head" data-col="{cid}" '
+-            f'aria-describedby="col-{cid}" aria-haspopup="dialog" aria-expanded="false" aria-controls="card">{html.escape(columns.get(cid, {}).get("short") or columns.get(cid, {}).get("name", cid))}'
+-            f'</button></th>' for cid in order)
++            f'<th scope="col"><button type="button" class="col-head" data-col="{cid}"{"" if k == 0 else out_of_tab} '
++            f'aria-describedby="col-{cid}" aria-haspopup="dialog" aria-expanded="false" aria-controls="card"><span class="col-head-text">'
++            f'{html.escape(columns.get(cid, {}).get("short") or columns.get(cid, {}).get("name", cid))}</span>'
++            f'</button></th>' for k, cid in enumerate(order))
+         rows = []
+         for r in c.get('rows', []):
+             rid = 'row-' + ident(r.get('id') or r['name'])
+@@ -542,28 +792,31 @@
+                     st = 'not posed'
+                 colname = columns.get(cid, {}).get('name', cid)
+                 note = cell.get('note') or ''
+-                label = f'{r["name"]}, {colname}: {self.status_label(st)}'
++                label = f'{strip_tags(self.math_free(r["name"]))}, {colname}: {self.status_label(st)}'
+                 note_html = self.rich(note, terms=False)
+                 cells.append(
+                     f'<td class="cell cell-{slug(st)}" data-status="{st}">'
+-                    f'<button type="button" class="cell-btn" data-row="{rid}" aria-label="{html.escape(label)}" '
++                    f'<button type="button" class="cell-btn" data-row="{rid}" aria-label="{html.escape(label)}" tabindex="-1" '
+                     f'aria-haspopup="dialog" aria-expanded="false" aria-controls="card">'
+                     f'{mark(st)}</button>'
+                     f'<div class="cell-note" hidden><p class="cell-note-head">{mark(st)}<span>'
+                     f'{html.escape(self.status_label(st))}</span> <span class="cell-note-where">'
+-                    f'{html.escape(colname)}</span></p><p>{note_html}</p></div></td>')
++                    f'{html.escape(colname)}</span></p><p class="cell-note-text">{note_html}</p>'
++                    + (f'<p class="cell-note-meaning">{meaning[st]}</p>' if meaning.get(st) else '') +
++                    '</div></td>')
+             short = r.get('short') or self.page.get('row_short', {}).get(r.get('id')) or r['name']
+-            rows.append(f'<tr><th scope="row"><a href="#{rid}" title="{html.escape(self.math_free(r["name"]))}">'
++            rows.append(f'<tr><th scope="row"><a class="row-link" href="#{rid}" tabindex="-1" title="{html.escape(self.math_free(r["name"]))}">'
+                         f'{self.rich(short, terms=False)}</a></th>'
+                         f'{"".join(cells)}</tr>')
+         col_notes = ''.join(
+             f'<div class="col-def" id="col-{cid}"><dt>{html.escape(columns[cid]["name"])}</dt>'
+-            f'<dd>{self.rich(columns[cid].get("explanation", ""))}</dd></div>' for cid in order if cid in columns)
+-        table = (f'<div class="grid-wrap" tabindex="0" role="region" aria-label="{html.escape(L["grid"])}">'
++            f'<dd>{self.rich(columns[cid].get("explanation", ""), terms=False)}</dd></div>' for cid in order if cid in columns)
++        table = (f'<div class="grid-wrap" role="region" aria-label="{html.escape(L["grid"])}">'
+                  f'<table class="grid"><caption class="visually-hidden">{html.escape(L["grid_caption"])}</caption>'
+                  f'<thead><tr><th scope="col" class="corner">{html.escape(L["grid_corner"])}</th>{head}</tr></thead>'
+                  f'<tbody>{"".join(rows)}</tbody></table></div>')
+-        legend = f'<div class="grid-legend">{self.key(c, compact=True)}</div>'
++        legend = (f'<div class="grid-legend">{self.key(c, compact=True)}'
++                  f'<p class="legend-key"><a href="#status">{html.escape(L["key"])}</a></p></div>')
+         return (f'<div class="grid-block">{table}<p class="grid-hint">{html.escape(L["grid_hint"])}</p>'
+                 f'<div class="grid-aside">{legend}<details class="col-defs"><summary>{html.escape(L["columns"])}'
+                 f'{icon("chevron")}</summary><dl>{col_notes}</dl></details></div></div>')
+@@ -576,7 +829,8 @@
+             rid = 'row-' + ident(r.get('id') or r['name'])
+             self.anchors.add(rid)
+             statements = r.get('statements', [])
+-            body = ''.join(self.statement(s, f'row {r.get("id")} statement {j}') for j, s in enumerate(statements))
++            where = (f'#{rid}', self.rich(r['name'], terms=False))
++            body = ''.join(self.statement(s, f'row {r.get("id")} statement {j}', context=where) for j, s in enumerate(statements))
+             cells = []
+             for cid in COLUMNS:
+                 cell = (r.get('cells') or {}).get(cid)
+@@ -598,21 +852,22 @@
+                 f'<details class="row" id="{rid}"><summary><span class="row-num">{i + 1}</span>'
+                 f'<span class="row-name">{self.rich(r["name"], terms=False)}</span>'
+                 f'<span class="row-marks" aria-hidden="true">{marks}</span>'
+-                f'<span class="row-count">{html.escape(count)}{self.status_mix(statements)}</span>{icon("chevron")}</summary>'
++                f'<span class="row-count">{html.escape(count)}</span>{icon("chevron")}</summary>'
+                 f'<div class="row-body"><p class="row-summary">{self.rich(r.get("summary", ""))}</p>'
+                 f'<ul class="cell-lines" aria-label="{html.escape(L["by_column"])}">{"".join(cells)}</ul>'
+                 f'<div class="statements">{body}</div></div></details>')
++        in_families = {s.get('status') for r in c.get('rows', []) for s in r.get('statements', [])}
+         filters = ''.join(
+             f'<button type="button" class="filter" data-filter="{st}" aria-pressed="false">{mark(st)}'
+             f'<span>{html.escape(self.status_label(st))}</span></button>'
+-            for st, n in self.counts(c) if n)
++            for st in STATEMENT_STATUSES if st in in_families)
+         toolbar = (f'<div class="row-tools"><div class="filters" role="group" aria-label="{html.escape(L["filter"])}">'
+                    f'<span class="filters-label">{html.escape(L["filter"])}</span>{filters}</div>'
+                    f'<div class="row-actions"><button type="button" class="link-btn" data-expand="all">{html.escape(L["expand"])}</button>'
+                    f'<button type="button" class="link-btn" data-expand="none">{html.escape(L["collapse"])}</button></div></div>')
+         return self.section('examples', L['examples'],
+                             f'<p class="section-intro prose">{html.escape(L["examples_intro"])}</p>' +
+-                            self.grid(c) + toolbar + f'<div class="rows">{"".join(out)}</div>',
++                            self.grid(c) + toolbar + f'<div class="rows" style="--marks:{len(COLUMNS)}">{"".join(out)}</div>',
+                             cls='wide', kicker=L['examples_kicker'])
+ 
+     def open_problems(self, c):
+@@ -621,7 +876,8 @@
+         for i, g in enumerate(c.get('open', [])):
+             gid = 'open-' + ident(g.get('heading', str(i)))
+             self.anchors.add(gid)
+-            body = ''.join(self.statement(s, f'open {i}.{j}') for j, s in enumerate(g.get('statements', [])))
++            where = (f'#{gid}', self.rich(g.get('heading', ''), terms=False))
++            body = ''.join(self.statement(s, f'open {i}.{j}', context=where) for j, s in enumerate(g.get('statements', [])))
+             intro = f'<div class="prose group-intro">{self.paragraphs(g["intro"])}</div>' if g.get('intro') else ''
+             groups.append(f'<div class="open-group" id="{gid}"><h3><a class="anchor" href="#{gid}">'
+                           f'{self.rich(g.get("heading", ""), terms=False)}</a></h3>{intro}<div class="statements">{body}</div></div>')
+@@ -653,14 +909,22 @@
+     def glossary(self):
+         L = self.page['labels']
+         items = []
++        letters = {}
+         for e in sorted(self.term_links.entries, key=lambda e: e['term'].lower()):
+             self.anchors.add(e['id'])
+             items.append(f'<div class="gloss" id="{e["id"]}"><dt>{self.rich(e["term"], terms=False)}</dt>'
+                          f'<dd>{self.rich(e.get("definition", ""), terms=False)}</dd></div>')
++            # The first letter of the term as read (accents and TeX delimiters set aside) links to its first term.
++            first = next((ch for ch in unicodedata.normalize('NFKD', self.math_free(e['term'])) if ch.isalnum()), '#')
++            letters.setdefault(first.upper(), e['id'])
+         if not items:
+             return ''
++        index = ''.join(f'<li><a href="#{tid}">{html.escape(letter)}</a></li>' for letter, tid in letters.items())
++        nav = (f'<nav class="gloss-index" aria-label="{html.escape(L["terms_index"])}"><ol>{index}</ol></nav>'
++               if len(letters) > 1 else '')
+         return self.section('terms', L['terms'], f'<p class="section-intro prose">{html.escape(L["terms_intro"])}</p>'
+-                            f'<dl class="glossary">{"".join(items)}</dl>', kicker=L['terms_kicker'])
++                            f'{nav}<dl class="glossary">{"".join(items)}</dl>', cls='wide terms-section',
++                            kicker=L['terms_kicker'])
+ 
+     # Page -------------------------------------------------------------------------------
+ 
+@@ -683,16 +947,45 @@
+         open_ = self.open_problems(c)
+         essay = self.essay(essay_text, c.get('essay_lead', '')) if essay_text else ''
+         terms = self.glossary()
+-
+-        nav_items = [('programme', L['nav_programme']), ('results', L['nav_results'])]
++        atlas, atlas_nav = self.atlas()
++
++        # The contents, after the lead: every built section in page order, by the heading it shows.
++        # Page order: the established results, the key to the marks, the examples (the programme across its
++        # families and parts), then what remains (the decisive questions, the remaining comparisons, the open
++        # problems), the natural statements that fail, the essay and the glossary. The lead names the table before
++        # the questions; the key comes just before the table, on screen and on paper; the atlas, when present, leads.
++        parts = {}
++        if atlas:
++            parts['atlas'] = html.escape(atlas_nav)
++        parts['results'] = html.escape(L['principal'])
++        parts['status'] = html.escape(L['key'])
++        parts['examples'] = html.escape(L['examples'])
++        for sid, built, heading in (('decisive', decisive, (c.get('decisive') or {}).get('heading')),
++                                    ('frontier', frontier, (c.get('frontier') or {}).get('heading'))):
++            if built:
++                parts[sid] = self.rich(heading or L.get(sid, sid), terms=False)
++        parts['open'] = html.escape(L['open'])
++        if failures:
++            parts['failures'] = self.rich((c.get('failures') or {}).get('heading') or L['failures'], terms=False)
++        if essay:
++            parts['essay'] = html.escape(self.essay_title)
++        if terms:
++            parts['terms'] = html.escape(L['terms'])
++        cover = cover.replace('\x00CONTENTS\x00', self.contents(c, parts))
++        number = {sid: self.part_number(i + 1) for i, sid in enumerate(parts)}
++
++        nav_items = [('programme', L['nav_programme'])]
++        if atlas:
++            nav_items.append(('atlas', atlas_nav))
++        nav_items.append(('results', L['nav_results']))
++        nav_items.append(('examples', L['nav_examples']))
+         if decisive:
+             nav_items.append(('decisive', L['nav_decisive']))
+         if frontier:
+             nav_items.append(('frontier', L['nav_frontier']))
+-        nav_items.append(('examples', L['nav_examples']))
++        nav_items.append(('open', L['nav_open']))
+         if failures:
+             nav_items.append(('failures', L['nav_failures']))
+-        nav_items.append(('open', L['nav_open']))
+         if essay:
+             nav_items.append(('essay', L['nav_essay']))
+         if terms:
+@@ -702,24 +995,40 @@
+         body = (f'<a class="skip" href="#main">{html.escape(L["skip"])}</a>'
+                 f'<div class="bar"><div class="bar-inner">'
+                 f'<a class="home" href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a>'
++                f'<a class="nav-top" href="#programme">{html.escape(L["nav_programme"])}</a>'
+                 f'<nav class="nav" aria-label="{html.escape(L["on_page"])}"><ul>{nav}</ul></nav>'
++                f'<button type="button" class="find-open" data-find-open aria-label="{html.escape(L["search_open"])}" '
++                f'title="{html.escape(L["search_open"])}">{icon("search")}</button>'
+                 f'<button type="button" class="theme" aria-label="{html.escape(L["theme"])}" title="{html.escape(L["theme"])}">'
+                 f'{icon("theme")}</button></div></div>'
+-                f'<main id="main" tabindex="-1">{cover}{changes}{key}{principal}{decisive}{frontier}{examples}{failures}{open_}{essay}{terms}</main>'
++                f'<main id="main" tabindex="-1">{cover}{changes}{atlas}{principal}{key}{examples}{decisive}{frontier}{open_}{failures}{essay}{terms}</main>'
+                 f'<footer class="foot"><div class="foot-inner"><p>{html.escape(self.page["author"])} · '
+                 f'<time datetime="{html.escape(c["as_of"])}">{html.escape(long_date(c["as_of"]))}</time></p>'
+                 f'<p><a href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a> · '
+                 f'<a href="#programme">{icon("up")}<span>{html.escape(L["top"])}</span></a></p></div></footer>'
+                 f'<div class="card" id="card" role="dialog" aria-modal="false" hidden><div class="card-inner"></div></div>')
++        unnumbered = sorted(set(re.findall('\x00PART:([\\w-]+)\x00', body)) - set(number))
++        if unnumbered:
++            self.problems.append(f'page: sections missing from the contents, so without a part number: {unnumbered}')
++        body = re.sub('\x00PART:([\\w-]+)\x00', lambda m: html.escape(number.get(m.group(1), '')), body)
+ 
+         self.math.render()
+         body = self.math.substitute(body)
++        # A family's link in the table is copied as text into its cells' cards (status.js reads its
++        # textContent), so its formulas carry no TeX annotation there, which would be read twice.
++        body = re.sub(r'(<a class="row-link"[^>]*>)(.*?)(</a>)',
++                      lambda m: m.group(1) + re.sub(r'<annotation\b[^>]*>.*?</annotation>', '', m.group(2), flags=re.S) + m.group(3),
++                      body, flags=re.S)
+         for err in self.math.errors:
+             self.problems.append('TeX: ' + err['error'][:160] + ' in ' + err['tex'][:80])
+ 
+-        # The print sheet follows the screen sheet, so that its rules win at equal specificity.
+-        css = (HERE / 'status.css').read_text(encoding='utf-8') + '\n' + (HERE / 'status-print.css').read_text(encoding='utf-8')
++        # The print sheet follows the screen sheet (and the atlas's own sheet), so that its rules win at
++        # equal specificity. The atlas script runs after the page script, in its own element.
++        css = '\n'.join(part for part in ((HERE / 'status.css').read_text(encoding='utf-8'), self.atlas_assets['css'],
++                                          (HERE / 'status-print.css').read_text(encoding='utf-8')) if part)
+         js = (HERE / 'status.js').read_text(encoding='utf-8')
++        if self.atlas_assets['js']:
++            js += '\n</script>\n<script>' + self.atlas_assets['js']
+         fonts = self.font_faces(body)
+         title_text = strip_tags(self.math_free(c['title']))
+         description = strip_tags(self.math_free(c.get('subtitle', '')))
+diff --git a/compiler/quantum-holography-status/status.css b/compiler/quantum-holography-status/status.css
