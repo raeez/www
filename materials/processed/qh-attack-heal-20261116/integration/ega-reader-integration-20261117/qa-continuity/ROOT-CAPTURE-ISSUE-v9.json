@@ -1,0 +1,16 @@
+{
+  "recorded_utc": "2026-11-16T23:50:48.139785+00:00",
+  "candidate": "RELEASE-CANDIDATE-v9.json",
+  "candidate_files_verified_against_source_and_publication_checkout": true,
+  "captures_complete": false,
+  "issue": "Native CUA getApp Google Chrome and bundle-id variants return cgWindowNotFound; same after CUA reset. Selected Chrome browser1 can create/list a blank owned tab but goto/getTab/close return undefined timeoutMs. No repaired-page screenshot obtained.",
+  "attempted": [
+    "native app bind and rebind",
+    "native new-window shortcut",
+    "documented browser1 newtab/navigation and cleanup",
+    "CUA reset then native appbind"
+  ],
+  "user_input": "Asked principal asynchronously to bring Chrome to foreground and reply ready; pending. No permission change requested.",
+  "own_blank_tab_pending_cleanup": "1307151105,about:blank,Chromeprofile1",
+  "boundary": "Keep exact v9 frozen. No CAPTURE-RELAY manifest written, no QA clear inferred, no publication. No headless or alternative UI technology used."
+}
