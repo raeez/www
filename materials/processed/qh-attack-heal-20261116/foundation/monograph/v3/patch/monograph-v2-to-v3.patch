@@ -1,0 +1,179 @@
+--- a/compiler/quantum-holography-status/status.py
++++ b/compiler/quantum-holography-status/status.py
+@@ -1201,8 +1201,9 @@
+             self.problems.append(f'page: sections missing from the contents, so without a part number: {unnumbered}')
+         body = re.sub('\x00PART:([\\w-]+)\x00', lambda m: html.escape(number.get(m.group(1), '')), body)
+ 
+-        title_form = self.text_form(c['title'])
+-        description_form = self.text_form(c.get('subtitle', ''))
++        meta = self.book.m if self.book else c  # the book's own title and subtitle; the former page keeps its own
++        title_form = self.text_form(meta['title'])
++        description_form = self.text_form(meta.get('subtitle', ''))
+         self.math.render()
+         body = self.math.substitute(body)
+         # A family's link in the table is copied as text into its cells' cards (status.js reads its
+@@ -1285,7 +1286,7 @@
+         return (f'<a class="skip" href="#main">{html.escape(L["skip"])}</a>{bar}'
+                 f'<main id="main" tabindex="-1" data-reader{words}>{inner}</main>'
+                 f'<footer class="foot"><div class="foot-inner"><p>{html.escape(self.page["author"])} · '
+-                f'{self.as_of_html(c)}</p>'
++                f'{self.book.date_html()}</p>'
+                 f'<p><a href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a> · '
+                 f'<a href="#front">{icon("up")}<span>{html.escape(L["top"])}</span></a></p></div></footer>'
+                 f'<div class="card" id="card" role="dialog" aria-modal="false" hidden><div class="card-inner"></div></div>')
+--- a/content/quantum-holography-status/page.json
++++ b/content/quantum-holography-status/page.json
+@@ -148,6 +148,7 @@
+     "glossary_note": "Each definition as its chapter gives it, with a link to its place in the chapter.",
+     "defined_in": "Defined in",
+     "results_index": "Index of results",
+-    "results_index_note": "Each result of the book with its status and statement, linked to its place in the chapter."
++    "results_index_note": "Each result of the book with its status and statement, linked to its place in the chapter.",
++    "with_status_js": true
+   }
+ }
+--- a/compiler/quantum-holography-status/monograph.py
++++ b/compiler/quantum-holography-status/monograph.py
+@@ -421,8 +421,19 @@
+                 continue
+             text = f.read_text(encoding='utf-8')
+             text = re.sub(r'<!--.*?-->', '', text, flags=re.S)
+-            defs, kept = {}, []
++            defs, kept, in_display = {}, [], False
+             for line in text.splitlines():
++                t = line.strip()
++                # A line of a displayed formula is mathematics, never a reference definition.
++                if not in_display and (t.startswith('\\[') or t.startswith('$$')):
++                    closer = '\\]' if t.startswith('\\[') else '$$'
++                    in_display = closer not in t[2:]
++                    kept.append(line)
++                    continue
++                if in_display:
++                    in_display = ('\\]' not in t) and not (t.endswith('$$') or t == '$$')
++                    kept.append(line)
++                    continue
+                 d = REF_DEF.match(line)
+                 if d:
+                     defs[d.group(1).strip().lower()] = d.group(2)
+@@ -1210,12 +1221,18 @@
+                 rules.append(f'{on} .mg-bm-box:not({chs}){{opacity:.28}}')
+                 rules.append(f'{on} :is(.mg-bm-edge,.mg-bm-tip){{opacity:.25}}')
+         return '@supports selector(:has(*)){' + ''.join(rules) + '}'
++
++    def date_html(self):
++        """The book's date: the content's day alone (the reference volume's cover keeps the exact evidence boundary)."""
++        from status import long_date
++        day = (self.b.content or {}).get('as_of') or ''
++        return f'<time datetime="{html.escape(day)}">{html.escape(long_date(day))}</time>' if day else ''
+ 
+     def front(self):
+         m, L = self.m, self.L
+         audience = f'<p class="mg-front-audience">{self.b.rich(m["audience"], terms=False)}</p>' if m.get('audience') else ''
+         sub = f'<p class="mg-front-subtitle">{self.b.rich(m["subtitle"], terms=False)}</p>' if m.get('subtitle') else ''
+-        byline = f'<p class="mg-front-byline">{html.escape(self.b.page["author"])} · {self.b.as_of_html(self.b.content)}</p>'
++        byline = f'<p class="mg-front-byline">{html.escape(self.b.page["author"])} · {self.date_html()}</p>'
+         kinds = [('theorem', 'Theorem'), ('conditional', 'Conditional result'), ('conjecture', 'Conjecture'),
+                  ('heuristic', 'Heuristic'), ('counterexample', 'Counterexample'), ('open', 'Open problem')]
+         key = ''.join(f'<li class="mg-mark-{k}">{self.mark(KIND_MARK[k])}<span>{html.escape(L.get("kind_" + k, word))}</span></li>'
+@@ -1646,7 +1663,8 @@
+         # The context key is the author's identifier for the recurring guide; the drawing uses it and the page does not
+         # serve it (it carries a version tag).
+         attrs = ' data-context-guide' if rec.get('context_key') else ''
+-        return (f'<figure class="mg-diagram" id="{html.escape(rid)}" data-figure="{html.escape(rid)}" data-figure-type="'
++        return (f'<figure class="mg-diagram" id="{html.escape(rid)}" data-figure="{html.escape(rid)}" data-qh-figure="{html.escape(rid)}" '
++                f'data-figure-type="'
+                 f'{html.escape(rec.get("type", "authored_diagram"))}" data-figure-chapter="{html.escape(rec.get("chapter_id", ""))}" '
+                 f'data-figure-section="{html.escape(rec.get("section_id", ""))}"{attrs}>'
+                 f'<p class="mg-dg-title" data-block-title>{self.text(rec["title"])}</p>'
+--- a/compiler/quantum-holography-status/monograph.css
++++ b/compiler/quantum-holography-status/monograph.css
+@@ -131,13 +131,16 @@
+ /* The chapter's locator: the same map, quiet, with this chapter, what it draws on and what draws on it. */
+ .mg-locator { margin: 0; }
+ .mg-locator-plot { display: grid; grid-template-rows: 2.4rem auto; }
++/* The locator's own arcs and row of chapters (these rules were shared with the former map and are kept here). */
++.mg-locator .mg-map-arcs { grid-row: 1; grid-column: 1 / -1; width: 100%; height: 100%; overflow: visible; display: block; }
++.mg-arc { fill: none; stroke: var(--ink-4); stroke-opacity: .55; stroke-width: 1.05; vector-effect: non-scaling-stroke; }
+ .mg-ch-aside .mg-dot { font-size: 0; gap: 0; }
+ .mg-ch-aside .mg-dot.is-here { font-size: 12px; gap: 3px; }
+ .mg-locator .mg-arc { stroke-width: 1; }
+ .mg-locator .mg-arc.is-quiet { stroke-opacity: .16; }
+ .mg-locator .mg-arc.is-in { stroke: var(--accent); stroke-opacity: .95; stroke-width: 1.6; }
+ .mg-locator .mg-arc.is-out { stroke: var(--ink-3); stroke-opacity: .7; stroke-dasharray: 1.2 3.2; stroke-linecap: round; }
+-.mg-dots { grid-row: 2; }
++.mg-dots { grid-row: 2; grid-column: 1 / -1; display: grid; list-style: none; margin: 0; padding: 0; }
+ .mg-dot { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 12px; line-height: 1; color: var(--ink-4);
+           font-variant-numeric: lining-nums tabular-nums; }
+ .mg-dot::before { content: ''; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: color-mix(in srgb, var(--ink-4) 55%, transparent); }
+@@ -504,8 +507,7 @@
+                 color: var(--ink-2); cursor: pointer; }
+ .reader-scope[aria-pressed='true'] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+ .reader-scope-count { margin-left: .35rem; color: inherit; opacity: .7; font-variant-numeric: lining-nums tabular-nums; }
+-.reader-search-status, .reader-search-news { margin: .4rem 0; color: var(--ink-3); font-size: var(--text-sm); }
+-.reader-search-news:empty { display: none; }
++.reader-search-status { margin: .4rem 0; color: var(--ink-3); font-size: var(--text-sm); }
+ .reader-group { margin: var(--s2) 0 0; }
+ .reader-group-head { margin: 0 0 .3rem; color: var(--ink-3); font-size: var(--text-sm); font-variant-caps: all-small-caps; letter-spacing: .06em; }
+ .reader-hits { list-style: none; margin: 0; padding: 0; }
+@@ -524,6 +526,9 @@
+   .mg-sec-head .mg-sec-no { position: absolute; right: calc(100% + 1rem); top: .08em; margin: 0; font-size: .82em; }
+   .mg-ch-text .mg-figure, .mg-ch-text .mg-display:has(math[style*='--fw']) { margin-right: calc(-1 * (var(--mg-gap) + var(--mg-aside))); }
+ }
++/* Up to a very wide window the bar gives its room to where the reader is: the previous and next links keep their
++   words and arrows and drop the neighbouring chapters' titles. */
++@media (max-width: 1480px) { .reader-prev .reader-step-title, .reader-next .reader-step-title { display: none; } }
+ /* Below that, the chapter's margin column moves above its text, as one band. */
+ @media (max-width: 1180px) {
+   .mg-ch-frame { grid-template-columns: minmax(0, 1fr); max-width: var(--mg-measure); }
+@@ -605,4 +610,51 @@
+   .mg-locator { break-inside: avoid; }
+   [data-reader-toc][data-drawer] { position: static; box-shadow: none; border: 0; max-height: none; width: auto; }
+   a { color: inherit; text-decoration: none; }
++}
++
++/* Required by the reader script (the interaction lane's monograph-css-required, six rules, verbatim). */
++/* 1. The search's live region repeats the result count for screen readers once typing pauses; the visible count is
++      #reader-search-status. Without this rule the count is shown twice. */
++.reader-search-news {
++  position: absolute !important;
++  width: 1px;
++  height: 1px;
++  margin: 0;
++  overflow: hidden;
++  clip: rect(0 0 0 0);
++  clip-path: inset(50%);
++  white-space: nowrap;
++}
++
++/* 2. Where a search result leads, the words searched for are marked (CSS Highlight API); without a rule they are not. */
++::highlight(reader-find) { background-color: var(--accent-soft); color: inherit; }
++@media (forced-colors: active) { ::highlight(reader-find) { background-color: Mark; color: MarkText; } }
++
++/* 3. "n more in Chapter 5 / in the Atlas": the control that opens the rest of a group of results (the reference parts
++      show three results first). Without a rule it is an unstyled system button. */
++.reader-group-more {
++  margin: .3rem 0 0;
++  padding: .15rem 0;
++  border: 0;
++  background: none;
++  color: var(--accent);
++  font: inherit;
++  font-size: var(--text-sm);
++  text-decoration: underline;
++  text-decoration-thickness: 1px;
++  text-underline-offset: .18em;
++  cursor: pointer;
+ }
++.reader-group-more:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
++
++/* 4. A group head names its place, its title and its number of results; the number is marked as a count. */
++.reader-group-title { font-variant-caps: normal; letter-spacing: 0; font-style: italic; color: var(--ink-2); }
++.reader-group-count { font-variant-numeric: tabular-nums; }
++.reader-group-count::before { content: '· '; }
++
++/* 5. A scope with no result for the query reads as such. */
++.reader-scope[data-none]:not([aria-pressed='true']) { color: var(--ink-4); }
++
++/* 6. Where the browser cannot find text hidden until found, the reader hides the places not shown with plain hidden;
++      no display rule of the page may show them. */
++main[data-reader] > [hidden]:not([hidden='until-found']) { display: none !important; }
