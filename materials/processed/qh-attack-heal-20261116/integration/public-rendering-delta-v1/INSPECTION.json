@@ -1,0 +1,88 @@
+{
+  "created_utc": "2026-11-16T16:38:54.421402+00:00",
+  "frozen_delivery": {
+    "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/FINAL-PINS.json",
+    "sha256": "63cb835d4a6c7d7187b5cc729f7ba3eb16ef65df665ed149cb62ff17b0d0d85f",
+    "bytes": 880581
+  },
+  "public_inputs": [
+    {
+      "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/content.json",
+      "sha256": "6d8d82057edbc732e260972470f299f8c9916216311729ac81c69331b44891bd",
+      "bytes": 522727
+    },
+    {
+      "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/atlas.json",
+      "sha256": "577e3cb68df02b92d78ecadf37506bd06741a5e423a4d2c13519dd88ebb95521",
+      "bytes": 1349984
+    }
+  ],
+  "locations": [
+    {
+      "file": "content.json",
+      "pointer": "/rows/4/statements/14/title",
+      "enclosing_id": "bare-e3-exterior-rigidity",
+      "before": "A bare exterior E3 algebra has no coupling parameter"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/541/title",
+      "enclosing_id": "bare-e3-exterior-rigidity",
+      "before": "A bare exterior E3 algebra has no coupling parameter"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/693/hypotheses/0",
+      "enclosing_id": "centre-central-coefficient-strictification",
+      "before": "Use the actual two-generator resolution \\(P\\), the six-generator T2 source \\(A_2\\), and the exact normalized polynomial scalar cochains. The coefficient span is abelian and commutes with the unary section image."
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/695/title",
+      "enclosing_id": "centre-actual-weight-two-bar",
+      "before": "The actual weight-two bar complex detects the T2 coordinate"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/695/statement",
+      "enclosing_id": "centre-actual-weight-two-bar",
+      "before": "For \\(E=\\mathbb C\\epsilon_1\\oplus\\mathbb C\\epsilon_2\\) in degree one with zero translation and bracket, the weight-two factor of the actual bounded bar cochain colimit is quasi-isomorphic to \\[\\operatorname{Sym}_{\\sigma}\\operatorname{Mat}_2\\mathbb C[\\lambda]\\xrightarrow{\\lambda}\\operatorname{Mat}_2\\mathbb C[\\lambda]\\xrightarrow{\\lambda(1+\\sigma)}\\operatorname{Anti}_{\\sigma}\\operatorname{Mat}_2\\mathbb C[\\lambda],\\qquad \\sigma A(\\lambda)=A(-\\lambda)^{\\mathsf t},\\] in degrees \\(-1,0,1\\). Its cohomology is \\(\\Lambda^2(\\mathbb C^2)^*\\) in degrees zero and one and vanishes otherwise. The actual T2 roof with scalar value \\(f(b)=\\eta\\) maps to the constant alternating matrix \\(B_{12}=\\eta\\), \\(B_{21}=-\\eta\\)."
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/699/statement",
+      "enclosing_id": "centre-binary-logarithmic-comparison-criterion",
+      "before": "Assume the same six-generator tower has the actual finite restricted correlation dual and logarithmic dg ideal, and that the logarithmic quotient has exactly the four named state classes with their stated degrees and normalization. Then the specified augmentation factors through \\(R_m\\), and the ordinary quotient maps give \\(F_{m+2}\\to R_{m+2}\\to F_m\\) over \\(\\Lambda(\\epsilon_1,\\epsilon_2)\\), with composite equal to the actual transition. These factorizations imply that the previously defined \\(\\rho_B\\) is an equivalence, and that the actual scalar T2 family is its homotopy inverse. The intermediate pole-clearing space is only a graded vector-space bound; the two endpoints are the differential subcomplexes."
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/edges/56/scope",
+      "enclosing_id": "current-native-dg-input-to-state-diagram",
+      "before": "The native state-input diagram consumes the separate finite R2 dg-input and right-dual theorem only for its finite-input comparison."
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/comparisons/22/questionId",
+      "enclosing_id": "d-centre-base-change",
+      "before": "decisive-centre-base-change"
+    }
+  ],
+  "question_contract": {
+    "compiler": {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/atlas.py",
+      "sha256": "3c9ba4d290f6971ebb79b3e08141191acecca128bf764bf2f4b17e76cffedcb6",
+      "bytes": 62892
+    },
+    "lines": [
+      335,
+      351
+    ],
+    "question_anchors_use": "q- plus outer question id",
+    "current_field": "decisive-centre-base-change",
+    "existing_inner_statement_id": "decisive-centre-base-change",
+    "existing_outer_question_id": "d-centre-base-change",
+    "outer_pointer": "/decisive/questions/2",
+    "inner_pointer": "/decisive/questions/2/question"
+  },
+  "scope": "Eight reader notation/link leaves only. No theorem, hypothesis meaning, status, claim ID, edge tuple or frozen file changes."
+}

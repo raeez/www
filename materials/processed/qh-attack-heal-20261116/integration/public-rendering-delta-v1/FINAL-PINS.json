@@ -1,0 +1,58 @@
+{
+  "schema": "bounded-public-rendering-final/v1",
+  "finalized_utc": "2026-11-16T16:41:59.116610+00:00",
+  "status": "READY_FOR_PARENT_BOUNDED_RENDERED_READBACK",
+  "base_delivery": {
+    "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/FINAL-PINS.json",
+    "sha256": "63cb835d4a6c7d7187b5cc729f7ba3eb16ef65df665ed149cb62ff17b0d0d85f",
+    "bytes": 880581
+  },
+  "public_inputs": [
+    {
+      "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/content.json",
+      "sha256": "6d8d82057edbc732e260972470f299f8c9916216311729ac81c69331b44891bd",
+      "bytes": 522727
+    },
+    {
+      "path": "/tmp/programme-public-current-delivery-1350-v1-20261116/public/atlas.json",
+      "sha256": "577e3cb68df02b92d78ecadf37506bd06741a5e423a4d2c13519dd88ebb95521",
+      "bytes": 1349984
+    }
+  ],
+  "operations": 8,
+  "artifacts": [
+    {
+      "path": "/tmp/programme-public-postreview-rendering-v1-20261116/INSPECTION.json",
+      "sha256": "38d2e57fe053e65ac27c36ea060f5c2a80015348b007ac664f29b3e4dfebdefa",
+      "bytes": 4839
+    },
+    {
+      "path": "/tmp/programme-public-postreview-rendering-v1-20261116/DELTA.json",
+      "sha256": "4657c78dad870ff6cf46f42038ffa8c43c3cef4188aa97de91950d069cad3d75",
+      "bytes": 8175
+    },
+    {
+      "path": "/tmp/programme-public-postreview-rendering-v1-20261116/INTEGRATION-RULING.md",
+      "sha256": "8bdc42004b38c33c740de43db6939da922cf28f4591c5169e6dd3599afa7f76a",
+      "bytes": 961
+    },
+    {
+      "path": "/tmp/programme-public-postreview-rendering-v1-20261116/VALIDATION.json",
+      "sha256": "23e14f716e767f7f7a3551638e4e95c623943804f038c604484467bfbcc8e96c",
+      "bytes": 1984
+    },
+    {
+      "path": "/tmp/programme-public-postreview-rendering-v1-20261116/build_delta.py",
+      "sha256": "748fc7ac5e039930a817037a9df612a0a2dc6ac160add80cb1e3d2cd24659634",
+      "bytes": 8705
+    }
+  ],
+  "authority": {
+    "source_content_review_reopened": false,
+    "frozen_delivery_edited": false,
+    "Opus_files_edited": false,
+    "new_workers": false,
+    "publication_or_adoption": false
+  },
+  "self_hash_not_included": true
+}

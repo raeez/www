@@ -1,0 +1,57 @@
+{
+  "schema": "bounded-public-rendering-validation/v1",
+  "created_utc": "2026-11-16T16:41:59.116345+00:00",
+  "status": "PASS_EXACT_GUARDED_DELTA",
+  "guarded_leaves": 8,
+  "display_normalizations": 7,
+  "question_link_references": 1,
+  "exact_base_file_pins_verified": true,
+  "all_before_values_match": true,
+  "all_enclosing_id_guards_match": true,
+  "complete_difference_set": {
+    "content.json": [
+      "/rows/4/statements/14/title"
+    ],
+    "atlas.json": [
+      "/claims/541/title",
+      "/claims/693/hypotheses/0",
+      "/claims/695/title",
+      "/claims/695/statement",
+      "/claims/699/statement",
+      "/edges/56/scope",
+      "/comparisons/22/questionId"
+    ]
+  },
+  "all_other_json_values_preserved": true,
+  "all_other_affected_string_bytes_preserved": true,
+  "claim_statuses_and_all_stable_ids_preserved": true,
+  "edge_endpoint_types_and_memberships_preserved": true,
+  "reading_paths_preserved": true,
+  "outer_and_inner_question_records_preserved": true,
+  "existing_target_anchor": "q-d-centre-base-change",
+  "question_contract": {
+    "compiler": {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/atlas.py",
+      "sha256": "3c9ba4d290f6971ebb79b3e08141191acecca128bf764bf2f4b17e76cffedcb6",
+      "bytes": 62892
+    },
+    "lines": [
+      335,
+      351
+    ],
+    "question_anchors_use": "q- plus outer question id",
+    "current_field": "decisive-centre-base-change",
+    "existing_inner_statement_id": "decisive-centre-base-change",
+    "existing_outer_question_id": "d-centre-base-change",
+    "outer_pointer": "/decisive/questions/2",
+    "inner_pointer": "/decisive/questions/2/question"
+  },
+  "question_contract_read_lines": [
+    335,
+    351
+  ],
+  "frozen_delivery_and_compiler_unchanged": true,
+  "source_proofs_or_completed_reviews_reopened": false,
+  "rendered_readback": "Parent-owned and not performed in this author packet.",
+  "mutated_paths_outside_owned_packet": []
+}
