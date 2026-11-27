@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "draft_mode": true,
+  "errors": [],
+  "grand_conflicts": 0,
+  "pending_owner_seals": [
+    {
+      "lane": "foundations/review-correction-v1",
+      "missing_manifest": "/private/tmp/programme-public-current-successor-20261116/foundations/review-correction-v1/FINAL-PINS.json"
+    },
+    {
+      "lane": "grand-synthesis",
+      "missing_manifest": "/tmp/programme-grand-synthesis-20261116T1240Z/public-projection/FINAL-PINS.json"
+    }
+  ],
+  "counts": {
+    "domains": 9,
+    "claims": 714,
+    "comparisons": 63,
+    "edges": 83,
+    "readingPaths": 22
+  },
+  "authored_changes": 368,
+  "appended_objects": 264,
+  "generated_legacy_mirrors": 8,
+  "preserved_original_content_ids": 260,
+  "explicit_legacy_ids_added": 98,
+  "all_current_content_ids": 372,
+  "principal": 9,
+  "families": 20,
+  "decisive_questions": 22,
+  "math_expressions": 9052,
+  "math_errors": 0,
+  "output_files": [
+    {
+      "path": "/private/tmp/programme-public-current-successor-20261116/composed/atlas.json",
+      "sha256": "9acebb93b2fdd2f4ac070bf87024fc17e2e6fcb5f903e7cfe73b48d51be18682",
+      "bytes": 1319863
+    },
+    {
+      "path": "/private/tmp/programme-public-current-successor-20261116/composed/content.json",
+      "sha256": "ec6864c4e792cc8a9fd511c4be4f87837e39c73cda1006275bcc0df7480991fd",
+      "bytes": 521209
+    },
+    {
+      "path": "/private/tmp/programme-public-current-successor-20261116/composed/essay.md",
+      "sha256": "798cca686a8a5ccb7c1e3451fdccddcb7cdb94c87705296f81e41e87bc149ae4",
+      "bytes": 26601
+    }
+  ]
+}
