@@ -1,0 +1,57 @@
+{
+  "schema": "qh-reader-maintained-build-recipe/1",
+  "entrypoint": "rebuild.py",
+  "command": [
+    "python3",
+    "rebuild.py",
+    "<new-clean-scratch-path>",
+    "--python",
+    "<python-with-fonttools-4.60.2>",
+    "--node-modules",
+    "<node_modules-with-jsdom-28.1.0>",
+    "--report",
+    "<new-verification-report.json>"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "action": "stage 53 pinned editable files and two pinned repository dependency symlinks",
+      "inputs": [
+        "CUSTODY.json",
+        "ASSETS.json",
+        "source-tree/"
+      ]
+    },
+    {
+      "step": 2,
+      "action": "build and audit combined HTML using the exact saved compiler and pinned fonts/runtime"
+    },
+    {
+      "step": 3,
+      "action": "split with the pinned existing owner tool and apply the pinned canonical/OG metadata tool"
+    },
+    {
+      "step": 4,
+      "action": "apply consumer/derive.py with the exact final consumer/reader.js and consumer/requirements.json; require all five heading and eight link guards"
+    },
+    {
+      "step": 5,
+      "action": "regenerate reader-index.js with the unchanged pinned owner exporter"
+    },
+    {
+      "step": 6,
+      "action": "run private-path/local-link scan and consumer/check.cjs; require live local and companion heading search plus all eight link destinations"
+    },
+    {
+      "step": 7,
+      "action": "compare all four files against EXPECTED-PUBLIC.json and write the verification result"
+    }
+  ],
+  "runtime_specification": "RUNTIME.json",
+  "python_dependency_specification": "requirements-build.txt",
+  "node_dependency_specification": "package-build.json",
+  "dependency_or_vendor_installation_performed": false,
+  "automatic_deployment": false,
+  "native_visual_qa": "PENDING",
+  "baseline_mutation_policy": "Maintain later source revisions in a new version; the exact v14 source guards and published hash receipt remain the baseline."
+}

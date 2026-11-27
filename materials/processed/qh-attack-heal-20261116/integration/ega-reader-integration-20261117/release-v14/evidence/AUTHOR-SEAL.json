@@ -1,0 +1,311 @@
+{
+  "schema": "qh-post-reset-reader-author-seal/v1",
+  "frozen_utc": "2026-11-17T18:50:00.454163+00:00",
+  "status": "AUTHOR_FROZEN_FOR_INDEPENDENT_READER_FIDELITY",
+  "source_replacements": {
+    "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SOURCE-REPLACEMENTS.json",
+    "sha256": "9edc317c3fd33c6a983a7575bca5e7bd58452466c712f1dcf2fbd2ee006ff5ce",
+    "bytes": 198087
+  },
+  "source_bindings": {
+    "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SOURCE-BINDINGS.json",
+    "sha256": "58eec5ef2da5fa502d7d43d2a11a38d20f0cabe67ffdd191636afeb0f60abbc3",
+    "bytes": 149125
+  },
+  "scientific_context": {
+    "scientific_delta": {
+      "path": "/tmp/frontier-post-reset-review-20261117/scientific-delta/integration/DELTA.json",
+      "sha256": "196e443eb62e8d6b33fe1227cd137411eed020f2b08c58e451b0f8c218334fc6",
+      "bytes": 379337,
+      "reader_packet_copy": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/evidence/scientific_delta.json"
+    },
+    "combined_scientific_receipt": {
+      "path": "/tmp/frontier-post-reset-review-20261117/scientific-delta/coordination/COMBINED-RECEIPT.json",
+      "sha256": "40b36347a0b06fe1dfd09938dd5b96957174fb571c7dfd8b9437b99ae7a97ffe",
+      "bytes": 8732,
+      "reader_packet_copy": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/evidence/combined_scientific_receipt.json"
+    },
+    "scientific_author_seal": {
+      "path": "/tmp/frontier-post-reset-review-20261117/scientific-delta/coordination/AUTHOR-SEAL.json",
+      "sha256": "174587be9fe641424264d9c24591c09044ad643a69781f9ce12b560f31ebcc2e",
+      "bytes": 7493,
+      "reader_packet_copy": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/evidence/scientific_author_seal.json"
+    },
+    "durable_locator_map": {
+      "path": "/tmp/frontier-post-reset-review-20261117/scientific-delta/integration/LOCATOR-SUBSTITUTIONS.json",
+      "sha256": "4e0ecda89bf7ab167f10c2f242411517fe9572ab1e252e2ee8195e2914179c13",
+      "bytes": 33678,
+      "reader_packet_copy": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/evidence/durable_locator_map.json"
+    }
+  },
+  "repair_provenance": {
+    "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/REPAIR-PROVENANCE.json",
+    "sha256": "b4215351c3aa14d561d938d19dd9641bc5c3a857674b4a7648e622145d2988d9",
+    "bytes": 2917
+  },
+  "repair_changes": {
+    "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/REPAIR-CHANGES.json",
+    "sha256": "7fe0de90a7a2d32a205160bbfe9d846646e0cd040846db2b2bafb6623fffd6e9",
+    "bytes": 128829
+  },
+  "time_scopes": {
+    "accepted_baseline_cutoff_utc": "2026-11-17T12:29:20Z",
+    "selected_source_capture_utc": "2026-11-17T16:53:08Z",
+    "native_author_frozen_utc": "2026-11-17T17:19:54.500498+00:00",
+    "native_independent_check_utc": "2026-11-17T17:24:02.179873+00:00",
+    "horizontal_author_frozen_utc": "2026-11-17T17:31:26.677076+00:00",
+    "horizontal_independent_check_utc": "2026-11-17T17:33:34.991988+00:00",
+    "aggregate_scoped_check_closed_utc": "2026-11-17T18:02:36.902800+00:00"
+  },
+  "operation_count": 53,
+  "source_targets": 5,
+  "new_atlas_claim_cards": 17,
+  "new_atlas_edges": 5,
+  "new_payload_string_leaves": 367,
+  "formula_occurrences": 776,
+  "files": [
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SOURCE-REPLACEMENTS.json",
+      "sha256": "9edc317c3fd33c6a983a7575bca5e7bd58452466c712f1dcf2fbd2ee006ff5ce",
+      "bytes": 198087
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SOURCE-BINDINGS.json",
+      "sha256": "58eec5ef2da5fa502d7d43d2a11a38d20f0cabe67ffdd191636afeb0f60abbc3",
+      "bytes": 149125
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/INTEGRATION-MAP.json",
+      "sha256": "c0564ff1be3efa825f168f0026a88598cee7a3a56e554400299197ebcb3aaaf7",
+      "bytes": 28612
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/CHANGED-VIEWS.json",
+      "sha256": "aef7b74d9d6be18d0b7a2ec9333182e3ce500ff7c605f9a16484cb0704d7b484",
+      "bytes": 23849
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/OUTPUT-GUARDS.json",
+      "sha256": "bffb6712ed7b7b7c242b1b55b3a0e24169f34be85b431aee58018d7e29198d55",
+      "bytes": 4217
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SOURCE.patch",
+      "sha256": "28011a1fe0f9fdf630a46a54f829b26574b6872a48b80d2aeed9192e81455369",
+      "bytes": 113518
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/REPLAY-VALIDATION.json",
+      "sha256": "05a328b6e9fa02b3cd25bcc8b22380de9e18db8ce8deffdbab67b18dfa658315",
+      "bytes": 95742
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/MATH-PARSE.json",
+      "sha256": "a10dc1ea068a0b60de71fc8d6f940924b4bc252f8914c66dc72730ecd9bcfe2d",
+      "bytes": 503
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/PRESERVATION.json",
+      "sha256": "26d6d692e90e4896e215332e2f7cb65875e5f9c706eec4b143ebb55141ad5322",
+      "bytes": 1115
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SOURCE-VALIDATION.json",
+      "sha256": "1f59874f8c2cf31a61098ef844254954d7a0cfb834df0ddae9b368b0c6ba30fb",
+      "bytes": 319934
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/HANDOFF.md",
+      "sha256": "dd2b36f311420751ffdf161ccb87b4f866fe5ad70b847ff274bcf0f0458606ab",
+      "bytes": 4190
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/BASELINES.json",
+      "sha256": "b4d170bd1485a4046f9295cb84eeaca6c530c01957588a9567d6aaa9a766c52c",
+      "bytes": 4291
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/author_projection.py",
+      "sha256": "e10d3b2586695dc4653630739cd5e398bec11a1a81e19adb101f9bc071b74cea",
+      "bytes": 25016
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/native_author.py",
+      "sha256": "f04cbf735b192a6c11d7a1af800f1d7f3ed1fab563e17d1b13c9804cea4f9a55",
+      "bytes": 13795
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/horizontal_author.py",
+      "sha256": "54ecfad2bc383ed066ea2f352bda03bcc9c03ea603b57a41a9367e9c71d4bbf7",
+      "bytes": 22479
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/replay.py",
+      "sha256": "fcee928525198240905f657492653b5f4ca793d72f1e6c4cb887d600831b199d",
+      "bytes": 6046
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/check_literals.py",
+      "sha256": "2b802883346d9fe8501df484bc5909b60a829308a3a3ce9d307e59ed7f0c9690",
+      "bytes": 5010
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/check_source.py",
+      "sha256": "8e8b60d302b0c567d313ca16d16289373aad7b03c404ef2791e1b24879900169",
+      "bytes": 10374
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/finalize_packet.py",
+      "sha256": "2c46273b0ad21d18f75fd1c47eb0fe012ecbe50aa0ac64af0d078fe76cdce85f",
+      "bytes": 22398
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/REPAIR-PROVENANCE.json",
+      "sha256": "b4215351c3aa14d561d938d19dd9641bc5c3a857674b4a7648e622145d2988d9",
+      "bytes": 2917
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/REPAIR-CHANGES.json",
+      "sha256": "7fe0de90a7a2d32a205160bbfe9d846646e0cd040846db2b2bafb6623fffd6e9",
+      "bytes": 128829
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/REPAIR.patch",
+      "sha256": "59d4bd2f1223b2f9ddfe065830af417107fb56216bc18dfb5c677e5407847019",
+      "bytes": 35139
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/REPAIR-NOTES.md",
+      "sha256": "16d6442059d43b7f17130d211b1a3a23b11e417182dcce513b6cf17d78d287f8",
+      "bytes": 1539
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/ORIGINAL-INVENTORY.json",
+      "sha256": "36d23599dff287633ad24dd34ad0defb6df42d1606ab455b2f669b2406e4dce4",
+      "bytes": 11161
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/make_repair_records.py",
+      "sha256": "b8b4605c5153d7398c29f9e1d7ed7b845f0dabfba50bdd808b392f2e29020cb7",
+      "bytes": 9542
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/fragments/ch08-common-domains.md",
+      "sha256": "d423f93a40b3b29adcfc21cf91bec662d325aacbf6d10593daa5d63a618d4cac",
+      "bytes": 10578
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/fragments/ch17-retained.md",
+      "sha256": "004db2f500d3403bb7e7de7f505596e578eab313fa058d158cc9db3e5231e012",
+      "bytes": 5024
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/fragments/ch17-trace-extension.md",
+      "sha256": "23bc2ac2cf5a65f24e19b313116c6a54df04d580225ab46991e28c0e8898293f",
+      "bytes": 1822
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/fragments/ch18-current-delta.md",
+      "sha256": "1dd7735feb7498048ae9e2864937650c65963e7038352d4483176c10f5918060",
+      "bytes": 2924
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/fragments/ch18-native-delta.md",
+      "sha256": "a4ddd040d7349f974c776268942f9548abc453fd327e4dd01a89810d67263da5",
+      "bytes": 1270
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/fragments/reference-current-delta.md",
+      "sha256": "563d73436ed3f5eccf5c931b28551addca18537d5174522492a4778f95b62e0a",
+      "bytes": 7285
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/fragments/reference-native-delta.md",
+      "sha256": "5598dac4ba7eac745f834c29fe1fac53fc14ad7a0d9b570d7d5fd5d0b1b0dda4",
+      "bytes": 6709
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/evidence/combined_scientific_receipt.json",
+      "sha256": "40b36347a0b06fe1dfd09938dd5b96957174fb571c7dfd8b9437b99ae7a97ffe",
+      "bytes": 8732
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/evidence/durable_locator_map.json",
+      "sha256": "4e0ecda89bf7ab167f10c2f242411517fe9572ab1e252e2ee8195e2914179c13",
+      "bytes": 33678
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/evidence/scientific_author_seal.json",
+      "sha256": "174587be9fe641424264d9c24591c09044ad643a69781f9ce12b560f31ebcc2e",
+      "bytes": 7493
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/evidence/scientific_delta.json",
+      "sha256": "196e443eb62e8d6b33fe1227cd137411eed020f2b08c58e451b0f8c218334fc6",
+      "bytes": 379337
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/review-inputs/HORIZONTAL-CHECK-INITIAL.md",
+      "sha256": "976023ec4041310c32145783efd5ff0a4f4bb98857fe8310e9d1b164f6eb6b1f",
+      "bytes": 5579
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/review-inputs/HORIZONTAL-INITIAL-RECEIPT.json",
+      "sha256": "0453005af957a766eeb8ca8b5957c31eafa864032da917ad2ef8ee7077d07651",
+      "bytes": 4991
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/review-inputs/NATIVE-CHECK-INITIAL.md",
+      "sha256": "a8001d2afc1879969569461a3a84d07970607d72a2c869b42b076428f354a2e1",
+      "bytes": 6126
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/review-inputs/NATIVE-FINDINGS-INITIAL.json",
+      "sha256": "42c29a2a0100e25f8e76663ec98cca8fa5dbd1390e9be9a2b50699fb23aa9058",
+      "bytes": 1959
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/coordination/review-inputs/NATIVE-INITIAL-RECEIPT.json",
+      "sha256": "4c183db70945bf20e58a2e512a0c1017e54ed618fb0e3db1a8535964b0558ff4",
+      "bytes": 2169
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/proposed/tracker/atlas.json",
+      "sha256": "7da3863ed208e71b6e641ca3d10756bc214cd2ab36f8c5b4f8f771cdae785ef3",
+      "bytes": 1846706
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/proposed/monograph/chapters/17-holographic-reconstruction.md",
+      "sha256": "9248114c0c48c60874cdd14f6c70dd4f62cad57d0a7dc5732c6263b842812fa2",
+      "bytes": 29287
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/proposed/monograph/chapters/18-open-problems.md",
+      "sha256": "d864b0c4c8bf954e04dbafef82b6189ee3f2a656a786f6139e7820b1a62b9384",
+      "bytes": 25274
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/proposed/tracker/supplements/frontier-comparisons-20261117.md",
+      "sha256": "267847f0362d218cbd079cf1a45fee33482c21a772fd08898dc206fc2c1a99a3",
+      "bytes": 34382
+    },
+    {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/proposed/monograph/chapters/08-completions.md",
+      "sha256": "d64547fbb4661b808b7f129787d1cedc7eceedac373efeaf3f0e3794c67e346a",
+      "bytes": 35967
+    }
+  ],
+  "checks": {
+    "guarded_replay": "PASS",
+    "math_parse": "PASS",
+    "source_validation": "PASS",
+    "preservation": "PASS"
+  },
+  "independent_reader_fidelity": "PENDING",
+  "build": "NOT_PERFORMED",
+  "rendered_QA": "PENDING_ROOT_AND_OPUS",
+  "formal_adoption": false,
+  "canonical_or_live_mutations": false,
+  "source_owner_mutations": false,
+  "publication": "NOT_PERFORMED"
+}

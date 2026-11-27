@@ -1,0 +1,453 @@
+{
+  "schema": "qh-reader-build-consumer-decision/v1",
+  "created_utc": "2026-11-17T19:13:12.908994+00:00",
+  "status": "CONSUMER_REPAIR_REQUIRED",
+  "scope": "Bounded search and same-site link consumption of the closed 53-operation reader packet; no mathematical or first-principles re-review.",
+  "author_packet": {
+    "SEAL.json": {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SEAL.json",
+      "sha256": "fccc11975723274c0db00b7610b879e0e51befbe47bcc0689b4897f03ee4ae28",
+      "bytes": 13432
+    },
+    "SOURCE-REPLACEMENTS.json": {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SOURCE-REPLACEMENTS.json",
+      "sha256": "9edc317c3fd33c6a983a7575bca5e7bd58452466c712f1dcf2fbd2ee006ff5ce",
+      "bytes": 198087
+    },
+    "SOURCE-BINDINGS.json": {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SOURCE-BINDINGS.json",
+      "sha256": "58eec5ef2da5fa502d7d43d2a11a38d20f0cabe67ffdd191636afeb0f60abbc3",
+      "bytes": 149125
+    },
+    "CHANGED-VIEWS.json": {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/CHANGED-VIEWS.json",
+      "sha256": "aef7b74d9d6be18d0b7a2ec9333182e3ce500ff7c605f9a16484cb0704d7b484",
+      "bytes": 23849
+    },
+    "OUTPUT-GUARDS.json": {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/OUTPUT-GUARDS.json",
+      "sha256": "bffb6712ed7b7b7c242b1b55b3a0e24169f34be85b431aee58018d7e29198d55",
+      "bytes": 4217
+    },
+    "INTEGRATION-MAP.json": {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/INTEGRATION-MAP.json",
+      "sha256": "c0564ff1be3efa825f168f0026a88598cee7a3a56e554400299197ebcb3aaaf7",
+      "bytes": 28612
+    }
+  },
+  "frozen_candidate_manifest": {
+    "path": "/tmp/qh-v14-sol-integration-20261117/MANIFEST-v14.json",
+    "sha256": "1b0957fe2c6e7aa3b162a943683e38ce56bd12fd55f7540c80aae3a06fb9e713",
+    "bytes": 10762
+  },
+  "public_inputs": {
+    "index.html": {
+      "path": "/tmp/qh-v14-sol-integration-20261117/public/index.html",
+      "sha256": "6f4663b2ae9c438d52087e2e6a1550b9f7c3c36131767719c7a3abb77d39d9f4",
+      "bytes": 3377282
+    },
+    "reference.html": {
+      "path": "/tmp/qh-v14-sol-integration-20261117/public/reference.html",
+      "sha256": "4a228143073f6f69cefbee98ecbccb84b0b48ec7fd34c24d1301e778921a01b5",
+      "bytes": 3943515
+    },
+    "atlas.html": {
+      "path": "/tmp/qh-v14-sol-integration-20261117/public/atlas.html",
+      "sha256": "de2007f4bf753d1ff8ce2b2ed3645544f6df96ec55dc4f47befad3035b4f0f52",
+      "bytes": 10233542
+    },
+    "reader-index.js": {
+      "path": "/tmp/qh-v14-sol-integration-20261117/public/reader-index.js",
+      "sha256": "847e408a9830c02e79f9dc93adc970e2378452e66e6cd83ca2f9a5eda52c23b5",
+      "bytes": 4983276
+    }
+  },
+  "user_acceptance_source": {
+    "path": "/tmp/qh-post-reset-reader-20261117/build-consumer-decision/USER-ACCEPTANCE-SOURCES.json",
+    "sha256": "3dfe0657c73b81a2731809dbb1c2cbf602279e2cba41e4f30404d9a00d666e59",
+    "bytes": 3877
+  },
+  "user_acceptance_interpretation": {
+    "controlling_ends": [
+      {
+        "directive": 160,
+        "utc": "2026-11-16T09:25:47.709Z",
+        "message_id": "msg_01a1e3ad-4c3d-78b1-a362-16426b439431",
+        "application": "The requested usability, interactivity and mapping require functioning routes to the exposed material."
+      },
+      {
+        "directives": [
+          194,
+          195,
+          196,
+          197
+        ],
+        "utc_range": [
+          "2026-11-16T18:30:33.342Z",
+          "2026-11-16T18:31:26.737Z"
+        ],
+        "application": "Readable, intuitively sequenced exposition with retained atlas functionality needs discoverable named subsections and working overview-to-detail references."
+      },
+      {
+        "directive": 217,
+        "utc": "2026-11-16T20:49:53.235Z",
+        "message_id": "msg_01a1e61f-9a53-7412-86a0-d3d059e6f03f",
+        "application": "Preserve the existing Opus visual design; this decision specifies behavior, not a new interface or visual architecture."
+      }
+    ],
+    "not_literal_user_requirements": "The user did not specify these HTML identifiers. The five IDs and eight hrefs are exact authored integration details implementing the requested reading and navigation behavior.",
+    "source_attribution": "Primary-message excerpts supplied by root, checked against the named dated directive extraction; no centcom-derived authority is used."
+  },
+  "decisions": {
+    "heading_anchors": "These five anchors are both destinations and search destinations. OUTPUT-GUARDS lists them separately in expected_output_anchors and new_chapter_search_anchors. Paragraph coverage satisfies body discoverability but does not satisfy direct heading-title indexing; the five existing failures remain genuine.",
+    "same_site_references": "The eight Markdown references are authored navigational links to extant public bundle destinations. Preserving their labels and formulas establishes visible-text fidelity, not click navigation. The inherited working-file fallback does not discharge this consumer requirement.",
+    "scientific_fidelity": "The exact closed source-fidelity PASS is retained. No science, title, label, formula, hypothesis, status or source operation needs alteration.",
+    "no_waiver_or_seal_edit": "No frozen field is reinterpreted as a pass, deleted or modified. This receipt leaves the failed consumer checks open until a separately authorized repair satisfies them."
+  },
+  "heading_search_requirements": [
+    {
+      "source_operation_id": "DELTA-CH17-RETAINED-FIRST-ROOT",
+      "source_logical_path": "chapters/17-holographic-reconstruction.md",
+      "source_operation_new_value_sha256": "1258974142038372dc76705277aea043fdbb3ce8fc30ad77db7da2640730ea19",
+      "source_heading_line": "### Retained kernels and the first rooted comparison {#ch17-retained-first-root}",
+      "authored_title": "Retained kernels and the first rooted comparison",
+      "destination": "index.html#ch17-retained-first-root",
+      "built_heading_tag": "h4",
+      "destination_exists_once": true,
+      "current_direct_search_unit_exists": false,
+      "current_indexed_paragraph_ids": [
+        "products-through-an-interface-p18",
+        "products-through-an-interface-p19",
+        "products-through-an-interface-p20",
+        "products-through-an-interface-p21",
+        "products-through-an-interface-p22",
+        "products-through-an-interface-p23",
+        "products-through-an-interface-p24",
+        "products-through-an-interface-p25",
+        "products-through-an-interface-p26",
+        "products-through-an-interface-p27",
+        "products-through-an-interface-p28",
+        "products-through-an-interface-p29",
+        "products-through-an-interface-p30",
+        "products-through-an-interface-p31",
+        "products-through-an-interface-p32",
+        "products-through-an-interface-p33",
+        "products-through-an-interface-p34"
+      ],
+      "required_search_unit": {
+        "page": "index.html",
+        "id": "ch17-retained-first-root",
+        "title": "Retained kernels and the first rooted comparison"
+      },
+      "required_behavior": "The existing search must offer this authored heading title with this exact destination, both on the book page and through the companion-page index. Preserve the current paragraph units."
+    },
+    {
+      "source_operation_id": "DELTA-CH08-COMMON-DOMAINS",
+      "source_logical_path": "chapters/08-completions.md",
+      "source_operation_new_value_sha256": "0bde736da2617427822dfb5f9f0a3a1b3f108c89c3ff9405707810635a3248db",
+      "source_heading_line": "### A common domain for the factorized intermediate object {#ch08-factorized-common-domain}",
+      "authored_title": "A common domain for the factorized intermediate object",
+      "destination": "index.html#ch08-factorized-common-domain",
+      "built_heading_tag": "h4",
+      "destination_exists_once": true,
+      "current_direct_search_unit_exists": false,
+      "current_indexed_paragraph_ids": [
+        "ch08-common-radial-sewing-and-a-failed-substitution-p25",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p26",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p27",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p28",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p29",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p30",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p31",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p32",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p33",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p34",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p35",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p36",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p37",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p38"
+      ],
+      "required_search_unit": {
+        "page": "index.html",
+        "id": "ch08-factorized-common-domain",
+        "title": "A common domain for the factorized intermediate object"
+      },
+      "required_behavior": "The existing search must offer this authored heading title with this exact destination, both on the book page and through the companion-page index. Preserve the current paragraph units."
+    },
+    {
+      "source_operation_id": "DELTA-CH08-COMMON-DOMAINS",
+      "source_logical_path": "chapters/08-completions.md",
+      "source_operation_new_value_sha256": "0bde736da2617427822dfb5f9f0a3a1b3f108c89c3ff9405707810635a3248db",
+      "source_heading_line": "### Tests over a coefficient ring {#ch08-common-ring-tests}",
+      "authored_title": "Tests over a coefficient ring",
+      "destination": "index.html#ch08-common-ring-tests",
+      "built_heading_tag": "h4",
+      "destination_exists_once": true,
+      "current_direct_search_unit_exists": false,
+      "current_indexed_paragraph_ids": [
+        "ch08-common-radial-sewing-and-a-failed-substitution-p39",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p40",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p41",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p42"
+      ],
+      "required_search_unit": {
+        "page": "index.html",
+        "id": "ch08-common-ring-tests",
+        "title": "Tests over a coefficient ring"
+      },
+      "required_behavior": "The existing search must offer this authored heading title with this exact destination, both on the book page and through the companion-page index. Preserve the current paragraph units."
+    },
+    {
+      "source_operation_id": "DELTA-CH08-COMMON-DOMAINS",
+      "source_logical_path": "chapters/08-completions.md",
+      "source_operation_new_value_sha256": "0bde736da2617427822dfb5f9f0a3a1b3f108c89c3ff9405707810635a3248db",
+      "source_heading_line": "### Two independently completed clusters {#ch08-incomparable-clusters}",
+      "authored_title": "Two independently completed clusters",
+      "destination": "index.html#ch08-incomparable-clusters",
+      "built_heading_tag": "h4",
+      "destination_exists_once": true,
+      "current_direct_search_unit_exists": false,
+      "current_indexed_paragraph_ids": [
+        "ch08-common-radial-sewing-and-a-failed-substitution-p43",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p44",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p45",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p46",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p47",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p48",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p49",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p50",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p51",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p52",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p53",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p54",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p55",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p56",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p57",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p58"
+      ],
+      "required_search_unit": {
+        "page": "index.html",
+        "id": "ch08-incomparable-clusters",
+        "title": "Two independently completed clusters"
+      },
+      "required_behavior": "The existing search must offer this authored heading title with this exact destination, both on the book page and through the companion-page index. Preserve the current paragraph units."
+    },
+    {
+      "source_operation_id": "DELTA-CH08-COMMON-DOMAINS",
+      "source_logical_path": "chapters/08-completions.md",
+      "source_operation_new_value_sha256": "0bde736da2617427822dfb5f9f0a3a1b3f108c89c3ff9405707810635a3248db",
+      "source_heading_line": "### Occupied deletion and parameter variation {#ch08-deletion-and-spectral-connection}",
+      "authored_title": "Occupied deletion and parameter variation",
+      "destination": "index.html#ch08-deletion-and-spectral-connection",
+      "built_heading_tag": "h4",
+      "destination_exists_once": true,
+      "current_direct_search_unit_exists": false,
+      "current_indexed_paragraph_ids": [
+        "ch08-common-radial-sewing-and-a-failed-substitution-p59",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p60",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p61",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p62",
+        "ch08-common-radial-sewing-and-a-failed-substitution-p63"
+      ],
+      "required_search_unit": {
+        "page": "index.html",
+        "id": "ch08-deletion-and-spectral-connection",
+        "title": "Occupied deletion and parameter variation"
+      },
+      "required_behavior": "The existing search must offer this authored heading title with this exact destination, both on the book page and through the companion-page index. Preserve the current paragraph units."
+    }
+  ],
+  "supplement_link_requirements": [
+    {
+      "source_operation_id": "DELTA-REFERENCE-NATIVE-RETAINED",
+      "source_logical_path": "supplements/frontier-comparisons-20261117.md",
+      "source_operation_new_value_sha256": "0b5949a15afd98309ad298d585a57d086039593da4ae6a0d949d6071132770e5",
+      "source_markdown": "[The retained construction and its first-root comparison](index.html#ch17-retained-first-root)",
+      "origin_page": "reference.html",
+      "authored_label": "The retained construction and its first-root comparison",
+      "authored_href": "index.html#ch17-retained-first-root",
+      "destination_exists_once": true,
+      "current_visible_label_preserved": true,
+      "current_clickable_label_with_exact_href": false,
+      "required_behavior": "Render the existing label as an actual same-bundle hyperlink to the exact authored href, preserving its visible words and formulas."
+    },
+    {
+      "source_operation_id": "DELTA-REFERENCE-NATIVE-RETAINED",
+      "source_logical_path": "supplements/frontier-comparisons-20261117.md",
+      "source_operation_new_value_sha256": "0b5949a15afd98309ad298d585a57d086039593da4ae6a0d949d6071132770e5",
+      "source_markdown": "[The truncation obstruction](atlas.html#atlas-c-native-r3-ghost-truncation-homotopy)",
+      "origin_page": "reference.html",
+      "authored_label": "The truncation obstruction",
+      "authored_href": "atlas.html#atlas-c-native-r3-ghost-truncation-homotopy",
+      "destination_exists_once": true,
+      "current_visible_label_preserved": true,
+      "current_clickable_label_with_exact_href": false,
+      "required_behavior": "Render the existing label as an actual same-bundle hyperlink to the exact authored href, preserving its visible words and formulas."
+    },
+    {
+      "source_operation_id": "DELTA-REFERENCE-FULL-SOURCE-AND-DELETION",
+      "source_logical_path": "supplements/frontier-comparisons-20261117.md",
+      "source_operation_new_value_sha256": "2ee8cdfb50efe2c1b08a59c680539c513b3b577f504f4ce9471cf65b4c1adaa5",
+      "source_markdown": "[Taylor completion and its limits](atlas.html#atlas-c-horizontal-cluster-taylor-completion)",
+      "origin_page": "reference.html",
+      "authored_label": "Taylor completion and its limits",
+      "authored_href": "atlas.html#atlas-c-horizontal-cluster-taylor-completion",
+      "destination_exists_once": true,
+      "current_visible_label_preserved": true,
+      "current_clickable_label_with_exact_href": false,
+      "required_behavior": "Render the existing label as an actual same-bundle hyperlink to the exact authored href, preserving its visible words and formulas."
+    },
+    {
+      "source_operation_id": "DELTA-REFERENCE-FULL-SOURCE-AND-DELETION",
+      "source_logical_path": "supplements/frontier-comparisons-20261117.md",
+      "source_operation_new_value_sha256": "2ee8cdfb50efe2c1b08a59c680539c513b3b577f504f4ce9471cf65b4c1adaa5",
+      "source_markdown": "[Occupied deletion](atlas.html#atlas-c-horizontal-occupied-deletion-all-slots)",
+      "origin_page": "reference.html",
+      "authored_label": "Occupied deletion",
+      "authored_href": "atlas.html#atlas-c-horizontal-occupied-deletion-all-slots",
+      "destination_exists_once": true,
+      "current_visible_label_preserved": true,
+      "current_clickable_label_with_exact_href": false,
+      "required_behavior": "Render the existing label as an actual same-bundle hyperlink to the exact authored href, preserving its visible words and formulas."
+    },
+    {
+      "source_operation_id": "DELTA-REFERENCE-COMMON-DOMAINS",
+      "source_logical_path": "supplements/frontier-comparisons-20261117.md",
+      "source_operation_new_value_sha256": "51f4ec02d2588b8dbd6a67c00f92c9e529b90a3f54ac9a7568188126edbcf0d7",
+      "source_markdown": "[The common-domain construction](index.html#ch08-factorized-common-domain)",
+      "origin_page": "reference.html",
+      "authored_label": "The common-domain construction",
+      "authored_href": "index.html#ch08-factorized-common-domain",
+      "destination_exists_once": true,
+      "current_visible_label_preserved": true,
+      "current_clickable_label_with_exact_href": false,
+      "required_behavior": "Render the existing label as an actual same-bundle hyperlink to the exact authored href, preserving its visible words and formulas."
+    },
+    {
+      "source_operation_id": "DELTA-REFERENCE-COMMON-DOMAINS",
+      "source_logical_path": "supplements/frontier-comparisons-20261117.md",
+      "source_operation_new_value_sha256": "51f4ec02d2588b8dbd6a67c00f92c9e529b90a3f54ac9a7568188126edbcf0d7",
+      "source_markdown": "[The counterexample and finite-cell comparison](index.html#ch08-common-ring-tests)",
+      "origin_page": "reference.html",
+      "authored_label": "The counterexample and finite-cell comparison",
+      "authored_href": "index.html#ch08-common-ring-tests",
+      "destination_exists_once": true,
+      "current_visible_label_preserved": true,
+      "current_clickable_label_with_exact_href": false,
+      "required_behavior": "Render the existing label as an actual same-bundle hyperlink to the exact authored href, preserving its visible words and formulas."
+    },
+    {
+      "source_operation_id": "DELTA-REFERENCE-COMMON-DOMAINS",
+      "source_logical_path": "supplements/frontier-comparisons-20261117.md",
+      "source_operation_new_value_sha256": "51f4ec02d2588b8dbd6a67c00f92c9e529b90a3f54ac9a7568188126edbcf0d7",
+      "source_markdown": "[The four-point intersection](atlas.html#atlas-c-horizontal-four-point-factorized-intersection)",
+      "origin_page": "reference.html",
+      "authored_label": "The four-point intersection",
+      "authored_href": "atlas.html#atlas-c-horizontal-four-point-factorized-intersection",
+      "destination_exists_once": true,
+      "current_visible_label_preserved": true,
+      "current_clickable_label_with_exact_href": false,
+      "required_behavior": "Render the existing label as an actual same-bundle hyperlink to the exact authored href, preserving its visible words and formulas."
+    },
+    {
+      "source_operation_id": "DELTA-REFERENCE-COMMON-DOMAINS",
+      "source_logical_path": "supplements/frontier-comparisons-20261117.md",
+      "source_operation_new_value_sha256": "51f4ec02d2588b8dbd6a67c00f92c9e529b90a3f54ac9a7568188126edbcf0d7",
+      "source_markdown": "[The remaining composition problem](index.html#problem-composition-domains)",
+      "origin_page": "reference.html",
+      "authored_label": "The remaining composition problem",
+      "authored_href": "index.html#problem-composition-domains",
+      "destination_exists_once": true,
+      "current_visible_label_preserved": true,
+      "current_clickable_label_with_exact_href": false,
+      "required_behavior": "Render the existing label as an actual same-bundle hyperlink to the exact authored href, preserving its visible words and formulas."
+    }
+  ],
+  "minimum_consumer_change": {
+    "search": "Add the five exact heading units to live book-local search and export the same units into the regenerated cross-page index. Retain the current paragraph units and all 17 new atlas claim entries.",
+    "same_page_constraint": "An edit to generated reader-index.js alone is insufficient: reader.js remoteUnits() excludes same-page units. The book-local unit construction must expose the heading units as well.",
+    "links": "Preserve the eight exact labels as actual links to their existing index.html# or atlas.html# targets. This needs only the existing same-bundle routes; it does not require external-link support.",
+    "authored_content": "Derive titles, labels and destinations verbatim from the pinned source values above. No prose, formula, heading, ID or status rewrite is authorized by this receipt.",
+    "presentation": "Use the existing search result and link presentation. No new layout, CSS, interaction architecture or visual design is specified.",
+    "ownership": "Root authorizes and records the separate consumer patch; the build/code owner implements and verifies it. This author has changed no source, renderer or built output."
+  },
+  "preservation_contract_boundary": {
+    "frozen_clause": "OUTPUT-GUARDS.must_preserve includes all renderer/CSS/JS/layout bytes; CHANGED-VIEWS records no renderer or design source operation.",
+    "current_result": "The frozen unchanged-renderer candidate satisfies that byte-preservation constraint but fails the five search guards and eight authored navigation behaviors.",
+    "required_separate_record": "A root-authorized nonvisual consumer fix must explicitly record its narrow code/output exceptions outside the frozen author packet. Do not report renderer-byte identity after changing it, and do not amend or re-seal the accepted scientific packet.",
+    "unchanged_requirements": [
+      "all five scientific source outputs",
+      "all authored titles and labels",
+      "all formulas, hypotheses, statuses and residuals",
+      "existing Opus layout and CSS",
+      "all original v13 files",
+      "all closed author and scientific review seals"
+    ]
+  },
+  "bounded_acceptance_after_repair": [
+    "All five exact page/id/title tuples occur once in the live book search export and regenerated cross-page index.",
+    "A search for each exact authored title offers a result reaching its existing heading anchor on the appropriate page.",
+    "The eight exact visible labels are actual hyperlinks with the authored same-bundle hrefs, and each target exists once.",
+    "The existing paragraph coverage, all 17 new atlas search entries, visible supplement words/formulas and the closed scientific source outputs remain unchanged.",
+    "The consumer patch and regenerated outputs are recorded by the build owner; original candidate failures remain preserved as historical evidence. Opus rendered verification and publication remain separate."
+  ],
+  "supporting_inputs": [
+    {
+      "path": "/tmp/qh-v14-sol-integration-20261117/build/SEARCH-ANCHOR-MAPPINGS.json",
+      "sha256": "35a59be073ac2d41323df08ba36ca922ca82583f1affeb852833090bee55e53e",
+      "bytes": 9723
+    },
+    {
+      "path": "/tmp/qh-v14-sol-integration-20261117/build/SOURCE-CONFINEMENT.json",
+      "sha256": "4f53e5d01725ef48ccc3d66569941b3ee2e8aaef48ab027cb92465811ae711f4",
+      "bytes": 49856
+    },
+    {
+      "path": "/tmp/qh-v14-sol-integration-20261117/build/SUPPLEMENT-CHECK-visible.json",
+      "sha256": "48edba2da1499dd86920fced9d9f8230d0e87e610d6d28e14b57c7b546eb3455",
+      "bytes": 2905
+    },
+    {
+      "path": "/tmp/qh-v14-sol-integration-20261117/coordination/tools/reader-index.cjs",
+      "sha256": "90cee2b6d1e49819983b31e66336b45a5cb9ce94f8d88fb9c74ab595907ca59f",
+      "bytes": 2468
+    },
+    {
+      "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/reader.js",
+      "sha256": "40ed4eb4fa623bb765c5e2b5249e0445969742b03614e878fb626462a810a0c9",
+      "bytes": 115227
+    },
+    {
+      "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/monograph.py",
+      "sha256": "487bb1ab5269733851fe55544000225b53fbb25165a86c933cbc516252b6dc14",
+      "bytes": 101515
+    }
+  ],
+  "code_evidence": [
+    {
+      "file": "reader.js",
+      "range": "1541-1559",
+      "finding": "Chapter paragraph units explicitly exclude heading tags."
+    },
+    {
+      "file": "reader.js",
+      "range": "chapterJob(), sectionMarks(), remoteUnits(), qh:reader-units export",
+      "finding": "Book-local search builds local units; same-page generated remote units are excluded. The shared export is the index builder input."
+    },
+    {
+      "file": "monograph.py",
+      "range": "588-611",
+      "finding": "Only fragment links and recognized chapter Markdown files are emitted as links; other relative working-file targets are rendered as labels."
+    }
+  ],
+  "root_authorization_for_consumer_patch": "SEPARATE_ROOT_ACTION_REQUIRED",
+  "writes_by_this_assessment": [
+    "DECISION.json"
+  ],
+  "frozen_packet_edits": false,
+  "source_or_renderer_edits": false,
+  "generated_output_edits": false,
+  "new_mathematics_or_scientific_review": false,
+  "browser_or_network_actions": false,
+  "visual_acceptance_or_publication_claimed": false
+}

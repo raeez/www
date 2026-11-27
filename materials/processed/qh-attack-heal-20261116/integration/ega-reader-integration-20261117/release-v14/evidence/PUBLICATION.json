@@ -1,0 +1,104 @@
+{
+  "schema": "qh-public-release-receipt/2",
+  "version": "v14 consumer-repair-v1",
+  "recorded_utc": "2026-11-17T19:23:14.366149+00:00",
+  "status": "PUBLISHED_AND_VERIFIED",
+  "commit": "1bb5537744d4526287b611f9552c9aacaaaca610",
+  "url": "https://research.momentum.inc/quantum-holography-tracker.html",
+  "pages_build": {
+    "commit": "1bb5537744d4526287b611f9552c9aacaaaca610",
+    "created_at": "2026-11-17T19:21:54Z",
+    "status": "built",
+    "updated_at": "2026-11-17T19:22:22Z"
+  },
+  "readbacks": [
+    {
+      "path": "quantum-holography-tracker.html",
+      "url": "https://research.momentum.inc/quantum-holography-tracker.html",
+      "status": 200,
+      "final_url": "https://research.momentum.inc/quantum-holography-tracker.html",
+      "observed_sha256": "72062e801c03832fdb0b8b5e84312bf3d8a1960790fae8478c011b905f36d829",
+      "expected_sha256": "72062e801c03832fdb0b8b5e84312bf3d8a1960790fae8478c011b905f36d829",
+      "bytes": 522,
+      "exact_match": true
+    },
+    {
+      "path": "quantum-holography/atlas.html",
+      "url": "https://research.momentum.inc/quantum-holography/atlas.html",
+      "status": 200,
+      "final_url": "https://research.momentum.inc/quantum-holography/atlas.html",
+      "observed_sha256": "8d8a8de5b6e903daa14aab8375066daccc3947558f965fba4753921b8e4530f0",
+      "expected_sha256": "8d8a8de5b6e903daa14aab8375066daccc3947558f965fba4753921b8e4530f0",
+      "bytes": 10233854,
+      "exact_match": true
+    },
+    {
+      "path": "quantum-holography/index.html",
+      "url": "https://research.momentum.inc/quantum-holography/index.html",
+      "status": 200,
+      "final_url": "https://research.momentum.inc/quantum-holography/index.html",
+      "observed_sha256": "0e5e12b16a27694472cd933f33a7416070049db1b81d349da4f1b37fd61a18b3",
+      "expected_sha256": "0e5e12b16a27694472cd933f33a7416070049db1b81d349da4f1b37fd61a18b3",
+      "bytes": 3377729,
+      "exact_match": true
+    },
+    {
+      "path": "quantum-holography/reader-index.js",
+      "url": "https://research.momentum.inc/quantum-holography/reader-index.js",
+      "status": 200,
+      "final_url": "https://research.momentum.inc/quantum-holography/reader-index.js",
+      "observed_sha256": "6a94ff3cc1f3d178b3c2718921777a3baefbaf5fabc4954bee14edc2e81e1c6e",
+      "expected_sha256": "6a94ff3cc1f3d178b3c2718921777a3baefbaf5fabc4954bee14edc2e81e1c6e",
+      "bytes": 4985027,
+      "exact_match": true
+    },
+    {
+      "path": "quantum-holography/reference.html",
+      "url": "https://research.momentum.inc/quantum-holography/reference.html",
+      "status": 200,
+      "final_url": "https://research.momentum.inc/quantum-holography/reference.html",
+      "observed_sha256": "755bba3c9b434076375b6110d6b1a1cedac1af74bba0e68e887f1f1bfbd94f47",
+      "expected_sha256": "755bba3c9b434076375b6110d6b1a1cedac1af74bba0e68e887f1f1bfbd94f47",
+      "bytes": 3944323,
+      "exact_match": true
+    },
+    {
+      "path": "quantum-holography/",
+      "url": "https://research.momentum.inc/quantum-holography/",
+      "status": 200,
+      "final_url": "https://research.momentum.inc/quantum-holography/",
+      "observed_sha256": "0e5e12b16a27694472cd933f33a7416070049db1b81d349da4f1b37fd61a18b3",
+      "expected_sha256": "0e5e12b16a27694472cd933f33a7416070049db1b81d349da4f1b37fd61a18b3",
+      "bytes": 3377729,
+      "exact_match": true
+    },
+    {
+      "path": "",
+      "url": "https://research.momentum.inc/",
+      "status": 200,
+      "final_url": "https://research.momentum.inc/",
+      "observed_sha256": "3417707b214d5352f46acf181e32bf2be5c00b46243054c04ecbb60d6283b1b8",
+      "expected_sha256": "3417707b214d5352f46acf181e32bf2be5c00b46243054c04ecbb60d6283b1b8",
+      "bytes": 32321,
+      "exact_match": true
+    }
+  ],
+  "scope": {
+    "accepted_baseline_cutoff_utc": "2026-11-17T12:29:20Z",
+    "selected_source_capture_utc": "2026-11-17T16:53:08Z",
+    "native_author_frozen_utc": "2026-11-17T17:19:54.500498+00:00",
+    "native_independent_check_utc": "2026-11-17T17:24:02.179873+00:00",
+    "horizontal_author_frozen_utc": "2026-11-17T17:31:26.677076+00:00",
+    "horizontal_independent_check_utc": "2026-11-17T17:33:34.991988+00:00",
+    "aggregate_scoped_check_closed_utc": "2026-11-17T18:02:36.902800+00:00"
+  },
+  "native_visual_qa": "PENDING",
+  "publication_scope": "Four public tracker files updated. Existing alias and home verified.",
+  "first_principles_reconstruction_included": false,
+  "source_fidelity": {
+    "path": "/tmp/frontier-post-reset-review-20261117/reader-fidelity/COMBINED-RECEIPT.json",
+    "sha256": "98b51dc8df40b38ce5532372fa32d7e9eb5a8b110fe941ee10b4f7c5675db4ea",
+    "bytes": 7153
+  },
+  "manifest_sha256": "c105f904ace52d65467409379de98dfd06b71c085cf74768e7415eba43b99269"
+}

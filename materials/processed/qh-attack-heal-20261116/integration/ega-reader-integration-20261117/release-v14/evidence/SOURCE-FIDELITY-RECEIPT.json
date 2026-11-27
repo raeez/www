@@ -1,0 +1,173 @@
+{
+  "schema": "qh-post-reset-reader-combined-fidelity-receipt/v1",
+  "closed_utc": "2026-11-17T18:56:07.289961+00:00",
+  "status": "PASS_EXACT_REPAIRED_READER_SOURCE_PROJECTION",
+  "accountable_owner": "/root/post_reset_scientific_delta",
+  "reader_author_seal": {
+    "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SEAL.json",
+    "sha256": "fccc11975723274c0db00b7610b879e0e51befbe47bcc0689b4897f03ee4ae28",
+    "bytes": 13432
+  },
+  "source_replacements": {
+    "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SOURCE-REPLACEMENTS.json",
+    "sha256": "9edc317c3fd33c6a983a7575bca5e7bd58452466c712f1dcf2fbd2ee006ff5ce",
+    "bytes": 198087
+  },
+  "source_bindings": {
+    "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SOURCE-BINDINGS.json",
+    "sha256": "58eec5ef2da5fa502d7d43d2a11a38d20f0cabe67ffdd191636afeb0f60abbc3",
+    "bytes": 149125
+  },
+  "author_repair_changes": {
+    "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/REPAIR-CHANGES.json",
+    "sha256": "7fe0de90a7a2d32a205160bbfe9d846646e0cd040846db2b2bafb6623fffd6e9",
+    "bytes": 128829
+  },
+  "original_reader_author_seal": {
+    "path": "/tmp/qh-post-reset-reader-20261117/SEAL.json",
+    "sha256": "320c352cf88b486e05a178fa29f5ad72a10aeddbf2d78c8f8a400a66f83fb3f3",
+    "bytes": 10206
+  },
+  "closed_scientific_context": {
+    "delta": {
+      "path": "/tmp/frontier-post-reset-review-20261117/scientific-delta/integration/DELTA.json",
+      "sha256": "196e443eb62e8d6b33fe1227cd137411eed020f2b08c58e451b0f8c218334fc6",
+      "bytes": 379337
+    },
+    "combined_scientific_receipt": {
+      "path": "/tmp/frontier-post-reset-review-20261117/scientific-delta/coordination/COMBINED-RECEIPT.json",
+      "sha256": "40b36347a0b06fe1dfd09938dd5b96957174fb571c7dfd8b9437b99ae7a97ffe",
+      "bytes": 8732
+    },
+    "scientific_author_seal": {
+      "path": "/tmp/frontier-post-reset-review-20261117/scientific-delta/coordination/AUTHOR-SEAL.json",
+      "sha256": "174587be9fe641424264d9c24591c09044ad643a69781f9ce12b560f31ebcc2e",
+      "bytes": 7493
+    },
+    "proofs_or_prior_scientific_reviews_reopened": false
+  },
+  "initial_domain_reader_reviews": {
+    "01": {
+      "path": "/tmp/frontier-post-reset-review-20261117/reader-fidelity/check01/INITIAL-RECEIPT.json",
+      "sha256": "4c183db70945bf20e58a2e512a0c1017e54ed618fb0e3db1a8535964b0558ff4",
+      "bytes": 2169
+    },
+    "04": {
+      "path": "/tmp/frontier-post-reset-review-20261117/reader-fidelity/check04/RECEIPT.json",
+      "sha256": "0453005af957a766eeb8ca8b5957c31eafa864032da917ad2ef8ee7077d07651",
+      "bytes": 4991
+    }
+  },
+  "successor_only_incorporation_reviews": {
+    "01": {
+      "path": "/tmp/frontier-post-reset-review-20261117/reader-fidelity/check01/incorporation-v1/RECEIPT.json",
+      "sha256": "fbae8e88afda0332c7e96eac35f4730d090ffc47dd4530fbec5d8c1b2e40a8de",
+      "bytes": 4789
+    },
+    "04": {
+      "path": "/tmp/frontier-post-reset-review-20261117/reader-fidelity/check04/incorporation-v1/RECEIPT.json",
+      "sha256": "eef0af1dfe301a48af2a0ae3be4232879ebbd3b0ca2f367081f9f926e7fd505d",
+      "bytes": 3920
+    }
+  },
+  "independent_initial_packet_mechanics": {
+    "path": "/tmp/frontier-post-reset-review-20261117/reader-fidelity/coordination/MECHANICAL.json",
+    "sha256": "25a339f68216ab412531bfa296a04ebb4793c18eba8fafde47c7e3cedc5b5837",
+    "bytes": 15704
+  },
+  "independent_successor_packet_mechanics": {
+    "path": "/tmp/frontier-post-reset-review-20261117/reader-fidelity/coordination/incorporation-v1/MECHANICAL.json",
+    "sha256": "d5a51f8217d96e020f80ca57654fa327d237fe7e0fecdd9d9d744841302995d8",
+    "bytes": 15734
+  },
+  "independent_exact_successor_diff": {
+    "path": "/tmp/frontier-post-reset-review-20261117/reader-fidelity/coordination/incorporation-v1/DIFF.json",
+    "sha256": "0802964e3f782d0717591d557fce24098a51753719b5a6574de044999ee234d0",
+    "bytes": 2202
+  },
+  "coverage": {
+    "all_operations": 53,
+    "native_operations": 23,
+    "horizontal_operations": 30,
+    "source_targets": 5,
+    "new_atlas_claim_cards": 17,
+    "new_scoped_atlas_edges": 5,
+    "original_closed_scientific_groups": 11,
+    "binding_aliases": 12,
+    "exact_scientific_pins": 57,
+    "successor_sealed_files_verified": 46,
+    "original_author_files_preserved": 54,
+    "changed_operation_indices": [
+      0,
+      1,
+      2,
+      7,
+      8,
+      10,
+      25,
+      38,
+      43
+    ],
+    "unchanged_operation_values": 44,
+    "all_53_guards_and_scientific_bindings_preserved": true,
+    "baseline_copy_relocation_keeps_all_bytes_and_guard_hashes": true,
+    "all_five_proposed_sources_equal_independent_guarded_replay": true
+  },
+  "findings": {
+    "N01": "CLOSED",
+    "N02": "CLOSED",
+    "N03": "CLOSED",
+    "RF04-01": "CLOSED",
+    "RF04-02": "CLOSED",
+    "remaining_required_reader_source_fidelity_corrections": [],
+    "mathematical_scope_support_or_status_regressions": []
+  },
+  "preservation": {
+    "accepted_programme_baseline_cutoff_utc": "2026-11-17T12:29:20Z",
+    "selected_source_capture_utc": "2026-11-17T16:53:08Z",
+    "entire_programme_relabelled_to_later_capture": false,
+    "first_opening_and_explicit_non_Beilinson_Drinfeld_distinction": true,
+    "existing_chapter_displays_and_unrelated_accepted_content": true,
+    "metadata_dates_and_renderer_design_source_scope": true,
+    "chapter18_successor_bytes_identical_to_initial_packet": true,
+    "changed_views_and_output_guards_byte_identical": true,
+    "native01_original_full_target_complete": false,
+    "horizontal04_original_full_target_complete": false,
+    "formal_adoption_inferred": false
+  },
+  "output_contract": {
+    "integration_map": {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/INTEGRATION-MAP.json",
+      "sha256": "c0564ff1be3efa825f168f0026a88598cee7a3a56e554400299197ebcb3aaaf7",
+      "bytes": 28612
+    },
+    "changed_views": {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/CHANGED-VIEWS.json",
+      "sha256": "aef7b74d9d6be18d0b7a2ec9333182e3ce500ff7c605f9a16484cb0704d7b484",
+      "bytes": 23849
+    },
+    "output_guards": {
+      "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/OUTPUT-GUARDS.json",
+      "sha256": "bffb6712ed7b7b7c242b1b55b3a0e24169f34be85b431aee58018d7e29198d55",
+      "bytes": 4217
+    },
+    "application_authority": "The exact 53 guarded operations on a mutable successor of the pinned v13 sources.",
+    "whole_proposed_file_replacement_authority": false,
+    "guarded_build_search_rendered_visual_and_publication_work": "Existing root-owned downstream work; not performed or certified by this source-fidelity receipt."
+  },
+  "report": {
+    "path": "/tmp/frontier-post-reset-review-20261117/reader-fidelity/CHECK.md",
+    "sha256": "962afbcd5d550e697e3537f292fe83c1faed0cff4566307c051a011e3eaa3de4",
+    "bytes": 2658
+  },
+  "actions": {
+    "reader_or_scientific_source_edits_by_checker": false,
+    "canonical_edits_by_checker": false,
+    "build": false,
+    "TeX_parser_rerun": false,
+    "rendered_visual_or_PDF_inspection": false,
+    "new_mathematical_proof_or_computation": false,
+    "publication": false,
+    "native_session_control": false
+  }
+}

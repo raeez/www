@@ -1,0 +1,606 @@
+{
+  "status": "PASS",
+  "authority_sha256": "44d831d78fe9501e3a2e55f586eaaa0441a4da50abab93508f63f3f76a1e856c",
+  "operation_count": 53,
+  "source_target_count": 5,
+  "operations_applied_in_order": [
+    {
+      "ordinal": 1,
+      "operation_id": "DELTA-ATLAS-ADD-native-r3-retained-rooted-evaluations",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 2,
+      "operation_id": "DELTA-ATLAS-ADD-native-r3-first-root-alignment",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 3,
+      "operation_id": "DELTA-ATLAS-ADD-native-r3-trace-classes-source-obstruction",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 4,
+      "operation_id": "DELTA-ATLAS-ADD-native-r3-ghost-truncation-homotopy",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 5,
+      "operation_id": "DELTA-ATLAS-ADD-native-r3-higher-retained-comparison",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 6,
+      "operation_id": "DELTA-ATLAS-ADD-native-retained-to-first-root",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 7,
+      "operation_id": "DELTA-ATLAS-ADD-native-first-root-to-higher-retained",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 8,
+      "operation_id": "DELTA-CH17-RETAINED-FIRST-ROOT",
+      "operation": "replace_exact_once",
+      "namespace": "monograph",
+      "logical_path": "chapters/17-holographic-reconstruction.md",
+      "pass": true
+    },
+    {
+      "ordinal": 9,
+      "operation_id": "DELTA-CH17-TRACE-SOURCE-DEGREE",
+      "operation": "replace_exact_once",
+      "namespace": "monograph",
+      "logical_path": "chapters/17-holographic-reconstruction.md",
+      "pass": true
+    },
+    {
+      "ordinal": 10,
+      "operation_id": "DELTA-CH18-NATIVE-RESIDUAL",
+      "operation": "replace_exact_once",
+      "namespace": "monograph",
+      "logical_path": "chapters/18-open-problems.md",
+      "pass": true
+    },
+    {
+      "ordinal": 11,
+      "operation_id": "DELTA-REFERENCE-NATIVE-RETAINED",
+      "operation": "replace_exact_once",
+      "namespace": "tracker",
+      "logical_path": "supplements/frontier-comparisons-20261117.md",
+      "pass": true
+    },
+    {
+      "ordinal": 12,
+      "operation_id": "DELTA-ATLAS-NATIVE-DOMAIN",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 13,
+      "operation_id": "DELTA-ATLAS-NATIVE-PHYSICAL-RESIDUAL",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 14,
+      "operation_id": "DELTA-ATLAS-NATIVE-MARKED-OVERVIEW",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 15,
+      "operation_id": "DELTA-ATLAS-NATIVE-SOURCE-OVERVIEW",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 16,
+      "operation_id": "DELTA-ATLAS-native-state-and-ward-establishedClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 17,
+      "operation_id": "DELTA-ATLAS-native-marked-evaluation-establishedClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 18,
+      "operation_id": "DELTA-ATLAS-native-marked-evaluation-scopedNegativeClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 19,
+      "operation_id": "DELTA-ATLAS-native-completion-boundaries-scopedNegativeClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 20,
+      "operation_id": "DELTA-ATLAS-native-source-and-evaluation-current-establishedClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 21,
+      "operation_id": "DELTA-ATLAS-native-source-and-evaluation-current-scopedNegativeClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 22,
+      "operation_id": "DELTA-ATLAS-native-source-and-evaluation-current-remainingClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 23,
+      "operation_id": "DELTA-ATLAS-NATIVE-READING-PATH",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 24,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-cluster-taylor-completion",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 25,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-taylor-route-obstructions",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 26,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-factorized-common-domain",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 27,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-factorized-common-finite-total",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 28,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-two-cluster-coefficient-objects",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 29,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-two-cluster-finite-total",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 30,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-four-pole-rational-tensorator",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 31,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-four-point-factorized-intersection",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 32,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-occupied-deletion-all-slots",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 33,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-flat-spectral-connection",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 34,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-common-ring-hom-counterexample",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 35,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-common-ring-finite-cell-tests",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 36,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-factorized-domain-to-finite-total",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 37,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-factorized-domain-to-current-residual",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 38,
+      "operation_id": "DELTA-ATLAS-ADD-horizontal-four-point-domain-to-native-interchange",
+      "operation": "append_object_with_unique_id",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 39,
+      "operation_id": "DELTA-CH08-COMMON-DOMAINS",
+      "operation": "replace_exact_once",
+      "namespace": "monograph",
+      "logical_path": "chapters/08-completions.md",
+      "pass": true
+    },
+    {
+      "ordinal": 40,
+      "operation_id": "DELTA-CH18-COMPOSITION-RESIDUAL",
+      "operation": "replace_exact_once",
+      "namespace": "monograph",
+      "logical_path": "chapters/18-open-problems.md",
+      "pass": true
+    },
+    {
+      "ordinal": 41,
+      "operation_id": "DELTA-REFERENCE-CONSTANT-TEST-SCOPE",
+      "operation": "replace_exact_once",
+      "namespace": "tracker",
+      "logical_path": "supplements/frontier-comparisons-20261117.md",
+      "pass": true
+    },
+    {
+      "ordinal": 42,
+      "operation_id": "DELTA-REFERENCE-FULL-SOURCE-AND-DELETION",
+      "operation": "replace_exact_once",
+      "namespace": "tracker",
+      "logical_path": "supplements/frontier-comparisons-20261117.md",
+      "pass": true
+    },
+    {
+      "ordinal": 43,
+      "operation_id": "DELTA-REFERENCE-WILSON-FRAME",
+      "operation": "replace_exact_once",
+      "namespace": "tracker",
+      "logical_path": "supplements/frontier-comparisons-20261117.md",
+      "pass": true
+    },
+    {
+      "ordinal": 44,
+      "operation_id": "DELTA-REFERENCE-COMMON-DOMAINS",
+      "operation": "replace_exact_once",
+      "namespace": "tracker",
+      "logical_path": "supplements/frontier-comparisons-20261117.md",
+      "pass": true
+    },
+    {
+      "ordinal": 45,
+      "operation_id": "DELTA-ATLAS-HORIZONTAL-RESIDUAL-TITLE",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 46,
+      "operation_id": "DELTA-ATLAS-HORIZONTAL-RESIDUAL",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 47,
+      "operation_id": "DELTA-ATLAS-HORIZONTAL-RESIDUAL-HYPOTHESES",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 48,
+      "operation_id": "DELTA-ATLAS-HORIZONTAL-OVERVIEW",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 49,
+      "operation_id": "DELTA-ATLAS-horizontal-three-pole-and-spectators-establishedClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 50,
+      "operation_id": "DELTA-ATLAS-horizontal-three-pole-and-spectators-conditionalClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 51,
+      "operation_id": "DELTA-ATLAS-horizontal-three-pole-and-spectators-scopedNegativeClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 52,
+      "operation_id": "DELTA-ATLAS-horizontal-regular-dual-establishedClaimIds",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    },
+    {
+      "ordinal": 53,
+      "operation_id": "DELTA-ATLAS-CONNECTION-RESIDUAL-SCOPE",
+      "operation": "replace_object_field",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "pass": true
+    }
+  ],
+  "files": {
+    "tracker/atlas.json": {
+      "target": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/atlas.json",
+      "namespace": "tracker",
+      "logical_path": "atlas.json",
+      "before": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/atlas.json",
+        "sha256": "e7dcf0112cbd4ecfecf9031a5b2463d54ec917213cacd7e6dc5153cbc70427b8",
+        "bytes": 1802735
+      },
+      "after": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/atlas.json",
+        "sha256": "7da3863ed208e71b6e641ca3d10756bc214cd2ab36f8c5b4f8f771cdae785ef3",
+        "bytes": 1846706
+      },
+      "equals_accepted_guarded_proposal": true
+    },
+    "monograph/chapters/17-holographic-reconstruction.md": {
+      "target": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+      "namespace": "monograph",
+      "logical_path": "chapters/17-holographic-reconstruction.md",
+      "before": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+        "sha256": "d7317a0b337dfedf004466e1c491ed125fe7f0f1457c4de6c28e555aadccbe0a",
+        "bytes": 22439
+      },
+      "after": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+        "sha256": "9248114c0c48c60874cdd14f6c70dd4f62cad57d0a7dc5732c6263b842812fa2",
+        "bytes": 29287
+      },
+      "equals_accepted_guarded_proposal": true
+    },
+    "monograph/chapters/18-open-problems.md": {
+      "target": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/18-open-problems.md",
+      "namespace": "monograph",
+      "logical_path": "chapters/18-open-problems.md",
+      "before": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/18-open-problems.md",
+        "sha256": "e4dfbd8e287f9674473bbee831b5ef2e3e99054b60a19f065b5b83a3b80e30b1",
+        "bytes": 21746
+      },
+      "after": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/18-open-problems.md",
+        "sha256": "d864b0c4c8bf954e04dbafef82b6189ee3f2a656a786f6139e7820b1a62b9384",
+        "bytes": 25274
+      },
+      "equals_accepted_guarded_proposal": true
+    },
+    "tracker/supplements/frontier-comparisons-20261117.md": {
+      "target": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+      "namespace": "tracker",
+      "logical_path": "supplements/frontier-comparisons-20261117.md",
+      "before": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+        "sha256": "7e97fcdd2613a685f0f31d6ca328612a02fcf089163153a0e8260e22b24b71e9",
+        "bytes": 19604
+      },
+      "after": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+        "sha256": "267847f0362d218cbd079cf1a45fee33482c21a772fd08898dc206fc2c1a99a3",
+        "bytes": 34382
+      },
+      "equals_accepted_guarded_proposal": true
+    },
+    "monograph/chapters/08-completions.md": {
+      "target": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/08-completions.md",
+      "namespace": "monograph",
+      "logical_path": "chapters/08-completions.md",
+      "before": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/08-completions.md",
+        "sha256": "faa86dc3969c5af2f87311018d8b68f2232dd0d7fa79fd2499c4a83a76be44ef",
+        "bytes": 25853
+      },
+      "after": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/08-completions.md",
+        "sha256": "d64547fbb4661b808b7f129787d1cedc7eceedac373efeaf3f0e3794c67e346a",
+        "bytes": 35967
+      },
+      "equals_accepted_guarded_proposal": true
+    }
+  },
+  "derived_digest_synchronization": {
+    "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/supplements/supplements.json",
+    "pointer": "/supplements/0/sha256",
+    "old": "7e97fcdd2613a685f0f31d6ca328612a02fcf089163153a0e8260e22b24b71e9",
+    "new": "267847f0362d218cbd079cf1a45fee33482c21a772fd08898dc206fc2c1a99a3",
+    "before": {
+      "sha256": "13417e62f9bb647e290a0f3aef3ab5998f42b9cd63c1230ebf6f7b9ec915a45e",
+      "bytes": 1101
+    },
+    "after": {
+      "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/supplements/supplements.json",
+      "sha256": "9d2fee74de27c6f01015781162e64383d1609e21d2a4aadd6283dbff46c6874e",
+      "bytes": 1101
+    },
+    "other_fields_and_bytes_unchanged": true,
+    "reason": "The unchanged renderer requires the registered supplement content digest to match the exact guarded successor."
+  },
+  "protected_files": [
+    "compiler/build-quantum-holography-status.py",
+    "compiler/quantum-holography-status/atlas.css",
+    "compiler/quantum-holography-status/atlas.js",
+    "compiler/quantum-holography-status/atlas.py",
+    "compiler/quantum-holography-status/audit.py",
+    "compiler/quantum-holography-status/figures.css",
+    "compiler/quantum-holography-status/figures.js",
+    "compiler/quantum-holography-status/figures.py",
+    "compiler/quantum-holography-status/monograph.css",
+    "compiler/quantum-holography-status/monograph.py",
+    "compiler/quantum-holography-status/reader.js",
+    "compiler/quantum-holography-status/status-print.css",
+    "compiler/quantum-holography-status/status.css",
+    "compiler/quantum-holography-status/status.js",
+    "compiler/quantum-holography-status/status.py",
+    "compiler/quantum-holography-status/tests/atlas.test.cjs",
+    "compiler/quantum-holography-status/tests/figures.test.cjs",
+    "compiler/quantum-holography-status/tests/figures_page.py",
+    "compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+    "compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+    "compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+    "compiler/quantum-holography-status/tests/interaction.test.cjs",
+    "compiler/quantum-holography-status/tests/reader.test.cjs",
+    "compiler/quantum-holography-status/tests/test_atlas.py",
+    "compiler/quantum-holography-status/tests/test_figures.py",
+    "compiler/quantum-holography-tracker/tex2mathml.cjs",
+    "compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+    "compiler/quantum-holography-tracker/vendor/temml.cjs",
+    "content/quantum-holography-status/README.md",
+    "content/quantum-holography-status/chapters/01-physical-questions.md",
+    "content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+    "content/quantum-holography-status/chapters/03-local-fields.md",
+    "content/quantum-holography-status/chapters/04-factorization.md",
+    "content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+    "content/quantum-holography-status/chapters/06-duality-and-induction.md",
+    "content/quantum-holography-status/chapters/07-actions-and-centres.md",
+    "content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+    "content/quantum-holography-status/chapters/10-analytic-sewing.md",
+    "content/quantum-holography-status/chapters/11-states-and-lines.md",
+    "content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+    "content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+    "content/quantum-holography-status/chapters/14-branes.md",
+    "content/quantum-holography-status/chapters/15-hall-and-compact.md",
+    "content/quantum-holography-status/chapters/16-arithmetic.md",
+    "content/quantum-holography-status/content.json",
+    "content/quantum-holography-status/essay.md",
+    "content/quantum-holography-status/page.json",
+    "content/quantum-holography-status/reader-data/diagram-records.json",
+    "content/quantum-holography-status/reader-data/manifest.json"
+  ],
+  "display_preservation": [
+    {
+      "logical_path": "chapters/17-holographic-reconstruction.md",
+      "old_count": 19,
+      "new_count": 27,
+      "all_old_displays_retained": true
+    },
+    {
+      "logical_path": "chapters/18-open-problems.md",
+      "old_count": 6,
+      "new_count": 7,
+      "all_old_displays_retained": true
+    },
+    {
+      "logical_path": "chapters/08-completions.md",
+      "old_count": 41,
+      "new_count": 55,
+      "all_old_displays_retained": true
+    }
+  ],
+  "renderer_design_changes": [],
+  "v13_mutations": [],
+  "visual_qa": "PENDING",
+  "publication": "PENDING"
+}

@@ -1,0 +1,14 @@
+--- a/reader.js
++++ b/reader.js
+@@ -1629,6 +1629,11 @@
+         give(s);
+         addUnit(list, s, { kind: 'section', group: g, titleEl: sectionHeading(s), body: '', context: '' });
+       });
++      all('h4[id][data-reader-search-heading]', ch).forEach(function (h) {
++        addUnit(list, h, { kind: 'heading', group: g, titleEl: h, body: '',
++                          context: sectionContext(h, ch), where: sectionContext(h, ch),
++                          whereEl: sectionHeadingIn(h, ch) });
++      });
+       all(ENV, ch).forEach(function (b) {
+         give(b);
+         var dfn = b.querySelector('dfn');

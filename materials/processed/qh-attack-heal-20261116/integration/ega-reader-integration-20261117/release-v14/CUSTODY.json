@@ -1,0 +1,895 @@
+{
+  "schema": "qh-reader-durable-input-custody/1",
+  "preserved_utc": "2026-11-17T19:30:58.372832+00:00",
+  "release": "v14 consumer-repair-v1",
+  "live_commit": "1bb5537744d4526287b611f9552c9aacaaaca610",
+  "logical_source_count": 55,
+  "editable_copied_source_count": 53,
+  "reused_dependency_count": 2,
+  "sources": [
+    {
+      "logical_path": "compiler/build-quantum-holography-status.py",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/build-quantum-holography-status.py",
+        "sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf",
+        "bytes": 4031
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/build-quantum-holography-status.py",
+        "sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf",
+        "bytes": 4031
+      },
+      "persistent_relative_path": "source-tree/compiler/build-quantum-holography-status.py"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/atlas.css",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/atlas.css",
+        "sha256": "adb4339082f7a55c722a51bf89650e47a157576a22c08b4eb2abbb3d951d934b",
+        "bytes": 42478
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/atlas.css",
+        "sha256": "adb4339082f7a55c722a51bf89650e47a157576a22c08b4eb2abbb3d951d934b",
+        "bytes": 42478
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/atlas.css"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/atlas.js",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/atlas.js",
+        "sha256": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684",
+        "bytes": 50539
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/atlas.js",
+        "sha256": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684",
+        "bytes": 50539
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/atlas.js"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/atlas.py",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/atlas.py",
+        "sha256": "77bad20631e3fc35dd30c606c32c00bda66aaa3d92080956073fdc89ec07a10b",
+        "bytes": 67405
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/atlas.py",
+        "sha256": "77bad20631e3fc35dd30c606c32c00bda66aaa3d92080956073fdc89ec07a10b",
+        "bytes": 67405
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/atlas.py"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/audit.py",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/audit.py",
+        "sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+        "bytes": 32431
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/audit.py",
+        "sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+        "bytes": 32431
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/audit.py"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/figures.css",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/figures.css",
+        "sha256": "3f65beb93fdfac44e49d7d45a5878630a5dd90fc82b3d35b4192d141214747b2",
+        "bytes": 15629
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/figures.css",
+        "sha256": "3f65beb93fdfac44e49d7d45a5878630a5dd90fc82b3d35b4192d141214747b2",
+        "bytes": 15629
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/figures.css"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/figures.js",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/figures.js",
+        "sha256": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965",
+        "bytes": 14779
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/figures.js",
+        "sha256": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965",
+        "bytes": 14779
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/figures.js"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/figures.py",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/figures.py",
+        "sha256": "5f86ba434f0574b6b50a61e1bee471c32a7a14464b262ccb34b9ffe590ee7e7b",
+        "bytes": 64449
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/figures.py",
+        "sha256": "5f86ba434f0574b6b50a61e1bee471c32a7a14464b262ccb34b9ffe590ee7e7b",
+        "bytes": 64449
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/figures.py"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/monograph.css",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/monograph.css",
+        "sha256": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52",
+        "bytes": 56107
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/monograph.css",
+        "sha256": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52",
+        "bytes": 56107
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/monograph.css"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/monograph.py",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/monograph.py",
+        "sha256": "487bb1ab5269733851fe55544000225b53fbb25165a86c933cbc516252b6dc14",
+        "bytes": 101515
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/monograph.py",
+        "sha256": "487bb1ab5269733851fe55544000225b53fbb25165a86c933cbc516252b6dc14",
+        "bytes": 101515
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/monograph.py"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/reader.js",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/reader.js",
+        "sha256": "40ed4eb4fa623bb765c5e2b5249e0445969742b03614e878fb626462a810a0c9",
+        "bytes": 115227
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/reader.js",
+        "sha256": "40ed4eb4fa623bb765c5e2b5249e0445969742b03614e878fb626462a810a0c9",
+        "bytes": 115227
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/reader.js"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/status-print.css",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/status-print.css",
+        "sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+        "bytes": 11884
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/status-print.css",
+        "sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+        "bytes": 11884
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/status-print.css"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/status.css",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/status.css",
+        "sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+        "bytes": 57564
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/status.css",
+        "sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+        "bytes": 57564
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/status.css"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/status.js",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/status.js",
+        "sha256": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5",
+        "bytes": 113263
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/status.js",
+        "sha256": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5",
+        "bytes": 113263
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/status.js"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/status.py",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/status.py",
+        "sha256": "6fa05e99f46649abd80ca34279eb2bc032df38adf968004bb66975162231904e",
+        "bytes": 83511
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/status.py",
+        "sha256": "6fa05e99f46649abd80ca34279eb2bc032df38adf968004bb66975162231904e",
+        "bytes": 83511
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/status.py"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/atlas.test.cjs",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/tests/atlas.test.cjs",
+        "sha256": "a67087f1aab82465cedb0f5e16ef8ff431d6c8ca629e736803f2aa35830bec52",
+        "bytes": 41843
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/tests/atlas.test.cjs",
+        "sha256": "a67087f1aab82465cedb0f5e16ef8ff431d6c8ca629e736803f2aa35830bec52",
+        "bytes": 41843
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/tests/atlas.test.cjs"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/figures.test.cjs",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/tests/figures.test.cjs",
+        "sha256": "2d76aabae3161f876b54ab683052a4d0827fb4cdcbb4204c32ef1a04438894ff",
+        "bytes": 12278
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/tests/figures.test.cjs",
+        "sha256": "2d76aabae3161f876b54ab683052a4d0827fb4cdcbb4204c32ef1a04438894ff",
+        "bytes": 12278
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/tests/figures.test.cjs"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/figures_page.py",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/tests/figures_page.py",
+        "sha256": "8ac23dc036107435dc8adba1fc2c5e0a7d79e9f75fbffe6e13614f66bf30a73a",
+        "bytes": 2413
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/tests/figures_page.py",
+        "sha256": "8ac23dc036107435dc8adba1fc2c5e0a7d79e9f75fbffe6e13614f66bf30a73a",
+        "bytes": 2413
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/tests/figures_page.py"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+        "sha256": "2a5f0c7bc84e66832d6bb48edea0570ff8f28b6d049d6c16388bde4b4b6f9d32",
+        "bytes": 10171
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+        "sha256": "2a5f0c7bc84e66832d6bb48edea0570ff8f28b6d049d6c16388bde4b4b6f9d32",
+        "bytes": 10171
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+        "sha256": "2f137aeb9df0f035da0d89af60b34dfc63337025acf61788dd75e44210fabca2",
+        "bytes": 10966
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+        "sha256": "2f137aeb9df0f035da0d89af60b34dfc63337025acf61788dd75e44210fabca2",
+        "bytes": 10966
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+        "sha256": "17b70de70e7ee5cf757dcce76a4109f61c519bf01b413c23137ff6a21661c659",
+        "bytes": 5802
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+        "sha256": "17b70de70e7ee5cf757dcce76a4109f61c519bf01b413c23137ff6a21661c659",
+        "bytes": 5802
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/tests/fixtures/reader-book.json"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/interaction.test.cjs",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/tests/interaction.test.cjs",
+        "sha256": "8a92a7a42d023168bbbb45b6d6ad65d36389254461bbc267e5aa442d4967b279",
+        "bytes": 93491
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/tests/interaction.test.cjs",
+        "sha256": "8a92a7a42d023168bbbb45b6d6ad65d36389254461bbc267e5aa442d4967b279",
+        "bytes": 93491
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/tests/interaction.test.cjs"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/reader.test.cjs",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "sha256": "708ef3dd098fb7fe7845456ff9c46f8fbeabdac445ba616ab4528d2005aceac9",
+        "bytes": 75196
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "sha256": "708ef3dd098fb7fe7845456ff9c46f8fbeabdac445ba616ab4528d2005aceac9",
+        "bytes": 75196
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/tests/reader.test.cjs"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/test_atlas.py",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/tests/test_atlas.py",
+        "sha256": "acca56e1eae4be315677ad611104e168decd981b6cfbe974504176d8ee3138bb",
+        "bytes": 47086
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/tests/test_atlas.py",
+        "sha256": "acca56e1eae4be315677ad611104e168decd981b6cfbe974504176d8ee3138bb",
+        "bytes": 47086
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/tests/test_atlas.py"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/test_figures.py",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-status/tests/test_figures.py",
+        "sha256": "f8a5a3b0cd2567ee57df8d7cd56eb263ba1137a201b210afe95f4a1eb3345140",
+        "bytes": 23983
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-status/tests/test_figures.py",
+        "sha256": "f8a5a3b0cd2567ee57df8d7cd56eb263ba1137a201b210afe95f4a1eb3345140",
+        "bytes": 23983
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-status/tests/test_figures.py"
+    },
+    {
+      "logical_path": "compiler/quantum-holography-tracker/tex2mathml.cjs",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-tracker/tex2mathml.cjs",
+        "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+        "bytes": 881
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/compiler/quantum-holography-tracker/tex2mathml.cjs",
+        "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+        "bytes": 881
+      },
+      "persistent_relative_path": "source-tree/compiler/quantum-holography-tracker/tex2mathml.cjs"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/README.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/README.md",
+        "sha256": "198b0aa5accfefdee6d1a3788a3c95fec4d477b6f8f4edc6c329c61bc2263c68",
+        "bytes": 3695
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/README.md",
+        "sha256": "198b0aa5accfefdee6d1a3788a3c95fec4d477b6f8f4edc6c329c61bc2263c68",
+        "bytes": 3695
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/README.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/atlas.json",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/atlas.json",
+        "sha256": "7da3863ed208e71b6e641ca3d10756bc214cd2ab36f8c5b4f8f771cdae785ef3",
+        "bytes": 1846706
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/atlas.json",
+        "sha256": "7da3863ed208e71b6e641ca3d10756bc214cd2ab36f8c5b4f8f771cdae785ef3",
+        "bytes": 1846706
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/atlas.json"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/01-physical-questions.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/01-physical-questions.md",
+        "sha256": "254d1ec881f3728e98a7f124facb6df3503c5735ae125406f6a0147bcf1b1912",
+        "bytes": 12978
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/01-physical-questions.md",
+        "sha256": "254d1ec881f3728e98a7f124facb6df3503c5735ae125406f6a0147bcf1b1912",
+        "bytes": 12978
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/01-physical-questions.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+        "sha256": "5ff537a2f178d0beb5d25f8e6bd0c72896a4e96fef95dc224c3f2cb768cdb6c9",
+        "bytes": 11140
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+        "sha256": "5ff537a2f178d0beb5d25f8e6bd0c72896a4e96fef95dc224c3f2cb768cdb6c9",
+        "bytes": 11140
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/02-algebras-and-modules.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/03-local-fields.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/03-local-fields.md",
+        "sha256": "37133eafd8ca20f3ef0c7224fa41555f35e8313ff840c1df967ed745a886a88c",
+        "bytes": 11705
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/03-local-fields.md",
+        "sha256": "37133eafd8ca20f3ef0c7224fa41555f35e8313ff840c1df967ed745a886a88c",
+        "bytes": 11705
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/03-local-fields.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/04-factorization.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/04-factorization.md",
+        "sha256": "5616370c15975681abe778e4f513315fed77ff49d3e5d525838d408f7e47048e",
+        "bytes": 15428
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/04-factorization.md",
+        "sha256": "5616370c15975681abe778e4f513315fed77ff49d3e5d525838d408f7e47048e",
+        "bytes": 15428
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/04-factorization.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+        "sha256": "787965aeb3bde329e8b3c0e4bf24759da5ee8c31e08059ac4befec38d75c990c",
+        "bytes": 21704
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+        "sha256": "787965aeb3bde329e8b3c0e4bf24759da5ee8c31e08059ac4befec38d75c990c",
+        "bytes": 21704
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/05-bar-and-coherence.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/06-duality-and-induction.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/06-duality-and-induction.md",
+        "sha256": "c7be0b42730d5a061a87c95577f250c4ef5370b1c167c2c60f0afdc1067321a1",
+        "bytes": 36368
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/06-duality-and-induction.md",
+        "sha256": "c7be0b42730d5a061a87c95577f250c4ef5370b1c167c2c60f0afdc1067321a1",
+        "bytes": 36368
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/06-duality-and-induction.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/07-actions-and-centres.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/07-actions-and-centres.md",
+        "sha256": "e470d808070fc3b4303ac1ccc21c0b5b204f12fb3519d2f786b779f55a585758",
+        "bytes": 31333
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/07-actions-and-centres.md",
+        "sha256": "e470d808070fc3b4303ac1ccc21c0b5b204f12fb3519d2f786b779f55a585758",
+        "bytes": 31333
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/07-actions-and-centres.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/08-completions.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/08-completions.md",
+        "sha256": "d64547fbb4661b808b7f129787d1cedc7eceedac373efeaf3f0e3794c67e346a",
+        "bytes": 35967
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/08-completions.md",
+        "sha256": "d64547fbb4661b808b7f129787d1cedc7eceedac373efeaf3f0e3794c67e346a",
+        "bytes": 35967
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/08-completions.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+        "sha256": "ad8c80b93e9fb52eaf816e1b069ccfeb177f34c4d0030c12515b67ad64336174",
+        "bytes": 32004
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+        "sha256": "ad8c80b93e9fb52eaf816e1b069ccfeb177f34c4d0030c12515b67ad64336174",
+        "bytes": 32004
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/09-mixed-boundaries.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/10-analytic-sewing.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/10-analytic-sewing.md",
+        "sha256": "30cfdab275abeab355b85bf4c173fcbf96d26e552061bd8a856de908e357bdc9",
+        "bytes": 23856
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/10-analytic-sewing.md",
+        "sha256": "30cfdab275abeab355b85bf4c173fcbf96d26e552061bd8a856de908e357bdc9",
+        "bytes": 23856
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/10-analytic-sewing.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/11-states-and-lines.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/11-states-and-lines.md",
+        "sha256": "bf885c1985ea50cc34ca0725ecc52a42c5465cf96e295875494031d21a78e34c",
+        "bytes": 33694
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/11-states-and-lines.md",
+        "sha256": "bf885c1985ea50cc34ca0725ecc52a42c5465cf96e295875494031d21a78e34c",
+        "bytes": 33694
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/11-states-and-lines.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+        "sha256": "6c37c3fa652ac1f3bc9d7c6234f206b03b0ddf60dc213221dcae59142eb6402d",
+        "bytes": 28118
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+        "sha256": "6c37c3fa652ac1f3bc9d7c6234f206b03b0ddf60dc213221dcae59142eb6402d",
+        "bytes": 28118
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+        "sha256": "2320abb53ea868a1159096a8c7d2a260c5ee6f14bcc54a13b53c01ecc6f84f08",
+        "bytes": 29255
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+        "sha256": "2320abb53ea868a1159096a8c7d2a260c5ee6f14bcc54a13b53c01ecc6f84f08",
+        "bytes": 29255
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/13-geometric-reconstruction.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/14-branes.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/14-branes.md",
+        "sha256": "25a629fa0436d1fb3ee0683148d0dbb195393a8e2655665d446b7c38e2b3ec88",
+        "bytes": 34324
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/14-branes.md",
+        "sha256": "25a629fa0436d1fb3ee0683148d0dbb195393a8e2655665d446b7c38e2b3ec88",
+        "bytes": 34324
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/14-branes.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/15-hall-and-compact.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/15-hall-and-compact.md",
+        "sha256": "8aec89cf338afe0cf7387a84583dfa6cc614dd6fb9861755596c1833652c2fe9",
+        "bytes": 29247
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/15-hall-and-compact.md",
+        "sha256": "8aec89cf338afe0cf7387a84583dfa6cc614dd6fb9861755596c1833652c2fe9",
+        "bytes": 29247
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/15-hall-and-compact.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/16-arithmetic.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/16-arithmetic.md",
+        "sha256": "9bf8bb818f11b6a0ec5f47776c0e4f587d892986c4dea56100002c199da62511",
+        "bytes": 30363
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/16-arithmetic.md",
+        "sha256": "9bf8bb818f11b6a0ec5f47776c0e4f587d892986c4dea56100002c199da62511",
+        "bytes": 30363
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/16-arithmetic.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+        "sha256": "9248114c0c48c60874cdd14f6c70dd4f62cad57d0a7dc5732c6263b842812fa2",
+        "bytes": 29287
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+        "sha256": "9248114c0c48c60874cdd14f6c70dd4f62cad57d0a7dc5732c6263b842812fa2",
+        "bytes": 29287
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/17-holographic-reconstruction.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/18-open-problems.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/chapters/18-open-problems.md",
+        "sha256": "d864b0c4c8bf954e04dbafef82b6189ee3f2a656a786f6139e7820b1a62b9384",
+        "bytes": 25274
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/chapters/18-open-problems.md",
+        "sha256": "d864b0c4c8bf954e04dbafef82b6189ee3f2a656a786f6139e7820b1a62b9384",
+        "bytes": 25274
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/chapters/18-open-problems.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/content.json",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/content.json",
+        "sha256": "7577c1cd3490cfe7e0899fadb07fc5e90073df547c0e6a80ff0b3ffcb9da9b34",
+        "bytes": 597411
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/content.json",
+        "sha256": "7577c1cd3490cfe7e0899fadb07fc5e90073df547c0e6a80ff0b3ffcb9da9b34",
+        "bytes": 597411
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/content.json"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/essay.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/essay.md",
+        "sha256": "142615668b9830627b7672bfee5af41b208bca491efcea9ba43b1e7a11fce516",
+        "bytes": 63392
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/essay.md",
+        "sha256": "142615668b9830627b7672bfee5af41b208bca491efcea9ba43b1e7a11fce516",
+        "bytes": 63392
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/essay.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/page.json",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/page.json",
+        "sha256": "9799d3b1572b85e3cbc06fa7f8e775e33b77fe7f1d38737597a66b19388d9e37",
+        "bytes": 6392
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/page.json",
+        "sha256": "9799d3b1572b85e3cbc06fa7f8e775e33b77fe7f1d38737597a66b19388d9e37",
+        "bytes": 6392
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/page.json"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/reader-data/diagram-records.json",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/reader-data/diagram-records.json",
+        "sha256": "76f1a771965533daafdc9a032c513893e6c5ba9af2a3d24f28d041d1ef13a503",
+        "bytes": 72887
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/reader-data/diagram-records.json",
+        "sha256": "76f1a771965533daafdc9a032c513893e6c5ba9af2a3d24f28d041d1ef13a503",
+        "bytes": 72887
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/reader-data/diagram-records.json"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/reader-data/manifest.json",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/reader-data/manifest.json",
+        "sha256": "7fc11773e8ba99dd3a32e5a4e32522141e2c7465a1ed9d68a7ea3bd4f92f08d0",
+        "bytes": 321559
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/reader-data/manifest.json",
+        "sha256": "7fc11773e8ba99dd3a32e5a4e32522141e2c7465a1ed9d68a7ea3bd4f92f08d0",
+        "bytes": 321559
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/reader-data/manifest.json"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+        "sha256": "267847f0362d218cbd079cf1a45fee33482c21a772fd08898dc206fc2c1a99a3",
+        "bytes": 34382
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+        "sha256": "267847f0362d218cbd079cf1a45fee33482c21a772fd08898dc206fc2c1a99a3",
+        "bytes": 34382
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/supplements/frontier-comparisons-20261117.md"
+    },
+    {
+      "logical_path": "content/quantum-holography-status/supplements/supplements.json",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/content/quantum-holography-status/supplements/supplements.json",
+        "sha256": "9d2fee74de27c6f01015781162e64383d1609e21d2a4aadd6283dbff46c6874e",
+        "bytes": 1101
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/source-tree/content/quantum-holography-status/supplements/supplements.json",
+        "sha256": "9d2fee74de27c6f01015781162e64383d1609e21d2a4aadd6283dbff46c6874e",
+        "bytes": 1101
+      },
+      "persistent_relative_path": "source-tree/content/quantum-holography-status/supplements/supplements.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "logical_path": "compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+        "sha256": "12b4e5592a12baaf50637881f2cb9d66667b26b8d51a73cd8f0d6bcefe176ab6",
+        "bytes": 1074
+      },
+      "repository_relative_path": "compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+        "sha256": "12b4e5592a12baaf50637881f2cb9d66667b26b8d51a73cd8f0d6bcefe176ab6",
+        "bytes": 1074
+      },
+      "copied": false
+    },
+    {
+      "logical_path": "compiler/quantum-holography-tracker/vendor/temml.cjs",
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/workspace/compiler/quantum-holography-tracker/vendor/temml.cjs",
+        "sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e",
+        "bytes": 478962
+      },
+      "repository_relative_path": "compiler/quantum-holography-tracker/vendor/temml.cjs",
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-tracker/vendor/temml.cjs",
+        "sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e",
+        "bytes": 478962
+      },
+      "copied": false
+    }
+  ],
+  "consumer_component": {
+    "original": {
+      "path": "/tmp/qh-v14-sol-integration-20261117/repair-v1/consumer/reader.js",
+      "sha256": "8020a5faa091f1d94c92616456e174dee85cd06de5ce4383016bfd7455a37ab5",
+      "bytes": 115539
+    },
+    "persistent": {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/consumer/reader.js",
+      "sha256": "8020a5faa091f1d94c92616456e174dee85cd06de5ce4383016bfd7455a37ab5",
+      "bytes": 115539
+    },
+    "persistent_relative_path": "consumer/reader.js"
+  },
+  "evidence": [
+    {
+      "original": {
+        "path": "/tmp/qh-hosting-recovery-20261117/prepared/v14-publication-20261117T1920Z/PUBLICATION.json",
+        "sha256": "665bcd3c1085f0972e6b7e8e3a62ec8536d90332df2fe3efe8ee1a181334513b",
+        "bytes": 4745
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/evidence/PUBLICATION.json",
+        "sha256": "665bcd3c1085f0972e6b7e8e3a62ec8536d90332df2fe3efe8ee1a181334513b",
+        "bytes": 4745
+      },
+      "persistent_relative_path": "evidence/PUBLICATION.json"
+    },
+    {
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/repair-v1/MANIFEST-v14-repair-v1.json",
+        "sha256": "c105f904ace52d65467409379de98dfd06b71c085cf74768e7415eba43b99269",
+        "bytes": 10415
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/evidence/PUBLISHED-MANIFEST-v14.json",
+        "sha256": "c105f904ace52d65467409379de98dfd06b71c085cf74768e7415eba43b99269",
+        "bytes": 10415
+      },
+      "persistent_relative_path": "evidence/PUBLISHED-MANIFEST-v14.json"
+    },
+    {
+      "original": {
+        "path": "/tmp/qh-post-reset-reader-20261117/build-consumer-decision/DECISION.json",
+        "sha256": "2bed11c249cc61370953a7ce66a08d52d7a39bd753295d1afaf4c10ada89bc5a",
+        "bytes": 26335
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/evidence/CONSUMER-DECISION.json",
+        "sha256": "2bed11c249cc61370953a7ce66a08d52d7a39bd753295d1afaf4c10ada89bc5a",
+        "bytes": 26335
+      },
+      "persistent_relative_path": "evidence/CONSUMER-DECISION.json"
+    },
+    {
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/repair-v1/build/CONSUMER-REPAIR-VALIDATION.json",
+        "sha256": "37b2725d182f82318001cc64533a621f014115dc5145cbf7c4f6e991f377d5fd",
+        "bytes": 28760
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/evidence/CONSUMER-VALIDATION.json",
+        "sha256": "37b2725d182f82318001cc64533a621f014115dc5145cbf7c4f6e991f377d5fd",
+        "bytes": 28760
+      },
+      "persistent_relative_path": "evidence/CONSUMER-VALIDATION.json"
+    },
+    {
+      "original": {
+        "path": "/tmp/frontier-post-reset-review-20261117/reader-fidelity/COMBINED-RECEIPT.json",
+        "sha256": "98b51dc8df40b38ce5532372fa32d7e9eb5a8b110fe941ee10b4f7c5675db4ea",
+        "bytes": 7153
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/evidence/SOURCE-FIDELITY-RECEIPT.json",
+        "sha256": "98b51dc8df40b38ce5532372fa32d7e9eb5a8b110fe941ee10b4f7c5675db4ea",
+        "bytes": 7153
+      },
+      "persistent_relative_path": "evidence/SOURCE-FIDELITY-RECEIPT.json"
+    },
+    {
+      "original": {
+        "path": "/tmp/qh-post-reset-reader-20261117/repair-v1/SEAL.json",
+        "sha256": "fccc11975723274c0db00b7610b879e0e51befbe47bcc0689b4897f03ee4ae28",
+        "bytes": 13432
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/evidence/AUTHOR-SEAL.json",
+        "sha256": "fccc11975723274c0db00b7610b879e0e51befbe47bcc0689b4897f03ee4ae28",
+        "bytes": 13432
+      },
+      "persistent_relative_path": "evidence/AUTHOR-SEAL.json"
+    },
+    {
+      "original": {
+        "path": "/tmp/qh-v14-sol-integration-20261117/coordination/SOURCE-GUARD-LEDGER.json",
+        "sha256": "116795ec5f103da8ef91c402c183fd5ae79feee51f0d6230fbb299609be785dd",
+        "bytes": 22105
+      },
+      "persistent": {
+        "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/evidence/SOURCE-GUARD-LEDGER.json",
+        "sha256": "116795ec5f103da8ef91c402c183fd5ae79feee51f0d6230fbb299609be785dd",
+        "bytes": 22105
+      },
+      "persistent_relative_path": "evidence/SOURCE-GUARD-LEDGER.json"
+    }
+  ],
+  "broad_temporary_trees_or_duplicate_logs_copied": false,
+  "public_files_copied": false,
+  "existing_owner_or_public_files_modified": [],
+  "native_visual_qa": "PENDING"
+}

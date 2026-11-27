@@ -1,0 +1,872 @@
+{
+  "status": "PASS",
+  "check_count": 168,
+  "failures": [],
+  "checks": [
+    {
+      "name": "exactly_five_new_shared_index_units",
+      "pass": true,
+      "before": 5905,
+      "after": 5910
+    },
+    {
+      "name": "all_5905_existing_shared_units_byte_preserved_in_order",
+      "pass": true
+    },
+    {
+      "name": "exact_authored_heading_in_shared_index",
+      "pass": true,
+      "target": "index.html#ch17-retained-first-root",
+      "title": "Retained kernels and the first rooted comparison"
+    },
+    {
+      "name": "exact_authored_heading_in_shared_index",
+      "pass": true,
+      "target": "index.html#ch08-factorized-common-domain",
+      "title": "A common domain for the factorized intermediate object"
+    },
+    {
+      "name": "exact_authored_heading_in_shared_index",
+      "pass": true,
+      "target": "index.html#ch08-common-ring-tests",
+      "title": "Tests over a coefficient ring"
+    },
+    {
+      "name": "exact_authored_heading_in_shared_index",
+      "pass": true,
+      "target": "index.html#ch08-incomparable-clusters",
+      "title": "Two independently completed clusters"
+    },
+    {
+      "name": "exact_authored_heading_in_shared_index",
+      "pass": true,
+      "target": "index.html#ch08-deletion-and-spectral-connection",
+      "title": "Occupied deletion and parameter variation"
+    },
+    {
+      "name": "all_unrelated_HTML_bytes_preserved",
+      "pass": true,
+      "page": "index.html"
+    },
+    {
+      "name": "all_MathML_and_formula_annotations_byte_preserved",
+      "pass": true,
+      "page": "index.html"
+    },
+    {
+      "name": "all_CSS_including_fonts_byte_preserved",
+      "pass": true,
+      "page": "index.html"
+    },
+    {
+      "name": "all_unrelated_HTML_bytes_preserved",
+      "pass": true,
+      "page": "reference.html"
+    },
+    {
+      "name": "all_MathML_and_formula_annotations_byte_preserved",
+      "pass": true,
+      "page": "reference.html"
+    },
+    {
+      "name": "all_CSS_including_fonts_byte_preserved",
+      "pass": true,
+      "page": "reference.html"
+    },
+    {
+      "name": "all_unrelated_HTML_bytes_preserved",
+      "pass": true,
+      "page": "atlas.html"
+    },
+    {
+      "name": "all_MathML_and_formula_annotations_byte_preserved",
+      "pass": true,
+      "page": "atlas.html"
+    },
+    {
+      "name": "all_CSS_including_fonts_byte_preserved",
+      "pass": true,
+      "page": "atlas.html"
+    },
+    {
+      "name": "book_local_heading_unit_verbatim",
+      "pass": true,
+      "target": "index.html#ch17-retained-first-root"
+    },
+    {
+      "name": "book_local_exact_title_search_finds_heading_destination",
+      "pass": true,
+      "target": "index.html#ch17-retained-first-root",
+      "title": "Retained kernels and the first rooted comparison"
+    },
+    {
+      "name": "book_local_search_hit_navigates_to_authored_heading",
+      "pass": true,
+      "target": "index.html#ch17-retained-first-root"
+    },
+    {
+      "name": "book_local_heading_unit_verbatim",
+      "pass": true,
+      "target": "index.html#ch08-factorized-common-domain"
+    },
+    {
+      "name": "book_local_exact_title_search_finds_heading_destination",
+      "pass": true,
+      "target": "index.html#ch08-factorized-common-domain",
+      "title": "A common domain for the factorized intermediate object"
+    },
+    {
+      "name": "book_local_search_hit_navigates_to_authored_heading",
+      "pass": true,
+      "target": "index.html#ch08-factorized-common-domain"
+    },
+    {
+      "name": "book_local_heading_unit_verbatim",
+      "pass": true,
+      "target": "index.html#ch08-common-ring-tests"
+    },
+    {
+      "name": "book_local_exact_title_search_finds_heading_destination",
+      "pass": true,
+      "target": "index.html#ch08-common-ring-tests",
+      "title": "Tests over a coefficient ring"
+    },
+    {
+      "name": "book_local_search_hit_navigates_to_authored_heading",
+      "pass": true,
+      "target": "index.html#ch08-common-ring-tests"
+    },
+    {
+      "name": "book_local_heading_unit_verbatim",
+      "pass": true,
+      "target": "index.html#ch08-incomparable-clusters"
+    },
+    {
+      "name": "book_local_exact_title_search_finds_heading_destination",
+      "pass": true,
+      "target": "index.html#ch08-incomparable-clusters",
+      "title": "Two independently completed clusters"
+    },
+    {
+      "name": "book_local_search_hit_navigates_to_authored_heading",
+      "pass": true,
+      "target": "index.html#ch08-incomparable-clusters"
+    },
+    {
+      "name": "book_local_heading_unit_verbatim",
+      "pass": true,
+      "target": "index.html#ch08-deletion-and-spectral-connection"
+    },
+    {
+      "name": "book_local_exact_title_search_finds_heading_destination",
+      "pass": true,
+      "target": "index.html#ch08-deletion-and-spectral-connection",
+      "title": "Occupied deletion and parameter variation"
+    },
+    {
+      "name": "book_local_search_hit_navigates_to_authored_heading",
+      "pass": true,
+      "target": "index.html#ch08-deletion-and-spectral-connection"
+    },
+    {
+      "name": "book_local_no_script_errors",
+      "pass": true,
+      "errors": []
+    },
+    {
+      "name": "companion_exact_title_search_finds_book_heading_destination",
+      "pass": true,
+      "target": "index.html#ch17-retained-first-root"
+    },
+    {
+      "name": "companion_exact_title_search_finds_book_heading_destination",
+      "pass": true,
+      "target": "index.html#ch08-factorized-common-domain"
+    },
+    {
+      "name": "companion_exact_title_search_finds_book_heading_destination",
+      "pass": true,
+      "target": "index.html#ch08-common-ring-tests"
+    },
+    {
+      "name": "companion_exact_title_search_finds_book_heading_destination",
+      "pass": true,
+      "target": "index.html#ch08-incomparable-clusters"
+    },
+    {
+      "name": "companion_exact_title_search_finds_book_heading_destination",
+      "pass": true,
+      "target": "index.html#ch08-deletion-and-spectral-connection"
+    },
+    {
+      "name": "authored_link_label_and_destination_exact",
+      "pass": true,
+      "label": "The retained construction and its first-root comparison",
+      "href": "index.html#ch17-retained-first-root"
+    },
+    {
+      "name": "authored_link_uses_existing_cross_page_navigation",
+      "pass": true,
+      "href": "index.html#ch17-retained-first-root"
+    },
+    {
+      "name": "authored_link_label_and_destination_exact",
+      "pass": true,
+      "label": "The truncation obstruction",
+      "href": "atlas.html#atlas-c-native-r3-ghost-truncation-homotopy"
+    },
+    {
+      "name": "authored_link_uses_existing_cross_page_navigation",
+      "pass": true,
+      "href": "atlas.html#atlas-c-native-r3-ghost-truncation-homotopy"
+    },
+    {
+      "name": "authored_link_label_and_destination_exact",
+      "pass": true,
+      "label": "Taylor completion and its limits",
+      "href": "atlas.html#atlas-c-horizontal-cluster-taylor-completion"
+    },
+    {
+      "name": "authored_link_uses_existing_cross_page_navigation",
+      "pass": true,
+      "href": "atlas.html#atlas-c-horizontal-cluster-taylor-completion"
+    },
+    {
+      "name": "authored_link_label_and_destination_exact",
+      "pass": true,
+      "label": "Occupied deletion",
+      "href": "atlas.html#atlas-c-horizontal-occupied-deletion-all-slots"
+    },
+    {
+      "name": "authored_link_uses_existing_cross_page_navigation",
+      "pass": true,
+      "href": "atlas.html#atlas-c-horizontal-occupied-deletion-all-slots"
+    },
+    {
+      "name": "authored_link_label_and_destination_exact",
+      "pass": true,
+      "label": "The common-domain construction",
+      "href": "index.html#ch08-factorized-common-domain"
+    },
+    {
+      "name": "authored_link_uses_existing_cross_page_navigation",
+      "pass": true,
+      "href": "index.html#ch08-factorized-common-domain"
+    },
+    {
+      "name": "authored_link_label_and_destination_exact",
+      "pass": true,
+      "label": "The counterexample and finite-cell comparison",
+      "href": "index.html#ch08-common-ring-tests"
+    },
+    {
+      "name": "authored_link_uses_existing_cross_page_navigation",
+      "pass": true,
+      "href": "index.html#ch08-common-ring-tests"
+    },
+    {
+      "name": "authored_link_label_and_destination_exact",
+      "pass": true,
+      "label": "The four-point intersection",
+      "href": "atlas.html#atlas-c-horizontal-four-point-factorized-intersection"
+    },
+    {
+      "name": "authored_link_uses_existing_cross_page_navigation",
+      "pass": true,
+      "href": "atlas.html#atlas-c-horizontal-four-point-factorized-intersection"
+    },
+    {
+      "name": "authored_link_label_and_destination_exact",
+      "pass": true,
+      "label": "The remaining composition problem",
+      "href": "index.html#problem-composition-domains"
+    },
+    {
+      "name": "authored_link_uses_existing_cross_page_navigation",
+      "pass": true,
+      "href": "index.html#problem-composition-domains"
+    },
+    {
+      "name": "companion_no_script_errors",
+      "pass": true,
+      "errors": []
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/build-quantum-holography-status.py"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/build-quantum-holography-status.py"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/atlas.css"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/atlas.css"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/atlas.js"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/atlas.js"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/atlas.py"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/atlas.py"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/audit.py"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/audit.py"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/figures.css"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/figures.css"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/figures.js"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/figures.js"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/figures.py"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/figures.py"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/monograph.css"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/monograph.css"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/monograph.py"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/monograph.py"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/reader.js"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/reader.js"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/status-print.css"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/status-print.css"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/status.css"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/status.css"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/status.js"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/status.js"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/status.py"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/status.py"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/atlas.test.cjs"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/atlas.test.cjs"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/figures.test.cjs"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/figures.test.cjs"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/figures_page.py"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/figures_page.py"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/fixtures/reader-book.json"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/fixtures/reader-book.json"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/interaction.test.cjs"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/interaction.test.cjs"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/reader.test.cjs"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/reader.test.cjs"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/test_atlas.py"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/test_atlas.py"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/test_figures.py"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-status/tests/test_figures.py"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-tracker/tex2mathml.cjs"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-tracker/tex2mathml.cjs"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-tracker/vendor/TEMML-LICENSE"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-tracker/vendor/TEMML-LICENSE"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-tracker/vendor/temml.cjs"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "compiler/quantum-holography-tracker/vendor/temml.cjs"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/README.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/README.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/atlas.json"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/atlas.json"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/01-physical-questions.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/01-physical-questions.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/02-algebras-and-modules.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/02-algebras-and-modules.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/03-local-fields.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/03-local-fields.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/04-factorization.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/04-factorization.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/05-bar-and-coherence.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/05-bar-and-coherence.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/06-duality-and-induction.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/06-duality-and-induction.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/07-actions-and-centres.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/07-actions-and-centres.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/08-completions.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/08-completions.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/09-mixed-boundaries.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/09-mixed-boundaries.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/10-analytic-sewing.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/10-analytic-sewing.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/11-states-and-lines.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/11-states-and-lines.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/12-chiral-quantum-groups.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/12-chiral-quantum-groups.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/13-geometric-reconstruction.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/13-geometric-reconstruction.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/14-branes.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/14-branes.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/15-hall-and-compact.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/15-hall-and-compact.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/16-arithmetic.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/16-arithmetic.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/17-holographic-reconstruction.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/17-holographic-reconstruction.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/18-open-problems.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/chapters/18-open-problems.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/content.json"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/content.json"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/essay.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/essay.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/page.json"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/page.json"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/reader-data/diagram-records.json"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/reader-data/diagram-records.json"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/reader-data/manifest.json"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/reader-data/manifest.json"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/supplements/frontier-comparisons-20261117.md"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/supplements/frontier-comparisons-20261117.md"
+    },
+    {
+      "name": "accepted_scientific_and_original_compiler_sources_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/supplements/supplements.json"
+    },
+    {
+      "name": "v13_source_unchanged",
+      "pass": true,
+      "relative_path": "content/quantum-holography-status/supplements/supplements.json"
+    },
+    {
+      "name": "frozen_before_repair_candidate_unchanged",
+      "pass": true,
+      "file": "index.html"
+    },
+    {
+      "name": "frozen_before_repair_candidate_unchanged",
+      "pass": true,
+      "file": "reference.html"
+    },
+    {
+      "name": "frozen_before_repair_candidate_unchanged",
+      "pass": true,
+      "file": "atlas.html"
+    },
+    {
+      "name": "frozen_before_repair_candidate_unchanged",
+      "pass": true,
+      "file": "reader-index.js"
+    }
+  ],
+  "shared_index_units": 5910,
+  "original_units_preserved": 5905,
+  "new_heading_units": 5,
+  "restored_authored_links": 8,
+  "scientific_source_changes": [],
+  "visual_qa": "PENDING",
+  "publication": "PENDING_ROOT"
+}
