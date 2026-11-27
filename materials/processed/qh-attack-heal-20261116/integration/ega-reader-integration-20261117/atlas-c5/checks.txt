@@ -1,0 +1,19 @@
+C5 checks, 2026-11-16T20:02Z. Tree: a copy of root's integration tree (compiler/ and content/quantum-holography-status/) taken 17 Nov ~02:52 WIB, with the C5 atlas files; run_checks.sh 59544639c5ae6a4e…
+
+build (fonts), audit: PASS
+build (nofonts), audit: PASS
+reader tests and scans run on: page /Users/raeez/www-worktrees/2026-11-16-qh-max-atlas/materials/processed/qh-attack-heal-20261116/atlas/tmp/c5-run-025315/fonts/preview.html
+atlas unit tests: PASS
+reader tasks in jsdom (23 pass, 3 skipped, 1 observed): PASS
+completeness: every domain, claim, edge, comparison and path drawn with its anchor (atlas section: 12 domains, 955 claims, 137 edges, 88 comparisons (1255 listed claims), 23 paths, 20 question ids checked): PASS
+gate scans of the atlas files and the atlas section: PASS
+content findings in visible text (for the content owner): 267
+RESULT PASS
+
+Like-for-like comparison: the same tree copy with root's installed atlas files restored (atlas.py fd65eec0…), built --no-fonts with the same SOURCE_DATE_EPOCH, against this run's --no-fonts page.
+  ids on the page: baseline 3742, C5 3742; lost 0, new 0
+  status words: baseline ['Conditional', 'Established', 'Remaining', 'Scoped negative'], C5 ['Conditional', 'Established', 'Remaining', 'Scoped negative']
+  hooks (data-status-code, data-qh-unit-status, data-claim-id, data-edge-id): baseline (955, 955, 955, 412), C5 (955, 955, 955, 412)
+  the atlas's own square marks (atlas-mark): baseline 5155, C5 0
+  map node glyphs from the page mark (atlas-node-mark): C5 955
+  visible words in the atlas that differ: 62, all removed: True: four times "Its mark on the statement cards and in the table:" and the squares half of the key note

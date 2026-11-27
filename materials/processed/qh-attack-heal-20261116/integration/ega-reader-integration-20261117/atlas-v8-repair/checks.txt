@@ -1,0 +1,68 @@
+Atlas lane, release v8 repair (G4, A2, A6; with G5): checks, 2026-11-16T23:38Z
+
+Inputs
+  QA handoff v8 44a791daa195cdaf…, IMAGE-10 4fcafce18a7e0c6f…, IMAGE-11 c53199db0b4b3f75…
+  captures viewed: 5-top 18cbce58, 5-middle 5f215220, 5-bottom 6a0ecba0, 6a 8f2b270c, 6a-map eb05fe8b, 6b 6b466a65, 6c f5b9c13e; crop v8-6b-6b466a65-panel-top; exemplar Decision Map EN p19
+  author manifest 342bef123fe00c77…
+  integration at the time of the check: monograph.py 605723ba68b64f09…, monograph.css fc18010834409a89…, reader.js 40ed4eb4fa623bb7…, status.py b0bf38e632fe3379…
+
+Patch on a clean copy of the installed files: check_v8_repair.py --before as expected; git apply --check clean; applied; --after as expected; the result equals this worktree byte for byte.
+
+Unit tests, this worktree
+  tests/test_figures.py with the author's manifest (QH_READER_MANIFEST): Ran 30 tests in 1.907s OK
+  tests/test_atlas.py: Ran 56 tests in 0.675s OK (skipped=1) (the skip is the whole-page build, which needs integration's status.py; it runs in the integrated check below)
+
+jsdom, figures (tests/figures.test.cjs)
+  fixture page: 11 pass, all passed
+  manifest page: 11 pass, all passed
+
+Integrated check (integration/run_checks.sh) on two fresh copies of integration's tree (compiler/ and content/quantum-holography-status/), built side by side
+  baseline, the installed files: base-062240
+    build (fonts), audit: PASS
+    build (nofonts), audit: PASS
+    atlas unit tests: PASS
+    reader tasks in jsdom: FAIL (1 failed; jsdom.log)
+    completeness: every domain, claim, edge, comparison and path drawn with its anchor (atlas section: 12 domains, 955 claims, 137 edges, 88 comparisons (1255 listed claims), 23 paths, 20 question ids checked): PASS
+    gate scans of the atlas files and the atlas section: PASS
+    content findings in visible text (for the content owner): 267
+    RESULT FAIL
+    (its one failure is RT9 in the installed tests/atlas.test.cjs: the test clicked '.nav a[href="#examples"]', the old status page's navigation, which the reader's page no longer has)
+  repaired, with this patch: rep-062240
+    build (fonts), audit: PASS
+    build (nofonts), audit: PASS
+    atlas unit tests: PASS
+    reader tasks in jsdom (24 pass, 5 skipped, 1 observed): PASS
+    completeness: every domain, claim, edge, comparison and path drawn with its anchor (atlas section: 12 domains, 955 claims, 137 edges, 88 comparisons (1255 listed claims), 23 paths, 20 question ids checked): PASS
+    gate scans of the atlas files and the atlas section: PASS
+    content findings in visible text (for the content owner): 267
+    RESULT PASS
+    atlas unit tests through the page's mount: Ran 56 tests in 4.050s OK
+    the five skipped reader tasks are skipped in the baseline as well: the page offers no #find-q search field (two), no claim has a statementRef to a statement of the page, and the atlas has no path of kind source_bound_dependency_path (two)
+  the check tools of this lane (integration/completeness.py, integration/gate_scan.py) now find the atlas section by its id wherever the id stands in the tag: the page writes <section data-reference id="atlas" ...>, which the earlier literal match missed, so before this both tools had read no atlas at all
+
+Like for like (the two pages built with fonts)
+  ids on the page: baseline 4708, repaired 4708; lost [], new []; duplicates in the repaired page 0
+  atlas hooks (status-code, unit-status, claim-id, edge-id, map nodes): baseline (955, 955, 955, 411, 955), repaired (955, 955, 955, 411, 955)
+  visible words of the atlas: baseline 274305, repaired 274337; changed 32: removed [] added 'Place in the atlas Show in the map Each dot is a claim at its place in the map; each band is a domain. The selected claim is marked with its number.'
+  figure fig-gaussian-reduction: changed
+  figure fig-local-expansions: unchanged
+  figure fig-cohomology-jump: unchanged
+  figure fig-infinite-rank: unchanged
+  figure fig-adjunction-triangles: unchanged
+  the rest of the page (outside the atlas and the Gaussian figure, styles and scripts aside): identical
+  (the added words are the locator's interface words, shown only while a claim is selected)
+
+The five figures in the built book, with the reader script (jsdom)
+  base-062240: figures: 5 | live: 5; reader on: true; elements with data-chapter and an id: 18 | of them figures: 0; figures with data-section: 0 | titles for the reader: 5; cohomology t=-1 chosen: negative | h shown: true; infinite N=6 on-cells (finite): 6; figure links: #eq-gaussian-integral #eq-gaussian-moments #eq-conditional-product-defect #eq-current-singularity #eq-local-expansions #eq-cohomology-jump #eq-sequence-tensor-map | unresolved: none; script errors: none; 
+  rep-062240: figures: 5 | live: 5; reader on: true; elements with data-chapter and an id: 18 | of them figures: 0; figures with data-section: 0 | titles for the reader: 5; cohomology t=-1 chosen: negative | h shown: true; infinite N=6 on-cells (finite): 6; figure links: #eq-gaussian-integral #eq-gaussian-moments #eq-conditional-product-defect #eq-current-singularity #eq-local-expansions #eq-cohomology-jump #eq-sequence-tensor-map | unresolved: none; script errors: none; 
+
+The repaired page, read from its markup
+  G4: scale note 1 time(s); ticks per plot: [['0', '0.5', '1'], ['0', '0.5', '1'], ['0', '0.5', '1']]
+  G1/G5 readout conditional-density: 2 parts, 2 typeset formulas, no TeX left: True, number []
+  G1/G5 readout centred-fluctuation: 3 parts, 2 typeset formulas, no TeX left: True, number ['2.507']
+  G1/G5 readout original-weight: 3 parts, 2 typeset formulas, no TeX left: True, number ['1.045']
+  G5: conditional mean ['−0.5']
+  A2: locator in the pane, hidden until a claim is selected: 12 domain bands, 955 dots, no line on it: True
+  A6: the pane's column on a wide screen: True | head with Close sticky at every width: True | no overlay at wide widths: True
+
+Not done here: no page image was made or judged (no browser, headless, CDP or screenshot run). Root re-captures items 5 (5-top, 5-middle) and 6 (6a-map, 6b, 6c) on the rebuilt candidate; native QA judges them.

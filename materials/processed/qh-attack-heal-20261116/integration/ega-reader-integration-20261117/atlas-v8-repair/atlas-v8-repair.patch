@@ -1,0 +1,1045 @@
+diff --git a/compiler/quantum-holography-status/figures.py b/compiler/quantum-holography-status/figures.py
+index a35b5f5..98f4733 100644
+--- a/compiler/quantum-holography-status/figures.py
++++ b/compiler/quantum-holography-status/figures.py
+@@ -30,7 +30,8 @@ FUNCTIONS = ('sqrt', 'exp')
+ # (ctx.words), as it may the reader's own.
+ WORDS = {'controls': 'Parameters', 'outputs': 'Values at these parameters', 'equations': 'Equations',
+          'equation': 'Equation', 'integral': 'Integral over the real line', 'yes': 'yes', 'no': 'no',
+-         'hypothesis': 'Hypothesis', 'equivalent': 'Equivalent statement'}
++         'hypothesis': 'Hypothesis', 'equivalent': 'Equivalent statement',
++         'scale': 'The curves share one vertical scale.'}
+ 
+ 
+ # Formulas ---------------------------------------------------------------------------------------------------
+@@ -296,11 +297,16 @@ def math_inline(t):
+ 
+ 
+ def fmt(v):
++    """A value as the figure writes it: at most three decimals, and a negative value with the minus sign (U+2212),
++    as in the typeset formulas beside it, never a hyphen."""
+     if v is None:
+         return ''
+     if v != 0 and (abs(v) >= 1000 or abs(v) < 0.001):
+-        return f'{v:.3g}'
+-    return f'{v:.3f}'.rstrip('0').rstrip('.')
++        text = f'{v:.3g}'
++    else:
++        text = f'{v:.3f}'.rstrip('0').rstrip('.')
++    text = text.replace('-', '\u2212')
++    return '0' if text == '\u22120' else text
+ 
+ 
+ # Checks ----------------------------------------------------------------------------------------------------
+@@ -537,6 +543,10 @@ def check_finite(record, err):
+ # are kept for open comparisons and are not used here. The script redraws with the same geometry.
+ 
+ PANEL_W, PANEL_H, PAD, SPAN = 300, 150, 18, 4.0
++# A profile plot: the vertical scale on the left (its line at SCALE_X, labelled ticks at 0, half the top and the top),
++# the variable's axis along the base, and the window of the variable from WIN_X0 to WIN_X1.
++SCALE_X, WIN_X0, WIN_X1, AXIS_X1 = 34, 42, 278, 288
++BASE_Y, TOP_Y = PANEL_H - PAD, 26
+ SUB = re.compile(r'_([A-Za-z0-9′\']+)')
+ CMP_TEXT = {'<': '<', '>': '>', '<=': '≤', '>=': '≥', '!=': '≠', '==': '='}
+ 
+@@ -650,29 +660,65 @@ def output_tex(text):
+ # The Gaussian profiles
+ 
+ def window_x(t):
+-    return PAD + (t + SPAN) / (2 * SPAN) * (PANEL_W - 2 * PAD)
++    return WIN_X0 + (t + SPAN) / (2 * SPAN) * (WIN_X1 - WIN_X0)
++
++
++def scale_y(v, top):
++    """The height of a value on the shared vertical scale from 0 (the base) to top."""
++    return BASE_Y - min(v / top, 1.06) * (BASE_Y - TOP_Y)
+ 
+ 
+-def profile_path(node, var, env, scale):
+-    pts = []
++def samples(node, var, env):
++    """The drawn values of a profile: 161 points across the window, a value without a number drawn as 0."""
++    out = []
+     for i in range(161):
+         t = -SPAN + 2 * SPAN * i / 160
+         v = value(node, dict(env, **{var: t}))
+-        v = 0.0 if v is None or isinstance(v, bool) else v
+-        pts.append((window_x(t), PANEL_H - PAD - min(v / scale, 1.06) * (PANEL_H - 2 * PAD - 8)))
+-    return 'M' + ' L'.join(f'{x:.1f} {y:.1f}' for x, y in pts)
++        out.append((t, 0.0 if v is None or isinstance(v, bool) else v))
++    return out
++
++
++def profile_path(node, var, env, top):
++    return 'M' + ' L'.join(f'{window_x(t):.1f} {scale_y(v, top):.1f}' for t, v in samples(node, var, env))
+ 
+ 
+ def is_density(p):
+     return str(p.get('integral_over_real_line')).strip() == '1'
+ 
+ 
+-def profile_scale(p, node, env):
+-    """Unnormalized weights share the vertical scale 0..1, so their peaks compare; a density uses its own peak."""
+-    if not is_density(p):
++def nice_top(m):
++    """The top of the shared vertical scale: the least of 1, 2, 5 or 10 times a power of ten at or above the largest
++    drawn value (a peak of exactly 1 gives the scale 0 to 1)."""
++    if not m or m <= 0 or not math.isfinite(m):
+         return 1.0
+-    peak = max((value(node, dict(env, **{p['variable']: t / 40})) or 0) for t in range(-160, 161))
+-    return peak or 1.0
++    m *= 1 - 1e-9
++    e = 10 ** math.floor(math.log10(m))
++    return next(k * e for k in (1, 2, 5, 10) if k * e >= m)
++
++
++def shared_top(record, env):
++    """One vertical scale for every profile of the figure at these parameters: its top covers the largest value
++    drawn in any of them, so heights compare across the plots and every curve keeps its true height."""
++    names = list(record['parameters'])
++    peak = 0.0
++    for p in record.get('profiles') or []:
++        node = parse(p['formula'], names + [p['variable']])
++        peak = max([peak] + [v for _, v in samples(node, p['variable'], env)])
++    return nice_top(peak)
++
++
++def scale_marks(top):
++    """The stated scale of a profile plot: its line, ticks at 0, half the top and the top with their values, and a
++    hairline across the plot at the two nonzero ticks. The script rewrites the two values when the top changes."""
++    out = [f'<path class="qh-fig-axis" d="M{SCALE_X} {BASE_Y}V{TOP_Y - 4}"/>']
++    for part, v in (('scale-0', 0.0), ('scale-mid', top / 2), ('scale-top', top)):
++        y = scale_y(v, top)
++        if v:
++            out.append(f'<path class="qh-fig-guide" d="M{SCALE_X} {y:.1f}H{WIN_X1}"/>')
++        out.append(f'<path class="qh-fig-axis" d="M{SCALE_X - 4} {y:.1f}H{SCALE_X}"/>'
++                   f'<text class="qh-fig-tick qh-fig-scale-tick" data-part="{part}" x="{SCALE_X - 7}" y="{y + 4.5:.1f}" '
++                   f'text-anchor="end">{fmt(v)}</text>')
++    return ''.join(out)
+ 
+ 
+ def mean_mark(x, label):
+@@ -683,22 +729,25 @@ def mean_mark(x, label):
+             f'text-anchor="{"end" if right else "start"}">{sub_svg(label)}</text>')
+ 
+ 
+-def profile_svg(record, p, env):
++def profile_svg(record, p, env, top):
++    """One profile on the figure's shared vertical scale (top), stated on the plot by its labelled ticks; the
++    variable's axis runs to the right of the window, where the real line continues."""
+     names = list(record['parameters'])
+     node = parse(p['formula'], names + [p['variable']])
+-    base = PANEL_H - PAD
+     outs, labels = record.get('outputs') or {}, record.get('labels') or {}
+     marks = ''
+     if is_density(p) and p['variable'] == 'y' and 'conditional_mean' in outs and labels.get('conditional_mean'):
+         mean = value(parse(outs['conditional_mean'], names), env)
+         marks = mean_mark(window_x(max(-SPAN, min(SPAN, mean))), labels['conditional_mean'])
++    zero = window_x(0)
+     return (f'<svg class="qh-fig-svg" viewBox="0 0 {PANEL_W} {PANEL_H}" aria-hidden="true" focusable="false">'
+-            f'<path class="qh-fig-curve" data-part="curve" d="{profile_path(node, p["variable"], env, profile_scale(p, node, env))}"/>'
+-            f'{marks}<path class="qh-fig-axis" d="M{PAD - 6} {base}H{PANEL_W - PAD + 6}"/>'
+-            f'<path class="qh-fig-axis" d="M{PANEL_W / 2:.1f} {base}v4"/>'
+-            f'<path class="qh-fig-more" d="M{PAD - 6} {base}l5 -3v6zM{PANEL_W - PAD + 6} {base}l-5 -3v6z"/>'
+-            f'<text class="qh-fig-tick" x="{PANEL_W / 2:.1f}" y="{PANEL_H - 2}" text-anchor="middle">0</text>'
+-            f'<text class="qh-fig-tick qh-fig-var" x="{PANEL_W - PAD}" y="{PANEL_H - 2}" text-anchor="end">{esc(p["variable"])}</text></svg>')
++            f'{scale_marks(top)}'
++            f'<path class="qh-fig-curve" data-part="curve" d="{profile_path(node, p["variable"], env, top)}"/>'
++            f'{marks}<path class="qh-fig-axis" d="M{SCALE_X} {BASE_Y}H{AXIS_X1}"/>'
++            f'<path class="qh-fig-axis" d="M{zero:.1f} {BASE_Y}v4"/>'
++            f'<path class="qh-fig-more" d="M{AXIS_X1} {BASE_Y}l-5 -3v6z"/>'
++            f'<text class="qh-fig-tick" x="{zero:.1f}" y="{PANEL_H - 1}" text-anchor="middle">0</text>'
++            f'<text class="qh-fig-tick qh-fig-var" x="{WIN_X1}" y="{PANEL_H - 1}" text-anchor="end">{esc(p["variable"])}</text></svg>')
+ 
+ 
+ # The two expansions: the w-plane at a fixed z
+@@ -1096,9 +1145,11 @@ def render_gaussian(record, rich, words):
+                  'integral': parse(p['integral_over_real_line'], names), 'density': is_density(p),
+                  'mean': is_density(p) and p['variable'] == 'y'}
+                 for p in record.get('profiles') or []]
++    top = shared_top(record, env)
+     config = {'model': record['model'], 'names': names, 'controls': controls, 'outputs': outputs,
+               'rule': parse(record['validity']['rule'], names), 'profiles': profiles,
+-              'mean': outputs.get('conditional_mean'), 'window': [PANEL_W, PANEL_H, PAD, SPAN]}
++              'mean': outputs.get('conditional_mean'),
++              'plot': {'w': PANEL_W, 'span': SPAN, 'x0': WIN_X0, 'x1': WIN_X1, 'base': BASE_Y, 'top': TOP_Y}}
+     ctrl = ''.join(
+         f'<li class="qh-fig-control" data-param="{attr(n)}">'
+         f'<label class="qh-fig-control-label" for="{rid}--{attr(n)}">{rich_label(controls[n]["label"], rich)}</label>'
+@@ -1112,20 +1163,26 @@ def render_gaussian(record, rich, words):
+     formulas = list(outputs.values())
+ 
+     def integral(p):
+-        """The authored integral over the real line under the figure's label for it. A constant (the density's 1) is
+-        its own value and is written once; any other integral is its formula and its value at the parameters."""
++        """The integral over the real line of the plotted function, as one equation in the chapter's notation: the
++        authored function integrated in its variable, then the authored value of the integral, then (when that value
++        depends on the parameters) its number at these parameters. A constant value (the density's 1) is written once.
++        The three parts are kept whole and the line breaks between them."""
+         node = parse(p['integral_over_real_line'], names)
+-        shown = rich(math_inline(tex(node)))
++        f = parse(p['formula'], names + [p['variable']])
++        parts = [rich(math_inline(r'\int_{\mathbb R}' + tex(f) + r'\,d' + tex(['var', p['variable']]))),
++                 rich(math_inline('=' + tex(node)))]
+         if variables(node):
+-            shown += (f' <span class="qh-fig-eq">=</span> <output class="qh-fig-value" data-value="profile:{attr(p["id"])}">'
+-                      f'{fmt(value(node, env))}</output>')
++            parts.append(f'<span class="qh-fig-eq">=</span> <output class="qh-fig-value" data-value="profile:{attr(p["id"])}">'
++                         f'{fmt(value(node, env))}</output>')
+         return (f'<div class="qh-fig-integral"><p class="qh-fig-label">{esc(words["integral"])}</p>'
+-                f'<p class="qh-fig-integral-value">{shown}</p></div>')
++                f'<p class="qh-fig-integral-value">' + ' '.join(f'<span class="qh-fig-seg">{x}</span>' for x in parts) +
++                '</p></div>')
+     panels = ''.join(
+         f'<div class="qh-fig-profile" data-profile="{attr(p["id"])}">'
+-        f'<p class="qh-fig-profile-label">{rich_label(p["label"], rich)}</p>{profile_svg(record, p, env)}'
++        f'<p class="qh-fig-profile-label">{rich_label(p["label"], rich)}</p>{profile_svg(record, p, env, top)}'
+         f'{integral(p)}<p class="qh-fig-profile-caption">{rich_label(prose_formulas(p["caption"], formulas), rich)}</p></div>'
+         for p in record.get('profiles') or [])
++    panels = f'<p class="qh-fig-note qh-fig-scale-note">{esc(words["scale"])}</p>' + panels
+     body = (f'<div class="qh-fig-body"><div class="qh-fig-side">'
+             f'<p class="qh-fig-label">{esc(words["controls"])}</p><ul class="qh-fig-controls">{ctrl}</ul>'
+             f'<p class="qh-fig-domain">{rich_label(labels["domain"], rich)}</p>'
+diff --git a/compiler/quantum-holography-status/figures.css b/compiler/quantum-holography-status/figures.css
+index 2e9e01f..bd6a98c 100644
+--- a/compiler/quantum-holography-status/figures.css
++++ b/compiler/quantum-holography-status/figures.css
+@@ -57,16 +57,23 @@ figure.qh-fig p, figure.qh-fig p + p { text-indent: 0; text-align: left; }
+ .qh-fig-node-text { font-size: 17px; font-style: italic; }
+ .qh-fig-sub { font-size: .74em; }
+ 
+-/* Profiles: one curve per authored function over a finite window of its variable; the real-line integral is the
+-   authored formula, written under the curve (no area is filled, so a window never reads as the whole mass). */
++/* Profiles: one curve per authored function over a finite window of its variable, every curve on one vertical
++   scale, stated on each plot by its labelled ticks and a hairline at each nonzero tick, so heights compare across
++   the plots. The real-line integral is written under the curve as one equation (no area is filled, so a window
++   never reads as the whole mass). */
+ .qh-fig-profiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--fig-au) * .6) 20px; }
+ @container (min-width: 50rem) { .qh-fig-profiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
++.qh-fig .qh-fig-scale-note { grid-column: 1 / -1; margin: 0; }
+ .qh-fig-profile { min-width: 0; max-width: 26rem; }
+ .qh-fig-profile .qh-fig-svg { max-width: 360px; }
++.qh-fig-profile .qh-fig-tick { font-size: 14px; }
++.qh-fig-profile .qh-fig-var { font-size: 15px; }
++.qh-fig-guide { fill: none; stroke: var(--rule); stroke-width: 1; }
+ .qh-fig .qh-fig-profile-label { margin: 0 0 2px; font-size: var(--text-sm); font-weight: 600; line-height: 1.3; }
+ .qh-fig .qh-fig-integral { margin: 4px 0 0; }
+ .qh-fig .qh-fig-integral .qh-fig-label { margin: 0; }
+-.qh-fig .qh-fig-integral-value { margin: 0; font-size: var(--text-sm); line-height: 1.45; color: var(--ink); }
++.qh-fig .qh-fig-integral-value { margin: 0; font-size: var(--text-sm); line-height: 1.6; color: var(--ink); }
++.qh-fig-seg { display: inline-block; max-width: 100%; white-space: nowrap; vertical-align: middle; }
+ .qh-fig .qh-fig-profile-caption { margin: 2px 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
+ .qh-fig-curve { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+ .qh-fig-mean { stroke: var(--accent); stroke-width: 1.4; }
+@@ -185,5 +192,6 @@ figure.qh-fig p, figure.qh-fig p + p { text-indent: 0; text-align: left; }
+   .qh-fig-region { fill: Canvas; stroke: Highlight; }
+   .qh-fig-basis.is-alive .qh-fig-ring, .qh-fig-cell.is-on rect { fill: Canvas; stroke: Highlight; stroke-width: 2.5; }
+   .qh-fig-head-mark, .qh-fig-head-mark.is-unit, .qh-fig-head-mark.is-counit { fill: CanvasText; }
++  .qh-fig-guide { stroke: GrayText; }
+   .qh-fig-chip { border-color: Highlight; }
+ }
+diff --git a/compiler/quantum-holography-status/figures.js b/compiler/quantum-holography-status/figures.js
+index e642ee5..e075bde 100644
+--- a/compiler/quantum-holography-status/figures.js
++++ b/compiler/quantum-holography-status/figures.js
+@@ -50,10 +50,13 @@
+     if (k === 'and') return val(n[1], env) === true && val(n[2], env) === true;
+     return null;
+   }
++  /* A value as on the server: at most three decimals, a negative value with the minus sign (U+2212). */
+   function fmt(v) {
+     if (v === null || v === undefined || typeof v === 'boolean' || !isFinite(v)) return '';
+-    if (v !== 0 && (Math.abs(v) >= 1000 || Math.abs(v) < 0.001)) return v.toPrecision(3);
+-    return v.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
++    var text = (v !== 0 && (Math.abs(v) >= 1000 || Math.abs(v) < 0.001)) ? v.toPrecision(3)
++      : v.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
++    text = text.replace(/-/g, '\u2212');
++    return text === '\u22120' ? '0' : text;
+   }
+   function copy(o) { var r = {}; for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) r[k] = o[k]; return r; }
+   function show(el, on) { if (!el) return; if (on) el.removeAttribute('display'); else el.setAttribute('display', 'none'); }
+@@ -94,26 +97,31 @@
+   }
+ 
+   function gaussian(fig, cfg) {
+-    var W = cfg.window[0], H = cfg.window[1], PAD = cfg.window[2], SPAN = cfg.window[3];
++    var P = cfg.plot, SPAN = P.span;
+     var env = {};
+     cfg.names.forEach(function (n) { env[n] = +cfg.controls[n].initial; });
+     var note = fig.querySelector('.qh-fig-invalid');
+-    function wx(t) { return PAD + (t + SPAN) / (2 * SPAN) * (W - 2 * PAD); }
+-    function curve(p) {
+-      var scale = 1, i, t, v, pts = [], local = copy(env);
+-      if (p.density) {
+-        scale = 0;
+-        for (i = -160; i <= 160; i++) { local[p.variable] = i / 40; v = val(p.formula, local) || 0; if (v > scale) scale = v; }
+-        scale = scale || 1;
+-      }
++    function wx(t) { return P.x0 + (t + SPAN) / (2 * SPAN) * (P.x1 - P.x0); }
++    function wy(v, top) { return P.base - Math.min(v / top, 1.06) * (P.base - P.top); }
++    /* The drawn values of a profile, as on the server: 161 points across the window, no number drawn as 0. */
++    function samples(p) {
++      var out = [], local = copy(env), i, t, v;
+       for (i = 0; i <= 160; i++) {
+         t = -SPAN + 2 * SPAN * i / 160;
+         local[p.variable] = t;
+         v = val(p.formula, local);
+-        if (v === null || typeof v === 'boolean') v = 0;
+-        pts.push(wx(t).toFixed(1) + ' ' + (H - PAD - Math.min(v / scale, 1.06) * (H - 2 * PAD - 8)).toFixed(1));
++        out.push([t, (v === null || typeof v === 'boolean') ? 0 : v]);
+       }
+-      return 'M' + pts.join(' L');
++      return out;
++    }
++    /* The top of the one vertical scale every curve shares, as on the server: the least of 1, 2, 5 or 10 times a
++       power of ten at or above the largest value drawn. */
++    function niceTop(m) {
++      if (!m || m <= 0 || !isFinite(m)) return 1;
++      m *= 1 - 1e-9;
++      var e = Math.pow(10, Math.floor(Math.log10(m))), ks = [1, 2, 5, 10];
++      for (var i = 0; i < ks.length; i++) if (ks[i] * e >= m) return ks[i] * e;
++      return 10 * e;
+     }
+     function update() {
+       all('output[data-value]', fig).forEach(function (o) {
+@@ -125,14 +133,20 @@
+         o.textContent = fmt(v);
+       });
+       var mean = cfg.mean ? val(cfg.mean, env) : null;
+-      cfg.profiles.forEach(function (p) {
++      var drawn = cfg.profiles.map(samples), peak = 0;
++      drawn.forEach(function (pts) { pts.forEach(function (pt) { if (pt[1] > peak) peak = pt[1]; }); });
++      var top = niceTop(peak);
++      cfg.profiles.forEach(function (p, k) {
+         var box = fig.querySelector('.qh-fig-profile[data-profile="' + p.id + '"] svg');
+         if (!box) return;
+         var c = box.querySelector('[data-part="curve"]');
+-        if (c) c.setAttribute('d', curve(p));
++        if (c) c.setAttribute('d', 'M' + drawn[k].map(function (pt) { return wx(pt[0]).toFixed(1) + ' ' + wy(pt[1], top).toFixed(1); }).join(' L'));
++        var mid = box.querySelector('[data-part="scale-mid"]'), hi = box.querySelector('[data-part="scale-top"]');
++        if (mid) mid.textContent = fmt(top / 2);
++        if (hi) hi.textContent = fmt(top);
+         var m = box.querySelector('[data-part="mean"]'), ml = box.querySelector('[data-part="mean-label"]');
+         if (m && mean !== null) {
+-          var x = wx(Math.max(-SPAN, Math.min(SPAN, mean))), right = x > W / 2;
++          var x = wx(Math.max(-SPAN, Math.min(SPAN, mean))), right = x > P.w / 2;
+           m.setAttribute('x1', x.toFixed(1)); m.setAttribute('x2', x.toFixed(1));
+           if (ml) { ml.setAttribute('x', (right ? x - 5 : x + 5).toFixed(1)); ml.setAttribute('text-anchor', right ? 'end' : 'start'); }
+         }
+diff --git a/compiler/quantum-holography-status/atlas.py b/compiler/quantum-holography-status/atlas.py
+index cc94f03..4a9a8a0 100644
+--- a/compiler/quantum-holography-status/atlas.py
++++ b/compiler/quantum-holography-status/atlas.py
+@@ -129,6 +129,10 @@ LABELS = {
+     'map_caption': ('Each mark is a claim, numbered as in the index; a long domain runs over several columns. Each line '
+                     'is a recorded relation, with its arrow at the second claim of the relation.'),
+     'map_scroll': 'Map of claims by domain',
++    'locator': 'Place in the atlas',
++    'locator_caption': ('Each dot is a claim at its place in the map; each band is a domain. The selected claim is marked '
++                        'with its number.'),
++    'locator_link': 'Show in the map',
+     'map_keys': ('The arrow keys move through the claims of the map, Enter shows the claim, Escape leaves the map. '
+                  'The index of claims below lists the same claims with their titles.'),
+     'index': 'Index of claims',
+@@ -835,11 +839,13 @@ class Renderer:
+     def claims(self):
+         return self.part('atlas-claims', self.L['part_claims'], self.index(), lead='lead_claims')
+ 
+-    def map(self):
+-        """Every claim by domain, joined by the recorded edges, at its own size (it scrolls in its box rather than
+-        shrinking). A domain with many claims runs over several columns of its lane; the number of rows is the
+-        smallest that keeps the whole map within a full column. Each mark is a link to its claim; the drawing is
+-        hidden from assistive technology, which reads the index instead."""
++    def map_layout(self):
++        """The geometry of the map, shared by the map and the locator of the pane: the domains as lanes (their widths),
++        the size of the drawing, and the place of every claim. A domain with many claims runs over several columns of
++        its lane; the number of rows is the smallest that keeps the whole map within a full column, and at most
++        MAP_ROWS, so the map keeps a screen's height; an atlas too wide for the budget scrolls across."""
++        if getattr(self, '_layout', None):
++            return self._layout
+         a = self.a
+         lanes = a.domains
+         col_w, row_h, top, half, min_lane, budget = 58, 26, 18, 22, 96, 1100
+@@ -855,7 +861,6 @@ class Renderer:
+             if sum(widths(r)) <= budget:
+                 rows = r
+                 break
+-        # At most MAP_ROWS rows, so the map keeps a screen's height; an atlas too wide for the budget scrolls across.
+         rows = min(rows or tallest, MAP_ROWS)
+         lane_ws = widths(rows)
+         width = sum(lane_ws)
+@@ -869,6 +874,18 @@ class Renderer:
+             for k, c in enumerate(members):
+                 pos[c['id']] = (start + (k // rows) * col_w + col_w / 2, top + 9 + (k % rows) * row_h)
+             x0 += w
++        self._layout = {'lanes': lanes, 'lane_ws': lane_ws, 'width': width, 'height': height, 'pos': pos,
++                        'col_w': col_w, 'half': half}
++        return self._layout
++
++    def map(self):
++        """Every claim by domain, joined by the recorded edges, at its own size (it scrolls in its box rather than
++        shrinking), laid out by map_layout. Each mark is a link to its claim; the drawing is hidden from assistive
++        technology, which reads the index instead."""
++        a = self.a
++        g = self.map_layout()
++        lanes, lane_ws, width, height, pos = g['lanes'], g['lane_ws'], g['width'], g['height'], g['pos']
++        col_w, half = g['col_w'], g['half']
+         edges = []
+         for e in a.edges:
+             (sx, sy), (tx, ty) = pos[e['source']], pos[e['target']]
+@@ -951,14 +968,39 @@ class Renderer:
+ 
+     def claim_list(self):
+         """Every claim in full, by domain. Without the script and in print it is the last part of the
+-        atlas; with the script it is the pane that shows the claim the address names."""
++        atlas; with the script it is the pane that shows the claim the address names, under the locator."""
+         groups = []
+         for d in self.a.domains:
+             members = [c for c in self.a.claims if c['domainId'] == d['id']]
+             if members:
+                 groups.append(f'<div class="atlas-claim-group"><h4 class="atlas-claim-group-h">'
+                               f'{self.rich(d["label"], terms=False)}</h4>{"".join(self.claim(c) for c in members)}</div>')
+-        return self.part('atlas-full', self.L['part_full'], ''.join(groups), extra_cls=' atlas-claims-full')
++        return self.part('atlas-full', self.L['part_full'], self.locator() + ''.join(groups), extra_cls=' atlas-claims-full')
++
++    def locator(self):
++        """The whole atlas in small, for the pane: the map's domains as bands (alternating as in the map) and every
++        claim as a dot at its place in the map, from the same layout as the map. The script marks the selected claim
++        with its number and status mark, as on its pill in the map, and marks its domain's band; the link returns to
++        the map, where the same pill is highlighted. Hidden without the script (no claim is selected then) and in
++        print. A dot is only a place: no relation is drawn or implied."""
++        g = self.map_layout()
++        width, height, pos = g['width'], g['height'], g['pos']
++        x, bands = 0, []
++        for i, (d, w) in enumerate(zip(g['lanes'], g['lane_ws'])):
++            bands.append(f'<rect class="atlas-locator-track{" is-alt" if i % 2 else ""}" data-domain-ref="{html.escape(d["id"])}" '
++                         f'x="{x}" y="0" width="{w}" height="{height}"/>')
++            x += w
++        dots = ''.join(f'<circle data-claim-ref="{html.escape(c["id"])}" cx="{pos[c["id"]][0]:.1f}" cy="{pos[c["id"]][1]:.1f}" r="9"/>'
++                       for c in self.a.claims)
++        return (f'<div class="atlas-locator" hidden>'
++                f'<div class="atlas-locator-head"><p class="atlas-sub-h">{self.esc("locator")}</p>'
++                f'<a class="atlas-locator-link" href="#atlas-map">{self.esc("locator_link")}</a></div>'
++                f'<div class="atlas-locator-plot" style="aspect-ratio:{width} / {height}">'
++                f'<svg class="atlas-locator-svg" viewBox="0 0 {width} {height}" aria-hidden="true" focusable="false">'
++                f'<g class="atlas-locator-tracks">{"".join(bands)}</g><g class="atlas-locator-dots">{dots}</g>'
++                f'<circle class="atlas-locator-ring" cx="0" cy="0" r="30"/></svg>'
++                f'<span class="atlas-locator-no" aria-hidden="true"></span></div>'
++                f'<p class="atlas-locator-caption">{self.esc("locator_caption")}</p></div>')
+ 
+     def claim(self, c):
+         a = self.a
+diff --git a/compiler/quantum-holography-status/atlas.css b/compiler/quantum-holography-status/atlas.css
+index 49b991c..ae85eab 100644
+--- a/compiler/quantum-holography-status/atlas.css
++++ b/compiler/quantum-holography-status/atlas.css
+@@ -27,8 +27,6 @@
+   --au-q: calc(var(--au) * .25); --au-h: calc(var(--au) * .5); --au-1: var(--au); --au-2: calc(var(--au) * 1.5);
+ }
+ 
+-/* Status marks: the atlas's own family of squares. The atlas colours are the page's status colours: Scoped negative
+-   takes the colour of 'refuted form', the statement status of the page that matches it. */
+ /* Status marks are the page's (.mark, .mark-<status>, from the page's stylesheet), sized here where the atlas sets
+    them; on the map, .atlas-node-mark carries the page's colour class for its status. */
+ .atlas-vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@@ -330,6 +328,33 @@
+ /* The pane (script): the last part, showing the claim the address names, framed by the pane alone. */
+ .atlas-pane-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 var(--au-h); padding: 0 0 var(--au-q);
+                    border-bottom: 1px solid var(--rule-soft); }
++/* With the script the head, with Close, stays at the top of the pane however far the pane is scrolled (an address that
++   names a claim scrolls the pane to the claim). The pane has no top padding of its own, so the head sticks flush. */
++.atlas-js .atlas-pane-head { position: sticky; top: 0; z-index: 2; background: var(--paper-3);
++                             margin: 0 calc(var(--pane-pad, 0px) * -1) var(--au-h); padding: var(--au-h) var(--pane-pad, 0px) var(--au-q); }
++
++/* The locator (script): the whole atlas in small at the top of the pane, from the map's own layout. The selected
++   claim is marked at its place by its number and status mark, as on its pill in the map, and its domain's band is
++   marked. A dot is a place only: no relation is drawn on the locator. */
++.atlas-locator { margin: 0 0 var(--au-h); padding: 0 0 var(--au-h); border-bottom: 1px solid var(--rule-soft); }
++.atlas-locator[hidden] { display: none; }
++.atlas-locator-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 12px; }
++.atlas-locator-head .atlas-sub-h { margin: 0 0 var(--au-q); }
++.atlas-locator-link { font-size: var(--text-sm); }
++.atlas-locator-plot { position: relative; width: 100%; border: 1px solid var(--rule-soft); border-radius: 3px; background: var(--paper-3); }
++.atlas-locator-svg { display: block; width: 100%; height: 100%; }
++.atlas-locator-track { fill: transparent; }
++.atlas-locator-track.is-alt { fill: var(--as-band); }
++.atlas-locator-track.is-here { fill: var(--accent-soft); }
++.atlas-locator-dots circle { fill: var(--ink-4); opacity: .55; }
++.atlas-locator-dots circle.is-here { fill: var(--accent); opacity: 1; }
++.atlas-locator-ring { fill: none; stroke: var(--accent); stroke-width: 2px; vector-effect: non-scaling-stroke; }
++.atlas-locator-no { position: absolute; display: inline-flex; align-items: center; gap: 4px; padding: 0 7px 0 5px; border: 1.5px solid var(--accent);
++                    border-radius: 999px; background: var(--paper-3); color: var(--ink); font-size: var(--text-xs); line-height: 1.55;
++                    font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; transform: translate(10px, -50%); pointer-events: none; }
++.atlas-locator-no.is-west { transform: translate(calc(-100% - 10px), -50%); }
++.atlas-locator-no .mark { width: 10px; height: 10px; }
++.atlas-locator-caption { margin: var(--au-q) 0 0; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-3); }
+ .atlas-pane-label { margin: 0; font-size: var(--text-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+ .atlas-pane-empty { margin: var(--au-q) 0; color: var(--ink-3); font-size: var(--text-sm); font-style: italic; }
+ .atlas-pane-empty[hidden], .atlas-pathbar[hidden], .atlas-hidden-note[hidden] { display: none; }
+@@ -356,21 +381,29 @@
+                                                         border: 0; border-left: 3px solid var(--as); border-radius: 0; }
+ .atlas-js .atlas-claims-full .atlas-claim.is-selected::before { content: none; }
+ 
+-/* On a wide screen the pane is a panel over the right of the page (the golden share of the width, at most 40rem), so
+-   selecting a claim never reflows the atlas; Close and Escape put it away. */
++/* On a wide screen the pane has a column of its own while it is shown (the atlas 1.618, the pane 1): it covers nothing.
++   The atlas reflows into its column and the script keeps the reader's place; the pane stays under the reading bar as
++   the page scrolls and scrolls in itself. Close and Escape put it away and give the column back. */
+ @media (min-width: 1000px) {
+-  .atlas-js > .atlas-claims-full { position: fixed; z-index: 35; top: calc(var(--bar) + var(--au-h)); right: clamp(12px, 2vw, 32px);
+-                                   bottom: var(--au-h); width: min(38.2vw, 40rem); overflow: auto; margin: 0;
+-                                   padding: var(--au-h) calc(var(--au-h) * 1.15) var(--au-1); background: var(--paper-3);
+-                                   border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); overscroll-behavior: contain; }
++  .atlas-js.has-pane { display: grid; grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr); column-gap: var(--au-1); align-items: start; }
++  .atlas-js > .atlas-claims-full { --pane-pad: calc(var(--au-h) * 1.15); position: sticky; z-index: 3;
++                                   top: calc(var(--reader-bar-h, var(--bar, 50px)) + var(--au-h));
++                                   max-height: calc(100vh - var(--reader-bar-h, var(--bar, 50px)) - var(--au-1)); overflow: auto; margin: 0;
++                                   padding: 0 var(--pane-pad) var(--au-1); background: var(--paper-3);
++                                   border: 1px solid var(--rule); border-radius: var(--radius); overscroll-behavior: contain; }
+   .atlas-js > .atlas-claims-full:not(.has-selection), .atlas-js > .atlas-claims-full.is-closed { display: none; }
+ }
+ @media (max-width: 999.98px) {
+-  .atlas-js > .atlas-claims-full { position: fixed; z-index: 35; left: 0; right: 0; bottom: 0; max-height: min(78vh, 46rem); overflow: auto;
+-                                   padding: var(--au-h) 16px calc(var(--au-1) + env(safe-area-inset-bottom)); background: var(--paper-3);
++  .atlas-js > .atlas-claims-full { --pane-pad: 16px; position: fixed; z-index: 35; left: 0; right: 0; bottom: 0; max-height: min(78vh, 46rem); overflow: auto;
++                                   padding: 0 var(--pane-pad) calc(var(--au-1) + env(safe-area-inset-bottom)); background: var(--paper-3);
+                                    border-top: 1px solid var(--rule); box-shadow: var(--shadow); overscroll-behavior: contain; }
+   .atlas-js > .atlas-claims-full:not(.has-selection), .atlas-js > .atlas-claims-full.is-closed { display: none; }
+-  .atlas-js .atlas-pane-head { position: sticky; top: calc(var(--au-h) * -1); z-index: 1; background: var(--paper-3); padding-top: var(--au-q); }
++}
++/* The index in a column narrower than its five columns need (beside the pane, or on a mid-width screen): the domain
++   is written under the claim, as on a phone, rather than squeezed or cut. */
++@container atlas-main (max-width: 44rem) {
++  .atlas-table .atlas-col-domain { display: none; }
++  .atlas-row-domain { display: block; }
+ }
+ 
+ /* Narrow screens */
+@@ -396,6 +429,11 @@
+   .atlas-table tr.is-sel > * { outline: 2px solid Highlight; outline-offset: -2px; }
+   .atlas-chip-btn[aria-pressed='true'] { outline: 2px solid Highlight; outline-offset: -3px; }
+   .atlas-track-bands rect { fill: Canvas; }
++  .atlas-locator-ring { stroke: Highlight; }
++  .atlas-locator-track.is-here { fill: Canvas; stroke: Highlight; }
++  .atlas-locator-dots circle { fill: CanvasText; }
++  .atlas-locator-dots circle.is-here { fill: Highlight; }
++  .atlas-locator-no { border-color: Highlight; }
+ }
+ 
+ /* Print: the one-column atlas, every claim in full, nothing to press. */
+@@ -404,7 +442,7 @@
+   .atlas { --au: calc(var(--text-base) * 1.42); }
+   .atlas-statement { line-height: 1.45; }
+   #atlas { break-before: page; page-break-before: always; padding-top: 0; }
+-  .atlas-parts, .atlas-tools, .atlas-pane-head, .atlas-pane-empty, .atlas-pathbar, .atlas-hood, .atlas-path-tools, .atlas-tip { display: none !important; }
++  .atlas-parts, .atlas-tools, .atlas-pane-head, .atlas-pane-empty, .atlas-pathbar, .atlas-hood, .atlas-path-tools, .atlas-tip, .atlas-locator { display: none !important; }
+   .atlas-js, .atlas-js.has-pane { display: block; }
+   .atlas details::details-content { content-visibility: visible; }
+   .atlas-fold > summary { padding-left: 0; break-after: avoid; page-break-after: avoid; }
+diff --git a/compiler/quantum-holography-status/atlas.js b/compiler/quantum-holography-status/atlas.js
+index 5cbcfe6..532a44f 100644
+--- a/compiler/quantum-holography-status/atlas.js
++++ b/compiler/quantum-holography-status/atlas.js
+@@ -134,6 +134,15 @@
+   var after = heading ? heading.nextSibling : full.firstChild;
+   [head, emptyLine, pathBar].forEach(function (n) { full.insertBefore(n, after); });
+   full.setAttribute('aria-labelledby', 'atlas-pane-label');
++  /* The locator at the top of the pane: the whole atlas in small, from the map's own layout. */
++  var locator = full.querySelector('.atlas-locator');
++  var locRing = locator && locator.querySelector('.atlas-locator-ring');
++  var locNo = locator && locator.querySelector('.atlas-locator-no');
++  var locBox = (function () {
++    var s = locator && locator.querySelector('svg');
++    var v = s ? (s.getAttribute('viewBox') || '').split(/[\s,]+/).map(Number) : [];
++    return v.length === 4 && v[2] > 0 && v[3] > 0 ? { w: v[2], h: v[3] } : null;
++  })();
+   var current = null;
+   var origin = null;      /* the control that selected the claim shown, for Escape and Close */
+   var activation = null;  /* a claim link the reader has just activated */
+@@ -479,9 +488,8 @@
+        the pane does not show; print shows them all. */
+     order.forEach(function (k) { claims[k].article.hidden = k !== id; });
+     full.classList.toggle('has-selection', !!c);
+-    var keep = (!!c !== body.classList.contains('has-pane')) && wide() ? placeKeeper(!!c) : null;
+-    body.classList.toggle('has-pane', !!c); /* on a wide screen the pane takes its column only while it shows a claim */
+-    if (keep) keep();
++    layout();
++    locate(c);
+     emptyLine.hidden = !!c;
+     if (c) {
+       c.article.classList.add('is-selected');
+@@ -498,14 +506,46 @@
+     highlight();
+     markScrollers(full);
+   }
++  /* On a wide screen the pane has a column of its own while it is shown: a claim is selected and the reader has not
++     closed it. It covers nothing; the atlas reflows into the other column and the reader's place is kept. */
++  function layout(anchor) {
++    var open = !!current && !full.classList.contains('is-closed');
++    if (open === body.classList.contains('has-pane')) return;
++    var keep = wide() ? placeKeeper(open, anchor) : null;
++    body.classList.toggle('has-pane', open);
++    if (keep) keep();
++  }
++  function closePane(anchor) { full.classList.add('is-closed'); layout(anchor); }
++  /* The locator marks the claim shown at its place in the whole atlas: its dot, a ring, and its number with its status
++     mark as on its pill in the map; and the band of its domain. Nothing else changes on it. */
++  function locate(c) {
++    if (!locator) return;
++    locator.hidden = !c;
++    if (!c || !locBox) return;
++    all('.atlas-locator-track', locator).forEach(function (r) { r.classList.toggle('is-here', r.getAttribute('data-domain-ref') === c.domain); });
++    all('circle[data-claim-ref]', locator).forEach(function (d) { d.classList.toggle('is-here', d.getAttribute('data-claim-ref') === c.id); });
++    var dot = locator.querySelector('circle[data-claim-ref="' + c.id + '"]');
++    if (!dot || !locRing || !locNo) return;
++    var x = +dot.getAttribute('cx'), y = +dot.getAttribute('cy');
++    locRing.setAttribute('cx', String(x));
++    locRing.setAttribute('cy', String(y));
++    locNo.textContent = '';
++    var mark = c.article.querySelector('.atlas-chip .mark');
++    if (mark) locNo.appendChild(mark.cloneNode(true));
++    locNo.appendChild(doc.createTextNode(c.number));
++    locNo.style.left = (100 * x / locBox.w).toFixed(2) + '%';
++    locNo.style.top = (100 * y / locBox.h).toFixed(2) + '%';
++    locNo.classList.toggle('is-west', x / locBox.w > 0.72);
++  }
+   /* When the pane opens or closes its column, the atlas column reflows; the place the reader is at is put back where it
+      was on the screen. The place is chosen by direction, and only among elements in view that move with the page (none
+      inside a fixed or sticky box, none inside the pane, which is what changes):
++     an anchor given by the caller (the control focus returns to when the reader closes the pane), when in view;
+      opening: the element the reader acted on in the atlas column, else the focused element in the atlas column;
+      closing (a link or Back has taken the reader out of the atlas): the element the address names outside the atlas,
+      else the focused element outside the atlas;
+      and else the first part of the atlas in view. */
+-  function placeKeeper(opening) {
++  function placeKeeper(opening, anchor) {
+     var main = body.querySelector('.atlas-main');
+     if (!main) return null;
+     var vh = window.innerHeight || doc.documentElement.clientHeight || 0;
+@@ -525,7 +565,8 @@
+     var a = null;
+     var from = activation && activation.from;
+     var focused = doc.activeElement;
+-    if (opening) {
++    if (usable(anchor)) a = anchor;
++    else if (opening) {
+       if (usable(from) && main.contains(from)) a = from;
+       else if (usable(focused) && main.contains(focused)) a = focused;
+     } else {
+@@ -588,14 +629,14 @@
+     if (id) {
+       var was = current;
+       var inPane = full.contains(doc.activeElement);
+-      if (id !== current) select(id);
+       var mine = activation && activation.id === id && Date.now() - activation.t < 2000;
+-      var stepRole = mine && activation.step;
+-      if (mine) origin = activation.from;
+-      activation = null;
+       /* A sheet the reader closed stays closed until the address changes or the reader selects a claim:
+          the page's own state announcements (search, filters) do not reopen it. */
+       if (changed || mine) full.classList.remove('is-closed');
++      if (id !== current) select(id); else layout();
++      var stepRole = mine && activation.step;
++      if (mine) origin = activation.from;
++      activation = null;
+       if (stepRole) focusStep(stepRole); /* Previous and Next keep the keyboard on the path bar */
+       else if (mine || (id !== was && inPane)) focusTitle(); /* Back or Forward inside the pane: focus follows the claim */
+       else if (arrival && wide()) (claims[id].row || map || body).scrollIntoView({ block: 'center', behavior: 'auto' });
+@@ -620,9 +661,9 @@
+       return;
+     }
+     event.preventDefault();
+-    if (current !== m[1]) select(m[1]);
+-    lastAddress = location.hash;
+     full.classList.remove('is-closed');
++    if (current !== m[1]) select(m[1]); else layout();
++    lastAddress = location.hash;
+     if (wide()) (claims[m[1]].row || map || body).scrollIntoView({ block: 'center', behavior: smooth() });
+     focusTitle();
+   });
+@@ -640,7 +681,7 @@
+       var ask;
+       try { ask = new CustomEvent('qh:navigate', { bubbles: true, cancelable: true, detail: { id: id } }); } catch (e) { ask = null; }
+       if (ask && !a.dispatchEvent(ask)) event.preventDefault(); /* the page has shown it */
+-      if (!wide()) full.classList.add('is-closed');
++      if (!wide()) closePane();
+       return;
+     }
+     var m = CLAIM.exec(id);
+@@ -651,7 +692,16 @@
+       if (location.hash === '#' + id) { event.preventDefault(); sync(false); } /* the address already names it */
+       return;
+     }
+-    if (full.contains(a) && !wide()) full.classList.add('is-closed'); /* the sheet makes way for the part it links to */
++    if (full.contains(a) && !wide()) closePane(); /* the sheet makes way for the part it links to */
++    /* The locator returns to the map: after the browser has followed the link, the map takes the keyboard with its
++       cursor on the claim shown, whose pill is already in view in the map's box and highlighted. */
++    if (a.classList.contains('atlas-locator-link') && current && mapBox && moveCursor) {
++      var shown = current;
++      setTimeout(function () {
++        try { mapBox.focus({ preventScroll: true }); } catch (e) { mapBox.focus(); }
++        if (claims[shown] && claims[shown].node) moveCursor(shown);
++      }, 0);
++    }
+   });
+ 
+   full.addEventListener('click', function (event) {
+@@ -687,15 +737,20 @@
+   full.addEventListener('focusin', function (event) { pair(event, true); });
+   full.addEventListener('focusout', function (event) { pair(event, false); });
+ 
+-  function back() {
++  function backTarget() {
+     /* Focus returns to the control that made the selection, else to the claim in the index, else to the filter. */
+     var to = origin && doc.contains(origin) && !full.contains(origin) && !origin.closest('[aria-hidden="true"]') &&
+              origin.getClientRects().length ? origin : null;
+     if (!to && current && claims[current].row && !claims[current].row.hidden) to = claims[current].row.querySelector('th .atlas-link');
+-    if (!to) to = input;
++    return to || input;
++  }
++  function back(to) {
++    to = to || backTarget();
+     if (to) { try { to.focus({ preventScroll: wide() }); } catch (e) { to.focus(); } }
+   }
+-  closeButton.addEventListener('click', function () { full.classList.add('is-closed'); back(); });
++  /* Close and Escape put the pane away and give its column back; the place of the control focus returns to is kept. */
++  function dismiss() { var to = backTarget(); closePane(to); back(to); }
++  closeButton.addEventListener('click', dismiss);
+   /* On a narrow screen the sheet covers the page: when focus leaves it for the page, it closes, so that focus is
+      never on a control hidden under it. Focus that moves into the page's term card keeps it open. */
+   full.addEventListener('focusout', function (event) {
+@@ -703,15 +758,14 @@
+     if (wide() || !to || full.contains(to)) return;
+     var card = doc.getElementById('card');
+     if (card && card.contains(to)) return;
+-    full.classList.add('is-closed');
++    closePane();
+   });
+   full.addEventListener('keydown', function (event) {
+     if (event.key !== 'Escape') return;
+     var card = doc.getElementById('card');
+     if (card && !card.hidden) return; /* the page's term card closes first, by its own handler */
+     event.preventDefault();
+-    full.classList.add('is-closed');
+-    back();
++    dismiss();
+   });
+ 
+   /* The map: pointing at a mark, or moving the keyboard cursor onto it, names its claim and marks its relations. */
+@@ -832,14 +886,16 @@
+         if (to) moveCursor(to);
+       });
+       mapBox.addEventListener('blur', function () { moveCursor(null); });
+-      var edges = function () {
++      /* The fades at the sides of the map box say which way it scrolls. (Named apart from the table of edges above,
++         which highlight() and the filter read.) */
++      var mapFades = function () {
+         var f = mapBox.parentNode;
+         f.classList.toggle('more-left', mapBox.scrollLeft > 2);
+         f.classList.toggle('more-right', mapBox.scrollLeft + mapBox.clientWidth < mapBox.scrollWidth - 2);
+       };
+-      mapBox.addEventListener('scroll', edges, { passive: true });
+-      window.addEventListener('resize', edges);
+-      edges();
++      mapBox.addEventListener('scroll', mapFades, { passive: true });
++      window.addEventListener('resize', mapFades);
++      mapFades();
+     }
+   }
+ 
+@@ -935,7 +991,7 @@
+     opened = null;
+   });
+ 
+-  /* The pane lies over the page: a panel at the right when the window is wide, a sheet at the foot when narrow. */
++  /* The pane: a column of its own beside the atlas when the window is wide, a sheet at the foot when narrow. */
+   window.addEventListener('resize', function () { markScrollers(body); });
+ 
+   /* Links to questions of the page take the question's own heading as their text. */
+diff --git a/compiler/quantum-holography-status/tests/test_figures.py b/compiler/quantum-holography-status/tests/test_figures.py
+index 704ba16..0dc0a52 100644
+--- a/compiler/quantum-holography-status/tests/test_figures.py
++++ b/compiler/quantum-holography-status/tests/test_figures.py
+@@ -144,21 +144,62 @@ class Gaussian(unittest.TestCase):
+             self.assertAlmostEqual(integrate(node, p['variable'], env), want, places=4, msg=p['id'])
+         self.assertEqual(len(re.findall(r'<div class="qh-fig-profile"', self.html)), 3)
+ 
+-    def test_each_integral_is_written_once_under_the_same_label_as_the_others(self):
+-        # G1: the density's authored integral is the constant 1; it is written once ("1", never "1 = 1"). Every
+-        # other integral is its authored formula and its value at the parameters.
++    def test_each_integral_is_one_equation_under_the_same_label_as_the_others(self):
++        # G1/G5: each readout is the integral of the plotted function over the real line, in the chapter's notation
++        # (\int_{\mathbb R} ... \,dy), then its authored value, then (when that value depends on the parameters) its
++        # number. The density's constant 1 is written once: "... = 1", never "1 = 1"; the parts break only between.
+         label = '<p class="qh-fig-label">Integral over the real line</p>'
+         panel = {seg.split('"', 1)[0]: seg for seg in self.html.split('<div class="qh-fig-profile" data-profile="')[1:]}
+-        density = panel['synthetic-density'].split('<table', 1)[0]
+-        self.assertIn(f'<div class="qh-fig-integral">{label}<p class="qh-fig-integral-value">\\(1\\)</p></div>', density)
++        names = list(GAUSS['parameters'])
++        for p in GAUSS['profiles']:
++            readout = re.search(r'<div class="qh-fig-integral">(.*?)</div>', panel[p['id']], re.S).group(1)
++            self.assertTrue(readout.startswith(label), p['id'])
++            f = F.tex(F.parse(p['formula'], names + [p['variable']]))
++            self.assertIn(f'<span class="qh-fig-seg">\\(\\int_{{\\mathbb R}}{f}\\,d{p["variable"]}\\)</span>', readout, p['id'])
++            self.assertIn(f'<span class="qh-fig-seg">\\(={F.tex(F.parse(p["integral_over_real_line"], names))}\\)</span>', readout, p['id'])
++        density = re.search(r'<div class="qh-fig-integral">(.*?)</div>', panel['synthetic-density'], re.S).group(1)
++        self.assertEqual(density.count('<span class="qh-fig-seg">'), 2, 'the constant: the integral and its value, once')
+         self.assertNotIn('<output', density)
+-        centred = panel['synthetic-centred']
+-        self.assertRegex(centred, r'<p class="qh-fig-integral-value">\\\(\\sqrt\{[^<]*\\\) <span class="qh-fig-eq">=</span> '
+-                                  r'<output class="qh-fig-value" data-value="profile:synthetic-centred">2\.507</output></p>')
++        self.assertNotIn('\\(1\\)', density, 'never a bare 1 standing for itself')
++        centred = re.search(r'<div class="qh-fig-integral">(.*?)</div>', panel['synthetic-centred'], re.S).group(1)
++        self.assertIn('<span class="qh-fig-seg"><span class="qh-fig-eq">=</span> '
++                      '<output class="qh-fig-value" data-value="profile:synthetic-centred">2.507</output></span>', centred)
+         # G3: labels of one rank are one element: the parameters' label and each integral's label
+         self.assertIn('<p class="qh-fig-label">Parameters</p>', self.html)
+         self.assertEqual(self.html.count(label), 3)
+ 
++    def test_one_stated_vertical_scale_for_every_curve(self):
++        # G4: every profile is drawn on one vertical scale whose top covers the largest drawn value; each plot states
++        # it with ticks at 0, half the top and the top (the same values on every plot) and a hairline at each nonzero
++        # tick, and one note says the curves share the scale. No curve is scaled to its own peak.
++        env = {n: float(GAUSS['controls'][n]['initial']) for n in GAUSS['parameters']}
++        names = list(GAUSS['parameters'])
++        top = F.shared_top(GAUSS, env)
++        peaks = {p['id']: max(v for _, v in F.samples(F.parse(p['formula'], names + [p['variable']]), p['variable'], env))
++                 for p in GAUSS['profiles']}
++        self.assertEqual(top, 1.0)
++        self.assertAlmostEqual(peaks['synthetic-centred'], 1.0)
++        self.assertLess(peaks['synthetic-density'], .5)
++        self.assertEqual(self.html.count('<p class="qh-fig-note qh-fig-scale-note">The curves share one vertical scale.</p>'), 1)
++        svgs = {seg.split('"', 1)[0]: seg.split('</svg>', 1)[0] for seg in self.html.split('<div class="qh-fig-profile" data-profile="')[1:]}
++        for pid, svg in svgs.items():
++            ticks = re.findall(r'data-part="scale-(0|mid|top)"[^>]*>([^<]*)<', svg)
++            self.assertEqual(ticks, [('0', '0'), ('mid', '0.5'), ('top', '1')], pid)
++            self.assertEqual(svg.count('class="qh-fig-guide"'), 2, pid)
++            # the highest point of the curve is the profile's peak on that scale, not the top of the box
++            ys = [float(y) for y in re.findall(r'[ML]-?[\d.]+ (-?[\d.]+)', re.search(r'data-part="curve" d="([^"]+)"', svg).group(1))]
++            self.assertAlmostEqual(min(ys), F.scale_y(peaks[pid], top), places=1, msg=pid)
++        # at the corner of the display windows where the density peaks above 1 (b = 4, hbar = 0.25), the scale's top is 2
++        self.assertEqual(F.shared_top(GAUSS, dict(env, b=4.0, hbar=0.25)), 2)
++        self.assertEqual([F.nice_top(m) for m in (0.399, 1.0, 1.596, 0.09, 4.2)], [0.5, 1.0, 2, 0.1, 5])
++
++    def test_a_negative_value_is_written_with_the_minus_sign(self):
++        # G5: as in the typeset formulas beside it, never a hyphen-minus
++        self.assertEqual([F.fmt(v) for v in (-0.5, -0.0, 0.0, 2.507, -1.25)], ['\u22120.5', '0', '0', '2.507', '\u22121.25'])
++        mean = re.search(r'data-value="conditional_mean">([^<]*)<', self.html).group(1)
++        self.assertEqual(mean, '\u22120.5')
++        self.assertNotRegex(re.sub(r'<[^>]+>', ' ', self.html), r'(?<![\w\\])-\d', 'no number with a hyphen-minus in the text')
++
+     def test_the_records_own_formulas_are_typeset_where_a_caption_spells_them(self):
+         # G2: "-cx/b" and "ħ/b" in an authored caption are the record's outputs conditional_mean and
+         # conditional_variance; they are set as those formulas. Nothing else changes: a single symbol and a formula
+diff --git a/compiler/quantum-holography-status/tests/figures.test.cjs b/compiler/quantum-holography-status/tests/figures.test.cjs
+index c7fdb63..42616ff 100644
+--- a/compiler/quantum-holography-status/tests/figures.test.cjs
++++ b/compiler/quantum-holography-status/tests/figures.test.cjs
+@@ -52,7 +52,7 @@ test('Gaussian: the three profiles keep their own integrals; a constant one is w
+   const read = id => fig.querySelector(`.qh-fig-profile[data-profile="${id}"] .qh-fig-integral-value`);
+   if (dens) {
+     assert.equal(read(dens.id).querySelector('output'), null, 'the constant has no readout of its own');
+-    assert.equal(read(dens.id).textContent.includes('='), false, 'never "1 = 1"');
++    assert.equal(read(dens.id).querySelectorAll('.qh-fig-seg').length, 2, 'the integral, then its value once: never "1 = 1"');
+   }
+   const before = other && read(other.id).querySelector('output').textContent;
+   input(w, fig.querySelector('input[id$="--b"]'), 2);
+@@ -61,6 +61,43 @@ test('Gaussian: the three profiles keep their own integrals; a constant one is w
+   assert.equal(fig.querySelectorAll('.qh-fig-area').length, 0, 'no filled area');
+ });
+ 
++test('Gaussian: one vertical scale for every curve, restated on every plot when it changes', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="gaussian-elimination"]');
++  if (!fig) return 'SKIP';
++  const cfg = JSON.parse(fig.getAttribute('data-config'));
++  const ticks = () => Array.from(fig.querySelectorAll('.qh-fig-profile svg')).map(s =>
++    ['scale-0', 'scale-mid', 'scale-top'].map(k => s.querySelector(`[data-part="${k}"]`).textContent).join(' '));
++  const curveTop = id => Math.min(...fig.querySelector(`.qh-fig-profile[data-profile="${id}"] [data-part="curve"]`).getAttribute('d')
++    .match(/[ML]-?[\d.]+ (-?[\d.]+)/g).map(t => +t.split(' ')[1]));
++  assert.ok(ticks().every(t => t === '0 0.5 1'), 'one scale, stated on each plot: ' + ticks().join(' | '));
++  assert.equal(fig.querySelectorAll('.qh-fig-scale-note').length, 1);
++  const weight = cfg.profiles.find(p => !p.density);
++  const atOne = curveTop(weight.id);
++  assert.ok(Math.abs(atOne - cfg.plot.top) < 0.6, 'a weight that peaks at 1 reaches the top tick');
++  /* where the density peaks above 1, the one scale grows for every curve, and every plot says so */
++  const b = fig.querySelector('input[id$="--b"]'), h = fig.querySelector('input[id$="--hbar"]');
++  if (!b || !h) return;
++  input(w, b, b.max); input(w, h, h.min);
++  if (+b.value !== +b.max || +h.value !== +h.min) return;  /* refused by the validity rule: nothing to check */
++  assert.ok(ticks().every(t => t === '0 1 2'), 'the top is 2 on every plot: ' + ticks().join(' | '));
++  assert.ok(Math.abs(curveTop(weight.id) - (cfg.plot.base + cfg.plot.top) / 2) < 0.6, 'the weight that peaks at 1 now reaches the middle tick');
++  input(w, h, 1); input(w, b, 1);
++  assert.ok(ticks().every(t => t === '0 0.5 1'), 'back to 0 to 1');
++});
++
++test('Gaussian: a negative value is written with the minus sign', () => {
++  const w = load(), fig = w.document.querySelector('figure[data-figure-model="gaussian-elimination"]');
++  if (!fig) return 'SKIP';
++  const c = fig.querySelector('input[id$="--c"]');
++  input(w, c, 0.25);
++  const mean = fig.querySelector('output[data-value="conditional_mean"]');
++  if (mean) assert.equal(mean.textContent, '−0.25', 'not a hyphen-minus');
++  assert.equal(fig.querySelector('output[data-value="c"]').textContent, '0.25');
++  input(w, c, -0.5);
++  assert.equal(fig.querySelector('output[data-value="c"]').textContent, '−0.5');
++  assert.equal(c.getAttribute('aria-valuetext'), '−0.5');
++});
++
+ test('Expansions: the choice moves between the two authored states only, and redraws the region', () => {
+   const w = load(), fig = w.document.querySelector('figure[data-figure-model="two-expansions"]');
+   if (!fig) return 'SKIP';
+diff --git a/compiler/quantum-holography-status/tests/test_atlas.py b/compiler/quantum-holography-status/tests/test_atlas.py
+index 9631c71..234b333 100644
+--- a/compiler/quantum-holography-status/tests/test_atlas.py
++++ b/compiler/quantum-holography-status/tests/test_atlas.py
+@@ -485,6 +485,39 @@ class Markup(unittest.TestCase):
+         self.assertIn(atlas.LABELS['group_checked'], out['html'])
+         self.assertEqual([p for p in out['problems'] if 'no mark' in p], [])
+ 
++    def test_the_locator_is_the_whole_map_in_small_and_only_places(self):
++        # A2: in the pane and hidden until the script selects a claim: one band per domain and one dot per claim, each
++        # at its claim's place in the map (the same layout); a ring and a number the script places; a link to the map.
++        # Nothing on it is a line, so it implies no relation.
++        loc = re.search(r'<div class="atlas-locator" hidden>.*?<p class="atlas-locator-caption">.*?</p></div>', self.html, re.S).group(0)
++        self.assertGreater(self.html.index('<div class="atlas-locator"'), self.html.index('class="atlas-part atlas-claims-full"'), 'in the pane')
++        self.assertEqual(len(re.findall(r'<rect class="atlas-locator-track', loc)), len(FIXTURE['domains']))
++        self.assertEqual(re.findall(r'data-domain-ref="([^"]+)"', loc), [d['id'] for d in FIXTURE['domains']])
++        dots = {i: (float(x), float(y)) for i, x, y in re.findall(r'<circle data-claim-ref="([^"]+)" cx="([^"]+)" cy="([^"]+)"', loc)}
++        nodes = {i: (float(x), float(y)) for i, x, y in
++                 re.findall(r'<a class="atlas-node [^"]*" href="#atlas-c-[^"]+" tabindex="-1" data-claim-ref="([^"]+)" transform="translate\(([-\d.]+) ([-\d.]+)\)"', self.html)}
++        self.assertEqual(len(dots), len(FIXTURE['claims']))
++        self.assertEqual(dots, nodes, 'every dot at the place of its pill in the map')
++        self.assertIn('viewBox="0 0 ' + re.search(r'<svg class="atlas-map-svg" viewBox="0 0 ([\d.]+ [\d.]+)"', self.html).group(1) + '"', loc)
++        self.assertNotRegex(loc, r'<(path|line|polyline|marker)\b', 'no relation is drawn or implied')
++        self.assertIn('<a class="atlas-locator-link" href="#atlas-map">', loc)
++        for k in ('locator', 'locator_link', 'locator_caption'):
++            self.assertIn(html.escape(atlas.LABELS[k]), loc, k)
++
++    def test_the_pane_has_a_column_of_its_own_on_a_wide_screen_and_its_head_stays_at_its_top(self):
++        # A6: on a wide screen nothing lies over the atlas: the pane takes a column of its own while it is shown and
++        # the atlas reflows; its head, with Close, stays at its top at every width; print leaves the locator out; the
++        # index in a narrow column writes the domain under the claim rather than squeezing it.
++        css = self.out['css']
++        wide = css[css.index('@media (min-width: 1000px) {'):]
++        wide = wide[:wide.index('\n}\n')]
++        self.assertIn('.atlas-js.has-pane { display: grid; grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr);', wide)
++        self.assertNotIn('position: fixed', wide, 'nothing lies over the atlas on a wide screen')
++        self.assertIn('position: sticky', wide)
++        self.assertRegex(css, r'\.atlas-js \.atlas-pane-head \{ position: sticky; top: 0;')
++        self.assertIn('.atlas-locator', css[css.index('@media print'):], 'print leaves the locator out')
++        self.assertRegex(css, r'@container atlas-main \(max-width: 44rem\) \{\s*\.atlas-table \.atlas-col-domain \{ display: none; \}')
++
+     def test_an_alias_the_page_cannot_show_fails_the_build(self):
+         class NoMarks(Ctx):
+             def mark(self, status, label=None):
+diff --git a/compiler/quantum-holography-status/tests/atlas.test.cjs b/compiler/quantum-holography-status/tests/atlas.test.cjs
+index dcbf0ab..f88f1f5 100644
+--- a/compiler/quantum-holography-status/tests/atlas.test.cjs
++++ b/compiler/quantum-holography-status/tests/atlas.test.cjs
+@@ -210,7 +210,10 @@ test('RT9: an address that leaves the atlas leaves nothing selected; another atl
+     assert.equal(p.w.location.hash, '#atlas-k-' + k.id);
+     assert.equal(selected(p), order[0], 'a comparison of the atlas keeps the pane');
+   }
+-  p.d.querySelector('.nav a[href="#examples"]').click();
++  /* a link of the page to its own section #examples, outside the atlas (the page's navigation, whatever it is called) */
++  const away = Array.from(p.d.querySelectorAll('a[href="#examples"]')).find(a => !a.closest('[data-atlas-mount]'));
++  if (!away) { SKIP.reason = 'the page has no link to #examples outside the atlas'; return SKIP; }
++  away.click();
+   await until(() => selected(p) === null, 'the selection to clear');
+   assert.equal(p.d.querySelector('.atlas-pane-empty').hidden, false);
+   p.w.history.back();
+@@ -614,6 +617,94 @@ test('C19: Previous and Next keep the keyboard on the path bar', async () => {
+   assert.ok(at && at.closest('.atlas-pathbar'), 'focus is still on the path bar');
+ });
+ 
++test('A6: on a wide screen the pane has a column of its own while shown; Close and Escape give it back; the head with Close leads', async () => {
++  const p = load({ wide: true });
++  await settle();
++  const body = p.d.querySelector('.atlas-body');
++  const full = p.d.querySelector('.atlas-claims-full');
++  assert.ok(!body.classList.contains('has-pane'), 'no column for the pane before a claim is selected');
++  const a = await open(p, order[1]);
++  assert.ok(body.classList.contains('has-pane'), 'the pane has its column while it shows a claim');
++  const head = full.querySelector('.atlas-pane-head');
++  assert.ok(head && head.querySelector('.atlas-pane-close'), 'Close is in the head');
++  const shown = Array.from(full.children).filter(n => !n.hidden && !n.matches('.atlas-part-head'));
++  assert.equal(shown[0], head, 'the head leads the pane');
++  head.querySelector('.atlas-pane-close').click();
++  assert.ok(full.classList.contains('is-closed'));
++  assert.ok(!body.classList.contains('has-pane'), 'Close gives the column back');
++  assert.equal(p.d.activeElement, a, 'focus returns to the claim in the index');
++  assert.equal(selected(p), order[1], 'the selection stays');
++  await open(p, order[2]);
++  assert.ok(body.classList.contains('has-pane') && !full.classList.contains('is-closed'), 'selecting a claim opens it again');
++  const e = key(p.d.querySelector('#atlas-c-' + order[2] + ' .atlas-claim-title'), 'Escape');
++  assert.equal(e.defaultPrevented, true);
++  assert.ok(!body.classList.contains('has-pane'), 'Escape gives the column back too');
++  p.w.location.hash = '#atlas-c-' + order[3];
++  await until(() => selected(p) === order[3], 'the address');
++  assert.ok(body.classList.contains('has-pane'), 'an address that names a claim opens it');
++  p.w.location.hash = '#atlas-index';
++  await settle();
++  assert.ok(body.classList.contains('has-pane'), 'another part of the atlas keeps it');
++});
++
++test('A2: the pane places the claim in a locator of the whole atlas by its number, and returns to it in the map', async () => {
++  const p = load({ wide: true });
++  await settle();
++  const loc = p.d.querySelector('.atlas-claims-full .atlas-locator');
++  assert.ok(loc, 'the locator is in the pane');
++  assert.equal(loc.hidden, true, 'hidden while nothing is selected');
++  assert.equal(loc.querySelectorAll('circle[data-claim-ref]').length, DATA.claims.length, 'every claim of the atlas has its dot');
++  assert.equal(loc.querySelectorAll('.atlas-locator-track').length, DATA.domains.length, 'every domain has its band');
++  for (const c of DATA.claims) {
++    const m = /translate\(([-\d.]+) ([-\d.]+)\)/.exec(p.d.querySelector(`.atlas-map .atlas-node[data-claim-ref="${c.id}"]`).getAttribute('transform'));
++    const dot = loc.querySelector(`circle[data-claim-ref="${c.id}"]`);
++    assert.deepEqual([+dot.getAttribute('cx'), +dot.getAttribute('cy')], [+m[1], +m[2]], 'at its place in the map: ' + c.id);
++  }
++  assert.equal(loc.querySelectorAll('path, line, polyline, marker').length, 0, 'no line on the locator: no relation is implied');
++  const id = order[order.length - 1];
++  await open(p, id);
++  assert.equal(loc.hidden, false);
++  const no = loc.querySelector('.atlas-locator-no');
++  assert.equal(no.textContent.trim(), p.d.getElementById('atlas-c-' + id).getAttribute('data-number'), 'marked by its number');
++  assert.ok(no.querySelector('svg.mark'), 'with its status mark, as on its pill in the map');
++  assert.deepEqual(Array.from(loc.querySelectorAll('circle.is-here')).map(d => d.getAttribute('data-claim-ref')), [id]);
++  assert.deepEqual(Array.from(loc.querySelectorAll('.atlas-locator-track.is-here')).map(r => r.getAttribute('data-domain-ref')),
++                   [claimById[id].domainId], 'its domain is marked');
++  const dot = loc.querySelector(`circle[data-claim-ref="${id}"]`), ring = loc.querySelector('.atlas-locator-ring');
++  assert.deepEqual([ring.getAttribute('cx'), ring.getAttribute('cy')].map(Number), [dot.getAttribute('cx'), dot.getAttribute('cy')].map(Number));
++  await open(p, order[0]);
++  assert.deepEqual(Array.from(loc.querySelectorAll('circle.is-here')).map(d => d.getAttribute('data-claim-ref')), [order[0]], 'it follows the selection');
++  const link = loc.querySelector('a.atlas-locator-link');
++  assert.equal(link.getAttribute('href'), '#atlas-map');
++  link.click();
++  await until(() => p.w.location.hash === '#atlas-map', 'the map address');
++  await settle();
++  assert.equal(selected(p), order[0], 'the selection stays');
++  const node = p.d.querySelector(`.atlas-map .atlas-node[data-claim-ref="${order[0]}"]`);
++  assert.ok(node.classList.contains('is-sel'), 'its pill is highlighted in the map');
++  assert.equal(p.d.activeElement, p.d.querySelector('.atlas-map-scroll'), 'the map takes the keyboard');
++  assert.ok(node.classList.contains('is-cursor'), 'with its cursor on the claim');
++});
++
++test('the map shows the relations of the claim selected only, and the filter dims the lines of the claims it hides', async () => {
++  const p = load({ wide: true });
++  await settle();
++  const linesOf = id => [...inOf(id), ...outOf(id)].sort();
++  const on = () => Array.from(p.d.querySelectorAll('.atlas-map .atlas-edge.is-on')).map(e => e.getAttribute('data-edge-id')).sort();
++  await open(p, hub);
++  assert.deepEqual(on(), linesOf(hub), 'the relations of the selected claim');
++  const other = order.find(id => id !== hub && linesOf(id).length && !linesOf(id).some(e => linesOf(hub).includes(e)));
++  if (!other) { SKIP.reason = 'every claim with a relation shares one with the hub'; return SKIP; }
++  await open(p, other);
++  assert.deepEqual(on(), linesOf(other), 'only the relations of the claim now selected');
++  p.d.querySelector('.atlas-chip-btn[data-atlas-status="conditional"]').click();
++  const hidden = new Set(DATA.claims.filter(c => c.status.code !== 'conditional').map(c => c.id));
++  for (const e of p.d.querySelectorAll('.atlas-map .atlas-edge[data-edge-id]')) {
++    const want = hidden.has(e.getAttribute('data-source')) || hidden.has(e.getAttribute('data-target'));
++    assert.equal(e.classList.contains('is-out'), want, 'line ' + e.getAttribute('data-edge-id'));
++  }
++});
++
+ test('no number of claims, percentage or progress word anywhere in the atlas after the checks above', async () => {
+   const p = load({ wide: true });
+   await settle();
