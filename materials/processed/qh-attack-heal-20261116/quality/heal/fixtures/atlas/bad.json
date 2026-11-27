@@ -1,0 +1,164 @@
+{
+ "domains": [
+  {
+   "id": "koszul",
+   "label": "Koszul duality",
+   "summary": "Astra-authored scope from frontier/attack-heal/wave-3/G10/CHECK.md, 87% complete"
+  },
+  {
+   "id": "bulk",
+   "label": "Bulk operations",
+   "summary": "Operations on the bulk algebra."
+  }
+ ],
+ "claims": [
+  {
+   "id": "bar-cobar",
+   "domainId": "koszul",
+   "title": "Bar-cobar duality",
+   "statement": "The bar construction is inverse to cobar on augmented algebras.",
+   "status": {
+    "code": "remaining",
+    "label": "Proved and independently checked"
+   },
+   "hypotheses": [
+    "augmented"
+   ],
+   "comparisonIds": [
+    "cmp-kz"
+   ]
+  },
+  {
+   "id": "module-equiv",
+   "domainId": "koszul",
+   "title": "Module equivalence",
+   "statement": "Modules correspond under the duality.",
+   "status": {
+    "code": "conditional",
+    "label": "Conditional"
+   },
+   "hypotheses": [],
+   "comparisonIds": [
+    "cmp-kz"
+   ],
+   "source": [
+    "inscribe/x/ADOPTION.md"
+   ]
+  },
+  {
+   "id": "bulk-action",
+   "domainId": "bulk",
+   "title": "Bulk action",
+   "statement": "The bulk acts on the boundary.",
+   "status": {
+    "code": "remaining",
+    "label": "Remaining comparison"
+   },
+   "hypotheses": [],
+   "comparisonIds": []
+  },
+  {
+   "id": "Bad ID",
+   "domainId": "nowhere",
+   "title": "",
+   "statement": "x",
+   "status": {
+    "code": "proved",
+    "label": ""
+   },
+   "comparisonIds": [
+    "cmp-none"
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "id": "e1",
+   "source": "bar-cobar",
+   "target": "module-equiv",
+   "relation": "used_in",
+   "label": "is used in",
+   "scope": "augmented case"
+  },
+  {
+   "id": "e2",
+   "source": "module-equiv",
+   "target": "bulk-action",
+   "relation": "used_in",
+   "label": "is used in",
+   "scope": "finite case"
+  },
+  {
+   "id": "e3",
+   "source": "bar-cobar",
+   "target": "module-equiv",
+   "relation": "used_in",
+   "label": "implies",
+   "scope": ""
+  },
+  {
+   "id": "e4",
+   "source": "bulk-action",
+   "target": "ghost",
+   "relation": "refines",
+   "label": "refines",
+   "scope": ""
+  }
+ ],
+ "comparisons": [
+  {
+   "id": "cmp-kz",
+   "domainId": "koszul",
+   "title": "Koszul comparison",
+   "overview": "Compares bar and module sides.",
+   "establishedClaimIds": [
+    "bar-cobar"
+   ],
+   "conditionalClaimIds": [
+    "module-equiv"
+   ],
+   "scopedNegativeClaimIds": [],
+   "remainingClaimIds": []
+  }
+ ],
+ "readingPaths": [
+  {
+   "id": "p-dep",
+   "title": "From bar to bulk",
+   "kind": "source_bound_dependency_path",
+   "summary": "Each step depends on the last.",
+   "stages": [
+    {
+     "label": "Bar",
+     "description": "Start",
+     "claimIds": [
+      "bar-cobar"
+     ]
+    },
+    {
+     "label": "Bulk",
+     "description": "x",
+     "claimIds": [
+      "bulk-action"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "p-orient",
+   "title": "Orientation",
+   "kind": "editorial_orientation",
+   "summary": "A reading order.",
+   "stages": [
+    {
+     "label": "Overview",
+     "description": "Read first",
+     "claimIds": [
+      "bulk-action",
+      "bar-cobar"
+     ]
+    }
+   ]
+  }
+ ]
+}

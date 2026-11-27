@@ -1,0 +1,1693 @@
+--- a/compiler/build-quantum-holography-status.py
++++ b/compiler/build-quantum-holography-status.py
+@@ -46,12 +46,18 @@
+     parser = argparse.ArgumentParser(description='Build and audit the quantum holography status page.')
+     parser.add_argument('--input', type=Path, default=CONTENT)
+     parser.add_argument('--output', type=Path, default=ROOT / 'quantum-holography-tracker.html')
+-    parser.add_argument('--audit-dir', type=Path, default=CONTENT / 'audit')
++    parser.add_argument('--audit-dir', type=Path, default=None, help='default: the audit folder inside --input')
+     parser.add_argument('--allow-draft', action='store_true', help='write the page although an audit fails')
+     parser.add_argument('--no-fonts', action='store_true', help='embed no fonts (faster, for layout work)')
+     args = parser.parse_args()
+ 
+-    page = json.loads((CONTENT / 'page.json').read_text(encoding='utf-8'))
++    # The input folder's page.json governs; the default folder's is used only when the input folder has none.
++    page_file = args.input / 'page.json'
++    page_fallback = not page_file.exists()
++    if page_fallback:
++        page_file = CONTENT / 'page.json'
++    page = json.loads(page_file.read_text(encoding='utf-8'))
++    audit_dir = args.audit_dir or args.input / 'audit'
+     text_fonts, math_font = {}, None
+     if not args.no_fonts:
+         for key, name in TEXT_FONTS.items():
+@@ -60,6 +66,8 @@
+                 text_fonts[key] = path
+         math_font = find('Garamond-Math.otf')
+     build = status.Build(args.input, page, text_fonts, math_font)
++    if page_fallback:
++        build.warnings.append('page.json not found in the input folder; the default page.json is used')
+     if not args.no_fonts and len(text_fonts) < len(TEXT_FONTS):
+         build.warnings.append('EB Garamond not found in TeX Live; the page falls back to system serif fonts')
+     if not args.no_fonts and math_font is None:
+@@ -68,16 +76,16 @@
+     result = audit.run(build, markup)
+     report = audit.text_report(result)
+ 
+-    args.audit_dir.mkdir(parents=True, exist_ok=True)
+-    (args.audit_dir / 'audit.json').write_text(json.dumps(result, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+-    (args.audit_dir / 'audit.txt').write_text(report, encoding='utf-8')
++    audit_dir.mkdir(parents=True, exist_ok=True)
++    (audit_dir / 'audit.json').write_text(json.dumps(result, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
++    (audit_dir / 'audit.txt').write_text(report, encoding='utf-8')
+     print(report, end='')
+ 
+     if not result['failures'] or args.allow_draft:
+         args.output.write_text(markup, encoding='utf-8')
+         print(f'wrote {args.output}')
+         return 0
+-    rejected = args.audit_dir / 'rejected.html'
++    rejected = audit_dir / 'rejected.html'
+     rejected.write_text(markup, encoding='utf-8')
+     print(f'audit failed; page written to {rejected}')
+     return 1
+--- a/compiler/quantum-holography-status/audit.py
++++ b/compiler/quantum-holography-status/audit.py
+@@ -1,44 +1,363 @@
+ """Checks run on every build of the status page.
+ 
+ Failures stop the page from being written to the repository root (unless --allow-draft):
+-  - a statement or cell with an unknown status, a missing cell, a TeX error;
++  - a statement or cell with an unknown status, a missing cell, a TeX error, or a formula whose letters
++    and digits the renderer would show differently;
+   - any reference to another host (the page must make no outside request and carry no tracker);
+   - an in-page link whose target does not exist;
+   - reader-visible words that belong to project management rather than mathematics
+-    (the golden rule): names of tools or models, record and file names, internal
+-    identifiers, workflow vocabulary.
++    (the golden rule): names of tools or models, record and file names, paths, repository
++    addresses, hashes, internal identifiers, workflow vocabulary, process stage labels, percentages
++    and raw TeX. The same rules apply to the words of formulas, to every attribute value that is not
++    technical, to image text, data blocks, page metadata, comments and the strings of the page
++    script, and to element ids, which appear in shared addresses.
++Warnings (reported, not blocking): words that may be workflow residue or may be mathematics and need the
++content owner's reading, and statements without an id (no link reaches the statement itself).
+ """
++import base64
++import binascii
++import hashlib
+ import html
+ import re
++import urllib.parse
++import unicodedata
++from collections import Counter
++from html.parser import HTMLParser
+ 
+ from status import CELL_STATUSES, COLUMNS, STATEMENT_STATUSES, strip_tags
+ 
+-# Reader-visible text must not name tools, models, files or workflow. Each pattern is
+-# matched case-insensitively against the visible text with mathematics removed.
+-FORBIDDEN = [
+-    (r'\b(astra|claude|codex|opus|fable|gpt-?\d|chatgpt|openai|anthropic|sonnet|haiku)\b', 'model or tool name', re.I),
+-    (r'\b(llm|language model|ai model|agent|subagent|prompt|chatbot)s?\b', 'model or agent vocabulary', re.I),
+-    (r'\b(adoption|adopted record|inscribe|census|spine|ledger|dossier|frontier engine|worktree|'
+-     r'commit|pull request|repository|pipeline|todo|backlog|audit|reviewer|checker|attacker|owner|ownership)s?\b',
+-     'workflow vocabulary', re.I),
+-    (r'(?<![\w.])(T|N|B|R|P|C)\d{1,3}(?![\w])', 'internal identifier', 0),
+-    (r'(?<![\w.])E[1-8](?![\w])', 'possible internal identifier (or E_n written without subscript)', 0),
+-    (r'\bv\d\b|-v\d\b', 'version tag', 0),
+-    (r'\.(md|json|tex|py|tsv|csv|log)\b', 'file name', 0),
+-    (r'/Users/|~/|\bengine/|\bprep/|\bchains/', 'path', 0),
+-    (r'\b[a-z]{2,5}:(thm|prop|lem|def|cor|qn|eq|sec|rem|op|cc|hyp|mix|p|t):[\w-]+', 'LaTeX label', 0),
++I = re.I
++# Each rule is (pattern, reason, flags).
++NAMES = (r'\b(astra|claude|codex|opus|fable|gpt-?\d|chatgpt|openai|anthropic|sonnet|haiku)\d*\b', 'model or tool name', I)
++AGENTS = (r'\b(llm|language[ -]model|ai[ -]model|agent|subagent|prompt|chatbot)s?\b', 'model or agent vocabulary', I)
++WORKFLOW = (r'\b(adoption|adopted[ -]record|inscribe|census|ledger|dossier|frontier[ -]engine|worktree|'
++            r'commit|pull[ -]request|repository|pipeline|todo|backlog|audit|reviewer|checker|attacker|owner|ownership)s?\b',
++            'workflow vocabulary', I)
++SWARM = (r'\battack[- ]?heal\w*|\bswarms?\b', 'workflow vocabulary', I)
++IDENT = (r'(?<![\w.])(T|N|B|R|P|C)\d{1,3}(?![\w])', 'internal identifier (or mathematics written without TeX)', 0)
++E_IDENT = (r'(?<![\w.])E[1-8](?![\w])', 'possible internal identifier (or E_n written without subscript)', 0)
++G_IDENT = (r'(?<![\w.])G\d{2,3}(?![\w])', 'internal identifier (or mathematics written without TeX)', 0)
++VTAG = (r'\bv\d\b|-v\d\b', 'version tag (or a subscript written without TeX)', 0)
++VERSION = (r'\b(version|revision)\s+\d+', 'version tag', I)
++FILE = (r'\.(md|json|tex|py|tsv|csv|log)\b', 'file name', 0)
++SOURCE_FILE = (r'\b[\w-]+\.(js|mjs|cjs|css|html?|ya?ml|sh|txt|diff|pdf)\b', 'file name', I)
++PATH = (r'/Users/|~/[\w.-]|\b(?:engine|prep|chains|frontier|inscribe)/[\w.-]+(?:/|\.\w{1,4}\b)', 'path', 0)
++LABEL = (r'\b[a-z]{2,5}:(thm|prop|lem|def|cor|qn|eq|sec|rem|op|cc|hyp|mix|p|t):[\w-]+', 'LaTeX label', 0)
++# Capitalised or all-capital stage labels fail, also after a hyphen ("post-Wave 3"), and so do session, lane and
++# sprint numbers in any case. The other stage words in lower case may be mathematics ("the s-wave 1", "phase 0")
++# and are only warned about (WARN).
++STAGE = (r'(?<!\w)(?:Wave|Phase|Session|Lane|Sprint|Round|Cycle|WAVE|PHASE|SESSION|LANE|SPRINT|ROUND|CYCLE)'
++         r'[-\u2013\u2014 ]?[A-Z]?\d+\b', 'process stage label', 0)
++STAGE_WORK = (r'(?<!\w)(session|lane|sprint)[-\u2013\u2014 ]?\d+\b', 'process stage label', I)
++PERCENT = (r'\d+(?:\.\d+)?\s?%|\bper ?cent\b', 'percentage', I)
++HASH = (r'(?<![0-9A-Za-z])(?=[0-9a-fA-F]*[a-fA-F])(?=[0-9a-fA-F]*\d)[0-9a-fA-F]{32,}(?![0-9A-Za-z])', 'hash', 0)
++UUID = (r'(?<![0-9A-Za-z])[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}(?![0-9A-Za-z])', 'identifier (UUID)', 0)
++# Only the four open repositories may be named anywhere; this page has no reason to name any.
++REPO = (r'\b(?:github|gitlab|bitbucket|codeberg)\.(?:com|org)[/:](?!momentum-sez/(?:gstore|lex|op|stack)\b)[\w.-]+',
++        'repository address', I)
++
++WORDS = [NAMES, AGENTS, WORKFLOW, SWARM]   # names and workflow words; scanned on NFKC-folded text
++IDENTIFIERS = [IDENT, E_IDENT, G_IDENT]    # shapes that formulas also produce (P1, C2): warnings outside prose
++FORBIDDEN = WORDS + IDENTIFIERS + [VTAG, VERSION, FILE, PATH, LABEL, STAGE, STAGE_WORK, PERCENT, HASH, UUID, REPO]
++SHAPELESS = [r for r in FORBIDDEN if r not in IDENTIFIERS and r is not PERCENT]  # formula text, reader attributes
++CODE = WORDS + [VTAG, VERSION, FILE, PATH, LABEL, STAGE, STAGE_WORK, HASH, UUID, REPO]  # data attributes, prose strings
++# Script strings that are code (one lower-case token: a class, an event, a variable's name) and comments are held to
++# names, paths, files, hashes, labels, stage words and unmistakable workflow words, not to ordinary words such as
++# owner, commit, agent or prompt.
++RECORD_WORDS = (r'\b(ledger|dossier|inscribe|adoption|adopted[ -]record|census|worktree|frontier[ -]engine|backlog|'
++                r'reviewer|attacker|subagent|llm|chatbot)s?\b', 'workflow vocabulary', I)
++CODE_TOKENS = [r for r in CODE if r not in (AGENTS, WORKFLOW)] + [RECORD_WORDS]
++SHAPELESS_TOKENS = [r for r in SHAPELESS if r not in (AGENTS, WORKFLOW)] + [RECORD_WORDS]
++COMMENT = CODE_TOKENS + [SOURCE_FILE]
++
++# Raw TeX delimiters left in reader text mean a formula was not set as mathematics.
++RAW_TEX = (r'\\[()\[\]]', 'raw TeX in reader text', 0)
++# TeX source in an attribute is read aloud or shown as code.
++TEX_IN_ATTRIBUTE = re.compile(r'\\[A-Za-z()\[\]{}]')
++# TeX source: names, files, paths, hashes and addresses only; ~ is a TeX tie and chains/cochains is mathematics.
++TEX_FORBIDDEN = [NAMES, FILE, (r'/Users/|\b(?:engine|prep|frontier|inscribe)/[\w.-]+', 'path', 0), HASH, UUID, REPO,
++                 LABEL]
++TEX_WARN = [(r'\d\s*(?:\\[,;:!> ]|~)?\s*\\%', 'percentage in a formula', 0)]
++# Element ids appear in shared addresses: no tool, workflow or path names, no work-stage or version numbers, no
++# three-digit identifiers (t152) and no hashes; shorter identifier shapes, the other stage words and draft are
++# warned about, since ids also come from mathematics (r3, e8, plane-wave-1, cycle-3).
++ID_FORBIDDEN = WORDS + [
++    (r'(?<![a-z0-9])(session|lane|sprint)-?\d+|/', 'stage number or path in an id', I),
++    (r'(?<![a-z0-9])[tnbrpcg]\d{3}(?![a-z0-9])', 'internal identifier in an id', I),
++    (r'(?<![a-z0-9])v\d+(?![a-z0-9])|(?<![a-z0-9])(version|revision)-?\d', 'version tag in an id', I),
++    (r'(?<![0-9a-z])(?=[0-9a-f]*[a-f])(?=[0-9a-f]*\d)[0-9a-f]{32,}(?![0-9a-z])', 'hash in an id', I),
++    (r'(?<![0-9a-z])[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}(?![0-9a-z])', 'identifier (UUID) in an id', I)]
++ID_WARN = [(r'(?<![a-z0-9])[tnbrpcg]\d{1,2}(?![a-z0-9])', 'identifier-like token in an id', I),
++           (r'(?<![a-z0-9])(wave|phase|round|cycle)-?\d+', 'possible process stage label in an id', I),
++           (r'(?<![a-z0-9])drafts?(?![a-z0-9])', 'possible process vocabulary in an id (draft)', I)]
++
++# Possible workflow residue in reader text: reported for the content owner, not blocking.
++WARN = [
++    (r'\badopted\b', 'possible workflow vocabulary (adopted)', I),
++    (r'\bspines?\b', 'possible workflow vocabulary (spine)', I),
++    (r'\bdrafts?\b', 'possible process vocabulary (draft)', I),
++    (r'\b(saved|stored|recorded)\s+(?:[\w-]+\s+){0,3}(certificates?|computations?|arithmetic|matrix|matrices)\b|\breplayed\b',
++     'reference to a stored artefact the reader cannot inspect', I),
++    (r'(?<![\w\\])[A-Za-z]_(?:\{[^}]*\}|[A-Za-z0-9])', 'possible formula outside TeX delimiters', 0),
++    (r'\b(receipts?|frozen|snapshots?|manifests?|provenance)\b', 'possible process vocabulary', I),
+ ]
++STAGE_WARN = (r'(?<!\w)(wave|phase|round|cycle)[-\u2013\u2014 ]?\d+\b', 'possible process stage label', 0)
++WARN.append(STAGE_WARN)
++
++# Private repository paths may appear nowhere (the open-source whitelist rule). The prefixes are kept as sha256
++# digests so that this source does not name them: the first segment of a path ('name/') and its first two
++# segments ('name/sub') are hashed and compared.
++PRIVATE_PATHS = frozenset('''
++074314280fb69d4497fe05bdf5c1afa592529badaa2aa45d3977491a98d6b650 0f0c109367312909f0a73e7be978a5adce2ec5a7feb78a430c930b45c84b92b5
++0feb8fe5e14658c352f1e5051f3032556acdb3caed068d90f3d17a1e4ba1ebf0 21c5c81f865cef50ad8c8bc7b7bffeb10a8b7a995fb59bdc3273bfed5a62c1fe
++3294dd3ffcd4ac1baf8bc580a4c3901a44331a40308cae543dbb64b55cafc799 4b8f6a7b734a5bc07d44f1b48c47ce927d2fcf6a26e98f4148049ea6f2d11362
++52f81478627543702e4286c60b1b6e19c5734e08754f7444477885aaf9088c90 5c35afb373ac73845c89cc4beebf0b88e58976c619171aca897481e3415ad10d
++71b3bd90e717a4b99372e5821b34fc5d0405305e257db9148bf4423d70c7d62c 7987fbbfa66ef82f5457cad8a619067e30fa1ce05183f1a627f1229e1a1fab9b
++86a7eae394fe6f1c3510ba16f0ad09442a9f560017e144b90c210ca24e5da5cb 884fcd3f10aa57b0758368bcbbb20dc8e925faae72298ddfef08b9362e603055
++8a3ce3236497dd4956ca4a0dcaec9ce51d399f94602fccf8b215c813ca052c19 8f9d884f9509a3377727d3be2318e83135aa7fcec179aa860ab80efe9cdf9594
++931982e266f477223eef88b5f734b477fdebdfa3aa0e59c5b989877aab318467 9612ab93cc1f852101f179a016789b34d1cd66424d7fde133cabd9bbca977fb1
++a8f1e005d3fa85084e9f3883f52c4f2feeed59bc396ca8d4bb278cd50f13805d ba6c4f2fb2cfebaab4041155a9846c544ceb25ab90d0615b2020d22c9c51dc5c
++bb88c90eb892f0607b857314e0a59853ce9ea9b2b1f80734a7cdae07f16a8074 cf370513aefd771df5d778af934dab6de4e12d24a4701ad64138fa984083238c
++d181bea4e3b8cb401130960de3ec1f436f4c791bc1a49843357a36f135de83fd d7d2d55bd6664726c7523a4c9209ff614e2e69f8cb29c2ad195ced1590886bed
++ea694b45b054ae5ee726d0bfc5d64403a1bb0cabc9b4b665b9decb14f078dc4a f7bc9cf6b0188bbe91b3fa17e6d6b18c3afb84e9d3e2a11fe5baee75764b0710
++'''.split())
++PATH_TOKEN = re.compile(r'(?<![\w.-])([A-Za-z][\w.-]*)/([\w.-]*)')
++
++# Attributes: reader text is held to the prose rules; technical values are skipped; every other value (data-*,
++# unknown attributes) is held to the rules for code.
++READER = {'aria-label', 'title', 'alt', 'placeholder', 'aria-description', 'aria-roledescription', 'aria-placeholder',
++          'aria-valuetext', 'aria-braillelabel', 'aria-brailleroledescription', 'label', 'summary', 'abbr'}
++LINKS = {'href', 'src', 'srcset', 'action', 'poster', 'data', 'xlink:href', 'cite', 'formaction'}
++TECHNICAL = set('''class id style type role lang dir name content charset http-equiv rel media integrity crossorigin
++    nonce sizes loading decoding datetime tabindex hidden open colspan rowspan scope headers for form autocomplete
++    autocapitalize autocorrect spellcheck inputmode enterkeyhint encoding display mathvariant viewbox d points width
++    height x y x1 x2 y1 y2 cx cy r rx ry transform opacity focusable stretchy fence separator lspace rspace minsize
++    maxsize movablelimits accent accentunder scriptlevel displaystyle columnalign rowalign columnspacing rowspacing
++    columnlines rowlines frame framespacing equalrows equalcolumns linethickness depth voffset notation mathsize
++    mathcolor mathbackground largeop symmetric stroke fill start reversed disabled readonly required checked selected
++    multiple maxlength minlength min max step size span translate draggable inert popover async defer nomodule
++    referrerpolicy preserveaspectratio offset'''.split())
++TECHNICAL_PREFIXES = ('aria-', 'stroke-', 'fill-', 'xmlns', 'stop-', 'font-', 'text-', 'clip', 'marker', 'mask')
++TECHNICAL_META = {'viewport', 'referrer', 'robots', 'color-scheme', 'theme-color', 'format-detection',
++                  'supported-color-schemes'}
++JS_TYPES = {'', 'text/javascript', 'application/javascript', 'application/x-javascript', 'module', 'text/ecmascript',
++            'application/ecmascript'}
++SCRIPT = re.compile(r'<script\b([^>]*)>(.*?)</script\s*>', re.S | re.I)
++TYPE_ATTR = re.compile(r'''\btype\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))''', re.I)
++CSS_CONTENT = re.compile(r'''\bcontent\s*:\s*(?:"((?:[^"\\]|\\.)*)"|'((?:[^'\\]|\\.)*)')''', re.S)
++# Temml joins a \mathrm{…} (or \rm) run of letters and digits into one name and keeps one digit after a letter
++# (\mathrm{T15} shows T1): a letter followed by two or more digits there fails, with the fix named.
++FONT_GROUP = re.compile(r'\\mathrm\s*\{\s*([A-Za-z][A-Za-z0-9 ]*?)\s*\}|\\rm(?![A-Za-z])\s*([A-Za-z][A-Za-z0-9 ]*)')
++SVG_DATA = re.compile(r'data:image/svg\+xml((?:;[^,;]*)*),', re.I)
++MATH = re.compile(r'<math\b.*?</math>', re.S)
++TEX_ANNOTATION = re.compile(r'<annotation encoding="application/x-tex">(.*?)</annotation>', re.S)
++TOKEN = re.compile(r'<(mi|mn|mo|mtext|ms)\b[^>]*>([^<]*)</\1>')
++LETTER_RUN = re.compile(r'(?:<mi\b[^>]*>[^<]</mi>\s*){3,}')
++JS_KEYWORDS_BEFORE_REGEX = {'return', 'typeof', 'case', 'do', 'else', 'in', 'of', 'new', 'delete', 'void', 'throw',
++                            'instanceof', 'yield', 'await'}
+ 
+ ALLOWED_HOSTS_IN_HREF = ()  # no other host at all
+ 
+ 
+-def visible_text(markup):
++def norm(text):
++    """Text as scanned: format characters (soft hyphen, zero-width spaces and joiners) removed and every run of
++    white space, no-break spaces included, one plain space."""
++    text = ''.join(ch for ch in text if ch < '\x80' or unicodedata.category(ch) != 'Cf')
++    return re.sub(r'\s+', ' ', text)
++
++
++def fold(text):
++    """Compatibility forms (mathematical italic or bold letters, ligatures) as plain letters, for the word rules."""
++    return unicodedata.normalize('NFKC', text)
++
++
++def visible_text(markup, spaced=False):
++    """The reader-visible body text with formulas removed. With spaced=True every tag boundary becomes a
++    space, so that words in adjacent elements (a status chip and a title) do not fuse."""
+     body = markup[markup.find('<body'):]
+     body = re.sub(r'<script\b.*?</script>', ' ', body, flags=re.S)
+     body = re.sub(r'<style\b.*?</style>', ' ', body, flags=re.S)
+     body = re.sub(r'<math\b.*?</math>', ' ', body, flags=re.S)
+     body = re.sub(r'<svg\b.*?</svg>', ' ', body, flags=re.S)
+-    return re.sub(r'\s+', ' ', strip_tags(body))
++    if spaced:
++        return norm(html.unescape(re.sub(r'<[^>]+>', ' ', body)))
++    return norm(strip_tags(body))
++
++
++def scan(text, patterns, label=''):
++    found = []
++    for pattern, why, flags in patterns:
++        for m in re.finditer(pattern, text, flags=flags):
++            ctx = text[max(0, m.start() - 50): m.end() + 50]
++            found.append(f'{why}{label}: "{m.group(0)}" in …{ctx}…')
++    return found
++
++
++def private_paths(text, label=''):
++    found = []
++    for m in PATH_TOKEN.finditer(text):
++        first = m.group(1).lower()
++        for prefix in (first + '/', f'{first}/{m.group(2).lower()}'):
++            if hashlib.sha256(prefix.encode()).hexdigest() in PRIVATE_PATHS:
++                found.append(f'private repository path{label}: "{m.group(0)}" in …{text[max(0, m.start() - 50): m.end() + 50]}…')
++                break
++    return found
++
++
++def held(text, rules, label=''):
++    """The rules on text: word rules on its folded form, the rest as written, and private paths."""
++    words = [r for r in rules if r in WORDS or r is RECORD_WORDS]
++    rest = [r for r in rules if r not in words]
++    return scan(fold(text), words, label) + scan(text, rest, label) + private_paths(text, label)
++
++
++def _read_string(src, i):
++    """src[i] opens a quoted string; returns the index after it and its text."""
++    q, j = src[i], i + 1
++    while j < len(src) and src[j] != q:
++        j += 2 if src[j] == '\\' else 1
++    return j + 1, src[i + 1:j]
++
++
++def _read_template(src, i):
++    """src[i] opens a template literal; returns the index after it, its text without interpolations, and the code of
++    each ${...} interpolation (nested strings and templates kept whole)."""
++    j, n, text, codes = i + 1, len(src), [], []
++    while j < n and src[j] != '`':
++        if src[j] == '\\':
++            text.append(src[j:j + 2])
++            j += 2
++            continue
++        if src.startswith('${', j):
++            k, depth = j + 2, 1
++            while k < n and depth:
++                if src[k] in '"\'':
++                    k = _read_string(src, k)[0]
++                    continue
++                if src[k] == '`':
++                    k = _read_template(src, k)[0]
++                    continue
++                depth += {'{': 1, '}': -1}.get(src[k], 0)
++                k += 1
++            codes.append(src[j + 2:k - 1])
++            text.append(' ')
++            j = k
++            continue
++        text.append(src[j])
++        j += 1
++    return j + 1, ''.join(text), codes
++
++
++def prose_like(text):
++    """A string a reader may see (it has a space or a capital first letter), as against a one-token code string."""
++    return bool(re.search(r'\s', text.strip()) or re.match(r'\s*[A-Z]', text))
++
++
++def svg_images(text, css=False, srcset=False):
++    """The text of every SVG image given as a data: URI in an attribute value or a style sheet, base64 or
++    percent-encoded, whatever its parameters (srcset candidates, CSS url() and image-set() included); None for an
++    image that cannot be read."""
++    found = []
++    for m in SVG_DATA.finditer(text):
++        start = m.end()
++        quote = text[m.start() - 1] if m.start() and text[m.start() - 1] in '"\'' else ''
++        if quote:
++            end = text.find(quote, start)
++        elif srcset or css:
++            end = start + re.search(r'[\s)]|$', text[start:]).start()
++        else:
++            end = len(text)
++        payload = text[start:len(text) if end < 0 else end].rstrip(',')
++        try:
++            payload = urllib.parse.unquote(payload)
++            if any(p.strip().lower() == 'base64' for p in m.group(1).split(';')):
++                payload = re.sub(r'\s+', '', payload)
++                payload = base64.b64decode(payload + '=' * (-len(payload) % 4)).decode('utf-8', 'replace')
++            found.append(' '.join(re.sub(r'<[^>]+>', ' ', payload).split()))
++        except (ValueError, binascii.Error):
++            found.append(None)
++    return found
++
++
++def held_images(images, label):
++    """The rules on the text of SVG images; an image that cannot be read fails."""
++    out = []
++    for text in images:
++        out += [f'an SVG image that cannot be read{label}'] if text is None else held(norm(text), FORBIDDEN, label)
++    return out
++
++
++def js_parts(src):
++    """String literals and comments of a script: a small scanner for strings, template text, comments and
++    regular-expression literals (told from division by the previous significant character or keyword)."""
++    strings, comments = [], []
++    i, n, prev = 0, len(src), ''
++    while i < n:
++        c = src[i]
++        if c in '"\'':
++            i, text = _read_string(src, i)
++            strings.append(text)
++            prev = c
++            continue
++        if c == '`':
++            i, text, codes = _read_template(src, i)
++            strings.append(text)
++            for code in codes:
++                more, notes = js_parts(code)
++                strings += more
++                comments += notes
++            prev = c
++            continue
++        if c == '/' and src.startswith('//', i):
++            j = src.find('\n', i)
++            j = n if j < 0 else j
++            comments.append(src[i + 2:j])
++            i = j
++            continue
++        if c == '/' and src.startswith('/*', i):
++            j = src.find('*/', i + 2)
++            j = n if j < 0 else j
++            comments.append(src[i + 2:j])
++            i = j + 2
++            continue
++        if c == '/':
++            word = re.search(r'([A-Za-z_$][\w$]*)\s*$', src[max(0, i - 20):i])
++            if prev == '' or prev in '(,=:[!&|?{};+-*%<>~^' or (word and word.group(1) in JS_KEYWORDS_BEFORE_REGEX):
++                j, in_class = i + 1, False
++                while j < n and src[j] != '\n':
++                    if src[j] == '\\':
++                        j += 2
++                        continue
++                    if src[j] == '[':
++                        in_class = True
++                    elif src[j] == ']':
++                        in_class = False
++                    elif src[j] == '/' and not in_class:
++                        break
++                    j += 1
++                i, prev = j + 1, '/'
++                continue
++        if not c.isspace():
++            prev = c
++        i += 1
++    return strings, comments
++
++
++class _Attributes(HTMLParser):
++    """Every attribute of every element, whichever quoting it uses, and the page's metadata."""
++
++    def __init__(self):
++        super().__init__(convert_charrefs=True)
++        self.attributes, self.metas, self.ids = [], [], []
++
++    def handle_starttag(self, tag, attrs):
++        for name, value in attrs:
++            if value:
++                self.attributes.append((tag, name.lower(), value))
++                if name.lower() == 'id':
++                    self.ids.append(value)
++        if tag == 'meta':
++            self.metas.append({k.lower(): (v or '') for k, v in attrs})
+ 
+ 
+ def run(build, markup):
+@@ -57,6 +376,16 @@
+     for s in build.all_statements(c):
+         if s.get('status') not in STATEMENT_STATUSES:
+             failures.append(f'unknown status {s.get("status")!r}')
++    # The status contract: every status a statement uses is explained in the key, and a scoped negative result
++    # ('refuted form') states its scope as hypotheses.
++    explained = {k.get('status') for k in c.get('status_key', [])}
++    for st in sorted({s.get('status') for s in build.all_statements(c)} & set(STATEMENT_STATUSES) - explained):
++        warnings.append(f'the status key does not explain the statement status {st!r}')
++    unscoped = [strip_tags(s.get('title') or '') or (s.get('text') or '')[:80] for s in build.all_statements(c)
++                if s.get('status') == 'refuted form' and not s.get('hypotheses')]
++    if unscoped:
++        warnings.append(f'{len(unscoped)} statements with the status \'refuted form\' state no hypotheses (their scope); '
++                        f'first: {unscoped[0][:80]}')
+ 
+     # No other host: no src/href/url() pointing off the page except the site's own home link.
+     bare = re.sub(r'<script\b.*?</script>', ' ', markup, flags=re.S)
+@@ -83,18 +412,115 @@
+     for m in re.finditer(r'(?:data-term|aria-controls|aria-describedby|data-row)="([^"]+)"', markup):
+         if m.group(1) not in ids:
+             failures.append(f'reference to missing id {m.group(1)}')
+-    dup = {i for i in re.findall(r'\sid="([^"]+)"', markup) if list(re.findall(r'\sid="([^"]+)"', markup)).count(i) > 1}
+-    for i in sorted(dup):
++    id_counts = Counter(re.findall(r'\sid="([^"]+)"', markup))
++    for i in sorted(k for k, n in id_counts.items() if n > 1):
+         failures.append(f'duplicate id {i}')
+ 
+-    # The golden rule, on what a reader sees.
+-    text = visible_text(markup)
+-    flagged = []
+-    for pattern, why, flags in FORBIDDEN:
+-        for m in re.finditer(pattern, text, flags=flags):
+-            ctx = text[max(0, m.start() - 50): m.end() + 50]
+-            flagged.append(f'{why}: "{m.group(0)}" in …{ctx}…')
+-    failures.extend(flagged)
++    # The golden rule, on everything a reader sees, hears or shares: the text as written and with tag boundaries
++    # spaced, the words of formulas, every attribute that is not technical, image text, data blocks, script
++    # strings, generated content, comments, metadata and ids.
++    flagged, cautions = [], []
++    for text in (visible_text(markup), visible_text(markup, spaced=True)):
++        flagged += held(text, FORBIDDEN + [RAW_TEX])
++    cautions += scan(visible_text(markup, spaced=True), WARN)
++
++    mtext = norm(' '.join(strip_tags(m) for m in re.findall(r'<mtext\b[^>]*>(.*?)</mtext>', markup, flags=re.S)))
++    flagged += held(mtext, SHAPELESS, ' (in a formula)')
++    cautions += scan(mtext, IDENTIFIERS + [PERCENT] + WARN, ' (in a formula)')
++    names, runs, spoken = [], [], []
++    for m in MATH.finditer(markup):
++        whole = m.group(0)
++        tex = TEX_ANNOTATION.search(whole)
++        body = whole[:tex.start()] + whole[tex.end():] if tex else whole
++        tokens = [(kind, fold(html.unescape(text))) for kind, text in TOKEN.findall(body)]
++        names += [text for kind, text in tokens if kind == 'mi' and len(text.strip()) >= 3]  # \operatorname, \mathrm
++        runs += [fold(''.join(re.findall(r'>([^<])</mi>', run))) for run in LETTER_RUN.findall(body)]
++        spoken.append(' '.join(text.strip() for kind, text in tokens if kind != 'mtext' and text.strip()))
++        if tex:
++            source = html.unescape(tex.group(1))
++            for g in FONT_GROUP.finditer(source):
++                group = (g.group(1) or g.group(2)).replace(' ', '')
++                if re.search(r'[A-Za-z]\d{2,}', group):
++                    failures.append(f'formula "{source[:100]}": {g.group(0).strip()} would lose digits (the renderer keeps '
++                                    f'one digit after a letter in such a group); set the digits outside it, as in '
++                                    f'\\mathrm{{M}}_{{24}}')
++    flagged += scan(' '.join(names), WORDS, ' (in a formula)')
++    spoken_text = norm(' | '.join(spoken))
++    flagged += scan(spoken_text, [STAGE, STAGE_WORK], ' (in a formula)')
++    cautions += scan(spoken_text, [STAGE_WARN], ' (in a formula)')
++    cautions += scan(' '.join(runs), WORDS, ' (letters set one by one in a formula)')
++    tex = norm(html.unescape(' '.join(TEX_ANNOTATION.findall(markup))))
++    flagged += scan(tex, TEX_FORBIDDEN, ' (in TeX source)') + private_paths(tex, ' (in TeX source)')
++    cautions += scan(tex, TEX_WARN, ' (in TeX source)')
++
++    images = norm(html.unescape(' '.join(re.sub(r'<[^>]+>', ' ', s) for s in re.findall(r'<svg\b.*?</svg>', markup, flags=re.S))))
++    flagged += held(images, FORBIDDEN, ' (in an image)')
++
++    comments = []
++    for attrs, body in SCRIPT.findall(markup):
++        kind = TYPE_ATTR.search(attrs)
++        kind = next((g for g in kind.groups() if g is not None), '').strip().lower() if kind else ''
++        if kind in JS_TYPES:
++            strings, notes = js_parts(body)
++            prose = [t for t in strings if prose_like(t)]
++            tokens = [t for t in strings if not prose_like(t)]
++            flagged += held(norm(' | '.join(prose)), CODE, ' (in a script string)')
++            flagged += held(norm(' | '.join(tokens)), CODE_TOKENS, ' (in a script string)')
++            comments += notes
++        else:
++            flagged += held(norm(body), FORBIDDEN, ' (in a data block)')
++    for sheet in re.findall(r'<style\b[^>]*>(.*?)</style>', markup, flags=re.S):
++        comments += re.findall(r'/\*(.*?)\*/', sheet, flags=re.S)
++        sheet = re.sub(r'/\*.*?\*/', ' ', sheet, flags=re.S)
++        flagged += held_images(svg_images(sheet, css=True), ' (in an image in the styles)')
++        sheet = re.sub(r'url\(\s*("[^"]*"|\'[^\']*\'|[^)]*)\)', ' ', sheet)
++        sheet = re.sub(r'(["\'])data:[^"\']*\1', ' ', sheet)
++        generated = [a or b for a, b in CSS_CONTENT.findall(sheet)]
++        flagged += held(norm(' | '.join(generated)), FORBIDDEN, ' (in generated content)')
++        strings = [a or b for a, b in re.findall(r'"((?:[^"\\]|\\.)*)"|\'((?:[^\'\\]|\\.)*)\'', sheet)]
++        flagged += held(norm(' | '.join(t for t in strings if prose_like(t))), SHAPELESS, ' (in a style string)')
++        flagged += held(norm(' | '.join(t for t in strings if not prose_like(t))), SHAPELESS_TOKENS, ' (in a style string)')
++    comments += re.findall(r'<!--(.*?)-->', markup, flags=re.S)
++    flagged += held(norm(' | '.join(comments)), COMMENT, ' (in a comment)')
++
++    parser = _Attributes()
++    parser.feed(re.sub(r'<(script|style)\b.*?</\1>', ' ', markup, flags=re.S))
++    parser.close()
++    for tag, name, value in parser.attributes:
++        if re.search(r'data:image/svg', value, re.I):  # in any attribute, style and srcset included
++            flagged += held_images(svg_images(value, css=name == 'style', srcset=name in ('srcset', 'imagesrcset')),
++                                   f' (in an image in {name})')
++        if name == 'id' or name in TECHNICAL or (name.startswith(TECHNICAL_PREFIXES) and name not in READER):
++            continue
++        value = norm(value)
++        if name in READER:
++            flagged += held(value, SHAPELESS, f' (in {name})')
++            cautions += scan(value, IDENTIFIERS, f' (in {name})')
++            if TEX_IN_ATTRIBUTE.search(value):
++                flagged.append(f'TeX source in {name}: "{value[:120]}"')
++        elif name in LINKS:
++            if not value.lower().startswith('data:'):
++                flagged += held(value, [FILE, PATH, HASH, UUID, REPO], f' (in {name})')
++        else:
++            flagged += held(value, CODE if prose_like(value) else CODE_TOKENS, f' (in {name})')
++    for meta in parser.metas:
++        key = meta.get('name') or meta.get('property') or meta.get('itemprop') or ''
++        if 'http-equiv' in meta or 'charset' in meta or key.lower() in TECHNICAL_META:
++            continue
++        flagged += held(norm(meta.get('content', '')), FORBIDDEN, f' (in meta {key})')
++    title = re.search(r'<title>(.*?)</title>', markup, flags=re.S)
++    if title:
++        flagged += held(norm(html.unescape(title.group(1))), FORBIDDEN, ' (in title)')
++    for i in dict.fromkeys(list(id_counts) + parser.ids):
++        flagged += scan(i, ID_FORBIDDEN, ' (in id)')
++        cautions += scan(i, ID_WARN, ' (in id)')
++    failures.extend(dict.fromkeys(flagged))
++    warnings.extend(dict.fromkeys(cautions))
++    anchorless = [strip_tags(s.get('title') or '') or (s.get('text') or '')[:80]
++                  for s in build.all_statements(c) if not (s.get('id') or '').strip()]
++    if anchorless:
++        warnings.append(f'{len(anchorless)} statements have no id, so no link reaches the statement itself '
++                        f'(listed in audit.json under statements_without_id); first: {anchorless[0][:80]}')
+ 
+     # Metadata carries no tool credit either.
+     head = re.sub(r'<(style|script)\b.*?</\1>', ' ', markup[:markup.find('</head>')], flags=re.S)
+@@ -108,6 +534,7 @@
+     for r in rows:
+         for cell in (r.get('cells') or {}).values():
+             cells[cell.get('status')] = cells.get(cell.get('status'), 0) + 1
++    jobs = len(build.math.jobs)
+     return {
+         'failures': failures,
+         'warnings': warnings,
+@@ -117,18 +544,24 @@
+         'terms': len(build.term_links.entries),
+         'terms_attached': len(build.term_links.used),
+         'terms_unused': sorted(e['term'] for e in build.term_links.entries if e['id'] not in build.term_links.used),
+-        'math': len(build.math.jobs),
++        'math': jobs - len(getattr(build.math, 'text_jobs', {})),
++        'math_jobs': jobs,
+         'math_errors': len(build.math.errors),
+         'fonts': getattr(build, 'font_report', {}),
++        'statements_without_id': anchorless,
+     }
+ 
+ 
+ def text_report(result):
+     lines = [f'bytes: {result["bytes"]:,}', f'statements: {result["statements"]}', f'cells: {result["cells"]}',
+              f'terms: {result["terms"]} (attached in text: {result["terms_attached"]})',
+-             f'math: {result["math"]} (errors: {result["math_errors"]})', f'fonts: {result["fonts"]}']
++             f'math: {result["math"]} formulas ({result.get("math_jobs", result["math"])} rendering jobs; '
++             f'errors: {result["math_errors"]})', f'fonts: {result["fonts"]}']
+     if result['terms_unused']:
+         lines.append('terms never attached in the text: ' + ', '.join(result['terms_unused']))
++    kinds = Counter(w.split(':')[0] for w in result['warnings'])
++    if kinds:
++        lines.append('warnings by kind: ' + '; '.join(f'{k}: {n}' for k, n in kinds.most_common()))
+     for w in result['warnings']:
+         lines.append('WARNING ' + w)
+     for f in result['failures']:
+--- a/compiler/quantum-holography-status/status-print.css
++++ b/compiler/quantum-holography-status/status-print.css
+@@ -1,11 +1,11 @@
+ /* ---------------------------------------------------------------------------------------------
+-   Print. Embedded after status.css, so at equal specificity these rules win; everything here is
++   Print. Embedded after the screen stylesheet, so at equal specificity these rules win; everything here is
+    inside @media print and the screen page is unchanged.
+ 
+-   The script's print contract (status.js): on beforeprint every disclosure in the page is opened
++   The script's print contract: on beforeprint every disclosure in the page is opened
+    (the example rows, 'Related statements' under a question, the column definitions under the
+    grid), and on afterprint each returns to the state the reader left it in. This sheet sets no
+-   [open] state of its own; the ::details-content rule in status.css remains only as a fallback.
++   [open] state of its own; the ::details-content rule in the screen stylesheet remains only as a fallback.
+ 
+    Paper is always light: the dark theme's colours are replaced by the light ones, deepened for
+    ink on white. Backgrounds are not relied on, since browsers drop them when printing; the status
+@@ -92,9 +92,15 @@
+   .key { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8pt 18pt; }
+   .key-item { break-inside: avoid; }
+ 
++  /* Lists that run across pages print as block flow, not as grids: a fragmented grid container can lose an
++     unbreakable item from the printed page. */
++  .statements, .questions, .failures { display: block; }
++  .statements > * + * { margin-top: 8pt; }
++  .glossary, .key, .col-defs > dl { display: block !important; }
++  .key > * + *, .col-defs > dl > * + * { margin-top: 6pt; }
++
+   /* Statements: kept whole; the status stripe is a border so that it prints without background
+      graphics; the chips lose their tint and keep their colour and mark. */
+-  .statements { gap: 8pt; }
+   .statement, .principal .statement { padding: 8pt 10pt 7pt 11pt; background: none !important; box-shadow: none !important;
+                                       border: .6pt solid var(--rule); border-left: 2.4pt solid var(--st); border-radius: 2pt;
+                                       break-inside: avoid; page-break-inside: avoid; }
+@@ -153,7 +159,7 @@
+   .rows .statement[hidden] { display: block !important; }
+ 
+   /* Questions */
+-  .questions { gap: 16pt; }
++  .questions > * + * { margin-top: 16pt; }
+   .question { padding-top: .8em; }
+   .question:target > .question-head h3 { color: inherit; }
+   .question.compare { display: block; }
+@@ -164,6 +170,7 @@
+   .known > summary { padding: 7pt 0; break-after: avoid; }
+ 
+   /* Counterexamples */
++  .failures > * + * { margin-top: 14pt; }
+   .failure { break-inside: auto; }
+   .claim { break-after: avoid; page-break-after: avoid; }
+   .failure > .statement { margin-left: 10pt; }
+--- a/compiler/quantum-holography-status/status.css
++++ b/compiler/quantum-holography-status/status.css
+@@ -35,7 +35,7 @@
+   --st-open: #9a5a07;
+   --st-published: #4d5966;
+   --st-partial: #5f7a2a;
+-  --st-not-posed: #9b958d;
++  --st-not-posed: #857f77;
+   --st-refuted-form: #a13d2d;
+ 
+   --shadow: 0 1px 2px rgba(29, 27, 24, .06), 0 14px 40px -12px rgba(29, 27, 24, .28);
+@@ -57,7 +57,7 @@
+     --accent: #7fb9bd; --accent-soft: #1f3234; --focus: #9fd0d3;
+     --st-checked: #79c48f; --st-pending: #82b4e3; --st-conditional: #78c3c4; --st-conjecture: #b99be0;
+     --st-heuristic: #c4ab8c; --st-open: #e5a74e; --st-published: #a7b3bf; --st-partial: #b1cc72;
+-    --st-not-posed: #77716a; --st-refuted-form: #ec8a76;
++    --st-not-posed: #857f77; --st-refuted-form: #ec8a76;
+     --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 44px -10px rgba(0, 0, 0, .7);
+     --bar-bg: rgba(21, 20, 18, .92);
+     color-scheme: dark;
+@@ -70,7 +70,7 @@
+   --accent: #7fb9bd; --accent-soft: #1f3234; --focus: #9fd0d3;
+   --st-checked: #79c48f; --st-pending: #82b4e3; --st-conditional: #78c3c4; --st-conjecture: #b99be0;
+   --st-heuristic: #c4ab8c; --st-open: #e5a74e; --st-published: #a7b3bf; --st-partial: #b1cc72;
+-  --st-not-posed: #77716a; --st-refuted-form: #ec8a76;
++  --st-not-posed: #857f77; --st-refuted-form: #ec8a76;
+   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 44px -10px rgba(0, 0, 0, .7);
+   --bar-bg: rgba(21, 20, 18, .92);
+   color-scheme: dark;
+@@ -108,7 +108,7 @@
+ .bar-inner { max-width: var(--wide); margin: 0 auto; padding: 0 var(--gutter); height: var(--bar);
+              display: flex; align-items: center; gap: 18px; }
+ .home { color: var(--ink); text-decoration: none; font-size: var(--text-sm); letter-spacing: .02em; white-space: nowrap; }
+-.nav { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
++.nav { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+ .nav::-webkit-scrollbar { display: none; }
+ .nav ul { list-style: none; margin: 0 0 0 auto; padding: 0 24px 0 0; display: flex; gap: 2px; width: max-content; }
+ .nav a { display: block; padding: 6px 10px; border-radius: 4px; color: var(--ink-3); text-decoration: none; font-size: var(--text-sm); white-space: nowrap; }
+@@ -174,8 +174,13 @@
+ .statement::before { content: ''; position: absolute; left: -1px; top: -1px; bottom: -1px; width: 3px; border-radius: var(--radius) 0 0 var(--radius); background: var(--st); }
+ .st-checked { --st: var(--st-checked); } .st-pending { --st: var(--st-pending); } .st-conditional { --st: var(--st-conditional); }
+ .st-conjecture { --st: var(--st-conjecture); } .st-heuristic { --st: var(--st-heuristic); } .st-open { --st: var(--st-open); }
+-.st-published { --st: var(--st-published); }
++.st-published { --st: var(--st-published); } .st-refuted-form { --st: var(--st-refuted-form); } .st-unknown { --st: var(--ink-4); }
+ .st-open, .st-conjecture, .st-heuristic { background: transparent; border-style: dashed; }
++/* The hypotheses that scope a statement (a scoped negative result states them), under its text. */
++.statement-hypotheses { margin: .65em 0 0; font-size: var(--text-sm); line-height: 1.5; }
++.statement-hypotheses .note-label { margin: 0; font-size: var(--text-xs); }
++.statement-hypotheses ul { margin: .25em 0 0; padding-left: 1.2em; }
++.statement-hypotheses li + li { margin-top: .2em; }
+ .statement-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: .45em; }
+ .status-chip { display: inline-flex; align-items: center; gap: 6px; font-size: var(--text-xs); letter-spacing: .06em; text-transform: uppercase;
+                color: var(--st); font-variant-numeric: lining-nums; white-space: nowrap; }
+@@ -326,7 +331,6 @@
+ .legend li { display: inline-flex; align-items: center; gap: 6px; }
+ .legend .mark { width: 13px; height: 13px; }
+ .key-sub { margin: 1.4em 0 .7em; font-size: var(--text-sm); color: var(--ink-3); font-style: italic; }
+-@media (min-width: 900px) { .nav { -webkit-mask-image: none; mask-image: none; } }
+ @media (max-width: 640px) {
+   .grid { min-width: 0; font-size: var(--text-xs); }
+   .grid tbody th { min-width: 8.5em; max-width: 9.5em; }
+@@ -419,7 +423,7 @@
+ .claim-tag .mark { width: 12px; height: 12px; }
+ .claim-text { flex: 1 1 18rem; min-width: 0; font-style: italic; color: var(--ink-2); }
+ .failure > .statement { margin-left: clamp(0px, 2vw, 18px); }
+-@media print { .known > .statements { display: grid !important; } }
++@media print { .known > .statements { display: block !important; } }
+ .section-added { margin: .6em 0 0; }
+ 
+ /* ---------------------------------------------------------------------------------------------
+@@ -542,7 +546,7 @@
+    Search of the page. One field in the reading column, with a magnifier, the reader's words and
+    Clear inside one outlined box; the Part and Status chips below it; the results grouped by part,
+    each hit a full-width link with its place, its title and the words around the match. Setting
+-   --find-styled tells status.js that this stylesheet styles the search, so it adds no fallback.
++   --find-styled tells the script that this stylesheet styles the search, so it adds no fallback.
+    Screen only: print is styled elsewhere.
+    --------------------------------------------------------------------------------------------- */
+ .find {
+@@ -590,7 +594,8 @@
+ 
+ /* The count, then the results by part. */
+ .find-count { margin: 14px 0 0; font-size: var(--text-sm); color: var(--ink-3); font-variant-numeric: lining-nums tabular-nums; }
+-.find-count:empty { display: none; }
++/* Empty, the count stays rendered (visually hidden) so that its first message is announced. */
++.find-count:empty { position: absolute; width: 1px; height: 1px; margin: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+ .find-results { margin-top: 4px; }
+ .find-group { margin-top: 18px; }
+ .find-group-head { margin: 0 0 6px; font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+@@ -612,7 +617,7 @@
+ .find-where mark { color: var(--ink-2); }
+ .find .find-more { display: inline-flex; align-items: center; min-height: 34px; margin-top: 12px; }
+ 
+-/* Open all and Close all above a section's questions (status.js adds them; its fallback styled them). */
++/* Open all and Close all above a section's questions (the script adds them; its fallback styled them). */
+ .known-actions { justify-content: flex-end; margin: 0 0 14px; }
+ 
+ /* Narrow screens: labels above their chips, a tighter hit. */
+@@ -640,3 +645,35 @@
+   .find-link:hover { outline: 1px solid Highlight; }
+   .find mark { forced-color-adjust: none; background: Mark; color: MarkText; box-shadow: none; }
+ }
++
++/* ---------------------------------------------------------------------------------------------
++   The search opener in the bar, the card's close control, and the status filter's visible count
++   and empty-example note. The script shows the opener only when the search exists.
++   --------------------------------------------------------------------------------------------- */
++.find-open { flex: none; width: 34px; height: 34px; display: grid; place-items: center; padding: 0; border: 1px solid var(--rule);
++             background: transparent; border-radius: 50%; cursor: pointer; color: var(--ink-2); }
++.find-open:hover { background: var(--paper-2); }
++.find-open[hidden] { display: none; }
++.card-close { position: absolute; top: 6px; right: 6px; width: 32px; height: 32px; display: grid; place-items: center; padding: 0;
++              border: 0; border-radius: 50%; background: var(--paper-3); color: var(--ink-3); cursor: pointer; }
++.card-close:hover { background: var(--paper-2); color: var(--ink); }
++.card-close[hidden] { display: none; } /* a Close control emitted hidden stays hidden until a script shows it */
++.card-inner > :first-child { padding-right: 28px; }
++@media (max-width: 640px) { .card.sheet { bottom: calc(8px + env(safe-area-inset-bottom, 0px)); } }
++.row-tools .filter-count { flex-basis: 100%; margin: 0; font-size: var(--text-sm); color: var(--ink-3); }
++.row-tools .filter-count:empty { position: absolute; width: 1px; height: 1px; margin: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
++.filter-empty-note { margin: 0 0 14px; color: var(--ink-3); font-style: italic; }
++@media screen { details.row[data-filter-empty] > summary .row-name { color: var(--ink-3); } }
++@media print { .find-open, .card-close, .filter-count, .filter-empty-note { display: none !important; } }
++.nav.nav-overflow { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
++                    mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
++.nav.nav-overflow-start { -webkit-mask-image: linear-gradient(90deg, transparent, #000 28px);
++                          mask-image: linear-gradient(90deg, transparent, #000 28px); }
++.nav.nav-overflow.nav-overflow-start {
++  -webkit-mask-image: linear-gradient(90deg, transparent, #000 28px, #000 calc(100% - 28px), transparent);
++  mask-image: linear-gradient(90deg, transparent, #000 28px, #000 calc(100% - 28px), transparent); }
++.row-count .mix[hidden] { display: none; }
++@media print { .row-count .mix[hidden] { display: inline-flex !important; } }
++/* Below 1080 px the decisive questions are one column: they keep the section's reading measure, in line with its
++   heading and index. */
++@media (max-width: 1079.98px) { .section.decisive > .questions { max-width: var(--measure); } }
+--- a/compiler/quantum-holography-status/status.py
++++ b/compiler/quantum-holography-status/status.py
+@@ -13,6 +13,7 @@
+ import base64
+ import html
+ import io
++from html.parser import HTMLParser
+ import json
+ import re
+ import subprocess
+@@ -22,7 +23,9 @@
+ HERE = Path(__file__).resolve().parent
+ TEX2MATHML = HERE.parent / 'quantum-holography-tracker' / 'tex2mathml.cjs'
+ 
+-STATEMENT_STATUSES = ['checked', 'pending', 'conditional', 'conjecture', 'heuristic', 'open', 'published']
++# 'refuted form' marks a checked negative result in a stated scope (the atlas code scoped_negative); its statement
++# gives the scope as hypotheses. A status outside this list fails the build and is never shown as another status.
++STATEMENT_STATUSES = ['checked', 'pending', 'conditional', 'refuted form', 'conjecture', 'heuristic', 'open', 'published']
+ CELL_STATUSES = ['checked', 'partial', 'pending', 'published', 'open', 'not posed', 'refuted form']
+ COLUMNS = ['object', 'dual', 'modules', 'fusion', 'bulk', 'lines', 'states', 'dictionary']
+ 
+@@ -57,6 +60,10 @@
+           'stroke-linecap="round" stroke-linejoin="round"/>',
+     'chevron': '<path d="m5 6.5 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" '
+                'stroke-linecap="round" stroke-linejoin="round"/>',
++    'search': '<circle cx="6.8" cy="6.8" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/>'
++              '<path d="M10.2 10.2 13.8 13.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
++    'close': '<path d="M4.6 4.6 11.4 11.4M11.4 4.6 4.6 11.4" fill="none" stroke="currentColor" stroke-width="1.5" '
++             'stroke-linecap="round"/>',
+ }
+ 
+ 
+@@ -90,10 +97,18 @@
+     def __init__(self):
+         self.jobs = []
+         self.errors = []
++        self.text_jobs = {}  # TeX -> the one job that gives its text form
+ 
+     def add(self, tex, display):
+         self.jobs.append({'tex': tex, 'display': display})
+         return f'\x00M{len(self.jobs) - 1}\x00'
++
++    def add_text(self, tex):
++        """A placeholder for the formula's rendered token text (no markup, no TeX), for attributes and titles."""
++        if tex not in self.text_jobs:
++            self.jobs.append({'tex': tex, 'display': False})
++            self.text_jobs[tex] = len(self.jobs) - 1
++        return f'\x00T{self.text_jobs[tex]}\x00'
+ 
+     def render(self):
+         if not self.jobs:
+@@ -106,17 +121,81 @@
+             if 'error' in row:
+                 self.errors.append({'tex': job['tex'], 'error': row['error']})
+ 
+-    def substitute(self, markup):
++    def substitute(self, markup, escape_text=True):  # noqa: C901
+         def one(m):
+-            i = int(m.group(1))
++            kind, i = m.group(1), int(m.group(2))
+             row = self.out[i]
++            if kind == 'T':
++                text = self.jobs[i]['tex'] if 'html' not in row else math_text(row['html'])
++                text = ' '.join(text.split())
++                return html.escape(text, quote=True) if escape_text else text
+             if 'html' in row:
+                 return row['html']
+             return f'<code class="tex-error">{html.escape(self.jobs[i]["tex"])}</code>'
+-        return re.sub(r'\x00M(\d+)\x00', one, markup)
++        return re.sub(r'\x00([MT])(\d+)\x00', one, markup)
+ 
+ 
+ MATH_RE = re.compile(r'\\\((.+?)\\\)|\\\[(.+?)\\\]', re.S)
++
++
++class _MathText(HTMLParser):
++    """Reads Temml's MathML into text that keeps the structure a reader needs: base_sub, base^sup,
++    (num)/(den), √x. The TeX annotation is skipped; invisible parts are dropped."""
++
++    def __init__(self):
++        super().__init__(convert_charrefs=True)
++        self.stack = [['root', []]]
++        self.skip = 0
++
++    def handle_starttag(self, tag, attrs):
++        if self.skip or tag in ('annotation', 'annotation-xml', 'mphantom'):
++            self.skip += 1
++            return
++        self.stack.append([tag, []])
++
++    def handle_endtag(self, tag):
++        if self.skip:
++            self.skip -= 1
++            return
++        if len(self.stack) > 1:
++            name, parts = self.stack.pop()
++            self.stack[-1][1].append(_math_join(name, parts))
++
++    def handle_data(self, data):
++        if not self.skip:
++            self.stack[-1][1].append(data)
++
++
++def _math_group(s):
++    s = s.strip()
++    return s if len(s) <= 1 else f'({s})'
++
++
++def _math_join(name, parts):
++    kids = [p for p in parts if p.strip()]
++    if name == 'msub' and len(kids) == 2:
++        return f'{kids[0]}_{_math_group(kids[1])}'
++    if name == 'msup' and len(kids) == 2:
++        return f'{kids[0]}^{_math_group(kids[1])}'
++    if name == 'msubsup' and len(kids) == 3:
++        return f'{kids[0]}_{_math_group(kids[1])}^{_math_group(kids[2])}'
++    if name == 'mfrac' and len(kids) == 2:
++        return f'{_math_group(kids[0])}/{_math_group(kids[1])}'
++    if name == 'msqrt':
++        return '√' + _math_group(''.join(kids))
++    if name == 'mroot' and len(kids) == 2:
++        return f'{_math_group(kids[1])}√{_math_group(kids[0])}'
++    if name == 'mspace':
++        return ' '
++    return ''.join(parts)
++
++
++def math_text(markup):
++    """Plain text of rendered MathML, for attributes and titles: C_2, T^2, q^(1/2), p/q; never TeX."""
++    parser = _MathText()
++    parser.feed(markup)
++    parser.close()
++    return ''.join(parser.stack[0][1])
+ LINK_RE = re.compile(r'\[([^\[\]]+)\]\((https?://[^\s)]+)\)')
+ ARXIV_RE = re.compile(r'arxiv\.org/(?:abs|html|pdf)/((?:math|hep-th|math-ph|alg-geom|q-alg)/\d{7}|\d{4}\.\d{4,5})(v\d+)?', re.I)
+ 
+@@ -141,13 +220,25 @@
+     def __init__(self, glossary):
+         self.by_form = {}
+         self.entries = []
++        self.problems = []
++        # An entry's own id is its anchor and is reserved first; anchors derived from terms avoid it.
++        explicit = ['term-' + ident(e['id']) for e in glossary if (e.get('id') or '').strip()]
++        for dup in sorted({t for t in explicit if explicit.count(t) > 1}):
++            self.problems.append(f'glossary: two entries have the id anchor {dup}')
++        taken = set(explicit)
+         for entry in glossary:
+-            tid = 'term-' + ident(entry['term'])
+-            base = tid
+-            n = 2
+-            while any(e['id'] == tid for e in self.entries):
+-                tid = f'{base}-{n}'
+-                n += 1
++            if (entry.get('id') or '').strip():
++                tid = 'term-' + ident(entry['id'])
++            else:
++                tid = base = 'term-' + ident(entry['term'])
++                if base in explicit:
++                    self.problems.append(f'glossary: the anchor {base} of the term "{entry["term"]}" is taken by another '
++                                         f'entry\'s id; give one of them a different id')
++                n = 2
++                while tid in taken:
++                    tid = f'{base}-{n}'
++                    n += 1
++                taken.add(tid)
+             entry = dict(entry, id=tid)
+             self.entries.append(entry)
+             forms = set(entry.get('forms') or []) | {entry['term']}
+@@ -191,16 +282,17 @@
+ 
+     # Text -------------------------------------------------------------------------------
+ 
+-    def rich(self, text, seen=None, terms=True):
+-        """Plain text with TeX and *emphasis* to HTML; glossary terms attached once per block."""
++    def rich(self, text, seen=None, terms=True, markup=True):
++        """Plain text with TeX and *emphasis* to HTML; glossary terms attached once per block.
++        With markup=False only TeX is converted: asterisks and [links](...) stay as written."""
+         if text is None:
+             return ''
+-        text = unlink(text)
++        text = unlink(text) if markup else text
+         seen = set() if seen is None else seen
+         parts = []
+         pos = 0
+         for m in MATH_RE.finditer(text):
+-            parts.append(self.plain(text[pos:m.start()], seen, terms))
++            parts.append(self.plain(text[pos:m.start()], seen, terms, markup))
+             pos = m.end()
+             if m.group(1) is not None:
+                 tex = m.group(1).strip()
+@@ -218,14 +310,27 @@
+                     parts.append('<span class="math-inline">' + self.math.add(tex, False) + '</span>')
+             else:
+                 parts.append('<span class="math-display">' + self.math.add(m.group(2).strip(), True) + '</span>')
+-        parts.append(self.plain(text[pos:], seen, terms))
++        parts.append(self.plain(text[pos:], seen, terms, markup))
+         return ''.join(parts)
+ 
+-    def plain(self, text, seen, terms):
++    def text_form(self, text):
++        """Text for attributes and titles: each formula becomes its rendered token text after the TeX run
++        (never TeX source), and emphasis marks are dropped. The caller escapes the result."""
++        out, pos = [], 0
++        text = unlink(text or '')
++        for m in MATH_RE.finditer(text):
++            out.append(EMPH_RE.sub(r'\1', text[pos:m.start()]))
++            out.append(self.math.add_text((m.group(1) or m.group(2)).strip()))
++            pos = m.end()
++        out.append(EMPH_RE.sub(r'\1', text[pos:]))
++        return ''.join(out)
++
++    def plain(self, text, seen, terms, markup=True):
+         if '\\(' in text or '\\)' in text or '\\[' in text or '\\]' in text:
+             self.problems.append('unbalanced TeX delimiters in: ' + text[:120])
+         escaped = html.escape(text, quote=False)
+-        escaped = EMPH_RE.sub(r'<em>\1</em>', escaped)
++        if markup:
++            escaped = EMPH_RE.sub(r'<em>\1</em>', escaped)
+         if terms:
+             escaped = self.term_links.link(escaped, seen)
+         return escaped
+@@ -241,26 +346,36 @@
+ 
+     def statement(self, s, where, heading='h4', title_override=None, chip=True):
+         status = s.get('status')
+-        if status not in STATEMENT_STATUSES:
++        known = status in STATEMENT_STATUSES
++        if not known:
++            # Never shown as another status: a draft page names the unknown value.
+             self.problems.append(f'{where}: unknown statement status {status!r}')
+-            status = 'open'
+         seen = set()
+-        label = self.status_label(status)
++        label = self.status_label(status) if known else f'Unknown status {status!r}'
+         title = (s.get('title') or '') if title_override is None else title_override
+         sid = self.statement_id(s)
+         if sid:
+             self.anchors.add(sid)
+         id_attr = f' id="{sid}"' if sid else ''
+         added = ' added' if s.get('added') else ''
+-        out = [f'<article class="statement st-{slug(status)}{added}" data-status="{status}"{id_attr}>']
++        cls = slug(status) if known else 'unknown'
++        out = [f'<article class="statement st-{cls}{added}" data-status="{html.escape(str(status))}"{id_attr}>']
+         out.append('<div class="statement-head">')
+-        out.append(f'<span class="status-chip chip-{slug(status)}">{mark(status)}<span>{html.escape(label)}</span></span>')
++        out.append(f'<span class="status-chip chip-{cls}">{mark(status) if known else ""}<span>{html.escape(label)}</span></span>')
+         if s.get('added') and chip:
+             out.append(f'<span class="added-chip">{html.escape(self.page["labels"]["added"])}</span>')
+         if title:
+             out.append(f'<{heading} class="statement-title">{self.rich(title, seen, terms=False)}</{heading}>')
+         out.append('</div>')
+         out.append(f'<div class="statement-text">{self.paragraphs(s.get("text", ""), seen)}</div>')
++        hypotheses = s.get('hypotheses')
++        if hypotheses is not None:
++            if not isinstance(hypotheses, list) or not all(isinstance(h, str) and h.strip() for h in hypotheses):
++                self.problems.append(f'{where}: hypotheses must be a list of non-empty texts')
++            elif hypotheses:
++                items = ''.join(f'<li>{self.rich(h.strip(), seen)}</li>' for h in hypotheses)
++                out.append(f'<div class="statement-hypotheses"><p class="note-label">'
++                           f'{html.escape(self.page["labels"].get("hypotheses", "Hypotheses"))}</p><ul>{items}</ul></div>')
+         notes = []
+         novelty = (s.get('novelty') or '').strip()
+         antecedents = (s.get('antecedents') or '').strip()
+@@ -389,8 +504,8 @@
+             if not target:
+                 self.problems.append(f'changes item {i}: no statement with id {ref!r}')
+             title = self.rich((target or {}).get('title') or '', terms=False)
+-            status = (target or {}).get('status', 'open')
+-            head = (f'<a class="change-link" href="#s-{ident(ref)}">{mark(status)}<span>{title}</span></a>'
++            status = (target or {}).get('status')
++            head = (f'<a class="change-link" href="#s-{ident(ref)}">{mark(status) if status in MARKS else ""}<span>{title}</span></a>'
+                     if target else '')
+             lis.append(f'<li>{head}<p>{self.rich(it.get("text", ""))}</p></li>')
+         since = ch.get('since') or ''
+@@ -408,8 +523,9 @@
+         The counts are read with their status names by assistive technology; `prefix` names the list."""
+         tally = {}
+         for s in statements:
+-            st = s.get('status') if s.get('status') in STATEMENT_STATUSES else 'open'
+-            tally[st] = tally.get(st, 0) + 1
++            st = s.get('status')
++            if st in STATEMENT_STATUSES:  # an unknown status is a build problem, never counted as another status
++                tally[st] = tally.get(st, 0) + 1
+         items = []
+         for st in STATEMENT_STATUSES:
+             if tally.get(st):
+@@ -499,7 +615,7 @@
+             fid = 'f-' + ident(it.get('id') or str(i))
+             self.anchors.add(fid)
+             w = it.get('witness') or {}
+-            witness = self.statement(w, f'failure {i} witness', chip=not all_added) if w else ''
++            witness = self.statement(w, f'failure {i} witness', heading='h3', chip=not all_added) if w else ''
+             if not w:
+                 self.problems.append(f'failure {i}: no witness')
+             out.append(f'<div class="failure" id="{fid}"><p class="claim">'
+@@ -524,7 +640,7 @@
+                 self.problems.append(f'columns: missing column {cid}')
+         head = ''.join(
+             f'<th scope="col"><button type="button" class="col-head" data-col="{cid}" '
+-            f'aria-describedby="col-{cid}" aria-haspopup="dialog" aria-expanded="false" aria-controls="card">{html.escape(columns.get(cid, {}).get("short") or columns.get(cid, {}).get("name", cid))}'
++            f'aria-describedby="col-{cid}" aria-haspopup="dialog" aria-expanded="false" aria-controls="card">{self.rich(columns.get(cid, {}).get("short") or columns.get(cid, {}).get("name", cid), terms=False)}'
+             f'</button></th>' for cid in order)
+         rows = []
+         for r in c.get('rows', []):
+@@ -542,7 +658,7 @@
+                     st = 'not posed'
+                 colname = columns.get(cid, {}).get('name', cid)
+                 note = cell.get('note') or ''
+-                label = f'{r["name"]}, {colname}: {self.status_label(st)}'
++                label = f'{self.text_form(r["name"])}, {self.text_form(colname)}: {self.status_label(st)}'
+                 note_html = self.rich(note, terms=False)
+                 cells.append(
+                     f'<td class="cell cell-{slug(st)}" data-status="{st}">'
+@@ -551,13 +667,13 @@
+                     f'{mark(st)}</button>'
+                     f'<div class="cell-note" hidden><p class="cell-note-head">{mark(st)}<span>'
+                     f'{html.escape(self.status_label(st))}</span> <span class="cell-note-where">'
+-                    f'{html.escape(colname)}</span></p><p>{note_html}</p></div></td>')
++                    f'{self.rich(colname, terms=False)}</span></p><p>{note_html}</p></div></td>')
+             short = r.get('short') or self.page.get('row_short', {}).get(r.get('id')) or r['name']
+-            rows.append(f'<tr><th scope="row"><a href="#{rid}" title="{html.escape(self.math_free(r["name"]))}">'
++            rows.append(f'<tr><th scope="row"><a href="#{rid}" title="{html.escape(self.text_form(r["name"]))}">'
+                         f'{self.rich(short, terms=False)}</a></th>'
+                         f'{"".join(cells)}</tr>')
+         col_notes = ''.join(
+-            f'<div class="col-def" id="col-{cid}"><dt>{html.escape(columns[cid]["name"])}</dt>'
++            f'<div class="col-def" id="col-{cid}"><dt>{self.rich(columns[cid]["name"], terms=False)}</dt>'
+             f'<dd>{self.rich(columns[cid].get("explanation", ""))}</dd></div>' for cid in order if cid in columns)
+         table = (f'<div class="grid-wrap" tabindex="0" role="region" aria-label="{html.escape(L["grid"])}">'
+                  f'<table class="grid"><caption class="visually-hidden">{html.escape(L["grid_caption"])}</caption>'
+@@ -576,7 +692,7 @@
+             rid = 'row-' + ident(r.get('id') or r['name'])
+             self.anchors.add(rid)
+             statements = r.get('statements', [])
+-            body = ''.join(self.statement(s, f'row {r.get("id")} statement {j}') for j, s in enumerate(statements))
++            body = ''.join(self.statement(s, f'row {r.get("id")} statement {j}', heading='h3') for j, s in enumerate(statements))
+             cells = []
+             for cid in COLUMNS:
+                 cell = (r.get('cells') or {}).get(cid)
+@@ -586,7 +702,7 @@
+                 note = (cell.get('note') or '').strip()
+                 note_html = f'<span class="cell-text">{self.rich(note, terms=False)}</span>' if note else ''
+                 cells.append(f'<li class="cell-line cell-{slug(st)}">{mark(st)}<span class="cell-col">'
+-                             f'{html.escape(columns.get(cid, {}).get("name", cid))}</span>'
++                             f'{self.rich(columns.get(cid, {}).get("name", cid), terms=False)}</span>'
+                              f'<span class="cell-body"><span class="cell-st">{html.escape(self.status_label(st))}</span>'
+                              f'{note_html}</span></li>')
+             marks = ''.join(mark(((r.get('cells') or {}).get(cid) or {}).get('status', 'not posed')
+@@ -602,10 +718,11 @@
+                 f'<div class="row-body"><p class="row-summary">{self.rich(r.get("summary", ""))}</p>'
+                 f'<ul class="cell-lines" aria-label="{html.escape(L["by_column"])}">{"".join(cells)}</ul>'
+                 f'<div class="statements">{body}</div></div></details>')
++        in_rows = {s.get('status') for r in c.get('rows', []) for s in r.get('statements', [])}
+         filters = ''.join(
+             f'<button type="button" class="filter" data-filter="{st}" aria-pressed="false">{mark(st)}'
+             f'<span>{html.escape(self.status_label(st))}</span></button>'
+-            for st, n in self.counts(c) if n)
++            for st in STATEMENT_STATUSES if st in in_rows)
+         toolbar = (f'<div class="row-tools"><div class="filters" role="group" aria-label="{html.escape(L["filter"])}">'
+                    f'<span class="filters-label">{html.escape(L["filter"])}</span>{filters}</div>'
+                    f'<div class="row-actions"><button type="button" class="link-btn" data-expand="all">{html.escape(L["expand"])}</button>'
+@@ -618,8 +735,12 @@
+     def open_problems(self, c):
+         L = self.page['labels']
+         groups = []
++        used = {'open', 'open-h'}  # the section's own anchors
+         for i, g in enumerate(c.get('open', [])):
+-            gid = 'open-' + ident(g.get('heading', str(i)))
++            gid = 'open-' + ident(g.get('id') or g.get('heading', str(i)))
++            if gid in used:
++                self.problems.append(f'open group {i}: anchor {gid} is already used on the page')
++            used.add(gid)
+             self.anchors.add(gid)
+             body = ''.join(self.statement(s, f'open {i}.{j}') for j, s in enumerate(g.get('statements', [])))
+             intro = f'<div class="prose group-intro">{self.paragraphs(g["intro"])}</div>' if g.get('intro') else ''
+@@ -637,16 +758,15 @@
+             block = ' '.join(block.split())
+             if not block:
+                 continue
+-            esc = html.escape(block, quote=False)
+-            if len(block) <= 32 and '=' in block:
+-                paras.append(f'<p class="essay-display">{esc}</p>')
++            if len(block) <= 32 and '=' in block and not MATH_RE.search(block):
++                paras.append(f'<p class="essay-display">{html.escape(block, quote=False)}</p>')
+             else:
+-                paras.append(f'<p>{esc}</p>')
++                paras.append(f'<p>{self.rich(block, terms=False, markup=False)}</p>')
+         lead_html = f'<p class="essay-lead">{self.rich(lead)}</p>' if (lead or '').strip() else ''
+         self.essay_title = title
+         return self.section('essay', L['essay'],
+                             f'{lead_html}<article class="essay prose" aria-labelledby="essay-title">'
+-                            f'<h3 id="essay-title" class="essay-title">{html.escape(title)}</h3>'
++                            f'<h3 id="essay-title" class="essay-title">{self.rich(title, terms=False, markup=False)}</h3>'
+                             f'<p class="essay-byline">{html.escape(self.page["author"])}</p>'
+                             f'{"".join(paras)}</article>', kicker=L['essay_kicker'])
+ 
+@@ -669,7 +789,10 @@
+         self.content = c
+         essay_path = self.folder / 'essay.md'
+         essay_text = essay_path.read_text(encoding='utf-8') if essay_path.exists() else ''
++        if not essay_path.exists():
++            self.warnings.append('essay.md not found in the input folder; the page has no essay')
+         self.term_links = Terms(c.get('glossary', []))
++        self.problems.extend(self.term_links.problems)
+         L = self.page['labels']
+ 
+         cover = self.cover(c)
+@@ -703,6 +826,8 @@
+                 f'<div class="bar"><div class="bar-inner">'
+                 f'<a class="home" href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a>'
+                 f'<nav class="nav" aria-label="{html.escape(L["on_page"])}"><ul>{nav}</ul></nav>'
++                f'<button type="button" class="find-open" data-find-open hidden aria-label="{html.escape(L.get("find_open", "Search this page"))}" '
++                f'title="{html.escape(L.get("find_open", "Search this page"))}">{icon("search")}</button>'
+                 f'<button type="button" class="theme" aria-label="{html.escape(L["theme"])}" title="{html.escape(L["theme"])}">'
+                 f'{icon("theme")}</button></div></div>'
+                 f'<main id="main" tabindex="-1">{cover}{changes}{key}{principal}{decisive}{frontier}{examples}{failures}{open_}{essay}{terms}</main>'
+@@ -710,8 +835,13 @@
+                 f'<time datetime="{html.escape(c["as_of"])}">{html.escape(long_date(c["as_of"]))}</time></p>'
+                 f'<p><a href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a> · '
+                 f'<a href="#programme">{icon("up")}<span>{html.escape(L["top"])}</span></a></p></div></footer>'
+-                f'<div class="card" id="card" role="dialog" aria-modal="false" hidden><div class="card-inner"></div></div>')
+-
++                f'<div class="card" id="card" role="dialog" aria-modal="false" hidden>'
++                f'<template class="card-close-template"><button type="button" class="card-close" '
++                f'aria-label="{html.escape(L.get("close", "Close"))}" title="{html.escape(L.get("close", "Close"))}">'
++                f'{icon("close")}</button></template><div class="card-inner"></div></div>')
++
++        title_form = self.text_form(c['title'])
++        description_form = self.text_form(c.get('subtitle', ''))
+         self.math.render()
+         body = self.math.substitute(body)
+         for err in self.math.errors:
+@@ -721,8 +851,8 @@
+         css = (HERE / 'status.css').read_text(encoding='utf-8') + '\n' + (HERE / 'status-print.css').read_text(encoding='utf-8')
+         js = (HERE / 'status.js').read_text(encoding='utf-8')
+         fonts = self.font_faces(body)
+-        title_text = strip_tags(self.math_free(c['title']))
+-        description = strip_tags(self.math_free(c.get('subtitle', '')))
++        title_text = self.math.substitute(title_form, escape_text=False)
++        description = self.math.substitute(description_form, escape_text=False)
+         head = (
+             '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+@@ -775,7 +905,7 @@
+     from fontTools import subset
+     from fontTools.ttLib import TTFont
+     chars = {c for c in chars if not c.isspace()} | {' ', ' '}
+-    font = TTFont(str(path))
++    font = TTFont(str(path), recalcTimestamp=False)  # keep the source font's date: the page is byte-reproducible
+     options = subset.Options()
+     options.layout_features = ['*']
+     options.flavor = 'woff'
+--- a/content/quantum-holography-status/README.md
++++ b/content/quantum-holography-status/README.md
+@@ -4,8 +4,9 @@
+ 
+     python3 compiler/build-quantum-holography-status.py
+ 
+-It reads this folder and writes `quantum-holography-tracker.html` at the repository root when every
+-audit passes; the audit report is written to `audit/audit.txt`. `--allow-draft` writes the page
++It reads this folder (or the folder given by `--input`, including its `page.json`) and writes
++`quantum-holography-tracker.html` at the repository root when every audit passes; the audit report is
++written to `audit/audit.txt` inside the input folder unless `--audit-dir` names another folder. `--allow-draft` writes the page
+ despite failures; `--no-fonts` skips font embedding for quick layout work. Requires Python 3 with
+ fontTools, Node (for the vendored Temml in `compiler/quantum-holography-tracker/vendor`), and the
+ TeX Live fonts EB Garamond and Garamond-Math (found with `kpsewhich`; both under the SIL Open Font
+@@ -15,7 +16,8 @@
+ 
+ - `content.json`: the words. Written by the content writer, not edited here except to replace it
+   whole with a newer settled version.
+-- `essay.md`: the essay, reproduced unchanged: a `# Title` line, then paragraphs separated by blank lines.
++- `essay.md`: the essay, reproduced unchanged: a `# Title` line, then paragraphs separated by blank lines;
++  TeX between `\(`…`\)` is set as mathematics, as in `content.json`.
+ - `page.json`: interface labels, status labels and page metadata (design).
+ 
+ ## content.json
+@@ -32,8 +34,8 @@
+   "decisive"?: {"heading", "intro", "questions": [{"id", "title", "question": STATEMENT, "why", "known": [STATEMENT, ...]}, ...]},
+   "frontier"?: {"heading", "intro", "questions": [{"id", "title", "question": STATEMENT, "why", "known": [STATEMENT, ...]}, ...]},
+   "failures"?: {"heading", "intro", "items": [{"id", "claim", "witness": STATEMENT}, ...]},
+-  "open": [{"heading", "intro", "statements": [STATEMENT, ...]}, ...],
+-  "glossary": [{"term", "forms": [...], "definition"}, ...],
++  "open": [{"id"?, "heading", "intro", "statements": [STATEMENT, ...]}, ...],
++  "glossary": [{"id"?, "term", "forms": [...], "definition"}, ...],
+   "essay_lead": ""
+ }
+ STATEMENT = {"status", "title", "text", "novelty", "antecedents", "cite", "source": [...], "id"?, "added"?}
+@@ -50,11 +52,18 @@
+ the address has one: the page links to no other host.
+ Text is plain, with TeX between `\(`…`\)` or `\[`…`\]` and `*emphasis*`. The `source` fields are for
+ tracing and are never rendered. Glossary `forms` are matched in the text, and the first use of each
+-term in a block opens its definition on hover, focus or tap.
++term in a block opens its definition on hover, focus or tap. An open-problem group's `id` gives its
++anchor (`#open-<id>`) and a glossary entry's `id` gives its anchor (`#term-<id>`); without one the anchor
++comes from the heading or the term, and changes when they are reworded.
+ 
+ ## Audit
+ 
+ The build fails on: an unknown status or a missing grid cell; a TeX error; any reference to another
+ host (no fonts, scripts, styles or images are fetched; a Content-Security-Policy forbids it); a broken
+ in-page link or duplicate id; and reader-visible words that name tools or models, files, internal
+-identifiers or workflow (the mathematics-only rule for reader-facing text).
++identifiers, workflow or process stages, or give percentages (the mathematics-only rule for
++reader-facing text). The same rule covers words inside formulas (`\text{}`), the attributes a reader
++hears or sees (aria-label, title, alt, placeholder, page metadata) and element ids; raw TeX delimiters
++in reader text or TeX in an attribute also fail. Warnings, which do not block, list words that may be
++workflow residue for the content writer to read, formulas written outside TeX delimiters, and
++statements without an `id` (no link reaches them).
+--- a/compiler/quantum-holography-status/status.js
++++ b/compiler/quantum-holography-status/status.js
+@@ -29,6 +29,7 @@
+     var v = params && params.get(name);
+     return v ? v.split(',').map(function (s) { return s.trim(); }).filter(Boolean) : [];
+   }
++  var lastSearch = location.search; /* the query part last written or read, to tell a fragment's popstate from a real one */
+   function writeParams(changes) {
+     try {
+       var params = new URLSearchParams(location.search);
+@@ -37,6 +38,7 @@
+       });
+       var search = params.toString();
+       history.replaceState(history.state, '', location.pathname + (search ? '?' + search : '') + location.hash);
++      lastSearch = location.search;
+     } catch (e) { /* the address cannot be changed here (some file views) */ }
+   }
+   function setHash(id, push) {
+@@ -106,7 +108,7 @@
+       var note = el.parentNode.querySelector('.cell-note');
+       var row = el.getAttribute('data-row');
+       var rowLink = doc.querySelector('.grid tbody th a[href="#' + row + '"]');
+-      return note.innerHTML + (rowLink ? '<a class="card-more" href="#' + row + '">' + rowLink.textContent + '</a>' : '');
++      return note.innerHTML + (rowLink ? '<a class="card-more" href="#' + row + '">' + rowLink.innerHTML + '</a>' : '');
+     }
+     if (el.classList.contains('col-head')) {
+       var def = doc.getElementById('col-' + el.getAttribute('data-col'));
+@@ -197,8 +199,29 @@
+     if (el && !pinned && !returning) show(el, false);
+   });
+   doc.addEventListener('focusout', function (event) {
+-    if (event.target.closest(triggers) && !(event.relatedTarget && event.relatedTarget.closest && event.relatedTarget.closest('#card'))) hideSoon();
++    var el = event.target.closest && event.target.closest(triggers);
++    var to = event.relatedTarget;
++    if (!el || (to && to.closest && to.closest('#card'))) return;
++    /* A pinned card closes when focus moves from its trigger to another control; a click on plain text leaves it. */
++    if (pinned && el === owner) { if (to) hide(); return; }
++    hideSoon();
+   });
++  /* The Close control comes as an inert template, so a script that does not wire it never sees it; this script puts it
++     in the card when it wires it (a control emitted hidden is shown instead). */
++  var cardClose = card ? card.querySelector('.card-close') : null;
++  var closeTemplate = card && !cardClose ? card.querySelector('template.card-close-template') : null;
++  if (closeTemplate && closeTemplate.content && closeTemplate.content.querySelector('.card-close')) {
++    cardClose = doc.importNode(closeTemplate.content.querySelector('.card-close'), true);
++    closeTemplate.parentNode.replaceChild(cardClose, closeTemplate);
++  }
++  if (cardClose) {
++    cardClose.hidden = false;
++    cardClose.addEventListener('click', function () {
++      var back = owner;
++      hide();
++      if (back) { returning = true; back.focus(); returning = false; }
++    });
++  }
+   if (card) {
+     /* Focus that leaves the card for anywhere but its own trigger closes it. */
+     card.addEventListener('focusout', function (event) {
+@@ -210,8 +233,10 @@
+   doc.addEventListener('keydown', function (event) {
+     if (event.key === 'Escape' && card && !card.hidden) {
+       var back = owner;
++      /* Focus goes back to the trigger only from inside the card; anywhere else Escape closes the card and focus stays. */
++      var fromCard = card.contains(doc.activeElement);
+       hide();
+-      if (back && doc.activeElement !== back) { returning = true; back.focus(); returning = false; }
++      if (back && fromCard) { returning = true; back.focus(); returning = false; }
+       return;
+     }
+     /* Tab from an opened trigger enters the card's links; leaving the last one continues after the trigger. */
+@@ -273,6 +298,33 @@
+     });
+   }
+ 
++  /* A mark focused while the table is scrolled sideways is brought clear of the sticky row header. */
++  var gridWrap = doc.querySelector('.grid-wrap');
++  function clearRowHeader(el) {
++    var cell = el.closest && el.closest('td');
++    var head = cell && cell.parentNode.querySelector('th');
++    if (!head) return;
++    var c = el.getBoundingClientRect();
++    var h = head.getBoundingClientRect();
++    if (c.left < h.right - 1) {
++      gridWrap.scrollLeft -= (h.right - c.left) + 4;
++      if (owner === el && card && !card.hidden) place(el);
++    }
++  }
++  if (gridWrap) {
++    /* Only focus reached by keyboard is moved: a press on a partly covered mark must not scroll it away mid-click. */
++    var pressed = false;
++    gridWrap.addEventListener('pointerdown', function () { pressed = true; }, true);
++    gridWrap.addEventListener('mousedown', function () { pressed = true; }, true);
++    doc.addEventListener('keydown', function () { pressed = false; }, true);
++    gridWrap.addEventListener('focusin', function (event) {
++      var el = event.target;
++      if (pressed) { pressed = false; return; }
++      clearRowHeader(el);
++      requestAnimationFrame(function () { if (doc.activeElement === el) clearRowHeader(el); });
++    });
++  }
++
+   /* Rows open when they are the target of a link, and a link into a row opens it. */
+   function hashTarget() {
+     var raw = location.hash.slice(1);
+@@ -289,6 +341,13 @@
+     }
+   }
+   window.addEventListener('hashchange', openTarget);
++  doc.addEventListener('click', function (event) {
++    if (event.defaultPrevented || event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
++    var a = event.target.closest && event.target.closest('a[href^="#"]');
++    var href = a && a.getAttribute('href');
++    if (!href || href.length < 2 || href !== location.hash) return;
++    setTimeout(openTarget, 0);
++  });
+ 
+   var rows = all('details.row');
+   /* A row opened by the reader becomes the page address (without a new history entry), so it can be shared. */
+@@ -346,6 +405,9 @@
+   var filters = all('.filter[data-filter]').filter(function (f) { return !f.closest('.find'); });
+   var rowStatements = all('.rows .statement');
+   var filterNews = filters.length ? liveRegion(filters[0].closest('.row-tools') || filters[0].parentNode) : null;
++  if (filterNews) filterNews.className = 'filter-count'; /* shown, not only announced */
++  var EMPTY_ONE = 'No statement in this example has the selected status.';
++  var EMPTY_MANY = 'No statement in this example has any of the selected statuses.';
+   function applyFilter(record) {
+     var on = filters.filter(function (f) { return f.getAttribute('aria-pressed') === 'true'; })
+                     .map(function (f) { return f.getAttribute('data-filter'); });
+@@ -357,7 +419,25 @@
+     rows.forEach(function (d) {
+       var any = !!d.querySelector('.statement:not([hidden])');
+       if (on.length) d.open = any;
+-      if (on.length && !any) d.setAttribute('data-filter-empty', ''); else d.removeAttribute('data-filter-empty');
++      var empty = on.length > 0 && !any;
++      if (empty) d.setAttribute('data-filter-empty', ''); else d.removeAttribute('data-filter-empty');
++      var note = d.querySelector('.filter-empty-note');
++      var list = d.querySelector('.row-body .statements');
++      if (empty && !note && list) {
++        note = doc.createElement('p');
++        note.className = 'filter-empty-note';
++        list.parentNode.insertBefore(note, list);
++      }
++      if (note) { note.hidden = !empty; note.textContent = empty ? (on.length === 1 ? EMPTY_ONE : EMPTY_MANY) : ''; }
++      var mixHere = d.querySelector('summary .row-count .mix');
++      if (mixHere) mixHere.hidden = on.length > 0;
++      var count = d.querySelector('summary .row-count');
++      var words = count && count.firstChild && count.firstChild.nodeType === 3 ? count.firstChild : null;
++      if (words) {
++        if (!count.hasAttribute('data-count')) count.setAttribute('data-count', words.nodeValue);
++        var shownHere = d.querySelectorAll('.statement:not([hidden])').length;
++        words.nodeValue = on.length ? shownHere + ' of ' + count.getAttribute('data-count') : count.getAttribute('data-count');
++      }
+     });
+     if (filterNews) {
+       var inRows = rows.filter(function (d) { return d.querySelector('.statement:not([hidden])'); }).length;
+@@ -365,6 +445,7 @@
+         ? 'Showing ' + shown + ' of ' + rowStatements.length + ' statements, in ' + inRows + ' of ' + rows.length + ' examples.'
+         : 'Showing all ' + rowStatements.length + ' statements of the examples.';
+     }
++    if (filterNews) filterNews.classList.toggle('visually-hidden', !on.length);
+     if (record !== false) writeParams({ show: on.join(',') });
+   }
+   function setFilters(list) {
+@@ -389,7 +470,7 @@
+     if (!nav || nav.scrollWidth <= nav.clientWidth + 1) return;
+     var n = nav.getBoundingClientRect();
+     var l = a.getBoundingClientRect();
+-    if (l.left >= n.left + 4 && l.right <= n.right - 28) return;
++    if (l.left >= n.left + 28 && l.right <= n.right - 28) return; /* clear of either fade */
+     var left = nav.scrollLeft + (l.left - n.left) - (n.width - l.width) / 2;
+     try { nav.scrollTo({ left: Math.max(0, left), behavior: smooth() }); } catch (e) { nav.scrollLeft = Math.max(0, left); }
+   }
+@@ -401,6 +482,17 @@
+     keepInSight(a);
+   }
+   navLinks.forEach(function (a) { a.addEventListener('click', function () { setCurrent(a.getAttribute('href').slice(1)); }); });
++  /* Each edge of the bar fades while more of its links lie beyond it; a list that fits, or an edge it has reached, is
++     not faded. */
++  function markNavOverflow() {
++    if (!nav) return;
++    nav.classList.toggle('nav-overflow', nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 1);
++    nav.classList.toggle('nav-overflow-start', nav.scrollLeft > 1);
++  }
++  markNavOverflow();
++  window.addEventListener('resize', markNavOverflow);
++  if (nav) nav.addEventListener('scroll', markNavOverflow, { passive: true });
++  try { if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(markNavOverflow); } catch (e) { /* no font loading API */ }
+   if ('IntersectionObserver' in window && navLinks.length) {
+     var observer = new IntersectionObserver(function (entries) {
+       entries.forEach(function (e) { if (e.isIntersecting && byId[e.target.id]) setCurrent(e.target.id); });
+@@ -415,11 +507,20 @@
+     printed = all('main details');
+     beforePrint = printed.map(function (d) { return d.open; });
+     printed.forEach(function (d) { d.open = true; });
++    /* Paper shows every statement, so each row's count is its full count while printing. */
++    all('summary .row-count[data-count]').forEach(function (c) {
++      c.setAttribute('data-shown', c.firstChild.nodeValue);
++      c.firstChild.nodeValue = c.getAttribute('data-count');
++    });
+   });
+   window.addEventListener('afterprint', function () {
+     if (beforePrint) printed.forEach(function (d, i) { d.open = beforePrint[i]; });
+     printed = null;
+     beforePrint = null;
++    all('summary .row-count[data-shown]').forEach(function (c) {
++      c.firstChild.nodeValue = c.getAttribute('data-shown');
++      c.removeAttribute('data-shown');
++    });
+   });
+ 
+   /* Search of the whole page: statements, questions, examples, counterexamples, open problems, essay and terms.
+@@ -433,7 +534,9 @@
+   var WORDS = {
+     search: word('search', 'Search this page'),
+     placeholder: word('placeholder', 'Search statements, questions, examples and terms'),
+-    hint: word('hint', 'Press / to search from anywhere on the page; the down arrow moves through the results.'),
++    hint: word('hint', doc.querySelector('[data-find-open]')
++      ? 'The search button in the bar brings you back here from anywhere on the page; the down arrow moves through the results.'
++      : 'The down arrow moves through the results.'),
+     part: word('part', 'Part'),
+     status: word('status', 'Status'),
+     clear: word('clear', 'Clear'),
+@@ -442,7 +545,7 @@
+     many: word('many', '{n} matches'),
+     more: word('more', 'Show all {n}')
+   };
+-  var SCOPES = ['results', 'decisive', 'frontier', 'examples', 'failures', 'open', 'essay', 'terms'].filter(function (id) {
++  var SCOPES = ['programme', 'status', 'results', 'decisive', 'frontier', 'examples', 'failures', 'open', 'essay', 'terms'].filter(function (id) {
+     return doc.getElementById(id);
+   });
+   function scopeLabel(id) {
+@@ -490,7 +593,8 @@
+       var tag = n.localName;
+       if (tag === 'svg' || tag === 'annotation' || tag === 'script' || tag === 'style') return;
+       for (var c = n.firstChild; c; c = c.nextSibling) walk(c);
+-      if (BLOCK.test(tag)) out.push(' ');
++      if (tag === 'li') out.push('; '); /* list items (hypotheses) stay apart in snippets */
++      else if (BLOCK.test(tag)) out.push(' ');
+     })(el);
+     return out.join('').replace(/\s+/g, ' ').trim();
+   }
+@@ -516,6 +620,7 @@
+   var units = null;
+   function sectionOf(el) {
+     var s = el.closest('section.section');
++    if (!s && el.closest('main > .lead')) return SCOPES.indexOf('programme') >= 0 ? 'programme' : null;
+     return s && SCOPES.indexOf(s.id) >= 0 ? s.id : null;
+   }
+   function index() {
+@@ -534,7 +639,7 @@
+         ftitle: fold(title)
+       });
+     }
+-    var HEAD = '.statement-head, .statement-notes .note-label, .added-chip';
++    var HEAD = '.statement-head, .statement-notes .note-label, .statement-hypotheses .note-label, .added-chip';
+     /* A question's own statement: a direct child, or inside .question-ask on a comparison card. */
+     var ASKED = ':scope > .statement, :scope > .question-ask > .statement';
+     all('main .statement').forEach(function (s) {
+@@ -554,7 +659,7 @@
+       var asked = q.querySelector(ASKED);
+       /* The question's own statement title is searched with it; related statements are indexed on their own. */
+       add(q, q.querySelector('h3 .anchor') || q.querySelector('h3'), questionTitle(q), '',
+-          'h3, .question-num, .known, .question-known, .status-chip, .statement-notes .note-label, .added-chip', asked);
++          'h3, .question-num, .known, .question-known, .status-chip, .statement-notes .note-label, .statement-hypotheses .note-label, .added-chip', asked);
+     });
+     all('main details.row').forEach(function (d) {
+       var name = d.querySelector('.row-name');
+@@ -564,7 +669,7 @@
+       var claim = f.querySelector('.claim-text');
+       var witness = f.querySelector('.statement');
+       /* The counterexample's own title stays in the searched text. */
+-      add(f, claim, textOf(claim), '', '.claim, .status-chip, .added-chip, .statement-notes .note-label', witness);
++      add(f, claim, textOf(claim), '', '.claim, .status-chip, .added-chip, .statement-notes .note-label, .statement-hypotheses .note-label', witness);
+     });
+     all('main .open-group').forEach(function (g) {
+       var h = g.querySelector('h3');
+@@ -581,6 +686,16 @@
+     all('main .gloss').forEach(function (g) {
+       var dt = g.querySelector('dt');
+       add(g, dt, textOf(dt), '', 'dt', null);
++    });
++    /* The cover's lead, the status key, and each section's heading with its introduction where it has one. */
++    all('main > .lead p').forEach(function (p) { add(p, null, '', '', null, null); });
++    all('#status .key-item').forEach(function (k) { var dt = k.querySelector('dt'); add(k, dt, textOf(dt), '', 'dt', null); });
++    all('main section.section').forEach(function (sec) {
++      var head = sec.querySelector(':scope > .section-head');
++      var h = head && head.querySelector('h2');
++      var intro = sec.querySelector(':scope > .section-intro');
++      if (intro) add(intro, h, h ? textOf(h) : '', '', null, null);
++      else if (head) add(head, h, h ? textOf(h) : '', '', null, null);
+     });
+     return units;
+   }
+@@ -767,6 +882,7 @@
+     input.addEventListener('focus', function () { facets.hidden = false; index(); });
+     input.addEventListener('keydown', function (event) {
+       if (event.key === 'ArrowDown') {
++        if (input.value !== state.q) { clearTimeout(timer); state.q = input.value; limit = 40; run(true); }
+         var first = results.querySelector('.find-link');
+         if (first) { event.preventDefault(); first.focus(); }
+       } else if (event.key === 'Enter') {
+@@ -925,8 +1041,12 @@
+     reveal(el, true);
+   }
+ 
++  function known(list, allowed) {
++    return list.map(function (s) { return s.toLowerCase(); }).filter(function (s, i, a) { return allowed.indexOf(s) >= 0 && a.indexOf(s) === i; });
++  }
+   function fromAddress(params) {
+-    return { q: (params && params.get('q')) || '', scopes: listParam(params, 'in'), statuses: listParam(params, 'status') };
++    var statuses = all('.filter[data-status-facet]', facets || doc).map(function (b) { return b.getAttribute('data-status-facet'); });
++    return { q: (params && params.get('q')) || '', scopes: known(listParam(params, 'in'), SCOPES), statuses: known(listParam(params, 'status'), statuses) };
+   }
+   function fallbackStyle() {
+     /* Until the page's stylesheet styles the search (it then sets --find-styled on .find), a minimal style in its own tokens. */
+@@ -945,7 +1065,7 @@
+       '.find-hint{margin:.45em 0 0;font-size:var(--text-xs);color:var(--ink-4)}',
+       '.find-facets{display:grid;gap:8px;margin-top:12px}',
+       '.find-count{margin:12px 0 0;font-size:var(--text-sm);color:var(--ink-3)}',
+-      '.find-count:empty{display:none}',
++      '.find-count:empty{position:absolute;width:1px;height:1px;margin:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}',
+       '.find-group{margin-top:16px}',
+       '.find-group-head{margin:0 0 4px;font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4)}',
+       '.find-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule-soft)}',
+@@ -973,14 +1093,12 @@
+ 
+   build();
+   if (input) {
+-    doc.addEventListener('keydown', function (event) {
+-      if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey || event.defaultPrevented) return;
+-      var t = event.target;
+-      if (t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.localName))) return;
+-      event.preventDefault();
+-      focusSearch();
+-    });
+-    all('[data-find-open]').forEach(function (b) { b.addEventListener('click', function (event) { event.preventDefault(); focusSearch(); }); });
++    /* The search is reached from anywhere through the opener in the bar; there is no single-character shortcut (WCAG 2.1.4). */
++    all('[data-find-open]').forEach(function (b) {
++      b.hidden = false;
++      b.addEventListener('click', function (event) { event.preventDefault(); focusSearch(); });
++    });
++    markNavOverflow(); /* the opener takes room from the links */
+   }
+ 
+   /* The tally counts every statement on the page, so its links list every statement of that status on the page.
+@@ -1016,7 +1134,10 @@
+   function same(a, b) { return a.slice().sort().join(',') === b.slice().sort().join(','); }
+   function fromURL(arrival) {
+     var params = readParams();
+-    var show = listParam(params, 'show');
++    lastSearch = location.search;
++    var rawShow = listParam(params, 'show');
++    var show = known(rawShow, filters.map(function (f) { return f.getAttribute('data-filter'); }));
++    if (rawShow.join(',') !== show.join(',')) writeParams({ show: show.join(',') });
+     var nowShown = filters.filter(function (f) { return f.getAttribute('aria-pressed') === 'true'; })
+                           .map(function (f) { return f.getAttribute('data-filter'); });
+     if (filters.length && !same(show, nowShown)) {
+@@ -1025,12 +1146,25 @@
+     }
+     if (input) {
+       var next = fromAddress(params);
++      if (listParam(params, 'in').join(',') !== next.scopes.join(',') || listParam(params, 'status').join(',') !== next.statuses.join(',')) {
++        writeParams({ 'in': next.scopes.join(','), status: next.statuses.join(',') });
++      }
+       if (next.q === state.q.trim() && same(next.scopes, state.scopes) && same(next.statuses, state.statuses)) return;
+       setState(next);
+       if (arrival && !location.hash && active()) requestAnimationFrame(function () { find.scrollIntoView({ block: 'start' }); });
+     }
+   }
+-  window.addEventListener('popstate', function () { fromURL(false); });
++  /* Fragment navigations fire popstate too: the search and filters follow the address only when its query part
++     changed, and a query typed but not yet written is written first, into the entry being left. */
++  doc.addEventListener('click', function (event) {
++    if (event.target.closest && event.target.closest('a[href^="#"]')) flushAddress();
++  }, true);
++  window.addEventListener('popstate', function () {
++    if (location.search === lastSearch) return;
++    clearTimeout(addressTimer);
++    pendingAddress = null;
++    fromURL(false);
++  });
+   fromURL(true);
+   openTarget();
+ })();

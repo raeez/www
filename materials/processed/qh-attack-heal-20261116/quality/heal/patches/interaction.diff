@@ -1,0 +1,384 @@
+--- a/compiler/quantum-holography-status/status.js
++++ b/compiler/quantum-holography-status/status.js
+@@ -29,6 +29,7 @@
+     var v = params && params.get(name);
+     return v ? v.split(',').map(function (s) { return s.trim(); }).filter(Boolean) : [];
+   }
++  var lastSearch = location.search; /* the query part last written or read, to tell a fragment's popstate from a real one */
+   function writeParams(changes) {
+     try {
+       var params = new URLSearchParams(location.search);
+@@ -37,6 +38,7 @@
+       });
+       var search = params.toString();
+       history.replaceState(history.state, '', location.pathname + (search ? '?' + search : '') + location.hash);
++      lastSearch = location.search;
+     } catch (e) { /* the address cannot be changed here (some file views) */ }
+   }
+   function setHash(id, push) {
+@@ -106,7 +108,7 @@
+       var note = el.parentNode.querySelector('.cell-note');
+       var row = el.getAttribute('data-row');
+       var rowLink = doc.querySelector('.grid tbody th a[href="#' + row + '"]');
+-      return note.innerHTML + (rowLink ? '<a class="card-more" href="#' + row + '">' + rowLink.textContent + '</a>' : '');
++      return note.innerHTML + (rowLink ? '<a class="card-more" href="#' + row + '">' + rowLink.innerHTML + '</a>' : '');
+     }
+     if (el.classList.contains('col-head')) {
+       var def = doc.getElementById('col-' + el.getAttribute('data-col'));
+@@ -197,8 +199,29 @@
+     if (el && !pinned && !returning) show(el, false);
+   });
+   doc.addEventListener('focusout', function (event) {
+-    if (event.target.closest(triggers) && !(event.relatedTarget && event.relatedTarget.closest && event.relatedTarget.closest('#card'))) hideSoon();
++    var el = event.target.closest && event.target.closest(triggers);
++    var to = event.relatedTarget;
++    if (!el || (to && to.closest && to.closest('#card'))) return;
++    /* A pinned card closes when focus moves from its trigger to another control; a click on plain text leaves it. */
++    if (pinned && el === owner) { if (to) hide(); return; }
++    hideSoon();
+   });
++  /* The Close control comes as an inert template, so a script that does not wire it never sees it; this script puts it
++     in the card when it wires it (a control emitted hidden is shown instead). */
++  var cardClose = card ? card.querySelector('.card-close') : null;
++  var closeTemplate = card && !cardClose ? card.querySelector('template.card-close-template') : null;
++  if (closeTemplate && closeTemplate.content && closeTemplate.content.querySelector('.card-close')) {
++    cardClose = doc.importNode(closeTemplate.content.querySelector('.card-close'), true);
++    closeTemplate.parentNode.replaceChild(cardClose, closeTemplate);
++  }
++  if (cardClose) {
++    cardClose.hidden = false;
++    cardClose.addEventListener('click', function () {
++      var back = owner;
++      hide();
++      if (back) { returning = true; back.focus(); returning = false; }
++    });
++  }
+   if (card) {
+     /* Focus that leaves the card for anywhere but its own trigger closes it. */
+     card.addEventListener('focusout', function (event) {
+@@ -210,8 +233,10 @@
+   doc.addEventListener('keydown', function (event) {
+     if (event.key === 'Escape' && card && !card.hidden) {
+       var back = owner;
++      /* Focus goes back to the trigger only from inside the card; anywhere else Escape closes the card and focus stays. */
++      var fromCard = card.contains(doc.activeElement);
+       hide();
+-      if (back && doc.activeElement !== back) { returning = true; back.focus(); returning = false; }
++      if (back && fromCard) { returning = true; back.focus(); returning = false; }
+       return;
+     }
+     /* Tab from an opened trigger enters the card's links; leaving the last one continues after the trigger. */
+@@ -273,6 +298,33 @@
+     });
+   }
+ 
++  /* A mark focused while the table is scrolled sideways is brought clear of the sticky row header. */
++  var gridWrap = doc.querySelector('.grid-wrap');
++  function clearRowHeader(el) {
++    var cell = el.closest && el.closest('td');
++    var head = cell && cell.parentNode.querySelector('th');
++    if (!head) return;
++    var c = el.getBoundingClientRect();
++    var h = head.getBoundingClientRect();
++    if (c.left < h.right - 1) {
++      gridWrap.scrollLeft -= (h.right - c.left) + 4;
++      if (owner === el && card && !card.hidden) place(el);
++    }
++  }
++  if (gridWrap) {
++    /* Only focus reached by keyboard is moved: a press on a partly covered mark must not scroll it away mid-click. */
++    var pressed = false;
++    gridWrap.addEventListener('pointerdown', function () { pressed = true; }, true);
++    gridWrap.addEventListener('mousedown', function () { pressed = true; }, true);
++    doc.addEventListener('keydown', function () { pressed = false; }, true);
++    gridWrap.addEventListener('focusin', function (event) {
++      var el = event.target;
++      if (pressed) { pressed = false; return; }
++      clearRowHeader(el);
++      requestAnimationFrame(function () { if (doc.activeElement === el) clearRowHeader(el); });
++    });
++  }
++
+   /* Rows open when they are the target of a link, and a link into a row opens it. */
+   function hashTarget() {
+     var raw = location.hash.slice(1);
+@@ -289,6 +341,13 @@
+     }
+   }
+   window.addEventListener('hashchange', openTarget);
++  doc.addEventListener('click', function (event) {
++    if (event.defaultPrevented || event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
++    var a = event.target.closest && event.target.closest('a[href^="#"]');
++    var href = a && a.getAttribute('href');
++    if (!href || href.length < 2 || href !== location.hash) return;
++    setTimeout(openTarget, 0);
++  });
+ 
+   var rows = all('details.row');
+   /* A row opened by the reader becomes the page address (without a new history entry), so it can be shared. */
+@@ -346,6 +405,9 @@
+   var filters = all('.filter[data-filter]').filter(function (f) { return !f.closest('.find'); });
+   var rowStatements = all('.rows .statement');
+   var filterNews = filters.length ? liveRegion(filters[0].closest('.row-tools') || filters[0].parentNode) : null;
++  if (filterNews) filterNews.className = 'filter-count'; /* shown, not only announced */
++  var EMPTY_ONE = 'No statement in this example has the selected status.';
++  var EMPTY_MANY = 'No statement in this example has any of the selected statuses.';
+   function applyFilter(record) {
+     var on = filters.filter(function (f) { return f.getAttribute('aria-pressed') === 'true'; })
+                     .map(function (f) { return f.getAttribute('data-filter'); });
+@@ -357,7 +419,25 @@
+     rows.forEach(function (d) {
+       var any = !!d.querySelector('.statement:not([hidden])');
+       if (on.length) d.open = any;
+-      if (on.length && !any) d.setAttribute('data-filter-empty', ''); else d.removeAttribute('data-filter-empty');
++      var empty = on.length > 0 && !any;
++      if (empty) d.setAttribute('data-filter-empty', ''); else d.removeAttribute('data-filter-empty');
++      var note = d.querySelector('.filter-empty-note');
++      var list = d.querySelector('.row-body .statements');
++      if (empty && !note && list) {
++        note = doc.createElement('p');
++        note.className = 'filter-empty-note';
++        list.parentNode.insertBefore(note, list);
++      }
++      if (note) { note.hidden = !empty; note.textContent = empty ? (on.length === 1 ? EMPTY_ONE : EMPTY_MANY) : ''; }
++      var mixHere = d.querySelector('summary .row-count .mix');
++      if (mixHere) mixHere.hidden = on.length > 0;
++      var count = d.querySelector('summary .row-count');
++      var words = count && count.firstChild && count.firstChild.nodeType === 3 ? count.firstChild : null;
++      if (words) {
++        if (!count.hasAttribute('data-count')) count.setAttribute('data-count', words.nodeValue);
++        var shownHere = d.querySelectorAll('.statement:not([hidden])').length;
++        words.nodeValue = on.length ? shownHere + ' of ' + count.getAttribute('data-count') : count.getAttribute('data-count');
++      }
+     });
+     if (filterNews) {
+       var inRows = rows.filter(function (d) { return d.querySelector('.statement:not([hidden])'); }).length;
+@@ -365,6 +445,7 @@
+         ? 'Showing ' + shown + ' of ' + rowStatements.length + ' statements, in ' + inRows + ' of ' + rows.length + ' examples.'
+         : 'Showing all ' + rowStatements.length + ' statements of the examples.';
+     }
++    if (filterNews) filterNews.classList.toggle('visually-hidden', !on.length);
+     if (record !== false) writeParams({ show: on.join(',') });
+   }
+   function setFilters(list) {
+@@ -389,7 +470,7 @@
+     if (!nav || nav.scrollWidth <= nav.clientWidth + 1) return;
+     var n = nav.getBoundingClientRect();
+     var l = a.getBoundingClientRect();
+-    if (l.left >= n.left + 4 && l.right <= n.right - 28) return;
++    if (l.left >= n.left + 28 && l.right <= n.right - 28) return; /* clear of either fade */
+     var left = nav.scrollLeft + (l.left - n.left) - (n.width - l.width) / 2;
+     try { nav.scrollTo({ left: Math.max(0, left), behavior: smooth() }); } catch (e) { nav.scrollLeft = Math.max(0, left); }
+   }
+@@ -401,6 +482,17 @@
+     keepInSight(a);
+   }
+   navLinks.forEach(function (a) { a.addEventListener('click', function () { setCurrent(a.getAttribute('href').slice(1)); }); });
++  /* Each edge of the bar fades while more of its links lie beyond it; a list that fits, or an edge it has reached, is
++     not faded. */
++  function markNavOverflow() {
++    if (!nav) return;
++    nav.classList.toggle('nav-overflow', nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 1);
++    nav.classList.toggle('nav-overflow-start', nav.scrollLeft > 1);
++  }
++  markNavOverflow();
++  window.addEventListener('resize', markNavOverflow);
++  if (nav) nav.addEventListener('scroll', markNavOverflow, { passive: true });
++  try { if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(markNavOverflow); } catch (e) { /* no font loading API */ }
+   if ('IntersectionObserver' in window && navLinks.length) {
+     var observer = new IntersectionObserver(function (entries) {
+       entries.forEach(function (e) { if (e.isIntersecting && byId[e.target.id]) setCurrent(e.target.id); });
+@@ -415,11 +507,20 @@
+     printed = all('main details');
+     beforePrint = printed.map(function (d) { return d.open; });
+     printed.forEach(function (d) { d.open = true; });
++    /* Paper shows every statement, so each row's count is its full count while printing. */
++    all('summary .row-count[data-count]').forEach(function (c) {
++      c.setAttribute('data-shown', c.firstChild.nodeValue);
++      c.firstChild.nodeValue = c.getAttribute('data-count');
++    });
+   });
+   window.addEventListener('afterprint', function () {
+     if (beforePrint) printed.forEach(function (d, i) { d.open = beforePrint[i]; });
+     printed = null;
+     beforePrint = null;
++    all('summary .row-count[data-shown]').forEach(function (c) {
++      c.firstChild.nodeValue = c.getAttribute('data-shown');
++      c.removeAttribute('data-shown');
++    });
+   });
+ 
+   /* Search of the whole page: statements, questions, examples, counterexamples, open problems, essay and terms.
+@@ -433,7 +534,9 @@
+   var WORDS = {
+     search: word('search', 'Search this page'),
+     placeholder: word('placeholder', 'Search statements, questions, examples and terms'),
+-    hint: word('hint', 'Press / to search from anywhere on the page; the down arrow moves through the results.'),
++    hint: word('hint', doc.querySelector('[data-find-open]')
++      ? 'The search button in the bar brings you back here from anywhere on the page; the down arrow moves through the results.'
++      : 'The down arrow moves through the results.'),
+     part: word('part', 'Part'),
+     status: word('status', 'Status'),
+     clear: word('clear', 'Clear'),
+@@ -442,7 +545,7 @@
+     many: word('many', '{n} matches'),
+     more: word('more', 'Show all {n}')
+   };
+-  var SCOPES = ['results', 'decisive', 'frontier', 'examples', 'failures', 'open', 'essay', 'terms'].filter(function (id) {
++  var SCOPES = ['programme', 'status', 'results', 'decisive', 'frontier', 'examples', 'failures', 'open', 'essay', 'terms'].filter(function (id) {
+     return doc.getElementById(id);
+   });
+   function scopeLabel(id) {
+@@ -490,7 +593,8 @@
+       var tag = n.localName;
+       if (tag === 'svg' || tag === 'annotation' || tag === 'script' || tag === 'style') return;
+       for (var c = n.firstChild; c; c = c.nextSibling) walk(c);
+-      if (BLOCK.test(tag)) out.push(' ');
++      if (tag === 'li') out.push('; '); /* list items (hypotheses) stay apart in snippets */
++      else if (BLOCK.test(tag)) out.push(' ');
+     })(el);
+     return out.join('').replace(/\s+/g, ' ').trim();
+   }
+@@ -516,6 +620,7 @@
+   var units = null;
+   function sectionOf(el) {
+     var s = el.closest('section.section');
++    if (!s && el.closest('main > .lead')) return SCOPES.indexOf('programme') >= 0 ? 'programme' : null;
+     return s && SCOPES.indexOf(s.id) >= 0 ? s.id : null;
+   }
+   function index() {
+@@ -534,7 +639,7 @@
+         ftitle: fold(title)
+       });
+     }
+-    var HEAD = '.statement-head, .statement-notes .note-label, .added-chip';
++    var HEAD = '.statement-head, .statement-notes .note-label, .statement-hypotheses .note-label, .added-chip';
+     /* A question's own statement: a direct child, or inside .question-ask on a comparison card. */
+     var ASKED = ':scope > .statement, :scope > .question-ask > .statement';
+     all('main .statement').forEach(function (s) {
+@@ -554,7 +659,7 @@
+       var asked = q.querySelector(ASKED);
+       /* The question's own statement title is searched with it; related statements are indexed on their own. */
+       add(q, q.querySelector('h3 .anchor') || q.querySelector('h3'), questionTitle(q), '',
+-          'h3, .question-num, .known, .question-known, .status-chip, .statement-notes .note-label, .added-chip', asked);
++          'h3, .question-num, .known, .question-known, .status-chip, .statement-notes .note-label, .statement-hypotheses .note-label, .added-chip', asked);
+     });
+     all('main details.row').forEach(function (d) {
+       var name = d.querySelector('.row-name');
+@@ -564,7 +669,7 @@
+       var claim = f.querySelector('.claim-text');
+       var witness = f.querySelector('.statement');
+       /* The counterexample's own title stays in the searched text. */
+-      add(f, claim, textOf(claim), '', '.claim, .status-chip, .added-chip, .statement-notes .note-label', witness);
++      add(f, claim, textOf(claim), '', '.claim, .status-chip, .added-chip, .statement-notes .note-label, .statement-hypotheses .note-label', witness);
+     });
+     all('main .open-group').forEach(function (g) {
+       var h = g.querySelector('h3');
+@@ -581,6 +686,16 @@
+     all('main .gloss').forEach(function (g) {
+       var dt = g.querySelector('dt');
+       add(g, dt, textOf(dt), '', 'dt', null);
++    });
++    /* The cover's lead, the status key, and each section's heading with its introduction where it has one. */
++    all('main > .lead p').forEach(function (p) { add(p, null, '', '', null, null); });
++    all('#status .key-item').forEach(function (k) { var dt = k.querySelector('dt'); add(k, dt, textOf(dt), '', 'dt', null); });
++    all('main section.section').forEach(function (sec) {
++      var head = sec.querySelector(':scope > .section-head');
++      var h = head && head.querySelector('h2');
++      var intro = sec.querySelector(':scope > .section-intro');
++      if (intro) add(intro, h, h ? textOf(h) : '', '', null, null);
++      else if (head) add(head, h, h ? textOf(h) : '', '', null, null);
+     });
+     return units;
+   }
+@@ -767,6 +882,7 @@
+     input.addEventListener('focus', function () { facets.hidden = false; index(); });
+     input.addEventListener('keydown', function (event) {
+       if (event.key === 'ArrowDown') {
++        if (input.value !== state.q) { clearTimeout(timer); state.q = input.value; limit = 40; run(true); }
+         var first = results.querySelector('.find-link');
+         if (first) { event.preventDefault(); first.focus(); }
+       } else if (event.key === 'Enter') {
+@@ -925,8 +1041,12 @@
+     reveal(el, true);
+   }
+ 
++  function known(list, allowed) {
++    return list.map(function (s) { return s.toLowerCase(); }).filter(function (s, i, a) { return allowed.indexOf(s) >= 0 && a.indexOf(s) === i; });
++  }
+   function fromAddress(params) {
+-    return { q: (params && params.get('q')) || '', scopes: listParam(params, 'in'), statuses: listParam(params, 'status') };
++    var statuses = all('.filter[data-status-facet]', facets || doc).map(function (b) { return b.getAttribute('data-status-facet'); });
++    return { q: (params && params.get('q')) || '', scopes: known(listParam(params, 'in'), SCOPES), statuses: known(listParam(params, 'status'), statuses) };
+   }
+   function fallbackStyle() {
+     /* Until the page's stylesheet styles the search (it then sets --find-styled on .find), a minimal style in its own tokens. */
+@@ -945,7 +1065,7 @@
+       '.find-hint{margin:.45em 0 0;font-size:var(--text-xs);color:var(--ink-4)}',
+       '.find-facets{display:grid;gap:8px;margin-top:12px}',
+       '.find-count{margin:12px 0 0;font-size:var(--text-sm);color:var(--ink-3)}',
+-      '.find-count:empty{display:none}',
++      '.find-count:empty{position:absolute;width:1px;height:1px;margin:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}',
+       '.find-group{margin-top:16px}',
+       '.find-group-head{margin:0 0 4px;font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4)}',
+       '.find-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule-soft)}',
+@@ -973,14 +1093,12 @@
+ 
+   build();
+   if (input) {
+-    doc.addEventListener('keydown', function (event) {
+-      if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey || event.defaultPrevented) return;
+-      var t = event.target;
+-      if (t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.localName))) return;
+-      event.preventDefault();
+-      focusSearch();
+-    });
+-    all('[data-find-open]').forEach(function (b) { b.addEventListener('click', function (event) { event.preventDefault(); focusSearch(); }); });
++    /* The search is reached from anywhere through the opener in the bar; there is no single-character shortcut (WCAG 2.1.4). */
++    all('[data-find-open]').forEach(function (b) {
++      b.hidden = false;
++      b.addEventListener('click', function (event) { event.preventDefault(); focusSearch(); });
++    });
++    markNavOverflow(); /* the opener takes room from the links */
+   }
+ 
+   /* The tally counts every statement on the page, so its links list every statement of that status on the page.
+@@ -1016,7 +1134,10 @@
+   function same(a, b) { return a.slice().sort().join(',') === b.slice().sort().join(','); }
+   function fromURL(arrival) {
+     var params = readParams();
+-    var show = listParam(params, 'show');
++    lastSearch = location.search;
++    var rawShow = listParam(params, 'show');
++    var show = known(rawShow, filters.map(function (f) { return f.getAttribute('data-filter'); }));
++    if (rawShow.join(',') !== show.join(',')) writeParams({ show: show.join(',') });
+     var nowShown = filters.filter(function (f) { return f.getAttribute('aria-pressed') === 'true'; })
+                           .map(function (f) { return f.getAttribute('data-filter'); });
+     if (filters.length && !same(show, nowShown)) {
+@@ -1025,12 +1146,25 @@
+     }
+     if (input) {
+       var next = fromAddress(params);
++      if (listParam(params, 'in').join(',') !== next.scopes.join(',') || listParam(params, 'status').join(',') !== next.statuses.join(',')) {
++        writeParams({ 'in': next.scopes.join(','), status: next.statuses.join(',') });
++      }
+       if (next.q === state.q.trim() && same(next.scopes, state.scopes) && same(next.statuses, state.statuses)) return;
+       setState(next);
+       if (arrival && !location.hash && active()) requestAnimationFrame(function () { find.scrollIntoView({ block: 'start' }); });
+     }
+   }
+-  window.addEventListener('popstate', function () { fromURL(false); });
++  /* Fragment navigations fire popstate too: the search and filters follow the address only when its query part
++     changed, and a query typed but not yet written is written first, into the entry being left. */
++  doc.addEventListener('click', function (event) {
++    if (event.target.closest && event.target.closest('a[href^="#"]')) flushAddress();
++  }, true);
++  window.addEventListener('popstate', function () {
++    if (location.search === lastSearch) return;
++    clearTimeout(addressTimer);
++    pendingAddress = null;
++    fromURL(false);
++  });
+   fromURL(true);
+   openTarget();
+ })();

@@ -1,0 +1,231 @@
+{
+ "candidate": "qh-quality-heal-c3f",
+ "base": "BASELINE.json (13 files, verified against the worktree when this manifest was written)",
+ "apply": "heal/apply-guarded.sh <repository root> [foundation|interaction|all]",
+ "files": [
+  {
+   "path": "compiler/build-quantum-holography-status.py",
+   "owner": "foundation",
+   "before_sha256": "c2592dea5bdff6379066a130334ec52e0db74d289a3eb7cf2470cf7d9e261886",
+   "after_sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf",
+   "changed": true,
+   "ledger": [
+    "C02"
+   ]
+  },
+  {
+   "path": "compiler/quantum-holography-status/audit.py",
+   "owner": "foundation",
+   "before_sha256": "bf243cb97c5caae579ce4f9af59133d946c69ebd8bea74c52bf531154d9418c4",
+   "after_sha256": "42d2985354dfdca761d11044dd02147d2718f5cbfca1c5fd9c8f4e985e1a0360",
+   "changed": true,
+   "ledger": [
+    "C17",
+    "C25",
+    "C04 guard",
+    "C03 guard",
+    "C18 list",
+    "C20 warnings",
+    "A2-A2-04",
+    "A2-A2-05",
+    "A2-A2-06",
+    "A3-F-02",
+    "A3-F-03",
+    "A3-F-04",
+    "A3-F-05",
+    "A3-F-10",
+    "A3-F-11",
+    "A3-F-13 (formulas and jobs)",
+    "A4-F-01",
+    "A4-F-02 (messages)",
+    "A4-F-03",
+    "A4-F-04",
+    "A4-F-06",
+    "A4-F-08",
+    "A5-F-01",
+    "A5-F-02",
+    "A5-F-03",
+    "A5-F-04",
+    "S-REFUTED (status contract: refuted form, hypotheses)"
+   ]
+  },
+  {
+   "path": "compiler/quantum-holography-status/status-print.css",
+   "owner": "foundation",
+   "before_sha256": "c1e6560a9d4874a48afa522378afdb6e578248e20fce3858627ff0bfb0826015",
+   "after_sha256": "ab13467d2a0783882da963455f287607dd3ce1e11d7b138fca30cc83b694e2cf",
+   "changed": true,
+   "ledger": [
+    "C01",
+    "A2-A2-07",
+    "A3-F-02 (comments)"
+   ]
+  },
+  {
+   "path": "compiler/quantum-holography-status/status.css",
+   "owner": "foundation",
+   "before_sha256": "c83ccb311c754315e4ef2bcad9792c4a3e32e1d648c2aa3dacbda56bf245a1b0",
+   "after_sha256": "adcfacd27433b34af1c43edb6db578c278b1a72ff8c8922a8c3d339c4b1f875c",
+   "changed": true,
+   "ledger": [
+    "C01",
+    "C15",
+    "C06",
+    "C14",
+    "C23",
+    "A2-A1-01",
+    "A2-A2-09",
+    "A3-V-11",
+    "A3-V-13",
+    "A3-V-15",
+    "A3-F-06",
+    "A3-F-02 (comments)",
+    "A4-V-01",
+    "A4-V-02",
+    "A3-V-03 (a)",
+    "A5-V-01",
+    "S-REFUTED (status colour, hypotheses)"
+   ]
+  },
+  {
+   "path": "compiler/quantum-holography-status/status.js",
+   "owner": "interaction",
+   "before_sha256": "ef3581907e176897da4a644f61038c147295fae8256cf8ba9a930bd5ab95e12e",
+   "after_sha256": "bb1a2344605cd2791c66d9715db8706902f13bfc950df11d7abb6076335c3769",
+   "changed": true,
+   "ledger": [
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C16",
+    "C23",
+    "A2-A1-01",
+    "A2-A1-03",
+    "A2-A1-04",
+    "A3-V-11",
+    "A3-V-12",
+    "A3-V-13",
+    "A3-F-06",
+    "A4-V-01",
+    "A4-V-03",
+    "A5-V-01",
+    "S-REFUTED (search skips the hypotheses label)",
+    "A7-V-02 (list items apart in search text)"
+   ]
+  },
+  {
+   "path": "compiler/quantum-holography-status/status.py",
+   "owner": "foundation",
+   "before_sha256": "7e00aab95067023c4b686723227c7f3de17ebab5759ca87e95d46f1ff8a72fc9",
+   "after_sha256": "6d8c87f1a4dc456c839be3703b30e66dda427981dce8211983d63e8dc568f04e",
+   "changed": true,
+   "ledger": [
+    "C03",
+    "C04",
+    "C14",
+    "C19",
+    "C23",
+    "C24",
+    "C28",
+    "A2-A2-01",
+    "A2-A2-02",
+    "A2-A2-03",
+    "A2-A2-11",
+    "A3-F-01",
+    "A3-F-06",
+    "A3-F-07",
+    "A3-F-08",
+    "A3-F-09",
+    "A3-F-13 (text-form jobs)",
+    "A4-V-03",
+    "S-REFUTED (status vocabulary, no coercion, hypotheses)",
+    "A7-F-01 / A7-V-04 (row filters from the rows)"
+   ]
+  },
+  {
+   "path": "compiler/quantum-holography-tracker/tex2mathml.cjs",
+   "owner": "foundation",
+   "before_sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+   "after_sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+   "changed": false,
+   "ledger": []
+  },
+  {
+   "path": "compiler/quantum-holography-tracker/vendor/temml.cjs",
+   "owner": "foundation",
+   "before_sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e",
+   "after_sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e",
+   "changed": false,
+   "ledger": []
+  },
+  {
+   "path": "compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+   "owner": "foundation",
+   "before_sha256": "12b4e5592a12baaf50637881f2cb9d66667b26b8d51a73cd8f0d6bcefe176ab6",
+   "after_sha256": "12b4e5592a12baaf50637881f2cb9d66667b26b8d51a73cd8f0d6bcefe176ab6",
+   "changed": false,
+   "ledger": []
+  },
+  {
+   "path": "content/quantum-holography-status/content.json",
+   "owner": "content owner",
+   "before_sha256": "39eebb2c101f072177700716fe9f4a9f9de61c5c2d5595f8e813854a14b40934",
+   "after_sha256": "39eebb2c101f072177700716fe9f4a9f9de61c5c2d5595f8e813854a14b40934",
+   "changed": false,
+   "ledger": []
+  },
+  {
+   "path": "content/quantum-holography-status/essay.md",
+   "owner": "content owner",
+   "before_sha256": "457e4c4ce75972cf929a4cfeba4f4e83a7aab37f640b50d69f18dc78c93a4f60",
+   "after_sha256": "457e4c4ce75972cf929a4cfeba4f4e83a7aab37f640b50d69f18dc78c93a4f60",
+   "changed": false,
+   "ledger": []
+  },
+  {
+   "path": "content/quantum-holography-status/page.json",
+   "owner": "foundation",
+   "before_sha256": "02e8ee68c8591c28263b9f7bfb28afd3d3314b1d095447444368dd671dff75a8",
+   "after_sha256": "02e8ee68c8591c28263b9f7bfb28afd3d3314b1d095447444368dd671dff75a8",
+   "changed": false,
+   "ledger": []
+  },
+  {
+   "path": "content/quantum-holography-status/README.md",
+   "owner": "foundation",
+   "before_sha256": "198b0aa5accfefdee6d1a3788a3c95fec4d477b6f8f4edc6c329c61bc2263c68",
+   "after_sha256": "8fd202d620d65a95765b9d9de9fe7dc1f18c4b026571915a5c660f84ea1abf96",
+   "changed": true,
+   "ledger": [
+    "C02",
+    "C03",
+    "C17",
+    "C19 (documentation)"
+   ]
+  }
+ ],
+ "preview": {
+  "candidate_sha256": "2027f64020d4739703cd971ffa379327c1aa98c14b6995ce4c0996c60144f66e",
+  "bytes": 2210745,
+  "nofonts_sha256": "7e145ddc36756317ba1792b04ea08d078ba51be015cb69bbb4734b7a3c5e3e7e",
+  "note": "byte-reproducible; build: python -B heal/mirror/compiler/build-quantum-holography-status.py --output candidate/preview.html --audit-dir candidate/audit"
+ },
+ "patch_sha256": {
+  "foundation": "e005cb8464bdbce063bc7e1ff36900e7c297fdddd7088916a446f08caa476e53",
+  "interaction": "b93762a706a68cdfb51b8644a3711a41c708a037db237b778f2307ce808ee4b2",
+  "all": "a6f12775a682a6af8a3c10c3fc0bad748a9951b4722b680f2a801efb87f51f71"
+ },
+ "cross_lane_dependency": "status.py (foundation) emits the bar search opener hidden and the card Close control as an inert template; status.js (interaction) shows the opener and puts the Close control in the card when it wires them. Each patch is safe alone: with the foundation patch alone no dead or unreachable control appears and Tab behaves as on the baseline (jsdom J17); C14 and C23 are healed only when both are applied.",
+ "unchanged_reader_inputs": [
+  "content/quantum-holography-status/content.json",
+  "content/quantum-holography-status/essay.md",
+  "content/quantum-holography-status/page.json"
+ ]
+}
