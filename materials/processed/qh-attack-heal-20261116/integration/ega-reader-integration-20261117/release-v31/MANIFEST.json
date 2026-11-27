@@ -1,0 +1,109 @@
+{
+  "schema": "quantum-holography-native-edition/1",
+  "edition": "release-v31",
+  "commit": "bfd891056c0f9c13a5279c15b911cc143963638d",
+  "base_public_commit": "aba78a391bec8ca4f70df2807eb2162292ddcd53",
+  "primary_parent_commit": "aba78a391bec8ca4f70df2807eb2162292ddcd53",
+  "primary_repository": "https://github.com/raeez/www",
+  "public_reader": "https://raeez.com/quantum-holography/",
+  "content_id": "dedcaffaab8dcbc95dd95d2f768b49c36480b3ab58d24359e9d2de475041952c",
+  "native_inputs": 67,
+  "native_changed_files": [
+    "content/quantum-holography-status/chapters/19-interacting-theories.md",
+    "content/quantum-holography-status/reader-data/manifest.json"
+  ],
+  "public_exports": {
+    "primary": {
+      "url": "https://raeez.com/quantum-holography/",
+      "commit": "bfd891056c0f9c13a5279c15b911cc143963638d",
+      "files": {
+        "index.html": {
+          "sha256": "3e6629ce73a587db30ecb3b1e58dfd5a361f26c91413b347384e657a59a3647d",
+          "bytes": 6587945
+        },
+        "reference.html": {
+          "sha256": "591016fe6e41bb9ae4bd0dd9a6bd59f849577a342d21fb77a4e2fed50123e582",
+          "bytes": 5115002
+        },
+        "atlas.html": {
+          "sha256": "953dacf8b72103441ab94901ca911576e1619525ac9c17406af1eb26e13e7e8d",
+          "bytes": 11558822
+        },
+        "reader-index.js": {
+          "sha256": "11ba231e96bc09c21a4cc296eea1b2777ce798fcd968c8f2d22ced92e342fb7c",
+          "bytes": 17849221
+        }
+      },
+      "attachments": {
+        "introduction.pdf": {
+          "sha256": "5860bf6b3a15d7688f1c09434afd12ff0e3754a95bf5719e104910813c414be1",
+          "bytes": 989043
+        },
+        "celestial-current-product.pdf": {
+          "sha256": "5ba2cc78f2b862b0cb77cddf3385efad376fc2a1c942d8bd4c8ed899ef1b7390",
+          "bytes": 818884
+        },
+        "celestial-residue.pdf": {
+          "sha256": "30a5f9f3da8791197d744f2bea3a28016b5f69b7bf01b9846eede32602021dbf",
+          "bytes": 1157630
+        },
+        "interacting-theories.pdf": {
+          "sha256": "ca842a2bee43350f23f864b9bdb16d18144569163d6d277030844919721f8956",
+          "bytes": 2067239
+        },
+        "critical-points-and-sphere-insertions.pdf": {
+          "sha256": "0a07e71181bd73547f4a451de1914e68ec30880c3b6914cff795ef65d1314ceb",
+          "bytes": 234395
+        }
+      }
+    },
+    "standalone_build": {
+      "files": {
+        "index.html": {
+          "sha256": "cc5cdda50685fc3e6a17e8054edfb8c2404f73c3186cb5231cd70b326726c478",
+          "bytes": 6587416
+        },
+        "reference.html": {
+          "sha256": "52228ca99950f6da169d158038cead877830f02cb0e81d83a6c2a93fd3fe90b6",
+          "bytes": 5114473
+        },
+        "atlas.html": {
+          "sha256": "d3994fbefddaefeabf1af4745855f1bcf0634c99b8fa2d6ff1f8903426495e6a",
+          "bytes": 11558293
+        },
+        "reader-index.js": {
+          "sha256": "11ba231e96bc09c21a4cc296eea1b2777ce798fcd968c8f2d22ced92e342fb7c",
+          "bytes": 17849221
+        }
+      },
+      "attachments": {
+        "introduction.pdf": {
+          "sha256": "5860bf6b3a15d7688f1c09434afd12ff0e3754a95bf5719e104910813c414be1",
+          "bytes": 989043
+        },
+        "celestial-current-product.pdf": {
+          "sha256": "5ba2cc78f2b862b0cb77cddf3385efad376fc2a1c942d8bd4c8ed899ef1b7390",
+          "bytes": 818884
+        },
+        "celestial-residue.pdf": {
+          "sha256": "30a5f9f3da8791197d744f2bea3a28016b5f69b7bf01b9846eede32602021dbf",
+          "bytes": 1157630
+        },
+        "interacting-theories.pdf": {
+          "sha256": "ca842a2bee43350f23f864b9bdb16d18144569163d6d277030844919721f8956",
+          "bytes": 2067239
+        },
+        "critical-points-and-sphere-insertions.pdf": {
+          "sha256": "0a07e71181bd73547f4a451de1914e68ec30880c3b6914cff795ef65d1314ceb",
+          "bytes": 234395
+        }
+      }
+    }
+  },
+  "reader_runtime": {
+    "reader": "controls/reader-v18.js",
+    "reference": "controls/status-v18.js",
+    "bookReader": "controls/reader-book-math-notices.js"
+  },
+  "verification": "verification/PUBLICATION.json"
+}
