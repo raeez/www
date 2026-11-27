@@ -1,0 +1,53 @@
+{
+  "schema": "qh-scientific-diagram-review/v1",
+  "recorded_utc": "2026-11-16T19:39:14.735465+00:00",
+  "verdict": "PASS_SCIENTIFIC_RECORDS",
+  "diagram_records": {
+    "path": "/tmp/qh-ega-exposition-20261117/reader-data/diagram-records.json",
+    "sha256": "c96f67dffcc2b01889dda297f4548c45e51e0f8580bc4ea82e972cd0739fc4b8",
+    "bytes": 73502
+  },
+  "contract": {
+    "path": "/tmp/qh-ega-exposition-20261117/coordination/PROGRAMME-DIAGRAM-CONTRACT.md",
+    "sha256": "c678539dca26de4f5f81c61e134f6981f0d354f938197bd067496380045852d7"
+  },
+  "manifest_at_read": {
+    "path": "/tmp/qh-ega-exposition-20261117/reader-data/manifest.json",
+    "sha256": "a8dd97f6790f553f36a64442e6ecc0d772fe482baff8e5a9aa7e99cab305086b",
+    "diagram_array_identical": true
+  },
+  "read_scope": {
+    "records": 13,
+    "all_distinct_records_and_values_read": true,
+    "recurring_context_records": 5,
+    "repeated_nodes_edges_legend_exactly_equal": true
+  },
+  "ids": [
+    "fig-programme-overview",
+    "fig-programme-context-duality",
+    "fig-programme-context-quantum",
+    "fig-programme-context-arithmetic",
+    "fig-programme-context-reconstruction",
+    "fig-ordered-cut-support",
+    "fig-connected-bar-cobar",
+    "fig-four-step-descent",
+    "fig-character-action-comparison",
+    "fig-spectral-coproduct",
+    "fig-hall-correspondence",
+    "fig-weil-trace-remainder",
+    "fig-state-line-cap"
+  ],
+  "issues": [],
+  "preserved_distinctions": [
+    "reading-context links do not assert mathematical maps or implications",
+    "ordered support Z3 is Delta13 rather than the small diagonal",
+    "bar/cobar arity-connectedness and intrinsic versus strict adjunction",
+    "four-step tower scalar-extension unit versus native realization unit and explicit realization hypotheses",
+    "character/action equivalence only on stated families",
+    "spectral triple action preserves noncommutative level order and cross contractions",
+    "Hall constructible function versus coefficient-complex operation",
+    "complete Weil trace versus positive critical trace with explicit nonreal remainder",
+    "different numerical state and coefficient-line finite families and domains; undirected open filling comparisons"
+  ],
+  "remaining_scope": "Actual final anchor/link placement, visible rendering of hypotheses/status and whole-package exact freeze remain pending; no visual implementation or new proof audit certified."
+}

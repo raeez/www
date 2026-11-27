@@ -1,0 +1,103 @@
+{
+  "record": {
+    "read_utc": "2026-11-16T19:51:58.375683+00:00",
+    "path": "/tmp/qh-ega-exposition-20261117/reader-data/manifest.json",
+    "snapshot": "/tmp/qh-ega-review-20261117/inputs/d4cda70efe3934579e4b1870e3216be085d9b02ea850cab453c0e9dceab1efde--manifest.json",
+    "sha256": "d4cda70efe3934579e4b1870e3216be085d9b02ea850cab453c0e9dceab1efde",
+    "prior_sha256": "c7bd42cb8262bb03b5b9e3e38d52e9825d2e6c9bb110fb43812f5de42a3b0e75",
+    "scope": "complete recursive metadata delta"
+  },
+  "delta": [
+    {
+      "path": "/diagrams/0/node_identity_rule",
+      "removed": "Node IDs have the same mathematical referent in every context figure. DOM IDs must be namespaced by figure ID."
+    },
+    {
+      "path": "/diagrams/1/node_identity_rule",
+      "removed": "Node IDs have the same mathematical referent in every context figure. DOM IDs must be namespaced by figure ID."
+    },
+    {
+      "path": "/diagrams/2/node_identity_rule",
+      "removed": "Node IDs have the same mathematical referent in every context figure. DOM IDs must be namespaced by figure ID."
+    },
+    {
+      "path": "/diagrams/3/node_identity_rule",
+      "removed": "Node IDs have the same mathematical referent in every context figure. DOM IDs must be namespaced by figure ID."
+    },
+    {
+      "path": "/diagrams/4/node_identity_rule",
+      "removed": "Node IDs have the same mathematical referent in every context figure. DOM IDs must be namespaced by figure ID."
+    },
+    {
+      "path": "/diagrams/8/prohibitions/0",
+      "before": "Do not mark either arrow as a universal equivalence.",
+      "after": "Recognition for arbitrary pointed factorizing actors remains open."
+    },
+    {
+      "path": "/diagrams/8/prohibitions/1",
+      "before": "Do not identify these spaces with the ordinary exterior-source mapping space.",
+      "after": "The geometric character/action spaces and the ordinary exterior-source mapping space require their own comparison."
+    },
+    {
+      "path": "/diagrams/11/prohibitions/0",
+      "before": "Do not display the remainder as zero.",
+      "after": "The nonreal remainder is not known to vanish on every test."
+    },
+    {
+      "path": "/diagrams/11/prohibitions/1",
+      "before": "Do not identify a complex-bilinear residue dual with a positive Hilbert pairing.",
+      "after": "A complex-bilinear residue dual is different from a positive Hilbert pairing."
+    },
+    {
+      "path": "/diagrams/12/prohibitions/1",
+      "before": "Do not merge the two source domains or finite cutoff families.",
+      "after": "The two constructions retain their different source domains and finite cutoff families."
+    },
+    {
+      "path": "/figure_words",
+      "added": {
+        "controls": "Parameters",
+        "outputs": "Values at these parameters",
+        "equations": "Equations",
+        "equation": "Equation",
+        "integral": "Integral over the real line",
+        "yes": "yes",
+        "no": "no",
+        "hypothesis": "Hypothesis",
+        "equivalent": "Equivalent statement"
+      }
+    },
+    {
+      "path": "/figures/2/states/0/contraction_exists",
+      "added": true
+    },
+    {
+      "path": "/figures/2/states/1/contraction_exists",
+      "added": false
+    },
+    {
+      "path": "/figures/2/states/2/contraction_exists",
+      "added": true
+    },
+    {
+      "path": "/references/68/title",
+      "before": "ordinary-hall",
+      "after": "Primitive recognition"
+    },
+    {
+      "path": "/sections/172/title",
+      "before": "1. ordinary-hall",
+      "after": "1. Primitive recognition"
+    },
+    {
+      "path": "/terms/39/definition",
+      "before": "For a vector space \\(V\\) over a field \\(F\\), define\n\n\\[\nV((q))=\\bigcup_{N\\in\\mathbb Z}q^N V[[q]].\n\\]\n\nAn element has one lower Laurent bound and an arbitrary sequence of coefficients in \\(V\\). If \\(V=\\bigoplus_{j\\geq0}Fe_j\\), then",
+      "after": "For a vector space \\(V\\) over a field \\(F\\), define\n\n\\[\nV((q))=\\bigcup_{N\\in\\mathbb Z}q^N V[[q]].\n\\]\n\nAn element has one lower Laurent bound and an arbitrary sequence of coefficients in \\(V\\)."
+    },
+    {
+      "path": "/terms/39/source_range/end",
+      "before": 4104,
+      "after": 4066
+    }
+  ]
+}

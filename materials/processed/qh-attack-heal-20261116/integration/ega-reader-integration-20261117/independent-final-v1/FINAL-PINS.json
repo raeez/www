@@ -1,0 +1,100 @@
+{
+  "schema": "qh-ega-independent-final-pins/v1",
+  "sealed_utc": "2026-11-16T20:01:30.938824+00:00",
+  "verdict": "PASS_EDITORIAL_AND_SCIENTIFIC_FIDELITY",
+  "candidate_freeze": {
+    "path": "/tmp/qh-ega-exposition-20261117/coordination/final/CANDIDATE-FREEZE.json",
+    "sha256": "6cd56a40129655df3290bf9f99f53e740fb0868898e0617663f5742ccc80b275"
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/qh-ega-review-20261117/CHECK.json",
+      "sha256": "240e476a56cb9fb58775c59eb62db10093fc046d1db92b8cb1b29c9dfe0fa7f9",
+      "bytes": 10911
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/CHECK.md",
+      "sha256": "82a3d25c840ce4befee9333ef6f1d0df87d7936200d112a6e5483f780bdc3e76",
+      "bytes": 1432
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/CHAPTER-REVIEW-STATE.json",
+      "sha256": "a24efe1b7c670dc9997253fc052a06a2a15c793446190580be88802b6e135c20",
+      "bytes": 12989
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/READ-EVENTS.jsonl",
+      "sha256": "bbfe4a1d437ede939d268409a55556270a2bf38ab98ba726fc91828b2d8a5afc",
+      "bytes": 63414
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/READ-LIMITS.json",
+      "sha256": "460ac61134cd10bfada11866de880438a8739db54ced0f89a8f45f68bc25cc0e",
+      "bytes": 977
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/READ-VERSION-PINS.json",
+      "sha256": "34b93d2b98beb5bda1534f1e521187675b62fd986f9a0f7957db0a1feb4260b4",
+      "bytes": 24570
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/FIGURE-RECORD-REVIEW.json",
+      "sha256": "a965c53fd7a4c0d98c357b38752c9788f188ea3700c38f25c9d6aaf98108dab1",
+      "bytes": 722
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/PROGRAMME-DIAGRAM-REVIEW.json",
+      "sha256": "d5b2b6ea5020b740339bed34a8cc98d7da8922d5334695198dbd0bd56684c310",
+      "bytes": 2414
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/PROGRAMME-DIAGRAM-REVIEW-v2.json",
+      "sha256": "1c88e0db98bb8b22521dc79622869440034b08b637ddf914bd6c9c2343976cb3",
+      "bytes": 1361
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/METADATA-STRUCTURE-v2.json",
+      "sha256": "58b70f1f20fe6d5f7007b0cbb213bc3d36ad87487114e8327a4aa55b21b006c9",
+      "bytes": 25365
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/FINAL-METADATA-DELTA-v1.json",
+      "sha256": "e0828646378aaa01f4b4968783c62a12f640e8fbe4ecdbcf1155b91ed6787d0c",
+      "bytes": 4220
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/FINAL-METADATA-DELTA-v2.json",
+      "sha256": "8692eedff5356b80b4f8af1f0b6a24eb475d515f21210f2273c3808a24452636",
+      "bytes": 2901
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/MARKUP-PROSE-RETENTION-v2.json",
+      "sha256": "8260c0a07015a4dd20573a3bd84406752863eee6895a9096166ef6bb6c67ca15",
+      "bytes": 9395
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/MATH-PARSE-AFTER-REPAIRS.json",
+      "sha256": "b447ee9384a4556d9e1c89ffe3135fd9a88f5a53c175f7d6f12c9a41e4e68dfc",
+      "bytes": 4070
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/MATH-PARSE-READER-DATA-FINAL.json",
+      "sha256": "7d08b18d8187ea231efcd7fa054a321b4e4446a7ae61ed2fef0cd2ac5aee82d7",
+      "bytes": 413
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/PUBLIC-REFERENCE-CUSTODY.json",
+      "sha256": "285472e6fcde2f1a5575538a549b3df649641d188980caf89e8cd3baf11ba35b",
+      "bytes": 47403
+    },
+    {
+      "path": "/tmp/qh-ega-review-20261117/FROZEN-CUSTODY-VERIFICATION-FINAL.json",
+      "sha256": "2717a23406182e5b46f58d185573388f9433140dcaa225e10d60fb1b5e5e641e",
+      "bytes": 422961
+    }
+  ],
+  "read_versions": 94,
+  "required_repairs_remaining": 0,
+  "release_owner": "/root",
+  "immutability": "These17 artifacts and their bound input snapshots are sealed; further scoped follow-up uses an additive successor."
+}
