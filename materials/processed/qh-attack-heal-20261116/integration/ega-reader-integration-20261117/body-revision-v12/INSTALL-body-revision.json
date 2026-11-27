@@ -1,0 +1,97 @@
+{
+ "at": "2026-11-17T14:10:44Z",
+ "by": "website owner (foundation session 67e78388, claude10, Opus 5.5 max)",
+ "authority": {
+  "receipt": "/tmp/qh-reader-object-revision-check-20261117/body-revision/RECEIPT.json",
+  "receipt_sha256": "f1c930015fad59844aefe1bb195df82173ddd0bf6a9efcab67eb4cb627aacc68",
+  "verdict": "PASS_SOURCE_FIDELITY_BODY_ONLY",
+  "author_seal_sha256": "7b01de93923b91b5735857bda31874b62d3487c03cdcc4b15c798917bd3fa1e2"
+ },
+ "operations_applied_in_order": [
+  "BODY-CH01-FACTOR",
+  "BODY-CH04-OPENING",
+  "BODY-CH04-BD-COMPARISON",
+  "BODY-CH04-WORDS",
+  "BODY-CH04-TWO-CARRIERS",
+  "BODY-CH04-TRANSITION",
+  "BODY-CH05-WORD-CATEGORY",
+  "BODY-CH05-DUALITY-TYPE",
+  "BODY-CH05-DEFINITION",
+  "BODY-CH05-SUPPORTED-ALGEBRA",
+  "BODY-CH05-ATLAS-SUPPORT",
+  "BODY-CH12-CARRIERS",
+  "BODY-CH12-DEFINITION",
+  "BODY-CH12-VACUUM",
+  "BODY-CH12-BD-MAP",
+  "BODY-MANIFEST-COPIES",
+  "BODY-REFERENCE-ORIENTATION-TERMS",
+  "BODY-ATLAS-INTRO"
+ ],
+ "files": {
+  "reader-data/manifest.json": {
+   "before": "b398fc8c1de12c6a9b52cc2a9d70eea899eb0582ae7491d56cb189d6703dc17c",
+   "after": "7fc11773e8ba99dd3a32e5a4e32522141e2c7465a1ed9d68a7ea3bd4f92f08d0",
+   "base_in_packet": "ea76b2c963e53c168a4dc865133fda42e7da188b81e8e3fc80f68a00ed6d41ea"
+  },
+  "chapters/01-physical-questions.md": {
+   "before": "5f9dedd905940c9a2740bff71acfafdb5d6ac160fee102a86d91aa9af89ad2fe",
+   "after": "254d1ec881f3728e98a7f124facb6df3503c5735ae125406f6a0147bcf1b1912",
+   "base_in_packet": "5f9dedd905940c9a2740bff71acfafdb5d6ac160fee102a86d91aa9af89ad2fe"
+  },
+  "chapters/04-factorization.md": {
+   "before": "bb5908a5451d5871eff260713897d96e252b24b9da035a83d9c6831d5d237df6",
+   "after": "5616370c15975681abe778e4f513315fed77ff49d3e5d525838d408f7e47048e",
+   "base_in_packet": "bb5908a5451d5871eff260713897d96e252b24b9da035a83d9c6831d5d237df6"
+  },
+  "chapters/05-bar-and-coherence.md": {
+   "before": "609fdca3f5fbe85265e9b5c3d7dedb7e2b6e4c2d5e2051d3ca269bfd5e3d8e5e",
+   "after": "787965aeb3bde329e8b3c0e4bf24759da5ee8c31e08059ac4befec38d75c990c",
+   "base_in_packet": "609fdca3f5fbe85265e9b5c3d7dedb7e2b6e4c2d5e2051d3ca269bfd5e3d8e5e"
+  },
+  "chapters/12-chiral-quantum-groups.md": {
+   "before": "7e1e5d94e8dd10ed14b760c1ea5d0319f9fa864558caa3dcf6719a166c328336",
+   "after": "6c37c3fa652ac1f3bc9d7c6234f206b03b0ddf60dc213221dcae59142eb6402d",
+   "base_in_packet": "7e1e5d94e8dd10ed14b760c1ea5d0319f9fa864558caa3dcf6719a166c328336"
+  },
+  "content/quantum-holography-status/content.json": {
+   "before": "7e12095228112ccc3dc0cfd61ed196f9fff7db15dd1a1717d39c126c4f2693a6",
+   "after": "4af3877f33a1ab41fcbe35a5616f5ca7c210e160df06a1cdfbee48dec7717f7b",
+   "base_in_packet": "7e12095228112ccc3dc0cfd61ed196f9fff7db15dd1a1717d39c126c4f2693a6"
+  },
+  "compiler/quantum-holography-status/atlas.py": {
+   "before": "c15d27b233912dc0b125629885c1f5dbdfb21830b6ca5d1b1039f656bb8c9934",
+   "after": "77bad20631e3fc35dd30c606c32c00bda66aaa3d92080956073fdc89ec07a10b",
+   "base_in_packet": "084ff33187640ebc62a323c2f6e18dde70c1fc24ee513d6b7a27761ac86f0c0b"
+  }
+ },
+ "base_differences": {
+  "reader-data/manifest.json": "integration held v11's manifest (author base 9493008a with the first-opening fields), not the packet's base ea76b2c9 (the opening on 342bef12); every one of the 11 pointer old values matched exactly",
+  "compiler/quantum-holography-status/atlas.py": "integration holds the atlas lane's v8 repair (c15d27b2), not 084ff331; the operation's old text occurred exactly once"
+ },
+ "verification": {
+  "reader-data/manifest.json": {
+   "pointers": 11,
+   "equal_to_author_proposal_at_every_pointer": true,
+   "unchanged_elsewhere": true
+  },
+  "chapters/01-physical-questions.md": {
+   "equals_author_proposal_byte_for_byte": true
+  },
+  "chapters/04-factorization.md": {
+   "equals_author_proposal_byte_for_byte": true
+  },
+  "chapters/05-bar-and-coherence.md": {
+   "equals_author_proposal_byte_for_byte": true
+  },
+  "chapters/12-chiral-quantum-groups.md": {
+   "equals_author_proposal_byte_for_byte": true
+  },
+  "content/quantum-holography-status/content.json": {
+   "equals_author_proposal_byte_for_byte": true
+  },
+  "compiler/quantum-holography-status/atlas.py": {
+   "differs_from_v11_only_by_its_replacement": true
+  }
+ },
+ "v11_inputs_preserved_in": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/content-v11-inputs/"
+}

@@ -1,0 +1,34 @@
+{
+ "at": "2026-11-17T13:12:07Z",
+ "by": "website owner (foundation session 67e78388, claude4)",
+ "authority": {
+  "packet_seal": "aa6f027325ff798ef2fbb59031a2962cfc11f62bc0dcd7199f504b41199c7897",
+  "receipt": "/tmp/qh-reader-object-revision-check-20261117/first-opening/RECEIPT.json",
+  "receipt_sha256": "d5eba0519ac874a529aafbc2e8df5872270194a40385eb62263aadb804993038",
+  "receipt_status": "PASS_SOURCE_FIDELITY",
+  "eligible_scope": "Exactly the three producing-source operations and four v10 index.html guards in the pinned packet; regenerate derived search as its integration map requires."
+ },
+ "operations_applied": [
+  "OPEN-AUDIENCE (manifest /audience emptied)",
+  "OPEN-FRONT (manifest /introduction replaced)",
+  "OPEN-CH01 (chapter 1 paragraph replaced)"
+ ],
+ "manifest": {
+  "before": "9493008a7dbb9f5f0e5394f44ea382757a0c58f42ceb037fcff6b61af417d5e3",
+  "after": "b398fc8c1de12c6a9b52cc2a9d70eea899eb0582ae7491d56cb189d6703dc17c",
+  "note": "the packet was made on manifest 342bef12; integration held 9493008a, whose two fields hash to the packet's old_sha256; only those two fields changed, and both now equal the packet proposal"
+ },
+ "chapter1": {
+  "before": "ffc9b0956598092cc48136ba1935957de487de95caf14b0b8b59d44c829e0534",
+  "after": "5f9dedd905940c9a2740bff71acfafdb5d6ac160fee102a86d91aa9af89ad2fe",
+  "equals_packet_proposal": true
+ },
+ "page_json_site": {
+  "before": "https://momentum-sez.github.io/quantum-holography",
+  "after": "https://research.momentum.inc/quantum-holography",
+  "by": "root's instruction (final canonical and OG base)",
+  "before_sha256": "ff3362520f7dd9a3217ed0a3b47e7e126fe5f11d075bc7820e30a2806f5a2e3c",
+  "after_sha256": "9799d3b1572b85e3cbc06fa7f8e775e33b77fe7f1d38737597a66b19388d9e37"
+ },
+ "v10_inputs_preserved_in": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/content-v10-inputs/"
+}
