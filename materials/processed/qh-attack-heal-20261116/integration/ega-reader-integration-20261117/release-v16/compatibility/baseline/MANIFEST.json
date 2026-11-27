@@ -1,0 +1,838 @@
+{
+  "schema": "qh-first-principles-reader-staged-artifacts/1",
+  "status": "PREVIEW_MECHANICAL_PASS",
+  "created_utc": "2026-11-17T22:30:46.314843+00:00",
+  "batch": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15",
+  "content_id": "31867ac5e15aa6b026b680aca31f6060568965ca4e25d2ca785a7c5a5a8e61d9",
+  "source_freeze": {
+    "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/coordination/SOURCE-FREEZE.json",
+    "sha256": "3da57b5c5765a8e13701dd70c818acd24d12cc5b0294f13a440841e451e8e515",
+    "bytes": 10257
+  },
+  "source_freeze_status": "ROOT-CURRENT-v15",
+  "release_candidate": false,
+  "scientific_content_release_authority": "Astra source owner and root",
+  "public_files": {
+    "index.html": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/public/index.html",
+      "sha256": "4d7370b01cc92dc022fb4d72a93cb089732b344191d9e18f19e88232e44fa7b2",
+      "bytes": 4064383
+    },
+    "reference.html": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/public/reference.html",
+      "sha256": "41d9a33a9e02e8eafc33ac32f01a4e504db7c1b2d74b2dcb281a8d45f030b9ce",
+      "bytes": 4541133
+    },
+    "atlas.html": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/public/atlas.html",
+      "sha256": "fb38e95131c7084e61b92ed850473cdcc5f9c1aa2f59e72ce7ed3d0789b42b2c",
+      "bytes": 11228809
+    },
+    "reader-index.js": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/public/reader-index.js",
+      "sha256": "0678f266c510a13856d398ce29d1704dc1850c0e6454d601aeeb9e7a10c11bc5",
+      "bytes": 5756039
+    }
+  },
+  "mechanical_checks_pass": true,
+  "source_audit_failures": [],
+  "math_formulas": 22096,
+  "math_errors": 0,
+  "summary": {
+    "chapters": 18,
+    "authored_heading_destinations": 249,
+    "marked_subsection_search_units": 118,
+    "terms": 85,
+    "results": 70,
+    "claims": 1095,
+    "graph_nodes": 1095,
+    "graph_edges": 225,
+    "reading_paths": 35,
+    "diagrams": 13,
+    "source_links": 187,
+    "legacy_explicit_public_link_discoveries": 42,
+    "search_units": 6862
+  },
+  "reader_path_check_count": 4687,
+  "reader_path_failures": [],
+  "v14_consumer_check_count": 51,
+  "unchanged_design_evidence": {
+    "index.html": {
+      "styles_identical_except_generated_font_subsets": true,
+      "inline_executable_scripts_identical": true
+    },
+    "reference.html": {
+      "styles_identical_except_generated_font_subsets": true,
+      "inline_executable_scripts_identical": true
+    },
+    "atlas.html": {
+      "styles_identical_except_generated_font_subsets": true,
+      "inline_executable_scripts_identical": true
+    }
+  },
+  "source_and_compiler_guards": [
+    {
+      "logical_path": "compiler/build-quantum-holography-status.py",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/build-quantum-holography-status.py",
+        "sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf",
+        "bytes": 4031
+      },
+      "staged_expected_sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/atlas.css",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/atlas.css",
+        "sha256": "adb4339082f7a55c722a51bf89650e47a157576a22c08b4eb2abbb3d951d934b",
+        "bytes": 42478
+      },
+      "staged_expected_sha256": "adb4339082f7a55c722a51bf89650e47a157576a22c08b4eb2abbb3d951d934b",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/atlas.js",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/atlas.js",
+        "sha256": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684",
+        "bytes": 50539
+      },
+      "staged_expected_sha256": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/atlas.py",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/atlas.py",
+        "sha256": "77bad20631e3fc35dd30c606c32c00bda66aaa3d92080956073fdc89ec07a10b",
+        "bytes": 67405
+      },
+      "staged_expected_sha256": "77bad20631e3fc35dd30c606c32c00bda66aaa3d92080956073fdc89ec07a10b",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/audit.py",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/audit.py",
+        "sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+        "bytes": 32431
+      },
+      "staged_expected_sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/figures.css",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/figures.css",
+        "sha256": "3f65beb93fdfac44e49d7d45a5878630a5dd90fc82b3d35b4192d141214747b2",
+        "bytes": 15629
+      },
+      "staged_expected_sha256": "3f65beb93fdfac44e49d7d45a5878630a5dd90fc82b3d35b4192d141214747b2",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/figures.js",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/figures.js",
+        "sha256": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965",
+        "bytes": 14779
+      },
+      "staged_expected_sha256": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/figures.py",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/figures.py",
+        "sha256": "5f86ba434f0574b6b50a61e1bee471c32a7a14464b262ccb34b9ffe590ee7e7b",
+        "bytes": 64449
+      },
+      "staged_expected_sha256": "5f86ba434f0574b6b50a61e1bee471c32a7a14464b262ccb34b9ffe590ee7e7b",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/monograph.css",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/monograph.css",
+        "sha256": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52",
+        "bytes": 56107
+      },
+      "staged_expected_sha256": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/monograph.py",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/monograph.py",
+        "sha256": "ac3260c7d2328cd2ee7e59ad0112946b4c7504be4322cf46ddf91a6a81ae71e3",
+        "bytes": 101779
+      },
+      "staged_expected_sha256": "ac3260c7d2328cd2ee7e59ad0112946b4c7504be4322cf46ddf91a6a81ae71e3",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/reader.js",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/reader.js",
+        "sha256": "8020a5faa091f1d94c92616456e174dee85cd06de5ce4383016bfd7455a37ab5",
+        "bytes": 115539
+      },
+      "staged_expected_sha256": "8020a5faa091f1d94c92616456e174dee85cd06de5ce4383016bfd7455a37ab5",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/status-print.css",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/status-print.css",
+        "sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+        "bytes": 11884
+      },
+      "staged_expected_sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/status.css",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/status.css",
+        "sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+        "bytes": 57564
+      },
+      "staged_expected_sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/status.js",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/status.js",
+        "sha256": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5",
+        "bytes": 113263
+      },
+      "staged_expected_sha256": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/status.py",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/status.py",
+        "sha256": "6fa05e99f46649abd80ca34279eb2bc032df38adf968004bb66975162231904e",
+        "bytes": 83511
+      },
+      "staged_expected_sha256": "6fa05e99f46649abd80ca34279eb2bc032df38adf968004bb66975162231904e",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/atlas.test.cjs",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/tests/atlas.test.cjs",
+        "sha256": "a67087f1aab82465cedb0f5e16ef8ff431d6c8ca629e736803f2aa35830bec52",
+        "bytes": 41843
+      },
+      "staged_expected_sha256": "a67087f1aab82465cedb0f5e16ef8ff431d6c8ca629e736803f2aa35830bec52",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/figures.test.cjs",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/tests/figures.test.cjs",
+        "sha256": "2d76aabae3161f876b54ab683052a4d0827fb4cdcbb4204c32ef1a04438894ff",
+        "bytes": 12278
+      },
+      "staged_expected_sha256": "2d76aabae3161f876b54ab683052a4d0827fb4cdcbb4204c32ef1a04438894ff",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/figures_page.py",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/tests/figures_page.py",
+        "sha256": "8ac23dc036107435dc8adba1fc2c5e0a7d79e9f75fbffe6e13614f66bf30a73a",
+        "bytes": 2413
+      },
+      "staged_expected_sha256": "8ac23dc036107435dc8adba1fc2c5e0a7d79e9f75fbffe6e13614f66bf30a73a",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+        "sha256": "2a5f0c7bc84e66832d6bb48edea0570ff8f28b6d049d6c16388bde4b4b6f9d32",
+        "bytes": 10171
+      },
+      "staged_expected_sha256": "2a5f0c7bc84e66832d6bb48edea0570ff8f28b6d049d6c16388bde4b4b6f9d32",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+        "sha256": "2f137aeb9df0f035da0d89af60b34dfc63337025acf61788dd75e44210fabca2",
+        "bytes": 10966
+      },
+      "staged_expected_sha256": "2f137aeb9df0f035da0d89af60b34dfc63337025acf61788dd75e44210fabca2",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+        "sha256": "17b70de70e7ee5cf757dcce76a4109f61c519bf01b413c23137ff6a21661c659",
+        "bytes": 5802
+      },
+      "staged_expected_sha256": "17b70de70e7ee5cf757dcce76a4109f61c519bf01b413c23137ff6a21661c659",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/interaction.test.cjs",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/tests/interaction.test.cjs",
+        "sha256": "8a92a7a42d023168bbbb45b6d6ad65d36389254461bbc267e5aa442d4967b279",
+        "bytes": 93491
+      },
+      "staged_expected_sha256": "8a92a7a42d023168bbbb45b6d6ad65d36389254461bbc267e5aa442d4967b279",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/reader.test.cjs",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "sha256": "708ef3dd098fb7fe7845456ff9c46f8fbeabdac445ba616ab4528d2005aceac9",
+        "bytes": 75196
+      },
+      "staged_expected_sha256": "708ef3dd098fb7fe7845456ff9c46f8fbeabdac445ba616ab4528d2005aceac9",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/test_atlas.py",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/tests/test_atlas.py",
+        "sha256": "acca56e1eae4be315677ad611104e168decd981b6cfbe974504176d8ee3138bb",
+        "bytes": 47086
+      },
+      "staged_expected_sha256": "acca56e1eae4be315677ad611104e168decd981b6cfbe974504176d8ee3138bb",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-status/tests/test_figures.py",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-status/tests/test_figures.py",
+        "sha256": "f8a5a3b0cd2567ee57df8d7cd56eb263ba1137a201b210afe95f4a1eb3345140",
+        "bytes": 23983
+      },
+      "staged_expected_sha256": "f8a5a3b0cd2567ee57df8d7cd56eb263ba1137a201b210afe95f4a1eb3345140",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-tracker/tex2mathml.cjs",
+      "kind": "compiler",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-tracker/tex2mathml.cjs",
+        "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+        "bytes": 881
+      },
+      "staged_expected_sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+      "kind": "reused_dependency",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+        "sha256": "12b4e5592a12baaf50637881f2cb9d66667b26b8d51a73cd8f0d6bcefe176ab6",
+        "bytes": 1074
+      },
+      "staged_expected_sha256": "12b4e5592a12baaf50637881f2cb9d66667b26b8d51a73cd8f0d6bcefe176ab6",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "compiler/quantum-holography-tracker/vendor/temml.cjs",
+      "kind": "reused_dependency",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/compiler/quantum-holography-tracker/vendor/temml.cjs",
+        "sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e",
+        "bytes": 478962
+      },
+      "staged_expected_sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/atlas.json",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/atlas.json",
+        "sha256": "46f6b0f369d75f6727132d0fc78fa497296de9cc25a3fbd39fe85a3d2533f1ec",
+        "bytes": 2013079
+      },
+      "staged_expected_sha256": "46f6b0f369d75f6727132d0fc78fa497296de9cc25a3fbd39fe85a3d2533f1ec",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/01-physical-questions.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/01-physical-questions.md",
+        "sha256": "d7be9c003649bbe6cedcf5c1f613a5f0d489713d6fd16a53035968cd7e3c8591",
+        "bytes": 15043
+      },
+      "staged_expected_sha256": "d7be9c003649bbe6cedcf5c1f613a5f0d489713d6fd16a53035968cd7e3c8591",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+        "sha256": "6b792ea9ce6ad1dc15d0874558c8e1a67c615591d0de5fb1778469e0a1d17b38",
+        "bytes": 13335
+      },
+      "staged_expected_sha256": "6b792ea9ce6ad1dc15d0874558c8e1a67c615591d0de5fb1778469e0a1d17b38",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/03-local-fields.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/03-local-fields.md",
+        "sha256": "78ffb642466205b9ca8526b0e9dd0a4560444ad662a36c4bd715f7c8b9a72b1e",
+        "bytes": 13637
+      },
+      "staged_expected_sha256": "78ffb642466205b9ca8526b0e9dd0a4560444ad662a36c4bd715f7c8b9a72b1e",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/04-factorization.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/04-factorization.md",
+        "sha256": "d5b32d3c6e570a73eb4036b398c72be6d03811f65577499c811926ccfedd5e11",
+        "bytes": 31859
+      },
+      "staged_expected_sha256": "d5b32d3c6e570a73eb4036b398c72be6d03811f65577499c811926ccfedd5e11",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+        "sha256": "689073dd17755fe49b9f19a9820fd846be59778c53c11f03730a94441ae25c84",
+        "bytes": 33340
+      },
+      "staged_expected_sha256": "689073dd17755fe49b9f19a9820fd846be59778c53c11f03730a94441ae25c84",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/06-duality-and-induction.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/06-duality-and-induction.md",
+        "sha256": "a96d49d61036182d4b2c554e0976744d36dd2fa976eadd58a0d00f891f3d3cd9",
+        "bytes": 50861
+      },
+      "staged_expected_sha256": "a96d49d61036182d4b2c554e0976744d36dd2fa976eadd58a0d00f891f3d3cd9",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/07-actions-and-centres.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/07-actions-and-centres.md",
+        "sha256": "a677076b2ae029aadc3bc5a0e07659320db6342c536cb8a57ed8c7f8e20413da",
+        "bytes": 47579
+      },
+      "staged_expected_sha256": "a677076b2ae029aadc3bc5a0e07659320db6342c536cb8a57ed8c7f8e20413da",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/08-completions.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/08-completions.md",
+        "sha256": "bf355b06f0b0f183b1ebaeb9b71f1a3a29566d396133a0bb28f004bbfb07ebdd",
+        "bytes": 45237
+      },
+      "staged_expected_sha256": "bf355b06f0b0f183b1ebaeb9b71f1a3a29566d396133a0bb28f004bbfb07ebdd",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+        "sha256": "0387bacbe357cf5f6182d0ae8078fb8db767a5dc099d2b5961ceed9b02e22544",
+        "bytes": 39864
+      },
+      "staged_expected_sha256": "0387bacbe357cf5f6182d0ae8078fb8db767a5dc099d2b5961ceed9b02e22544",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/10-analytic-sewing.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/10-analytic-sewing.md",
+        "sha256": "3a300c778bed63ce2f029a3700d4c3bdd1464df0fd87f041c5fb24fd573bb435",
+        "bytes": 28830
+      },
+      "staged_expected_sha256": "3a300c778bed63ce2f029a3700d4c3bdd1464df0fd87f041c5fb24fd573bb435",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/11-states-and-lines.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/11-states-and-lines.md",
+        "sha256": "61671ca4c5c5f6392832fe78633ed0f462049f491666c50400561be2b9c9f415",
+        "bytes": 45423
+      },
+      "staged_expected_sha256": "61671ca4c5c5f6392832fe78633ed0f462049f491666c50400561be2b9c9f415",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+        "sha256": "43a0c2154f77292b8763b1a954b027bed675fcdf0aa09228559a02166b211173",
+        "bytes": 39341
+      },
+      "staged_expected_sha256": "43a0c2154f77292b8763b1a954b027bed675fcdf0aa09228559a02166b211173",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+        "sha256": "c973270df40fa6b07117c7f10913fc6e040a780e29881334dfaf552086afc3f2",
+        "bytes": 32540
+      },
+      "staged_expected_sha256": "c973270df40fa6b07117c7f10913fc6e040a780e29881334dfaf552086afc3f2",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/14-branes.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/14-branes.md",
+        "sha256": "21df287144b8bda8813fc1c0a8bd72124d254b53f5a1f9498932e55dfd89db8e",
+        "bytes": 39400
+      },
+      "staged_expected_sha256": "21df287144b8bda8813fc1c0a8bd72124d254b53f5a1f9498932e55dfd89db8e",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/15-hall-and-compact.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/15-hall-and-compact.md",
+        "sha256": "ce965577274c75e875abd041804eda62ef9b16fed60d4703e6581491eaaf8cc7",
+        "bytes": 43646
+      },
+      "staged_expected_sha256": "ce965577274c75e875abd041804eda62ef9b16fed60d4703e6581491eaaf8cc7",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/16-arithmetic.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/16-arithmetic.md",
+        "sha256": "50ad41859941b6cd06a721da33db04717fb25ed9a982fbdad0c7ba385817aff9",
+        "bytes": 36389
+      },
+      "staged_expected_sha256": "50ad41859941b6cd06a721da33db04717fb25ed9a982fbdad0c7ba385817aff9",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+        "sha256": "3bd80702dfea378511fec0c1c5c11c5db79803fa21d449c1b5804a67313b0ba7",
+        "bytes": 38574
+      },
+      "staged_expected_sha256": "3bd80702dfea378511fec0c1c5c11c5db79803fa21d449c1b5804a67313b0ba7",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/chapters/18-open-problems.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/chapters/18-open-problems.md",
+        "sha256": "4ba0f0e93a48d2f6bbb7ac8d3c274e122b9e0c56f004c648a1bbabba7ea822fb",
+        "bytes": 36709
+      },
+      "staged_expected_sha256": "4ba0f0e93a48d2f6bbb7ac8d3c274e122b9e0c56f004c648a1bbabba7ea822fb",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/content.json",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/content.json",
+        "sha256": "9c4f58ce5e607726d8910aaf6f6a227daf4d676c148a2ff787b3a053a790b96e",
+        "bytes": 628548
+      },
+      "staged_expected_sha256": "9c4f58ce5e607726d8910aaf6f6a227daf4d676c148a2ff787b3a053a790b96e",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/essay.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/essay.md",
+        "sha256": "2e9fd5a28fce652e083395d5f9f1c8abc77b962d4507637ac023512b8b3944d1",
+        "bytes": 77934
+      },
+      "staged_expected_sha256": "2e9fd5a28fce652e083395d5f9f1c8abc77b962d4507637ac023512b8b3944d1",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/page.json",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/page.json",
+        "sha256": "9799d3b1572b85e3cbc06fa7f8e775e33b77fe7f1d38737597a66b19388d9e37",
+        "bytes": 6392
+      },
+      "staged_expected_sha256": "9799d3b1572b85e3cbc06fa7f8e775e33b77fe7f1d38737597a66b19388d9e37",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/reader-data/diagram-records.json",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/reader-data/diagram-records.json",
+        "sha256": "94ca6ef5e08d2452663ce2f5a215ef9c4c31f9149b435b35087c25318cef4f51",
+        "bytes": 74406
+      },
+      "staged_expected_sha256": "94ca6ef5e08d2452663ce2f5a215ef9c4c31f9149b435b35087c25318cef4f51",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/reader-data/manifest.json",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/reader-data/manifest.json",
+        "sha256": "4816c9017331864999cf4948d471c8e17b5e1110963d5c338e6be9c5579999dc",
+        "bytes": 433797
+      },
+      "staged_expected_sha256": "4816c9017331864999cf4948d471c8e17b5e1110963d5c338e6be9c5579999dc",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+        "sha256": "7dd73855a9c70ce1d54231bf3bbc5cfba50214ec3e271d114ba97ea7c0e0f2c9",
+        "bytes": 40708
+      },
+      "staged_expected_sha256": "7dd73855a9c70ce1d54231bf3bbc5cfba50214ec3e271d114ba97ea7c0e0f2c9",
+      "staged_exact": true
+    },
+    {
+      "logical_path": "content/quantum-holography-status/supplements/supplements.json",
+      "kind": "authored_content",
+      "source_owner_unchanged": true,
+      "staged_after": {
+        "path": "/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/workspace/content/quantum-holography-status/supplements/supplements.json",
+        "sha256": "b8e099df0246cd62c56d73902b0957566f7afe0c18d094adc9ec805a63c1731c",
+        "bytes": 297
+      },
+      "staged_expected_sha256": "b8e099df0246cd62c56d73902b0957566f7afe0c18d094adc9ec805a63c1731c",
+      "staged_exact": true
+    }
+  ],
+  "supplement_digest_synchronizations": [],
+  "clerical_code_delta": {
+    "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/coordination/LINK-CONSUMER.patch",
+    "sha256": "11e356e9f6bbd904e3407e39f4394d0fee02c02f8734aeb8caa0dd345f305912",
+    "bytes": 812
+  },
+  "heading_metadata": {
+    "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/build/HEADING-METADATA.json",
+    "sha256": "f975baab42adf6bf62c1967158fa8406cbc555bc077f55cff5d46f46d43a29bf",
+    "bytes": 3281
+  },
+  "recipe_scripts": {
+    "check_batch.cjs": {
+      "path": "/tmp/qh-v15-first-principles-build-20261118/coordination/check_batch.cjs",
+      "sha256": "ec4c6d0d26fb6d55874edeff11e64215e1320c5cc9e9b28d0412aa762f74076a",
+      "bytes": 12119
+    },
+    "finish_batch.py": {
+      "path": "/tmp/qh-v15-first-principles-build-20261118/coordination/finish_batch.py",
+      "sha256": "36076357305d1de9f57186e3d642e8d78ae146963813428ca5e889f0adc5fea4",
+      "bytes": 5882
+    },
+    "freeze_batch.py": {
+      "path": "/tmp/qh-v15-first-principles-build-20261118/coordination/freeze_batch.py",
+      "sha256": "342402a132fd3384e74e077dfdb4389e94470849eaa29ad1c0e3102a16d9e975",
+      "bytes": 5777
+    },
+    "prepare_batch.py": {
+      "path": "/tmp/qh-v15-first-principles-build-20261118/coordination/prepare_batch.py",
+      "sha256": "3486c546e9ace49521760e6e33ddfd232dc12d2bf3b3f15d0d2b25a5d823e8d5",
+      "bytes": 6544
+    },
+    "source_contract.py": {
+      "path": "/tmp/qh-v15-first-principles-build-20261118/coordination/source_contract.py",
+      "sha256": "48a496c99e12eba842f58ec003971dc5cc3359931c3131f8769bd63abf1eda8e",
+      "bytes": 8321
+    }
+  },
+  "validation_evidence": {
+    "audit/audit.json": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/build/audit/audit.json",
+      "sha256": "eb405bbf5ff738f48a2dd90bfd504d6bde595c041c6072e4584a10ef507d14cd",
+      "bytes": 60855
+    },
+    "DOWNSTREAM.json": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/build/DOWNSTREAM.json",
+      "sha256": "18a94703fd8a62deabcd707b909f1bacc7c282de3576a8bdee31b2e25c1ecbf6",
+      "bytes": 7539
+    },
+    "PUBLIC-FILES-CHECK.json": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/build/PUBLIC-FILES-CHECK.json",
+      "sha256": "84782391ab0369600ede56dd6a5132c750f9f4aecd1e4975a968b7a5b077366c",
+      "bytes": 774
+    },
+    "V14-CONSUMER-CHECK.json": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/build/V14-CONSUMER-CHECK.json",
+      "sha256": "6530681ba12606b1022dbea88d2a37a10581996febedb7c46042077026ddeb3c",
+      "bytes": 6721
+    },
+    "HEADING-METADATA.json": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/build/HEADING-METADATA.json",
+      "sha256": "f975baab42adf6bf62c1967158fa8406cbc555bc077f55cff5d46f46d43a29bf",
+      "bytes": 3281
+    },
+    "READER-PATH-CHECK.json": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/build/READER-PATH-CHECK.json",
+      "sha256": "f4adbb841dd2da8b2beda9bac1a5bcf3764cd8c60f0254d43f2e1fd3821b77c1",
+      "bytes": 754064
+    },
+    "SOURCE-CONTRACT.json": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/build/SOURCE-CONTRACT.json",
+      "sha256": "31dfd3455a0335f5e44a8fb310dd30622aabf0b563a54fc0922cc2111d7a8330",
+      "bytes": 299948
+    },
+    "CHANGED-VIEWS.json": {
+      "path": "/private/tmp/qh-v15-first-principles-build-20261118/batches/direct-v15/build/CHANGED-VIEWS.json",
+      "sha256": "15390437b5714ce289abdd99256e2e7de23b4e2ec5fa820998a4a19a76d0e1b8",
+      "bytes": 7059
+    }
+  },
+  "v14_public_preservation": {
+    "index.html": {
+      "path": "/tmp/qh-v14-sol-integration-20261117/repair-v1/public/index.html",
+      "sha256": "0e5e12b16a27694472cd933f33a7416070049db1b81d349da4f1b37fd61a18b3",
+      "bytes": 3377729,
+      "matches_v14_published": true
+    },
+    "reference.html": {
+      "path": "/tmp/qh-v14-sol-integration-20261117/repair-v1/public/reference.html",
+      "sha256": "755bba3c9b434076375b6110d6b1a1cedac1af74bba0e68e887f1f1bfbd94f47",
+      "bytes": 3944323,
+      "matches_v14_published": true
+    },
+    "atlas.html": {
+      "path": "/tmp/qh-v14-sol-integration-20261117/repair-v1/public/atlas.html",
+      "sha256": "8d8a8de5b6e903daa14aab8375066daccc3947558f965fba4753921b8e4530f0",
+      "bytes": 10233854,
+      "matches_v14_published": true
+    },
+    "reader-index.js": {
+      "path": "/tmp/qh-v14-sol-integration-20261117/repair-v1/public/reader-index.js",
+      "sha256": "6a94ff3cc1f3d178b3c2718921777a3baefbaf5fabc4954bee14edc2e81e1c6e",
+      "bytes": 4985027,
+      "matches_v14_published": true
+    }
+  },
+  "v14_durable_manifest": {
+    "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/MANIFEST.json",
+    "sha256": "7b10c74dbac94226a76ad8464ddcb526fa39561c3300ab70f46921244f55d01c",
+    "bytes": 38401
+  },
+  "native_visual_qa": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "source_owner_mutations": [],
+  "no_new_scientific_prose_or_design": true
+}

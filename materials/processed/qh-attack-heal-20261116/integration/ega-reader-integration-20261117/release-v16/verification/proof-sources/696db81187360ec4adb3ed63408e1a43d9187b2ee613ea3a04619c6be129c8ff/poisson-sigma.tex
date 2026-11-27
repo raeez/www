@@ -1,0 +1,1883 @@
+\chapter{From holomorphic brackets to bulk fields}
+\label{rc:poisson-sigma}
+\label{pcsm:chapter}
+\label{pcsm:section}
+
+A source changes the motion of a field through its Poisson bracket.
+For a current, this response can depend on derivatives of the source.
+The coefficients of those derivatives have a second interpretation:
+they are couplings in a field theory with one additional real direction.
+The Poisson vertex sigma model of Khan and Zeng~\cite{pcsm:KZ}
+makes this construction for a free algebra of differential polynomials.
+The Jacobi identity becomes the classical consistency equation for the
+bulk interaction.
+
+We shall follow one coefficient through the construction.
+A current whose response is \(\kappa\partial\epsilon\), for a source
+\(\epsilon\), gives a quadratic bulk action.
+Integrating its normal fields produces the Heisenberg boundary algebra
+and a supported action on boundary observables.
+The action contains a quantum contraction that ordinary restriction
+would lose.
+Field-dependent response coefficients then lead to affine gauge theory,
+Virasoro fields and line transport.
+
+\section{A current and the response to its source}
+\label{pcsm:sec:source-response}
+
+Consider an elastic field on the circle
+\(s\in\mathbb R/(2\pi\mathbb Z)\).
+Its displacement \(q(s)\) and momentum density \(p(s)\) are smooth
+and periodic. Set the mass density and tension to one and take the energy
+\[
+ E=\frac12\int_0^{2\pi}\bigl(p^2+(\partial_s q)^2\bigr)\,ds.
+\]
+There is no on-site restoring force.
+
+For functionals with variational derivatives, the canonical bracket is
+\[
+ \{F,G\}_0=\int_0^{2\pi}
+ \left(\frac{\delta F}{\delta q}\frac{\delta G}{\delta p}
+       -\frac{\delta F}{\delta p}\frac{\delta G}{\delta q}\right)ds.
+\]
+All integrations by parts use periodicity.
+If\phantomsection\label{pcsm:def:physical-time} \(\tau\) denotes physical time, Hamilton's equations
+\(\partial_\tau g=\{g,E\}_0\) give
+\(\partial_\tau q=p\) and \(\partial_\tau p=\partial_s^2q\).
+Consequently momentum and strain have the traveling combination
+\begin{equation}\label{pcsm:eq:elastic-current}
+ J=\frac{p-\partial_s q}{\sqrt2},\qquad
+ \partial_\tau J=-\partial_sJ.
+\end{equation}
+
+Couple a smooth periodic source \(\epsilon\) by replacing \(E\) with
+\(E-F_\epsilon\), where
+\[
+ F_\epsilon=\int_0^{2\pi}\epsilon(s)J(s)\,ds.
+\]
+The change in the rate of an observable \(g\) is then
+\(\{F_\epsilon,g\}_0\).
+We call this Hamiltonian operation the source response.
+The same convention applies at each time to a time-dependent source.
+
+Varying \(F_\epsilon\) gives
+\[
+ \{F_\epsilon,q(t)\}_0=-\frac{\epsilon(t)}{\sqrt2},\qquad
+ \{F_\epsilon,p(t)\}_0=\frac{\epsilon'(t)}{\sqrt2},
+\]
+where the prime differentiates the spatial argument.
+The two contributions to the current therefore add:
+\begin{equation}\label{pcsm:eq:current-source-response}
+ \{F_\epsilon,J(t)\}_0=\epsilon'(t).
+\end{equation}
+A constant source has zero response on \(J\), but changes the rate of
+the zero mode of \(q\). The current alone does not detect the whole
+Hamiltonian action.
+
+The\phantomsection\label{pcsm:def:periodic-contact} unsmeared bracket fixes the contact sign.
+Let \(\delta(s-t)\) be the periodic Dirac distribution, normalized by
+\(\int_0^{2\pi}\epsilon(s)\delta(s-t)\,ds=\epsilon(t)\).
+Since \(\{q(s),p(t)\}_0=\delta(s-t)\),
+\begin{align*}
+ \{J(s),J(t)\}_0
+ &=-\frac12\left(\{p(s),\partial_tq(t)\}_0
+                  +\{\partial_sq(s),p(t)\}_0\right)\\
+ &=\frac12(\partial_t-\partial_s)\delta(s-t)
+   =\partial_t\delta(s-t).
+\end{align*}
+Smearing the first position recovers
+\eqref{pcsm:eq:current-source-response}.
+For \(\kappa>0\), the rescaled real current
+\(J_\kappa=\sqrt\kappa J\) has response \(\kappa\epsilon'\).
+
+\subsection{Jets and local brackets}
+
+A polynomial measurement at a point uses finitely many derivatives
+of the field there. Write
+\[
+ u_n[J_\kappa]=\left.\partial_s^nJ_\kappa(s)\right|_{s=0},
+ \qquad n\geq0.
+\]
+These jet coordinates generate \(\mathbb C[u_0,u_1,\ldots]\).
+Moving the measurement point induces the total derivative
+\(\partial u_n=u_{n+1}\).
+
+Equivalently, a formal profile has the Taylor series
+\(u(\zeta)=\sum_{n\geq0}u_n\zeta^n/n!\).
+Here \(\zeta\) is position, whereas each \(u_n\) is a coordinate
+on profiles. No convergence is required for the polynomial algebra.
+
+Encode\phantomsection\label{pcsm:def:contact-translation} differentiation of a contact in its second position by an
+even formal variable \(\lambda\).
+Differentiating its first position gives \(-\lambda\).
+Differentiating its second position also differentiates the coefficient
+of the contact. Thus a local bracket must obey
+\[
+ \{\partial f_\lambda g\}=-\lambda\{f_\lambda g\},\qquad
+ \{f_\lambda\partial g\}=(\partial+\lambda)\{f_\lambda g\}.
+\]
+
+Products of measurements require the two Leibniz identities
+\begin{align*}
+ \{f_\lambda gh\}&=\{f_\lambda g\}h+\{f_\lambda h\}g,\\
+ \{fg_\lambda h\}&=\{f_{\lambda+\partial}h\}_{\to}g
+                    +\{g_{\lambda+\partial}h\}_{\to}f.
+\end{align*}
+The arrow means that the derivatives introduced by
+\(\lambda+\partial\) act on the following factor.
+All jet coordinates in this paragraph are even.
+
+The current has \(\{u_\lambda u\}=\kappa\lambda\), with \(u=u_0\).
+Translation determines its higher jets:
+\begin{equation}\label{pcsm:eq:current-jet-response}
+ \{u_m{}_{\lambda}u_n\}=(-1)^m\kappa\lambda^{m+n+1}.
+\end{equation}
+Leibniz then determines every polynomial bracket.
+The constant coefficient makes the generator Jacobi identity zero,
+and the opposite contact derivatives give skewsymmetry.
+The master formula below extends these identities to all polynomials.
+
+The same formulas define a family
+\[
+ A_{\mathrm{cur}}=\mathbb C[\kappa][u_0,u_1,\ldots],
+ \qquad \partial\kappa=0.
+\]
+Its zero-level fiber retains every polynomial jet and has zero bracket.
+Rescaling the mechanical current described its positive real fibers.
+Specialization of this algebra defines the family for every complex
+\(\kappa\).
+
+\subsection{The Hamiltonian differential operator}
+
+For\phantomsection\label{pcsm:def:holomorphic-coordinate} a solution admitting continuation to \(\tau=-i\tau_E\), put
+\(z=s+i\tau_E\).
+Equation~\eqref{pcsm:eq:elastic-current} becomes
+\(\partial_{\bar z}J=0\).
+We may also complexify the polynomial bracket directly, without
+continuing each smooth profile. The total derivative then represents
+holomorphic translation.
+
+For\phantomsection\label{pcsm:def:field-jet-algebra} several fields, take
+\[
+ A=\mathbb C[u^a_n:1\leq a\leq r,\ n\geq0],\qquad
+ \partial u^a_n=u^a_{n+1},\qquad u^a=u^a_0.
+\]
+A \emph{Poisson vertex algebra} structure on \(A\) is a bilinear map
+\(\{-_\lambda-\}:A\otimes A\to A[\lambda]\)
+satisfying the two translation and two Leibniz identities above,
+skewsymmetry and Jacobi:
+\begin{align*}
+ \{f_\lambda g\}&=-\{g_{-\lambda-\partial}f\},\\
+ \{f_\lambda\{g_\mu h\}\}-\{g_\mu\{f_\lambda h\}\}
+ &=\{\{f_\lambda g\}_{\lambda+\mu}h\}.
+\end{align*}
+If \(\{g_\mu f\}=\sum_n b_n\mu^n\), the substitution in the
+first identity is \(\sum_n(-\lambda-\partial)^n b_n\).
+Polynomial dependence on \(\lambda\) expresses finite differential
+order for each pair of fields.
+
+Write\phantomsection\label{pcsm:def:hamiltonian-response} the generator brackets as
+\[
+ \{u^a_\lambda u^b\}=H^{ba}(\lambda),\qquad
+ H^{ab}(\partial)=\sum_{n=0}^N
+                 H_n^{ab}(u,\partial u,\ldots)\partial^n.
+\]
+The transpose records which field responds: a source \(\epsilon_b\)
+coupled to \(u^b\) induces
+\(\delta_\epsilon u^a=H^{ab}(\partial)\epsilon_b\).
+Thus \(H\) maps a column of source covectors to field variations.
+Repeated indices below are summed from \(1\) to \(r\).
+
+Translation and Leibniz give the explicit extension
+\[
+ \{f_\lambda g\}
+ =\sum_{a,b,m,n}
+ \frac{\partial g}{\partial u^b_n}(\lambda+\partial)^n
+ H^{ba}(\lambda+\partial)(-\lambda-\partial)^m
+ \frac{\partial f}{\partial u^a_m}.
+\]
+Every operator acts on what follows it. Each sum is finite because
+\(f,g\) use finitely many jets and \(H\) has finite order.
+
+The formal adjoint reverses composition and sends
+\(\partial\) to \(-\partial\).
+The extended bracket is skew precisely when
+\(H^{ab}=-(H^{ba})^*\). Under this condition its Jacobi identity
+is equivalent to Jacobi on generator triples
+\cite{pcsm:BDK}*{Theorem 1.15 and Proposition 1.16}.
+Such an \(H\) is a Hamiltonian differential operator.
+
+For the current, \(H=\kappa\partial\).
+Allowing its coefficients to depend on fields introduces interactions.
+The bulk construction uses this same operator in its action, so the
+identity controlling successive source responses also controls the
+gauge interaction.
+
+\section{Fields and the classical action}
+
+Work\phantomsection\label{pcsm:def:partial-forms} on \(M=\mathbb R_{\geq0,t}\times\mathbb C_z\),
+with \(z=x+iy\) and orientation \(dt\wedge dx\wedge dy\).
+Partial forms are smooth complex forms generated by \(dt,d\bar z\).
+Their complex is \(\Omega_{\mathrm{HT}}^\bullet(M)\), with
+\[
+ D=dt\,\partial_t+d\bar z\,\partial_{\bar z},\qquad
+ \partial=\partial_z.
+\]
+The holomorphic derivative has degree zero and commutes with \(D\).
+Fields and variations are smooth up to the boundary.
+Their compact supports may meet \(t=0\).
+
+For compactly supported partial forms, fix the traces
+\[
+ \tau_M(a)=\frac1{2\pi i}\int_M dz\wedge a,
+ \qquad
+ \tau_{\mathbb C}(b)=\frac1{2\pi i}\int_{\mathbb C}dz\wedge b.
+\]
+They select partial form degree two and antiholomorphic degree one,
+respectively. The second uses the complex orientation.
+With\phantomsection\label{pcsm:def:boundary-inclusion} \(i:\mathbb C\hookrightarrow M\) the boundary inclusion,
+Stokes' formula in these conventions is
+\(\tau_M(Da)=\tau_{\mathbb C}(i^*a)\).
+The sign includes the outward boundary orientation and the position
+of \(dz\) in the trace.
+
+\subsection{The scalar action fixes the gauge sign}
+
+Let \(\phi\) be a scalar and
+\(a=a_tdt+a_{\bar z}d\bar z\) a partial one-form, both compactly
+supported. For \(\kappa\in\mathbb C\), set
+\[
+ S^{\mathrm{cl}}_\kappa(\phi,a)
+ =\tau_M\left(aD\phi+\frac\kappa2a\partial a\right).
+\]
+The first term couples the current coordinate to partial transport.
+The second inserts the measured derivative response.
+Its coefficient of \(dt\wedge d\bar z\) is
+\[
+ a_t\partial_{\bar z}\phi-a_{\bar z}\partial_t\phi
+ +\frac\kappa2(a_t\partial a_{\bar z}-a_{\bar z}\partial a_t).
+\]
+
+Varying and integrating by parts gives
+\[
+ \delta S^{\mathrm{cl}}_\kappa
+ =\tau_M\bigl(\delta a(D\phi+\kappa\partial a)
+                         +(Da)\delta\phi\bigr)
+       -\tau_{\mathbb C}(i^*a\,\delta\phi).
+\]
+Thus the equations are \(D\phi+\kappa\partial a=0\) and \(Da=0\).
+The condition \(i^*a=0\) cancels the boundary variation and leaves
+\(\phi\) free there.
+
+For\phantomsection\label{pcsm:def:scalar-gauge} a compactly supported parameter \(\epsilon\) vanishing on the
+boundary, define
+\[
+ \delta_\epsilon\phi=\kappa\partial\epsilon,
+ \qquad \delta_\epsilon a=-D\epsilon.
+\]
+Substitution in the variation cancels the two terms containing
+\(\partial Da\), after integration by parts. The remaining term
+vanishes by \(D^2=0\). The same identities preserve both equations.
+The coefficient of the source response has therefore fixed a gauge
+symmetry as well as the action.
+
+\subsection{The full BV fields}
+
+The Batalin--Vilkovisky description puts gauge transformations,
+equations of motion and their identities into one differential.
+For the Hamiltonian operator \(H\), collect the scalar fields,
+degree-one ghosts and their antifields into superfields
+\[
+ \Phi^a=\phi^a+dt\,\phi^a_t+d\bar z\,\phi^a_{\bar z}
+                  +dt\,d\bar z\,\phi^a_{t\bar z},
+\]
+\[
+ \eta_a=c_a+dt\,\eta_{a,t}+d\bar z\,\eta_{a,\bar z}
+                  +dt\,d\bar z\,\eta_{a,t\bar z}.
+\]
+
+Their total degrees are zero and one.
+The coordinate degrees in the first row are \(0,-1,-1,-2\).
+Those in the second are \(1,0,0,-1\).
+The physical fields are \(\phi^a,\eta_{a,t},\eta_{a,\bar z}\),
+and \(c_a\) is the gauge ghost. The remaining coordinates are
+antifields, paired across complementary partial form degrees.
+
+The two-form
+\(\omega_{\mathrm{BV}}=\tau_M(\delta\Phi^a\delta\eta_a)\)
+has degree \(-1\). Its inverse gives the degree-one BV bracket on
+local functionals. Replace the scalar operator in the action by \(H\):
+\begin{equation}\label{pcsm:action}
+ S_H=\tau_M\left(\eta_aD\Phi^a
+          +\frac12\eta_aH^{ab}(\partial;\Phi)\eta_b\right).
+\end{equation}
+Both densities have total degree two, so \(S_H\) has degree zero.
+For \(H=\kappa\partial\), its physical component is
+\(S^{\mathrm{cl}}_\kappa\).
+
+\begin{proposition}[Classical model]\label{pcsm:classical}
+For a Hamiltonian differential operator \(H\), the action
+\eqref{pcsm:action} obeys the classical master equation
+\(\{S_H,S_H\}_{\mathrm{BV}}=0\) on fields with boundary condition
+\begin{equation}\label{pcsm:boundary}
+ i^*\eta=0.
+\end{equation}
+This condition on the whole superfield is Lagrangian and is preserved
+by the BV differential \(Q=\{S_H,-\}_{\mathrm{BV}}\).
+\end{proposition}
+
+\begin{proof}
+The kinetic term squares to zero by \(D^2=0\).
+Its bracket with the interaction is a total partial derivative.
+Its boundary trace contains \(i^*\eta\), so it vanishes.
+
+For the interaction bracket with itself, pair the coefficients with
+three independent odd test fields and integrate the holomorphic
+derivatives by parts. The coefficient is the generator Jacobi identity
+\[
+ \{u^a_\lambda\{u^b_\mu u^c\}\}
+ -\{u^b_\mu\{u^a_\lambda u^c\}\}
+ -\{\{u^a_\lambda u^b\}_{\lambda+\mu}u^c\}=0.
+\]
+The Hamiltonian-operator identity of
+\cite{pcsm:BDK}*{Proposition 1.16} is exactly this calculation after
+integration by parts. Hence the master equation holds, and graded
+Jacobi gives
+\(Q^2=\tfrac12\{\{S_H,S_H\}_{\mathrm{BV}},-\}_{\mathrm{BV}}=0\).
+
+Variation of the action has boundary term
+\(-\tau_{\mathbb C}(\eta_a\delta\Phi^a)\).
+The condition \eqref{pcsm:boundary} sets one of the complementary
+summands of the nondegenerate boundary pairing to zero and leaves
+the other unrestricted. It is Lagrangian.
+The interaction in \(Q\eta\) is quadratic in \(\eta\) and its
+holomorphic derivatives. Its tangential pullback vanishes when
+\(i^*\eta=0\), and the kinetic boundary differential
+\(\bar\partial\) preserves the same condition.
+\end{proof}
+
+This constructs a local classical theory of finite holomorphic
+differential order \cite{pcsm:KZ}*{\S\S2.2 and 4.1}.
+Quantizing a field-dependent \(H\) requires a further construction.
+
+Already among constant operators there are different boundary fields.
+A constant order-zero skew matrix of rank \(2s\) has \(s\)
+two-by-two skew blocks and a zero block of dimension \(r-2s\).
+Each nonzero block gives a beta--gamma pair
+\(\{\beta^i_\lambda\gamma_j\}=\delta^i_j\), while the zero block
+gives commutative differential currents. Only a nondegenerate matrix
+gives a pure beta--gamma system. The positive-order scalar operator
+\(\kappa\partial\) will instead give a double pole.
+
+\section{The cotangent coisson complex}
+\label{pcsm:cotangent}
+
+The same Hamiltonian also acts on a purely holomorphic polynomial
+complex. Adjoin odd variables \(c_{a,n}=\partial^nc_a\) of degree
+one to the degree-zero algebra \(A\), and put
+\[
+ \mathcal P_H=A\otimes\Lambda(c_{a,n}:1\leq a\leq r,\ n\geq0).
+\]
+
+Its Schouten \(\lambda\)-bracket has degree \(-1\), with generator
+values
+\[
+ \{c_a{}_\lambda u^b\}_{\mathrm{Sch}}=\delta_a^b,
+ \qquad \{u^b{}_\lambda c_a\}_{\mathrm{Sch}}=-\delta_a^b,
+\]
+and zero on the other pairs. Extend by sesquilinearity and graded
+Leibniz. The integrated Hamiltonian density
+\(\tfrac12c_aH^{ab}(\partial)c_b\) determines the differential
+\begin{align}\label{pcsm:cotangent-differential}
+ Q_Hu^a&=H^{ab}(\partial)c_b,\notag\\
+ Q_Hc_a&=\frac12\sum_{n\geq0}(-\partial)^n
+   \left(c_b\frac{\partial H^{bc}(\partial)}{\partial u^a_n}c_c\right),
+ \qquad [Q_H,\partial]=0.
+\end{align}
+The differentiated operator still acts on \(c_c\).
+With the bracket convention just chosen, \(Q_H\) is minus the
+Hamiltonian action of that density. Its square vanishes by the
+same variational Jacobi identity.
+
+Thus \(H\) has supplied two complexes independently: the BV fields
+on the half-space and \(\mathcal P_H\) on holomorphic jets.
+Their brackets have different degrees because the BV trace integrates
+two partial form directions. Identifying their observables requires
+a map. For the Gaussian and affine models we shall use an explicit
+contraction of the full component jets.
+Quotienting \(\mathcal P_H\) by total holomorphic derivatives is
+another operation. It will change the Virasoro cohomology calculation.
+
+\section{The Gaussian theory on open sets}
+
+For \(H=\kappa\partial\), the complete BV action is quadratic:
+\begin{equation}\label{pcsm:freeaction}
+ S_\kappa=\tau_M\left(\eta D\Phi+\frac\kappa2\eta\partial\eta\right).
+\end{equation}
+Keep \(\kappa\) as a parameter in
+\(\mathbb k_\kappa=\mathbb C[\kappa]\).
+The regular observables and collar maps will be defined over this ring,
+so they specialize at every complex level.
+
+A\phantomsection\label{pcsm:def:parameter-field-complex} tangent presentation of the fields is
+\[
+ E=\bigl(\Omega_{\mathrm{HT}}^\bullet e_\Phi
+          \oplus\Omega_{\mathrm{HT}}^\bullet e_\eta\bigr)
+             \otimes\mathbb k_\kappa,
+ \qquad |e_\Phi|=0,\quad |e_\eta|=-1,
+\]
+with differential
+\[
+ Q(\alpha e_\Phi)=D\alpha e_\Phi,\qquad
+ Q(\alpha e_\eta)=D\alpha e_\eta
+             +(-1)^{p+1}\kappa\partial\alpha e_\Phi,
+ \quad p=\deg\alpha.
+\]
+These are tangent degrees. The coordinate degrees of the superfields
+are dual to them. The sign makes the two off-diagonal terms in
+\(Q^2\) cancel. The \(e_\Phi\) summand is a subcomplex, and the
+associated graded symbol consists of two elliptic mixed
+de Rham--Dolbeault complexes. Impose \(i^*\eta=0\) at the boundary.
+
+The degree-minus-one pairing is fixed on components by
+\[
+ B_M(\alpha e_\Phi,\beta e_\eta)=\tau_M(\alpha\beta),\qquad
+ B_M(\alpha e_\eta,\beta e_\Phi)
+       =-(-1)^{\deg\beta}\tau_M(\alpha\beta),
+\]
+and is zero on the two equal summands.
+The boundary Green pairing uses the same formulas with
+\(\tau_{\mathbb C}\).
+This convention recovers the quadratic action
+\eqref{pcsm:freeaction}.
+
+For\phantomsection\label{pcsm:def:linear-regular-observables} an open \(U\subset M\), let \(E_c(U)\) denote compactly
+supported smooth fields, with the boundary condition whenever
+\(U\) meets \(t=0\).
+Linear regular observables are modeled by \(C(U)=E_c(U)[1]\).
+If \(s\) denotes suspension, so \(|s\xi|=|\xi|-1\), put
+\[
+ d(s\xi)=-sQ\xi,\qquad
+ b(s\xi,s\zeta)=(-1)^{|\xi|+1}B_M(\xi,\zeta).
+\]
+
+The form \(b\) has degree one and is graded symmetric.
+On a symmetric product, let \(\Delta_b\) sum its unordered pair
+contractions, with the Koszul signs. In particular it kills constants
+and linear factors, and \(\Delta_b(vw)=b(v,w)\).
+Compatibility of \(Q\) with the pairing gives
+\(d\Delta_b+\Delta_bd=0\). Odd pair contractions give
+\(\Delta_b^2=0\).
+
+Set\phantomsection\label{pcsm:def:quantum-coefficient-ring} \(R=\mathbb k_\kappa[\hbar]\), with \(|\hbar|=0\).
+The quantum observable complex is
+\begin{equation}\label{pcsm:quantobs}
+ \mathcal O^q(U)=
+ \left(\bigoplus_{n\geq0}\operatorname{Sym}_b^n C(U)[\hbar],
+                         d+\hbar\Delta_b\right).
+\end{equation}
+At fixed field number \(n\), the subscript \(b\) means the
+completed bornological tensor product of compact smooth kernels,
+followed by graded symmetrization over \(\mathbb k_\kappa\).
+At fixed compact support and parameter degree, the smooth coefficient
+spaces are nuclear Fr\'echet and this tensor is the completed
+projective tensor.
+We then take the bornological inductive limit over supports
+\cite{pcsm:GRW}*{Appendix B}.
+The sum over field number and the parameter coefficients are algebraic.
+
+Regularity is essential to the contraction.
+Evaluation of a field at a point has a delta-distribution kernel.
+It is absent from \eqref{pcsm:quantobs}.
+Here restriction of a smooth joint kernel to a diagonal is defined,
+and integration contracts the two slots.
+Extending these operations to local composite distributions requires
+renormalized observables.
+
+For\phantomsection\label{pcsm:def:hbar-completion} finite precision write \(R_N=R/(\hbar^{N+1})\).
+If \(\mathcal V=\bigoplus_n\operatorname{Sym}_b^n C(U)\), its
+\(\hbar\)-adic completion is
+\[
+ \mathcal V[[\hbar]]=\varprojlim_N
+                  \mathcal V\otimes_{\mathbb k_\kappa}R_N.
+\]
+Each coefficient uses finitely many field numbers.
+Their bound may grow with the power of \(\hbar\), as it does in
+\(\sum_{m\geq0}\hbar^m x^m\).
+Thus this completion generally exceeds
+\(\bigoplus_n(\operatorname{Sym}_b^n C(U))[[\hbar]]\).
+The finite-precision constructions always use the algebraic sum.
+
+\subsection{Factorization and the normal direction}
+
+Disjoint supports permit multiplication before any choice of
+propagator. Given pairwise disjoint opens \(U_i\subset V\), extend
+the kernels by zero and concatenate their variables. This defines
+\[
+ \mathcal O^q(U_1)\otimes_R\cdots\otimes_R\mathcal O^q(U_m)
+          \longrightarrow\mathcal O^q(V).
+\]
+There are no cross contractions on disjoint supports, so the map
+commutes with \(d+\hbar\Delta_b\).
+The maps are continuous at fixed field numbers and compose by
+extension by zero. The structure they express has a useful formulation
+in any complex boundary dimension.
+
+\begin{definition}\label{fs:def:bulk-boundary}
+Fix a symmetric monoidal category of differentiable cochain complexes.
+A \emph{factorization algebra} assigns a complex
+\(\mathcal F(U)\) to each open set and maps
+\(\bigotimes_i\mathcal F(U_i)\to\mathcal F(V)\) for disjoint
+\(U_i\subset V\). They respect composition, permutations and units.
+Finite disjoint unions give tensor products and the empty open gives
+the monoidal unit. The augmented homotopy \v{C}ech diagram must be an
+equivalence for each Weiss cover, a cover containing every finite
+subset in some member.
+For smooth regular observables we use complete bornological complexes
+with their completed bornological tensors.
+
+A \emph{bulk--boundary system} on
+\(\mathbb R_{\geq0}\times\mathbb C^d\) is such a factorization
+algebra \(\mathcal B\).
+It has differentiable complex translations and local real translations
+in the interior, compatible with its operations. Writing \(d_{\mathcal B}\) for its differential,
+holomorphicity is specified by translation-invariant factorization
+derivations \(\eta_j\) of degree \(-1\) satisfying
+\[
+ [d_{\mathcal B},\eta_j]=\partial_{\bar z_j},\qquad
+ [\eta_i,\eta_j]=0.
+\]
+The brackets are graded commutators.
+Normal local constancy requires the maps
+\(\mathcal B(I\times U)\to\mathcal B(I'\times U)\)
+to be quasi-isomorphisms for nonempty intervals
+\(I\subset I'\subset(0,\infty)\), and likewise for inclusions
+of boundary collars \([0,\varepsilon)\times U\).
+\end{definition}
+
+The\phantomsection\label{pcsm:def:boundary-algebra} boundary algebra is \(\mathcal A(U)=
+\mathcal B([0,\varepsilon)\times U)\). Collar inclusions give
+coherent quasi-isomorphisms as \(\varepsilon\) changes.
+The real dimensions are \(2d\) at the boundary and \(2d+1\) in
+the bulk. A translation-invariant system on the whole real line needs an
+extension with the same holomorphic and normal structures.
+The extension must be locally equivalent to the interior restriction.
+
+For the free elliptic theory, regular observables satisfy this descent
+and the normal comparison
+\cite{pcsm:GRW}*{Theorems 4.1--4.2}.
+We now construct that comparison and compute the induced boundary
+pairing. This will fix the current level rather than merely identify
+its underlying polynomial states.
+
+\section{Integrating the normal fields}
+
+Fix\phantomsection\label{pcsm:def:collar-profile} an open \(V\subset\mathbb C\), choose \(\varepsilon>0\),
+and let \(\rho\in C_c^\infty([0,\varepsilon))\) have integral one.
+Put \(F(t)=\int_0^t\rho(s)\,ds\).
+The compact tangential fields split into the boundary condition and
+its complement:
+\[
+ E_\partial=L\oplus G,\qquad
+ L=\Omega_c^{0,\bullet}(V)e_\Phi\otimes\mathbb k_\kappa,
+ \quad G=\Omega_c^{0,\bullet}(V)e_\eta\otimes\mathbb k_\kappa.
+\]
+In\phantomsection\label{pcsm:def:collar-splitting} this splitting the tangential differential has the form
+\[
+ d_\partial(\ell,g)=(d_L\ell+Q_{\mathrm{rel}}g,d_Gg),
+ \qquad d_LQ_{\mathrm{rel}}+Q_{\mathrm{rel}}d_G=0,
+\]
+where \(|Q_{\mathrm{rel}}|=1\) and
+\(Q_{\mathrm{rel}}(\alpha e_\eta)=
+(-1)^{\deg\alpha+1}\kappa\partial\alpha e_\Phi\).
+
+Write a collar field with \(dt\) on the left as
+\(\gamma(t)+dt\,\beta(t)\), with \(\gamma_G(0)=0\).
+Its differential is
+\[
+ Q(\gamma+dt\,\beta)=d_\partial\gamma
+                +dt(\partial_t\gamma-d_\partial\beta).
+\]
+
+Integration of the normal one-form component maps it to \(G[-1]\),
+whose differential is \(-d_G\).
+A cochain section needs a correction to the bump form:
+\begin{equation}\label{pcsm:normalI}
+ P(\gamma+dt\,\beta)=\int_0^\infty\beta_G(s)\,ds,
+ \qquad Ig=dt\,\rho g+(F-1)Q_{\mathrm{rel}}g.
+\end{equation}
+Indeed \(Q(dt\,\rho g)\) has the unwanted term
+\(-dt\,\rho Q_{\mathrm{rel}}g\). Differentiating \(F-1\)
+cancels it. Consequently \(QI=-Id_G\) and \(PI=1\).
+
+The corresponding homotopy is
+\[
+ h(\gamma+dt\,\beta)=-\int_t^\infty\beta(s)\,ds
+       +(1-F(t))\int_0^\infty\beta_G(s)\,ds.
+\]
+The second term sets its \(G\)-component to zero at the boundary.
+The tail integrals vanish above the input and profile supports,
+and every map retains compact tangential support.
+The fundamental theorem of calculus now gives
+\[
+ Qh+hQ=1-IP,
+ \qquad hI=Ph=h^2=0.
+\]
+These formulas apply continuously to smooth collar fields, including
+their completed kernels. They use no inverse of \(\kappa\).
+
+\subsection{The induced current pairing}
+
+Let\phantomsection\label{pcsm:def:current-identification} \(\mathfrak a(V)=\Omega_c^{0,\bullet}(V)\otimes\mathbb k_\kappa\)
+with differential \(\bar\partial\).
+Since \(d_G=\bar\partial\) on coefficients, the degree-preserving
+identification with \(G[-1]\) requires a sign.
+Choose \(\zeta\in\mathbb C\) with \(\zeta^2=-1\) and set
+\[
+ \jmath_\partial(\alpha)=\zeta(-1)^q\alpha e_\eta
+       \quad\text{in }G[-1],\qquad q=\deg\alpha.
+\]
+Then \((-d_G)\jmath_\partial=\jmath_\partial\bar\partial\).
+
+On shifted linear observables define
+\begin{equation}\label{pcsm:eq:current-inclusion}
+ i(s\alpha)=sI\jmath_\partial(\alpha),\qquad
+ p(s\xi)=s\jmath_\partial^{-1}P\xi,\qquad
+ h_C(s\xi)=-s h(\xi).
+\end{equation}
+The map \(i:\mathfrak a(V)[1]\to E_c(V\times\mathbb R_{\geq0})[1]\)
+lands in the chosen collar. The map \(p\) goes in the reverse direction.
+They intertwine the unary differentials and satisfy
+\[
+ pi=1,\qquad dh_C+h_Cd=1-ip,\qquad
+ h_Ci=ph_C=h_C^2=0.
+\]
+
+The square root \(\zeta\) fixes the pairing as well as the chain
+identification. For Dolbeault degrees \(q,r\), only \(q+r=1\)
+contributes. The trace convention reads
+\[
+ \tau_M(dt\,\omega)=-\int_0^\infty\tau_{\mathbb C}(\omega)\,dt.
+\]
+Substitute the two components of \(I\), integrate the holomorphic
+derivative by parts, and use
+\(2\int_0^\infty\rho(1-F)\,dt=1\).
+The result is
+\[
+ B_M\bigl(I(\alpha e_\eta),I(\beta e_\eta)\bigr)
+       =\kappa\tau_{\mathbb C}(\alpha\partial\beta).
+\]
+
+The two \(\jmath_\partial\) factors contribute
+\(\zeta^2(-1)^{q+r}=1\), and suspension contributes
+\((-1)^{q+1}\).
+Define the current cocycle
+\begin{equation}\label{pcsm:cocycle}
+ \mu_\kappa(\alpha,\beta)
+       =-\kappa\tau_{\mathbb C}(\alpha\partial\beta).
+\end{equation}
+We have proved the normalized identity
+\begin{equation}\label{pcsm:eq:current-pairing}
+ b\bigl(i(s\alpha),i(s\beta)\bigr)
+                    =(-1)^q\mu_\kappa(\alpha,\beta).
+\end{equation}
+
+Holomorphic\phantomsection\label{pcsm:def:current-central-extension} integration by parts makes \(\mu_\kappa\) graded
+skew, and compatibility with \(\bar\partial\) makes it a cocycle.
+Adjoin a central element \(K\) of degree one to the abelian dg Lie
+algebra \(\mathfrak a(V)\), with
+\([\alpha,\beta]=\mu_\kappa(\alpha,\beta)K\).
+In its Chevalley--Eilenberg chains the unary and binary differentials are
+\[
+ d_1(s\alpha)=-s\bar\partial\alpha,
+ \qquad
+ d_2(s\alpha\,s\beta)=(-1)^{\deg\alpha}
+                           \mu_\kappa(\alpha,\beta)sK.
+\]
+Specializing\phantomsection\label{pcsm:def:boundary-current-complex} the degree-zero element \(sK\) to \(\hbar\) gives
+the boundary current complex
+\[
+ \mathcal A_\kappa(V)=
+ \left(\operatorname{Sym}_b(\mathfrak a(V)[1])[\hbar],
+                  d+\hbar\Delta_{\mu^s}\right),
+ \qquad \mu^s=i^*b.
+\]
+Its disjoint-support products are defined by extension by zero.
+Equation~\eqref{pcsm:eq:current-pairing} determines the binary
+differential, including its suspension sign.
+
+\subsection{The quantum projection}
+
+The linear section preserves the pairing, so its symmetric extension
+is already a quantum cochain map.
+Ordinary projection loses contractions involving the eliminated fields.
+The normal homotopy supplies exactly their correction.
+
+\begin{proposition}[Quantum normal projection]\label{pcsm:quantprojection}
+The regular coupled collar observables contract onto
+\(\mathcal A_\kappa(V)\) over \(R\).
+The maps and homotopy are continuous and polynomial in \(\hbar\)
+on each finite field-number component.
+They specialize at every level and extend to the stated
+\(\hbar\)-adic completion.
+\end{proposition}
+
+\begin{proof}
+Put\phantomsection\label{pcsm:def:pair-contraction} \(e=ip\) and write \(h=h_C\).
+On two shifted factors, average
+\(h\otimes1+e\otimes h\) with its graded transpose to obtain
+\(H_2\). The tensor differential gives
+\(dH_2+H_2d=1-e\otimes e\).
+Thus the degree-zero graded-symmetric form \(P_2=-bH_2\) has
+Hom differential
+\[
+ \delta P_2=b-p^*\mu^s.
+\]
+
+Let \(\partial_{P_2}\) contract each unordered pair by \(P_2\).
+It vanishes on field numbers zero and one, and
+\[
+ [d,\partial_{P_2}]=\Delta_b-\Delta_{p^*\mu^s}.
+\]
+
+Constant-coefficient contraction operators graded-commute.
+In particular the even operator \(\partial_{P_2}\) commutes with
+both odd Laplacians. For \(T=\exp(\hbar\partial_{P_2})\),
+the conjugation series therefore stops after its first commutator:
+\[
+ T(d+\hbar\Delta_b)T^{-1}=d+\hbar\Delta_{p^*\mu^s}.
+\]
+It follows that the quantum maps are
+\begin{equation}\label{pcsm:quantmaps}
+ i^q=\operatorname{Sym}(i),\qquad
+ p^q=\operatorname{Sym}(p)\exp(\hbar\partial_{P_2}).
+\end{equation}
+Since \(H_2\) vanishes on \(i\otimes i\), one has
+\(Ti^q=i^q\) and \(p^qi^q=1\).
+
+For the homotopy, split the linear complex as
+\(\operatorname{im}i\oplus\ker p\).
+Extend \(h\) as a derivation of its symmetric algebra and divide
+by the number of \(\ker p\) factors whenever this number is positive.
+Set the result \(H_0\) to zero when there are none.
+The linear contraction implies
+\([d,H_0]=1-\operatorname{Sym}(e)\).
+Only retained factors enter \(\Delta_{p^*\mu^s}\), so its graded
+commutator with \(H_0\) is zero. Consequently
+\[
+ H^q=T^{-1}H_0T,\qquad
+ (d+\hbar\Delta_b)H^q+H^q(d+\hbar\Delta_b)=1-i^qp^q.
+\]
+
+Every contraction lowers field number by two, so the exponentials are
+finite on a polynomial. Normal integration, restriction of smooth
+joint kernels to diagonals and compact integration are continuous
+on each fixed-support kernel space.
+Their extensions to the bornological inductive limits give the
+asserted continuity. At each power of \(\hbar\) the completed
+formulas involve finitely many input coefficients, which proves the
+last assertion.
+\end{proof}
+
+\section{The boundary current and its stress field}
+
+The full smooth disk complex contains more states than a vertex
+algebra's algebraic energy decomposition.
+Take the algebraic sum of rotation eigenspaces, called the
+\emph{finite-energy sector}.
+Its creation modes can be fixed by explicit compact representatives.
+
+Choose a radial annular cutoff \(\chi\), equal to one at the inner
+circle and zero at the outer circle. For a holomorphic function on
+the annulus, Stokes' formula gives
+\[
+ \tau_{\mathbb C}((\bar\partial\chi)f)
+                  =\operatorname{Res}_0(f,dz).
+\]
+Hence \(\alpha_n=(\bar\partial\chi)z^{-n}\), for \(n\geq1\), obeys,
+for \(m\geq0\),
+\[
+ \tau_{\mathbb C}(z^m\alpha_n)=\delta_{m,n-1},\qquad
+ -\partial\alpha_n=n\alpha_{n+1}
+             -\bar\partial(z^{-n}\partial_z\chi).
+\]
+The last term is compactly supported and exact.
+
+These formulas fix both the mode normalization and translation.
+
+A vertex algebra packages fields with a vacuum and translation.
+A state \(v\) has a Laurent field \(Y(v,z)\).
+Its application to the vacuum is regular at \(z=0\) with value \(v\).
+Translation differentiates fields.
+Two fields commute after multiplication by a sufficiently large
+power of their separation.
+In the present example the double-pole current generates every state.
+
+\begin{theorem}[Heisenberg boundary]\label{pcsm:heis}
+The finite-energy vertex algebra of \(\mathcal A_\kappa\) is the
+universal Heisenberg vacuum algebra over \(R\), with
+\begin{equation}\label{pcsm:ope}
+ J(z)J(w)\sim\frac{\hbar\kappa}{(z-w)^2},
+ \qquad [J_\lambda J]=\hbar\kappa\lambda.
+\end{equation}
+This is the exact Gaussian perturbative boundary quantization.
+Its vacuum and translation persist at \(\kappa=0\).
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{pcsm:quantprojection} identifies the regular collar
+complex with the normalized current complex.
+For Laurent polynomials \(f,g\), its cocycle is
+\[
+ \omega_\kappa(f,g)
+  =-\kappa\operatorname{Res}_0(f\partial g,dz)
+  =\kappa\operatorname{Res}_0((\partial f)g,dz).
+\]
+Thus \(J_m=\operatorname{Res}_0(z^mJ(z),dz)\) satisfies
+\([J_m,J_n]=\hbar\kappa m\delta_{m+n,0}\).
+The vacuum representation is explicitly
+\[
+ V_\kappa=R[x_1,x_2,\ldots],\qquad \mathbf1=1,
+ \qquad
+ J_{-n}=x_n,\quad
+ J_n=\hbar\kappa n\partial_{x_n}\ (n>0),\quad J_0=0.
+\]
+Each state is a finite polynomial, and \(x_n\) has energy \(n\).
+
+The cutoff representatives above give its translation
+\[
+ T=\sum_{n\geq1}n x_{n+1}\partial_{x_n},\qquad
+ [T,J_m]=-mJ_{m-1}.
+\]
+The mode commutator is equivalent to the double pole in
+\eqref{pcsm:ope}, and implies
+\((z-w)^2[J(z),J(w)]=0\).
+
+Normal ordering places positive modes to the right.
+Normal-ordered products of derivatives of \(J\) supply the fields
+of every polynomial state. For example
+\(\partial^aJ(z)\mathbf1|_{z=0}=a!x_{a+1}\).
+Their Wick expansions give the vacuum, translation and locality
+identities. This is the abelian current extraction of
+\cite{pcsm:GRW}*{\S5.3}.
+
+At zero level, all positive modes vanish.
+The same carrier becomes the commutative differential vertex algebra
+with derivation \(T\). No simple quotient has been taken.
+
+Quadraticity makes Wick contraction exact.
+If \(\kappa\eta\partial\eta/2\) is treated as an insertion,
+each propagator joins \(\Phi\) to \(\eta\).
+Two such insertions cannot join each other.
+A boundary pair of \(\Phi\)'s receives exactly one insertion,
+whose two attachments cancel its factor \(1/2\).
+Thus there is no interaction correction to the current level.
+Normalized polynomial correlations do not determine a vacuum
+determinant or a framing-dependent partition factor.
+\end{proof}
+
+\input{manuscript/constructions/benchmark-boundary-chiral.tex}
+
+\subsection{A quantum term in the composite stress field}
+
+The\phantomsection\label{pcsm:def:composite-stress} current's quadratic composite has a double contraction even
+though its level is unchanged.
+After inverting \(\kappa\), define
+\(L=(2\kappa)^{-1}:J^2:\) over \(R[\kappa^{-1}]\).
+Wick's rule counts four single contractions and two double ones:
+\[
+ :J^2:(z):J^2:(w)\sim
+ \frac{4\hbar\kappa}{(z-w)^2}:J(z)J(w):
+       +\frac{2\hbar^2\kappa^2}{(z-w)^4}.
+\]
+
+Expand the remaining field at \(w\) and use
+\(\partial:J^2:=2:(\partial J)J:\). The stress product is
+\begin{equation}\label{pcsm:stress}
+ L(z)L(w)\sim\frac{\hbar^2/2}{(z-w)^4}
+       +\frac{2\hbar L(w)}{(z-w)^2}
+       +\frac{\hbar\partial L(w)}{z-w}.
+\end{equation}
+Equivalently,
+\([L_\lambda L]=\hbar(\partial+2\lambda)L+\hbar^2\lambda^3/12\).
+
+The double-contraction graph has two vertices and two edges, hence
+one cycle. It changes the composite OPE while leaving \(\kappa\)
+fixed. The usual conformal field of central charge one is
+\(L/\hbar\), which additionally requires \(\hbar^{-1}\).
+
+\section{Point-local bulk operators}
+
+The supported quantum complex answers how observables in different
+regions compose. A classical measurement at one point leads instead
+to the polynomial algebra of component jets.
+We first identify the gauge theory at nonzero level, then contract
+all of its transverse component jets without inverting the level.
+
+Assume\phantomsection\label{pcsm:def:full-exterior-derivative} \(\kappa\ne0\) for the change of variables and write
+\(d_M=D+dz\,\partial\) for the full exterior derivative.
+The complete abelian superconnection is
+\begin{equation}\label{pcsm:csmap}
+ A=\eta-\kappa^{-1}\Phi\,dz.
+\end{equation}
+Exterior multiplication gives
+\begin{equation}\label{pcsm:csaction}
+ -\frac{\kappa}{2}\frac1{2\pi i}\int_M A\wedge d_MA
+       =S_\kappa+\frac12\tau_M D(\Phi\eta).
+\end{equation}
+
+For\phantomsection\label{pcsm:eq:connection-three-form} the ordinary three-form component the calculation is
+\[
+ A\wedge d_MA
+ =dz\wedge\bigl[-\eta\partial\eta
+       -2\kappa^{-1}\eta D\Phi-\kappa^{-1}D(\Phi\eta)\bigr].
+\]
+The total derivative vanishes under \(i^*\eta=0\).
+The linear transformation includes the ghosts and antifields and
+identifies the linear gauge complexes with abelian Chern--Simons
+theory in this boundary polarization. Its inverse parameter is the
+reason this particular identification excludes \(\kappa=0\).
+
+\subsection{Contracting every BV component jet}
+
+Return to the polynomial parameter ring \(\mathbb k_\kappa\).
+The\phantomsection\label{pcsm:def:h373-holomorphic-cotangent-complex} holomorphic cotangent complex for the same operator is
+\begin{equation}\label{pcsm:local}
+ B_{\mathrm{hol}}=
+ \mathbb k_\kappa[u_0,u_1,\ldots]\otimes\Lambda(c_0,c_1,\ldots),
+ \qquad du_n=\kappa c_{n+1},\quad dc_n=0.
+\end{equation}
+Here \(|u_n|=0\) and \(|c_n|=1\).
+
+To compare it with the full fields, use
+\(Q\eta=D\eta\) and \(Q\Phi=D\Phi+\kappa\partial\eta\).
+When \(Q\) crosses \(dt\) or \(d\bar z\), it acquires a minus sign.
+The eight component equations are therefore
+\begin{equation}\label{pcsm:eq:component-Q}
+\begin{aligned}
+ Qc&=0,& Q\phi&=\kappa\partial c,\\
+ Q\eta_t&=-\partial_t c,&
+ Q\eta_{\bar z}&=-\partial_{\bar z}c,\\
+ Q\eta_{t\bar z}&=\partial_t\eta_{\bar z}
+                          -\partial_{\bar z}\eta_t,\\
+ Q\phi_t&=-\partial_t\phi-\kappa\partial\eta_t,&
+ Q\phi_{\bar z}&=-\partial_{\bar z}\phi
+                                   -\kappa\partial\eta_{\bar z},\\
+ Q\phi_{t\bar z}&=\partial_t\phi_{\bar z}
+              -\partial_{\bar z}\phi_t+\kappa\partial\eta_{t\bar z}.
+\end{aligned}
+\end{equation}
+Extend by commuting with all three derivatives and by the graded
+Leibniz rule. This retains the equations and gauge identities in
+addition to the transformations of physical fields.
+
+Let\phantomsection\label{pcsm:def:component-jet-module} \(\tau_1,\tau_2,\zeta\) record the undivided jet derivatives
+\(\partial_t,\partial_{\bar z},\partial_z\).
+The linear jet module is
+\[
+ V_{\mathrm{jet}}=\mathbb k_\kappa[\tau_1,\tau_2,\zeta]
+             \otimes\bigoplus_{I\subseteq\{1,2,3\}}\mathbb C e_I,
+ \qquad |e_I|=1-|I|,
+\]
+with component basis
+\[
+\begin{array}{c|c@{\qquad}c|c}
+ I&e_I&I&e_I\\ \hline
+ \varnothing&c&3&\phi\\
+ 1&-\eta_t&13&-\phi_t\\
+ 2&-\eta_{\bar z}&23&-\phi_{\bar z}\\
+ 12&-\eta_{t\bar z}&123&-\phi_{t\bar z}
+\end{array}
+\]
+
+Index strings are increasing.
+Identify this basis with an exterior-index basis in three symbols
+\(\theta_1,\theta_2,\theta_3\), with the displayed shifted degrees.
+Left contraction \(\iota_j\) removes index \(j\) with its exterior
+sign. Then every equation in \eqref{pcsm:eq:component-Q} is contained in
+\begin{equation}\label{pcsm:eq:jet-Koszul}
+ Q=\tau_1\iota_1+\tau_2\iota_2+\kappa\zeta\iota_3.
+\end{equation}
+
+The\phantomsection\label{pcsm:def:polynomial-bv-jets} full polynomial observable algebra is
+\(B_{\mathrm{BV,jet}}=\operatorname{Sym}^{\mathrm{gr}}_{
+\mathbb k_\kappa}(V_{\mathrm{jet}})\).
+Each element uses finitely many jets. There is no largest-jet quotient
+and no integration over the point.
+
+Give\phantomsection\label{pcsm:def:jet-projection} a linear generator \(\tau_1^a\tau_2^b\zeta^n e_I\)
+transverse weight \(a+b+|I\cap\{1,2\}|\), and add weights on
+products. Define \(\pi\) to kill the positive-weight generators and
+to send
+\(\zeta^ne_\varnothing\mapsto c_n\),
+\(\zeta^ne_3\mapsto u_n\).
+Its multiplicative section \(\jmath\) sends \(c_n\) to
+\(\partial^nc\) and \(u_n\) to \(\partial^n\phi\).
+
+\begin{proposition}[Complete abelian jet reduction]
+\label{pcsm:prop:component-jets}
+The maps \(\pi:B_{\mathrm{BV,jet}}\to B_{\mathrm{hol}}\) and
+\(\jmath:B_{\mathrm{hol}}\to B_{\mathrm{BV,jet}}\) are dg algebra
+maps with \(\pi\jmath=1\).
+There is a degree-minus-one polynomial homotopy \(H\) such that
+\begin{equation}\label{pcsm:eq:jet-contraction}
+ QH+HQ=1-\jmath\pi.
+\end{equation}
+All three maps commute with holomorphic translation and with scalar
+specialization of \(\kappa\).
+\end{proposition}
+
+\begin{proof}
+The differential preserves transverse weight.
+At weight zero, \eqref{pcsm:eq:jet-Koszul} reads
+\(Qe_3=\kappa\zeta e_\varnothing\), which is precisely
+\eqref{pcsm:local}. This proves the assertions about the algebra maps.
+
+On the linear jet module put
+\[
+ h_0=\theta_1\wedge\partial_{\tau_1}
+                      +\theta_2\wedge\partial_{\tau_2}.
+\]
+The wedges act on the exterior index, not by multiplying observables.
+Contraction and wedge give \(Qh_0+h_0Q=N\), where \(N\)
+is transverse weight. The term \(\kappa\zeta\iota_3\)
+anticommutes with \(h_0\).
+
+Extend \(h_0\) as a graded derivation \(H_0\) of the polynomial
+algebra. Its anticommutator with \(Q\) is a derivation, and the
+generator identity proves \(QH_0+H_0Q=N\) on every product.
+Both operators preserve weight.
+
+Define \(H=N^{-1}H_0\) at
+positive weight and \(H=0\) at weight zero.
+This gives \eqref{pcsm:eq:jet-contraction}.
+Every sum is finite on a polynomial. Only positive integers are
+inverted. The formulas are polynomial in \(\kappa\) and commute
+with the holomorphic translation derivation.
+\end{proof}
+
+For an affine Hamiltonian operator the nonlinear differential admits
+the corresponding contraction over \(\mathbb C[\kappa]\)
+(Theorem~\ref{bcz:thm:jets}).
+For a general Hamiltonian operator, the comparison must still be
+constructed with its nonlinear differential. The independently
+defined complex \(\mathcal P_H\) by itself supplies no such map.
+
+\subsection{Absolute cohomology and translation}
+
+The transverse reduction is valid at zero level, but the further
+contraction of holomorphic jets requires a nonzero level.
+
+\begin{proposition}[Absolute local cohomology]\label{pcsm:localcohom}
+After specialization at \(\kappa\in\mathbb C^\times\),
+\(H^*(B_{\mathrm{hol}})=\Lambda_{\mathbb C}(c_0)\).
+\end{proposition}
+
+\begin{proof}
+Let \(N\) count occurrences of \(u_n,c_{n+1}\), leaving \(c_0\)
+uncounted. On positive count, use left odd derivatives to define
+\[
+ h=\frac1{\kappa N}\sum_{n\geq0}u_n\partial_{c_{n+1}}.
+\]
+Set \(h=0\) on \(1,c_0\).
+The anticommutator of
+\(\sum_n c_{n+1}\partial_{u_n}\) and
+\(\sum_n u_n\partial_{c_{n+1}}\) is the counting operator \(N\).
+Thus \(dh+hd=1-ip\), where \(p\) kills all counted variables
+and \(i\) includes \(\Lambda(c_0)\).
+No infinite sum acts on an individual polynomial.
+\end{proof}
+
+The surviving \(c_0\) is the constant ghost in the absolute
+Lie-algebraic complex. A theory taking invariants under a specified
+global gauge group can use a different complex. In particular,
+constant reductive-group invariants need not be represented by this
+ghost \cite{pcsm:CDG}*{\S6.2.1}.
+The smooth quantum observables and their supported products remain
+\eqref{pcsm:quantobs}.
+
+The\phantomsection\label{pcsm:def:constant-operator-complex} same polynomial argument handles any nonzero odd polynomial
+\(p(T)\in\mathbb C[T]\) in translation.
+For the constant operator \(p(\partial)\), let \(B_p\) have
+\(du_n=p(\partial)c_n\), \(dc_n=0\).
+Its linear map from even to odd generators is multiplication by
+\(p(T)\) on \(\mathbb C[T]\), hence injective.
+
+After splitting off its image, contracting those paired generators leaves
+\[
+ H^*(B_p)=\Lambda\bigl(\mathbb C[T]/p(T)\bigr).
+\]
+For \(p(T)=\kappa T\) there is one odd class.
+At \(p=0\) the differential vanishes and every generator survives.
+This argument concerns polynomial local complexes, without an analytic
+quantization claim for higher-order operators.
+
+Translation distinguishes the zero-level fiber too.
+The degree-minus-one derivation
+\(K=\sum_{n\geq0}u_n\partial_{c_n}\) satisfies
+\[
+ dK+Kd=\kappa\partial.
+\]
+Both sides send \(u_n\) to \(\kappa u_{n+1}\) and \(c_n\) to
+\(\kappa c_{n+1}\), which proves the identity on the whole algebra.
+At nonzero level, \(K/\kappa\) is a null-homotopy of translation.
+At zero level, translation takes the nonzero class \(c_0\) to
+\(c_1\), so no such homotopy exists.
+
+\section{Interior insertions act through contractions}
+
+The small point-local cohomology does not make the action of supported
+bulk cochains trivial.
+An eliminated normal variable can contract with a boundary insertion
+even when its own projection is zero. A polynomial pair shows the
+mechanism before we apply it to the collar maps.
+
+\subsection{One normal pair}
+
+Over\phantomsection\label{pcsm:def:normal-pair} \(R\), take \(\mathcal N=R[x,u]\otimes\Lambda(v)\), with
+\(|x|=|u|=0\) and \(|v|=-1\), and define
+\[
+ D_0=(u-\hbar\kappa\partial_x)\partial_v,
+ \qquad
+ p^q=\left.\exp(\hbar\kappa\partial_u\partial_x)
+                                      \right|_{u=v=0}.
+\]
+The exponential is finite on polynomials.
+For \(i(f)=f(x)\), direct differentiation gives
+\(D_0^2=0\), \(p^qD_0=0\) and \(p^qi=1\).
+
+More explicitly,
+\[
+ p^q(u^ax^b)=
+ \begin{cases}
+  (\hbar\kappa)^a\dfrac{b!}{(b-a)!}x^{b-a},&a\leq b,\\
+  0,&a>b.
+ \end{cases}
+\]
+Thus \(p^q(u)=0\), but \(p^q(ui(f))=\hbar\kappa\partial_xf\).
+The exact element \(D_0v=u\) has a nonzero operator image at
+nonzero level.
+
+This operation cannot be a cochain map into
+\(\operatorname{End}_R(R[x])\) with zero differential.
+For a geometric cochain action we must keep the tangential complex
+and the actual supported boundary inclusion.
+
+\subsection{The supported bulk action}
+
+Use the collar profile of \eqref{pcsm:normalI} and its quantum maps.
+Let \(U\subset V\times(a,b)\), where
+\(0<\varepsilon<a<b\).
+An observable in \(U\) and the image of \(i^q\) have disjoint
+normal supports. Extension by zero, their factorization product and
+the quantum projection define
+\begin{equation}\label{pcsm:beta}
+ \begin{split}
+ \beta_{U;V}:\mathcal O^q(U)&\longrightarrow
+       \operatorname{Hom}^\bullet_R
+                    (\mathcal A_\kappa(V),\mathcal A_\kappa(V)),\\
+ \beta_{U;V}(f)(a_0)&=
+       p^q\bigl(\operatorname{ext}_U(f)\,i^q(a_0)\bigr).
+ \end{split}
+\end{equation}
+The target consists of continuous cochain operations, with
+Hom differential \(T\mapsto dT-(-1)^{|T|}Td\).
+
+The two quantum comparison maps are cochain maps, and disjointness
+removes the cross BV terms in the middle product.
+Hence \(\beta_{U;V}\) is a cochain map.
+
+Its mixed term can be nonzero when the linear projection vanishes.
+Choose\phantomsection\label{pcsm:def:mixed-collar-test} a unit-integral normal form \(\rho_{\mathrm{int}}dt\)
+above the boundary profile and compact tangential tests
+\(\phi\in\Omega_c^{0,0}(V)\),
+\(\beta\in\Omega_c^{0,1}(V)\), with
+\(\tau_{\mathbb C}(\phi\beta)=1\).
+In the shifted conventions set
+\[
+ u=\zeta^{-1}\kappa s(\rho_{\mathrm{int}}dt\,\phi e_\Phi),
+ \qquad v=s\beta.
+\]
+Then \(p(u)=0\), whereas on the boundary profile
+\(h_Cu=\zeta^{-1}\kappa s(\phi e_\Phi)\).
+
+Since \(h_Ci=0\) and \(ip(u)=0\), the symmetrized tensor
+homotopy on \(u\otimes i(v)\) is \(h_Cu\otimes i(v)\).
+Using \(i(v)=-\zeta sI(\beta e_\eta)\) and the trace sign,
+\[
+ P_2(u,i(v))=-b(h_Cu,i(v))=\kappa.
+\]
+Consequently
+\[
+ \beta(u)(v)=\hbar\kappa,\qquad \beta(u)(1)=0.
+\]
+
+This is the contraction lost by ordinary restriction.
+The test \(u\) is not assumed closed. The calculation is an
+operation on cochains, not a new degree-zero bulk cohomology class.
+
+For homogeneous linear \(u\) and boundary generators \(v_j\),
+the whole operation is
+\[
+ \begin{split}
+ \beta(u)(v_1\cdots v_r)
+ &=p(u)v_1\cdots v_r\\
+ &\quad+\hbar\sum_{j=1}^r
+ (-1)^{|u|\sum_{\ell<j}|v_\ell|}P_2(u,i(v_j))
+                         v_1\cdots\widehat v_j\cdots v_r.
+ \end{split}
+\]
+The second term retains its factor \(\hbar\) over every \(R_N\)
+and over \(\mathbb k_\kappa[[\hbar]]\).
+It cannot be divided by \(\hbar\) on either coefficient ring.
+
+Ordered normal supports also give a composition homotopy.
+Suppose \(f\) is supported above \(g\).
+The normal primitive of \(g\), together with its boundary profile,
+stays below \(f\), so multiplication by \(f\) remains a cochain
+map during the contraction.
+The joint projected product and successive \(\beta\)-operations
+differ by inserting \(1-i^qp^q=dH^q+H^qd\).
+
+Thus their difference is the Hom differential of
+\[
+ K(f,g,a_0)=(-1)^{|f|}p^q\bigl(
+  \operatorname{ext}(f)\,
+  H^q(\operatorname{ext}(g)\,i^q(a_0))\bigr).
+\]
+
+The sign moves the degree-minus-one homotopy past \(f\).
+This supplies the ordered composition comparison with its support
+condition. Coherence under arbitrary motion of supports needs the
+corresponding parameter-dependent operations.
+
+\section{Gauge fields and the gravitational sector}
+\label{pcsm:gravity}
+
+The Gaussian example used a constant response operator.
+For currents of a Lie algebra, the field-dependent term expresses
+the commutator of gauge transformations.
+Let \(\mathfrak g\) be a finite-dimensional complex Lie algebra
+with nondegenerate invariant symmetric form \(b\).
+Choose a basis \(t_a\), write
+\([t_a,t_b]=f_{ab}^{\ d}t_d\), and let \(J_a\) be its currents.
+Their affine bracket is
+\[
+ \{J_a{}_{\lambda}J_b\}=f_{ab}^{\ d}J_d
+                              +\kappa b(t_a,t_b)\lambda.
+\]
+The convention \(\{J_a{}_{\lambda}J_b\}=H^{ba}(\lambda)\)
+fixes the transpose of the field-linear coefficient.
+
+The Chern--Simons interpretation can be seen in the physical action.
+Identify the currents with \(\Phi\in\mathfrak g\) by
+\(J_a=b(t_a,\Phi)\), and write \(a=\eta_a t_a\) for the
+physical partial connection. The action becomes
+\[
+ S^{\mathrm{cl}}_H=
+ \tau_M\left(b(a,D\Phi)-\tfrac12b(\Phi,[a,a])
+                              +\tfrac\kappa2b(a,\partial a)\right).
+\]
+The Lie bracket includes exterior multiplication of form coefficients.
+
+For \(\kappa\ne0\), set
+\(\mathscr A=-a+\kappa^{-1}\Phi\,dz\) and normalize
+\[
+ \operatorname{CS}(\mathscr A)=\frac1{2\pi i}\int_M
+ \left(b(\mathscr A,d_M\mathscr A)
+                +\tfrac13b(\mathscr A,[\mathscr A,\mathscr A])\right).
+\]
+The quadratic calculation of \eqref{pcsm:csaction} and the three
+placements of \(\Phi\,dz\) in the cubic term give
+\[
+ -\frac\kappa2\operatorname{CS}(\mathscr A)
+       =S^{\mathrm{cl}}_H+\tfrac12\tau_M D\,b(\Phi,a).
+\]
+The boundary term vanishes for \(i^*a=0\).
+At \(\kappa=0\), the displayed first-order action instead has
+the holomorphic--topological BF form.
+This is the local classical affine realization
+\cite{pcsm:KZ}*{\S3.1}.
+
+A comparison of full BV theories also retains the symplectic form,
+ghosts and antifields. With a full-superfield map \(F\), coefficient
+\(c_{\mathrm{CS}}\) and local two-form \(B\), its normalization
+is expressed by
+\[
+ F^*\omega_{\mathrm{CS}}=\omega_{\mathrm{PV}},\qquad
+ F^*(c_{\mathrm{CS}}\operatorname{CS})=S_H+\tau_M DB.
+\]
+A numerical identification with a gravitational coupling or a quantum
+boundary level must use these conventions and the corresponding
+quantum comparison.
+
+\subsection{The Virasoro interaction}
+
+A stress field supplies a nonlinear scalar example.
+For an even generator \(T\) and \(c\in\mathbb C\), take
+\[
+ \{T_\lambda T\}=(\partial+2\lambda)T+\frac c{12}\lambda^3,
+ \qquad
+ H_T=T'+2T\partial+\frac c{12}\partial^3.
+\]
+Here \(T'=\partial T\) multiplies the input, while the other
+displayed derivatives act on it.
+The term \(\tfrac12\eta H_T\eta\) gives the Virasoro sigma-model
+interaction directly from the classical bracket.
+The Virasoro and \(\mathcal W\) examples of
+\cite{pcsm:KZ}*{\S\S3.2--3.5} relate this construction to
+three-dimensional gravitational gauge data.
+
+The role of a conformal element can already be stated classically.
+Its zero mode acts as holomorphic translation.
+The classical translation is a gauge symmetry under the
+coordinate-action hypotheses of \cite{pcsm:KZ}*{\S\S2.3 and 4.3}.
+These require a diagonal integral or half-integral first-mode grading,
+locally nilpotent positive modes and the corresponding spin data. The local translation homotopies are visible in the
+polynomial examples below.
+
+Turning this symmetry into a supported quantum topological theory
+requires compatible Ward homotopies, radius maps and their coherences.
+Neither a global three-manifold theory nor its full topological
+field-theory axioms follow from the local symmetry argument.
+
+Write\phantomsection\label{pcsm:def:virasoro-jet-complex} \(u_n=\partial^nT\) and \(c_n=\partial^nc_0\) for the
+undivided stress and ghost jets, of degrees zero and one.
+On
+\[
+ P=\mathbb C[u_0,u_1,\ldots]\otimes\Lambda(c_0,c_1,\ldots)
+\]
+the cotangent differential is the derivation determined by
+\[
+ du_0=u_1c_0+2u_0c_1+\frac c{12}c_3,
+ \qquad dc_0=c_0c_1,
+ \qquad [d,\partial]=0.
+\]
+The nonlinear terms preserve a weight that makes the next calculation
+finite on each polynomial.
+
+\begin{proposition}[Polynomial Virasoro cohomology]\label{pcsm:vircohom}
+For \(c\ne0\), one has \(H^*(P)=\Lambda(\xi)\), where
+\(\xi=[c_0c_1c_2]\) has degree three.
+\end{proposition}
+
+\begin{proof}
+Give the generators weights \(w(u_n)=n+2\) and \(w(c_n)=n-1\).
+The differential preserves weight. Its central part is
+\[
+ \delta u_n=\frac c{12}c_{n+3},\qquad \delta c_n=0.
+\]
+
+At a fixed weight, filter decreasingly by
+\(\deg_{\mathrm{coh}}+\#u\), where \(\#u\) counts even
+factors. The operator \(\delta\) preserves this number and
+\(d-\delta\) increases it by one.
+This is a finite filtration: only \(c_0\) has negative weight,
+only \(c_1\) has weight zero, and both occur at most once.
+All other variables have positive weight.
+
+The pairs \((u_n,c_{n+3})\) contract for \(\delta\), leaving
+\(\Lambda(c_0,c_1,c_2)\).
+The next differential is
+\[
+ dc_0=c_0c_1,\qquad dc_1=c_0c_2,\qquad dc_2=c_1c_2.
+\]
+It is an isomorphism from degree one to degree two and vanishes
+on degree two. Only the unit and the degree-three product survive.
+No later degree-one differential can join their degrees.
+The original product \(c_0c_1c_2\) is closed, so it represents
+the surviving class in the convergent weightwise calculation.
+\end{proof}
+
+The explicit polynomial comparison in
+Theorem~\ref{vir:contraction} explains what the spectral sequence
+has eliminated. The three residual ghosts form the
+\(\mathfrak{sl}_2\) gauge complex. Its section corrects the third
+ghost by a nonlinear stress term, and its finite homotopy contracts
+the other pairs. Those same corrected coordinates construct the
+oper connection used for finite-dimensional lines below.
+
+\subsection{Integrating a holomorphic density changes the complex}
+
+Let\phantomsection\label{pcsm:def:integrated-density-complex} \(F=P/\partial P\) be the complex of translation-invariant
+holomorphic differential-polynomial densities modulo total derivatives.
+It has neither the support nor the carrier of all three-dimensional
+local functionals.
+
+The kernel of \(\partial:P\to P\) is \(\mathbb C\).
+In a nonconstant polynomial, the next highest-jet coefficient
+forces independence of the highest jet.
+This applies to even and exterior variables alike. Descending through the jet orders proves the claim.
+Thus there is an exact sequence of complexes
+\[
+ 0\longrightarrow P/\mathbb C\xrightarrow{\partial}P
+                 \longrightarrow F\longrightarrow0.
+\]
+
+Left\phantomsection\label{pcsm:def:virasoro-translation-homotopy} exterior differentiation \(K=\partial/\partial c_0\) has
+degree \(-1\). The generator formulas give
+\[
+ (dK+Kd)u_n=u_{n+1},\qquad
+ (dK+Kd)c_n=c_{n+1}.
+\]
+Both sides are derivations, so \(dK+Kd=\partial\) on \(P\).
+Since \(K1=0\), this is also a homotopy of the displayed map
+\(P/\mathbb C\to P\).
+
+Its cone therefore splits, as a complex, and
+\[
+ F\simeq P\oplus(P/\mathbb C)[1].
+\]
+For \(c\ne0\), its cohomology has one dimension in each of
+degrees \(0,2,3\), with density representatives
+\(1,c_1c_2,c_0c_1c_2\).
+The degree-two representative is closed in the quotient because
+\(d(c_1c_2)=\partial(c_0c_1c_2)\).
+
+Multiplication and the entire Schouten \(\lambda\)-bracket do not
+descend to this quotient. Write \(\int f\) for the class of \(f\).
+Its integrated zero-mode bracket does descend:
+\[
+ \{\!\int f,\int g\!\}
+       =\int\{f_\lambda g\}_{\mathrm{Sch}}\big|_{\lambda=0}.
+\]
+The two sesquilinearity identities make any change by a total
+derivative vanish in this expression.
+The integrated complex and the full polynomial complex consequently
+retain different operations as well as different cohomology groups.
+
+\section{Line operators and the full local symmetry}
+\label{pcsm:sec:witt-lines}
+
+A line coupled to every holomorphic jet of the Virasoro gauge field
+must respond to every derivative of its gauge parameter.
+This requires an action of all local vector fields on its coefficient
+module. The three-dimensional subalgebra \(\mathfrak{sl}_2\)
+does not suffice for a field-independent coupling.
+We shall construct an infinite polynomial module that carries the
+full action, then a different finite-dimensional transport that uses
+the stress field itself.
+
+Let\phantomsection\label{pcsm:def:witt-algebra}
+\[
+ \mathfrak w_+=\bigoplus_{n\geq-1}\mathbb C\ell_n,
+ \qquad \ell_n=-z^{n+1}\partial_z,
+ \qquad [\ell_n,\ell_m]=(n-m)\ell_{n+m}.
+\]
+The bracket of two \(\ell_{-1}\)'s is zero.
+Its subalgebra spanned by \(\ell_{-1},\ell_0,\ell_1\) is
+\(\mathfrak{sl}_2\), with
+\(E=\ell_1\), \(F=-\ell_{-1}\), \(H=-2\ell_0\).
+In the two-dimensional representation, \(\ell_0\) has weights
+\(-1/2,1/2\). The relation
+\([\ell_0,\ell_2]=-2\ell_2\) forces \(\ell_2=0\), since
+no pair of weights differs by two.
+But \([\ell_2,\ell_{-1}]=3\ell_1\) would then force the
+nonzero raising operator to vanish.
+
+\begin{proposition}\label{pcsm:prop:witt-finite}
+Every finite-dimensional representation of \(\mathfrak w_+\) is
+trivial. A nontrivial finite-dimensional \(\mathfrak{sl}_2\)
+representation therefore has no extension to \(\mathfrak w_+\)
+on its original carrier.
+\end{proposition}
+
+\begin{proof}
+The Lie algebra of polynomial vector fields is simple.
+Indeed, a nonzero ideal contains \(f(z)\partial_z\) for a
+nonzero polynomial \(f\).
+Repeated brackets with \(\partial_z\) give a nonzero constant
+multiple of \(\partial_z\).
+Bracketing it with \(z^{m+1}\partial_z\) gives
+\((m+1)z^m\partial_z\), for every \(m\geq0\), so the ideal
+contains all polynomial vector fields.
+A map from this infinite-dimensional Lie algebra to the
+finite-dimensional vector space \(\operatorname{End}_{\mathbb C}(W)\)
+has a nonzero kernel. Simplicity makes that kernel the whole algebra.
+\end{proof}
+
+The polynomial Neveu--Schwarz superalgebra has even part
+\(\mathfrak w_+\) and odd generators
+\(g_r\), \(r=-1/2,1/2,3/2,\ldots\), with graded brackets
+\[
+ [\ell_n,g_r]=(n/2-r)g_{n+r},\qquad
+ [g_r,g_s]=2\ell_{r+s}.
+\]
+A zero-coefficient term with an index outside this range is omitted.
+Every finite-dimensional superrepresentation is trivial as well:
+the even action vanishes by the proposition, and
+\([\ell_0,g_r]=-r g_r\) then kills every odd generator.
+
+Algebraic induction enlarges a spin space, but need not make an
+infinite jet act on it. A \(\mathfrak w_+\)-module \(M\) is
+\emph{restricted} if, for every \(v\in M\), one has
+\(\ell_n v=0\) for all sufficiently large \(n\), with the bound
+allowed to depend on \(v\). This condition makes a formal sum of
+positive modes act on each state by a finite sum.
+
+\begin{proposition}\label{pcsm:prop:induced-restricted}
+For \(r\geq1\), put \(V_r=\operatorname{Sym}^r\mathbb C^2\) and
+\[
+ I_r=U(\mathfrak w_+)\otimes_{U(\mathfrak{sl}_2)}V_r.
+\]
+The map \(v\mapsto1\otimes v\) is injective, and for every
+algebraic \(\mathfrak w_+\)-module \(M\) there is a natural
+isomorphism
+\[
+ \operatorname{Hom}_{\mathfrak w_+}(I_r,M)
+ \simeq\operatorname{Hom}_{\mathfrak{sl}_2}
+                 (V_r,M|_{\mathfrak{sl}_2}).
+\]
+The module \(I_r\) is not restricted. If \(M\) is restricted,
+both displayed spaces are zero.
+\end{proposition}
+
+\begin{proof}
+Order a basis of the span of \(\ell_n\), \(n\geq2\), before
+the three \(\mathfrak{sl}_2\) basis vectors. The
+Poincar\'e--Birkhoff--Witt theorem makes \(U(\mathfrak w_+)\)
+free as a right \(U(\mathfrak{sl}_2)\)-module, with the ordered
+monomials in the first group as a basis. This proves injectivity.
+Restriction of a map to \(1\otimes V_r\) has inverse
+\(f\mapsto(u\otimes v\mapsto u f(v))\), proving the adjunction.
+For every \(N\geq2\) and \(v\ne0\), the vector
+\(\ell_N(1\otimes v)=\ell_N\otimes v\) is a nonzero PBW vector.
+Thus \(I_r\) is not restricted.
+
+Let \(W\) be the image of an \(\mathfrak{sl}_2\)-linear map
+\(V_r\to M\), with \(M\) restricted. A finite basis of \(W\)
+has a common bound, so \(\ell_NW=0\) for some \(N\geq2\).
+Since \(\ell_{-1}W\subset W\), the relation
+\([\ell_N,\ell_{-1}]=(N+1)\ell_{N-1}\) implies
+\(\ell_{N-1}W=0\). Descending gives \(\ell_1W=0\).
+The remaining two brackets then kill \(\ell_0W\) and
+\(\ell_{-1}W\). The irreducible nontrivial module \(V_r\)
+has no nonzero image with trivial \(\mathfrak{sl}_2\) action,
+so \(W=0\).
+\end{proof}
+
+An infinite highest-weight string provides a restricted replacement.
+
+\subsection{A polynomial module for every local vector field}
+
+Fix\phantomsection\label{pcsm:def:polynomial-witt-module} \(a\in\mathbb C\) and take \(M_a=\mathbb C[x]\) in
+degree zero. With \(d_x=\partial_x\) the ordinary, undivided
+derivative, define
+\begin{equation}\label{pcsm:eq:witt-polynomial}
+ L_{-1}=x,\qquad
+ L_n=xd_x^{n+1}+(n+1)a\,d_x^n\quad(n\geq0).
+\end{equation}
+The derivative orders make sufficiently high modes vanish on each
+fixed polynomial, while \(L_{-1}\) raises its degree by one.
+
+\begin{proposition}\label{pcsm:prop:witt-polynomial}
+The assignments \(\ell_n\mapsto L_n\) give a faithful
+\(\mathfrak w_+\)-representation on \(M_a\).
+Its \(\mathfrak{sl}_2\)-restriction is the Verma module with
+highest vector \(1\) and highest \(H\)-weight \(-2a\).
+The action extends continuously to
+\(\widehat{\mathfrak w}_+=\prod_{n\geq-1}\mathbb C\ell_n\),
+with the product topology of discrete coefficient lines. The target
+has pointwise evaluation on discrete polynomials.
+\end{proposition}
+
+\begin{proof}
+Use \(d_x^r x=xd_x^r+r d_x^{r-1}\) to obtain, for \(n,m\geq0\),
+\[
+ [L_n,L_m]=(n-m)
+       \bigl(xd_x^{n+m+1}+(n+m+1)a\,d_x^{n+m}\bigr),
+ \qquad [L_n,x]=(n+1)L_{n-1}.
+\]
+These are all the required relations.
+Since \(L_{-1}\ne0\), simplicity implies faithfulness.
+
+The vectors \(F^k1=(-x)^k\) form a basis, with
+\(E1=0\) and \(H1=-2a\). Hence the restricted module has
+exactly the Verma basis and action.
+Explicitly, for \(0\leq n\leq k\),
+\[
+ L_nx^k=(k)_n\bigl(k-n+(n+1)a\bigr)x^{k-n},
+ \qquad (k)_n=k(k-1)\cdots(k-n+1),\quad(k)_0=1.
+\]
+For \(n>k\) the value is zero.
+
+A formal sum of modes thus has a finite value on every state.
+In a composite, each factor raises degree by at most one, so the
+relevant double sum remains finite.
+The coefficient of \(\ell_j\) in the formal Lie bracket also
+has finitely many terms, because both indices are at least \(-1\).
+The polynomial bracket identity extends coefficientwise, and the
+same bounds prove continuity.
+\end{proof}
+
+At \(a=-m/2\), \(m\geq0\), the irreducible
+\(\mathfrak{sl}_2\) quotient is \(M_a/(x^{m+1})\).
+For \(m\geq1\), its defining submodule fails to be invariant
+under the full vector-field algebra:
+\begin{equation}\label{pcsm:eq:witt-quotient-defect}
+ L_2x^{m+1}=-\frac{m(m+1)(m+2)}2\,x^{m-1}.
+\end{equation}
+The trivial quotient at \(m=0\) does extend, with every mode zero.
+Thus the polynomial module supplies the line coupling, whereas its
+nontrivial finite-dimensional quotient loses a required relation.
+
+\subsection{Formal transport and endpoint covariance}
+
+Let\phantomsection\label{pcsm:def:virasoro-gauge-field} \(\mu=\mu_tdt+\mu_{\bar z}d\bar z\) be the physical
+Virasoro gauge field and fix a vertical line at \(z=z_0\).
+For an even parameter \(\epsilon\), its time component transforms as
+\begin{equation}\label{pcsm:eq:witt-gauge}
+ \delta\mu_t=-\partial_t\epsilon
+                   +\epsilon\partial_z\mu_t-\mu_t\partial_z\epsilon.
+\end{equation}
+The local jet coupling of \cite{pcsm:KZ}*{\S3.2.2} is now defined
+on the actual module \(M_a\):
+\[
+ A_a(t)=\sum_{n\geq0}
+     \frac{\partial_z^n\mu_t(t,z_0,\bar z_0)}{n!}L_{n-1},
+ \qquad
+ B_a(t)=\sum_{n\geq0}
+     \frac{\partial_z^n\epsilon(t,z_0,\bar z_0)}{n!}L_{n-1}.
+\]
+Each sum is finite on a polynomial.
+Taylor coefficients identify the nonlinear term of
+\eqref{pcsm:eq:witt-gauge} with
+\([\widehat\mu_t,\widehat\epsilon]\) in the formal vector-field
+algebra, giving
+\begin{equation}\label{pcsm:eq:witt-connection-gauge}
+ \delta A_a=-\partial_tB_a+[A_a,B_a].
+\end{equation}
+
+For formal time expansions \(A_a(t)=\sum_{j\geq0}A_jt^j\),
+define \(U_a(t)=\sum_{k\geq0}U_kt^k\) by
+\begin{equation}\label{pcsm:eq:witt-transport}
+ U_0=1,\qquad
+ U_{k+1}=\frac1{k+1}\sum_{j=0}^k A_jU_{k-j}.
+\end{equation}
+This is the unique solution of \(\partial_tU_a=A_aU_a\) with
+identity initial value. It is invertible as a formal operator series.
+On each state its value lies in \(M_a[[t]]\): every time coefficient
+uses finitely many polynomial operations, with no completion in \(x\).
+
+\begin{proposition}\label{pcsm:prop:witt-transport}
+The transport is gauge covariant:
+\[
+ \delta U_a(t)=-B_a(t)U_a(t)+U_a(t)B_a(0).
+\]
+It transports endpoint states transforming by \(-B_a\).
+\end{proposition}
+
+\begin{proof}
+Differentiate the right side, substitute
+\eqref{pcsm:eq:witt-connection-gauge}, and use
+\(\partial_tU_a=A_aU_a\).
+It satisfies the linearized transport equation with zero initial
+variation. The coefficient recursion gives uniqueness.
+\end{proof}
+
+This gives a formal open line on an infinite coefficient module.
+An analytic evolution on that module, or a trace closing the line,
+requires its own domain. Finite-dimensional transport instead arises
+from a connection depending on the stress field.
+
+\subsection{Finite-dimensional transport from the oper connection}
+
+For\phantomsection\label{pcsm:def:local-oper} \(c\ne0\), put \(q=6T/c\), with primes denoting
+\(\partial_z\). The equation \(\psi''+q\psi=0\) can be
+written on the two-component column \((\psi,\psi')^{\mathsf t}\).
+Its geometric form is an oper.
+Over a commutative differential algebra \((\mathcal O,\partial_z)\),
+let \(\mathcal E\) be a free rank-two module with trivialized
+determinant. A local \(\mathrm{SL}_2\) oper consists of a
+determinant-preserving \(z\)-connection \(\nabla\) and a rank-one
+direct summand \(\mathcal L\subset\mathcal E\), for which
+\[
+ \mathcal L\xrightarrow{\nabla}
+         (\mathcal E/\mathcal L)\otimes\Omega_z^1,
+ \qquad \Omega_z^1=\mathcal O\,dz,
+\]
+is an isomorphism. Projection to the quotient makes this map
+\(\mathcal O\)-linear.
+
+Take\phantomsection\label{pcsm:def:oper-line-basis} \(\mathcal E=\mathcal O^{\oplus2}\),
+\(\mathcal L=\mathcal O e_2\), and
+\(\nabla=(\partial_z-A_z)dz\), with
+\begin{equation}\label{pcsm:eq:oper-line-matrices}
+ A_z=\begin{pmatrix}0&1\\-q&0\end{pmatrix},\qquad
+ E_q(f)=\begin{pmatrix}f'/2&-f\\qf+f''/2&-f'/2\end{pmatrix},
+ \qquad A_t=E_q(\mu_t).
+\end{equation}
+The induced map sends \(e_2\) to \(-e_1dz\), so the oper
+condition holds. These are the matrices of
+Chapter~\ref{rc:virasoro-oper} with its variables \(U=-q\) and
+\(\nu=-\mu\).
+For time-dependent coefficients, let \(\partial_t\) commute with
+\(\partial_z\). The Virasoro transformation and the time equation
+of motion become
+\[
+ \delta q=\epsilon q'+2\epsilon'q+\tfrac12\epsilon''',
+ \qquad
+ \mathcal F=\partial_tq+\mu_tq'+2\mu_t'q
+                                      +\tfrac12\mu_t'''=0.
+\]
+
+\begin{proposition}\label{pcsm:prop:oper-line}
+On a classical Virasoro sigma-model solution,
+\eqref{pcsm:eq:oper-line-matrices} gives gauge-covariant line
+transport in every finite-dimensional \(\mathfrak{sl}_2\)
+representation. With \(L=E_q(\epsilon)\), the exact off-shell
+identities are
+\begin{align}
+ \partial_tA_z-\partial_zA_t+[A_z,A_t]
+ &=\begin{pmatrix}0&0\\-\mathcal F&0\end{pmatrix},
+                              \label{pcsm:eq:oper-line-curvature}\\
+ \delta A_z&=-\partial_zL+[A_z,L],\notag\\
+ \delta A_t&=-\partial_tL+[A_t,L]
+                 +\begin{pmatrix}0&0\\\epsilon\mathcal F&0\end{pmatrix}.
+                              \label{pcsm:eq:oper-line-gauge}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Substitute the displayed transformation of \(q\) and
+\eqref{pcsm:eq:witt-gauge} in the matrices.
+Their diagonal and upper off-diagonal defects cancel.
+The lower entries are respectively \(-\mathcal F\), zero and
+\(\epsilon\mathcal F\), proving the identities before imposing
+the equations of motion.
+
+On a solution, applying any representation
+\(\rho:\mathfrak{sl}_2\to\operatorname{End}_{\mathbb C}(W)\)
+therefore gives
+\[
+ \delta\rho(A_t)=-\partial_t\rho(L)+[\rho(A_t),\rho(L)].
+\]
+Its transport has the endpoint covariance of
+Proposition~\ref{pcsm:prop:witt-transport}.
+For smooth coefficients on a compact time interval it is the
+ordinary finite matrix differential equation.
+In the fundamental representation \(\operatorname{Tr}A_t=0\),
+so transport preserves the determinant.
+\end{proof}
+
+The dependence of \(E_q(\epsilon)\) on \(q\) is essential:
+its time covariance uses the stress equation.
+This finite-dimensional line and the polynomial jet line have
+different coefficient actions. Both give specified endpoints on
+which bulk insertions can act. The finite one does not require an
+extension of a fixed \(\mathfrak{sl}_2\)-module to
+\(\mathfrak w_+\).
+
+\subsection{From flat connections to an Einstein metric}
+
+To\phantomsection\label{pcsm:def:real-cartan-data} pass from gauge fields to a metric, impose a real form and
+nondegeneracy. In Lorentzian signature, take
+\(\mathfrak{sl}_2(\mathbb R)\)-valued one-forms \(\omega,e\)
+and a length \(\ell>0\).
+For a connection \(A\), write
+\(F(A)=d_MA+\tfrac12[A,A]\), and put
+\(d_\omega e=d_Me+[\omega,e]\).
+The two connections \(A^\pm=\omega\pm e/\ell\) are flat exactly
+when
+\begin{equation}\label{pcsm:flat-gravity}
+ F(A^\pm)=F(\omega)+\frac1{2\ell^2}[e,e]
+                                  \pm\ell^{-1}d_\omega e=0.
+\end{equation}
+
+Adding and subtracting gives the constant-curvature and torsion-free
+Cartan equations. If \(e\) is invertible, \(\omega\) is the compatible spin connection.
+The Einstein metric
+\[
+ g=2\operatorname{Tr}(e\otimes e)
+\]
+has Lorentzian signature and sectional curvature \(-\ell^{-2}\).
+The trace is in the defining representation.
+
+This is the classical Chern--Simons description
+\cites{hol:AT,hol:WittenGravity}.
+Flat connections with degenerate \(e\) do not define a metric
+in this chart. Euclidean fillings require their corresponding
+reality conditions in place of two independent real connections.
+
+Chapter~\ref{filling:chapter} constructs Einstein collars and
+complete fillings with boundary data.
+The integral affine--ghost reduction of Chapter~\ref{rc:brst}
+maps to physical currents under the renormalized current and Ward
+assumptions of Theorem~\ref{brst-thm:physical}.
+Connection elimination also has determinant and contact terms,
+and boundary-domain comparisons have analytic hypotheses
+(Chapters~\ref{rc:ec}--\ref{rc:boundary}).
+A quantum gravitational identification must preserve these data
+along with the classical stress bracket.
+
+\section{Two constructions to compare}
+\label{pcsm:reconstruction}
+
+The Poisson vertex bracket determines a classical bulk action. The
+Gaussian model also has a quantum boundary complex and a supported
+bulk action. Reconstruction asks whether boundary conditions and
+the operators between them determine that bulk.
+A bulk insertion acts on those objects and morphisms compatibly
+with their compositions and with other bulk insertions.
+For a unital dg algebra \(A\), the derived algebraic center is
+\[
+ C^\bullet(A,A)=R\operatorname{Hom}_{A\otimes A^{\mathrm{op}}}(A,A),
+\]
+with its Hochschild operations (Chapter~\ref{rc:holography}).
+The holomorphic question additionally retains translation, singular
+collisions and support.
+
+These requirements already separate two kinds of motion in the free
+example. On its boundary complex, holomorphic translations cannot
+be the unary operations of an ordinary topological moving-disks
+action (Proposition~\ref{ca:prop:translation}).
+The proposed universal object is instead the diagonal center of
+Conjecture~\ref{rv:intro:conj:ht-centre}, with its unital supported
+mixed factorization structure. Existence and terminality in that
+specified action category remain to be proved.
+The map \eqref{pcsm:beta} supplies an explicit cochain action and
+its ordered composition homotopy on which to test this comparison.
+
+Choosing one boundary object introduces a further generation question.
+Let \(P\) be a right dg \(A\)-module, replaced by a homotopically
+projective representative, and put \(B=\operatorname{End}_A(P)\).
+It models \(R\operatorname{Hom}_A(P,P)\), and \(P\) is a
+\(B\)--\(A\) bimodule. The interface gives the adjunction on
+right derived module categories
+\[
+ -\otimes_B^{\mathbb L}P:\operatorname{Mod}_B
+ \rightleftarrows\operatorname{Mod}_A:
+ R\operatorname{Hom}_A(P,-).
+\]
+If \(P\) is compact and detects acyclic modules, it is a compact
+generator and the adjunction is an equivalence
+(Proposition~\ref{hol:generator}).
+Transport of a holomorphic bulk action must further intertwine
+the supported collision operations and translations.
+
+An augmentation object can detect only a completion.
+For \(A=\mathbb C[x]\) and \(P=\mathbb C\) with \(x\) acting
+by zero, the first endomorphism algebra is modeled by
+\(\Lambda(\eta)\), \(|\eta|=1\).
+Its ungraded derived double centralizer is \(\mathbb C[[x]]\),
+and the natural map is
+\(\mathbb C[x]\to\mathbb C[[x]]\)
+(Proposition~\ref{rbt:prop:double-dual}).
+The choice of boundary object has retained a formal neighborhood.
+Recovering the full theory requires the corresponding generation
+and operation comparisons.
+
+Holomorphic bulk--boundary structures occur in the twisted holography
+of Costello and Gaiotto~\cite{hol:CG}.
+Costello--Paquette formulate a universal chiral defect coupling
+through Koszul duality, with additional hypotheses on the free limit
+\cite{hol:CP}*{\S6.3}. Categorical boundary constructions also
+produce proposed bulk descriptions in \cite{hol:categorical}.
+
+For a prescribed Poisson vertex bracket, the sigma model defines
+a concrete reconstruction problem.
+First, construct its quantization and boundary category.
+Then compare the supported action with the proposed center and
+determine which bulk sector the boundary probes generate.
+An Einstein realization must also carry the independently specified
+states and the sewing maps of their fillings.

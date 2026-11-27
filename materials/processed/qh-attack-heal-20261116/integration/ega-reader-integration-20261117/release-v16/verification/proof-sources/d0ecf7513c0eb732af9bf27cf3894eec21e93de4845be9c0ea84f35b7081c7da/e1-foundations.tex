@@ -1,0 +1,2800 @@
+\chapter{Associative chiral algebras}
+\label{e1f:chapter}
+
+The scalar vacuum has an associative field product: multiplying
+any number of its identity fields gives the identity. Its collision
+residues\phantomsection\label{e1f:def:scalar-three-point-coordinates} behave differently. For three positions, write
+\(u=z_1-z_3\) and \(v=z_2-z_3\). The function
+\[
+ F(u,v)=\frac1{u(u-v)}
+\]
+has double residue \(1\) when the first two positions meet first,
+and double residue \(0\) when the last two meet first. The third
+order, in which the outer positions meet with the middle one held
+apart, contributes \(-1\). The three terms satisfy a Jacobi
+relation; the first two do not satisfy associativity.
+
+This distinction determines which coefficient objects can retain
+an associative structure. A chiral operation in the sense of Beilinson and
+Drinfeld takes localized differential-module inputs to an output
+on their common diagonal \cite{chhop:BD}. On a curve, a strictly
+associative operation of this type has zero triple products.
+A normalized local vacuum then forces the module itself to vanish.
+Replacing ordinary maps by derived maps on the same degree-zero
+modules does not remove this obstruction.
+
+There is nevertheless an associative construction retaining the
+fields and their vacuum. Put their residues in the differential
+of a coalgebra on configurations, and take its associative cobar.
+The coefficients of this algebra are complexes on collision
+strata. At three positions they retain the outer collision,
+which supplies the homotopy between the two consecutive residue
+operations. The unit of the cobar lies on the empty configuration;
+the vacuum remains a state at one position.
+
+The obstruction on modules makes the change of coefficient
+objects necessary. Ordered
+matrix-valued fields then determine the configuration geometry,
+and the scalar vacuum determines its first nontrivial collision
+coefficients. These examples lead to the residue coalgebra and
+its cobar, to the comparison with symmetric chiral algebras, and
+to the extra tensor and duality data required for coproducts and
+centres. Throughout, \(k\) has characteristic zero and \(X\) is a
+smooth curve over \(k\). Differential modules are right modules;
+\(\omega_X\) denotes the canonical right \(\mathcal D_X\)-module.
+Complexes are cohomologically graded, with
+\(H^i(M[r])=H^{i+r}(M)\), and tensor operations on
+homogeneous coefficients use the Koszul signs.
+
+\section{Operations with a prescribed collision target}
+\label{e1f:sec:pch}
+
+For\phantomsection\label{e1f:def:distinct-configuration-open} a nonempty finite set \(I\), let
+\(j_I:U_I\hookrightarrow X^I\) be the locus of pairwise distinct
+positions, and let \(\Delta_I:X\hookrightarrow X^I\) be the small
+diagonal. Given right differential modules \(M_i\) and \(N\), put
+\begin{equation}\label{e1f:eq:pch}
+ P_I^{\mathrm{ch}}(\{M_i\};N)
+ =\operatorname{Hom}_{\mathcal D_{X^I}}
+ \left(j_{I*}j_I^*\!\left(\boxtimes_{i\in I}M_i\right),
+                    \Delta_{I*}N\right).
+\end{equation}
+The source permits poles where positions meet. The target is
+supported where all positions agree, and retains the normal
+derivatives of that diagonal. Taking an operation therefore
+specifies both its singular inputs and its collision output.
+
+For a surjection \(\pi:I\twoheadrightarrow J\), first apply an
+operation inside each fibre. Localize between different fibres,
+transfer their outputs along the partial diagonal, and apply the
+operation indexed by \(J\). These are the compositions of the
+chiral pseudo-tensor category \cite{chhop:BD}*{\S3.1}. They use
+all surjections. Permuting the labels permutes the coordinates
+and the external factors, so the category is symmetric.
+A \emph{chiral algebra} is a Lie algebra for these operations:
+its binary map is skew under this simultaneous permutation and
+satisfies Jacobi.
+
+Write\phantomsection\label{e1f:def:binary-open-diagonal} \(j=j_{\{1,2\}}\) and \(\Delta=\Delta_{\{1,2\}}\).
+The principal-parts quotient is the chiral operation
+\begin{equation}\label{e1f:eq:unit}
+ \varepsilon_N:
+ j_*j^*(\omega_X\boxtimes N)\twoheadrightarrow\Delta_*N.
+\end{equation}
+A vacuum of a chiral algebra \(A\) is a map
+\(u:\omega_X\to A\) whose left action is \(\varepsilon_A\).
+This normalization fixes the residue, rather than an ordinary
+product of two sections at the same point.
+
+On\phantomsection\label{e1f:def:translation-state-space} \(X=\mathbb A^1\), a vacuum and a compatible translation
+action identify chiral algebras with vertex algebras
+\cite{chhop:BD}*{\S0.15}. The translation action makes the
+underlying differential module weakly equivariant. Let \(V\)
+be its state space and \(T\) its translation on states. In a
+translation trivialization the left-module form is
+\(\mathcal O_X\otimes_k V\), with connection
+\[
+ \partial_z(f\otimes a)=f'\otimes a+f\otimes Ta.
+\]
+The\phantomsection\label{e1f:def:state-field-expansion} associated fields have the expansion
+\[
+ Y(a,u)b=\sum_{n\in\mathbb Z}(a_{(n)}b)u^{-n-1}.
+\]
+The chiral map encodes this whole expansion
+\cite{chhop:BD}*{\S3.5.10}. Its value on an input multiplied by
+\(u^{-j-1}\), followed by the simple-residue projection, extracts
+the coefficient of \(u^j\). Restricting the inputs to be regular
+along the diagonal retains only the singular coefficients.
+
+The vacuum does not supply the missing regular coefficients.
+For example, put \(T=0\) on \(k1\oplus kx\). The two unital
+commutative products \(x^2=0\) and \(x^2=x\) have zero singular
+part and the same vacuum. Their constant fields, and hence their
+chiral maps on localized inputs, differ.
+
+\subsection{The same operations on Ran space}
+
+The\phantomsection\label{e1f:def:ran-singleton-system} Ran category \(\mathcal D(\operatorname{Ran}X)\) consists of
+systems of differential-module complexes on \(X^I\), compatible
+with exceptional pullback along every surjection. Equip it with
+the chiral tensor of Francis and Gaitsgory
+\cite{chhop:FG}*{\S\S2.1--2.3}, and let
+\(\iota:X\to\operatorname{Ran}X\) be the singleton inclusion.
+Its direct image \(\iota_*\) is fully faithful.
+
+\begin{proposition}\label{e1c:prop:ran}
+For differential modules \(M_1,\ldots,M_n,N\) in degree zero,
+the degree-zero maps
+\[
+ \iota_*M_1\otimes^{\mathrm{ch}}\cdots
+       \otimes^{\mathrm{ch}}\iota_*M_n\longrightarrow\iota_*N
+\]
+are precisely \(P_n^{\mathrm{ch}}(M_1,\ldots,M_n;N)\).
+The identification preserves permutations and compositions along
+surjections.
+\end{proposition}
+
+\begin{proof}
+The tensor of the singleton objects is induced from
+\(j_{n*}j_n^*(\boxtimes_iM_i)\) on \(X^n\)
+\cite{chhop:FG}*{\S2.3.3, Lemma~2.3.4}. Chart adjunction and
+base change identify its maps to \(\iota_*N\) with maps to
+\(\Delta_{n*}N\). Both coefficient objects are concentrated in
+degree zero, so degree-zero derived maps are ordinary module maps.
+This gives \eqref{e1f:eq:pch}.
+
+For an iterated operation, localization first within the fibres
+and then between them is the localization of the full input.
+Base change along the partial diagonal identifies the resulting
+map with the surjection composition. Permutations act on the
+same coordinates and external factors in both descriptions.
+\end{proof}
+
+The proposition concerns singleton-supported objects. The free
+nonunital associative Ran algebra on \(\iota_*\omega_X\), with
+underlying object
+\[
+ \bigoplus_{n\geq1}(\iota_*\omega_X)^{\otimes^{\mathrm{ch}}n},
+\]
+has associative concatenation, but its second tensor power is
+nonzero on two distinct positions. It is not a singleton
+insertion.
+
+Adjoining the empty configuration gives a tensor unit
+\(k_\varnothing\) supported there. A map from this unit to an
+object supported entirely on nonempty configurations is zero;
+the unit identity would make a unital such object zero.
+Unitalization therefore adds the summand \(k_\varnothing\).
+Its unit is different from the local map \(\omega_X\to A\).
+
+\section{Why a vacuum excludes strict associativity}
+\label{e1f:sec:collapse}
+
+Call a binary operation \(\mu\in P_2^{\mathrm{ch}}(A,A;A)\)
+\emph{strictly associative} when
+\(\mu\circ_1\mu=\mu\circ_2\mu\) in
+\(P_3^{\mathrm{ch}}(A,A,A;A)\). A map \(u:\omega_X\to A\)
+is normalized on the left if
+\(\mu(u,1)=\varepsilon_A\), and on the right if
+\(\mu(1,u)=-\varepsilon_A\tau\). Here \(\tau\) exchanges
+the factors and coordinates. The minus sign is the orientation
+sign for transposing the two positions.
+
+Before imposing either normalization, consider the scalar test
+from the beginning of the chapter.
+
+\begin{proposition}\label{e1f:prop:flags}
+For \(F(u,v)=1/(u(u-v))\), taking first the residue at
+\(u-v=0\) and then at \(v=0\) gives \(1\). Taking first the
+residue at \(v=0\) and then at \(u=0\) gives \(0\).
+\end{proposition}
+
+\begin{proof}
+Set \(s=u-v\), \(t=v\) for the first flag. In the domain
+where \(s\) is expanded first,
+\[
+ \frac1{s(s+t)}
+   =\sum_{n\geq0}(-1)^n s^{n-1}t^{-n-1}.
+\]
+Its coefficient of \(s^{-1}t^{-1}\) is \(1\).
+For the other flag, put \(s=v\), \(t=u\). The expansion
+\(1/(t(t-s))=\sum_{n\geq0}s^nt^{-n-2}\) has no negative
+power of \(s\), so its first residue is zero.
+\end{proof}
+
+The remaining flag begins with \(u=0\), the collision of
+positions \(1,3\). Expanding
+\(F=-v^{-1}u^{-1}(1-u/v)^{-1}\) gives successive residues
+\(-v^{-1}\) and \(-1\). Thus the three values are
+\(1,0,-1\). Their signed relation involves the intermediate
+stratum \(13|2\). It does not yet give a degree-minus-one
+operation: that requires a complex containing this stratum.
+
+\subsection{Separating the two consecutive channels}
+
+The first two flags cannot agree nontrivially even when their
+intermediate coefficients differ. The reason is visible before
+the last collision. Along \(12|3\), the first normal coordinate
+acts locally nilpotently; along \(1|23\), the second does. The
+outer difference is invertible on both intermediate modules.
+
+\begin{lemma}\label{e1f:lem:separation}
+Let \(R\) be commutative, \(s,v\in R\), and \(h=s+v\).
+Let \(E,L_s,L_v\) be \(R[h^{-1}]\)-modules, with \(s\)
+locally nilpotent on \(L_s\) and \(v\) locally nilpotent on
+\(L_v\). Let \(Q\) be an \(R\)-module. Suppose the maps
+\[
+ E\xrightarrow{\alpha_s}L_s\xrightarrow{\beta_s}Q,
+ \qquad
+ E\xrightarrow{\alpha_v}L_v\xrightarrow{\beta_v}Q
+\]
+have the same composite, where the \(\alpha\)'s are
+\(R[h^{-1}]\)-linear and the \(\beta\)'s are \(R\)-linear.
+Then their common composite is zero.
+\end{lemma}
+
+\begin{proof}
+Fix \(e\in E\) and choose \(a,b\geq1\) such that
+\(s^a\alpha_s(e)=0\) and \(v^b\alpha_v(e)=0\). With
+\(N=a+b-1\), expand the identity
+\[
+ e=h^{-N}(s+v)^Ne
+   =\sum_{i=0}^N\binom Ni s^iv^{N-i}h^{-N}e.
+\]
+For \(i\geq a\), calculate the common image through \(L_s\).
+It is zero because \(\alpha_s\) commutes with \(h^{-N}\).
+For \(i<a\), one has \(N-i\geq b\), and calculation through
+\(L_v\) gives zero. All summands therefore vanish.
+The inverse of \(h\) was used only before the maps to \(Q\).
+\end{proof}
+
+The exponent cannot be reduced uniformly. For independent
+\(s,v\) over \(k\), the polynomial \((s+v)^{a+b-2}\)
+contains the nonzero term
+\(\binom{a+b-2}{a-1}s^{a-1}v^{b-1}\) modulo
+\((s^a,v^b)\). Particular specializations may need a smaller
+exponent; the lemma needs no uniform nilpotence bound.
+
+\begin{theorem}\label{e1f:thm:twostep}
+In the ordinary chiral pseudo-tensor category of a smooth curve,
+the linear spans of the ternary channel images through \(12|3\)
+and \(1|23\) have zero intersection. The intermediate modules
+and binary maps may differ. In particular, a binary chiral
+operation is strictly associative exactly when
+\[
+ \mu\circ_1\mu=0=\mu\circ_2\mu.
+\]
+Every tree operation built from such a \(\mu\) on at least
+three inputs vanishes. No vacuum or uniform pole bound is needed.
+\end{theorem}
+
+\begin{proof}
+The common target is supported on the small diagonal, so work
+there in an \'etale coordinate. Put
+\(s=z_1-z_2\), \(v=z_2-z_3\), and \(h=z_1-z_3=s+v\).
+The fully localized input is
+\(E=j_{3*}j_3^*(M_1\boxtimes M_2\boxtimes M_3)\).
+The first map in the channel \(12|3\) lands in the direct
+image from that partial diagonal with the third position kept
+separate. It is linear over \(\mathcal O[h^{-1}]\).
+Every section of this intermediate direct image uses finitely
+many normal derivatives, and hence is killed by a power of
+\(s\). The last map is \(\mathcal O\)-linear.
+The other channel has the same properties with \(v\) in place
+of \(s\).
+
+A finite sum of channel maps factors through the direct sum of
+its intermediate modules. Such a direct sum retains the stated
+local nilpotence and localization. Lemma~\ref{e1f:lem:separation}
+therefore proves the intersection assertion. Associativity
+puts its two composites in that intersection. Conversely, two
+zero composites are equal. Finally, every binary tree with at
+least three leaves contains adjacent internal vertices; their
+composition is one of these zero ternary maps.
+\end{proof}
+
+\subsection{Inserting the vacuum}
+
+The scalar flag calculation suggests that two vacuum insertions
+should detect every state. The following decomposition of
+operation spaces makes that argument independent of coordinates.
+
+\begin{lemma}[\cite{chhop:BD}*{Lemma~3.1.13}]
+\label{e1f:lem:insert}
+Let \(E_i\phi\) denote insertion of the principal-parts map
+into the \(i\)-th input of \(\phi\). For nonempty \(I\),
+\[
+ \bigoplus_{i\in I}P_I^{\mathrm{ch}}(\{M_i\};N)
+ \xrightarrow{\ \sim\ }
+ P_{\{0\}\sqcup I}^{\mathrm{ch}}(\omega_X,\{M_i\};N),
+ \qquad (\phi_i)\longmapsto\sum_iE_i\phi_i.
+\]
+Moreover, \(\varepsilon_N(1,\phi)=\sum_iE_i\phi\).
+\end{lemma}
+
+\begin{proof}
+Put \(N_I=j_{I*}j_I^*(\boxtimes_iM_i)\), and let
+\(\Delta^i\) be the graph \(x_0=x_i\). Over \(U_I\) these
+graphs are disjoint. Taking principal parts in \(x_0\) gives
+\[
+ 0\longrightarrow\omega_X\boxtimes N_I
+ \longrightarrow j_*j^*(\omega_X\boxtimes\boxtimes_iM_i)
+ \longrightarrow\bigoplus_i\Delta^i_*N_I
+ \longrightarrow0.
+\]
+A map from the first term to \(\Delta_*N\) is zero. Indeed,
+its generators \(dx_0\boxtimes n\) are killed by right
+\(\partial_{x_0}\), whereas that operator is injective on
+the target: it raises a normal derivative degree.
+Every map from the middle term therefore factors uniquely
+through the quotient. Transfer along the closed graphs
+identifies its summands with the operation spaces on the left.
+The principal part of \((x_0-x_i)^{-1}\) occurs only on the
+\(i\)-th graph. Adding these graph contributions proves the
+last identity.
+\end{proof}
+
+\begin{theorem}\label{e1f:thm:vacuum}
+Let \(\mu\) be a strict associative chiral operation on \(A\),
+and let \(u:\omega_X\to A\) be any differential-module map.
+There are unique endomorphisms \(L,R\) with
+\[
+ \mu(u,1)=L\varepsilon_A,
+ \qquad \mu(1,u)=-R\varepsilon_A\tau.
+\]
+They satisfy
+\[
+ \begin{gathered}
+ L\mu=R\mu=0,\qquad L^2=LR=RL=R^2=0,\\
+ \mu(L,1)=\mu(R,1)=\mu(1,L)=\mu(1,R)=0.
+ \end{gathered}
+\]
+Normalization on either side forces \(A=0\).
+\end{theorem}
+
+\begin{proof}
+The one-input case of Lemma~\ref{e1f:lem:insert} gives \(L,R\).
+Insert \(u\) first in the associativity equation. The two
+sides become
+\[
+ E_1\mu(L,1),\qquad E_1(L\mu)+E_2(L\mu).
+\]
+Independence of the two summands gives
+\(L\mu=0=\mu(L,1)\). Inserting \(u\) last gives
+\(R\mu=0=\mu(1,R)\); inserting it in the middle gives
+\(\mu(R,1)=0=\mu(1,L)\). Precompose \(L\mu=R\mu=0\)
+with \(u\) in each input. The one-input insertion isomorphism
+then gives the four square-zero identities. A normalized action
+has \(L=1_A\) or \(R=1_A\), so \(1_A=0\).
+\end{proof}
+
+The same argument controls maps to the chiral commutator.
+Let \(f\) be a chiral Lie map from an algebra with vacuum to
+\((A,\mu-\mu\tau)\), and form \(L,R\) using the image of
+that vacuum. Preservation of its normalized action gives
+\(f=(L+R)f\). But \((L+R)^2=0\), so \(f=0\).
+Thus the universal associative recipient of a chiral algebra
+with vacuum is zero in this ordinary pseudo-tensor category.
+
+\begin{example}\label{e1f:ex:heisenberg}
+At level \(\kappa\in k\), realize the Heisenberg vertex
+algebra on \(k[x_1,x_2,\ldots]\). For \(h=x_1\), write
+\(h(z)=\sum_nh_nz^{-n-1}\), where \(h_{-r}\) multiplies
+by \(x_r\), \(h_r=\kappa r\partial_{x_r}\) for \(r>0\),
+and \(h_0=0\). Translation is \(Tx_r=rx_{r+1}\).
+The normal product \(a\cdot b=a_{(-1)}b\) satisfies
+\[
+ (h\cdot h)\cdot h-h\cdot(h\cdot h)=\kappa T^2h.
+\]
+Indeed, the constant coefficient of \(:h(z)^2:\) acting on
+\(x_1\) is \(x_1^3+2h_{-3}h_1x_1=x_1^3+2\kappa x_3\),
+whereas \(h_{-1}x_1^2=x_1^3\) and \(T^2h=2x_3\).
+At zero level the normal product becomes polynomial
+multiplication. At every level it is a regular coefficient
+of a field, rather than a chiral map with localized input and
+diagonal output. The vacuum obstruction applies at every level
+to an associative operation of the latter type.
+\end{example}
+
+\subsection{Homotopies on the original coefficients}
+
+For\phantomsection\label{e1f:def:termwise-homotopy-input} a complex \(A\), one can first form chiral Hom complexes
+term by term. Their differential will be denoted \(\partial\).
+Let \(\mu\) and \(u:\omega_X\to A\) be closed maps of
+degree zero, and suppose a ternary operation of degree \(-1\)
+satisfies
+\[
+ \partial m_3=\mu(\mu,1)-\mu(1,\mu).
+\]
+The insertion lemma remains an isomorphism of these termwise
+complexes.
+
+\begin{proposition}\label{e1f:prop:homotopy-vacuum}
+Write \(\mu(u,1)=L\varepsilon_A\). There is a degree-minus-one
+endomorphism \(K\) with \(\partial K=-L^2\). If
+\(\partial a=L-1_A\), then
+\[
+ h=-K-a(L+1_A),\qquad \partial h=1_A.
+\]
+Thus a left vacuum unit up to homotopy makes \(A\) contractible.
+If \(L=1_A\) and \(m_3(u,-,-)=0\), then \(A=0\).
+\end{proposition}
+
+\begin{proof}
+Decompose
+\(m_3(u,-,-)=E_1H_1+E_2H_2\) by the insertion lemma.
+Comparing the two independent components gives
+\[
+ \partial H_1=\mu(L,1)-L\mu,
+ \qquad \partial H_2=-L\mu.
+\]
+Define \(K\) by \(H_2(u,1)=K\varepsilon_A\). Since \(u\)
+is closed, insertion commutes with the differential, and hence
+\((\partial K)\varepsilon_A=-L^2\varepsilon_A\).
+The one-input case of the lemma proves \(\partial K=-L^2\).
+As \(L\) is closed,
+\[
+ \partial\bigl(-K-a(L+1_A)\bigr)
+ =L^2-(L-1_A)(L+1_A)=1_A.
+\]
+If the specified value of \(m_3\) is zero, then \(H_2=K=0\).
+Together with \(L=1_A\), this gives \(1_A=0\).
+\end{proof}
+
+The commutator has the corresponding homotopy obstruction.
+Define \(R\) by \(\mu(1,u)=-R\varepsilon_A\tau\).
+If \((L+R)\varepsilon_A\) is homotopic to \(\varepsilon_A\),
+the insertion isomorphism on \(H^0\) gives
+\([L]+[R]=[1_A]\). The proof of
+Theorem~\ref{e1f:thm:vacuum}, applied in that \(H^0\)
+pseudo-tensor category, gives
+\([L]^2=[L][R]=[R][L]=[R]^2=0\). Thus \([1_A]=0\),
+which is a contracting homotopy of \(A\).
+
+A contractible complex need not be the zero complex; the
+two-term identity complex is an example. This distinction
+separates a strict vacuum obstruction from a homotopy vacuum
+obstruction. Neither permits nonzero state cohomology.
+
+\subsection{Derived operations on modules}
+
+Derived Hom changes the operation complexes, so its degree
+range must be checked separately.
+
+\begin{proposition}[Derived operations on degree-zero coefficients]
+\label{e1f:prop:derived-heart}
+For right differential modules \(M_i,N\) in degree zero, put
+\[
+ \mathbb P_I^{\mathrm{ch}}(\{M_i\};N)
+ =\operatorname{RHom}_{\mathcal D_{X^I}}
+ \left(j_{I*}j_I^*(\boxtimes_iM_i),\Delta_{I*}N\right).
+\]
+Then \(H^q\mathbb P_I^{\mathrm{ch}}=0\) for \(q<0\), and
+\(H^0\mathbb P_I^{\mathrm{ch}}=P_I^{\mathrm{ch}}\).
+An \(A_\infty\) structure on a degree-zero module using these
+operations has a strictly associative ordinary binary map.
+Its two nested ternary products vanish. A local vacuum
+normalized on either side, including normalization up to
+homotopy, forces the module to be zero.
+\end{proposition}
+
+\begin{proof}
+On a smooth curve the complement of the diagonals is locally
+the inversion of one product of equations. Its open direct
+image is exact. External products over \(k\) and closed
+diagonal direct image are exact as well, so the source and
+target are modules. An injective resolution of the target in
+nonnegative degrees proves the two cohomology assertions.
+
+The associativity homotopy makes the two binary composites
+equal in \(H^0\), which is their ordinary chiral Hom space.
+Theorem~\ref{e1f:thm:twostep} makes both zero. The same
+\(H^0\) identification turns homotopy normalization into
+ordinary normalization, and
+Theorem~\ref{e1f:thm:vacuum} applies.
+\end{proof}
+
+\begin{remark}\label{e1f:rem:derived}
+Positive Ext groups can still occur. In one normal coordinate
+\(y\), put \(D=k\langle y,\partial_y\rangle\), with
+\([\partial_y,y]=1\), and take the right modules
+\(\omega=D/\partial_yD\), \(\delta=D/yD\).
+The free resolution
+\(0\to D\xrightarrow{\partial_y\cdot}D\to\omega\to0\)
+gives the Hom complex
+\(\delta\xrightarrow{\cdot\partial_y}\delta\).
+Its differential is injective with one-dimensional cokernel.
+Consequently \(\operatorname{Hom}_D(\omega,\delta)=0\) but
+\(\operatorname{Ext}^1_D(\omega,\delta)=k\).
+The derived insertion map therefore need not be an equivalence.
+
+This class has degree \(1\), whereas an associativity
+homotopy has degree \(-1\). More generally, the operation
+spaces of a degree-zero diagonal insertion are discrete;
+Theorem~\ref{oco:thm:rigidity} identifies every coherent
+associative structure there with a strict one. Nontrivial
+associativity homotopies require a different coefficient
+complex, whose operations must be specified on that complex.
+\end{remark}
+
+\section{Binary coefficients and their associativity equations}
+\label{e1c:sec:coefficients}
+
+The vanishing of triple composites does not force the binary
+operation to vanish. To describe the surviving operations, we
+recover a chiral map from its normal derivative coefficients.
+This also separates its regular field coefficient from its
+singular coefficients.
+
+Choose\phantomsection\label{e1c:def:left-coefficients} a coordinate \(x\) on an open subset of \(X\), and put
+\(G=A\otimes\omega_X^{-1}\). This is the left-module form of
+\(A\). Write \(T=\nabla_{\partial_x}\), so
+\[
+ T(fa)=fTa+f'a,
+ \qquad (a\,dx)\partial_x=-(Ta)\,dx.
+\]
+After suppressing the output density, the transfer module on
+the small diagonal has the polynomial description
+\begin{equation}\label{e1c:eq:normal}
+ Q_n(G)=G[\lambda_1,\ldots,\lambda_n]
+     /(T+\lambda_1+\cdots+\lambda_n)G[\lambda_1,\ldots,\lambda_n].
+\end{equation}
+The relation is a relation of \(k\)-modules: \(T\) acts on
+coefficients and is a connection, not an \(\mathcal O_X\)-linear
+endomorphism. Eliminating \(\lambda_n\) gives
+\(G[\lambda_1,\ldots,\lambda_{n-1}]\).
+For\phantomsection\label{e1c:def:binary-transfer-coordinates} two inputs, use \(u=x_1-x_2\) and \(s=\lambda_1\).
+Right differentiation in the two coordinates acts by \(s\)
+and \(-T-s\); multiplication by \(u\) acts by \(\partial_s\).
+
+\begin{proposition}\label{e1c:prop:binary}
+A binary chiral map on \(A\) is equivalent, in this coordinate,
+to \(k\)-bilinear maps on local sections
+\(m:G\otimes_kG\to G\) and
+\(c_s:G\otimes_kG\to G[s]\), compatible with restriction.
+Write
+\[
+ c_s(a,b)=\sum_{n\geq0}\frac{s^n}{n!}c_n(a,b),
+ \qquad
+ B_s(a,b)=m(a,b)+\int_0^s c_t(a,b)\,dt.
+\]
+The polynomial \(c_s(a,b)\) is finite for each pair of inputs.
+The required identities are
+\begin{align}
+ Tm(a,b)&=m(Ta,b)+m(a,Tb),\notag\\
+ c_s(Ta,b)&=-s c_s(a,b),&
+ c_s(a,Tb)&=(T+s)c_s(a,b),\label{e1c:eq:sesqui}\\
+ B_s(a,fb)&=fB_s(a,b),&
+ B_s(fa,b)&=\sum_{j\geq0}\frac{f^{(j)}}{j!}
+                         \partial_s^jB_s(a,b).
+ \label{e1c:eq:functions}
+\end{align}
+If \(F(a,b;g)\) denotes the value on
+\(g(u)a\,dx_1\boxtimes b\,dx_2\), the reconstructed map is
+\begin{align}
+ F(a,b;u^q)&=\partial_s^{q+1}B_s(a,b)
+                      &&(q\geq0),\label{e1c:eq:positive}\\
+ F(a,b;u^{-r-1})&=\frac1{r!}\sum_{j=0}^r\binom rj
+                         s^{r-j}B_s(T^ja,b)
+                      &&(r\geq0).\label{e1c:eq:negative}
+\end{align}
+No finite-generation or flatness condition on \(A\) is imposed.
+\end{proposition}
+
+\begin{proof}
+The Weyl relations of a differential-module map read
+\[
+ F(a,b;ug)=\partial_sF(a,b;g),
+ \qquad
+ F(a,b;\partial_{x_1}g)=-F(Ta,b;g)-sF(a,b;g).
+\]
+Start with \(B_s=F(a,b;u^{-1})\). Multiplication by \(u\)
+recovers every nonnegative power and gives \(c_s=F(a,b;1)\).
+Differentiation of \(u^{-r-1}\) then yields
+\eqref{e1c:eq:negative} by induction. Differentiating the
+regular test \(1\) gives \(c_s(Ta,b)=-sc_s(a,b)\).
+Simultaneous translation gives
+\(TB_s=B_s(Ta,b)+B_s(a,Tb)\); its constant term and its
+derivative give the remaining identities in
+\eqref{e1c:eq:sesqui}.
+
+The output is rooted at \(x_2\). Thus \(f(x_2)\) multiplies
+its coefficient, and \(f(x_1)\) acts by the Taylor operator
+\(f(x_2+\partial_s)\). This is
+\eqref{e1c:eq:functions}; its sum terminates on the polynomial
+normal derivative coefficient.
+
+Conversely, define \(F\) by the two displayed reconstruction
+formulas. Let \(T_1\) act on its first input. For \(r\geq1\),
+\[
+ \partial_s(s+T_1)^rB_s
+ =r(s+T_1)^{r-1}B_s+(s+T_1)^rc_s
+ =r(s+T_1)^{r-1}B_s,
+\]
+since \((s+T_1)c_s=0\). This proves the multiplication
+relation on negative powers. At \(u^{-1}\) it is
+\(\partial_sB_s=c_s\), and on nonnegative powers it follows
+from \eqref{e1c:eq:positive}. The differentiation recurrence
+proves the second Weyl relation on negative powers; differentiating
+\(c_s(Ta,b)=-sc_s(a,b)\) proves it on nonnegative powers.
+Simultaneous translation supplies the other coordinate derivative.
+
+The function identities are preserved by these recurrences.
+For the first input, the \(f'\) in \(T(fa)\) cancels the
+commutator of \(s\) with the Taylor operator of \(f\).
+Thus the formulas respect the defining relations of the
+localized right differential module. This argument uses those
+relations directly and applies equally to modules with torsion.
+\end{proof}
+
+The corresponding field expansion is
+\begin{equation}\label{e1c:eq:series}
+ \begin{aligned}
+ Y(a,u)b&=\sum_{n\geq0}c_n(a,b)u^{-n-1}
+       +\sum_{r\geq0}\frac{m(T^ra,b)}{r!}u^r,\\
+ F(a,b;g)&=\operatorname{Res}_{u=0}
+                   e^{su}g(u)Y(a,u)b\,du.
+ \end{aligned}
+\end{equation}
+For a Laurent test with finite lower bound, only finitely many
+coefficients contribute to this residue. The formula constructs
+a binary chiral operation; locality, associativity of fields
+and a vacuum remain additional identities.
+This is the local differential-module form of the chiral
+endomorphism operad.\footnote{B.~Bakalov, A.~De Sole,
+R.~Heluani and V.~G.~Kac, \emph{An operadic approach to vertex
+algebra and Poisson vertex algebra cohomology}, Japan. J. Math.
+\textbf{14} (2019), 249--342, \S6 and Appendix~A,
+\href{https://arxiv.org/abs/1806.08754}{arXiv:1806.08754}.}
+
+To compare a second coordinate \(w=h(x)\), apply the recovered
+operation to
+\[
+ \frac{h'(x_1)h'(x_2)}{h(x_1)-h(x_2)}
+                    a\,dx_1\boxtimes b\,dx_2.
+\]
+Express the answer with \(dw=h'(x)dx\) and
+\(\partial_w=(h')^{-1}\partial_x\) in the transfer module.
+It must equal the polynomial assigned in the \(w\)-coordinate.
+Only finitely many normal derivatives occur on each input.
+Substitution and transfer compose, so these overlap conditions
+satisfy the cocycle identity and glue the local maps.
+
+\subsection{Computing the two ternary channels}
+
+The translation of an inner output acts before that output
+enters the outer map. Keeping it in that order, define
+\begin{equation}\label{e1c:eq:H}
+ H_{s,t}(a,b)=(T+s+t)m(a,b)
+ +\sum_{n\geq0}
+   \frac{s^{n+2}-(-T-t)^{n+2}}{(n+2)!}c_n(a,b).
+\end{equation}
+Here every \(T\) acts on the displayed inner coefficient.
+Equivalently, this polynomial evaluates the formal integral
+\(\int_0^{T+s+t}B_{s-\tau}(a,b)\,d\tau\).
+
+\begin{theorem}\label{e1c:thm:criterion}
+The binary map of Proposition~\ref{e1c:prop:binary} is strictly
+associative exactly when, for every \(a,b,c\),
+\begin{equation}\label{e1c:eq:criterion}
+ \begin{aligned}
+ &B_{\lambda_1+\lambda_2}
+       \bigl(H_{\lambda_1,\lambda_2}(a,b),c\bigr)\\
+ &\hspace{18mm}
+   +B_{\lambda_1}\bigl(a,H_{\lambda_2,\lambda_3}(b,c)\bigr)=0
+                      \quad\text{in }Q_3(G).
+ \end{aligned}
+\end{equation}
+Each summand then vanishes separately. In this formula, expand
+the inner \(H\), apply the outer \(B\) to its coefficients,
+and only then set
+\(\lambda_3=-T_{\mathrm{out}}-\lambda_1-\lambda_2\).
+\end{theorem}
+
+\begin{proof}
+Use\phantomsection\label{e1c:def:ternary-scalar-test} \(u=x_1-x_2\), \(v=x_2-x_3\), and the scalar input
+\(\Omega=1/(uv(u+v))\). For the first collision its remaining
+factor is \(1/(v(v+u))\). An inner polynomial \(P(s)\)
+of normal derivatives acts on that factor by
+\[
+ \left.P(s+\partial_u)\frac1{v(v+u)}\right|_{u=0}
+ =\sum_{j\geq0}\frac{(-1)^jP^{(j)}(s)}{v^{j+2}}
+ =\left(\int_0^{-\partial_v}P(s-\tau)\,d\tau\right)\frac1v.
+\]
+The transfer relation moves \(-\partial_v\) to
+\(T+\lambda_1+\lambda_2\) on the first input of the outer
+operation. Integrating the monomials of \(B_s\) gives
+\[
+ (\mu\circ_1\mu)(a,b,c;\Omega)
+ =B_{\lambda_1+\lambda_2}
+             \bigl(H_{\lambda_1,\lambda_2}(a,b),c\bigr).
+\]
+
+For the other collision, keep \(t=x_1-x_3\) and
+\(v=x_2-x_3\). The remaining factor is \(1/(t(t-v))\),
+and the corresponding identity is
+\[
+ \left.P(s+\partial_v)\frac1{t(t-v)}\right|_{v=0}
+ =\sum_{j\geq0}\frac{P^{(j)}(s)}{t^{j+2}}
+ =-\left(\int_0^{\partial_t}P(s-\tau)\,d\tau\right)\frac1t.
+\]
+After transfer this gives
+\[
+ (\mu\circ_2\mu)(a,b,c;\Omega)
+ =-B_{\lambda_1}\bigl(a,H_{\lambda_2,\lambda_3}(b,c)\bigr).
+\]
+The minus sign accounts for the sum in
+\eqref{e1c:eq:criterion}.
+
+This one scalar test generates all tests under multiplication
+and differentiation. Indeed, for \(a,b>0\),
+\[
+ \frac1{u^av^b(u+v)^c}
+ =\frac1{u^{a-1}v^b(u+v)^{c+1}}
+  +\frac1{u^av^{b-1}(u+v)^{c+1}}.
+\]
+Iterating reduces to denominators using two independent linear
+forms. Their simple-pole products are polynomial multiples of
+\(\Omega\); derivatives in the dual coordinate directions
+produce higher poles. Multiplication then includes single-pole
+and regular tests. For arbitrary input sections, commute each
+scalar derivative past those sections and subtract the terms
+where it differentiates an input. Induction proves the same
+generation assertion without freeness assumptions on \(G\).
+Thus equality on \(\Omega\) is equality of the ternary maps.
+Theorem~\ref{e1f:thm:twostep} makes their values vanish
+separately, and the converse is immediate.
+\end{proof}
+
+These transfer formulas agree with those of Dudin and
+Kolesnikov after \(z_i=-x_i\) and \(\partial=T\).\footnote{
+I.~V.~Dudin and P.~S.~Kolesnikov, \emph{Chiral algebras with
+abelian conformal part},
+\href{https://arxiv.org/abs/2606.10367}{arXiv:2606.10367v1},
+equations~(13), (16). Their Theorem~1 classifies the regular
+case for binary quadratic operads.}
+For the scalar residue on horizontal inputs,
+\(m(1,1)=1\) and \(c_s=0\). The two composites on
+\(\Omega\) are \(\lambda_1+\lambda_2\) and \(\lambda_1\).
+Their difference \(\lambda_2\) retains a normal derivative;
+projecting immediately to a scalar residue would lose it.
+
+\subsection{Regular and singular nilpotent operations}
+
+Call\phantomsection\label{e1c:def:regular-binary-input} a binary chiral map \emph{regular} if it vanishes on the
+unlocalized input \(A\boxtimes A\). This is the condition
+\(c_s=0\). Its field series is regular, although its values
+on polar inputs can be nonzero.
+
+\begin{corollary}\label{e1c:cor:regular}
+Regular strict associative chiral operations are equivalent
+to \(\mathcal O_X\)-bilinear products
+\(m:G\otimes_{\mathcal O_X}G\to G\)
+for which the connection is a derivation and
+\[
+ m(m(a,b),c)=0,
+ \qquad m(a,m(b,c))=0.
+\]
+Neither commutativity nor anticommutativity is required.
+\end{corollary}
+
+\begin{proof}
+For \(c_s=0\), the function relations make \(m\)
+\(\mathcal O_X\)-bilinear. The first summand of the criterion is
+\[
+ m(Tm(a,b),c)+(\lambda_1+\lambda_2)m(m(a,b),c).
+\]
+Eliminating the final translation makes the other summand
+\(-m(Ta,m(b,c))-\lambda_1m(a,m(b,c))\).
+Its \(\lambda_2\) and \(\lambda_1\) coefficients give the
+two identities successively. Conversely, applying those
+identities also to differentiated inputs kills the constant
+terms and proves the criterion.
+\end{proof}
+
+For\phantomsection\label{e1c:def:three-generator-nilpotent-example} example, take horizontal generators \(p,q,z\) and the
+single nonzero product \(m(p,q)=z\). Tensoring this product
+with the scalar principal-parts operation gives a nonzero
+chiral multiplication: a simple pole on \(p,q\) maps to
+\(z\) on the diagonal. Every further product vanishes because
+\(z\) annihilates both inputs.
+
+Transposition has a sign different from the ordinary opposite
+product. In these coordinates,
+\[
+ B_s^{\mathrm{op}}(a,b)=-B_{-T-s}(b,a).
+\]
+The minus sign reverses the normal coordinate; for homogeneous
+super inputs the right side also has the Koszul factor
+\((-1)^{|a||b|}\). In the regular ungraded case the opposite
+normal product is \(-m(b,a)\). Consequently the chiral
+commutator has normal product \(m(a,b)+m(b,a)\), and its
+kernel among these associative operations is exactly the
+antisymmetric normal products.
+
+Every symmetric differential product \(n\) with zero nested
+triples is the chiral commutator of \(m=n/2\). Its residue
+operation is Lie: reversing the two positions supplies the
+skew sign, and each ternary term is zero. Conversely, operadic
+symmetry \(\mu=\mu^{\mathrm{op}}\) in the regular sector
+requires an antisymmetric normal product. It is therefore
+different from a commutative differential algebra, whose full
+field product becomes a chiral Lie operation after density
+conversion.
+
+Singular\phantomsection\label{e1c:def:singular-two-step-sum} examples have the same annihilation mechanism.
+Given differential modules \(P,Z\) and a chiral map
+\(q:j_*j^*(P\boxtimes P)\to\Delta_*Z\), set \(A=P\oplus Z\).
+Use \(q\) on the two \(P\) inputs and zero whenever an input
+lies in \(Z\). Both nested triples vanish. If \(q\) is
+nonzero on regular inputs, this gives a singular strictly
+associative operation.
+
+For\phantomsection\label{e1c:def:singular-coefficient-ideal} a general strict associative operation, let \(J\) be the
+smallest differential submodule containing all \(c_n(a,b)\)
+and stable under \(m\) and every \(c_n\) in either input.
+
+\begin{corollary}\label{e1c:cor:quotient}
+The quotient \(G/J\) has an induced differential product
+with zero nested triples. Every normal-product expression
+on at least three inputs belongs to \(J\).
+\end{corollary}
+
+\begin{proof}
+Stability makes all coefficient operations descend. On the
+quotient the \(c_n\)'s vanish, so the regular classification
+applies. Under coordinate change, the new singular coefficients
+are combinations of the old ones. The change in the normal
+coefficient is also a combination of singular coefficients,
+by the finite Taylor overlap formula. Applying the inverse
+coordinate change shows equality of the resulting submodules.
+Thus \(J\) is intrinsic and glues on \(X\).
+\end{proof}
+
+The normal coefficient cannot have an ordinary two-sided unit
+on a nonzero module. If \(e\) were one, the derivation identity
+would give \(Te=T m(e,e)=2Te\), hence \(Te=0\).
+Sesquilinearity would then give
+\(s c_s(e,a)=0\) and \((T+s)c_s(a,e)=0\).
+Both polynomial operators are injective, the second by its
+leading coefficient. Thus both singular actions vanish, and
+\(e\) defines the normalized residue action excluded by
+Theorem~\ref{e1f:thm:vacuum}.
+
+\subsection{Unbounded poles prevent an ordinary envelope}
+
+Removing the vacuum permits the preceding examples, but does
+not give an associative envelope functor on all differential
+modules. A commutator fixes the skew part of the operation
+and leaves its symmetric pole order uncontrolled.
+
+\begin{proposition}\label{e1f:prop:noenvelope}
+For \(X=\mathbb A^1\), the commutator functor from associative
+to Lie algebras in \(P_X^{\mathrm{ch}}\), on all right
+\(\mathcal D_X\)-modules, has no left adjoint.
+\end{proposition}
+
+\begin{proof}
+Let \(M=x\mathcal D_X\oplus y\mathcal D_X\) have zero
+bracket; \(x,y\) here name free module generators.
+Use\phantomsection\label{e1f:def:envelope-density} \(t=z_1-z_2\) and \(\eta=dz_1\wedge dz_2\).
+For each \(r>0\), prescribe on the generators the map
+\[
+ \beta_r(fx\boxtimes y)
+       =\operatorname{pp}_{t=0}(ft^{-r}\eta)
+                   \quad\text{in }\Delta_*\omega_X,
+\]
+and extend by differential-module induction. On
+\(A_r=M\oplus\omega_Xc\), use \(\beta_r\) for the ordered
+pair \(x,y\), its transpose for \(y,x\), and zero on all
+other generator pairs and on every input from \(\omega_Xc\).
+Every inner output annihilates further inputs, so the resulting
+operation is associative. It is symmetric, hence has zero
+chiral commutator; the inclusion \(M\to A_r\) is a Lie map.
+
+If a universal envelope \(U\) existed, the section
+\(w=\mu_U(x\boxtimes y)\) of \(\Delta_*U\) would be
+killed by some \(t^n\). Its image under the algebra map
+\(U\to A_r\) extending the inclusion of \(M\) would be
+the principal part of \(t^{-r}\eta\). For \(r>n\), that
+image is not killed by \(t^n\), a contradiction.
+\end{proof}
+
+The\phantomsection\label{e1f:def:unbounded-symmetric-central-product} obstruction persists with a fixed nonzero central bracket.
+Transposition sends \(t\) to \(-t\) and \(\eta\) to
+\(-\eta\), so it acts on \(\beta_r\) by \((-1)^{r+1}\).
+On \(a\mathcal D_X\oplus\omega_Xc\), make \(c\)
+annihilate both inputs and prescribe
+\[
+ \mu_{\kappa,r}(a,a)=\left(\frac\kappa2\beta_2+\beta_r\right)c
+                       \qquad(r\geq3\text{ odd}).
+\]
+All nested triples vanish, and all these maps have commutator
+\(\kappa\beta_2c\). Their symmetric pole orders are unbounded,
+so the same argument rules out an envelope of this fixed
+nonunital central Lie algebra. It is not the Heisenberg vertex
+algebra with vacuum.
+
+The geometric envelope of Proposition~\ref{cqe:prop:envelope}
+lives instead in the symmetric monoidal collision category.
+It retains configuration coefficients and an empty unit.
+Its existence therefore asserts no left adjoint on the
+ordinary curve modules used here.
+
+\section{Associative objects in vertex algebras}
+\label{e1f:sec:va}
+
+One can ask for an associative multiplication while keeping
+the full vertex structure. Its source is then the ordinary
+tensor product of vertex algebras, rather than the localized
+input of a chiral operation. This change avoids the preceding
+definition but imposes a different restriction.
+
+\phantomsection\label{e1f:def:regular-vertex-algebra}A vertex algebra has a state space \(V\), a vacuum
+\(\mathbf1\), a translation \(T\), and fields with
+\(Y(a,z)b\in V((z))\). They obey
+\[
+ \begin{gathered}
+ Y(\mathbf1,z)=1_V,\qquad Y(a,z)\mathbf1=e^{zT}a,
+ \qquad T\mathbf1=0,\\
+ [T,Y(a,z)]=\partial_zY(a,z)=Y(Ta,z).
+ \end{gathered}
+\]
+For each pair of states, locality says that a power of
+\(z-w\) kills the commutator of their fields. Call the vertex
+algebra \emph{regular} if every \(Y(a,z)b\) belongs to
+\(V[[z]]\).
+
+\begin{theorem}\label{e1f:thm:va}
+Unital associative objects for the ordinary tensor product
+of vertex algebras are equivalent to unital commutative
+algebras with derivation. Their fields are
+\[
+ Y(a,z)b=(e^{zT}a)b,
+\]
+and in particular have no singular terms.
+\end{theorem}
+
+\begin{proof}
+Let \(m:V\otimes V\to V\) be such a multiplication.
+Its unit is the vertex vacuum, since the monoidal unit is
+the scalar vertex algebra. Applying preservation of fields
+to \(a\otimes\mathbf1\) and \(\mathbf1\otimes b\) gives
+\[
+ \begin{aligned}
+ Y(a,z)b
+ &=Y(m(a,\mathbf1),z)m(\mathbf1,b)\\
+ &=m\bigl(Y(a,z)\mathbf1,Y(\mathbf1,z)b\bigr)
+  =m(e^{zT}a,b).
+ \end{aligned}
+\]
+Using \(\mathbf1\otimes a\) and \(b\otimes\mathbf1\)
+instead gives \(Y(a,z)b=m(b,e^{zT}a)\). The constant
+coefficient therefore makes \(m\) commutative.
+Preservation of translation makes \(T\) a derivation.
+
+Conversely, a unital commutative algebra with derivation has
+the displayed regular fields. Its translation exponential
+preserves multiplication, so \(m\) preserves these fields
+and defines the required associative object. A map in either
+description preserves exactly multiplication, unit and
+translation, which proves the equivalence of categories.
+\end{proof}
+
+The unit has forced every field value to be a translate of
+the same-position multiplication. Singular field products
+therefore require a source allowing distinct positions.
+The strict rectangular comparison makes precise what an
+ordinary associative object recovers under an independently
+specified state functor. For its singleton normalization,
+write \(H_V=\omega_X\otimes_kV\) for the right differential
+module of a translation-equivariant state space \(V\).
+
+\input{manuscript/constructions/strict-rectangular-comparison.tex}
+
+\section{Ordered products with matrix coefficients}
+\label{e1f:sec:ordered}
+
+Associativity\phantomsection\label{e1f:def:matrix-field-inputs} of ordered fields does not require the binary
+product itself to be a vertex-algebra morphism. Let \(V\)
+be a nonzero vertex algebra and \(B\) a unital associative
+algebra. On \(V\otimes B\), define
+\begin{equation}\label{e1f:eq:VB}
+ Y(a\otimes b,z)(a'\otimes b')
+                 =Y_V(a,z)a'\otimes bb'.
+\end{equation}
+The vacuum is \(\mathbf1_V\otimes1_B\) and translation is
+\(T_V\otimes\mathrm{id}_B\). Every iterated field product is the
+corresponding product in \(V\), multiplied by the coefficient
+word \(b_1\cdots b_n\) in its original order. Associativity
+of \(B\) identifies the expansions from different consecutive
+bracketings. Reordering inputs requires a further operation.
+
+\begin{proposition}\label{e1f:prop:nonlocal}
+The fields in \eqref{e1f:eq:VB} are mutually local exactly
+when \(B\) is commutative.
+\end{proposition}
+
+\begin{proof}
+Write\phantomsection\label{e1f:def:left-multiplication-operator} \(L_P\) for left multiplication by \(P\in B\).
+The field of \(a\otimes P\) is \(Y_V(a,z)\otimes L_P\).
+If the \(L_P\)'s commute, locality follows from that of \(V\).
+For the states \(\mathbf1_V\otimes P\) and
+\(\mathbf1_V\otimes Q\), their field commutator is the
+constant operator \(1_V\otimes L_{[P,Q]}\). No nonzero
+power of \(z-w\) annihilates it. Locality therefore implies
+\(L_{[P,Q]}=0\), and evaluation at \(1_B\) gives
+\([P,Q]=0\).
+\end{proof}
+
+Take \(P=E_{12}\), \(Q=E_{21}\) in \(\operatorname{Mat}_2(k)\).
+Their commutator is \(\operatorname{diag}(1,-1)\), so this
+failure persists at separated positions. It cannot be encoded
+by a map whose output is supported only on the collision
+diagonal.
+
+Nonconsecutive collisions retain another part of the order.
+For \(V=H_\kappa\), with \(\kappa\ne0\), consider the
+ordered fields of \(h\otimes P\), \(\mathbf1\otimes Q\),
+and \(h\otimes P\). Contracting the outer Heisenberg fields
+gives the coefficient
+\[
+ \frac{\kappa PQP}{(z_1-z_3)^2}
+       =\frac{\kappa P}{(z_1-z_3)^2},
+ \qquad P^2=0.
+\]
+Replacing the two outer coefficients by their product would
+erase this pole. The middle matrix must remain in the
+coefficient of the partial collision.
+
+Call a collection a \emph{simultaneous ordered product system}
+when each finite ordered input has a single multilinear product
+with a finite common denominator on its collision diagonals,
+and every consecutive substitution tree is an expansion of
+that product. Require the vacuum and translation identities
+stated above. The systems \eqref{e1f:eq:VB} have these
+properties. In their regular sector, all positions may be set
+equal without taking a principal part.
+
+\begin{proposition}\label{e1f:prop:regular}
+Regular simultaneous ordered product systems on \(\mathbb A^1\)
+are equivalent to unital associative algebras with derivation,
+through \(Y(a,z)b=(e^{zT}a)b\). The system is local precisely
+when the algebra is commutative.
+\end{proposition}
+
+\begin{proof}
+Define \(ab=Y(a,0)b\). Regularity lets one cancel the
+regularizing factor in weak associativity and evaluate at
+zero; the resulting identity is \((ab)c=a(bc)\).
+The two vacuum identities give the unit. Translation
+covariance gives the derivation identity and determines every
+Taylor coefficient from \(\partial_zY(a,z)=Y(Ta,z)\).
+Thus \(Y(a,z)b=(e^{zT}a)b\).
+
+Conversely, ordered products of translated inputs give the
+simultaneous products of an associative differential algebra.
+The derivation law and associativity give every consecutive
+substitution identity. If the fields are local, cancellation
+of the locality factor in their regular commutator followed
+by evaluation on the vacuum at zero gives \(ab=ba\).
+Commutativity conversely makes all translated products local.
+\end{proof}
+
+An exchange would relate two input orders by a spectral
+operator on their states. Regularity and associativity do not
+provide such an operator with finite state coefficients.
+
+\begin{proposition}\label{e1f:prop:noexchange}
+Let \(B\) be free associative on \(a_i,b_i\), \(i\geq0\),
+with \(Ta_i=a_{i+1}\), \(Tb_i=b_{i+1}\). There is no
+expression
+\[
+ (e^{uT}a_0)b_0
+       =\sum_{\nu=1}^N f_\nu(u)c_\nu(e^{uT}d_\nu)
+\]
+with \(f_\nu(u)\in k((u))\) and fixed \(c_\nu,d_\nu\in B\).
+Thus its regular ordered system has no exchange of this finite
+Laurent-series type.
+\end{proposition}
+
+\begin{proof}
+Project onto the span of \(a_ib_j\), identified with
+\(k[p,q]\) by \(a_ib_j\mapsto p^iq^j\). The left side
+becomes \(e^{up}\). On the right, the translated suffix can
+be empty, the final factor, or the entire word. Each term
+therefore has the form
+\(f(u)P(p,q)e^{uL}\), with
+\(L\in\{0,q,p+q\}\). Let \(d\) bound the degrees of
+the finitely many polynomials \(P\), and put
+\(D=\partial_p+2\partial_q\).
+The commuting operator
+\[
+ \prod_{s\in\{0,2,3\}}(D-su)^{d+1}
+\]
+annihilates every term on the right. On the left it gives
+\((2u^3)^{d+1}e^{up}\), which is nonzero. This contradicts
+the proposed expression.
+\end{proof}
+
+The conclusion concerns its specified finite coefficient
+domain. A completion allowing other state sums would require
+its own exchange and substitution maps. Even with no poles
+in the fields, the coefficient topology is part of that
+construction.
+
+\section{Words, cuts and associative chiral algebras}
+\label{e1f:sec:tensor}
+
+The coefficient \(PQP\) in the outer Heisenberg collision
+records an order even when the first and last positions agree.
+The set of occupied positions alone forgets that order.
+We therefore begin with words in positions and identify only
+adjacent repetitions.
+
+Let \(\mathsf{Surj}_{\mathrm{mon}}\) have the nonempty ordered
+sets \([n]=\{1<\cdots<n\}\) and monotone surjections.
+A surjection gives a diagonal map repeating each entry over
+its interval fibre.
+
+\begin{proposition}\label{e1f:prop:words}
+For a set \(S\), the colimit of \(S^{[n]}\) under these
+diagonal maps is the set of nonempty words modulo insertion
+and deletion of adjacent equal entries. Every class has a
+unique representative with no adjacent repetition.
+For distinct \(a,b\), the words \(ab,aba,abab,\ldots\)
+are distinct although their supports agree.
+\end{proposition}
+
+\begin{proof}
+A monotone surjection repeats each entry a positive number
+of consecutive times. Replacing every maximal run of equal
+entries by one entry is invariant under these moves.
+Every word is related to its reduction, and a reduced word
+cannot change under a sequence of these moves followed by
+reduction. This proves existence and uniqueness.
+\end{proof}
+
+The word \(aba\) is precisely an outer collision with a
+middle position retained. On a curve, its coefficients belong
+to the category \(\mathcal W_X\) of complexes on \(X^n\)
+with coherent exceptional-pullback identifications under the
+monotone diagonal maps. Adjoin an isolated empty coefficient
+in \(D(k)\). For two systems, define the cut convolution by
+\begin{equation}\label{e1f:eq:cut}
+ (F\star G)_I
+   =\bigoplus_{I=A|B}j_{A|B*}j_{A|B}^*(F_A\boxtimes G_B).
+\end{equation}
+The sum is over an initial interval \(A\) and its final
+complement \(B\), including empty intervals. The open set
+of \(j_{A|B}\) separates every position in \(A\) from every
+position in \(B\).
+
+Both bracketings of a triple convolution localize at the
+same three consecutive blocks. Open base change identifies
+them and gives the higher associativity identifications.
+The unit \(K=k_\varnothing\) is supported on the empty word.
+This tensor is not symmetric: point probes at distinct
+\(a,b\) give binary products supported at \((a,b)\) and
+\((b,a)\), respectively.
+
+There is a second configuration category. Take a chart
+\(X^I\) for each total order on \(I\), and glue charts
+where the orders do not conflict
+(Chapter~\ref{ogd:foundation}). Over a configuration whose
+equality blocks are \(B\), the resulting ordered collision
+scheme has \(\prod_B|B|!\) points. Its convolution sums over
+ordered decompositions into arbitrary subsets, and is
+symmetric monoidal. It has the same empty unit, but different
+nonconsecutive collision maps from \(\mathcal W_X\).
+The separate-variable tensor of Chapter~\ref{cl:chapter}
+is a further coefficient category, with its own scalar unit.
+
+\subsection{The finite bar and cobar constructions}
+
+Call a system \emph{positive} if its empty coefficient is
+zero. A product of \(r\) positive systems vanishes on a
+configuration with fewer than \(r\) labels: every factor
+requires a nonempty block. This holds for each convolution
+just described and bounds the lengths of its normalized bar
+and cobar words.
+
+For\phantomsection\label{e1f:def:bar-augmentation-suspension} an augmented algebra \(A\to K\) with \(A_\varnothing=k\),
+write \(\overline A\) for its augmentation ideal and
+\(s\overline A=\overline A[1]\). The bar has underlying
+coalgebra
+\[
+ BA=K\oplus\bigoplus_{r\geq1}(s\overline A)^{\star r},
+\]
+with deconcatenation coproduct. On a strict dg model use
+\[
+ b_1(sa)=-s(da),\qquad
+ b_2(sa\otimes sb)=(-1)^{|a|}s(ab),
+\]
+and extend as a coderivation with tensor-composition signs.
+Its square expresses the differential and associativity
+identities of \(A\).
+
+For a coaugmented coalgebra \(C=K\oplus\overline C\),
+cobar is the tensor algebra on \(t\overline C=\overline C[-1]\).
+Writing \(\overline\Delta c=\sum c'\otimes c''\), its
+differential is the derivation determined by
+\[
+ d(tc)=-t(dc)+\sum(-1)^{|c'|+1}(tc')(tc'').
+\]
+For coherent algebras and coalgebras, the normalized bar and
+cobar retain the higher operations. Every term remains finite
+at each configuration.
+
+Bar and cobar are inverse equivalences when the empty
+coefficient is \(k\)
+(Theorem~\ref{ogd:thm:duality} and
+Section~\ref{ogd:sec:cut-support}). Their comparison can be
+seen by flattening an iterated bar--cobar word. Each gap
+between its original factors is either inside a block or
+between blocks. On the associated graded, changing that
+choice is an identity map between two consecutive degrees.
+The complex of all gap choices is a tensor product of these
+two-term identity complexes. It contracts unless there is
+just one original factor. The empty term and that factor
+survive and give the comparison map. The configuration bound
+makes the filtration finite, even for unbounded coefficient
+complexes. No completion or extra global elementwise
+conilpotence assumption is needed here.
+
+This is associative Koszul self-duality in the collision
+category: \(\mathrm{Ass}^!=\mathrm{Ass}\) relates an algebra
+to a coalgebra. Turning that coalgebra into a second algebra
+requires an additional duality, such as the positive integer
+weight dual of Proposition~\ref{cqe:prop:dual}.
+
+\subsection{Factorization and the support of the cobar}
+
+A coalgebra is \emph{factorizing} for the chosen convolution
+if each specified coproduct component becomes an equivalence
+to the external product on its separating open set. For cut
+convolution this is required at consecutive cuts. On the
+ordered collision schemes it is required for every ordered
+decomposition into subsets.
+
+\begin{definition}\label{e1f:def:e1}
+For either specified convolution, an \emph{associative chiral
+algebra} is an augmented associative algebra \(A\) whose
+augmentation ideal is positive and whose bar \(BA\) is
+factorizing.
+
+A \emph{vacuum marking} consists of a left differential
+module \(G\), a horizontal map \(\mathcal O_X\to G\), and
+an identification
+\(A_{\{1\}}\cong\omega_X\otimes_{\mathcal O_X}G\).
+A \emph{vacuum framing} also specifies a comparison with
+ordered simultaneous products on \(G\), preserving
+substitutions, translation and that vacuum.
+\end{definition}
+
+On\phantomsection\label{e1f:def:cut-collision-support} words, the factorization condition has a direct geometric
+meaning. Let \(U_p\subset X^n\) be the open set separating
+the first \(p\) labels from the remaining labels, and put
+\[
+ Z_1=X,\qquad
+ Z_n=X^n\setminus\bigcup_{p=1}^{n-1}U_p
+     =\bigcap_{p=1}^{n-1}\ \bigcup_{i\leq p<j}\Delta_{ij}.
+\]
+Thus every consecutive cut at a point of \(Z_n\) is crossed
+by an equality. In particular, \(Z_3=\Delta_{13}\): its
+middle position may remain distinct.
+
+For a strong cut coalgebra \(C\), iterated coproducts identify
+its cobar coefficient with the augmented localization cube
+of the opens \(U_p\). The nonempty vertices give the \v{C}ech
+complex of their union; adjoining the empty vertex takes
+the fibre of restriction to that union. With the cobar
+desuspension, the result is
+\[
+ \overline{\Omega_{\mathrm{cut}}C}_n
+                 \simeq R\Gamma_{Z_n}(C_n)[-1]
+\]
+(Theorem~\ref{ogd:thm:cut-local-cohomology}). Its
+multiplication uses the inverse factorization maps on the
+cut opens, in addition to the supported coefficient object.
+Conversely, if \(\overline A_n\) is supported on \(Z_n\),
+every surviving bar word on a cut open has a separator at
+that cut. Deconcatenation there is an equivalence.
+Thus \(BA\) is factorizing exactly when \(A\)'s positive
+coefficients have these supports
+(Theorem~\ref{ogd:thm:Z-restriction}).
+
+\begin{remark}\label{e1f:rem:two-carriers}
+Factorization on the ordered collision schemes has a
+different support consequence. Let \(C=BA\), let \(U\)
+be the two-point distinct locus, and put
+\(V=(C_{\{1\}}\boxtimes C_{\{1\}})|_U\).
+If both ordered coproduct components are equivalences,
+one identifies their joint map with
+\[
+ (1,R):V\longrightarrow V\oplus V,
+\]
+where \(R\) compares the two orders. The quotient map
+\((x,y)\mapsto y-Rx\) identifies its cofiber with \(V\).
+Consequently
+\[
+ \overline A_{\{1,2\}}|_U
+       \simeq V[-2]
+       \simeq(\overline A_{\{1\}}
+                         \boxtimes\overline A_{\{1\}})|_U.
+\]
+The two binary product maps are the two summand inclusions
+in that cofiber, hence \(-R\) and \(1\). They are both
+equivalences. If \(V\ne0\), the algebra is not supported
+on the collision locus; \eqref{ogd:eq:U} gives an example.
+
+By contrast, the bar of an algebra supported on the small
+diagonal branches has, on \(U\), two singleton words.
+Its coproduct components are the projections
+\(V\oplus V\to V\), neither an equivalence when \(V\ne0\).
+Their \emph{joint} map is the relevant equivalence.
+Theorem~\ref{ogd:thm:joint-recognition} characterizes
+small-diagonal support by this joint word factorization.
+It cannot be replaced by the componentwise condition in
+Definition~\ref{e1f:def:e1}.
+\end{remark}
+
+The two units now have their specified locations. The
+associative unit comes from \(K\) on the empty configuration.
+The local vacuum is a singleton state and may occur as the
+output of a singular product. For the operation-level
+formulation with spectators
+(Definition~\ref{sop:def:algebra}), its normalized unit is
+a morphism from the unit chiral algebra. Applying the residue
+coalgebra and cobar constructions gives the vacuum marking
+(Proposition~\ref{sop:prop:vacuum-morphism}).
+
+Separating\phantomsection\label{e1f:def:degree-zero-diagonal-word} the units alone does not alter the obstruction
+on a degree-zero module. Its diagonal word insertion \(iM\)
+has \((iM)_n=\Delta_{n*}M\) and empty coefficient zero.
+Theorem~\ref{oco:thm:operations} identifies the operations
+from its cut powers to itself with the derived chiral
+operation complexes. Their negative cohomology vanishes,
+so every associative structure on \(K\oplus iM\) has the
+strict two-step nilpotent product of
+Theorem~\ref{oco:thm:rigidity}. A normalized local vacuum
+still forces \(M=0\).
+The field construction instead retains the complexes on
+\(Z_n\). The scalar vacuum already shows why they are larger.
+
+\section{Collision coefficients of the scalar vacuum}
+
+Take\phantomsection\label{e1f:def:scalar-vacuum-field} the scalar field algebra \(k\), with translation zero
+and \(Y(1,z)1=1\). Requiring its products to be regular
+gives the coordinate lattice \(\mathcal K_I=\mathcal O_{X^I}\).
+Its normalized coefficient coalgebra is
+\begin{equation}\label{e1f:eq:scalar-coalgebra}
+ C_I=(\omega_{X^I}\otimes_{\mathcal O_{X^I}}\mathcal K_I)[|I|]
+                  =\omega_{X^I}[|I|],
+ \qquad C_\varnothing=k.
+\end{equation}
+The shift makes exceptional collision pullback identify the
+coefficient on \(I\) with that on the collapsed set
+(Theorem~\ref{cl:thm:exceptional}). At one position it is
+\(\omega_X[1]\); its cobar desuspension is \(\omega_X\).
+The higher coefficients are determined by the cuts.
+
+For\phantomsection\label{e1f:def:scalar-cut-ideal} \(X=\mathbb A^1\), let \(R=k[z_1,\ldots,z_n]\), and
+put
+\[
+ F_a=\prod_{i\leq a<j}(z_i-z_j),
+ \qquad \mathfrak a_n=(F_1,\ldots,F_{n-1}).
+\]
+The cut after \(a\) localizes at \(F_a\). A set \(S\)
+of cuts gives \(|S|+1\) cobar blocks. Their density shifts
+add to \([n]\), and each block is desuspended once.
+After trivializing the density, the corresponding term is
+\begin{equation}\label{e1f:eq:scalar-cobar-term}
+ R\left[(\prod_{a\in S}F_a)^{-1}\right][n-|S|-1],
+\end{equation}
+in\phantomsection\label{e1f:def:scalar-cobar-coefficient} degree \(|S|-(n-1)\). The alternating localization maps
+give the augmented \v{C}ech complex. If \(\mathcal L_n\)
+denotes this reduced cobar coefficient, then
+\[
+ \mathcal L_n\simeq R\Gamma_{\mathfrak a_n}(R)[n-1].
+\]
+There are no cuts at one point, so \(\mathcal L_1=R\).
+At two points the support is the diagonal.
+
+At three points, write \(h=z_1-z_3\), \(s=z_1-z_2\),
+and \(v=z_2-z_3\). Then \(F_1=sh\), \(F_2=hv\), and
+\(F_1+F_2=h^2\). It follows that
+\(\sqrt{\mathfrak a_3}=(h)\), and hence
+\[
+ H^{-1}(\mathcal L_3)=R[h^{-1}]/R.
+\]
+This coefficient lies on the outer diagonal with the middle
+position free. At four points the support is
+\[
+ \{z_1=z_4\}\ \cup\ \{z_1=z_3,\ z_2=z_4\}.
+\]
+The second component can have two distinct collision positions.
+
+Call a set of disjoint label pairs an \emph{irredundant
+spanning matching} if its pairs cross every consecutive cut
+and no pair can be removed while retaining that property.
+
+\begin{theorem}\label{e1f:thm:support}
+For \(n\geq2\), the irreducible components of
+\(V(\mathfrak a_n)\) are
+\[
+ \{z_a=z_b\text{ for every }\{a,b\}\in M\},
+\]
+indexed by irredundant spanning matchings \(M\).
+There are \(\binom{n-2}{2r-2}\) components of codimension
+\(r\), for \(1\leq r\leq\lfloor n/2\rfloor\).
+For \(n\geq3\) their total number is \(2^{n-3}\).
+At the generic point of such a component, with independent
+normal coordinates \(u_1,\ldots,u_r\), the cohomology of
+\(\mathcal L_n\) is concentrated in degree \(r-n+1\)
+and contains \(1/(u_1\cdots u_r)\), whose iterated normal
+residue is \(1\).
+\end{theorem}
+
+\begin{proof}
+The equations \(F_a=0\) say that each cut is crossed by
+an equality. The equality blocks of a point cover cuts:
+a block covers exactly those between its least and greatest
+labels. Replacing it by the equality of those two labels
+preserves this coverage and removes every other equation
+of the block. More generally, an equality cluster formed
+by pairs sharing labels can be replaced by its outer pair.
+Thus a minimal set of coincidence equations consists of
+disjoint pairs, each needed for at least one cut. These are
+exactly the irreducible components of the union of equality
+subspaces.
+
+Write its pairs as \(\{a_i,b_i\}\), with \(a_i<b_i\),
+ordered by their left endpoints. No interval
+\([a_i,b_i)\) is contained in another, so the right
+endpoints increase as well. Coverage of the first and last
+cuts gives \(a_1=1\), \(b_r=n\). Consecutive intervals
+overlap: \(a_{i+1}<b_i\), since the endpoints are distinct
+and otherwise a cut is uncovered. But
+\(b_i<a_{i+2}\), since overlap of intervals \(i,i+2\)
+would make interval \(i+1\) redundant. Therefore their
+endpoints have the order
+\[
+ 1=a_1<a_2<b_1<a_3<b_2<\cdots
+                  <a_r<b_{r-1}<b_r=n.
+\]
+Conversely, pairs with this endpoint order cover all cuts.
+With \(b_0=1\), \(a_{r+1}=n\), the cuts from
+\(b_{i-1}\) to \(a_{i+1}-1\) are crossed only by pair
+\(i\); hence each is necessary. Choosing the \(2r-2\)
+interior endpoints determines the matching. This gives
+\(\binom{n-2}{2r-2}\), and summing the even binomial
+coefficients gives \(2^{n-3}\) for \(n\geq3\).
+
+At a generic point, invert all coordinate differences other
+than the pair differences \(u_1,\ldots,u_r\). A cut crossed
+only by pair \(i\) has \(F_a=u_i\) times a unit.
+Every cut is crossed by some pair, so the localized ideal
+is exactly \((u_1,\ldots,u_r)\). These independent linear
+forms are a regular sequence. Their local cohomology is
+concentrated in degree \(r\), with the nonzero residue class
+\(1/(u_1\cdots u_r)\). The shift \([n-1]\) gives
+the stated degree.
+\end{proof}
+
+These classes occur despite the absence of singular scalar
+fields. Cobar records the collision geometry of their
+coefficients. A cut crossed by a given equality inverts its
+normal coordinate \(u\), so its exceptional restriction
+there vanishes. In a normal Koszul model, exterior
+multiplication by the normal generator divided by \(u\)
+is a contracting homotopy. This explains the same vanishing
+directly on the collision complex.
+
+\section{Fields as the differential of a coalgebra}
+\label{e1f:sec:open}
+\label{e1f:sec:residue-realization}
+
+For a vertex algebra, the pole coefficients supply the
+differential of a configuration coalgebra. Its cobar then
+has an associative multiplication on the larger coefficient
+complexes required by the vacuum calculation.
+
+Take\phantomsection\label{e1f:def:partition-residue-coefficients} \(X=\mathbb A^1\) and a nonzero vertex algebra \(V\)
+over \(k\), with current module
+\(\mathscr V=\omega_X\otimes_kV\) and the translation
+connection of Section~\ref{e1f:sec:pch}. For a partition
+\(\pi\) of \([n]\), place one copy of \(\mathscr V\)
+at each block. Order the blocks by their largest labels,
+called their roots. Extend from distinct block positions
+and push along the partial diagonal of \(\pi\). Denote
+this right differential module by \(\mathcal V_\pi\).
+Its direct image retains all normal derivatives.
+
+For two blocks \(i<j\) in root order, let \(r_{ij}\)
+take the principal part of the first state's field at the
+second. The other blocks remain as spectators. Taylor
+transport of their coordinates is part of this map of
+differential modules. The resulting coalgebra coefficient is
+\begin{equation}\label{e1f:eq:residue-coalgebra}
+ C_n=\bigoplus_\pi\mathcal V_\pi[|\pi|],
+ \qquad
+ d_C|_{\mathcal V_\pi}
+          =\sum_{i<j}(-1)^{i-1}r_{ij},
+ \qquad C_0=k.
+\end{equation}
+A merger reduces the number of blocks by one and has total
+degree one. Disjoint mergers cancel with opposite signs.
+The remaining terms involve three blocks, whose full
+principal parts obey the following identity.
+
+\subsection{Three routes to the same contact module}
+
+Put\phantomsection\label{e1f:def:three-contact-coefficients} \(s=z_1-z_3\), \(t=z_2-z_3\), and \(r=s-t\).
+For a vector space \(P\), take the simultaneous coefficient
+module
+\[
+ \mathcal G_3(P)=P[[s,t]][(st(s-t))^{-1}],
+\]
+where power series are formed before localization. Let
+\(E_{s,t}(P)\) be the full contact module spanned by
+\(p\,s^{-a}t^{-b}\), \(a,b\geq1\), with its usual
+coordinate and normal derivative actions. Write
+\(\operatorname{pp}_u\) for the negative powers in a
+specified Laurent expansion in \(u\).
+
+The\phantomsection\label{e1f:def:contact-coordinate-transfer} first channel uses contact coordinates \((r,t)\).
+To compare it with the other channels one needs the
+differential-module map
+\[
+ J(r^{-a}t^{-b})
+   =\sum_{j=0}^{b-1}\binom{a+j-1}{j}s^{-a-j}t^{-b+j}.
+\]
+It sends \(r^{-1}t^{-1}\) to \(s^{-1}t^{-1}\),
+\(\partial_r\) to \(\partial_s\), and the old
+\(\partial_t\) to \(\partial_s+\partial_t\).
+Applying these derivatives to the simple contact gives the
+displayed\phantomsection\label{e1f:def:three-principal-part-routes} formula. Define the three routes, with the first
+principal part applied on the right, by
+\[
+ \begin{aligned}
+ L(F)&=J\operatorname{pp}_t\operatorname{pp}_rF(r+t,t)
+                                      &&(r\ll t),\\
+ R(F)&=\operatorname{pp}_s\operatorname{pp}_tF(s,t)
+                                      &&(t\ll s),\\
+ N(F)&=\operatorname{pp}_t\operatorname{pp}_sF(s,t)
+                                      &&(s\ll t).
+ \end{aligned}
+\]
+They first merge \(12\), \(23\), and \(13\), respectively.
+Their targets are now the same contact module, rather than
+unidentified spaces in different coordinates.
+
+\begin{lemma}[The three-channel identity]
+\label{e1f:lem:three-channel}
+For every \(F\in\mathcal G_3(P)\),
+\[
+ L(F)-R(F)+N(F)=0\quad\text{in }E_{s,t}(P).
+\]
+\end{lemma}
+
+\begin{proof}
+Write \(F=G/(s^at^b(s-t)^c)\). A monomial surviving
+two principal parts has total degree at most \(-2\).
+Since \(1/(s^at^b(s-t)^c)\) is homogeneous of degree
+\(-(a+b+c)\) in every expansion, numerator terms of
+degree above \(a+b+c-2\) contribute to none of the three
+maps. It suffices to treat polynomial \(G\).
+
+Over \(k[t,t^{-1}]\), the polynomials \(s\) and \(s-t\)
+are coprime. Partial fractions reduce the calculation to
+polynomials in \(s\), terms \(a_j(t)s^{-j}\), and terms
+\(b_j(t)(s-t)^{-j}\), with Laurent coefficients in \(t\)
+and the coefficients of \(P\) carried along. A polynomial
+in \(s\) contributes nothing. For \(a_j(t)s^{-j}\),
+the \(r\)-expansion is regular, so \(L=0\) and
+\(R=N=s^{-j}\operatorname{pp}_t(a_j)\).
+
+For \(b_j(t)(s-t)^{-j}\), the expansion in \(s\ll t\)
+is regular in \(s\), so \(N=0\). In the other domain,
+\[
+ (s-t)^{-j}
+    =\sum_{n\geq0}\binom{j+n-1}{n}s^{-j-n}t^n.
+\]
+Only terms \(t^{-\beta}\) of \(b_j\) with \(\beta\geq1\)
+contribute. Each gives
+\(\sum_{n<\beta}\binom{j+n-1}{n}s^{-j-n}t^{n-\beta}\)
+in \(R\), which is exactly \(J(r^{-j}t^{-\beta})\)
+in \(L\). This proves the identity on every summand.
+\end{proof}
+
+For \(F=1/(s(s-t))\), the values are
+\(L=s^{-1}t^{-1}\), \(R=0\), and
+\(N=-s^{-1}t^{-1}\), recovering the scalar flags.
+The coordinate transfer matters already at the next pole
+order: for \(F=1/((s-t)^2t^2)\),
+\[
+ N=0,\qquad L=R=s^{-2}t^{-2}+2s^{-3}t^{-1}.
+\]
+Merely renaming \(r\) as \(s\) would miss the second
+normal derivative coefficient.
+
+The\phantomsection\label{e1f:def:residue-cut-cobar} identity proves \(d_C^2=0\) in
+\eqref{e1f:eq:residue-coalgebra}. On a cut open, a
+partition crossing that cut has zero restriction. Every
+remaining partition is the external product of a partition
+on each side. This gives a strong cut coproduct, commuting
+with the differential. Two successive coproducts restrict
+to the same open set and are coassociative. The exceptional
+collision identifications and the vacuum maps are those
+of Theorem~\ref{ors:thm:formal}. Its associative algebra is
+\[
+ A=\Omega_{\mathrm{cut}}C,
+ \qquad \overline A_n\simeq R\Gamma_{Z_n}(C_n)[-1].
+\]
+
+\subsection{The outer collision and the full triple product}
+
+At arity three, the finite cut contraction leaves the
+two-term coefficient complex
+\begin{equation}\label{e1f:eq:residue-ternary}
+ G_3=\bigl[\mathcal V_{2|13}[1]
+             \xrightarrow{-r_{2,(13)}}\mathcal V_{123}\bigr],
+\end{equation}
+in degrees \(-1,0\). The first outer residue
+\(h=r_{13}:\mathcal V_{1|2|3}\to\mathcal V_{2|13}\)
+is therefore a map of degree \(-1\) into \(G_3\).
+Writing\phantomsection\label{e1f:def:residue-composite-channels}
+\[
+ L=r_{(12),3}r_{12},\qquad
+ R=r_{1,(23)}r_{23},\qquad
+ N=r_{2,(13)}r_{13},
+\]
+the three-channel identity becomes
+\[
+ \partial h=-N=L-R.
+\]
+It is a homotopy on the collision coefficient complex.
+It is not a degree-minus-one operation into the original
+degree-zero state module.
+
+Nor is it a nullhomotopy of the common triple product.
+Let \(\mathcal T=\mathcal V_{1|2|3}\),
+\(\mathcal B=\mathcal V_{2|13}\),
+\(\mathcal P=\mathcal V_{123}\), and let
+\(q:\mathcal P\to G_3\) include degree zero.
+Proposition~\ref{ors:prop:derived-triple} identifies the
+product of three singleton inputs, under the finite
+retract, with \(qL\). If \(L\ne0\), this is a nonzero
+derived map.
+
+Indeed, the triangle
+\[
+ \mathcal B\xrightarrow{-r_{2,(13)}}\mathcal P
+       \xrightarrow{q}G_3\longrightarrow\mathcal B[1]
+\]
+would turn \(qL=0\) into a factorization
+\(L=-r_{2,(13)}g\), with
+\(g\in H^0\operatorname{RHom}(\mathcal T,\mathcal B)\).
+Both coefficients are ordinary modules, so \(g\) would be
+an ordinary module map. In coordinates
+\(u=z_1-z_3\), \(v=z_2-z_3\), \(s=u-v\), the known
+factorization of \(L\) passes through an \(s\)-torsion
+module, while this proposed one passes through a
+\(u\)-torsion module. The function \(v\) is invertible
+before their last collision. Apply
+Lemma~\ref{e1f:lem:separation} to \(s,-u\), whose sum
+is \(-v\). It would give \(L=0\), a contradiction.
+The finite retract sends the fully cut triple product
+to \(qL\): its two residue corrections merge \(12\)
+and then \((12)3\), and the two suspension signs cancel.
+
+On three vacuum states, the multiplier \(1/(u(u-v))\)
+has successive residues \(1/v\) and \(1\) in that
+channel. Its output is the nonzero vacuum. The full
+derived triple product is consequently nonzero for every
+such vertex algebra over \(k\), including the Heisenberg
+algebra at level zero
+(Corollary~\ref{ors:cor:vacuum-triple}).
+
+The finite contraction extends to every arity. The transferred
+\(A_\infty\) operation on singleton inputs is the residue
+of the first field at the last, retaining the intervening
+fields as spectator blocks. In suspended coordinates it is
+\[
+ B_n(sx_1,\ldots,sx_n)=s\,r_{1n}(x_1,\ldots,x_n)
+\]
+(Theorem~\ref{ors:thm:formal}). This describes the
+transferred operations on the field complexes; multiplication
+in the cobar itself is strictly associative.
+
+The construction also applies over a commutative
+\(k\)-algebra of parameters when the state module is flat
+and the vacuum spans a free direct summand. It includes
+the flat Heisenberg, affine and Virasoro families at their
+special levels (Corollary~\ref{ors:cor:vertex}). If fields
+are local after a rational unitary exchange, a residue
+between nonadjacent blocks first passes the initial field
+through the intervening fields. Translation covariance,
+Yang--Baxter and the field hexagon identities make these
+passages compatible with the residue system
+(Theorem~\ref{ors:thm:braided}). The allowed positional
+poles are on collision diagonals. Exchanges with other
+pole loci or nontrivial double exchange need different
+configuration data.
+
+\section{Realizing operations on the collision complexes}
+
+The residue construction gives an algebra and actual
+operations on its coefficients. Comparing it with an
+independently specified system of fields requires a map
+between the corresponding operation complexes.
+
+On\phantomsection\label{e1f:def:diagonal-operation-insertion} the word category, diagonal insertion gives a precise
+representation theorem. For \(M\in D(\mathcal D_X)\),
+let \(iM\) have coefficients \(\Delta_{n*}M\) and empty
+coefficient zero. For any word system \(G\),
+Theorem~\ref{oco:thm:operations} identifies
+\[
+ \begin{aligned}
+ &\operatorname{RHom}_{\mathcal W_X}
+       (iM_1\star\cdots\star iM_n,G)\\
+ &\hspace{8mm}\simeq
+ \operatorname{RHom}_{\mathcal D_{X^n}}
+       \left(j_{n*}j_n^*(\boxtimes_iM_i),G_n\right).
+ \end{aligned}
+\]
+For \(G=iP\), these are the derived chiral operations,
+with their actual compositions. For a field cobar, the
+target is instead its coefficient complex \(G_n\).
+The representation theorem specifies the maps into that
+target; it does not choose which map realizes a proposed
+field operation.
+
+To state the further comparison, fix a dg operation system
+\(\mathcal Q^{\mathrm{adm}}\) on state modules. Its
+singular operations have a finite common pole bound on
+each input tuple and compatible expansions, and its domain
+is closed under the substitutions under consideration.
+Also fix a coefficient category \((\mathcal C,\star,K)\),
+either the word category or a specified ordered collision
+category. A realization assigns objects \(\mathsf FM\)
+and natural maps
+\[
+ \mathcal Q_n^{\mathrm{adm}}(M_1,\ldots,M_n;P)
+ \longrightarrow
+ \operatorname{RHom}_{\mathcal C}
+       (\mathsf FM_1\star\cdots\star\mathsf FM_n,\mathsf FP).
+\]
+They must commute with differentials, substitutions, cuts
+and the specified collision restrictions. Spectator Taylor
+transport and the local vacuum are part of those identities.
+On chosen dg models one may ask for injectivity and its
+image; the derived question asks for a quasi-isomorphism on
+a specified sector. Agreement only in degree zero does not
+answer that question.
+
+For binary operations in the weakly translation-equivariant
+word category, the degree-zero comparison is known:
+translation-covariant fields with finite poles are exactly
+the maps \(iM\star iN\to iP\)
+(Theorem~\ref{sgc:thm:binary}). The maps themselves must be
+equivariant; weak equivariance of their objects alone is
+insufficient. This binary identification cannot send full
+field composition to consecutive residue composition on
+unchanged degree-zero diagonal objects while preserving
+the normalized vacuum. The scalar test gives \(1\) and
+\(0\) in the two consecutive channels, and
+Proposition~\ref{e1f:prop:derived-heart} gives the general
+obstruction. The collision complexes retain the third
+channel that this attempted comparison would omit.
+
+\subsection{Keeping the runs of an ordered coefficient word}
+
+For a local vertex algebra \(V\) and a unital associative
+algebra \(B\) with derivation \(T_B\), the ordered product
+on \(V\otimes B\) has coefficients
+\[
+ m_n^V(v_1,\ldots,v_n;z)\otimes
+                  \prod_{i=1}^n e^{(z_i-z_n)T_B}b_i.
+\]
+The \(B\)-factors stay in input order. The derivation
+identity proves every consecutive substitution identity;
+their Taylor factors add no poles to those of the fixed
+\(V\)-tuple. For dg coefficients the same formula uses
+the Koszul shuffle between the \(V\)- and \(B\)-factors.
+
+For a partition \(\pi\), read the name of its block at
+each input position. A \emph{run} is a maximal consecutive
+string of the same block name. Keep one \(V\)-state per
+block and one \(B\)-factor per run. Thus the coefficient
+on the stratum of \(\pi\), before localization and
+diagonal direct image, is
+\[
+ \omega_{X^\pi}\otimes V^{\otimes|\pi|}
+                           \otimes B^{\otimes\ell(\pi)},
+\]
+where \(\ell(\pi)\) counts runs. The connection in a
+block coordinate includes \(T_V\) on that block and the
+sum of \(T_B\) on its runs.
+
+When blocks merge, multiply exactly those coefficient
+factors that become one consecutive run. Associativity
+makes these maps commute with successive coarsening.
+The derivation law makes them commute with the summed
+connections. At \(13|2\), the block names are \(a,b,a\),
+so the coefficient is \(V^{\otimes2}\otimes B^{\otimes3}\).
+The first merger leaves the three \(B\)-factors unchanged;
+the final merger multiplies them as \(abc\).
+
+Combining these maps with the \(V\)-field residues gives
+the run coalgebra and its strict associative cobar
+(Chapter~\ref{sgc:chapter}). Each residue includes the
+Taylor exponential on all runs of the translated block.
+For a fixed polar input, taking a principal part uses
+finitely many Taylor coefficients, so the output remains
+in the algebraic tensor coefficient even when \(T_B\)
+is not locally finite.
+
+There is a precise reason that these three run factors
+cannot always be compressed into two algebraic states.
+For the free differential algebra on
+\(a_i,b_i,c_i\), translated by increasing the subscript,
+consider
+\[
+ F(t)=(e^{tT_B}a_0)b_0(e^{tT_B}c_0).
+\]
+An algebraic two-state expression is a finite Laurent-linear
+sum of \((e^{tT_B}x)y\) and \(x(e^{tT_B}y)\), with fixed
+states \(x,y\). Projecting words \(a_ib_jc_k\) to
+\(p^iq^jr^k\) sends \(F(t)\) to \(e^{t(p+r)}\).
+Every proposed binary expression becomes a finite sum
+\(f(t)P(p,q,r)e^{tL}\), with
+\[
+ L\in\{0,p,p+q,p+q+r,r,q+r\}.
+\]
+For \(D=\partial_p+2\partial_q+4\partial_r\), their
+exponential eigenvalues are \(st\) with
+\(s\in S=\{0,1,3,4,6,7\}\). If \(d\) bounds the
+polynomial degrees, \(\prod_{s\in S}(D-st)^{d+1}\)
+kills the finite sum and sends the required coefficient to
+\[
+ (80t^6)^{d+1}e^{t(p+r)}\ne0.
+\]
+This proves the compression obstruction. It also occurs
+in the double-pole channel of \(H_\kappa\otimes B\)
+for \(\kappa\ne0\)
+(Theorem~\ref{sgc:thm:compression-obstruction}). The
+assertion concerns this algebraic two-state framing; it
+does not exclude other contextual or completed coefficients.
+
+Naturality imposes a different constraint when later
+spectators must remain arbitrary. For \(m\) unfilled
+positions, the coefficient context is
+\(W_B(m)=B^{\otimes(m+1)}\), evaluated by
+\[
+ (b_0\otimes\cdots\otimes b_m)(x_1,\ldots,x_m)
+                  =b_0x_1b_1\cdots x_mb_m.
+\]
+A natural quotient retaining every such evaluation must
+be injective (Proposition~\ref{sgc:prop:context-forced}).
+To see this, adjoin free symbols \(X_1,\ldots,X_m\) to
+\(B\). The coefficient of the word
+\(X_1\cdots X_m\) is precisely \(B^{\otimes(m+1)}\).
+Naturality carries a kernel element to that extension,
+and evaluation at the free symbols would kill its injective
+word coefficient. Thus the kernel was zero. Truncating
+above symbol degree \(m\) proves the same statement with
+finite-dimensional extensions when \(B\) is finite-dimensional.
+A quotient at a single fixed algebra can be smaller;
+the naturality requirement is essential.
+
+\subsection{A merger using the given middle state}
+
+If\phantomsection\label{e1f:def:middle-state-exchange} \(T_B=0\), a specified exchange provides another
+coefficient construction. For an ordinary nonzero unital
+algebra \(B\), define
+\[
+ c_B(a\otimes b)=ab\otimes1+1\otimes ab-a\otimes b.
+\]
+Its unit identities are
+\(c_B(a\otimes1)=1\otimes a\) and
+\(c_B(1\otimes a)=a\otimes1\). Applying them twice gives
+\(c_B^2=1\). Expansion using associativity proves the
+braid relation and the two multiplication compatibilities
+of Lemma~\ref{ctx:lem:braid}. If \(\tau_B\) is the flip,
+the field exchange \(\mathcal S_B=c_B\tau_B\) obeys
+\[
+ (\mathcal S_B)_{21}\mathcal S_B=1,
+ \qquad \mu_B\mathcal S_B=\mu_B\tau_B,
+\]
+and fixes each vacuum factor. The multiplication
+compatibilities are its field hexagons.
+
+Give \(V\otimes B\) the fields \eqref{e1f:eq:VB} and
+let this exchange act on the \(B\)-factors. Locality of
+\(V\), the last displayed equality and associativity in
+\(B\) prove the exchanged field identities. Theorem~\ref{ors:thm:braided}
+therefore gives their residue coalgebra with one state per
+occupied position.
+For the order \((13,2)\), the coefficient merger is
+\begin{equation}\label{e1f:eq:contextual-outer}
+ \begin{aligned}
+ q_{13|2}:B^{\otimes3}&\longrightarrow B^{\otimes2},\\
+ q_{13|2}(a,b,c)&=abc\otimes1+a\otimes bc-ab\otimes c.
+ \end{aligned}
+\end{equation}
+Its output product is \(abc\). For
+\(a=c=E_{12}\), \(b=E_{21}\), the value is
+\[
+ E_{12}\otimes1+E_{12}\otimes E_{22}
+                         -E_{11}\otimes E_{12},
+\]
+whose product is \(E_{12}\), even though \(ac=0\).
+Changing to root order \((2,13)\) applies \(c_B\) and gives
+\[
+ c_Bq_{13|2}(a,b,c)=ab\otimes c+1\otimes abc-a\otimes bc
+\]
+(Proposition~\ref{ctx:prop:qfunctor}). The inserted
+\(1_B\)'s belong to retained positions; they are not
+empty-configuration units.
+
+This map uses the actual middle state. It therefore poses
+a different problem from preserving every evaluation on
+an unfilled context. The run coefficient has three
+\(B\)-factors; the exchanged coefficient has two; their
+fully multiplied value is \(abc\). Equality of that
+value does not identify the two partial-stratum objects.
+The assumption \(T_B=0\) also leaves the free differential
+compression obstruction intact.
+
+\subsection{Homotopies relative to the field comparison}
+
+For\phantomsection\label{e1f:def:relative-residue-comparison} the Heisenberg--matrix run construction, let \(F\)
+be the diagonal input system with its binary residue
+\(r:F\star F\to F\), and let \(A\) be the run cobar
+with multiplication \(\mu\). The one-block inclusion
+\(\lambda:F\to A\) is a chain map. If \(\tau\) denotes
+the degree-one map from the coalgebra to its cobar
+generators, the interval two-block coefficient gives
+\(f_2:F^{\star2}\to A\) of degree \(-1\), with
+\[
+ \partial f_2=\mu(\lambda,\lambda)-\lambda r.
+\]
+The outer contact \(\mathsf R_{13}\) gives
+\(h=-\tau\mathsf R_{13}:F^{\star3}\to A\), with
+\[
+ \partial h=\lambda\mathfrak a,
+ \qquad \mathfrak a=r(r,1)-r(1,r)=L-R=-N.
+\]
+The sign includes the root transfer of the contact module;
+it is fixed on that module, rather than by renaming a
+polar variable (Chapter~\ref{ncc:chapter}).
+
+The four-input identity must include the binary comparison
+homotopy. Its degree-minus-one boundary is
+\[
+ \begin{aligned}
+ \mathcal O_4={}&h(r,1,1)-h(1,r,1)+h(1,1,r)\\
+   &-\mu(h,\lambda)-\mu(\lambda,h)
+       +f_2(\mathfrak a,1)+f_2(1,\mathfrak a).
+ \end{aligned}
+\]
+Every term maps \(F^{\star4}\) to \(A\).
+The five binary trees cancel in the associator identity;
+using the displayed equation for \(f_2\) then gives
+\(\partial\mathcal O_4=0\). Without the two \(f_2\)
+terms the expression need not even be closed.
+
+There is an explicit degree-minus-two nullhomotopy. Let
+\([i,j]\) record the unsigned first contact and its run
+map, and let angle brackets indicate the coefficient on
+the displayed partition. Then
+\[
+ K_4=\tau\bigl(
+       -\langle[1,3]\mid2\mid4\rangle
+       +\langle[1,4]\mid2\mid3\rangle
+       +\langle1\mid[2,4]\mid3\rangle\bigr)
+\]
+satisfies \(\partial K_4=\mathcal O_4\), including its
+quadratic cobar terms (Chapter~\ref{ncc:chapter}).
+Closedness of the three-channel expression alone would
+not construct this map.
+
+These are comparisons from powers of the diagonal input
+to a larger cobar. They give neither an \(A_\infty\)
+structure on the unchanged input nor higher multiplication
+in place of the strict multiplication of \(A\). Transfer
+to the smaller field complexes is a separate
+\(A_\infty\) construction, as in
+\eqref{e1f:eq:residue-ternary}.
+
+\subsection{Higher operations on prescribed generators}
+
+An\phantomsection\label{e1f:def:prescribed-generator-diagram} algebraic resolution can require higher terms for the
+same reason that the collision comparison retains more
+than its binary values. Let \(H\) be a dg coefficient
+algebra of weight zero, and consider a diagram
+\((T_HV,d)\) augmented to \(H\). The differential preserves
+weight, and the diagram maps are induced on the generators.
+Its linear part \(d_1\) makes \(V\) a complex of
+\(H\)-bimodules. Assume positive integer weights and
+\(K\)-flatness on both sides: tensoring with an acyclic
+module on the opposite side must remain acyclic.
+
+Theorem~\ref{cgr:thm:resolution} resolves this prescribed
+generator complex by a semi-free diagram \(P\to V\)
+and lifts the differential to a quasi-isomorphism
+\[
+ (T_HP,D)\longrightarrow(T_HV,d).
+\]
+Semi-free generators are attached in an order whose
+differentials use earlier generators. A decomposable value
+of weight \(w\) uses lower-weight generators and has
+length at most \(w\). The lift may consequently have
+higher word-length terms while requiring no completion.
+Applying this result to chiral data still requires the
+specified geometric diagram and tensor-flatness at its
+collisions and coefficient changes.
+
+The\phantomsection\label{e1f:def:higher-generator-differential} zero-parameter example of Proposition~\ref{cgr:prop:example}
+already shows the higher terms over \(H=k\). On free
+generators with \(|x|=|v|=0\), \(|u|=|y|=-1\),
+\(|z|=-2\), put
+\[
+ Dx=Dv=0,\qquad Du=v,\qquad Dy=x^2+vx,
+ \qquad Dz=xy-yx-xux+ux^2.
+\]
+The differential of the quadratic part of \(Dz\) is
+\(xvx-vx^2\); the cubic part has the opposite differential.
+Hence \(D^2z=0\). The change \(Y=y-ux\) gives
+\(DY=x^2\), \(Dz=xY-Yx\). The two presentations describe
+the same derived algebra, but the prescribed larger
+generator complex needs the cubic correction.
+
+The transverse sphere provides a different example.
+In its finite angular-mode dg algebra, the triple Massey
+product of two holomorphic coordinates with a degree-one
+mode is \(-1\) modulo the coordinate ideal
+(Theorem~\ref{rbt:thm:nonformal}). Its nonzero constant
+class forces higher products in the effective coefficient
+model. To realize them on a chiral defect one must still
+construct their localized inputs, collision supports and
+comparison maps (Section~\ref{rbt:sec:chiral}).
+
+\section{Recovering the symmetric theory}
+\label{e1f:sec:symmetric}
+
+A symmetric chiral algebra supplies more collision maps
+than a word system requires. Its passage to the word
+category is most transparent on its coalgebra.
+Francis--Gaitsgory Chevalley chains give an equivalence
+from Lie objects to cocommutative coalgebras for the chiral
+tensor on Ran space \cite{chhop:FG}*{Theorem~5.1.1}.
+The coalgebra factorizes exactly when the Lie object is
+supported on the singleton copy of \(X\)
+\cite{chhop:FG}*{Theorem~5.2.1}. Those Lie objects are
+chiral Lie algebras without a specified vacuum.
+
+Restrict their collision maps to monotone surjections and
+project their all-subset coproduct onto consecutive cuts.
+Coassociativity survives: either order of two projections
+retains the same three consecutive blocks. Factorization
+also survives on those cut opens. The cut cobar of the
+restricted coalgebra is therefore an associative chiral
+algebra in Definition~\ref{e1f:def:e1}. This constructs a
+word algebra from the chiral Lie algebra. A vacuum framing
+additionally compares its operations with the original
+simultaneous fields.
+
+\subsection{Why restriction must precede cobar}
+
+Restricting\phantomsection\label{e1f:def:free-commutative-singleton-species} an algebra before taking bar need not give the
+same coefficient complex as restricting its bar. On the
+separated coefficient species, take the free commutative
+algebra on one singleton generator. It has \(A(I)=k\)
+for every finite set \(I\), with identity products.
+For \(1<2\), its cut bar has the two-term complex
+\[
+ k[1|2]\longrightarrow k[12],
+\]
+whose map is an isomorphism. The all-subset bar instead has
+\[
+ k[1|2]\oplus k[2|1]\longrightarrow k[12],
+\]
+with both words mapped to \([12]\). It retains
+\([1|2]-[2|1]\), the Chevalley class of the two commuting
+inputs. Dropping the reverse word is not a chain map:
+it kills \([2|1]\) but not its differential.
+
+Restriction of the coalgebra keeps this component complex.
+Taking its cut cobar and then its cut bar recovers it by
+bar--cobar duality. It therefore preserves the class that
+the bar of the restricted algebra loses.
+
+In the other direction, symmetry on distinct points alone
+does not restore nonconsecutive collision maps.
+
+\begin{proposition}\label{e1f:prop:descent}
+There is a cut coalgebra with ordinary symmetry on every
+fully distinct locus which has no extension compatible
+with all surjections.
+\end{proposition}
+
+\begin{proof}
+Choose a differential module \(M\) with
+\(j^*(M\boxtimes M)\ne0\). Let \(D(M)\) be its
+diagonal word system, zero at the empty word, and take
+\[
+ C=K\oplus\bigoplus_{r\geq1}D(M)[1]^{\star r}
+\]
+with deconcatenation. On a fully distinct locus only
+singleton blocks remain, and their factors have the
+ordinary Koszul symmetry.
+
+The nonmonotone surjection with word \(121\) has diagonal
+\(\delta(x,y)=(x,y,x)\). Every summand of \(C_3\) with
+at least two consecutive blocks inverts a difference that
+vanishes under \(\delta\). Its exceptional pullback is
+therefore zero. The surviving one-block summand of
+\(\delta^!C_3\) is supported on \(x=y\).
+But \(C_2\) also contains the nonzero open coefficient
+\(j_*j^*(M[1]\boxtimes M[1])\). These two objects cannot
+be the coefficients identified by the surjection.
+\end{proof}
+
+A reverse comparison thus needs an extension of the whole
+bar coalgebra along every surjection, with a compatible
+cocommutative coproduct and factorization on disjoint
+loci. Under those hypotheses the Francis--Gaitsgory
+theorems recover a chiral Lie algebra. Descent of just
+the underlying modules leaves the required coproduct
+unspecified, and averaging is generally insufficient.
+
+\begin{theorem}\label{e1f:thm:average}
+Let \(C\) be a finite-dimensional ordinary coassociative
+coalgebra, with dual algebra \(A\). The coproduct
+\(\tfrac12(\Delta+\tau\Delta)\) is coassociative exactly
+when \([A,[A,A]]=0\).
+\end{theorem}
+
+\begin{proof}
+The dual multiplication is \(a\circ b=(ab+ba)/2\).
+Its associator is
+\[
+ (a\circ b)\circ c-a\circ(b\circ c)
+ =\frac14(bac+cab-acb-bca)=\frac14[b,[a,c]].
+\]
+Thus it vanishes for all inputs exactly under the stated
+condition. In \(\operatorname{Mat}_2(k)\), the choice
+\(a=E_{11}\), \(b=E_{12}\), \(c=E_{21}\) gives
+\((E_{22}-E_{11})/4\), so averaging fails there.
+\end{proof}
+
+\begin{example}\label{e1f:ex:noncommutative-average}
+The condition allows noncommutative algebras. In
+\(\operatorname{Mat}_3(k)\), take
+\[
+ A=kI_3\oplus kE_{12}\oplus kE_{23}\oplus kE_{13}.
+\]
+Here \(E_{12}E_{23}=E_{13}\) and
+\(E_{23}E_{12}=0\), but \(E_{13}\) commutes with all
+of \(A\). Hence \([A,A]=kE_{13}\) and
+\([A,[A,A]]=0\). The averaged coproduct of its dual
+coalgebra is coassociative despite the original algebra's
+noncommutativity.
+\end{example}
+
+\subsection{The Chevalley comparison and its normalization}
+
+A\phantomsection\label{e1f:def:chevalley-comparison-input} Lie map gives a structured comparison without averaging
+the associative coproduct. Let \(A\) be an augmented dg
+algebra in a symmetric coefficient category, let
+\(\overline A^-\) be the commutator Lie algebra of its
+augmentation ideal, and take a dg Lie map
+\(f:\mathfrak g\to\overline A^-\). On suspended inputs,
+put
+\[
+ sx_1\cdots sx_r\longmapsto
+ \sum_{\sigma\in S_r}\varepsilon(\sigma;sx_1,\ldots,sx_r)
+ [f(x_{\sigma(1)})|\cdots|f(x_{\sigma(r)})].
+\]
+This maps Chevalley chains, with unshuffle coproduct, to
+the tensor bar, with deconcatenation. Splitting the
+permutation sum is the same as choosing a subset and
+independently ordering it and its complement. Hence it
+preserves coproducts. In the differential, the two orders
+of each adjacent pair combine into the suspended Lie
+bracket, so it is a chain map.
+
+The sum is unnormalized. For degree-zero \(x,y\), its
+binary value is \([f(x)|f(y)]-[f(y)|f(x)]\), whose
+differential is the bracket image. Dividing this component
+by \(2\) while leaving the linear component fixed would
+break that equality; dividing by \(r!\) would also change
+the unshuffle/deconcatenation comparison.
+Theorem~\ref{ogd:thm:CE} constructs this map on the symmetric
+monoidal ordered collision category and proves that
+\(\operatorname{CE}_\star(L)\to B(U_\star L)\) is an
+equivalence for positive Lie objects. Its PBW proof uses
+a finite configuration filtration. The PBW symmetrization
+does have a factorial normalization; the coalgebra map
+just displayed does not.
+
+The commutator and this comparison use symmetry of the
+coefficient tensor. The nonsymmetric cut convolution
+does not supply it. Nor does the envelope theorem
+identify the bar of an arbitrary associative algebra
+with the Chevalley chains of its commutator Lie algebra.
+
+\section{Coproducts, the second tensor and centres}
+\label{e1f:sec:map}
+
+An associative product combines configurations. A coproduct
+of field algebras instead compares states occupying the
+same position. Compatibility between them needs a second
+tensor and an interchange map with its associativity and
+unit identities. Associative bar--cobar duality for one
+tensor does not construct this additional tensor.
+
+For an OPE bialgebra
+(Definition~\ref{cqe:def:bialgebra}), the same-position
+coproduct is a map
+\(G\to G\otimes_{\mathcal O_X}G\) preserving the vacuum
+and every simultaneous product. It has a counit to
+\(\mathcal O_X\). Multiplication of the scalar pole
+functions defines the tensor product of OPE algebras.
+At a fixed nonzero Heisenberg level, the counit is already
+excluded by a singular coefficient.
+
+\begin{proposition}\label{e1f:prop:counit}
+If \(\kappa\ne0\), there is no unital vertex-algebra map
+\(H_\kappa\to k\).
+\end{proposition}
+
+\begin{proof}
+Such a map \(\varepsilon\) would preserve the first
+singular product and give
+\[
+ \kappa=\varepsilon(h_{(1)}h)
+       =\varepsilon(h)_{(1)}\varepsilon(h)=0,
+\]
+since the scalar target has no singular products.
+\end{proof}
+
+The\phantomsection\label{e1f:def:universal-central-current} universal central state has a coproduct even though
+its fixed nonzero specialization has no counit. Let
+\(\mathcal H\) be universally generated by \(h\) and
+a central state \(C\), with \(TC=0\),
+\(h_{(1)}h=C\), and \(h_{(n)}h=0\) for \(n=0\)
+and \(n\geq2\). Then
+\(\mathcal H/(C-\kappa\mathbf1)=H_\kappa\).
+The assignments
+\[
+ h\longmapsto h\otimes\mathbf1+\mathbf1\otimes h,
+ \qquad
+ C\longmapsto C\otimes\mathbf1+\mathbf1\otimes C
+\]
+preserve the generating relations: mixed singular products
+between the two tensor factors vanish. Universality gives
+a vertex-algebra coproduct. Both triple iterations send
+each generator to the sum of its three copies, proving
+coassociativity. Sending \(h,C\) to zero gives the counit.
+Specializing the two output central states gives
+\[
+ H_{\kappa_1+\kappa_2}\longrightarrow
+                         H_{\kappa_1}\otimes H_{\kappa_2}.
+\]
+Thus the coproduct adds levels. It does not preserve a
+fixed nonzero level in both output factors.
+
+\subsection{The tensor on collision coalgebras}
+
+On the ordered collision category there is a diagonal tensor
+\(\otimes^!\) on convolution coalgebras, with dualizing unit
+\(J\). Its coefficient at one point is \(\omega_X[1]\),
+and its empty coefficient is \(k\). Bar--cobar transports
+this tensor to the product
+\[
+ A\diamond A'=\Omega(BA\otimes^!BA'),
+ \qquad \mathbf1_\diamond=\Omega J.
+\]
+This differs from convolution, whose unit is \(K\).
+A monoid for \(\otimes^!\) among convolution coalgebras
+is called a \emph{transverse monoid}. Its multiplication
+must preserve the cut coproduct through the geometric
+interchange; it is not a second copy of cut multiplication.
+
+The ordinary diagonal tensor need not agree with the
+tensor of fields carrying a cross exchange. At two
+separated positions, the two coproduct components of a
+factorizing coalgebra determine an exchange by inverting
+one component and composing with the other. A coalgebra
+map with prescribed singleton map must intertwine these
+exchanges. Proposition~\ref{cqb:prop:diagonal-obstruction}
+gives constant unitary spectral forms for which the field
+tensor and the ordinary diagonal tensor have different
+exchanges on the same state tensors. Hence no comparison
+inducing their singleton identity exists in that example.
+
+There is a positive comparison when the tensor retains
+the spectral regrouping. On the admissible covariant word-coefficient
+domain of Definition~\ref{stp:def:covariant}, the state
+coactions supply rational differential-module passage
+maps, with finite pole order on each state, compatibility
+with collision pullbacks, and continuity for any chosen
+completion. For a unitary spectral form, insert the
+inverse regrouping in the diagonal tensor's cut
+coproduct. This gives the monoidal tensor
+\(\otimes^!_\sigma\), with unit \(J\)
+(Proposition~\ref{stp:prop:monoidal}). Its coefficient
+objects are those of the diagonal tensor; its coproduct
+has the additional passage map.
+
+For the covariant field tensor \(V_1\boxtimes_\rho V_2\),
+the comparison is
+\[
+ C(V_1\boxtimes_\rho V_2)
+       \xrightarrow{\ \sim\ }
+ C(V_1)\otimes^!_\sigma C(V_2)
+\]
+(Theorem~\ref{tpd:thm:twisted}). It is constructed on
+regular lattices and then passed through their comparison
+with the residue complexes. It is natural, monoidal,
+the identity on singleton states, and preserves the
+vacuum marking under \(J\). Outside this coefficient
+domain, admissible passage maps and independence of the
+presentation remain separate requirements
+(Question~\ref{cqb:qn:second-tensor}). A bare coaction
+on an arbitrary completed module does not supply them.
+
+\subsection{The universal property depends on the action tensor}
+
+For symmetric convolution on the ordered collision
+schemes, an associative algebra \(A\) has a convolution
+centre \(Z^*(A)\). It is the final \(E_2\)-algebra acting
+through maps \(F\star A\to A\) that preserve the algebra
+structure (Theorem~\ref{oco:thm:center}). It represents
+the internal endomorphisms of the bimodule \(A\), and
+its unit is a map from the empty-configuration object
+\(K\). The centre itself retains configuration
+coefficients.
+
+On the nonsymmetric word category, the corresponding
+scalar centre is
+\(R\operatorname{Hom}_{A\text{-}A}(A,A)\). It is final
+among actions of \(E_2\)-algebras in \(D(k)\), acting
+by \(F\otimes_k A\)
+(Theorem~\ref{oco:thm:word-center}). This is a different
+coefficient and action domain from the preceding internal
+centre.
+
+An interior field can act on a boundary field at the
+same position of the curve. Its geometric action uses
+the diagonal tensor on coalgebras, or \(\diamond\)
+after cobar. For a coalgebra \(C\) in the symmetric
+convolution category, there is an
+ambient universal transverse monoid \(\mathcal E(C)\)
+acting by \(F\otimes^!C\to C\), with no factorization
+requirement on the actor
+(Theorem~\ref{tvp:thm:universal}). Requiring a final
+\emph{factorizing} actor changes the existence question.
+
+Such an actor need not exist for a general factorizing
+coalgebra. The split Chevalley coalgebra \(C(W)\) of
+an abelian diagonal Lie object, with finite-dimensional
+singleton \(W\otimes\omega_X[1]\), gives a counterexample
+when \(\dim W\geq2\)
+(Theorem~\ref{scn:thm:no-centre}). Each decomposition
+of \(W\) into two summands gives a factorizing action
+through its complementary projectors. On \(W=k^2\),
+take
+\[
+ P=\begin{pmatrix}1&0\\0&0\end{pmatrix},
+ \qquad Q=\begin{pmatrix}1&1\\0&0\end{pmatrix}.
+\]
+Both are idempotent, but \(PQe_2=e_1\) and \(QPe_2=0\).
+A common factorizing recipient would make their images
+commute on the collision diagonal, contradicting these
+values. This rules out a final recipient for all such
+actions.
+
+The split coalgebra has no nonzero local vacuum. It
+therefore does not settle existence for coalgebras of
+unital flat chiral algebras. On that class the ordinary
+chiral centre is final among factorizing actors bounded
+above by the heart (Theorem~\ref{htd:thm:below}); the
+unrestricted derived problem remains
+Question~\ref{htd:qn:centralizer}. Two cases of it are decided
+negatively. For the algebraic Heisenberg coalgebra at nonzero
+level on the affine line over a field of characteristic zero,
+the pointed-action functor is not representable
+(Theorem~\ref{pso:thm:sphere}). For an ordinary unital vertex
+algebra over \(\mathbb C\) on the affine line, with algebraic
+states in degree zero and a nonzero vertex derivation, the
+category of coherent factorizing transverse monoid actions on
+its Chevalley--Cousin coalgebra has no final object
+(Theorem~\ref{env:thm:ordinary}). The unrestricted form
+of Question~\ref{tvp:qn:local} must be distinguished
+from this remaining vacuum-bearing case. A mixed
+bulk--boundary realization also requires the comparison
+of Conjecture~\ref{intro:conj:ht-centre}; neither
+convolution finality nor the ambient transverse monoid
+constructs it.
+
+The carriers now give the following comparisons. In
+each row, an equivalence includes only the domain and
+structures stated there.
+\medskip
+\begingroup
+\renewcommand{\arraystretch}{1.2}
+\begin{longtable}{
+ >{\raggedright\arraybackslash}p{.29\textwidth}
+ >{\raggedright\arraybackslash}p{.31\textwidth}
+ >{\raggedright\arraybackslash}p{.31\textwidth}}
+\toprule
+Input & Output & Comparison\\\midrule
+\endfirsthead
+\toprule
+Input & Output & Comparison\\\midrule
+\endhead
+\bottomrule
+\endfoot
+Strict associative chiral map with normalized vacuum
+ & Zero module & Theorem~\ref{e1f:thm:vacuum}\\
+Associative object in vertex algebras
+ & Regular commutative differential algebra
+ & Equivalence, Theorem~\ref{e1f:thm:va}\\
+Chiral algebra with vacuum and translation on \(\mathbb A^1\)
+ & Vertex algebra & Equivalence, \cite{chhop:BD}*{\S0.15}\\
+Regular ordered product system
+ & Associative differential algebra
+ & Equivalence, Proposition~\ref{e1f:prop:regular}\\
+Ordered product system
+ & System with a finite exchange
+ & Extra data; obstruction in Proposition~\ref{e1f:prop:noexchange}\\
+Chiral Lie algebra without vacuum
+ & Associative cut algebra
+ & Chevalley chains, restriction, then cobar\\
+Associative cut algebra
+ & Chiral Lie algebra
+ & Needs a cocommutative factorizing extension of its bar\\
+Coassociative coalgebra
+ & Cocommutative coalgebra by averaging
+ & Criterion of Theorem~\ref{e1f:thm:average}\\
+Augmented collision algebra, empty coefficient \(k\)
+ & Coaugmented collision coalgebra, empty coefficient \(k\)
+ & Bar--cobar equivalence; it restricts to factorizing bars\\
+Vertex fields or rational unitary exchanged fields
+ & Residue coalgebra and associative cobar
+ & Theorem~\ref{ors:thm:formal}; framing uses the specified operations\\
+\end{longtable}
+\endgroup
+\medskip
+
+Bar--cobar equivalence also applies outside the factorizing
+sector. For example, put a primitive coproduct on
+\(K\oplus D(\omega_X)\), with positive coefficients on
+the small diagonals. At two distinct positions the
+coalgebra vanishes but the external product of its
+singleton coefficients does not. Factorization fails.
+The equivalence restricts to factorizing bars precisely
+because \(B\Omega C\simeq C\) preserves the actual
+coproduct maps.
+
+\section{Independent inputs and normal collision jets}
+
+A field product can identify distinct input tensors.
+Its geometric coefficients must specify whether they
+retain those tensors or only their evaluated product.
+Let\phantomsection\label{e1f:def:independent-input-regular-lattice} \(V\) be a simultaneous ordered product system on
+\(X=\mathbb A^1\), with a finite common denominator
+for each ordered tuple. Keep the original input module
+\[
+ \mathcal H_I=\mathcal O_{X^I}(*D_I)\otimes_k V^{\otimes I},
+ \qquad D_I=\bigcup_{i<j}\{z_i=z_j\}.
+\]
+For an interval partition \(\pi\), let \(M_\pi\)
+apply the simultaneous product within each block and
+retain the different block outputs. Expand in their
+internal separations with differences between the block
+roots inverted. Define
+\[
+ \mathcal K_I=\bigcap_{\pi\ \mathrm{interval}}
+ M_\pi^{-1}\bigl(\text{series regular in all internal
+                         separations of }\pi\bigr).
+\]
+This is a lattice inside the prescribed independent
+inputs. Here ``lattice'' means a coordinate submodule
+whose localization recovers those inputs; finite
+generation is not required.
+
+For a constant unital algebra \(B\), at two positions
+and with the common coordinate suppressed, multiplication
+has the section \(b\mapsto1\otimes b\). Thus
+\[
+ \mathcal K_2
+ =\ker(B\otimes B\to B)[u,u^{-1}]
+                      \oplus(1\otimes B)[u],
+ \qquad u=z_1-z_2.
+\]
+The kernel directions retain arbitrary poles because
+their field product is zero. Passing to the image of
+multiplication would erase these directions before
+the collision is considered.
+
+The order matters for the same reason. For
+\(B=k[x]/(x^2)\), the input
+\[
+ s=\frac{x\otimes x\otimes1}{z_1-z_3}
+\]
+lies in \(\mathcal K_3^{123}\). Every interval block
+containing both labels \(1,3\) contains label \(2\),
+so its product contains \(x^2=0\); in every other
+test the denominator is between blocks. In order
+\(132\), however, the block \(13\) has product
+\(x\), leaving the nonzero two-block coefficient
+\(x\otimes x/(z_1-z_3)\) with an internal pole.
+Thus \(s\notin\mathcal K_3^{132}\). Comparing the
+lattices needs a transition map, rather than equality
+under the identity on inputs.
+
+On consecutive strata their collision maps are exact.
+For an adjacent merger with normal coordinate \(u\),
+the map \(c_*\) takes the constant internal coefficient
+of the corresponding regular partial product. It fits
+into
+\[
+ 0\longrightarrow\mathcal K_I
+    \xrightarrow{\ u\ }\mathcal K_I
+    \xrightarrow{\ c_*\ }\mathcal K_J
+    \longrightarrow0.
+\]
+Insertion of the vacuum splits the last map on
+coefficient complexes. This sequence is linear for
+coordinate functions and compatible with tangent
+translations. Multiplication by \(u\) is not a full
+differential-module map, since \([\partial_u,u]=1\).
+Iterated normal Koszul resolutions give the exceptional
+collision comparisons after the density normalization
+\((\omega_{X^I}\otimes\mathcal K_I)[|I|]\).
+Localization at a consecutive cut gives the external
+product of its two lattices. Chapter~\ref{cl:chapter}
+proves these collision and factorization statements,
+including their compatibility.
+
+Nonconsecutive coefficients must also retain spectator
+poles and normal derivatives. At Heisenberg level
+\(\lambda\), the two contractions in
+\(:h^2:(z_1)h(z_2)h(z_3)\) have vacuum coefficient
+\[
+ \frac{2\lambda^2}{(z_1-z_2)^2(z_1-z_3)^2}.
+\]
+Set \(u=z_1-z_3\), \(v=z_2-z_3\), and expand with
+the middle point held apart. Its outer principal part is
+\[
+ \operatorname{pp}_u
+       \frac{2\lambda^2}{u^2(u-v)^2}
+   =2\lambda^2\left(v^{-2}u^{-2}+2v^{-3}u^{-1}\right).
+\]
+The double contact includes a normal derivative; the
+simple contact has a spectator pole of order three.
+Keeping only a residue with the original order-two
+spectator bound would miss part of this coefficient.
+
+\section{Common pole bounds and continuous substitution}
+
+The constructions above began with simultaneous products.
+Weak associativity compares iterated fields after
+multiplication by a suitable regularizing power, which
+can depend on the chosen states. Its implication for
+a common multivariable target is a further question.
+
+\begin{question}\label{e1f:qn:simultaneity}
+Does weak associativity on every triple of states in a
+nonlocal vertex algebra force every four-state product
+to be the expansion of a common germ with poles only
+on collision divisors?
+\end{question}
+
+A counterexample must be an actual nonlocal vertex
+algebra: its fields, vacuum and translation must obey
+weak associativity on all states. It must then have
+a four-state product with no finite common collision
+denominator. Single generation is not required.
+The scalar expression
+\[
+ \exp\left(\frac{(x-y)(y-z)z}{x}\right)
+\]
+illustrates the distinction between coefficientwise
+and common bounds. Its coefficients after expansion
+in \(y,z\) are meromorphic in \(x\), but for generic
+fixed \(y,z\) it has an essential singularity at
+\(x=0\). No finite collision denominator removes it.
+This expression by itself supplies none of the field
+algebra axioms required for a counterexample.
+An associativity bound depending only on the outer
+pair of states and uniform in the middle state is
+a stronger requirement.
+
+The same issue arises when operations are substituted.
+Composing \(\sum_{n\geq0}u^ne_n\) with
+\(e_n\mapsto v^{-n^2}w\) gives
+\(\sum_{n\geq0}u^nv^{-n^2}w\). Each coefficient has
+a finite pole, but no single power of \(v\) clears
+all coefficients. There can also be a nonmeromorphic
+composite with only linearly growing intermediate
+poles: Proposition~\ref{ecd:prop:log} constructs
+\(\log(1-v/u)\) from such operations. Thus finite
+pole order on each intermediate state does not make
+an operation domain closed under substitution.
+
+\subsection{Ordered tensor topology}
+\label{e1c:sec:topology}
+
+The\phantomsection\label{e1c:def:ordered-tensor-completion} modes of fields are operators, and their
+composition is associative. A topology specifies
+which infinite operator expressions this permits.
+For complete separated linearly topologized vector
+spaces \(E_1,\ldots,E_n\), declare a subspace
+\(U\subset E_1\otimes\cdots\otimes E_n\) open when,
+for every \(i\) and every fixed suffix
+\(e_{i+1},\ldots,e_n\), there is an open
+\(P\subset E_i\) with
+\[
+ E_1\otimes\cdots\otimes E_{i-1}\otimes P
+              \otimes e_{i+1}\otimes\cdots\otimes e_n
+                       \subset U.
+\]
+Denote its separated completion by
+\(E_1\otimes^{\to}\cdots\otimes^{\to}E_n\).
+These tensors are associative with discrete unit
+\(k\) \cite{chhop:BD}*{\S3.6.1}.
+Their order specifies the corresponding iterated
+Laurent-series space when the factors are \(k((t_i))\).
+
+\begin{proposition}\label{e1c:prop:operators}
+For a discrete vector space \(W\), give
+\(\mathcal E=\operatorname{End}_k(W)\) the neighborhoods
+\[
+ U_F=\{a\in\mathcal E:a|_F=0\},
+                      \qquad \dim F<\infty.
+\]
+Composition makes \(\mathcal E\) a complete unital
+associative algebra for \(\otimes^{\to}\).
+\end{proposition}
+
+\begin{proof}
+A Cauchy net is eventually constant on each vector
+of \(W\). Its values define a unique linear operator,
+which proves completeness and separation. For
+\(m(a,b)=ab\), the inverse image of \(U_F\) contains
+\(\mathcal E\otimes U_F\), and for a fixed \(b\)
+it contains \(U_{b(F)}\otimes b\). These are the
+two ordered continuity conditions, so composition
+extends to the completion. Its two associative
+composites agree on the dense algebraic triple
+tensor and therefore agree on its completion.
+The identity operator gives the unit.
+\end{proof}
+
+Every mode on \(W\) belongs to this operator algebra.
+This fact imposes no uniform Laurent bound on all
+states of \(W\). Substitution of a formal sum of
+states is a separate continuity question.
+
+\begin{proposition}\label{e1c:prop:completion}
+Let \(\kappa\ne0\), give \(H_\kappa\) the discrete
+topology and \(H_\kappa[[u]]\) the \(u\)-adic topology.
+There is no continuous substitution on all of
+\(H_\kappa[[u]]\) agreeing on finite sums with
+\(a(u)\mapsto Y(a(u),u)h\), into a target whose
+Laurent-coefficient maps to discrete \(H_\kappa\)
+are continuous.
+\end{proposition}
+
+\begin{proof}
+The partial sums of
+\[
+ A(u)=\sum_{r\geq0}\frac{(-1)^ru^r}{(r+1)!}T^rh
+\]
+converge \(u\)-adically. Differentiating the
+Heisenberg double pole gives
+\[
+ Y(T^rh,u)h=(-1)^r(r+1)!\kappa u^{-r-2}\mathbf1
+                                  +\text{regular terms}.
+\]
+Every term of \(A(u)\) therefore contributes
+\(\kappa\mathbf1\) to the coefficient of \(u^{-2}\)
+after substitution. The first \(N\) terms contribute
+\(N\kappa\mathbf1\), which is not eventually
+constant. Continuity of substitution and coefficient
+extraction would make this a convergent sequence in
+the discrete coefficient space, a contradiction.
+\end{proof}
+
+Completing\phantomsection\label{e1c:def:formal-diagonal-output} a geometric output instead specifies a
+different operation. Let \(G\) be a left differential module,
+let \(\mathcal I_\Delta\) be the ideal of a small diagonal,
+and choose an output coordinate. The underlying formal
+coefficient module is
+\[
+ \widehat\Delta_{I,*}G
+ =\varprojlim_N
+       (\mathcal O_{X^I}/\mathcal I_\Delta^N)
+                       \otimes_{\mathcal O_X}G.
+\]
+Here tensoring is performed before the inverse limit.
+It allows infinitely many independent state coefficients;
+Taylor transport compares choices of output coordinate.
+Localizing afterwards at the collision differences
+allows a finite denominator for each input tuple.
+It does not permit substitution of every completed
+state sum. The preceding proposition separates these
+two completion requirements.
+
+\subsection{A dual algebra and its geometric comparison}
+
+The first associative dual is the coalgebra
+\(B_{\mathrm{cut}}A\). A specified coefficient duality
+can transpose its coproduct into an algebra in the
+dual coefficient category
+(Theorem~\ref{full-thm:koszul}). This transposes the
+operations it is defined on. A realization as a
+second field system still needs its collision maps,
+vacuum and coefficient topology.
+A boundary realization also requires an independently
+specified module and its action.
+
+An\phantomsection\label{e1f:def:derived-endomorphism-field} algebraic endomorphism model makes the choice of
+recipient explicit. For an augmented dg algebra
+\(B\), choose a homotopically projective resolution
+\(P\to k\): for every acyclic \(B\)-module \(N\),
+\(\operatorname{Hom}_B(P,N)\) is acyclic. Set
+\[
+ E=\operatorname{Hom}_B(P,P),\qquad
+ d_Ef=d_Pf-(-1)^{|f|}fd_P,\qquad fg=f\circ g.
+\]
+This is a unital associative dg algebra.
+Applying \(\operatorname{Hom}_B(P,-)\) to \(P\to k\)
+identifies its underlying complex with
+\(R\operatorname{Hom}_B(k,k)\). Its regular ordered
+field is \(Y(f,z)g=fg\), with translation zero and
+vacuum \(1_P\). Thus it gives an algebra-valued dual
+on the chosen resolution. It has not yet supplied
+a comparison of singular chiral operations.
+
+Transferring \(E\) to \(H^*(E)\) retains higher
+\(A_\infty\) operations and a quasi-isomorphism;
+the binary cohomology product alone need not determine
+\(E\). Recovering \(B\) from a double dual also requires
+an augmentation-biduality comparison in the chosen
+coefficient category.
+
+Field\phantomsection\label{e1f:def:exact-vacuum-contraction} comparisons must also respect the cohomological
+degree of the vacuum. In a unital dg field algebra,
+suppose \(\mathbf1=dv\) with \(|v|=-1\). Since
+\(d\) differentiates every mode, the map
+\(h(a)=v_{(-1)}a\) satisfies
+\[
+ dh(a)+hd(a)=(dv)_{(-1)}a=a.
+\]
+An exact vacuum therefore contracts the state complex.
+In particular, a complex with \(H^0=0\) and nonzero
+total cohomology cannot carry such a vacuum.
+
+A geometric dual must retain both kinds of data seen
+in the examples: simultaneous pole bounds, and
+coefficients on partial collisions such as the
+matrix context \(PQP\) and the scalar classes of
+Theorem~\ref{e1f:thm:support}. For \(V\otimes B\),
+charged Heisenberg families and the scalar vacuum,
+Chapter~\ref{cl:chapter} constructs the regular
+word-image system and the independent-input lattice,
+with their consecutive collision maps. Field
+evaluation relates these two objects and can have
+a nonzero kernel. A full comparison must also
+specify transitions between word orders and their
+compatibility with field operations. Chapter~\ref{cqe:chapter}
+states the additional coproduct and module-exchange
+data on those operations.

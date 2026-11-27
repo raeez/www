@@ -1,0 +1,1465 @@
+\chapter{Relative Donaldson--Thomas operators}
+\label{ch:relative-dt}
+
+\section{Boundary amplitudes and the Euler index}
+\label{rdt:sec:index}
+
+A closed curve-counting series forgets the dependence on boundary
+insertions. Relative ideal sheaves retain those insertions: restricting
+an ideal to a relative K3 fibre gives a point of a Hilbert scheme. The
+Poincare diagonal then provides a geometric way to join two ends.
+The resulting operator is determined before its trace is taken.
+
+Let $S$ be a smooth projective complex K3 surface, let $E$ be a smooth
+elliptic curve, and let $0\ne\beta\in\operatorname{Pic}(S)$ be effective.
+The integer $d\ge0$ denotes degree over the base curve. Put
+\[
+ Y_d=S^{[d]},\qquad H_d=H^*(Y_d,\Q),\qquad
+ \eta_d(a,b)=\int_{Y_d}a\cup b.
+\]
+We use the actual cohomological grading, without a shift. Thus $Y_d$ has
+complex dimension $2d$, the pairing has degree $-4d$, and $H_d$ is
+concentrated in even degrees. The last assertion follows, for example,
+from the Nakajima description in terms of the even cohomology of $S$.
+For $d=0$, $Y_0$ is a point and $H_0=\Q$.
+
+\begin{convention}\label{rdt:conv:index}
+The notation $(\beta,n,m,p)$ in \cite{OberdieckMC} becomes
+$(\beta,d,m,r)$ here. On $S\times E$, its $m$ is the Euler
+characteristic denoted by $n$ in the closed ideal-sheaf charge.
+On a relative geometry over a general curve, however, the paper defines
+$m=\int\ch_3(\mathcal O_Z)$, not the Euler characteristic.
+Write $N=\chi(\mathcal O_Z)$ for the Euler characteristic on the tube.
+\end{convention}
+
+\begin{lemma}[The sewing index]\label{rdt:lem:index}
+For a curve of class $(\beta,d)$ on $S\times A$, with $A$ smooth of
+genus $g$, one has
+\begin{equation}\label{rdt:eq:RR}
+ \chi(\mathcal O_Z)=m+d(1-g).
+\end{equation}
+Consequently $N=m+d$ on $S\times\mathbb P^1$, whereas the closed
+Euler characteristic on $S\times E$ is $n=m$.
+\end{lemma}
+\begin{proof}
+The rank and first Chern character of $\mathcal O_Z$ vanish. Its
+Riemann--Roch formula is therefore
+\[
+ \chi(\mathcal O_Z)=\int\ch_3(\mathcal O_Z)
+   +\frac12\int[Z]c_1(T_{S\times A}).
+\]
+The K3 tangent bundle has first Chern class zero. The horizontal degree
+contributes $d\deg c_1(T_A)/2=d(1-g)$, proving the formula. On expanded
+relative targets the conserved numerical index is defined by the same
+contraction convention; the normalization exact sequence at a node
+gives the identical relation.
+\end{proof}
+
+If a nodal curve is separated into two components, admissibility of the
+relative ideal gives
+\begin{equation}\label{rdt:eq:normalization}
+ 0\longrightarrow\mathcal O_Z\longrightarrow
+ \mathcal O_{Z_1}\oplus\mathcal O_{Z_2}
+ \longrightarrow\mathcal O_\eta\longrightarrow0,
+ \qquad \operatorname{length}(\eta)=d.
+\end{equation}
+Thus $N=N_1+N_2-d$. In terms of $m$, the same identity is $m=m_1+m_2$.
+For a nonseparating node it is $n=N-d$. This is the reason for the
+indexing in \cite[Remark 5.1]{OberdieckMC}.
+
+\subsection{Actual charges and saturation}
+
+On the closed Calabi--Yau product, the ideal sequence and
+$\sqrt{\operatorname{td}(S)}=1+[\mathrm{pt}]$ give
+\begin{equation}\label{rdt:eq:charges}
+ P=(1,0,1-d),\qquad Q=(0,-\beta,-n),\qquad
+ \Pi_X(Q,P)=(\beta^2/2,n,d-1).
+\end{equation}
+On a tube the same surface-valued Chern character has $m=N-d$ in the
+last component of $Q$. It would be incorrect to put the unshifted
+tube Euler characteristic in that component.
+
+\begin{proposition}\label{rdt:prop:wedge}
+For the pair \eqref{rdt:eq:charges}, its rank-two saturation index is
+\[
+ [\operatorname{Sat}(\Z P+\Z Q):\Z P+\Z Q]=\gcd(\operatorname{div}(\beta),n).
+\]
+The gcd of the entries of its Gram matrix is instead
+$\gcd(\beta^2,2(d-1),n)$.
+\end{proposition}
+\begin{proof}
+Write $\beta=\sum b_i e_i$ in an integral basis. The two-column
+matrix with columns $P,Q$ has minors containing every $b_i$ and $n$;
+the remaining possibly nonzero minors are $(1-d)b_i$ up to sign.
+The second determinantal divisor is therefore $\gcd(b_i,n)$, which is
+the saturation index by Smith normal form. The first coordinate of
+$P$ is one, so the rank is two and no additional first determinantal
+divisor occurs. The Mukai pairings are $Q^2=\beta^2$,
+$P^2=2(d-1)$ and $Q\cdot P=n$, proving the other formula.
+\end{proof}
+
+For a section $C$ and fibre $F$ of an elliptic K3,
+$C^2=-2$, $F^2=0$, $C\cdot F=1$. In particular $C$ is primitive.
+For $d=1$, the following table uses the \emph{closed} Euler index.
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+$\beta$ & $n$ & $\operatorname{div}(\beta)$ & wedge index & Gram gcd\\
+\midrule
+$C$ & 1 & 1 & 1 & 1\\
+$C$ & 2 & 1 & 1 & 2\\
+$2C$ & 1 & 2 & 1 & 1\\
+$2C$ & 2 & 2 & 2 & 2\\
+$2C$ & 0 & 2 & 2 & 8\\
+\bottomrule
+\end{tabular}
+\end{center}
+Neither of these arithmetic invariants is a signed BKM root
+multiplicity. Nor does a saturated formal pair with the same Gram
+matrix give a replacement for the actual ideal-sheaf charge.
+
+\section{The evaluation correspondence}
+\label{rdt:sec:kernel}
+
+Let $M_{\beta,d,m}(A;\mathbf z)$ be the stable expanded relative
+ideal-sheaf moduli for
+\[
+ S\times A\big/\bigcup_{z\in\mathbf z}S_z
+\]
+with class $(\beta,d)$ and third Chern character $m$.
+Admissibility means normality to the distinguished divisors and to the
+nodes of the expansion; stability requires finite automorphisms of the
+expanded object. The relative compactification is proper for this
+projective target. Each restriction is a length-$d$ ideal on $S$, giving
+proper evaluation maps $\operatorname{ev}_z:M\to Y_d$.
+We use the relative obstruction theory and reduced degeneration theorem
+in the form of \cite[\S5.1]{OberdieckMC}, based on
+\cite{LiWu,MaulikPandharipandeThomas}. These virtual-theoretic inputs are
+part of the definition of the relative DT invariants used below.
+
+Rational Chow groups retain the finite automorphism weights of the
+expanded moduli. The ordinary virtual dimension is $(2-2g(A))d$.
+For $(\beta,m)\ne(0,0)$, removal of the K3 cosection gives the
+reduced virtual class of dimension $(2-2g(A))d+1$. We write
+$[M]^\mathrm{red}$ for the class denoted $[M]^{\mathrm{vir}}$ in the paper,
+and $[M]^\mathrm{std}$ for its ordinary class.
+
+On the universal expanded target let $\pi$ be projection to the moduli,
+$c$ the contraction to $S\times A$, and $\mathcal Z$ the universal
+subscheme. The descendant convention is
+\begin{equation}\label{rdt:eq:desc}
+ \tau_i(\gamma)=\pi_*\bigl(\ch_{2+i}(\mathcal O_{\mathcal Z})c^*\gamma\bigr).
+\end{equation}
+For an interior point class $\omega$ and a divisor $D$ on $S$,
+$\tau_0(\omega D)$ has real degree two. The convention uses
+$\mathcal O_{\mathcal Z}$: in terms of its ideal sheaf it is minus
+the corresponding $\ch_2(\mathcal I)$ expression. There is no additional
+sign attached to the descendant.
+
+\begin{definition}[Marked tube kernel]\label{rdt:def:kernel}
+For $A=\mathbb P^1$ and $\mathbf z=(0,\infty)$, define
+\begin{equation}\label{rdt:eq:kernel}
+ K^D_{\beta,d,m}=(\operatorname{ev}_0,\operatorname{ev}_\infty)_*
+ \bigl(\tau_0(\omega D)\cap[M_{\beta,d,m}]^\mathrm{red}\bigr)
+ \in A_{2d}(Y_d\times Y_d)_\Q.
+\end{equation}
+Its homology degree is $4d$. Its Poincare dual $\kappa^D_{\beta,d,m}$
+has cohomology degree $4d$. The associated degree-zero endomorphism is
+\begin{equation}\label{rdt:eq:B}
+ \widehat{\mathsf B}^D_{\beta,d,m}(a)
+ =\operatorname{pr}_{2*}
+   \bigl(\operatorname{pr}_1^*a\cup\kappa^D_{\beta,d,m}\bigr).
+\end{equation}
+Equivalently,
+\begin{equation}\label{rdt:eq:matrix}
+ \eta_d(\widehat{\mathsf B}^D_{\beta,d,m}a,b)
+ =\int_{[M_{\beta,d,m}]^\mathrm{red}}
+    \tau_0(\omega D)\operatorname{ev}_0^*a\operatorname{ev}_\infty^*b.
+\end{equation}
+\end{definition}
+
+The virtual dimension is $2d+1$, so the descendant in
+\eqref{rdt:eq:kernel} leaves dimension $2d$, as required for a
+degree-zero correspondence on $Y_d$. Properness supplies every
+pushforward. Nondegeneracy of $\eta_d$ proves existence and uniqueness
+of the endomorphism from its matrix coefficients. Formula
+\eqref{rdt:eq:kernel}, rather than a choice of a matrix with prescribed
+trace, is its geometric definition.
+
+For $D$ algebraic, the kernel is a rational algebraic cycle class.
+The same definition with a real class $D\in H^2(S,\R)$ uses the
+cohomological descendant and gives a real homology class and
+endomorphism. It need not give an algebraic Chow class in that case.
+
+\begin{proposition}[Laurent completion]\label{rdt:prop:Laurent}
+The series
+\begin{equation}\label{rdt:eq:series}
+ \widehat{\mathsf B}^D_{\beta,d}(r)=\sum_{m\in\Z}(-r)^m\widehat{\mathsf B}^D_{\beta,d,m}
+\end{equation}
+belongs to $\End_\Q(H_d)((r))$. A lower bound for nonzero matrix
+coefficients is
+\begin{equation}\label{rdt:eq:lower}
+ m\ge L_{\beta,d}:=\min_{k\mid\beta}
+       \left(-kd-\frac{\beta^2}{2k}\right).
+\end{equation}
+\end{proposition}
+\begin{proof}
+For a cap, the localization proof in \cite[\S\S4.3--5.3]{OberdieckMC}
+eliminates mixed fixed components and all extremal flags with more
+than one nontrivial step. Pure-rubber cap terms vanish as well:
+the non-equivariant insertion degree is $2d+1$, whereas their
+reduced virtual dimension is $2d$. A remaining contribution is indexed by
+$k\mid\beta$, $k\mid m$, and a nested Hilbert scheme with length
+\[
+ d_1=d+\frac{m}{k}+\frac{\beta^2}{2k^2}.
+\]
+A negative length is empty. Therefore that term requires
+$m\ge-kd-\beta^2/(2k)$. There are finitely many divisors of the
+nonzero integral class $\beta$.
+
+Section 5.2 of the same paper expresses each fixed relative insertion
+invariant as a finite $\Q$-linear combination of cap invariants.
+Nonseparating degeneration lowers genus; separating a relative marking
+uses an invertible ordinary descendant--Nakajima matrix. All ordinary
+factors have $(\beta,m)=(0,0)$ and are independent of $r$. The finite
+linear induction therefore preserves the displayed lower bound.
+Applying this to a finite cohomology basis proves the assertion for
+the whole operator, not merely for its trace.
+\end{proof}
+
+One may sum over effective classes in the Novikov completion defined
+by an ample degree, allowing the Laurent bound in $r$ to depend on
+$\beta$. At a fixed class all matrices are finite dimensional. There
+are finitely many effective classes of bounded ample degree on a fixed
+projective K3: an irreducible curve has square at least $-2$, and the
+Hodge index theorem bounds its negative-definite component when its
+ample degree is bounded; an effective divisor has a bounded number of
+such components. This gives the usual locally finite Novikov
+multiplication. No rationality of every matrix entry is required for
+\eqref{rdt:eq:series}.
+
+For the tube indexed literally by its Euler characteristic, put
+\begin{equation}\label{rdt:eq:Eu}
+ \mathsf B^{D,\mathrm{Eu}}_{\beta,d,N}:=\widehat{\mathsf B}^D_{\beta,d,N-d},
+ \qquad
+ \mathsf B^{D,\mathrm{Eu}}_{\beta,d}(r)=(-r)^d\widehat{\mathsf B}^D_{\beta,d}(r).
+\end{equation}
+This conversion will be retained in both the sewing and
+multiple-cover formulas.
+
+\section{Cutting, gluing and the elliptic quotient}
+\label{rdt:sec:glue}
+
+At a separating node, the two relative evaluations form a fibre
+product $M_1\times_{Y_d}M_2$. Admissible ideals with the same boundary
+ideal $I_\eta$ glue by the kernel of their difference map to
+$I_\eta$. Cutting is restriction to the normalization; the absence of
+the unwanted Tor term is exactly the relative admissibility condition.
+This constructs the gluing morphism from the fibre product to the
+central relative moduli. The virtual intersection on the fibre product
+is the refined pullback by the diagonal $\Delta_{Y_d}$.
+
+Write $\mathcal A^{\mathrm{red}}_{A}(I\mid\lambda)$ for the relative
+invariant with stationary descendants $I$, relative insertions
+$\lambda$, and generating variable $(-r)^m$, and similarly for the
+ordinary class. With $\eta^{ij}$ the inverse pairing matrix, the
+reduced degeneration formula needed here is the insertion identity
+\begin{equation}\label{rdt:eq:virtualglue}
+\begin{aligned}
+ \mathcal A^{\mathrm{red}}_{A}(I\mid\lambda)
+  =\sum_{i,j}\eta^{ij}\bigl(&
+    \mathcal A^{\mathrm{red}}_{A_1}(I_1\mid\lambda_1,e_i)
+    \mathcal A^{\mathrm{std}}_{A_2}(I_2\mid\lambda_2,e_j)\\
+   &+\mathcal A^{\mathrm{std}}_{A_1}(I_1\mid\lambda_1,e_i)
+    \mathcal A^{\mathrm{red}}_{A_2}(I_2\mid\lambda_2,e_j)\bigr).
+\end{aligned}
+\end{equation}
+The numerical splittings are understood, and the relative and
+interior marks are distributed as specified. The refined diagonal
+pullback above explains the contraction in this identity. Equality
+after arbitrary relative insertions is sufficient for all
+cohomological correspondences below; no stronger identification of
+uninserted Chow classes is needed. The standard class vanishes unless
+$(\beta,m)=(0,0)$, by the K3 cosection. Thus for fixed nonzero $\beta$
+exactly one factor carries the reduced class and the nonzero degree.
+There is no term with two reduced factors. This is the precise
+formula stated in \cite[\S5.1]{OberdieckMC}.
+
+If $\{e_i\}$ is a homogeneous basis and $\{e^i\}$ its Poincare dual,
+the coevaluation and evaluation maps are
+\[
+ \operatorname{coev}(1)=\sum_i e_i\otimes e^i=[\Delta_{Y_d}],
+ \qquad \operatorname{ev}(a\otimes b)=\eta_d(a,b).
+\]
+In an arbitrary basis, coevaluation is
+$\sum_{i,j}\eta^{ij}e_i\otimes e_j$.
+These are genuine boundary maps on $H_d$. Partition multiplicities in
+a Nakajima basis are already contained in $\eta^{ij}$.
+
+\begin{theorem}[Geometric closure]\label{rdt:thm:trace}
+Assume $\beta\cdot D\ne0$. With the quotient-stack reduced invariant
+of $S\times E$,
+\begin{equation}\label{rdt:eq:trace}
+ \frac{1}{\beta\cdot D}\operatorname{Tr}_{H_d}\widehat{\mathsf B}^D_{\beta,d}(r)
+ =\sum_{n\in\Z}(-r)^n\mathrm{DT}^{S\times E}_{n,(\beta,d)}.
+\end{equation}
+For a literal Euler-indexed tube this becomes
+\begin{equation}\label{rdt:eq:EuTrace}
+ \frac{(-r)^{-d}}{\beta\cdot D}
+ \operatorname{Tr}_{H_d}\mathsf B^{D,\mathrm{Eu}}_{\beta,d}(r)
+ =\sum_n(-r)^n\mathrm{DT}^{S\times E}_{n,(\beta,d)}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Degenerate $E$ to a one-nodal rational curve with the interior mark
+away from the node. The normalization has the two relative fibres
+$0,\infty$. The nonseparating version of
+\eqref{rdt:eq:virtualglue} inserts the full diagonal in the two
+evaluations. By \eqref{rdt:eq:matrix} its contraction is
+\[
+ \sum_i\eta_d(\widehat{\mathsf B}^D_{\beta,d}(r)e_i,e^i)
+ =\operatorname{Tr}\widehat{\mathsf B}^D_{\beta,d}(r).
+\]
+This computes the \emph{unquotiented} reduced invariant with
+$\tau_0(\omega D)$. All degrees of $H_d$ are even, so the categorical
+supertrace is the ordinary trace. The fixed degeneration has labeled
+normalization branches. The formula has no additional factor $1/2$;
+it is not integration over the boundary of a moduli space of unlabeled
+curves. Expanded-target automorphisms are already counted by the
+rational virtual pushforward.
+
+It remains to divide out elliptic translation. For $\beta\ne0$ the
+translation stabilizers in the Hilbert moduli are finite. Indeed, a
+positive-dimensional subgroup of an elliptic curve is the whole curve;
+an invariant one-cycle would then consist of elliptic fibres over
+points of $S$ and would have K3 class zero. The quotient stack can
+nevertheless have nontrivial finite stabilizers.
+
+The reduced virtual descent identity of
+\cite[\S6.2]{OberdieckMC}, from \cite{OberdieckReducedPT}, is
+\[
+ Z^{S\times E}(\tau_0(\omega D))
+   =(\beta\cdot D)\,Z^{S\times E/E}.
+\]
+Its normalization is also visible on an orbit. Pulling the descendant
+to the translation parameter $E$ gives degree $\beta\cdot D$.
+For an orbit with stabilizer $G$, the degree on $E/G$ is
+$(\beta\cdot D)/|G|$, matching the quotient-stack mass $1/|G|$.
+Virtual descent and the projection formula make this orbit computation
+an equality of invariants. This uses the quotient virtual theory,
+rather than an assertion that the action on the moduli is free.
+Combining the two identities proves \eqref{rdt:eq:trace}.
+Equation \eqref{rdt:eq:EuTrace} follows from
+\eqref{rdt:eq:Eu}, or directly from $n=N-d$ in
+\eqref{rdt:eq:normalization}.
+\end{proof}
+
+The empty relative boundary for $d=0$ is included in this proof.
+It is the state $\Q$ attached to $Y_0=\mathrm{pt}$. It has no
+automatic identification with a relative Hall unit $BE$ or a prepared
+protected vacuum.
+
+\section{The ordinary and reduced sewing system}
+\label{rdt:sec:firstorder}
+
+In genus zero and degree $(\beta,m)=(0,0)$, the relative moduli is
+$Y_d$, with ordinary virtual class $[Y_d]$ and identity evaluation
+maps \cite[Lemma 5.2]{OberdieckMC}. Consequently the ordinary cap,
+tube and three-boundary operation are respectively
+\[
+ 1\in H_d,\qquad \id_{H_d},\qquad (a,b)\longmapsto a\cup b.
+\]
+The ordinary tube has actual Euler characteristic $d$, although its
+$m$-series is constant. The ordinary cap with $\tau_0(\omega D)$
+gives the class
+\[
+ D^{[d]}=\tau_0^{Y_d}(D)=\pi_*\bigl(\ch_2(\mathcal O_{\mathcal U})
+                      \pi_S^*D\bigr)\in H^2(Y_d),
+\]
+where $\mathcal U\subset Y_d\times S$ is the universal subscheme.
+Its marked tube is cup multiplication $M_{D^{[d]}}$.
+
+\begin{proposition}[The first-order Frobenius structure]
+\label{rdt:prop:firstorder}
+The unmarked reduced cap and tube vanish. Let $\mu_{\beta,d}(r)$
+be defined by the unmarked three-relative invariant:
+\[
+ \eta_d(\mu_{\beta,d}(a,b),c)
+   =Z^{\mathrm{red},S\times\mathbb P^1/S_0,S_1,S_\infty}_{\beta,d}(a,b,c).
+\]
+It has degree $-2$, is commutative and cyclic, and satisfies
+\begin{align}
+ \mu_{\beta,d}(1,a)&=0,\label{rdt:eq:redunit}\\
+ \mu_{\beta,d}(ab,c)+\mu_{\beta,d}(a,b)c
+  &=\mu_{\beta,d}(a,bc)+a\mu_{\beta,d}(b,c).
+ \label{rdt:eq:assoc}
+\end{align}
+Over the coefficientwise Laurent/Novikov ring $\Lambda$, the product
+\begin{equation}\label{rdt:eq:star}
+ a\star b=ab+\epsilon\sum_{\beta>0}Q^\beta\mu_{\beta,d}(a,b),
+ \qquad \epsilon^2=0,\quad |\epsilon|=2,
+\end{equation}
+is a unital first-order Frobenius product with unchanged Poincare
+pairing and cup unit.
+\end{proposition}
+\begin{proof}
+The reduced cap has virtual dimension $2d+1$ and its pushforward to
+$Y_d$ is zero by dimension. If $R_{\beta,d}$ denotes the unmarked
+reduced tube, a separating degeneration of that tube gives
+\[
+ R_{\beta,d}=R_{\beta,d}\id+\id R_{\beta,d}=2R_{\beta,d}.
+\]
+Therefore $R_{\beta,d}=0$ over $\Q$. Attaching the ordinary cap to
+the three-relative operation and using the vanishing reduced cap
+identifies $\mu(1,a)$ with $R(a)$, proving
+\eqref{rdt:eq:redunit}.
+
+The virtual dimension of the three-relative space is still $2d+1$,
+so its trilinear pairing is nonzero only when the real degrees sum to
+$4d+2$. This gives degree $-2$ for $\mu$. Permuting the relative
+points gives cyclicity and symmetry. Applying reduced degeneration
+to a four-relative sphere in its two channels gives exactly
+\eqref{rdt:eq:assoc}: each channel has one ordinary and one reduced
+factor. Expansion modulo $\epsilon^2$ proves associativity of
+\eqref{rdt:eq:star}; the other stated properties follow from cyclicity
+and \eqref{rdt:eq:redunit}. Its total degree is zero because
+$|\epsilon|=2$.
+\end{proof}
+
+\begin{proposition}[The marked state]\label{rdt:prop:markedstate}
+Let $c^D_{\beta,d}(r)\,1$ denote the pushforward of the reduced cap
+with $\tau_0(\omega D)$. It is a scalar multiple of $1$ by dimension.
+Then
+\begin{equation}\label{rdt:eq:markeddecomposition}
+ \widehat{\mathsf B}^D_{\beta,d}(a)
+   =\mu_{\beta,d}(D^{[d]},a)+c^D_{\beta,d}a.
+\end{equation}
+In particular $\widehat{\mathsf B}^D$ is self-adjoint for $\eta_d$ and
+$\widehat{\mathsf B}^D(1)=c^D\,1$. The degree-two first-order marked operator
+\[
+ M_{D^{[d]}}+\epsilon\sum_{\beta>0}Q^\beta\widehat{\mathsf B}^D_{\beta,d}
+\]
+is multiplication for $\star$ by
+$D^{[d]}+\epsilon\sum_{\beta>0}Q^\beta c^D_{\beta,d}\,1$.
+\end{proposition}
+\begin{proof}
+Degenerate the marked tube by moving the interior mark to a third cap.
+When the three-relative component is reduced, the cap is ordinary and
+inserts $D^{[d]}$. When the cap is reduced, the three-relative
+component is ordinary and multiplies by $c^D1$. These are precisely
+the two terms in \eqref{rdt:eq:markeddecomposition}. Cyclicity and the
+unit identity from Proposition~\ref{rdt:prop:firstorder} prove the
+remaining statements.
+\end{proof}
+
+All sewings follow the same tensor contraction rule. For example the
+handle element is $\sum_i e_i\star e^i$; its ordinary part is
+$\sum_i e_i e^i=c_{2d}(T_{Y_d})$. Closing an ordinary tube gives
+$\operatorname{Tr}\id=\chi_{\mathrm{top}}(Y_d)$, and closing the marked reduced
+coefficient gives Theorem~\ref{rdt:thm:trace}. This is a system of
+curve-degeneration operations, not an identification with Hall
+convolution or chiral collisions.
+
+The reduced coefficient does not inherit a normalized-unit value.
+Its unmarked unit correction is zero; its marked value is the computed
+$c^D$. Likewise, for a unital map $I=I_0+\epsilon I_1$ to dual
+numbers, multiplicativity gives
+$I_1(ab)=I_0(a)I_1(b)+I_1(a)I_0(b)$ and $I_1(1)=0$.
+The similarity to the reduced Hall integration of
+\cite{OberdieckShenReduced} is an algebraic pattern. Identifying the two
+systems requires a map of their actual carriers and operations.
+
+\section{Multiple covers before taking the trace}
+\label{rdt:sec:covers}
+
+For every positive $k\mid\beta$, choose a K3 surface $S_k$ and a real
+isometry
+\[
+ \phi_k:H^2(S,\R)\longrightarrow H^2(S_k,\R),\qquad
+ \beta_k=\phi_k(\beta/k)
+\]
+with $\beta_k$ primitive, integral and effective, as in
+\cite[\S5.3]{OberdieckMC}. Extend it by fixing $1$ and the point
+class. Acting factor by factor on Nakajima cycles defines
+\begin{equation}\label{rdt:eq:Phi}
+ \Phi_k\left(\prod_jq_{a_j}(\alpha_j)|0\rangle\right)
+   =\prod_jq_{a_j}(\phi_k\alpha_j)|0\rangle.
+\end{equation}
+It is a graded isometric ring isomorphism and satisfies
+$\Phi_k(\tau_i^{Y_d}(\alpha))=\tau_i^{S_k^{[d]}}(\phi_k\alpha)$.
+The paper justifies the extension from parallel transport to real
+isometries by Zariski density. This is a real cohomology comparison;
+it is not automatically rational, integral, Hodge, or induced by a
+functor on sheaves. In particular $D_k=\phi_kD$ can be nonalgebraic,
+so its descendant is interpreted over $\R$ as above.
+
+\begin{theorem}[Operator multiple-cover identity]
+\label{rdt:thm:MC}
+Over $\R$, one has the coefficientwise Laurent identity
+\begin{equation}\label{rdt:eq:MC}
+ \boxed{\displaystyle
+ \widehat{\mathsf B}^D_{\beta,d}(r)=\sum_{k\mid\beta}
+     \Phi_k^{-1}\widehat{\mathsf B}^{D_k}_{\beta_k,d}(r^k)\Phi_k.}
+\end{equation}
+There is no divisor weight multiplying the summand. In coefficients,
+\begin{equation}\label{rdt:eq:MCcoeff}
+ \widehat{\mathsf B}^D_{\beta,d,m}=\sum_{k\mid(\beta,m)}
+     (-1)^{m-m/k}\Phi_k^{-1}
+       \widehat{\mathsf B}^{D_k}_{\beta_k,d,m/k}\Phi_k.
+\end{equation}
+For the literal Euler-indexed tube,
+\begin{equation}\label{rdt:eq:MCEu}
+ \mathsf B^{D,\mathrm{Eu}}_{\beta,d}(r)
+  =\sum_{k\mid\beta}r^{-d(k-1)}
+       \Phi_k^{-1}\mathsf B^{D_k,\mathrm{Eu}}_{\beta_k,d}(r^k)\Phi_k.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Apply the full relative-insertion identity
+\cite[Theorem 5.1]{OberdieckMC} to the tube with the descendant
+$\tau_0(\omega D)$ and arbitrary relative classes $a,b$. Its right
+side uses $\phi_kD,\Phi_ka,\Phi_kb$, and substitutes $r^k$ for $r$.
+By the isometry property, this says
+\[
+ \eta_d(\widehat{\mathsf B}^D_{\beta,d}a,b)
+ =\sum_{k\mid\beta}
+   \eta_d\bigl(\Phi_k^{-1}\widehat{\mathsf B}^{D_k}_{\beta_k,d}(r^k)\Phi_ka,b\bigr).
+\]
+Nondegeneracy gives \eqref{rdt:eq:MC}. Comparing $(-r)^m$ with
+$(-r^k)^{m/k}$ gives the sign in \eqref{rdt:eq:MCcoeff}.
+Substituting \eqref{rdt:eq:Eu} gives \eqref{rdt:eq:MCEu}.
+
+The coefficient one here is a feature of the all-insertion theorem,
+not an inference from a closed count. Its proof first reduces to caps
+by the finite linear induction used in
+Proposition~\ref{rdt:prop:Laurent}. For a cap, mixed fixed loci have
+two cosections and hence vanish after only one reduction. Pure rubber
+terms vanish in the required top insertion degree. A flag with $s$
+nontrivial steps has a surjection of its obstruction sheaf to
+$\mathcal O^s$; the flag differential maps to zero under the trace
+maps. Removing one summand leaves a trivial obstruction for $s\ge2$,
+so only a one-step locus remains. In rank one this is the explicit
+argument of \cite[Proposition 4.8]{OberdieckMC}.
+
+The one-step locus is a relative Quot scheme, equivalently the nested
+Hilbert scheme of lengths $d_1,d$. Its localization factor contains
+$(-1)^{(k-1)m/k}$ and powers of $kt$. Lemma 5.3 expresses every
+stationary descendant as a universal polynomial in $kt$ and surface
+intersection data. The dimension condition cancels the powers of
+$kt$. The nested-Hilbert universality theorem
+\cite[Theorem 3.2]{OberdieckMC} permits replacement of the data by
+$\phi_k(\beta/k),\phi_k\alpha_i,\Phi_k\lambda_j$. Reversing the
+calculation gives the displayed series substitution. Thus no factor
+$1/k$ survives this top-degree calculation. The universality theorem
+uses the nested virtual-cycle formula and Hilbert-scheme universality;
+these are the geometric inputs of that argument.
+
+In the printed equation (29), the substitution variable must be the
+divisor of $\beta$: the proof ends with $p^r$ when its divisor is
+called $r$. We have called that divisor $k$ to keep the series
+variable $r$ distinct.
+\end{proof}
+
+This proves equality of cohomological endomorphisms, equivalently of
+their transported Kunneth cohomology classes. It proves neither
+equality of algebraic Chow correspondences under an unspecified
+cycle map nor an equivalence of relative moduli or sheaf categories.
+
+For a primitive effective charge in the marked lattice
+\(N=U\oplus E_8(-1)\oplus E_7(-1)\), an isogeny supplies a
+particular rational Hodge isometry.
+Theorem~\ref{ist:thm:transport} extends its inverse normalized
+pullback to the Hilbert states and proves the full insertion comparison.
+It fixes the section and fibre and preserves the ordinary unit and pairing.
+The signed twisted Mukai map of
+Section~\ref{ist:sec:twist} has a different action:
+it changes rank and does not preserve that ordinary pairing.
+Its endpoint derived equivalence leaves the relative-operation map
+of Problem~\ref{ist:prob:relative} to be constructed.
+
+The same all-insertion theorem transports every reduced tensor used in
+\eqref{rdt:eq:virtualglue}. The ordinary cup product, descendants and
+diagonal are preserved by $\Phi_k$. Since each gluing has exactly one
+reduced factor, its linear multiple-cover sum commutes with gluing.
+This is a comparison of the first-order sewing systems. It is not a
+claim that a sum of such transports is a multiplicative geometric
+functor beyond this first-order recipient.
+
+\begin{corollary}[The numerical divisor weight]\label{rdt:cor:closedMC}
+Writing $Z_{\beta,d}(r)$ for the closed quotient series,
+\begin{equation}\label{rdt:eq:closedMC}
+ Z_{\beta,d}(r)=\sum_{k\mid\beta}\frac1k Z_{\beta_k,d}(r^k).
+\end{equation}
+In particular the imprimitive numerical multiple-cover formula is a
+theorem, not an additional conjecture of this construction.
+\end{corollary}
+\begin{proof}
+Take the trace of \eqref{rdt:eq:MC}. Theorem~\ref{rdt:thm:trace}
+on the target K3 gives
+\[
+ \frac{\operatorname{Tr}\widehat{\mathsf B}^{D_k}_{\beta_k,d}}{\beta\cdot D}
+ =\frac{\beta_k\cdot D_k}{\beta\cdot D}Z_{\beta_k,d}
+ =\frac1k Z_{\beta_k,d}.
+\]
+The last equality is the surface isometry applied to
+$(\beta/k,D)$. Thus the divisor weight is produced by the marked
+quotient normalization upon closure.
+\end{proof}
+
+\subsection{Dependence on the marked class}
+
+The correspondence is linear in $D$. Its decomposition
+\eqref{rdt:eq:markeddecomposition} exhibits both its three-boundary
+and cap dependence. Trace independence after dividing by $\beta D$
+alone would not imply operator independence.
+
+A stronger conclusion is available using an additional comparison.
+Adopt the primary relative/Gromov--Witten identification quoted in
+\cite[\S6.3]{OberdieckMC} from \cite[Corollary 4.1]{NesterovK3},
+together with the Gromov--Witten divisor equation. The tautological
+surface divisor $D^{[d]}$, for $d\ge2$, pairs with $\beta+mA$ as $\beta D$,
+because it pairs trivially with the Hilbert--Chow extremal class $A$.
+It follows that
+\[
+ \mu_{\beta,d,m}(D^{[d]},a)=(\beta D)\,A_{\beta,d,m}(a)
+\]
+for an operator $A$ independent of $D$.
+For $d=1$ there is no extremal class; the three-relative contribution
+has $m=0$, and the same surface divisor equation applies. For $d=0$,
+the operation $\mu$ is zero by degree.
+
+The cap term can be divided geometrically as well. With tangent
+weight $-t$ at $0$, the one-step descendant is
+$D^{[d]}-t(\beta D)$. After insertion of a point at the relative
+evaluation, its first term vanishes. The localization calculation in
+\cite[Theorem 4.2]{OberdieckMC} then yields
+\begin{equation}\label{rdt:eq:capQ}
+ \frac{c^D_{\beta,d,m}}{\beta D}
+ =-\sum_{k\mid(\beta,m)}\frac{(-1)^m}{k}
+    e^{\mathrm{vir}}\operatorname{Quot}\bigl(I_\eta,(0,\beta/k,m/k)\bigr).
+\end{equation}
+This is independent of $D$. Thus, with these stated extra inputs,
+$\widehat{\mathsf B}^D/(\beta D)$ is independent of $D$ as an operator. This
+conclusion uses the cap calculation and the primary divisor comparison;
+it does not follow merely from the trace theorem.
+
+\section{A section of an elliptic K3}
+\label{rdt:sec:example}
+
+Let $S$ have an elliptic fibration with section $C$ and fibre $F$.
+Take $d=1$, $D=F$, and first $\beta=C$. Write
+$p=[\mathrm{pt}]\in H^4(S)$, with $\int_Sp=1$. Define the
+degree-zero operator
+\begin{equation}\label{rdt:eq:T}
+ T_C(a)=\left(\int_SaC\right)C.
+\end{equation}
+It vanishes on $H^0$ and $H^4$, acts nontrivially on $H^2$, and
+satisfies $T_C^2=-2T_C$ and $\operatorname{Tr} T_C=-2$.
+
+\subsection{A cap formula for every matrix coefficient}
+
+For this subsection abbreviate the cap invariant at fixed $m$ by
+$\operatorname{Cap}_m(I\mid a)$ and put
+$\tau_b=\tau_0(\omega b)$. On the ordinary length-one cap,
+$\tau_b$ gives the boundary class $b$. Degenerating a cap with two
+interior insertions, putting $\tau_b$ on the new cap, gives
+\begin{equation}\label{rdt:eq:capdifference}
+ \eta_1(\widehat{\mathsf B}^D_{C,1,m}a,b)
+ =\operatorname{Cap}_m(\tau_D\tau_b\mid a)
+   -\operatorname{Cap}_m(\tau_b\mid Da).
+\end{equation}
+The second term is the ordinary-tube/reduced-cap summand. Omitting it
+changes the operator.
+
+Fix $t$ by $\mathrm{wt}(T_0\mathbb P^1)=-t$. Then
+$[0]|_0=-t$ and the ideal $\mathcal O(-k[0])$ has weight $+kt$
+at $0$. Its Chern character there is $e^{kt}$. In this convention,
+directly from the fundamental horizontal point and vertical curve in
+$\ch_2(\mathcal O_{\mathcal Z})$, one obtains on a one-step locus
+\begin{equation}\label{rdt:eq:descweights}
+ \tau_D=D_2-t(CD),\qquad
+ \tau_b=b_2-t(Cb)\quad(b\in H^2(S)),\qquad
+ \tau_1=1,\quad\tau_p=p_2.
+\end{equation}
+Here the subscript $2$ denotes the boundary length-one subscheme.
+The exact sequence of $k[0]$ gives $1-e^{kt}$ for its equivariant
+Chern character. An exponential $e^{-kt}$ instead uses the opposite
+equivariant parameter. Keeping this convention fixed is necessary in
+the local descendant calculation; polynomial universality and the
+multiple-cover homogeneity argument are unchanged.
+
+\begin{proposition}[The first two primitive kernels]
+\label{rdt:prop:firstkernels}
+For $\beta=C$, $d=1$, $D=F$,
+\begin{align}
+ K^F_{C,1,0}&=C\boxtimes C,&\widehat{\mathsf B}^F_{C,1,0}&=T_C,
+ \label{rdt:eq:K0}\\
+ K^F_{C,1,1}&=[\Delta_S],&\widehat{\mathsf B}^F_{C,1,1}&=\id_{H^*(S)}.
+ \label{rdt:eq:K1}
+\end{align}
+These two cases correspond to tube Euler characteristics $N=1,2$,
+respectively.
+The equalities of kernels here are in cohomology.
+\end{proposition}
+\begin{proof}
+The cap reduction and one-step localization are those of
+\cite[\S\S4.4--5.3]{OberdieckMC}. For primitive $C$ the one-step
+length is $d_1=m$.
+
+For $m=0$ the nested Hilbert scheme is $S_C^{[0,1]}=C$: the
+inclusion $\mathcal O(-C)\subset I_x$ holds precisely when $x\in C$.
+Its reduced class is $[C]$. The virtual normal Euler factor begins
+with $t^{-2}$. For $a,b\in H^2(S)$ put $A=aC$, $B=bC$, and write
+$h\in H^2(C)$ with $\int_Ch=1$. The relevant restrictions are
+$a_2=Ah$, $b_2=Bh$, $D_2=h$. The first term of
+\eqref{rdt:eq:capdifference} is
+\[
+ \int_C t^{-2}(h-t)(Bh-tB)Ah=AB.
+\]
+Only the $t^2h$ term survives. Higher terms of the normal Euler
+factor cannot contribute in this dimension. The second cap term
+vanishes because $Da$ restricts to zero on $C$. The pairings
+$(1,p)$ and $(p,1)$ vanish because $p|_C=0$; all other degree
+combinations vanish by virtual dimension. Hence the full bilinear
+form is $(aC)(bC)$, proving \eqref{rdt:eq:K0}. Geometrically, its
+moving degree-one graph maps have both boundary points on $C$.
+
+For $m=1$, consider $S_C^{[1,1]}$ in $S_1\times S_2$. Put
+$L_i=\operatorname{pr}_i^*\mathcal O(C)$ and $C_i=c_1(L_i)$.
+The derived surface Hom calculation gives
+\[
+ R\operatorname{Hom}(I_1,I_2(C))
+       =\mathcal O-L_1-L_2+\mathcal O_\Delta L_1.
+\]
+For example this follows by expanding $I_i=\mathcal O-\mathcal O_{x_i}$;
+the derived self-duality of a point on the K3 has even shift two,
+and the coincident-point term is $\mathcal O_\Delta L_1$.
+Since $R\Gamma\mathcal O(C)=\mathcal O$ and $|C|$ is a point,
+the nested virtual-cycle formula
+\cite[Theorem 3.1]{OberdieckMC} gives
+\begin{equation}\label{rdt:eq:W}
+ W_2:=j_*[S_C^{[1,1]}]^\mathrm{red}
+     =c_2(L_1+L_2-\mathcal O_\Delta L_1)
+     =C_1C_2+[\Delta_S].
+\end{equation}
+Indeed $\ch_2(\mathcal O_\Delta L_1)=[\Delta_S]$, which verifies
+the last Chern-class identity directly.
+
+Let $K=I_1(-C)$ and $Q=I_2-K$ in the universal quotient sequence.
+The surface Hom class controlling the moving Euler factor is
+\[
+ V=R\operatorname{Hom}(K,Q)
+     =T_{S_1}-\mathcal O-L_1-L_2+\mathcal O_\Delta L_1.
+\]
+It has rank $-1$ and $c_1(V^\vee)=C_1+C_2$. Thus
+\begin{equation}\label{rdt:eq:eulerfactor}
+ e(V^\vee\otimes\mathbf t^{-1})
+   =-t^{-1}+(C_1+C_2)t^{-2}+O(t^{-3}).
+\end{equation}
+For $a,b\in H^2(S)$, the constant equivariant coefficient of the
+first cap integral is
+\[
+ \int_{S\times S}W_2\left\{
+  a_2\bigl((CD)b_2+(Cb)D_2\bigr)
+    +(CD)(Cb)a_2(C_1+C_2)\right\}.
+\]
+The last summand integrates to zero, because
+\[
+ \int W_2a_2C_1=(C^2+1)(aC)=-(aC),\qquad
+ \int W_2a_2C_2=aC.
+\]
+The first cap therefore equals $(CD)(ab)+(Cb)(aD)$, where
+juxtaposed degree-two classes in parentheses denote their surface
+intersection. The second cap in \eqref{rdt:eq:capdifference}
+equals $(Cb)(aD)$. Subtraction gives $(CD)(ab)=\eta_1(a,b)$.
+
+For $(a,b)=(1,p)$, the sole contribution is
+$(-tCD)p_2(-t^{-1})$ integrated against $W_2$, giving $CD=1$;
+the second cap is zero. The same holds for $(p,1)$. Every other
+graded pairing vanishes by dimension. This is the full Poincare
+bilinear form on $H^0\oplus H^2\oplus H^4$, proving
+\eqref{rdt:eq:K1} by Kunneth and Poincare nondegeneracy.
+\end{proof}
+
+The $+1$ on the unit and top class in \eqref{rdt:eq:K1} is also
+visible on the cap over a generic boundary point away from $C$.
+There $\operatorname{Quot}(I_x,(0,C,1))$ is a reduced virtual point,
+$R\operatorname{Hom}(K,Q)=-\mathcal O$, and the two equivariant
+factors are $-1/t$ and $-t(CD)$. Their product is $+1$.
+
+\subsection{The full pairing and the imprimitive class}
+
+Use a basis
+\[
+ 1,C,F,u_2,v_2,u_3,v_3,e_1,\ldots,e_8,f_1,\ldots,f_8,p
+\]
+of $H^*(S,\Q)$. The $H^2$ Gram matrix is
+\begin{equation}\label{rdt:eq:K3pair}
+ \begin{pmatrix}-2&1\\1&0\end{pmatrix}
+ \oplus U\oplus U\oplus E_8(-1)\oplus E_8(-1),
+ \qquad U=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+\end{equation}
+The $H^0,H^4$ pairing is $(1,p)=(p,1)=1$, with all other
+cross-degree blocks zero. This is the full K3 Poincare pairing.
+The only nonzero row of $T_C$ is its $C$ row, with entries $-2,1$
+in columns $C,F$. Its nonzero bilinear block is
+\[
+ \bigl(\eta_1(T_Ca,b)\bigr)_{a,b=C,F}
+  =\begin{pmatrix}4&-2\\-2&1\end{pmatrix}.
+\]
+Contraction with the full inverse of \eqref{rdt:eq:K3pair}, including
+the $1,p$ block, gives $\operatorname{Tr} T_C=-2$ and $\operatorname{Tr}\id=24$.
+
+\begin{proposition}[The doubled section]\label{rdt:prop:double}
+For $\beta=2C$, $d=1$ and $D=F$,
+\begin{equation}\label{rdt:eq:double}
+ \widehat{\mathsf B}^F_{2C,1}(r)=\widehat{\mathsf B}^F_{C,1}(r^2),
+\end{equation}
+and, in particular,
+\[
+ \widehat{\mathsf B}^F_{2C,1,0}=T_C,\qquad
+ \widehat{\mathsf B}^F_{2C,1,1}=0,\qquad
+ \widehat{\mathsf B}^F_{2C,1,2}=-\id.
+\]
+\end{proposition}
+\begin{proof}
+The negative intersection with $C$ implies inductively that
+$|jC|=\{jC\}$. Riemann--Roch gives $h^1(\mathcal O(2C))=3$:
+$h^0=1$, $h^2=0$ and $\chi=-2$. In the one-step contribution
+with divisor $k=1$, the ambient pushforward of the nested virtual
+class contains the factor
+$c_1(\mathcal O_{|2C|}(1))^3=0$ by
+\cite[Theorem 3.1]{OberdieckMC}. All the cap integrands are pullbacks
+of universal classes on that ambient product, so these contributions
+vanish. This conclusion concerns the required virtual integrals; no
+intrinsic-cycle vanishing stronger than the pushforward formula is
+needed.
+
+For $k=2$, use $S_2=S$ and $\phi_2=\id$, since $(2C)/2=C$ is
+primitive. The one-step calculation, followed by the linear cap
+induction, is exactly the $C$ calculation with $r$ replaced by $r^2$.
+This proves \eqref{rdt:eq:double}. Extracting coefficients with the
+sign $(-r)^m$ gives a factor $(-1)^{m-m/2}$ when $m$ is even;
+there is no such contribution when $m$ is odd. Proposition
+\ref{rdt:prop:firstkernels} now gives the three displayed coefficients.
+\end{proof}
+
+The vanishing at $m=1$, which is relative Euler
+characteristic $N=2$, has a geometric source. The $k=1$ contribution
+has vanishing ambient reduced virtual class, and the $k=2$ thickening
+cannot have odd third Chern character. The next coefficient is
+$N=3$, with the nonzero operator $-\id$ in the same family.
+
+\subsection{One further primitive coefficient}
+
+With the primary/Gromov--Witten comparison stated at the end of
+Section~\ref{rdt:sec:covers}, the length-one three-relative operation
+is concentrated in $m=0$. An honest graph of a genus-zero tree of
+maps to $S$ has Euler characteristic one and degree one over the
+parametrized base, hence $m=0$. There is no Hilbert--Chow curve in
+$S^{[1]}=S$ giving another index.
+
+For the cap, put
+$Q_{1,C,m}=e^{\mathrm{vir}}\operatorname{Quot}(I_x,(0,C,m))$. The leading
+$q^{-1}$ coefficient of \cite[Theorem 1.2]{OberdieckMC} gives
+\[
+ \sum_m Q_{1,C,m}r^m=\frac{r}{(1-r)^2}.
+\]
+Indeed the leading theta square is $(r-1)^2/r$ and the leading
+coefficient of the function $G$ in that theorem is one. Formula
+\eqref{rdt:eq:capQ} thus gives $c^F_{C,1,m}=(-1)^{m-1}m$ for
+$m\ge1$. Consequently, with this additional primary comparison,
+\begin{equation}\label{rdt:eq:fullC}
+ \widehat{\mathsf B}^F_{C,1}(r)=T_C-\frac{r}{(1-r)^2}\id,
+ \qquad \widehat{\mathsf B}^F_{C,1,2}=-2\id.
+\end{equation}
+The direct computations of $m=0,1$ in Proposition
+\ref{rdt:prop:firstkernels}, and the doubled coefficient at $m=2$,
+do not require this extra identification.
+
+Both index conventions and all relevant contractions are displayed
+together below. The final column is the coefficient of $(-r)^m$
+in the closed series.
+\begin{center}
+\begin{tabular}{ccccrr}
+\toprule
+Class & tube $N$ & closed $m$ & operator & trace & closed invariant\\
+\midrule
+$C$  & 1 & 0 & $T_C$ & $-2$ & $-2$\\
+$C$  & 2 & 1 & $\id$ & $24$ & $24$\\
+$C$  & 3 & 2 & $-2\id$ & $-48$ & $-48$\\
+$2C$ & 1 & 0 & $T_C$ & $-2$ & $-1$\\
+$2C$ & 2 & 1 & $0$ & $0$ & $0$\\
+$2C$ & 3 & 2 & $-\id$ & $-24$ & $-12$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Two incompatible sewing rules}
+
+Suppose one were to put the closed numerical divisor weight into the
+marked tube, replacing the $k=2$ term in
+\eqref{rdt:eq:double} by $\tfrac12\widehat{\mathsf B}^F_{C,1}(r^2)$.
+At the first nonzero term, $m=0$, closure would give
+\[
+ \frac{\operatorname{Tr}(\tfrac12T_C)}{2C\cdot F}=-\frac12,
+ \qquad\text{whereas}\qquad
+ \frac{\operatorname{Tr} T_C}{2C\cdot F}=-1.
+\]
+At the first positive $k=2$ term, $m=2$, it would give
+\begin{equation}\label{rdt:eq:badweight}
+ \frac{\operatorname{Tr}(-\tfrac12\id_{24})}{2}=-6,
+ \qquad\text{whereas}\qquad
+ \frac{\operatorname{Tr}(-\id_{24})}{2}=-12.
+\end{equation}
+This difference is an exact obstruction to that rule. It already
+uses the full state space, rather than only its middle cohomology.
+
+There is a separate obstruction to deleting the ordinary factor from
+reduced degeneration. An unmarked collar on the marked tube satisfies
+\begin{equation}\label{rdt:eq:collar}
+ \widehat{\mathsf B}^D=\widehat{\mathsf B}^D\id+M_{D^{[d]}}R_{\beta,d}
+         =\widehat{\mathsf B}^D\id,
+ \qquad R_{\beta,d}=0.
+\end{equation}
+Replacing the ordinary collar by the unmarked reduced collar gives
+$\widehat{\mathsf B}^D R_{\beta,d}=0$. At $(C,d,m)=(C,1,0)$ this would assert
+$T_C=0$, although $T_C(F)=C$ and $T_C(C)=-2C$.
+Equivalently, retaining only reduced factors would put the product
+in $\epsilon^2=0$. If one instead ignores the first-order grading
+and multiplies two marked matrices, $T_C^2=-2T_C\ne T_C$ still fails
+the collar equation. None of these replacements respects the unit.
+
+
+\section{An intrinsic first-order class}
+\label{rdt:sec:Hochschild}
+
+The section kernel detects more than a failure of one formula for
+sewing. It detects a deformation of the cup algebra that cannot be
+removed by changing its first-order splitting. Retain the section
+$C$, fibre $F$ and point class $p$ of the preceding example, so
+\[
+ C^2=-2p,\qquad F^2=0,\qquad CF=p,\qquad \int_Sp=1.
+\]
+Put $A=H^*(S,\Q)$ and $B=\Q[\epsilon]/(\epsilon^2)$, with
+$|\epsilon|=2$. At the single coefficient $(\beta,d,m)=(C,1,0)$,
+write $\mu=\mu_{C,1,0}$. Proposition~\ref{rdt:prop:firstorder}
+makes
+\[
+ a\star b=ab+\epsilon\mu(a,b)
+\]
+a unital graded associative product on $A\otimes_\Q B$.
+Here $ab$ is cup product and $\mu$ has internal degree $-2$.
+
+For a linear one-cochain $f:A\to A$, the Hochschild coboundary is
+\[
+ (\delta f)(a,b)=af(b)-f(ab)+f(a)b.
+\]
+The cocycle equation for a two-cochain is
+\[
+ a\mu(b,c)-\mu(ab,c)+\mu(a,bc)-\mu(a,b)c=0.
+\]
+It is precisely \eqref{rdt:eq:assoc}. All classes of $A$ are even,
+so these formulas have no additional parity signs. Hochschild
+cohomology $HH^2(A,A)$ is the space of two-cocycles modulo these
+coboundaries, with its additional internal grading.
+
+\begin{proposition}[The section deformation]
+\label{rdt:prop:HHnonzero}
+The class of $\mu$ is nonzero in the internal degree $-2$ part of
+$HH^2(A,A)$. The algebra $(A\otimes B,\star)$ is not isomorphic
+as a $B$-algebra to the undeformed cup algebra $A\otimes B$,
+even if the reduction of the isomorphism modulo $\epsilon$ is
+allowed to be an arbitrary algebra automorphism of $A$.
+\end{proposition}
+\begin{proof}
+At the chosen coefficient, Proposition~\ref{rdt:prop:firstkernels}
+gives $\widehat{\mathsf B}^{F}_{C,1,0}=T_C$. The marked-state
+identity \eqref{rdt:eq:markeddecomposition} says
+\[
+ T_C(a)=\mu(F,a)+c^F_{C,1,0}a.
+\]
+Since $T_C(1)=0$ and $\mu(F,1)=0$, the scalar $c^F_{C,1,0}$ is
+zero. In particular,
+\begin{equation}\label{rdt:eq:HHcoefficient}
+ \mu(F,F)=T_C(F)=C.
+\end{equation}
+
+Define a functional on two-cochains by
+\[
+ \mathcal L(\nu)=\int_S F\nu(F,F).
+\]
+For every linear $f$, not necessarily homogeneous, $F^2=0$ gives
+\[
+ (\delta f)(F,F)=2Ff(F),\qquad
+ \mathcal L(\delta f)=2\int_SF^2f(F)=0.
+\]
+On the other hand, \eqref{rdt:eq:HHcoefficient} gives
+$\mathcal L(\mu)=\int_SFC=1$. Thus $\mu$ is not a coboundary.
+
+An isomorphism to the undeformed algebra that reduces to the
+identity has the form $T(a)=a+\epsilon f(a)$. Comparing
+$T(a\star b)$ with $T(a)T(b)$ gives $\mu=\delta f$, a
+contradiction. If the reduction is an automorphism $g$ instead,
+compose $T$ with the constant extension of $g^{-1}$ in the
+undeformed target. The resulting isomorphism reduces to the
+identity, so the same contradiction applies.
+\end{proof}
+
+This obstruction concerns the full ordinary cohomology algebra.
+It is already detected by the square-zero fibre class and the
+rank-one correspondence $C\boxtimes C$. No scalar trace quotient
+or choice of a complement to $\langle C,F\rangle$ is involved.
+
+The consequence for a comparison of operations is explicit.
+If two first-order algebras have products
+$m_A+\epsilon\nu_A$ and $m_H+\epsilon\nu_H$, and a $B$-linear
+map is written $J=J_0+\epsilon J_1$, its first-order
+multiplicativity equation is
+\begin{equation}\label{rdt:eq:deformedcomparison}
+\begin{aligned}
+ J_1(m_A(a,b))+J_0(\nu_A(a,b))
+  ={}&m_H(J_1(a),J_0(b))+m_H(J_0(a),J_1(b))\\
+    &+\nu_H(J_0(a),J_0(b)).
+\end{aligned}
+\end{equation}
+Indeed, these are the two coefficients of
+$J(a\star_A b)=J(a)\star_H J(b)$ after the ordinary
+multiplicativity of $J_0$ is imposed. In the relative sewing
+algebra, multiplication of general inputs is
+\begin{equation}\label{rdt:eq:allfirstorderterms}
+ (a_0+\epsilon a_1)\star(b_0+\epsilon b_1)
+ =a_0b_0+\epsilon\bigl(a_1b_0+a_0b_1+\mu(a_0,b_0)\bigr).
+\end{equation}
+The last term is an operation on two ordinary inputs. At $F,F$
+it is $C$, and Proposition~\ref{rdt:prop:HHnonzero} shows that a
+change of splitting cannot remove it. The fixed-multiplication
+lemma~\ref{ff:lem:dual-numbers} remains valid: its source and
+target multiplications do not vary with $\epsilon$. Applying that
+lemma to a geometrically deformed recipient requires the extra
+terms in \eqref{rdt:eq:deformedcomparison}.
+
+\subsection{The complete section coefficient}
+
+The primary three-boundary invariant determines the entire product
+$\mu_{C,1,0}$, including its values orthogonal to the section and fibre.
+Write
+\[
+ A=\Q\,1\oplus V\oplus\Q\,p,\qquad V=H^2(S,\Q),
+ \qquad q(v,w)=\int_Svw.
+\]
+Thus $vw=q(v,w)p$ for $v,w\in V$, while $pV=p^2=0$.
+Define the linear functional
+\[
+ s_C(a)=\int_SaC,\qquad a\in A.
+\]
+It vanishes on $H^0(S,\Q)$ and $H^4(S,\Q)$.
+
+\begin{proposition}[The section cubic]
+\label{rdt:prop:sectioncubic}
+For every $a,b\in H^*(S,\Q)$,
+\[
+ \mu_{C,1,0}(a,b)=s_C(a)s_C(b)C.
+\]
+Equivalently, its paired trilinear form is
+\begin{equation}\label{rdt:eq:sectioncubic}
+ \eta_1\bigl(\mu_{C,1,0}(a,b),c\bigr)
+       =s_C(a)s_C(b)s_C(c).
+\end{equation}
+In particular,
+\[
+ \mu(C,C)=4C,\qquad \mu(C,F)=-2C,\qquad \mu(F,F)=C.
+\]
+Every pair involving a class orthogonal to $C$ has zero product.
+\end{proposition}
+
+\begin{proof}
+The primary relative Donaldson--Thomas/Gromov--Witten comparison
+\cite[Definition 3.3 and Corollary 4.1]{NesterovK3}
+identifies the paired coefficient with the primary reduced
+genus-zero invariant of $S^{[1]}=S$ in class $C$.
+Its insertions range over the full rational cohomology.
+
+For $v\in H^2(S,\Q)$, the primary divisor equation contributes
+$\int_Cv$. Indeed, the evaluation pullback integrates to this number
+on the fibre of the forgetful universal curve.
+There is no descendant correction for primary insertions.
+Applying this identity to three degree-two classes gives
+\[
+ \eta_1\bigl(\mu(a,b),c\bigr)
+      =N_C\,s_C(a)s_C(b)s_C(c),\qquad a,b,c\in V,
+\]
+where $N_C$ is the zero-point reduced invariant.
+The geometric section kernel fixes its normalization.
+Equation~\eqref{rdt:eq:HHcoefficient} and $s_C(F)=1$ give
+\[
+ N_C=\eta_1\bigl(\mu(F,F),F\bigr)=\int_SCF=1.
+\]
+
+The trilinear coefficient has total real cohomological degree six.
+The possible even-degree triples are $(2,2,2)$ and permutations
+of $(0,2,4)$. The latter vanish by the unit identity and cyclicity.
+This proves \eqref{rdt:eq:sectioncubic} on all of $A$.
+Nondegeneracy of the full Poincare pairing, including its $1,p$
+block, gives the asserted product.
+\end{proof}
+
+\subsection{A cubic undetected by the marked operator and traces}
+
+The fibre-marked operator and the multiplication traces do not
+determine an arbitrary cyclic deformation of this cohomology algebra.
+For $w\in V$, put
+\[
+ \ell_w(a)=\int_Saw,\qquad
+ \nu_w(a,b)=\ell_w(a)\ell_w(b)w.
+\]
+The map $\nu_w$ vanishes when either input has no degree-two component.
+
+\begin{lemma}\label{rdt:lem:rankonecubic}
+The cochain $\nu_w$ is a normalized cyclic Hochschild two-cocycle
+of internal degree $-2$.
+For a parameter $t$ of degree two, the product
+\[
+ a*_w b=ab+t\nu_w(a,b)
+\]
+is associative and unital over $\Q[t]$.
+Its invariant pairing is the original Poincare pairing.
+\end{lemma}
+
+\begin{proof}
+Let $a_0$ denote the coefficient of $1$ in $a$.
+The cup algebra gives
+\[
+ \ell_w(ab)=a_0\ell_w(b)+b_0\ell_w(a),
+ \qquad
+ aw=a_0w+\ell_w(a)p.
+\]
+Substitution into the Hochschild differential yields
+\[
+ a\nu_w(b,c)-\nu_w(ab,c)+\nu_w(a,bc)-\nu_w(a,b)c=0.
+\]
+The terms proportional to $w$ cancel in pairs.
+The two terms proportional to $p$ are
+$\ell_w(a)\ell_w(b)\ell_w(c)p$ with opposite signs.
+This verifies the identity for arbitrary states of $A$.
+
+The coefficient of $t^2$ in associativity also vanishes, since
+\[
+ \nu_w(\nu_w(a,b),c)
+ =q(w,w)\ell_w(a)\ell_w(b)\ell_w(c)w
+ =\nu_w(a,\nu_w(b,c)).
+\]
+The unit is unchanged because $\ell_w(1)=0$.
+Finally,
+\[
+ \eta_1(\nu_w(a,b),c)=\ell_w(a)\ell_w(b)\ell_w(c)
+\]
+is symmetric. Thus the original pairing is invariant.
+\end{proof}
+
+Choose $u=u_2$ and $v=v_2$ in the second hyperbolic plane of
+\eqref{rdt:eq:K3pair}. These classes satisfy
+\[
+ q(u,u)=q(v,v)=0,\qquad q(u,v)=1,\qquad
+ u,v\perp C,F.
+\]
+Set
+\[
+ \widetilde\mu=\mu_{C,1,0}+\nu_u.
+\]
+
+\begin{proposition}\label{rdt:prop:traceinvisiblecubic}
+The products $ab+\epsilon\mu(a,b)$ and
+$ab+\epsilon\widetilde\mu(a,b)$ are unital cyclic deformations of
+the full cohomology algebra over $\Q[\epsilon]/(\epsilon^2)$.
+They have the same fibre-marked operator.
+For every $D\in A$, their multiplication-correction operators
+have the same trace:
+\[
+ \operatorname{Tr}\bigl(\widetilde\mu(D,-)\bigr)
+   =\operatorname{Tr}\bigl(\mu(D,-)\bigr).
+\]
+Their Hochschild classes are distinct when the ordinary
+identification of $A$ is fixed.
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{rdt:prop:sectioncubic} identifies $\mu$ with $\nu_C$.
+The mixed quadratic compositions of $\nu_C$ and $\nu_u$ vanish
+because $q(C,u)=0$.
+Lemma~\ref{rdt:lem:rankonecubic} therefore also gives an associative
+polynomial product $ab+t\widetilde\mu(a,b)$.
+Reducing modulo $t^2$ gives the stated first-order deformation.
+
+Since $\ell_u(F)=0$,
+\[
+ \widetilde\mu(F,a)=\mu(F,a)\qquad(a\in A).
+\]
+The cap scalar in the fibre-marked operator remains zero.
+For any $D$, the difference of the multiplication operators is
+the rank-one endomorphism
+\[
+ \nu_u(D,-)=\ell_u(D)\,u\otimes\ell_u.
+\]
+Its trace on all twenty-four states is
+$\ell_u(D)\ell_u(u)=0$.
+Thus the complete fibre-marked operator and all the stated traces
+agree. Holding the cap scalars fixed also preserves the
+marked-tube traces.
+
+The untraced product distinguishes the two deformations:
+\[
+ \mu(v,v)=0,\qquad
+ \widetilde\mu(v,v)=u,\qquad
+ \int_Sv\widetilde\mu(v,v)=1.
+\]
+Define $\mathcal L_v(\theta)=\int_Sv\theta(v,v)$.
+For every linear one-cochain $f$, the equality $v^2=0$ gives
+\[
+ \mathcal L_v(\delta f)
+       =2\int_Sv^2f(v)=0.
+\]
+But $\mathcal L_v(\nu_u)=1$.
+Hence $\nu_u$ is not a Hochschild coboundary, and the two
+first-order classes cannot agree through a change of splitting
+that fixes the ordinary identification.
+\end{proof}
+
+The polynomial deformation in this construction is algebraic.
+It is not identified with higher-order geometric reduced
+Donaldson--Thomas coefficients.
+An operation-preserving geometric comparison must recover
+\eqref{rdt:eq:sectioncubic}, including its zero value at $(v,v,v)$.
+Agreement of the marked operator and all marked traces leaves
+this coefficient undetermined.
+
+\section{The primitive inverse Igusa series}
+\label{rdt:sec:Igusa}
+
+For a primitive effective class $\beta_h$ with square $2h-2$, choose
+$D_h$ with $\beta_hD_h\ne0$. The geometric trace supplies the
+closed DT expansion
+\[
+ Z_{h,d}^{0}(r)=\frac{1}{\beta_hD_h}\operatorname{Tr}\widehat{\mathsf B}^{D_h}_{\beta_h,d}(r)
+\]
+at $r=0$. The primitive evaluation quoted in
+\cite[Remark 1.2, equation (3)]{OberdieckMC} is the inverse Igusa
+theorem of \cite{OB}. The comparison of reduced DT and
+PT series and rationality is the theorem of
+\cite{OberdieckReducedPT}.
+
+To distinguish expansions, let $R_{h,d}(v)$ be the rational function
+whose Laurent expansion at $v=0$ is the reduced DT/PT series.
+The variables are
+\begin{equation}\label{rdt:eq:OPvars}
+ (T_{\mathrm{OP}},Q_{\mathrm{OP}},P_{\mathrm{OP}})=(s,q,r),
+ \qquad v=-r.
+\end{equation}
+Thus $Z_{h,d}^{0}(r)$ is the expansion of $R_{h,d}(-r)$ at zero.
+The rational representative of the complete primitive trace is
+\begin{equation}\label{rdt:eq:Igusa}
+ \sum_{h,d\ge0}R_{h,d}(-r)q^{h-1}s^{d-1}
+   =-\frac1{\chi_{10}^{\mathrm{OP}}(r,q,s)}.
+\end{equation}
+In particular the boundary-length exponent is $d-1$, not $d$.
+
+In the theta convention
+\[
+ \Delta_5=64(qrs)^{1/2}
+  \prod_{(h,\ell,d)>0}(1-q^hr^\ell s^d)^{f(hd,\ell)},
+ \qquad D_5=\Delta_5/64,
+\]
+and the monic Igusa product has exponents $2f$, so
+\begin{equation}\label{rdt:eq:Igusanorm}
+ \chi_{10}^{\mathrm{OP}}=D_5^2=4096^{-1}\Delta_5^2,
+ \qquad Z^X_{\mathrm{OP}}=-4096\Delta_5^{-2}.
+\end{equation}
+Thus the normalized geometric trace in \eqref{rdt:eq:trace}, summed
+with $q^{h-1}s^{d-1}$, realizes $Z^X_{\mathrm{OP}}$.
+Multiplication of that scalar functional by $-1/4096$ realizes
+$\Delta_5^{-2}$. This rescaling is not a definition of a protected
+vacuum functional.
+
+For fixed $h,d$ the product coefficient is rational in $r$: apart
+from the leading factor from $(h,d)=(0,0)$, only finitely many
+factors can contribute at fixed nonnegative $q,s$ degree. The weak
+Jacobi bound leaves finitely many $\ell$ at each such degree. The
+leading inverse factor is $r/(1-r)^2$. The rational comparison in
+\eqref{rdt:eq:Igusa} identifies this representative with the actual
+DT expansion. Expansion at $r=\infty$ in the product chamber and
+expansion at $r=0$ for DT are distinct operations on this rational
+function. The substitution $r=e^{iu}$ for Gromov--Witten theory
+is a third expansion. None of these operations replaces another
+without the rational-representative theorem.
+
+The term $d=0$ is indispensable. For the section class its primitive
+coefficient is
+\[
+ [q^{-1}s^{-1}]Z^X_{\mathrm{OP}}
+    =-\frac{r}{(1-r)^2}.
+\]
+It is furnished by the scalar endomorphism on $H_0=\Q$.
+Deleting the empty relative boundary would delete this entire
+$s^{-1}$ coefficient.
+
+Finally, let
+$c(a,b,j)=[q^as^br^j](\chi_{10}^{\mathrm{OP}})^{-1}$ in the
+specified coefficient expansion. Corollary~\ref{rdt:cor:closedMC}
+gives
+\[
+ \mathrm{DT}^{S\times E}_{n,(\beta,d)}
+ =(-1)^{n+1}\sum_{k\mid(\beta,n)}\frac1k
+        c\left(\frac{(\beta/k)^2}{2},d-1,n/k\right),
+\]
+the already established numerical theorem
+\cite[Theorem 1.3]{OberdieckMC}. It is the scalar consequence of
+the preceding all-boundary comparison.
+
+\section{The length-two boundary state}
+\label{rdt:sec:Hilb2}
+
+The next boundary space has two Nakajima partitions. Keeping both
+is necessary for its diagonal. The following description fixes all
+normalizations independently of a DT kernel.
+
+Let $B=\operatorname{Bl}_\Delta(S\times S)$, with blowdown $\pi$ and degree-two
+quotient $f:B\to Y_2=S^{[2]}$. Let
+$j:E_{\mathrm{exc}}\hookrightarrow Y_2$ and
+$p_E:E_{\mathrm{exc}}=\mathbb P(TS)\to S$. Fix the positive
+geometric creation convention
+\[
+ U(a,b)=f_*\pi^*(a\boxtimes b)=q_1(a)q_1(b)|0\rangle,
+ \qquad V(a)=j_*p_E^*a=q_2(a)|0\rangle.
+\]
+There is no factorial in $U$, and $V(1)$ is the effective exceptional
+divisor. Their degrees are $|U(a,b)|=|a|+|b|$ and
+$|V(a)|=|a|+2$.
+
+\begin{proposition}[The full length-two pairing]
+\label{rdt:prop:Hilb2}
+The state space is
+\[
+ H^*(Y_2,\Q)\cong\Sym^2H^*(S,\Q)\oplus H^*(S,\Q)[-2],
+\]
+with the degree convention just stated, and
+\begin{align}
+ (U(a,b),U(c,d))_2&=(a,c)_1(b,d)_1+(a,d)_1(b,c)_1,
+ \label{rdt:eq:UU}\\
+ (V(a),V(b))_2&=-2(a,b)_1,\label{rdt:eq:VV}\\
+ (U(a,b),V(c))_2&=0.\label{rdt:eq:UV}
+\end{align}
+For $e_i$ a homogeneous basis and $e^i$ its Poincare dual, a basis is
+$U(e_i,e_j)$ for $i\le j$ together with $V(e_i)$. Its dual basis is
+\[
+ \frac{U(e^i,e^j)}{1+\delta_{ij}},\qquad -\frac12V(e^i).
+\]
+The cup unit is $U(1,1)/2$ and the normalized top class is $U(p,p)$.
+\end{proposition}
+\begin{proof}
+The blowup decomposition contributes the diagonal exceptional copy
+of $H^*(S)$ shifted up by two real degrees. Taking invariants for
+the transposition on the degree-two quotient gives the symmetric
+square of the remaining $H^*(S)\otimes H^*(S)$. This proves the
+description of the state and its two sectors.
+
+The degree-two quotient gives
+\[
+ f^*U(c,d)=\pi^*(c\boxtimes d+d\boxtimes c).
+\]
+The projection formula now proves \eqref{rdt:eq:UU}. If $E_B$ is
+the exceptional divisor of the blowup, then $f^*E_{\mathrm{exc}}=2E_B$
+and $f$ restricts to an isomorphism on the exceptional divisor.
+Since $N_{E_B/B}=\mathcal O(-1)$, this gives
+$N_{E_{\mathrm{exc}}/Y_2}=\mathcal O(-2)$. The self-intersection
+formula and integration over its projective-line fibres give
+\eqref{rdt:eq:VV}. Restricting $U(a,b)$ to that divisor gives
+$2p_E^*(ab)$; it contains no fibre hyperplane class, so its integral
+against $p_E^*c$ is zero. This proves \eqref{rdt:eq:UV}.
+
+The dual-basis formulas follow by substituting into these three
+pairings. The factors two for repeated symmetric basis elements and
+$-2$ for the exceptional sector are essential. Finally $f_*1=2$
+and $\int_{Y_2}U(p,p)=1$, giving the asserted unit and top class.
+\end{proof}
+
+There are $24\cdot25/2=300$ symmetric states and $24$ exceptional
+states, for a total of $324$. The Betti numbers in real degrees
+$0,2,4,6,8$ are $(1,23,276,23,1)$. The complete coevaluation is
+\[
+ \sum_{i\le j}U(e_i,e_j)\otimes
+          \frac{U(e^i,e^j)}{1+\delta_{ij}}
+   -\frac12\sum_iV(e_i)\otimes V(e^i).
+\]
+Its contraction is $300+24=324$.
+
+An insertion-sensitive length-two evaluation of the relative DT
+kernel must compute its entries on both sectors and contract with
+this diagonal. For example the multiple-cover theorem fixes in
+advance the $k=2$ comparison, including the coefficient sign
+$(-1)^{m-m/2}$ and the factor $1/2$ only after closure. The state
+and pairing above do not themselves evaluate those DT entries.
+
+\section{The critical coefficient comparison}
+\label{rdt:sec:critical}
+
+Relative DT sewing supplies a geometric cohomological recipient and
+its closed numerical map. It is useful because the full boundary
+amplitudes contain information that the inverse Igusa scalar does
+not determine. The rank-one kernel $C\boxtimes C$, the diagonal
+kernel, and the ordinary collar have different actions on the unit,
+middle cohomology and top class, even before a trace is considered.
+The construction requires neither a BKM recognition theorem nor a
+choice of a prepared critical state.
+
+Another geometric carrier, the Hilbert-scheme elliptic genus, retains
+its own Fock state and yields an Igusa product with a boundary factor.
+An equality of such indices cannot identify its boundary operations
+with the relative ideal-sheaf correspondences. The latter keep the
+K3 curve class, stationary descendant, reduced virtual theory and
+multiple-cover comparison as specified data.
+
+A compact critical Hall realization has a further first requirement.
+For an extension correspondence
+\[
+ \mathcal Q_\alpha\times_{BE}\mathcal Q_\beta
+   \xleftarrow{\ p\ }\mathcal E_{\alpha,\beta}
+   \xrightarrow{\ q\ }\mathcal Q_{\alpha+\beta},
+\]
+one needs independently defined reduced oriented critical coefficient
+complexes $\mathscr K_\gamma$ and a map
+\begin{equation}\label{rdt:eq:criticalmap}
+ p^*(\mathscr K_\alpha\boxtimes_{BE}\mathscr K_\beta)
+       [\kappa_{\alpha,\beta}]
+       \longrightarrow q^!\mathscr K_{\alpha+\beta}.
+\end{equation}
+The chosen support must make $q$ proper for the pushforward entering
+the trace. The orientation square roots, their comparison maps,
+the shifts and base-change maps must be compatible on every
+extension flag, including nonsplit three-step flags and their
+associativity homotopies. The common-$BE$ zero-object unit must
+act as the identity under these same comparisons.
+The common $E$-torsor in this fibre product is part of the extension
+geometry. It is different from the quotient-stack normalization in
+Theorem~\ref{rdt:thm:trace}.
+
+\begin{question}\label{rdt:qn:realization}
+Given the critical coefficient system and its flag-compatible maps,
+construct a boundary realization to $H_d$ that intertwines its marked
+state action with \eqref{rdt:eq:kernel}, its ordinary and reduced
+sewings with \eqref{rdt:eq:virtualglue}, and its supported trace with
+\eqref{rdt:eq:trace}. Compare the independent state parameter family,
+line and section with the modular line and section, including their
+characters and boundary normalizations.
+\end{question}
+
+Any comparison with this relative sewing system must also preserve
+the intrinsic first-order class of
+Proposition~\ref{rdt:prop:HHnonzero}, through its actual coefficient
+map. In particular, a $B$-linear identification of the target with
+an undeformed cup algebra cannot supply the comparison.
+
+The equality of all ordinary cohomological matrix coefficients under
+$\Phi_k$ does not construct this map. Nor does the scalar normalization
+$-4096$ define an orientation or a vacuum. Primitive generators and
+relations, chiral collision maps, protected state preparation and any
+holographic reconstruction remain additional mathematical structures.

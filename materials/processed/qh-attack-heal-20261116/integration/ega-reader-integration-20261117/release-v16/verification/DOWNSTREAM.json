@@ -1,0 +1,159 @@
+{
+  "schema": "qh-first-principles-downstream-build/1",
+  "status": "MECHANICAL_CHECKS_COMPLETE",
+  "source_audit_failures": [],
+  "math_formulas": 22818,
+  "math_errors": 0,
+  "commands": [
+    {
+      "step": "split",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-reference.py",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/build/combined.html",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/public",
+        "--book-name",
+        "index.html"
+      ],
+      "started_utc": "2026-11-17T23:25:11.891706+00:00",
+      "completed_utc": "2026-11-17T23:25:13.111892+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-v16-standard-notation-20261118/final/build/split.log"
+    },
+    {
+      "step": "metadata",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/set_page_metadata.py",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/public"
+      ],
+      "started_utc": "2026-11-17T23:25:13.111954+00:00",
+      "completed_utc": "2026-11-17T23:25:13.250230+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-v16-standard-notation-20261118/final/build/metadata.log"
+    },
+    {
+      "step": "index",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/reader-index.cjs",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/public/reader-index.js",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/public/index.html",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/public/reference.html",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/public/atlas.html"
+      ],
+      "started_utc": "2026-11-17T23:25:13.283815+00:00",
+      "completed_utc": "2026-11-17T23:25:32.389680+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-v16-standard-notation-20261118/final/build/index.log"
+    },
+    {
+      "step": "public_check",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/check_public.py",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/public",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/build/PUBLIC-FILES-CHECK.json"
+      ],
+      "started_utc": "2026-11-17T23:25:32.389801+00:00",
+      "completed_utc": "2026-11-17T23:25:36.995400+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-v16-standard-notation-20261118/final/build/public_check.log"
+    },
+    {
+      "step": "v14_consumer_check",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/consumer/check.cjs",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/public",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/build/V14-CONSUMER-CHECK.json"
+      ],
+      "started_utc": "2026-11-17T23:25:36.995493+00:00",
+      "completed_utc": "2026-11-17T23:25:50.178431+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-v16-standard-notation-20261118/final/build/v14_consumer_check.log"
+    },
+    {
+      "step": "split_checks",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-checks.cjs",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/public",
+        "index.html"
+      ],
+      "started_utc": "2026-11-17T23:25:50.178509+00:00",
+      "completed_utc": "2026-11-17T23:26:11.305743+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-v16-standard-notation-20261118/final/build/split_checks.log"
+    },
+    {
+      "step": "reader_page",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "--page",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/public/index.html"
+      ],
+      "started_utc": "2026-11-17T23:26:11.305832+00:00",
+      "completed_utc": "2026-11-17T23:27:07.898498+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-v16-standard-notation-20261118/final/build/reader_page.log"
+    },
+    {
+      "step": "reader_fixtures",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-v16-standard-notation-20261118/final/workspace/compiler/quantum-holography-status/tests/reader.test.cjs"
+      ],
+      "started_utc": "2026-11-17T23:27:07.898567+00:00",
+      "completed_utc": "2026-11-17T23:27:28.542657+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-v16-standard-notation-20261118/final/build/reader_fixtures.log"
+    }
+  ],
+  "heading_metadata": {
+    "path": "/private/tmp/qh-v16-standard-notation-20261118/final/build/HEADING-METADATA.json",
+    "sha256": "6127c937cfe2ac8fa9550764f433b4555a31bae66444aca407a97b3e84107e32",
+    "bytes": 3263
+  },
+  "public_files": {
+    "index.html": {
+      "path": "/private/tmp/qh-v16-standard-notation-20261118/final/public/index.html",
+      "sha256": "08f89babf71198ac8804417540df3fd586327ae63d1df8937a7412531da699e1",
+      "bytes": 4277714
+    },
+    "reference.html": {
+      "path": "/private/tmp/qh-v16-standard-notation-20261118/final/public/reference.html",
+      "sha256": "921396f7e0ab54c3a8379e2df06593733c1c690603085a546c26c0ec5b1f418e",
+      "bytes": 4592648
+    },
+    "atlas.html": {
+      "path": "/private/tmp/qh-v16-standard-notation-20261118/final/public/atlas.html",
+      "sha256": "fb38e95131c7084e61b92ed850473cdcc5f9c1aa2f59e72ce7ed3d0789b42b2c",
+      "bytes": 11228809
+    },
+    "reader-index.js": {
+      "path": "/private/tmp/qh-v16-standard-notation-20261118/final/public/reader-index.js",
+      "sha256": "2aaa4b7c28fa11b1f1829c28c21f2248db89dace79aba6548b6ac5b4d506707d",
+      "bytes": 5787605
+    }
+  },
+  "bad_local_links": [],
+  "private_or_attribution_hit_count": 0,
+  "native_visual_qa": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "release_candidate": false
+}

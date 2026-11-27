@@ -1,0 +1,852 @@
+\section{Harmonic fillings and mixed state correlations}
+\label{hfill:section}
+
+The two states in Chapter~\ref{hst:chapter} have identical
+one-mode density operators, but a mixed insertion distinguishes them.
+To interpret that insertion geometrically, we need a space of fillings,
+a measure, and an action of functions on its state space.
+A real scalar field on the disk supplies these data.
+Its harmonic extension realizes the mixed insertion as a function
+of two jets at the marked point.
+
+There is a separate question at a collision.
+The boson--fermion map extends to principal values and their contacts
+on charts with independent normal coordinates.
+The contact module, however, excludes a positive-definite pairing with the
+pointwise coordinate involution.
+We first construct this relative comparison, then construct the
+scalar filling and its positive sewing.
+
+\subsection{The state map and relative contacts}
+
+Work at level one and charge zero over $\mathbb C$.
+Let $\mathcal P=\mathbb C[p_1,p_2,\ldots]$, with
+$\deg p_n=n$ and Hall form
+\[
+ \langle p^{\boldsymbol m},p^{\boldsymbol l}\rangle
+ =\delta_{\boldsymbol m,\boldsymbol l}
+       \prod_{n\geq1}n^{m_n}m_n!.
+\]
+The form is conjugate linear in its first argument.
+Write $\mathcal H_B$ for its Hilbert completion and $E$ for energy.
+On $\mathcal P$ set
+\[
+ a_{-n}=p_n,\qquad a_n=n\partial_{p_n}\quad(n>0),
+ \qquad a_0=0,
+ \qquad T_B=\sum_{n\geq1}n p_{n+1}\partial_{p_n}.
+\]
+
+Let $\mathcal F_0$ be the charge-zero semi-infinite wedge, with
+orthonormal basis indexed by partitions $\lambda$:
+\[
+ |\lambda\rangle_F
+ =e_{\lambda_1-1}\wedge e_{\lambda_2-2}\wedge\cdots.
+\]
+Its tail is $e_{-i}$ and its Hilbert completion is $\mathcal H_F$.
+On the sum of charge sectors, $\psi_r^\dagger$ inserts $e_r$ and
+$\psi_r$ removes it, with the exterior signs.
+For $n\ne0$ put
+\[
+ A_n=\sum_{r\in\mathbb Z}\psi_{r-n}^\dagger\psi_r,
+ \qquad
+ T_F=\sum_{r\in\mathbb Z}(r+1)\psi_{r+1}^\dagger\psi_r.
+\]
+These sums are finite on each finite-energy vector.
+The zero current acts by zero on this charge sector.
+
+The Hall--wedge map of \eqref{hst:eq:fermion-map} is
+\begin{equation}\label{hfill:eq:U}
+ U:\mathcal P\longrightarrow\mathcal F_0,
+ \qquad U(s_\lambda)=|\lambda\rangle_F.
+\end{equation}
+It preserves the vacuum and intertwines $a_n$ with $A_n$.
+It also intertwines $T_B$ with $T_F$.
+Indeed both translations kill the vacuum and satisfy
+$[T,a_n]=-n a_{n-1}$, with the corresponding fermionic formula.
+Commuting through the creation operators proves the assertion.
+
+The map extends to a unitary $\mathcal H_B\to\mathcal H_F$.
+Finite occupation vectors are a common core for each closed oscillator.
+The finite-energy intertwining therefore identifies their closed graphs
+and the domains of their successive products.
+This retains the operator domains specified in Chapter~\ref{hst:chapter}.
+
+Fix a polydisk with independent normal coordinates
+$u_1,\ldots,u_d$ and additional coordinates $w$.
+Let $\mathcal O$ denote its jointly holomorphic functions.
+For one normal define the two-term complex
+\begin{equation}\label{hfill:eq:contact-complex}
+ \mathcal E_i^0=\mathcal O[u_i^{-1}],\qquad
+ \mathcal E_i^1=\mathcal O[u_i^{-1}]/\mathcal O,
+ \qquad d f=f\bmod\mathcal O.
+\end{equation}
+The degrees are $0$ and $1$.
+
+Realize its first term by principal-value currents and put
+\begin{equation}\label{hfill:eq:residue}
+ r_k(u)=\bar\partial\operatorname{PV}(u^{-k})
+ =\frac{\pi(-1)^{k-1}}{(k-1)!}
+       \partial_u^{k-1}\delta^{(2)}(u)\,d\bar u.
+\end{equation}
+The class of $u^{-k}$ in the second term maps to $r_k$.
+Here $\bar\partial\operatorname{PV}(1/u)
+=\pi\delta^{(2)}(u)d\bar u$ fixes the normalization.
+Holomorphic multiplication and differentiation respect this realization,
+by \eqref{scmp:eq:jets} and its residue-current realization.
+
+Set
+\[
+ \mathcal E=\mathcal E_1\otimes_{\mathcal O}\cdots
+                         \otimes_{\mathcal O}\mathcal E_d,
+ \qquad
+ C_B=\mathcal E\otimes_{\mathbb C}\mathcal P,
+ \qquad C_F=\mathcal E\otimes_{\mathbb C}\mathcal F_0.
+\]
+The tensor differential has the cohomological sign.
+For two normals, for example,
+\[
+ d(\operatorname{PV}(u^{-a})\operatorname{PV}(v^{-b}))
+ =r_a(u)\operatorname{PV}(v^{-b})
+   +\operatorname{PV}(u^{-a})r_b(v).
+\]
+Applying $d$ again gives opposite corner terms.
+Products here involve independent normal coordinates.
+The same-normal meromorphic multiplication on contacts is excluded by
+Proposition~\ref{scmp:prop:no-product}.
+
+Every section has finite pole order and finite state support.
+On each such subspace use the compact-open topology of its holomorphic
+coefficients, then take the locally convex inductive limit.
+The coefficient currents act on compactly supported test forms.
+We retain each face submodule, supported on a specified intersection
+of the divisors $u_i=0$.
+The filtration by at least $j$ contact factors is a subcomplex filtration.
+
+\begin{proposition}\label{hfill:prop:relative}
+The map
+\[
+ \widetilde U=\operatorname{id}_{\mathcal E}\otimes U:
+ C_B\longrightarrow C_F
+\]
+is a continuous isomorphism of cochain $\mathcal O$-modules.
+It preserves the face submodules, contact filtration, current modes,
+holomorphic translations, state translation, and vacuum.
+Its tensor powers preserve external products in independent normal charts.
+The weak finite-energy matrix coefficients of ordered current fields
+and polynomial descendants have matching principal values and contacts.
+\end{proposition}
+
+\begin{proof}
+The coefficient differential and its contact signs act on $\mathcal E$.
+The map $U$ acts in degree zero on the finite-dimensional energy spaces.
+Thus it commutes with the differential, coefficient operations, and
+the topology just specified.
+Equation~\eqref{hfill:eq:U} gives the state operations and their domains.
+Tensoring these identities gives the external-product assertion.
+
+Write $J_B(z)=\sum_n a_nz^{-n-1}$ and define $J_F$ using $A_n$.
+The mode identity gives $UJ_B(z)=J_F(z)U$ coefficientwise.
+Moving annihilators to the right gives contraction $(z-w)^{-2}$ on
+both sides.
+For polynomial vectors, the remaining matrix coefficients are finite
+Laurent polynomials after this contraction is extracted.
+
+Wick expansion and differentiation therefore identify the rational
+matrix coefficients of every finite ordered product of descendants.
+Their expansions use the same region $|z_1|>\cdots>|z_m|$.
+On an independent-normal chart, extend the common coefficient by
+\eqref{hfill:eq:contact-complex}.
+The principal values and all contact differentials then agree.
+\end{proof}
+
+This comparison specifies coefficient cochains and weak field coefficients.
+It supplies no multiplication of arbitrary singular fields by supported
+currents in the same normal coordinate.
+An independently defined native quantum cochain complex requires its
+own comparison with $C_B$ or $C_F$.
+
+\subsection{A pairing obstruction on the marked residue module}
+
+In one normal let $\mathcal R$ be the span of the currents $r_k$.
+Ordinary multiplication by a smooth function acts on these representatives.
+In particular,
+\begin{equation}\label{hfill:eq:marked-actions}
+ u r_1=0,\qquad u r_k=r_{k-1}\ (k>1),
+ \qquad \bar u r_k=0.
+\end{equation}
+These identities use the pointwise involution $u^*=\bar u$.
+
+For the support calculation, let $\mathcal J^0$ be the finite span
+of the jets $\partial_u^a\partial_{\bar u}^b\delta^{(2)}(u)$,
+and put $\mathcal J^1=\mathcal J^0d\bar u$.
+Its differential raises $b$ by one.
+Consequently
+\[
+ H^1(\mathcal J)=
+ \bigoplus_{a\geq0}\mathbb C
+ [\partial_u^a\delta^{(2)}(u)d\bar u].
+\]
+Evaluation on a holomorphic test jet detects each indicated class.
+In particular $[r_1]\ne0$.
+The same current is exact in the larger principal-value complex,
+where $d\operatorname{PV}(1/u)=r_1$.
+
+\begin{proposition}\label{hfill:prop:positive-obstruction}
+There is no positive-definite Hermitian form on $\mathcal R$
+for which $M_u^*=M_{\bar u}$.
+The same obstruction holds in any marked module retaining
+\eqref{hfill:eq:marked-actions} and a nonzero image of $r_1$.
+In particular it is preserved by module comparisons that intertwine
+these coordinate actions and retain the detected residue class.
+\end{proposition}
+
+\begin{proof}
+The required adjoint identity gives
+\[
+ \|r_1\|^2=\langle ur_2,ur_2\rangle
+ =\langle r_2,\bar u u r_2\rangle=0.
+\]
+The residue detector shows $r_1\ne0$.
+The same calculation applies to its nonzero marked image.
+\end{proof}
+
+The proposition concerns the marked module of representatives.
+Smooth multiplication does not act on general Dolbeault cohomology:
+$\bar\partial M_{\bar u}-M_{\bar u}\bar\partial$
+is multiplication by $d\bar u$.
+Thus the supported cohomology calculation cannot supply that action.
+Reflected pairings between different insertion domains remain possible,
+as in Section~\ref{hss:sec:pairing}.
+
+\subsection{The scalar filling and its state space}
+
+Let $D$ be the unit disk with its center and angular coordinate marked.
+Fix the constant mode to zero.
+For finitely many complex numbers $Z_n$, define the real harmonic field
+\begin{equation}\label{hfill:eq:harmonic}
+ \phi=h+\bar h,\qquad
+ h(z)=\sum_{n\geq1}\frac{Z_n}{n}z^n,
+ \qquad
+ S_D(\phi)=\frac1{8\pi}\int_D|\nabla\phi|^2\,d^2z.
+\end{equation}
+The metric is Euclidean and $d^2z=dx\,dy$.
+The action determines the ground amplitude $\exp(-S_D)$.
+At a finite cutoff, normalize its squared absolute value against
+Lebesgue measure in the coordinates $Z_n$.
+
+\begin{proposition}\label{hfill:prop:measure}
+These finite laws are consistent and define
+\begin{equation}\label{hfill:eq:measure}
+ d\mu=\bigotimes_{n\geq1}
+       \frac1{\pi n}e^{-|Z_n|^2/n}\,d^2Z_n.
+\end{equation}
+Almost every sequence determines a smooth harmonic interior and a
+distributional boundary value through \eqref{hfill:eq:harmonic}.
+Almost every such field has infinite Dirichlet energy.
+\end{proposition}
+
+\begin{proof}
+Since $|\nabla\phi|^2=4|h'|^2$, angular orthogonality gives
+\[
+ S_D(\phi)=\frac12\sum_n\frac{|Z_n|^2}{n}.
+\]
+Squaring the amplitude gives \eqref{hfill:eq:measure} at every cutoff.
+Each unused factor has mass one, which proves consistency.
+
+The Gaussian tail is
+$\mu(|Z_n|>n)=e^{-n}$.
+Hence $|Z_n|\leq n$ eventually, almost surely.
+The power series and all its derivatives converge uniformly on
+every smaller disk.
+Its boundary Fourier coefficients have polynomial growth, so they
+define a distribution.
+
+The variables $|Z_n|^2/n$ are independent exponentials of mean one.
+Their partial sums diverge almost surely by the strong law.
+The nonnegative Fourier expansion of the Dirichlet integral then
+gives infinite total energy.
+\end{proof}
+
+Let $\mathcal H_{\mathrm{hol}}$ be the closed subspace of
+$L^2(\mu)$ generated by holomorphic cylinder polynomials.
+This defines the recipient independently of Hall states.
+Gaussian polar integration gives
+\[
+ \int\overline{Z^{\boldsymbol a}}Z^{\boldsymbol b}\,d\mu
+ =\delta_{\boldsymbol a,\boldsymbol b}
+       \prod_n n^{a_n}a_n!.
+\]
+Therefore substitution extends uniquely to a unitary
+\begin{equation}\label{hfill:eq:V}
+ V:\mathcal H_B\longrightarrow\mathcal H_{\mathrm{hol}},
+ \qquad V(p_n)=Z_n.
+\end{equation}
+Under this map the filling energy is the closure of
+$E=\sum_n nZ_n\partial_{Z_n}$ on cylinder polynomials.
+
+\subsection{Geometric insertions and the mixed correlation}
+
+Let $P_{\mathrm{hol}}$ be orthogonal projection onto
+$\mathcal H_{\mathrm{hol}}$.
+For a cylinder polynomial $f(Z,\bar Z)$, define
+$T_f=P_{\mathrm{hol}}M_f$ on holomorphic cylinder polynomials.
+Multiplication takes this domain into $L^2(\mu)$.
+The projection is therefore defined there.
+
+\begin{proposition}\label{hfill:prop:toeplitz}
+For finite multi-indices $\alpha,\beta$,
+\[
+ T_{Z^\alpha\bar Z^\beta}
+ =\prod_n(n\partial_{Z_n})^{\beta_n}\,M_{Z^\alpha}.
+\]
+For cylinder polynomial symbols, $T_fT_g=T_{f\star g}$, where
+\begin{equation}\label{hfill:eq:star}
+ f\star g=
+ \sum_\alpha\frac{(-1)^{|\alpha|}\prod_n n^{\alpha_n}}{\alpha!}
+       (\partial_Z^\alpha f)(\partial_{\bar Z}^\alpha g).
+\end{equation}
+The sum is finite.
+In particular $Z_n\star\bar Z_n=|Z_n|^2-n$.
+\end{proposition}
+
+\begin{proof}
+Pair a projected monomial against every holomorphic monomial.
+The Gaussian moment formula gives
+$P_{\mathrm{hol}}(\bar Z_n^b F)
+=(n\partial_{Z_n})^bF$ for holomorphic polynomial $F$.
+This proves the first formula.
+
+In this ordering, derivatives stand to the left of multiplications.
+To compose two such expressions use
+$M_{Z_n}(n\partial_{Z_n})
+=(n\partial_{Z_n})M_{Z_n}-n$.
+The finite binomial expansion for each coordinate is
+\eqref{hfill:eq:star}.
+Different coordinates commute, which proves the multivariable identity.
+\end{proof}
+
+Put
+\[
+ u_\pm=\frac{p_1^2\pm p_2}{2},\qquad
+ F_\pm=Vu_\pm=\frac{Z_1^2\pm Z_2}{2},\qquad
+ d\nu_\pm=|F_\pm|^2d\mu.
+\]
+Both states have norm one.
+The marked filling has the real observable
+\begin{equation}\label{hfill:eq:mixed}
+ \mathcal C(h)=2\operatorname{Re}
+       \bigl(h'(0)^2\overline{h''(0)}\bigr)
+ =Z_1^2\bar Z_2+\bar Z_1^{\,2}Z_2.
+\end{equation}
+It is invariant under $z\mapsto e^{i\theta}z$.
+It depends on relative mode phases, which individual mode laws can lose.
+
+\begin{proposition}\label{hfill:prop:mixed}
+On the polynomial domain,
+\[
+ T_{\mathcal C}=VOV^{-1},\qquad
+ O=a_{-1}^{\,2}a_2+a_{-2}a_1^{\,2}.
+\]
+The two filling laws satisfy
+\begin{equation}\label{hfill:eq:expectations}
+ \int\mathcal C\,d\nu_+=2,\qquad
+ \int\mathcal C\,d\nu_-=-2.
+\end{equation}
+Their single-coordinate marginals agree.
+For coordinates $1$ and $2$, their densities against $\mu_1$ and
+$\mu_2$ are respectively
+\[
+ \frac{|Z_1|^4+2}{4},\qquad
+ \frac{|Z_2|^2+2}{4}.
+\]
+Every other coordinate has its vacuum Gaussian law.
+\end{proposition}
+
+\begin{proof}
+The two different modes commute in the Toeplitz formula, giving
+the stated operator.
+Write $A=Z_1^2$ and $B=Z_2$.
+Then $\mathbb E|A|^2=\mathbb E|B|^2=2$ and
+$\mathbb E(A\bar B)=0$.
+This proves the normalization and both marginal formulas.
+
+The only surviving terms in
+$\mathbb E[(A\bar B+\bar A B)|A\pm B|^2]/4$
+are $\pm2\mathbb E(|A|^2|B|^2)/4=\pm2$.
+Replacing the plus in \eqref{hfill:eq:mixed} by a minus gives zero
+on both laws, so it fails to represent the fixed Hermitian operator $O$.
+\end{proof}
+
+\subsection{Recovering a density operator from its filling law}
+
+The unitary map $V$ compares amplitudes.
+A mixed state instead determines a probability law.
+For a positive trace-class operator on $\mathcal H_{\mathrm{hol}}$,
+choose a spectral decomposition
+\[
+ \rho=\sum_j\lambda_j|F_j\rangle\langle F_j|,
+ \qquad \lambda_j\geq0,
+ \qquad \|F_j\|=1,
+\]
+and define
+\begin{equation}\label{hfill:eq:density-law}
+ D_\rho=\sum_j\lambda_j|F_j|^2,
+ \qquad d\nu_\rho=D_\rho\,d\mu.
+\end{equation}
+The sum converges in $L^1(\mu)$ by positivity.
+For a bounded measurable function $f$, compression of $M_f$ is bounded
+and
+\[
+ \int f\,d\nu_\rho
+ =\operatorname{Tr}(\rho P_{\mathrm{hol}}M_f|_{\mathcal H_{\mathrm{hol}}}).
+\]
+This identity makes the measure independent of the spectral decomposition.
+
+\begin{theorem}\label{hfill:thm:density-recovery}
+The map $\rho\mapsto\nu_\rho$ is injective on positive trace-class
+operators.
+It is additive and positively homogeneous, and
+$\nu_\rho(\mathbb C^{\mathbb N})=\operatorname{Tr}\rho$.
+In particular it is an affine injection from density operators to
+probability laws of harmonic fillings.
+\end{theorem}
+
+\begin{proof}
+First retain only the first $N$ modes.
+Their holomorphic space has reproducing vector
+\[
+ K_z(w)=\exp\left(\sum_{n=1}^N\frac{\bar z_nw_n}{n}\right),
+ \qquad
+ \|K_z\|^2=\exp\left(\sum_{n=1}^N\frac{|z_n|^2}{n}\right).
+\]
+For a trace-class operator $A$, its diagonal
+$\langle K_z,AK_z\rangle$ is real analytic.
+Its series converges locally uniformly by the Hilbert--Schmidt
+inequality applied to the matrix of $A$ and $K_z\otimes\overline{K_z}$.
+
+In the normalized monomial basis, its coefficient of
+$z^\alpha\bar z^\beta$ is
+\[
+ \frac{A_{\alpha\beta}}
+ {\sqrt{\prod_n n^{\alpha_n+\beta_n}\alpha_n!\beta_n!}}.
+\]
+Wirtinger derivatives at zero recover every matrix entry.
+Equality almost everywhere of two such diagonals implies equality
+everywhere, by continuity and the full support of the Gaussian measure.
+Thus the finite-mode law determines the finite-mode operator.
+
+The marginal of \eqref{hfill:eq:density-law} on these $N$ coordinates
+is the diagonal of the reduced operator $\rho_N$.
+To see this, test against a bounded function of those coordinates.
+The compressed multiplication is its finite-mode compression tensored
+with the identity on the remaining modes.
+The defining property of the partial trace gives the assertion.
+
+It remains to recover the full operator from all $\rho_N$.
+Let $\alpha,\beta$ be finite occupation sequences.
+For $N$ containing their supports, form the bounded local matrix unit
+\[
+ L_N=|\alpha_{\leq N}\rangle\langle\beta_{\leq N}|
+                         \otimes1_{>N}.
+\]
+It includes the vacuum occupations up to $N$.
+On every finite occupation vector it eventually agrees with
+$|\alpha\rangle\langle\beta|$.
+Since $\|L_N\|=1$, this is strong operator convergence.
+
+Pairing a uniformly bounded strongly convergent sequence with a
+trace-class operator preserves the limit.
+This follows by finite-rank approximation in trace norm.
+Hence the reduced operators determine every global occupation matrix entry.
+They determine $\rho$.
+Additivity, homogeneity and the mass identity follow directly from
+the bounded-function identity preceding the theorem.
+\end{proof}
+
+\subsection{Scalar-cylinder sewing}
+
+The disk action also has an independent cylindrical transfer.
+Use coordinates $(t,\theta)$ with $\theta$ of period $2\pi$ and
+flat conformal metric $dt^2+d\theta^2$.
+At a finite mode cutoff write
+\[
+ \phi(t,\theta)=\sum_n
+ \left(\frac{Z_n(t)}n e^{in\theta}
+       +\frac{\overline{Z_n(t)}}n e^{-in\theta}\right).
+\]
+The real scalar action is
+\begin{equation}\label{hfill:eq:cylinder-action}
+ S_{\mathrm{cyl}}
+ =\frac1{8\pi}\int
+       (|\partial_t\phi|^2+|\partial_\theta\phi|^2)
+                                      \,dt\,d\theta
+ =\frac12\sum_n\int
+       \left(\frac{|\dot Z_n|^2}{n^2}+|Z_n|^2\right)dt.
+\end{equation}
+Thus each complex mode is a two-dimensional real oscillator of
+mass $n^{-2}$ and frequency $n$.
+
+Its Schrödinger Hamiltonian and normalized ground state are
+\[
+ H_n=-\frac{n^2}{2}(\partial_x^2+\partial_y^2)
+                   +\frac{x^2+y^2}{2},
+ \qquad
+ \psi_n(z)=\frac1{\sqrt{\pi n}}e^{-|z|^2/(2n)},
+ \qquad H_n\psi_n=n\psi_n.
+\]
+The positive self-adjoint realization is the oscillator closure
+from the Schwartz domain.
+Normalize its transfer by this ground energy at every finite cutoff.
+
+For $0<|q|<1$, let $\eta_n$ be independent circular complex Gaussians
+of variance one, independent of $Z$.
+Define on bounded cylinder functions
+\begin{equation}\label{hfill:eq:mehler}
+ (P_qF)(Z)=\mathbb E_\eta
+ F\left(\left(q^nZ_n+\sqrt{n(1-|q|^{2n})}\,\eta_n
+                                                   \right)_{n\geq1}\right).
+\end{equation}
+The phase of $q$ records angular rotation.
+For real $q=e^{-t}$, the positive parameter $t$ is collar length.
+
+\begin{theorem}\label{hfill:thm:sewing}
+The normalized scalar-cylinder transfer is $P_{e^{-t}}$.
+The operators in \eqref{hfill:eq:mehler} extend to contractions on
+$L^2(\mu)$ and satisfy
+\begin{equation}\label{hfill:eq:sewing-laws}
+ P_qP_r=P_{qr},\qquad P_q^*=P_{\bar q},\qquad
+ P_q|_{\mathcal H_{\mathrm{hol}}}=VE_qV^{-1},
+ \quad E_q=q^E.
+\end{equation}
+For real $0<q<1$, $P_q$ is a positive operator.
+The state pairing $B_q(F,G)=\langle F,P_qG\rangle$ then has
+\[
+ B_q(F_\pm,T_{\mathcal C}F_\pm)=\pm2q^2,
+ \qquad B_q(F_\pm,F_\pm)=q^2.
+\]
+The level-one current $J=J_B$ has covariance
+\begin{equation}\label{hfill:eq:covariance}
+ \langle1,J(z)E_qJ(w)1\rangle
+ =\frac{q}{(z-qw)^2},\qquad |z|>|qw|.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Multiplication by $\psi_n$ is a unitary from $L^2(\mu_n)$
+to $L^2(\mathbb C,d^2z)$.
+Its ground-state transform gives
+\[
+ \psi_n^{-1}(H_n-n)\psi_n
+ =-\frac{n^2}{2}\Delta+n(x\partial_x+y\partial_y).
+\]
+The Gaussian transition with mean $e^{-nt}z$ and complex variance
+$n(1-e^{-2nt})$ solves its heat equation.
+Differentiating its density verifies the generator, and the variance
+tends to zero at $t=0$.
+This proves the finite-cutoff scalar transfer formula.
+
+Every transformed coordinate in \eqref{hfill:eq:mehler} again has law
+$\mu_n$, and the coordinates remain independent.
+Jensen's inequality therefore gives the $L^2$ contraction.
+The cylinder prescriptions are consistent, so they extend by density.
+This construction uses normalized finite transfers, without a sum of
+infinite vacuum energies.
+
+Composing the two independent noises gives mean $(qr)^nZ_n$ and variance
+$n(1-|qr|^{2n})$.
+This proves the semigroup law.
+Reversing the two coordinates of their joint Gaussian law replaces
+$q$ by $\bar q$, which proves the adjoint identity.
+Circularity kills every nonconstant holomorphic noise moment.
+Thus on a holomorphic monomial the eigenvalue is $q^{\sum_n n m_n}$.
+
+For positivity one can use the complex Hermite polynomials
+\[
+ H_{a,b}^{(n)}(z,\bar z)
+ =\sum_{j=0}^{\min(a,b)}
+   (-n)^j j!\binom aj\binom bj z^{a-j}\bar z^{b-j}.
+\]
+Gaussian integration by parts makes them an orthogonal basis in one mode.
+Their eigenvalues under $P_q$ are $q^{n(a+b)}$ for real $q$.
+Finite tensor products give a complete basis of $L^2(\mu)$,
+with positive eigenvalues when $0<q<1$.
+
+The vectors $F_\pm$ have energy two and
+$T_{\mathcal C}F_\pm=\pm2F_\pm$.
+This gives the sewn mixed test.
+Finally the current commutator and vacuum give
+\[
+ \langle1,J(z)E_qJ(w)1\rangle
+ =\sum_{n\geq1}nq^n z^{-n-1}w^{n-1}
+ =\frac{q}{(z-qw)^2}.
+\]
+\end{proof}
+
+The factor $q$ in \eqref{hfill:eq:covariance} is the one-form factor
+in the coordinate pullback $W=qw$.
+The corresponding contact lies on $z-qw=0$.
+It is compared using that normal coordinate, as in
+\eqref{hss:eq:sewn-cov}.
+The normalized mixed expectation remains $\pm2$ after sewing.
+
+Propagation of a density operator uses two transfers.
+For a density operator $\rho$ on $\mathcal H_B$, set
+\begin{equation}\label{hfill:eq:propagated-density}
+ \rho_q=
+ \frac{q^E\rho\,\bar q^{\,E}}
+      {Z_\rho(q)},
+ \qquad Z_\rho(q)=\operatorname{Tr}(\rho|q|^{2E}).
+\end{equation}
+The denominator is positive because $|q|^{2E}$ has no kernel.
+
+\begin{lemma}\label{hfill:lem:collar-moments}
+For every $m\geq0$ and fixed $0<|q|<1$,
+\[
+ \operatorname{Tr}(\rho_q(E+1)^m)
+ \leq\frac{\sup_{e\geq0}(e+1)^m|q|^{2e}}{Z_\rho(q)}<\infty.
+\]
+\end{lemma}
+
+\begin{proof}
+Insert the spectral projections of $E$ into the trace.
+The nonnegative weights $\operatorname{Tr}(\rho\,1_{E=e})$ sum to one.
+The exponential weight bounds each term by the displayed supremum.
+\end{proof}
+
+This estimate depends on the collar and on $Z_\rho(q)$.
+It does not give a uniform assertion as the collar shrinks.
+
+\subsection{The cubic observable at every energy}
+
+Independently of the filling, the current modes define
+\begin{equation}\label{hfill:eq:W}
+ W=\frac12\sum_{i,j>0}
+       \left(a_{-i}a_{-j}a_{i+j}
+                    +a_{-(i+j)}a_i a_j\right).
+\end{equation}
+It preserves each finite-dimensional energy space.
+Write $\mathcal H_e$ for that space and $W_e$ for the restriction.
+On $\mathcal H_B$, use the self-adjoint direct sum of these symmetric blocks,
+with domain
+\[
+ \mathcal D(W)=\left\{F=\sum_eF_e\in\mathcal H_B:
+                          \sum_e\|W_eF_e\|^2<\infty\right\}.
+\]
+Its normalization is \eqref{lmte:eq:cut-join}.
+
+On the fermion side define the vacuum-subtracted second sea moment by
+\[
+ M_2|\lambda\rangle_F
+ =\frac12\sum_{i\geq1}
+   \left[(\lambda_i-i+\tfrac12)^2-(-i+\tfrac12)^2\right]
+                                        |\lambda\rangle_F.
+\]
+The sum is finite. Use its self-adjoint diagonal extension on $\mathcal H_F$.
+
+\begin{lemma}\label{hfill:lem:cut-join}
+One has
+\[
+ UW=M_2U,\qquad
+ Ws_\lambda=c_\lambda s_\lambda,
+ \qquad
+ c_\lambda=\frac12\sum_i\lambda_i(\lambda_i-2i+1).
+\]
+Moreover $\|W|_{E=e}\|\leq e(e-1)/2$.
+\end{lemma}
+
+\begin{proof}
+The eigenvalue agrees with the charges in \eqref{lst:eq:Qcharges}.
+It can also be derived directly from finite alternants.
+Choose $N\geq e$ and specialize $p_m=\sum_{a=1}^N x_a^m$,
+which is injective through energy $e$.
+Put $D_a=x_a\partial_{x_a}$ and
+$\Delta_N=\prod_{a<b}(x_a-x_b)$.
+
+The chain rule rewrites \eqref{hfill:eq:W} on symmetric polynomials as
+\begin{equation}\label{hfill:eq:alternant-operator}
+ Wf=\frac1{2\Delta_N}\sum_aD_a^2(\Delta_N f)
+      -\frac12\sum_{i=1}^N(N-i)^2f
+      -\frac{2N-1}{2}\sum_aD_af.
+\end{equation}
+To check the first-order terms, use
+\[
+ \sum_{a<b}\frac{(x_a+x_b)(x_a^m-x_b^m)}{x_a-x_b}
+ =(N-m)p_m+\sum_{i=1}^{m-1}p_ip_{m-i}.
+\]
+The second-order chain rule gives
+$\sum_{i,j}ij p_{i+j}\partial_{p_i}\partial_{p_j}$.
+Together these are exactly twice the two terms in
+\eqref{lmte:eq:cut-join}.
+
+For $f=s_\lambda$, the numerator $\Delta_Nf$ is the alternant
+with exponents $\lambda_i+N-i$.
+The sum of the $D_a^2$ acts on it by
+$\sum_i(\lambda_i+N-i)^2$.
+Substitution in \eqref{hfill:eq:alternant-operator} gives $c_\lambda$.
+Expanding the two squares in $M_2$ gives the same value.
+
+Finally $c_\lambda=\sum_{(i,j)\in\lambda}(j-i)$.
+Its upper bound is
+$\sum_i\lambda_i(\lambda_i-1)/2\leq e(e-1)/2$.
+Transposing the diagram negates the content sum and gives the lower bound.
+The Schur basis is orthonormal, which proves the operator norm bound.
+\end{proof}
+
+Deleting the half shift changes $M_2$ by $-E/2$.
+It already gives $-1/2$ on the one-box state, where $W$ is zero.
+The shift therefore cannot be discarded in this comparison.
+
+For $0<r<1$, define a function of the harmonic filling by
+\begin{equation}\label{hfill:eq:radial-observable}
+ g_r(\theta)=re^{i\theta}h'(re^{i\theta}),
+ \qquad
+ \Phi_r=\int_0^{2\pi}
+       \operatorname{Re}(g_r^2\overline{g_r})\frac{d\theta}{2\pi}.
+\end{equation}
+It is real and invariant under rotations of the disk.
+Angular integration gives the almost surely convergent expression
+\begin{equation}\label{hfill:eq:radial-symbol}
+ \Phi_r=\frac12\sum_{i,j\geq1}r^{2(i+j)}
+       \left(Z_iZ_j\bar Z_{i+j}
+                     +\bar Z_i\bar Z_j Z_{i+j}\right).
+\end{equation}
+Let $W_r$ be \eqref{hfill:eq:W} with each summand multiplied by
+$r^{2(i+j)}$.
+Use the same self-adjoint direct-sum construction for $W_r$.
+
+\begin{theorem}\label{hfill:thm:radial-limit}
+On finite-energy states, the Toeplitz compression of $\Phi_r$ is
+$VW_rV^{-1}$.
+For every density operator $\rho$ on $\mathcal H_B$ and every
+fixed $0<|q|<1$,
+\begin{equation}\label{hfill:eq:radial-limit}
+ \lim_{r\uparrow1}\int\Phi_r\,d\nu_{V\rho_qV^{-1}}
+ =\operatorname{Tr}(\rho_qW).
+\end{equation}
+All integrals at $r<1$ are absolutely convergent.
+For a finite-energy state no collar is required.
+In particular
+$\int\Phi_r\,d\nu_\pm=\pm r^4$.
+\end{theorem}
+
+\begin{proof}
+First truncate the sum in \eqref{hfill:eq:radial-symbol}.
+The mode $i+j$ differs from both $i$ and $j$.
+Thus the Toeplitz ordering has no extra contraction, and its
+compression is the corresponding finite sum in $VW_rV^{-1}$.
+
+For integrability, let $F$ have energy $e$.
+Creation in mode $n$ has norm at most $\sqrt{e+n}$ on that energy space.
+Put $k=i+j$.
+Pointwise absolute values give
+\[
+ \|Z_iZ_j\bar Z_kF\|_{L^2(\mu)}
+ =\|Z_iZ_jZ_kF\|_{L^2(\mu)}
+ \leq(e+2k)^{3/2}\|F\|.
+\]
+The conjugate term has the same bound.
+
+For a general holomorphic vector, the three creation operators shift
+each energy by the same amount $2k$.
+Their images from different energy spaces are orthogonal.
+Consequently
+\begin{equation}\label{hfill:eq:multiplication-bound}
+ \|\Phi_rF\|_{L^2(\mu)}
+ \leq C_r\|(E+1)^{3/2}F\|,
+ \qquad
+ C_r=\sum_{k\geq2}(k-1)(2k)^{3/2}r^{2k}<\infty.
+\end{equation}
+This proves convergence of the symbol times $F$ in $L^2$ on the
+displayed domain.
+It agrees with the pointwise angular formula by the almost sure
+interior convergence of $h$.
+Projection and finite-energy approximation prove the asserted compression.
+
+Write $\sigma=V\rho_qV^{-1}=\sum_j\lambda_j|F_j\rangle\langle F_j|$.
+Lemma~\ref{hfill:lem:collar-moments} implies
+\[
+ \sum_j\lambda_j\|(E+1)^{3/2}F_j\|^2<\infty.
+\]
+Equation~\eqref{hfill:eq:multiplication-bound} and Cauchy--Schwarz give
+\[
+ \int|\Phi_r|D_\sigma\,d\mu
+ \leq C_r\left(\operatorname{Tr}(\sigma(E+1)^3)\right)^{1/2}.
+\]
+Hence summation and integration are justified, and
+$\int\Phi_r\,d\nu_\sigma=\operatorname{Tr}(\rho_qW_r)$.
+
+On the energy-$e$ space only $i+j\leq e$ contributes to $W_r$.
+It converges there in operator norm to $W$ as $r\uparrow1$.
+In the normalized occupation basis, $W$ has nonnegative matrix entries,
+and those of $W_r$ lie between zero and the corresponding entries of $W$.
+For the vector $|v|$ of absolute values of coefficients, this gives
+\[
+ |\langle v,W_rv\rangle|
+ \leq\langle |v|,W|v|\rangle
+ \leq\frac{e(e-1)}2\|v\|^2.
+\]
+Both operators are symmetric, so the same bound holds for their norms.
+
+The diagonal energy weights of $\rho_q$ have finite second moment.
+Dominated summation over the energy spaces proves
+\eqref{hfill:eq:radial-limit}.
+All higher moments are also finite, so the displayed operator products
+have their ordinary trace-class meaning.
+For finite-energy states the sum of blocks is finite from the start.
+On the energy-two space, $W_r=r^4W$ and $O=2W$,
+which gives the last formula.
+\end{proof}
+
+The theorem asserts convergence of these expectations.
+It does not define an unregularized $\Phi_1$ in $L^2(\mu)$.
+The fixed-radius multiplication estimate and the uniform energy-block
+bound serve different purposes in its proof.
+
+\subsection{The native and gravitational comparisons}
+
+The supported construction of Section~\ref{hnb:section} connects the
+relative coefficient comparison with the scalar filling.
+Its domains distinguish the native result from a comparison with gravity.
+
+\begin{remark}[The supported native comparison]\label{hfill:qn:native}
+At level one, Section~\ref{hnb:section} constructs the bosonic cochain
+complex and the fermionic complex of total charge zero independently.
+The cores have finitely many angular weights in each input separately.
+Theorem~\ref{hnb:thm:core-fields} gives continuous inverse homotopy
+equivalences preserving the vacuum and all ordered neutral current
+fields on these cores. Their extensions over the rooted collision complexes
+preserve the contact attachments, normal derivatives and cut
+restrictions (Proposition~\ref{hnb:prop:supported-comparison}).
+On independent-normal charts, the resulting state projection gives
+Proposition~\ref{hfill:prop:relative}.
+
+For separated preparations and real collar parameter $0<q\leq1$,
+Proposition~\ref{hnb:prop:positive-supported} gives a reflected form
+that kills boundaries and is positive definite on its null quotient.
+Contacts remain in the supported complex and are null in this form.
+Section~\ref{hnb:subsec:collar} constructs the corrected collars
+and their higher compatibility homotopies.
+When the family includes the normalized annular smearing of
+Proposition~\ref{hnb:prop:positive-supported},
+Theorem~\ref{hnb:thm:fillings} identifies its physical Hilbert
+completion and sewing with the harmonic Gaussian theory.
+
+Translation in Section~\ref{hnb:subsec:translation} is infinitesimal or
+coefficientwise formal. A finite translation away from the origin need
+not preserve these angular cores. Extension to arbitrary smooth angular
+completions or coincident distributional products requires the
+corresponding continuous field and multiplication maps.
+\end{remark}
+
+\begin{question}\label{hfill:qn:Einstein}
+Specify an Einstein-filling state space with boundary conditions,
+gauge quotient, action, real form, normalization, insertions and gluing.
+Does it admit a structured comparison with the boundary states that
+retains the mixed observable of \eqref{hfill:eq:expectations}?
+\end{question}
+
+The harmonic scalar field in \eqref{hfill:eq:harmonic} does not supply
+an Einstein metric. Nor do these maps identify a half-BPS droplet sector
+or an oper state space. These remain distinct geometric
+recipients in Question~\ref{hst:qn:gravity}.
+

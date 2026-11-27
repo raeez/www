@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "files": {
+    "index.html": {
+      "sha256": "36fece54682177bd040bb31b9c111cf91779cde70370d50a0b064bed45ba1c17",
+      "bytes": 4720934
+    },
+    "reference.html": {
+      "sha256": "36936afb25cb9de8092eda5d730bc36bff5e9a6cfa5e5f77def5b18ed95120a4",
+      "bytes": 4949475
+    },
+    "atlas.html": {
+      "sha256": "bca739e7a98b2a12579e54ed497c8c7914cb3093c8c765152537324db1189ad7",
+      "bytes": 11360100
+    }
+  },
+  "index": {
+    "sha256": "214ca280f24b133d90cc5b3f582c94e164abe3dee881b1bf0d25b7f1b8b8c304",
+    "bytes": 5776446
+  },
+  "checks": [
+    {
+      "name": "chapter address keeps the query at startup",
+      "destination": "https://research.momentum.inc/quantum-holography/?q=irregular+collision#ch04-irregular-collision"
+    },
+    {
+      "name": "fresh reload keeps the query and heading"
+    },
+    {
+      "name": "remote claim keeps its query on ownership redirect",
+      "destination": "https://research.momentum.inc/quantum-holography/atlas.html?q=obstruction#atlas-c-horizontal-occupied-deletion-all-slots"
+    },
+    {
+      "name": "companion sends its query back to the book",
+      "destination": "https://research.momentum.inc/quantum-holography/index.html?q=irregular+collision#ch04-irregular-collision"
+    },
+    {
+      "name": "a historical companion address retains its query on the owner redirect",
+      "destination": "https://research.momentum.inc/quantum-holography/reference.html?q=Koszul#examples-p133"
+    },
+    {
+      "name": "actual atlas address keeps the query"
+    },
+    {
+      "name": "a companion lazily loads a heading hit from the amended search index"
+    },
+    {
+      "name": "conflicting historic address offers an explicit choice and survives Back",
+      "locators": [
+        "ch05-passage-ca2703aa46a065b1efd2",
+        "ch05-passage-4cf044cc58eed4ed1727"
+      ]
+    },
+    {
+      "name": "a uniquely identifiable v14 passage follows its durable address",
+      "from": "ch01-p11",
+      "to": "ch01-passage-c8e09300fe8b3efb20f3"
+    },
+    {
+      "name": "a uniquely identifiable v15 passage follows its durable address",
+      "from": "ch02-associators-exchange-and-coherence-p14",
+      "to": "ch02-passage-f7cecd84b242e6a8d929"
+    },
+    {
+      "name": "changed reference passage offers its authored locator",
+      "from": "index-ch18-problem-181-p2",
+      "locators": [
+        "index-ch18-problem-181"
+      ]
+    },
+    {
+      "name": "the authored chapter cross-reference still reveals its heading"
+    }
+  ]
+}

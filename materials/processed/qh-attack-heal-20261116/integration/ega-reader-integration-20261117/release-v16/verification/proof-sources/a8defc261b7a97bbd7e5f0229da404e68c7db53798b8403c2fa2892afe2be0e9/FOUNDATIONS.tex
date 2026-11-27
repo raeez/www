@@ -1,0 +1,1131 @@
+Lattice summation and Fourier transform supply arithmetic relations before
+any spectral assumption is made. The first question is whether these
+relations respect the complete Weil functional. A positive operator
+realization asks a further question: can the quotient carry a positive
+Hilbert representation whose ordinary trace is that functional?
+We construct the quotient and its scalar functional, then determine the
+form of every trace-class representation that could realize it.
+
+\section{The test algebra and its scalar functional}
+
+All coefficient spaces are complex. The additive Haar measure is $du$,
+and Hilbert inner products are conjugate-linear in the first variable.
+For $a>1/2$ put
+\begin{equation}\label{nwc:eq:tests}
+\begin{gathered}
+ \mathcal A_a=\{g\in C^\infty(\mathbb R):p_{a,N}(g)<\infty
+       \text{ for every }N\geq0\},\\
+ p_{a,N}(g)=\sum_{j=0}^N\int_{\mathbb R}e^{a|u|}|g^{(j)}(u)|\,du.
+\end{gathered}
+\end{equation}
+The same formula with $a=0$ defines the unweighted seminorm $p_{0,N}$.
+Use convolution and the involution
+\[
+ (f*g)(u)=\int_{\mathbb R}f(t)g(u-t)\,dt,
+ \qquad g^*(u)=\overline{g(-u)}.
+\]
+Let $\mathcal A=\bigcup_{n\geq1}\mathcal A_{1/2+1/n}$ with the final
+locally convex topology. Define
+\begin{equation}\label{nwc:eq:transforms}
+ h_g(z)=\int g(u)e^{izu}\,du,
+ \qquad H_g(s)=\int g(u)e^{(s-1/2)u}\,du
+             =h_g(-i(s-1/2)).
+\end{equation}
+Thus $H_g(1/2+ir)=h_g(r)$. No integrable test is the identity for
+convolution; these algebras are nonunital.
+
+\begin{lemma}
+Each $\mathcal A_a$\label{nwc:lem:tests} is a complete Fr\'echet star algebra, and
+$C_c^\infty(\mathbb R)$ is dense in it. Its seminorms satisfy
+\[
+ p_{a,N}(f*g)\leq p_{a,N}(f)p_{a,0}(g),\qquad
+ p_{a,N}(g^*)=p_{a,N}(g).
+\]
+For $0\leq b<a$ and integers $m,k\geq0$,
+\begin{equation}\label{nwc:eq:strip}
+ \sup_{|\operatorname{Im}z|\leq b}
+ (1+|\operatorname{Re}z|)^m|h_g^{(k)}(z)|
+ \leq C_{a,b,m,k}p_{a,m}(g).
+\end{equation}
+The transform is holomorphic on $|\operatorname{Im}z|<a$ and satisfies
+$h_{f*g}=h_fh_g$ and $h_{g^*}(z)=\overline{h_g(\bar z)}$.
+\end{lemma}
+\begin{proof}
+The weight is submultiplicative, so Fubini gives the convolution
+inequality. A Cauchy sequence has weighted $L^1$ limits of all its
+derivatives. Distributional differentiation identifies successive
+limits; local Sobolev regularity then gives a common smooth
+representative. This proves completeness.
+If $\chi$ is a smooth compact cutoff equal to one near zero,
+Leibniz's rule and integrable tails give $\chi(u/R)g(u)\to g(u)$ in
+every seminorm.
+
+Differentiating the transform $k$ times inserts $(iu)^k$.
+Integration by parts $m$ times gives, on the smaller strip,
+\[
+ |z|^m|h_g^{(k)}(z)|\leq
+ \sum_{j=0}^{\min(m,k)}\binom mj\frac{k!}{(k-j)!}
+ \int |u|^{k-j}|g^{(m-j)}(u)|e^{b|u|}\,du.
+\]
+Each polynomial is absorbed by $e^{(a-b)|u|}$.
+The boundary terms vanish because the relevant weighted functions and
+their first derivatives are integrable. The direct integral estimate
+handles $|z|\leq1$. Dominated differentiation and Fubini prove the
+remaining assertions.
+\end{proof}
+
+Write $\Lambda(p^k)=\log p$ for primes $p$ and integers $k\geq1$,
+and $\Lambda(n)=0$ otherwise. Let $\psi=\Gamma'/\Gamma$.
+The scalar functional used throughout is
+\begin{equation}\label{nwc:eq:weil}
+\begin{aligned}
+ L(g)={}&H_g(0)+H_g(1)-g(0)\log\pi\\
+ &+\frac1{2\pi}\int_{\mathbb R}h_g(r)
+                  \operatorname{Re}\psi(1/4+ir/2)\,dr\\
+ &-\sum_{n\geq2}\frac{\Lambda(n)}{\sqrt n}
+                 \bigl(g(\log n)+g(-\log n)\bigr).
+\end{aligned}
+\end{equation}
+Both polar evaluations and both orientations of every prime power
+belong to this definition. These conventions agree with
+\cite{nwc:CC}*{Appendices A--B} after the substitution
+$k(x)=x^{-1/2}g(\log x)$.
+
+\begin{lemma}\label{nwc:lem:weil-continuity}
+All terms in \eqref{nwc:eq:weil} converge absolutely, and
+$|L(g)|\leq C_a p_{a,2}(g)$ on every test step.
+Moreover $L(g^*)=\overline{L(g)}$.
+\end{lemma}
+\begin{proof}
+The function $e^{a|u|}g(u)$ and its weak derivative are integrable,
+so it vanishes at both ends and
+\[
+ \sup_u e^{a|u|}|g(u)|\leq
+ a\|e^{a|u|}g\|_1+\|e^{a|u|}g'\|_1.
+\]
+The prime terms are consequently bounded by
+$2(a+1)p_{a,1}(g)\sum_{n\geq2}(\log n)n^{-a-1/2}$.
+The poles are bounded by $2p_{a,0}(g)$.
+The logarithmic bound
+$\psi(1/4+ir/2)=O(1+\log(2+|r|))$, proved below, and
+\eqref{nwc:eq:strip} with $m=2$ control the integral.
+Reflection and conjugation in the displayed formula give the last
+identity.
+\end{proof}
+
+\section{Lattice relations and their topology}
+
+Let $\mathcal S(\mathbb R)$ have seminorms
+$q_{M,k}(v)=\sup_x(1+|x|)^M|v^{(k)}(x)|$, for nonnegative integers
+$M,k$. The closed source subspace is
+\[
+ \mathcal S_{\mathrm{ev},0}
+ =\{v\in\mathcal S(\mathbb R):v(-x)=v(x),\ v(0)=0,\ \int v=0\}.
+\]
+Define Fourier transform, normalized dilation, and lattice summation by
+\begin{equation}\label{nwc:eq:theta}
+ \mathcal Fv(y)=\int v(x)e^{-2\pi ixy}\,dx,\qquad
+ V_tv(x)=e^{-t/2}v(e^{-t}x),\qquad
+ \mathcal Ev(u)=e^{u/2}\sum_{n\geq1}v(ne^u).
+\end{equation}
+The lattice sum has coefficient one and runs over positive integers.
+Write $\zeta(s)=\sum_{n\geq1}n^{-s}$ for $\operatorname{Re}s>1$.
+
+\begin{theorem}\label{nwc:thm:theta}
+The map $\mathcal E$ is continuous from $\mathcal S_{\mathrm{ev},0}$
+to every $\mathcal A_a$. If $R_tg(u)=g(u-t)$ and
+$W=1/2+x\partial_x$, then
+\begin{equation}\label{nwc:eq:intertwining}
+ \mathcal EV_t=R_t\mathcal E,\quad
+ \mathcal E\mathcal Fv(u)=\mathcal Ev(-u),\quad
+ (\mathcal Ev)^*=\mathcal E(\mathcal F\bar v),\quad
+ \partial_u^j\mathcal Ev=\mathcal E(W^jv).
+\end{equation}
+To give an explicit bound, write
+\[
+ W^j=\sum_{k=0}^j c_{jk}x^k\partial_x^k,
+ \quad c_{00}=1,\quad
+ c_{j+1,k}=(k+1/2)c_{jk}+c_{j,k-1},
+ \quad Q_{M,j}(v)=\sum_{k=0}^jc_{jk}q_{M+k,k}(v),
+\]
+with coefficients outside their ranges equal to zero.
+For every integer $M>\max(1,a+1/2)$,
+\begin{equation}\label{nwc:eq:theta-bound}
+ p_{a,N}(\mathcal Ev)\leq
+ \frac{\zeta(M)}{M-a-1/2}
+ \sum_{j=0}^N\bigl(Q_{M,j}(v)+Q_{M,j}(\mathcal Fv)\bigr).
+\end{equation}
+\end{theorem}
+\begin{proof}
+Fourier differentiation and integration by parts give
+\[
+ q_{M,k}(\mathcal Fv)\leq
+ 2\sum_{r=0}^M\binom Mr(2\pi)^{k-r}
+ \sum_{j=0}^{\min(r,k)}\binom rj\frac{k!}{(k-j)!}
+ q_{k-j+2,r-j}(v).
+\]
+The factor two is $\int_{\mathbb R}(1+|x|)^{-2}\,dx$.
+Thus Fourier transform is continuous on Schwartz space.
+Fourier inversion follows by inserting $e^{-\pi\epsilon y^2}$
+in the inverse integral and using the Gaussian approximate identity.
+It gives $\mathcal F^2v(x)=v(-x)$, and shows that $\mathcal F$
+preserves the two vanishing conditions.
+
+For $y>0$, the smooth periodization
+$\sum_{n\in\mathbb Z}v(y(t+n))$ has Fourier coefficients
+$y^{-1}\mathcal Fv(k/y)$. Both series converge normally with all
+derivatives. Evaluation at $t=0$ gives Poisson summation.
+The zero terms vanish, and evenness gives
+\begin{equation}\label{nwc:eq:poisson}
+ \sum_{n\geq1}v(ny)=y^{-1}\sum_{n\geq1}\mathcal Fv(n/y).
+\end{equation}
+This proves the reflection identity in \eqref{nwc:eq:intertwining}.
+The normalization is also that of \cite{nwc:Serre}*{VII, \S6}.
+
+The theta series can be differentiated on every compact $u$ interval.
+Differentiation gives $\partial_u^j\mathcal Ev=\mathcal E(W^jv)$;
+expanding $W^j$ gives the stated nonnegative coefficients.
+For $u\geq0$,
+\[
+ |\partial_u^j\mathcal Ev(u)|
+ \leq\zeta(M)e^{-(M-1/2)u}Q_{M,j}(v).
+\]
+For $u\leq0$, \eqref{nwc:eq:poisson} gives the same bound with
+$u$ replaced by $-u$ and $v$ by $\mathcal Fv$.
+Integration proves \eqref{nwc:eq:theta-bound}.
+
+A change of variables gives
+$\mathcal FV_t=V_{-t}\mathcal F$ and $\mathcal EV_t=R_t\mathcal E$.
+Conjugation commutes with $\mathcal E$, which proves its star identity.
+The operator $W$ preserves the source: $(Wv)(0)=v(0)/2$ and
+$\int Wv=-(1/2)\int v$. Hence every identity has the stated domain.
+\end{proof}
+
+For a general even Schwartz function the omitted lattice zero contributes
+\[
+ \mathcal Ev(u)=\mathcal E\mathcal Fv(-u)
+     +\tfrac12e^{-u/2}\mathcal Fv(0)-\tfrac12e^{u/2}v(0).
+\]
+The two vanishing conditions remove these separate tails.
+Dilation and translation have the bounds
+\begin{equation}\label{nwc:eq:translation-bounds}
+ \begin{split}
+ q_{M,k}(V_tv)&\leq e^{-(k+1/2)t}\max(1,e^t)^M q_{M,k}(v),\\
+ p_{a,N}(R_tg)&\leq e^{a|t|}p_{a,N}(g),\qquad
+ p_{a,N}(g')\leq p_{a,N+1}(g).
+ \end{split}
+\end{equation}
+They form smooth groups, with generators $-W$ and $-\partial_u$.
+In particular, dilation by two composes with itself to dilation by four
+already on the source:
+$V_{\log2}^2=V_{\log4}$ and $R_{\log2}^2=R_{\log4}$.
+
+\begin{proposition}\label{nwc:prop:ideal}
+The closed convolution star ideal generated by the theta images is
+\[
+ \mathcal J_a=\overline{\mathcal E(\mathcal S_{\mathrm{ev},0})}^{\,\mathcal A_a}.
+\]
+It is stable under reflection, conjugation, $R_t$, and $\partial_u$.
+The quotient $\mathcal Q_{\Theta,a}=\mathcal A_a/\mathcal J_a$ is a
+complete Hausdorff Fr\'echet star algebra.
+For $b>a$ there is a continuous dense-range map
+\begin{equation}\label{nwc:eq:step-map}
+ \mathcal Q_{\Theta,b}\longrightarrow\mathcal Q_{\Theta,a},
+ \qquad
+ \ker= (\mathcal A_b\cap\mathcal J_a)/\mathcal J_b.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The theta image is a linear star-stable subspace.
+For $f\in C_c^\infty(\mathbb R)$ the integral
+$v_f=\int f(t)V_tv\,dt$ converges in Schwartz space, by
+\eqref{nwc:eq:translation-bounds}, and retains the two vanishing
+conditions. Continuity of $\mathcal E$ gives
+$\mathcal Ev_f=f*\mathcal Ev$.
+Approximation of an arbitrary $f\in\mathcal A_a$ by compact tests,
+then closure in the second factor, proves ideal stability.
+The source identities and their bounds prove the other invariances.
+The quotient is complete because the ideal is closed.
+
+The inclusion $\mathcal A_b\to\mathcal A_a$ has seminorm bound one
+and sends $\mathcal J_b$ into $\mathcal J_a$.
+Its induced quotient map has the displayed kernel.
+The compact core is contained in $\mathcal A_b$, which gives dense range.
+\end{proof}
+
+Injectivity in \eqref{nwc:eq:step-map} would require
+$\mathcal A_b\cap\mathcal J_a=\mathcal J_b$.
+No such equality is needed below. The quotient maps form a compatible
+system; its locally convex direct limit is not asserted to be strict
+or Hausdorff.
+
+\section{The Mellin factor and scalar descent}
+
+The continuation of $\zeta$ used below follows from the integral formulas in the
+proof of Theorem~\ref{nwc:thm:descent}.
+For $v\in\mathcal S_{\mathrm{ev},0}$ set
+$M_v(s)=\int_0^\infty v(x)x^{s-1}\,dx$.
+Evenness and $v(0)=0$ give $v(x)=O(x^2)$ at zero.
+Thus $M_v$ is holomorphic on $\operatorname{Re}s>-2$.
+On a closed strip $\sigma_-\leq\operatorname{Re}s\leq\sigma_+$
+in that half-plane, choose a nonnegative integer $B>\sigma_+$.
+For $k\geq0$,
+\[
+ |M_v^{(k)}(s)|\leq
+ \frac{k!q_{0,2}(v)}{2(\sigma_-+2)^{k+1}}
+ +\frac{k!q_{B,0}(v)}{(B-\sigma_+)^{k+1}}.
+\]
+Integration by parts gives
+$s^mM_v(s)=(-1)^mM_{(x\partial_x)^mv}(s)$.
+These bounds prove rapid vertical decrease, with every derivative,
+uniformly on each such strip.
+
+\begin{lemma}\label{nwc:lem:mellin}
+The theta map is injective and satisfies
+\begin{equation}\label{nwc:eq:mellin-factor}
+ H_{\mathcal Ev}(s)=\zeta(s)M_v(s),\qquad
+ h_{\mathcal Ev}(z)=\zeta(1/2+iz)M_v(1/2+iz).
+\end{equation}
+The first equality initially holds for $\operatorname{Re}s>1$ and
+continues throughout $\operatorname{Re}s>-2$.
+Its left side supplies an entire continuation of the product.
+For every real $r$,
+\begin{equation}\label{nwc:eq:real-hull}
+ h_j(r)=0\text{ for all }j\in\mathcal J_a
+ \quad\Longleftrightarrow\quad \zeta(1/2+ir)=0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Absolute convergence for $\operatorname{Re}s>1$ permits interchange
+of sum and integral after $x=e^u$:
+\[
+ H_{\mathcal Ev}(s)=\int_0^\infty\sum_{n\geq1}v(nx)x^{s-1}\,dx
+                  =\zeta(s)M_v(s).
+\]
+Since $M_v(1)=0$, the pole at one is removable.
+Analytic continuation proves the asserted extension.
+The theta estimate makes the left side entire.
+If it is zero, the Euler product gives $M_v=0$ on
+$\operatorname{Re}s>1$; Mellin inversion gives $v=0$.
+
+Vanishing of zeta implies vanishing on the whole ideal by continuity
+and multiplicativity of evaluation.
+Conversely, fix $s_0=1/2+ir$ and a nonzero nonnegative
+$\varphi\in C_c^\infty(1,2)$.
+For $x>0$ put $w(x)=x^{-ir}\varphi(x)$ and
+$v(x)=\frac12w(x/2)-w(x)$, and extend $v$ evenly.
+This is an allowed source function, with
+\[
+ M_v(s_0)=(2^{s_0-1}-1)\int_0^\infty\varphi(x)x^{-1/2}\,dx\ne0.
+\]
+The first factor is nonzero because $|2^{s_0-1}|=2^{-1/2}$.
+This proves \eqref{nwc:eq:real-hull}.
+\end{proof}
+
+The Mellin transform $M_v$ itself need not be entire; Taylor subtraction
+at zero can give poles at the negative even integers.
+Equation \eqref{nwc:eq:mellin-factor} concerns the entire continued
+product. It also shows that every theta relation vanishes to at least
+the zeta multiplicity at each nontrivial zero. The strip derivative
+bounds extend this assertion to $\mathcal J_a$.
+
+\begin{theorem}
+For every $a>1/2$,\label{nwc:thm:descent} the full functional \eqref{nwc:eq:weil} annihilates
+$\mathcal J_a$. It therefore defines compatible continuous Hermitian
+functionals $\overline L_a$ on $\mathcal Q_{\Theta,a}$, with
+\[
+ |\overline L_a([g])|\leq C_a\inf_{j\in\mathcal J_a}p_{a,2}(g+j).
+\]
+This descent does not require positivity or a hypothesis on the zeros.
+\end{theorem}
+\begin{proof}
+We first establish the analytic ingredients of a contour calculation.
+Unique factorization gives, for $\operatorname{Re}s>1$,
+\begin{equation}\label{nwc:eq:dirichlet}
+ \frac{\zeta'}{\zeta}(s)=-\sum_{n\geq2}\Lambda(n)n^{-s}.
+\end{equation}
+An integration of the integer counting function followed by one
+integration by parts gives
+\begin{equation}\label{nwc:eq:euler-maclaurin}
+ \zeta(s)=\frac1{s-1}+\frac12+\frac{s}{12}
+ -\frac{s(s+1)}2\int_1^\infty B_2(\{x\})x^{-s-2}\,dx,
+ \quad B_2(t)=t^2-t+\tfrac16.
+\end{equation}
+The periodic $B_2$ is continuous at integers, and its derivative
+between integers is $2(\{x\}-1/2)$.
+The integral is holomorphic on $\operatorname{Re}s>-1$.
+On every closed strip there, it and its $s$ derivative are bounded.
+Consequently $|\zeta(s)|+|\zeta'(s)|=O((1+|\operatorname{Im}s|)^2)$
+for $|\operatorname{Im}s|\geq1$.
+
+Let $\gamma_E=\lim_{N\to\infty}(\sum_{n=1}^N n^{-1}-\log N)$.
+The beta integral gives Euler's limit for gamma, and hence its locally
+normally convergent reciprocal product
+\[
+ \frac1{\Gamma(z)}=ze^{\gamma_Ez}
+           \prod_{n\geq1}(1+z/n)e^{-z/n}.
+\]
+Indeed, the substitution $u=Nt$ in the beta integral gives the limit
+by dominated convergence. Taking logarithmic derivatives gives
+\[
+ \psi(z)=-\gamma_E-\frac1z+
+       \sum_{n\geq1}\left(\frac1n-\frac1{n+z}\right).
+\]
+On a bounded real strip with $|\operatorname{Im}z|\geq1$, split
+this sum at $n$ of order $|\operatorname{Im}z|$.
+The initial harmonic sum is logarithmic; the remaining tail is
+$O(\sum_{n>T}|z|n^{-2})=O(1)$.
+Thus $\psi(z)=O(1+\log(2+|\operatorname{Im}z|))$ there.
+The same product shows that gamma has no zeros and has poles only
+at the nonpositive integers.
+
+Put $\theta(t)=\sum_{n\geq1}e^{-\pi n^2t}$.
+Poisson summation for the Gaussian, then splitting the Mellin integral
+at one, gives
+\begin{equation}\label{nwc:eq:xi-integral}
+ \pi^{-s/2}\Gamma(s/2)\zeta(s)
+ =\frac1{s(s-1)}+
+ \int_1^\infty\theta(t)
+       \bigl(t^{s/2-1}+t^{(1-s)/2-1}\bigr)\,dt.
+\end{equation}
+The integral is entire by exponential decay.
+It follows that
+\[
+ \xi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)
+\]
+is entire, satisfies $\xi(s)=\xi(1-s)$, and has
+$\xi(0)=\xi(1)=1/2$.
+Writing $\nu=\xi'/\xi$ as a meromorphic function, we have
+\begin{equation}\label{nwc:eq:logderivative}
+ \nu(1-s)=-\nu(s),\qquad
+ \nu(s)=\frac1s+\frac1{s-1}-\frac12\log\pi
+               +\frac12\psi(s/2)+\frac{\zeta'}{\zeta}(s).
+\end{equation}
+
+Choose $1<c<\min(3/2,a+1/2)$ and let
+$I_c(F)=(2\pi i)^{-1}\int_{c-i\infty}^{c+i\infty}F(s)\,ds$,
+with upward orientation. For every $g\in\mathcal A_a$,
+\begin{equation}\label{nwc:eq:scalar-contour}
+ L(g)=I_c\bigl(\nu(s)(H_g(s)+H_g(1-s))\bigr).
+\end{equation}
+To verify this identity, expand \eqref{nwc:eq:logderivative}.
+For $U(s)=H_g(s)+H_g(1-s)$ and $r(s)=1/s+1/(s-1)$,
+shift $I_c(rU)$ to $\operatorname{Re}s=1/2$.
+The residue crossed is $H_g(0)+H_g(1)$; the middle integral vanishes
+because $r(1-s)=-r(s)$ and $U(1-s)=U(s)$.
+Fourier inversion gives the constant contribution $-g(0)\log\pi$.
+The gamma term shifts to the middle line without a pole and becomes
+\[
+ I_c\bigl(\tfrac12\psi(s/2)U(s)\bigr)
+ =\frac1{2\pi}\int h_g(r)\operatorname{Re}\psi(1/4+ir/2)\,dr.
+\]
+Finally, Mellin inversion gives
+\[
+ I_c(n^{-s}H_g(s))=n^{-1/2}g(\log n),\qquad
+ I_c(n^{-s}H_g(1-s))=n^{-1/2}g(-\log n).
+\]
+Absolute convergence of \eqref{nwc:eq:dirichlet} proves the prime
+part with its negative sign. The strip and gamma bounds make every
+horizontal integral tend to zero.
+
+Now let $g=\mathcal Ev$. On $1-c\leq\operatorname{Re}s\leq c$,
+the function $\Phi(s)=\nu(s)H_g(s)$ extends holomorphically.
+Away from zero and one the gamma and polynomial factors in $\xi$
+are nonzero, so every logarithmic pole at a zero cancels against
+the zeta factor in \eqref{nwc:eq:mellin-factor}.
+At zero and one, $\xi$ is nonzero and $H_g$ is entire.
+The horizontal bounds hold even near zeros, because
+\[
+ \Phi(s)=
+ \left(\frac1s+\frac1{s-1}-\frac12\log\pi
+                       +\frac12\psi(s/2)\right)\zeta(s)M_v(s)
+       +\zeta'(s)M_v(s).
+\]
+The Mellin factor decreases faster than every power, whereas the
+other factors have the polynomial or logarithmic bounds proved above.
+Cauchy's theorem gives $I_c(\Phi)=I_{1-c}(\Phi)$.
+Substitution $s\mapsto1-s$ and \eqref{nwc:eq:logderivative} therefore give
+\[
+ I_c\bigl(\nu(s)(H_g(s)+H_g(1-s))\bigr)=0.
+\]
+Equation \eqref{nwc:eq:scalar-contour} proves $L(\mathcal Ev)=0$.
+Proposition~\ref{nwc:prop:ideal} and continuity now give
+$L(\mathcal J_a)=0$. Taking the infimum over representatives proves
+the quotient estimate and compatibility.
+\end{proof}
+
+For example, the even Schwartz function
+\[
+ v_0(x)=x^2\left(x^2-\frac3{2\pi}\right)e^{-\pi x^2}
+\]
+has $v_0(0)=\int v_0=0$ by the Gaussian second and fourth moments.
+Its theta image is a defining relation, so $L(\mathcal Ev_0)=0$.
+Every map from $\mathcal Q_{\Theta,a}$ must annihilate that image
+as an element, before any scalar evaluation is applied.
+
+\section{Trace-class representations}
+
+Let $\mathfrak S_1(\mathcal H)$ be the ideal of trace-class operators
+on a separable positive Hilbert space $\mathcal H$, with trace norm,
+ordinary composition, and Hilbert adjoint. A star homomorphism is
+complex-linear, multiplicative, and adjoint-preserving. It need not
+be injective or nondegenerate. For such a map $\Pi$ put
+\[
+ \mathcal H_0=\bigcap_{g\in\mathcal A_a}\ker\Pi(g),\qquad
+ \mathcal H_{\mathrm e}=\mathcal H_0^\perp.
+\]
+The second space is its essential representation.
+
+\begin{lemma}\label{nwc:lem:characters}
+Every nonzero continuous star character of $\mathcal A_a$ is
+$g\mapsto h_g(\lambda)$ for a unique $\lambda\in\mathbb R$.
+\end{lemma}
+\begin{proof}
+Translations satisfy
+\begin{equation}\label{nwc:eq:multipliers}
+ (R_tf)*g=f*(R_tg)=R_t(f*g),\qquad
+ (R_tg)^*=R_{-t}(g^*).
+\end{equation}
+For a character $\chi$, choose $g_0$ with $\chi(g_0)\ne0$.
+The multiplier identities give
+\[
+ \chi(R_tf)=k(t)\chi(f),\qquad
+ k(t)=\frac{\chi(R_tg_0)}{\chi(g_0)}.
+\]
+Continuity of translations makes $k$ continuous; their group law
+gives $k(t+s)=k(t)k(s)$ and $k(0)=1$.
+The star identity gives $\overline{k(t)}=k(-t)=k(t)^{-1}$.
+A continuous local argument is additive, so $k(t)=e^{it\lambda}$
+for a real $\lambda$.
+
+The integral $f*g_0=\int f(t)R_tg_0\,dt$ converges in
+$\mathcal A_a$: its $N$th seminorm is bounded by
+$p_{a,N}(g_0)\int|f(t)|e^{a|t|}\,dt$.
+Applying $\chi$ and dividing by $\chi(g_0)$ proves the formula.
+Modulated Gaussians separate frequencies. Real Fourier evaluation
+has the required properties, which proves the converse.
+\end{proof}
+
+\begin{theorem}\label{nwc:thm:classification}
+A continuous star homomorphism
+$\Pi:\mathcal A_a\to\mathfrak S_1(\mathcal H)$ has the form
+\begin{equation}\label{nwc:eq:diagonal}
+ \mathcal H=\mathcal H_0\oplus
+     \bigoplus_{\lambda\in\Sigma}\mathbb C^{n_\lambda},\qquad
+ \Pi(g)=0\oplus\bigoplus_{\lambda\in\Sigma}h_g(\lambda)I_{n_\lambda},
+\end{equation}
+where $\Sigma\subset\mathbb R$ is locally finite,
+$n_\lambda$ are positive integers, and
+$N_\Sigma(R)=\sum_{|\lambda|\leq R}n_\lambda$ has polynomial growth.
+The set and its multiplicities are unique.
+Conversely, every such counting measure defines a continuous star
+homomorphism on its Hilbert direct sum, on every test step.
+\end{theorem}
+\begin{proof}
+Let $q_\epsilon(u)=(4\pi\epsilon)^{-1/2}e^{-u^2/(4\epsilon)}$.
+These tests satisfy $q_\epsilon*q_\delta=q_{\epsilon+\delta}$ and
+$q_\epsilon*g\to g$ in every $\mathcal A_a$.
+For the convergence, use
+$q_\epsilon*g-g=\int q_\epsilon(t)(R_tg-g)\,dt$,
+translation continuity near zero, and weighted Gaussian tails outside.
+
+Every $\Pi(g)$ is compact and normal, and the images commute with
+one another and their adjoints. The compact operator
+$K_0=\Pi(q_1)=\Pi(q_{1/2})^*\Pi(q_{1/2})$ is positive and
+has kernel $\mathcal H_0$.
+Indeed, $K_0v=0$ implies $\Pi(q_{2^{-r}})v=0$ for every $r$ by
+repeated square roots, and then
+$\Pi(g)v=\lim_r\Pi(g)\Pi(q_{2^{-r}})v=0$.
+The compact self-adjoint spectral theorem decomposes
+$\mathcal H_{\mathrm e}$ into finite-dimensional nonzero eigenspaces
+of $K_0$. Each is invariant under the commuting normal family.
+Simultaneous finite-dimensional diagonalization and
+Lemma~\ref{nwc:lem:characters} give \eqref{nwc:eq:diagonal}.
+The eigenvalue of $K_0$ on a frequency block is $e^{-\lambda^2}$.
+Compactness therefore gives local finiteness and finite multiplicities.
+The joint eigenspaces give uniqueness.
+
+Continuity supplies $C>0$ and an integer $N$ with
+$\|\Pi(g)\|_1\leq Cp_{a,N}(g)$.
+For $R\geq1$, set $q_R(u)=Rq_1(Ru)$.
+Then $h_{q_R}(\lambda)=e^{-\lambda^2/R^2}$ and
+$p_{a,N}(q_R)\leq R^Np_{a,N}(q_1)$.
+Consequently
+\begin{equation}\label{nwc:eq:counting-necessity}
+ N_\Sigma(R)\leq e\|\Pi(q_R)\|_1
+              \leq eCp_{a,N}(q_1)R^N.
+\end{equation}
+
+Conversely, suppose $N_\Sigma(R)\leq C_0(1+R)^d$.
+For an integer $M>d$, dyadic summation gives
+$S_M=\sum_\lambda n_\lambda(1+|\lambda|)^{-M}<\infty$.
+Integration by parts bounds
+$|h_g(\lambda)|\leq2^M(1+|\lambda|)^{-M}p_{0,M}(g)$.
+Thus the direct sum is trace class and
+\begin{equation}\label{nwc:eq:trace-bound}
+ \|\Pi(g)\|_1=\sum_\lambda n_\lambda|h_g(\lambda)|
+             \leq2^MS_Mp_{0,M}(g)\leq2^MS_Mp_{a,M}(g).
+\end{equation}
+Fourier multiplication and real conjugation prove the star identities.
+\end{proof}
+
+Its ordinary trace and positive pairing are
+\[
+ \operatorname{Tr}\Pi(g)=\sum_\lambda n_\lambda h_g(\lambda),\qquad
+ \operatorname{Tr}(\Pi(f)^*\Pi(g))
+   =\sum_\lambda n_\lambda\overline{h_f(\lambda)}h_g(\lambda).
+\]
+The multiplicities are dimensions. Rescaling a Hilbert norm does not
+change them. Noninteger masses require a different specified trace
+weight. The separable direct sum in the theorem can be isometrically
+embedded into $\ell^2(\mathbb N_{>0})$, extending the representation
+by zero on its orthogonal complement.
+
+\begin{proposition}\label{nwc:prop:generator}
+A compatible family into a fixed $\mathfrak S_1(\mathcal H)$ on the
+test steps has one common decomposition
+\eqref{nwc:eq:diagonal}. On its essential space define
+\[
+ D=\bigoplus_\lambda\lambda I_{n_\lambda},\qquad
+ \operatorname{Dom}D=
+ \left\{v:\sum_\lambda\lambda^2\|v_\lambda\|^2<\infty\right\}.
+\]
+This operator is self-adjoint with compact resolvent.
+For $U_t=e^{itD}$,
+\begin{equation}\label{nwc:eq:operator-covariance}
+ \Pi(R_tg)=U_t\Pi(g),\qquad
+ \Pi(g^{(k)})=(-iD)^k\Pi(g).
+\end{equation}
+The range of every $\Pi(g)$ lies in
+$\bigcap_{k\geq0}\operatorname{Dom}D^k$.
+If $\|\Pi(g)\|_1\leq Cp_{a,N}(g)$, then
+$\|D^k\Pi(g)\|_1\leq Cp_{a,N+k}(g)$.
+Any strongly continuous unitary group satisfying the first identity
+in \eqref{nwc:eq:operator-covariance} equals this group on the
+essential space.
+\end{proposition}
+\begin{proof}
+Compact tests belong to every step and are dense in each.
+Their common diagonalization extends by trace-norm limits, with
+entries determined by continuous Fourier evaluation.
+The diagonal domain gives self-adjointness.
+Local finiteness makes the resolvent entries tend to zero, hence the
+resolvent is compact.
+The transform identities
+$h_{R_tg}(\lambda)=e^{it\lambda}h_g(\lambda)$ and
+$h_{g^{(k)}}(\lambda)=(-i\lambda)^kh_g(\lambda)$ prove the formulas.
+The bound $|\lambda|^k|h_g(\lambda)|\leq\|g^{(k)}\|_1$ proves
+the range assertion; trace-norm continuity gives the stated estimate.
+On a frequency block, choose $g$ with $h_g(\lambda)\ne0$.
+The covariance identity forces the asserted value of $U_t$ there.
+\end{proof}
+
+The covariance requirement leaves the unitary action on
+$\mathcal H_0$ unspecified; it does not force compact resolvent on
+that unused summand. On the essential space the heat operators
+$\Pi(q_\epsilon)=e^{-\epsilon D^2}$ tend strongly to the identity.
+When that space is infinite-dimensional, its identity is outside
+$\mathfrak S_1$.
+
+\begin{corollary}\label{nwc:cor:theta-recipient}
+A representation in Theorem~\ref{nwc:thm:classification} descends
+to $\mathcal Q_{\Theta,a}$ if and only if
+\[
+ \Sigma\subseteq\Sigma_0
+   :=\{\lambda\in\mathbb R:\zeta(1/2+i\lambda)=0\}.
+\]
+Its trace-norm estimate descends to the corresponding quotient
+seminorm. This condition specifies neither the multiplicities nor
+equality of its trace with $L$.
+\end{corollary}
+\begin{proof}
+Descent means that every block vanishes on every theta generator.
+Equation \eqref{nwc:eq:real-hull} is exactly that condition.
+Continuity annihilates the closed ideal, and taking the infimum over
+representatives gives the quotient estimate.
+\end{proof}
+
+\section{What equality of the full trace would imply}
+
+We make the multiplicity consequence explicit. Let $Z$ be the set
+of distinct zeros of $\xi$, let $m_\rho$ be their multiplicities,
+and put $\omega_\rho=(\rho-1/2)/i$ and $m_{\omega_\rho}=m_\rho$.
+The following scalar facts involve all zeros, with no reality assumption.
+
+\begin{lemma}\label{nwc:lem:full-scalar}
+For every $g\in\mathcal A$,
+\begin{equation}\label{nwc:eq:zero-sum}
+ L(g)=\sum_{\rho\in Z}m_\rho h_g(\omega_\rho),
+\end{equation}
+with absolute convergence.
+For any finite subset of the distinct ordinates $\omega_\rho$ and
+any prescribed values on that subset, there is a test in
+$\mathcal A_\infty:=\bigcap_{a>1/2}\mathcal A_a$ taking those
+Fourier values and vanishing at every other ordinate.
+\end{lemma}
+\begin{proof}
+The theta integral \eqref{nwc:eq:xi-integral} gives
+$\log\max_{|s|\leq R}|\xi(s)|=O(R\log(R+2))$:
+bound $\theta(t)$ by $Ce^{-\pi t}$ and the powers by $t^{R+1}$,
+then use the gamma integral. Jensen's formula, with $\xi(0)=1/2$,
+gives $\sum_{|\rho|\leq R}m_\rho=O(R\log(R+2))$.
+The Euler product and functional equation place the zeros in
+$0\leq\operatorname{Re}\rho\leq1$.
+
+Here a direct factorization argument suffices. The zero count makes
+the canonical product
+\[
+ P(s)=\prod_{\rho\in Z}\bigl((1-s/\rho)e^{s/\rho}\bigr)^{m_\rho}
+\]
+locally normally convergent. Choose radii $R_j\in[j,j+1]$ at
+distance at least $j^{-2}$ from every zero modulus.
+The excluded length is $O(j^{-1}\log j)$, so such radii exist for
+large $j$. On $|s|=R_j$, each factor with $|\rho|\leq2R_j$
+satisfies $|1-s/\rho|\geq(4R_j^3)^{-1}$.
+Partial summation of the zero count gives
+\[
+ \sum_{|\rho|\leq2R}\frac{m_\rho}{|\rho|}=O(\log^2(R+2)),\qquad
+ \sum_{|\rho|>2R}\frac{m_\rho}{|\rho|^2}=O(R^{-1}\log(R+2)).
+\]
+For the remaining factors use
+$|\log((1-z)e^z)|\leq C|z|^2$ when $|z|\leq1/2$.
+These estimates give $\log|P(s)|\geq-CR_j\log^2(R_j+2)$
+on the selected circles.
+The zero-free entire quotient $\xi/P$ is $e^G$ for an entire $G$,
+and $\operatorname{Re}G\leq CR_j\log^2(R_j+2)$ there.
+If $G(s)=\sum c_ks^k$, integration of its real part on a circle
+gives, for $k\geq1$,
+\[
+ |c_k|\leq 2R_j^{-k}
+       \bigl(\max_{|s|=R_j}\operatorname{Re}G(s)
+                         -\operatorname{Re}G(0)\bigr).
+\]
+For $k\geq2$ the right side tends to zero. Thus $G(s)=\alpha+\beta s$,
+and logarithmic differentiation gives the locally convergent sum
+\[
+ \nu(s)=\beta+\sum_{\rho\in Z}m_\rho
+             \left(\frac1{s-\rho}+\frac1\rho\right).
+\]
+Choose heights $T_j\in[j,j+1]$ at distance at least $j^{-2}$
+from the imaginary parts of all zeros, and also with the corresponding
+property for $-T_j$. Such heights exist for large $j$: the excluded
+length is $O(j^{-1}\log j)$ by the zero count.
+On the horizontal edges between $1-c$ and $c$, the terms
+$|\rho|\leq2T_j$ give $O(T_j^3\log(T_j+2))$.
+The remaining terms are bounded by
+$O(T_j\sum_{|\rho|>2T_j}m_\rho|\rho|^{-2})=O(\log(T_j+2))$.
+The strip decay of $H_g$ therefore makes the horizontal contour
+integrals vanish. The residue theorem, followed by
+$\nu(1-s)=-\nu(s)$, now identifies
+\eqref{nwc:eq:scalar-contour} with the absolutely convergent sum
+\eqref{nwc:eq:zero-sum}.
+
+For isolation, set $F(z)=\xi(1/2+iz)/\xi(1/2)$.
+Here $\xi(1/2)\ne0$: the alternating series
+$\eta(s)=\sum_{n\geq1}(-1)^{n-1}n^{-s}$ converges on
+$\operatorname{Re}s>0$ and is positive for real $s>0$, by grouping
+successive pairs. The identity
+$\zeta(s)=\eta(s)/(1-2^{1-s})$ therefore makes $\zeta(s)<0$
+for real $0<s<1$.
+The same argument shows that $\xi$ has no real zero.
+Consequently every ordinate has nonzero real part, and the ordinates
+occur in pairs $\omega,-\omega$.
+Applying the same factorization argument to $F$ and pairing its
+opposite zeros gives
+\begin{equation}\label{nwc:eq:paired-product}
+ F(z)=\prod_{\operatorname{Re}\omega>0}
+                         (1-z^2/\omega^2)^{m_\omega}.
+\end{equation}
+It converges locally normally since
+$\sum m_\omega|\omega|^{-2}<\infty$.
+The quotient of $F$ by this product is an exponential of a linear
+polynomial; evenness and $F(0)=1$ make it one.
+Integration of the zero-counting bound gives a bound
+$\exp(C(1+|z|)\log(2+|z|))$ for the product.
+
+For a finite set $E$ of ordinates, remove their full factors:
+$F_E(z)=F(z)/\prod_{\omega\in E}(z-\omega)^{m_\omega}$.
+It is nonzero at each point of $E$ and has the same type of growth
+bound. For any $t>0$, Lagrange interpolation supplies a polynomial
+$P$ for which $G(z)=e^{-tz^2}F_E(z)P(z)$ has the prescribed values
+on $E$. It vanishes at every other ordinate.
+On every horizontal strip, $G$ and all its derivatives decrease
+rapidly. Define $g(u)=(2\pi)^{-1}\int G(r)e^{-iru}\,dr$.
+For $u>0$ move the contour to $\operatorname{Im}z=-b$, and for
+$u<0$ to $\operatorname{Im}z=b$.
+Applying the same shifts to $z^kG(z)$ gives
+$|g^{(k)}(u)|\leq C_{b,k}e^{-b|u|}$ for every $b>0$.
+Thus $g\in\mathcal A_\infty$ and $h_g=G$, as required.
+\end{proof}
+
+For a compact self-adjoint Hilbert--Schmidt operator $K$, define
+\[
+ \det\nolimits_2(I-zK)
+   =\prod_{\kappa\ne0}(1-z\kappa)e^{z\kappa},
+\]
+where the nonzero eigenvalues $\kappa$ are repeated with their
+multiplicities. Square summability makes this product locally normally
+convergent.
+
+\begin{theorem}[Conditional full trace consequences]
+\label{nwc:thm:conditional}
+Suppose a compatible theta-quotient star representation satisfies
+\begin{equation}\label{nwc:eq:full-comparison}
+ \operatorname{Tr}\Pi(g)=L(g)\qquad(g\in\mathcal A).
+\end{equation}
+Then every ordinate $\omega_\rho$ is real, every one occurs in
+\eqref{nwc:eq:diagonal}, and its Hilbert multiplicity is $m_\rho$.
+The essential generator is invertible. Its inverse $K=D^{-1}$ is
+bounded, self-adjoint, and Hilbert--Schmidt.
+For $F$ as in \eqref{nwc:eq:paired-product}, define
+\[
+ t_m=-\frac{(\log F)^{(m)}(0)}{(m-1)!},\qquad m\geq2.
+\]
+Then
+\begin{equation}\label{nwc:eq:all-moments}
+ \operatorname{Tr}K^m=t_m\quad(m\geq2),\qquad
+ \det\nolimits_2(I-zK)=F(z).
+\end{equation}
+\end{theorem}
+\begin{proof}
+By Corollary~\ref{nwc:cor:theta-recipient}, all represented
+frequencies lie in $\Sigma_0$.
+For a real ordinate $\gamma$, apply
+Lemma~\ref{nwc:lem:full-scalar} to the test whose Fourier values
+are one at $\gamma$ and zero at every other ordinate.
+Its operator is the projection onto that block, or zero if the
+block is absent. Equality of traces forces $n_\gamma=m_\gamma$.
+If a nonreal ordinate existed, its isolating test would have zero
+operator but scalar value $m_\omega>0$, a contradiction.
+
+There is no ordinate zero, and local finiteness separates the
+essential spectrum from zero. The zero count gives
+$\sum_\gamma m_\gamma|\gamma|^{-2}<\infty$.
+Hence $K$ has the stated properties and every $K^m$, $m\geq2$,
+is trace class. Taking local logarithms in the paired product gives
+$t_m=\sum_\gamma m_\gamma\gamma^{-m}=\operatorname{Tr}K^m$.
+For the regularized determinant, pairing the factors
+$(1-z/\gamma)e^{z/\gamma}$ cancels their exponential terms and
+gives precisely \eqref{nwc:eq:paired-product}.
+\end{proof}
+
+The cyclic moment measure is
+$\sum_\gamma m_\gamma\gamma^{-2}\delta_{\gamma^{-1}}$;
+the counting representation has $m_\gamma$ dimensions at $\gamma$.
+Their comparison can be made in the Hilbert--Schmidt space
+$\mathfrak S_2(\mathcal H_{\mathrm e})$.
+With $a_j=K^{j+1}$, all $a_j$ are Hilbert--Schmidt and
+\[
+ a_i^*a_j\in\mathfrak S_1,
+ \qquad \langle a_i,a_j\rangle_{\mathfrak S_2}=t_{i+j+2}.
+\]
+Left multiplication by $K$ is a bounded self-adjoint operator there;
+its cyclic subspace generated by $K$ has the stated moment measure.
+In general $a_0=K$ need not be trace class. These are conditional
+states in the square-integrable domain of the trace, with integrable
+products. The full comparison \eqref{nwc:eq:full-comparison} has not
+been constructed from lattice operations.
+
+\section{Coefficient complexes and supported intersections}
+
+The relation ideal gives a two-term coefficient dg algebra
+\begin{equation}\label{nwc:eq:coefficient-dg}
+ \mathcal C_{\Theta,a}^{-1}=\mathcal J_a,
+ \qquad \mathcal C_{\Theta,a}^0=\mathcal A_a,
+ \qquad d:\mathcal J_a\hookrightarrow\mathcal A_a.
+\end{equation}
+Products in degree zero are convolution, mixed products are the ideal
+action, and the product of two degree-minus-one elements is zero.
+Use the graded involution convention
+\[
+ (xy)^*=(-1)^{|x||y|}y^*x^*,\qquad d(x^*)=(dx)^*.
+\]
+The inherited involution satisfies these identities.
+The differential has degree $+1$.
+The only nontrivial odd Leibniz identity is
+$0=d(jk)=(dj)k-j(dk)$, whose two terms are the same convolution.
+Thus this is a continuous graded-commutative dg algebra, with
+$H^{-1}=0$ and $H^0=\mathcal Q_{\Theta,a}$.
+Extend $L$ by zero in degree minus one. Since $L(dj)=0$, this
+extension is a closed Hermitian degree-zero trace; its positivity
+is not asserted.
+
+On its total coefficient space use
+$q_{a,N}(g,j)=p_{a,N}(g)+p_{a,N}(j)$.
+Multiplication and the differential have seminorm bounds one.
+A quotient map $\Pi$ to an algebra in degree zero is a chain map
+from \eqref{nwc:eq:coefficient-dg} exactly when it kills
+$\mathcal J_a$.
+This permits a precise coefficient extension on finite supported
+intersections, conditional on that map.
+
+Let $G$ be a finite directed graph with real edge gains $a_e$,
+and let $X_G=\mathbb C^{V(G)}$ with coordinates $u_v$.
+Write $s(e),t(e)$ for the source and target vertices of an edge, and put
+\[
+ \ell_e=u_{t(e)}-u_{s(e)}-a_e,
+ \qquad
+ \mathcal K_G=\mathcal O_{X_G}\otimes
+              \Lambda(\eta_e:e\in E(G)),
+ \quad |\eta_e|=-1,
+ \quad d\eta_e=\ell_e.
+\]
+This is the Koszul complex of the full list of edge equations.
+It represents their derived zero locus, retaining dependencies
+between the equations. Away from their common zero set, a nonvanishing
+$\ell_e$ gives the contraction $\ell_e^{-1}\eta_e\wedge-$.
+
+For a complete Fr\'echet dg coefficient algebra $E$, let
+$\mathcal O(U;E)$ be the space of holomorphic $E$-valued functions
+with its compact-open coefficient seminorms. Locally on polydiscs
+this is $\mathcal O(U)\widehat\otimes_\pi E$.
+One obtains the identification by the holomorphic power series:
+Cauchy bounds make the coefficient series converge in each projective
+seminorm on a smaller polydisc. These local spaces form a sheaf.
+Put
+\[
+ \mathcal K_G(E)(U)=\mathcal O(U;E)\otimes\Lambda(\eta_e),
+ \qquad
+ d(x\otimes\eta)=d_Ex\otimes\eta+(-1)^{|x|}x\otimes d\eta.
+\]
+The exterior factor is finite-dimensional. Its displayed tensor
+products therefore require no further completion.
+
+\begin{proposition}\label{nwc:prop:supported-coefficients}
+Every continuous dg algebra map $T:E\to E'$ induces a continuous
+map $\mathcal K_G(E)\to\mathcal K_G(E')$.
+It commutes with affine pullbacks that preserve the full list of
+edge equations, including equations that become zero or nonzero
+constants after a vertex collision.
+For a balanced triangle and a closed degree-zero coefficient $x$, it carries the cycle
+$x(\eta_{13}-\eta_{12}-\eta_{23})$ to
+$T(x)(\eta_{13}-\eta_{12}-\eta_{23})$.
+For $E=\mathcal C_{\Theta,a}$ this yields an injection
+\begin{equation}\label{nwc:eq:triangle-injection}
+ \mathcal Q_{\Theta,a}\longrightarrow
+ H^{-1}\bigl(\mathcal K_\Delta(E)(\mathbb C^3)\bigr).
+\end{equation}
+If $E'$ is concentrated in degree zero, the displayed image of a
+cycle is nonzero in cohomology whenever $T(x)\ne0$.
+\end{proposition}
+\begin{proof}
+Apply $T$ to every coefficient. The projective tensor property and
+the finite exterior factor prove continuity; the formula for $d$
+proves the chain identity.
+To describe collisions explicitly, let $p:V(G)\twoheadrightarrow W$
+and put $u_v=y_{p(v)}+b_v$.
+Then
+\[
+ \ell_e\longmapsto
+ y_{p(t(e))}-y_{p(s(e))}
+       -(a_e+b_{s(e)}-b_{t(e)}).
+\]
+Keep the edge label and its exterior generator even when its endpoints
+coincide. This substitution defines the pullback Koszul map and
+commutes with $T$. Two substitutions compose by substitution of their
+affine coordinate formulas; their dg maps consequently agree exactly.
+No ordering or consecutiveness of the identified vertices is used.
+If a loop equation is a nonzero constant, the resulting complex is
+contractible. A zero equation retains its exterior generator.
+
+For the triangle, take $a_{13}=a_{12}+a_{23}$ and introduce
+$w=u_1$, $x_1=\ell_{12}$, $x_2=\ell_{23}$ and
+$\kappa=\eta_{13}-\eta_{12}-\eta_{23}$.
+Then $d\eta_{12}=x_1$, $d\eta_{23}=x_2$, and $d\kappa=0$.
+Evaluation at $w=x_1=x_2=0$, with
+$\eta_{12},\eta_{23}$ sent to zero, is a chain retraction to
+$E\otimes\Lambda(\kappa)$.
+For $E=\mathcal C_{\Theta,a}$, every degree-zero coefficient $x$
+gives a cycle $x\kappa$.
+Changing $x$ by $j\in\mathcal J_a$ changes that cycle by
+$d(j\kappa)$, with $j$ here in degree minus one.
+The retraction shows that it can be a boundary only when
+$x\in\mathcal J_a$. This proves \eqref{nwc:eq:triangle-injection}.
+The same retraction in a degree-zero target proves the last assertion.
+\end{proof}
+
+In particular, gains $\log2,\log3,\log6$ retain a degree-minus-one
+class. A coefficient map to degree-zero operators extends to the
+whole Koszul complex by leaving its exterior factor present.
+Collapsing the complex to the scalar trace would lose this class.
+
+To specify a finite derived-Hom calculation, adjoin a scalar unit,
+$E^+=\mathbb C\oplus E$, and put
+\[
+ B_E(U)=\mathcal O(U;E^+),\qquad
+ P_G(E)(U)=B_E(U)\otimes\Lambda(\eta_e).
+\]
+Use the same total differential as above. The unitized module
+$P_G(E)(U)$ is finite free as a graded $B_E(U)$-module.
+Its proper coefficient ideal
+$I_G(E)(U)=\mathcal K_G(E)(U)$ need not be free.
+Between two unitized modules $P,Q$ use the finite matrix complex
+\begin{equation}\label{nwc:eq:continuous-hom}
+ \operatorname{Hom}_{B_E(U),\mathrm{cont}}^\bullet(P,Q),
+ \qquad d\phi=d_Q\phi-(-1)^{|\phi|}\phi d_P.
+\end{equation}
+Its topology is the corresponding finite product of coefficient
+Fr\'echet spaces.
+The increasing filtration by exterior degree is finite, is preserved
+by the differential, and has successive quotients that are finite sums
+of shifts of $B_E(U)$. Since continuous Hom from $B_E(U)$ is the
+identity functor, Hom from $P$ preserves quasi-isomorphisms by this
+filtration. Hence the displayed complex computes derived Hom for
+these unitized modules.
+
+The distinction matters even on a point with no edges.
+Take $E=\mathbb C\varepsilon$ with $\varepsilon^2=0$ and zero
+differential. Then $B_E=\mathbb C[\varepsilon]/(\varepsilon^2)$,
+whereas $I_G(E)=E$. The exact resolution
+\[
+ \cdots\xrightarrow{\varepsilon}B_E
+       \xrightarrow{\varepsilon}B_E
+       \xrightarrow{\varepsilon}E\longrightarrow0
+\]
+shows that $\operatorname{Ext}_{B_E}^n(E,E)=\mathbb C$ for every
+$n\geq0$: applying $\operatorname{Hom}_{B_E}(-,E)$ makes each
+differential zero. Its degree-zero Hom complex alone would miss all
+the positive Ext groups. Thus the finite matrix calculation does not
+compute derived Hom for the proper coefficient ideals, or for a
+chiral field recipient. No finite trace is assigned to the adjoined unit.
+
+Normal differentiation already distinguishes the two settings.
+For a constant coordinate vector $v$, let $\partial_v$ differentiate
+the holomorphic coefficient and fix every $\eta_e$. Directly,
+\begin{equation}\label{nwc:eq:normal-defect}
+ [\partial_v,d]
+       =\sum_e(\partial_v\ell_e)\,\iota_e,
+\end{equation}
+where $d$ is the total differential and $\iota_e$ is total contraction:
+\[
+ \iota_e(x\otimes\eta)=(-1)^{|x|}x\otimes\iota_e^{\Lambda}(\eta),
+ \qquad \iota_e^{\Lambda}(\eta_f)=\delta_{ef}.
+\]
+Thus a normal derivative is generally not a chain endomorphism of
+this complex. It needs an appropriate jet or differential-module
+recipient if it is to be part of a supported comparison.
+The finite Koszul construction alone does not provide that recipient
+or the required field operations.
+
+\begin{proposition}\label{nwc:prop:derivation-distinction}
+Suppose $\Pi:\mathcal A_a\to\mathfrak S_1(\mathcal H)$ is a
+continuous star homomorphism and a derivation $T$ of its image
+satisfies $T\Pi(g)=\Pi(g')$ for every $g$.
+Then its only possible frequency is zero.
+If it also descends through $\mathcal Q_{\Theta,a}$, it is zero.
+\end{proposition}
+\begin{proof}
+Differentiation under convolution gives
+$(f*g)'=f'*g=f*g'$.
+The derivation rule for $T$, compared with multiplicativity of $\Pi$,
+therefore gives
+\[
+ \Pi((f*g)')=\Pi(f'*g)+\Pi(f*g')=2\Pi((f*g)').
+\]
+The Gaussian approximate identity implies $\Pi(g')=0$ for every $g$.
+The decomposition \eqref{nwc:eq:diagonal} then forces
+$\lambda h_g(\lambda)=0$ for all tests, hence $\lambda=0$ on every
+block. But $\zeta(1/2)\ne0$, so Corollary~\ref{nwc:cor:theta-recipient}
+excludes that block for a theta-quotient representation.
+\end{proof}
+
+This proposition concerns the specific identification of a convolution
+multiplier with a derivation of the same product. A supported lift
+can instead keep native dilation as a module operation, as in
+\eqref{nwc:eq:operator-covariance}. Its geometric translation,
+normal derivatives, and collision operations still require their
+own comparison maps.
+
+\section{Tensor control and the remaining positive comparison}
+
+For completed projective coefficient tensors, a bound
+$\|\Pi(g)\|_1\leq Cp(g)$ implies
+\[
+ \|\Pi^{\widehat\otimes r}(x_r)\|_\pi
+       \leq C^r p_\pi^{(r)}(x_r).
+\]
+For $r\geq1$, multiplication of $r$ trace-class images has norm
+at most one, since
+$\|AB\|_1\leq\|A\|_{\mathrm{op}}\|B\|_1\leq\|A\|_1\|B\|_1$.
+On the nonfactorial entire tensor space the bound is consequently
+\begin{equation}\label{nwc:eq:entire-bound}
+ \sum_{r\geq0}R^r\|\Pi^{\widehat\otimes r}(x_r)\|_\pi
+ \leq\sum_{r\geq0}(CR)^r p_\pi^{(r)}(x_r),\qquad R>0.
+\end{equation}
+The term $r=0$ is interpreted in the scalar coaugmentation.
+It is not assigned a finite ordinary operator trace.
+
+For \eqref{nwc:eq:coefficient-dg}, the internal tensor differential
+has at most $r$ terms at length $r$, and the adjacent multiplication
+part of the reduced bar differential has at most $r-1$ terms.
+From radius $\lambda R$ to $R$, $\lambda>1$, their bounds are
+\[
+ \sup_{r\geq0}r\lambda^{-r},\qquad
+ R^{-1}\sup_{r\geq2}(r-1)\lambda^{-r}.
+\]
+Simultaneous translation of $r$ factors has coefficient bound
+$e^{ar|t|}$ and is continuous from radius $Re^{a|t|}$ to $R$.
+This is a tensor-space bound; simultaneous translation is not claimed
+to commute with the bar differential. Indeed,
+$(R_tf)*(R_tg)=R_{2t}(f*g)$.
+The factorial norms with weights $R^r/r!$ define a different
+completion. A change of bar differential signs by $(-1)^r$ does
+not identify these topologies.
+
+The exponential weight $a$ controls arithmetic translation in the
+coefficient variable. The radius $R$ controls tensor length.
+Neither estimate supplies the other, and the coefficient tensor map
+does not by itself construct a field collision substitution.
+The scalar empty tensor, a local field vacuum, and a cyclic Hilbert
+vector are distinct data. No local field vacuum has been chosen here.
+
+A positive compression illustrates a remaining algebraic condition.
+Suppose $U_t$ is a strongly continuous unitary group on a Hilbert
+space, $T(g)=\int g(t)U_t\,dt$ is its strong operator integral,
+and $P$ is an orthogonal projection. Set $T_P(g)=PT(g)P$ on
+$P\mathcal H$. Its exact multiplicativity defect is
+\[
+ T_P(f*g)-T_P(f)T_P(g)=PT(f)(1-P)T(g)P.
+\]
+For $g=f$ and the first input $f^*$, this defect is
+$((1-P)T(f)P)^*((1-P)T(f)P)$.
+Multiplicativity on all adjoint squares therefore forces $P$ to
+reduce every $T(f)$, and then every $U_t$ by shifted approximate
+identities. Positivity of the compression alone does not supply
+this reduction property or the full trace identity.
+
+An independent positive comparison would follow from a geometric
+Hilbert space with unitary dilation, a compact-resolvent generator
+with polynomial eigenvalue count, operator annihilation of every
+theta relation, and equality of its trace with \eqref{nwc:eq:weil}
+on the compact core. The preceding estimates would extend that
+equality to every test step and give its coefficient derivative and
+tensor domains. Constructing this Hilbert space and proving its full
+trace identity remain open. Prescribing zero ordinates or discarding
+possible nonreal characters supplies neither proof.
+
+For a scalar illustration of the prime-square term, take
+$\delta=1/64$ and let
+\[
+ \chi(u)=c\exp\!\left(-\frac1{1-(u/\delta)^2}\right)
+ \quad(|u|<\delta),\qquad \chi(u)=0\quad(|u|\geq\delta),
+ \qquad \int\chi(u)^2\,du=1.
+\]
+Put $\ell=\log4$, $f=\chi+R_\ell\chi$, and $g=f^**f$.
+Its support consists of intervals of radius $2\delta$ about
+$0,\ell,-\ell$, and $g(\ell)=g(-\ell)=1$.
+Among the points $\pm\log n$, $n\geq2$, only $\pm\log4$ occur
+in these intervals. Thus the entire prime contribution to $L(g)$
+is $-\log2$. Removing those two contributions from that scalar
+expression changes it by $+\log2$; the polar and archimedean terms
+remain present. An operator comparison on this input would also
+have to prove $\Pi(g)=\Pi(f)^*\Pi(f)$ and identify the two
+geometric trace contributions before omitting them.
+
+The full supported comparison additionally requires its field or sheaf
+recipient, pull-push operations, all collision homotopies, normal
+derivatives, Fourier and dilation compatibility, and the local vacuum
+on a common integrable domain. The finite Koszul extension identifies
+one supported coefficient structure to preserve. It proves neither
+that full comparison nor a universal obstruction to it.
+
