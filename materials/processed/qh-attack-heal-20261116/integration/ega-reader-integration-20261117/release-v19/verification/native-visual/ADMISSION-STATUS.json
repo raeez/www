@@ -1,0 +1,44 @@
+{
+  "schema": "qh-existing-c9-native-admission-observation/2",
+  "observed_utc": "2026-11-18T01:34:24.146592+00:00",
+  "status": "NOT_ADMITTED_LAST_OBSERVED_SHARED_WEEKLY_EXHAUSTED",
+  "logical_qa_owner": "df53cc5e-e94e-4cb0-a972-138eba7139b2",
+  "existing_owned_c9_menu_identity": "c0ed0026-38b1-44f5-a487-f8a40afafb74",
+  "selected_native_clients_live": [],
+  "former_owned_menu_pid76141_present": false,
+  "other_c9_clients_observed_not_operated": [
+    {
+      "pid": 37835,
+      "tty": "ttys098",
+      "sessionId": "952b9ca8-d1b2-4af1-87b9-10e71400414e",
+      "name": "raeez-ab",
+      "operated": false
+    }
+  ],
+  "last_actual_native_usage": {
+    "source": "/tmp/pro-frontier-refresh-20261118/transport/ROOT-LANE6-MCP-USAGE.json",
+    "sha256": "594577a421dc07cc6c7688c6f472f04aca11ee3c84d193e1c3e296f977c3d39d",
+    "observed_utc": "2026-11-17T21:11:57.526472+00:00",
+    "usage": {
+      "session_percent_used": 0,
+      "weekly_shared_percent_used": 100,
+      "shared_reset_raw": "Nov 18 at 10:59am (Asia/Jakarta)",
+      "weekly_fable_percent_used": 100,
+      "fable_reset_raw": "Nov 18 at 11am (Asia/Jakarta)",
+      "native_api_duration_before_task": "0s"
+    }
+  },
+  "actual_current_model_budget_not_freshly_rechecked": true,
+  "recipient_connection_for_this_pending_QA": "Not established; a previous /mcp connected screen on the owned menu is not actual QA/browser admission.",
+  "single_seat_rule": "Reuse only the existing root-authorized c9 recipient route. No parallel browser or seat, no new UUID, no operation of the unrelated c9 client. Root must reconcile the saved recipient before any resume.",
+  "models_or_browser_launched": 0,
+  "native_inference_requests": 0,
+  "browser_calls": 0,
+  "credential_operations": 0,
+  "visual_qa_performed": false,
+  "automatic_launch_at_reset": false,
+  "fresh_post_reset_fable_zero_shared_short_paid_off_checks_required": true,
+  "replacement_seat_authorized": false,
+  "new_model_or_native_menu_action": false,
+  "ordinary_owner_boundary": "Existing authentic native Opus recipient only when root confirms its identity, ordinary allowance and permission state. No replacement, alternative account allocation or boundary workaround."
+}

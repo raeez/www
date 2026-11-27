@@ -1,0 +1,95 @@
+[
+  {
+    "id": "PNT-N1",
+    "package": "02-physical-cap-state",
+    "title": "A sourced native positive meridian transfer",
+    "statement": "On the Ward family F=z exp(iλ f(log r)), the closed original affine lift has a_F=κF^(M−2)J² and γ_E=μF^(M−2)J². For M≥2 its inner trace coefficient divided by its outer trace coefficient in fixed unit face frames is R_M=e^(−ML−iMλ(f₁−f₀)). Its logarithmic first source derivative is −iM(f₁−f₀).",
+    "scope": "Distinguished positive scalar, real q=1/2, small real λ, source-free external meridian collars, independently fixed angular frames, smooth finite frequency. The source descends to the quotient. The weight-M cohomology class is on the cut shell.",
+    "locator": "lines 5–29",
+    "dependencies": [],
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-native-transfer/RESULT.md",
+    "sha256": "2afaa796e19591082c235b8caf278605400ff1559a0795d2417626d5b417a28d"
+  },
+  {
+    "id": "PNT-N2",
+    "package": "02-physical-cap-state",
+    "title": "A cyclic, radially supported transport of the affine Hessian",
+    "statement": "The angular signed contraction removes the transverse response defect because opposite absolute and relative coefficient harmonics have disjoint frequencies. The completed stress, quartet and native maps give a cyclic cochain isomorphism, geometric rotation on both end germs. Different paired angular choices induce relatively homotopic stress transports. The bare weighted pullback fails an explicit cubic relative test at first order.",
+    "scope": "Smooth finite sums of angular frequencies, original graph, ghosts and bilinear pairing, the stated small smooth radial Ward sources with source-flat end collars. General radial A uses nonzero J and 1+∂u log|A|>0. The contraction is angularly nonlocal, with no asserted uniform original-metric bound over frequencies.",
+    "locator": "lines 33–71, 170–176, 180–187",
+    "dependencies": [
+      "PNT-N1"
+    ],
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-native-transfer/RESULT.md",
+    "sha256": "2afaa796e19591082c235b8caf278605400ff1559a0795d2417626d5b417a28d"
+  },
+  {
+    "id": "PNT-N3",
+    "package": "02-physical-cap-state",
+    "title": "The finite sourced native window and its two end pairing",
+    "statement": "The explicitly transported original finite quadratic cut has kernel coefficient R_M in its nonzero frequencies, the complete zero-frequency pairing, and native radial factor ∏_{M=2}^{M₀}∏_{j=0}^n σ_{M,j}^(−1). Its λ derivative vanishes in the transported density frame. Its normalized harmonic transfer is η^N, η=e^(−L)A(u₀)/A(u₁).",
+    "scope": "Finite polarized Cauchy window complete through M₀ with complete oriented radial pairs, transported gauge, cotangent density and integration cycles. End graphs have flat source germs. Multiplicative subdivision in this theorem uses intermediate meridians with flat source germs. No independent fixed-gauge or continuum determinant.",
+    "locator": "lines 75–92, 180–187",
+    "dependencies": [
+      "PNT-N1",
+      "PNT-N2"
+    ],
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-native-transfer/RESULT.md",
+    "sha256": "2afaa796e19591082c235b8caf278605400ff1559a0795d2417626d5b417a28d"
+  },
+  {
+    "id": "PNT-N4",
+    "package": "02-physical-cap-state",
+    "title": "Ordered physical marks and a reduced positive comparison on that collar",
+    "statement": "The normalized ordered energy-five marks yield 4cη⁵ and 14cη⁵, and the separately prepared mixed energy-six mark yields (62/7)cη⁶. On the specified energy-orthogonal positive carrier Tδ=e^(−iδN)e^(−LN), Tδ* Tδ=e^(−2LN); the independently reversed pure twist realizes Tδ*. At δ outside 2πℤ no common nonzero scalar makes Tδ positive in fixed equal end frames on energies five and six.",
+    "scope": "Actual sourced angular transfer, specified normalized Virasoro endpoint marking and positive vacuum form c=c_b>25, native Fischer-rescaled bra, complete finite window through six. The affine bulk need not derive the specified interacting marks or real structure. Opposite pure twists are compared only on the normalized reduced carrier.",
+    "locator": "lines 94–112",
+    "dependencies": [
+      "PNT-N3"
+    ],
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-native-transfer/RESULT.md",
+    "sha256": "2afaa796e19591082c235b8caf278605400ff1559a0795d2417626d5b417a28d"
+  },
+  {
+    "id": "PNT-N5",
+    "package": "02-physical-cap-state",
+    "title": "An exact classical action from the original sourced filling",
+    "statement": "With a=A′/A and w=1+a/2, the field-independent original classical action on this small radial branch is Scrit(A)−Scrit(1)=(κ/32)∫[4a²/w+(a′)²/w³]du. For a=iλ f′ its quadratic coefficient is −(κ/32)∫[(f″)²+4(f′)²]du. Equal endpoint rotations can give different classical actions.",
+    "scope": "Small branch, flat external endpoint source, κ≠0, τ=(2πi)⁻¹∫dz∧(−), polarized original action including the lateral source term, and no additional end primitive on the stipulated background. Classical, independently of the finite fluctuation determinant.",
+    "locator": "lines 116–168, 207",
+    "dependencies": [],
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-native-transfer/RESULT.md",
+    "sha256": "2afaa796e19591082c235b8caf278605400ff1559a0795d2417626d5b417a28d"
+  },
+  {
+    "id": "PNT-N6",
+    "package": "02-physical-cap-state",
+    "title": "Equal true source germs can distinguish closed marked transmissions",
+    "statement": "Two smooth radial Ward backgrounds have the same entire nonflat germ F=z(1−λe^(iωu)) at the prescribed middle cut and the same vanishing (μ,T) germs at both external ends. Both carry the previously derived local three-profile principal kernel. Their normalized marked transfer comparison between the energy-six and energy-five experiments is e^(−iλ), invariant under a scalar for each preparation.",
+    "scope": "q=1/2, matched source cutoffs, separated additional rotation, nonzero small real λ, C¹-positive radial Jacobian, exact prescribed marks and transported finite preparation. The three profiles are the prior fixed tangential-frequency off-shell principal block. The new contrast tests actual closed end marks.",
+    "locator": "lines 180–207",
+    "dependencies": [
+      "PNT-N1",
+      "PNT-N3",
+      "PNT-N4",
+      "PNT-N5"
+    ],
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-native-transfer/RESULT.md",
+    "sha256": "2afaa796e19591082c235b8caf278605400ff1559a0795d2417626d5b417a28d"
+  },
+  {
+    "id": "PNT-N7",
+    "package": "02-physical-cap-state",
+    "title": "An original classical two-sided marked flux at a source-nonflat interface",
+    "statement": "The positive original current from its outer unit mark and the negative harmonic from its inner unit mark can be prepared as separate closed affine half-solutions. On any shared middle meridian their negative-positive native Green flux is c_M R_M. The relative current is (2πi)⁻¹(dz−μ)∧a b. For the displayed raw negative coframe c_M=−(2M−4)!!/(2M−3)!!; for unscaled global solutions the flux is c_M.",
+    "scope": "Actual native Grassmann-signed pairing and source graph, M≥2, stipulated radial Ward source with marked source-flat exterior endpoints but possibly nonflat intermediate cut. The polarized first-jet and corner corrections vanish on the pure positive leg. This is a conserved classical test; independent quantum half densities at the nonflat seam remain open.",
+    "locator": "lines 211–243",
+    "dependencies": [
+      "PNT-N1",
+      "PNT-N2",
+      "PNT-N6"
+    ],
+    "checked_path": "/tmp/astra62-frontier-successor-20261118/checks/physical-native-transfer/RESULT.md",
+    "sha256": "2afaa796e19591082c235b8caf278605400ff1559a0795d2417626d5b417a28d"
+  }
+]

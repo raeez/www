@@ -1,0 +1,323 @@
+[
+  {
+    "id": "NEG-REGULARITY",
+    "witness_claim_ids": [
+      "FM-D"
+    ],
+    "rejected_inference": "Ordinary Betti local systems remain fully faithful on unary irregular algebraic coefficients.",
+    "witness": "The algebraic map would be a polynomial solution of f′=f; the analytic connections are identified by exp(z).",
+    "boundary": "This tests unary algebraic morphisms, before any marked factorizing algebra.",
+    "evidence_status": {
+      "FM-D": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-IRREGULAR-BETTI",
+    "witness_claim_ids": [
+      "IRR-COSTALK",
+      "IRR-STALK"
+    ],
+    "rejected_inference": "The ordinary rank-two local system and identity monodromy determine this algebraic extension-defect costalk.",
+    "witness": "Both ordinary stalks are (1,6,5) and both ordinary Betti replacement costalks (4,6,2), while the algebraic extraordinary triples differ.",
+    "boundary": "The directed sector scalar and the signed two-cut maps carry additional information.",
+    "evidence_status": {
+      "IRR-COSTALK": "independent-pass",
+      "IRR-STALK": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-K3-PLANE",
+    "witness_claim_ids": [
+      "PAIRED-K3-PLANE"
+    ],
+    "rejected_inference": "Any linear combination of the two specified separately integrable rank-one perturbations integrates.",
+    "witness": "On the nonorthogonal hyperbolic plane the same four inputs kill every ordinary second coboundary but detect αβ.",
+    "boundary": "Orthogonal directions can coexist and the geometric section has independent divisor normalization.",
+    "evidence_status": {
+      "PAIRED-K3-PLANE": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-K3-MEASUREMENTS",
+    "witness_claim_ids": [
+      "BP-K3-SEW"
+    ],
+    "rejected_inference": "All positive-genus scalar sewings determine the untraced polynomial pants product.",
+    "witness": "The common handle annihilates the difference ideal while the genus-zero v,v,v triple differs by t.",
+    "boundary": "Applies to the displayed algebraic pair under fixed coordinates and Frobenius pairing; the new deduction has its own evidence state.",
+    "evidence_status": {
+      "BP-K3-SEW": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-01-GROUPED",
+    "witness_claim_ids": [
+      "01-N1",
+      "01-N2",
+      "01-N3"
+    ],
+    "rejected_inference": "The specified separated/grouped colour and ordinary one-leg translations exhaust these native ordered outputs.",
+    "witness": "Opposite first-jet junctions, calibrated 5ω versus 4ω on closed cω at K=−1, and +2/3 internal normal coefficient supply three distinct tests.",
+    "boundary": "Arbitrary binary Hom homotopies, independent functors and critical inserted outputs have separate requirements.",
+    "evidence_status": {
+      "01-N1": "independent-pass",
+      "01-N2": "independent-pass",
+      "01-N3": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-02-SCALAR",
+    "witness_claim_ids": [
+      "PAIR-02-INITIAL",
+      "PHYS-02-P3"
+    ],
+    "rejected_inference": "Both positive Virasoro orders can be read from fixed scalar-valued functions by commutative pointwise multiplication at c_b≠0.",
+    "witness": "The two ordered moments at (m,n)=(2,3) are 4c_b and 14c_b. The reduced marked differential model realizes both before its four-point deficit appears.",
+    "boundary": "Order-dependent or genuinely operator-valued observations have a different domain.",
+    "evidence_status": {
+      "PAIR-02-INITIAL": "constructor-proof",
+      "PHYS-02-P3": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-02-PROFILES",
+    "witness_claim_ids": [
+      "PHYS-02-T2A",
+      "PHYS-02-FIXED"
+    ],
+    "rejected_inference": "A parameter-independent finite profile space realizes the whole family of frozen projected opposite-side kernels.",
+    "witness": "At fixed k the sourced double pole moves; the corresponding exponentials over a neighbourhood do not lie in one fixed finite-dimensional space.",
+    "boundary": "On each individual source the projected principal block has three profiles. No full BFV mode count follows.",
+    "evidence_status": {
+      "PHYS-02-T2A": "independent-pass",
+      "PHYS-02-FIXED": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-03-PATH",
+    "witness_claim_ids": [
+      "PAIR-03-INITIAL"
+    ],
+    "rejected_inference": "One prescribed polynomial contraction automatically satisfies the multiplicative two-parameter identity.",
+    "witness": "b²x=u produces a nonzero ds dt term under iteration which pullback along st lacks.",
+    "boundary": "The same base admits another contraction. This does not refute genuine actor equivalence.",
+    "evidence_status": {
+      "PAIR-03-INITIAL": "constructor-proof"
+    }
+  },
+  {
+    "id": "NEG-03-HALF",
+    "witness_claim_ids": [
+      "03-RESOLUTION",
+      "03-TAIL"
+    ],
+    "rejected_inference": "A model with a strict H spectator, or one in nonnegative degrees, can realize the required strict incoming half-interpolation on the specified cofinal tail.",
+    "witness": "All hypothetical witnesses on that tail map to E; the nonzero current-level boundary and value −κe of every primitive exclude each such model.",
+    "boundary": "General half-interpolation and the genuine zero-sector fibre remain open.",
+    "evidence_status": {
+      "03-RESOLUTION": "independent-pass",
+      "03-TAIL": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-06-NECESSITY",
+    "witness_claim_ids": [
+      "EX06-2",
+      "EX06-7"
+    ],
+    "rejected_inference": "The older cofinal quotient criterion is necessary for cellularity on the designated tower.",
+    "witness": "Xκ is cellular in the respective graded/ungraded constructions despite a nontorsion quotient row and failure of the intrinsic counit.",
+    "boundary": "This refutes necessity of the proposed tests and supplies no nonzero right-orthogonal witness for all torsion cohomology.",
+    "evidence_status": {
+      "EX06-2": "independent-pass",
+      "EX06-7": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-12-SEPARATE",
+    "witness_claim_ids": [
+      "RT12-JOINT",
+      "RT12-POLES"
+    ],
+    "rejected_inference": "The indicated coproduct on intrinsic modes lands in the classically separate product of all distinct-colour modes.",
+    "witness": "ΔZₘ has mixed diagonal poles; infinitely many independent cosets survive the actual normalized quotient.",
+    "boundary": "The joint recipient and its all-precision coproduct remain valid. A distinct enhanced recipient requires its own comparison.",
+    "evidence_status": {
+      "RT12-JOINT": "independent-pass",
+      "RT12-POLES": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-13-ALL",
+    "witness_claim_ids": [
+      "13-UNPOLARIZED",
+      "13-MARKED-PRODUCT"
+    ],
+    "rejected_inference": "The unpolarized full finite-dual bar at any finite c is equivalent to ordinary smooth modules after quotient by the stated product-generated exact-triple class.",
+    "witness": "The nonzero graded-free Q_J has contractible smooth coinduction and survives with its identity in the quotient; the exceptional actual nonvacuum product supplies a further marked witness.",
+    "boundary": "Polarized and further reduced recipients may change the null class; their comparison remains open.",
+    "evidence_status": {
+      "13-UNPOLARIZED": "independent-pass",
+      "13-MARKED-PRODUCT": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-04-RAW",
+    "witness_claim_ids": [
+      "04X-1",
+      "04X-2"
+    ],
+    "rejected_inference": "Directly summing unmodified colliding local affine actions on the indicated mixed intermediate gives the full native jet action.",
+    "witness": "The mixed coefficient cone survives and the fixed Lie-bracket defect is 2ℓ id; compare the distinct induced current-chain map.",
+    "boundary": "The restricted common current algebra, proper induced source and all independent completions are separate.",
+    "evidence_status": {
+      "04X-1": "independent-pass",
+      "04X-2": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-09-ABS",
+    "witness_claim_ids": [
+      "P09-ZERO",
+      "P09-RES"
+    ],
+    "rejected_inference": "A vanishing pole-side presentation is enough to identify the actual absolute regular-to-collision attachment.",
+    "witness": "The specified native differential and form-left residue detect the remaining off-diagonal connecting map on its actual coefficient.",
+    "boundary": "An independently defined neutral cap or complete geometric endpoint category requires new source maps.",
+    "evidence_status": {
+      "P09-ZERO": "independent-pass",
+      "P09-RES": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-IRR-RANK-DETERMINES-SIGN",
+    "witness_claim_ids": [
+      "IRR-COSTALK",
+      "IRR-RAPID-PERIOD"
+    ],
+    "rejected_inference": "Split/non-split point ranks identify the directed rapid-decay period without markings.",
+    "witness": "The nonzero costalk rank triple is constant in a≠0, while the oriented period is −2i√πa in the fixed frame. Reversal changes the sign.",
+    "boundary": "The extra frames and contour determine the specified multiplier; full sectorial operations still need construction.",
+    "evidence_status": {
+      "IRR-COSTALK": "independent-pass",
+      "IRR-RAPID-PERIOD": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-SEAM-POSITIVE",
+    "witness_claim_ids": [
+      "PHYS-02-T1",
+      "PHYS-02-POSITIVE-SEAM"
+    ],
+    "rejected_inference": "A nonnegative self-adjoint normal generator with uniformly bounded endpoint vectors realizes the sampled signed kernel, even as a pointwise approximating sequence.",
+    "witness": "Polynomials x(x−r)²T_N(2x−1) have unit supremum bound, kill the Jordan contribution, and grow at the nonreal sampled pole.",
+    "boundary": "Only the projected ordinary frozen component is tested; indefinite or unbounded-endpoint models remain possible.",
+    "evidence_status": {
+      "PHYS-02-T1": "independent-pass",
+      "PHYS-02-POSITIVE-SEAM": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-W4-NONZERO",
+    "witness_claim_ids": [
+      "PAIR-W4-EXCEPTIONAL",
+      "PAIR-W4-ALGEBRA"
+    ],
+    "rejected_inference": "The ratio [c₍₋₁₎u]/[a₍₋₁₎z] is nonzero at τ=3/2 in the fixed coordinates.",
+    "witness": "Two characteristic-zero closed representatives have spin ≥23 and ≥27; all degree-15 targets have spin ≤49. The finite-prime class detectors control nonzero inputs, while the product vanishes rationally.",
+    "boundary": "The mixed higher A∞ operations and a geometric chain comparison require different data.",
+    "evidence_status": {
+      "PAIR-W4-EXCEPTIONAL": "independent-pass",
+      "PAIR-W4-ALGEBRA": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-K3-FIELD-BOUND",
+    "witness_claim_ids": [
+      "F6-K3",
+      "F6-K7",
+      "F6-K7A"
+    ],
+    "rejected_inference": "Every law defined on the complexified K3 marking satisfies the sixfold identity of the original real point set.",
+    "witness": "The new complex marked cyclic special fibre has e₁²⁰=e₂₀≠0; a law originally defined on the rational/real marking continues to satisfy E⁶=0 under scalar extension.",
+    "boundary": "Complex points of the marked scheme and the base changes of its rational/real-valued laws have distinct quantifiers.",
+    "evidence_status": {
+      "F6-K3": "independent-pass",
+      "F6-K7": "independent-pass",
+      "F6-K7A": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-W4-FLAT-FORMALITY",
+    "witness_claim_ids": [
+      "PAIR-W4-FLAT-QUARTIC",
+      "PAIR-W4-CHARACTERISTIC"
+    ],
+    "rejected_inference": "The two simple Bocksteins and a generically formal marked affine quasi-isomorphism force a zero quartic on the special fibre.",
+    "witness": "The auxiliary free rank-twelve family has both specified Bocksteins for every γ; at nonzero γ the ordinary characteristic image loses a and the specified degree-eight direction.",
+    "boundary": "The auxiliary flat models can realize any quartic. On the separately compared native vacuum γ=0 by the actual coefficient-mode computation.",
+    "evidence_status": {
+      "PAIR-W4-FLAT-QUARTIC": "independent-pass",
+      "PAIR-W4-CHARACTERISTIC": "independent-pass"
+    },
+    "boundary_at_earlier_horizon": "Deciding the genuine vacuum requires a two-sided bimodule lift or a genuine four-insertion evaluation."
+  },
+  {
+    "id": "NEG-IRR4-FLAGS-COMMUTE",
+    "witness_claim_ids": [
+      "IRR4-COUPLED-VERTEX",
+      "IRR4-COUPLED-SIMULTANEOUS-IMAGE"
+    ],
+    "rejected_inference": "The two ordered four-point restrictions have equal images merely because they land in the same simultaneous vertex.",
+    "witness": "On the coupled 234 chart the global g v q∧z₁ witnesses vanish on the first flag and survive on the other. The sum of the images fills the radial line-boundary image and can miss part of the vertex.",
+    "boundary": "The two arrows and their unequal images use the specified algebraic coefficient. Other nested orderings and independently specified enhanced maps require new input.",
+    "evidence_status": {
+      "IRR4-COUPLED-VERTEX": "independent-pass",
+      "IRR4-COUPLED-SIMULTANEOUS-IMAGE": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-FS-STALK-GLUING",
+    "witness_claim_ids": [
+      "FS-01",
+      "FS-05"
+    ],
+    "rejected_inference": "The complete two strata and the local disk gluings determine the global binary coefficient on (P¹)².",
+    "witness": "The fixed open coefficient and closed shifted scalar allow zero and normalized H³ circle-bundle attachments. Locally they agree; globally their extraordinary ranks differ in degrees three and four.",
+    "boundary": "This counterexample is at the binary coefficient level. Associative factorization and vacuum markings are additional data.",
+    "evidence_status": {
+      "FS-01": "independent-pass",
+      "FS-05": "independent-pass"
+    }
+  },
+  {
+    "id": "NEG-K3-REFERENCE-PAIRWISE",
+    "witness_claim_ids": [
+      "BP-K3-PROBES",
+      "K3P-PAIR-QR"
+    ],
+    "rejected_inference": "The two rational or real baseline tests solve pairwise identification for all weighted rank-one alternatives.",
+    "witness": "They assign identical values to the distinct alternatives along e₁ and f₁. Pairwise identification over Q or R instead requires twenty, while a fixed reference needs two unrestricted preparations.",
+    "boundary": "The complex pairwise optimum is separate. All counts here refer to the marked algebraic trinion.",
+    "evidence_status": {
+      "BP-K3-PROBES": "independent-pass",
+      "K3P-PAIR-QR": "reviewer-derived-with-exact-control"
+    }
+  },
+  {
+    "id": "NEG-PNT-COMMON-GERMS",
+    "witness_claim_ids": [
+      "PNT-N1",
+      "PNT-N4",
+      "PNT-N6"
+    ],
+    "rejected_inference": "A marked sourced transfer is determined by the complete source germs on the three chosen meridians, the moving internal principal symbol and one overall scalar.",
+    "witness": "The two explicitly admissible rotational deformations agree on all those germs. Their normalized ratio of weight-six to weight-five ratios is exp(−iλ) with fixed independent endpoint marks.",
+    "boundary": "If marks are allowed to rotate, the experiment changes. The construction does not sew a general non-flat interior interface or normalize the absolute compact cap.",
+    "evidence_status": {
+      "PNT-N1": "independent-pass",
+      "PNT-N4": "independent-pass",
+      "PNT-N6": "independent-pass"
+    }
+  }
+]

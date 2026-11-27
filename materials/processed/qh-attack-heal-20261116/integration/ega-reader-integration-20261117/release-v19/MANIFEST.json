@@ -1,0 +1,88 @@
+{
+  "schema": "quantum-holography-reader-edition/1",
+  "edition": "v19",
+  "utc": "2026-11-18T02:07:14.852345+00:00",
+  "commit": "6cea9e69a77b2b2aac2f76cbdd932b63f1481583",
+  "base_public_commit": "85a5c7a9e3a1be8873c33f86f8c105b186e31920",
+  "public_reader": "https://research.momentum.inc/quantum-holography/",
+  "scientific_horizon_utc": "2026-11-18T01:15:59Z",
+  "graph_claims": 656,
+  "graph_seal": "ce3d93746365a573c71496e67e88732de22d04cce8804c94e0a60cef0670e909",
+  "incremental_scoped_claims": 17,
+  "independently_passed": 15,
+  "separately_reviewer_derived": 2,
+  "content_id": "85ef260187637c9651e07f44e810b53620bd09fd90c1cfb56d70339aab7412e8",
+  "native_inputs": 54,
+  "reviewed_author_files": 6,
+  "full_rebuild_matches_published": {
+    "index.html": {
+      "sha256": "0562932f2117e42d10ce2e58a073ad171c88df7ce7c099319c930f342265f313",
+      "bytes": 4915208
+    },
+    "reference.html": {
+      "sha256": "a743d4105217a1cf773ac1853838b8f856c713c0b4217ff5580c83d08d9c190b",
+      "bytes": 5032883
+    },
+    "atlas.html": {
+      "sha256": "1d4d2078a15f685d39978d0655d906acf1ae71d6c22ac5b000addcbe41d8c05b",
+      "bytes": 11443369
+    },
+    "reader-index.js": {
+      "sha256": "519c5254bc80e173eb1ffe9ac0589ab0f84676c3280b2c9d9a8121b682646cfb",
+      "bytes": 5879383
+    }
+  },
+  "scientific_source_files": 12,
+  "public_shape": {
+    "chapters": 18,
+    "authored_heading_destinations": 253,
+    "marked_subsection_search_units": 122,
+    "terms": 85,
+    "results": 70,
+    "claims": 1103,
+    "graph_nodes": 1103,
+    "graph_edges": 225,
+    "reading_paths": 35,
+    "diagrams": 13,
+    "source_links": 199,
+    "legacy_explicit_public_link_discoveries": 42,
+    "search_units": 7024
+  },
+  "reader_checks": 4735,
+  "historic_locators_verified": 8389,
+  "issued_v18_addresses": 4198,
+  "v18_address_dispositions": {
+    "retained": 4197,
+    "changed": 1
+  },
+  "runtime_checks": 26,
+  "link_and_map_checks": 30323,
+  "native_formula_count": 23628,
+  "native_math_errors": 0,
+  "front_expressions": 38,
+  "front_displays": 3,
+  "native_visual_status": "Pending actual native Opus desktop and phone review.",
+  "receipts": {
+    "SOURCE-MANIFEST.json": "c3e3db2bbd1ae0a95258826c6ebd1e9e1302fe477b13ddff2064726a2053a39a",
+    "EXPECTED-PUBLIC.json": "af685fad884573996fa94ba4544b95d6c6614578240b634fe17bad4c06a807ef",
+    "rebuild.py": "b4e4350f6c74890895ffd6c899edacc328e777c857e1123336824f6ce24c8522",
+    "tools/build_reader.py": "df7976f9439523931961c69dd3c100a1050778cdbccbd839a7a8765c4d288b1e",
+    "compatibility/history.json": "05e62ee05a2cc3bf88c00a4ee7fd7d77a608e27f1ca77cadd58bfd2dae77225e",
+    "compatibility/current-history.json": "dc166b35a68e990f410a32766401421d2f0ed22dcec8a81ba37cc880850d52db",
+    "verification/SCIENCE.md": "1cd2febbb2495a3b878b1c5cac54973cc698bfa7d6c07ba0a6add728ae34faf1",
+    "verification/scientific-bindings.md": "aa1ad8e3a6ede42faa77f5ca1a9b3d72b7fce519d8f2ad7e767a5c21e885f3c5",
+    "verification/RESEARCH-SOURCES.json": "a30d76f6d92cb600968317b457ea66d3925ba919b1fab3c42c08997f9f92a9d1",
+    "verification/REPRODUCTION.json": "cddec31ab1bff9ccf85ff887c903b844db0ee7ab9b76af9f9a0f47b6c48851b5",
+    "verification/NATIVE-SOURCE.json": "c99b969b8d172dab2abd446f52d6de18623f5a31875a886554ecb17a31cc8373",
+    "verification/PUBLICATION.json": "2ea2c60ef5d7452115f7b961ec089957ccf8566be172e85b694e6d9a129c9456",
+    "verification/BARE-READBACK.json": "dcef908149bc8e0af518de673ae773284146cec79273f3dcd02966ee3fbd12f7",
+    "verification/READER-PATH-CHECK.json": "1516d9e94767c91a775f698f02c9960c09623b681a2951cc4c0af2e5c7a97d13",
+    "verification/FINAL-SCIENCE.json": "5bf8dd1ed5bf6277dde1d771202e2d9ca336bb170a39edd5344012795fb4a7e6",
+    "verification/FINAL-NOTATION.json": "688fadb28e37c2895db47f0b778a98a3acffa9371534d27f545d29598989914a",
+    "verification/FINAL-LINKS.json": "407e3a5781a1b3432542a473f17ebf9ec577741e3532d9a21cbc154b8324329b",
+    "verification/FINAL-CONTENT.json": "db69d116139ba43614f5cddbb8a2a1385e04f222005aaf3f55a77d32ca8712c8",
+    "verification/V19-PARITY.json": "aa7d7af1be4308c40b5a1368e1f08b4fa76a7016ac951fe1ea8fac09ee881827",
+    "verification/V19-CORE-RUNTIME.json": "d55ce2fabc9942b5a50a0b36c914bd393bebd789c1c8e2d5cca739cc102a7532",
+    "verification/V19-NEW-DESTINATIONS.json": "f82db711156404ae26a96f75630c1399d6fbeef9c8d36f45fcf686744ea64ca6"
+  }
+}

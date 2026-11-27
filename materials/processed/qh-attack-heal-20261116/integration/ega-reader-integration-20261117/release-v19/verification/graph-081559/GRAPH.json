@@ -1,0 +1,39 @@
+{
+  "schema": "2026-11-18/successor-graph-v1",
+  "date_timezone": "2026-11-18 WIB",
+  "last_scientific_snapshot": {
+    "source_registry_sha256": "38b2e35047f8a1ebbd9544b13f6f8fa534c595b5c66d7c0731d09962401d738a",
+    "utc": "2026-11-18T01:15:59+00:00",
+    "wib": "2026-11-18T08:15:59+07:00",
+    "assembled_utc": "2026-11-18T01:16:32+00:00",
+    "source": "Named source, author, receiver and independent-check files written by this inclusive evidence horizon, matched to their archived bytes. Earlier byte versions remain independently available."
+  },
+  "predecessor_layer": "graph/predecessor/CLAIMS.json",
+  "predecessor_claims": 437,
+  "predecessor_edges": 605,
+  "predecessor_legacy_edges": 2119,
+  "predecessor_joint_rules": 13,
+  "predecessor_sha256": "e44374a2be675c4280051dcbe6ff0ea28b1ab25e76cc8e8589e736759028e01c",
+  "delta_layer": "graph/CLAIMS.json",
+  "delta_claims": 219,
+  "federated_claims": 656,
+  "current_evidence_status_counts": {
+    "constructor-proof": 91,
+    "historical-open-with-scoped-successor": 1,
+    "independent-pass": 115,
+    "independent-reviewed-scope": 2,
+    "open": 1,
+    "reviewer-derived-with-exact-control": 3,
+    "source-comparison": 1,
+    "source-proof": 4,
+    "withdrawal": 1
+  },
+  "vector_count": 32,
+  "scientific_snapshot_bindings": 489,
+  "dated_joint_implications": 41,
+  "dated_non_inferential_crossreferences": 531,
+  "registered_joint_rules": "graph/RULES.json",
+  "historical_relations": "graph/predecessor/CLAIM-GRAPH.json",
+  "operational_status_as_scientific_evidence": false,
+  "formal_adoption": false
+}

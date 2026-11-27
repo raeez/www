@@ -1,0 +1,377 @@
+{
+  "schema": "qh-final-live-native-visual-binding/4",
+  "bound_utc": "2026-11-18T02:11:39.321957+00:00",
+  "generation": "Published v19 reader, commit 6cea9e69a77b2b2aac2f76cbdd932b63f1481583",
+  "url": "https://research.momentum.inc/quantum-holography/",
+  "commit": "6cea9e69a77b2b2aac2f76cbdd932b63f1481583",
+  "index_sha256": "0562932f2117e42d10ce2e58a073ad171c88df7ce7c099319c930f342265f313",
+  "chapter_ids": [
+    "ch01",
+    "ch02",
+    "ch03",
+    "ch04",
+    "ch05",
+    "ch06",
+    "ch07",
+    "ch08",
+    "ch09",
+    "ch10",
+    "ch11",
+    "ch12",
+    "ch13",
+    "ch14",
+    "ch15",
+    "ch16",
+    "ch17",
+    "ch18"
+  ],
+  "chapter_count": 18,
+  "published_files": [
+    {
+      "name": "index.html",
+      "source_path": "/private/tmp/qh-reader-081559-20261118/builds/3b57dd41a75dbc10438565925bffd4cd814d88075960c2bcfed0205a720bd2c0/release/index.html",
+      "url": "https://research.momentum.inc/quantum-holography/index.html",
+      "sha256": "0562932f2117e42d10ce2e58a073ad171c88df7ce7c099319c930f342265f313",
+      "bytes": 4915208
+    },
+    {
+      "name": "reference.html",
+      "source_path": "/private/tmp/qh-reader-081559-20261118/builds/3b57dd41a75dbc10438565925bffd4cd814d88075960c2bcfed0205a720bd2c0/release/reference.html",
+      "url": "https://research.momentum.inc/quantum-holography/reference.html",
+      "sha256": "a743d4105217a1cf773ac1853838b8f856c713c0b4217ff5580c83d08d9c190b",
+      "bytes": 5032883
+    },
+    {
+      "name": "atlas.html",
+      "source_path": "/private/tmp/qh-reader-081559-20261118/builds/3b57dd41a75dbc10438565925bffd4cd814d88075960c2bcfed0205a720bd2c0/release/atlas.html",
+      "url": "https://research.momentum.inc/quantum-holography/atlas.html",
+      "sha256": "1d4d2078a15f685d39978d0655d906acf1ae71d6c22ac5b000addcbe41d8c05b",
+      "bytes": 11443369
+    },
+    {
+      "name": "reader-index.js",
+      "source_path": "/private/tmp/qh-reader-081559-20261118/builds/3b57dd41a75dbc10438565925bffd4cd814d88075960c2bcfed0205a720bd2c0/release/reader-index.js",
+      "url": "https://research.momentum.inc/quantum-holography/reader-index.js",
+      "sha256": "519c5254bc80e173eb1ffe9ac0589ab0f84676c3280b2c9d9a8121b682646cfb",
+      "bytes": 5879383
+    }
+  ],
+  "source_receipts": [
+    {
+      "path": "/tmp/qh-reader-081559-20261118/final/PUSH.json",
+      "sha256": "a27951cd11f713cd9da4a6f5473abef7b929c556a4bf490f2bd96ac1f3f3b390",
+      "bytes": 1041
+    },
+    {
+      "path": "/tmp/qh-reader-081559-20261118/final/PUBLICATION.json",
+      "sha256": "2ea2c60ef5d7452115f7b961ec089957ccf8566be172e85b694e6d9a129c9456",
+      "bytes": 2317
+    },
+    {
+      "path": "/tmp/qh-reader-081559-20261118/final/BARE-READBACK.json",
+      "sha256": "dcef908149bc8e0af518de673ae773284146cec79273f3dcd02966ee3fbd12f7",
+      "bytes": 408
+    }
+  ],
+  "root_publication_observed_utc": "2026-11-18T01:55:30.384040+00:00",
+  "root_bare_readback_observed_utc": "2026-11-18T01:55:29.946621+00:00",
+  "verified_public_routes": [
+    {
+      "path": "quantum-holography/index.html",
+      "bytes": 4915208,
+      "expected_sha256": "0562932f2117e42d10ce2e58a073ad171c88df7ce7c099319c930f342265f313",
+      "served_sha256": "0562932f2117e42d10ce2e58a073ad171c88df7ce7c099319c930f342265f313",
+      "exact": true
+    },
+    {
+      "path": "quantum-holography/reference.html",
+      "bytes": 5032883,
+      "expected_sha256": "a743d4105217a1cf773ac1853838b8f856c713c0b4217ff5580c83d08d9c190b",
+      "served_sha256": "a743d4105217a1cf773ac1853838b8f856c713c0b4217ff5580c83d08d9c190b",
+      "exact": true
+    },
+    {
+      "path": "quantum-holography/atlas.html",
+      "bytes": 11443369,
+      "expected_sha256": "1d4d2078a15f685d39978d0655d906acf1ae71d6c22ac5b000addcbe41d8c05b",
+      "served_sha256": "1d4d2078a15f685d39978d0655d906acf1ae71d6c22ac5b000addcbe41d8c05b",
+      "exact": true
+    },
+    {
+      "path": "quantum-holography/reader-index.js",
+      "bytes": 5879383,
+      "expected_sha256": "519c5254bc80e173eb1ffe9ac0589ab0f84676c3280b2c9d9a8121b682646cfb",
+      "served_sha256": "519c5254bc80e173eb1ffe9ac0589ab0f84676c3280b2c9d9a8121b682646cfb",
+      "exact": true
+    },
+    {
+      "path": "quantum-holography/",
+      "bytes": 4915208,
+      "expected_sha256": "0562932f2117e42d10ce2e58a073ad171c88df7ce7c099319c930f342265f313",
+      "served_sha256": "0562932f2117e42d10ce2e58a073ad171c88df7ce7c099319c930f342265f313",
+      "exact": true
+    },
+    {
+      "path": "quantum-holography-tracker.html",
+      "bytes": 522,
+      "expected_sha256": "72062e801c03832fdb0b8b5e84312bf3d8a1960790fae8478c011b905f36d829",
+      "served_sha256": "72062e801c03832fdb0b8b5e84312bf3d8a1960790fae8478c011b905f36d829",
+      "exact": true
+    },
+    {
+      "path": "",
+      "bytes": 32321,
+      "expected_sha256": "3417707b214d5352f46acf181e32bf2be5c00b46243054c04ecbb60d6283b1b8",
+      "served_sha256": "3417707b214d5352f46acf181e32bf2be5c00b46243054c04ecbb60d6283b1b8",
+      "exact": true
+    }
+  ],
+  "bare_urls": {
+    "https://research.momentum.inc/quantum-holography/": "0562932f2117e42d10ce2e58a073ad171c88df7ce7c099319c930f342265f313",
+    "https://research.momentum.inc/quantum-holography/index.html": "0562932f2117e42d10ce2e58a073ad171c88df7ce7c099319c930f342265f313"
+  },
+  "supersedes_opening_only_generation": {
+    "commit": "c913e49b06b59ddf07a4113eea5e21944b198cb1",
+    "index_sha256": "22a201462fc89b7627a46fb117e67930957c3aa8dfa1ca0948c33f8ae2714609",
+    "not_selected_for_this_qa": true
+  },
+  "intro_links": [
+    {
+      "from": "Opening introduction .mg-front-intro",
+      "visible_link_label": "The disk measurement",
+      "href": "#ch11-relative-phase",
+      "full_url": "https://research.momentum.inc/quantum-holography/#ch11-relative-phase",
+      "expected_target_id": "ch11-relative-phase",
+      "expected_target_heading": "Measuring a relative phase from the half-space",
+      "source_binding": "One intro link and one matching target heading in the exact pinned index.html; native click/landing remains untested.",
+      "native_checks": [
+        "Click this visible link from the opening, rather than only navigating directly to its URL.",
+        "Record resulting URL and actual visible destination heading, which must be readable and not obscured by fixed controls.",
+        "Capture the destination and preserve the source opening location for the other link.",
+        "Perform on desktop and narrow view; record each result separately."
+      ]
+    },
+    {
+      "from": "Opening introduction .mg-front-intro",
+      "visible_link_label": "The four-point collision",
+      "href": "#ch04-gaussian-collision",
+      "full_url": "https://research.momentum.inc/quantum-holography/#ch04-gaussian-collision",
+      "expected_target_id": "ch04-gaussian-collision",
+      "expected_target_heading": "Four charged rays and their possible attachments",
+      "source_binding": "One intro link and one matching target heading in the exact pinned index.html; native click/landing remains untested.",
+      "native_checks": [
+        "Click this visible link from the opening, rather than only navigating directly to its URL.",
+        "Record resulting URL and actual visible destination heading, which must be readable and not obscured by fixed controls.",
+        "Capture the destination and preserve the source opening location for the other link.",
+        "Perform on desktop and narrow view; record each result separately."
+      ]
+    }
+  ],
+  "specific_glyph_checks": [
+    {
+      "id": "HEISENBERG-INLINE",
+      "where": "Opening first paragraph",
+      "exact_source_tex": [
+        "J(z)=\\sum_{n\\in\\mathbb Z}J_n z^{-n-1}",
+        "[J_m,J_n]=m\\delta_{m+n,0}",
+        "J_n^\\dagger=J_{-n}",
+        "J_n|0\\rangle=0",
+        "n\\ge0",
+        "|n_1,n_2\\rangle",
+        "n_j",
+        "j"
+      ],
+      "visual_markers": [
+        "summation ∑ with n∈ℤ",
+        "Kronecker δ and subscript m+n,0",
+        "dagger †",
+        "ket |0⟩",
+        "subscripts and negative exponents",
+        "≥"
+      ]
+    },
+    {
+      "id": "STATE-DISPLAY",
+      "where": "Opening first displayed equation",
+      "exact_source_tex": "|\\psi_\\pm\\rangle\n=\\frac{|2,0\\rangle\\pm|0,1\\rangle}{\\sqrt{2}}\n=\\frac{J_{-1}^2\\pm J_{-2}}{2}|0\\rangle .",
+      "visual_markers": [
+        "ψ with subscript ±",
+        "ket brackets |…⟩",
+        "±",
+        "fraction bars",
+        "√2",
+        "J with subscript −1 and superscript2",
+        "all equalities and final vacuum ket stay visible"
+      ]
+    },
+    {
+      "id": "OBSERVABLE-DISPLAY",
+      "where": "Opening second displayed equation",
+      "exact_source_tex": "\\mathcal O=J_{-1}^2J_2+J_{-2}J_1^2,\\qquad\n\\langle\\psi_\\pm|\\mathcal O|\\psi_\\pm\\rangle=\\pm2 .",
+      "visual_markers": [
+        "calligraphic 𝒪",
+        "bra–ket expectation ⟨ψ±|𝒪|ψ±⟩",
+        "±2",
+        "subscripts and squared creation modes"
+      ]
+    },
+    {
+      "id": "DISK-INLINE",
+      "where": "Opening disk paragraph before The disk measurement link",
+      "exact_source_tex": [
+        "h+\\bar h",
+        "S_D=\\tfrac12\\sum_n|Z_n|^2/n",
+        "\\mathbb E|Z_n|^2=n",
+        "2\\operatorname{Re}(h'(0)^2\\overline{h''(0)})"
+      ],
+      "visual_markers": [
+        "overbar",
+        "blackboard-bold 𝔼",
+        "primes and double-primes",
+        "Re operator",
+        "fraction one-half and squared absolute values"
+      ]
+    },
+    {
+      "id": "CHIRAL-BRACKET-DISPLAY",
+      "where": "Opening third displayed equation and the preceding diagonal paragraph",
+      "exact_source_tex": "\\mu:j_*j^*(L\\boxtimes L)\\longrightarrow\\Delta_*L .",
+      "visual_markers": [
+        "Greek μ and Δ",
+        "external tensor product ⊠",
+        "long right arrow ⟶",
+        "j subscript* and superscript*",
+        "Δ subscript*",
+        "hook arrow ↪ in the preceding inline map",
+        "calligraphic 𝒟 with subscript X or X²"
+      ]
+    },
+    {
+      "id": "OPENING-LATE-INLINE",
+      "where": "Opening final collision/duality paragraphs",
+      "exact_source_tex": [
+        "\\mathbb C^3",
+        "\\mathbb P^1",
+        "\\star",
+        "A\\simeq\\Omega BA",
+        "C^\\bullet(B,B)"
+      ],
+      "visual_markers": [
+        "blackboard-bold ℂ and ℙ",
+        "superscripts3 and1",
+        "star ⋆",
+        "equivalence ≃",
+        "Greek Ω",
+        "superscript bullet •"
+      ]
+    }
+  ],
+  "source_binding_validation": {
+    "four_exact_local_published_payloads_match_push": true,
+    "seven_root_publication_readbacks_match": true,
+    "two_bare_root_readbacks_match_final_index": true,
+    "eighteen_chapter_ids_present": true,
+    "expected_intro_tex_and_link_targets_present": true,
+    "prior_glyph_intro_and_passage_checks_rebound_to_v19_source": true,
+    "passage_regions_bound": 7,
+    "new_v19_heading_regions_bound": 4,
+    "new_v19_atlas_cards_bound": 5,
+    "exact_table_note_interaction_targets_bound": 6,
+    "scope": "Local published bytes and root-provided publication receipts only. No browser was operated and no visual result is inferred."
+  },
+  "later_generation_rule": "Before actual QA root must confirm these exact public bytes remain served. If superseded, preserve this binding and bind the new generation; never attach observations from one hash to another.",
+  "supersedes_final_v16_generation": {
+    "commit": "e7c95a26057c6722281dfb17c2d7593a991b7858",
+    "index_sha256": "36fece54682177bd040bb31b9c111cf91779cde70370d50a0b064bed45ba1c17",
+    "dated_binding_current_utc": "2026-11-17T23:46:29.186133+00:00",
+    "archive": "/tmp/qh-notation-native-qa-20261118/versions/v16-e7c95a2-bound-20261117T234629Z",
+    "prior_original_binding": "/tmp/qh-notation-native-qa-20261118/FINAL-LIVE-BINDING.json",
+    "prior_original_sha256": "e22090a849d52fdc06a4662192295bd6e2b9cf738a5b4df2ce07e81f0b6bcb0b",
+    "visual_qa_of_prior_generation_was_pending": true,
+    "not_selected_for_current_qa": true
+  },
+  "supersedes_v17_generation": {
+    "commit": "93ab244444a78ad247e167dc0c8657154e37051b",
+    "index_sha256": "0b6e6424b12ed0a69c2663fe1d3bc0ed91eaa4ae6f616e61d0b2cae6a38bb511",
+    "dated_current_utc": "2026-11-18T00:15:31.778240+00:00",
+    "prior_current": {
+      "path": "/tmp/qh-notation-native-qa-20261118/history/CURRENT-v17-20261118T001531Z.json",
+      "sha256": "82286c0cd55c4f4ad76679a3c707ba76ae14d469a86a7c2427b93ec75578283f"
+    },
+    "prior_files": [
+      {
+        "role": "readiness",
+        "path": "/tmp/qh-notation-native-qa-20261118/versions/v17-93ab2444/BOUND-READINESS.json",
+        "bytes": 8771,
+        "sha256": "d12db9a96a54b0a98e9034be0175864a6f4bf9998d5a05787dc48c1d31fc1289"
+      },
+      {
+        "role": "task",
+        "path": "/tmp/qh-notation-native-qa-20261118/versions/v17-93ab2444/QA-TASK.final-live.json",
+        "bytes": 10746,
+        "sha256": "0534ce7c4f076a1c8d884f1e837e6b152ef7c7b7a59debb83838eaa79e032577"
+      },
+      {
+        "role": "binding",
+        "path": "/tmp/qh-notation-native-qa-20261118/versions/v17-93ab2444/FINAL-LIVE-BINDING.json",
+        "bytes": 11636,
+        "sha256": "f6b79be1a8e9433447b8ac49f7e99b3fc88bf54cfd0a90c4b128ae6f5965893d"
+      },
+      {
+        "role": "admission_status",
+        "path": "/tmp/qh-notation-native-qa-20261118/versions/v17-93ab2444/ADMISSION-STATUS.json",
+        "bytes": 1897,
+        "sha256": "414430c363c842345d1f66163d84452e9fe780dd61307cfa56e19c08c2396668"
+      }
+    ],
+    "originals_preserved": true,
+    "prior_visual_qa_was_pending": true
+  },
+  "supersedes_v18_generation": {
+    "commit": "85a5c7a9e3a1be8873c33f86f8c105b186e31920",
+    "index_sha256": "d4a94ab5232f0307e2c22acc5cbda5c5851d462e6eab9440d13caf6bd65d5280",
+    "dated_current_utc": "2026-11-18T01:34:24.148251+00:00",
+    "prior_current": {
+      "path": "/tmp/qh-notation-native-qa-20261118/history/CURRENT-v18-20261118T013424Z.json",
+      "sha256": "932ace23014f3bc4cdb7afe1a5e2d24a3f426101002b4753dd18f9d62fb0fa4e"
+    },
+    "prior_files": [
+      {
+        "path": "/tmp/qh-notation-native-qa-20261118/versions/v18-85a5c7a9/ADMISSION-STATUS.json",
+        "sha256": "75ecfb881f4e7814b40cc91aac6132906edc755c21531e7274cc5f0655d6127e",
+        "bytes": 2204
+      },
+      {
+        "path": "/tmp/qh-notation-native-qa-20261118/versions/v18-85a5c7a9/BINDING-VALIDATION.json",
+        "sha256": "ca2ecde8b62edc57ecd6ed11fe46412a86a85b5cfb8b50861c570506cadee58d",
+        "bytes": 780
+      },
+      {
+        "path": "/tmp/qh-notation-native-qa-20261118/versions/v18-85a5c7a9/BOUND-READINESS.json",
+        "sha256": "674f4ad0cf8b1880c90975295ed5165ad9984e9e2a0e89164707eb79d761cd8a",
+        "bytes": 10656
+      },
+      {
+        "path": "/tmp/qh-notation-native-qa-20261118/versions/v18-85a5c7a9/FINAL-LIVE-BINDING.json",
+        "sha256": "5da5e936dde34ae491e875ffc93da01750b1eb6556b73f46a4e8c7eb80024786",
+        "bytes": 13556
+      },
+      {
+        "path": "/tmp/qh-notation-native-qa-20261118/versions/v18-85a5c7a9/QA-TASK.final-live.json",
+        "sha256": "5bfbe174ac6cc60c8f239793dceec00e9f7badb0dc6082a49d5bb9db6cbac4d0",
+        "bytes": 28336
+      },
+      {
+        "path": "/tmp/qh-notation-native-qa-20261118/versions/v18-85a5c7a9/V18-NATIVE-TARGETS.json",
+        "sha256": "6427d085506639e1ed2fd622cffbf68e7e93dd0d850d836bce1970f7b645f66b",
+        "bytes": 17725
+      }
+    ],
+    "originals_preserved": true,
+    "prior_visual_qa_was_pending": true
+  },
+  "v19_targets": {
+    "path": "/tmp/qh-notation-native-qa-20261118/versions/v19-6cea9e69/V19-NATIVE-TARGETS.json",
+    "sha256": "e3ace01dac158cc53d756a7aad0f086b64202f407759fdc3ed76239e3b9650df"
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "geometric_euler_number": 2,
+  "sphere_and_fibre_orientation_controls": {
+    "c=0,euler=2": {
+      "middle_generator_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "rank": 1,
+      "cohomology": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "coefficient_to_oriented_volume": "0"
+    },
+    "c=0,euler=-2": {
+      "middle_generator_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          -2,
+          1
+        ]
+      ],
+      "rank": 1,
+      "cohomology": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "coefficient_to_oriented_volume": "0"
+    },
+    "c=1,euler=2": {
+      "middle_generator_matrix": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "rank": 2,
+      "cohomology": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "coefficient_to_oriented_volume": "-1/2"
+    },
+    "c=1,euler=-2": {
+      "middle_generator_matrix": [
+        [
+          1,
+          0
+        ],
+        [
+          -2,
+          1
+        ]
+      ],
+      "rank": 2,
+      "cohomology": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "coefficient_to_oriented_volume": "1/2"
+    },
+    "c=-3,euler=2": {
+      "middle_generator_matrix": [
+        [
+          -3,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "rank": 2,
+      "cohomology": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "coefficient_to_oriented_volume": "3/2"
+    },
+    "c=-3,euler=-2": {
+      "middle_generator_matrix": [
+        [
+          -3,
+          0
+        ],
+        [
+          -2,
+          1
+        ]
+      ],
+      "rank": 2,
+      "cohomology": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "coefficient_to_oriented_volume": "-3/2"
+    }
+  },
+  "attachment_fibres_degrees_0_to_5": {
+    "0": [
+      0,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    "1": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    "-1": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+    ]
+  }
+}

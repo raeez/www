@@ -1,0 +1,63 @@
+{
+  "date_wib": "2026-11-18",
+  "proof_owner": "A5, /root/attack_heal_physical",
+  "independent_mathematical_reviewer": "resident F6, /root/astra62_rebuild_director/f6_integrated",
+  "checked_subject": {
+    "path": "/tmp/astra62-frontier-successor-20261118/checks/k3-positive-genus-probes/PREPARATIONS.md",
+    "sha256": "bb024a590c59252e18a73b7def09ac0a3b6dc8a894501303bd6714aeb9e49175",
+    "bytes": 8466
+  },
+  "written_independent_review": {
+    "path": "/tmp/astra62-frontier-successor-20261118/checks/k3-preparations-independent/CHECK.md",
+    "sha256": "9e30dd0ddc38d71ac1aa9100b951d46fab7a185d256b46d1e66cd7fc6dd4c1fa",
+    "bytes": 12952
+  },
+  "verdicts": [
+    {
+      "id": "K3P-S",
+      "disposition": "PASS",
+      "locator": "lines 5–14",
+      "subject": "Arbitrary prepared projections in S with perfect ambient E, all of S accessible, fixed baseline.",
+      "qualification": "A degenerate S can supply a genuine missed direction in S∩S-perp. A degenerate ambient metric is a different experiment."
+    },
+    {
+      "id": "K3P-N",
+      "disposition": "PASS",
+      "locator": "lines 16–29",
+      "subject": "Fixed diagonal square-zero preparations lying in E. Reference versus one unknown nonzero weighted rank-one perturbation.",
+      "qualification": "Q/R/C K3 minima 3/3/19. The real min(p,q)+1 requires p,q≥1 and a nondegenerate form, including the split (1,1) minimum 2. Complex d=2 needs 2. Real definite forms and complex dimension ≤1 have no rival. Full-middle null lifts outside E can reduce the K3 Q/R count to 2."
+    },
+    {
+      "id": "K3P-U",
+      "disposition": "PASS",
+      "locator": "lines 31–49",
+      "subject": "Arbitrary finite signed weighted sums on a prescribed totally null U, characteristic-zero field.",
+      "qualification": "N=binom(r+2,3) fixed trinion readings is sharp. This linear family is also pairwise recoverable with N readings. Additional restrictions on which null lifts in S are available need a new feasibility check."
+    }
+  ],
+  "independent_checker_deductions": [
+    {
+      "id": "K3P-LIFT",
+      "status": "proved by the independent reviewer",
+      "statement": "When ordinary null states may lie in all V and project to E, the actual Q/R K3 baseline count is 2. Explicit x_i=C+e_i+f_i."
+    },
+    {
+      "id": "K3P-PAIR-QR",
+      "status": "proved by the independent reviewer",
+      "statement": "Fixed diagonal trinion readings distinguishing all weighted rank-one tensor alternatives pairwise require exactly 20 over Q/R, even with all probes null in E. The same 20 lower bound holds over C; one prescribed rational null basis fails there."
+    }
+  ],
+  "native_scope": "Marked polynomial Frobenius observables, with no physical preparation or Hall adoption claimed.",
+  "controls": [
+    {
+      "path": "/tmp/astra62-frontier-successor-20261118/checks/k3-preparations-independent/verify.py",
+      "sha256": "d118c7ab79fdb7649a4d721202d87682268c514ef66359848cd8a63d10056ee7",
+      "bytes": 7735
+    },
+    {
+      "path": "/tmp/astra62-frontier-successor-20261118/checks/k3-preparations-independent/VERIFICATION.json",
+      "sha256": "f7882fcc44bffcb15d6eba3e72877a5b4b8d67062149996d31cf7c8105b2e5a4",
+      "bytes": 1168
+    }
+  ]
+}
