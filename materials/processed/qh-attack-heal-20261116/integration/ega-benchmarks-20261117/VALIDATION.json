@@ -1,0 +1,71 @@
+{
+  "checked_at_utc": "2026-11-16T19:11:06.550545+00:00",
+  "status": "PASS for artifact integrity and cross-reference consistency only",
+  "requirements": 60,
+  "canonical_dispositions": 303,
+  "primary_messages": 90,
+  "history_pointer_repairs": 17,
+  "complete_contiguous_full_prompt_read": true,
+  "historical_dossiers_read_in_full": true,
+  "source_hashes": [
+    {
+      "source": "FULL-PROMPT.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "CONSTRAINT-SET.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "CHECKLIST.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "FIVE-FAILURES.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "H1-TOTAL-PICTURE.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "H2-ROOT-CAUSES.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "H3-HAINAN-HEIGHT.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "H3-AMENDMENT.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "BRIEF-COMMON.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "U03-DESIGN-PLAN.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "U03-RESUME-STATE.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "U10-RESUME-STATE.md",
+      "sha256_matches_frozen_index": true
+    },
+    {
+      "source": "U10-BRIEF.md",
+      "sha256_matches_frozen_index": true
+    }
+  ],
+  "not_verified": [
+    "EGA implementation",
+    "mathematical proof acceptance",
+    "every benchmark PDF page",
+    "unselected original historical messages"
+  ],
+  "source_limits": "The full named frozen source bundle was read; underlying raw-history corroboration is the explicitly selected 90-message sample."
+}

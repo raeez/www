@@ -1,0 +1,43 @@
+{
+  "created_at_utc": "2026-11-16T19:10:27.742042+00:00",
+  "canonical_rule_entries": 303,
+  "canonical_unique_ids": 303,
+  "canonical_dispositions": {
+    "applicable_principle": 52,
+    "scoped_transfer": 83,
+    "excluded_from_ega_transfer": 162,
+    "conditional": 6
+  },
+  "normalized_ega_requirements": 60,
+  "derived_ega_applications": 8,
+  "selected_original_messages": 90,
+  "selected_message_classification": {
+    "correction_or_reinforcement": 78,
+    "directive_or_extension": 11,
+    "qualified_page_judgment": 1
+  },
+  "selected_prompt_history_records": 17,
+  "selected_session_transcript_records": 73,
+  "history_pointer_repairs": 17,
+  "full_prompt_lines": 7440,
+  "full_prompt_parts_read": 41,
+  "historical_parts_read": 11,
+  "inspected_benchmark_artifact_groups": 3,
+  "source_counts_not_added": [
+    "38 First Gate rules are a selection of the same constraint set",
+    "H1 V1–V36 are analyst syntheses",
+    "H2 RC1–RC13 are analyst causal hypotheses",
+    "H3 M1–M11/U1–U6 and D1–D13 are analyst mechanisms",
+    "K-01–K-09 are derivative codification",
+    "37 A rows and 14 R rows are later source amendments, with repetitions and scope changes",
+    "Historical theme-day totals use differing source filters and are not a new unique-directive tally"
+  ],
+  "counting_rule": "A semantic requirement is counted once in the stated 60-row audit taxonomy. Repeated messages, rules that express the same requirement, scope-specific applications, First Gate aliases and analyst tests are not added as new original directives.",
+  "limitations": [
+    "Not an exhaustive independent reread of every historical human message; full read of the named frozen bundle, with 90 selected original records corroborated.",
+    "H1/H2 historical population and theme-day totals are attributed compiler claims, not recomputed counts.",
+    "All 17 selected H1 prompt-history line pointers were stale; actual dated text and record hashes were recovered. Unselected pointers are not independently verified.",
+    "The live prompt history contained 221 non-JSON lines at scan time; no global population count is inferred from this scan.",
+    "No EGA implementation, mathematical proof or full benchmark PDF was accepted by this audit."
+  ]
+}

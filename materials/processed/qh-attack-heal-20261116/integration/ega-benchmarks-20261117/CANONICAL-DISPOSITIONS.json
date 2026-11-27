@@ -1,0 +1,3048 @@
+{
+  "count": 303,
+  "source": "sources/CONSTRAINT-SET.md",
+  "dispositions": [
+    {
+      "id": "MC-RP-01",
+      "title": "Know who the document is for and what it must achieve; its logic and order follow from that reader. The audience is never put to him as a question.",
+      "source_line": 151,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-01"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-02",
+      "title": "Open with the reader's need, stated as what the reader must get done, in the reader's own dated words where they exist. The problem comes before the product.",
+      "source_line": 158,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-05"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-03",
+      "title": "The reader (their city, company or goods) is the subject of headlines and taglines. The product is named where the reader needs it: mechanism, proof, terms.",
+      "source_line": 165,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Task-specific source instruction not carried into EGA; relevant general craft is covered by the normalized register.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-04",
+      "title": "Every document stands alone for a cold reader: who we are, why now, what is asked. Nothing is assumed from sibling documents or earlier sends.",
+      "source_line": 172,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-03"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-05",
+      "title": "Build each document from a needs analysis of every prior discussion and transcript, and answer every need the reader stated and the reader's open problem.",
+      "source_line": 179,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-01"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-06",
+      "title": "The reader is elite: never dumb the subject down, never pander, never lecture what they already know.",
+      "source_line": 186,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-06"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-07",
+      "title": "Accessible: a reader new to the subject (a government worker who knows AI only by its buzzwords) follows every page on one read.",
+      "source_line": 193,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-06"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-08",
+      "title": "Pre-empt the reader's likely misunderstanding through how the thing is described, so the wrong question never forms. No meta-commentary about assumptions, objections or \"common questions\" on the page.",
+      "source_line": 200,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-18"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-09",
+      "title": "Present only what the counterparty chose: no taxonomy of alternatives, no \"defer\", no option they did not ask for, unless he asks for alternatives.",
+      "source_line": 207,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Counterparty choice restriction; this task explicitly asks to expose several research paths and questions.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-10",
+      "title": "Every sentence serves its reader with an identifiable benefit. A sentence that serves no one is deleted.",
+      "source_line": 214,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial sentence-benefit rule; prose relevance is already covered by EGA-01, EGA-11 and EGA-20.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-11",
+      "title": "The smallest sufficient set: only what this reader needs for the next decision, essential information only, one owner and one next action.",
+      "source_line": 221,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial next-decision/minimal-set instruction; cannot truncate the requested full programme.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-12",
+      "title": "Classify a surface as public or private before writing. Private-only claims (replacing SWIFT, real-world-asset and tokenization framing, displacing a regulated incumbent) never reach a public surface.",
+      "source_line": 228,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "The listed private commercial claims are out of scope; current mathematical publication authority still governs.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-13",
+      "title": "Answer the counterparty's own questions first, in their order and terms, each with an evidenced status. A generic collection fails.",
+      "source_line": 235,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-18"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RP-14",
+      "title": "Meet the reader where they stand: their published signals, their stage and their own flagship goal lead.",
+      "source_line": 242,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-01"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-01",
+      "title": "Everything is introduced at precisely the moment it is needed: each statement is motivated by what came before, inevitable when it lands, and carries what comes next.",
+      "source_line": 251,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-08"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-02",
+      "title": "Transitions and connective tissue are checked at every join: sentence to sentence, paragraph to paragraph, section to section. Each join states its link and answers a question the reader already has.",
+      "source_line": 258,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-09"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-03",
+      "title": "The headlines alone, read in order, tell the whole argument. Each headline is a full claim sentence, never a label.",
+      "source_line": 265,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-10"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-04",
+      "title": "Each page answers the question the previous page raised; the question it leaves open is the next page's headline.",
+      "source_line": 273,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-09"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-05",
+      "title": "One idea per page or section, stated in its headline in the fewest words. If the idea needs \"and\", split the page.",
+      "source_line": 280,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-11"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-06",
+      "title": "Show the thing concretely, a real instance the reader could act on, before or beside any claim about it. Every abstract claim is paired with a named concrete case.",
+      "source_line": 287,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-12"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-07",
+      "title": "Define before use: no term, name or acronym new to the reader appears before it is introduced and defined, in reading order, mastheads, labels and captions included. The reader's own vocabulary runs bare.",
+      "source_line": 294,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-07"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-08",
+      "title": "Compose the whole as a symphony: themes recur only as variation that advances the argument, nothing is opened and dropped, and a set reads as one integrated composition.",
+      "source_line": 301,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-02",
+        "EGA-13"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-09",
+      "title": "The argument order of a material that explains Mass: the moment; the Stripe precedent; the reader's need in their own dated words; why it is hard today; what Mass does, in verbs; how it works, as a diagram; the gains; the network, as a map; proof at true status; the close.",
+      "source_line": 308,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Mass sales argument order. Formal-paper exception applies.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-10",
+      "title": "Open on the moment: business is moving onto AI faster than commerce moved onto the internet; why now, the window and winners-take-all, in the present continuous.",
+      "source_line": 315,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business-moving-to-AI opening. Formal-paper exception applies.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-11",
+      "title": "Close on the vision, what the world becomes, never on administration, terms, contacts or a process call to action.",
+      "source_line": 322,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial vision close; EGA should conclude with the actual result and remaining mathematical problem.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-12",
+      "title": "Page one is a concise proposition and gives the complete picture; detail begins on page two.",
+      "source_line": 329,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-04"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-13",
+      "title": "Mastheads, headers, running heads and labels are part of the reading sequence and obey define-before-use and the argument order.",
+      "source_line": 336,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-07"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-14",
+      "title": "Length follows the content: there is no page budget. Never padded, never crammed, never type shrunk to fit.",
+      "source_line": 343,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-15"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-15",
+      "title": "Stage disclosure across a set: the entry page carries no teaching load; each document assumes zero context and carries only its own depth.",
+      "source_line": 350,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-04"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-16",
+      "title": "Separate routes, tracks or deals get separate documents and folders; no document names both routes.",
+      "source_line": 357,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Separate deal/folder routing; no authority to split the integrated EGA research view into commercial routes.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-17",
+      "title": "Lists, catalogues, indexes and contents follow one internal logic: true order, true categories, titles that match, nothing duplicating the navigation.",
+      "source_line": 364,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-14"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-18",
+      "title": "Every element serves its slot. A maxim appears only beside its whole causal sequence; no offhand remark is pasted onto a page or subtitle.",
+      "source_line": 371,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-11"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-19",
+      "title": "Load-bearing facts sit in the argument's own prose where the reader meets the argument, never only in an appendix, table or sibling document.",
+      "source_line": 378,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-16"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-ST-20",
+      "title": "When a reader finds a material too complex, re-sequence before cutting. A foundational upgrade restructures the artifact around the new framing, never appended bullets.",
+      "source_line": 385,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-08",
+        "EGA-17"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-21",
+      "title": "Precedent makes the claim feel inevitable, and defensibility is shown as its parts with a status for each. Both are drawn as figures, never asserted in prose.",
+      "source_line": 392,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-33"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-ST-22",
+      "title": "Within a set each file has one job: no fact restated in full across files, and no stock paragraph or panel pasted across pages or notes.",
+      "source_line": 399,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-11",
+        "EGA-13"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-WR-01",
+      "title": "KISS is the north star, without sacrificing grandeur: simple, direct, elegant; one plain sentence per idea; nothing said twice.",
+      "source_line": 409,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-19"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-02",
+      "title": "No pompous or pretentious language. Profound content is stated plainly and almost understated; force comes from meaning, not language.",
+      "source_line": 416,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-19"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-03",
+      "title": "No AI slop: no filler, roundabout or wishy-washy statements, restatements of the heading or the line before, taglines, or definitions of what the reader already knows. Slop is culled by deep rewrite, never word swaps.",
+      "source_line": 423,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-20"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-04",
+      "title": "Every line is a complete sentence a person would say aloud: no fragments posing as sentences, compressed usages, nouns without referents or pronoun puzzles; one word for one thing.",
+      "source_line": 430,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-21"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-05",
+      "title": "Headings and labels say plainly what the page is about: no slogan headings, mantras or table-of-contents subtitles.",
+      "source_line": 437,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-10"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-06",
+      "title": "Say what the product does in verbs, with Mass the subject of every operational verb. No category noun (\"platform\", \"layer\", \"software that lets them\") stands in for an action. The verb is \"automate\".",
+      "source_line": 444,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-22"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-07",
+      "title": "Never invent terminology or coin labels; use the plain word or his word. A name that claims a structure must have it.",
+      "source_line": 451,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-23"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-08",
+      "title": "Name things explicitly where they are meant; never point at a list the reader has not seen; name the concrete thing on both sides of a comparison.",
+      "source_line": 458,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-21"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-09",
+      "title": "Rework his words through the writing skill; never paste his chat onto a page, except sentences he ruled as text. His commentary and his \"e.g.\" give the idea or the stance, not the copy.",
+      "source_line": 465,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-24"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-10",
+      "title": "Add no claim, superlative or novelty phrase he did not ask for.",
+      "source_line": 473,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-31"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-11",
+      "title": "Official documents to a sovereign government, a regulator or a public authority are in the third person and name their parties: no \"we\", \"us\", \"our\", \"you\" or \"your\".",
+      "source_line": 480,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Sovereign-government pronoun rule, not the mathematical paper register.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-12",
+      "title": "Documents and correspondence to private counterparties, partners and investors speak as we to you, and never refer to the recipient in the third person.",
+      "source_line": 487,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-counterparty pronoun rule, not the mathematical paper register.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-13",
+      "title": "Institutional register: plain is not casual. Formal, dignified, legible to a regulator; every title passes the banker-email test.",
+      "source_line": 494,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-19"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-14",
+      "title": "Inform, never pitch: no sales copy, no \"how you can take part\", no call to action, no begging or eagerness. Quiet confidence.",
+      "source_line": 501,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-19"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-15",
+      "title": "State facts directly and affirmatively: no hedging, defensive over-qualification, disclaimers, \"proposed\", \"Planned:\" or limits-first framing. Precise scoping of real uncertainty is allowed, and a disclosure document keeps material adverse facts.",
+      "source_line": 508,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-27"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-16",
+      "title": "No define-by-contrast: no \"X, not Y\", \"not just\", \"rather than\", \"more than\", ghost corrections. State the positive claim.",
+      "source_line": 515,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-27"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-17",
+      "title": "No machine or mannered register: no X-by-X phrases, hollow openers, em-dash argument chains, metaphors for infrastructure, inversions, bare appositive pairs or tricolon habit. Use the literal phrase.",
+      "source_line": 522,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-20"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-18",
+      "title": "The banned words and phrases never appear on a reader surface.",
+      "source_line": 529,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-20"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-19",
+      "title": "The required words and forms are used wherever the thing is named.",
+      "source_line": 589,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-23"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-WR-20",
+      "title": "No mathematics or formal vocabulary on reader surfaces. The one ruled proof sentence is the exception.",
+      "source_line": 622,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-23"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-21",
+      "title": "Precision is never traded for simplicity: labels say exactly what a number is, and the exact mechanism replaces a vague qualifier.",
+      "source_line": 629,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-28"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-22",
+      "title": "No process leakage on any reader surface: no versions, drafts, phases, placeholders, local paths, heal or change-log language, self-certification or audience meta. Every read is a first read.",
+      "source_line": 636,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-29"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-23",
+      "title": "One register and one fact pattern across a set. Wording adapts to context and is never pasted mechanically; one description of each asset.",
+      "source_line": 643,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-30"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-24",
+      "title": "Bilingual materials: each language is independently native and elite, never a translation. The AI-tell hunt runs in each language.",
+      "source_line": 650,
+      "disposition": "conditional",
+      "ega_requirements": [
+        "EGA-32"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-25",
+      "title": "Never disparage anyone; nothing that harms us; no document argues against its own ask.",
+      "source_line": 657,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-27"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-26",
+      "title": "Tense follows status. The present tense for what exists and operates, stated as fait accompli; the future stays future; a draft is never written as executed; a place without a deployment is written in the conditional.",
+      "source_line": 664,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-26"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-27",
+      "title": "Never overclaim: no warranty-grade absolutes or promissory meta-assurances. State the fact and its path.",
+      "source_line": 671,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-26",
+        "EGA-27",
+        "EGA-31"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-28",
+      "title": "Every claim carries a number, a name or a date. No adjective beyond what it earned; understated force.",
+      "source_line": 678,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-28",
+        "EGA-31"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-29",
+      "title": "Requests on the page and choices put to him name a concrete next act: a meeting, a document, a person, a date. No programme-management abstractions.",
+      "source_line": 685,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-22"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-WR-30",
+      "title": "ASD-STE100 governs procedures and technical descriptions in technical documents only; never counterparty correspondence, diligence requests, papers' argued prose or persuasion materials.",
+      "source_line": 692,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "ASD-STE100 is explicitly limited to procedures and technical descriptions; argued mathematical prose is excepted.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-01",
+      "title": "The first statement about Mass carries full end-to-end autonomy; lawful by default is the second beat. New material carries the one-form paragraph.",
+      "source_line": 703,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-02",
+      "title": "Mass is defined by what it does, in verbs; \"virtual machine\" appears only where the reader needs it.",
+      "source_line": 711,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-03",
+      "title": "The Stripe card, word for word. Stripe rebuilt the merchant bank, never \"the bank\".",
+      "source_line": 719,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-04",
+      "title": "The Mass card: title \"Mass rebuilds a sovereign economy for AI\", body in its current approved form.",
+      "source_line": 727,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-05",
+      "title": "The proof sentence, once per document, word for word: \"Mass can prove mathematically that each action was lawful.\"",
+      "source_line": 735,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-06",
+      "title": "The asset sentence: any asset, not only a company, can be issued, traded and moved between economies at a fraction of today's time and cost, by AI agents.",
+      "source_line": 742,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-07",
+      "title": "The UAE sentences, by destination.",
+      "source_line": 750,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-08",
+      "title": "The founder block and biography facts, word for word.",
+      "source_line": 768,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-09",
+      "title": "The live-footprint sentence and the coming-onto-Mass sentence.",
+      "source_line": 777,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-10",
+      "title": "\"Mass operates thousands of entities\", never with which entities or where.",
+      "source_line": 785,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-11",
+      "title": "The LNG example, word for word.",
+      "source_line": 793,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-12",
+      "title": "The network-effect sentence.",
+      "source_line": 801,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-13",
+      "title": "The corridor definition and the special-concessions sentence.",
+      "source_line": 809,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-14",
+      "title": "The six gains.",
+      "source_line": 817,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-15",
+      "title": "The reader contract.",
+      "source_line": 825,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-16",
+      "title": "The Fund lines.",
+      "source_line": 833,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-17",
+      "title": "The Mark Beer sentence.",
+      "source_line": 841,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-18",
+      "title": "The Próspera registry line.",
+      "source_line": 849,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-19",
+      "title": "The opening line and the autonomy line.",
+      "source_line": 857,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-20",
+      "title": "The Treasury forms.",
+      "source_line": 865,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-21",
+      "title": "Other ruled lines.",
+      "source_line": 873,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-RS-22",
+      "title": "Investor wording approved on 3 November: the memorandum's \"Default\" sentence and the shared investor-introduction passage.",
+      "source_line": 882,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Exact approved commercial wording and business claims; none is EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-01",
+      "title": "His statement is the fact. centcom never arbitrates: no \"the record does not establish\", no \"no paper found\"; a custody gap is ours; a confirmed fact is never re-asked.",
+      "source_line": 889,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-55"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-02",
+      "title": "No invented facts, figures, structures, sequences, roles, quotes or commitments. Every figure traces to his word or the consistency register; agent-made text is never passed off as his.",
+      "source_line": 896,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-25"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-03",
+      "title": "No date, duration, quarter, schedule or capacity undertaking he has not stated. Give the sequence of steps; past timing appears only as precedent with its dependencies; every date is checked against today.",
+      "source_line": 903,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-25"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-04",
+      "title": "Prices live only in the pricing document, derive from the cost of compute, and are authorised only by his written word after an executive summary. No option ever charges zero usage fees.",
+      "source_line": 910,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-05",
+      "title": "One figure per fact: one Mass revenue figure per reader page (US$12.8m), never said to come from trade, its source not stated.",
+      "source_line": 917,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-28"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-06",
+      "title": "No register figures on external deliverables: no AUM, no \"10,000+ companies\", no headcount, no internal metrics (throughput, lines of code, test counts).",
+      "source_line": 924,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial metric disclosure restriction; does not forbid truthful research inventories.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-07",
+      "title": "Wherever standing is stated, name every live place at reading size: the United States first, never one place alone, Hong Kong and Singapore never folded into \"other economies\". Próspera is the sovereign deployment, the rest private; ADGM is the UAE node.",
+      "source_line": 931,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-08",
+      "title": "Two statuses only, \"Mass runs companies here today\" and \"coming onto Mass\", with current membership. No third status.",
+      "source_line": 938,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-09",
+      "title": "Pilots are sized at no fewer than 10,000 entities per jurisdiction, because Mass onboards whole economic zones. No sequence of places he did not set.",
+      "source_line": 945,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-10",
+      "title": "Never offer data centres, power, cloud, ports or any physical build as Momentum's. Land and power are Momentum's mandates, with no corporation named.",
+      "source_line": 952,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-11",
+      "title": "Never understate Momentum: full scope, active standing, the strongest true claim. Never \"co-developer\", passive, single-deployment or small.",
+      "source_line": 959,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial strength formulation; no mathematical result may be promoted beyond its evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-12",
+      "title": "Stages are stated as their sources state them; live only for what is live; no future written as present; drafting is not execution.",
+      "source_line": 966,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-26"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-13",
+      "title": "Never print a counterparty's non-public figure, a figure he made up on a call, pasted third-party commentary or his verbal overstatements. Executed paper governs how an engagement is described.",
+      "source_line": 973,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-25"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-14",
+      "title": "Differences between figures told to different people are not raised with him; each stays his statement to that person.",
+      "source_line": 980,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Recipient-specific commercial figure rule; not permission for inconsistent mathematical claims.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-15",
+      "title": "The UAE capital figure is one stacked figure, more than US$4 trillion: \"asset volume\" for DIFC and ADGM, never AUM; \"~\" before an approximation, never \"About\".",
+      "source_line": 987,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-16",
+      "title": "US$30 trillion is the annual cross-border trade upside of the institutions Momentum has contracted with: a hero figure, never throughput, never cut when a deck is thinned.",
+      "source_line": 994,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-17",
+      "title": "A non-USD amount on a reader surface carries its USD equivalent.",
+      "source_line": 1001,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-18",
+      "title": "Signed instruments are described at the scope the paper grants. No claim of an approval, mandate, licence or status not held; no third-party act asserted as done.",
+      "source_line": 1008,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-25"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-19",
+      "title": "No cash, fee or internal economics flow to or from a counterparty on its paper; no payment talk in either direction; Momentum is never the counterparty's source of capital.",
+      "source_line": 1015,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-20",
+      "title": "No sanctioned or Iranian-origin product in any deal, document or introduction; bank and payments materials show only the sanctions-compatible cohort.",
+      "source_line": 1022,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-21",
+      "title": "Estimate an unmeasured quantity from first principles with exposed parameters, never a blank and never a hedge. A printed unit cost comes from a swept measurement.",
+      "source_line": 1029,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-44"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-22",
+      "title": "Personal and internal-only content stays off every material.",
+      "source_line": 1036,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private personal material is not imported into EGA; no such material is needed for this task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-23",
+      "title": "El Salvador is never listed, mapped or counted.",
+      "source_line": 1043,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-24",
+      "title": "Every material sells Mass's value propositions: Mass makes the compliance call by construction; any AI model end to end; Mass learns across the network, fraud first and never fraud alone. No office, bank or exchange decides on what Mass prepared.",
+      "source_line": 1050,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial value propositions; the rule itself excepts papers.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-25",
+      "title": "What Mass learns: fraud first and never fraud alone, with best practice across the network. Never \"Mass learns [a country]'s law\".",
+      "source_line": 1057,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-26",
+      "title": "\"End to end\" means the company's own AI agent, on any AI model it chooses, drives its whole life through Mass, with Mass keeping every action within the rules before it runs.",
+      "source_line": 1064,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-27",
+      "title": "The value is the network, not formation in one place: any AI agent works within the law around the clock, at a fraction of the cost, with one answer where systems disagree, across the whole life of a business, and each economy that connects adds a market for every other.",
+      "source_line": 1071,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-28",
+      "title": "Show the network concretely: named economies, an example each of capital corridors and asset movement and origination, how a corridor carries a transaction, and the network effect.",
+      "source_line": 1078,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-29",
+      "title": "Examples are examples: a sector, pipeline, named company or country is an illustration or a first stage, never the scope of the offer.",
+      "source_line": 1085,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-30"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-30",
+      "title": "The cost, cadence and fragmentation argument sits where it motivates Mass: tens to hundreds of thousands of dollars to keep entities compliant, nine to five against around the clock, Amazon and Stripe showing convenience creating categories, fragmentation as the source of friction, and the paradigm shift.",
+      "source_line": 1092,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-31",
+      "title": "Mass, Moxie and Recourse are new infrastructure that every application reuses, licences included; applications such as Treasury and BDAN are shown as proof of the shared network, never as \"integrating existing functions\".",
+      "source_line": 1099,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-32",
+      "title": "Mass serves every kind and scale of organisation: public, private, non-profit, startups and large institutions. \"Institution\" is one kind, never Mass's descriptor.",
+      "source_line": 1106,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-33",
+      "title": "A product claim keeps its evidence type: behaviour rests on the running system and what readers are told on the sealed release. A test, certificate or gate is never offered as proof.",
+      "source_line": 1113,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-26",
+        "EGA-52",
+        "EGA-53"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-34",
+      "title": "Mass's customer is the AI-native business, overwhelmingly software and automation, always legal or natural persons with an identifiable beneficial owner; agents operate real owner-backed entities. Never a multi-vertical list.",
+      "source_line": 1120,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-FF-35",
+      "title": "Six separations hold on every surface: identity is not authority; a record is not finality; a claim is not cash; an award is not recovery; the network is not the owner; an opportunity is not an executed right.",
+      "source_line": 1127,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business-domain distinctions, marked as a derived reading; not six additional EGA commands.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-FF-60",
+      "title": "UAE register.",
+      "source_line": 1134,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-61",
+      "title": "Treasury register.",
+      "source_line": 1142,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-62",
+      "title": "Uzbekistan and NSI register.",
+      "source_line": 1150,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-63",
+      "title": "Pakistan register.",
+      "source_line": 1158,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-64",
+      "title": "Indonesia register.",
+      "source_line": 1166,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-65",
+      "title": "Korea register.",
+      "source_line": 1174,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-66",
+      "title": "China and Hainan register.",
+      "source_line": 1182,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-67",
+      "title": "Anguilla register.",
+      "source_line": 1190,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-68",
+      "title": "Mass Montana, Mass USA raise and Grasshopper register.",
+      "source_line": 1198,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-69",
+      "title": "Moxie register.",
+      "source_line": 1206,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-70",
+      "title": "Recourse register.",
+      "source_line": 1214,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-71",
+      "title": "Harbor City register.",
+      "source_line": 1222,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-72",
+      "title": "Seychelles register.",
+      "source_line": 1230,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-73",
+      "title": "Fund I, desk and room-figures register.",
+      "source_line": 1238,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-74",
+      "title": "Kazakhstan register.",
+      "source_line": 1246,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-75",
+      "title": "Armenia register.",
+      "source_line": 1254,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-76",
+      "title": "Land, power and data-centre register.",
+      "source_line": 1262,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-77",
+      "title": "Deal-room and channel register.",
+      "source_line": 1270,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-78",
+      "title": "Footprint-status lines.",
+      "source_line": 1278,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-79",
+      "title": "Singapore evidence uses only anonymized or obfuscated data the private companies there allow, with Mass's zero-knowledge proof sharing for sensitive data; nothing is pulled, selected or sampled from the Mass database.",
+      "source_line": 1287,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FF-80",
+      "title": "Ruimin He, MDDI and MAS are never charged: no paid scope, price or commercial term for the Singapore report appears anywhere.",
+      "source_line": 1293,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial factual/status register or legal/economic instruction; not independently verified and not imported into EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-01",
+      "title": "Never name the recipient firm or its people in its own materials: not in the text, titles, metadata, running heads, file names, \"Prepared for\" labels or reading guides. A greeting may name the addressee.",
+      "source_line": 1300,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-recipient naming restriction; not a ban on mathematical authors or proper attribution.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-02",
+      "title": "No third party or person is named on a surface without his explicit word for that use. A list of names in his message is information, not an order to print.",
+      "source_line": 1307,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial names/consent rule; not a ban on standard academic citation.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-03",
+      "title": "Never name, allude to or monetise personal or partner relationships.",
+      "source_line": 1314,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private personal relationships are excluded from EGA.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-04",
+      "title": "Mass, Moxie and Recourse may each be named where the reader's need touches that product's job; to a reader whose business a product competes with, it is offered as their engine. Names are bare, and Treasury is never a fourth peer.",
+      "source_line": 1321,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business entity, product, person, brand, place or contact naming; not EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-05",
+      "title": "Mass-only branding applies only where he ruled it (the Singapore document). Every other material keeps Momentum; a per-document instruction never spreads, and it changes words, never the theme.",
+      "source_line": 1328,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-42"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-06",
+      "title": "Entities: Momentum Fund I, LP; Momentum GP Ltd as the only general partner; no Momentum Ltd, Venture Studio or retired names; Mass entities are siblings; one issuer per instrument.",
+      "source_line": 1335,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business entity, product, person, brand, place or contact naming; not EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-07",
+      "title": "Momentum's descriptor: Momentum builds the network. Never \"a fund\", \"the studio\", a \"co-developer\" or \"the company that builds special economic zones\"; Momentum Fund I is named as itself where the subject is what it owns.",
+      "source_line": 1342,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business entity, product, person, brand, place or contact naming; not EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-08",
+      "title": "Team and people: the roster comes from the team files and his newest word; ruled removals hold; one title per person as ruled; no honorifics; a role is printed only from the record or his word.",
+      "source_line": 1349,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business team roster; no role or biography is imported.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-09",
+      "title": "Contacts and addresses: raeez@momentum.inc on Momentum paper; ir@momentum.inc for investors; mass.inc addresses on Mass paper; legal@mass.inc; the Abu Dhabi address alone travels.",
+      "source_line": 1356,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business entity, product, person, brand, place or contact naming; not EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-10",
+      "title": "Place names: \"UAE\" or \"United Arab Emirates\" for the country; Próspera with its accent; \"Hainan, China\"; the National Economic Registry; the Uzbekistan asset's full name; Alatau City; IFZA; NLC.",
+      "source_line": 1363,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business entity, product, person, brand, place or contact naming; not EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-11",
+      "title": "A third party, where named, carries its role and its correct legal name.",
+      "source_line": 1370,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-28"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-NM-12",
+      "title": "People's names in canonical form and pronoun; transcription garbles resolved; same-name people never merged.",
+      "source_line": 1377,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-28"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-01",
+      "title": "Every network is drawn as a real geographic map from the room's map module, each place at its true status. Never hand-placed boxes or abstract diagrams.",
+      "source_line": 1388,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business network geography; abstract mathematical structures must remain abstract.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-02",
+      "title": "Every network map shows the United States, China, Hong Kong and the UAE in one frame.",
+      "source_line": 1395,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Geographic frame and country membership are not EGA data.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-03",
+      "title": "Nodes read first: corridors are hairlines that never compete with nodes, one node size per status, and the key reads at a glance on open water.",
+      "source_line": 1402,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-35"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-04",
+      "title": "Labels are small, each beside its own node, on open water or its own country. No combined labels; no label over another country.",
+      "source_line": 1409,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-34",
+        "EGA-35"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-05",
+      "title": "A full mesh: a line between every pair of places; no \"agreements\" in the key; no hub and no privileged node for a global reader.",
+      "source_line": 1416,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Complete geographic mesh rule; must not fabricate mathematical edges.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-06",
+      "title": "Map labels: \"UAE\" alone; the Próspera node reads \"HONDURAS\" on the map only; Korea is one node, \"KOREA\".",
+      "source_line": 1423,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial geographic labels are not EGA names.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-07",
+      "title": "A regional map of one strategic connection stays regional and takes every world-map improvement.",
+      "source_line": 1430,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-35"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-08",
+      "title": "Every rendered map is checked zoomed in: land under every node, every continent present.",
+      "source_line": 1437,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-51"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-MAP-09",
+      "title": "Indonesia and Botswana are on every network map as coming onto Mass.",
+      "source_line": 1444,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial footprint membership is not EGA data.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-10",
+      "title": "Two governments connecting are drawn as a real map of that connection. Never boxes, medallions, seals, flags, discs or a three-column figure.",
+      "source_line": 1451,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government connection map and banned commercial motifs; EGA may use abstract boxes or diagrams when they have mathematical meaning.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-11",
+      "title": "A map ruling reaches every material that uses the same or a similar map, unasked, in one sweep.",
+      "source_line": 1458,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-54"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MAP-12",
+      "title": "The map supports the named list and never replaces it: the caption names every place in prose.",
+      "source_line": 1465,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-34"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-MAP-13",
+      "title": "The map is as large and legible as the page allows: a full-bleed band, never a small boxed map floating in air.",
+      "source_line": 1472,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-35"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-01",
+      "title": "No walls or blocks of text: every core idea is communicated visually. A wall of text is fixed by layout and hierarchy, keeping every sentence, never by cutting words.",
+      "source_line": 1483,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-33",
+        "EGA-45"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-02",
+      "title": "A figure for each complex idea, chosen by the reader's question; the figure carries the page's idea.",
+      "source_line": 1490,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-33",
+        "EGA-34"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-03",
+      "title": "Visual rhythm: break monotony; no two consecutive sections share a treatment; lift the solved Singapore components where they fit.",
+      "source_line": 1497,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-40"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-04",
+      "title": "One visual system per document: one grid, margins and measure, one spacing scale, one bottom line, a quiet running head and folio.",
+      "source_line": 1504,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-36"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-05",
+      "title": "One type scale with fixed roles used the same way on every page; no new size for a single element; a run-in changes colour only; subtitles set apart; labels never touch rules.",
+      "source_line": 1511,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-37"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-06",
+      "title": "Each group on a page is led by a title or statement, tight inside, set apart from its neighbours and weighted for its role; never a run of identical elements at one interval.",
+      "source_line": 1518,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-36"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-07",
+      "title": "Negative space is deliberate: generous air, no spare height spread into empty bands on a page that is not full, no small figure floating in a void.",
+      "source_line": 1525,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-39"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-08",
+      "title": "Each document keeps its own theme. Never switch a theme without his word.",
+      "source_line": 1532,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-42"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-09",
+      "title": "The masthead introduces Mass beside the mark alone, the mark no taller than the word beside it.",
+      "source_line": 1539,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Mass masthead rule, not the EGA identity.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-10",
+      "title": "The masthead's side column names where Mass is live, then its figures, in the reading face with hairlines.",
+      "source_line": 1546,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Mass footprint masthead, not mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-11",
+      "title": "The founder section carries his professional photograph; team sections show only team members, with faces. A portrait is a sharp original at display size.",
+      "source_line": 1553,
+      "disposition": "conditional",
+      "ega_requirements": [
+        "EGA-43"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-12",
+      "title": "Decks: the document's content, one point per slide, at most about 160 words a slide and 35 a block, body at least 20 pt on a 1440 pt canvas; the headline in one fixed position; one chrome system; very few slides for a short presentation.",
+      "source_line": 1560,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Deck dimensions, word counts and slide count do not apply to full EGA exposition.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-13",
+      "title": "Few numbers, each large with one line of meaning, each serving the page's idea; nothing that is not a number is set as one.",
+      "source_line": 1567,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-41",
+        "EGA-44"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-14",
+      "title": "Benefits appear as the six-icon gains set, complete.",
+      "source_line": 1574,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Six commercial benefit icons, not mathematical categories.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-15",
+      "title": "Full bleed with real margins; components never split across pages; tables legible; no clipped text, invisible fonts or text under the footer. Every page is rasterised and looked at.",
+      "source_line": 1581,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-38",
+        "EGA-51"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-16",
+      "title": "The printed date is the date of the last content change; a restyle never moves it.",
+      "source_line": 1588,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "A printed business-content date rule, labelled as a derived reading; research source and build dates must retain their distinct meanings.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-17",
+      "title": "Emphasis is consistent and meaningful: one accent; contrast disciplined; bold only where weight is needed.",
+      "source_line": 1595,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-41"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-18",
+      "title": "Product proof is real screens of the operating loop, composed as one story, each caption written from its own screen.",
+      "source_line": 1602,
+      "disposition": "conditional",
+      "ega_requirements": [
+        "EGA-43"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-19",
+      "title": "Typographic craft in both scripts: curly quotes; CJK bold at 700; mirrored EN/CN emphasis; embedded fonts; bilingual layouts by length.",
+      "source_line": 1609,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-32",
+        "EGA-38"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-20",
+      "title": "Elite visual organisation: the hierarchy reads at a glance, and balance, rhythm, proportion and visual weight are composed on every page.",
+      "source_line": 1616,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-40",
+        "EGA-41"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-DS-21",
+      "title": "Page 1 and the cover carry only what his rulings require there, plus the name and one line, set as quiet secondary elements: no prose block, no terms panel, no instruction-style headline.",
+      "source_line": 1623,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Deck-cover/minimal-title composition; EGA has an article and interactive overview, not a ruled commercial cover.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INV-01",
+      "title": "Investor and fund materials inform with confidence and never pitch; the close states where this is going.",
+      "source_line": 1637,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Investor document or financial pitch instruction; not an EGA exposition requirement.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INV-02",
+      "title": "Private capital in the fundraise carries no UAE government line.",
+      "source_line": 1644,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Investor document or financial pitch instruction; not an EGA exposition requirement.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INV-03",
+      "title": "Lead investors with the moment and the scale: the US$30 trillion upside, multi-trillion network value with its mechanism, winner-takes-all. Magnetic through mechanism, never overclaim.",
+      "source_line": 1651,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Investor document or financial pitch instruction; not an EGA exposition requirement.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INV-04",
+      "title": "Momentum is the go-to-market for Mass and its first consumer: every engagement earns revenue today and moves more of the world onto Mass; the desk is the bootstrap.",
+      "source_line": 1658,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Investor document or financial pitch instruction; not an EGA exposition requirement.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INV-05",
+      "title": "A first-look investor gets a select tailored subset, never the whole room, rebuilt from the current release; page one makes sense to a newcomer.",
+      "source_line": 1665,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Investor document or financial pitch instruction; not an EGA exposition requirement.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INV-06",
+      "title": "Crypto, exchange and private-capital readers: Mass complements blockchains and makes real-world assets work; whole economies are larger than Bitcoin from the first day; any exchange's gain is stated generically.",
+      "source_line": 1672,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Investor document or financial pitch instruction; not an EGA exposition requirement.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INV-07",
+      "title": "Investor questions on returns, blurbs and terms follow his own sequence and figures; no blended multiple; no meeting request.",
+      "source_line": 1679,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Investor document or financial pitch instruction; not an EGA exposition requirement.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INV-08",
+      "title": "The fund deck is held to the best reference class: structure, slide types, figures and sequencing studied, never copied.",
+      "source_line": 1686,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-49"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INV-09",
+      "title": "A presentation to partners or the team shows strength (wins, revenue, proof, the network); never to-do lists, \"to confirm\" hedges or asks for partners to step up.",
+      "source_line": 1693,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Investor document or financial pitch instruction; not an EGA exposition requirement.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-01",
+      "title": "A government document is the Singapore four-pager in that country's words: PDF, third person, real maps, the Singapore components; the counterparty's own outline and order are the floor.",
+      "source_line": 1702,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-02",
+      "title": "Government materials are legible to a regulator and official in register; no sales language; no Q&A headings.",
+      "source_line": 1709,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-19"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-03",
+      "title": "The value to a government is never formation or one process; state the full scope in the fullness of time, never implementation coverage, and \"full coverage\".",
+      "source_line": 1716,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-04",
+      "title": "The government owns its deployment: keys, data, law and supervision. Mass runs the companies and checks every action; Momentum never owns or controls the government's institution; a cabinet deck makes one ask.",
+      "source_line": 1723,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-05",
+      "title": "Separate what is disclosed under a reporting obligation from what is learned where none exists, and say who receives what and why companies agree.",
+      "source_line": 1730,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-06",
+      "title": "Lead with the whole-economy proposition and the cohort of sovereigns.",
+      "source_line": 1737,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-07",
+      "title": "Infrastructure purpose is generic: goods and capital move between any places on the network through MCP on Mass. A route is an example; there is one Silk Road.",
+      "source_line": 1744,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-08",
+      "title": "Government commercial sets: commercials and pricing come last; the ways to pay are stated; an installation fee and usage fees in every option; prices only in pricing; the price reasoning in an executive summary in the folder.",
+      "source_line": 1751,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-09",
+      "title": "Engagement plans give the sequence and the gates, never a promised duration. Momentum performs its own studies; availability commitments never assert third-party acts.",
+      "source_line": 1758,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-10",
+      "title": "Sovereign materials start from the master sovereign FAQ, learn from every government engagement and take the maximalist approach; each jurisdiction's red lines bind.",
+      "source_line": 1765,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-11",
+      "title": "When a government asks for broad participation, grant inclusion in full with one named owner per decision, so no body holds a veto.",
+      "source_line": 1772,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-GOV-12",
+      "title": "Early answers to a sovereign about structure keep every structural option open as the sovereign's election and state only the invariant floor.",
+      "source_line": 1779,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-GOV-13",
+      "title": "The case for a new zone is specialization: its legal framework, regulator and regulatory process are designed for investment, growth and jobs.",
+      "source_line": 1786,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Government engagement/content instruction; not EGA mathematical content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-BANK-01",
+      "title": "Mass co-builds and leads one compliance team with each partner bank and is responsible and liable; Mass handles each company's whole lifecycle; the bank sees everything on Mass's dashboards. Never a file handed off. The US partner bank is unnamed and no fee is printed.",
+      "source_line": 1795,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Bank engagement instruction; not EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-BANK-02",
+      "title": "To a bank, Mass runs entire economic zones and makes them more efficient with AI while accountable people hold the keys and the liability and regulators do their job. This governs over autonomy-first on bank paper.",
+      "source_line": 1802,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Bank engagement instruction; not EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-BANK-03",
+      "title": "Bank and payments materials: named accounts in each client's legal name, never FBO or omnibus; no operating-balance or buffer figures; only the sanctions-compatible cohort.",
+      "source_line": 1809,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Bank engagement instruction; not EGA content.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FIRM-01",
+      "title": "Materials for a private firm never name the firm or its people (MC-NM-01) and address the reader as you.",
+      "source_line": 1818,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-counterparty document rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FIRM-02",
+      "title": "A counterparty-authored document is edited minimally in place, their typography and layout kept; their comments go in verbatim; split the comment from the edit.",
+      "source_line": 1825,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-counterparty document rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FIRM-03",
+      "title": "A counterparty's own deck or vocabulary calibrates what the reader believes and is never a template.",
+      "source_line": 1832,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-counterparty document rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FIRM-04",
+      "title": "To a reader whose business a product competes with, offer the product as their engine and state generically what any such reader gains; no claims about their systems.",
+      "source_line": 1839,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-counterparty document rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FIRM-05",
+      "title": "Diligence: answer only what closed, matched to the deal's stage, about 25 questions, in human register, nothing volunteered.",
+      "source_line": 1846,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-counterparty document rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FIRM-06",
+      "title": "Instruments: KISS keeps every protective term; non-circumvention where we introduce relationships, never asked of institutional buyers; every field filled; carve-outs by category; standard instruments used exactly as published.",
+      "source_line": 1853,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-counterparty document rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FIRM-07",
+      "title": "An offer states its terms plainly. Overly explaining is weak.",
+      "source_line": 1860,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-counterparty document rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-FIRM-08",
+      "title": "A deliverable for a client firm's own internal use is vendor-neutral.",
+      "source_line": 1867,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-counterparty document rule; outside the EGA task.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-FIRM-09",
+      "title": "Deal materials name the thing itself and its owner of record and negotiate owner-direct, on our paper, at true size.",
+      "source_line": 1874,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private-counterparty document rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INTRO-01",
+      "title": "A forwardable blurb for an introducer is third person, standalone, about Raeez and Momentum, with no greeting and no mention of the introducer.",
+      "source_line": 1883,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial introduction and credibility instruction; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INTRO-02",
+      "title": "An introduction describes the new thing first and precisely (the network of sovereign deployments, the reader's place in it, what flows, who brings it: a co-founder of Stripe), so the wrong question cannot form.",
+      "source_line": 1890,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial introduction and credibility instruction; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INTRO-03",
+      "title": "An introduction carries current traction: Asia onboarding, close work with sovereign wealth funds and regulators, land and power mandates, Mark Beer named; no person he did not name.",
+      "source_line": 1897,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial introduction and credibility instruction; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-INTRO-04",
+      "title": "The credibility anchor is calibrated to the counterparty: none for warm counterparties, at most one paragraph for a cold introduction.",
+      "source_line": 1904,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial introduction and credibility instruction; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-01",
+      "title": "A technical whitepaper is about a new design, a new architecture and new ideas, not a product: the problem in full first, then \"We introduce Mass\" as the architectural solution.",
+      "source_line": 1915,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-05"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-02",
+      "title": "In a paper, Mass is a novel decentralized network of sovereign execution environments for AI agents, each learning the correct, safe interpretation of its sovereign's law and policy to keep up with fraud; not a blockchain; a novel consensus layer; zero-knowledge proofs integral.",
+      "source_line": 1922,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Mass-specific architectural claims are not EGA mathematical facts.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-03",
+      "title": "The abstract and opening give the complete picture, self-contained and fully motivated, at or above the Bitcoin whitepaper's opening.",
+      "source_line": 1929,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-04",
+        "EGA-16"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-04",
+      "title": "A paper presents the strongest realization of the design, separate from the implementation; live facts sit in their own section; nothing unbuilt is implied deployed.",
+      "source_line": 1936,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-26"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-05",
+      "title": "A paper answers every natural question of its expert readers, including validator economics in at most two pages, zero-knowledge sharing and the reporting-obligation distinction.",
+      "source_line": 1943,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-06",
+        "EGA-18"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-06",
+      "title": "Paper register: profound content stated plainly; accessible; never dumbed down; the Bitcoin whitepaper, Witten and Paul Graham as models; transitions at every level.",
+      "source_line": 1950,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-06",
+        "EGA-19"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-07",
+      "title": "Paper length: as small as possible, with no page cap; nothing load-bearing cut; type never shrunk to fit.",
+      "source_line": 1957,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-06",
+        "EGA-15"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-08",
+      "title": "Paper form: an ordinary LaTeX article look, the subtitle set apart, monochrome figures, under 1 MB, nothing attached.",
+      "source_line": 1964,
+      "disposition": "conditional",
+      "ega_requirements": [
+        "EGA-38"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-09",
+      "title": "Paper front matter: the ruled title and subtitle unchanged without his word; dated 21 September 2025 with no revision line; author credit in standard academic form; joint papers \"Raeez Lorgat and Luke Pearson\".",
+      "source_line": 1971,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "A particular paper title, date and author credit do not transfer.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-10",
+      "title": "Papers name no deal, venue, partner or product pitch. A recipient's edition is built from the whole canonical paper with only the ruled paragraph replaced; no coin, token or price.",
+      "source_line": 1978,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business-recipient paper substitutions are not authorized; general academic integrity is covered by EGA-25 to EGA-31.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-PAPER-11",
+      "title": "Publication: the shorter PDFs on raeez.com and the research site; research goes to a public repository only on his named word; each item curated for venue.",
+      "source_line": 1985,
+      "disposition": "conditional",
+      "ega_requirements": [
+        "EGA-59"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-12",
+      "title": "Research papers stand alone as contributions to knowledge: titles name the problem, elementarity is stated plainly, the .tex is canonical, titles are faithful.",
+      "source_line": 1992,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-31"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-13",
+      "title": "Papers travel with materials where the reader needs to understand the system; a weak paper is fixed, never withheld.",
+      "source_line": 1999,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Sending papers with commercial packages is not this task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PAPER-14",
+      "title": "Joint works with Luke Pearson stay generic academic work, keep their lineage, and are released only at 99 or more on the frozen rubric.",
+      "source_line": 2006,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Named joint-work rubric and 99-point threshold are task-specific; no universal EGA scoring threshold.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-CALL-01",
+      "title": "The folder brief for him (00-Brief) opens with its status line and maps every promise to its file, says what stays off paper, gives lines to be ready for and a \"Before sending, check:\" line.",
+      "source_line": 2015,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private call/preparation format; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-CALL-02",
+      "title": "An executive summary or state report for him is fully self-contained, motivated and standalone, without jargon: what he must do and the support he needs.",
+      "source_line": 2022,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-03"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-CALL-03",
+      "title": "Prep documents for his own reading are legible first: the 10, 20 and 30-minute reads.",
+      "source_line": 2029,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private call/preparation format; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-CALL-04",
+      "title": "A call brief is in his hands before the call and fits one page: the objective, the opening line, the questions, what to leave with, what never to offer.",
+      "source_line": 2036,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Private call/preparation format; outside the EGA task.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-CALL-05",
+      "title": "A report or synthesis for him is checked independently by Astra max and Sol max before it reaches him; \"checked\" is never claimed until both reports exist.",
+      "source_line": 2043,
+      "disposition": "conditional",
+      "ega_requirements": [
+        "EGA-50"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MSG-01",
+      "title": "A message in his voice matches his own messages in that thread: short lines, plain, direct, first person, his dictated words nearly verbatim, one ask.",
+      "source_line": 2052,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Correspondence-specific wording, format or channel rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MSG-02",
+      "title": "Paste-ready text is bare plain text and comes first: no markdown furniture, block quotes or tables; WhatsApp bold as single asterisks.",
+      "source_line": 2060,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Correspondence-specific wording, format or channel rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MSG-03",
+      "title": "A message or note is complete: no blanks or placeholders, no date, time or trip he did not state, consistent with what he will say.",
+      "source_line": 2067,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-25"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MSG-04",
+      "title": "A reply answers every question in the counterparty's order; a formal reply sets each verbatim question above its answer.",
+      "source_line": 2074,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-18"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MSG-05",
+      "title": "A public post adds a new idea, survives the obvious rebuttal and reads as a founder's thesis, not an ad.",
+      "source_line": 2081,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Correspondence-specific wording, format or channel rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MSG-06",
+      "title": "Close with quiet confidence: the next step as a fact; no apology filler, no begging close.",
+      "source_line": 2088,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Correspondence-specific wording, format or channel rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MSG-07",
+      "title": "Never say a topic came up on a call when it did not; never present an added term as the counterparty's.",
+      "source_line": 2095,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-25"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MSG-08",
+      "title": "Correspondence register: human, the relationship stated up front, then identity, credibility, why writing, the ask; a first re-engagement runs about 150 to 200 words.",
+      "source_line": 2102,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Correspondence-specific wording, format or channel rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MSG-09",
+      "title": "A covering note says plainly what a new set replaces when earlier papers reached the reader.",
+      "source_line": 2109,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Correspondence-specific wording, format or channel rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-MSG-10",
+      "title": "Before a transaction NCNDA, no transaction parameters in the run-up channel.",
+      "source_line": 2116,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Correspondence-specific wording, format or channel rule; outside the EGA task.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-01",
+      "title": "Astra max writes every word of every material, message and brief; Sol 6.1 max attacks and checks; Opus designs after the content is set. A Claude session never writes content, and critics' wording goes back to Astra.",
+      "source_line": 2125,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-46"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-02",
+      "title": "Design changes form only and never the words; it runs alongside the writing from the outline on, and only the fit of the settled words waits for the end. It never goes back to the writer except for labels; the writer never chooses figure kinds or layouts.",
+      "source_line": 2132,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-45",
+        "EGA-46"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-03",
+      "title": "Every writer and attacker brief carries this whole constraint set, his words verbatim, the reader and every ruled text marked RULED. Never a summary or a few \"demands\"; built from transcripts, never compacted summaries.",
+      "source_line": 2139,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-47"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-04",
+      "title": "Every material gets a final Opus design pass that applies each Singapore directive, mapped one by one to the new reader in a written map.",
+      "source_line": 2146,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-48"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-05",
+      "title": "A room or earlier document copied into a send set is new material and gets the full pass before placement: Astra words, Sol attack, Opus design, image review.",
+      "source_line": 2153,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "New send-set placement protocol is not the audit scope; quality/retention lessons are covered elsewhere.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-06",
+      "title": "Build on the approved material for the same kind of reader; never start a fresh set; never lose settled content from an approved predecessor.",
+      "source_line": 2161,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-17",
+        "EGA-49"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-07",
+      "title": "An intake builds every deliverable it calls for in the same pass; analysis and attack waves refine afterwards and never hold a material back. A promise is work, never \"owed by the principal\".",
+      "source_line": 2168,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-56",
+        "EGA-58"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-08",
+      "title": "When a ruling lands, rebuild every affected document, run the gates and place the set at once. Never hold for his review; his complaint is an order to rebuild that thing.",
+      "source_line": 2175,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-58"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-09",
+      "title": "Attack and heal in waves with independent seats, Claude and Codex independently on the hard problems; re-attack every heal until no severity 1 to 3 finding remains.",
+      "source_line": 2182,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-50"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-10",
+      "title": "Attackers and reviewers never re-litigate his facts or override his rulings: a finding against ruled text is rejected with the ruling cited; objections go to him in a memo; a draft never reverses a ruling.",
+      "source_line": 2189,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-55"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-11",
+      "title": "Change only what he names; restore everything else word for word; a critique of one page changes that page only.",
+      "source_line": 2196,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-17",
+        "EGA-45"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-12",
+      "title": "When he says to act on a counterparty's or adviser's comments, apply them in their own words and order, listing each exception with its reason. Otherwise third-party feedback is evidence, adopted only where he accepts it.",
+      "source_line": 2203,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-55"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-13",
+      "title": "The writing method: Sepia in two stages (a defect list with the question-under-discussion check on every join, then repairs), a linear sentence-by-sentence march, kept lineage.",
+      "source_line": 2210,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-09",
+        "EGA-20"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-14",
+      "title": "Acceptance is a page-by-page review of rendered images against the tests and the approved pages. Mechanical green is not acceptance.",
+      "source_line": 2217,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-51",
+        "EGA-52"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-15",
+      "title": "Gates check mechanics only, must fail on purpose before they are trusted, and never encode hedging; exit codes are read unpiped; a grep never concludes; check the object, not its shadow.",
+      "source_line": 2224,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-52",
+        "EGA-53"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-16",
+      "title": "Questions to him: only real decisions, each standalone in plain words, with the current and proposed text verbatim, the options and consequences and a recommendation; no internal codes; never one the record settles.",
+      "source_line": 2231,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Questions/approval formatting does not create a new permission step; proceed under the current principal authorization.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-17",
+      "title": "Act on his rulings: answers apply globally; no follow-up question about scope; never ask him to prove a fact.",
+      "source_line": 2238,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-54"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-18",
+      "title": "The newest, strongest build replaces the old; never ask him to choose between versions.",
+      "source_line": 2245,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-17",
+        "EGA-49"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-19",
+      "title": "Sweep every instance, sibling and generator in one pass; never generalise a narrow ruling beyond the scope he gave it.",
+      "source_line": 2252,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-54"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-20",
+      "title": "Before calling a set final, check the brief against the ledger and unmerged branches. One session's implementation is not his approval.",
+      "source_line": 2259,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-55",
+        "EGA-60"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-PR-21",
+      "title": "Read the raw transcripts, the live thread and our own sent outbound before drafting; never build from processed notes, digests or compacted summaries.",
+      "source_line": 2266,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-47"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-22",
+      "title": "Fix the artifact itself, at its source. A report, plan, gate or review is never the deliverable; after a cut, re-read what pointed at it.",
+      "source_line": 2273,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-56",
+        "EGA-57"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-23",
+      "title": "Keep every version with a restore path; build both versions when he asks for alternatives or an adviser and he differ.",
+      "source_line": 2280,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-49"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-24",
+      "title": "No model, LLM or harness name in any persistent artifact.",
+      "source_line": 2287,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-29"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-25",
+      "title": "Writer seats: any lane may start Astra max writers without asking; they run headless from a brief file; parallel as the work needs; outputs are composed, not concatenated.",
+      "source_line": 2294,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-02"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-26",
+      "title": "Every directive goes into the ledger verbatim with its source and is applied uniformly; recorded is not delivered; every prompt has a recorded disposition.",
+      "source_line": 2301,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-47",
+        "EGA-48",
+        "EGA-60"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-27",
+      "title": "Finish the work end to end inside the authorised scope; recommending is not doing; never stop to report what was not done.",
+      "source_line": 2308,
+      "disposition": "applicable_principle",
+      "ega_requirements": [
+        "EGA-56",
+        "EGA-58"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-28",
+      "title": "Build the strongest possible form: what a top professional would do, from the rawest material, never downgrading a claim and never offering him a menu of framings.",
+      "source_line": 2315,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Strongest-form aspiration does not permit promotion of unproved mathematics; quality and source checks are captured by EGA-06 and EGA-31.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PR-29",
+      "title": "Every sentence-level sweep triggers a re-composition and image review of every page it touched.",
+      "source_line": 2322,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-57"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-PL-01",
+      "title": "Every sendable output goes to `~/tosend/out/<Recipient>/` with its message as plain text, a 00 brief and SHA256SUMS; one enclosing folder per set holds the latest of everything; open it for him.",
+      "source_line": 2331,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial destination and covering-message package, not this audit output destination.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-02",
+      "title": "He alone sends. No agent sends, uploads or publishes; reports say \"ready for you to send\"; a staging folder is not dispatch evidence; drafting is not execution.",
+      "source_line": 2338,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-59"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-16",
+      "title": "A rebuild under the constraint set keeps the earlier set as a version in the same folder: v1-before-constraint-set/ holds the old files unchanged, v2-constraint-set/ holds the new ones, and a top-level 00 brief names both and says which to send.",
+      "source_line": 2345,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-49"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-17",
+      "title": "Recipients are his: no draft or brief recommends or asks who is copied or forwarded to.",
+      "source_line": 2352,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Commercial copy/forward routing; no message to others is authorized here.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-03",
+      "title": "A hold or supersession is written at the top of the folder's brief within the hour, with the UTC time and the folder to use instead.",
+      "source_line": 2357,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-60"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-PL-04",
+      "title": "Every replaced file is archived under `~/tosend/archive/<date>-<Folder>-before-<change>/`; a sent folder is an immutable record.",
+      "source_line": 2364,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-49"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-05",
+      "title": "PDFs: nothing attached inside; papers under 1 MB; render exit codes read unpiped and `file -b` checked; the send gate passes before placement.",
+      "source_line": 2371,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Specific PDF placement gate and paper file-size target; relevant output checks are EGA-38, EGA-51 and EGA-53, not inherited delivery limits.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-06",
+      "title": "Ship form: designed deliverables as PDF rendered from HTML; letters and instruments as .docx through `scripts/generate-legal-docx.py`; spreadsheets through Java/LibreOffice, neatly organised with metadata.",
+      "source_line": 2378,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Business artifact production formats; this task has its own website and mathematical source conventions.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-07",
+      "title": "A follow-up set takes the Kenneth Gay structure: a main document, companion notes that each answer one ask, the message and the private brief.",
+      "source_line": 2385,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Named commercial follow-up folder structure; no EGA structural authority.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-08",
+      "title": "File and folder hygiene: gapless numbering from 00; unique names; no Markdown to readers; no reliance on an INDEX; no empty or singly nested folders; no duplicates or stale copies.",
+      "source_line": 2392,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-14"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-09",
+      "title": "Executed and received instruments are preserved byte for byte; external materials are corrected in place, never withdrawn; covering material carries the ruled form.",
+      "source_line": 2399,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-49"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-10",
+      "title": "Rooms: publication only through the release pipeline and `./ship`, on his word; every room edit tested against the whole ledger; every room carries every instrument; outward cuts by allowlist; the internal room never ships to a commercial counterparty.",
+      "source_line": 2406,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-59"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-11",
+      "title": "Websites: change the copy, not the design; both sites; publication only on his word; every public card checked against his own words.",
+      "source_line": 2413,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-42",
+        "EGA-59"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-12",
+      "title": "When he asks for files to be placed or opened, do it at once, without process narration.",
+      "source_line": 2420,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-58"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-13",
+      "title": "One live draft per person: a new set for someone retires every older draft to that person in the same pass, and the indexes he reads name the live set.",
+      "source_line": 2427,
+      "disposition": "scoped_transfer",
+      "ega_requirements": [
+        "EGA-49"
+      ],
+      "reason": "Apply only the normalized requirement and its explicit exception; retain the original text and scope as evidence.",
+      "paraphrase_only": true
+    },
+    {
+      "id": "MC-PL-14",
+      "title": "A package for a team member or partner is complete: role brief, Start Here, Team, participation offer and cover note.",
+      "source_line": 2434,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Team-member package contents are out of scope.",
+      "paraphrase_only": false
+    },
+    {
+      "id": "MC-PL-15",
+      "title": "A stored signature goes only on the document his current chat names, with capacity and date; otherwise signature blocks stay blank.",
+      "source_line": 2441,
+      "disposition": "excluded_from_ega_transfer",
+      "ega_requirements": [],
+      "reason": "Signature authorization is unrelated; no instrument is signed here.",
+      "paraphrase_only": false
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "count": 8,
+  "applications": [
+    {
+      "id": "A01",
+      "surface": "Overview and article sequence",
+      "requirements": [
+        "EGA-01",
+        "EGA-02",
+        "EGA-04",
+        "EGA-05",
+        "EGA-08",
+        "EGA-09"
+      ],
+      "proposed_application": "The reader should see the programme’s central problem, construction, accepted scope and open obstruction, then enter a complete exposition whose transitions explain why each next object is needed.",
+      "source_basis": "Original 16 Nov 18:13:57Z message; MC-ST-01/02/04/08; PAPER-01/03/06.",
+      "verification": "Check the outline and actual reading order. Preserve all hypotheses and prove-status distinctions; a beautiful opening cannot replace the full article.",
+      "kind": "audit-derived EGA application"
+    },
+    {
+      "id": "A02",
+      "surface": "Master diagram and local context",
+      "requirements": [
+        "EGA-02",
+        "EGA-13",
+        "EGA-14",
+        "EGA-33",
+        "EGA-34"
+      ],
+      "proposed_application": "Use a stable programme diagram and a clear local position when entering a branch or result. The local view identifies its place in the whole and returns to that same object.",
+      "source_basis": "Observed Update sample pp3/7; H3 U1/U2 and amendment D3 are analyst-derived mechanisms.",
+      "verification": "Every highlighted part must correspond to a real programme object; a locator must not imply an unproved dependency.",
+      "kind": "audit-derived EGA application"
+    },
+    {
+      "id": "A03",
+      "surface": "Stable identifiers across diagrams and exposition",
+      "requirements": [
+        "EGA-07",
+        "EGA-14",
+        "EGA-21",
+        "EGA-28",
+        "EGA-30",
+        "EGA-34"
+      ],
+      "proposed_application": "Use the same object or question identifier in the master figure, section, theorem panel and links. A selected object must reveal the exact corresponding text.",
+      "source_basis": "Observed Decision Map EN pp16/19; H3 M4/D4 derived from those pages.",
+      "verification": "Follow representative labels from figure to paragraph and back; verify that repeated identifiers refer to the same mathematical object.",
+      "kind": "audit-derived EGA application"
+    },
+    {
+      "id": "A04",
+      "surface": "One status vocabulary",
+      "requirements": [
+        "EGA-26",
+        "EGA-27",
+        "EGA-30",
+        "EGA-41"
+      ],
+      "proposed_application": "Carry the programme’s actual proof/status distinctions consistently through prose, diagram marks, legend and explorer filters.",
+      "source_basis": "MC-WR-26/27 and FF-12/33; H3 M5/D5 are a derived visual application.",
+      "verification": "Read every legend mark literally. Do not reuse business live/coming marks or collapse distinct mathematical statuses.",
+      "kind": "audit-derived EGA application"
+    },
+    {
+      "id": "A05",
+      "surface": "Figures that expose the argument",
+      "requirements": [
+        "EGA-12",
+        "EGA-33",
+        "EGA-34",
+        "EGA-35",
+        "EGA-44"
+      ],
+      "proposed_application": "Use constructions, commutative diagrams, dependency edges, obstruction witnesses or worked examples where they make a precise relationship easier to inspect.",
+      "source_basis": "13 Oct RAKEZ original message; 15/20 Oct original diagram corrections; 6 Nov elite-pass failure description.",
+      "verification": "Explain the meaning of every node, edge, arrow and scale; delete decorative stubs, unlabelled hubs and arbitrary meshes.",
+      "kind": "audit-derived EGA application"
+    },
+    {
+      "id": "A06",
+      "surface": "Complete mathematical prose with meaningful visual structure",
+      "requirements": [
+        "EGA-06",
+        "EGA-10",
+        "EGA-11",
+        "EGA-15",
+        "EGA-16",
+        "EGA-19",
+        "EGA-23"
+      ],
+      "proposed_application": "Keep conventional article paragraphs, definitions, theorem statements and proofs. Use tables only for genuinely parallel facts and figures for genuine relationships.",
+      "source_basis": "MC-PAPER-06/07/08; explicit ST-03/DS-01/WR-20 paper exceptions; H2 counter-evidence on density caps.",
+      "verification": "No load-bearing content is lost to a word cap, visual row system or small type. No commercial ban removes formal mathematical terms.",
+      "kind": "audit-derived EGA application"
+    },
+    {
+      "id": "A07",
+      "surface": "Readability and interaction states",
+      "requirements": [
+        "EGA-35",
+        "EGA-36",
+        "EGA-37",
+        "EGA-38",
+        "EGA-39",
+        "EGA-40",
+        "EGA-41",
+        "EGA-51",
+        "EGA-53"
+      ],
+      "proposed_application": "Check the real overview, article, expanded detail, selected/highlighted branch and relevant empty/error states at the intended viewport sizes. Keep labels, formulas, focus and actions readable.",
+      "source_basis": "Original page-image/typography mandates; interaction-state checks come from the embedded craft-floor skill and are derived, not original principal directives.",
+      "verification": "Verify actual behavior with the existing QA owner. Include keyboard/focus and pointer behavior where present; screenshots alone do not establish functionality.",
+      "kind": "audit-derived EGA application"
+    },
+    {
+      "id": "A08",
+      "surface": "Integration and acceptance evidence",
+      "requirements": [
+        "EGA-45",
+        "EGA-46",
+        "EGA-47",
+        "EGA-48",
+        "EGA-49",
+        "EGA-50",
+        "EGA-52",
+        "EGA-54",
+        "EGA-55",
+        "EGA-56",
+        "EGA-57",
+        "EGA-58",
+        "EGA-59",
+        "EGA-60"
+      ],
+      "proposed_application": "Existing content, design and review owners apply this register in the actual build. Keep exact source/output identities and check the integrated result against both the mathematical source and the inspected design exemplars.",
+      "source_basis": "1 Nov role mandate; 5/11/16 Nov exact-context orders; original 16 Nov regression and nonexecution messages.",
+      "verification": "Do not create new workers or a new review cycle. A ledger, hash, green test, inspector claim or this audit is not acceptance of the EGA product.",
+      "kind": "audit-derived EGA application"
+    }
+  ]
+}
