@@ -1,0 +1,1891 @@
+{
+  "schema": "qh-authored-diagrams/v1",
+  "diagrams": [
+    {
+      "id": "fig-programme-overview",
+      "chapter_id": "ch01",
+      "section_id": "the-mathematical-problem-in-its-present-form",
+      "type": "authored_diagram",
+      "title": "The reconstruction questions",
+      "caption": "The boundary problem separates local operations, their representations and their state evaluations. The links are a reading guide to those questions; they do not assert functors or mathematical implications.",
+      "nodes": [
+        {
+          "id": "programme-local",
+          "label": "Local products and collisions",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "chiral-operation"
+          },
+          "description": "Fields are combined at distinct positions and compared through their singular collision operations."
+        },
+        {
+          "id": "programme-duality",
+          "label": "Products, relations and higher relations",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-words-and-the-reduced-bar-construction"
+          },
+          "description": "Bar and cobar retain multiplication, its homotopies and the supports allowed by ordered cuts."
+        },
+        {
+          "id": "programme-modules",
+          "label": "Representations and interface maps",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "adjunction-comparison-maps"
+          },
+          "description": "An actual unit and counit determine which representations an interface reconstructs."
+        },
+        {
+          "id": "programme-centres",
+          "label": "Compatible actions on all modules",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          },
+          "description": "Pointed character and action spaces ask whether an operation is recovered from vacuum evaluation."
+        },
+        {
+          "id": "programme-domains",
+          "label": "Domains of composition",
+          "definition_ref": {
+            "chapter_id": "ch08",
+            "section_id": "tensor-completion-and-rank"
+          },
+          "description": "Tensor, Laurent, current and analytic domains determine whether the next operation is defined."
+        },
+        {
+          "id": "programme-quantum",
+          "label": "Products with compatible coproducts",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          },
+          "description": "Position-dependent products and exchange must agree with the operation combining representations."
+        },
+        {
+          "id": "programme-geometric",
+          "label": "Geometric coefficient systems",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-the-realized-vacuum-on-every-configuration"
+          },
+          "description": "Realized vacua on every configuration retain the collision extensions needed for reconstruction."
+        },
+        {
+          "id": "programme-branes",
+          "label": "Branes and interface composition",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-what-a-joined-interface-remembers"
+          },
+          "description": "Derived junction composition retains higher classes and both outer observable actions."
+        },
+        {
+          "id": "programme-hall",
+          "label": "Extension geometry and compact states",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          },
+          "description": "Hall correspondences and compact-state gluing retain coefficient maps, pairings and orientation lines."
+        },
+        {
+          "id": "programme-arithmetic",
+          "label": "Arithmetic traces and local operations",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "Complete traces, positive representations and integral normal operations are distinct comparisons."
+        },
+        {
+          "id": "programme-state",
+          "label": "States, amplitude lines and fillings",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "description": "A normalized functional, an amplitude line and a state prepared by a filling require separate constructions."
+        },
+        {
+          "id": "programme-reconstruction",
+          "label": "Comparison with the independent bulk",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "interfaces-and-reconstruction"
+          },
+          "description": "Reconstruction asks which of the actual observable, module, operation and state maps are equivalences."
+        }
+      ],
+      "edges": [
+        {
+          "id": "read-local-duality",
+          "source": "programme-local",
+          "target": "programme-duality",
+          "label": "Retain the relations between local products",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-modules",
+          "source": "programme-duality",
+          "target": "programme-modules",
+          "label": "Test the unit and counit on representations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-centres",
+          "source": "programme-modules",
+          "target": "programme-centres",
+          "label": "Ask which operations act compatibly",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-domains",
+          "source": "programme-local",
+          "target": "programme-domains",
+          "label": "Specify the domains of repeated operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-quantum",
+          "source": "programme-modules",
+          "target": "programme-quantum",
+          "label": "Compare the operation combining systems",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-geometric",
+          "source": "programme-local",
+          "target": "programme-geometric",
+          "label": "Retain the geometric collision extensions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-branes",
+          "source": "programme-modules",
+          "target": "programme-branes",
+          "label": "Test the prescribed physical interfaces",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-geometric-hall",
+          "source": "programme-geometric",
+          "target": "programme-hall",
+          "label": "Compare extension and state operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-hall-arithmetic",
+          "source": "programme-hall",
+          "target": "programme-arithmetic",
+          "label": "Distinguish the operation from its trace",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-domains-state",
+          "source": "programme-domains",
+          "target": "programme-state",
+          "label": "Define the numerical state and amplitude",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-centres-reconstruction",
+          "source": "programme-centres",
+          "target": "programme-reconstruction",
+          "label": "Compare the independently defined bulk action",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-state-reconstruction",
+          "source": "programme-state",
+          "target": "programme-reconstruction",
+          "label": "Retain filling and gluing amplitudes",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        }
+      ],
+      "context_key": "programme-context-v1",
+      "highlighted_node_ids": [
+        "programme-local",
+        "programme-reconstruction"
+      ],
+      "legend": [
+        {
+          "kind": "reading_relation",
+          "text": "Reading relation between questions; not a mathematical map or a claim of implication."
+        }
+      ],
+      "node_identity_rule": "Node IDs have the same mathematical referent in every context figure. DOM IDs must be namespaced by figure ID."
+    },
+    {
+      "id": "fig-programme-context-duality",
+      "chapter_id": "ch06",
+      "section_id": "ch06-the-image-and-its-original-counit",
+      "type": "authored_diagram",
+      "title": "The representation comparison within reconstruction",
+      "caption": "The unit theorem identifies the stated localizing category through the actual interface. The surrounding questions ask for products, compatible actions and states that an equivalence of linear categories does not specify.",
+      "nodes": [
+        {
+          "id": "programme-local",
+          "label": "Local products and collisions",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "chiral-operation"
+          },
+          "description": "Fields are combined at distinct positions and compared through their singular collision operations."
+        },
+        {
+          "id": "programme-duality",
+          "label": "Products, relations and higher relations",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-words-and-the-reduced-bar-construction"
+          },
+          "description": "Bar and cobar retain multiplication, its homotopies and the supports allowed by ordered cuts."
+        },
+        {
+          "id": "programme-modules",
+          "label": "Representations and interface maps",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "adjunction-comparison-maps"
+          },
+          "description": "An actual unit and counit determine which representations an interface reconstructs."
+        },
+        {
+          "id": "programme-centres",
+          "label": "Compatible actions on all modules",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          },
+          "description": "Pointed character and action spaces ask whether an operation is recovered from vacuum evaluation."
+        },
+        {
+          "id": "programme-domains",
+          "label": "Domains of composition",
+          "definition_ref": {
+            "chapter_id": "ch08",
+            "section_id": "tensor-completion-and-rank"
+          },
+          "description": "Tensor, Laurent, current and analytic domains determine whether the next operation is defined."
+        },
+        {
+          "id": "programme-quantum",
+          "label": "Products with compatible coproducts",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          },
+          "description": "Position-dependent products and exchange must agree with the operation combining representations."
+        },
+        {
+          "id": "programme-geometric",
+          "label": "Geometric coefficient systems",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-the-realized-vacuum-on-every-configuration"
+          },
+          "description": "Realized vacua on every configuration retain the collision extensions needed for reconstruction."
+        },
+        {
+          "id": "programme-branes",
+          "label": "Branes and interface composition",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-what-a-joined-interface-remembers"
+          },
+          "description": "Derived junction composition retains higher classes and both outer observable actions."
+        },
+        {
+          "id": "programme-hall",
+          "label": "Extension geometry and compact states",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          },
+          "description": "Hall correspondences and compact-state gluing retain coefficient maps, pairings and orientation lines."
+        },
+        {
+          "id": "programme-arithmetic",
+          "label": "Arithmetic traces and local operations",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "Complete traces, positive representations and integral normal operations are distinct comparisons."
+        },
+        {
+          "id": "programme-state",
+          "label": "States, amplitude lines and fillings",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "description": "A normalized functional, an amplitude line and a state prepared by a filling require separate constructions."
+        },
+        {
+          "id": "programme-reconstruction",
+          "label": "Comparison with the independent bulk",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "interfaces-and-reconstruction"
+          },
+          "description": "Reconstruction asks which of the actual observable, module, operation and state maps are equivalences."
+        }
+      ],
+      "edges": [
+        {
+          "id": "read-local-duality",
+          "source": "programme-local",
+          "target": "programme-duality",
+          "label": "Retain the relations between local products",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-modules",
+          "source": "programme-duality",
+          "target": "programme-modules",
+          "label": "Test the unit and counit on representations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-centres",
+          "source": "programme-modules",
+          "target": "programme-centres",
+          "label": "Ask which operations act compatibly",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-domains",
+          "source": "programme-local",
+          "target": "programme-domains",
+          "label": "Specify the domains of repeated operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-quantum",
+          "source": "programme-modules",
+          "target": "programme-quantum",
+          "label": "Compare the operation combining systems",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-geometric",
+          "source": "programme-local",
+          "target": "programme-geometric",
+          "label": "Retain the geometric collision extensions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-branes",
+          "source": "programme-modules",
+          "target": "programme-branes",
+          "label": "Test the prescribed physical interfaces",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-geometric-hall",
+          "source": "programme-geometric",
+          "target": "programme-hall",
+          "label": "Compare extension and state operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-hall-arithmetic",
+          "source": "programme-hall",
+          "target": "programme-arithmetic",
+          "label": "Distinguish the operation from its trace",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-domains-state",
+          "source": "programme-domains",
+          "target": "programme-state",
+          "label": "Define the numerical state and amplitude",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-centres-reconstruction",
+          "source": "programme-centres",
+          "target": "programme-reconstruction",
+          "label": "Compare the independently defined bulk action",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-state-reconstruction",
+          "source": "programme-state",
+          "target": "programme-reconstruction",
+          "label": "Retain filling and gluing amplitudes",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        }
+      ],
+      "context_key": "programme-context-v1",
+      "highlighted_node_ids": [
+        "programme-duality",
+        "programme-modules",
+        "programme-reconstruction"
+      ],
+      "legend": [
+        {
+          "kind": "reading_relation",
+          "text": "Reading relation between questions; not a mathematical map or a claim of implication."
+        }
+      ],
+      "node_identity_rule": "Node IDs have the same mathematical referent in every context figure. DOM IDs must be namespaced by figure ID."
+    },
+    {
+      "id": "fig-programme-context-quantum",
+      "chapter_id": "ch12",
+      "section_id": "ch12-a-spectral-construction-of-products-and-coproducts",
+      "type": "authored_diagram",
+      "title": "Combining representations requires the local operations",
+      "caption": "The spectral coproduct is tested against the cross-contracted product and its exchange. These are the concrete additional operations behind the question of combining boundary systems.",
+      "nodes": [
+        {
+          "id": "programme-local",
+          "label": "Local products and collisions",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "chiral-operation"
+          },
+          "description": "Fields are combined at distinct positions and compared through their singular collision operations."
+        },
+        {
+          "id": "programme-duality",
+          "label": "Products, relations and higher relations",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-words-and-the-reduced-bar-construction"
+          },
+          "description": "Bar and cobar retain multiplication, its homotopies and the supports allowed by ordered cuts."
+        },
+        {
+          "id": "programme-modules",
+          "label": "Representations and interface maps",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "adjunction-comparison-maps"
+          },
+          "description": "An actual unit and counit determine which representations an interface reconstructs."
+        },
+        {
+          "id": "programme-centres",
+          "label": "Compatible actions on all modules",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          },
+          "description": "Pointed character and action spaces ask whether an operation is recovered from vacuum evaluation."
+        },
+        {
+          "id": "programme-domains",
+          "label": "Domains of composition",
+          "definition_ref": {
+            "chapter_id": "ch08",
+            "section_id": "tensor-completion-and-rank"
+          },
+          "description": "Tensor, Laurent, current and analytic domains determine whether the next operation is defined."
+        },
+        {
+          "id": "programme-quantum",
+          "label": "Products with compatible coproducts",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          },
+          "description": "Position-dependent products and exchange must agree with the operation combining representations."
+        },
+        {
+          "id": "programme-geometric",
+          "label": "Geometric coefficient systems",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-the-realized-vacuum-on-every-configuration"
+          },
+          "description": "Realized vacua on every configuration retain the collision extensions needed for reconstruction."
+        },
+        {
+          "id": "programme-branes",
+          "label": "Branes and interface composition",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-what-a-joined-interface-remembers"
+          },
+          "description": "Derived junction composition retains higher classes and both outer observable actions."
+        },
+        {
+          "id": "programme-hall",
+          "label": "Extension geometry and compact states",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          },
+          "description": "Hall correspondences and compact-state gluing retain coefficient maps, pairings and orientation lines."
+        },
+        {
+          "id": "programme-arithmetic",
+          "label": "Arithmetic traces and local operations",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "Complete traces, positive representations and integral normal operations are distinct comparisons."
+        },
+        {
+          "id": "programme-state",
+          "label": "States, amplitude lines and fillings",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "description": "A normalized functional, an amplitude line and a state prepared by a filling require separate constructions."
+        },
+        {
+          "id": "programme-reconstruction",
+          "label": "Comparison with the independent bulk",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "interfaces-and-reconstruction"
+          },
+          "description": "Reconstruction asks which of the actual observable, module, operation and state maps are equivalences."
+        }
+      ],
+      "edges": [
+        {
+          "id": "read-local-duality",
+          "source": "programme-local",
+          "target": "programme-duality",
+          "label": "Retain the relations between local products",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-modules",
+          "source": "programme-duality",
+          "target": "programme-modules",
+          "label": "Test the unit and counit on representations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-centres",
+          "source": "programme-modules",
+          "target": "programme-centres",
+          "label": "Ask which operations act compatibly",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-domains",
+          "source": "programme-local",
+          "target": "programme-domains",
+          "label": "Specify the domains of repeated operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-quantum",
+          "source": "programme-modules",
+          "target": "programme-quantum",
+          "label": "Compare the operation combining systems",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-geometric",
+          "source": "programme-local",
+          "target": "programme-geometric",
+          "label": "Retain the geometric collision extensions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-branes",
+          "source": "programme-modules",
+          "target": "programme-branes",
+          "label": "Test the prescribed physical interfaces",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-geometric-hall",
+          "source": "programme-geometric",
+          "target": "programme-hall",
+          "label": "Compare extension and state operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-hall-arithmetic",
+          "source": "programme-hall",
+          "target": "programme-arithmetic",
+          "label": "Distinguish the operation from its trace",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-domains-state",
+          "source": "programme-domains",
+          "target": "programme-state",
+          "label": "Define the numerical state and amplitude",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-centres-reconstruction",
+          "source": "programme-centres",
+          "target": "programme-reconstruction",
+          "label": "Compare the independently defined bulk action",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-state-reconstruction",
+          "source": "programme-state",
+          "target": "programme-reconstruction",
+          "label": "Retain filling and gluing amplitudes",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        }
+      ],
+      "context_key": "programme-context-v1",
+      "highlighted_node_ids": [
+        "programme-local",
+        "programme-modules",
+        "programme-quantum",
+        "programme-domains"
+      ],
+      "legend": [
+        {
+          "kind": "reading_relation",
+          "text": "Reading relation between questions; not a mathematical map or a claim of implication."
+        }
+      ],
+      "node_identity_rule": "Node IDs have the same mathematical referent in every context figure. DOM IDs must be namespaced by figure ID."
+    },
+    {
+      "id": "fig-programme-context-arithmetic",
+      "chapter_id": "ch16",
+      "section_id": "ch16-a-positive-representation-and-its-exact-missing-remainder",
+      "type": "authored_diagram",
+      "title": "A full trace and a positive local theory are different targets",
+      "caption": "The arithmetic trace retains the complete divisor. Positivity, normal operations and locality require their own maps. The compact-state comparison supplies another precise example of information lost on taking traces.",
+      "nodes": [
+        {
+          "id": "programme-local",
+          "label": "Local products and collisions",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "chiral-operation"
+          },
+          "description": "Fields are combined at distinct positions and compared through their singular collision operations."
+        },
+        {
+          "id": "programme-duality",
+          "label": "Products, relations and higher relations",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-words-and-the-reduced-bar-construction"
+          },
+          "description": "Bar and cobar retain multiplication, its homotopies and the supports allowed by ordered cuts."
+        },
+        {
+          "id": "programme-modules",
+          "label": "Representations and interface maps",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "adjunction-comparison-maps"
+          },
+          "description": "An actual unit and counit determine which representations an interface reconstructs."
+        },
+        {
+          "id": "programme-centres",
+          "label": "Compatible actions on all modules",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          },
+          "description": "Pointed character and action spaces ask whether an operation is recovered from vacuum evaluation."
+        },
+        {
+          "id": "programme-domains",
+          "label": "Domains of composition",
+          "definition_ref": {
+            "chapter_id": "ch08",
+            "section_id": "tensor-completion-and-rank"
+          },
+          "description": "Tensor, Laurent, current and analytic domains determine whether the next operation is defined."
+        },
+        {
+          "id": "programme-quantum",
+          "label": "Products with compatible coproducts",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          },
+          "description": "Position-dependent products and exchange must agree with the operation combining representations."
+        },
+        {
+          "id": "programme-geometric",
+          "label": "Geometric coefficient systems",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-the-realized-vacuum-on-every-configuration"
+          },
+          "description": "Realized vacua on every configuration retain the collision extensions needed for reconstruction."
+        },
+        {
+          "id": "programme-branes",
+          "label": "Branes and interface composition",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-what-a-joined-interface-remembers"
+          },
+          "description": "Derived junction composition retains higher classes and both outer observable actions."
+        },
+        {
+          "id": "programme-hall",
+          "label": "Extension geometry and compact states",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          },
+          "description": "Hall correspondences and compact-state gluing retain coefficient maps, pairings and orientation lines."
+        },
+        {
+          "id": "programme-arithmetic",
+          "label": "Arithmetic traces and local operations",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "Complete traces, positive representations and integral normal operations are distinct comparisons."
+        },
+        {
+          "id": "programme-state",
+          "label": "States, amplitude lines and fillings",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "description": "A normalized functional, an amplitude line and a state prepared by a filling require separate constructions."
+        },
+        {
+          "id": "programme-reconstruction",
+          "label": "Comparison with the independent bulk",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "interfaces-and-reconstruction"
+          },
+          "description": "Reconstruction asks which of the actual observable, module, operation and state maps are equivalences."
+        }
+      ],
+      "edges": [
+        {
+          "id": "read-local-duality",
+          "source": "programme-local",
+          "target": "programme-duality",
+          "label": "Retain the relations between local products",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-modules",
+          "source": "programme-duality",
+          "target": "programme-modules",
+          "label": "Test the unit and counit on representations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-centres",
+          "source": "programme-modules",
+          "target": "programme-centres",
+          "label": "Ask which operations act compatibly",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-domains",
+          "source": "programme-local",
+          "target": "programme-domains",
+          "label": "Specify the domains of repeated operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-quantum",
+          "source": "programme-modules",
+          "target": "programme-quantum",
+          "label": "Compare the operation combining systems",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-geometric",
+          "source": "programme-local",
+          "target": "programme-geometric",
+          "label": "Retain the geometric collision extensions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-branes",
+          "source": "programme-modules",
+          "target": "programme-branes",
+          "label": "Test the prescribed physical interfaces",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-geometric-hall",
+          "source": "programme-geometric",
+          "target": "programme-hall",
+          "label": "Compare extension and state operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-hall-arithmetic",
+          "source": "programme-hall",
+          "target": "programme-arithmetic",
+          "label": "Distinguish the operation from its trace",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-domains-state",
+          "source": "programme-domains",
+          "target": "programme-state",
+          "label": "Define the numerical state and amplitude",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-centres-reconstruction",
+          "source": "programme-centres",
+          "target": "programme-reconstruction",
+          "label": "Compare the independently defined bulk action",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-state-reconstruction",
+          "source": "programme-state",
+          "target": "programme-reconstruction",
+          "label": "Retain filling and gluing amplitudes",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        }
+      ],
+      "context_key": "programme-context-v1",
+      "highlighted_node_ids": [
+        "programme-arithmetic",
+        "programme-hall",
+        "programme-state",
+        "programme-domains"
+      ],
+      "legend": [
+        {
+          "kind": "reading_relation",
+          "text": "Reading relation between questions; not a mathematical map or a claim of implication."
+        }
+      ],
+      "node_identity_rule": "Node IDs have the same mathematical referent in every context figure. DOM IDs must be namespaced by figure ID."
+    },
+    {
+      "id": "fig-programme-context-reconstruction",
+      "chapter_id": "ch17",
+      "section_id": "independent-realizations",
+      "type": "authored_diagram",
+      "title": "What must survive reconstruction",
+      "caption": "The established examples test actions, collision extensions, derived interface composition, state products and amplitude lines. A common reconstruction must preserve the relevant structures on a common domain.",
+      "nodes": [
+        {
+          "id": "programme-local",
+          "label": "Local products and collisions",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "chiral-operation"
+          },
+          "description": "Fields are combined at distinct positions and compared through their singular collision operations."
+        },
+        {
+          "id": "programme-duality",
+          "label": "Products, relations and higher relations",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-words-and-the-reduced-bar-construction"
+          },
+          "description": "Bar and cobar retain multiplication, its homotopies and the supports allowed by ordered cuts."
+        },
+        {
+          "id": "programme-modules",
+          "label": "Representations and interface maps",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "adjunction-comparison-maps"
+          },
+          "description": "An actual unit and counit determine which representations an interface reconstructs."
+        },
+        {
+          "id": "programme-centres",
+          "label": "Compatible actions on all modules",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          },
+          "description": "Pointed character and action spaces ask whether an operation is recovered from vacuum evaluation."
+        },
+        {
+          "id": "programme-domains",
+          "label": "Domains of composition",
+          "definition_ref": {
+            "chapter_id": "ch08",
+            "section_id": "tensor-completion-and-rank"
+          },
+          "description": "Tensor, Laurent, current and analytic domains determine whether the next operation is defined."
+        },
+        {
+          "id": "programme-quantum",
+          "label": "Products with compatible coproducts",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          },
+          "description": "Position-dependent products and exchange must agree with the operation combining representations."
+        },
+        {
+          "id": "programme-geometric",
+          "label": "Geometric coefficient systems",
+          "definition_ref": {
+            "chapter_id": "ch13",
+            "section_id": "ch13-the-realized-vacuum-on-every-configuration"
+          },
+          "description": "Realized vacua on every configuration retain the collision extensions needed for reconstruction."
+        },
+        {
+          "id": "programme-branes",
+          "label": "Branes and interface composition",
+          "definition_ref": {
+            "chapter_id": "ch14",
+            "section_id": "ch14-what-a-joined-interface-remembers"
+          },
+          "description": "Derived junction composition retains higher classes and both outer observable actions."
+        },
+        {
+          "id": "programme-hall",
+          "label": "Extension geometry and compact states",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          },
+          "description": "Hall correspondences and compact-state gluing retain coefficient maps, pairings and orientation lines."
+        },
+        {
+          "id": "programme-arithmetic",
+          "label": "Arithmetic traces and local operations",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          },
+          "description": "Complete traces, positive representations and integral normal operations are distinct comparisons."
+        },
+        {
+          "id": "programme-state",
+          "label": "States, amplitude lines and fillings",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "description": "A normalized functional, an amplitude line and a state prepared by a filling require separate constructions."
+        },
+        {
+          "id": "programme-reconstruction",
+          "label": "Comparison with the independent bulk",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "interfaces-and-reconstruction"
+          },
+          "description": "Reconstruction asks which of the actual observable, module, operation and state maps are equivalences."
+        }
+      ],
+      "edges": [
+        {
+          "id": "read-local-duality",
+          "source": "programme-local",
+          "target": "programme-duality",
+          "label": "Retain the relations between local products",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-duality-modules",
+          "source": "programme-duality",
+          "target": "programme-modules",
+          "label": "Test the unit and counit on representations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-centres",
+          "source": "programme-modules",
+          "target": "programme-centres",
+          "label": "Ask which operations act compatibly",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-domains",
+          "source": "programme-local",
+          "target": "programme-domains",
+          "label": "Specify the domains of repeated operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-quantum",
+          "source": "programme-modules",
+          "target": "programme-quantum",
+          "label": "Compare the operation combining systems",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-local-geometric",
+          "source": "programme-local",
+          "target": "programme-geometric",
+          "label": "Retain the geometric collision extensions",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-modules-branes",
+          "source": "programme-modules",
+          "target": "programme-branes",
+          "label": "Test the prescribed physical interfaces",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-geometric-hall",
+          "source": "programme-geometric",
+          "target": "programme-hall",
+          "label": "Compare extension and state operations",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-hall-arithmetic",
+          "source": "programme-hall",
+          "target": "programme-arithmetic",
+          "label": "Distinguish the operation from its trace",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-domains-state",
+          "source": "programme-domains",
+          "target": "programme-state",
+          "label": "Define the numerical state and amplitude",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-centres-reconstruction",
+          "source": "programme-centres",
+          "target": "programme-reconstruction",
+          "label": "Compare the independently defined bulk action",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        },
+        {
+          "id": "read-state-reconstruction",
+          "source": "programme-state",
+          "target": "programme-reconstruction",
+          "label": "Retain filling and gluing amplitudes",
+          "kind": "reading_relation",
+          "status": "Reading relation"
+        }
+      ],
+      "context_key": "programme-context-v1",
+      "highlighted_node_ids": [
+        "programme-reconstruction",
+        "programme-centres",
+        "programme-state",
+        "programme-branes",
+        "programme-hall",
+        "programme-arithmetic"
+      ],
+      "legend": [
+        {
+          "kind": "reading_relation",
+          "text": "Reading relation between questions; not a mathematical map or a claim of implication."
+        }
+      ],
+      "node_identity_rule": "Node IDs have the same mathematical referent in every context figure. DOM IDs must be namespaced by figure ID."
+    },
+    {
+      "id": "fig-ordered-cut-support",
+      "chapter_id": "ch04",
+      "section_id": "ordered-cut-geometry",
+      "type": "authored_diagram",
+      "title": "The support detected by consecutive cuts",
+      "caption": "For three ordered labels, the complement of the two separating opens is \\(Z_3=\\Delta_{13}\\). The small diagonal lies inside it; a collision of labels 1 and 3 with label 2 elsewhere defeats both cuts.",
+      "nodes": [
+        {
+          "id": "cut-x3",
+          "label": "\\(X^3\\)",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "configuration-spaces"
+          }
+        },
+        {
+          "id": "cut-u12",
+          "label": "\\(U_{1,2}=X^3\\setminus(\\Delta_{12}\\cup\\Delta_{13})\\)",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "ordered-cut-geometry"
+          }
+        },
+        {
+          "id": "cut-u21",
+          "label": "\\(U_{2,1}=X^3\\setminus(\\Delta_{13}\\cup\\Delta_{23})\\)",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "ordered-cut-geometry"
+          }
+        },
+        {
+          "id": "cut-z3",
+          "label": "\\(Z_3=\\Delta_{13}\\): \\(x_1=x_3\\)",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "ordered-cut-geometry"
+          }
+        },
+        {
+          "id": "cut-small",
+          "label": "\\(\\Delta_{123}\\): \\(x_1=x_2=x_3\\)",
+          "definition_ref": {
+            "chapter_id": "ch04",
+            "section_id": "configuration-spaces"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "cut-u12-inclusion",
+          "source": "cut-u12",
+          "target": "cut-x3",
+          "label": "Open inclusion",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "cut-u21-inclusion",
+          "source": "cut-u21",
+          "target": "cut-x3",
+          "label": "Open inclusion",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "cut-z3-inclusion",
+          "source": "cut-z3",
+          "target": "cut-x3",
+          "label": "Closed inclusion",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "cut-small-inclusion",
+          "source": "cut-small",
+          "target": "cut-z3",
+          "label": "Closed inclusion",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "equations": [
+        "\\(Z_3=X^3\\setminus(U_{1,2}\\cup U_{2,1})=\\Delta_{13}\\)"
+      ],
+      "hypotheses": [
+        "Smooth curve; external input order 1,2,3; only consecutive cuts."
+      ],
+      "witness": {
+        "coordinates": "x₁=x₃≠x₂",
+        "conclusion": "Both consecutive cuts fail, although the point is outside the small diagonal."
+      }
+    },
+    {
+      "id": "fig-connected-bar-cobar",
+      "chapter_id": "ch05",
+      "section_id": "ch05-ordered-cuts-give-a-finite-geometric-bar-construction",
+      "type": "authored_diagram",
+      "title": "Bar and cobar retain the ordered operations",
+      "caption": "Connectedness is in arity: the empty coefficient is \\(k\\). At arity \\(n\\), more than \\(n\\) positive factors vanish. This finite bound gives the coherent equivalence without a cohomological boundedness assumption.",
+      "nodes": [
+        {
+          "id": "bc-algebra",
+          "label": "Connected augmented coherent associative algebras",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-ordered-cuts-give-a-finite-geometric-bar-construction"
+          }
+        },
+        {
+          "id": "bc-coalgebra",
+          "label": "Connected counital coaugmented coherent coassociative coalgebras",
+          "definition_ref": {
+            "chapter_id": "ch05",
+            "section_id": "ch05-ordered-cuts-give-a-finite-geometric-bar-construction"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "bc-bar",
+          "source": "bc-algebra",
+          "target": "bc-coalgebra",
+          "label": "Bar \\(B\\)",
+          "kind": "functor",
+          "status": "Theorem"
+        },
+        {
+          "id": "bc-cobar",
+          "source": "bc-coalgebra",
+          "target": "bc-algebra",
+          "label": "Cobar \\(\\Omega\\)",
+          "kind": "functor",
+          "status": "Theorem"
+        }
+      ],
+      "relations": [
+        {
+          "text": "The two functors are inverse equivalences, including the full mapping spaces.",
+          "status": "Theorem"
+        },
+        {
+          "text": "The intrinsic adjunction is \\(B\\dashv\\Omega\\); the strict twisting-cochain adjunction has the opposite presentation \\(\\Omega_{\\rm dg}\\dashv B_{\\rm dg}\\).",
+          "status": "Convention"
+        }
+      ],
+      "hypotheses": [
+        "Smooth separated finite-type curve over a characteristic-zero field.",
+        "Ordinary unbounded right differential-module complexes with the consecutive-cut convolution.",
+        "Empty coefficient identified with k; all higher associativity and coassociativity data retained."
+      ],
+      "formulas": [
+        "\\(\\bar A^{\\star r}_n=0\\quad(r>n)\\)",
+        "\\(\\overline{\\Omega C}_n\\simeq R\\Gamma_{Z_n}(C_n)[-1]\\quad\\text{for factorizing }C\\)"
+      ]
+    },
+    {
+      "id": "fig-four-step-descent",
+      "chapter_id": "ch06",
+      "section_id": "ch06-four-factors-suffice-for-nonrational-mathfraksl3",
+      "type": "authored_diagram",
+      "title": "Four inflated factors recover an arbitrary source",
+      "caption": "For \\(B=Y_{-s}(\\mathfrak{sl}_3)\\), \\(s\\notin\\mathbb Q\\), the tower starts at zero and ends at the arbitrary ordinary unbounded complex \\(L\\). Every displayed two-arrow row is the beginning of a cofiber triangle. The scalar-extension unit \\(u\\) is distinct from the realization unit \\(\\eta\\).",
+      "nodes": [
+        {
+          "id": "descent-t0",
+          "label": "\\(T_0(L)\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "formula": "L"
+        },
+        {
+          "id": "descent-t1",
+          "label": "\\(T_1(L)\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "formula": "I^{\\otimes_B^{\\mathbf L}1}\\otimes_B^{\\mathbf L}L"
+        },
+        {
+          "id": "descent-t2",
+          "label": "\\(T_2(L)\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "formula": "I^{\\otimes_B^{\\mathbf L}2}\\otimes_B^{\\mathbf L}L"
+        },
+        {
+          "id": "descent-t3",
+          "label": "\\(T_3(L)\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "formula": "I^{\\otimes_B^{\\mathbf L}3}\\otimes_B^{\\mathbf L}L"
+        },
+        {
+          "id": "descent-t4",
+          "label": "\\(T_4(L)\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "formula": "0"
+        },
+        {
+          "id": "descent-q0",
+          "label": "\\(UF(T_0(L))\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "description": "Inflated from the unrestricted R-complex obtained by derived scalar extension."
+        },
+        {
+          "id": "descent-q1",
+          "label": "\\(UF(T_1(L))\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "description": "Inflated from the unrestricted R-complex obtained by derived scalar extension."
+        },
+        {
+          "id": "descent-q2",
+          "label": "\\(UF(T_2(L))\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "description": "Inflated from the unrestricted R-complex obtained by derived scalar extension."
+        },
+        {
+          "id": "descent-q3",
+          "label": "\\(UF(T_3(L))\\)",
+          "definition_ref": {
+            "chapter_id": "ch06",
+            "section_id": "ch06-finite-descent-from-a-quotient"
+          },
+          "description": "Inflated from the unrestricted R-complex obtained by derived scalar extension."
+        }
+      ],
+      "edges": [
+        {
+          "id": "descent-include-0",
+          "source": "descent-t1",
+          "target": "descent-t0",
+          "label": "Induced by \\(I\\to B\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-unit-0",
+          "source": "descent-t0",
+          "target": "descent-q0",
+          "label": "Scalar-extension unit \\(u\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-include-1",
+          "source": "descent-t2",
+          "target": "descent-t1",
+          "label": "Induced by \\(I\\to B\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-unit-1",
+          "source": "descent-t1",
+          "target": "descent-q1",
+          "label": "Scalar-extension unit \\(u\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-include-2",
+          "source": "descent-t3",
+          "target": "descent-t2",
+          "label": "Induced by \\(I\\to B\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-unit-2",
+          "source": "descent-t2",
+          "target": "descent-q2",
+          "label": "Scalar-extension unit \\(u\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-include-3",
+          "source": "descent-t4",
+          "target": "descent-t3",
+          "label": "Induced by \\(I\\to B\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "descent-unit-3",
+          "source": "descent-t3",
+          "target": "descent-q3",
+          "label": "Scalar-extension unit \\(u\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "hypotheses": [
+        "\\(R=U(\\mathfrak{sl}_3)\\), \\(I=\\bigoplus_{w>0}B_w\\), and \\(F=R\\otimes_B^{\\mathbf L}-\\); \\(U\\) is inflation.",
+        "Both R-actions and two-sided K-flatness are retained.",
+        "\\(I^{\\otimes_R^{\\mathbf L}4}=0\\), while \\(I^{\\otimes_R^{\\mathbf L}3}\\ne0\\)."
+      ],
+      "relations": [
+        {
+          "text": "\\(T_{j+1}(L)\\to T_j(L)\\to UF(T_j(L))\\to T_{j+1}(L)[1]\\), for \\(0\\le j<4\\).",
+          "status": "Theorem"
+        },
+        {
+          "text": "Under the separately stated smooth realization hypotheses, invertibility of its actual unit on inflated complexes propagates through this finite tower.",
+          "status": "Conditional consequence"
+        }
+      ]
+    },
+    {
+      "id": "fig-character-action-comparison",
+      "chapter_id": "ch07",
+      "section_id": "ch07-a-factorizing-actor-and-its-pointing",
+      "type": "authored_diagram",
+      "title": "From a character to an action, and back to the vacuum",
+      "caption": "The complete spaces retain the pointing homotopy and its higher compatibilities. Multiplication followed by vacuum evaluation gives \\(\\Psi\\Theta\\simeq1\\). The reverse composite is the recognition question; it is proved on the families stated below and remains open for arbitrary admitted actors.",
+      "nodes": [
+        {
+          "id": "recognition-character",
+          "label": "\\(\\mathcal X(F,u)\\): pointed characters \\(F\\to C\\)",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          }
+        },
+        {
+          "id": "recognition-action",
+          "label": "\\(\\mathcal A_C(F,u)\\): pointed operations \\(F\\otimes^!C\\to C\\)",
+          "definition_ref": {
+            "chapter_id": "ch07",
+            "section_id": "ch07-a-factorizing-actor-and-its-pointing"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "recognition-theta",
+          "source": "recognition-character",
+          "target": "recognition-action",
+          "label": "\\(\\Theta(g)=m(g\\otimes^!1_C)\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "recognition-psi",
+          "source": "recognition-action",
+          "target": "recognition-character",
+          "label": "\\(\\Psi(\\alpha)=\\alpha(1_F\\otimes^!u_B)\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "relations": [
+        {
+          "text": "\\(\\Psi\\Theta\\simeq1\\) by the unit identity.",
+          "status": "Theorem"
+        },
+        {
+          "text": "\\(\\Theta\\Psi\\simeq1\\) on the genuinely unital Chevalley family, its specified module extensions, and the nonunital families of Chapter 7.",
+          "status": "Theorem on stated families"
+        },
+        {
+          "text": "Full recognition for every pointed factorizing actor, with all roots and refinements.",
+          "status": "Open problem"
+        }
+      ],
+      "hypotheses": [
+        "Characteristic-zero field; the ordered collision category and both tensors specified in Chapter 7.",
+        "\\(C\\) is the Chevalley coalgebra of \\(kp_1\\oplus kp_2\\); \\(u\\) is an actual coherent pointing."
+      ],
+      "prohibitions": [
+        "Do not mark either arrow as a universal equivalence.",
+        "Do not identify these spaces with the ordinary exterior-source mapping space."
+      ]
+    },
+    {
+      "id": "fig-spectral-coproduct",
+      "chapter_id": "ch12",
+      "section_id": "ch12-a-spectral-construction-of-products-and-coproducts",
+      "type": "authored_diagram",
+      "title": "The two coproduct paths give the same three-system action",
+      "caption": "The tensor \\(\\boxtimes_\\rho\\) includes its cross contraction. The level group need not be commutative. Both paths have the displayed triple value, so coassociativity preserves the order of the levels.",
+      "nodes": [
+        {
+          "id": "spectral-source",
+          "label": "\\(V_{\\eta_1\\eta_2\\eta_3}\\)",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          }
+        },
+        {
+          "id": "spectral-left",
+          "label": "\\(V_{\\eta_1\\eta_2}\\boxtimes_\\rho V_{\\eta_3}\\)",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          }
+        },
+        {
+          "id": "spectral-right",
+          "label": "\\(V_{\\eta_1}\\boxtimes_\\rho V_{\\eta_2\\eta_3}\\)",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          }
+        },
+        {
+          "id": "spectral-target",
+          "label": "\\(V_{\\eta_1}\\boxtimes_\\rho V_{\\eta_2}\\boxtimes_\\rho V_{\\eta_3}\\)",
+          "definition_ref": {
+            "chapter_id": "ch12",
+            "section_id": "ch12-a-spectral-construction-of-products-and-coproducts"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "spectral-first-left",
+          "source": "spectral-source",
+          "target": "spectral-left",
+          "label": "\\(D_{\\eta_1\\eta_2,\\eta_3}\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "spectral-first-right",
+          "source": "spectral-source",
+          "target": "spectral-right",
+          "label": "\\(D_{\\eta_1,\\eta_2\\eta_3}\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "spectral-second-left",
+          "source": "spectral-left",
+          "target": "spectral-target",
+          "label": "\\(D_{\\eta_1,\\eta_2}\\boxtimes_\\rho1\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "spectral-second-right",
+          "source": "spectral-right",
+          "target": "spectral-target",
+          "label": "\\(1\\boxtimes_\\rho D_{\\eta_2,\\eta_3}\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "equations": [
+        "\\(a\\longmapsto\\eta_2\\eta_3a_1\\otimes\\eta_3a_2\\otimes a_3\\)"
+      ],
+      "hypotheses": [
+        "Flat Hopf algebra with bijective antipode over a characteristic-zero coefficient algebra.",
+        "Translation, unitary spectral coquasitriangular form and level automorphisms satisfy all displayed identities in Chapter 12.",
+        "The fields and all finite products have the specified common rational germs and expansion domains."
+      ],
+      "status": "Theorem in the spectral class"
+    },
+    {
+      "id": "fig-hall-correspondence",
+      "chapter_id": "ch15",
+      "section_id": "ch15-extensions-and-the-reason-for-associativity",
+      "type": "authored_diagram",
+      "title": "Extension multiplication retains its middle geometry",
+      "caption": "The left map remembers quotient and subobject; the right map remembers the middle object. Pullback along \\(p\\) followed by the specified pushforward along \\(q\\) gives the Hall operation. Three-step flags compare its two bracketings.",
+      "nodes": [
+        {
+          "id": "hall-endpoints",
+          "label": "\\(\\mathcal M_\\alpha\\times\\mathcal M_\\beta\\)",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          }
+        },
+        {
+          "id": "hall-extensions",
+          "label": "\\(\\mathcal E_{\\alpha,\\beta}\\): \\(0\\to B\\to M\\to A\\to0\\)",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          }
+        },
+        {
+          "id": "hall-middle",
+          "label": "\\(\\mathcal M_{\\alpha+\\beta}\\)",
+          "definition_ref": {
+            "chapter_id": "ch15",
+            "section_id": "ch15-extensions-and-the-reason-for-associativity"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "hall-p",
+          "source": "hall-extensions",
+          "target": "hall-endpoints",
+          "label": "\\(p:(M,B)\\mapsto(M/B,B)\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "hall-q",
+          "source": "hall-extensions",
+          "target": "hall-middle",
+          "label": "\\(q:(M,B)\\mapsto M\\)",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "formulas": [
+        "\\((f*g)(M)=\\int_{B\\subset M}f(M/B)g(B)\\,d\\chi_c\\)",
+        "\\(p^*(\\mathscr P_\\alpha\\boxtimes\\mathscr P_\\beta)\\longrightarrow q^!\\mathscr P_{\\alpha+\\beta}\\)"
+      ],
+      "hypotheses": [
+        "The constructible-function integral uses finite charge support and an actual domain on which Euler integration is defined.",
+        "The coefficient-complex formula is additional data on its specified critical/oriented correspondence; its shifts, supports and orientation roots are retained."
+      ],
+      "status": "Defined correspondence; coefficient comparison at its stated family scope"
+    },
+    {
+      "id": "fig-weil-trace-remainder",
+      "chapter_id": "ch16",
+      "section_id": "ch16-a-positive-representation-and-its-exact-missing-remainder",
+      "type": "authored_diagram",
+      "title": "The full trace and the positive critical trace differ by an exact remainder",
+      "caption": "Both functionals act on the stated arithmetic test algebra. The positive representation counts each real centred zero with its full multiplicity. Equality with the complete Weil functional requires the displayed nonreal contribution to vanish on every test.",
+      "nodes": [
+        {
+          "id": "weil-test",
+          "label": "Test \\(f\\in\\mathcal A_a\\)",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-a-positive-representation-and-its-exact-missing-remainder"
+          }
+        },
+        {
+          "id": "weil-full",
+          "label": "\\(W(f)=\\sum_\\rho m_\\rho\\widehat f(w_\\rho)\\)",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-the-complete-arithmetic-functional"
+          }
+        },
+        {
+          "id": "weil-critical",
+          "label": "\\(\\operatorname{Tr}\\pi_{\\mathrm{crit}}(f)=\\sum_{w_\\rho\\in\\mathbb R}m_\\rho\\widehat f(w_\\rho)\\)",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-a-positive-representation-and-its-exact-missing-remainder"
+          }
+        },
+        {
+          "id": "weil-remainder",
+          "label": "\\(\\mathcal R(f)=\\sum_{w_\\rho\\notin\\mathbb R}m_\\rho\\widehat f(w_\\rho)\\)",
+          "definition_ref": {
+            "chapter_id": "ch16",
+            "section_id": "ch16-a-positive-representation-and-its-exact-missing-remainder"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "weil-W",
+          "source": "weil-test",
+          "target": "weil-full",
+          "label": "Complete Weil functional",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "weil-positive",
+          "source": "weil-test",
+          "target": "weil-critical",
+          "label": "Trace of the positive critical representation",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        },
+        {
+          "id": "weil-R",
+          "source": "weil-test",
+          "target": "weil-remainder",
+          "label": "Nonreal spectral contribution",
+          "kind": "mathematical_map",
+          "status": "Defined map"
+        }
+      ],
+      "equations": [
+        "\\(W(f)=\\operatorname{Tr}\\pi_{\\mathrm{crit}}(f)+\\mathcal R(f)\\)"
+      ],
+      "relations": [
+        {
+          "text": "The decomposition is exact on the stated test algebra.",
+          "status": "Theorem"
+        },
+        {
+          "text": "\\(\\mathcal R(f)=0\\) for every test.",
+          "status": "Open problem; Riemann-hypothesis strength"
+        }
+      ],
+      "prohibitions": [
+        "Do not display the remainder as zero.",
+        "Do not identify a complex-bilinear residue dual with a positive Hilbert pairing."
+      ]
+    },
+    {
+      "id": "fig-state-line-cap",
+      "chapter_id": "ch17",
+      "section_id": "states-lines-and-caps",
+      "type": "authored_diagram",
+      "title": "A normalized state, an amplitude line and a filling",
+      "caption": "The two proved constructions begin with different specified finite families and analytic realizations. Their comparison with the state prepared by a geometric filling is open. No arrow identifies a normalized state with an unnormalized amplitude.",
+      "nodes": [
+        {
+          "id": "state-finite",
+          "label": "Original finite singular-window cycle integrals",
+          "definition_ref": {
+            "chapter_id": "ch11",
+            "section_id": "ch11-a-numerical-state-from-the-original-cycles"
+          },
+          "description": "Same singular-pair Gaussian coordinates at every window; transported original cycles and full odd integration."
+        },
+        {
+          "id": "state-normalized",
+          "label": "Normalized numerical state \\(\\omega_\\mu\\)",
+          "definition_ref": {
+            "chapter_id": "ch11",
+            "section_id": "ch11-a-numerical-state-from-the-original-cycles"
+          },
+          "description": "Radon even Gaussian law and full graded Wick moments on the specified observable space."
+        },
+        {
+          "id": "line-finite",
+          "label": "Original finite coefficient action lines and coefficient heat",
+          "definition_ref": {
+            "chapter_id": "ch11",
+            "section_id": "ch11-original-coefficient-heat-and-a-based-local-vacuum-line"
+          },
+          "description": "Reflected fixed-adjoint realization, finite Riesz action blocks and continued density-cycle frames."
+        },
+        {
+          "id": "line-local",
+          "label": "Based local section \\(s_{\\mathrm{fp}}\\) of the vacuum line",
+          "definition_ref": {
+            "chapter_id": "ch11",
+            "section_id": "ch11-original-coefficient-heat-and-a-based-local-vacuum-line"
+          },
+          "description": "Finite shell integration and the original heat finite part retain the base amplitude and connection."
+        },
+        {
+          "id": "state-cap",
+          "label": "State and amplitude prepared by the prescribed filling",
+          "definition_ref": {
+            "chapter_id": "ch17",
+            "section_id": "states-lines-and-caps"
+          },
+          "status": "Open problem",
+          "description": "Independently specified boundary state space, observable comparison, amplitude line, cutting and gluing."
+        }
+      ],
+      "edges": [
+        {
+          "id": "state-limit",
+          "source": "state-finite",
+          "target": "state-normalized",
+          "label": "Normalize and take the proved cycle limit",
+          "kind": "construction",
+          "status": "Theorem",
+          "hypotheses": [
+            "Fixed metric and density; 0<|q|<1, κ≠0, ħ>0.",
+            "Smooth integrable μ with zero normal trace in the stated small inverse neighbourhood; supplied smooth Ward filling Tμ.",
+            "Original coupled finite cycles and the declared test-observable topology."
+          ]
+        },
+        {
+          "id": "line-finite-part",
+          "source": "line-finite",
+          "target": "line-local",
+          "label": "Finite shell maps and the original heat finite part",
+          "kind": "construction",
+          "status": "Theorem",
+          "hypotheses": [
+            "Original reflected weighted realization with the stated spectral gap and C⁴/C¹-small source bounds.",
+            "Higher-seminorm bounds for source derivatives; integrability and smooth Ward filling for action-line statements.",
+            "Local source neighbourhood; original base action integral retained."
+          ]
+        },
+        {
+          "id": "cap-state-comparison",
+          "source": "state-normalized",
+          "target": "state-cap",
+          "label": "Compare normalized observables on a common domain",
+          "kind": "open_comparison",
+          "status": "Open problem",
+          "direction": "undirected"
+        },
+        {
+          "id": "cap-line-comparison",
+          "source": "line-local",
+          "target": "state-cap",
+          "label": "Identify the amplitude line and gluing normalization",
+          "kind": "open_comparison",
+          "status": "Open problem",
+          "direction": "undirected"
+        }
+      ],
+      "equations": [
+        "\\(Z(O)=Z(1)\\,\\omega(O)\\)",
+        "\\(Z_M^{\\mathrm{bulk}}(O)=Z_M^\\partial(r_M(O))\\quad\\text{is the required cap comparison}\\)"
+      ],
+      "prohibitions": [
+        "No map from the normalized state to the vacuum line is asserted.",
+        "Do not merge the two source domains or finite cutoff families.",
+        "The local based line does not assert global holonomy or convergence of a bare infinite determinant product."
+      ]
+    }
+  ]
+}
