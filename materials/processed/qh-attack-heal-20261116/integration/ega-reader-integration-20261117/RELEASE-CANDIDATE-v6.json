@@ -1,0 +1,65 @@
+{
+ "at": "2026-11-16T20:58:46+00:00",
+ "owner": "website owner (foundation session 67e78388, claude5)",
+ "status": "CANDIDATE: automated checks pass; native visual QA of this candidate pending; not cleared for publication",
+ "installed_in_integration": {
+  "foundation_v6": "89670f7c55324badd440778ee166ced8ae3b19b9dda3ece9cb8ebde00f0644ea (INSTALL-foundation-v6.json)",
+  "atlas_g1_g3": "a76ae2866d5c503361d1eb40606a2847b96ad470a1b6985b4ed1349cd6e58be0 (INSTALL-atlas-g1-g3.json)",
+  "reader": "delta 2a, reader.js 9ed283cc\u2026 (unchanged)",
+  "atlas_c5": "atlas.py 084ff331\u2026, atlas.css 48cd985b\u2026 (confirmed installed by the atlas lane)"
+ },
+ "combined": {
+  "path": "/tmp/qh-ega-root-native-20261117/release-v6/combined.html",
+  "sha256": "a55c3103a3667774122ecb3d2044fef9eb44832706ee30ad2f720523aefc4808",
+  "bytes": 14694286,
+  "build_audit": "PASS, 0 TeX errors"
+ },
+ "site": {
+  "index.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v6/index.html",
+   "sha256": "481c4fdec6ddd2eb411383a300e4c86a0239521741181bcf4303ac29e8631e71",
+   "bytes": 3250459
+  },
+  "reference.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v6/reference.html",
+   "sha256": "c8ca9ad2405f396be15c0dd3b644ad6b00df957cefbeec3e13e0bae04bf6d374",
+   "bytes": 3822097
+  },
+  "atlas.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v6/atlas.html",
+   "sha256": "e854a346da47ca18f931a0a265e2ce4dc8ff2104db671520720bd4ac04a561e7",
+   "bytes": 9785424
+  },
+  "reader-index.js": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v6/reader-index.js",
+   "sha256": "ea43fb78ce49016e30b109a5c6e7975680050e033ea23328dccd4a913405d75e",
+   "bytes": 4869595
+  }
+ },
+ "publication_checkout": {
+  "path": "/Users/raeez/www-worktrees/2026-11-17-qh-publication",
+  "staged_uncommitted": {
+   "index.html": "481c4fdec6ddd2eb411383a300e4c86a0239521741181bcf4303ac29e8631e71",
+   "reference.html": "c8ca9ad2405f396be15c0dd3b644ad6b00df957cefbeec3e13e0bae04bf6d374",
+   "atlas.html": "e854a346da47ca18f931a0a265e2ce4dc8ff2104db671520720bd4ac04a561e7",
+   "reader-index.js": "ea43fb78ce49016e30b109a5c6e7975680050e033ea23328dccd4a913405d75e",
+   ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "note": ".nojekyll (empty) makes GitHub Pages serve the files as they are; no commit, no push"
+ },
+ "checks": {
+  "split": "12 of 12 (split-checks.cjs)",
+  "page": "19 of 19 on index.html (reader.test.cjs --page)",
+  "index": "6,085 units (reader-index.cjs)",
+  "public_files": {
+   "private_or_attribution_hits": 0,
+   "local_href_src_unresolved": 0,
+   "external_addresses": "3: the canonical link of each page (publication metadata)",
+   "note": "2,444 entries of the reader-pages map for atlas.html are data-edge-id values, not element ids (splitter pattern \\bid=); no link points at them"
+  }
+ },
+ "qa_harness": {
+  "check": "/tmp/qh-ega-root-native-20261117/site/check-release-v6.html?width=375&chapter=<id>",
+  "measure": "/tmp/qh-ega-root-native-20261117/site/measure-release-v6.html?width=<w>&page=<index|reference|atlas>&chapter=<id>"
+ }
+}

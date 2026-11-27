@@ -1,0 +1,45 @@
+{
+ "files": {
+  "index.html": {
+   "sha256": "481c4fdec6ddd2eb411383a300e4c86a0239521741181bcf4303ac29e8631e71",
+   "bytes": 3250459,
+   "private_or_attribution_hits": []
+  },
+  "reference.html": {
+   "sha256": "c8ca9ad2405f396be15c0dd3b644ad6b00df957cefbeec3e13e0bae04bf6d374",
+   "bytes": 3822097,
+   "private_or_attribution_hits": []
+  },
+  "atlas.html": {
+   "sha256": "e854a346da47ca18f931a0a265e2ce4dc8ff2104db671520720bd4ac04a561e7",
+   "bytes": 9785424,
+   "private_or_attribution_hits": []
+  },
+  "reader-index.js": {
+   "sha256": "ea43fb78ce49016e30b109a5c6e7975680050e033ea23328dccd4a913405d75e",
+   "bytes": 4869595,
+   "private_or_attribution_hits": []
+  }
+ },
+ "links": {
+  "local_links_checked": 28764,
+  "bad_local_links": [
+   {
+    "page": "index.html",
+    "link": "reader-pages map: atlas.html",
+    "why": "2444 ids missing, e.g. ['native-edge-root-to-global', 'native-edge-marked-to-global', 'native-edge-root-to-pure']"
+   },
+   {
+    "page": "reference.html",
+    "link": "reader-pages map: atlas.html",
+    "why": "2444 ids missing, e.g. ['native-edge-root-to-global', 'native-edge-marked-to-global', 'native-edge-root-to-pure']"
+   },
+   {
+    "page": "atlas.html",
+    "link": "reader-pages map: atlas.html",
+    "why": "2444 ids missing, e.g. ['native-edge-root-to-global', 'native-edge-marked-to-global', 'native-edge-root-to-pure']"
+   }
+  ],
+  "external_addresses": 3
+ }
+}
