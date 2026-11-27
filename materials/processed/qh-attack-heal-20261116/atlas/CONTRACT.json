@@ -1,0 +1,136 @@
+{
+  "contract": "qh-atlas-module",
+  "lane": "atlas",
+  "state": "final files frozen for root (INTEGRATION.md lists sha256); verified on composed/c18-fixture (synthetic fixture, audit PASS) and composed/c18-baseline1120 (the 11:20 atlas as a review and layout baseline only, not the final tracker content; its audit rejects content findings that are the content owner's), each built with the foundation and interaction files current at composition time (MANIFEST.json). The final content payload is still to come; root composes and runs integration/run_checks.sh on it.",
+  "owned_files": [
+    "compiler/quantum-holography-status/atlas.py",
+    "compiler/quantum-holography-status/atlas.css",
+    "compiler/quantum-holography-status/atlas.js",
+    "compiler/quantum-holography-status/tests/test_atlas.py",
+    "compiler/quantum-holography-status/tests/atlas.test.cjs",
+    "compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json"
+  ],
+  "module_api": {
+    "entry": "render(data, ctx) -> {'html', 'title', 'kicker', 'nav_label', 'css', 'js', 'problems'}. A structural error (shape, type, reference) gives {'html': '', 'problems': [...]}: nothing is drawn. A reader finding (the reader rules in a text, an unknown key, a question id the page does not have) is returned in problems with the html: the build fails, and a draft (audit/rejected.html) still draws the atlas from the fields it knows",
+    "called_by": "foundation status.Build.atlas(): loads atlas.py by path, passes json of folder/atlas.json and AtlasContext(self), after every other section is built; wraps html in <section id=atlas class='section wide atlas' data-atlas-mount>",
+    "ctx_used": [
+      "rich(text, terms): glossary buttons on (TERMS = True) in statements, hypotheses and plain text, never inside a link; the two formula box classes are renamed atlas-math-display and atlas-math-long",
+      "anchor_for(statement id) -> '#s-...' or None (statementRef)",
+      "ident(question id) and anchors: a question id links to '#q-' + ident(id) only when that anchor is in ctx.anchors",
+      "anchors (an atlas id already on the page, or used twice by the atlas, is a problem)",
+      "labels (page.json: 'atlas', 'atlas_kicker', 'nav_atlas' and any 'atlas_<key>' replace the interface words; every word is checked with the reader rules)",
+      "mark(legacy code): the key shows the page's mark for the page status of each atlas status (PAGE_STATUS, the status-language ruling)"
+    ],
+    "ctx_not_used": [
+      "mark for the atlas's own statuses (the atlas draws its squares)"
+    ],
+    "also_reads": "audit.FORBIDDEN (module constant, read only) to check every string and id before rendering",
+    "assets": "css = atlas.css (placed by foundation after status.css, before status-print.css); js = atlas.js (its own <script> after status.js); neither contains </script>, url() other than #fragment, a network call, a file name or a page forbidden word"
+  },
+  "data": {
+    "schema": "programme-scientific-atlas-public/v1: top level schema, domains, claims, edges, comparisons, readingPaths, optional asOf (read, never shown). Optional fields: domains[].conventions, domains[].relatedQuestionIds, claims[].sourceLabel, claims[].comparisonIds, claims[].statementRef, comparisons[].questionId, comparisons[].relatedQuestionIds, readingPaths[].note",
+    "unknown_keys": "a reader finding at every level: the build fails and names it; nothing of it is shown",
+    "rules": [
+      "ids: ^[a-z0-9]+([_-][a-z0-9]+)*$, at most 64, unique per kind, no hash-like run of 7+ hex characters; ids are never shown as text",
+      "every shown string, and every id read with _ and - as spaces: audit.FORBIDDEN; no address of another host, no percentage, no LaTeX label (thm:, prop:, lem:, eq:, ...)",
+      "a conditional claim lists at least one hypothesis, and a scoped negative claim the hypotheses of its scope (reader findings)",
+      "titles unique",
+      "edges: existing endpoints, no self edge, no duplicate (source, target, relation); a relation code is words joined by _, - or spaces; each edge keeps its own label, which reads from source to target",
+      "relation types: any number; up to 8 have their own line style; with more, every line is plain and the key says so (each relation is named in both claims' lists)",
+      "comparisons: each listed claim's code matches its list; a claim in one list at most; at least one claim; claim.comparisonIds (optional) must equal the comparisons that list the claim; questionId and relatedQuestionIds (optional) must name questions of the page",
+      "domains: conventions (optional) a list of non-empty strings; relatedQuestionIds (optional) must name questions of the page",
+      "readingPaths: kind editorial_orientation (any stages) or source_bound_dependency_path (two or more stages, each with a claim, every claim of the first stage joined to the second and every later claim joined to the stage before by a recorded edge in either direction); note (optional) shown under the summary",
+      "statementRef (optional): ctx.anchor_for(id) must give the anchor of a statement on the page",
+      "status.code in checked|conditional|scoped_negative|remaining; the visible word is chosen by the code (Established, Conditional, Remaining, Scoped negative); status.label is a display alias, kept and checked but not shown"
+    ],
+    "never_derived": [
+      "no edge from co-occurrence",
+      "no count, ratio, percentage or progress cue",
+      "no status beyond the supplied code and label",
+      "no dependency or proof wording for a path: a path of the second kind is labelled 'Joined by recorded relations' because that is what is checked"
+    ]
+  },
+  "dom_hooks": {
+    "quality_mapping": {
+      "nodes: [data-claim-id] with data-status-code and a visible status label": "article.atlas-claim#atlas-c-<id>[data-claim-id=<id>][data-status-code=<code>][data-domain-id]; visible: chip with the group name and 'Status: <supplied label>'",
+      "claim ids deep-linkable by a stable anchor": "#atlas-c-<id>",
+      "edges: [data-edge-id][data-source][data-target][data-relation]": "on every rendered relation: li.atlas-rel in the source's ul[data-dir=out] and in the target's ul[data-dir=in], path.atlas-edge in the map, path.atlas-hood-edge in the pane diagram (script), li in a path's join list",
+      "paths: [data-path-id][data-path-kind]": "article.atlas-path#atlas-p-<id>[data-path-id][data-path-kind]; editorial ones labelled 'Editorial order' in visible text",
+      "text equivalent": "every relation is a sentence in both claims' lists; the map and the diagram are aria-hidden drawings whose marks are tabindex=-1 links",
+      "data": "fully recoverable from the DOM attributes; no embedded JSON"
+    },
+    "references_not_claims": "index rows tr#atlas-r-<id>[data-claim-ref], map and diagram marks a.atlas-node[data-claim-ref], map domain names a.atlas-track, domain cards article#atlas-d-<id>[data-domain-id], comparisons article#atlas-k-<id>[data-comparison-id], key items [data-key-status] and [data-key-relation][data-key-style], question links a.atlas-question-link[data-question-ref]",
+    "anchors": "parts: atlas-overview (map and key), atlas-domains, atlas-claims (index), atlas-comparisons, atlas-paths, atlas-full; items: atlas-d-, atlas-c-, atlas-k-, atlas-p-, atlas-r-; headings of items: <item id>--h (ids cannot contain --, so a heading id never equals an item id); atlas-map, atlas-index, atlas-key-h, atlas-arrow, atlas-arrow-on",
+    "namespace": "atlas controls and boxes use atlas-* classes; the generic page classes link-btn, anchor, prose and section-intro are reused for a consistent look (none is reserved); no class of the foundation ATLAS_RESERVED_CLASSES appears; .term appears only as the page's glossary button (button.term[data-term]), whose card the interaction script shares with the mount; the renderer's formula boxes are renamed and the page's marks are not used",
+    "words": "interface words of the script travel as text in <template class='atlas-wordlist'> inside the mount (audited and font-subset with the page); no rule styles that class",
+    "search_units": "claims, domain cards, comparisons and paths are offered to the page search as [data-qh-unit][id] with a [data-qh-unit-title] heading; every claim also carries data-qh-unit-status, its page status by the ruling's aliases (checked, conditional, open, refuted form)"
+  },
+  "events_and_address": {
+    "selection": "the address: #atlas-c-<id>. Claim links, map marks, diagram marks, Follow and Previous/Next are ordinary in-page links; the browser makes the history entry; atlas.js follows hashchange and the page's qh:state. atlas.js never calls pushState/replaceState or assigns location",
+    "page anchors": "a link inside the atlas to an id outside the mount is dispatched from the link as qh:navigate {id}; when the page handles it (preventDefault) the click's default is prevented, otherwise the browser follows the link",
+    "unknown claim address": "not claimed (qh:unknown-anchor is not cancelled): the page shows its notice",
+    "keys": "the atlas calls preventDefault for the keys it handles (index Up/Down/Home/End, Escape in the pane, Escape and Down in its filter field); Escape is left to the page while #card is shown",
+    "stored": "nothing; no request",
+    "page search": "a result inside the atlas: the page sets the address and dispatches qh:reveal; for a claim the atlas cancels it, shows the claim in the pane and focuses its heading; other atlas parts are left to the page",
+    "sheet": "below 1000px a closed sheet stays closed until the address changes or the reader selects a claim; it closes when keyboard focus leaves it for the page"
+  },
+  "layout": {
+    "no script and print": "one column: key, map, domains, index, comparisons, paths, then every claim in full (#atlas-full)",
+    "script, >= 1000px": "#atlas-full is a sticky pane beside the atlas while it shows the selected claim, its diagram and its relation lists; with nothing selected the atlas has the full width",
+    "script, < 1000px": "#atlas-full becomes a sheet at the foot of the window while a claim is selected; Close and Escape hide it without changing the address",
+    "print": "pane, filters, diagram, path controls hidden; every claim, every index row (filter ignored), domains, comparisons and paths printed; #atlas starts a page",
+    "order": "key, then the map of every claim and relation, domains, index of claims, comparisons in the atlas, reading paths, every claim in full; each part opens with the question it answers",
+    "proportion": "one rhythm unit, the page's line (1.55 times the text on screen, 1.42 in print), and its quarter, half and one and a half for every space between blocks; headings at the page's weight 600 in sizes 1.3 / 1.16 / 1.08 by level; at 1000px and wider the atlas and the pane share the width 1.618 : 1; the map keeps its own size on screen (13px numbers; it scrolls in its box), a long domain runs over several columns of marks, and in print the map is fitted to the page reaching 13mm into each margin; an index of more than forty claims scrolls in its own box on screen with its head in view"
+  },
+  "design_choices_for_root": [
+    "Glossary buttons (RC26, A3-RT-04): resolved by foundation, whose status.py no longer reserves the classes ctx.rich emits; atlas.py sets TERMS = True. An integration tree with an older foundation status.py that still reserves .term fails its build and names the class; then either update foundation or set TERMS = False (glossary definitions are then lost inside the atlas).",
+    "Placement and proportion at real scale (A3-RT-05): the atlas section comes after #status and before #results (foundation's order). At the 11:20 baseline's scale (503 claims) the atlas section is 3.5 MB of a 5.5 MB page without fonts and lists every claim in the index (in its own scroll box on screen) and in full (the pane on screen, every claim in print). Root decides whether the atlas follows the principal results and whether its claims in full print as an appendix.",
+    "Two 'Comparisons' (A2-RT-01): the page's nav 'Comparisons' goes to #frontier, 'The remaining comparisons' (foundation), and the atlas part is 'Comparisons in the atlas' (#atlas-comparisons); the atlas status word 'Remaining' is glossed 'Not settled: a comparison that remains to be made'. The content owner links an atlas comparison to its question on the page with comparisons[].questionId (shown as 'The question on this page:'), and decides whether the atlas's Remaining and the page's remaining comparisons are one vocabulary.",
+    "Status definitions (A2-RT-01, A2-IN-06): the key's four glosses use the contract's words; 'Conditional' is glossed as an implication with at least one hypothesis not established, to agree with the page key. The content owner confirms or replaces them (page.json atlas_gloss_<code>), and decides whether the atlas's statuses are the page's (one mark per word across the page) or a separate vocabulary (the present design: squares and an explicit key sentence).",
+    "Back after a row toggle: the page replaces the current history entry when a row opens, so Back cannot return to an atlas selection made before the toggle (observed in jsdom); the atlas may not keep state in history.state.",
+    "The tally 'Statements on this page' counts content.json statements only, not atlas claims.",
+    "Which relation codes are dependencies is not in the schema; until the content owner supplies it, a path is said to be joined by recorded relations.",
+    "statementRef links a claim to a statement of the page; showing that statement's own status beside the link needs a context capability (for example ctx.status_of(id)) from foundation.",
+    "A malformed atlas.json raises in foundation status.py (json.loads outside a try): a traceback instead of an audit failure.",
+    "The builder does not set SOURCE_DATE_EPOCH, so font subsets embed the build time; builds are reproducible only when the caller sets it.",
+    "asOf is read and never shown. A referee proposes 'As of <date>' in the atlas head when asOf differs from the page's date; the page's own date line is foundation's, and root decides whether the atlas states its own cut.",
+    "The 11:20 atlas is a review and layout baseline only. Its content findings (notation outside TeX read as identifiers or version tags; one question id the page does not have) are listed in LEDGER.md for the content owner; nothing of its text was edited.",
+    "Status labels (A4-RT-03): the 11:20 baseline gives each status several labels (for example Checked; Checked conclusion; Checked in stated scope; Checked within scope). The atlas shows each claim's own label in its card and in the index, and the filter reads it; whether the labels mark different standings is the content owner's to say (integration/completeness.py lists the variants as content findings).",
+    "Question links without the script (RD5): their static text is the interface phrase 'a question on this page'; the script puts in the question's heading. A foundation capability (for example ctx.title_of(anchor)) would let the server write the heading, for no-script reading and print.",
+    "Drafts (A4-IN-04): a draft (audit/rejected.html, or the page under --allow-draft) draws atlas text that fails the reader rules, as the page's own content does under --allow-draft. Root's draft policy decides whether such strings should be masked in drafts.",
+    "Atlas glossary terms are not described (A4-IN-07): the interaction script's description pass skips the mount, so an atlas .term[data-term] gets no aria-describedby. Owner: interaction.",
+    "The map shows claim numbers, not names (A3-RT-01, the principal's map rule V18: 'small labels beside their nodes, a readable key'): at real scale (503 claims) names beside every mark do not fit; names are given on hover, in the selected claim's pane and in the index beside the same numbers. A labelled map (larger, or labels for the selected claim and its relations) needs a page image to judge."
+  ],
+  "CONTRACT-CHANGES": [
+    "section(build, folder) and the status.py patch replaced by render(data, ctx) for the foundation mount",
+    "data-claim/data-atlas-status/data-edge/data-path replaced by the quality vocabulary (data-claim-id, data-status-code, data-edge-id, data-source, data-target, data-relation, data-path-id, data-path-kind)",
+    "history writes removed: native in-page links and qh:navigate",
+    "classes mark and filter replaced by atlas-mark and atlas-chip-btn; the word key js_prompt renamed js_empty",
+    "the claims in full move to a last part #atlas-full, which is also the pane",
+    "comparisonIds optional (derived when absent); conditional claims require hypotheses; one label per status code; titles unique; dependency paths joined claim by claim",
+    "map and key moved to the first part (atlas-overview); part leads added",
+    "derived heading ids use --h; an id used twice is a problem",
+    "data-qh-unit search units and qh:reveal handling",
+    "glossary buttons off (TERMS) and formula boxes renamed, for the foundation reserved classes",
+    "eight line styles; more than eight relation types is a problem; interface words checked with the reader rules",
+    "claim number read as 'No. n'; status chip before the number; joined-path rail without arrows; stage heading before its joins",
+    "one status label per code and one label per relation dropped: each claim and edge shows its own label (the 11:20 baseline labels claim by claim)",
+    "relation codes may be words joined by _, - or spaces; any number of relation types (plain lines beyond eight)",
+    "the id-part rule for ids dropped (ids are never shown); the label rule reads LaTeX label prefixes only",
+    "optional fields conventions, relatedQuestionIds, questionId and path note shown; question links only to the page's #q- anchors",
+    "structural errors draw nothing; reader findings and unknown keys fail the build but a draft still draws",
+    "key before the map; map rebuilt for scale (domain columns, 13px numbers, names above and below); long index scroll box; headings at weight 600",
+    "classes atlas-lane* renamed atlas-track*, template atlas-words renamed atlas-wordlist, word key placeholder renamed field-hint",
+    "glossary buttons restored (TERMS = True) once foundation exempted the classes ctx.rich emits",
+    "SUPPLIED_CLASSES: one list of the classes that carry the content owner's text, read by the gate scans and the tests",
+    "conventions placed right after the domain summary (anchor atlas-d-<id>--conv), and each claim of the domain links to them",
+    "the index shows each claim's own status label; the filter reads status labels; marks are named by their group, never by a supplied label",
+    "with more than eight relation types, the key lists every relation in a disclosure; the map tip names the relations of the claim pointed at",
+    "only the claim shown in the pane is unhidden (hidden attribute), so no focus can land in a claim the pane does not show; print shows every claim",
+    "on a wide screen, opening or closing the pane keeps the element the reader acted on in place",
+    "place keeping in both directions: when the pane closes as the address leaves the atlas, the focused element or the address target outside the atlas is kept in place",
+    "place keeping chosen by direction (opening: the acted-on or focused element in the atlas column; closing: the address target, then the focused element, outside the atlas), only among elements in view that move with the page",
+    "refuted-form delta: Scoped negative in the page's refuted-form colour; the key shows the page's matching statement status (mark and label from ctx); a scoped negative claim must list the hypotheses of its scope",
+    "status-language ruling: words by stored code; per-record labels not shown; every claim offered to the page search with its alias; the page's mark beside each status in the key; a page that cannot show a mark is a named finding"
+  ]
+}
