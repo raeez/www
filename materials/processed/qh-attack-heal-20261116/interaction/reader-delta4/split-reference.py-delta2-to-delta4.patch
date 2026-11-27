@@ -1,0 +1,35 @@
+--- a/tools/split-reference.py (reader-delta2)
++++ b/tools/split-reference.py (reader-delta4)
+@@ -23,6 +23,8 @@
+ import re
+ import sys
+ 
++# An element's own id attribute only: not data-edge-id="…" or any other attribute whose name ends in "id".
++ID_ATTR = r'(?<![\w-])id="([^"]+)"'
+ READER = '/* The reader of the monograph.'
+ ATLAS = '/* The research atlas'
+ STATUS_MARK = 'Beside the monograph reader ([data-reader]) this script keeps'
+@@ -51,12 +53,12 @@
+ 
+ 
+ def ids_in(t):
+-    return re.findall(r'\bid="([^"]+)"', t)
++    return re.findall(ID_ATTR, t)
+ 
+ 
+ def heading_text(sec):
+     m = re.search(r'aria-labelledby="([^"]+)"', sec)
+-    h = re.search(r'<(h[1-6])\b[^>]*\bid="%s"[^>]*>(.*?)</\1>' % re.escape(m.group(1)), sec, re.S) if m else None
++    h = re.search(r'<(h[1-6])\b[^>]*(?<![\w-])id="%s"[^>]*>(.*?)</\1>' % re.escape(m.group(1)), sec, re.S) if m else None
+     if not h:
+         h = re.search(r'<(h[1-6])\b[^>]*>(.*?)</\1>', sec, re.S)
+     return html.unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', h.group(2)))).strip() if h else ''
+@@ -104,7 +106,7 @@
+     secs = [(a, b, tag) for a, b, tag in top_sections(s, m1, me) if 'data-reference' in tag]
+     parts = {'reference.html': [], 'atlas.html': []}
+     for a, b, tag in secs:
+-        idm = re.search(r'\bid="([^"]+)"', tag)
++        idm = re.search(ID_ATTR, tag)
+         pid = idm.group(1) if idm else ''
+         if not pid or pid in keep:
+             continue
