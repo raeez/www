@@ -1,0 +1,60 @@
+{
+  "schema": "qh-mount-release/1",
+  "status": "READY",
+  "mount": "quantum-holography",
+  "source_roots": [
+    "raeez.com",
+    "research.momentum.inc"
+  ],
+  "pure_inputs_immutable": true,
+  "files": {
+    "EXPECTED-HOSTED-core.json": {
+      "sha256": "4ce81d628d3aa3e46f59787524b7530bf14bffd6ad8343245b28e3e1c224480b",
+      "bytes": 517
+    },
+    "EXPECTED-HOSTED-math-notices.json": {
+      "sha256": "7e2d2749d43c8280b46764b6d0330fc2a1a6b7679596f3d7929160ebbe95e966",
+      "bytes": 517
+    },
+    "HEADERS.json": {
+      "sha256": "0622d7fbb9e71e000e11f01f8343a86bec35526a20d2dcde028a8af7e5ece58d",
+      "bytes": 3706
+    },
+    "MOUNTED-REPRODUCTION.json": {
+      "sha256": "17cb6d55692098ad7f7c6df2ba32502484a476de87b3fc8a1ccbbac7995f879e",
+      "bytes": 3910
+    },
+    "ROLES.json": {
+      "sha256": "fe0b50ec675004d7bee59af148fdd6986f3c7a556a7beab70614e23753354938",
+      "bytes": 3388
+    },
+    "headers/raeez_com-258866838a2ed947.html": {
+      "sha256": "258866838a2ed947768c3005de2ca0cb0ffa0234a030b5dac1606e8dd6ac3637",
+      "bytes": 732
+    },
+    "headers/standalone-6f8bbbda5771af4e.html": {
+      "sha256": "6f8bbbda5771af4ef8a38be917aa9d1b3700811a0a1bc9aa58da4469d805e4fb",
+      "bytes": 203
+    },
+    "host-export.py": {
+      "sha256": "71b84d729a39af31b44e5070d02aba84466e365e1df44b0837c7d9087df86b22",
+      "bytes": 3941
+    },
+    "host_issue.py": {
+      "sha256": "a72290184c2095406ff468028cae699580d047a73a1df16f3e1d833c0b61a7d8",
+      "bytes": 6537
+    },
+    "install-native.py": {
+      "sha256": "a19cbfb1c2f87d7885417a799f5fdbf783448a9f47c9f87dae8d8b5e6c0ae312",
+      "bytes": 14679
+    },
+    "record-official.py": {
+      "sha256": "227f977bd40792a60f0e5d5f37696cfa6ecac65622c6ca3c28093c748a4c5489",
+      "bytes": 1535
+    },
+    "reviewed_io.py": {
+      "sha256": "efe444165d76af582a1145c2beb79e5a8c3b8bcb10ac1ff14a4047a89f11b20c",
+      "bytes": 10216
+    }
+  }
+}

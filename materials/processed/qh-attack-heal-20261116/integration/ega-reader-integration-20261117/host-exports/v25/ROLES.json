@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "standalone_host": "https://research.momentum.inc/quantum-holography/",
+  "mounted_host": "https://raeez.com/quantum-holography/",
+  "variants": {
+    "core": {
+      "signed_pure_release": {
+        "sha256": "9e200b3fd0fbe6b2d87ae64eccd4d9457fe8aab01d7624b86dc3b07f2664f4fc",
+        "bytes": 13365
+      },
+      "clean": {
+        "index.html": {
+          "sha256": "dc4e742b731677aa35569d108ce0d99880482b2166c1f42f524128c46da7321d",
+          "bytes": 5239861
+        },
+        "reference.html": {
+          "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701",
+          "bytes": 5071411
+        },
+        "atlas.html": {
+          "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594",
+          "bytes": 11472123
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "official": {
+        "index.html": {
+          "sha256": "4e1e32c48ddb1d71c7d442bacaab1b22d9b947718934a18e35418a6aaefa12b6",
+          "bytes": 5240390
+        },
+        "reference.html": {
+          "sha256": "e81860eb1d2514526c96d2d528254622d2dccbf006677170867b6bc05755fa5d",
+          "bytes": 5071940
+        },
+        "atlas.html": {
+          "sha256": "44e521b85c83b5e829cab7fab17353a31afe9236fd97fff4e56ea26aea528526",
+          "bytes": 11472652
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "duplicate_rejections": 6
+    },
+    "math-notices": {
+      "signed_pure_release": {
+        "sha256": "0dfd7b36d229a37a648ee928f26d6cb3c4121571c1930916155c21a11ae287e5",
+        "bytes": 14641
+      },
+      "clean": {
+        "index.html": {
+          "sha256": "4b877ff7450746584f1e0bf247e3bf682a1bb6b3d60fca959338f23484169e8a",
+          "bytes": 5240692
+        },
+        "reference.html": {
+          "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701",
+          "bytes": 5071411
+        },
+        "atlas.html": {
+          "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594",
+          "bytes": 11472123
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "official": {
+        "index.html": {
+          "sha256": "86dc4735f91e4b6d0e92a505b54f7f3f97e9b24839db7a5a0a89962ab16d6bea",
+          "bytes": 5241221
+        },
+        "reference.html": {
+          "sha256": "e81860eb1d2514526c96d2d528254622d2dccbf006677170867b6bc05755fa5d",
+          "bytes": 5071940
+        },
+        "atlas.html": {
+          "sha256": "44e521b85c83b5e829cab7fab17353a31afe9236fd97fff4e56ea26aea528526",
+          "bytes": 11472652
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "duplicate_rejections": 6
+    }
+  },
+  "normal_host_argv": [
+    "python3",
+    "-B",
+    "host-exports/v25/host-export.py",
+    "NORMAL_EGA_BUILD/release",
+    "RAEEZ_COM_OUTPUT"
+  ],
+  "frozen_host_option": [
+    "--expected",
+    "host-exports/v25/EXPECTED-HOSTED-math-notices.json"
+  ]
+}

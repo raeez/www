@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "site": "https://raeez.com/quantum-holography/",
+  "header_config": {
+    "sha256": "0622d7fbb9e71e000e11f01f8343a86bec35526a20d2dcde028a8af7e5ece58d",
+    "bytes": 3706
+  },
+  "hosted_command": {
+    "sha256": "71b84d729a39af31b44e5070d02aba84466e365e1df44b0837c7d9087df86b22",
+    "bytes": 3941
+  },
+  "previous_real_hosted_and_standalone_recovered_exactly": true,
+  "no_duplicate_analytics": true,
+  "all_body_bytes_identical": true,
+  "variants": {
+    "core": {
+      "pure": {
+        "index.html": {
+          "sha256": "dc4e742b731677aa35569d108ce0d99880482b2166c1f42f524128c46da7321d",
+          "bytes": 5239861
+        },
+        "reference.html": {
+          "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701",
+          "bytes": 5071411
+        },
+        "atlas.html": {
+          "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594",
+          "bytes": 11472123
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "hosted": {
+        "index.html": {
+          "sha256": "4e1e32c48ddb1d71c7d442bacaab1b22d9b947718934a18e35418a6aaefa12b6",
+          "bytes": 5240390
+        },
+        "reference.html": {
+          "sha256": "e81860eb1d2514526c96d2d528254622d2dccbf006677170867b6bc05755fa5d",
+          "bytes": 5071940
+        },
+        "atlas.html": {
+          "sha256": "44e521b85c83b5e829cab7fab17353a31afe9236fd97fff4e56ea26aea528526",
+          "bytes": 11472652
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "actual_normal_source": "/tmp/qh-reader-v25-all-results-20261118/core/normal-corrected",
+      "actual_frozen_source": "/tmp/qh-reader-v25-all-results-20261118/core/frozen-corrected",
+      "normal_mounted": "/private/tmp/qh-reader-v25-all-results-20261118/host-work/exported/core/normal",
+      "frozen_mounted": "/private/tmp/qh-reader-v25-all-results-20261118/host-work/exported/core/frozen"
+    },
+    "math-notices": {
+      "pure": {
+        "index.html": {
+          "sha256": "4b877ff7450746584f1e0bf247e3bf682a1bb6b3d60fca959338f23484169e8a",
+          "bytes": 5240692
+        },
+        "reference.html": {
+          "sha256": "37861db7dac1d57c6cee5cbab2656ef1db13d0a63925473d4ea51b771bf5a701",
+          "bytes": 5071411
+        },
+        "atlas.html": {
+          "sha256": "6c8627f8f2e4343ccb8af687b71d354a4836279eed08d0cde815fd2d60670594",
+          "bytes": 11472123
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "hosted": {
+        "index.html": {
+          "sha256": "86dc4735f91e4b6d0e92a505b54f7f3f97e9b24839db7a5a0a89962ab16d6bea",
+          "bytes": 5241221
+        },
+        "reference.html": {
+          "sha256": "e81860eb1d2514526c96d2d528254622d2dccbf006677170867b6bc05755fa5d",
+          "bytes": 5071940
+        },
+        "atlas.html": {
+          "sha256": "44e521b85c83b5e829cab7fab17353a31afe9236fd97fff4e56ea26aea528526",
+          "bytes": 11472652
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "actual_normal_source": "/tmp/qh-reader-v25-all-results-20261118/math-notices/normal-corrected",
+      "actual_frozen_source": "/private/tmp/qh-reader-v25-all-results-20261118/math-notices/frozen-retry",
+      "normal_mounted": "/private/tmp/qh-reader-v25-all-results-20261118/host-work/exported/math-notices/normal",
+      "frozen_mounted": "/private/tmp/qh-reader-v25-all-results-20261118/host-work/exported/math-notices/frozen"
+    }
+  }
+}
