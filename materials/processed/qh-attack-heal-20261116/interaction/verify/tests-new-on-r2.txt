@@ -1,0 +1,130 @@
+ok    theme: the toggle switches the theme and remembers the choice on this device  (921 ms)
+ok    theme: with storage refused, the page starts and the toggle still works  (829 ms)
+ok    glossary: a term opens its definition card and Escape closes it, returning focus to the term  (840 ms)
+ok    table: a mark opens its scope, and arrow keys, Home and End move between marks  (995 ms)
+ok    deep link: arriving at a statement inside a closed row opens the row  (1155 ms)
+ok    deep link: a statement hidden by ?show= is shown on arrival  (1210 ms)
+ok    print: every disclosure opens for print and returns to the reader's state afterwards  (813 ms)
+ok    search: words from a statement in a closed row find it, and activating the result opens the row and focuses it  (1735 ms)
+ok    no script: every statement, definition and column scope is in the page and none is hidden  (392 ms)
+ok    filter: a row the Show filter leaves without statements says so and offers to show all  (1021 ms)
+ok    deep link: every statement has its own address after the script starts  (845 ms)
+ok    deep link: a result for a statement that had no id gives the address of that statement, and the address reopens it  (2504 ms)
+ok    deep link: an address the page does not have is named, with a search for its words  (3229 ms)
+ok    print: a second print request before the first ends still restores the reader's state  (820 ms)
+ok    atlas: the page does not index, filter or bind what is inside the atlas mount  (1303 ms)
+ok    atlas: qh:navigate reveals a page anchor with history, focus and focus return on Back  (2004 ms)
+ok    search: words read in the lead, the status key and a section introduction are found where they are  (2271 ms)
+ok    search: a counterexample result is shown as false, with its witness as the counterexample  (1180 ms)
+ok    search: a snippet keeps the formulae around the match as formulae  (1291 ms)
+ok    search: the words of a status label and of a note label find the statements that carry them  (1310 ms)
+ok    search: punctuation alone and a single letter search nothing and say so; a single symbol is searched  (2318 ms)
+ok    search: curly quotes and an unclosed quote make a phrase as straight quotes do  (1559 ms)
+ok    search: a word is not found through the name of a TeX command, and a short word must begin a word  (1342 ms)
+ok    search: a TeX query finds the formulae that contain it and names that it matched in a formula  (1193 ms)
+ok    search: a defined term typed in full puts its definition first, and the Part chips count where the matches are  (1168 ms)
+ok    search: the essay title is one result, and the "why it matters" label is not a match  (1335 ms)
+ok    search: a column's scope in a row is its own result, naming the column and its status  (1243 ms)
+ok    search: a column definition result names the column definitions as its place  (1481 ms)
+ok    search: the count is announced once typing pauses, not at every keystroke  (3480 ms)
+ok    search: Enter in the field moves to the first result and leaves the address as it was  (1226 ms)
+ok    search: results are named by title and place and described by the words around the match  (1134 ms)
+ok    search: ArrowDown on the last shown result reaches Show all  (1482 ms)
+ok    table: the table is one stop for the Tab key, and its scroll box is not another  (1353 ms)
+ok    table: the mark in focus lights its row and its column, and moving on moves the light  (972 ms)
+ok    table: each legend entry follows one status across the table, with its count  (1230 ms)
+ok    table: each mark is described by its scope, and no name is read as TeX  (921 ms)
+ok    card: the link to a row whose name has a formula reads as the row name  (1352 ms)
+ok    card: a pinned card closes when focus moves on, so Escape does not send focus back to it  (1092 ms)
+ok    filter: a link to a statement the Show filter hides shows it and keeps the filter and the address  (1233 ms)
+ok    filter: turning the Show filter on and off returns the rows to the reader's own state  (906 ms)
+ok    filter: focus inside a statement that the filter hides moves to its row  (938 ms)
+ok    address: unknown filter values are named and dropped, a one-letter query explains itself, #find-q opens the search  (4028 ms)
+ok    address: a link to the address already shown reopens the row it names  (1217 ms)
+ok    history: opening a row from a section address keeps that address for Back  (1200 ms)
+ok    history: Back after a search result returns focus to that result and closes what the result opened  (2551 ms)
+ok    history: two results in one row are two entries, each with its own address  (1869 ms)
+ok    history: a search typed just before Back is not written into the entry Back returns to  (1927 ms)
+ok    history: a search typed just before following a link stays with the entry it was typed in  (1947 ms)
+ok    history: a result hidden by the Show filter keeps the filter in the entry left behind  (2234 ms)
+ok    history: a tally link is a new entry; Back returns to the page as it was  (1545 ms)
+ok    history: Back after a link in the bar returns focus to that link, also when a search has changed the page above  (1405 ms)
+ok    history: following a term's card to the glossary and going Back returns focus to the term  (1009 ms)
+ok    reading: open disclosures are kept in the history entry and restored on reload  (2113 ms)
+ok    reading: the place where reading stopped is offered on a later visit, and Continue goes there  (3549 ms)
+ok    robustness: a malformed row in the page does not break search or the address target  (1398 ms)
+ok    atlas: page listeners leave the atlas's own links, keys and focus alone  (1339 ms)
+ok    atlas: an unknown address the atlas claims shows no notice  (921 ms)
+ok    atlas: text the atlas offers is searchable, and a result asks the atlas to show it  (1692 ms)
+FAIL  search: words typed in the order they are written put the results that hold them together first
+      the first result for "the real Gaussian and" holds it
+ok    search: each group of chips is one stop for the Tab key, with arrow keys inside  (1013 ms)
+ok    script-only controls served hidden are shown by the script  (740 ms)
+ok    performance: formula boxes are measured as they come near the screen, not all at start-up  (1144 ms)
+FAIL  filter: rows the reader opens or closes while the filter is on stay so, and a row's own Show all keeps it open
+      a row the reader closed while filtered stays closed
+      
+      true !== false
+      
+FAIL  filter: each tally link lists exactly as many results as the tally counts
+      checked: the tally counts 197, the list says "229 matches"
+FAIL  history: a search typed just before following a link inside the atlas stays with the entry it was typed in
+      the field keeps the search
+      + actual - expected
+      
+      + ''
+      - 'zqxjv lorquim'
+      
+FAIL  deep link: an address the page does not have, reached during a visit, is named in view with focus on its words
+      focus is on the notice
+FAIL  history: Forward to the entry of a result puts focus on what the result led to
+      Forward returns focus to the statement
+      + actual - expected
+      
+      + HTMLAnchorElement {}
+      - HTMLElement {
+      -   Symbol(SameObject caches): [Object: null prototype] {
+FAIL  table: what the keys do inside the table is said beside it and describes its region
+      the words are on the page
+FAIL  table: a legend switch says what it does, and every count is a word of its own in its control's name
+      status and count apart: Proved and independently checked32
+FAIL  reading: an offer to continue reading is withdrawn once the reader follows a link elsewhere
+      the offer is gone after a link
+      + actual - expected
+      
+      + 'You were reading “Averaging does not preserve scalar sewing products”. Continue reading Close'
+      - ''
+      
+FAIL  history: Back after reaching a statement the filter hides hides it again in the entry left behind
+      Back hides it again
+      
+      29 !== 30
+      
+FAIL  search: a match in a status or a label is not called a match in a formula
+      Proved and independently checked: no result says "in a formula"
+      
+      39 !== 0
+      
+FAIL  search: the scopes of a row do not come before the results that hold the words themselves
+      Heisenberg: a scope found only by its row's or column's name comes after the results that hold the word
+FAIL  search: a Greek letter's name finds the letter, or the name as a whole word, never words that begin with it
+      mu: Proved and independently checked · 1. A native Koszul interface with collisionsEndpoint co
+FAIL  search: TeX typed into a word, or apart from its argument, finds what the page shows
+      E_3-model finds the statement that shows it
+FAIL  search: a display formula copied into a result keeps its scroll box
+      a display formula sits in a scroll box
+FAIL  table: a mark's name never reads as TeX, and its description is its scope
+      no TeX in "\mathfrak{gl}_N Yangians, free fields and lattice vertex algebras, Algebra and geometry: Proved and independently checked"
+FAIL  atlas: a unit the atlas offers may give its status and place, and the tally still lists the page's own statements
+      the place is said: Domain qwvyxzOffered words lorquim.
+FAIL  search: a broad search shows its results a hundred more at a time
+      Expected values to be strictly equal:
+      
+      584 !== 140
+      
+FAIL  search: one accented letter or a minus sign alone searches nothing and says so
+      é
+      
+      40 !== 0
+      
+80 tests, 19 failed

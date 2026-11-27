@@ -1,0 +1,20 @@
+SKIP E2 hashes: the content is not the review baseline's, by design (--same-content)
+PASS E2 statements identical: 295 baseline, 295 candidate
+PASS E2 cell statuses identical: 160 cells
+PASS E2 tally identical: []
+PASS E3 no duplicate static id
+PASS E3 baseline ids kept: 2893 ids; missing: 
+PASS E3 ids kept from ids-origin-master.txt: 384 ids; missing: 
+PASS E3 in-page links resolve
+PASS E4 CSP identical: src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; font-src data:; img-src data:; ba
+PASS E4 the page carries status.js verbatim: 3 inline scripts: inline script 1 (134 chars), status.js (110916 chars), inline script 3 (41281 chars)
+PASS E4 no network call or string code in inline script 1: []
+PASS E4 no network call or string code in status.js: []
+PASS E4 no network call or string code in inline script 3: []
+PASS E5 vocabulary of inline script 1 (comments and strings): 4 pieces; 
+PASS E5 paths in inline script 1
+PASS E5 vocabulary of status.js (comments and strings): 1174 pieces; 
+PASS E5 paths in status.js
+PASS E5 vocabulary of inline script 3 (comments and strings): 540 pieces; 
+PASS E5 paths in inline script 3
+summary: PASS

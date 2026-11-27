@@ -1,0 +1,116 @@
+ok    theme: the toggle switches the theme and remembers the choice on this device  (7543 ms)
+ok    theme: with storage refused, the page starts and the toggle still works  (7396 ms)
+ok    glossary: a term opens its definition card and Escape closes it, returning focus to the term  (7621 ms)
+ok    table: a mark opens its scope, and arrow keys, Home and End move between marks  (9539 ms)
+ok    deep link: arriving at a statement inside a closed row opens the row  (9724 ms)
+ok    deep link: a statement hidden by ?show= is shown on arrival  (11189 ms)
+ok    print: every disclosure opens for print and returns to the reader's state afterwards  (8949 ms)
+ok    search: words from a statement in a closed row find it, and activating the result opens the row and focuses it  (12690 ms)
+ok    no script: every statement, definition and column scope is in the page and none is hidden  (2203 ms)
+ok    filter: a row the Show filter leaves without statements says so and offers to show all  (10131 ms)
+ok    deep link: every statement has its own address after the script starts  (9010 ms)
+ok    deep link: a result for a statement that had no id gives the address of that statement, and the address reopens it  (20762 ms)
+ok    deep link: an address the page does not have is named, with a search for its words  (26229 ms)
+FAIL  print: a second print request before the first ends still restores the reader's state
+      Expected values to be strictly deep-equal:
+      + actual - expected
+      ... Skipped lines
+      
+        [
+      +   true,
+ok    atlas: the page does not index, filter or bind what is inside the atlas mount  (9521 ms)
+FAIL  atlas: qh:navigate reveals a page anchor with history, focus and focus return on Back
+      Back returns focus to the atlas control
+      + actual - expected
+      
+      + HTMLElement {
+      - HTMLButtonElement {
+          Symbol(SameObject caches): [Object: null prototype] {
+ok    search: words read in the lead, the status key and a section introduction are found where they are  (16855 ms)
+ok    search: a counterexample result is shown as false, with its witness as the counterexample  (9791 ms)
+ok    search: a snippet keeps the formulae around the match as formulae  (11710 ms)
+ok    search: the words of a status label and of a note label find the statements that carry them  (10544 ms)
+ok    search: punctuation alone and a single letter search nothing and say so; a single symbol is searched  (15118 ms)
+ok    search: curly quotes and an unclosed quote make a phrase as straight quotes do  (31633 ms)
+ok    search: a word is not found through the name of a TeX command, and a short word must begin a word  (9652 ms)
+ok    search: a TeX query finds the formulae that contain it and names that it matched in a formula  (9053 ms)
+ok    search: a defined term typed in full puts its definition first, and the Part chips count where the matches are  (9240 ms)
+ok    search: the essay title is one result, and the "why it matters" label is not a match  (9367 ms)
+ok    search: a column's scope in a row is its own result, naming the column and its status  (8860 ms)
+ok    search: a column definition result names the column definitions as its place  (8910 ms)
+ok    search: the count is announced once typing pauses, not at every keystroke  (10681 ms)
+ok    search: Enter in the field moves to the first result and leaves the address as it was  (8723 ms)
+ok    search: results are named by title and place and described by the words around the match  (8999 ms)
+ok    search: ArrowDown on the last shown result reaches Show all  (8671 ms)
+ok    table: the table is one stop for the Tab key, and its scroll box is not another  (9342 ms)
+ok    table: the mark in focus lights its row and its column, and moving on moves the light  (8271 ms)
+ok    table: each legend entry follows one status across the table, with its count  (10292 ms)
+FAIL  table: each mark is described by its scope, and no name is read as TeX
+      definition of RTT ghosts
+ok    card: the link to a row whose name has a formula reads as the row name  (9108 ms)
+ok    card: a pinned card closes when focus moves on, so Escape does not send focus back to it  (8286 ms)
+ok    filter: a link to a statement the Show filter hides shows it and keeps the filter and the address  (11369 ms)
+ok    filter: turning the Show filter on and off returns the rows to the reader's own state  (8566 ms)
+ok    filter: focus inside a statement that the filter hides moves to its row  (9327 ms)
+ok    address: unknown filter values are named and dropped, a one-letter query explains itself, #find-q opens the search  (37929 ms)
+
+<--- Last few GCs --->
+
+[86898:0x72240c000]   508067 ms: Scavenge (during sweeping) 4080.7 (4098.3) -> 4075.7 (4100.3) MB, pooled: 0.0 MB, 6.55 / 0.00 ms (average mu = 0.242, current mu = 0.187) allocation failure; 
+[86898:0x72240c000]   508741 ms: Mark-Compact (reduce) 4084.9 (4102.8) -> 4076.3 (4087.5) MB, pooled: 0.0 MB, 54.01 / 0.00 ms (+ 531.5 ms in 144 steps since start of marking, biggest step 5.1 ms, walltime since start of marking 609 ms) (average mu = 0.225
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0x106aed8ac node::OOMErrorHandler(char const*, v8::OOMDetails const&) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+ 2: 0x106c95618 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+ 3: 0x106c955d0 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+ 4: 0x106e41cf0 v8::internal::Heap::ShouldOptimizeForLoadTime() const [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+ 5: 0x106e4427c v8::internal::Heap::OldGenerationConsumedBytes() const [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+ 6: 0x106e44124 v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector, v8::base::TimeTicks) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+ 7: 0x106e51bc0 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags, v8::internal::PerformHeapLimitCheck)::$_1::operator()() const [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+ 8: 0x106e51864 void heap::base::Stack::SetMarkerAndCallbackImpl<v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags, v8::internal::PerformHeapLimitCheck)::$_1>(heap::base::Stack*, void*, void const*) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+ 9: 0x10746936c PushAllRegistersAndIterateStack [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+10: 0x106e40470 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags, v8::internal::PerformHeapLimitCheck) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+11: 0x106dd0270 v8::internal::StackGuard::HandleInterrupts(v8::internal::StackGuard::InterruptLevel) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+12: 0x10712cc60 v8::internal::Runtime_StackGuard(int, unsigned long*, v8::internal::Isolate*) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+13: 0x106921474 Builtins_CEntry_Return1_ArgvOnStack_NoBuiltinExit [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+14: 0x106906204 Builtins_SetConstructor [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+15: 0x10687dc4c Builtins_JSBuiltinsConstructStub [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+16: 0x128c924f4 
+17: 0x128956d6c 
+18: 0x128ae5230 
+19: 0x128cf2298 
+20: 0x128c42fb8 
+21: 0x128cf1880 
+22: 0x12889a8f4 
+23: 0x12889ea04 
+24: 0x12889ca7c 
+25: 0x128bc94f8 
+26: 0x1289bb78c 
+27: 0x1289b0b04 
+28: 0x1289b25f0 
+29: 0x1289b8c20 
+30: 0x1289b9a24 
+31: 0x10687da38 Builtins_JSConstructStubGeneric [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+32: 0x128bc428c 
+33: 0x1068815ec Builtins_InterpreterEntryTrampoline [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+34: 0x1289c25d4 
+35: 0x1068bf4c4 Builtins_AsyncFunctionAwaitResolveClosure [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+36: 0x106996058 Builtins_PromiseFulfillReactionJob [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+37: 0x1068ae920 Builtins_RunMicrotasks [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+38: 0x10687e850 Builtins_JSRunMicrotasksEntry [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+39: 0x106dacaac v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+40: 0x106dad15c v8::internal::(anonymous namespace)::InvokeWithTryCatch(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+41: 0x106dad24c v8::internal::Execution::TryRunMicrotasks(v8::internal::Isolate*, v8::internal::MicrotaskQueue*) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+42: 0x106dce79c v8::internal::MicrotaskQueue::RunMicrotasks(v8::internal::Isolate*) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+43: 0x106dce5b8 v8::internal::MicrotaskQueue::PerformCheckpointInternal(v8::Isolate*) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+44: 0x106a58b54 node::InternalCallbackScope::Close() [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+45: 0x106a589d8 node::InternalCallbackScope::~InternalCallbackScope() [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+46: 0x106aa77b8 node::Environment::RunTimers(uv_timer_s*) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+47: 0x10293b728 uv__run_timers [/opt/homebrew/Cellar/libuv/1.51.0/lib/libuv.1.0.0.dylib]
+48: 0x10293eb2c uv_run [/opt/homebrew/Cellar/libuv/1.51.0/lib/libuv.1.0.0.dylib]
+49: 0x106a595c8 node::SpinEventLoopInternal(node::Environment*) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+50: 0x106b187e4 node::NodeMainInstance::Run(node::ExitCode*, node::Environment*) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+51: 0x106b18518 node::NodeMainInstance::Run() [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+52: 0x106ac6754 node::Start(int, char**) [/opt/homebrew/Cellar/node/25.2.1/lib/libnode.141.dylib]
+53: 0x189ef84e4 start [/usr/lib/dyld]

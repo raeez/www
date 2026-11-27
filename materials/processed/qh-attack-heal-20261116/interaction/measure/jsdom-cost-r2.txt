@@ -1,0 +1,13 @@
+{"start":[350.8,401.1,398.1],"firstFocus":[321.8,452.7,344.9],"firstFocusAfterIdle":[0.5,0.7,1.2],"query":{"fusion":[30.1,31.3,26.4],"the":[35.3,34.2,35.2],"virasoro module":[20.6,22.2,19.6],"\"lattice dual\"":[13.4,14,13.9],"\\mathfrak":[39.2,47.9,58.9],"κ":[44.1,46,47.8]}}
+[{"startMs":373.9,"closest":198,"closestMs":1.4,"qsa":49,"qsaMs":74},{"startMs":345.7,"closest":198,"closestMs":0.7,"qsa":49,"qsaMs":65.8},{"startMs":328,"closest":198,"closestMs":0.6,"qsa":49,"qsaMs":60.4}]
+== start-up lookups by selector, candidate-r2/builds/standalone.html, one jsdom run (44,606 elements; jsdom only)
+   51.1 ms   1 x doc [data-atlas-mount]        (first lookup of the run; 25-28 ms when repeated warm)
+   10.8 ms   1 x doc .nav a
+    5.9 ms  20 x el<details> .statement
+    5.5 ms  20 x el<details> .cell-lines > .cell-line
+    4.3 ms   2 x el<section> details.known
+    2.3 ms   1 x el<table> thead button, tbody th a[href], tbody td button
+    1.7 ms   1 x el<table> thead .col-head[data-col]
+    0.9 ms   1 x el<table> td.cell[data-status]
+    0.2 ms   1 x el<nav> a[data-filter]
+    0.1 ms   1 x el<ul> li

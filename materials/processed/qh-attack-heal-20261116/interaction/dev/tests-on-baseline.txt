@@ -1,0 +1,192 @@
+ok    theme: the toggle switches the theme and remembers the choice on this device  (778 ms)
+ok    theme: with storage refused, the page starts and the toggle still works  (657 ms)
+ok    glossary: a term opens its definition card and Escape closes it, returning focus to the term  (678 ms)
+ok    table: a mark opens its scope, and arrow keys, Home and End move between marks  (768 ms)
+ok    deep link: arriving at a statement inside a closed row opens the row  (980 ms)
+ok    deep link: a statement hidden by ?show= is shown on arrival  (1003 ms)
+ok    print: every disclosure opens for print and returns to the reader's state afterwards  (771 ms)
+ok    search: words from a statement in a closed row find it, and activating the result opens the row and focuses it  (1637 ms)
+ok    no script: every statement, definition and column scope is in the page and none is hidden  (362 ms)
+FAIL  filter: a row the Show filter leaves without statements says so and offers to show all
+      the opened row explains why it shows no statement
+FAIL  deep link: every statement has its own address after the script starts
+      statements without an id
+      
+      98 !== 0
+      
+FAIL  deep link: a result for a statement that had no id gives the address of that statement, and the address reopens it
+      the address names the statement, not its row: #row-heisenberg
+FAIL  deep link: an address the page does not have is named, with a search for its words
+      a notice is shown
+FAIL  print: a second print request before the first ends still restores the reader's state
+      Expected values to be strictly deep-equal:
+      + actual - expected
+      
+        [
+      +   true,
+      +   true,
+FAIL  atlas: the page does not index, filter or bind what is inside the atlas mount
+      an atlas chip does not filter the rows
+      
+      30 !== 0
+      
+FAIL  atlas: qh:navigate reveals a page anchor with history, focus and focus return on Back
+      the page handles the request
+      
+      true !== false
+      
+FAIL  search: words read in the lead, the status key and a section introduction are found where they are
+      found "chiral Koszul duality studies" in its own part (Nothing on this page matches.)
+FAIL  search: a counterexample result is shown as false, with its witness as the counterexample
+      the result begins with the page's own label: Proved and independently checked
+FAIL  search: a snippet keeps the formulae around the match as formulae
+      the snippet carries MathML, not flattened symbols
+FAIL  search: the words of a status label and of a note label find the statements that carry them
+      "Open problem" finds 8 of at least 74
+FAIL  search: punctuation alone and a single letter search nothing and say so; a single symbol is searched
+      . lists nothing
+      
+      40 !== 0
+      
+FAIL  search: curly quotes and an unclosed quote make a phrase as straight quotes do
+      curly quotes
+      
+      0 !== 1
+      
+FAIL  search: a word is not found through the name of a TeX command, and a short word must begin a word
+      every result shows the word: Proved and independently checkedAssociative bar–cobar duality with finite arity 
+FAIL  search: a TeX query finds the formulae that contain it and names that it matched in a formula
+      named as a formula match
+FAIL  search: a defined term typed in full puts its definition first, and the Part chips count where the matches are
+      first result is the definition of Actual component group
+      + actual - expected
+      
+      + 'row-k3'
+      - 'term-actual-component-group'
+      
+FAIL  search: the essay title is one result, and the "why it matters" label is not a match
+      one essay result for its title
+      
+      27 !== 1
+      
+FAIL  search: a column's scope in a row is its own result, naming the column and its status
+      the scope line is the result (#)
+FAIL  search: a column definition result names the column definitions as its place
+      Cannot read properties of null (reading 'textContent')
+FAIL  search: the count is announced once typing pauses, not at every keystroke
+      announcements: 10
+FAIL  search: Enter in the field moves to the first result and leaves the address as it was
+      focus on the first result
+      + actual - expected
+      
+      + HTMLElement {
+      +   Symbol(SameObject caches): [Object: null prototype] {
+      +     attributes: NamedNodeMap {},
+FAIL  search: results are named by title and place and described by the words around the match
+      Cannot read properties of null (reading 'split')
+FAIL  search: ArrowDown on the last shown result reaches Show all
+      The expression evaluated to a falsy value:
+      
+        assert.ok(p.d.activeElement.classList.contains('find-more'))
+      
+FAIL  table: the table is one stop for the Tab key, and its scroll box is not another
+      tab stops in the table: 188
+      
+      188 !== 1
+      
+FAIL  table: each mark is described by its scope, and no name is read as TeX
+      scope of Heisenberg, free fields and lattice vertex algebras, Algebra and geometry: Proved and independently checked
+FAIL  card: the link to a row whose name has a formula reads as the row name
+      Expected values to be strictly equal:
+      + actual - expected
+      
+      + 'WW-algebras and quantum Drinfeld–Sokolov reduction'
+      - 'W-algebras and quantum Drinfeld–Sokolov reduction'
+      
+FAIL  card: a pinned card closes when focus moves on, so Escape does not send focus back to it
+      the card now shows the focused head
+FAIL  filter: a link to a statement the Show filter hides shows it and keeps the filter and the address
+      The expression evaluated to a falsy value:
+      
+        assert.ok(t.hasAttribute('data-filter-exempt'))
+      
+FAIL  filter: turning the Show filter on and off returns the rows to the reader's own state
+      Expected values to be strictly deep-equal:
+      + actual - expected
+      
+        [
+      +   3,
+      +   5,
+FAIL  filter: focus inside a statement that the filter hides moves to its row
+      Values have same structure but are not reference-equal:
+      
+      HTMLElement {
+        Symbol(SameObject caches): [Object: null prototype] {
+          attributes: NamedNodeMap {},
+          classList: DOMTokenList {}
+FAIL  address: unknown filter values are named and dropped, a one-letter query explains itself, #find-q opens the search
+      Cannot read properties of null (reading 'textContent')
+FAIL  address: a link to the address already shown reopens the row it names
+      Expected values to be strictly equal:
+      
+      false !== true
+      
+FAIL  history: opening a row from a section address keeps that address for Back
+      Expected values to be strictly equal:
+      
+      '' !== '#examples'
+      
+FAIL  history: Back after a search result returns focus to that result and closes what the result opened
+      focus is back on the result
+      + actual - expected
+      
+      + HTMLElement {
+      +   Symbol(SameObject caches): [Object: null prototype] {
+      +     attributes: NamedNodeMap {},
+ok    history: two results in one row are two entries, each with its own address  (1776 ms)
+FAIL  history: a search typed just before Back is not written into the entry Back returns to
+      https://raeez.com/quantum-holography-tracker.html?q=genus#results
+FAIL  history: a search typed just before following a link stays with the entry it was typed in
+      Expected values to be strictly equal:
+      
+      '' !== 'genus'
+      
+FAIL  history: a result hidden by the Show filter keeps the filter in the entry left behind
+      ?q=%22the+real+Gaussian%22
+FAIL  history: a tally link is a new entry; Back returns to the page as it was
+      Expected values to be strictly equal:
+      
+      2 !== 3
+      
+FAIL  history: Back after a link in the bar returns focus to that link, also when a search has changed the page above
+      Expected "actual" to be reference-equal to "expected":
+      + actual - expected
+      
+      + HTMLInputElement {
+      - HTMLAnchorElement {
+          Symbol(SameObject caches): [Object: null prototype] {
+ok    history: following a term's card to the glossary and going Back returns focus to the term  (911 ms)
+FAIL  reading: open disclosures are kept in the history entry and restored on reload
+      Cannot read properties of null (reading 'qh')
+FAIL  reading: the place where reading stopped is offered on a later visit, and Continue goes there
+      saved: null
+FAIL  robustness: a malformed row in the page does not break search or the address target
+      the target opened
+FAIL  atlas: page listeners leave the atlas's own links, keys and focus alone
+      an atlas link is not turned into a glossary card
+      
+      true !== false
+      
+FAIL  atlas: an unknown address the atlas claims shows no notice
+      Cannot read properties of null (reading 'textContent')
+FAIL  script-only controls served hidden are shown by the script
+      Expected values to be strictly equal:
+      
+      true !== false
+      
+FAIL  performance: formula boxes are measured as they come near the screen, not all at start-up
+      no box is measured at start-up
+      
+      316 !== 0
+      
+57 tests, 46 failed

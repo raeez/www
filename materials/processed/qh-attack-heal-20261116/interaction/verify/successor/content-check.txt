@@ -1,0 +1,23 @@
+PASS C1 no script error while the page starts: 0 error(s)
+PASS C2 statements as served: 295 statements outside atlas mounts
+PASS C2 cells as served: 160 cells
+PASS C2 tally as served
+PASS C3 no id occurs twice: 3400 ids
+PASS C3 addresses kept from baseline-page-ids.txt: 428 ids, 0 missing
+PASS C3 addresses kept from ids-origin-master.txt: 384 ids, 0 missing
+INFO C3 addresses of published-ids-union.txt: 385 of 4714 exist; the others are named on arrival with a search for their words
+PASS C3 every statement has an address: 295 statements, 0 without an address
+INFO C3 addresses equal to the words of their title: 97 of 295 statements (97 served, 0 made by the script). Made from the words, they change when a title does; given as content ids (to keep an earlier address) they stay. integration-check I4b counts the statements without a content id. Examples: s-associative-barcobar-duality-with-finite-arity-filtrations, s-curved-duality-for-universal-affine-and-virasoro-modes, s-the-spectral-bar-comparison-on-augmentation-generated-catego
+PASS C4 in-page links reach an element: 6366 links, 0 broken outside atlas mounts
+INFO C4 links inside atlas mounts to atlas ids that reach nothing: 0
+PASS C4 links from atlas mounts to page addresses reach an element: 0 broken
+INFO C6 atlas mount #atlas: 153116 elements, 198110 words, 808 search units (0 without an id)
+PASS C6 the atlas is rendered: 1 mount(s), 0 empty
+PASS C6 every unit an atlas offers has an address: 0 without an id
+INFO C5 statement units: 295 tried: first 252, 2-5 26, 6-40 11, after 40 6, not found 0, no plain phrase to try 0; found through their question or false claim 47
+INFO C5 scope units: 160 tried: first 140, 2-5 18, 6-40 0, after 40 0, not found 0, no plain phrase to try 2; found through their question or false claim 0
+INFO C5 atlas units: 808 tried: first 530, 2-5 171, 6-40 103, after 40 4, not found 0, no plain phrase to try 0; found through their question or false claim 0
+PASS C5 search finds every unit by its own words: 1263 units tried in 365418 ms (jsdom), 0 not found
+PASS C7 the text of every part is found by its own words: 98 blocks tried in 9 parts, 0 not found
+PASS C1 no script error after the checks: 0 error(s)
+summary: PASS
