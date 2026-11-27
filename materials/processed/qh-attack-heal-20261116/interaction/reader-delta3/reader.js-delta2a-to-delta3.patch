@@ -1,0 +1,260 @@
+--- a/compiler/quantum-holography-status/reader.js
++++ b/compiler/quantum-holography-status/reader.js
+@@ -96,6 +96,13 @@
+     'too-short': 'Type at least two letters or digits.',
+     'more-in': '{k} more in {where}',
+     'in-formula': 'in a formula',
++    'kind-chapter': 'Chapter',
++    'kind-section': 'Section',
++    'kind-text': 'Passage',
++    'kind-figure': 'Figure',
++    'kind-gloss': 'Glossary entry',
++    'kind-unit': 'Atlas entry',
++    'kind-heading': 'Heading',
+     'close': 'Close',
+     'go-to': 'Go to {where}',
+     'unknown': 'This book has no place with the address {address}.',
+@@ -660,7 +667,7 @@
+     } else if (view === 'reference') {
+       posPart.textContent = '';
+       posChapter.textContent = word('reference');
+-      posTitle.textContent = headingText(referenceHeading(current));
++      posTitle.textContent = partLabel(current.id);
+       posSection.textContent = '';
+       var back = lastReading && lastReading.isConnected ? lastReading : null;
+       var backSection = back && lastReadingSection && back.contains(lastReadingSection) ? lastReadingSection : null;
+@@ -1532,6 +1539,16 @@
+   var DISPLAY = '.math-display, math[display="block"]';
+   var NOT_TEXT = ENV + ', figure[data-figure], [data-prerequisites], [data-chapter-kicker], [data-chapter-end], ' +
+                  'nav, h1, h2, h3, h4, h5, h6, [data-block-title], .reader-notices, script, style, template, [data-reader-skip]';
++  /* A block whose only words are links to places of this page (an entry of a chapter's own contents) is navigation,
++     like a nav list; the places it links to are found as themselves. */
++  function linkOnly(b) {
++    var links = all('a[href^="#"]', b);
++    if (!links.length) return false;
++    if (!links.every(function (a) { return !!doc.getElementById(decode(a.getAttribute('href').slice(1))); })) return false;
++    var rest = b.cloneNode(true);
++    all('a[href^="#"]', rest).forEach(function (n) { n.parentNode.removeChild(n); });
++    return !textOf(rest).replace(/[\s·,;:.–—-]+/g, '');
++  }
+   function textBlocks(scope, extraSkip) {
+     var skip = NOT_TEXT + (extraSkip ? ', ' + extraSkip : '');
+     var list = all(STRUCT + ', ' + DISPLAY, scope).filter(function (b) {
+@@ -1544,13 +1561,13 @@
+     return list;
+   }
+   function addUnit(list, el, o) {
+-    var titleText = o.titleEl ? textOf(o.titleEl) : (o.title || '');
++    var titleText = o.titleEl ? headingText(o.titleEl) : (o.title || ''); /* a number set apart stays apart from the words */
+     var bodyEl = o.bodyEl || el;
+     var body = o.body != null ? o.body : textOf(bodyEl, o.skip);
+     var context = o.context || '';
+     list.push({
+       el: el, anchor: o.anchor || el, group: o.group, kind: o.kind, titleEl: o.titleEl || null, title: titleText, body: body,
+-      name: o.name ? fold(o.name) : '', context: context, where: o.where || '', skip: o.skip || null, bodyEl: o.bodyEl || null,
++      name: o.name ? fold(o.name) : '', context: context, where: o.where || '', whereEl: o.whereEl || null, skip: o.skip || null, bodyEl: o.bodyEl || null,
+       ft: fold(titleText), fb: fold(body), fc: fold(context), keys: titleKeys(fold(titleText)),
+       defs: o.defs || [],
+       ro: (titleText + ' ' + body).toLowerCase(), raw: (titleText + ' ' + context + ' ' + body).toLowerCase(),
+@@ -1599,6 +1616,10 @@
+     var s = sectionOf(b);
+     return s && place.contains(s) ? headingText(sectionHeading(s)) : '';
+   }
++  function sectionHeadingIn(b, place) {
++    var s = sectionOf(b);
++    return s && place.contains(s) ? sectionHeading(s) : null;
++  }
+   function chapterJob(ch) {
+     return function (list) {
+       var g = ch.id;
+@@ -1613,7 +1634,7 @@
+         var dfn = b.querySelector('dfn');
+         var kind = envKind(b);
+         addUnit(list, b, { kind: kind, group: g, titleEl: blockTitle(b), name: dfn ? textOf(dfn) : '', context: sectionContext(b, ch),
+-                           where: sectionContext(b, ch), defs: kind === 'definition' ? definedIn(b) : [] });
++                           where: sectionContext(b, ch), whereEl: sectionHeadingIn(b, ch), defs: kind === 'definition' ? definedIn(b) : [] });
+       });
+       all('figure[data-figure]', ch).forEach(function (f) {
+         give(f);
+@@ -1621,12 +1642,14 @@
+         var labels = all('svg text', f).map(function (n) { return n.textContent; }).join(' ');
+         addUnit(list, f, { kind: 'figure', group: g, titleEl: blockTitle(f), bodyEl: cap || f,
+                            body: textOf(f, 'button, input, select, textarea, [aria-hidden="true"]') + ' ' + labels,
+-                           context: sectionContext(f, ch), where: sectionContext(f, ch) });
++                           context: sectionContext(f, ch), where: sectionContext(f, ch), whereEl: sectionHeadingIn(f, ch) });
+       });
+       textBlocks(ch).forEach(function (b) {
++        var anchor = anchorFor(b); /* every block keeps the address it had, in the same order, results or not */
++        if (linkOnly(b)) return;
+         var ctx = sectionContext(b, ch);
+         var lead = b.localName === 'p' ? leadOf(b) : null;
+-        addUnit(list, b, { kind: 'text', group: g, context: ctx, where: ctx, titleEl: lead, defs: definedIn(b), anchor: anchorFor(b) });
++        addUnit(list, b, { kind: 'text', group: g, context: ctx, where: ctx, whereEl: sectionHeadingIn(b, ch), titleEl: lead, defs: definedIn(b), anchor: anchor });
+       });
+     };
+   }
+@@ -1674,7 +1697,9 @@
+         addUnit(list, host, { kind: 'heading', group: g, titleEl: h, body: '' });
+       });
+       textBlocks(ref, 'dl > dt, dl > dd, dl > div > dt, dl > div > dd, [data-gloss]').forEach(function (b) {
+-        addUnit(list, b, { kind: 'text', group: g, context: '', where: '', anchor: anchorFor(b) });
++        var anchor = anchorFor(b);
++        if (linkOnly(b)) return;
++        addUnit(list, b, { kind: 'text', group: g, context: '', where: '', anchor: anchor });
+       });
+     }];
+   }
+@@ -1791,6 +1816,7 @@
+   var panelClose = fieldRow.appendChild(element('button', 'reader-search-close', word('close')));
+   panelClose.type = 'button';
+   var scopes = panel.appendChild(element('div', 'reader-search-scopes'));
++  scopes.hidden = true;
+   scopes.setAttribute('role', 'toolbar');
+   scopes.setAttribute('aria-label', word('search-in'));
+   var scopeIds = ['all'];
+@@ -1803,8 +1829,7 @@
+     b.setAttribute('data-scope', s);
+     b.setAttribute('aria-pressed', s === 'all' ? 'true' : 'false');
+     b.tabIndex = i ? -1 : 0;
+-    b.appendChild(element('span', 'reader-scope-label', s === 'all' ? word('all') : s === 'chapters' ? word('chapters') :
+-      doc.getElementById(s) ? headingText(referenceHeading(doc.getElementById(s))) : remotePartTitle(s)));
++    b.appendChild(element('span', 'reader-scope-label', s === 'all' ? word('all') : s === 'chapters' ? word('chapters') : partLabel(s)));
+     b.appendChild(doc.createTextNode(' '));
+     b.appendChild(element('span', 'reader-scope-count'));
+     scopes.appendChild(b);
+@@ -1851,11 +1876,27 @@
+     if (p) return isChapter(p) ? 'chapters' : g;
+     return remoteGroups[g] && remoteGroups[g].kind === 'chapter' ? 'chapters' : g;
+   }
++  /* A part's name in the book's own reference mode: what the page's bar or its contents call it ("Atlas and
++     reference", "Atlas"), else its title in the map, else its heading. */
++  function partLabel(id) {
++    var named = '';
++    all('[data-reader-bar] a[href], [data-reader-toc] a[href]').some(function (a) {
++      if (/(^| )reader-/.test(a.className) || a.closest('.reader-search')) return false;
++      var h = a.getAttribute('href') || '';
++      var at = h.indexOf('#');
++      if (at < 0 || decode(h.slice(at + 1)) !== id) return false;
++      named = textOf(a);
++      return !!named;
++    });
++    if (named) return named;
++    var p = doc.getElementById(id);
++    return p ? headingText(referenceHeading(p)) : remotePartTitle(id);
++  }
+   function groupWhere(g) {
+     var p = doc.getElementById(g);
+-    if (p) return isChapter(p) ? fill(word('chapter'), { n: chapterNumber(p) }) : headingText(referenceHeading(p));
++    if (p) return isChapter(p) ? fill(word('chapter'), { n: chapterNumber(p) }) : partLabel(g);
+     var r = remoteGroups[g];
+-    return r && r.kind === 'chapter' ? fill(word('chapter'), { n: r.number }) : remotePartTitle(g);
++    return r && r.kind === 'chapter' ? fill(word('chapter'), { n: r.number }) : partLabel(g);
+   }
+   function groupTitle(g) {
+     var p = doc.getElementById(g);
+@@ -1885,19 +1926,21 @@
+     if (u.remote && !u.bodyEl) u.bodyEl = element('span', null, u.body);
+     var ids = 'reader-hit-' + n;
+     var labelled = [];
+-    var whereText = h.best ? groupWhere(u.group) + (groupTitle(u.group) ? ' · ' + groupTitle(u.group) : '') + (u.where ? ' · ' + u.where : '') : u.where;
++    var lead = h.best ? groupWhere(u.group) + (groupTitle(u.group) ? ' · ' + groupTitle(u.group) : '') : '';
+     var plain = u.remote ? u.body : textOf(u.bodyEl || u.el, u.skip, true);
+     var inFormula = terms.some(function (t) { return !inWords(u, t, plain); });
+-    if (whereText || inFormula) {
+-      var w = element('span', 'reader-hit-where');
+-      w.id = ids + '-where';
+-      if (whereText) w.appendChild(highlight(element('span', null, whereText), marks));
+-      if (inFormula) {
+-        if (whereText) w.appendChild(doc.createTextNode(' · '));
+-        w.appendChild(element('span', 'reader-hit-formula', word('in-formula')));
+-      }
+-      a.appendChild(w);
+-    }
++    var kindWord = WORDS['kind-' + u.kind] ? word('kind-' + u.kind) : '';
++    var whereText = u.where || '';
++    var w = element('span', 'reader-hit-where');
++    w.id = ids + '-where';
++    var parts = [];
++    if (kindWord) parts.push(element('span', 'reader-hit-kind', kindWord));
++    if (lead) parts.push(highlight(element('span', null, lead), marks));
++    if (!u.remote && u.whereEl) parts.push(highlight(inlineCopy(u.whereEl), marks));
++    else if (whereText) parts.push(highlight(element('span', null, whereText), marks));
++    if (inFormula) parts.push(element('span', 'reader-hit-formula', word('in-formula')));
++    parts.forEach(function (n, k) { if (k) w.appendChild(doc.createTextNode(' · ')); w.appendChild(n); });
++    if (parts.length) a.appendChild(w);
+     if (u.titleEl || u.title) {
+       var t = u.titleEl ? inlineCopy(u.titleEl) : element('span', null, u.title);
+       t.className = 'reader-hit-title';
+@@ -1905,13 +1948,18 @@
+       a.appendChild(highlight(t, marks));
+       labelled.push(t.id);
+     }
+-    var snip = (u.kind === 'chapter' || u.kind === 'section' || u.kind === 'heading') ? null : snippetOf(u, marks);
++    var snip = null;
++    if (u.kind === 'chapter' || u.kind === 'section') {
++      /* a chapter or a section is shown with its first paragraph, as written */
++      var first = u.remote ? null : isChapter(u.el) ? firstParagraph(u.el) : isSection(u.el) ? firstParagraph(u.el) : /^h[1-6]$/.test(u.el.localName) ? firstParagraphAfter(u.el) : null;
++      if (first) snip = snippetOf({ el: first, bodyEl: first, skip: null }, marks);
++    } else if (u.kind !== 'heading') snip = snippetOf(u, marks);
+     if (snip) {
+       snip.id = ids + '-text';
+       a.appendChild(snip);
+       if (labelled.length) a.setAttribute('aria-describedby', snip.id); else labelled.push(snip.id);
+     }
+-    if (whereText || inFormula) labelled.push(ids + '-where');
++    if (parts.length) labelled.push(ids + '-where');
+     a.setAttribute('aria-labelledby', labelled.join(' '));
+     li.appendChild(a);
+     return li;
+@@ -1929,6 +1977,7 @@
+       b.removeAttribute('data-none');
+     });
+     if (!searchState.q.trim() || tooShort || !terms.length) {
++      scopes.hidden = true; /* no scope to choose before there are results */
+       results.hidden = true;
+       statusLine.textContent = tooShort ? word('too-short') : '';
+       tell(statusLine.textContent);
+@@ -1957,11 +2006,22 @@
+       (perGroup[u.group] = perGroup[u.group] || []).push(h);
+       if (isExact) best.push(h);
+     });
++    /* Only the scopes that hold results are offered, with All and the one pressed; the results come first on a narrow
++       screen instead of a row of empty scopes. */
++    var tabStop = null;
+     scopeButtons.forEach(function (b) {
+-      var n = perScope[b.getAttribute('data-scope')] || 0;
++      var sid = b.getAttribute('data-scope');
++      var n = perScope[sid] || 0;
+       b.querySelector('.reader-scope-count').textContent = String(n);
+       if (!n) b.setAttribute('data-none', '');
++      b.hidden = !(n > 0 || sid === 'all' || sid === searchState.scope);
++      if (!b.hidden && b.tabIndex === 0) tabStop = b;
+     });
++    if (!tabStop) {
++      tabStop = scopeButtons.filter(function (b) { return !b.hidden && b.getAttribute('aria-pressed') === 'true'; })[0] || scopeButtons[0];
++      scopeButtons.forEach(function (b) { b.tabIndex = b === tabStop ? 0 : -1; });
++    }
++    scopes.hidden = false;
+     var total = searchState.scope === 'all' ? perScope.all : perScope[searchState.scope] || 0;
+     statusLine.textContent = (total === 0 ? word('none') : total === 1 ? word('one') : fill(word('many'), { n: total })) +
+       (remoteFailed ? ' ' + word('index-failed') : '');
+@@ -2115,15 +2175,16 @@
+     recordQuery();
+   });
+   scopes.addEventListener('keydown', function (event) {
+-    var i = scopeButtons.indexOf(event.target);
++    var shown = scopeButtons.filter(function (b) { return !b.hidden; });
++    var i = shown.indexOf(event.target);
+     if (i < 0 || event.altKey || event.ctrlKey || event.metaKey) return;
+-    var to = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: scopeButtons.length - 1 }[event.key];
++    var to = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: shown.length - 1 }[event.key];
+     if (to === undefined) {
+       if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); closeSearch(true); }
+       return;
+     }
+     event.preventDefault();
+-    scopeButtons[(to + scopeButtons.length) % scopeButtons.length].focus();
++    shown[(to + shown.length) % shown.length].focus();
+   });
+   scopes.addEventListener('focusin', function (event) {
+     if (scopeButtons.indexOf(event.target) < 0) return;

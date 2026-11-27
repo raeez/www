@@ -1,0 +1,109 @@
+--- a/compiler/quantum-holography-status/tests/reader.test.cjs
++++ b/compiler/quantum-holography-status/tests/reader.test.cjs
+@@ -51,6 +51,7 @@
+       <p data-chapter-kicker><a href="#${c.part_id}-title">Part ${ROMAN[part]}</a> · Chapter ${k}</p>
+       <h2 id="${c.id}-h"><span class="mg-ch-no">${k}</span><span class="mg-ch-name">${esc(c.title)}</span></h2>
+       <nav data-prerequisites aria-label="Builds on"><ul>${c.prerequisites.map(p => `<li><a href="#${p}" data-ref="chapter">Chapter ${+p.slice(2)}</a></li>`).join('')}</ul></nav>
++      ${wrap ? `<ol class="mg-ch-toc"><li><a href="#${c.id}-s1" data-ref="section"><span class="mg-sec-no">${k}.1</span> <span class="mg-sec-title">First section of chapter ${k}</span></a></li><li><a href="#${c.id}-s2" data-ref="section"><span class="mg-sec-no">${k}.2</span> <span class="mg-sec-title">Second section of chapter ${k}</span></a></li></ol>` : ''}
+     </header>
+     <div class="chapter-opening"><p>Opening paragraph of chapter ${k}, fixture text.</p></div>
+     ${sec(1, `First section of chapter ${k}`, `
+@@ -59,7 +60,7 @@
+       <p id="${c.id}-refs">A reference to <a href="#def-${other.id}">fixture term ${other.number}</a>, to <a href="#thm-${other.id}">Theorem ${other.number}.2</a>, to <a href="#eq-${c.id}">(${k}.1)</a> and to <a href="#${other.id}-s2">Section ${other.number}.2</a>.</p>
+       <div class="mg-eq" id="eq-${c.id}"><div class="math-display"><math display="block"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">x^{2}</annotation></semantics></math></div><span class="eq-number">(${k}.1)</span></div>
+       ${figure}`)}
+-    ${sec(2, `Second section of chapter ${k}`, `
++    ${sec(2, k === 1 ? 'Second section of chapter 1 with <math><semantics><msub><mi>x</mi><mn>1</mn></msub><annotation encoding="application/x-tex">x_1</annotation></semantics></math>' : `Second section of chapter ${k}`, `
+       <div data-env="theorem" id="thm-${c.id}"><p data-block-title>Theorem ${k}.2 (Result ${k})</p><p>Hypotheses of result ${k}. Conclusion of result ${k}.</p></div>
+       <div data-env="proof"><p>Proof words of chapter ${k}.</p></div>
+       <p>A paragraph without an address in chapter ${k}, holding the word lantern${k}.</p>
+@@ -103,7 +104,7 @@
+   })();</script>`;
+   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(BOOK.title)}</title></head><body>
+ <a class="skip" href="#main">Skip to the text</a>
+-${o.servedBar ? '<div class="site-head"><div data-reader-bar></div></div>' : ''}
++${o.servedBar ? `<div class="site-head"><div data-reader-bar>${o.barLinks || ''}</div></div>` : ''}
+ <main id="main" data-reader${labels}${count}>
+   ${o.noFront ? '' : `<header id="front" data-reader-front><h1>${esc(BOOK.title)}</h1><p>${esc(BOOK.subtitle)}</p><p>${esc(BOOK.audience)}</p>
+     <nav data-routes aria-label="Routes"><ul>${routes}</ul></nav></header>
+@@ -1061,9 +1062,80 @@
+     const props = Array.from({ length: el.style.length }, (_, i) => el.style[i]).filter(prop => !prop.startsWith('--'));
+     assert.deepEqual(props, [], el.tagName + ' has ' + el.getAttribute('style'));
+   });
++  noErrors(p);
++});
++
++
++
++/* ---------------------------------------------------------------- results on a narrow screen */
++
++test('narrow: before any result no scope is offered; with results only All, the scope pressed and the scopes holding results', async () => {
++  const p = load();
++  await settle();
++  click($(p, '.reader-search-toggle'));
++  assert.equal($(p, '.reader-search-scopes').hidden, true, 'nothing to choose before a result');
++  await type(p, 'lantern3');
++  assert.equal($(p, '.reader-search-scopes').hidden, false);
++  const shownScopes = () => $$(p, '.reader-scope').filter(b => !b.hidden).map(b => b.getAttribute('data-scope'));
++  assert.deepEqual(shownScopes(), ['all', 'chapters'], 'no scope with nothing in it');
++  await type(p, 'vacuum');
++  assert.deepEqual(shownScopes(), ['all', 'chapters', 'glossary', 'results', 'atlas']);
++  click($(p, '.reader-scope[data-scope="glossary"]'));
++  await type(p, 'lantern3');
++  assert.deepEqual(shownScopes(), ['all', 'chapters', 'glossary'], 'the scope pressed stays, to be released');
++  const g = $(p, '.reader-scope[data-scope="glossary"]');
++  assert.equal(g.getAttribute('aria-pressed'), 'true');
++  g.focus();
++  key(g, 'ArrowRight');
++  assert.equal(p.d.activeElement, $(p, '.reader-scope[data-scope="all"]'), 'arrows move among the scopes shown');
++  noErrors(p);
++});
++
++test('narrow: a reference part is named as the page names it (its bar or contents link), in its scope, its results and the bar', async () => {
++  const p = load({ book: { servedBar: true, barLinks: '<a class="mg-static" href="#results">Atlas and reference</a>' } });
++  await settle();
++  click($(p, '.reader-search-toggle'));
++  await type(p, 'vacuum');
++  assert.equal(text($(p, '.reader-scope[data-scope="results"] .reader-scope-label')), 'Atlas and reference');
++  assert.equal(text($(p, '.reader-group[data-group="results"] .reader-group-where')), 'Atlas and reference');
++  assert.equal(text($(p, '.reader-scope[data-scope="atlas"] .reader-scope-label')), 'Atlas', 'the contents link');
++  key($(p, '#reader-q'), 'Escape');
++  click($(p, '.reader-bar a.mg-static'));
++  assert.equal(text($(p, '.reader-position-title')), 'Atlas and reference');
+   noErrors(p);
+ });
+ 
++test('narrow: each result says its kind; a section shows its first paragraph; its place keeps its formula', async () => {
++  const p = load();
++  await settle();
++  click($(p, '.reader-search-toggle'));
++  await type(p, 'Second section of chapter 1');
++  const sec = hitLinks(p).find(a => a.getAttribute('href') === '#ch01-s2');
++  assert.ok(sec, 'the section is found');
++  assert.equal(text(sec.querySelector('.reader-hit-kind')), 'Section');
++  assert.match(text(sec.querySelector('.reader-hit-text')), /Theorem 1\.2|Proof words|paragraph without an address/, 'its first paragraph, as written');
++  await type(p, 'Weaving1');
++  const pas = hitLinks(p)[0];
++  assert.equal(text(pas.querySelector('.reader-hit-kind')), 'Passage');
++  assert.ok(pas.querySelector('.reader-hit-where math'), 'the section title keeps its formula');
++  await type(p, 'zetanode');
++  assert.equal(text(hitLinks(p)[0].querySelector('.reader-hit-kind')), 'Figure');
++  noErrors(p);
++});
++
++test('narrow: an entry of a chapter\'s own contents is navigation, not a result; the section it names is, and every address stays as it was', async () => {
++  const p = load();
++  await settle();
++  click($(p, '.reader-search-toggle'));
++  await type(p, 'First section of chapter 4');
++  const hrefs = hitLinks(p).map(a => a.getAttribute('href'));
++  assert.ok(hrefs.includes('#ch04-s1'), hrefs.join(' '));
++  const targets = hrefs.map(h => p.d.getElementById(h.slice(1)));
++  assert.ok(targets.every(t => !t.closest('.mg-ch-toc')), 'no result in the chapter\'s contents');
++  const item = $(p, '#ch04 .mg-ch-toc li');
++  assert.ok(item.id, 'the entry keeps its address');
++  noErrors(p);
++});
+ 
+ /* ---------------------------------------------------------------- the reference in companion pages */
+ 
