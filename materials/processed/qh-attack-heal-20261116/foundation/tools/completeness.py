@@ -1,0 +1,463 @@
+#!/usr/bin/env python3
+"""Completeness of a built status page against the content it was built from (no browser).
+
+    python3 tools/completeness.py <content-folder> <page.html> [--json out.json]   (run from the repository root)
+
+For any content.json of the documented shape (content/quantum-holography-status/README.md) and the page built
+from it, checks that the page shows the complete content. It is meant for the successor payload, where the
+baseline comparison (tools/fidelity.py) no longer applies:
+
+- no silent omission: every field of every content object is one the producer shows (the documented `source`
+  fields are for tracing and never shown; glossary `forms` are matched in the text); every content column and
+  every grid cell belongs to a column the producer draws, and every column it draws is defined;
+- every statement in its section, in content order: its status, its stable anchor (s-<id>; no anchor without
+  an id), and its words in its own article: title, hypotheses, text, and the notes (novelty label for checked
+  and pending statements, antecedents, citation) exactly where the producer shows them;
+- every question card (q-<id>) with its title, why, and exactly its own statements; every family (row-<id>)
+  with its name, summary and exactly its own statements; every grid cell with its status and note in its family
+  and column; every column definition (col-<id>); every counterexample (f-<id>) with its claim and witness;
+  every open-problem group (open-<heading>) with its heading, intro and statements; every glossary entry with
+  term and definition; the status key explanations; the cover, the lead, section headings and intros, the
+  changes and the essay.
+
+Words are compared as sequences of word characters, case-folded: TeX between \\( \\) or \\[ \\] is set aside
+in the content and MathML in the page, so typography (quotes, dashes, emphasis, glossary buttons) does not
+matter, and every word of a content field must occur, in order, in its element. This is a DOM check: what CSS
+hides (a folded statement, a cell note shown in the card) still counts; seeing it is the browser check's job.
+Exit status 0 when every check passes; INFO lines are design facts for the reader of the report, not failures.
+"""
+import json
+import re
+import sys
+import unicodedata
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from fidelity import parse  # noqa: E402
+
+ROOT = Path.cwd()
+sys.path.insert(0, str(ROOT / 'compiler' / 'quantum-holography-status'))
+import status  # noqa: E402
+
+# The fields the producer reads, per kind of object (README.md, status.py). `source` is documented as never shown.
+FIELDS = {
+    'top': {'title', 'subtitle', 'as_of', 'lead', 'status_key', 'principal', 'columns', 'rows', 'changes',
+            'decisive', 'frontier', 'failures', 'open', 'glossary', 'essay_lead', 'orientation', 'as_of_utc', 'scientific_atlas'},
+    'statement': {'status', 'title', 'text', 'novelty', 'antecedents', 'cite', 'source', 'id', 'added', 'hypotheses',
+                  'summary', 'atlasClaimId'},
+    'orientation': {'title', 'explanation', 'programmeFamilies', 'readerGuidance'},
+    'programme family': {'id', 'title', 'familyIds', 'text'},
+    'guidance item': {'title', 'text'},
+    'scientific atlas': {'schema', 'asOf', 'path'},  # validated against atlas.json by the build; not shown
+    'status key entry': {'status', 'label', 'explanation'},
+    'column': {'id', 'name', 'explanation', 'short'},
+    'row': {'id', 'name', 'short', 'summary', 'cells', 'statements'},
+    'cell': {'status', 'note', 'source'},
+    'changes': {'since', 'intro', 'items'},
+    'change': {'ref', 'text'},
+    'question section': {'heading', 'intro', 'questions'},
+    'question': {'id', 'title', 'question', 'why', 'known'},
+    'failures': {'heading', 'intro', 'items'},
+    'failure': {'id', 'claim', 'witness'},
+    'open group': {'heading', 'intro', 'statements'},
+    'glossary entry': {'term', 'forms', 'definition'},
+}
+SECTION_OF = {'principal': 'results', 'decisive': 'decisive', 'frontier': 'frontier', 'rows': 'examples',
+              'failures': 'failures', 'open': 'open'}
+TEX = re.compile(r'\\\((.+?)\\\)|\\\[(.+?)\\\]', re.S)
+LINK = re.compile(r'\[([^\]]*)\]\([^)]*\)')
+
+
+def words(text):
+    """The words of a content field: TeX set aside, Markdown links reduced to their text."""
+    text = LINK.sub(r'\1', TEX.sub(' ', text or ''))
+    return re.findall(r'\w+', unicodedata.normalize('NFKC', text).casefold())
+
+
+def shown(node):
+    """The words a page element shows, MathML set aside."""
+    if node is None:
+        return []
+    text = node.text(skip=lambda n: n.tag == 'math')
+    return re.findall(r'\w+', unicodedata.normalize('NFKC', text).casefold())
+
+
+def first_missing(need, have):
+    """The first word of `need` that does not occur, in order, in `have`; None when every word does."""
+    it = iter(have)
+    for w in need:
+        if not any(h == w for h in it):
+            return w
+    return None
+
+
+def has(cls):
+    return lambda n: cls in n.cls()
+
+
+def statements_in(node):
+    return node.find_all(lambda n: n.tag == 'article' and 'statement' in n.cls()) if node is not None else []
+
+
+def content_objects(c):
+    """Every object of the content with its kind and its place, for the field check."""
+    yield 'top', c, 'content'
+    for i, k in enumerate(c.get('status_key') or []):
+        yield 'status key entry', k, f'status_key[{i}]'
+    for i, s in enumerate(c.get('principal') or []):
+        yield 'statement', s, f'principal[{i}]'
+    for i, col in enumerate(c.get('columns') or []):
+        yield 'column', col, f'columns[{i}]'
+    for i, r in enumerate(c.get('rows') or []):
+        yield 'row', r, f'rows[{i}]'
+        for cid, cell in (r.get('cells') or {}).items():
+            yield 'cell', cell, f'rows[{i}].cells.{cid}'
+        for j, s in enumerate(r.get('statements') or []):
+            yield 'statement', s, f'rows[{i}].statements[{j}]'
+    if c.get('changes') is not None:
+        yield 'changes', c['changes'], 'changes'
+        for i, it in enumerate((c['changes'] or {}).get('items') or []):
+            yield 'change', it, f'changes.items[{i}]'
+    for key in ('decisive', 'frontier'):
+        if c.get(key) is not None:
+            yield 'question section', c[key], key
+            for i, q in enumerate((c[key] or {}).get('questions') or []):
+                yield 'question', q, f'{key}.questions[{i}]'
+                if q.get('question') is not None:
+                    yield 'statement', q['question'], f'{key}.questions[{i}].question'
+                for j, s in enumerate(q.get('known') or []):
+                    yield 'statement', s, f'{key}.questions[{i}].known[{j}]'
+    if c.get('failures') is not None:
+        yield 'failures', c['failures'], 'failures'
+        for i, it in enumerate((c['failures'] or {}).get('items') or []):
+            yield 'failure', it, f'failures.items[{i}]'
+            if it.get('witness') is not None:
+                yield 'statement', it['witness'], f'failures.items[{i}].witness'
+    for i, g in enumerate(c.get('open') or []):
+        yield 'open group', g, f'open[{i}]'
+        for j, s in enumerate(g.get('statements') or []):
+            yield 'statement', s, f'open[{i}].statements[{j}]'
+    for i, e in enumerate(c.get('glossary') or []):
+        yield 'glossary entry', e, f'glossary[{i}]'
+    if c.get('orientation') is not None:
+        yield 'orientation', c['orientation'], 'orientation'
+        for i, g in enumerate((c['orientation'] or {}).get('programmeFamilies') or []):
+            yield 'programme family', g, f'orientation.programmeFamilies[{i}]'
+        for i, g in enumerate((c['orientation'] or {}).get('readerGuidance') or []):
+            yield 'guidance item', g, f'orientation.readerGuidance[{i}]'
+    if c.get('scientific_atlas') is not None:
+        yield 'scientific atlas', c['scientific_atlas'], 'scientific_atlas'
+
+
+def main():
+    args = sys.argv[1:]
+    out_json = None
+    if '--json' in args:
+        k = args.index('--json')
+        out_json = args[k + 1]
+        del args[k:k + 2]
+    folder, page_path = Path(args[0]), args[1]
+    c = json.loads((folder / 'content.json').read_text(encoding='utf-8'))
+    page_json = folder / 'page.json'
+    if not page_json.exists():
+        page_json = ROOT / 'content' / 'quantum-holography-status' / 'page.json'
+    pj = json.loads(page_json.read_text(encoding='utf-8'))
+    root, raw = parse(page_path)
+    byid = {}
+    for n in root.walk():
+        if n.attrs.get('id'):
+            byid.setdefault(n.attrs['id'], n)
+    results, info = [], []
+
+    def check(name, problems, total=None):
+        detail = (f'{total} checked' if total is not None else '') + (f'; {len(problems)} failing: {problems[:6]}' if problems else '')
+        results.append((name, not problems, detail.strip('; ')))
+
+    def words_in(node_, text, where, problems):
+        miss = first_missing(words(text), shown(node_))
+        if node_ is None and words(text):
+            problems.append(f'{where}: element missing')
+        elif miss is not None:
+            problems.append(f'{where}: word {miss!r} not shown')
+
+    # 1. No silent omission.
+    extra = []
+    for kind, obj, where in content_objects(c):
+        if not isinstance(obj, dict):
+            extra.append(f'{where}: not an object')
+            continue
+        unknown = sorted(set(obj) - FIELDS[kind])
+        if unknown:
+            extra.append(f'{where}: {unknown}')
+    check('every content field is one the page shows', extra, sum(1 for _ in content_objects(c)))
+    col_ids = [col.get('id') for col in c.get('columns') or []]
+    colp = [f'column {x!r} is not drawn' for x in col_ids if x not in status.COLUMNS]
+    colp += [f'column {x!r} has no definition' for x in status.COLUMNS if x not in col_ids]
+    for r in c.get('rows') or []:
+        colp += [f'row {r.get("id")}: cell for unknown column {x!r}' for x in (r.get('cells') or {}) if x not in status.COLUMNS]
+    check('every column and cell is drawn', colp, len(col_ids))
+
+    # 2. Statements, section by section, in content order.
+    all_articles = statements_in(root)
+    all_content = list(status.Build.all_statements(c))
+    check('statement count', [] if len(all_articles) == len(all_content) else
+          [f'{len(all_articles)} on the page, {len(all_content)} in the content'], len(all_content))
+    groups = {'principal': list(c.get('principal') or []), 'decisive': [], 'frontier': [],
+              'rows': [s for r in c.get('rows') or [] for s in r.get('statements') or []],
+              'failures': [it['witness'] for it in (c.get('failures') or {}).get('items') or [] if it.get('witness')],
+              'open': [s for g in c.get('open') or [] for s in g.get('statements') or []]}
+    # A question's own title is drawn once, in the card's heading, where it repeats the card's title (baseline rule).
+    title_in_card = {}
+    for key in ('decisive', 'frontier'):
+        for i, q in enumerate((c.get(key) or {}).get('questions') or []):
+            groups[key] += ([q['question']] if q.get('question') else []) + list(q.get('known') or [])
+            own = (q.get('question') or {}).get('title') or ''
+            if q.get('question') and (not own.strip() or own.strip() == (q.get('title') or '').strip()):
+                title_in_card[id(q['question'])] = 'q-' + status.ident(q.get('id') or q.get('title') or str(i))
+    st_p, an_p, wd_p = [], [], []
+    linked = 0
+    novelty_hidden = 0
+    for key, stmts in groups.items():
+        sec = byid.get(SECTION_OF[key])
+        arts = statements_in(sec)
+        if len(arts) != len(stmts):
+            st_p.append(f'section {SECTION_OF[key]}: {len(arts)} statements on the page, {len(stmts)} in the content')
+            continue
+        for j, (s, a) in enumerate(zip(stmts, arts)):
+            where = f'{key} statement {j}' + (f' ({s["id"]})' if s.get('id') else '')
+            if a.attrs.get('data-status') != s.get('status'):
+                st_p.append(f'{where}: status {a.attrs.get("data-status")!r}, content {s.get("status")!r}')
+            want = status.Build.statement_id(None, s)
+            if (a.attrs.get('id') or '') != want:
+                an_p.append(f'{where}: anchor {a.attrs.get("id")!r}, expected {want!r}')
+            if id(s) in title_in_card:
+                card = byid.get(title_in_card[id(s)])
+                words_in(card.first(has('question-head')) if card else None, s.get('title'), where + ' title (card)', wd_p)
+                if a.first(has('statement-title')) is not None:
+                    wd_p.append(f'{where}: title drawn twice')
+            else:
+                words_in(a.first(has('statement-title')), s.get('title'), where + ' title', wd_p)
+            hyps =[h for h in s.get('hypotheses') or [] if (h or '').strip()]
+            if hyps:
+                words_in(a.first(has('statement-hyp')), ' '.join(hyps), where + ' hypotheses', wd_p)
+            words_in(a.first(has('statement-text')), s.get('text'), where + ' text', wd_p)
+            if (s.get('summary') or '').strip():
+                words_in(a.first(has('statement-summary')), s['summary'], where + ' summary', wd_p)
+            if (s.get('atlasClaimId') or '').strip():
+                if a.attrs.get('data-atlas-claim') != s['atlasClaimId'].strip():
+                    wd_p.append(f'{where}: atlas claim {s["atlasClaimId"]!r} not kept on the statement')
+                elif a.first(has('statement-atlas')) is not None:
+                    linked += 1
+            notes = a.first(has('statement-notes'))
+            novelty = (s.get('novelty') or '').strip()
+            if novelty and s.get('status') in getattr(status, 'NOVELTY_STATUSES', ('checked', 'pending')):
+                words_in(notes, pj.get('novelty_labels', {}).get(novelty, novelty), where + ' novelty', wd_p)
+            elif novelty:
+                novelty_hidden += 1
+            for f in ('antecedents', 'cite'):
+                if (s.get(f) or '').strip():
+                    words_in(notes, s[f], f'{where} {f}', wd_p)
+    check('every statement in its section with its status', st_p, len(all_content))
+    check('every statement id is its anchor (and no anchor without one)', an_p, len(all_content))
+    check('every statement shows its title, hypotheses, text and notes', wd_p, len(all_content))
+    claims = sum(1 for s in all_content if (s.get('atlasClaimId') or '').strip())
+    if claims:
+        info.append(f'statements naming an atlas claim: {claims}, linked to it on the page: {linked} (a link appears when the atlas draws the claim\'s anchor)')
+    if novelty_hidden:
+        info.append(f'novelty is shown for {", ".join(getattr(status, "NOVELTY_STATUSES", ("checked", "pending")))} statements only: {novelty_hidden} not shown')
+
+    # 3. Questions, families, cells, columns, counterexamples, open groups, glossary.
+    q_p = []
+    nq = 0
+    for key in ('decisive', 'frontier'):
+        fr = c.get(key) or {}
+        qs = fr.get('questions') or []
+        if not qs:
+            continue
+        sec = byid.get(key)
+        if sec is None:
+            q_p.append(f'section {key} missing')
+            continue
+        words_in(sec.first(lambda n: n.tag == 'h2'), fr.get('heading') or '', f'{key} heading', q_p)
+        if fr.get('intro'):
+            words_in(sec.first(has('section-intro')), fr['intro'], f'{key} intro', q_p)
+        for i, q in enumerate(qs):
+            nq += 1
+            qid = 'q-' + status.ident(q.get('id') or q.get('title') or str(i))
+            card = byid.get(qid)
+            if card is None:
+                q_p.append(f'{qid} missing')
+                continue
+            words_in(card.first(has('question-head')), q.get('title'), f'{qid} title', q_p)
+            if q.get('why'):
+                words_in(card.first(has('question-why')), q['why'], f'{qid} why', q_p)
+            own = ([q['question']] if q.get('question') else []) + list(q.get('known') or [])
+            if len(statements_in(card)) != len(own):
+                q_p.append(f'{qid}: {len(statements_in(card))} statements in the card, {len(own)} in the content')
+    check('every question card with its title, why and its own statements', q_p, nq)
+
+    r_p, cell_p = [], []
+    rows = c.get('rows') or []
+    tds = [n for n in root.walk() if n.tag == 'td' and 'cell' in n.cls()]
+    for i, r in enumerate(rows):
+        rid = 'row-' + status.ident(r.get('id') or r['name'])
+        node = byid.get(rid)
+        if node is None:
+            r_p.append(f'{rid} missing')
+        else:
+            words_in(node.first(has('row-name')), r.get('name'), f'{rid} name', r_p)
+            words_in(node.first(has('row-summary')), r.get('summary'), f'{rid} summary', r_p)
+            if len(statements_in(node)) != len(r.get('statements') or []):
+                r_p.append(f'{rid}: {len(statements_in(node))} statements, {len(r.get("statements") or [])} in the content')
+        mine = [td for td in tds if (td.first(has('cell-btn')) or td).attrs.get('data-row') == rid]
+        if len(mine) != len(status.COLUMNS):
+            cell_p.append(f'{rid}: {len(mine)} cells on the page')
+            continue
+        for cid, td in zip(status.COLUMNS, mine):
+            cell = (r.get('cells') or {}).get(cid) or {}
+            if td.attrs.get('data-status') != cell.get('status'):
+                cell_p.append(f'{rid}/{cid}: status {td.attrs.get("data-status")!r}, content {cell.get("status")!r}')
+            note = td.first(has('cell-note-text')) or td.first(has('cell-note'))  # the baseline has no -text part
+            words_in(note, cell.get('note'), f'{rid}/{cid} note', cell_p)
+    check('every family with its name, summary and its own statements', r_p, len(rows))
+    check('every grid cell with its status and note, in its family and column', cell_p, len(rows) * len(status.COLUMNS))
+
+    col_p = []
+    for col in c.get('columns') or []:
+        node = byid.get(f'col-{col.get("id")}')
+        if node is None:
+            col_p.append(f'col-{col.get("id")} missing')
+            continue
+        words_in(node.first(lambda n: n.tag == 'dt'), col.get('name'), f'col-{col.get("id")} name', col_p)
+        words_in(node.first(lambda n: n.tag == 'dd'), col.get('explanation'), f'col-{col.get("id")} explanation', col_p)
+    check('every column definition', col_p, len(c.get('columns') or []))
+
+    f_p = []
+    fa = c.get('failures') or {}
+    items = fa.get('items') or []
+    if items:
+        sec = byid.get('failures')
+        words_in(sec.first(lambda n: n.tag == 'h2') if sec else None, fa.get('heading') or '', 'failures heading', f_p)
+        if fa.get('intro'):
+            words_in(sec.first(has('section-intro')) if sec else None, fa['intro'], 'failures intro', f_p)
+    for i, it in enumerate(items):
+        fid = 'f-' + status.ident(it.get('id') or str(i))
+        node = byid.get(fid)
+        if node is None:
+            f_p.append(f'{fid} missing')
+            continue
+        words_in(node.first(has('claim-text')), status.claim_text(it.get('claim', '')), f'{fid} claim', f_p)
+        if len(statements_in(node)) != (1 if it.get('witness') else 0):
+            f_p.append(f'{fid}: {len(statements_in(node))} witness statements')
+    check('every counterexample with its claim and witness', f_p, len(items))
+
+    o_p = []
+    groups_c = c.get('open') or []
+    for i, g in enumerate(groups_c):
+        gid = 'open-' + status.ident(g.get('heading', str(i)))
+        node = byid.get(gid)
+        if node is None:
+            o_p.append(f'{gid} missing')
+            continue
+        words_in(node.first(lambda n: n.tag == 'h3'), g.get('heading'), f'{gid} heading', o_p)
+        if g.get('intro'):
+            words_in(node.first(has('group-intro')), g['intro'], f'{gid} intro', o_p)
+        if len(statements_in(node)) != len(g.get('statements') or []):
+            o_p.append(f'{gid}: {len(statements_in(node))} statements, {len(g.get("statements") or [])} in the content')
+    check('every open-problem group with its heading, intro and statements', o_p, len(groups_c))
+
+    g_p = []
+    gloss = sorted(c.get('glossary') or [], key=lambda e: e['term'].lower())
+    page_gloss = [n for n in root.walk() if 'gloss' in n.cls() and n.attrs.get('id', '').startswith('term-')]
+    if len(page_gloss) != len(gloss):
+        g_p.append(f'{len(page_gloss)} entries on the page, {len(gloss)} in the content')
+    else:
+        for e, n in zip(gloss, page_gloss):
+            words_in(n.first(lambda x: x.tag == 'dt'), e.get('term'), f'{n.attrs["id"]} term', g_p)
+            words_in(n.first(lambda x: x.tag == 'dd'), e.get('definition'), f'{n.attrs["id"]} definition', g_p)
+    check('every glossary entry with its term and definition', g_p, len(gloss))
+
+    # 4. Status key, cover, lead, changes, essay.
+    k_p = []
+    key_sec = byid.get('status')
+    for k in c.get('status_key') or []:
+        words_in(key_sec, k.get('explanation'), f'status key {k.get("status")}', k_p)
+        shown_label = pj.get('status_labels', {}).get(k.get('status'))
+        if k.get('label') and shown_label and words(k['label']) != words(shown_label):
+            info.append(f'status key {k.get("status")!r}: the page shows its label {shown_label!r} (page.json), '
+                        f'the content names it {k["label"]!r}')
+    check('every status key explanation', k_p, len(c.get('status_key') or []))
+
+    v_p = []
+    cover = byid.get('programme')
+    words_in(cover.first(lambda n: n.tag == 'h1') if cover else None, c.get('title'), 'title', v_p)
+    words_in(cover.first(has('subtitle')) if cover else None, c.get('subtitle'), 'subtitle', v_p)
+    when = c.get('as_of_utc') or c.get('as_of')
+    if cover is None or not cover.first(lambda n: n.tag == 'time' and n.attrs.get('datetime') == when):
+        v_p.append(f'as_of {when!r} missing from the cover')
+    o = c.get('orientation') or {}
+    if o:
+        sec = byid.get('orientation')
+        if sec is None:
+            v_p.append('orientation: no section#orientation')
+        else:
+            words_in(sec.first(lambda n: n.tag == 'h2'), o.get('title'), 'orientation title', v_p)
+            words_in(sec.first(has('orientation-text')), ' '.join(o.get('explanation') or []), 'orientation explanation', v_p)
+            for i, g in enumerate(o.get('programmeFamilies') or []):
+                gid = 'pf-' + status.ident(g.get('id') or g.get('title') or str(i))
+                node = byid.get(gid)
+                if node is None:
+                    v_p.append(f'{gid} missing')
+                    continue
+                words_in(node.first(lambda n: n.tag == 'h3'), g.get('title'), f'{gid} title', v_p)
+                words_in(node.first(has('pf-text')), g.get('text'), f'{gid} text', v_p)
+                hrefs = {n.attrs.get('href') for n in node.walk() if n.tag == 'a'}
+                for fid in g.get('familyIds') or []:
+                    if f'#row-{status.ident(fid)}' not in hrefs:
+                        v_p.append(f'{gid}: no link to family {fid!r}')
+            guide = sec.first(has('guidance'))
+            words_in(guide, ' '.join(f'{x.get("title", "")} {x.get("text", "")}' for x in o.get('readerGuidance') or []),
+                     'orientation guidance', v_p)
+    if c.get('scientific_atlas'):
+        info.append('scientific_atlas is metadata: the build validates it against atlas.json (path, schema, asOf); it is not shown')
+    lead = root.first(has('lead'))
+    words_in(lead, ' '.join(c.get('lead') or []), 'lead', v_p)
+    if lead is not None and len([n for n in lead.children if not isinstance(n, str) and n.tag == 'p']) != len(c.get('lead') or []):
+        v_p.append('lead: paragraph count differs')
+    ch = c.get('changes') or {}
+    if ch.get('items'):
+        node = byid.get('changes')
+        if node is None:
+            v_p.append('changes missing')
+        else:
+            if ch.get('intro'):
+                words_in(node.first(has('changes-intro')), ch['intro'], 'changes intro', v_p)
+            words_in(node.first(has('change-list')), ' '.join(it.get('text', '') for it in ch['items']), 'changes items', v_p)
+            for it in ch['items']:
+                if f'href="#s-{status.ident(it.get("ref") or "")}"' not in raw:
+                    v_p.append(f'changes: no link to s-{status.ident(it.get("ref") or "")}')
+    essay_md = folder / 'essay.md'
+    if essay_md.exists() and essay_md.read_text(encoding='utf-8').strip():
+        lines = essay_md.read_text(encoding='utf-8').strip().split('\n')
+        body = '\n'.join(lines[1:]) if lines[0].startswith('#') else '\n'.join(lines)
+        if lines[0].startswith('#'):
+            words_in(byid.get('essay-title'), lines[0].lstrip('#'), 'essay title', v_p)
+        words_in(root.first(lambda n: n.tag == 'article' and 'essay' in n.cls()), body, 'essay text', v_p)
+        if (c.get('essay_lead') or '').strip():
+            words_in(root.first(has('essay-lead')), c['essay_lead'], 'essay lead', v_p)
+    check('cover, lead, changes, essay and orientation', v_p)
+
+    ok = all(r[1] for r in results)
+    for name, passed, detail in results:
+        print(('PASS ' if passed else 'FAIL ') + name + (f' — {detail}' if detail else ''))
+    for line in info:
+        print('INFO ' + line)
+    print('ALL PASS' if ok else 'COMPLETENESS FAILURES')
+    if out_json:
+        Path(out_json).write_text(json.dumps({'ok': ok, 'checks': [{'name': n, 'pass': p, 'detail': d} for n, p, d in results],
+                                              'info': info}, indent=1, ensure_ascii=False), encoding='utf-8')
+    return 0 if ok else 1
+
+
+if __name__ == '__main__':
+    sys.exit(main())

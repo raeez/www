@@ -1,0 +1,775 @@
+{
+ "steps": {
+  "env": {
+   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+   "hover": true,
+   "dark": false,
+   "detailsContent": true,
+   "find": true,
+   "findStyle": false,
+   "knownActions": 1,
+   "scrollFocus": 9
+  },
+  "logAfterLoad": [],
+  "tabInventory1400": {
+   "total": 410,
+   "byKind": {
+    "other": 5,
+    "nav link": 9,
+    "term": 83,
+    "tally link": 4,
+    "input": 1,
+    "heading anchor": 47,
+    "math scroller": 4,
+    "q-index link": 34,
+    "link-btn": 4,
+    "summary": 26,
+    "grid-wrap": 1,
+    "col-head": 8,
+    "grid row link": 20,
+    "cell-btn": 160,
+    "filter chip": 4
+   },
+   "gridStops": 189,
+   "beforeExamples": 161
+  },
+  "tabSequence1400": [
+   {
+    "n": 1,
+    "el": "a.skip \"Skip to the page\"",
+    "rect": [
+     8,
+     8,
+     152,
+     56
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": true,
+    "inView": true,
+    "clipped": null,
+    "scrollY": 0
+   },
+   {
+    "n": 2,
+    "el": "a.home \"Raeez Lorgat\"",
+    "rect": [
+     132,
+     12,
+     223,
+     38
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": null,
+    "scrollY": 0
+   },
+   {
+    "n": 3,
+    "el": "a \"Programme\"",
+    "rect": [
+     403,
+     6,
+     500,
+     44
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": {
+     "top": 4,
+     "bottom": 4,
+     "left": 0,
+     "right": 0,
+     "by": "nav.nav \"On this page\""
+    },
+    "scrollY": 0
+   },
+   {
+    "n": 4,
+    "el": "a \"Results\"",
+    "rect": [
+     502,
+     6,
+     571,
+     44
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": {
+     "top": 4,
+     "bottom": 4,
+     "left": 0,
+     "right": 0,
+     "by": "nav.nav \"On this page\""
+    },
+    "scrollY": 0
+   },
+   {
+    "n": 5,
+    "el": "a \"Decisive questions\"",
+    "rect": [
+     573,
+     6,
+     714,
+     44
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": {
+     "top": 4,
+     "bottom": 4,
+     "left": 0,
+     "right": 0,
+     "by": "nav.nav \"On this page\""
+    },
+    "scrollY": 0
+   },
+   {
+    "n": 6,
+    "el": "a \"Frontier\"",
+    "rect": [
+     716,
+     6,
+     790,
+     44
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": {
+     "top": 4,
+     "bottom": 4,
+     "left": 0,
+     "right": 0,
+     "by": "nav.nav \"On this page\""
+    },
+    "scrollY": 0
+   },
+   {
+    "n": 7,
+    "el": "a \"Examples\"",
+    "rect": [
+     792,
+     6,
+     874,
+     44
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": {
+     "top": 4,
+     "bottom": 4,
+     "left": 0,
+     "right": 0,
+     "by": "nav.nav \"On this page\""
+    },
+    "scrollY": 0
+   },
+   {
+    "n": 8,
+    "el": "a \"Counterexamples\"",
+    "rect": [
+     876,
+     6,
+     1012,
+     44
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": {
+     "top": 4,
+     "bottom": 4,
+     "left": 0,
+     "right": 0,
+     "by": "nav.nav \"On this page\""
+    },
+    "scrollY": 0
+   },
+   {
+    "n": 9,
+    "el": "a \"Open\"",
+    "rect": [
+     1014,
+     6,
+     1072,
+     44
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": {
+     "top": 4,
+     "bottom": 4,
+     "left": 0,
+     "right": 0,
+     "by": "nav.nav \"On this page\""
+    },
+    "scrollY": 0
+   },
+   {
+    "n": 10,
+    "el": "a \"Essay\"",
+    "rect": [
+     1074,
+     6,
+     1129,
+     44
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": {
+     "top": 4,
+     "bottom": 4,
+     "left": 0,
+     "right": 0,
+     "by": "nav.nav \"On this page\""
+    },
+    "scrollY": 0
+   },
+   {
+    "n": 11,
+    "el": "a \"Terms\"",
+    "rect": [
+     1131,
+     6,
+     1192,
+     44
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": {
+     "top": 4,
+     "bottom": 4,
+     "left": 0,
+     "right": 0,
+     "by": "nav.nav \"On this page\""
+    },
+    "scrollY": 0
+   },
+   {
+    "n": 12,
+    "el": "button.theme \"Switch between light and dark\"",
+    "rect": [
+     1234,
+     8,
+     1268,
+     42
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": null,
+    "scrollY": 0
+   },
+   {
+    "n": 13,
+    "el": "button.term \"local vacuum\"",
+    "rect": [
+     380,
+     737,
+     490,
+     771
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": null,
+    "scrollY": 0
+   },
+   {
+    "n": 14,
+    "el": "a \"197Proved and independently checked\"",
+    "rect": [
+     380,
+     1242,
+     690,
+     1282
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": false,
+    "clipped": null,
+    "scrollY": 10
+   },
+   {
+    "n": 15,
+    "el": "a \"6Conditional\"",
+    "rect": [
+     700,
+     1195,
+     845,
+     1235
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": false,
+    "clipped": null,
+    "scrollY": 57
+   },
+   {
+    "n": 16,
+    "el": "a \"74Open problem\"",
+    "rect": [
+     380,
+     1188,
+     550,
+     1229
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": false,
+    "clipped": null,
+    "scrollY": 112
+   },
+   {
+    "n": 17,
+    "el": "a \"4Published\"",
+    "rect": [
+     560,
+     1074,
+     689,
+     1115
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": false,
+    "clipped": null,
+    "scrollY": 226
+   },
+   {
+    "n": 18,
+    "el": "input#find-q.find-input",
+    "rect": [
+     414,
+     1054,
+     1013,
+     1100
+    ],
+    "outline": "none 3px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": false,
+    "clipped": null,
+    "scrollY": 332
+   },
+   {
+    "n": 19,
+    "el": "button.filter \"Results\"",
+    "rect": [
+     470,
+     1128,
+     535,
+     1160
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": false,
+    "clipped": null,
+    "scrollY": 361
+   },
+   {
+    "n": 20,
+    "el": "button.filter \"Decisive questions\"",
+    "rect": [
+     541,
+     1078,
+     670,
+     1110
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": false,
+    "clipped": null,
+    "scrollY": 411
+   },
+   {
+    "n": 21,
+    "el": "button.filter \"Frontier\"",
+    "rect": [
+     676,
+     918,
+     746,
+     950
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": false,
+    "clipped": null,
+    "scrollY": 571
+   },
+   {
+    "n": 22,
+    "el": "button.filter \"Examples\"",
+    "rect": [
+     752,
+     738,
+     829,
+     770
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": null,
+    "scrollY": 751
+   },
+   {
+    "n": 23,
+    "el": "button.filter \"Counterexamples\"",
+    "rect": [
+     835,
+     641,
+     960,
+     673
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": null,
+    "scrollY": 848
+   },
+   {
+    "n": 24,
+    "el": "button.filter \"Open\"",
+    "rect": [
+     470,
+     597,
+     526,
+     629
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": null,
+    "scrollY": 930
+   },
+   {
+    "n": 25,
+    "el": "button.filter \"Essay\"",
+    "rect": [
+     532,
+     551,
+     585,
+     583
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": null,
+    "scrollY": 976
+   },
+   {
+    "n": 26,
+    "el": "button.filter \"Terms\"",
+    "rect": [
+     591,
+     532,
+     649,
+     564
+    ],
+    "outline": "solid 2px off 2px",
+    "fv": true,
+    "underBar": false,
+    "inView": true,
+    "clipped": null,
+    "scrollY": 995
+   }
+  ],
+  "layout": {
+   "375": {
+    "innerWidth": 375,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "docHeight": 143522,
+    "barHeight": 51,
+    "scrollPaddingTop": "66px",
+    "nav": {
+     "clientW": 291,
+     "scrollW": 736,
+     "navH": 35.2,
+     "linkH": 35.2,
+     "overflowY": "auto",
+     "lastLinkRight": 728,
+     "navRight": 307
+    },
+    "grid": {
+     "wrapClientW": 341,
+     "wrapScrollW": 870,
+     "tableW": 870,
+     "wrapOverflowY": "auto"
+    },
+    "pageOverflowers": [],
+    "math": {
+     "horizontallyScrolling": 16,
+     "verticallyClipped": 23,
+     "vclipSample": [
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=33 ch=31",
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=45 ch=35",
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=34 ch=31",
+      "article#s-geometric-vacuum-reconstruction.statement.st-check sh=35 ch=31",
+      "article#s-decisive-centre-self-linking.statement.st-checked  sh=46 ch=44",
+      "article#s-decisive-centre-relative-path-diagrams.statement.s sh=36 ch=33"
+     ]
+    },
+    "rowSummaryOverflow": [],
+    "statementOverflow": [
+     "s-witness-fusion-braid sw=340 cw=334",
+     "s-witness-fixed-level-primitive sw=340 cw=334",
+     "s-witness-ordered-scalar-affine sw=340 cw=334",
+     "s-witness-polynomial-charge sw=340 cw=334",
+     "s-witness-internal-end-laurent sw=340 cw=334",
+     "s-witness-single-fibre sw=340 cw=334",
+     "s-witness-kac-row-swap sw=340 cw=334",
+     "s-witness-individual-theta sw=340 cw=334"
+    ],
+    "compareCols": "343px",
+    "find": {
+     "after": "nav.tally \"Statements on this page\"",
+     "width": 375
+    }
+   },
+   "480": {
+    "innerWidth": 480,
+    "clientWidth": 480,
+    "scrollWidth": 480,
+    "docHeight": 118084,
+    "barHeight": 51,
+    "scrollPaddingTop": "66px",
+    "nav": {
+     "clientW": 390,
+     "scrollW": 736,
+     "navH": 35.2,
+     "linkH": 35.2,
+     "overflowY": "auto",
+     "lastLinkRight": 731,
+     "navRight": 409
+    },
+    "grid": {
+     "wrapClientW": 440,
+     "wrapScrollW": 870,
+     "tableW": 870,
+     "wrapOverflowY": "auto"
+    },
+    "pageOverflowers": [],
+    "math": {
+     "horizontallyScrolling": 12,
+     "verticallyClipped": 23,
+     "vclipSample": [
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=33 ch=31",
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=45 ch=35",
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=34 ch=31",
+      "article#s-geometric-vacuum-reconstruction.statement.st-check sh=35 ch=31",
+      "article#s-decisive-centre-self-linking.statement.st-checked  sh=46 ch=44",
+      "article#s-decisive-centre-relative-path-diagrams.statement.s sh=36 ch=33"
+     ]
+    },
+    "rowSummaryOverflow": [],
+    "statementOverflow": [],
+    "compareCols": "441.625px",
+    "find": {
+     "after": "nav.tally \"Statements on this page\"",
+     "width": 480
+    }
+   },
+   "768": {
+    "innerWidth": 768,
+    "clientWidth": 768,
+    "scrollWidth": 768,
+    "docHeight": 95362,
+    "barHeight": 51,
+    "scrollPaddingTop": "66px",
+    "nav": {
+     "clientW": 555,
+     "scrollW": 756,
+     "navH": 36.1,
+     "linkH": 36.1,
+     "overflowY": "auto",
+     "lastLinkRight": 862,
+     "navRight": 685
+    },
+    "grid": {
+     "wrapClientW": 705,
+     "wrapScrollW": 1062,
+     "tableW": 1062,
+     "wrapOverflowY": "auto"
+    },
+    "pageOverflowers": [],
+    "math": {
+     "horizontallyScrolling": 1,
+     "verticallyClipped": 25,
+     "vclipSample": [
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=34 ch=32",
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=47 ch=37",
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=35 ch=32",
+      "article#s-geometric-vacuum-reconstruction.statement.st-check sh=36 ch=32",
+      "article#s-decisive-centre-self-linking.statement.st-checked  sh=50 ch=48",
+      "article#s-decisive-centre-relative-path-diagrams.statement.s sh=37 ch=33"
+     ]
+    },
+    "rowSummaryOverflow": [],
+    "statementOverflow": [],
+    "compareCols": "706.562px",
+    "find": {
+     "after": "nav.tally \"Statements on this page\"",
+     "width": 701
+    }
+   },
+   "1024": {
+    "innerWidth": 1024,
+    "clientWidth": 1024,
+    "scrollWidth": 1024,
+    "docHeight": 96198,
+    "barHeight": 51,
+    "scrollPaddingTop": "66px",
+    "nav": {
+     "clientW": 789,
+     "scrollW": 789,
+     "navH": 37.1,
+     "linkH": 37.1,
+     "overflowY": "auto",
+     "lastLinkRight": 908,
+     "navRight": 932
+    },
+    "grid": {
+     "wrapClientW": 942,
+     "wrapScrollW": 1106,
+     "tableW": 1106,
+     "wrapOverflowY": "auto"
+    },
+    "pageOverflowers": [],
+    "math": {
+     "horizontallyScrolling": 1,
+     "verticallyClipped": 21,
+     "vclipSample": [
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=49 ch=38",
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=36 ch=34",
+      "article#s-geometric-vacuum-reconstruction.statement.st-check sh=38 ch=34",
+      "article#s-decisive-centre-self-linking.statement.st-checked  sh=52 ch=50",
+      "article#s-decisive-centre-relative-path-diagrams.statement.s sh=39 ch=35",
+      "article#s-decisive-centre-polynomial-source.statement.st-che sh=36 ch=31"
+     ]
+    },
+    "rowSummaryOverflow": [],
+    "statementOverflow": [],
+    "compareCols": "944px",
+    "find": {
+     "after": "nav.tally \"Statements on this page\"",
+     "width": 720
+    }
+   },
+   "1400": {
+    "innerWidth": 1400,
+    "clientWidth": 1400,
+    "scrollWidth": 1400,
+    "docHeight": 104268,
+    "barHeight": 51,
+    "scrollPaddingTop": "66px",
+    "nav": {
+     "clientW": 975,
+     "scrollW": 975,
+     "navH": 38.7,
+     "linkH": 38.7,
+     "overflowY": "auto",
+     "lastLinkRight": 1192,
+     "navRight": 1216
+    },
+    "grid": {
+     "wrapClientW": 1214,
+     "wrapScrollW": 1214,
+     "tableW": 1214,
+     "wrapOverflowY": "auto"
+    },
+    "pageOverflowers": [],
+    "math": {
+     "horizontallyScrolling": 4,
+     "verticallyClipped": 22,
+     "vclipSample": [
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=37 ch=35",
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=51 ch=40",
+      "section#results.section \"EstablishedPrincipal resultsProved  sh=38 ch=35",
+      "article#s-geometric-vacuum-reconstruction.statement.st-check sh=39 ch=35",
+      "article#s-decisive-centre-self-linking.statement.st-checked  sh=54 ch=51",
+      "article#s-decisive-centre-relative-path-diagrams.statement.s sh=39 ch=36"
+     ]
+    },
+    "rowSummaryOverflow": [],
+    "statementOverflow": [],
+    "compareCols": "601.312px 572.672px",
+    "find": {
+     "after": "nav.tally \"Statements on this page\"",
+     "width": 720
+    }
+   }
+  },
+  "tabInventory375": {
+   "total": 433,
+   "byKind": {
+    "other": 4,
+    "nav link": 9,
+    "term": 83,
+    "tally link": 4,
+    "input": 1,
+    "filter chip": 16,
+    "heading anchor": 47,
+    "math scroller": 16,
+    "q-index link": 34,
+    "link-btn": 4,
+    "summary": 26,
+    "grid-wrap": 1,
+    "col-head": 8,
+    "grid row link": 20,
+    "cell-btn": 160
+   }
+  },
+  "grid375": {
+   "scrollLeft": 170,
+   "corner": [
+    -153,
+    -40
+   ],
+   "stickyRowHeader": [
+    17,
+    130
+   ],
+   "columnHeadsVisibleAboveRowHeaderColumn": [
+    "object",
+    "dual"
+   ],
+   "cellsHiddenUnderRowHeader": 1,
+   "cornerPosition": "sticky",
+   "cornerLeft": "auto"
+  }
+ },
+ "loadMs": 594,
+ "logEnd": []
+}

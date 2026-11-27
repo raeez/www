@@ -1,0 +1,258 @@
+{
+ "steps": {
+  "reducedMotion": {
+   "reduce": true,
+   "htmlScrollBehavior": "auto",
+   "findFieldTransition": "0s",
+   "findLinkRule": "n/a"
+  },
+  "grid375": {
+   "y": 84501.453125,
+   "scrollY": 84501,
+   "sl": 170
+  },
+  "witnessOverflow375": {
+   "statementRight": 359,
+   "contentRight": 344,
+   "failureRight": 359,
+   "marginLeft": "7.5px",
+   "width": 335.5,
+   "viewport": 375,
+   "beyond": [
+    "span.status-chip.chip-checked \"Proved and independently checked\" R=365.0",
+    "span \"Proved and independently checked\" R=356.0"
+   ]
+  },
+  "navFocus768": [
+   {
+    "el": "a.skip \"Skip to the page\"",
+    "left": 8,
+    "right": 141,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 201
+   },
+   {
+    "el": "a.home \"Raeez Lorgat\"",
+    "left": 31,
+    "right": 112,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 201
+   },
+   {
+    "el": "a \"Programme\"",
+    "left": 130,
+    "right": 220,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 0
+   },
+   {
+    "el": "a \"Results\"",
+    "left": 222,
+    "right": 286,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 0
+   },
+   {
+    "el": "a \"Decisive questions\"",
+    "left": 288,
+    "right": 417,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 0
+   },
+   {
+    "el": "a \"Frontier\"",
+    "left": 419,
+    "right": 488,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 0
+   },
+   {
+    "el": "a \"Examples\"",
+    "left": 490,
+    "right": 567,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 0
+   },
+   {
+    "el": "a \"Counterexamples\"",
+    "left": 569,
+    "right": 693,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 0
+   },
+   {
+    "el": "a \"Open\"",
+    "left": 494,
+    "right": 548,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 201
+   },
+   {
+    "el": "a \"Essay\"",
+    "left": 550,
+    "right": 602,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 201
+   },
+   {
+    "el": "a \"Terms\"",
+    "left": 604,
+    "right": 661,
+    "navLeft": 130,
+    "navRight": 685,
+    "fadeStartsAt": 619,
+    "mask": "linear-gradient(90deg, rgb(0, 0, 0) 88%, rgba(0, 0, 0, 0))",
+    "navScrollLeft": 201
+   }
+  ],
+  "vclip1400": {
+   "count": 22,
+   "worst": [
+    {
+     "cls": "math-inline math-long",
+     "gap": 11,
+     "sh": 51,
+     "ch": 40,
+     "host": "results",
+     "tex": "B_\\eta=\\varprojlim_m(\\Lambda\\mathfrak p^\\vee\\otimes\\Lambda D_m^*,d_{\\rm CE},+\\eta)"
+    },
+    {
+     "cls": "math-inline math-long",
+     "gap": 10,
+     "sh": 45,
+     "ch": 35,
+     "host": "s-witness-curvature-positivity",
+     "tex": "\\partial_z\\partial_{\\bar z}\\log K(z,\\bar z)=1-4|z|^2>0"
+    },
+    {
+     "cls": "math-inline math-long",
+     "gap": 6,
+     "sh": 43,
+     "ch": 37,
+     "host": "term-weilpetersson-metric-and-form",
+     "tex": "\\omega_{\\mathrm{WP}}=iH_{j\\bar k}\\,dt_j\\wedge d\\bar t_k"
+    },
+    {
+     "cls": "math-inline math-long",
+     "gap": 5,
+     "sh": 41,
+     "ch": 36,
+     "host": "term-marked-vacuum-extension",
+     "tex": "0\\to\\mathbf1\\xrightarrow{i}J\\xrightarrow{p}\\mathbf1\\to0"
+    },
+    {
+     "cls": "math-inline math-long",
+     "gap": 4,
+     "sh": 39,
+     "ch": 35,
+     "host": "s-geometric-vacuum-reconstruction",
+     "tex": "F_I:\\mathcal C_I\\to\\operatorname{QCoh}(X^I)"
+    },
+    {
+     "cls": "math-display",
+     "gap": 4,
+     "sh": 36,
+     "ch": 32,
+     "host": "s-decisive-centre-polynomial-source",
+     "tex": "\\mathcal P_n=\\operatorname{Hom}(K,B\\otimes\\Omega_n)=\\mathbb C^2\\times Z^1(\\Omega_n),\\qquad"
+    },
+    {
+     "cls": "math-inline math-long",
+     "gap": 4,
+     "sh": 38,
+     "ch": 34,
+     "host": "s-decisive-centre-polynomial-source",
+     "tex": "\\nu:\\mathcal P\\to\\operatorname{Map}_{\\mathcal D}(B,B)"
+    },
+    {
+     "cls": "math-inline math-long",
+     "gap": 4,
+     "sh": 39,
+     "ch": 35,
+     "host": "s-decisive-open-closed-reconstruction",
+     "tex": "\\beta:F_{\\mathrm{bulk}}\\to Z(\\mathcal C_\\partial)"
+    },
+    {
+     "cls": "math-inline math-long",
+     "gap": 4,
+     "sh": 38,
+     "ch": 34,
+     "host": "s-decisive-partner-one-screening-complete",
+     "tex": "\\phi\\mapsto\\int_0^\\infty\\phi(P)B_P\\,dP"
+    },
+    {
+     "cls": "math-inline math-long",
+     "gap": 4,
+     "sh": 39,
+     "ch": 35,
+     "host": "s-decisive-arithmetic-native-operations",
+     "tex": "\\Phi:B_{\\mathrm{ord}}(A_{\\mathrm{ch}})\\to C(\\mathcal F)"
+    },
+    {
+     "cls": "math-inline math-long",
+     "gap": 3,
+     "sh": 38,
+     "ch": 35,
+     "host": "results",
+     "tex": "\\bigoplus_{m\\geq0}\\operatorname{Sym}_b^m(A(U)[2])"
+    },
+    {
+     "cls": "math-display",
+     "gap": 3,
+     "sh": 54,
+     "ch": 51,
+     "host": "s-decisive-centre-self-linking",
+     "tex": "\\operatorname{sl}(\\alpha)=\\frac{\\operatorname{ch}(\\alpha)^2}{2\\kappa}"
+    }
+   ]
+  },
+  "vclipShot": {
+   "gap": 11,
+   "rect": [
+    640,
+    300,
+    902,
+    341
+   ],
+   "cls": "math-inline math-long",
+   "tex": "B_\\eta=\\varprojlim_m(\\Lambda\\mathfrak p^\\vee\\otimes\\Lambda D_m^*,d_{\\rm CE},+\\eta)",
+   "rectAfter": [
+    640,
+    300,
+    902,
+    341
+   ]
+  }
+ },
+ "timeout": true
+}

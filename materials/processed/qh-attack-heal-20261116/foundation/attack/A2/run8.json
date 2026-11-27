@@ -1,0 +1,23 @@
+{
+ "steps": {
+  "chip": [
+   24,
+   120,
+   359,
+   595
+  ],
+  "gridOneStop": {
+   "controls": 188,
+   "first": "button.col-head \"Algebra and geometry\""
+  },
+  "gridOneStopSequence": [
+   "Tab -> button.col-head \"Algebra and geometry\"",
+   "ArrowDown -> button.cell-btn \"Heisenberg, free fields and lattice vertex ",
+   "ArrowRight -> button.cell-btn \"Heisenberg, free fields and lattice vertex ",
+   "End -> button.cell-btn \"Heisenberg, free fields and lattice vertex ",
+   "Tab -> summary \"What the columns mean\"",
+   "Shift+Tab -> button.col-head \"Algebra and geometry\""
+  ]
+ },
+ "log": []
+}

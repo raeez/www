@@ -1,0 +1,506 @@
+{
+ "pass": true,
+ "failedHooks": [],
+ "failedBehaviours": [],
+ "hooks": [
+  {
+   "selector": "html",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "data-theme attribute target; localStorage key qh-theme (head script and status.js)"
+  },
+  {
+   "selector": "button.theme",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "theme toggle"
+  },
+  {
+   "selector": "#main",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "skip-link target and search root"
+  },
+  {
+   "selector": "a.skip[href=\"#main\"]",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "skip link"
+  },
+  {
+   "selector": "#card[role=\"dialog\"][hidden] > .card-inner",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "single floating card for terms, cells, column heads"
+  },
+  {
+   "selector": "button.term[data-term][aria-controls=\"card\"][aria-expanded]",
+   "count": 334,
+   "min": 100,
+   "pass": true,
+   "note": "glossary term trigger; data-term names a .gloss id"
+  },
+  {
+   "selector": ".gloss[id^=\"term-\"] > dt + dd",
+   "count": 144,
+   "min": 144,
+   "pass": true,
+   "note": "term card content source"
+  },
+  {
+   "selector": "#terms h2",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "label of the card link to the glossary"
+  },
+  {
+   "selector": "table.grid",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "grid of examples: arrow keys, Home, End"
+  },
+  {
+   "selector": "table.grid thead button.col-head[data-col][aria-controls=\"card\"]",
+   "count": 8,
+   "min": 8,
+   "pass": true,
+   "note": "column head trigger"
+  },
+  {
+   "selector": ".col-def[id^=\"col-\"] > dt + dd",
+   "count": 8,
+   "min": 8,
+   "pass": true,
+   "note": "column card content source"
+  },
+  {
+   "selector": "table.grid td.cell[data-status] > button.cell-btn[data-row][aria-controls=\"card\"] + .cell-note[hidden]",
+   "count": 160,
+   "min": 160,
+   "pass": true,
+   "note": "cell trigger and its note (sibling)"
+  },
+  {
+   "selector": "table.grid tbody th a[href^=\"#row-\"]",
+   "count": 20,
+   "min": 20,
+   "pass": true,
+   "note": "row link; its text labels the card link"
+  },
+  {
+   "selector": "details.row[id^=\"row-\"] > summary",
+   "count": 20,
+   "min": 20,
+   "pass": true,
+   "note": "example rows; summary click writes the address"
+  },
+  {
+   "selector": "details.row .row-name",
+   "count": 20,
+   "min": 20,
+   "pass": true,
+   "note": "search title of a row"
+  },
+  {
+   "selector": ".rows .statement[data-status]",
+   "count": 109,
+   "min": 100,
+   "pass": true,
+   "note": "statements filtered by status"
+  },
+  {
+   "selector": ".row-tools",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "live region parent for the row filter"
+  },
+  {
+   "selector": ".filter[data-filter][aria-pressed]:not(.find .filter)",
+   "count": 4,
+   "min": 3,
+   "pass": true,
+   "note": "row status filter chips"
+  },
+  {
+   "selector": "[data-expand=\"all\"]",
+   "count": 3,
+   "min": 1,
+   "pass": true,
+   "note": "Open all (label copied for question sections)"
+  },
+  {
+   "selector": "[data-expand=\"none\"]",
+   "count": 3,
+   "min": 1,
+   "pass": true,
+   "note": "Close all"
+  },
+  {
+   "selector": "main section.section .questions",
+   "count": 2,
+   "min": 2,
+   "pass": true,
+   "note": "question lists (Open all / Close all for details.known)"
+  },
+  {
+   "selector": ".tally a[data-filter]",
+   "count": 4,
+   "min": 3,
+   "pass": true,
+   "note": "status tally: search by status"
+  },
+  {
+   "selector": "main > .tally",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "search is inserted after it when no [data-find] mount exists"
+  },
+  {
+   "selector": ".find[role=\"search\"] #find-q",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "search built by status.js"
+  },
+  {
+   "selector": ".nav a[href^=\"#\"]",
+   "count": 9,
+   "min": 6,
+   "pass": true,
+   "note": "bar links: aria-current and section observer"
+  },
+  {
+   "selector": "main .statement[data-status] .statement-head .status-chip .mark",
+   "count": 281,
+   "min": 281,
+   "pass": true,
+   "note": "search status label and mark"
+  },
+  {
+   "selector": "main .statement .statement-title",
+   "count": 254,
+   "min": 200,
+   "pass": true,
+   "note": "search titles"
+  },
+  {
+   "selector": "main .question[id^=\"q-\"] h3",
+   "count": 34,
+   "min": 34,
+   "pass": true,
+   "note": "question title (h3 .anchor) and number"
+  },
+  {
+   "selector": "main .question .question-num .question-num-label",
+   "count": 34,
+   "min": 34,
+   "pass": true,
+   "note": "question number label (skipped in titles)"
+  },
+  {
+   "selector": "main .question > .statement, main .question > .question-ask > .statement",
+   "count": 34,
+   "min": 34,
+   "pass": true,
+   "note": "a question's own statement: direct child or inside .question-ask"
+  },
+  {
+   "selector": "main .failure[id] .claim-text",
+   "count": 11,
+   "min": 11,
+   "pass": true,
+   "note": "counterexample claim"
+  },
+  {
+   "selector": "main .failure > .statement",
+   "count": 11,
+   "min": 11,
+   "pass": true,
+   "note": "counterexample witness"
+  },
+  {
+   "selector": "main .open-group[id] h3",
+   "count": 4,
+   "min": 4,
+   "pass": true,
+   "note": "open-problem group"
+  },
+  {
+   "selector": "main .col-def dt",
+   "count": 8,
+   "min": 8,
+   "pass": true,
+   "note": "search unit"
+  },
+  {
+   "selector": "#essay-title",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "essay title"
+  },
+  {
+   "selector": "main .essay > p:not(.essay-byline)",
+   "count": 26,
+   "min": 20,
+   "pass": true,
+   "note": "essay paragraphs (search units)"
+  },
+  {
+   "selector": "main .essay-lead",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "essay lead"
+  },
+  {
+   "selector": "main .gloss dt",
+   "count": 144,
+   "min": 144,
+   "pass": true,
+   "note": "glossary search units"
+  },
+  {
+   "selector": ".math-display, .math-long",
+   "count": 316,
+   "min": 50,
+   "pass": true,
+   "note": "scrollable formulas get tabindex when wide"
+  },
+  {
+   "selector": "section#results, section#examples, section#open",
+   "count": 3,
+   "min": 3,
+   "pass": true,
+   "note": "search scopes (also decisive, frontier, failures, essay, terms when present)"
+  },
+  {
+   "selector": "main > nav.contents[aria-labelledby=\"contents-label\"] ol > li > a[href^=\"#\"]",
+   "count": 9,
+   "min": 9,
+   "pass": true,
+   "note": "contents: every built section by its heading, with counts"
+  },
+  {
+   "selector": "main > section.questions-section.wide",
+   "count": 2,
+   "min": 2,
+   "pass": true,
+   "note": "every question section uses the same card layout"
+  },
+  {
+   "selector": ".question.compare > .question-ask > .question-ask-label + .statement",
+   "count": 34,
+   "min": 34,
+   "pass": true,
+   "note": "the labelled question part; the statement stays a direct child of .question-ask"
+  },
+  {
+   "selector": ".question-known > ul.statements.known-list > li.fold-item > details.known.fold > summary.fold-head",
+   "count": 105,
+   "min": 105,
+   "pass": true,
+   "note": "related statement line (mark, title, status)"
+  },
+  {
+   "selector": "details.known.fold > article.statement[data-status][id^=\"s-\"]",
+   "count": 105,
+   "min": 105,
+   "pass": true,
+   "note": "the related statement inside its line keeps its markup and anchor"
+  },
+  {
+   "selector": ".statement-head > .statement-context > a[href^=\"#\"]",
+   "count": 227,
+   "min": 227,
+   "pass": true,
+   "note": "where a statement stands; shown for :target only; inside .statement-head so search skips it"
+  },
+  {
+   "selector": ".q-index-head > .q-index-label[id]",
+   "count": 2,
+   "min": 2,
+   "pass": true,
+   "note": "question index label (named landmark)"
+  },
+  {
+   "selector": ".bar button.find-open[data-find-open]",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "search control in the bar (status.js binds [data-find-open])"
+  },
+  {
+   "selector": ".grid-legend .legend-key a[href=\"#status\"]",
+   "count": 1,
+   "min": 1,
+   "pass": true,
+   "note": "grid legend links to the key"
+  },
+  {
+   "selector": ".cell-note > .cell-note-head + .cell-note-text",
+   "count": 160,
+   "min": 160,
+   "pass": true,
+   "note": "the note follows the head (card description)"
+  },
+  {
+   "selector": ".cell-note > .cell-note-meaning",
+   "count": 160,
+   "min": 160,
+   "pass": true,
+   "note": "meaning of the cell status, after the note"
+  },
+  {
+   "selector": "button.col-head > .col-head-text",
+   "count": 8,
+   "min": 8,
+   "pass": true,
+   "note": "column heading text (turns upright at <=760px)"
+  },
+  {
+   "selector": "section#terms.terms-section > nav.gloss-index a[href^=\"#term-\"]",
+   "count": 21,
+   "min": 2,
+   "pass": true,
+   "note": "glossary letter index"
+  }
+ ],
+ "behaviours": [
+  {
+   "name": "cell click opens the card with its note",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "Escape closes the card",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "term click opens its definition",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "second click closes it",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "column head opens its definition",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "click elsewhere closes the card",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "row filter hides other statuses",
+   "pass": true,
+   "detail": "open wrong=0"
+  },
+  {
+   "name": "row filter off shows all",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "Open all opens every row",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "Close all closes every row",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "each question section with two or more related-statement disclosures has Open all / Close all",
+   "pass": true,
+   "detail": "2 sections"
+  },
+  {
+   "name": "Open all / Close all in #decisive",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "Open all / Close all in #frontier",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "a link to a statement inside a closed disclosure opens it",
+   "pass": true,
+   "detail": "s-decisive-endpoint-two-corings"
+  },
+  {
+   "name": "beforeprint opens every disclosure; afterprint restores",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tally link lists statements of its status in the search",
+   "pass": true,
+   "detail": "40 hits"
+  },
+  {
+   "name": "search for a title word returns hits",
+   "pass": true,
+   "detail": "Siegel"
+  },
+  {
+   "name": "theme button sets data-theme",
+   "pass": true,
+   "detail": "null -> dark"
+  },
+  {
+   "name": "ArrowRight moves to the next mark in the grid",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "a related statement line opens to its statement",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "and closes again",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "inside a closed or open line the statement heading is drawn by the line",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "the bar search control focuses the search",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "a context line is hidden while its statement is not the target",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "the decisive questions get Open all from status.js",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "console": []
+}

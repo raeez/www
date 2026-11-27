@@ -1,0 +1,122 @@
+[
+ {
+  "check": "E4 ids preserved",
+  "pass": true,
+  "detail": "0 missing: []"
+ },
+ {
+  "check": "info: ids added",
+  "pass": true,
+  "detail": "2: ['contents', 'contents-label']"
+ },
+ {
+  "check": "E5 anchored statement status",
+  "pass": true,
+  "detail": "{}"
+ },
+ {
+  "check": "E5 status multiset",
+  "pass": true,
+  "detail": "{'checked': 197, 'open': 74, 'conditional': 6, 'published': 4} vs {'checked': 197, 'open': 74, 'published': 4, 'conditional': 6}"
+ },
+ {
+  "check": "E5 grid cell status",
+  "pass": true,
+  "detail": "160 vs 160 cells; diffs {}"
+ },
+ {
+  "check": "E6 statements (status, title, text, notes) multiset",
+  "pass": true,
+  "detail": "0 baseline statements without an identical candidate: []"
+ },
+ {
+  "check": "E6 anchored statement text",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "E6 questions",
+  "pass": true,
+  "detail": "34 vs 34; differing: []"
+ },
+ {
+  "check": "E6 rows",
+  "pass": true,
+  "detail": "20 vs 20; differing: []"
+ },
+ {
+  "check": "E6 col_defs",
+  "pass": true,
+  "detail": "8 vs 8; differing: []"
+ },
+ {
+  "check": "E6 failures",
+  "pass": true,
+  "detail": "11 vs 11; differing: []"
+ },
+ {
+  "check": "E6 open_groups",
+  "pass": true,
+  "detail": "4 vs 4; differing: []"
+ },
+ {
+  "check": "E6 glossary",
+  "pass": true,
+  "detail": "144 vs 144; differing: []"
+ },
+ {
+  "check": "E6 grid cell notes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "E6 status key",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "E6 lead",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "E6 essay",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "E6 essay_lead",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "E6 section intros",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "E6 every baseline formula present (TeX multiset inclusion)",
+  "pass": true,
+  "detail": "0 lost: []"
+ },
+ {
+  "check": "info: formula elements",
+  "pass": true,
+  "detail": "2502 -> 2503 (extra: {})"
+ },
+ {
+  "check": "E7 csp",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "E7 title",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "E7 description",
+  "pass": true,
+  "detail": ""
+ }
+]

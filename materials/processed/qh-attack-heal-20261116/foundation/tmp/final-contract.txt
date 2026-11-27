@@ -1,0 +1,81 @@
+PASS     1 >= 1    html
+PASS     1 >= 1    button.theme
+PASS     1 >= 1    #main
+PASS     1 >= 1    a.skip[href="#main"]
+PASS     1 >= 1    #card[role="dialog"][hidden] > .card-inner
+PASS   334 >= 100  button.term[data-term][aria-controls="card"][aria-expanded]
+PASS   144 >= 144  .gloss[id^="term-"] > dt + dd
+PASS     1 >= 1    #terms h2
+PASS     1 >= 1    table.grid
+PASS     8 >= 8    table.grid thead button.col-head[data-col][aria-controls="card"]
+PASS     8 >= 8    .col-def[id^="col-"] > dt + dd
+PASS   160 >= 160  table.grid td.cell[data-status] > button.cell-btn[data-row][aria-controls="card"] + .cell-note[hidden]
+PASS    20 >= 20   table.grid tbody th a[href^="#row-"]
+PASS    20 >= 20   details.row[id^="row-"] > summary
+PASS    20 >= 20   details.row .row-name
+PASS   109 >= 100  .rows .statement[data-status]
+PASS     1 >= 1    .row-tools
+PASS     4 >= 3    .filter[data-filter][aria-pressed]
+PASS     1 >= 1    [data-expand="all"]
+PASS     1 >= 1    [data-expand="none"]
+PASS     2 >= 2    main section.section .questions
+PASS     4 >= 3    .tally a[data-filter]
+PASS     1 >= 1    main > .tally
+PASS     9 >= 6    .nav a[href^="#"]
+PASS   281 >= 281  main .statement[data-status] .statement-head .status-chip .mark
+PASS   254 >= 200  main .statement .statement-title
+PASS    34 >= 34   main .question[id^="q-"] h3
+PASS    34 >= 34   main .question .question-num .question-num-label
+PASS    34 >= 34   main .question > .statement, main .question > .question-ask > .statement
+PASS    11 >= 11   main .failure[id] .claim-text
+PASS    11 >= 11   main .failure > .statement
+PASS     4 >= 4    main .open-group[id] h3
+PASS     8 >= 8    main .col-def dt
+PASS     1 >= 1    #essay-title
+PASS    26 >= 20   main .essay > p:not(.essay-byline)
+PASS     1 >= 1    main .essay-lead
+PASS   144 >= 144  main .gloss dt
+PASS   316 >= 50   .math-display, .math-long
+PASS     3 >= 3    section#results, section#examples, section#open
+PASS     9 >= 9    main > .overview > nav.contents[aria-labelledby="contents-label"] ol > li > a[href^="#"]
+PASS     1 >= 1    main > .overview > header.cover#programme + .lead + nav.contents
+PASS     1 >= 1    main > .overview + nav.tally
+PASS     2 >= 2    main > section.questions-section.wide
+PASS    34 >= 34   .question.compare > .question-ask > .question-ask-label + .statement
+PASS   105 >= 105  .question-known > ul.statements.known-list > li.fold-item > details.known.fold > summary.fold-head
+PASS   105 >= 105  details.known.fold > article.statement[data-status][id^="s-"]
+PASS   135 >= 135  .statement[id] > .statement-head > .statement-context > a[href^="#"]
+PASS    34 >= 34   .question.compare > .question-ask > .question-ask-label[data-label]
+PASS     1 >= 1    .bar > .bar-inner > a.nav-top[href="#programme"] + nav.nav
+PASS     1 >= 1    main > .overview > nav.contents#contents
+PASS     1 >= 1    .grid-block > .grid-wrap[role="region"]:not([tabindex])
+PASS     2 >= 2    .q-index-head > .q-index-label[id]
+PASS     1 >= 1    .bar button.find-open[data-find-open]
+PASS     1 >= 1    .grid-legend .legend-key a[href="#status"]
+PASS   160 >= 160  .cell-note > .cell-note-head + .cell-note-text
+PASS   160 >= 160  .cell-note > .cell-note-meaning
+PASS     8 >= 8    button.col-head > .col-head-text
+PASS    21 >= 2    section#terms.terms-section > nav.gloss-index a[href^="#term-"]
+PASS     1 >= 1    table.grid thead th:first-child + th > button.col-head:not([tabindex])
+PASS     7 >= 7    table.grid button.col-head[tabindex="-1"]
+PASS   160 >= 160  table.grid button.cell-btn[tabindex="-1"]
+PASS    20 >= 20   table.grid tbody th > a.row-link[tabindex="-1"]
+PASS     8 >= 1    .math-display > math[style*="--fw:"]
+PASS     9 >= 9    main section.section > header.section-head > p.kicker > span.part-num
+PASS     9 >= 9    main > .overview > nav.contents ol > li > a > span.contents-num + span.contents-title
+PASS   105 >= 105  details.known.fold > summary.fold-head > span.fold-status
+PASS    23 >= 1    .question-known > p.known-head > span.known-key > svg.mark
+PASS no attribute carries TeX delimiters
+PASS no TeX annotation inside a family link of the table
+PASS no context line on a statement without an anchor
+PASS the question part label has no text node (search skips it; CSS draws it)
+PASS no glossary term inside a column definition
+PASS every section head carries the part number of its contents entry
+PASS a related statement shows its status text unless it is checked (then the text is read, not shown)
+PASS a card names the checked mark in its related-statements head exactly when a related statement is checked
+PASS every hidden separator leaves its spaces outside, so the text reads with spaces (kickers, date line, notes)
+PASS one id per element name (no duplicate ids)
+NOT CHECKED (created at run time) .find[role="search"] #find-q (search, built by status.js)
+NOT CHECKED (created at run time) .row-actions.known-actions (question-section toolbar, added by status.js)
+NOT CHECKED (created at run time) #card content (.card-term, .card-more), written by status.js
+ALL PASS

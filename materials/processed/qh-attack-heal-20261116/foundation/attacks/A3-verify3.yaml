@@ -1,0 +1,58 @@
+# A3 final targeted verification of A5-A3-01..06 (read-only, static, no browser). Saved verbatim by the lane lead
+# from A3's report (its agent type cannot write files). Full report text: attack/A3/verify3-report.md.
+pass: "A3 final targeted verification of A5-A3-01..06 (read-only, no browser; page image unjudged)"
+candidate: {preview_sha256: fa691a6ab3ef46cdb8ccaa30ed1c27a84f877e2641ce3a42da4aed29c19692a7, patch_sha256: bca64f25905955ac135acd9458a76124b2ca5e13273ae143dfd47fad51f35c17, guard_sha256: d5b38d5dd7efe458ab29418196cfe235b7899575a40e79482c021f59b40385a1}
+rechecks: {fidelity: "ALL PASS", contract_static: "77 PASS", anchors: "ALL PASS", completeness: "ALL PASS", contrast_static: "ALL PASS"}
+verdicts:
+  - {id: A5-A3-01, verdict: partially-healed, open: A6-A3-01}
+  - {id: A5-A3-02, verdict: verified-healed}
+  - {id: A5-A3-03, verdict: verified-healed}
+  - {id: A5-A3-04, verdict: verified-healed}
+  - {id: A5-A3-05, verdict: verified-healed}
+  - {id: A5-A3-06, verdict: verified-healed}
+  - {id: A4-A3-05, verdict: "fully healed (wording root's)"}
+  - {id: A4-A3-04, verdict: "not fully healed until A6-A3-01"}
+new_findings:
+- id: A6-A3-01
+  severity: 3
+  status: valid
+  lens: communication and accessibility (status accuracy in the related-statements head); regression from A5-A3-01
+  target: "status.py frontier() known_key; status.css .known-key / .known-head"
+  claim: The related-statements head never states a status the list contradicts.
+  broken_step: >-
+    [proved from markup] Five lists mix checked with other statuses: q-d-reduction-interface (3 checked, 1 conditional),
+    q-d-native-stress (1 checked, 1 conditional), q-d-partner-hilbert (4 checked, 1 conditional),
+    q-d-compact-igusa-source (1 open, 1 checked), q-d-interacting-curve (1 open, 1 checked). Their heads read
+    "Related statements · N statements · Proved and independently checked". For assistive technology the key's mark is
+    aria-hidden, so the head is heard as "2 statements, Proved and independently checked" above a list that holds an
+    open problem or a conditional statement. Sighted readers see the key on the same line as the count in 3 of the 5
+    at >=1180px (one-column cards: 537px needed in the 582px measure) and in all 5 at 561-1179px.
+  evidence_type: line_reference
+  evidence_ref: "preview.html known-heads (23 with key: 18 all-checked, 5 mixed); widths from hb-shape"
+  files_read: [status.py, status.css, preview.html]
+  tools_used: [python regex, hb-shape]
+  confidence: medium
+  blast_radius: 5 question cards; screen-reader users on every card with the key
+  minimal_heal: >-
+    Put aria-hidden="true" on span.known-key; each line's accessible name already carries its status. Add
+    .known-key { flex-basis: 100% } so the key always stands on its own line under the label and count, read as a
+    legend. The contract check counting span.known-key > svg.mark is unaffected.
+  residual: none
+  deciding_evidence: "Root's render of q-d-native-stress at 1400 and 1024, and a screen-reader reading of its head."
+- id: A6-A3-02
+  severity: 4
+  status: valid
+  lens: print (redundant key)
+  target: "status-print.css (no .known-key rule); status-print.css:174-176 print each related statement with its own chip"
+  claim: Printed question cards carry each status once.
+  broken_step: "[proved from source] In print every related statement shows its own status chip, so the key in the head is redundant on paper and repeats the mixed-list reading of A6-A3-01."
+  evidence_type: line_reference
+  evidence_ref: "status-print.css .fold > .statement > .statement-head { display: flex }"
+  files_read: [status-print.css, preview.html]
+  tools_used: [Read]
+  confidence: high
+  blast_radius: printed question sections
+  minimal_heal: "@media print { .known-key { display: none } } in status-print.css"
+  residual: none
+  deciding_evidence: "A4 PDF page with decisive card 5."
+convergence: "Not converged for A3's lens until A6-A3-01 (severity 3) is healed; after that only root's rulings (06, 07, 10 tally, 15), content (21) and the page image (23) remain."

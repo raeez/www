@@ -1,0 +1,83 @@
+{
+ "print-a4.pdf": {
+  "pages": 110,
+  "paper_pt": [
+   595.9,
+   841.9
+  ],
+  "text_min_x0": 45.0,
+  "text_max_x1": 550.2,
+  "x0_p01": 122.2,
+  "x1_p99": 471.2,
+  "spans_beyond_paper": 0,
+  "beyond_sample": [],
+  "uppercase_chip_counts": {
+   "checked": 197,
+   "open": 74,
+   "conditional": 6,
+   "published": 4
+  },
+  "statements_probed": 281,
+  "statements_missing_text": 0,
+  "missing_sample": [],
+  "control_labels_in_pdf": {},
+  "pages_with_bottom_number": 110
+ },
+ "print-letter.pdf": {
+  "pages": 120,
+  "paper_pt": [
+   612.0,
+   792.0
+  ],
+  "text_min_x0": 45.0,
+  "text_max_x1": 566.8,
+  "x0_p01": 126.8,
+  "x1_p99": 482.5,
+  "spans_beyond_paper": 0,
+  "beyond_sample": [],
+  "uppercase_chip_counts": {
+   "checked": 196,
+   "open": 73,
+   "conditional": 6,
+   "published": 4
+  },
+  "statements_probed": 281,
+  "statements_missing_text": 2,
+  "missing_sample": [
+   {
+    "id": "s-decisive-hamiltonian-e2",
+    "probe": ". Retain the independently defined wedge and Schouten bracke"
+   },
+   {
+    "id": "s-decisive-hamiltonian-quartic-constraint",
+    "probe": "A strict Lie source fails, while essential higher operations"
+   }
+  ],
+  "control_labels_in_pdf": {},
+  "pages_with_bottom_number": 120
+ },
+ "print-a4-dark.pdf": {
+  "pages": 110,
+  "paper_pt": [
+   595.9,
+   841.9
+  ],
+  "text_min_x0": 45.0,
+  "text_max_x1": 550.2,
+  "x0_p01": 122.2,
+  "x1_p99": 471.2,
+  "spans_beyond_paper": 0,
+  "beyond_sample": [],
+  "uppercase_chip_counts": {
+   "checked": 197,
+   "open": 74,
+   "conditional": 6,
+   "published": 4
+  },
+  "statements_probed": 281,
+  "statements_missing_text": 0,
+  "missing_sample": [],
+  "control_labels_in_pdf": {},
+  "pages_with_bottom_number": 110
+ }
+}

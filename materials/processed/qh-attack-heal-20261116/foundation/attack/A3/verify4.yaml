@@ -1,0 +1,85 @@
+# A3 verification of A6-A3-01/02 and the four design decisions (read-only, static, no browser). Saved verbatim by
+# the lane lead from A3's report (its agent type cannot write files). Full report text: attack/A3/verify4-report.md.
+pass: "A3 verification of A6-A3-01/02 and design decisions A3-A3-06, 07, 10 (tally), 15 (read-only, no browser; page image unjudged)"
+candidate: {preview_sha256: 67ef592b623b94f778f9aa8dee3c32329d6492b6bb4a6a998dcf4d7fbc07ad79, patch_sha256: c0ae9e9cc91beb4b20acfd04d1247431b41c7bddd5e30562ecfedc4e5dc2c3c3, guard_sha256: 1fddf9850f78ec85fc2222a160802f47f639e1bf87e4d916c1e3ce08e5b315f2}
+rechecks: {fidelity: "ALL PASS", contract_static: "77 PASS", anchors: "ALL PASS", completeness: "ALL PASS", contrast_static: "ALL PASS"}
+verdicts:
+  - {id: A6-A3-01, verdict: verified-healed, closes: [A5-A3-01, A4-A3-04]}
+  - {id: A6-A3-02, verdict: verified-healed}
+  - {id: A3-A3-06, verdict: verified-healed, evidence: "matrix +7,760px after the lead at 1400 (was ~35,000), +10,567px at 375 (was ~50,700)"}
+  - {id: A3-A3-07, verdict: verified-healed, residual: A7-A3-01}
+  - {id: A3-A3-10, verdict: verified-healed}
+  - {id: A3-A3-15, verdict: verified-healed, observation: A7-A3-04}
+new_findings:
+- id: A7-A3-01
+  severity: 4
+  status: valid
+  lens: print (position of the key)
+  target: "status.py main order {examples}{key}; status-print.css #examples break-before page; status.js opens every details before print"
+  claim: On paper, the key stands near the matrix it explains.
+  broken_step: >-
+    [computed estimate] Print opens all 20 example rows (109 statements, 160 status-by-column lines), so the key (§3)
+    prints after about 49 A4 pages of rows (11.2pt, 1.42 leading, 282pt row-statement column). Before this batch it
+    printed on page 2. Nothing is left unlabelled on paper: the compact legend under the matrix prints, and every
+    statement chip carries its status in words. The key's definitions are far from first use.
+  evidence_type: other
+  evidence_ref: "line estimate from content.json row statements and the print tokens"
+  files_read: [status.py, status-print.css, content.json]
+  tools_used: [python estimate]
+  confidence: medium
+  blast_radius: printed copies only
+  minimal_heal: >-
+    Either put {key} before {examples} (§2 key, §3 examples; on screen the matrix moves down by the key, about 770px
+    at 1400 and 930px at 375), or keep the screen order and state the printed position in VERIFY.md for root's
+    PDF check.
+  residual: Root chooses the trade-off.
+  deciding_evidence: "A4 and Letter PDFs: the page numbers of the matrix and the key."
+- id: A7-A3-02
+  severity: 4
+  status: valid
+  lens: search order (cross-lane, status.js)
+  target: "status.js:445 SCOPES; CONTRACT cross_lane_proposals/interaction[0]"
+  claim: The search's Part chips and result groups follow the page order.
+  broken_step: "[proved from source] SCOPES is fixed as results, decisive, frontier, examples, failures, open, essay, terms. The page, the bar and the contents now read results, examples, decisive, frontier, open, failures. Search works, but its groups list Examples after the comparisons and Counterexamples before Open."
+  evidence_type: line_reference
+  evidence_ref: "status.js:445, :737, :858"
+  files_read: [status.js, CONTRACT.json]
+  tools_used: [grep]
+  confidence: high
+  blast_radius: search facets and result grouping
+  minimal_heal: "Interaction lane: build SCOPES from document order, as the recorded proposal says (add atlas when present)."
+  residual: Owned by the interaction lane; root integrates.
+  deciding_evidence: "A search for a common word in the composed page: the order of the groups."
+- id: A7-A3-03
+  severity: 4
+  status: valid
+  lens: integration (atlas placement and the depth of the matrix)
+  target: "CONTRACT atlas_mount_tested/placement (the atlas now precedes section#results)"
+  claim: The matrix stays early in the composed page.
+  broken_step: "The atlas (9 domains, 503 scoped claims) now precedes the results and the matrix. Its rendered height adds directly to the measured depths: about 9,200px (1400) and 12,100px (375) without the atlas. This lane cannot measure it."
+  evidence_type: other
+  evidence_ref: "page order; estimator values above"
+  files_read: [CONTRACT.json, status.py]
+  tools_used: [Read]
+  confidence: medium
+  blast_radius: overview to matrix distance in the integrated page
+  minimal_heal: "Root measures the composed page. If the atlas is long, the atlas lane renders a compact overview with disclosure, keeping every claim reachable."
+  residual: Depends on the atlas lane's layout snapshot.
+  deciding_evidence: "Scroll position of #examples in root's composed candidate at 1400 and 375."
+- id: A7-A3-04
+  severity: 5
+  status: valid
+  lens: visualization (weight of the Proposed mark)
+  target: "status.py MARKS['pending']"
+  claim: A proposal does not look as solid as a proved result.
+  broken_step: "[computed] The solid diamond with its 1.6 stroke carries about 95.5 units² of ink, against 98.5 for the checked disc, and its box is larger (13.2 against 11.2 units, about 2px at 17px). In monochrome a proposal weighs the same as a proved result. The current content has no pending statements or cells; the coming snapshot may."
+  evidence_type: other
+  evidence_ref: "polygon area plus stroke offset: A + P*d + pi*d^2"
+  files_read: [status.py]
+  tools_used: [arithmetic]
+  confidence: medium
+  blast_radius: future pending items
+  minimal_heal: "Optional: an outline diamond with a solid centre dot, so the claim family stays distinct by fill; or keep the shape and the key's wording."
+  residual: none
+  deciding_evidence: "Root's view of a pending fixture next to a checked mark at 12 and 17px."
+convergence: "Converged on static evidence for A3's lens: no severity 1-3 finding remains; A7-A3-01..04 are severity 4-5; open: content need A3-A3-21 and root's page-image acceptance A3-A3-23."

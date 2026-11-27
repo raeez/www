@@ -1,0 +1,134 @@
+# A3 targeted re-verification of A4-A3-01..10 (read-only, static, no browser). Saved verbatim by the lane lead
+# from A3's report (its agent type cannot write files). Full report text: attack/A3/verify2-report.md.
+pass: "A3 targeted re-verification of A4-A3-01..10 (read-only, no browser; page image unjudged)"
+candidate: {preview_sha256: 38261852da87229d0952fa6dda89abd3b519fd2c4fef3d3cf52ccfa5f735dc61, patch_sha256: 2ac5acfc0401dc014946e7fdb7c5e7051f63c65493f46c01d78c5f819ddf1b2f, guard_sha256: cf9f4f3f7c72ca268b945ed89351d864baee7906dc298a585dc7850fc4caff25}
+rechecks: {fidelity: "ALL PASS", contract_static: "ALL PASS (74)", anchors: "ALL PASS", completeness: "ALL PASS", contrast_static: "ALL PASS"}
+verdicts:
+  - {id: A4-A3-01, verdict: verified-healed}
+  - {id: A4-A3-02, verdict: verified-healed, also_heals: A3-A3-14}
+  - {id: A4-A3-03, verdict: verified-healed}
+  - {id: A4-A3-04, verdict: partially-healed, healed: "density (checked fold 96 -> 71px), accessible name", open: A5-A3-01}
+  - {id: A4-A3-05, verdict: partially-healed, healed: "one head structure, contents numbers equal", open: [A5-A3-02, A5-A3-03, A5-A3-04, A5-A3-05]}
+  - {id: A4-A3-06, verdict: verified-healed}
+  - {id: A4-A3-07, verdict: verified-healed, note: "0.02px windows remain, unreachable in practice (severity 5, not filed)"}
+  - {id: A4-A3-08, verdict: verified-healed}
+  - {id: A4-A3-09, verdict: verified-healed}
+  - {id: A4-A3-10, verdict: verified-healed, note: "150mm cap unaffected by the print leading (0.37mm worst case unchanged)"}
+new_findings:
+- id: A5-A3-01
+  severity: 3
+  status: valid
+  lens: communication (what is established toward a question); regression from A4-A3-04
+  target: "status.py:643 (checked fold status visually hidden); status.py known-head in frontier(); status.css .known-head"
+  claim: A question card tells a sighted reader which related statements are established.
+  broken_step: >-
+    [proved from markup] 96 of 105 related lines now show only a 12px disc and the title. The card head reads
+    "Related statements · N statements" and names no status. The disc is named only in the key (part 1) and the matrix
+    legend (part 5). A cold reader who goes contents -> part 3 -> card 1 sees 12 unlabelled lines. Only the 6 open and
+    3 conditional lines carry words.
+  evidence_type: line_reference
+  evidence_ref: "preview.html: fold-status visually-hidden x96, visible x9; known-head x27 without a status legend"
+  files_read: [status.py, status.css, preview.html]
+  tools_used: [python regex]
+  confidence: medium
+  blast_radius: all 27 cards with related statements; the reader route's established results
+  minimal_heal: >-
+    In the known-head, when the list has a hidden checked status, add one legend item from existing words, with no
+    counts: <span class="known-key">{mark('checked')}<span>{status_label('checked')}</span></span>, styled like
+    .legend (xs, ink-3, 12px mark). The search skips it because it sits inside .question-known. The 71px folds stay.
+  residual: none
+  deciding_evidence: "Root's render of decisive card 1 at 1400 and 375; cold-reader check that the established items are understood without the key."
+- id: A5-A3-02
+  severity: 3
+  status: valid
+  lens: communication (numbers that read as counts); regression from A4-A3-05
+  target: "page.json labels.part '{n}'; status.py:441-442"
+  claim: Part numbers read as numbers of parts, not as quantities.
+  broken_step: >-
+    [proved from markup] With the default '{n}', a bare numeral comes before the kicker words: "3 · Decisive questions"
+    and "6 · Counterexamples", in small caps. A numeral before a plural noun reads as a count, on a page whose contents
+    say "22 questions" and "11 counterexamples" and whose cards say "12 statements". Misread, these kickers give false
+    counts (3 against 22, 6 against 11).
+  evidence_type: line_reference
+  evidence_ref: "preview.html section heads; contents holds"
+  files_read: [page.json, status.py, preview.html]
+  tools_used: [python regex]
+  confidence: medium
+  blast_radius: parts 3 and 6, which also feed the contents' meaning
+  minimal_heal: >-
+    page.json labels.part = '§{n}' (15.2px; fits the 1.6em contents track), or 'Part {n}' together with the
+    A5-A3-05 track change; root chooses the wording.
+  residual: Wording is root's.
+  deciding_evidence: Root's render of parts 3 and 6 at 1400; cold-reader reading of the kicker.
+- id: A5-A3-03
+  severity: 4
+  status: valid
+  lens: accessibility (kicker text)
+  target: "status.py:441"
+  claim: The kicker's accessible text separates the number from the words.
+  broken_step: >-
+    [proved from markup] Markup is <span class="part-num">2</span><span class="sep" aria-hidden="true"> · </span>
+    Established. The spaces sit inside the hidden span, so the accessible text, built from the inline spans, is
+    "2Established" (braille shows it run together).
+  evidence_type: line_reference
+  evidence_ref: preview.html kicker markup
+  files_read: [status.py, preview.html]
+  tools_used: [python regex]
+  confidence: medium
+  blast_radius: 4 worded kickers
+  minimal_heal: "Keep the spaces outside: <span class=\"part-num\">2</span> <span class=\"sep\" aria-hidden=\"true\">·</span> Established (as .statement-notes .sep already does)"
+  residual: none
+  deciding_evidence: Screen reader and braille reading of a kicker.
+- id: A5-A3-04
+  severity: 4
+  status: valid
+  lens: harmony (part numerals)
+  target: "status.css:163 (.kicker font-variant-numeric: oldstyle-nums), :615 (.contents-num lining tabular)"
+  claim: A part number keeps one figure style and an even height.
+  broken_step: >-
+    [computed, HarfBuzz] With all-small-caps and onum, kicker digits shape to one.tosf ... nine.tosf (tabular
+    oldstyle). Lone kickers 1, 4, 5, 7, 8 therefore sit at three heights: 1 at x-height; 4, 5, 7 descending; 8
+    ascending. The contents shows the same numbers in lining figures. Without onum, the font's small-cap figures
+    (one.sc ...) are uniform and match the small caps.
+  evidence_type: counterexample
+  evidence_ref: "hb-shape --features=+smcp,+c2sc,+onum -> .tosf; +smcp,+c2sc -> .sc"
+  files_read: [status.css, EBGaramond-Regular.otf]
+  tools_used: [hb-shape]
+  confidence: medium
+  blast_radius: 9 section heads
+  minimal_heal: ".kicker .part-num { font-variant-numeric: normal } (small-cap figures under all-small-caps)"
+  residual: none
+  deciding_evidence: Root's render of heads 1, 4, 8 at 1400.
+- id: A5-A3-05
+  severity: 4
+  status: valid
+  lens: proportion (contents numeral track); latent
+  target: "status.css:611 (.contents a 1.6em track), the <=560 and >=1280 variants"
+  claim: The documented 'part' template (CONTRACT section_heads, for example 'Part {n}') fits the contents.
+  broken_step: "[computed] 'Part 2' is 38.6px against a 33.3px track at 1400 (37.7px against 30px at 375); 'Part 10' is 46.9px. The numerals lose their right alignment and run into the 18px gap. '§{n}' is 15.2px and fits."
+  evidence_type: counterexample
+  evidence_ref: hb-shape lnum+tnum widths
+  files_read: [status.css, CONTRACT.json]
+  tools_used: [hb-shape]
+  confidence: high
+  blast_radius: the contents, if root picks a worded template
+  minimal_heal: "grid-template-columns: minmax(1.6em, max-content) minmax(0, 1fr) auto (and the 2-track variants), or document '§{n}' as the worded option"
+  residual: none
+  deciding_evidence: Build with labels.part 'Part {n}', render the contents at 1400 and 375.
+- id: A5-A3-06
+  severity: 5
+  status: valid
+  lens: proportion (26% band, optional)
+  target: "status.css:399"
+  claim: The narrowed family column is as wide as the headings allow.
+  broken_step: "[computed] At 26%, 3-4 of 20 names fit one line and the table is about 1,160-1,173px tall. 32% keeps whole-word headings from 1100px (4.98em at 1100, 5.37 at 1179.5) and puts 10-12 names on one line; 32% breaks at 1024 (4.61em)."
+  evidence_type: other
+  evidence_ref: HarfBuzz greedy wrap
+  files_read: [status.css, content.json]
+  tools_used: [hb-shape]
+  confidence: high
+  blast_radius: matrix at 1100-1179px
+  minimal_heal: "26% at 1000.02-1099.98px, 32% at 1100-1179.98px"
+  residual: none
+  deciding_evidence: Root's render of #examples at 1100 and 1179.
+convergence: "Not converged for A3's lens: 8 of 10 heals verified, 04 and 05 partial; open severity 3: A5-A3-01 (checked status unnamed on cards), A5-A3-02 (bare part numbers read as counts); plus root rulings (06, 07, 10 tally, 15), content (21), page image (23)."

@@ -1,0 +1,91 @@
+{
+ "steps": {
+  "cpl1024": {
+   "decisiveAsk": {
+    "paragraphs": 12,
+    "widthPx": 900,
+    "avgCharsPerLine": 57
+   },
+   "decisiveWhy": {
+    "paragraphs": 12,
+    "widthPx": 944,
+    "avgCharsPerLine": 84
+   },
+   "principal": {
+    "paragraphs": 9,
+    "widthPx": 588,
+    "avgCharsPerLine": 32
+   },
+   "lead": {
+    "paragraphs": 4,
+    "widthPx": 640,
+    "avgCharsPerLine": 75
+   }
+  },
+  "cpl1400": {
+   "decisiveAsk": {
+    "paragraphs": 12,
+    "widthPx": 557,
+    "avgCharsPerLine": 42
+   },
+   "decisiveWhy": {
+    "paragraphs": 12,
+    "widthPx": 601,
+    "avgCharsPerLine": 59
+   },
+   "principal": {
+    "paragraphs": 9,
+    "widthPx": 588,
+    "avgCharsPerLine": 31
+   },
+   "lead": {
+    "paragraphs": 4,
+    "widthPx": 640,
+    "avgCharsPerLine": 71
+   }
+  },
+  "chipOverflow375": {
+   "count": 11,
+   "byWhere": {
+    "failure": 11
+   },
+   "sample": [
+    {
+     "id": "s-witness-fusion-braid",
+     "where": "failure",
+     "chipRight": 365,
+     "cardRight": 359
+    },
+    {
+     "id": "s-witness-fixed-level-primitive",
+     "where": "failure",
+     "chipRight": 365,
+     "cardRight": 359
+    },
+    {
+     "id": "s-witness-ordered-scalar-affine",
+     "where": "failure",
+     "chipRight": 365,
+     "cardRight": 359
+    },
+    {
+     "id": "s-witness-polynomial-charge",
+     "where": "failure",
+     "chipRight": 365,
+     "cardRight": 359
+    },
+    {
+     "id": "s-witness-internal-end-laurent",
+     "where": "failure",
+     "chipRight": 365,
+     "cardRight": 359
+    }
+   ]
+  },
+  "escapeTrivialPage": {
+   "keyMs": 75,
+   "frameAfterEscape": "cdp timeout Runtime.evaluate"
+  }
+ },
+ "log": []
+}
