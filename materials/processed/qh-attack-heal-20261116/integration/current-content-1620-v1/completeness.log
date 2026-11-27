@@ -1,0 +1,18 @@
+PASS every content field is one the page shows — 759 checked
+PASS every column and cell is drawn — 8 checked
+PASS statement count — 356 checked
+PASS every statement in its section with its status — 356 checked
+PASS every statement id is its anchor (and no anchor without one) — 356 checked
+PASS every statement shows its title, hypotheses, text and notes — 356 checked
+PASS every question card with its title, why and its own statements — 34 checked
+PASS every family with its name, summary and its own statements — 20 checked
+PASS every grid cell with its status and note, in its family and column — 160 checked
+PASS every column definition — 8 checked
+PASS every counterexample with its claim and witness — 11 checked
+PASS every open-problem group with its heading, intro and statements — 4 checked
+PASS every glossary entry with its term and definition — 144 checked
+PASS every status key explanation — 8 checked
+PASS cover, lead, changes, essay and orientation
+INFO statements naming an atlas claim: 55, linked to it on the page: 0 (a link appears when the atlas draws the claim's anchor)
+INFO scientific_atlas is metadata: the build validates it against atlas.json (path, schema, asOf); it is not shown
+ALL PASS

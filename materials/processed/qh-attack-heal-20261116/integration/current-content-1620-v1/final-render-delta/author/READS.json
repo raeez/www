@@ -1,0 +1,83 @@
+{
+  "scope": "Typography and three process-wording corrections only.",
+  "intake": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/coordination/INTAKE.json",
+    "sha256": "90cfd66bf2ccc49fafd2f11f14678aa304ccd4ab503197d40eac1d4b26584f63",
+    "read_scope": "complete"
+  },
+  "brief": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/coordination/BRIEF.txt",
+    "sha256": "c0b57e64037e0141e90fc8ccfacc27eb3feb6d602e82edf0c90c7f7ddfc7d730",
+    "read_scope": "complete"
+  },
+  "audit": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/combined-audit.json",
+    "sha256": "7625f640a95a75e93f40194c6b4ddb9bf8b9e1be16dc4081fcd36b55cce7cc6f",
+    "read_scope": "16 raw-formula and three whole-word adopted warnings as quoted in complete intake; stable-ID warnings excluded"
+  },
+  "consumer_reads": [
+    {
+      "file": "content.json",
+      "sha256": "fb1ade56c8f15a80d830543c3118872b619599838ba629a0ccf3baee24bc001a",
+      "pointers": [
+        "/rows/6/summary",
+        "/decisive/questions/0/known/3/text"
+      ],
+      "read_scope": "Complete selected scalar fields in their surrounding mathematical context; full parse/hash for protection checks only"
+    },
+    {
+      "file": "atlas.json",
+      "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+      "pointers": [
+        "/claims/826/hypotheses/0",
+        "/claims/826/hypotheses/1",
+        "/claims/832/statement",
+        "/claims/834/hypotheses/1",
+        "/claims/835/hypotheses/1",
+        "/claims/836/hypotheses/1",
+        "/claims/837/hypotheses/1",
+        "/claims/838/hypotheses/1",
+        "/claims/839/hypotheses/1",
+        "/claims/840/hypotheses/1",
+        "/claims/841/hypotheses/1",
+        "/claims/842/hypotheses/1",
+        "/claims/834/hypotheses/2",
+        "/claims/835/hypotheses/2",
+        "/claims/847/hypotheses/2",
+        "/claims/848/hypotheses/2",
+        "/claims/849/hypotheses/2",
+        "/comparisons/72/overview",
+        "/comparisons/75/overview"
+      ],
+      "read_scope": "Complete selected scalar fields in their surrounding mathematical context; full parse/hash for protection checks only"
+    }
+  ],
+  "notation_controls": [
+    "M_A1 is the explicitly named affine-line carrier, also written A¹ in the preceding hypothesis.",
+    "B in u_B, J in pointing arrows, and charge q are preserved exactly; rank n and precision N remain distinct."
+  ],
+  "underlying_proofs_read": false,
+  "essay_read_scope": "Hash verification only; no essay edit required.",
+  "allowed_scope": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/coordination/EXPECTED-SCOPE.json",
+    "sha256": "8f11b5fff1db6099d2c07e5cb2ed1e6663516786322a6b2f5f60c1170461a84f",
+    "read_scope": "complete"
+  },
+  "notation_source": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/inputs/source-accepted-v3/integrated-handoffs/algebra-geometry/REPORT.md",
+    "sha256": "4c9d71c8b05cb99f158b109b52f7cbeec8362812244e2c70053b3286060cab2f",
+    "lines": "89–99; especially the weighted-coend paragraph at line 97",
+    "reading_scope": "Selected accepted-source context only, to identify A1 as the affine line in M_A1."
+  },
+  "full_context_records_read": [
+    "atlas.json:/claims/826",
+    "atlas.json:/claims/832",
+    "atlas.json:/claims/834",
+    "atlas.json:/claims/835",
+    "atlas.json:/claims/847",
+    "atlas.json:/claims/848",
+    "atlas.json:/claims/849",
+    "atlas.json:/comparisons/72",
+    "atlas.json:/comparisons/75"
+  ]
+}

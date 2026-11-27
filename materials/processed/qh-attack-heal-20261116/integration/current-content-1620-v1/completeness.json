@@ -1,0 +1,84 @@
+{
+ "ok": true,
+ "checks": [
+  {
+   "name": "every content field is one the page shows",
+   "pass": true,
+   "detail": "759 checked"
+  },
+  {
+   "name": "every column and cell is drawn",
+   "pass": true,
+   "detail": "8 checked"
+  },
+  {
+   "name": "statement count",
+   "pass": true,
+   "detail": "356 checked"
+  },
+  {
+   "name": "every statement in its section with its status",
+   "pass": true,
+   "detail": "356 checked"
+  },
+  {
+   "name": "every statement id is its anchor (and no anchor without one)",
+   "pass": true,
+   "detail": "356 checked"
+  },
+  {
+   "name": "every statement shows its title, hypotheses, text and notes",
+   "pass": true,
+   "detail": "356 checked"
+  },
+  {
+   "name": "every question card with its title, why and its own statements",
+   "pass": true,
+   "detail": "34 checked"
+  },
+  {
+   "name": "every family with its name, summary and its own statements",
+   "pass": true,
+   "detail": "20 checked"
+  },
+  {
+   "name": "every grid cell with its status and note, in its family and column",
+   "pass": true,
+   "detail": "160 checked"
+  },
+  {
+   "name": "every column definition",
+   "pass": true,
+   "detail": "8 checked"
+  },
+  {
+   "name": "every counterexample with its claim and witness",
+   "pass": true,
+   "detail": "11 checked"
+  },
+  {
+   "name": "every open-problem group with its heading, intro and statements",
+   "pass": true,
+   "detail": "4 checked"
+  },
+  {
+   "name": "every glossary entry with its term and definition",
+   "pass": true,
+   "detail": "144 checked"
+  },
+  {
+   "name": "every status key explanation",
+   "pass": true,
+   "detail": "8 checked"
+  },
+  {
+   "name": "cover, lead, changes, essay and orientation",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "info": [
+  "statements naming an atlas claim: 55, linked to it on the page: 0 (a link appears when the atlas draws the claim's anchor)",
+  "scientific_atlas is metadata: the build validates it against atlas.json (path, schema, asOf); it is not shown"
+ ]
+}

@@ -1,0 +1,104 @@
+{
+  "schema": "bounded-render-correction-scope/v1",
+  "allowed_scalar_leaves": [
+    {
+      "file": "content.json",
+      "pointer": "/rows/6/summary"
+    },
+    {
+      "file": "content.json",
+      "pointer": "/decisive/questions/0/known/3/text"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/826/hypotheses/0"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/826/hypotheses/1"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/832/statement"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/834/hypotheses/1"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/834/hypotheses/2"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/835/hypotheses/1"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/835/hypotheses/2"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/836/hypotheses/1"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/837/hypotheses/1"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/838/hypotheses/1"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/839/hypotheses/1"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/840/hypotheses/1"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/841/hypotheses/1"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/842/hypotheses/1"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/847/hypotheses/2"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/848/hypotheses/2"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/849/hypotheses/2"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/comparisons/72/overview"
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/comparisons/75/overview"
+    }
+  ],
+  "excluded_false_positive": {
+    "file": "atlas.json",
+    "pointer": "/claims/825/hypotheses/0",
+    "reason": "unadopted is not one of the three whole-word adopted warnings; retain its original source qualification"
+  },
+  "unchanged_files": [
+    "essay.md"
+  ],
+  "unchanged_fields": [
+    "all IDs",
+    "all statuses",
+    "all comparison memberships and edges",
+    "all as-of/cutoff values"
+  ],
+  "source_assessment": "No fresh proof assessment or scientific-status decision."
+}

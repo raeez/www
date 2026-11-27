@@ -1,0 +1,124 @@
+{
+  "schema": "post1620-public-composition-validation/v1",
+  "created_utc": "2026-11-16T18:17:01.422964+00:00",
+  "status": "PASS",
+  "partial": false,
+  "missing_lanes": [],
+  "baseline": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/baselines/public/BASELINE.json",
+    "sha256": "0af302dc6e5cfbc88d69869f5dfc6c8fd2f701c053fe6bf8dca90c27f18d9a30",
+    "bytes": 1052
+  },
+  "source_state": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/SOURCE-STATE.json",
+    "sha256": "5bfaea84797ebee81c95dbb146f8868dc7b43e0af0c851e3be561765171ba224",
+    "bytes": 36013
+  },
+  "lane_inputs": [
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/lanes/operations/PUBLIC-DELTA.json",
+      "sha256": "464950f949a326698b8650c4b22977dab99d64d0710bd27386edd938b20320dc",
+      "bytes": 810149
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/lanes/arithmetic-algebra/PUBLIC-DELTA.json",
+      "sha256": "89e81f6838028d0f975ff08d1066cea844f6b44522a3198edc9b96a5e3f52edb",
+      "bytes": 746010
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/lanes/centres-binary/PUBLIC-DELTA.json",
+      "sha256": "7228c6b6e28a14c9a9beb7815da3d301915fcf240f2ffe0ba1cc8a0b3e45c08c",
+      "bytes": 323596
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/lanes/native-induction/PUBLIC-DELTA.json",
+      "sha256": "299a0354cf6b934212d2500e9eb77453b8d195093306640d1cea826f5cbe2cbb",
+      "bytes": 687160
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/lanes/quantum-analytic-gravity/PUBLIC-DELTA.json",
+      "sha256": "e0697605b7621c1d220d049d646d72ea4b29d789f53c49396258b45388586679",
+      "bytes": 1039223
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/lanes/brane-bulk/PUBLIC-DELTA.json",
+      "sha256": "11067e168e098c45a9b92cb10a149ed015c64b60adf219a346e63bd580b0ecb9",
+      "bytes": 801498
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/lanes/editorial/PUBLIC-DELTA.json",
+      "sha256": "b6266e4cebe2df314379d164cecef1d1c5b688d28cee06850d5e8d16ba9e9ac1",
+      "bytes": 32062
+    }
+  ],
+  "post_correction_inputs": [
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/MECHANICAL-DELTA.json",
+      "sha256": "a266978ebbedbfc88e9944719c52a088495e9661511b9d1cd633fc18ac9cc550",
+      "bytes": 187732
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/lanes/editorial/RENDER-CORRECTIONS.json",
+      "sha256": "47c09768ca75d13e372205e7a33f21a42c536dbe44ac90f3f1c130d8b50cba1e",
+      "bytes": 58620
+    }
+  ],
+  "operation_count": 935,
+  "applied_operations": 984,
+  "preservation": {
+    "content.json": {
+      "old_ids": 372,
+      "current_ids": 433,
+      "missing_ids": [],
+      "moved_old_ids": {},
+      "new_duplicate_ids": {}
+    },
+    "atlas.json": {
+      "old_ids": 891,
+      "current_ids": 1215,
+      "missing_ids": [],
+      "moved_old_ids": {},
+      "new_duplicate_ids": {}
+    },
+    "old_atlas_edges": {
+      "count": 83,
+      "changed_or_missing": []
+    }
+  },
+  "baseline_reference_errors": [],
+  "new_reference_errors": [],
+  "failures": [],
+  "essay_input": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/lanes/editorial/ESSAY.md",
+    "sha256": "142615668b9830627b7672bfee5af41b208bca491efcea9ba43b1e7a11fce516",
+    "bytes": 63392
+  },
+  "shared_writes": false,
+  "mathematical_reproof": false,
+  "release_authority": "/root",
+  "source_binding_count": 3862,
+  "source_binding_errors": [],
+  "source_acceptance_status": "accepted independently; root installed seven private prose files; downstream propagation not yet installed or published",
+  "source_binding_map": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/PUBLIC-BINDINGS-COMPLETE.json",
+    "sha256": "4ea433ea9ce5e99892fbddc7cb9ca1c21b3e88eb217c9b20a0cb19080f929df3",
+    "bytes": 37983
+  },
+  "outputs": [
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/content.json",
+      "sha256": "fb1ade56c8f15a80d830543c3118872b619599838ba629a0ccf3baee24bc001a",
+      "bytes": 596515
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/atlas.json",
+      "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+      "bytes": 1775397
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/essay.md",
+      "sha256": "142615668b9830627b7672bfee5af41b208bca491efcea9ba43b1e7a11fce516",
+      "bytes": 63392
+    }
+  ]
+}

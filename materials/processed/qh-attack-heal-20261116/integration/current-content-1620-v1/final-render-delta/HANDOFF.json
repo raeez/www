@@ -1,0 +1,47 @@
+{
+  "schema": "bounded-final-render-correction-handoff/v1",
+  "status": "COMPLETE_SMALL_GUARDED_BASELINE_CORRECTION",
+  "created_utc": "2026-11-16T18:34:54.763762+00:00",
+  "guard": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/GUARDED-DELTA.json",
+    "sha256": "6c3310a236c24fe51ef261fc3234dcb31c099a32ac2d26fc7b5a248b82f33b80",
+    "bytes": 29150
+  },
+  "author_freeze": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/author/FINAL-PINS.json",
+    "sha256": "f0b9c9f89a5e3a4d280b27cbabc09614b5a3e63feac9acbac258101bd452385f",
+    "bytes": 1690
+  },
+  "validation": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/validation/VALIDATION.json",
+    "sha256": "929b5c9ca5363eb26d0c179d4a334376448b88d8043b8f95850cfc81a05aac1e",
+    "bytes": 5399
+  },
+  "after_content": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/proposed/content.json",
+    "sha256": "7e12095228112ccc3dc0cfd61ed196f9fff7db15dd1a1717d39c126c4f2693a6",
+    "bytes": 596558
+  },
+  "after_atlas": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/proposed/atlas.json",
+    "sha256": "0cc0b188a5381fefebc1748df2554f426f924049b119331950206c61edefc379",
+    "bytes": 1775778
+  },
+  "unchanged_essay": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/proposed/essay.md",
+    "sha256": "142615668b9830627b7672bfee5af41b208bca491efcea9ba43b1e7a11fce516",
+    "bytes": 63392
+  },
+  "changes": {
+    "scalar_fields": 21,
+    "mathematical_typography_fields": 18,
+    "reader_wording_fields": 3,
+    "math_occurrences_checked": 53
+  },
+  "all_ids_statuses_edges_cutoffs_and_other_fields_unchanged": true,
+  "original343frozen_artifacts_unchanged": true,
+  "source_proofs_reassessed": false,
+  "canonical_writes": false,
+  "combined_render_and_native_QA": "root-owned; not claimed by this packet",
+  "latest_scope_instruction": "Finish this small correction as a preserved clean baseline, then hold. Complete systematic exposition belongs to programme_claims_inventory at /tmp/qh-ega-exposition-20261117. No competing rewrite, research dispatch or new worker."
+}

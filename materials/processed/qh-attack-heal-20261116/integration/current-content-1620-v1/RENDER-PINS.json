@@ -1,0 +1,252 @@
+{
+  "schema": "post1620-bound-public-render/v1",
+  "status": "PASS",
+  "started_utc": "2026-11-16T18:17:03.905775+00:00",
+  "completed_utc": "2026-11-16T18:17:13.349864+00:00",
+  "command": [
+    "/tmp/qh-tracker-build-20261116-venv/bin/python",
+    "-B",
+    "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/build-quantum-holography-status.py",
+    "--input",
+    "/private/tmp/programme-post1620-propagation-20261116/public",
+    "--output",
+    "/private/tmp/programme-post1620-propagation-20261116/preview-final.html",
+    "--audit-dir",
+    "/private/tmp/programme-post1620-propagation-20261116/validation/render-final-bound"
+  ],
+  "returncode": 0,
+  "inputs_before": [
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/content.json",
+      "sha256": "fb1ade56c8f15a80d830543c3118872b619599838ba629a0ccf3baee24bc001a",
+      "bytes": 596515
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/atlas.json",
+      "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+      "bytes": 1775397
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/essay.md",
+      "sha256": "142615668b9830627b7672bfee5af41b208bca491efcea9ba43b1e7a11fce516",
+      "bytes": 63392
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/page.json",
+      "sha256": "f0a6edc563b353a03cdd39a4352ccd26b6aff53b83ebfc6dc82b8f9ea099a9a9",
+      "bytes": 4425
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/build-quantum-holography-status.py",
+      "sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf",
+      "bytes": 4031
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/atlas.css",
+      "sha256": "5cb1f925f6f5b22fb9d3ceb5ed6d2c4d8fa412ec12c3c7bf1fc9eac39e495037",
+      "bytes": 36315
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/atlas.js",
+      "sha256": "672246e70631b8cef81767576b153aa75604d3bbc6e5171eeff52efecca4d33c",
+      "bytes": 41279
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/atlas.py",
+      "sha256": "3c9ba4d290f6971ebb79b3e08141191acecca128bf764bf2f4b17e76cffedcb6",
+      "bytes": 62892
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/audit.py",
+      "sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+      "bytes": 32431
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/status-print.css",
+      "sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+      "bytes": 11884
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/status.css",
+      "sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+      "bytes": 57564
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/status.js",
+      "sha256": "ef3581907e176897da4a644f61038c147295fae8256cf8ba9a930bd5ab95e12e",
+      "bytes": 46348
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/status.py",
+      "sha256": "2114d75b0c82b5bde8b1b4a5509935647734088c84d4640d88deda6e874c1d04",
+      "bytes": 75796
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-tracker/tex2mathml.cjs",
+      "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+      "bytes": 881
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-tracker/vendor/temml.cjs",
+      "sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e",
+      "bytes": 478962
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf",
+      "sha256": "d3e1471a4a0f836716bad35326d3c0ab5caddb74ae5c1917f99f8225abf43a7d",
+      "bytes": 379308
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf",
+      "sha256": "31f03b4e31c5eecfce383c49f66c592e061ddda394f4bb62de42a784cb59d95a",
+      "bytes": 306080
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-SemiBold.otf",
+      "sha256": "7a4b8ee4ea0bc4856747788f9ef1db3595ea80a7bcaa7b28dc40e2e91c9721a7",
+      "bytes": 415872
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf",
+      "sha256": "c6161377e97084152b948f62abe874cbe27405938956346b54a4c6488a5009f1",
+      "bytes": 823988
+    }
+  ],
+  "inputs_after": [
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/content.json",
+      "sha256": "fb1ade56c8f15a80d830543c3118872b619599838ba629a0ccf3baee24bc001a",
+      "bytes": 596515
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/atlas.json",
+      "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+      "bytes": 1775397
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/essay.md",
+      "sha256": "142615668b9830627b7672bfee5af41b208bca491efcea9ba43b1e7a11fce516",
+      "bytes": 63392
+    },
+    {
+      "path": "/private/tmp/programme-post1620-propagation-20261116/public/page.json",
+      "sha256": "f0a6edc563b353a03cdd39a4352ccd26b6aff53b83ebfc6dc82b8f9ea099a9a9",
+      "bytes": 4425
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/build-quantum-holography-status.py",
+      "sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf",
+      "bytes": 4031
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/atlas.css",
+      "sha256": "5cb1f925f6f5b22fb9d3ceb5ed6d2c4d8fa412ec12c3c7bf1fc9eac39e495037",
+      "bytes": 36315
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/atlas.js",
+      "sha256": "672246e70631b8cef81767576b153aa75604d3bbc6e5171eeff52efecca4d33c",
+      "bytes": 41279
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/atlas.py",
+      "sha256": "3c9ba4d290f6971ebb79b3e08141191acecca128bf764bf2f4b17e76cffedcb6",
+      "bytes": 62892
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/audit.py",
+      "sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+      "bytes": 32431
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/status-print.css",
+      "sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+      "bytes": 11884
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/status.css",
+      "sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+      "bytes": 57564
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/status.js",
+      "sha256": "ef3581907e176897da4a644f61038c147295fae8256cf8ba9a930bd5ab95e12e",
+      "bytes": 46348
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-status/status.py",
+      "sha256": "2114d75b0c82b5bde8b1b4a5509935647734088c84d4640d88deda6e874c1d04",
+      "bytes": 75796
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-tracker/tex2mathml.cjs",
+      "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+      "bytes": 881
+    },
+    {
+      "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-tracker/vendor/temml.cjs",
+      "sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e",
+      "bytes": 478962
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf",
+      "sha256": "d3e1471a4a0f836716bad35326d3c0ab5caddb74ae5c1917f99f8225abf43a7d",
+      "bytes": 379308
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf",
+      "sha256": "31f03b4e31c5eecfce383c49f66c592e061ddda394f4bb62de42a784cb59d95a",
+      "bytes": 306080
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-SemiBold.otf",
+      "sha256": "7a4b8ee4ea0bc4856747788f9ef1db3595ea80a7bcaa7b28dc40e2e91c9721a7",
+      "bytes": 415872
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf",
+      "sha256": "c6161377e97084152b948f62abe874cbe27405938956346b54a4c6488a5009f1",
+      "bytes": 823988
+    }
+  ],
+  "changed_during_render": [],
+  "audit": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/validation/render-final-bound/audit.json",
+    "sha256": "5d665d010903c8bfdfa742ce1e70a3f7e1d358aa47b7ae843208467e716561e9",
+    "bytes": 60036
+  },
+  "failures": [],
+  "math_occurrences": 13610,
+  "math_jobs": 13611,
+  "math_errors": 0,
+  "output": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/preview-final.html",
+    "sha256": "c8dd80aba5f90a7f17be8a5f6356e0eff7519ac0b7b783b3f5a15fb4a19257ca",
+    "bytes": 11979182
+  },
+  "fonts_observed": [
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf",
+      "sha256": "d3e1471a4a0f836716bad35326d3c0ab5caddb74ae5c1917f99f8225abf43a7d",
+      "bytes": 379308
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf",
+      "sha256": "31f03b4e31c5eecfce383c49f66c592e061ddda394f4bb62de42a784cb59d95a",
+      "bytes": 306080
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-SemiBold.otf",
+      "sha256": "7a4b8ee4ea0bc4856747788f9ef1db3595ea80a7bcaa7b28dc40e2e91c9721a7",
+      "bytes": 415872
+    },
+    {
+      "path": "/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf",
+      "sha256": "c6161377e97084152b948f62abe874cbe27405938956346b54a4c6488a5009f1",
+      "bytes": 823988
+    }
+  ],
+  "renderer_or_design_edited": false,
+  "shared_writes": false,
+  "scope": "Content, schema and mathematical rendering only; root combines final interaction/design and owns visual acceptance and release."
+}

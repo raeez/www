@@ -1,0 +1,396 @@
+{
+  "schema": "root-only-bounded-public-text-correction/v1",
+  "created_utc": "2026-11-16T18:33:42.064657+00:00",
+  "scientific_cutoff_utc": "2026-11-16T16:20:00Z",
+  "file_operations": [
+    {
+      "source": {
+        "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/proposed/content.json",
+        "sha256": "7e12095228112ccc3dc0cfd61ed196f9fff7db15dd1a1717d39c126c4f2693a6",
+        "bytes": 596558
+      },
+      "destination": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/content/quantum-holography-status/content.json",
+      "before": {
+        "state": "exact",
+        "sha256": "fb1ade56c8f15a80d830543c3118872b619599838ba629a0ccf3baee24bc001a",
+        "bytes": 596515
+      },
+      "after": {
+        "sha256": "7e12095228112ccc3dc0cfd61ed196f9fff7db15dd1a1717d39c126c4f2693a6",
+        "bytes": 596558
+      }
+    },
+    {
+      "source": {
+        "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/proposed/atlas.json",
+        "sha256": "0cc0b188a5381fefebc1748df2554f426f924049b119331950206c61edefc379",
+        "bytes": 1775778
+      },
+      "destination": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/content/quantum-holography-status/atlas.json",
+      "before": {
+        "state": "exact",
+        "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+        "bytes": 1775397
+      },
+      "after": {
+        "sha256": "0cc0b188a5381fefebc1748df2554f426f924049b119331950206c61edefc379",
+        "bytes": 1775778
+      }
+    }
+  ],
+  "leaf_operations": [
+    {
+      "file": "content.json",
+      "pointer": "/rows/6/summary",
+      "before": "The restricted RTT ghost vacuum has exchange, graded vacuum cohomology and monoidal Koszul cochains on bounded-below finite-type lattices. The source also gives all-rank, all-level divided-state fields, while adopted algebraic and formal point dualities have their own completion conventions. Full smooth quantum duality and the comparison of fixed-level collision with the level-additive coproduct remain separate.",
+      "after": "The restricted RTT ghost vacuum has exchange, graded vacuum cohomology and monoidal Koszul cochains on bounded-below finite-type lattices. The source also gives all-rank, all-level divided-state fields, while established algebraic and formal point dualities have their own completion conventions. Full smooth quantum duality and the comparison of fixed-level collision with the level-additive coproduct remain separate.",
+      "reason": "Replace workflow wording with the same positive scientific status; retain every completion restriction.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/content.json",
+          "sha256": "fb1ade56c8f15a80d830543c3118872b619599838ba629a0ccf3baee24bc001a",
+          "pointer": "/rows/6/summary",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "content.json",
+      "pointer": "/decisive/questions/0/known/3/text",
+      "before": "For the general-linear Yang double of rank n≥2 at each finite quantum precision, point duality holds between termwise R_N-free complexes of smooth modules, with R_N=C[hbar]/(hbar^N), N≥1, and graded-projective curved contramodules, using reduction-defined null classes. Support estimates, finite base change, adjunction and unit/counit are retained, including critical level. The formal limit, ordinary-derived equivalence and factorization-module comparison are stronger statements and remain separate.",
+      "after": "For the general-linear Yang double of rank \\(n\\ge2\\) at each finite quantum precision, point duality holds between termwise \\(R_N\\)-free complexes of smooth modules, with \\(R_N=\\mathbb C[\\hbar]/(\\hbar^N)\\), \\(N\\ge1\\), and graded-projective curved contramodules, using reduction-defined null classes. Support estimates, finite base change, adjunction and unit/counit are retained, including critical level. The formal limit, ordinary-derived equivalence and factorization-module comparison are stronger statements and remain separate.",
+      "reason": "Delimit the distinct rank n and precision N variables and the existing finite-precision coefficient ring; preserve all domains and quantifiers.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/content.json",
+          "sha256": "fb1ade56c8f15a80d830543c3118872b619599838ba629a0ccf3baee24bc001a",
+          "pointer": "/decisive/questions/0/known/3/text",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/826/hypotheses/0",
+      "before": "The contact-aware additive derived-coend formula on A¹ and G_m, with every incoming simplex and split positive vacuum.",
+      "after": "The contact-aware additive derived-coend formula on \\(\\mathbb A^1\\) and \\(\\mathbb G_m\\), with every incoming simplex and split positive vacuum.",
+      "reason": "Format the existing affine-line and multiplicative-group notation.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/826/hypotheses/0",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        },
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/inputs/source-accepted-v3/integrated-handoffs/algebra-geometry/REPORT.md",
+          "sha256": "4c9d71c8b05cb99f158b109b52f7cbeec8362812244e2c70053b3286060cab2f",
+          "lines": "89–99; especially the weighted-coend paragraph at line 97",
+          "reading_scope": "Selected accepted-source context only, to identify A1 as the affine line in M_A1."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/826/hypotheses/1",
+      "before": "Retain the unchanged affine-line carrier and its original H₀=M_A1(k)=k target.",
+      "after": "Retain the unchanged affine-line carrier and its original \\(H_0=M_{\\mathbb A^1}(k)=k\\) target.",
+      "reason": "The explicit affine-line context and adjacent A¹ identify the existing M_A1 subscript; preserve H0, k and the unchanged-carrier condition.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/826/hypotheses/1",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        },
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/inputs/source-accepted-v3/integrated-handoffs/algebra-geometry/REPORT.md",
+          "sha256": "4c9d71c8b05cb99f158b109b52f7cbeec8362812244e2c70053b3286060cab2f",
+          "lines": "89–99; especially the weighted-coend paragraph at line 97",
+          "reading_scope": "Selected accepted-source context only, to identify A1 as the affine line in M_A1."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/832/statement",
+      "before": "For finite sums of integrable simples at positive integral affine level, the derived product is the Verlinde multiplicity sum tensored with H_b(ΩG;C). Multiplication into the simple-VOA output kills positive loop-factor degree and is an isomorphism only on the loop-degree-zero multiplicities, including for a simple-vacuum input.",
+      "after": "For finite sums of integrable simples at positive integral affine level, the derived product is the Verlinde multiplicity sum tensored with \\(H_b(\\Omega G;\\mathbb C)\\). Multiplication into the simple-VOA output kills positive loop-factor degree and is an isomorphism only on the loop-degree-zero multiplicities, including for a simple-vacuum input.",
+      "reason": "Delimit the existing loop-homology factor without changing its degree or multiplication statement.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/832/statement",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/834/hypotheses/1",
+      "before": "The target C is the native two-idempotent factorizing coalgebra with its genuine total pointing u_B and multiplication m. Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "after": "The target \\(C\\) is the native two-idempotent factorizing coalgebra with its genuine total pointing \\(u_B\\) and multiplication \\(m\\). Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "reason": "Format each of the nine exact logical copies consistently. Preserve the source notation u_B, without relabelling it to match C.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/834/hypotheses/1",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/835/hypotheses/1",
+      "before": "The target C is the native two-idempotent factorizing coalgebra with its genuine total pointing u_B and multiplication m. Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "after": "The target \\(C\\) is the native two-idempotent factorizing coalgebra with its genuine total pointing \\(u_B\\) and multiplication \\(m\\). Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "reason": "Format each of the nine exact logical copies consistently. Preserve the source notation u_B, without relabelling it to match C.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/835/hypotheses/1",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/836/hypotheses/1",
+      "before": "The target C is the native two-idempotent factorizing coalgebra with its genuine total pointing u_B and multiplication m. Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "after": "The target \\(C\\) is the native two-idempotent factorizing coalgebra with its genuine total pointing \\(u_B\\) and multiplication \\(m\\). Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "reason": "Format each of the nine exact logical copies consistently. Preserve the source notation u_B, without relabelling it to match C.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/836/hypotheses/1",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/837/hypotheses/1",
+      "before": "The target C is the native two-idempotent factorizing coalgebra with its genuine total pointing u_B and multiplication m. Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "after": "The target \\(C\\) is the native two-idempotent factorizing coalgebra with its genuine total pointing \\(u_B\\) and multiplication \\(m\\). Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "reason": "Format each of the nine exact logical copies consistently. Preserve the source notation u_B, without relabelling it to match C.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/837/hypotheses/1",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/838/hypotheses/1",
+      "before": "The target C is the native two-idempotent factorizing coalgebra with its genuine total pointing u_B and multiplication m. Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "after": "The target \\(C\\) is the native two-idempotent factorizing coalgebra with its genuine total pointing \\(u_B\\) and multiplication \\(m\\). Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "reason": "Format each of the nine exact logical copies consistently. Preserve the source notation u_B, without relabelling it to match C.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/838/hypotheses/1",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/839/hypotheses/1",
+      "before": "The target C is the native two-idempotent factorizing coalgebra with its genuine total pointing u_B and multiplication m. Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "after": "The target \\(C\\) is the native two-idempotent factorizing coalgebra with its genuine total pointing \\(u_B\\) and multiplication \\(m\\). Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "reason": "Format each of the nine exact logical copies consistently. Preserve the source notation u_B, without relabelling it to match C.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/839/hypotheses/1",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/840/hypotheses/1",
+      "before": "The target C is the native two-idempotent factorizing coalgebra with its genuine total pointing u_B and multiplication m. Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "after": "The target \\(C\\) is the native two-idempotent factorizing coalgebra with its genuine total pointing \\(u_B\\) and multiplication \\(m\\). Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "reason": "Format each of the nine exact logical copies consistently. Preserve the source notation u_B, without relabelling it to match C.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/840/hypotheses/1",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/841/hypotheses/1",
+      "before": "The target C is the native two-idempotent factorizing coalgebra with its genuine total pointing u_B and multiplication m. Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "after": "The target \\(C\\) is the native two-idempotent factorizing coalgebra with its genuine total pointing \\(u_B\\) and multiplication \\(m\\). Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "reason": "Format each of the nine exact logical copies consistently. Preserve the source notation u_B, without relabelling it to match C.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/841/hypotheses/1",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/842/hypotheses/1",
+      "before": "The target C is the native two-idempotent factorizing coalgebra with its genuine total pointing u_B and multiplication m. Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "after": "The target \\(C\\) is the native two-idempotent factorizing coalgebra with its genuine total pointing \\(u_B\\) and multiplication \\(m\\). Complete character and action homotopy fibres, full pointing paths, both ordered cuts and all parameter spaces are retained.",
+      "reason": "Format each of the nine exact logical copies consistently. Preserve the source notation u_B, without relabelling it to match C.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/842/hypotheses/1",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/834/hypotheses/2",
+      "before": "F=C_V for any arbitrary unbounded dg chiral algebra V with a genuine unit; v:J→C_V is any actual coherent coassociative pointing.",
+      "after": "\\(F=C_V\\) for any arbitrary unbounded dg chiral algebra \\(V\\) with a genuine unit; \\(v:J\\to C_V\\) is any actual coherent coassociative pointing.",
+      "reason": "Preserve the actual F,C_V,V,v,J notation and all unbounded/coherent/unit hypotheses.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/834/hypotheses/2",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/835/hypotheses/2",
+      "before": "F=P(M)⊗!C_V with M an arbitrary unbounded right differential-module complex and V an arbitrary unbounded genuine-unit dg chiral algebra; u:J→F is any coherent pointing.",
+      "after": "\\(F=P(M)\\otimes^{!}C_V\\) with \\(M\\) an arbitrary unbounded right differential-module complex and \\(V\\) an arbitrary unbounded genuine-unit dg chiral algebra; \\(u:J\\to F\\) is any coherent pointing.",
+      "reason": "Format the existing extraordinary tensor product and unchanged pointing arrow; no new pointing-path hypothesis.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/835/hypotheses/2",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/847/hypotheses/2",
+      "before": "Exactly r=3 labelled spectators, b=(1,1,1), μ=1, arbitrary N_12,N_13,N_23>=0, every q>=2 and every homogeneity.",
+      "after": "Exactly \\(r=3\\) labelled spectators, \\(b=(1,1,1)\\), \\(\\mu=1\\), arbitrary \\(N_{12},N_{13},N_{23}\\ge0\\), every \\(q\\ge2\\) and every homogeneity.",
+      "reason": "Combine the three rendered N warnings into one underlying leaf edit, retaining every bound, charge and homogeneity quantifier.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/847/hypotheses/2",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/848/hypotheses/2",
+      "before": "Every spectator count r, every marked count m, arbitrary spectator-pair bounds and positive odd μ. The unconditional amplitude has at most three positive b_j, each at most two. The conditional triangle implication allows arbitrary sizes with at most three active labels.",
+      "after": "Every spectator count \\(r\\), every marked count \\(m\\), arbitrary spectator-pair bounds and positive odd \\(\\mu\\). The unconditional amplitude has at most three positive \\(b_j\\), each at most two. The conditional triangle implication allows arbitrary sizes with at most three active labels.",
+      "reason": "Delimit existing variables while keeping the unconditional amplitude and conditional triangle hypotheses separate.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/848/hypotheses/2",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/849/hypotheses/2",
+      "before": "Exactly three spectators, at most two positive b_j of arbitrary size, every integer μ>=1 and every marked count. Retain collisions and multiple marked roots.",
+      "after": "Exactly three spectators, at most two positive \\(b_j\\) of arbitrary size, every integer \\(\\mu\\ge1\\) and every marked count. Retain collisions and multiple marked roots.",
+      "reason": "Preserve the separate two-active-bound triangle range, including integer mu rather than positive odd mu.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/claims/849/hypotheses/2",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/comparisons/72/overview",
+      "before": "Strong orientation has its adopted rank-two scope. The compact source has all-length spherical classical coefficient arrows and local mixed flags; the stronger global derived/mixed comparison and primitive recognition retain moments, gerbes, parity and common translation data.",
+      "after": "Strong orientation holds at its established rank-two scope. The compact source has all-length spherical classical coefficient arrows and local mixed flags; the stronger global derived/mixed comparison and primitive recognition retain moments, gerbes, parity and common translation data.",
+      "reason": "Replace workflow wording without widening the rank-two theorem or the stronger residual.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/comparisons/72/overview",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/comparisons/75/overview",
+      "before": "Adopted algebraic/formal/classical-smooth dualities coexist with restricted graded quantum cohomology and the all-rank field source. The unrestricted smooth quantum adjunction and intrinsic-mode comparisons do not follow by changing completion conventions.",
+      "after": "Established algebraic/formal/classical-smooth dualities coexist with restricted graded quantum cohomology and the all-rank field source. The unrestricted smooth quantum adjunction and intrinsic-mode comparisons do not follow by changing completion conventions.",
+      "reason": "Retain the established status of the same three domain-specific dualities in ordinary scientific prose.",
+      "source_refs": [
+        {
+          "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/atlas.json",
+          "sha256": "cad952efac1255c576ae6af04ca2b2b53d1641e4bffc9646436d45271e23c206",
+          "pointer": "/comparisons/75/overview",
+          "reading_scope": "Exact flagged logical field read in its claim/comparison context; no new scientific source or proof audit."
+        }
+      ]
+    }
+  ],
+  "unchanged_essay": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/essay.md",
+    "sha256": "142615668b9830627b7672bfee5af41b208bca491efcea9ba43b1e7a11fce516",
+    "bytes": 63392
+  },
+  "original_packet": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/FINAL-PINS.json",
+    "sha256": "e4797ffffd618b1e1a40aae57f3cab5afc98fe8632f5c3a06648186d887ecc01",
+    "bytes": 188869
+  },
+  "audit_input": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/baselines/combined-audit.json",
+    "sha256": "7625f640a95a75e93f40194c6b4ddb9bf8b9e1be16dc4081fcd36b55cce7cc6f",
+    "bytes": 60036
+  },
+  "validation": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/validation/VALIDATION.json",
+    "sha256": "929b5c9ca5363eb26d0c179d4a334376448b88d8043b8f95850cfc81a05aac1e",
+    "bytes": 5399
+  },
+  "all_unselected_values_preserved": true,
+  "root_only_installation_combined_render_and_release": true,
+  "source_proofs_reopened": false,
+  "scientific_status_changed": false,
+  "existing_id_changed": false,
+  "shared_writes": false
+}

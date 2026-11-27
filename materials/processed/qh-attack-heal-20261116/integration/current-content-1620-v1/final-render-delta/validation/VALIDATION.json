@@ -1,0 +1,224 @@
+{
+  "schema": "bounded-final-render-delta-validation/v1",
+  "created_utc": "2026-11-16T18:33:42.064657+00:00",
+  "status": "PASS",
+  "author_delta": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/corrections/final-render-delta/author/DELTA.json",
+    "sha256": "d1d3933f57ce8d2e62a71fdc806562257a1a36930d58d40d3a6a3a7f90ad086e",
+    "bytes": 27878
+  },
+  "changed_scalar_leaves": 21,
+  "exact_changed_fields": [
+    [
+      "content.json",
+      "/decisive/questions/0/known/3/text"
+    ],
+    [
+      "content.json",
+      "/rows/6/summary"
+    ],
+    [
+      "atlas.json",
+      "/claims/826/hypotheses/0"
+    ],
+    [
+      "atlas.json",
+      "/claims/826/hypotheses/1"
+    ],
+    [
+      "atlas.json",
+      "/claims/832/statement"
+    ],
+    [
+      "atlas.json",
+      "/claims/834/hypotheses/1"
+    ],
+    [
+      "atlas.json",
+      "/claims/834/hypotheses/2"
+    ],
+    [
+      "atlas.json",
+      "/claims/835/hypotheses/1"
+    ],
+    [
+      "atlas.json",
+      "/claims/835/hypotheses/2"
+    ],
+    [
+      "atlas.json",
+      "/claims/836/hypotheses/1"
+    ],
+    [
+      "atlas.json",
+      "/claims/837/hypotheses/1"
+    ],
+    [
+      "atlas.json",
+      "/claims/838/hypotheses/1"
+    ],
+    [
+      "atlas.json",
+      "/claims/839/hypotheses/1"
+    ],
+    [
+      "atlas.json",
+      "/claims/840/hypotheses/1"
+    ],
+    [
+      "atlas.json",
+      "/claims/841/hypotheses/1"
+    ],
+    [
+      "atlas.json",
+      "/claims/842/hypotheses/1"
+    ],
+    [
+      "atlas.json",
+      "/claims/847/hypotheses/2"
+    ],
+    [
+      "atlas.json",
+      "/claims/848/hypotheses/2"
+    ],
+    [
+      "atlas.json",
+      "/claims/849/hypotheses/2"
+    ],
+    [
+      "atlas.json",
+      "/comparisons/72/overview"
+    ],
+    [
+      "atlas.json",
+      "/comparisons/75/overview"
+    ]
+  ],
+  "unselected_values_exact": true,
+  "all_ids_statuses_memberships_edges_cutoffs_exact": true,
+  "numerical_scope_checks": [
+    {
+      "file": "content.json",
+      "pointer": "/rows/6/summary",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "content.json",
+      "pointer": "/decisive/questions/0/known/3/text",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/826/hypotheses/0",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/826/hypotheses/1",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/832/statement",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/834/hypotheses/1",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/835/hypotheses/1",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/836/hypotheses/1",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/837/hypotheses/1",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/838/hypotheses/1",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/839/hypotheses/1",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/840/hypotheses/1",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/841/hypotheses/1",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/842/hypotheses/1",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/834/hypotheses/2",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/835/hypotheses/2",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/847/hypotheses/2",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/848/hypotheses/2",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/claims/849/hypotheses/2",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/comparisons/72/overview",
+      "numerical_tokens_unchanged": true
+    },
+    {
+      "file": "atlas.json",
+      "pointer": "/comparisons/75/overview",
+      "numerical_tokens_unchanged": true
+    }
+  ],
+  "math_occurrences_checked": 53,
+  "math_errors": [],
+  "essay_unchanged": true,
+  "legitimate_citation_and_mathematical_warning_phrases_preserved": true,
+  "frozen_packet": {
+    "path": "/private/tmp/programme-post1620-propagation-20261116/FINAL-PINS.json",
+    "sha256": "e4797ffffd618b1e1a40aae57f3cab5afc98fe8632f5c3a06648186d887ecc01",
+    "bytes": 188869
+  },
+  "frozen_artifacts_verified_unchanged": 343,
+  "math_renderer": {
+    "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/compiler/quantum-holography-tracker/tex2mathml.cjs",
+    "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f",
+    "bytes": 881
+  },
+  "combined_render_or_visual_review_claimed": false,
+  "proof_reassessment": false,
+  "canonical_writes": false
+}
