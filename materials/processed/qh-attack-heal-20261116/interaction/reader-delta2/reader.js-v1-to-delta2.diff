@@ -1,0 +1,419 @@
+--- a/reader.js (reader-v1)
++++ b/reader.js (reader-delta2)
+@@ -104,6 +104,7 @@
+     'resume-go': 'Continue reading',
+     'route': '{route} route, step {i} of {n}',
+     'theme': 'Switch between light and dark',
++    'index-failed': 'The parts of the reference in other pages could not be searched from here.',
+     'leave-route': 'Leave this route'
+   };
+   function word(key) {
+@@ -327,6 +328,55 @@
+       if (r && typeof r === 'object') redirects = r;
+     } catch (e) { redirects = {}; }
+   })();
++
++  /* The book may keep parts of its reference in companion pages, loaded only when asked for. The map
++     (script#reader-pages) names each page, its parts and every address in them; a companion page names the book in
++     main[data-reader-book]. */
++  var pagesMap = null;
++  (function () {
++    var s2 = doc.getElementById('reader-pages');
++    if (!s2) return;
++    try { pagesMap = JSON.parse(s2.textContent); } catch (e) { pagesMap = null; }
++    if (!pagesMap || typeof pagesMap !== 'object' || !Array.isArray(pagesMap.pages)) pagesMap = null;
++  })();
++  var bookHref = main.getAttribute('data-reader-book') || (pagesMap && pagesMap.book) || '';
++  var companion = main.hasAttribute('data-reader-book');
++  var owners = null;
++  function ownerOf(id) {
++    if (!pagesMap) return null;
++    if (!owners) {
++      owners = {};
++      pagesMap.pages.forEach(function (pg) {
++        if (!pg || typeof pg.href !== 'string') return;
++        (pg.parts || []).forEach(function (pt) { if (pt && pt.id) owners[pt.id] = pg.href; });
++        (pg.ids || []).forEach(function (x) { owners[x] = pg.href; });
++      });
++    }
++    return Object.prototype.hasOwnProperty.call(owners, id) ? owners[id] : null;
++  }
++  /* The address in another page for an id this page does not hold: its companion page, or (from a companion page) the
++     book. */
++  function externalHref(id) {
++    if (!id || doc.getElementById(id)) return null;
++    var page = ownerOf(id);
++    if (page) return page + '#' + encodeURIComponent(id);
++    if (companion && bookHref) return bookHref + '#' + encodeURIComponent(id);
++    return null;
++  }
++  function samePage(url) {
++    try {
++      var u = new URL(url, location.href);
++      return u.origin === location.origin && u.pathname === location.pathname;
++    } catch (e) { return true; }
++  }
++  /* A page of the book that is not this one: the book itself or a companion page named in the map. */
++  function bookPage(url) {
++    if (!pagesMap || samePage(url)) return false;
++    var name;
++    try { name = new URL(url, location.href).pathname.split('/').pop(); } catch (e) { return false; }
++    if (bookHref && name === bookHref.split('/').pop()) return true;
++    return pagesMap.pages.some(function (pg) { return pg && typeof pg.href === 'string' && pg.href.split('/').pop() === name; });
++  }
+ 
+   /* Addresses for blocks that have none: the nearest id above, then -p and the block's number under it, given in the
+      same order every time, so that an address given here holds on a later visit to the same text. */
+@@ -370,6 +420,11 @@
+     home = element('a', 'reader-home', bookTitle || word('front'));
+     home.id = 'reader-home';
+     home.href = '#' + front.id;
++    bar.appendChild(home);
++  } else if (companion && bookHref) {
++    home = element('a', 'reader-home', (pagesMap && pagesMap.title) || word('front'));
++    home.id = 'reader-home';
++    home.href = bookHref + '#front';
+     bar.appendChild(home);
+   }
+   var position = element('span', 'reader-position');
+@@ -536,6 +591,7 @@
+   function show(place) {
+     var target = place && places.indexOf(place) >= 0 ? place : null;
+     if (!target && !front && !toc && chapters.length) target = chapters[0];
++    else if (!target && !front && !toc && references.length) target = references[0];
+     places.forEach(function (p) {
+       if (p === target) { p.removeAttribute('hidden'); p.setAttribute('data-current', ''); }
+       else {
+@@ -609,6 +665,18 @@
+       var back = lastReading && lastReading.isConnected ? lastReading : null;
+       var backSection = back && lastReadingSection && back.contains(lastReadingSection) ? lastReadingSection : null;
+       setStep(prevLink, back, 'return', 'return-to', backSection ? backSection.id : null);
++      if (!back && companion && bookHref) {
++        /* From a companion page, back to the place last read in the book (kept on this device), else its title page. */
++        var kept = null;
++        try { kept = JSON.parse(stored(PLACE_KEY) || 'null'); } catch (e) { kept = null; }
++        var to = kept && typeof kept.id === 'string' ? kept.id : 'front';
++        prevLink.hidden = false;
++        prevLink.href = bookHref + '#' + encodeURIComponent(to);
++        prevLink.setAttribute('data-step', 'return');
++        prevLink.querySelector('.reader-step-label').textContent = word('return');
++        prevLink.querySelector('.reader-step-title').textContent = kept && typeof kept.title === 'string' ? kept.title : ((pagesMap && pagesMap.title) || '');
++        prevLink.setAttribute('aria-label', fill(word('return-to'), { title: prevLink.querySelector('.reader-step-title').textContent || word('front') }));
++      }
+       setStep(nextLink, null);
+     } else {
+       posPart.textContent = '';
+@@ -827,7 +895,12 @@
+       target = resolve(id);
+       if (target && !o.push) o.replace = true;
+     }
+-    if (!target) { unknownAddress(id, o); return false; }
++    if (!target) {
++      var away = externalHref(id);
++      if (away) { leaveFor(away, o.initial || (o.replace && !o.push) ? 'replace' : 'assign', o.from, o.extra); return true; }
++      unknownAddress(id, o);
++      return false;
++    }
+     if (!ours(target)) return false;
+     var place = placeOf(target);
+     closePeek(false);
+@@ -848,6 +921,13 @@
+     later(trackSection);
+     tellState();
+     return true;
++  }
++  /* Before leaving for another page of the book: components are told (qh:leave, cancelable) and, unless the address is
++     replaced, the entry left keeps the place, the focus and the search, so that Back returns to them. */
++  function leaveFor(url, how, from, extra) {
++    if (how !== 'replace') leaveEntry(from, extra);
++    if (!fire(doc, 'qh:leave', { url: url, how: how }, true)) return;
++    try { if (how === 'replace') location.replace(url); else location.assign(url); } catch (e) { location.href = url; }
+   }
+   function tellState() { fire(doc, 'qh:state', { q: searchState.q, view: view, id: current ? current.id : '' }); }
+ 
+@@ -1469,12 +1549,14 @@
+     var body = o.body != null ? o.body : textOf(bodyEl, o.skip);
+     var context = o.context || '';
+     list.push({
+-      el: el, anchor: o.anchor || el, group: o.group, kind: o.kind, titleEl: o.titleEl || null, title: titleText,
++      el: el, anchor: o.anchor || el, group: o.group, kind: o.kind, titleEl: o.titleEl || null, title: titleText, body: body,
+       name: o.name ? fold(o.name) : '', context: context, where: o.where || '', skip: o.skip || null, bodyEl: o.bodyEl || null,
+       ft: fold(titleText), fb: fold(body), fc: fold(context), keys: titleKeys(fold(titleText)),
+       defs: o.defs || [],
+       ro: (titleText + ' ' + body).toLowerCase(), raw: (titleText + ' ' + context + ' ' + body).toLowerCase(),
+-      ttex: texNorm(texOf(o.titleEl)), tex: texNorm(texOf(bodyEl, o.skip) + ' ' + texOf(o.titleEl))
++      ttex: texNorm(texOf(o.titleEl)),
++      /* a unit given its words (a chapter or section by its title) holds only those formulae, not its whole place's */
++      tex: texNorm((o.tex != null ? o.tex : o.body != null && !o.bodyEl ? '' : texOf(bodyEl, o.skip)) + ' ' + texOf(o.titleEl))
+     });
+   }
+   /* A title compared whole with the query: as written, without its closing stop, after its label ("Theorem 6.3."),
+@@ -1575,8 +1657,9 @@
+         var host = dt.parentNode.localName === 'div' && dt.parentNode.id ? dt.parentNode : dt;
+         give(host);
+         var dd = [];
+-        for (var n = dt.nextElementSibling; n && n.localName === 'dd'; n = n.nextElementSibling) dd.push(textOf(n));
+-        addUnit(list, host, { kind: 'gloss', group: g, titleEl: dt, name: textOf(dt), body: dd.join(' ') });
++        var ddTex = [];
++        for (var n = dt.nextElementSibling; n && n.localName === 'dd'; n = n.nextElementSibling) { dd.push(textOf(n)); ddTex.push(texOf(n)); }
++        addUnit(list, host, { kind: 'gloss', group: g, titleEl: dt, name: textOf(dt), body: dd.join(' '), tex: ddTex.join(' ') });
+       });
+       all('[data-gloss], div[data-term]', ref).forEach(function (b) {
+         give(b);
+@@ -1609,10 +1692,67 @@
+     if (units) return units;
+     if (!pending) { building = []; pending = jobs(); }
+     while (pending.length) pending.shift()(building);
+-    units = building;
++    units = building.concat(remoteUnits());
+     pending = null;
+     return units;
+   }
++  /* The other pages' places, from the search index (reader-index.js, loaded as a script when the search first opens):
++     each unit as the reader built it in its own page, addressed in that page. */
++  var remoteLoaded = false;
++  var remoteFailed = false;
++  var remoteGroups = {};
++  function remoteUnits() {
++    var data = window.QH_READER_INDEX;
++    if (!pagesMap || !data || !Array.isArray(data.units)) return [];
++    remoteLoaded = true;
++    var out = [];
++    data.units.forEach(function (x) {
++      if (!x || typeof x.id !== 'string' || typeof x.page !== 'string' || doc.getElementById(x.group || '')) return;
++      if (samePage(x.page)) return;
++      if (!remoteGroups[x.group]) remoteGroups[x.group] = { kind: x.groupKind, title: x.groupTitle || '', number: x.groupNumber || '' };
++      var title = x.title || '';
++      var where = x.where || '';
++      var body = x.text || '';
++      out.push({ el: null, anchor: null, remote: true, href: x.page + '#' + encodeURIComponent(x.id), rid: x.id, group: x.group,
++                 kind: x.kind || 'text', titleEl: null, title: title, body: body, name: fold(x.name || ''), context: where, where: where,
++                 skip: null, bodyEl: null, ft: fold(title), fb: fold(body), fc: fold(where), keys: titleKeys(fold(title)),
++                 defs: Array.isArray(x.defs) ? x.defs : [], ro: (title + ' ' + body).toLowerCase(),
++                 raw: (title + ' ' + where + ' ' + body).toLowerCase(), ttex: x.ttex || '', tex: x.tex || '' });
++    });
++    return out;
++  }
++  function loadIndex() {
++    if (!pagesMap || !pagesMap.index || remoteLoaded || remoteFailed || window.QH_READER_INDEX) {
++      if (window.QH_READER_INDEX && !remoteLoaded) { units = null; pending = null; }
++      return;
++    }
++    if (doc.querySelector('script[data-reader-index]')) return;
++    var sc = doc.createElement('script');
++    sc.src = pagesMap.index;
++    sc.async = true;
++    sc.setAttribute('data-reader-index', '');
++    sc.addEventListener('load', function () {
++      units = null;
++      pending = null;
++      if (searchOpen && searchState.q.trim()) run();
++    });
++    sc.addEventListener('error', function () {
++      remoteFailed = true;
++      if (searchOpen && searchState.q.trim()) run();
++    });
++    (doc.head || doc.documentElement).appendChild(sc);
++  }
++  /* For the index's builder: this page's units as the search uses them (qh:reader-units, answered in its detail). */
++  doc.addEventListener('qh:reader-units', function (event) {
++    if (!event.detail || typeof event.detail !== 'object') return;
++    event.detail.units = index().filter(function (u) { return !u.remote; }).map(function (u) {
++      var g = doc.getElementById(u.group);
++      var chapter = g && isChapter(g);
++      return { id: give(u.anchor), group: u.group, groupKind: chapter ? 'chapter' : 'reference',
++               groupTitle: chapter ? chapterTitle(g) : headingText(referenceHeading(g)), groupNumber: chapter ? chapterNumber(g) : '',
++               kind: u.kind, title: u.title, name: u.name, where: u.where, text: u.body || '', defs: u.defs, ttex: u.ttex, tex: u.tex };
++    });
++  });
+   function indexWhenIdle() {
+     if (units) return;
+     if (!pending) { building = []; pending = jobs(); }
+@@ -1654,15 +1794,17 @@
+   scopes.setAttribute('role', 'toolbar');
+   scopes.setAttribute('aria-label', word('search-in'));
+   var scopeIds = ['all'];
+-  if (chapters.length) scopeIds.push('chapters');
++  if (chapters.length || (pagesMap && companion)) scopeIds.push('chapters');
+   references.forEach(function (r) { scopeIds.push(r.id); });
++  if (pagesMap) pagesMap.pages.forEach(function (pg) { (pg.parts || []).forEach(function (pt) { if (pt && pt.id && scopeIds.indexOf(pt.id) < 0 && !doc.getElementById(pt.id)) scopeIds.push(pt.id); }); });
+   var scopeButtons = scopeIds.map(function (s, i) {
+     var b = element('button', 'reader-scope');
+     b.type = 'button';
+     b.setAttribute('data-scope', s);
+     b.setAttribute('aria-pressed', s === 'all' ? 'true' : 'false');
+     b.tabIndex = i ? -1 : 0;
+-    b.appendChild(element('span', 'reader-scope-label', s === 'all' ? word('all') : s === 'chapters' ? word('chapters') : headingText(referenceHeading(doc.getElementById(s)))));
++    b.appendChild(element('span', 'reader-scope-label', s === 'all' ? word('all') : s === 'chapters' ? word('chapters') :
++      doc.getElementById(s) ? headingText(referenceHeading(doc.getElementById(s))) : remotePartTitle(s)));
+     b.appendChild(doc.createTextNode(' '));
+     b.appendChild(element('span', 'reader-scope-count'));
+     scopes.appendChild(b);
+@@ -1687,16 +1829,39 @@
+   var newsTimer = null;
+   var addressTimer = null;
+ 
+-  function groupOrder() { return places.map(function (p) { return p.id; }); }
+-  function scopeOfGroup(g) { var p = doc.getElementById(g); return p && isChapter(p) ? 'chapters' : g; }
++  /* The chapters first, in the book's order (here or in the index), then this page's reference parts, then the other
++     pages' parts in the map's order. */
++  function groupOrder() {
++    var order = chapters.map(function (c) { return c.id; });
++    Object.keys(remoteGroups).filter(function (g) { return remoteGroups[g].kind === 'chapter' && order.indexOf(g) < 0; })
++      .sort(function (a, b) { return (+remoteGroups[a].number || 0) - (+remoteGroups[b].number || 0); })
++      .forEach(function (g) { order.push(g); });
++    references.forEach(function (r) { if (order.indexOf(r.id) < 0) order.push(r.id); });
++    if (pagesMap) pagesMap.pages.forEach(function (pg) { (pg.parts || []).forEach(function (pt) { if (pt && pt.id && order.indexOf(pt.id) < 0) order.push(pt.id); }); });
++    Object.keys(remoteGroups).forEach(function (g) { if (order.indexOf(g) < 0) order.push(g); });
++    return order;
++  }
++  function remotePartTitle(g) {
++    var t = '';
++    if (pagesMap) pagesMap.pages.forEach(function (pg) { (pg.parts || []).forEach(function (pt) { if (pt && pt.id === g && pt.title) t = pt.title; }); });
++    return t || (remoteGroups[g] && remoteGroups[g].title) || g;
++  }
++  function scopeOfGroup(g) {
++    var p = doc.getElementById(g);
++    if (p) return isChapter(p) ? 'chapters' : g;
++    return remoteGroups[g] && remoteGroups[g].kind === 'chapter' ? 'chapters' : g;
++  }
+   function groupWhere(g) {
+     var p = doc.getElementById(g);
+-    if (!p) return '';
+-    return isChapter(p) ? fill(word('chapter'), { n: chapterNumber(p) }) : headingText(referenceHeading(p));
++    if (p) return isChapter(p) ? fill(word('chapter'), { n: chapterNumber(p) }) : headingText(referenceHeading(p));
++    var r = remoteGroups[g];
++    return r && r.kind === 'chapter' ? fill(word('chapter'), { n: r.number }) : remotePartTitle(g);
+   }
+   function groupTitle(g) {
+     var p = doc.getElementById(g);
+-    return p && isChapter(p) ? chapterTitle(p) : '';
++    if (p) return isChapter(p) ? chapterTitle(p) : '';
++    var r = remoteGroups[g];
++    return r && r.kind === 'chapter' ? r.title : '';
+   }
+   function tell(text) {
+     clearTimeout(newsTimer);
+@@ -1715,13 +1880,13 @@
+     var u = h.unit;
+     var li = element('li', 'reader-hit');
+     var a = element('a', 'reader-hit-link');
+-    var id = give(u.anchor);
+-    a.href = '#' + id;
++    if (u.remote) a.href = u.href; else a.href = '#' + give(u.anchor);
+     a.setAttribute('data-hit', String(n));
++    if (u.remote && !u.bodyEl) u.bodyEl = element('span', null, u.body);
+     var ids = 'reader-hit-' + n;
+     var labelled = [];
+     var whereText = h.best ? groupWhere(u.group) + (groupTitle(u.group) ? ' · ' + groupTitle(u.group) : '') + (u.where ? ' · ' + u.where : '') : u.where;
+-    var plain = textOf(u.bodyEl || u.el, u.skip, true);
++    var plain = u.remote ? u.body : textOf(u.bodyEl || u.el, u.skip, true);
+     var inFormula = terms.some(function (t) { return !inWords(u, t, plain); });
+     if (whereText || inFormula) {
+       var w = element('span', 'reader-hit-where');
+@@ -1798,7 +1963,8 @@
+       if (!n) b.setAttribute('data-none', '');
+     });
+     var total = searchState.scope === 'all' ? perScope.all : perScope[searchState.scope] || 0;
+-    statusLine.textContent = total === 0 ? word('none') : total === 1 ? word('one') : fill(word('many'), { n: total });
++    statusLine.textContent = (total === 0 ? word('none') : total === 1 ? word('one') : fill(word('many'), { n: total })) +
++      (remoteFailed ? ' ' + word('index-failed') : '');
+     tell(statusLine.textContent);
+     results.hidden = total === 0;
+     var marks = marksOf(terms);
+@@ -1872,6 +2038,7 @@
+       if (o.scope && scopeIds.indexOf(o.scope) >= 0) searchState.scope = o.scope;
+       expanded = {};
+     }
++    loadIndex();
+     index();
+     run();
+     if (o.record !== false) recordQuery();
+@@ -1896,6 +2063,11 @@
+   function openHit(h, link) {
+     if (!h) return;
+     var u = h.unit;
++    if (u.remote) {
++      clearTimeout(addressTimer);
++      leaveFor(u.href, 'assign', link, { q: searchState.q, scope: searchState.scope, panel: 1, hit: u.rid, focus: null });
++      return;
++    }
+     var id = give(u.anchor);
+     var keepState = { q: searchState.q, scope: searchState.scope, panel: 1, hit: id, focus: null };
+     clearTimeout(addressTimer);
+@@ -1904,7 +2076,10 @@
+     go(id, { push: true, from: link, extra: keepState, marks: marksOf(parseQuery(searchState.q)) });
+   }
+   function focusHit(id) {
+-    var a = id ? all('.reader-hit-link', results).filter(function (l) { return l.getAttribute('href') === '#' + id; })[0] : null;
++    var a = id ? all('.reader-hit-link', results).filter(function (l) {
++      var h = l.getAttribute('href') || '';
++      return h === '#' + id || decode(h.slice(h.indexOf('#') + 1)) === id;
++    })[0] : null;
+     if (a) a.focus(); else input.focus();
+   }
+   searchButton.addEventListener('click', function () { if (searchOpen) closeSearch(true); else openSearch(searchButton); });
+@@ -2026,8 +2201,14 @@
+     }
+     var a = event.target.closest && event.target.closest('a[href]');
+     if (!a || peek.contains(a) || results.contains(a)) return;
+-    if (a.closest('[data-atlas-mount]')) return; /* a component's own links: it follows the address itself */
+     var href = a.getAttribute('href');
++    if (href.charAt(0) !== '#' && !a.hasAttribute('download') && !a.target && bookPage(a.href)) {
++      /* Another page of the book (a component's link included): the entry left keeps the place. */
++      event.preventDefault();
++      leaveFor(a.href, 'assign', a);
++      return;
++    }
++    if (a.closest('[data-atlas-mount]')) return; /* a component's own links: it follows the address itself */
+     if (href.charAt(0) !== '#' || href === '#') return;
+     var id = decode(href.slice(1));
+     if (isReference(a)) {
+@@ -2036,6 +2217,8 @@
+     }
+     var t = resolve(id) || (Object.prototype.hasOwnProperty.call(redirects, id) ? resolve(redirects[id]) : null);
+     if (!t) {
++      var away = externalHref(id);
++      if (away) { event.preventDefault(); leaveFor(away, 'assign', a); return; }
+       if (!main.contains(a) && !bar.contains(a) && !notices.contains(a)) return;
+       event.preventDefault();
+       unknownAddress(id, { from: a });
+@@ -2087,6 +2270,12 @@
+   }, { passive: true });
+   window.addEventListener('resize', function () { later(function () { measureBar(); placePeek(); }); });
+   window.addEventListener('pagehide', function () { savePlace(); });
++  /* Back from another page of the book may show this page as it was left (the back-forward cache): its search too. */
++  window.addEventListener('pageshow', function (event) {
++    if (!event.persisted) return;
++    var st = history.state && history.state.reader;
++    if (st && st.panel && st.q) { openSearch(null, st.q, { focus: false, record: false, scope: st.scope }); focusHit(st.hit); }
++  });
+ 
+   window.addEventListener('popstate', function (event) {
+     var st = event.state && event.state.reader;
+@@ -2149,7 +2338,12 @@
+     var id = event.detail && event.detail.id;
+     if (typeof id !== 'string') return;
+     var t = resolve(id) || (Object.prototype.hasOwnProperty.call(redirects, id) ? resolve(redirects[id]) : null);
+-    if (!t || !ours(t)) return;
++    if (!t) {
++      var away = externalHref(id);
++      if (away) { event.preventDefault(); leaveFor(away, 'assign', event.target && event.target.nodeType === 1 ? event.target : null); }
++      return;
++    }
++    if (!ours(t)) return;
+     event.preventDefault();
+     var from = event.target && event.target.nodeType === 1 ? event.target : null;
+     go(id, { push: true, from: from });
+@@ -2181,7 +2375,10 @@
+       if (st && (st.at || typeof st.y === 'number')) restorePlace(st, false);
+       if (!q) offerPlace();
+     }
+-    if (q) openSearch(null, q, { focus: false, record: false, scope: st && st.scope });
++    if (q) {
++      openSearch(null, q, { focus: false, record: false, scope: st && st.scope });
++      if (st && st.panel && st.hit) focusHit(st.hit);
++    }
+     later(function () { measureBar(); trackSection(); });
+     indexWhenIdle();
+   })();
