@@ -1,0 +1,160 @@
+--- a/compiler/quantum-holography-status/monograph.py	2026-11-17 03:49:53
++++ b/compiler/quantum-holography-status/monograph.py	2026-11-17 11:31:47
+@@ -48,6 +48,10 @@
+ 
+ INLINE_MATH = re.compile(r'\\\((.+?)\\\)', re.S)
+ DISPLAY_IN_LINE = re.compile(r'\\\[(.+?)\\\]', re.S)
++# A supplied supplement's first line, when it is a date ("17 November 2026"), is set as its dateline.
++MONTHS = ('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
++          'November', 'December')
++DATELINE = re.compile(r'^(\d{1,2}) (' + '|'.join(MONTHS) + r') (\d{4})$')
+ TAG_RE = re.compile(r'\\tag\*?\{([^{}]*)\}')
+ ID_LINE = re.compile(r'\{#([A-Za-z][\w:.-]*)\}')
+ HEADING_RE = re.compile(r'^(#{1,6})\s+(.*?)\s*$')
+@@ -405,6 +409,7 @@
+         self.refdefs = {}      # chapter id -> {label: target}, from Markdown reference definitions (never shown)
+         self.local_links = []  # (chapter id, target): links to working files, shown as their words only
+         self.chapter_files = {Path(c['path']).name: c['id'] for c in self.chapters if c.get('path')}
++        self.supplements = {}  # id -> supplied supplement (status.py: the content folder's supplements/), placed by assemble()
+ 
+     # Loading -------------------------------------------------------------------------------------------------
+ 
+@@ -1315,6 +1320,42 @@
+         return (f'<header class="mg-front" id="front" data-reader-front><div class="mg-front-frame"><div class="mg-front-main">'
+                 f'<div class="mg-front-title-block"><h1 class="mg-front-title">{self.b.rich(m["title"], terms=False)}</h1>'
+                 f'{sub}{audience}{byline}</div>{self.introduction()}</div>{rail}</div>{self.book_map()}{marks}</header>')
++
++    def supplement(self, sup):
++        """A supplied document (an exact author handoff, used only at its recorded sha256) as a reference part of its
++        own, under the reference's section head: its title as the heading, its first line as the dateline when that is a
++        date, its sections unnumbered with ids from their titles, its formulae typeset as in the chapters. Every word is
++        the file's. No lead-in becomes a result (envs=False), so nothing is numbered, anchored or reworded; the part takes
++        no part number, so the reference's numbered parts keep theirs."""
++        sid = sup['id']
++        self.current = sid
++        for ident in (sid, sid + '-h'):
++            self.claim(ident, sid)
++        self.anchor_kind[sid] = 'section'
++        blocks = parse_blocks(sup['text'].splitlines())
++        if blocks and blocks[0]['t'] == 'h' and blocks[0]['level'] == 1:
++            blocks.pop(0)
++        date = ''
++        if blocks and blocks[0]['t'] == 'p':
++            m = DATELINE.match(blocks[0]['text'].strip())
++            if m:
++                blocks.pop(0)
++                iso = f'{m.group(3)}-{MONTHS.index(m.group(2)) + 1:02d}-{int(m.group(1)):02d}'
++                date = f'<p class="mg-supp-date"><time datetime="{iso}">{html.escape(m.group(0))}</time></p>'
++        opening, sections = self.split_sections(blocks)
++        out = [self.render(opening, envs=False)] if opening else []
++        for h, sblocks in sections:
++            ident = self.unique(f'{sid}-{slugify(h["text"])}')
++            self.claim(ident + '-h', sid)
++            self.anchor_kind[ident] = 'section'
++            out.append(f'<section class="mg-supp-sec" id="{ident}" aria-labelledby="{ident}-h">'
++                       f'<h3 class="mg-sec-head" id="{ident}-h">{self.inline(h["text"])}</h3>'
++                       f'{self.render(sblocks, envs=False)}</section>')
++        kicker = f'<p class="kicker">{html.escape(sup["kicker"])}</p>' if sup.get('kicker') else ''
++        return (f'<section data-reference id="{sid}" class="section mg-supplement" aria-labelledby="{sid}-h">'
++                f'<header class="section-head">{kicker}<h2 id="{sid}-h"><a class="anchor" href="#{sid}">'
++                f'{html.escape(sup["title"])}</a></h2>{date}</header>'
++                f'<div class="mg-supp-text">{"".join(out)}</div></section>')
+ 
+     def contents(self, reference):
+         L = self.L
+@@ -1359,9 +1400,12 @@
+         self.section_index = {}
+         self.pending_refs = []
+         self.pending_defs = []
+-        self.reference_ids = set(re.findall(r'\sid="([^"]+)"', reference_html))
+         self.current = 'front'
+         self.load()
++        # Each supplied supplement is set where status.py placed its mark, after the chapters' ids are claimed.
++        reference_html = re.sub('\x04SUPPLEMENT:([^\x04]+)\x04', lambda m: self.supplement(self.supplements[m.group(1)]),
++                                reference_html)
++        self.reference_ids = set(re.findall(r'\sid="([^"]+)"', reference_html))
+         chapters = ''.join(self.chapter(c) for c in self.chapters)
+         glossary = self.glossary()
+         index = self.results_index()
+--- a/compiler/quantum-holography-status/monograph.css	2026-11-17 03:50:08
++++ b/compiler/quantum-holography-status/monograph.css	2026-11-17 11:32:54
+@@ -690,3 +690,14 @@
+ /* 6. Where the browser cannot find text hidden until found, the reader hides the places not shown with plain hidden;
+       no display rule of the page may show them. */
+ main[data-reader] > [hidden]:not([hidden='until-found']) { display: none !important; }
++
++/* A supplied supplement in the reference: the reference's own section head, unnumbered,
++   with the supplement's date beneath its title; its text in the book's measure and paragraph rhythm. */
++.mg-supplement .section-head .mg-supp-date { margin: .3em 0 0; color: var(--ink-3); font-size: var(--text-sm);
++  font-variant-numeric: lining-nums; letter-spacing: .02em; }
++.mg-supp-text { max-width: var(--mg-measure); }
++.mg-supp-text p { margin: 0; text-wrap: pretty; hyphens: auto; -webkit-hyphens: auto; }
++.mg-supp-text p + p, .mg-supp-text .mg-display + p { text-indent: 1.5em; }
++.mg-supp-sec { margin-top: var(--s4); }
++.mg-supp-sec:first-child { margin-top: var(--s3); }
++.mg-supp-sec > .mg-sec-head + p { text-indent: 0; }
+--- a/compiler/quantum-holography-status/status.py	2026-11-17 03:18:19
++++ b/compiler/quantum-holography-status/status.py	2026-11-17 11:31:47
+@@ -11,6 +11,7 @@
+ no request to any other host.
+ """
+ import base64
++import hashlib
+ import html
+ import io
+ from html.parser import HTMLParser
+@@ -1255,6 +1256,7 @@
+         import monograph
+         R = self.page.get('reader') or {}
+         self.book = monograph.Book(self, self.reader_manifest, mark, R)
++        supplements = self.supplements_supplied()
+         # The book's contents is #contents; the former page's own contents gives up that id, so that an old link to
+         # #contents lands on the book's contents, which lists every reference section.
+         cover = cover.replace('<nav class="contents" id="contents"', '<nav class="contents" id="programme-contents"', 1)
+@@ -1275,6 +1277,18 @@
+                 index.append((sid, parts[sid]))
+             elif sid == 'changes':
+                 index.append((sid, html.escape(L['changes'])))
++        # Supplied supplements (exact author handoffs) follow the part each names; the book sets them (monograph.py).
++        placed = set()
++        for sup in supplements:
++            at = next((k for k, ch in enumerate(chunks) if re.match(r'<section (?:data-reference )?id="%s"' % re.escape(sup['after']), ch)), None)
++            if at is None:
++                self.problems.append(f'supplement {sup["id"]}: the part it follows, {sup["after"]}, is not on the page')
++                continue
++            chunks.insert(at + 1, f'\x04SUPPLEMENT:{sup["id"]}\x04')
++            k = next((k for k, (sid, _) in enumerate(index) if sid == sup['after']), len(index) - 1)
++            index.insert(k + 1, (sup['id'], html.escape(sup['title'])))
++            placed.add(sup['id'])
++        self.book.supplements = {s['id']: s for s in supplements if s['id'] in placed}
+         inner = self.book.assemble(''.join(chunks), index)
+         self.problems.extend('reader: ' + p for p in self.book.problems)
+         self.warnings.extend('reader: ' + w for w in self.book.warnings)
+@@ -1291,6 +1305,27 @@
+                 f'<a href="#front">{icon("up")}<span>{html.escape(L["top"])}</span></a></p></div></footer>'
+                 f'<div class="card" id="card" role="dialog" aria-modal="false" hidden><div class="card-inner"></div></div>')
+ 
++    def supplements_supplied(self):
++        """The content folder's supplied supplements (supplements/supplements.json): exact author handoffs, each used only
++        at the sha256 its record names, so that the page carries exactly the supplied words."""
++        reg = self.folder / 'supplements' / 'supplements.json'
++        if not reg.exists():
++            return []
++        out = []
++        for s in json.loads(reg.read_text(encoding='utf-8')).get('supplements', []):
++            f = self.folder / 'supplements' / s.get('file', '')
++            raw = f.read_bytes() if f.is_file() else b''
++            if hashlib.sha256(raw).hexdigest() != s.get('sha256'):
++                self.problems.append(f'supplement {s.get("id")}: {s.get("file")} is not at its recorded sha256')
++                continue
++            text = raw.decode('utf-8')
++            first = text.lstrip().split('\n', 1)[0]
++            if not first.startswith('# ') or not s.get('id') or not s.get('after'):
++                self.problems.append(f'supplement {s.get("id")}: needs an id, the part it follows and a "# " title line')
++                continue
++            out.append(dict(s, text=text, title=first[2:].strip()))
++        return out
++
+     def monograph_assets(self):
+         """The book's sheets and scripts: the page sheet, the atlas's, the print sheet, then the book's own sheet and the
+         figures' (each lane's rules win inside its own markup). The reader script replaces status.js on this page
