@@ -1,0 +1,29 @@
+✔ only the page script differs from the build with the original script (17.576ms)
+✔ loads without script errors; 22 decisive questions and all rows intact (1522.817208ms)
+✔ search panel: labelled input after the tally, part and status chips, nothing shown until used (1602.75625ms)
+✔ every decisive question is found by its own title, first in its group, linking to its card (5316.541875ms)
+✔ every statement on the page is found exactly once by the status chips (whole-page tally) (1693.542084ms)
+✔ statements with anchors are found by their titles and link to themselves or their card (19478.844333ms)
+✔ matching: every word must occur, case and accents ignored, TeX source searchable, results carry marks (2813.001708ms)
+✔ keyboard: / focuses search; arrows move through results; Escape clears; Enter goes to the first result (2348.730083ms)
+✔ a result without its own anchor opens its row, pushes the nearest anchor and takes focus (2080.41ms)
+✔ address state: ?q, ?in, ?status and ?show restore the view on arrival (1786.946875ms)
+✔ deep links: a link into a closed row opens it; a statement hidden by the filter is shown (1733.356875ms)
+✔ rows: opening a row puts it in the address without a history entry; closing removes it (1081.825042ms)
+✔ status filter: chips and tally links still filter the rows, and are announced (1308.158917ms)
+✔ open all / close all: rows in the examples, and the proved-toward lists of the question sections (1217.097625ms)
+✔ table: arrow keys, Home and End move between marks and headings (1123.639875ms)
+✔ card: Tab enters it, Tab from its last link continues after the trigger, Escape returns, a link closes it (1705.900666ms)
+✔ bar: the section in view is marked; clicking a bar link marks it at once (1649.94725ms)
+✔ print opens every row and afterwards restores the rows as they were (1343.467791ms)
+✔ back and forward restore the search held in the address (2325.112459ms)
+✔ theme switch still works (1415.960708ms)
+✔ words the script adds obey the page rule on reader-visible text (1776.6425ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 56687.7695
