@@ -1,0 +1,452 @@
+# Quality lane consolidated attack ledger, cycle 1 (adjudicated before healing).
+# Sources: attacks/A1-cycle1.yaml (A1, accessibility and interaction), attacks/A2-cycle1.yaml (A2, links, fidelity,
+# safety, print, scale), and the lead's own mechanical runs (lead/results/*). Deduplicated by root cause.
+# Evidence classes: tested-chrome = reproduced in headless Chrome 157 by lead/qh-confirm.mjs or lead/qh-cdp.mjs;
+# tested-jsdom = attacker's jsdom script; computed; line_reference.
+# Status after this cycle's healing is recorded in HEAL-REPORT.md; this file keeps the pre-heal adjudication.
+cycle: 1
+entries:
+  - id: C01
+    severity: 2
+    status: valid
+    sources: [lead]
+    owner: foundation (status-print.css, status.css print block)
+    claim: Printing shows every statement on A4 and Letter.
+    broken_step: >-
+      On US Letter, decisive Question 16 (its heading, its open problem and its related statement) is missing from
+      the PDF and leaves two thirds of page 29 blank. With other paginations the loss moves: A4 at 10.5 pt base loses 5
+      example-row statements, Letter at 11.1 pt loses 6 decisive statements. Relaxing break-after on .known-head
+      fixes Letter but moves the loss to A4 and 8.5x10.5 in, so no single break rule is the cause. Printing the grid
+      containers .statements, .questions and .failures as block flow loses nothing on any of 18 paginations.
+    evidence: >-
+      tested-chrome: lead/qh-print-bisect.mjs, 857 reader texts checked per PDF (letters-only comparison of
+      pdftotext output). Baseline: Letter missing 2 (s-decisive-hamiltonian-e2, s-decisive-hamiltonian-quartic-constraint),
+      7 other sizes missing 0; font-size stress: 10.5pt A4 missing 5, 11.1pt Letter missing 6. Grid-to-block variant:
+      0 missing on 8 paper sizes and 8 font-size paginations (one glossary line reordered by the extractor is present).
+      Page images: lead/results/cdp-baseline-full/letter-hi-029.png. Results: lead/results/print-bisect/.
+    minimal_heal: In print, display .statements, .questions, .failures (and .known > .statements) as block with margins.
+  - id: C02
+    severity: 2
+    status: valid
+    sources: [A1-A2-01]
+    owner: foundation (compiler/build-quantum-holography-status.py)
+    claim: The builder accepts a newer content folder through --input, as its docstring and the README state.
+    broken_step: >-
+      page.json is always read from the default content folder, never from --input; --audit-dir defaults into the
+      default content folder. A newer folder's interface or status labels are silently ignored.
+    evidence: line_reference build-quantum-holography-status.py:49,54; to be tested on the mirror (HEAL-REPORT.md).
+    minimal_heal: Read page.json from --input when present (fall back to the default with a warning); default the audit folder under --input.
+  - id: C03
+    severity: 3
+    status: valid
+    sources: [A1-A2-03]
+    owner: foundation (status.py essay())
+    claim: Every TeX segment a reader sees becomes MathML.
+    broken_step: The essay is html-escaped without the rich-text path; four formulas print as raw TeX (\(c=33\) ...).
+    evidence: computed by A2; the lead's Q08 check covered content.json only and missed it (coverage gap, fixed in lead/qh-static.mjs).
+    minimal_heal: Render essay blocks with rich(block, terms=False); keep the essay-display test on the raw block.
+  - id: C04
+    severity: 3
+    status: valid
+    sources: [A1-A2-05, A1-A1-09, lead AX tree]
+    owner: foundation (status.py grid())
+    claim: 'Each grid mark is named "<example>, <column>: <status>".'
+    broken_step: The 8 marks of the W-algebras row are named "\(W\)-algebras ..." (raw TeX delimiters in the accessible name).
+    evidence: tested-chrome Accessibility.queryAXTree (8 button names with TeX); computed by A1 and A2.
+    minimal_heal: Build the label from math_free(name); make the audit fail on a backslash in aria-label or title.
+  - id: C05
+    severity: 3
+    status: valid
+    sources: [A1-A2-04, A1-A1-10]
+    owner: interaction (status.js contentFor)
+    claim: The cell card's link names its row as the grid does.
+    broken_step: The link text is rowLink.textContent, which includes the MathML annotation, giving "WW-algebras ...".
+    evidence: tested-chrome K9 FAIL (cardLink "WW-algebras and quantum Drinfeld–Sokolov reduction").
+    minimal_heal: Use textOf(rowLink), which skips annotations.
+  - id: C06
+    severity: 3
+    status: valid
+    sources: [A1-A1-05, lead state scenario]
+    owner: interaction (status.js applyFilter) and foundation (status.css)
+    claim: A status filter tells the reader what it shows, including rows where nothing matches.
+    broken_step: >-
+      With "Published" pressed, 16 of 20 rows have no matching statement. They close, keep their unfiltered count
+      ("15 statements"), and an opened one shows no statements and no notice. The only count is visually hidden.
+    evidence: tested-chrome K7 FAIL; lead/results/cdp-baseline-full (state.show, showEmptyRowDetail).
+    minimal_heal: A visible filter count line and a visible note in each row the filter empties.
+  - id: C07
+    severity: 3
+    status: valid
+    sources: [A1-A2-06, A1-A1-04]
+    owner: interaction (status.js)
+    claim: A link to a row opens it.
+    broken_step: After Close all (or a filter, or closing a statement's row) the hash still names the row; following the same link fires no hashchange and the row stays closed.
+    evidence: tested-chrome K4 FAIL (reopenedAfterCloseAll false).
+    minimal_heal: On an in-page link click whose fragment equals location.hash, run openTarget after the default action.
+  - id: C08
+    severity: 3
+    status: valid
+    sources: [A1-A2-07, lead state scenario]
+    owner: interaction (status.js fromAddress)
+    claim: A shared address restores a search view.
+    broken_step: Unknown ?in= or ?status= values (including stale links and wrong case) give "Nothing on this page matches." with no pressed chip, and stay in the address.
+    evidence: tested-chrome K8 FAIL for ?in=bogus, ?status=bogus, ?status=Checked, ?q=koszul&in=bogus.
+    minimal_heal: Keep only known scopes and statuses; rewrite the address without the dropped values.
+  - id: C09
+    severity: 3
+    status: valid
+    sources: [A1-A2-08]
+    owner: interaction (status.js popstate, address timer)
+    claim: The address and the page agree after in-page navigation.
+    broken_step: >-
+      An in-page link followed within 350 ms of typing fires popstate before the address is written; fromURL resets
+      the search field to the old address, then the timer writes the discarded query. Result: empty field and results,
+      ?q=koszul in the address.
+    evidence: 'tested-chrome K5 FAIL (input "", search "?q=koszul"). Part (b) (blob:/content: views) is non_core here (the page is served over https and file://).'
+    minimal_heal: Flush the pending address before in-page navigation; on popstate restore only when the search part differs from the last one written or read.
+  - id: C10
+    severity: 3
+    status: valid
+    sources: [A1-A1-01]
+    owner: interaction (status.js Escape)
+    claim: Dismissing a card with Escape does not move keyboard focus (WCAG 1.4.13).
+    broken_step: Escape always focuses the card's owner; with a hover card open, focus jumps from a chip or from the search field to the hovered term.
+    evidence: tested-chrome K1 FAIL (focus moved to button.term "local vacuum" in both cases).
+    minimal_heal: Return focus to the owner only when focus is inside the card or nowhere.
+  - id: C11
+    severity: 3
+    status: valid
+    sources: [A1-A1-02]
+    owner: interaction (status.js focusout)
+    claim: The card describes the control that has focus; aria-expanded is true only on its owner.
+    broken_step: A pinned card stays open after focus leaves its owner (column-head cards have no link); the next column head is described by the old card and the old head stays aria-expanded=true.
+    evidence: tested-chrome K2 FAIL.
+    minimal_heal: When focus leaves a pinned owner for anything outside the card, hide the card.
+  - id: C12
+    severity: 3
+    status: valid
+    sources: [A1-A1-03]
+    owner: interaction (status.js search keydown)
+    claim: Down moves from the search field into the results.
+    broken_step: Down within 90 ms of typing focuses a result of the previous query; the debounced run then removes it and focus falls to body.
+    evidence: tested-chrome K3 FAIL (activeElement body).
+    minimal_heal: Run the pending query before moving focus.
+  - id: C13
+    severity: 3
+    status: valid
+    sources: [A1-A1-06]
+    owner: interaction (status.js index)
+    claim: "\"Nothing on this page matches.\" is true when shown."
+    broken_step: The lead, the status key and the section introductions are not indexed; words visible only there report nothing.
+    evidence: tested-chrome K10 FAIL ("comultiplication", "status marks", "strongest status").
+    minimal_heal: Index the lead, the key items and each section introduction.
+  - id: C14
+    severity: 3
+    status: valid
+    sources: [A1-A1-07]
+    owner: interaction (status.js) with a bar control from foundation (status.py)
+    claim: Character-key shortcuts meet WCAG 2.1.4 (Level A).
+    broken_step: A bare '/' anywhere outside text fields moves focus to the search; it cannot be turned off or remapped.
+    evidence: tested-chrome K11 FAIL (focus moved from a filter chip to input#find-q).
+    minimal_heal: Remove the bare '/' binding and give the search a visible opener in the bar (status.js already supports [data-find-open]).
+  - id: C15
+    severity: 3
+    status: valid
+    sources: [A1-A1-08, lead contrast scenario]
+    owner: foundation (status.css tokens)
+    claim: Status marks meet 3:1 non-text contrast (WCAG 1.4.11).
+    broken_step: "\"Not yet formulated\" (a dash; 22 grid cells): light #9b958d is 2.85:1 on paper, 2.61 on a hovered row, 2.46 in the selected cell; dark #77716a is 2.78 in the selected cell."
+    evidence: tested-chrome contrast scenario (mark-not-posed 2.85 light); computed by A1.
+    minimal_heal: --st-not-posed #857f77 in both themes (print value already passes).
+  - id: C16
+    severity: 3
+    status: valid
+    sources: [A1-A1-11]
+    owner: interaction (status.js) / foundation (status.css)
+    claim: Focus is never hidden (WCAG 2.4.7 in practice; 2.4.11 in 2.2).
+    broken_step: With the grid scrolled sideways, a mark reached by Left, Home, Shift+Tab sits under the sticky row header.
+    evidence: tested-chrome K6 FAIL (covered steps 2-4 of 7 at 1024, 768, 480, 375; overlap up to 228 px).
+    minimal_heal: On focus inside the grid, scroll so that the focused control clears its row header.
+  - id: C17
+    severity: 3
+    status: valid
+    sources: [A1-A2-02 (1)-(5)]
+    owner: foundation (audit.py)
+    claim: The build audit enforces the public-safety rules for reader-visible text.
+    broken_step: Words fuse across tags (no \b), attribute values, ids, mtext and the head are not scanned, and process tokens (wave/phase/session numbers, swarm, attack-heal, lane ids, percentages) are absent from the list.
+    evidence: A2's synthetic fixtures (tested against audit.py); to be re-run against the healed audit (lead/qh-audit-fixtures.py).
+    minimal_heal: Tag-boundary spacing; scan attributes, ids, mtext/annotation and head; add unambiguous process patterns as failures and ambiguous words (adopted, draft) as warnings.
+  - id: C18
+    severity: 3
+    status: valid
+    sources: [A1-A2-09]
+    owner: content owner (ids) and foundation (audit warning)
+    claim: A reader can link to any statement.
+    broken_step: 98 of 281 statements have no content id and therefore no anchor (81 of 109 example statements).
+    evidence: computed by A2; lead Q09 counts 98 statements without anchor.
+    minimal_heal: Content owner adds ids; audit warns and lists anchorless statements. Not healable by design alone.
+  - id: C19
+    severity: 3
+    status: valid
+    sources: [A1-A2-10]
+    owner: foundation (status.py, README) and content owner (ids)
+    claim: Shared anchors survive retitling.
+    broken_step: Open-group anchors come from headings (no id field exists); glossary anchors from term text.
+    evidence: line_reference status.py:145-150, 622.
+    minimal_heal: Optional "id" on open groups and glossary entries, used when present; current anchors unchanged without ids.
+  - id: C20
+    severity: 3
+    status: undecided
+    sources: [A1-A2-11, lead safety scan]
+    owner: content owner (via root)
+    claim: Reader text carries no process language.
+    broken_step: >-
+      Essay: "retains the adopted local theorem above charge one"; statement s-decisive-critical-existing-order:
+      "remains a saved constructor certificate", "uses a recorded exact kernel certificate", "the stored matrix
+      arithmetic has not been independently replayed". Whether these are mathematical qualifications or workflow
+      residue is the content owner's decision. Until ruled, the external gate (process-language scan) is not closed.
+    evidence: computed (lead Q04 review hits; A2 scan).
+    minimal_heal: Content owner ruling and, if needed, rewording.
+  - id: C21
+    severity: 3
+    status: undecided
+    sources: [A1-A2-12]
+    owner: atlas lane and root (DESIGN-CONTRACT.json)
+    claim: Atlas relation fidelity can be checked mechanically.
+    broken_step: No public binding from an edge to its source edge, no relation vocabulary, no definition of a dependency-path step, no map from page statuses to atlas status codes, sourceLabel not limited to public references, and example values that would fail the audit.
+    evidence: missing_source (DESIGN-CONTRACT.json); CONTRACT.json atlas_testability_requirements states the hooks quality will test.
+    minimal_heal: Contract revision (manifest format, relation enum, step rule, status map, public-only sourceLabel).
+  - id: C22
+    severity: 3
+    status: undecided
+    sources: [A1-A2-13]
+    owner: root ruling
+    claim: Status presentation implies no theorem count (DESIGN-CONTRACT readerRules[1]).
+    broken_step: The cover tally and every row/question mix show counts by status (197 / 74 / 6 / 4); the rule's scope (atlas only or whole page) is unstated.
+    evidence: computed.
+    minimal_heal: A ruling on the rule's scope.
+  - id: C23
+    severity: 3
+    status: undecided
+    sources: [A1-A1-12]
+    owner: interaction (status.js card) and foundation (status.css sheet)
+    claim: On a phone the card can be read and closed.
+    broken_step: >-
+      In Chrome touch emulation the sheet opens, does not cover its trigger in the tested case, and closes by a tap
+      elsewhere and by Escape. It has no close control, ignores the bottom safe area, and dismissal by tapping
+      non-interactive text relies on click reaching document, which iOS Safari is known to withhold.
+    evidence: tested-chrome K12 (closeControl false; closedByTapElsewhere true); iOS untested.
+    minimal_heal: A labelled close button in the card; bottom offset with env(safe-area-inset-bottom). iOS verification remains.
+  - id: C24
+    severity: 4
+    status: valid
+    sources: [A1-A1-14, lead AX tree]
+    owner: foundation (status.py)
+    claim: Headings give the page's structure.
+    broken_step: Example-row and counterexample statements are h4 directly under an h2.
+    minimal_heal: heading='h3' for row and counterexample statements.
+  - id: C25
+    severity: 4
+    status: valid
+    sources: [A1-A2-17]
+    owner: foundation (audit.py)
+    claim: The audit scales with content.
+    broken_step: The duplicate-id check is quadratic.
+    minimal_heal: One Counter over one findall.
+  - id: C26
+    severity: 4
+    status: valid
+    sources: [A1-A1-13, A1-A1-15, A1-A1-16, A1-A1-17, A1-A1-18, A1-A1-19, A1-A2-14, A1-A2-16, A1-A2-18, A1-A2-19, lead L-07 (grid scrolls at 1024 px), A1-A2-02(6) (CSS/JS comments name producer files)]
+    owner: interaction / foundation
+    claim: Optional improvements outside the acceptance contract.
+    minimal_heal: See the source entries; not healed in this cycle.
+  - id: C27
+    severity: 4
+    status: undecided
+    sources: [A1-A1-20, A1-A1-21, A1-A1-22, A1-A2-15]
+    owner: foundation / interaction / root
+    claim: Focus-ring clipping in the bar, forced-colours pressed states, hover grace period, status-label ownership.
+    minimal_heal: See the source entries; need rendering or a ruling.
+  - id: X01
+    severity: 3
+    status: invalid
+    sources: [lead contrast scenario]
+    claim: The tally pills and the theme button fail non-text contrast (borders 1.37:1 light, 1.54:1 dark).
+    refutation: WCAG 1.4.11 requires 3:1 for the visual information needed to identify a component; these controls are identified by their text (tally) and by a 7:1 icon (theme), so the border is not that information.
+  - id: X02
+    severity: 3
+    status: invalid
+    sources: [lead state scenario]
+    claim: History Forward to a search result does not bring the result back into view.
+    refutation: Timing artifact. With default motion the restoration is smooth and completes after about 2 s (lead/results/history/history-baseline.json forward3s inView true); with reduced motion it is immediate.
+  - id: X03
+    severity: 2
+    status: invalid
+    sources: [lead first keyboard and deep-link runs]
+    claim: Focus stops are off screen or under the bar; in-page hash changes fail to show their targets.
+    refutation: Measured during smooth scrolling and after an unreliable reset. With settled measurements (450 ms per stop, hit-testing) 140 Tab stops and 24 Shift+Tab stops at 1400 and 375 px have a visible ring and none is covered; all 15 hash changes and 30 arrivals show their targets (lead/results/cdp-baseline-r2).
+
+# Amendment, 2026-11-16, after root's browser restriction (RESTRICTION.md). Evidence produced by headless Chrome
+# over raw CDP ("tested-chrome" above, K1-K12, the print sweeps, the history and keyboard runs) is inadmissible.
+# Status changes and the admissible evidence that remains for each entry:
+admissibility_amendment:
+  - {id: C01, status: undecided, admissible_evidence: none, note: "Only evidence was the Chrome print sweeps. Not refuted. Heal proposed (print block flow); verification by an approved print route is required."}
+  - {id: C02, status: valid, admissible_evidence: "line_reference; builder run on a fixture folder (HEAL-REPORT.md)"}
+  - {id: C03, status: valid, admissible_evidence: "static HTML: 4 raw \\( in the essay section, 0 math elements there (A2; lead static check)"}
+  - {id: C04, status: valid, admissible_evidence: "static HTML: 8 aria-label values with TeX delimiters (A1, A2)"}
+  - {id: C05, status: valid, admissible_evidence: "jsdom (A1-A1-10, A1-A2-04): card link text WW-algebras"}
+  - {id: C06, status: valid, admissible_evidence: "jsdom (A1-A1-05): 16 empty rows, 0 CSS rules for data-filter-empty, count only in a visually hidden region"}
+  - {id: C07, status: valid, admissible_evidence: "jsdom (A1-A2-06, A1-A1-04): row stays closed after Close all and a same-hash link"}
+  - {id: C08, status: valid, admissible_evidence: "jsdom (A1-A2-07): ?in=bogus gives Nothing on this page matches"}
+  - {id: C09, status: valid, admissible_evidence: "line_reference status.js:1033,1017-1031,843-844 with the HTML rule that fragment navigation fires popstate; jsdom does not fire it, so the lead's jsdom check dispatches popstate explicitly"}
+  - {id: C10, status: valid, admissible_evidence: "jsdom with a hover media stub (A1-A1-01)"}
+  - {id: C11, status: valid, admissible_evidence: "jsdom (A1-A1-02)"}
+  - {id: C12, status: valid, admissible_evidence: "jsdom (A1-A1-03)"}
+  - {id: C13, status: valid, admissible_evidence: "jsdom (A1-A1-06)"}
+  - {id: C14, status: valid, admissible_evidence: "line_reference status.js:975-984 (bare '/' bound on document)"}
+  - {id: C15, status: valid, admissible_evidence: "WCAG luminance arithmetic on the CSS tokens (A1; lead): 2.85 on paper, 2.46 in the selected cell"}
+  - {id: C16, status: undecided, admissible_evidence: "A1 width estimate from font metrics and CSS (expected); the Chrome measurement is inadmissible", note: "Heal proposed; layout verification is root's"}
+  - {id: C23, status: undecided, admissible_evidence: "markup: no close control (status.py:713); geometry and iOS dismissal unverified"}
+  - {id: X01, status: invalid, admissible_evidence: "arithmetic: #ddd7ce on #fffefb is 1.37; WCAG 1.4.11 applies to the information that identifies the control, here its text or 7:1 icon"}
+  - {id: X02, status: withdrawn, note: "claim and refutation both came from inadmissible browser runs"}
+  - {id: X03, status: withdrawn, note: "claim and refutation both came from inadmissible browser runs"}
+
+# Cycle 3, 2026-11-16. Reviewers R3-V (successor to A1) and R3-F (successor to A2), fresh read-only children given the
+# principal's words, root's instructions and the brief verbatim and the full rulebook to load whole; no browser.
+# Reports: attacks/R3-V-cycle3.yaml, attacks/R3-F-cycle3.yaml. Adjudicated by the lead; heals in candidate
+# qh-quality-heal-c3b (heal/MANIFEST.json). Verification of the c3b heals by the same two reviewers is recorded in
+# attacks/R3-F-cycle3b.yaml and attacks/R3-V-cycle3b.yaml.
+cycle_3:
+  cycle_2_heals_as_verified_by_R3:
+    - {id: A2-A1-01, state: "healed-verified in DOM and source; speech not verified (screen reader, root)"}
+    - {id: A2-A1-03, state: "healed-verified in jsdom"}
+    - {id: A2-A1-04, state: "logic healed with stubbed geometry; real pointer order is PIC-18 (root)"}
+    - {id: A2-A2-01, state: healed-verified}
+    - {id: A2-A2-02, state: "healed-verified; its regression A3-F-01 healed in c3b"}
+    - {id: A2-A2-03, state: "healed-verified; A3-F-08 healed in c3b"}
+    - {id: A2-A2-04, state: "partially healed in c3; completed in c3b (A3-F-03, A3-F-10)"}
+    - {id: A2-A2-05, state: "healed-verified; new classes A3-F-02 healed in c3b"}
+    - {id: A2-A2-06, state: "partially healed in c3; completed in c3b (A3-F-10: P1 in formula text and attributes warns)"}
+    - {id: A2-A2-07, state: "healed-unverified; print cascade verified; print route is root's"}
+    - {id: A2-A2-08, state: "not healed: five formulas outside TeX (content owner)"}
+    - {id: A2-A2-09, state: "healed (source-verified)"}
+    - {id: A2-A2-10, state: "not healed: repository visibility and commit scope (root)"}
+    - {id: A2-A2-11, state: healed-verified}
+    - {id: C17, state: "partially healed in c3 (linear audit, 0.34 s); new classes healed in c3b (A3-F-02, -03, -04)"}
+    - {id: C18, state: "foundation part healed-verified (98 statements listed); ids are the content owner's"}
+    - {id: C19, state: "mechanism healed-verified; content gives 0 of 4 open groups and 0 of 144 terms an id"}
+    - {id: heal-integrity-c3, state: "healed-verified; the claim that each patch is safe alone was refuted (A3-F-06), healed in c3b"}
+  entries:
+    - {id: A3-F-01, severity: 3, status: valid, owner: foundation, state: "healed c3b", heal: "status.py reads Temml's MathML into a structured text form (C_2, T^2, q^(1/2), (p)/(q)) for attributes and titles", deciding: "builder fixture A3-F-01 (E_8, C_2, T^2, P^1 build with PASS); qh-static Q07 computes the text form independently"}
+    - {id: A3-F-02, severity: 3, status: valid, owner: foundation, state: "healed c3b", heal: "audit reads every attribute by an HTML parser (either quoting), every non-JS script as data, JS strings and comments by a scanner, CSS generated content, all non-technical metas, all svg text; source-file names in comments fail; shipped comments reworded", deciding: "audit fixtures (13 new probes)"}
+    - {id: A3-F-03, severity: 3, status: valid, owner: foundation, state: "healed c3b", heal: "hashes (alphanumeric boundaries) and repository addresses (only the four open repositories pass) everywhere; private repository path prefixes compared as sha256 digests, so the source names none; version tags fail and draft warns in ids", deciding: "audit fixtures incl. 3 private-path probes read from a file outside the repository"}
+    - {id: A3-F-04, severity: 3, status: valid, owner: foundation, state: "healed c3b", heal: "every scanned text normalised (format characters removed, every white space one space); stage rules with (?<!\\w); \\d\\s*\\\\% in TeX warns", deciding: "Temml-rendered fixtures \\text{Phase 2}, \\text{language model}, \\text{pull request}, \\text{attack heal}; post-Wave 3, pre-Phase 2 fail; post-wave 3 and 87\\% warn"}
+    - {id: A3-F-05, severity: 2, status: valid, owner: foundation, state: "healed c3b (build guard; vendored Temml unchanged)", heal: "a \\mathrm{} or \\mathit{} group of letters and digits must appear whole in the rendered formula, else the build fails with the fix named (\\mathrm{M}_{24})", deciding: "audit fixture and builder fixture with \\mathrm{T15}"}
+    - {id: A3-F-06, severity: 3, status: valid, owner: "foundation and interaction", state: "healed c3b", heal: "Close control emitted hidden; status.js shows it when it wires it; CSS .card-close[hidden]", deciding: "jsdom J16; foundation-only apply test shows neither the Close control nor the search opener, 0 page errors"}
+    - {id: A3-F-07, severity: 3, status: valid, owner: foundation, state: "healed c3b", heal: "column names, short labels, cell-note column names, column definition titles, row-line column names and the essay title rendered with rich(..., terms=False)", deciding: "builder fixtures (column name and short label with TeX; essay title with TeX) PASS with MathML in place"}
+    - {id: A3-F-08, severity: 4, status: valid, owner: foundation, state: "healed c3b", heal: "named problem when an explicit glossary id takes another entry's derived anchor", deciding: "builder fixture"}
+    - {id: A3-F-09, severity: 4, status: valid, owner: foundation, state: "healed c3b", heal: "head title and description keep token text (no tag stripping)", deciding: "builder fixture: 'Bounds a<b and c>d'"}
+    - {id: A3-F-10, severity: 4, status: valid, owner: foundation, state: "healed c3b", heal: "ids: session/lane/sprint numbers fail, wave/phase/round/cycle numbers warn, with a left boundary; spine moved to a visible-text warning; identifier shapes in formula text and reader attributes warn; three-digit identifier tokens in ids fail (lead's addition, so an id such as s-ast-t152-wave-3 still fails)", deciding: "audit fixtures: background-2, around-4, spine pass; plane-wave-1, phase-0, cycle-3 warn"}
+    - {id: A3-F-11, severity: 4, status: valid, owner: foundation, state: "healed c3b", heal: "format characters removed; NFKC fold for word rules; all-capital stage labels fail; runs of single-letter mi warn; formula token text scanned for stage labels", deciding: "WAVE 3, zero-width inside a word, \\mathit{ledger}, \\mathrm{Wave}\\,3 fail; \\mathbf{audit}, \\mathsf{audit} warn"}
+    - {id: A3-F-12, severity: 4, status: valid, owner: quality, state: "healed c3b", heal: "qh-static Q07 text form computed from the rendered row header and column definition; Q09 and Q10 use open-group ids", deciding: "qh-static 11/11 on the candidate and on five fixture pages incl. explicit open-group and glossary ids"}
+    - {id: A3-F-13, severity: 5, status: valid, owner: "foundation; page.json owner", state: "partially healed c3b", heal: "audit reports formulas and rendering jobs separately (2506 and 2507; text-form jobs deduplicated); MANIFEST lists page.json under foundation", residual: "dead print rules kept until a print preview decides A3-V-14; the 'Search this page' and 'Close' labels are not yet page.json entries (page.json is pinned)"}
+    - {id: A3-V-01, severity: 2, status: valid, owner: "atlas lane and root; relation data from the content owner", state: open, note: "no view of relations or the programme's totality; the final payload's relation and reading-path data must be rendered with a text equivalent (AT8, AT8b, AT8c, PIC-12)"}
+    - {id: A3-V-02, severity: 3, status: valid, owner: foundation, state: "open; exact proposal in HANDOFF.md", note: "grid wider than its box at 1024 and below; sticky header scoped to the scroll box; hint wrong at 1024 and 768"}
+    - {id: A3-V-03, severity: 3, status: valid, owner: foundation, state: "open; exact proposal in HANDOFF.md", note: "decisive cards at full width below 1080 px; 640 px measure gives 80-95 characters per line"}
+    - {id: A3-V-04, severity: 3, status: valid, owner: foundation, state: "open; exact proposal in HANDOFF.md", note: "uppercase status chip overflows the card at 375 and 360 px"}
+    - {id: A3-V-05, severity: 3, status: valid, owner: foundation, state: "open; exact proposal in HANDOFF.md", note: "mark strips in the example list start up to 45 px apart"}
+    - {id: A3-V-06, severity: 3, status: undecided, owner: foundation, state: "page image (PIC-08)"}
+    - {id: A3-V-07, severity: 3, status: undecided, owner: foundation, state: "page image (PIC-09)"}
+    - {id: A3-V-08, severity: 3, status: undecided, owner: foundation, state: "page image (PIC-10)"}
+    - {id: A3-V-09, severity: 3, status: undecided, owner: "foundation; order by root", state: "page image (PIC-11)"}
+    - {id: A3-V-10, severity: 3, status: undecided, owner: root, state: "exemplar ruling (PIC-13)"}
+    - {id: A3-V-11, severity: 3, status: valid, owner: "foundation and interaction", state: "healed c3b (regression of the C14 heal)", heal: "nav-overflow class whenever the links overflow (load, resize, fonts ready) with the fade at every width", deciding: "jsdom J14 (stubbed widths); PIC-05"}
+    - {id: A3-V-12, severity: 4, status: valid, owner: interaction, state: "healed c3b", heal: "count line visually hidden while no filter is on, still announced", deciding: "jsdom J15; PIC-14"}
+    - {id: A3-V-13, severity: 4, status: undecided, owner: "interaction and foundation", state: "healed c3b", heal: "while a filter is on each row summary hides its unfiltered mix; print shows it with full counts", deciding: "jsdom J15, J7b; PIC-15"}
+    - {id: A3-V-14, severity: 4, status: undecided, owner: foundation, state: "open (print preview)"}
+    - {id: A3-V-15, severity: 4, status: undecided, owner: foundation, state: "healed c3b", heal: "only the card's first line is padded beside the Close control", deciding: "PIC-17"}
+
+# Cycle 3b verification and cycle 3c heals, 2026-11-16. Reports attacks/R3-F-cycle3b.yaml and attacks/R3-V-cycle3b.yaml;
+# heals in candidate qh-quality-heal-c3c (heal/MANIFEST.json). Verification of c3c: attacks/R3-F-cycle3c.yaml and
+# attacks/R3-V-cycle3c.yaml.
+cycle_3b:
+  c3b_heals_as_verified:
+    - {id: "A3-F-01, -02, -03, -04, -06, -07, -08, -09, -10, -11", state: "healed-verified (R3-F)"}
+    - {id: A3-F-05, state: "partially healed in c3b; completed in c3c (A4-F-03)"}
+    - {id: A3-F-12, state: "partially healed in c3b; completed in c3c (A4-F-05)"}
+    - {id: A3-F-13, state: "partially healed; remainder recorded (dead print rules, two default labels)"}
+    - {id: "A3-V-12, A3-V-13", state: "healed-verified in source and jsdom (R3-V); page image PIC-14, PIC-15, PIC-16"}
+    - {id: A3-V-11, state: "partially healed in c3b (regression A4-V-01); completed in c3c"}
+    - {id: A3-V-15, state: "healed-verified for the static layout; regression A4-V-02 healed in c3c"}
+    - {id: A3-F-06, state: "healed for visibility; regression A4-V-03 healed in c3c"}
+    - {id: patch-integrity-c3b, state: "verified (R3-F)"}
+  entries:
+    - {id: A4-F-01, severity: 3, status: valid, owner: foundation, state: "healed c3c", heal: "hash rules require an a-f letter and a digit; UUIDs fail", deciding: "audit fixtures long-integer-in-tex and -prose pass; 40-hex and UUID probes fail"}
+    - {id: A4-F-02, severity: 3, status: "valid (integration obligation)", owner: "content owner and atlas lane; foundation for the messages", state: "foundation part healed c3c (failure names give the likely cause; warnings grouped by kind); payload part open (HANDOFF.md check 6)"}
+    - {id: A4-F-03, severity: 3, status: valid, owner: foundation, state: "healed c3c", heal: "source pattern: a letter followed by two or more digits in \\mathrm, \\mathit, \\rm or \\it, braced or not, fails with the fix named", deciding: "fixtures \\rm M24, \\mathrm{X12}^2, \\mathrm{M24}\\subset M_{24} fail; \\mathrm{SO}(3) and \\mathrm{x1} pass"}
+    - {id: A4-F-04, severity: 3, status: valid, owner: foundation, state: "healed c3c", heal: "data:image/svg+xml payloads in link attributes and CSS url() decoded (base64 or percent-encoded) and scanned as images", deciding: "three probes fail; the page's two CSS SVG data URIs pass"}
+    - {id: A4-F-05, severity: 4, status: valid, owner: quality, state: "healed c3c", heal: "Q07 takes the full row name from the row summary", deciding: "builder fixture short-label; qh-static Q07 passes on it"}
+    - {id: A4-F-06, severity: 4, status: valid, owner: foundation, state: "healed c3c", heal: "template interpolations left out; one-token code strings and comments held to names, paths, files, hashes, labels, stage words and a short list of unmistakable workflow words", deciding: "template, comment and token-list probes pass; a comment naming a model and an HTML comment 'ledger entry T12' still fail"}
+    - {id: A4-F-07, severity: 4, status: valid, owner: "content writer (documentation, principal's mandate)", state: "open; exact rules listed in HANDOFF.md"}
+    - {id: A4-F-08, severity: 4, status: valid, owner: foundation, state: "partially healed c3c", heal: "names with digit suffixes; multi-word entries joined by a hyphen; \\label and LaTeX labels in TeX; 87\\,\\% warns; dashes in stage labels; receipt, frozen, snapshot, manifest, provenance warn; every CSS string scanned", residual: "short hex ids and ledger-id shapes (A2-A2-10, Q04) not flagged"}
+    - {id: A4-V-01, severity: 3, status: valid, owner: "foundation and interaction", state: "healed c3c", heal: "no unconditional fade; 28 px fade only while more links lie to the right (scroll, resize, fonts ready, after the opener appears)", deciding: "jsdom J14 (fails on c3b); PIC-19"}
+    - {id: A4-V-02, severity: 4, status: valid, owner: foundation, state: "healed c3c", heal: "Close control on a solid disc of the card's colour", deciding: PIC-20}
+    - {id: A4-V-03, severity: 3, status: valid, owner: "foundation and interaction", state: "healed c3c", heal: "Close control emitted as an inert template that only a wiring script instantiates", deciding: "jsdom J16; J17 on the guarded foundation-only page (fails on the c3b one); PIC-21"}
+    - {id: "A3-V-03 (a)", severity: 3, status: valid, owner: foundation, state: "healed c3c (reviewer's recommendation)", heal: "below 1080 px the decisive questions keep the section's measure", deciding: PIC-01}
+
+# Cycle 3c verification and cycle 3d heals, 2026-11-16. Reports attacks/R3-F-cycle3c.yaml and attacks/R3-V-cycle3c.yaml;
+# heals in candidate qh-quality-heal-c3d. Final bounded check: attacks/R3-F-cycle3d.yaml and attacks/R3-V-cycle3d.yaml.
+cycle_3c:
+  c3c_heals_as_verified:
+    - {id: "A4-V-01, A4-V-02, A4-V-03, A3-V-03 (a), A3-V-11 residual", state: "healed-verified in source and jsdom (R3-V); no c3c regression"}
+    - {id: "A4-F-01, A4-F-05, A4-F-08 (cheap parts)", state: "healed-verified (R3-F)"}
+    - {id: A4-F-03, state: "healed-verified for the target forms; regression A5-F-03 healed in c3d"}
+    - {id: A4-F-06, state: "healed-verified for the false positives; regression A5-F-01 healed in c3d"}
+    - {id: A4-F-02, state: "foundation part healed-verified; content part open (content owner and atlas lane)"}
+    - {id: A4-F-04, state: "partially healed; completed in c3d (A5-F-02)"}
+    - {id: A4-F-07, state: "handed to root (documentation; exact rules in HANDOFF.md)"}
+    - {id: patch-integrity-c3c, state: "verified (R3-F)"}
+  entries:
+    - {id: A5-V-01, severity: 3, status: "valid (pre-existing)", owner: "foundation and interaction", state: "healed c3d", heal: "nav-overflow-start class while scrollLeft > 1; left, right and combined 28 px fades; keepInSight's left clear zone 28 px", deciding: "jsdom J14 both edges (fails on c3c); PIC-22"}
+    - {id: "A3-V-03 (a) query gap", severity: 5, status: valid, owner: foundation, state: "healed c3d", heal: "(max-width: 1079.98px)"}
+    - {id: A5-F-01, severity: 3, status: "valid (regression of the A4-F-06 heal)", owner: foundation, state: "healed c3d", heal: "template literals read with nested strings and templates kept whole; each interpolation's code scanned by js_parts (strings, nested templates, comments); identifiers out", deciding: "three probes fail; ${owner.id} passes"}
+    - {id: A5-F-02, severity: 4, status: valid, owner: foundation, state: "healed c3d", heal: "every data:image/svg+xml occurrence in any attribute (style and srcset included) and every style sheet; ;base64 among any parameters; an undecodable image fails", deciding: "four probes fail; the page's two CSS SVGs pass"}
+    - {id: A5-F-03, severity: 4, status: valid, owner: foundation, state: "healed c3d", heal: "digit guard limited to \\mathrm and \\rm; only the internal LaTeX label scheme fails in TeX", deciding: "\\mathit{T15} and \\label{eq:main} pass; \\rm M24, \\mathrm{X12}^2, \\label{ch:thm:...} fail"}
+    - {id: A5-F-04, severity: 5, status: valid, owner: foundation, state: "healed c3d", heal: "UUIDs in ids fail; one-token data-* values and CSS strings held to the token rules", deciding: "uuid-in-id fails; data-relation=\"owner\" and [data-kind=\"agent\"] pass"}
+
+# Final check of c3d, 2026-11-16 (attacks/R3-V-cycle3d.yaml, attacks/R3-F-cycle3d.yaml). Candidate qh-quality-heal-c3d is
+# final for this lane: every c3d heal and c3d patch integrity verified; no valid severity 1-3 item left for the lane.
+cycle_3d:
+  c3d_heals_as_verified:
+    - {id: "A5-V-01, A3-V-03 (a) query gap", state: "healed-verified in source and jsdom (R3-V); page image PIC-22, PIC-01"}
+    - {id: "A5-F-01, A5-F-02, A5-F-03, A5-F-04", state: "healed-verified (R3-F)"}
+    - {id: patch-integrity-c3d, state: "verified (R3-F; its rebuild and foundation-only build byte-identical)"}
+  entries:
+    - {id: A6-V-01, severity: 4, status: undecided, owner: foundation, state: "recorded; optional heal .nav { scroll-padding-inline: 28px }; PIC-23"}
+    - {id: A6-F-01, severity: 4, status: valid, owner: foundation, state: "recorded; optional heal: skip regex literals inside template interpolations"}
+    - {id: A6-F-02, severity: 5, status: valid, owner: foundation, state: "recorded; optional heal: keep an escaped ')' in an unquoted CSS url() payload"}
+  referee: "R3-F: converged for this lane's scope in its lens; R3-V: the lane's bar and card items closed in source and jsdom, page image pending. Acceptance as a whole blocked by items owned outside the lane (A2-A2-10, C01, A2-A2-07, A3-V-01, A3-V-02..10, A4-F-02 content part, C18-C22, A2-A2-08) and by the native visual pass."
+
+# Status-contract delta, 2026-11-16 (root's instruction for the content owner's scoped negative results). Candidate
+# qh-quality-heal-c3e. Verification: attacks/R3-F-cycle3e.yaml and attacks/R3-V-cycle3e.yaml.
+status_contract:
+  - {id: S-REFUTED, severity: 2, status: valid, owner: "foundation and interaction (content contract from the content owner through root)", claim: "A statement with the status 'refuted form' (atlas scoped_negative) is shown as that status with its hypotheses, everywhere, and never as open.", broken_step: "The statement vocabulary lacked 'refuted form': the build failed, and in a draft the producer drew such statements as open and counted unknown statuses as open in the row mixes; statements had no hypotheses field.", state: "healed c3e", deciding: "builder fixtures refuted-form, refuted-inexact, hypotheses-malformed, refuted-unscoped; qh-static Q06; qh-status-extension S1-S6; the c3d producer fails the same content and draws it as open"}
+
+# Integration package, 2026-11-16 (root composes; foundation's final F1 and F2 deltas). compose/f2-package/.
+integration_package:
+  base: "root's integration (foundation 695ff9a8; quality wrapper 7419f94a and audit 2e857726; baseline status.js ef358190) + foundation F1 9613254535445e7a + F2 3f2c449364146401"
+  patch: QUALITY-ON-F1F2.diff
+  absorbed_by_foundation: ["C14 search opener", "refuted form status, hypotheses rendering, unknown status shown as written", "A7-F-01 family row filters", "missing status-key failure", "C01 and A2-A2-07 print block flow", "C15 not-posed colour", "C06 empty-filter rows", "C23 phone sheet", "bar fades (A3-V-11, A4-V-01, A5-V-01, A6-V-01)", "row mixes replaced by fold lines (A3-V-13)", "question layout (A3-V-03 a)", "status labels by stored code (F1)", "principal summaries and orientation (F2; Q11 completeness)"]
+  absorbed_by_interaction_reference: "candidate-r3 (not installed in root): Close action, live region, empty-row note, search keys and history (its own 85 tests)"
+  carried_by_this_patch: ["C03, A2-A2-01, A3-F-07 essay and essay title as mathematics (incl. the contents list)", "A2-A2-02, A3-F-01, A3-F-09, A3-F-13 text forms for names and titles", "A3-F-07 column names and short labels", "C19, A2-A2-03, A3-F-08 explicit ids", "hypotheses list validation", "C28 reproducible fonts", "A3-F-02 comment rewordings", "drafts: neutral colour for an unknown status", "audit delta 2e857726 -> f84ad658 incl. refuted form without hypotheses fails"]
+  withdrawn: ["STATUS-LANGUAGE.diff (superseded by F1)", "QUALITY-REMAINING.diff (rebased as QUALITY-ON-F1F2.diff)"]
+  open_for_owners: ["content and atlas: E3, T2, R2 written without TeX (27 audit failures on the current preview)", "atlas: comparison d-centre-base-change names a question not on the page", "README facts for Astra (PACKAGE.md)"]
+package_review:
+  reviewer: R3-F
+  report: attacks/R3-F-package.yaml
+  verdict: "accept for root's composition; all six claims verified; no severity 1-3 defect"
+  entries:
+    - {id: A8-F-01, severity: 4, status: valid, owner: quality, state: "healed in tooling (compose/tools-A8-F-01.diff; tools frozen in compose/TOOLS-FROZEN.json): statements paired by anchor, .statement-hyp, atlas TeX, row-link formulas, count-less tally pills, mixes only where used; qh-static 11/11 and qh-status-extension S1-S6 on the current preview with F1+F2+quality"}
+    - {id: A8-F-02, severity: 4, status: valid, owner: interaction, state: "resolved by interaction (root: .statement-hyp-label excluded in its current status.js)"}
+    - {id: A8-F-03, severity: 5, status: valid, owner: quality, state: "recorded, not changed: the guard checks the four files it changes, so it stays valid when interaction's status.js or a later page.json lands"}
+    - {id: A8-F-04, severity: 5, status: valid, owner: foundation, state: "recorded: warning noise ('frozen' in mathematical prose; identifier-shape warnings on atlas anchors)"}

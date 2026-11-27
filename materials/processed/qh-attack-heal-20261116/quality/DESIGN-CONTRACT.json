@@ -1,0 +1,82 @@
+{
+  "schema": "programme-scientific-atlas-public/v1",
+  "status": "design contract only; scientific values follow the frozen08:35 canonical source package",
+  "asOf": "2026-11-16T08:35:00Z",
+  "readerRules": [
+    "No private filesystem paths, source hashes, account/session operations or audit logistics in public reader values.",
+    "Status labels distinguish checked conclusions, conditional implications, scoped negatives and remaining comparisons; no closure percentage or theorem-count inference.",
+    "Every graph edge is projected from an existing bound edge. Reading sequences are explicitly editorial unless each step has an actual dependency edge.",
+    "Preserve the current content.json and essay until a separately reviewed projection is integrated by root."
+  ],
+  "shape": {
+    "domains": [
+      {
+        "id": "domain_slug",
+        "label": "Human mathematical domain",
+        "summary": "Astra-authored current scope"
+      }
+    ],
+    "claims": [
+      {
+        "id": "reader_safe_id",
+        "domainId": "domain_slug",
+        "title": "Human statement label",
+        "statement": "Exact scoped statement",
+        "status": {
+          "code": "checked|conditional|scoped_negative|remaining",
+          "label": "Reader status label"
+        },
+        "hypotheses": [
+          "Required hypotheses"
+        ],
+        "sourceLabel": "Named source statement, only where actually supplied",
+        "comparisonIds": [
+          "comparison_slug"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge_safe_id",
+        "source": "reader_safe_id",
+        "target": "reader_safe_id",
+        "relation": "existing_source_bound_type",
+        "label": "Human relation label",
+        "scope": "Exact relation qualification"
+      }
+    ],
+    "comparisons": [
+      {
+        "id": "comparison_slug",
+        "domainId": "domain_slug",
+        "title": "Named comparison",
+        "overview": "Astra-authored distinction",
+        "establishedClaimIds": [],
+        "conditionalClaimIds": [],
+        "scopedNegativeClaimIds": [],
+        "remainingClaimIds": []
+      }
+    ],
+    "readingPaths": [
+      {
+        "id": "path_slug",
+        "title": "Human title",
+        "kind": "editorial_orientation|source_bound_dependency_path",
+        "summary": "Purpose of path",
+        "stages": [
+          {
+            "label": "Stage label",
+            "description": "Astra-authored explanation",
+            "claimIds": []
+          }
+        ]
+      }
+    ]
+  },
+  "integration": {
+    "owner": "Astra scientific content owner",
+    "designOwner": "Opus MAX swarm",
+    "sharedWritesPerformed": false,
+    "sourcePackage": "frozen08:35 canonical successor; private bindings retained in a separate non-reader manifest"
+  }
+}

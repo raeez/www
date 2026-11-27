@@ -1,0 +1,256 @@
+{
+ "name": "qh-tracker quality-lane DOM and module contract",
+ "lane": "quality",
+ "created_utc": "2026-11-16T11:15:00Z",
+ "purpose": "The interface every candidate must keep (or change only by an explicit, root-approved contract amendment) so that the quality lane's independent tests stay valid. Tests key on these hooks, not on styling or class names not listed here.",
+ "baseline": {
+  "manifest": "BASELINE.json (13 files, all sha256 verified 2026-11-16 in this worktree)",
+  "build": "/tmp/qh-tracker-build-20261116-venv/bin/python -B compiler/build-quantum-holography-status.py --output <owned>/preview.html --audit-dir <owned>/audit [--no-fonts]",
+  "baseline_preview_sha256_fonts": "d1ef80413ee39f0e0c08011b668d008f48218852c56b9839efe1b4ecc854d700",
+  "baseline_preview_bytes_fonts": 2198862,
+  "baseline_audit": "PASS, 0 failures, 2502 formulae, 0 TeX errors, 281 statements (checked 197, open 74, conditional 6, published 4), 160 grid cells",
+  "frozen_reader_inputs": {
+   "content/quantum-holography-status/content.json": "39eebb2c101f072177700716fe9f4a9f9de61c5c2d5595f8e813854a14b40934",
+   "content/quantum-holography-status/essay.md": "457e4c4ce75972cf929a4cfeba4f4e83a7aab37f640b50d69f18dc78c93a4f60"
+  }
+ },
+ "ownership": {
+  "foundation": [
+   "compiler/quantum-holography-status/status.py",
+   "compiler/quantum-holography-status/status.css",
+   "compiler/quantum-holography-status/status-print.css",
+   "compiler/quantum-holography-status/audit.py",
+   "compiler/build-quantum-holography-status.py",
+   "content/quantum-holography-status/page.json"
+  ],
+  "interaction": [
+   "compiler/quantum-holography-status/status.js"
+  ],
+  "atlas": [
+   "new atlas modules and the reader-safe atlas data projection"
+  ],
+  "content_owner": [
+   "content/quantum-holography-status/content.json",
+   "content/quantum-holography-status/essay.md"
+  ],
+  "quality": [
+   "materials/processed/qh-attack-heal-20261116/quality/** (tests, reports, guarded patch proposals only)"
+  ]
+ },
+ "page_invariants": {
+  "single_file": "one self-contained HTML file; no <link rel=stylesheet|preload|preconnect|dns-prefetch>; every src/href/url() is data:, #fragment or the site's own relative home link; canonical link is never requested",
+  "csp_meta_exact": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; font-src data:; img-src data:; base-uri 'none'; form-action 'none'",
+  "no_network_api": "no fetch/XMLHttpRequest/sendBeacon/WebSocket/EventSource/import()/new Worker in page script",
+  "public_safety_whole_document": "no content.json `source` value or fragment of it, no /Users/ or ~/ path, no repository-internal path (engine/, frontier/, attack-heal, wave-N, campaign), no 40- or 64-hex hash, no model/tool/session name, no process/version/draft/phase/wave language, no progress or closure percentage — checked over the WHOLE HTML (attributes, scripts, JSON blocks, metadata), not only visible text",
+  "landmarks": "exactly one <main id=main tabindex=-1>; a.skip[href='#main'] is the first focusable element; nav.nav[aria-label] in the bar; footer.foot",
+  "theme": "html[data-theme=light|dark] set from localStorage key 'qh-theme' before first paint; without it the page follows prefers-color-scheme"
+ },
+ "stable_anchors": {
+  "sections": [
+   "programme",
+   "status",
+   "results",
+   "decisive",
+   "frontier",
+   "examples",
+   "failures",
+   "open",
+   "essay",
+   "terms",
+   "changes (only when content.changes.items is non-empty)"
+  ],
+  "patterns": {
+   "statement": "s-<ident(statement.id)>  (only statements with an id; ident() = NFKD, ascii, [\\w\\s-] kept, lowercased, runs of space/_/- to '-', first 60 chars)",
+   "row": "row-<ident(row.id or row.name)>",
+   "question": "q-<ident(question.id or title or index)>",
+   "failure": "f-<ident(item.id or index)>",
+   "open_group": "open-<ident(group.heading)>",
+   "term": "term-<ident(term)> with -2, -3 suffix on collision",
+   "column": "col-<column id> (dd/dt inside details.col-defs)",
+   "card": "card",
+   "search": "find-q (input), find-results (list), created by status.js"
+  },
+  "rule": "An anchor that exists in the baseline for a given content id must resolve to the same content item in a candidate built from the same content. Removing or renaming an anchor pattern is a contract amendment, not a refactor."
+ },
+ "data_hooks": {
+  "statement": "article.statement[data-status in statement statuses] with .status-chip text = page.json status_labels[status]",
+  "statement_statuses": [
+   "checked",
+   "pending",
+   "conditional",
+   "conjecture",
+   "heuristic",
+   "open",
+   "published"
+  ],
+  "cell": "td.cell[data-status in cell statuses] > button.cell-btn[data-row=row-...][aria-label='<row name>, <column name>: <status label>']",
+  "cell_statuses": [
+   "checked",
+   "partial",
+   "pending",
+   "published",
+   "open",
+   "not posed",
+   "refuted form"
+  ],
+  "marks": "svg.mark.mark-<status with spaces as ->; each status a distinct shape; a mark that carries meaning has a text equivalent nearby or role=img + aria-label",
+  "grid": "table.grid inside .grid-wrap[role=region][tabindex=0][aria-label]; thead th > button.col-head[data-col][aria-describedby=col-<id>]; tbody th[scope=row] > a[href=#row-...]",
+  "row_disclosure": "details.row#row-... > summary; .row-body .statements > article.statement",
+  "row_filters": ".row-tools .filters[role=group] > button.filter[data-filter=<statement status>][aria-pressed]",
+  "tally": "nav.tally a[href='#examples'][data-filter=<statement status>] with .count = number of statements of that status on the whole page",
+  "expand": "button[data-expand=all|none] act within their own section",
+  "terms": "button.term[data-term=term-...][aria-haspopup=dialog][aria-expanded][aria-controls=card]",
+  "card": "#card[role=dialog] (non-modal) with aria-labelledby/aria-describedby set while shown; trigger aria-expanded mirrors visibility",
+  "search_mount": "optional [data-find] element with data-label-* words; otherwise status.js inserts .find[role=search] after main > .tally",
+  "math": "every TeX segment in reader data becomes one <math> whose <annotation encoding='application/x-tex'> equals the TeX source; display formulae in .math-display, long inline formulae in .math-long; no code.tex-error"
+ },
+ "url_contract": {
+  "params": {
+   "q": "search words (folded, every word must occur, quoted phrase)",
+   "in": "comma list of section ids among results, decisive, frontier, examples, failures, open, essay, terms",
+   "status": "comma list of statement statuses for search",
+   "show": "comma list of statement statuses for the example-row filter"
+  },
+  "hash": "#<stable anchor>; on arrival and on hashchange the target's closed <details> ancestors open and a filter hiding it is lifted",
+  "history": "search/filter edits use replaceState (no new entries); following a search result to a target creates an entry; Back restores the prior search state from the address (popstate)"
+ },
+ "print_contract": "beforeprint opens every main details and afterprint restores each; print hides bar, skip, theme, card, find, row tools, filters, hints, cell notes; filtered-out row statements print; formulae are never clipped; A4 and Letter",
+ "atlas_testability_requirements": {
+  "data": "the reader-safe atlas projection, if embedded, appears once as <script type='application/json' id='qh-atlas-data'> (not executed under the CSP) or is fully recoverable from DOM data attributes; it carries no source paths, hashes, private ids or audit logistics",
+  "nodes": "each rendered claim: [data-claim-id] with data-status-code in checked|conditional|scoped_negative|remaining and a visible text status label; claim ids deep-linkable by a stable anchor",
+  "edges": "each rendered relation: [data-edge-id][data-source][data-target][data-relation]; every rendered edge id exists in the data and its endpoints/relation match it exactly; no edge is drawn that the data lacks; direction is preserved",
+  "paths": "each reading path: [data-path-id][data-path-kind=editorial_orientation|source_bound_dependency_path]; a source_bound_dependency_path must have, for each consecutive stage pair, at least one data edge between their claims; editorial paths are labelled editorial in visible text",
+  "equivalent": "every relation shown graphically is also available as text (list or table) reachable by keyboard and named for screen readers; the graph is not the only route to any claim",
+  "no_inference": "no closure percentage, theorem count framed as progress, or status implied by colour alone"
+ },
+ "candidate_delivery_to_quality": {
+  "request": "For each candidate, root supplies a frozen manifest: candidate id, lane, list of {path, before_sha256, after_sha256} for every changed file, the unified diff or the full after-files, and the content/essay hashes used. Place it under materials/processed/qh-attack-heal-20261116/quality/inbox/<candidate-id>/ in this worktree or give an absolute path to a frozen snapshot. Quality verifies the before hashes against BASELINE.json, applies to a private mirror under quality/, builds into quality/, and reports per-check results.",
+  "quality_does_not": "poll live edits, read other lanes' unfrozen trees, or write outside quality/"
+ },
+ "acceptance_checks": "EVAL-PLAN.md in this folder lists the precommitted checks (Q-ids), commands and pass thresholds.",
+ "frozen_quality_candidate": {
+  "id": "qh-quality-heal-c3e",
+  "manifest": "heal/MANIFEST.json sha256 0d49eaf26fa7ef21e111d2ecc47c010c07fdb33a8d220cd4b748b42b8c3c5efe (before/after sha256 for each of the 13 baseline files; 7 changed)",
+  "patch": "heal/PATCH.diff (38fd8710…) = heal/patches/foundation.diff (f24953df…) + heal/patches/interaction.diff (4c33321b…)",
+  "guard": "heal/apply-guarded.sh <root> [foundation|interaction|all]: refuses on any before-hash mismatch, verifies every after-hash",
+  "preview_sha256": "d6dc0006dda45bc0923421de54934a2542918b876648fdb02100d14c86df9d48 (byte-reproducible); no-fonts 29658c1a4ffb777c0a9720bdfcd59fa7dd52b583bc4d1b3a1fcbd9af324142dd",
+  "reader_inputs_unchanged": [
+   "content.json 39eebb2c…",
+   "essay.md 457e4c4c…",
+   "page.json 02e8ee68…"
+  ],
+  "new_hooks": {
+   "bar_search_opener": "button.find-open[data-find-open] in .bar, emitted hidden; the script shows it when the search exists",
+   "card_close": "#card > template.card-close-template holds the Close control (inert: not in the document); the script imports it as #card > button.card-close when it wires the click, and shows a Close control emitted hidden",
+   "filter_count": ".row-tools > p.filter-count[role=status]: rendered while empty; visually hidden (still announced) while no filter is on",
+   "filter_empty_note": "details.row .row-body > p.filter-empty-note",
+   "row_count_while_filtered": "summary .row-count[data-count] first text node reads \"<shown> of <N statements>\"; full count restored for print",
+   "search_scopes": "adds programme (lead) and status (key) scopes; section headings and introductions are searchable",
+   "optional_ids": "content open[].id and glossary[].id give #open-<id> and #term-<id>; explicit ids are reserved and duplicates fail the build",
+   "row_mix_while_filtered": "summary .row-count .mix gets the hidden attribute while a filter is on; print shows it with full counts",
+   "nav_overflow": ".nav gets class nav-overflow while more links lie to the right (scrollLeft + clientWidth < scrollWidth - 1) and nav-overflow-start while links lie to the left (scrollLeft > 1), checked on load, resize, the nav's scroll, fonts ready and after the search opener appears; the CSS fades 28 px at each such edge"
+  },
+  "text_form": "Attributes and titles carry a formula as text with its structure: base_sub, base^sup, (num)/(den), √x (C_2, T^2, q^(1/2)); never TeX. Column names, short labels and the essay title may contain TeX and are set as mathematics.",
+  "audit_surfaces": "Visible text (as written and tag-spaced), formula text (mtext, multi-letter names, single-letter runs, token text), TeX source, svg text, SVG images in data: URIs in any attribute or style sheet, every non-technical attribute in either quoting, every non-JS script as data, JS strings and comments (template interpolations read as code), CSS generated content, every CSS string and comments, all non-technical metas, the title and ids. Private repository paths are checked against sha256 digests, so the producer names none."
+ },
+ "combined_qa_procedure": {
+  "note": "Run on root's exact integrated candidate with the final content payload, from a copy in quality/, without writing outside quality/. A check that cannot run is reported as not run. The 11:20 atlas and the current content are only the preserved review and layout baseline.",
+  "build": "PY -B <candidate root>/compiler/build-quantum-holography-status.py --output quality/combined/preview.html --audit-dir quality/combined/audit (fonts) and --no-fonts",
+  "static": "QH_JSDOM=<jsdom> node quality/lead/qh-static.mjs --html <preview> --content <candidate content dir> --baseline_manifest quality/BASELINE.json --baseline-html quality/baseline/preview.html",
+  "behaviour": "QH_JSDOM=<jsdom> node quality/lead/qh-jsdom-checks.mjs --html <preview> [--baseline quality/baseline/preview-nofonts.html --foundation-only <page built from the foundation patch alone>]  (J1-J17, J2b, J6b, J7b, R1-R9; J17 runs only with both extra pages; a candidate that renames a hook must say so so the check can be mapped)",
+  "audit": "QH_PRIVATE_PROBES=<probe file kept outside the repository> PY -I -B quality/lead/qh-audit-fixtures.py <candidate producer folder>  (114 fixtures with the probes)",
+  "builder": "PY -I -B quality/lead/qh-builder-fixtures.py <candidate builder> quality/combined/builder-fixtures  (18 fixtures)",
+  "atlas": "PY -I -B quality/lead/qh-atlas-fidelity.py <preview or atlas.json> [--html <preview>]  (AT0-AT8c: ids, enums, references, comparison agreement, edge uniqueness and labels, dependency-path connectivity, public safety of every value, rendering fidelity, text equivalent, editorial marking)",
+  "visual": "VQ1-VQ7 (VISUAL-ATTACK.md), PIC-01..22 (attacks/R3-V-cycle3.yaml, -cycle3b.yaml, -cycle3c.yaml) and the inherited print, focus and phone checks, in root's primary native session on the matching account; this lane sends no browser connection request",
+  "external_gate": "standalone single file; process/version language scan (audit warnings and Q05); closed-source path scan (Q04); C20 wording ruling from the content owner",
+  "status_contract": "QH_JSDOM=<jsdom> node quality/lead/qh-status-extension.mjs --html <preview built from the final payload> [--status \"refuted form\"] [--word <a word from one of its hypotheses>]  (when the payload uses the status; otherwise on the builder fixture refuted-form)"
+ },
+ "atlas_expected": "The 11:20 atlas (9 domains, 503 claims, 58 comparisons, 53 edges, 18 reading paths) is only the preserved layout baseline; the final atlas comes with the content owner's payload. The checker reads it from a data block or from the JSON, unchanged.",
+ "final_payload_checks": {
+  "completeness": "Every statement, question (decisive and frontier), example row, failure, open group, glossary entry and column of the payload is rendered: qh-static Q06, Q07 and Q10 counts equal the payload; Q09 finds every expected anchor.",
+  "stable_anchors": "qh-static --baseline-html quality/baseline/preview.html: every anchor of the current page is present, or the content owner lists it as removed or renamed with its successor; an explicit id keeps the old anchor where a title changed (C19).",
+  "families_and_questions": "Every family (row, domain or comparison in the payload) and every question has its own anchor and heading; the grid, the row list and any atlas view agree on counts and statuses (Q06, Q07, AT4).",
+  "relations_and_reading_paths": "qh-atlas-fidelity.py on the final atlas data and the integrated page: AT0-AT5 on the data; AT8 every rendered relation is a payload edge with its label; AT8b a text equivalent lists every relation; AT8c every editorial reading path says so in visible text; dependency paths only where each step is an edge (AT6).",
+  "public_safety": "Page audit 0 failures with the hardened audit; warnings reviewed by the content owner; external gate scans (Q04, Q05) and the closed-repository policy scan on the final page.",
+  "mathematics": "Q08 and Q08-raw-tex: every TeX segment of every rendered field is MathML; 0 TeX errors; no \\mathrm or \\mathit group of letters and digits altered by the renderer (audit).",
+  "visual": "root's primary native session, on the integrated page with the final payload; nothing is accepted from this lane's computed metrics alone.",
+  "payload_preconditions": "Mathematics in TeX, not ASCII (C^1, v_4, E_1(z), not C1, v4, E1); no version token such as /v1 in an embedded data block; no \\mathrm or \\rm group with a letter followed by two or more digits; no internal LaTeX labels in formulas; SVG labels in the text form (E_8, C_2); original anchors persist for every kept item."
+ },
+ "status_contract": {
+  "statement_statuses": [
+   "checked",
+   "pending",
+   "conditional",
+   "refuted form",
+   "conjecture",
+   "heuristic",
+   "open",
+   "published"
+  ],
+  "cell_statuses": [
+   "checked",
+   "partial",
+   "pending",
+   "published",
+   "open",
+   "not posed",
+   "refuted form"
+  ],
+  "refuted_form": "Exact value 'refuted form' (with a space): a checked negative result in a stated scope; atlas code scoped_negative. Label page.json status_labels['refuted form'] (shared with cells), mark mark-refuted-form, card class st-refuted-form (colour token --st-refuted-form, solid border), data-status as written.",
+  "hypotheses": "Optional statement field: a list of non-empty texts (TeX and glossary terms allowed), rendered in order under the statement text as .statement-hypotheses with the label page.json labels.hypotheses (default 'Hypotheses'); searchable; anything else fails the build. A 'refuted form' statement without hypotheses builds with a warning (its scope is not stated).",
+  "no_coercion": "A statement status outside the list fails the build; a draft page shows it as written (class st-unknown), never as another status; counts skip it.",
+  "consistency": "Every status in use: counted in the tally with a link that opens the search on it; one row filter named by its label (?show=<status>, space encoded); a search facet; a row-mix entry with a visually hidden label; explained in the key (content status_key, else an audit warning).",
+  "atlas_mapping": "legacy statement status 'refuted form' corresponds to atlas status.code scoped_negative; other correspondences are the content owner's.",
+  "tests": "lead/qh-static.mjs Q06 (status as written, class, hypotheses, filters, key); lead/qh-status-extension.mjs S1-S6 on a page whose content uses the status (filter, address round trip, tally and facet, search in hypotheses, accessible names, no coercion); builder fixtures refuted-form, refuted-inexact, hypotheses-malformed, refuted-unscoped.",
+  "cross_lane": "Foundation (status.py, status.css, audit.py) and interaction (status.js) carry this delta in the guarded patch; a lane version that differs must keep the same vocabulary, field, labels and no-coercion rule."
+ },
+ "integration_package": {
+  "path": "compose/f2-package/",
+  "patch": "QUALITY-ON-F1F2.diff",
+  "patch_sha256": "2d617690107a50e3a0d6cb1b3b932e343e4eeac492f0526101ba21f01f368362",
+  "manifest_sha256": "a6e84174dadcce724042c107afeb461a395075537242208eac497723323f07d2",
+  "guard": "apply.sh <tree>",
+  "base": "root's integration (foundation 695ff9a8; quality wrapper 7419f94a and audit 2e857726; baseline status.js) + foundation F1 9613254535445e7a… + F2 3f2c449364146401…",
+  "files": {
+   "compiler/quantum-holography-status/status.py": {
+    "before": "c7a924e6710bc51d7d8f56d5b2b78376e71941c8de0528b19469aa5152d91ce4",
+    "after": "2114d75b0c82b5bde8b1b4a5509935647734088c84d4640d88deda6e874c1d04",
+    "hunks": 20
+   },
+   "compiler/quantum-holography-status/status.css": {
+    "before": "b496f5f5bf323f6125b69f873055880c27ec2114cf7d5dbd96b778fa3fecd48d",
+    "after": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+    "hunks": 3
+   },
+   "compiler/quantum-holography-status/status-print.css": {
+    "before": "8373d792c454933efb93c865b4375fa25cd99a3b9e0fb71235c26c2f7cec746b",
+    "after": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+    "hunks": 1
+   },
+   "compiler/quantum-holography-status/audit.py": {
+    "before": "2e85772650b669e01bb4a15d84dda6dc351a07e8b0fb2b0ac8a0c905d0c3965c",
+    "after": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+    "hunks": 8
+   }
+  },
+  "withdrawn": [
+   "compose/patches/STATUS-LANGUAGE.diff (superseded by F1)",
+   "compose/patches/QUALITY-REMAINING.diff (rebased as QUALITY-ON-F1F2.diff)"
+  ],
+  "status_language": "labels by stored code per the content ruling (Established, Conditional, Remaining, Scoped negative; Published, Partial, Not posed, Proposed); carried by F1"
+ },
+ "focused_combined_run": {
+  "tools": "compose/TOOLS-FROZEN.json (58179b575a53c6ba…)",
+  "tool_delta": "compose/tools-A8-F-01.diff (d5b70b9df1fba81d…)",
+  "commands": {
+   "build": "PY -B compiler/build-quantum-holography-status.py --output <out>/preview.html --audit-dir <out>/audit (and --no-fonts); audit PASS expected only once the content and atlas fixes land (27 data failures on the 16 November current preview)",
+   "static": "QH_JSDOM=<jsdom> node lead/qh-static.mjs --html <preview> --content <content dir with content.json, essay.md, atlas.json> --page <page.json> --baseline-html quality/baseline/preview.html",
+   "status_extension": "QH_JSDOM=<jsdom> node --max-old-space-size=8192 lead/qh-status-extension.mjs --html <preview> --word <a word from a refuted-form hypothesis>",
+   "status_language": "QH_JSDOM=<jsdom> node lead/qh-status-language.mjs --html <preview>",
+   "audit_fixtures": "QH_PRIVATE_PROBES=<probe file outside the repository> python3 -I -B lead/qh-audit-fixtures.py <producer folder>",
+   "builder_fixtures": "python3 -I -B lead/qh-builder-fixtures.py <builder> <work folder> (run from the candidate root)",
+   "not_run": "the interaction suite on the old baseline script (root)"
+  },
+  "expect": "audit PASS once the content and atlas fixes land; qh-static all PASS; qh-status-extension S1-S6; status language by code; audit 114/114; builder 19/19"
+ }
+}
