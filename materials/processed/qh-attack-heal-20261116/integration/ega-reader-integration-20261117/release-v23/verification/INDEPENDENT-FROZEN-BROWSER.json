@@ -1,0 +1,117 @@
+{
+  "decision": "PASS_ISSUED_V22_CH12_CH13_REAL_CHROMIUM_CLICK_AND_BACK_ON_INTEGRATED_PRIVATE_SUCCESSOR",
+  "four_files": {
+    "index.html": {
+      "sha256": "2b04856bfc2bb4349eececfc98c6d58348f2f88813d31725e7167292c8df85bc",
+      "bytes": 5192889
+    },
+    "reference.html": {
+      "sha256": "1054b707c975ad9a3a7604c38f07e19e641046da412c81cc4176fe15320de530",
+      "bytes": 5071331
+    },
+    "atlas.html": {
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088
+    },
+    "reader-index.js": {
+      "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+      "bytes": 5988098
+    }
+  },
+  "v22_commit": "12a06276b0d8d44301d9dac307410c33db45154a",
+  "normal_and_frozen_equal": true,
+  "first_reader_source_and_ordinary_render_ch12": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/rt16-9729d7fb/VERDICT.json",
+    "sha256": "2ae18c604ac04adaec2eae30967d4fe27c38891110ae4797d50385ab6d1094ff",
+    "bytes": 5361
+  },
+  "first_reader_source_and_ordinary_render_ch13": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/CONTENT-VERDICT.json",
+    "sha256": "83944d38237ea9cf22142a0b20225b566ef65fb1dcd1ad651555f2e9f8ce7b4d",
+    "bytes": 2362
+  },
+  "integrated_ch12_sha256": "6867e9103cc6ab067eec5b3b87291975c906285314494bdc1f154b0da3290956",
+  "integrated_ch13_sha256": "916c6e85dca820fc1ab50e0bc86828604d371a001a1f9049de62a14a63b85ad6",
+  "routes": [
+    {
+      "chapter": 12,
+      "query": "Cauchy lifts",
+      "old": "ch12-passage-ea4d57b1e0b6319164a1",
+      "selected": "ch12-passage-94aa463b505ca4493752",
+      "first_notice_action_directly_pointer_reachable": false,
+      "actual_trusted_mouse_events": [
+        {
+          "kind": "pointerdown",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 0
+        },
+        {
+          "kind": "pointerup",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 0
+        },
+        {
+          "kind": "click",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 1
+        }
+      ]
+    },
+    {
+      "chapter": 13,
+      "query": "compact support",
+      "old": "ch13-passage-8dd7e025669dd7f8169d",
+      "selected": "ch13-passage-bc3d4ea6453e425b1e51",
+      "first_notice_action_directly_pointer_reachable": false,
+      "actual_trusted_mouse_events": [
+        {
+          "kind": "pointerdown",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 0
+        },
+        {
+          "kind": "pointerup",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 0
+        },
+        {
+          "kind": "click",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 1
+        }
+      ]
+    }
+  ],
+  "same_complete_native_sections_in_both_raw_books": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/INTEGRATED-ORDINARY-SECTIONS.json",
+    "sha256": "79726ea5e316a6e306989ed44819639a6d4e0982f325b019d729752b66dfdc6a",
+    "bytes": 3668
+  },
+  "book_runtime_sha256": "51e1b83e523c68193012c87fb7e8b1716aa768a3ef2128f4da96421cc771feb8",
+  "actual_chromium_evidence": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/final-2b04856bfc2bb4/CHROMIUM.json",
+    "sha256": "7bd0526aca37a3e7cc2e5c308ee9725295f63779f347d788d20a482884da0046",
+    "bytes": 30950
+  },
+  "summary": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/final-2b04856bfc2bb4/VERDICT.md",
+    "sha256": "9bc763cadc35c6d5db41b60477896646b24d4f26d5bfc55270f344204a939057",
+    "bytes": 2802
+  },
+  "retired_initial_candidate": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/first-df3c0fd2/CHROMIUM.json",
+    "sha256": "d11d43cbb45433f5571840a50bfd91ef154be6581fef2cc1b8d72fb545862620",
+    "bytes": 20384
+  },
+  "dated_verified_runtime_preview": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/preview-ae0214ad64fc/CHROMIUM.json",
+    "sha256": "fe4ef0743eeed64c43a7d9c91ce69d594b7b59fdbafc69a7d73fe530a35d2d98",
+    "bytes": 25902
+  }
+}

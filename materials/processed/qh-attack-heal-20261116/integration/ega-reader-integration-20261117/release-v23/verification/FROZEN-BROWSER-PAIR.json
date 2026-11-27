@@ -1,0 +1,96 @@
+{
+  "decision": "PASS_BOTH_PHYSICAL_ORDINARY_AND_FROZEN_ISSUED_V22_CH12_CH13_ROUTE_TESTS",
+  "issued_v22_commit": "12a06276b0d8d44301d9dac307410c33db45154a",
+  "normal_pair_manifest": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/NORMAL-TWO-CANDIDATES.json",
+    "sha256": "5aef9be8dc92d04fd87af4b6315fad5df55a88d9a677fec40c1ccce0059fdb5a",
+    "bytes": 3375
+  },
+  "source_and_theory_verdict": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/rt16-9729d7fb/VERDICT.json",
+    "sha256": "2ae18c604ac04adaec2eae30967d4fe27c38891110ae4797d50385ab6d1094ff",
+    "bytes": 5361
+  },
+  "ordinary_sections_byte_level_equality": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/INTEGRATED-ORDINARY-SECTIONS.json",
+    "sha256": "79726ea5e316a6e306989ed44819639a6d4e0982f325b019d729752b66dfdc6a",
+    "bytes": 3668
+  },
+  "variants": {
+    "core": {
+      "four_files": {
+        "index.html": {
+          "sha256": "49b5f423b5a450b4951e2f366d419218a502fa7563873a534b1cfdd04dee6e48",
+          "bytes": 5162386
+        },
+        "reference.html": {
+          "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+          "bytes": 5068537
+        },
+        "atlas.html": {
+          "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+          "bytes": 11472088
+        },
+        "reader-index.js": {
+          "sha256": "46952f3a2b28d06338d955a993964806309145c54ba9827e43af0f105ffa4551",
+          "bytes": 5976321
+        }
+      },
+      "signed_final": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/final-49b5f423b5a450/VERDICT.json",
+        "sha256": "ac423db6ad36f3a84b52b6a8cb605391d984567652260cf00cf0503bc7091214",
+        "bytes": 4571
+      },
+      "frozen_physical_chromium": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/final-49b5f423b5a450/CHROMIUM.json",
+        "sha256": "d46409a2db8b9bbfb669b97292ead81f0d0c99e0808cfc0f805165a9b26da658",
+        "bytes": 30916
+      },
+      "normal_physical_chromium": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/ordinary-49b5f423b5a450/CHROMIUM.json",
+        "sha256": "daa7c4b33943ccd45bb306d9cf77cd4a01c6560cd02c64df5cc5850a9f7a0159",
+        "bytes": 28479
+      },
+      "images": 12,
+      "runtime": "51e1b83e523c68193012c87fb7e8b1716aa768a3ef2128f4da96421cc771feb8"
+    },
+    "superset": {
+      "four_files": {
+        "index.html": {
+          "sha256": "2b04856bfc2bb4349eececfc98c6d58348f2f88813d31725e7167292c8df85bc",
+          "bytes": 5192889
+        },
+        "reference.html": {
+          "sha256": "1054b707c975ad9a3a7604c38f07e19e641046da412c81cc4176fe15320de530",
+          "bytes": 5071331
+        },
+        "atlas.html": {
+          "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+          "bytes": 11472088
+        },
+        "reader-index.js": {
+          "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+          "bytes": 5988098
+        }
+      },
+      "signed_final": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/final-2b04856bfc2bb4/VERDICT.json",
+        "sha256": "f6758c04cd81ba752796fe9e9e5113e9228eb85a566b480e4e67e6c1acd7c949",
+        "bytes": 4571
+      },
+      "frozen_physical_chromium": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/final-2b04856bfc2bb4/CHROMIUM.json",
+        "sha256": "7bd0526aca37a3e7cc2e5c308ee9725295f63779f347d788d20a482884da0046",
+        "bytes": 30950
+      },
+      "normal_physical_chromium": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/v23-chromium/ordinary-2b04856bfc2bb4/CHROMIUM.json",
+        "sha256": "c82b5f80bb30d4d6ae4f7b7c7d2bc5b92bbcf0b5626349e2227094d008629416",
+        "bytes": 28508
+      },
+      "images": 12,
+      "runtime": "51e1b83e523c68193012c87fb7e8b1716aa768a3ef2128f4da96421cc771feb8"
+    }
+  },
+  "observed_excerpt_limit": "The generated chapter 12 action excerpt omits inline mathematics. The selected paragraph displays the complete formula."
+}

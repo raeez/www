@@ -1,0 +1,808 @@
+{
+  "id": "9729d7fbbf001d8310199b5ac249e5d600ca24faec32181049b8bd1da2997a63",
+  "source_parent": {
+    "path": "/tmp/qh-reader-753-v23-20261118/STAGED.json",
+    "sha256": "719c8f07701dfb5527fcf49e9348b4e29c87ae7af6eed50742e26f86ae3753f8",
+    "bytes": 2708
+  },
+  "prior_authored_version": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/RECORD.json",
+    "sha256": "effd971a44f5d9dc20f434c818707d6e28c6f4649d948c4247a531dba7187cfb",
+    "bytes": 25470
+  },
+  "all_56_parent_files": [
+    {
+      "relative": "compiler/build-quantum-holography-status.py",
+      "sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/atlas.css",
+      "sha256": "adb4339082f7a55c722a51bf89650e47a157576a22c08b4eb2abbb3d951d934b"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/atlas.js",
+      "sha256": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/atlas.py",
+      "sha256": "77bad20631e3fc35dd30c606c32c00bda66aaa3d92080956073fdc89ec07a10b"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/audit.py",
+      "sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/figures.css",
+      "sha256": "3f65beb93fdfac44e49d7d45a5878630a5dd90fc82b3d35b4192d141214747b2"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/figures.js",
+      "sha256": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/figures.py",
+      "sha256": "5f86ba434f0574b6b50a61e1bee471c32a7a14464b262ccb34b9ffe590ee7e7b"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/front-figure.css",
+      "sha256": "d684b82f3fc3e0a8541dfc97c379499629028543f590191c5d0f8d112e831b1b"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/monograph.css",
+      "sha256": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/monograph.py",
+      "sha256": "9a0e42e639f8758e632e58e86eabdcd8f0f8425d6e9ff9f2e21fb045957b2cce"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/reader.js",
+      "sha256": "8020a5faa091f1d94c92616456e174dee85cd06de5ce4383016bfd7455a37ab5"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/status-print.css",
+      "sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/status.css",
+      "sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/status.js",
+      "sha256": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/status.py",
+      "sha256": "293acb868bed6ac916d0e522de0b59985e7bdddbe6163d63ad8ff1638fa19b35"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/tests/atlas.test.cjs",
+      "sha256": "a67087f1aab82465cedb0f5e16ef8ff431d6c8ca629e736803f2aa35830bec52"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/tests/figures.test.cjs",
+      "sha256": "2d76aabae3161f876b54ab683052a4d0827fb4cdcbb4204c32ef1a04438894ff"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/tests/figures_page.py",
+      "sha256": "8ac23dc036107435dc8adba1fc2c5e0a7d79e9f75fbffe6e13614f66bf30a73a"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+      "sha256": "2a5f0c7bc84e66832d6bb48edea0570ff8f28b6d049d6c16388bde4b4b6f9d32"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+      "sha256": "2f137aeb9df0f035da0d89af60b34dfc63337025acf61788dd75e44210fabca2"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+      "sha256": "17b70de70e7ee5cf757dcce76a4109f61c519bf01b413c23137ff6a21661c659"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/tests/interaction.test.cjs",
+      "sha256": "8a92a7a42d023168bbbb45b6d6ad65d36389254461bbc267e5aa442d4967b279"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/tests/reader.test.cjs",
+      "sha256": "708ef3dd098fb7fe7845456ff9c46f8fbeabdac445ba616ab4528d2005aceac9"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/tests/test_atlas.py",
+      "sha256": "acca56e1eae4be315677ad611104e168decd981b6cfbe974504176d8ee3138bb"
+    },
+    {
+      "relative": "compiler/quantum-holography-status/tests/test_figures.py",
+      "sha256": "f8a5a3b0cd2567ee57df8d7cd56eb263ba1137a201b210afe95f4a1eb3345140"
+    },
+    {
+      "relative": "compiler/quantum-holography-tracker/tex2mathml.cjs",
+      "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f"
+    },
+    {
+      "relative": "compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+      "sha256": "12b4e5592a12baaf50637881f2cb9d66667b26b8d51a73cd8f0d6bcefe176ab6"
+    },
+    {
+      "relative": "compiler/quantum-holography-tracker/vendor/temml.cjs",
+      "sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e"
+    },
+    {
+      "relative": "content/quantum-holography-status/atlas.json",
+      "sha256": "5f92648e8aee7de985d8647313255d8d5c3de23ec01c54048a538c883747a132"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/01-physical-questions.md",
+      "sha256": "6bd33551c81f5e62693987794bdcfa1de20f44caa6e4038e05622b5ce3001c19"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+      "sha256": "f5f193dfef39313f1d1f970f90cfa2022f08c2c017113773f552854d1a872b8b"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/03-local-fields.md",
+      "sha256": "0284a40a4d79b8e8a3c42d67b7de65f48d8395d49f167e95168e8ecfa85ababc"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/04-factorization.md",
+      "sha256": "35bb0d0ad3dd2a8bbdeb406fb69efa6408b2f7dc5a24d4e182767f23dd324155"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+      "sha256": "78c1a134c6825ee6c241c22788059f88953ee814f078f2d6b1ea52cfb16ed8be"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/06-duality-and-induction.md",
+      "sha256": "d8cb106a5ddbfc38c218fbee7cbed3bb90fd369bad035215153867fe0bd35f91"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/07-actions-and-centres.md",
+      "sha256": "991eaf50d97a34169c9c62732206b437f6314a939c69634740dca943418d9490"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/08-completions.md",
+      "sha256": "8ad41e4ab4cf4f093c574e6259ef3119169787e617c026bfaf8f2cd537ad6b6d"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+      "sha256": "a03a957c41ca69399bcee1357ccd8fb956963fce50bf9608e859e4f422d44f5e"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/10-analytic-sewing.md",
+      "sha256": "668bd1c944f76f2af530fad6af83c2f8024ed15f98d564f97463bd9ee7c914eb"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/11-states-and-lines.md",
+      "sha256": "10e44ebca573505d0e69e5d0cd44a3420c748848712c2a398f534833557fb179"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+      "sha256": "76a299118a24beed77192fc8381249a43fc3a0eec5093cc6ad9972eaa39e6380"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+      "sha256": "916c6e85dca820fc1ab50e0bc86828604d371a001a1f9049de62a14a63b85ad6"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/14-branes.md",
+      "sha256": "d64bcfc44a07e055e2425150c8ca54568f889799dd00f148603e71c82031f846"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/15-hall-and-compact.md",
+      "sha256": "3dcb07976209f23c71e9ea91570273a680072e662102c833958d9ebd675a2d34"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/16-arithmetic.md",
+      "sha256": "b0ff8cc6dc92d421f8bba7655a7ba00852efa7a8f2d0faf6f45b761e2c0c3f05"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+      "sha256": "ab61eedf7e3ce9daa0af2f35a83062e9d68f2b05720c1730c1321386d8d41611"
+    },
+    {
+      "relative": "content/quantum-holography-status/chapters/18-open-problems.md",
+      "sha256": "2d852ae29c825da85314486ed84cdd528ffc2d944783b19d8f2729eb05a72097"
+    },
+    {
+      "relative": "content/quantum-holography-status/content.json",
+      "sha256": "bedc90f2cb82467ebbb208d98987181673fa3063086f410c3288d695a82692fd"
+    },
+    {
+      "relative": "content/quantum-holography-status/essay.md",
+      "sha256": "7beb2bb19763934fa50d2cf8eb415048cd73e7806fb79163e46e01c25795bb5b"
+    },
+    {
+      "relative": "content/quantum-holography-status/page.json",
+      "sha256": "9799d3b1572b85e3cbc06fa7f8e775e33b77fe7f1d38737597a66b19388d9e37"
+    },
+    {
+      "relative": "content/quantum-holography-status/reader-data/diagram-records.json",
+      "sha256": "94ca6ef5e08d2452663ce2f5a215ef9c4c31f9149b435b35087c25318cef4f51"
+    },
+    {
+      "relative": "content/quantum-holography-status/reader-data/fig-front-exchange.html",
+      "sha256": "c52400bdd8b9c5fb729e53739db46fd65c872e3525b29d2e7926e4e203985302"
+    },
+    {
+      "relative": "content/quantum-holography-status/reader-data/manifest.json",
+      "sha256": "b471fa94b4b33411ea288a1505aa15536b3d117b21fe63816cbb6588e4b447b1"
+    },
+    {
+      "relative": "content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+      "sha256": "a5437070509802b999f06b95dd99b3a9b28f4a521bdf3a5303163b5d03f0f1d8"
+    },
+    {
+      "relative": "content/quantum-holography-status/supplements/supplements.json",
+      "sha256": "914f7de880a88cb0cc188384d8fdc782efad0053c35ddb99b58952f477d9d0d7"
+    }
+  ],
+  "old_leaf": {
+    "path": "/private/tmp/qh-reader-753-v23-20261118/editable-source/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+    "sha256": "76a299118a24beed77192fc8381249a43fc3a0eec5093cc6ad9972eaa39e6380",
+    "bytes": 56271
+  },
+  "new_leaf": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-rt16/versions/9729d7fbbf001d8310199b5ac249e5d600ca24faec32181049b8bd1da2997a63/edited/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+    "sha256": "6867e9103cc6ab067eec5b3b87291975c906285314494bdc1f154b0da3290956",
+    "bytes": 59254
+  },
+  "normal_build_input": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-rt16/versions/9729d7fbbf001d8310199b5ac249e5d600ca24faec32181049b8bd1da2997a63/build-input",
+  "before_source_line": 303,
+  "after_source_lines": [
+    303,
+    323
+  ],
+  "retained_preceding_753_fixed_example": "All-rank nonzero-K negative with positive numerical +1/3 at different, original single-occupied residue.",
+  "old_paragraph_id": "ch12-passage-29672c8639eb82e7f582",
+  "new_offsets": [
+    {
+      "id": "term-contramodule",
+      "table": "terms",
+      "old": {
+        "start": 35200,
+        "end": 36866
+      },
+      "new": {
+        "start": 38181,
+        "end": 39847
+      }
+    },
+    {
+      "id": "ch12-exceptional-torsion",
+      "table": "theorems",
+      "old": {
+        "start": 38310,
+        "end": 40036
+      },
+      "new": {
+        "start": 41291,
+        "end": 43017
+      }
+    }
+  ],
+  "unchanged_authored_excerpts": true,
+  "edited_files": {
+    "chapters/12-chiral-quantum-groups.md": {
+      "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-rt16/versions/9729d7fbbf001d8310199b5ac249e5d600ca24faec32181049b8bd1da2997a63/edited/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+      "sha256": "6867e9103cc6ab067eec5b3b87291975c906285314494bdc1f154b0da3290956",
+      "bytes": 59254
+    },
+    "reader-data/manifest.json": {
+      "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-rt16/versions/9729d7fbbf001d8310199b5ac249e5d600ca24faec32181049b8bd1da2997a63/edited/content/quantum-holography-status/reader-data/manifest.json",
+      "sha256": "8d4de350e2a36934de544f0a0dea500a6d1488aecf5b3546c3bf9a39e3500a6f",
+      "bytes": 453157
+    }
+  },
+  "patch": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-rt16/versions/9729d7fbbf001d8310199b5ac249e5d600ca24faec32181049b8bd1da2997a63/native-source.patch",
+    "sha256": "185b3c0b900ac43274f5d33b9c4b529a0b37da3c444dae7da5da4a5957ce2d34",
+    "bytes": 5763
+  },
+  "science": {
+    "historical_753": {
+      "path": "/private/tmp/astra62-post665-research-20261118/graph/cuts/20261118-160020418628-WIB/PINS.json",
+      "sha256": "cf751e48bdad3fd4b1260cca52cf5ec4264a5fe3bb230f4d5fa7ca4032a51fbd",
+      "intake": "/private/tmp/astra62-post665-research-20261118/intake/cuts/20261118T090020418628Z/INTAKE.json",
+      "intake_sha256": "c69eb0405383174d09cb11b6de341632f605ff65fa4d678df5969bec9757cb22"
+    },
+    "original_753_Cauchy_subjects": [
+      {
+        "id": "P665-RT1",
+        "domain_and_result": "The complete arity-two associated coefficient of the next divided quantum determinant has exactly the vacuum derivative components of (10), before normalizing.",
+        "limitations": "N>=2, every numerical level, every spectral coefficient of both signed Cauchy expansions. The proof includes occupied triple collision normal products.",
+        "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/PROOF.md",
+        "subject_sha256": "13972c7ba9c90836f40e7d440ab6d6fd2ea42c0b296f21cd5e0feb543b9d1c4f",
+        "subject_lines_inclusive": [
+          [
+            16,
+            115
+          ],
+          [
+            132,
+            158
+          ]
+        ],
+        "reviewer": "/root/astra62_rebuild_director/check_quantum",
+        "reviewer_report": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/CHECK.md",
+          "sha256": "5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a",
+          "bytes": 9961,
+          "lines": 27,
+          "frozen": "evidence/5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a/CHECK.md"
+        },
+        "reviewer_report_lines_inclusive": [
+          [
+            5,
+            14
+          ]
+        ],
+        "receipt": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/VERDICT.json",
+          "sha256": "4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca",
+          "bytes": 5587,
+          "lines": 62,
+          "frozen": "evidence/4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca/VERDICT.json"
+        },
+        "receipt_record_locator": "/0"
+      },
+      {
+        "id": "P665-RT2",
+        "domain_and_result": "The arity-one residual is B_Q(S_N-S_N)=0 by affine PBW; the empty-word coefficient is zero. Both Cauchy determinants satisfy their native divided equations in unnormalized A_3 and therefore in normalized Abar_3.",
+        "limitations": "All ranks and levels; divided precision 3, i.e. parameter coefficient hbar² in (q-1)/hbar, not all orders. Both halves retain their actual column and level shifts.",
+        "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/PROOF.md",
+        "subject_sha256": "13972c7ba9c90836f40e7d440ab6d6fd2ea42c0b296f21cd5e0feb543b9d1c4f",
+        "subject_lines_inclusive": [
+          [
+            117,
+            156
+          ]
+        ],
+        "reviewer": "/root/astra62_rebuild_director/check_quantum",
+        "reviewer_report": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/CHECK.md",
+          "sha256": "5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a",
+          "bytes": 9961,
+          "lines": 27,
+          "frozen": "evidence/5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a/CHECK.md"
+        },
+        "reviewer_report_lines_inclusive": [
+          [
+            15,
+            20
+          ]
+        ],
+        "receipt": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/VERDICT.json",
+          "sha256": "4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca",
+          "bytes": 5587,
+          "lines": 62,
+          "frozen": "evidence/4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca/VERDICT.json"
+        },
+        "receipt_record_locator": "/1"
+      },
+      {
+        "id": "P665-RT3",
+        "domain_and_result": "Each of the two auxiliary partial traces of each divided half and mixed RTT defect is zero in normalized Abar_3.",
+        "limitations": "Rank two only, any K. Uses the previously established full relation map Phi_2 and the new third-precision determinant. Leaves the traceless-traceless quartic relation open.",
+        "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/PROOF.md",
+        "subject_sha256": "13972c7ba9c90836f40e7d440ab6d6fd2ea42c0b296f21cd5e0feb543b9d1c4f",
+        "subject_lines_inclusive": [
+          [
+            160,
+            162
+          ]
+        ],
+        "reviewer": "/root/astra62_rebuild_director/check_quantum",
+        "reviewer_report": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/CHECK.md",
+          "sha256": "5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a",
+          "bytes": 9961,
+          "lines": 27,
+          "frozen": "evidence/5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a/CHECK.md"
+        },
+        "reviewer_report_lines_inclusive": [
+          [
+            21,
+            24
+          ]
+        ],
+        "receipt": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/VERDICT.json",
+          "sha256": "4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca",
+          "bytes": 5587,
+          "lines": 62,
+          "frozen": "evidence/4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca/VERDICT.json"
+        },
+        "receipt_record_locator": "/2"
+      },
+      {
+        "id": "P665-RT4",
+        "domain_and_result": "The classical joint two-level coproduct of [(x-y)^(-m);b[-1]^2 1,c] has the independent S_L tensor c_R pole family outside the separately integrated product image.",
+        "limitations": "All N>=2, independent K_1,K_2, every m>=1. The left slot is a genuine weight-two, length-two composite. No change to the all-precision joint field-mode splitting or to separate-recipient limitations.",
+        "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/PROOF.md",
+        "subject_sha256": "13972c7ba9c90836f40e7d440ab6d6fd2ea42c0b296f21cd5e0feb543b9d1c4f",
+        "subject_lines_inclusive": [
+          [
+            164,
+            166
+          ]
+        ],
+        "reviewer": "/root/astra62_rebuild_director/check_quantum",
+        "reviewer_report": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/CHECK.md",
+          "sha256": "5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a",
+          "bytes": 9961,
+          "lines": 27,
+          "frozen": "evidence/5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a/CHECK.md"
+        },
+        "reviewer_report_lines_inclusive": [
+          [
+            25,
+            27
+          ]
+        ],
+        "receipt": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/VERDICT.json",
+          "sha256": "4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca",
+          "bytes": 5587,
+          "lines": 62,
+          "frozen": "evidence/4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca/VERDICT.json"
+        },
+        "receipt_record_locator": "/3"
+      },
+      {
+        "id": "P665-RT5",
+        "domain_and_result": "The arity-three initial coefficient of hbar^(-2)[W_f^b,W_g^b] has a well-defined normalized occupied vacuum-current diagonal residue -K(f(y)g(z)-f(z)g(y))/(3(y-z)^2).",
+        "limitations": "Every N>=2, b=e_{1N}, numerical K and arbitrary Laurent f,g. Original quotient before any state representation; W is divided and the hbar^2 term here is quartic undivided.",
+        "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/traceless-next/PROOF.md",
+        "subject_sha256": "e8b8e5e9631d3aed03c30ede7411834c8b1eb421c79323b65bba132f1e5454e2",
+        "subject_lines_inclusive": [
+          [
+            3,
+            79
+          ]
+        ],
+        "reviewer": "/root/astra62_rebuild_director/check_quantum",
+        "reviewer_report": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/CHECK.md",
+          "sha256": "9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd",
+          "bytes": 13372,
+          "lines": 67,
+          "frozen": "evidence/9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd/CHECK.md"
+        },
+        "reviewer_report_lines_inclusive": [
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            46
+          ]
+        ],
+        "receipt": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/VERDICT.json",
+          "sha256": "1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80",
+          "bytes": 4640,
+          "lines": 47,
+          "frozen": "evidence/1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80/VERDICT.json"
+        },
+        "receipt_record_locator": "/0"
+      },
+      {
+        "id": "P665-RT6",
+        "domain_and_result": "At every nonzero level and every rank N>=2, each stipulated creation, annihilation and mixed RTT block has a nonzero divided defect modulo hbar^3. The prescribed map fails already at this precision, hence cannot exist in the specified hbar inverse limit at those levels.",
+        "limitations": "Three explicit extreme traceless coefficients [u^0 v^2], [p^0 q^(-2)] and [p^(-1)u^0]; includes all critical levels K=-N. Does not refute alternative lifts, actual fields/operators or the known rank-two divided-precision-two map.",
+        "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/traceless-next/PROOF.md",
+        "subject_sha256": "e8b8e5e9631d3aed03c30ede7411834c8b1eb421c79323b65bba132f1e5454e2",
+        "subject_lines_inclusive": [
+          [
+            80,
+            94
+          ]
+        ],
+        "reviewer": "/root/astra62_rebuild_director/check_quantum",
+        "reviewer_report": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/CHECK.md",
+          "sha256": "9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd",
+          "bytes": 13372,
+          "lines": 67,
+          "frozen": "evidence/9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd/CHECK.md"
+        },
+        "reviewer_report_lines_inclusive": [
+          [
+            3,
+            3
+          ],
+          [
+            47,
+            58
+          ]
+        ],
+        "receipt": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/VERDICT.json",
+          "sha256": "1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80",
+          "bytes": 4640,
+          "lines": 47,
+          "frozen": "evidence/1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80/VERDICT.json"
+        },
+        "receipt_record_locator": "/1"
+      },
+      {
+        "id": "P665-RT7",
+        "domain_and_result": "At rank two and level zero the whole V_4 auxiliary summand of both half and mixed divided RTT relations vanishes modulo hbar^3, before vacuum normalization.",
+        "limitations": "Every Laurent coefficient of the highest-weight entry and its simultaneous SL_2 translates. The remaining V_2,V_0 traceless summands and higher precisions remain open at K=0.",
+        "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/traceless-next/LEVEL-ZERO.md",
+        "subject_sha256": "b0a968100aa14b19bf2d5b7807f367305aed756d2fee10534df568ba8c483d8a",
+        "subject_lines_inclusive": [
+          [
+            3,
+            69
+          ]
+        ],
+        "reviewer": "/root/astra62_rebuild_director/check_quantum",
+        "reviewer_report": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/CHECK.md",
+          "sha256": "9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd",
+          "bytes": 13372,
+          "lines": 67,
+          "frozen": "evidence/9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd/CHECK.md"
+        },
+        "reviewer_report_lines_inclusive": [
+          [
+            3,
+            3
+          ],
+          [
+            59,
+            67
+          ]
+        ],
+        "receipt": {
+          "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/VERDICT.json",
+          "sha256": "1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80",
+          "bytes": 4640,
+          "lines": 47,
+          "frozen": "evidence/1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80/VERDICT.json"
+        },
+        "receipt_record_locator": "/2"
+      }
+    ],
+    "later_distinct_mathematics": {
+      "local-repair": {
+        "independent": {
+          "path": "/private/tmp/astra62-post665-research-20261118/checks/12-rtt/local-repair/VERDICT.json",
+          "sha256": "944f776fee98eaf9a62a8d96f69112659297e70f12826bc80e84e0bbde895467",
+          "bytes": 8563
+        },
+        "constructor": {
+          "path": "/private/tmp/astra62-post665-research-20261118/12-rtt/local-repair/RESULT.json",
+          "sha256": "f91bad7e443bed539aa8a56d06d43cc470d64768a2330c89119181a4244ea01d",
+          "bytes": 4333
+        },
+        "subjects": [
+          {
+            "id": "P665-RT10",
+            "result": "verified",
+            "statement": "The equivariant, trace-free terminal-vacuum correction U cancels both original cubic occupied residues, with zero action on all normalized multipoint-smooth modules. In rank two U alone leaves a second occupied residue K(f′g−fg′)/2 on vacuum and the affine PBW square b².",
+            "locator": "PROOF.md lines 47–68; LOWER.md equations (9), (14), (15)",
+            "checked_path": "/tmp/astra62-post665-research-20261118/12-rtt/local-repair/PROOF.md",
+            "sha256": "80e7dd8ccf74c701fdf3e5c236b159d5f78289c3beed006fe43aef2458e9039e",
+            "reason": "The terminal vacuum has zero puncture action while its occupied x=y pole gives exactly the opposite exterior difference. The trace-free Casimir intertwiner and a four-current central collision give the prescribed covariance and arity example. The remaining rank-two normalized binary Wronskian is fixed by the actual second correction and the independently checked all-Laurent lower reduction.",
+            "scope": "Cubic residue cancellation, determinant preservation and four-positive-letter representation of U for K!=0 hold in every N>=2. The exact binary Wronskian is at N=2 for every K and every Laurent pair.",
+            "reviewer": "/root/astra62_rebuild_director/check_quantum",
+            "review_type": "independent internal mathematical verdict",
+            "check_path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/local-repair/CHECK.md",
+            "check_sha256": "32052d9e5c13def4385de73bf34bbb6ba9715d379e7c1064ea6294d60007ed40",
+            "additional_checked_sources": [
+              {
+                "path": "/tmp/astra62-post665-research-20261118/12-rtt/local-repair/LOWER.md",
+                "sha256": "7f1d6d2a7518dde426c1a8fe94b7ae9290d4bed757d4851133ae0c875a195723",
+                "locator": "Equations (9), (14), (15), binary Wronskian"
+              }
+            ],
+            "additional_check": {
+              "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/local-repair/LOWER-CHECK.md",
+              "sha256": "ac5145972f0fdaa3b94aa6169c327ef5e8d3e99627b2549783727d8e0ac6ae02"
+            },
+            "verdict_sha256": "9667e68db2c06c2cf3c51890c863fbcfaf977fbbcdbd9bbd512c07c8a3c23a68"
+          },
+          {
+            "id": "P665-RT11",
+            "result": "verified",
+            "statement": "The explicit two terminal-vacuum corrections U+D repair the V4 projection of all three defining RTT equations in the genuine normalized algebra at divided precision three, preserving the previously proved determinants and partial traces.",
+            "locator": "LOWER.md equations (8)–(14); full PBW and spectral proof",
+            "checked_path": "/tmp/astra62-post665-research-20261118/12-rtt/local-repair/LOWER.md",
+            "sha256": "7f1d6d2a7518dde426c1a8fe94b7ae9290d4bed757d4851133ae0c875a195723",
+            "reason": "The binary state has b₁S=b² and the other required b_j S equal zero. Independent raw integral field expansion, a different four-slot and three-slot exchange path, all 36 arbitrary-level Hermite pairs, and the direct two-Cauchy puncture identity confirm every highest-weight coefficient. The residual unary representative in the alternate path is −(3K+10)(∂+T)(fg b²)/12, hence vanishes. The retained mixed scalar has exactly the sign of the centered numerical factor.",
+            "scope": "Rank two, every numerical level including zero and critical. Every coefficient in the two half-series and centered mixed equation. The only cubic puncture is exactly the prescribed mixed numerical factor; the entire local binary is zero and the unary is an intrinsic total derivative. V2, V0, the full relation map, all orders and a separately integrated coproduct remain open.",
+            "reviewer": "/root/astra62_rebuild_director/check_quantum",
+            "review_type": "independent internal mathematical verdict",
+            "check_path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/local-repair/LOWER-CHECK.md",
+            "check_sha256": "ac5145972f0fdaa3b94aa6169c327ef5e8d3e99627b2549783727d8e0ac6ae02",
+            "verdict_sha256": "f077288f965227943b4dd7a4c5f79a93088ad7b3f5f1383da14692dac1d18d58"
+          },
+          {
+            "id": "P665-RT12",
+            "result": "verified",
+            "statement": "The ordinary state realization of finite Laurent unary classes is faithful on each nonzero eigenspace of a diagonalizable horizontal Cartan zero mode.",
+            "locator": "LOWER.md lines 114–125",
+            "checked_path": "/tmp/astra62-post665-research-20261118/12-rtt/local-repair/LOWER.md",
+            "sha256": "7f1d6d2a7518dde426c1a8fe94b7ae9290d4bed757d4851133ae0c875a195723",
+            "reason": "Vacuum evaluation detects the collapsed negative test. On the polynomial test the translation commutators give a zero zeroth mode. Ordinary skew against the Cartan state forces divisibility by T on the nonzero eigenspace; induction gives T^(P+1), the correct unary translation boundary.",
+            "scope": "Classical vertex algebra with a weight-one Cartan state and diagonalizable zero mode, over C, acting on the full vacuum module. Includes all levels of the universal affine algebra. The statement is confined to singleton modes of nonzero horizontal weight.",
+            "reviewer": "/root/astra62_rebuild_director/check_quantum",
+            "review_type": "independent internal mathematical verdict",
+            "check_path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/local-repair/LOWER-CHECK.md",
+            "check_sha256": "ac5145972f0fdaa3b94aa6169c327ef5e8d3e99627b2549783727d8e0ac6ae02",
+            "verdict_sha256": "bb61cba64a16e2fb4c57adcfa8e8e387992443149fb6566a1bed6d362f4b02d7"
+          }
+        ]
+      },
+      "remaining-blocks": {
+        "independent": {
+          "path": "/private/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/VERDICT.json",
+          "sha256": "6d2af8fbe7d1d5ba6bc126963bee042598243339e5ac1b92b3147b5d74d4e94a",
+          "bytes": 11874
+        },
+        "constructor": {
+          "path": "/private/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/RESULT.json",
+          "sha256": "b10e836165ed2822da494daa339537f857f51931cf9952b8f68b8c379fb83fac",
+          "bytes": 4724
+        },
+        "subjects": [
+          {
+            "id": "P665-RT13",
+            "result": "verified",
+            "statement": "For the fixed U+D lifts, the normalized current-rooted double-occupied flag on the arity-three coefficient of the full quartic divided RTT defect reads (2K²/3)[A,B]f′g′ in the positive bracket convention, before the explicit half-series signs/clearing.",
+            "locator": "V2.md lines 3–37; V2.md equations (1)–(3)",
+            "checked_path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/V2.md",
+            "sha256": "0f81553eeb8bb7867e20023b8a62434caa3c72eb6b327a090b67e90112bf82f9",
+            "subject_lines_inclusive": [
+              3,
+              37
+            ],
+            "reason": "The signed trace form contracts the two legs of the traceless quadratic tensor to opposite halves of the color bracket. The ordinary first exchange and the central action on U have exactly the four iterated-residue terms -f″g,-f″g,(f′g)′,(f′g)′ before exchanging f,g. The two vacuum derivatives and either possible detached puncture vacuum map to zero. Flatness of the filtered normalized pieces makes this a coefficient of the full divided defect, including unlike auxiliary colors.",
+            "scope": "N=2, traceless matrix directions, arbitrary Laurent tests, all numerical K. The functional descends through both vacuum derivatives and the full vG ideal. The raw unlike-color bracket itself is not divided separately.",
+            "reviewer": "/root/astra62_rebuild_director/check_quantum",
+            "review_type": "independent internal mathematical verdict",
+            "check_path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/CHECK.md",
+            "check_sha256": "a9bf0f7ea8cb141b48925a7916d90f1720c3d5a0fd4a4194581d2cb70c16860b",
+            "additional_check": {
+              "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/INDEPENDENT-FREEZE.json",
+              "sha256": "508fadeef866a8ce80c08678bc1b85b30f69c3312167a361d6166b4c6a150584"
+            },
+            "constructor_record": {
+              "path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/RESULT.json",
+              "sha256": "b10e836165ed2822da494daa339537f857f51931cf9952b8f68b8c379fb83fac"
+            },
+            "verdict_sha256": "1f58b07b1b9aded51ae6a59aa952a36c34e74e2e6fc5aae47760a6305a2dff40"
+          },
+          {
+            "id": "P665-RT14",
+            "result": "verified",
+            "statement": "The U+D corrected Cauchy lifts fail the adjoint V2 component in the creation, annihilation and centered mixed equations at every nonzero level.",
+            "locator": "V2.md lines 37–51; V2.md, final three original coefficient checks",
+            "checked_path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/V2.md",
+            "sha256": "0f81553eeb8bb7867e20023b8a62434caa3c72eb6b327a090b67e90112bf82f9",
+            "subject_lines_inclusive": [
+              37,
+              51
+            ],
+            "reason": "Independently retaining the true cleared half R matrices and centered mixed numerical factors leaves only the two-vacuum cubic input. The three spectral residues on (b,H) are −4K²/(3z⁵), +4K²z/3 and +2K²/(3z²), respectively. The mixed value at K=−2,z=1 is +8/3. This obstructs these particular U+D lifts at each nonzero level.",
+            "scope": "Specific given lifts, N=2, d=3, including K=−2. For color direction (b,H) the actual cleared creation [u^0v^2], cleared annihilation [p^-1 q^-3] and mixed [p^-2u^0] detect −4K²/(3z⁵), 4K²z/3, 2K²/(3z²). The antisymmetric covector doubles these numbers. Further possible corrections and other ranks remain outside the result.",
+            "reviewer": "/root/astra62_rebuild_director/check_quantum",
+            "review_type": "independent internal mathematical verdict",
+            "check_path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/CHECK.md",
+            "check_sha256": "a9bf0f7ea8cb141b48925a7916d90f1720c3d5a0fd4a4194581d2cb70c16860b",
+            "additional_check": {
+              "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/INDEPENDENT-FREEZE.json",
+              "sha256": "508fadeef866a8ce80c08678bc1b85b30f69c3312167a361d6166b4c6a150584"
+            },
+            "constructor_record": {
+              "path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/RESULT.json",
+              "sha256": "b10e836165ed2822da494daa339537f857f51931cf9952b8f68b8c379fb83fac"
+            },
+            "verdict_sha256": "d2c5b4fea5365d1a09212ed4ae4518a974af050804451a57eac0d3394f6bd2d7"
+          },
+          {
+            "id": "P665-RT15",
+            "result": "verified",
+            "statement": "The invariant V0 component of both half equations and the centered mixed equation holds in the original normalized arity quotient on the fixed U+D lifts for every level, with its full determinant-trace contribution.",
+            "locator": "V0.md lines 3–106; V0.md equations (1)–(5) and final unary specialization",
+            "checked_path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/V0.md",
+            "sha256": "4b364116c0bac9844c546292df24e43ca6c9857995d8c240b4b7c0abb2ad202a",
+            "subject_lines_inclusive": [
+              3,
+              106
+            ],
+            "reason": "Direct fundamental four-contractions reproduced the scalar current and vacuum exchange. Different block and S3 averaging paths eliminated all local two-current and vacuum–Casimir symbols on the entire formal-K second-jet basis and five Laurent controls. The independent two-spectrum puncture equals the sum of the genuine mixed quadratic term and both positive determinant-trace terms. The vacuum–vacuum part descends to arity one. Noncritical unary separation and coefficientwise polynomiality settle the genuine residual even at K=−2.",
+            "scope": "N=2 and d=3. Every spectral coefficient, including critical K=−2. The only cubic puncture is the rational mixed term (2); the remaining invariant local binary vanishes and the symmetric two-vacuum symbol descends to unary. Critical unaries are settled by polynomial specialization after noncritical detection.",
+            "reviewer": "/root/astra62_rebuild_director/check_quantum",
+            "review_type": "independent internal mathematical verdict",
+            "check_path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/SCALAR-AND-EXCEPTION.md",
+            "check_sha256": "e2f4e271ce31a766825a812d3df196069a42fc945ab97007346185d7c21caafc",
+            "additional_check": {
+              "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/INDEPENDENT-FREEZE.json",
+              "sha256": "508fadeef866a8ce80c08678bc1b85b30f69c3312167a361d6166b4c6a150584"
+            },
+            "constructor_record": {
+              "path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/RESULT.json",
+              "sha256": "b10e836165ed2822da494daa339537f857f51931cf9952b8f68b8c379fb83fac"
+            },
+            "additional_checked_sources": [
+              {
+                "path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/PINS.json",
+                "sha256": "21b33f8487950441d583f5ad7d21f2d12624affa074f02d5d5c34ce6d082cbb6",
+                "locator": "Companion scalar derivation and its input pins"
+              }
+            ],
+            "verdict_sha256": "ef4d13690b1d11cdce1954abd8a4dbd88c60e6ff487dcd1a0fb210c5ab0f289e"
+          },
+          {
+            "id": "P665-RT16",
+            "result": "verified",
+            "statement": "At K=0 the entire V2 component holds at d=3; together with the other blocks, the original rank-two Cauchy assignment gives a proper injective D₀/h³D₀→Ā₃ homomorphism.",
+            "locator": "LEVEL-ZERO.md lines 3–58; LEVEL-ZERO.md equations (1),(2), final PBW conclusion",
+            "checked_path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/LEVEL-ZERO.md",
+            "sha256": "fa708bd076e0be36eae235208ca5669da12269ce91c33c6f7d032e587f154d83",
+            "subject_lines_inclusive": [
+              3,
+              58
+            ],
+            "reason": "I retained the full antisymmetric true R equation, both numerical trace anticommutator orders and both hidden integral trace-spectator contributions. After independent block/averaging paths the entire ternary and binary rational functions vanish at a generic pair normalized by the affine group; a separate fully symbolic computation checks the cubic on all five variables. No vacuum puncture occurs at level zero. The remaining charged unary is faithful. The other auxiliary summands and determinants complete the map, and classical PBW plus R3-freeness give injectivity and the proper-image witness.",
+            "scope": "N=2, K=0 only, divided precision three. Both corrections U and D vanish at this level. Separate boundary and all-spectra identities retain the trace anticommutators. An all-order homomorphism or a separate level-composing coproduct is not concluded.",
+            "reviewer": "/root/astra62_rebuild_director/check_quantum",
+            "review_type": "independent internal mathematical verdict",
+            "check_path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/SCALAR-AND-EXCEPTION.md",
+            "check_sha256": "e2f4e271ce31a766825a812d3df196069a42fc945ab97007346185d7c21caafc",
+            "additional_check": {
+              "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/INDEPENDENT-FREEZE.json",
+              "sha256": "508fadeef866a8ce80c08678bc1b85b30f69c3312167a361d6166b4c6a150584"
+            },
+            "constructor_record": {
+              "path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/RESULT.json",
+              "sha256": "b10e836165ed2822da494daa339537f857f51931cf9952b8f68b8c379fb83fac"
+            },
+            "additional_checked_sources": [
+              {
+                "path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/V0.md",
+                "sha256": "4b364116c0bac9844c546292df24e43ca6c9857995d8c240b4b7c0abb2ad202a",
+                "locator": "Scalar component of the full level-zero map"
+              }
+            ],
+            "verdict_sha256": "6782fd681a73fe8f53a45985785de74d2ae9438ae778d4990f3ee2e1d44c4aea"
+          },
+          {
+            "id": "P665-RT17",
+            "result": "verified",
+            "statement": "For the classical universal affine sl₂ at a noncritical level, the full finite Laurent unary quotient acts faithfully on its vacuum module. At critical level [1;S] is an explicit nonzero intrinsic unary annihilating the entire module.",
+            "locator": "V0.md lines 100–108; V0.md, The neutral unary at generic and critical level",
+            "checked_path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/V0.md",
+            "sha256": "4b364116c0bac9844c546292df24e43ca6c9857995d8c240b4b7c0abb2ad202a",
+            "subject_lines_inclusive": [
+              100,
+              108
+            ],
+            "reason": "For affine degree w, skew symmetry on the noncritical Sugawara vector gives (w−1)Ta=0 modulo T² when a_(0)=0. Positive-weight translation injectivity, the centerless horizontal adjoint at degree one, the elementary polynomial-vacuum boundary, and induction on a_(P) prove full finite Laurent unary separation. At K=−2 the nonderivative quadratic state S gives a nonzero normalized unary [1;S] whose zero mode annihilates the entire universal vacuum.",
+            "scope": "The linear unary quotient (C[s,s⁻¹]⊗V)/(∂+T), all singleton states at characteristic zero. In the normalized algebra the puncture vacuum equals the scalar. No independently adjoined arity-zero unit in the unnormalized algebra and no multipoint faithfulness are included.",
+            "reviewer": "/root/astra62_rebuild_director/check_quantum",
+            "review_type": "independent internal mathematical verdict",
+            "check_path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/CHECK.md",
+            "check_sha256": "a9bf0f7ea8cb141b48925a7916d90f1720c3d5a0fd4a4194581d2cb70c16860b",
+            "additional_check": {
+              "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/INDEPENDENT-FREEZE.json",
+              "sha256": "508fadeef866a8ce80c08678bc1b85b30f69c3312167a361d6166b4c6a150584"
+            },
+            "constructor_record": {
+              "path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/RESULT.json",
+              "sha256": "b10e836165ed2822da494daa339537f857f51931cf9952b8f68b8c379fb83fac"
+            },
+            "verdict_sha256": "afafbab2561c0b5d02ec287a6463fac80acd271896bb1b5495c573811fb28bef"
+          }
+        ]
+      }
+    },
+    "exact_scope": "RT10–12 enter through the fixed two terminal-vacuum corrections and their lower terms. RT13–17 give the independent iterated residue, adjoint negative, scalar equality, unmodified rank-two level-zero proper map, and critical neutral unary obstruction."
+  }
+}

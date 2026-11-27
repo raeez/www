@@ -1,0 +1,74 @@
+{
+  "decision": "READY FOR INTEGRATION",
+  "intro": {
+    "path": "/tmp/qh-reader-abstract-20261118/author/INTRODUCTION.md",
+    "sha256": "8d6493c8598de518f4d6b59ee193dd5af9fcc715aad412ba3c8eacd79043c13f",
+    "bytes": 11552
+  },
+  "insertions": {
+    "path": "/tmp/qh-reader-abstract-20261118/author/INSERTIONS.json",
+    "sha256": "f8d0dd1f80000dcdea50328a7343e874f04f32ca87c9d8d9fbd6b6d76a443195",
+    "bytes": 7848
+  },
+  "preservation": {
+    "path": "/tmp/qh-reader-abstract-20261118/author/PRESERVATION.json",
+    "sha256": "bf5f7a0c2d14223093624db9f9c5680cc51d06d958129ccb9ef079a93cca6449",
+    "bytes": 3785
+  },
+  "claim_evidence": {
+    "path": "/tmp/qh-reader-abstract-20261118/author/CLAIM-EVIDENCE.json",
+    "sha256": "08aec9e6560d73e0fbe8115bdd18105ccd97fa71cb011008692cb591baff2841",
+    "bytes": 37662
+  },
+  "preservation_check": {
+    "path": "/tmp/qh-reader-abstract-20261118/author/verify_preservation.py",
+    "sha256": "7e4af2d0d2a2c79eba52278ff7081d85744b0179c1be519959ec71e2a054b0ac",
+    "bytes": 3095
+  },
+  "original_intro_sha256": "99227f7f0339ef5bab707c20f6ec087f25f7229dfcc982ec5b887ea7688c339b",
+  "independent_review": {
+    "algebra_geometry_exposition_and_render": {
+      "path": "/private/tmp/qh-reader-abstract-20261118/check-algebra/FINAL-RENDER.json",
+      "sha256": "3d24381ac26daa2e7b87bc11c3969120cb3cefdcc4693733746252498fbd8949",
+      "bytes": 2915
+    },
+    "physics_and_exposition": {
+      "path": "/tmp/qh-reader-abstract-20261118/check-holography/FRONT-SOURCE-VERDICT.json",
+      "sha256": "46c0f040efc24cbf281d32b045b1a333e1c7d21aad2302536abdfe0021ee734d",
+      "bytes": 4010
+    },
+    "physics_explanation": {
+      "path": "/tmp/qh-reader-abstract-20261118/check-holography/CHECK.md",
+      "sha256": "68c08ba1409912f18d50075d0e8a8b50fbebfc0ef813319e9669481320d7ec83",
+      "bytes": 5243
+    },
+    "density_proof_review": {
+      "path": "/tmp/qh-reader-abstract-20261118/check-holography/CH11-SOURCE-VERDICT.json",
+      "sha256": "fb1fac09315c6392b0dfb786c3e5bd62ee1eecd22d8c8140a2217cd7619a36d7",
+      "bytes": 2501
+    }
+  },
+  "required_linked_companion": {
+    "path": "/tmp/qh-reader-abstract-20261118/ch11-proof/FINAL-INSERT.md",
+    "sha256": "f2f8f60050dc86b87bb738da07e43fcccb1f6be631c19e4263d0dd1203b7e8bd",
+    "bytes": 2692
+  },
+  "verified_staged_reader": {
+    "path": "/tmp/qh-reader-abstract-20261118/technical/normal/public/index.html",
+    "sha256": "f72e8594f4f3d3eb4188decff74ea2176c4858acda64970cd8bb3cae507f3f8a",
+    "bytes": 4683793
+  },
+  "other_raw_staged_reader": {
+    "path": "/tmp/qh-reader-abstract-20261118/technical-superset/normal/public/index.html",
+    "sha256": "5e3aae76d1c02ac8584f06c4529b98c7e3f1d712cc34680ba06ed6d11d7db9f0",
+    "bytes": 4713789
+  },
+  "intended_placement": "Four new paragraphs after original paragraph 7, five following original paragraph 8. The original eight paragraphs are at positions 1–7 and 12. The unchanged figure follows paragraph 4.",
+  "release_scope": "Author wrote private staging only. The normal staged reader hash is the complete original renderer output at this handoff. Publication, route assembly and any later anchor-only transformations belong to the existing integrator.",
+  "as_built_review": {
+    "authored_paragraphs": 17,
+    "all_visible_prose_and_math_equal": true,
+    "old_paragraphs_and_figure_equal": true,
+    "live_anchor_targets_in_staged_book": 8
+  }
+}

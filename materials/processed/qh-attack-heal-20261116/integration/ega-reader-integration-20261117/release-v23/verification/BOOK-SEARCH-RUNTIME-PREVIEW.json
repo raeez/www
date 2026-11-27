@@ -1,0 +1,404 @@
+{
+  "is_private_runtime_preview": true,
+  "decision": "PASS_TWO_ISSUED_V22_TO_V23_CHROMIUM_ROUTES",
+  "scope": "Independent actual Chromium exercise on the two revised scientific passages only",
+  "predecessor_commit": "12a06276b0d8d44301d9dac307410c33db45154a",
+  "predecessor_files": {
+    "index.html": {
+      "sha256": "f6b5a56cc36e1161c356a56142d58ecbdaa0a3e7a49767271be19abd1d6335e5",
+      "bytes": 5097280
+    },
+    "reference.html": {
+      "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+      "bytes": 5068537
+    },
+    "atlas.html": {
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088
+    },
+    "reader-index.js": {
+      "sha256": "4bf1c1685168b17582852d9113c651ee421051f4074ee8e1043adf3382cad5d9",
+      "bytes": 5957374
+    }
+  },
+  "candidate_directory": "/tmp/qh-reader-753-v23-20261118/search-history-preview",
+  "candidate_files": {
+    "index.html": {
+      "sha256": "ae0214ad64fcb20509fe72f17b2e267679ce92149de96475a6fb4ffe46c8fa4f",
+      "bytes": 5118712
+    },
+    "reference.html": {
+      "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+      "bytes": 5068537
+    },
+    "atlas.html": {
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088
+    },
+    "reader-index.js": {
+      "sha256": "e0f84aa85150442d977d9bf0a5a15fee28473e84209fbe45e06f0d3844f9be17",
+      "bytes": 5965143
+    }
+  },
+  "author_source_edition": "d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7",
+  "accepted_source_files": {
+    "ch12": "76a299118a24beed77192fc8381249a43fc3a0eec5093cc6ad9972eaa39e6380",
+    "ch13": "916c6e85dca820fc1ab50e0bc86828604d371a001a1f9049de62a14a63b85ad6"
+  },
+  "older_science_verdict_sha256": "83944d38237ea9cf22142a0b20225b566ef65fb1dcd1ad651555f2e9f8ce7b4d",
+  "normal_split_hash": "97537db47a9c51e1bf575c32ceff02c4be87bc213f28c6b1e9fe35eaeabfd6b3",
+  "combined_hash": "1059422cb2ed473fd94282f1f167992c604f5eeed0e367e74a0da3828110e005",
+  "release_record_sha256": "54dfe6b504a5156bc9eeeeca89c66a571a5135499ae38ae2931f670230005148",
+  "chromium_version": "147.0.7727.15",
+  "book_and_search_index_served": [
+    "index.html",
+    "index.html",
+    "reader-index.js",
+    "index.html",
+    "index.html",
+    "reader-index.js"
+  ],
+  "now_utc": "2026-11-18T10:47:38.206Z",
+  "routes": [
+    {
+      "chapter": 12,
+      "query": "Cauchy lifts",
+      "old": "ch12-passage-ea4d57b1e0b6319164a1",
+      "issued_v22_paragraph": "has \n𝑒\n12\n⊗\n𝑒\n21\n coefficient \n1\n/\n(\n2\n(\n𝑥\n−\n𝑦\n)\n)\n. Products of classical single-current modes have Laurent-polynomial coefficients in \n𝑥\n,\n𝑦\n, regular along \n𝑥\n=\n𝑦\n away from the punctures. The ordered Poincaré–Birkhoff–Witt symbols of higher-degree words are independent, so cancellation among such words cannot produce this two-point pole. The same independence gives injectivity of the classical current map. Freeness over \n𝑅\n2\n then lifts injectivity to the displayed precision. For the rank-two intrinsic homomorphism the next coefficients are quartic in the undivided RTT equations and cubic in the undivided determinants. Their vanishing, the all-order homomorphism and its level-composing coproduct remain open. The pole already excludes generation of the whole normalized multipoint algebra by these lifts. [CQ11]",
+      "selected": "ch12-passage-94aa463b505ca4493752",
+      "initial": {
+        "route": "/quantum-holography/index.html?q=Cauchy%20lifts#ch12-passage-ea4d57b1e0b6319164a1",
+        "input": "Cauchy lifts",
+        "text": "This saved address names a changed passage. Its location is available below.",
+        "visible": true,
+        "choices": [
+          {
+            "hash": "#ch12-passage-94aa463b505ca4493752",
+            "label": "Go to has coefficient . Products of classical single-current modes have Laurent-polynomial coefficients in ,…",
+            "url": "#ch12-passage-94aa463b505ca4493752"
+          }
+        ],
+        "searchOpen": true
+      },
+      "first_notice_action_directly_pointer_reachable": false,
+      "click_dismissal": {
+        "route": "/quantum-holography/index.html?q=Cauchy%20lifts#ch12-passage-ea4d57b1e0b6319164a1",
+        "input": "Cauchy lifts",
+        "text": "This saved address names a changed passage. Its location is available below.",
+        "visible": true,
+        "choices": [
+          {
+            "hash": "#ch12-passage-94aa463b505ca4493752",
+            "label": "Go to has coefficient . Products of classical single-current modes have Laurent-polynomial coefficients in ,…",
+            "url": "#ch12-passage-94aa463b505ca4493752"
+          }
+        ],
+        "searchOpen": false
+      },
+      "actual_trusted_mouse_events": [
+        {
+          "kind": "pointerdown",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 0
+        },
+        {
+          "kind": "pointerup",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 0
+        },
+        {
+          "kind": "click",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 1
+        }
+      ],
+      "actual_click": {
+        "id": "ch12-passage-94aa463b505ca4493752",
+        "tag": "P",
+        "text": "has \n𝑒\n12\n⊗\n𝑒\n21\n coefficient \n1\n/\n(\n2\n(\n𝑥\n−\n𝑦\n)\n)\n. Products of classical single-current modes have Laurent-polynomial coefficients in \n𝑥\n,\n𝑦\n, regular along \n𝑥\n=\n𝑦\n away from the punctures. The ordered Poincaré–Birkhoff–Witt symbols of higher-degree words are independent, so cancellation among such words cannot produce this two-point pole. The same independence gives injectivity of the classical current map. Freeness over \n𝑅\n2\n then lifts injectivity to the displayed precision. The pole already excludes generation of the whole normalized multipoint algebra by these lifts. [CQ11]",
+        "tex": [
+          "e_{12}\\otimes e_{21}",
+          "1/(2(x-y))",
+          "x,y",
+          "x=y",
+          "R_2"
+        ],
+        "immediateNextId": "ch12-passage-e4cc832355625ca07c88",
+        "immediateNext": "Does the rank-two homomorphism survive one more power of \nℏ\n? At the critical level \n𝐾\n=\n−\n2\n, a single number decides the question. Use the same Cauchy lifts in the normalized mode algebra over \nℂ\n[\nℏ\n]\n/\n(\nℏ\n3\n)\n. Take the \n𝑝\n−\n1\n𝑢\n0\n coefficient of the centered mixed relation, with \n𝑝\n the annihilation parameter and \n𝑢\n the creation parameter. Read its matrix entry from column \n(\n2,2\n)\n to row \n(\n1,1\n)\n. After division of the RTT relation by \nℏ\n2\n, it is the \nℏ\n2\n coefficient that must vanish. This is the quartic coefficient before division.",
+        "viewport": {
+          "top": 872.890625,
+          "bottom": 1131.640625,
+          "height": 1000
+        },
+        "hiddenAncestor": false,
+        "route": "/quantum-holography/index.html#ch12-passage-94aa463b505ca4493752",
+        "scientificPassages": [
+          {
+            "id": "ch12-passage-e4cc832355625ca07c88",
+            "text": "Does the rank-two homomorphism survive one more power of \nℏ\n? At the critical level \n𝐾\n=\n−\n2\n, a single number decides the question. Use the same Cauchy lifts in the normalized mode algebra over \nℂ\n[\nℏ\n]\n/\n(\nℏ\n3\n)\n. Take the \n𝑝\n−\n1\n𝑢\n0\n coefficient of the centered mixed relation, with \n𝑝\n the annihilation parameter and \n𝑢\n the creation parameter. Read its matrix entry from column \n(\n2,2\n)\n to row \n(\n1,1\n)\n. After division of the RTT relation by \nℏ\n2\n, it is the \nℏ\n2\n coefficient that must vanish. This is the quartic coefficient before division.",
+            "tex": [
+              "\\hbar",
+              "K=-2",
+              "\\mathbb C[\\hbar]/(\\hbar^3)",
+              "p^{-1}u^0",
+              "p",
+              "u",
+              "(2,2)",
+              "(1,1)",
+              "\\hbar^2",
+              "\\hbar^2"
+            ]
+          },
+          {
+            "id": "ch12-passage-2fda0b1ebd026dc013ae",
+            "text": "To measure it, take the part with three insertion points. Average the six orders of the slots, project to the vacuum at \n𝑥\n and to the translation towers of the current \n𝑒\n12\n at \n𝑦\n,\n𝑧\n. Transfer derivatives of either current to its multiplier by the translation relation. Finally take the residue at \n𝑥\n=\n𝑦\n, keeping \n𝑧\n separate. An \n𝑥\n-derivative has zero residue; a detached normalized vacuum with multiplier \n𝑥\n−\n1\n has no pole there. The residue therefore detects a class in the normalized mode algebra itself. The mixed entry gives \n𝐾\n/\n[\n3\n𝑦\n𝑧\n(\n𝑦\n−\n𝑧\n)\n]\n, which at \n𝑦\n=\n1\n,\n \n𝑧\n=\n2\n,\n \n𝐾\n=\n−\n2\n is \n1\n/\n3\n.",
+            "tex": [
+              "x",
+              "e_{12}",
+              "y,z",
+              "x=y",
+              "z",
+              "x",
+              "x^{-1}",
+              "K/[3yz(y-z)]",
+              "y=1,\\ z=2,\\ K=-2",
+              "1/3"
+            ]
+          },
+          {
+            "id": "ch12-passage-f594c834fa2a6bbce0ac",
+            "text": "In every rank \n𝑁\n≥\n2\n, the same calculation with \n𝑒\n1\n𝑁\n detects a defect in each of the three relations. For the creation, annihilation and centered mixed entries, respectively, the residues are",
+            "tex": [
+              "N\\ge2",
+              "e_{1N}"
+            ]
+          },
+          {
+            "id": "",
+            "text": "𝐾\n3\n𝑦\n2\n𝑧\n2\n(\n𝑦\n−\n𝑧\n)\n,\n𝐾\n3\n(\n𝑦\n−\n𝑧\n)\n,\n𝐾\n3\n𝑦\n𝑧\n(\n𝑦\n−\n𝑧\n)\n.",
+            "tex": [
+              "\\frac{K}{3y^2z^2(y-z)},\\qquad \\frac{K}{3(y-z)},\\qquad\n \\frac{K}{3yz(y-z)} ."
+            ]
+          },
+          {
+            "id": "ch12-passage-4c0a8fcb124d35c4e8f3",
+            "text": "The first two use the coefficients \n𝑢\n0\n𝑣\n2\n and \n𝑝\n0\n𝑞\n−\n2\n after clearing the same-half spectral denominator. Thus at every nonzero level the prescribed lifts already fail modulo \nℏ\n3\n, including at \n𝐾\n=\n−\n𝑁\n. An all-order homomorphism with these generator images would reduce to one at this precision.",
+            "tex": [
+              "u^0v^2",
+              "p^0q^{-2}",
+              "\\hbar^3",
+              "K=-N"
+            ]
+          },
+          {
+            "id": "ch12-passage-29672c8639eb82e7f582",
+            "text": "Both divided quantum determinants do vanish at this precision in all ranks and levels. In rank two, at every level, the two auxiliary partial traces of each divided RTT defect also vanish. At \n𝑁\n=\n2\n,\n \n𝐾\n=\n0\n the entire highest-weight summand \n𝑉\n4\n of \n𝔰\n𝔩\n2\n∗\n⊗\n2\n vanishes for these three defects; the \n𝑉\n2\n and \n𝑉\n0\n summands remain to be determined. The full level-zero RTT comparison in other ranks and at higher precisions also remains open. The field identities on vacuum states and the coproduct with values in the joint mode algebra retain their own constructions. Replacing this joint target by separately integrated tensor factors, or altering the Cauchy lifts by new mode classes, requires a separate comparison.",
+            "tex": [
+              "N=2,\\ K=0",
+              "V_4",
+              "\\mathfrak{sl}_2^{*\\otimes2}",
+              "V_2",
+              "V_0"
+            ]
+          },
+          {
+            "id": "ch12-passage-98e9983f64bf7c16eedd",
+            "text": "The dual ghost algebra illustrates another distinction. The regular half-dual has odd matrix coefficients",
+            "tex": []
+          }
+        ]
+      },
+      "back": {
+        "route": "/quantum-holography/index.html?q=Cauchy%20lifts#ch12-passage-ea4d57b1e0b6319164a1",
+        "input": "Cauchy lifts",
+        "text": "This saved address names a changed passage. Its location is available below.",
+        "visible": true,
+        "choices": [
+          {
+            "hash": "#ch12-passage-94aa463b505ca4493752",
+            "label": "Go to has coefficient . Products of classical single-current modes have Laurent-polynomial coefficients in ,…",
+            "url": "#ch12-passage-94aa463b505ca4493752"
+          }
+        ],
+        "searchOpen": true
+      },
+      "search_results_accessible_after_back": [
+        {
+          "label": "Passage · 12.3 Rational matrix fields and the full curved dual\n…level \n𝐾\n=\n−\n2\n, a single number decides the question. Use the same Cauchy lifts in the normalized mode algebra over \nℂ\n[\nℏ\n]\n/\n(\nℏ\n3\n)\n. Take the \n𝑝\n−\n1\n𝑢\n0\n coefficient of the centered mixed relation, with \n𝑝\n the annihilation parameter and…",
+          "href": "#ch12-passage-e4cc832355625ca07c88"
+        },
+        {
+          "label": "Passage · 12.3 Rational matrix fields and the full curved dual\n…target by separately integrated tensor factors, or altering the Cauchy lifts by new mode classes, requires a separate comparison.",
+          "href": "#ch12-passage-29672c8639eb82e7f582"
+        },
+        {
+          "label": "Passage · 15.4 Critical coefficients and orientation\n…the two equations \n𝑢\n𝑝\n=\n𝐷\n=\n0\n, and write \n𝑀\n𝑝\n=\n𝑅\n′\n[\n𝐷\n]\n/\n(\n𝑢\n𝑝\n,\n𝐷\n)\n. In the Cauchy coefficient \n𝑇\n of finite principal parts, \n𝑢\n lowers pole order and kills \n𝑢\n−\n1\n. On the moment complex \n𝐶\n=\n𝑇\n[\n𝐷\n]\n⊗\nΛ\n(\n𝜂\n,\n𝜒\n)\n, with \n𝑑\n𝜂\n=\n𝑢\n𝐷\n, a map \n𝑀\n𝑝\n→\n𝐻\n0\n(\n𝐶\n)\n=\n𝑇\n may send \n1\n…",
+          "href": "#ch15-passage-1eb9b09206bab795a8a6"
+        },
+        {
+          "label": "Passage\n…local-vacuum mode [z−1;1] equal to the empty algebra unit. The divided Cauchy lifts give an injective map DK/ℏ2DK↪M2. Both halves, the centered mixed relation and both descending column determinants hold. At classical…",
+          "href": "reference.html#examples-passage-ccbb35f2a1d0c95f0dba"
+        },
+        {
+          "label": "Atlas entry\nCurrents, sewing and endpoint duality\n…coefficient-complex augmentation equivalence No. 191The fixed separated Cauchy root No. 194Finite-projective ordered duality No. 195Locally finite energy duality No. 196Native generator lattices and formal duals No.…",
+          "href": "atlas.html#atlas-d-operations"
+        }
+      ],
+      "page_errors": [],
+      "images": {
+        "ch12-issued-notice-with-query.png": "4592650d0ece33c9acbdbade4f53b8e84a7aee1b3c49905cae86e6438403b6a6",
+        "ch12-notice.png": "11437045944bf243d673bbc5d1594724592599601c82f554ecef44778a0caeb9",
+        "ch12-target.png": "b361d17538ada34165c8de5cdf7b7270681e53c252cd610ec24c44ded830e893",
+        "ch12-back.png": "7ff13ae2abe656d7e1e968694db4a1a15748fe675627c299b5a611759576272b"
+      }
+    },
+    {
+      "chapter": 13,
+      "query": "compact support",
+      "old": "ch13-passage-8dd7e025669dd7f8169d",
+      "issued_v22_paragraph": "An independent geometric comparison remains open. The Ran space parametrizes finite nonempty subsets of \n𝑈\n. To identify \n𝐺\n𝑈\n(\n𝑉\n)\n with a de Rham pushforward there, or with an integral using proper supports on an ordered configuration atlas, one needs a map carrying the actual attachments, support maps, product and marked vacuum across integration. Two failures help specify this requirement. On the ordered atlas, taking the free colimit of all expansion branches identifies one class \n𝑥\n with a composite having two copies of \n𝑥\n. The relation \n𝑥\n=\n2\n𝑥\n kills the occupied vacuum along with every other positive-cardinality class. On \n𝔾\n𝑚\n the mode \n[\n𝑧\n−\n1\n;\n𝟏\n]\n survives. A different construction weights the configuration complex by its scalar dual. On \n𝔸\n1\n its scalar singleton contributes the constant polynomial paired with constant-coefficient evaluation. This pair evaluates to one and gives a nonempty degree-zero class independent of the empty unit, whereas \n𝖬\n𝔸\n1\n(\n𝑘\n)\n=\n𝑘\n. A geometric integral must preserve both the collision residue above and these unit distinctions.",
+      "selected": "ch13-passage-bc3d4ea6453e425b1e51",
+      "initial": {
+        "route": "/quantum-holography/index.html?q=compact%20support#ch13-passage-8dd7e025669dd7f8169d",
+        "input": "compact support",
+        "text": "This saved address names a changed passage. Its location is available below.",
+        "visible": true,
+        "choices": [
+          {
+            "hash": "#ch13-passage-bc3d4ea6453e425b1e51",
+            "label": "Go to Compact support gives two different questions even for a single collision. On , take the finite constant…",
+            "url": "#ch13-passage-bc3d4ea6453e425b1e51"
+          }
+        ],
+        "searchOpen": true
+      },
+      "first_notice_action_directly_pointer_reachable": false,
+      "click_dismissal": {
+        "route": "/quantum-holography/index.html?q=compact%20support#ch13-passage-8dd7e025669dd7f8169d",
+        "input": "compact support",
+        "text": "This saved address names a changed passage. Its location is available below.",
+        "visible": true,
+        "choices": [
+          {
+            "hash": "#ch13-passage-bc3d4ea6453e425b1e51",
+            "label": "Go to Compact support gives two different questions even for a single collision. On , take the finite constant…",
+            "url": "#ch13-passage-bc3d4ea6453e425b1e51"
+          }
+        ],
+        "searchOpen": false
+      },
+      "actual_trusted_mouse_events": [
+        {
+          "kind": "pointerdown",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 0
+        },
+        {
+          "kind": "pointerup",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 0
+        },
+        {
+          "kind": "click",
+          "isTrusted": true,
+          "pointerType": "mouse",
+          "detail": 1
+        }
+      ],
+      "actual_click": {
+        "id": "ch13-passage-bc3d4ea6453e425b1e51",
+        "tag": "P",
+        "text": "Compact support gives two different questions even for a single collision. On \n𝑈\n=\nℂ\n×\n, take the finite constant field algebra \nℂ\n[\n𝑥\n,\n𝑦\n]\n/\n(\n𝑥\n,\n𝑦\n)\n4\n with translation zero and multiplication twisted by \n𝐹\n=\n(\n1\n+\n𝐸\n2\n)\n𝐻\n1\n, where \n𝐸\n=\n𝑥\n𝜕\n𝑦\n and \n𝐻\n=\n𝑥\n𝜕\n𝑥\n act in the indicated tensor slots. Thus \n𝑚\n∗\n=\n𝑚\npol\n𝐹\n−\n1\n, and \n𝑚\n=\n𝑚\n∗\n(\n𝑥\n,\n𝑦\n)\n=\n𝑥\n𝑦\n−\n𝑥\n2\n. In the \n13\n|\n2\n collision let \n𝑎\n=\n{\n1,3\n}\n and \n𝑏\n=\n{\n2\n}\n. For the multiplier \n1\n/\n[\n𝑧\n𝑏\n(\n𝑧\n𝑎\n−\n𝑧\n𝑏\n)\n]\n, both quotient orders give the same density \n𝑚\n𝑑\n𝑧\n/\n𝑧\n in the surviving coordinate \n𝑧\n. Does it come from compactly supported integration? On compactifying \n𝑈\n to the projective line, its residues at \n0\n,\n∞\n are \n(\n𝑚\n,\n−\n𝑚\n)\n. This is a nonzero class in the cone of \n𝑅\nΓ\n𝑐\n(\n𝑈\n,\n𝑉\n)\n[\n1\n]\n→\n𝑅\nΓ\n(\n𝑈\n,\n𝑉\n)\n[\n1\n]\n, with \n𝑉\n the constant coefficient just defined. It lies in the first Eulerian summand of the realized comparison, so passing through all finite sets does not kill it.",
+        "tex": [
+          "U=\\mathbb C^\\times",
+          "\\mathbb C[x,y]/(x,y)^4",
+          "F=(1+E_2)^{H_1}",
+          "E=x\\partial_y",
+          "H=x\\partial_x",
+          "m_*=m_{\\rm pol}F^{-1}",
+          "m=m_*(x,y)=xy-x^2",
+          "13|2",
+          "a=\\{1,3\\}",
+          "b=\\{2\\}",
+          "1/[z_b(z_a-z_b)]",
+          "m\\,dz/z",
+          "z",
+          "U",
+          "0,\\infty",
+          "(m,-m)",
+          "R\\Gamma_c(U,V)[1]\\to R\\Gamma(U,V)[1]",
+          "V"
+        ],
+        "immediateNextId": "ch13-passage-add68cf7e378de6eabba",
+        "immediateNext": "There is nevertheless a compactly supported construction on the ordered charts themselves. Let \n𝑈\n be a smooth complex curve of finite type. Use analytic constructible coefficients, or the corresponding regular holonomic sector, with a supplied global word system whose coefficients are finite at each arity. Its changes of order, its identifications under extraordinary restriction to every collision diagonal, and its external product must be given coherently. Over a labelled collection of points, a lift chooses an order. Draw a Čech edge between two lifts and send a coefficient along that edge by the given change of order. Its boundary is the transported coefficient at the second lift minus the coefficient at the first. A chosen order contracts the augmented chain complex by prepending that lift. The exceptional image of an open chart is extension by zero. On intersections its counits give the alternating face maps. Common refinements of the orders before and after each collision then give the proper diagonal maps, compatibly under composition and external products.",
+        "viewport": {
+          "top": 312.703125,
+          "bottom": 701.234375,
+          "height": 1000
+        },
+        "hiddenAncestor": false,
+        "route": "/quantum-holography/index.html#ch13-passage-bc3d4ea6453e425b1e51",
+        "compactComparison": {
+          "text": "Taking compact sections of these chains and then the homotopy colimit over finite sets with the proper diagonal maps for surjections computes \n𝑝\nRan\n,\n!\n, the left adjoint to extraordinary pullback from a point. Both operations still agree on the derived coefficient ring \n𝐵\n=\n𝑇\n⊗\n𝐴\n𝐋\n𝑇\n, where \n𝐴\n=\nℂ\n[\n𝜅\n,\n𝜆\n]\n and \n𝑇\n=\n𝐴\n/\n(\n𝜅\n)\n. The odd coefficient \n𝜂\n in degree \n−\n1\n gives a second puncture class \n𝜂\n(\n𝑚\n,\n−\n𝑚\n)\n in the comparison with ordinary integration. Thus the compact order construction recovers compact Ran integration, while the ordinary closed-incidence integral retains a logarithmic class and its odd partner outside the compact image. Further de Rham realizations require the actual maps on attachments, products and the marked vacuum.",
+          "tex": [
+            "p_{\\mathrm{Ran},!}",
+            "B=T\\otimes_A^{\\mathbf L}T",
+            "A=\\mathbb C[\\kappa,\\lambda]",
+            "T=A/(\\kappa)",
+            "\\eta",
+            "-1",
+            "\\eta(m,-m)"
+          ]
+        }
+      },
+      "back": {
+        "route": "/quantum-holography/index.html?q=compact%20support#ch13-passage-8dd7e025669dd7f8169d",
+        "input": "compact support",
+        "text": "This saved address names a changed passage. Its location is available below.",
+        "visible": true,
+        "choices": [
+          {
+            "hash": "#ch13-passage-bc3d4ea6453e425b1e51",
+            "label": "Go to Compact support gives two different questions even for a single collision. On , take the finite constant…",
+            "url": "#ch13-passage-bc3d4ea6453e425b1e51"
+          }
+        ],
+        "searchOpen": true
+      },
+      "search_results_accessible_after_back": [
+        {
+          "label": "Figure · 1.4 The mathematical problem in its present form · in a formula\nThe reconstruction questions\nA collision, an action on a representation and a measurement in a prepared state each supply a test of boundary reconstruction. The links place the corresponding questions in the book.",
+          "href": "#fig-programme-overview"
+        },
+        {
+          "label": "Passage · 4.5 The open locus cannot determine every extension\n…infinity, has no eigenvalue \n1\n on either coefficient. Here \n𝑀\n0\n,\n𝑛\n+\n1\n compactifies the directions by stable configurations of \n𝑛\n+\n1\n marked points of a rational curve. With \n𝑚\n=\n𝑛\n−\n2\n, the link has cohomology only in degrees \n𝑚\n,\n𝑚\n+\n1\n,…",
+          "href": "#ch04-passage-cd67a41fa6cc1d344bfc"
+        },
+        {
+          "label": "Passage · 4.5 The open locus cannot determine every extension\n…three fixed at \n0,1\n,\n∞\n. Every boundary divisor in its stable compactification corresponds to a proper block and has monodromy \n−\n1\n. Its circle complex contracts, so compactly supported and ordinary direction cohomology…",
+          "href": "#ch04-passage-b91f632fddd88e37f057"
+        },
+        {
+          "label": "Passage · 4.5 The open locus cannot determine every extension\n…simultaneous dilation by \n𝑎\n, a horizontal section scales by \n𝑎\n3\n. Compactly supported angular cohomology is concentrated in degree two and identifies equivariantly with \n𝑉\n. The trace of a finite permutation is consequently…",
+          "href": "#ch04-passage-fdf244fc66a8d7399db5"
+        },
+        {
+          "label": "Figure · 6.6 The image and its original counit · in a formula\nThe representation comparison within reconstruction\nThe unit recovers modules on the specified affine source. Comparing the tensor product of two such modules with the fusion of their physical lines requires a map for that operation.",
+          "href": "#fig-programme-context-duality"
+        }
+      ],
+      "page_errors": [],
+      "images": {
+        "ch13-issued-notice-with-query.png": "126c43afc14253db9c0441ce67b851e6b6a1e04c6164962dd5c3a39d532b2e3f",
+        "ch13-notice.png": "f2da8f369ad72d40a2719ade0389f1e9393be71622651e3cebc8c6642a3fe52d",
+        "ch13-target.png": "3954c30fd802640a2eb4a67a61412221b9c3323be6c1ce2678dbbfb85c3cb736",
+        "ch13-back.png": "8940839c0e03e1777064eab37b3b0c1bc2b86978fa27a32607bbc34c99f7b92e"
+      }
+    }
+  ]
+}

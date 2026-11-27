@@ -1,0 +1,159 @@
+{
+  "schema": "qh-first-principles-downstream-build/1",
+  "status": "MECHANICAL_CHECKS_COMPLETE",
+  "source_audit_failures": [],
+  "math_formulas": 24405,
+  "math_errors": 0,
+  "commands": [
+    {
+      "step": "split",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-reference.py",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/combined.html",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public",
+        "--book-name",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T11:04:48.309611+00:00",
+      "completed_utc": "2026-11-18T11:04:51.339800+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/split.log"
+    },
+    {
+      "step": "metadata",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/set_page_metadata.py",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public"
+      ],
+      "started_utc": "2026-11-18T11:04:51.339922+00:00",
+      "completed_utc": "2026-11-18T11:04:51.562600+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/metadata.log"
+    },
+    {
+      "step": "index",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/reader-index.cjs",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public/reader-index.js",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public/index.html",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public/reference.html",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public/atlas.html"
+      ],
+      "started_utc": "2026-11-18T11:04:51.600491+00:00",
+      "completed_utc": "2026-11-18T11:05:39.478974+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/index.log"
+    },
+    {
+      "step": "public_check",
+      "command": [
+        "/private/tmp/qh-tracker-build-20261116-venv/bin/python",
+        "-I",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/check_public.py",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/PUBLIC-FILES-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T11:05:39.479323+00:00",
+      "completed_utc": "2026-11-18T11:05:57.945625+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/public_check.log"
+    },
+    {
+      "step": "v14_consumer_check",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/consumer/check.cjs",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/V14-CONSUMER-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T11:05:57.945747+00:00",
+      "completed_utc": "2026-11-18T11:06:24.315659+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/v14_consumer_check.log"
+    },
+    {
+      "step": "split_checks",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-checks.cjs",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T11:06:24.315790+00:00",
+      "completed_utc": "2026-11-18T11:07:25.496169+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/split_checks.log"
+    },
+    {
+      "step": "reader_page",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "--page",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public/index.html"
+      ],
+      "started_utc": "2026-11-18T11:07:25.496437+00:00",
+      "completed_utc": "2026-11-18T11:09:12.831872+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/reader_page.log"
+    },
+    {
+      "step": "reader_fixtures",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/workspace/compiler/quantum-holography-status/tests/reader.test.cjs"
+      ],
+      "started_utc": "2026-11-18T11:09:12.832031+00:00",
+      "completed_utc": "2026-11-18T11:09:50.146350+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/reader_fixtures.log"
+    }
+  ],
+  "heading_metadata": {
+    "path": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/build/HEADING-METADATA.json",
+    "sha256": "53c80cd96c003389a48a3074f23b329025128b5c3c5e05865b66e1c9093189f8",
+    "bytes": 3506
+  },
+  "public_files": {
+    "index.html": {
+      "path": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public/index.html",
+      "sha256": "5e3aae76d1c02ac8584f06c4529b98c7e3f1d712cc34680ba06ed6d11d7db9f0",
+      "bytes": 4713789
+    },
+    "reference.html": {
+      "path": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public/reference.html",
+      "sha256": "4aebf2385bd29d3d7e46950a09c5ca376c8470bf584fd6aaab36176ec3babd0e",
+      "bytes": 4702921
+    },
+    "atlas.html": {
+      "path": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public/atlas.html",
+      "sha256": "191a470ec650c72ac4cd71543ed41d1d8ac101d3a48521b5e904214f63cc99c4",
+      "bytes": 11336897
+    },
+    "reader-index.js": {
+      "path": "/private/tmp/qh-reader-abstract-20261118/technical-superset/normal/public/reader-index.js",
+      "sha256": "2624bae40d4da5944d58ee827769e351acdc3e4b3dd1c9d91beeb2e2981199e0",
+      "bytes": 6002132
+    }
+  },
+  "bad_local_links": [],
+  "private_or_attribution_hit_count": 0,
+  "native_visual_qa": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "release_candidate": false
+}

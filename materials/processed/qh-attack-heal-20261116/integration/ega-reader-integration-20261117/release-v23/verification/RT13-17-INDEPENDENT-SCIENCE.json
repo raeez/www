@@ -1,0 +1,123 @@
+{
+  "schema": "independent-ega12-rtt-scientific-transfer/1",
+  "reviewer": "/root/astra62_rebuild_director/check_quantum",
+  "decision": "verified-exact-editable-source",
+  "utc": "2026-11-18T10:54:16.385262+00:00",
+  "subject": {
+    "path": "/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-rt16/versions/9729d7fbbf001d8310199b5ac249e5d600ca24faec32181049b8bd1da2997a63/edited/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+    "bytes": 59254,
+    "sha256": "6867e9103cc6ab067eec5b3b87291975c906285314494bdc1f154b0da3290956"
+  },
+  "predecessor": {
+    "path": "/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/edited/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+    "bytes": 56271,
+    "sha256": "76a299118a24beed77192fc8381249a43fc3a0eec5093cc6ad9972eaa39e6380"
+  },
+  "edition": "9729d7fbbf001d8310199b5ac249e5d600ca24faec32181049b8bd1da2997a63",
+  "record": {
+    "path": "/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-rt16/versions/9729d7fbbf001d8310199b5ac249e5d600ca24faec32181049b8bd1da2997a63/RECORD.json",
+    "bytes": 46135,
+    "sha256": "5d1596ecc4af1b19702f5f33a8948fe176494576c01850baac162c7e06e46df7"
+  },
+  "patch": {
+    "path": "/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-rt16/versions/9729d7fbbf001d8310199b5ac249e5d600ca24faec32181049b8bd1da2997a63/native-source.patch",
+    "bytes": 5763,
+    "sha256": "185b3c0b900ac43274f5d33b9c4b529a0b37da3c444dae7da5da4a5957ce2d34"
+  },
+  "before_lines_inclusive": [
+    303,
+    303
+  ],
+  "after_lines_inclusive": [
+    303,
+    323
+  ],
+  "edits": "The chapter changes only the old line 303. The companion manifest changes two numeric downstream excerpt offsets and the exact published source patch was regenerated.",
+  "checked_science": [
+    {
+      "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/VERDICT.json",
+      "bytes": 5587,
+      "sha256": "4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca"
+    },
+    {
+      "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/VERDICT.json",
+      "bytes": 4640,
+      "sha256": "1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80"
+    },
+    {
+      "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/local-repair/VERDICT.json",
+      "bytes": 8563,
+      "sha256": "944f776fee98eaf9a62a8d96f69112659297e70f12826bc80e84e0bbde895467"
+    },
+    {
+      "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/remaining-blocks/VERDICT.json",
+      "bytes": 11874,
+      "sha256": "6d2af8fbe7d1d5ba6bc126963bee042598243339e5ac1b92b3147b5d74d4e94a"
+    },
+    {
+      "path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/V2.md",
+      "bytes": 7688,
+      "sha256": "0f81553eeb8bb7867e20023b8a62434caa3c72eb6b327a090b67e90112bf82f9"
+    },
+    {
+      "path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/V0.md",
+      "bytes": 18557,
+      "sha256": "4b364116c0bac9844c546292df24e43ca6c9857995d8c240b4b7c0abb2ad202a"
+    },
+    {
+      "path": "/tmp/astra62-post665-research-20261118/12-rtt/remaining-blocks/LEVEL-ZERO.md",
+      "bytes": 9066,
+      "sha256": "fa708bd076e0be36eae235208ca5669da12269ce91c33c6f7d032e587f154d83"
+    },
+    {
+      "path": "/tmp/astra62-post665-research-20261118/12-rtt/local-repair/LOWER.md",
+      "bytes": 16925,
+      "sha256": "7f1d6d2a7518dde426c1a8fe94b7ae9290d4bed757d4851133ae0c875a195723"
+    }
+  ],
+  "mathematics": [
+    {
+      "lines": [
+        275,
+        301
+      ],
+      "finding": "The original rank-two map is a proper injection at divided precision two for all K. The original lifted single occupied residue at the extreme p^-1 u^0 mixed entry is K/[3yz(y-z)] and gives +1/3 for K=-2,y=1,z=2. The original three unmodified blocks fail at every nonzero K for all N≥2 at the next precision."
+    },
+    {
+      "lines": [
+        303,
+        308
+      ],
+      "finding": "The two divided determinant defects vanish for all N≥2 and K at d=3; the two auxiliary partial traces of all three normalized divided RTT defects vanish in rank two. Every rank-two traceless summand vanishes at K=0, giving the proper injective full D_0/hbar^3 D_0 to normalized Mbar_3 map with the literal lifts."
+    },
+    {
+      "lines": [
+        310,
+        317
+      ],
+      "finding": "The printed matrix J, the order of T and the normal product in S, coefficients +2K and -K, both rational kernels, the order of every slot, and the minus sign on the entire corrected annihilation series agree with the exact fixed U+D. Their terminal puncture action vanishes on smooth normalized modules and the corrections vanish at level zero."
+    },
+    {
+      "lines": [
+        319,
+        319
+      ],
+      "finding": "For those corrected lifts only, V4 and V0 vanish in every rank-two half and mixed defect for all K; V2 fails in all three at K≠0. The ordered (b,H) p^-2 u^0 corrected mixed residue is 2K²/(3z²) along b, with [b,H]=b, two independent vacua integrated first at x=z, then y=z. Its critical value is +8/3 at z=1; the unnormalized antisymmetric covector doubles it."
+    },
+    {
+      "lines": [
+        321,
+        323
+      ],
+      "finding": "The critical constant-multiplier quadratic Segal–Sugawara unary acts as zero on the entire universal vacuum, although its genuine unary class is nonzero. The scalar proof specializes its remaining polynomial after removing both higher arities, using unary faithfulness only away from critical level. The original full map at N>2,d=2, higher-rank d=3 at level zero, rank-two higher precision, other corrected lifts, and the stronger separate tensor completion retain their exact scopes. The joint coproduct and operator construction remain valid."
+    }
+  ],
+  "specializations": {
+    "original": "1/3",
+    "modified_ordered": "8/3",
+    "modified_unnormalized_antisymmetric": "16/3"
+  },
+  "manuscript_content": "The changed passage contains reader-facing mathematics only. Evidence and review metadata remain outside it.",
+  "render": "The normal native EGA chapter artifact is bound separately after it is frozen and read.",
+  "scope": "Independent scientific transfer of existing signed results. The essay and the earlier edition are separate. No installation or release authority."
+}

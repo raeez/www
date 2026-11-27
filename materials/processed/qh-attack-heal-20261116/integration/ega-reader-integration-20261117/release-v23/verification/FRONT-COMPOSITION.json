@@ -1,0 +1,103 @@
+{
+  "front": {
+    "original_paragraphs_sha256": [
+      "479d7ac281b72b1970998699dff5e9d7806e369cfa0f982bdcaadfea060c71a9",
+      "ec9f58e146f5229b0c7813ad22319afdf921cdb9783c7f4fb03d6ef17754dc4c",
+      "c6b3a55d62b8058b4c15b478c9751418b01c45644e2146e128be442f77ee9e49",
+      "455d739efa00d3f7e52b0189334dbb1c076de908e65b290cb4f889d96d9e86b5",
+      "ed3dfd31a0a271b22e20e097818c025803e8bed7ac178217ba67090a1decf57f",
+      "c2aa54e9cc5e2d688f7f35175fb56512e9c9cf7a224f697bbfca6bf8a3d1844e",
+      "15b4d7cdbed3b0436133f0250fa2555ec95454c432c249d8baf363131887fd12",
+      "3a621a4be080c70eadfb93c0b3518d88f84f2a2518d8195bed8667144688a304"
+    ],
+    "final_positions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      12
+    ],
+    "new_paragraphs_sha256": [
+      {
+        "position": 8,
+        "sha256": "0ca2274f9a092ca50b91cca1938329c0f0e0d80ba06df6d61307661d2f8d5638"
+      },
+      {
+        "position": 9,
+        "sha256": "ffdb3c7b0a59726186342511ca08bc22359aaa455d2927229d7afaab94b07a3b"
+      },
+      {
+        "position": 10,
+        "sha256": "92f09aa39a4b258d33810da824d1edb909ae530af6d5866c1de1cd9f27d261b0"
+      },
+      {
+        "position": 11,
+        "sha256": "7e932fecf42bf1b8a4fc6810df04bef866efdf8d0c797213bbfea6593d3d3f3c"
+      },
+      {
+        "position": 13,
+        "sha256": "65893b31e4992eb190a5cf1f686f917afa663b330807a2c3261d6ce9853da927"
+      },
+      {
+        "position": 14,
+        "sha256": "dd24557e4e499fc9bfa4f400bd598f11bcd1a01ffba92aea783ef27af5e169ef"
+      },
+      {
+        "position": 15,
+        "sha256": "60e84997a5ec85f91898ce1422f81efbfee9f0597a108e6851d7890f3a16310a"
+      },
+      {
+        "position": 16,
+        "sha256": "32aeb860356237dbe1b2946e67bb1c5313cb11f5c174b097646cc363637eca1a"
+      },
+      {
+        "position": 17,
+        "sha256": "fecc3af789b6fad3251a667161e17b86c6c9c74c687c243cbd262a2751ead8ee"
+      }
+    ],
+    "original_fourth_position": 4,
+    "final_introduction_sha256": "8d6493c8598de518f4d6b59ee193dd5af9fcc715aad412ba3c8eacd79043c13f"
+  },
+  "disk": {
+    "pure_insertion": true,
+    "existing_excerpt_relocations": [
+      "ch11-ray-disk-state",
+      "ch11-theorem-111-normalized-numerical-gaussian",
+      "ch11-theorem-112-original-heat-finite-part"
+    ],
+    "new_heading": [
+      {
+        "chapter_id": "ch11",
+        "level": 3,
+        "title": "Recovering a state from the disk",
+        "id": "ch11-recovering-a-state-from-the-disk"
+      }
+    ]
+  },
+  "front_file": {
+    "path": "/tmp/qh-reader-abstract-20261118/author/DRAFT-3.md",
+    "sha256": "8d6493c8598de518f4d6b59ee193dd5af9fcc715aad412ba3c8eacd79043c13f",
+    "bytes": 11552
+  },
+  "front_map": {
+    "path": "/tmp/qh-reader-abstract-20261118/author/DRAFT-3-INSERTIONS.json",
+    "sha256": "f8d0dd1f80000dcdea50328a7343e874f04f32ca87c9d8d9fbd6b6d76a443195",
+    "bytes": 7848
+  },
+  "disk_file": {
+    "path": "/private/tmp/qh-reader-abstract-20261118/ch11-proof/target/11-states-and-lines.md",
+    "sha256": "722228ad9adf8e63a1c56190f27d51fc03411ac1882f4f8dafd030591be877cd",
+    "bytes": 60008
+  },
+  "final_manifest": {
+    "sha256": "d06c896fef0945fc2a1cb1983e4995300cc4428f79e5bd3c8a23a946f8dbabe1",
+    "bytes": 460777
+  },
+  "final_ch11": {
+    "sha256": "722228ad9adf8e63a1c56190f27d51fc03411ac1882f4f8dafd030591be877cd",
+    "bytes": 60008
+  }
+}

@@ -1,0 +1,320 @@
+{
+  "parent_native_registration": {
+    "path": "/tmp/qh-reader-753-v23-20261118/STAGED.json",
+    "sha256": "719c8f07701dfb5527fcf49e9348b4e29c87ae7af6eed50742e26f86ae3753f8",
+    "bytes": 2708
+  },
+  "historical_753_12_13": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/ROOT-HANDOFF.json",
+    "sha256": "f654b6a01e7db78e99d922191e568002355aaae25b1ef4d170e12299a9dd397b",
+    "bytes": 29204
+  },
+  "ch4_ch18_scientific_history": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-4-18/FINAL-SCIENCE-FIGURES-BOOKMARKS.json",
+    "sha256": "dc4c8393984331bdf1fb561328fda59feaaf635d604d8d9852e90f4e6bfffeb6",
+    "bytes": 6061
+  },
+  "scope": "Only chapter 10 and the preexisting Cauchy sentence in the reference essay. Their unchanged preimages are shared by both v23 chapter-12 editions and adding them does not alter the other editable files.",
+  "normal_source_record": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-10-reference/versions/06894cdcf37adec0f4d3f2c2b93daa2b7d734c8a0dac1824ccd2c2f097338420/RECORD.json",
+    "sha256": "4f2c351c8381d84529cabe546ac1abb8786502e61f3438e5dddf9c146076a60c",
+    "bytes": 30583
+  },
+  "native_source_patch": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-10-reference/versions/06894cdcf37adec0f4d3f2c2b93daa2b7d734c8a0dac1824ccd2c2f097338420/native-source.patch",
+    "sha256": "fdb3cbf708c953185195cb46c468337933bb67423264c19fe4418f103181f463",
+    "bytes": 15876
+  },
+  "source_preimages": {
+    "chapters/10-analytic-sewing.md": {
+      "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/build-input/content/quantum-holography-status/chapters/10-analytic-sewing.md",
+      "sha256": "668bd1c944f76f2af530fad6af83c2f8024ed15f98d564f97463bd9ee7c914eb",
+      "bytes": 30306
+    },
+    "essay.md": {
+      "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/build-input/content/quantum-holography-status/essay.md",
+      "sha256": "7beb2bb19763934fa50d2cf8eb415048cd73e7806fb79163e46e01c25795bb5b",
+      "bytes": 80898
+    }
+  },
+  "candidate_files": {
+    "chapters/10-analytic-sewing.md": {
+      "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-10-reference/versions/06894cdcf37adec0f4d3f2c2b93daa2b7d734c8a0dac1824ccd2c2f097338420/edited/content/quantum-holography-status/chapters/10-analytic-sewing.md",
+      "sha256": "596b5731688be62c59d77b3be610b4c34db97e88832760d17131000026eba0f8",
+      "bytes": 36837
+    },
+    "essay.md": {
+      "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-10-reference/versions/06894cdcf37adec0f4d3f2c2b93daa2b7d734c8a0dac1824ccd2c2f097338420/edited/content/quantum-holography-status/essay.md",
+      "sha256": "daa316cf0201d02dac4a8a07421847fca743112ab4ca9348d2329ad7a4f881ec",
+      "bytes": 81904
+    }
+  },
+  "unchanged_earlier_sources_and_excerpts": [
+    {
+      "path": "compiler/build-quantum-holography-status.py",
+      "sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf"
+    },
+    {
+      "path": "compiler/quantum-holography-status/atlas.css",
+      "sha256": "adb4339082f7a55c722a51bf89650e47a157576a22c08b4eb2abbb3d951d934b"
+    },
+    {
+      "path": "compiler/quantum-holography-status/atlas.js",
+      "sha256": "7ebb233ac883bb4b38d1a90502887e6123eb9f6e45b53738d682a73f06be2684"
+    },
+    {
+      "path": "compiler/quantum-holography-status/atlas.py",
+      "sha256": "77bad20631e3fc35dd30c606c32c00bda66aaa3d92080956073fdc89ec07a10b"
+    },
+    {
+      "path": "compiler/quantum-holography-status/audit.py",
+      "sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6"
+    },
+    {
+      "path": "compiler/quantum-holography-status/figures.css",
+      "sha256": "3f65beb93fdfac44e49d7d45a5878630a5dd90fc82b3d35b4192d141214747b2"
+    },
+    {
+      "path": "compiler/quantum-holography-status/figures.js",
+      "sha256": "9185498776558bef2f8406bdf9d83c1ada16282f117cc78471c05f0cee813965"
+    },
+    {
+      "path": "compiler/quantum-holography-status/figures.py",
+      "sha256": "5f86ba434f0574b6b50a61e1bee471c32a7a14464b262ccb34b9ffe590ee7e7b"
+    },
+    {
+      "path": "compiler/quantum-holography-status/front-figure.css",
+      "sha256": "d684b82f3fc3e0a8541dfc97c379499629028543f590191c5d0f8d112e831b1b"
+    },
+    {
+      "path": "compiler/quantum-holography-status/monograph.css",
+      "sha256": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52"
+    },
+    {
+      "path": "compiler/quantum-holography-status/monograph.py",
+      "sha256": "9a0e42e639f8758e632e58e86eabdcd8f0f8425d6e9ff9f2e21fb045957b2cce"
+    },
+    {
+      "path": "compiler/quantum-holography-status/reader.js",
+      "sha256": "8020a5faa091f1d94c92616456e174dee85cd06de5ce4383016bfd7455a37ab5"
+    },
+    {
+      "path": "compiler/quantum-holography-status/status-print.css",
+      "sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c"
+    },
+    {
+      "path": "compiler/quantum-holography-status/status.css",
+      "sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e"
+    },
+    {
+      "path": "compiler/quantum-holography-status/status.js",
+      "sha256": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5"
+    },
+    {
+      "path": "compiler/quantum-holography-status/status.py",
+      "sha256": "293acb868bed6ac916d0e522de0b59985e7bdddbe6163d63ad8ff1638fa19b35"
+    },
+    {
+      "path": "compiler/quantum-holography-status/tests/atlas.test.cjs",
+      "sha256": "a67087f1aab82465cedb0f5e16ef8ff431d6c8ca629e736803f2aa35830bec52"
+    },
+    {
+      "path": "compiler/quantum-holography-status/tests/figures.test.cjs",
+      "sha256": "2d76aabae3161f876b54ab683052a4d0827fb4cdcbb4204c32ef1a04438894ff"
+    },
+    {
+      "path": "compiler/quantum-holography-status/tests/figures_page.py",
+      "sha256": "8ac23dc036107435dc8adba1fc2c5e0a7d79e9f75fbffe6e13614f66bf30a73a"
+    },
+    {
+      "path": "compiler/quantum-holography-status/tests/fixtures/atlas-synthetic.json",
+      "sha256": "2a5f0c7bc84e66832d6bb48edea0570ff8f28b6d049d6c16388bde4b4b6f9d32"
+    },
+    {
+      "path": "compiler/quantum-holography-status/tests/fixtures/figures-synthetic.json",
+      "sha256": "2f137aeb9df0f035da0d89af60b34dfc63337025acf61788dd75e44210fabca2"
+    },
+    {
+      "path": "compiler/quantum-holography-status/tests/fixtures/reader-book.json",
+      "sha256": "17b70de70e7ee5cf757dcce76a4109f61c519bf01b413c23137ff6a21661c659"
+    },
+    {
+      "path": "compiler/quantum-holography-status/tests/interaction.test.cjs",
+      "sha256": "8a92a7a42d023168bbbb45b6d6ad65d36389254461bbc267e5aa442d4967b279"
+    },
+    {
+      "path": "compiler/quantum-holography-status/tests/reader.test.cjs",
+      "sha256": "708ef3dd098fb7fe7845456ff9c46f8fbeabdac445ba616ab4528d2005aceac9"
+    },
+    {
+      "path": "compiler/quantum-holography-status/tests/test_atlas.py",
+      "sha256": "acca56e1eae4be315677ad611104e168decd981b6cfbe974504176d8ee3138bb"
+    },
+    {
+      "path": "compiler/quantum-holography-status/tests/test_figures.py",
+      "sha256": "f8a5a3b0cd2567ee57df8d7cd56eb263ba1137a201b210afe95f4a1eb3345140"
+    },
+    {
+      "path": "compiler/quantum-holography-tracker/tex2mathml.cjs",
+      "sha256": "f279fba38e9e952264a1ebc4eb71e526558d1ba272c7ac112e6c3b51539c5b3f"
+    },
+    {
+      "path": "compiler/quantum-holography-tracker/vendor/TEMML-LICENSE",
+      "sha256": "12b4e5592a12baaf50637881f2cb9d66667b26b8d51a73cd8f0d6bcefe176ab6"
+    },
+    {
+      "path": "compiler/quantum-holography-tracker/vendor/temml.cjs",
+      "sha256": "e251fc7715b05c8b9c71f97834d4cae08e172c8734f3504f6ca1139cc59ff15e"
+    },
+    {
+      "path": "content/quantum-holography-status/atlas.json",
+      "sha256": "5f92648e8aee7de985d8647313255d8d5c3de23ec01c54048a538c883747a132"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/01-physical-questions.md",
+      "sha256": "6bd33551c81f5e62693987794bdcfa1de20f44caa6e4038e05622b5ce3001c19"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/02-algebras-and-modules.md",
+      "sha256": "f5f193dfef39313f1d1f970f90cfa2022f08c2c017113773f552854d1a872b8b"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/03-local-fields.md",
+      "sha256": "0284a40a4d79b8e8a3c42d67b7de65f48d8395d49f167e95168e8ecfa85ababc"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/04-factorization.md",
+      "sha256": "35bb0d0ad3dd2a8bbdeb406fb69efa6408b2f7dc5a24d4e182767f23dd324155"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/05-bar-and-coherence.md",
+      "sha256": "78c1a134c6825ee6c241c22788059f88953ee814f078f2d6b1ea52cfb16ed8be"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/06-duality-and-induction.md",
+      "sha256": "d8cb106a5ddbfc38c218fbee7cbed3bb90fd369bad035215153867fe0bd35f91"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/07-actions-and-centres.md",
+      "sha256": "991eaf50d97a34169c9c62732206b437f6314a939c69634740dca943418d9490"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/08-completions.md",
+      "sha256": "8ad41e4ab4cf4f093c574e6259ef3119169787e617c026bfaf8f2cd537ad6b6d"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/09-mixed-boundaries.md",
+      "sha256": "a03a957c41ca69399bcee1357ccd8fb956963fce50bf9608e859e4f422d44f5e"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/10-analytic-sewing.md",
+      "sha256": "668bd1c944f76f2af530fad6af83c2f8024ed15f98d564f97463bd9ee7c914eb"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/11-states-and-lines.md",
+      "sha256": "10e44ebca573505d0e69e5d0cd44a3420c748848712c2a398f534833557fb179"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+      "sha256": "76a299118a24beed77192fc8381249a43fc3a0eec5093cc6ad9972eaa39e6380"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+      "sha256": "916c6e85dca820fc1ab50e0bc86828604d371a001a1f9049de62a14a63b85ad6"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/14-branes.md",
+      "sha256": "d64bcfc44a07e055e2425150c8ca54568f889799dd00f148603e71c82031f846"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/15-hall-and-compact.md",
+      "sha256": "3dcb07976209f23c71e9ea91570273a680072e662102c833958d9ebd675a2d34"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/16-arithmetic.md",
+      "sha256": "b0ff8cc6dc92d421f8bba7655a7ba00852efa7a8f2d0faf6f45b761e2c0c3f05"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/17-holographic-reconstruction.md",
+      "sha256": "ab61eedf7e3ce9daa0af2f35a83062e9d68f2b05720c1730c1321386d8d41611"
+    },
+    {
+      "path": "content/quantum-holography-status/chapters/18-open-problems.md",
+      "sha256": "2d852ae29c825da85314486ed84cdd528ffc2d944783b19d8f2729eb05a72097"
+    },
+    {
+      "path": "content/quantum-holography-status/content.json",
+      "sha256": "bedc90f2cb82467ebbb208d98987181673fa3063086f410c3288d695a82692fd"
+    },
+    {
+      "path": "content/quantum-holography-status/essay.md",
+      "sha256": "7beb2bb19763934fa50d2cf8eb415048cd73e7806fb79163e46e01c25795bb5b"
+    },
+    {
+      "path": "content/quantum-holography-status/page.json",
+      "sha256": "9799d3b1572b85e3cbc06fa7f8e775e33b77fe7f1d38737597a66b19388d9e37"
+    },
+    {
+      "path": "content/quantum-holography-status/reader-data/diagram-records.json",
+      "sha256": "94ca6ef5e08d2452663ce2f5a215ef9c4c31f9149b435b35087c25318cef4f51"
+    },
+    {
+      "path": "content/quantum-holography-status/reader-data/fig-front-exchange.html",
+      "sha256": "c52400bdd8b9c5fb729e53739db46fd65c872e3525b29d2e7926e4e203985302"
+    },
+    {
+      "path": "content/quantum-holography-status/reader-data/manifest.json",
+      "sha256": "b471fa94b4b33411ea288a1505aa15536b3d117b21fe63816cbb6588e4b447b1"
+    },
+    {
+      "path": "content/quantum-holography-status/supplements/frontier-comparisons-20261117.md",
+      "sha256": "a5437070509802b999f06b95dd99b3a9b28f4a521bdf3a5303163b5d03f0f1d8"
+    },
+    {
+      "path": "content/quantum-holography-status/supplements/supplements.json",
+      "sha256": "914f7de880a88cb0cc188384d8fdc782efad0053c35ddb99b58952f477d9d0d7"
+    }
+  ],
+  "index_offsets_changed": [],
+  "native_raw_book": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-10-reference/versions/06894cdcf37adec0f4d3f2c2b93daa2b7d734c8a0dac1824ccd2c2f097338420/native-render/public/index.html",
+    "sha256": "a9eb34928e8beb4f4f27a26e5118f85196d1382fcaa470c971c10c7ed55b4b48",
+    "bytes": 4670700
+  },
+  "native_raw_reference": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-10-reference/versions/06894cdcf37adec0f4d3f2c2b93daa2b7d734c8a0dac1824ccd2c2f097338420/native-render/public/reference.html",
+    "sha256": "4aebf2385bd29d3d7e46950a09c5ca376c8470bf584fd6aaab36176ec3babd0e",
+    "bytes": 4702921
+  },
+  "scientific_10_source_and_render": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-10-reference/independent-sewing-transfer/RULING.json",
+    "sha256": "11418dc4d8ff1f1c93a5b1a580f06c1045d92144073ce6f4842935f28c0144ea",
+    "bytes": 5589
+  },
+  "scientific_essay_literal": {
+    "path": "/private/tmp/astra62-post665-research-20261118/coordination/EGA-ESSAY-129-RT16-SOURCE-REVIEW.json",
+    "sha256": "6ef83f5b98eb081fe44f986d6741628dbfe49ba84e001356796f6b337b440840",
+    "bytes": 4562
+  },
+  "distinct_native_first_reader": {
+    "path": "/tmp/qh-c10-reference-first-reader-20261118/06894cdc/CONTENT-VERDICT.md",
+    "sha256": "2efe3a8e72e52fd7a5a5646a7a2e77d599f7e9d04fae963544718b9cf6af8a6a",
+    "bytes": 6348
+  },
+  "native_chromium": {
+    "path": "/tmp/qh-c10-reference-first-reader-20261118/06894cdc/BROWSER.json",
+    "sha256": "425fa92b3d2572fec90b851faedb3693f9d4eef58e431a226ce32d75b95b5b3b",
+    "bytes": 29031
+  },
+  "raw_parent_comparison": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-10-reference/versions/06894cdcf37adec0f4d3f2c2b93daa2b7d734c8a0dac1824ccd2c2f097338420/NATIVE-PUBLIC-READBACK.json",
+    "sha256": "2801f606af3a0150c6ea751f3e5a7130656c006cb6f059d649446344e5fa8225",
+    "bytes": 13268
+  },
+  "scope_of_extrapolation": "The fixed external labels, supplied normalized analytic four-point data, one ground stress coefficient, strict level-energy and translated positional windows delimit chapter 10. Essay RT16 is a separately dated later result, while positive/nonzero comparisons retain their separate historical sources.",
+  "normal_route": {
+    "book": "index.html#ch10-two-completed-clusters, beginning Keep the centres of the two clusters",
+    "reference": "reference.html#essay, paragraph 67 of 78 (65 of 76 in the nested article)"
+  },
+  "integration": "Use the two candidate files in a new cumulative root-controlled edition. The current ch12 RT16 and earlier 12/13 and 4/18 sciences, all changed public addresses, browser back/query behavior and actual issued normal/frozen parity are separately bound by the publishing owner."
+}

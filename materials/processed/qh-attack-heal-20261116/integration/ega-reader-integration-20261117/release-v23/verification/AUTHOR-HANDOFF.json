@@ -1,0 +1,354 @@
+{
+  "schema": "EGA-753-private-source-render-handoff/1",
+  "scientific_patch": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/native-source.patch",
+    "sha256": "93e4f68c1fd3c96beac809b2a5b52e39a6b483ed99406939cb012cde1b69afc6",
+    "bytes": 15088
+  },
+  "math_source_record": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/RECORD.json",
+    "sha256": "effd971a44f5d9dc20f434c818707d6e28c6f4649d948c4247a531dba7187cfb",
+    "bytes": 25470
+  },
+  "formal_56_file_v22_parent": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/PARENT-V22.json",
+    "sha256": "20a5d5c25800c5e6d6daa78ee835c9292d76117f802baabe1dfade779479d16c",
+    "bytes": 919
+  },
+  "v22_normal_and_frozen_reproduction": {
+    "path": "/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v22/verification/REPRODUCTION.json",
+    "sha256": "6e0027c156c3422d841142116e8cc8b92b6de1fcf2804b49fec333cabd276d78",
+    "bytes": 1573
+  },
+  "v22_local_ready": {
+    "path": "/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v22/LOCAL-READY.json",
+    "sha256": "e51de085b5af7fc265b9b56dbc6a880f07000faf070f58103e7de1a35e220f62",
+    "bytes": 4116
+  },
+  "native_scope_and_readability": {
+    "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/CONTENT-VERDICT.json",
+    "sha256": "83944d38237ea9cf22142a0b20225b566ef65fb1dcd1ad651555f2e9f8ce7b4d",
+    "bytes": 2362
+  },
+  "source_changes": [
+    {
+      "relative_to_content": "chapters/12-chiral-quantum-groups.md",
+      "before": {
+        "path": "/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v22/source-tree/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+        "sha256": "ee61293d233fbd42a3386c55d8c6c917c9035ba9c49496658f6d9b87d9e3a4b1",
+        "bytes": 53963
+      },
+      "after": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/edited/content/quantum-holography-status/chapters/12-chiral-quantum-groups.md",
+        "sha256": "76a299118a24beed77192fc8381249a43fc3a0eec5093cc6ad9972eaa39e6380",
+        "bytes": 56271
+      }
+    },
+    {
+      "relative_to_content": "chapters/13-geometric-reconstruction.md",
+      "before": {
+        "path": "/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v22/source-tree/content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+        "sha256": "df4c6af9231d8fb83fa76ffe7798acdc5ef311cedeea0c237a1a2517422d6679",
+        "bytes": 34190
+      },
+      "after": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/edited/content/quantum-holography-status/chapters/13-geometric-reconstruction.md",
+        "sha256": "916c6e85dca820fc1ab50e0bc86828604d371a001a1f9049de62a14a63b85ad6",
+        "bytes": 36698
+      }
+    },
+    {
+      "relative_to_content": "reader-data/manifest.json",
+      "before": {
+        "path": "/tmp/qh-reader-third-flag-v22-20261118/checkout/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v22/source-tree/content/quantum-holography-status/reader-data/manifest.json",
+        "sha256": "30ba5e199cec1b3ffda7e90eb86d45ac09d68be550cede14635174f0580fadd5",
+        "bytes": 453157
+      },
+      "after": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/edited/content/quantum-holography-status/reader-data/manifest.json",
+        "sha256": "b471fa94b4b33411ea288a1505aa15536b3d117b21fe63816cbb6588e4b447b1",
+        "bytes": 453157
+      }
+    }
+  ],
+  "authored_excerpts_saved": 4,
+  "authored_excerpt_content_changes": [],
+  "three_route_comparison": {
+    "index.html": {
+      "v22_final_normal": {
+        "path": "/tmp/qh-reader-third-flag-v22-20261118/normal-final/release/index.html",
+        "sha256": "f6b5a56cc36e1161c356a56142d58ecbdaa0a3e7a49767271be19abd1d6335e5",
+        "bytes": 5097280
+      },
+      "successor_diagnostic": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/native-build/release/index.html",
+        "sha256": "919142b26e254009ff2de0a7fdba51762650da19bcb6ded642a11d4735731446",
+        "bytes": 5118197
+      },
+      "page_identical": false,
+      "figures": 20,
+      "ordered_raw_figure_subtree_sha256": [
+        "e8ea60ab83308fb608c5283a24e81a77202dea759e20d15df45bb93e21e061c3",
+        "df8ee2739521eac4b12bc1c1c0d94f653e2837e7ab1bdfb7af5d6d0a7d0ec149",
+        "baa400ffb11d0d90b22aa6016472351b23f1da2f61319b84a0634bf83caf6525",
+        "4fcb0141323c7011a9fb39842119380932e1b2a9eb6bc5536e1177d8e2b4b09d",
+        "baa1ed715dd37ae9a842530d087c2c4da74af188528f8dcdfdfd05b37e3cd8f6",
+        "a25a5221a45658f6b79cdb5f8de1c84f9903a8aa07657a6ce789f1706b8ba1df",
+        "e0f9ef55d0e8993273bc82d486d69ff65956390c976d1e579e6492ba48a2e48a",
+        "dc170346658e9618aacc54c73167d58c9af99f8c9df3ce9a7a425fd832bb7ad4",
+        "f7e8a341b4bc2194d613edb4a3587649374af173e016be790a91d0dd03250e66",
+        "b6c85f77ee5b5aba8db0e4ffdb721113e0822cd649991ece07ea15a3744d50c1",
+        "fbc4b02e32d19aeb3251c7dbaff9bad87190d1a2240af422bbbda40350e765dc",
+        "7a8287f70e5a4050cb491b8ac5ac73f2266054371222a4d72dc7546245a41ef8",
+        "6d1d2977c26e14045e00937b700d54f0b188d3917f01d367c2f2b77be107fad2",
+        "3174cf64ddbeb73c581e8c466b23926c54bfbbdbc8f544e0143087fb13095c08",
+        "edbf5aeda3d525f8165d28df8098023075540ed46dcb40afdadbc445c619e9b8",
+        "65fc6c571b05a7b9a1ff679b7791178bc8924e13a1242ead36d982dbeb1200ab",
+        "abfe9f8e6b28b3d833dca25d1b555db36fd5314be254fdfd8758090141886640",
+        "22983c851bed881fadc597d01d1f8c6ccb7516796db228c7419882685ad725b0",
+        "2233f8529d123ab2f82214804ab8ac605cf5112c80b7abb7229ae00a91d51f76",
+        "1218aa5024cfe7dee26fa0c6f85958bf2cdf2fe5ef13d938d5e7746270e22d6f"
+      ],
+      "existing_v22_chapter_paragraphs": {
+        "ch04": {
+          "paragraphs": 99,
+          "matching_digest_by_id": {
+            "ch04-passage-af386a936d62c4bbaf24": "7c27556980166cad3cd7f6eff2b70fb11381649cf7e95d53e9b18cc71089cc57",
+            "ch04-passage-fa48edc5895a03707672": "b3f1fb7d1deb16d0a0bc6f6e798574e257b845483c1e8328421771f945fa0db7",
+            "ch04-passage-a66ea417d12dad9469d8": "0623e12ee9f7e9b7da46debfd8ab0ab78f91133b1283aa296e824c7f3e556b0e",
+            "ch04-passage-fe3f0da6c54103a19e4e": "a83326b13a84c98d52ca5fafde685e2bb5300ee76ba32a29d79be0b242d31def",
+            "ch04-passage-4ff2c8e094420c646cb8": "f4e989c06c66b2706a79086f6e1be496ba26b86b5b86b5f3b38bf15ca49860f7",
+            "ch04-passage-f429a2dc46e15da4eb45": "be2c39d4ea24e229f9f1cfcb78aad566ed376f0059fbf482d271f7ece651150b",
+            "ch04-passage-453236035c860918c658": "38e607698924977b3220dbce9b755c2ebbe8d40e47cd8da2918f8d30e9eabb44",
+            "ch04-passage-2acf767e2eb4354b64ce": "9a725e3f0e7a531b8146146c033ebc37de5896473167da0bf263a57d64b0e549",
+            "ch04-passage-cdd315f85a636c7af13d": "52503bbbe4adbefd0c547ccfa583e3a57898d935edbb1f6ba49db8b8f135c694",
+            "ch04-passage-aac8521a000a3b671fe4": "107f5d549d06d067feae964841bce43803fc4018e485fba8e87faa1d573432e9",
+            "ch04-passage-47bf1e37dd69c30cab70": "563a9f668db7f89e66cea3059da3ffd95849e54933871cc9ddeee5dfc65d7790",
+            "ch04-passage-610a06d56ca68a02d817": "7ee0ca8ebbf510a8f6aabffcdc6a1ac362af5f354792b5dd0bf9e2ab73cbdef9",
+            "ch04-passage-71dd3c84961606dc10aa": "ebbe2854e203ef14505791752bde0d963a5b1a87fae4af8d5efad256caa8ffba",
+            "ch04-passage-2a6cde1e9ede821faca2": "833872188510a112f90f22725e862dcaa32958e8ec1e44e618fe6ceab0754787",
+            "ch04-passage-ca07810f964f150bd5ba": "e7d6db9074fed3b5231692f158c118b1ee66177bdfa1d0e38dc610c8ba93c91f",
+            "ch04-passage-939cbf60e5f51ba3c97f": "24d47f64709d745c74cb69890ec4bb26247e43ff8b33036bd3c22d617f3a0db5",
+            "ch04-passage-bb3809b576f6999e5f75": "93bc8206b6aaec4022eca1d6ad515439e81c00fd3f98dacd5d2b686f43aa57f9",
+            "ch04-passage-032bd6db0850ecf470da": "8899c5d5bd790873ec2689c329399e80f89bc6fc21cbd11b4fbb6d42eb0f19c1",
+            "ch04-passage-5fbd6af961b73e5f3048": "63dbd0055d0e0d5473bf380c6e0b20a8226452427e0867de4cb968ff6f688c39",
+            "ch04-passage-b566a525a9b9c25af05c": "a7aee12e282e628c73ff38d39ca7c44cbaa65aa01f997ec026bfbeaa69045a4f",
+            "ch04-passage-c2935ccd6ee6586153a3": "e91b32e18ce3f2feaca39b5c3c6b0853ea29bd4c777592d57345bb551e84c840",
+            "ch04-passage-84f58feb082874ebbe96": "00b3838c438e40f89ae99193b8ae479cc4420630fea60b15b5a7c8cd18ba5faf",
+            "ch04-passage-bda6201fb87a3f783d1d": "dd4d543fa9f71793b5187c32766ea830830cff065cc82500a96c839f0b2a3a23",
+            "ch04-passage-8cf3549de2431dcef44a": "929393b262dbd996699bbc71e341d5ac5ee68b6f473f136a970488fc5d22f357",
+            "ch04-passage-1a8b6a3ad4d50648d276": "ced43f29a0fc51cb182730c92aba829c846667d700bd80b9d1a690e9813c5a3c",
+            "ch04-passage-e6992b8c4882c647a66a": "a45837308a5fff40686a827b81d2349a357f46ae7d956b2e8a00cbd6240d12c9",
+            "ch04-passage-e7feecd0254224ef4bae": "0777aaaa9480d73750103d7985e820edf9d99b3187696aca190f3c94e441b9b0",
+            "ch04-passage-2ff4fa294e41309ccfe2": "90ea79d599c1ff585b7788990c0e4de455d68d529f3f074a2bdd6ea92161b266",
+            "ch04-passage-63631addd8fb35c595fb": "1e12c838d16a10b97ff476f8a5d024ee2bd1ee9133a82fd227b3bd5fd544cc66",
+            "ch04-passage-dadf2ceb5fcea34cd19b": "965142864b8d661e76e9560cb1db75be0696a1b59bfc9cc7bd65e26ab25e6209",
+            "ch04-passage-fc5b98609c7f3abcf03f": "6ad42ab970dd97d4c2158307fb75d699126c9c735dceaaafb3f01c58b26f550e",
+            "ch04-passage-0f050a6e2d0230a1bd65": "288d0eee421858996b38708646bc850b49151d207d2ca420339287eb6f7d045e",
+            "ch04-passage-95b4b3917d6dc6337f65": "652c9a1ffea53c2fa3bd7457ae4e248340bc51aa1c399940464d5aae242311a3",
+            "ch04-passage-a648399318b96b3e5818": "5756173d8bf11f2a2c24d4956b6e127e55f266a848f8797acb407bda5cbd315d",
+            "ch04-passage-ca6ebdda9178e29e039f": "5d5ee3207da6382e19c5c690b0315152b7321fc870e4c827b0e9b6c64bcb6b26",
+            "ch04-passage-78934b339f6a88188bd6": "cf173c9c8366a28e2089ab157f1be82ea81dd16297b28a57a956f6417d43142a",
+            "ch04-passage-4c389b939dbdc69ba616": "56a5aa72eae9ad42e86c38eae77d671021ec8f917ba393b28e24a801bd478aca",
+            "ch04-passage-b55a8e9022cac1431f11": "1c9f67da7c72165d2fba44db226ea3f9b30d199d7fcd84bfe44c307c363d3745",
+            "ch04-passage-48f0893f406228ebe1dd": "a85776a2f85120240fd7cf663845b55e7b66dd0b40c53cf1de5d1d90ea201cfe",
+            "ch04-passage-429b99b87804caec720a": "aed2fedee31965bf8a897e8a40f47382e0dc45cbef44afa3790af59ef337066f",
+            "ch04-passage-6286f1ebfc444dd966ae": "8e232d9d0c14e5dc2f92e19270bd51ad7a0ac94aa4505a6c27f2343750e32930",
+            "ch04-passage-655b57c1e6a3b4c7f0f8": "dba72492e4f483270eff1a5bdc7a4eca21be3f866d4d86f9c99f9f587820685c",
+            "ch04-passage-93919c7cb0815e51fdeb": "7f6c9a35d3f482d61071b75c9bf11f61b6a7344cf468a9cc51fa665d2e2cb243",
+            "ch04-passage-8dbce73d42501ddbab86": "06920d7413172c82e02f682d563c6ff9f1546180d0d3f7819e5cb513ec9eadc5",
+            "ch04-passage-7ffe8d7473359ef46528": "8054776a7e32c092a8422b32babb6c966a3b1c3e33f7e1cf361c3847cfae65bb",
+            "ch04-passage-4f15841f01e77cabf508": "d5e1e6bec791e5fb70ff970205183e5c48d7552b8cfd933d9a7dedb5641aa404",
+            "ch04-passage-595fc6d8c2100c66f784": "80daeb74638e52fe6600cf3c0298bb47061d4e936e52a192620cf865c7f93588",
+            "ch04-passage-701a5f077c8f272a3eca": "66136e73496acfeda771f398e1432494d2f0e280a11381320f1feabbe3f22617",
+            "ch04-passage-90853f1876472a10a117": "4f252c8940d8210f64b5da099a4b4f2bcccab96593db524bf2ba71fcd7ed66ba",
+            "ch04-passage-cd67a41fa6cc1d344bfc": "6446235379573d86b1199fe8428df368636d52eb2b8501a0d272fc0cead2774b",
+            "ch04-passage-247a29a7f32aa448e391": "0298a779cc986bb9540882042afaa285b4502b8489b3c65de21d424843f30e2c",
+            "ch04-passage-d1f658b88ed757d51592": "7ec978efe09ff4b181cb196ef88904e3dab08fe643c7edc9d1705baaa91d9e76",
+            "ch04-passage-3836a42af9853009b9f7": "c857db3782f4c4219d4335dbab99da1d6b04f056394355b07ebc6c0552aa0aae",
+            "ch04-passage-935e0e6cb11aaa9be5be": "a343fa3274b0c4968684abfcee4cdcd0a043f978e4b9c99c177706138eb34a71",
+            "ch04-passage-1be5ea798cd25a9c1e4d": "3b438d9124800da397d3b85f717780f1b7040796097d84c191391f2c033309ba",
+            "ch04-passage-fa6447913203af1062f2": "5d843f5002a405931cf1d814f3c82072d38100f83289dd8497e5174c6ea4df81",
+            "ch04-passage-732c5e958e30691a64c0": "1b130b715fd57179315bb6a31ad41f51793292c832ea97ed323452bbb5c92b75",
+            "ch04-passage-a43f3611b5b66048fbd5": "e0ec84dbdebfdfcd2247ef874419d3306c081490cabc1db8f46cf8628e8386a9",
+            "ch04-passage-68d976502180e063a803": "efc1d06f36ec6dd1ee794969cd3a2bfed178b45efbcd626c9c97c7a484e62eb3",
+            "ch04-passage-555414cdd79aae686ca5": "6a946d42bff0a8efe0b88fca0ee3b1a08fbe51d57df2719230517e281dde7336",
+            "ch04-passage-b91f632fddd88e37f057": "af386fa981ee5e80f5f32c8e7a5462de79132c41f2370f1e6b90643a72313033",
+            "ch04-passage-5e53737fceb93fef308d": "08297a5807b3a2a818a21c5d5a7f9872fc2b7bbda921a93a7fbeb311f1a7e538",
+            "ch04-passage-beafbe9f3a01b640469d": "5d4d22c2a382185ec3d3b0f50dc9fd20d4e40508bbf8493691b2306a51caee67",
+            "ch04-passage-7b4b5655630fc6c97125": "5ba2c5ae27cbe42fd707e2bc96ff9c6c137e282efb79474a226aa19e501be1e0",
+            "ch04-passage-f3b58236c2bb776fecd2": "b6b453cfb3ab72751e585c1b682cd959d3f632fa51f66fc5ca4dee95802f50d9",
+            "ch04-passage-dd4b13240ccad3ed7bd2": "b2988e70d76487073e715a0f7904878afbc757a1ca95074d0be0836b169e2986",
+            "ch04-passage-fdf244fc66a8d7399db5": "d73cb46ecacfd411163e07ea0d64ca7588d3f7cfba3e40877f3d97f8ba9369e3",
+            "ch04-passage-d92e45fadec664319fa2": "310df91cd850555594e4bfc8cbe540af994f39af0d04977417949cce8015757e",
+            "ch04-passage-ebf50308c37455ff4326": "6a15ad789b50228fd7f8ef3255c132c7c6fa55c709d7a606a8499daae2acd3b9",
+            "ch04-passage-cbd6af8dd123b23455e3": "dd77e62108a310d3455ebcdc7e182b8adbe65986ec87ca0d46da2e3c7c002a0b",
+            "ch04-passage-cad9b8f1a2560956ea91": "bd4af9e06ff4bf4c6bb06da567d301bb47ee901f5feda756c0d53dbebd194908",
+            "ch04-passage-e0ca03f141d5a450a076": "7940f5a2ead3ed7994778dffbbf8de6f5fcba60a4919212539bfa3ac509ad09d",
+            "ch04-passage-784b4e1fd421b3857233": "d719f7f9f62dbd51bced852d8f091f9bf883043ef514f8b6b92897dcb1e98864",
+            "ch04-passage-2f4f046d58a33950f6b8": "809389b1d8f3d9f56f7863f918e0d959c65fa2bf5dd5e7659a67a0ea17bfda14",
+            "ch04-passage-1434eeb96a3b8f68c37f": "4ec0a2b844b64fe8aedc667e3a0da9a9b44772eb67b290f9445aa361d1885ce8",
+            "ch04-passage-138ed3d80e75eaceefe6": "765d9fcf2d58fe3dd49902fc72c6942964e9e2450edf1620084f70a41affefbc",
+            "ch04-passage-0d6bbc0dc078d83b519d": "1bbc1ae282d08b0c6a37eda91f6e3dc405accf704536e9b8625c388fb3522f88",
+            "ch04-passage-472320478b1b5fefea5f": "16210cfd05358a7b78fe16bd01c741c73e505167b879bc1c789081757485a181",
+            "ch04-passage-40dbeecb258a40dcc764": "7eca238b7c1ae15800fc9bab5c52be6712847d534520befc1565e71c24febd6d",
+            "ch04-passage-c9feb5a4dda177efa40f": "73d4edeaede608ed2bff32a58dd39086a9e2bb588dc839c6272c92addb9677f7",
+            "ch04-passage-bd904efe47da11be0cfb": "69486da6114ff18482c7304e898a480a84f732653f578d6567fbf37dc906b9f1",
+            "ch04-passage-58169c0376132dec521c": "4cb5738ec8520e5d9826117dfc146e9d582ffa81f2bc7b93a3848a04b431c315",
+            "ch04-passage-f4a047ab5157ce8ff20c": "e216a5fac30a836ab062ddff0cf62e841802eb6f510f5063b5bce6ed3db67fe0",
+            "ch04-passage-0f379b9201ab0ba91194": "9c1802f741466453722d2c6df7966dd8b107d8c4a059125cbbf9929e66fb6e55",
+            "ch04-passage-387952ef8da0b8b61442": "87184f0544d5f81f3003322d4b4aebf640348db0041a3d57af8f9b9789fd1575",
+            "ch04-passage-92b6c274b635a5ad37be": "a4aa1cdd9c22b1206a610cacd1e2cf04a9480060c9eeab10e40945835e75a201",
+            "ch04-passage-df8cd7a3a536e57c1048": "2b584c68db637e7d7d310d136de958d01ba7a648825434a04e01a0446ca1f500",
+            "ch04-passage-726011a9a6e494908eca": "366adde7333151fcc5121b8aa5e06bfa4430169c36ac234480205867c9ddc7d6",
+            "ch04-passage-8f16ef2f03fd58dd3bdd": "29fb43231e0a14ba6f56f6c65c55413d315a461a5993b8d0e87f461fbbe4ebf4",
+            "ch04-passage-8c0d90148db27ca7ebe1": "4c99f20a7027a085654bf71709f1225ae17205e685662b7d6551261c32dd24b9",
+            "ch04-passage-a67dc14a6076938d5fc1": "64adff7fe9f271f40f1ac8b6d8d779b446b2d2558dac9726c031df39b83303fb",
+            "ch04-passage-272ef993b72e3a4ef56f": "3e9fc85e9b438e65afd1b74f9030ed365b72c05b54a7ed66fdec72ddc7c491e6",
+            "ch04-passage-4280ee4a4150e51ae8a0": "c96be71f082d09db539486b125cbe9564b6c9dffbd281c6bbf78295707a7735e",
+            "ch04-passage-2d7580f5c128adbc97e9": "486d957cdedaff846ed7158a82591c98fa682a2596bef4aefc215eefc650e414",
+            "ch04-passage-e17d2fb6f76a3c4b9327": "cbf3e5164331aa9ed7ac26c16061f3a4cb41d3b2251b6a736c6eae131d6bae86",
+            "ch04-passage-194af5996771eea701ba": "3061caf3c61e2ef40f3295ff4ca5f7263fe5c43f2372e1c5ce5ec51c08aca39f",
+            "ch04-passage-35a3474b51e53dc35f6a": "daf202a41926b300d54700ee5e715c78548651ba03e65a5f8b664e51e0b3a6f1",
+            "ch04-passage-12cabf3bc91920c1f807": "556a673bc830c482cdfb5f5b5af642ee28b6b988de6b2d248be2b2bcf28c36ad",
+            "ch04-passage-d1b7609551129a89ff2b": "74158e127b2c29a3889ac0131d796fb2766fc574e8cc41ef5b15174ede473108"
+          }
+        },
+        "ch18": {
+          "paragraphs": 64,
+          "matching_digest_by_id": {
+            "ch18-passage-d8c57c1117e5c8d0c823": "fe9ad3226aabd4a2993e0139ad0b3cc5bca00710db04e0d2a3c422a046170f6f",
+            "ch18-passage-313067cda6ab6f3f565c": "25dff446d569251e9ec653ed2afdb664769c48b2f461a6c99ff8e3f6b9f51615",
+            "ch18-passage-b588a66e2074571a2aae": "fae8fc02c0b95739e970c1efe925b5b9bfc82674f6a5423ee730ffe1332582f7",
+            "ch18-passage-66639555daa5384ade27": "e28a08b00f1d64ec2170e77dcaec79d402b7c46aa01b155a74e34d277532be0c",
+            "ch18-passage-015721690d50b7e09219": "a79769a18c50acfeef733236fee5847a21c4ab15556084531cc1b4295c0be665",
+            "ch18-passage-73af06518bcbcf66a4b0": "61223c1dc74b0f86cdd79e53f4ce8da74a4442a13b8c4d886b4bc9ac4f98137f",
+            "ch18-passage-d1e2e4a2a7877387df1d": "b1687c9c90b8224e016b74dc1511d58f9436dc9582717b4c5c121ef10c2c5f45",
+            "ch18-passage-745377b732ca38013f32": "a7e1cc13197445ab00eeae624777ff000e632b2417ca58ccc304fed6c8889abd",
+            "ch18-passage-afaa1cd3efc8e7012cca": "c4b7df4bc98d0c3ba6a8475ebd3e05886154ac38611e3357982f391d7f077c6c",
+            "ch18-passage-88760b1e4e66cd5e0123": "182ae6b53a668e19ad0c774fdf446ef3e540f6e089a6485c3f5b175416a84878",
+            "ch18-passage-cbbde97a72710899055c": "d2494b4bb6b588f9b1ba380650567b74935f4ead234493a7d37d1a110e6b0688",
+            "ch18-passage-b2797b76cb23bdd0c9a2": "6700c11973b200a12f68d8584de5e9635f5e91dea41d132f1d489b3fa8a74453",
+            "ch18-passage-73789bdaada674a04e2e": "2fff6c04f943345310e1d74fbd18e482275fbfebaa887e70f91dec7ba364e1c7",
+            "ch18-passage-257007e06254976b6e04": "b5b52ea7b625b37cd85409e2e94409ef4552a85946d8a56fc224851d673f8334",
+            "ch18-passage-71d847db7d2c439ddfe6": "9e9c880932a15fe22f29fe82a74fcc44787e8022f952652273bf44be30e6b4fe",
+            "ch18-passage-0341b220fd85a73f79de": "d31f4aa7537a5130d6518135f49e40e4591baab7a67584c342e2fbe2b563fb2b",
+            "ch18-passage-5f4d9e51a4efc817d307": "2a6f4b33755b240f56e866b02a9abbc27e0d96060f47939aba259b5626e4d6ea",
+            "ch18-passage-2d08a84fd52171bf53f3": "f220ff07625bf0c96e4747118242286bedded7ded7baffe547e8be417e2f4b12",
+            "ch18-passage-c949bf47e00d4db12705": "c6f123f11aba7a35f0b7eb7d00631e75b8181838f01b6c4a903f4b16c0317bf0",
+            "ch18-passage-44aa074432f01dc2d215": "683c625983df7937f11218247007e98276691c7c6e00df2da6db5429bf3e2336",
+            "ch18-passage-7397482acce74e2fe5d0": "28f3feeeeb17aa07fe01b9655378f963ce0dc1a2bf601232fbb378743c77fe19",
+            "ch18-passage-718bc088df9205748f16": "0e694979104be7596860adda1f19e35e8987661fc6dcb133abdf0070abdf30af",
+            "ch18-passage-50efc2d8c704255a8749": "c226b02a034bcf7301b332fb9dfb78e778b357322ce0db4aba2039338e27e4c9",
+            "ch18-passage-6ea331a1d133297e9146": "7656c79ddf1a2d31c6472c06b016c67237abd9e27acd5a6cee5685c6b58dad93",
+            "ch18-passage-60d82db4156e9ae4f6f7": "30e1aa06deb2a2baf46bd8cbf8f931dab5271765fd18f6c665618671c043fceb",
+            "ch18-passage-f18c9b54c739504e55f0": "3fe4cd2f93d2f0360ea99828f55351348cd5da348ce689b58d9cab26e4c1d26f",
+            "ch18-passage-5e09310b95ac3b81c201": "1ba5ea1b442ce7ec67ef0161fb7acfbf057d570eeda798ec6fb14e3bb01c4e24",
+            "ch18-passage-6d98c53a8f0d3ce03c5a": "e3be3fc15079e16f11f324d0e3d4571a9ec29816893c26af5675c63414bc7c61",
+            "ch18-passage-0d0e65da6ffe443d56aa": "c1ce12dd9261fc84012782bd6d1117066d812a7a4e42985e296b18f9fe64811d",
+            "ch18-passage-df70ead93979cf8a7700": "2251473d586875705a8a25194ddd4853e6ae33c45cc74b32221c97a61c975a0c",
+            "ch18-passage-3ea093a29c345ddd6cb9": "8d14a57838bd8cf58b48eae26915ed627e5a67d840018e1830bf623e097c4a93",
+            "ch18-passage-911ca1eee5c64ac8d54c": "74c4511ec8e582c0ebb86f0b804018ae5dbd3daa10a8e570c7c1d1483f24037c",
+            "ch18-passage-a16b1819b487e459d601": "074dc4bb136dfe71dd3707a18c66651d15039834026772a171dfcd937bf92a3b",
+            "ch18-passage-a4753582108b7fd062ab": "53207db5e8b0f0e69f359483ffb5fb341909cb5ed0b8ca6041751c7561aa64a4",
+            "ch18-passage-3bd273d52ce306f82c4c": "a8b2fd494cd752080b0e4b219faa7f7ef80acf3acdb3c455be4d47c89eea4c8e",
+            "ch18-passage-ff72495ad6a7032b98b1": "93feb1370c30f71b7f21f45ec3115e5f261b274dbe4fc7f960a6fd3f4cc84bc0",
+            "ch18-passage-a47ab6569c2b257b118d": "88b4aef8607942a9412aefb0a4b8715b818aa5b53208edcd1e6b8c0073340051",
+            "ch18-passage-ae574c2c08906b08ed2d": "666220b868feb78810122278477e6c608464222da7ed40015b2d1cc630dfe133",
+            "ch18-passage-35d170810dae031f1692": "bbd69cede4c56bc4c195d69b3cfa78cc6cfbf089920c6423124eff1c31edb74e",
+            "ch18-passage-9038efc7a3b146900b5a": "ea34f90aad725c24a8de991648a0596f1e86eb4de6e341efb371a91c74e646b3",
+            "ch18-passage-e73a0fdbb84b42b12a5f": "b40c7dbdf5682b6c49cba7ab8a6451a22bc871a2a7a74cf4b773689100300df0",
+            "ch18-passage-fc2ac29fca6b6f6550ac": "161c09af92e99ee06d7d85f355c4534aef75712cbd39d7796e113b6c224c5a35",
+            "ch18-passage-8532936c4cc92fadb14c": "18dc841e59e07c05cd89bd98085fa75f1eb42c73004d39421cc0e829c0293b88",
+            "ch18-passage-b3bb8588db492f671b2c": "2da39f0b6ce73d1871b6ecdae423062ab54d29e412d24f66d44324bcd135db5d",
+            "ch18-passage-423152cc28f00c7c496c": "463e3a2f2889000873db6d4fa88c56af09082331561d08dc5f30780fe6068343",
+            "ch18-passage-bbc95207fdc23fd3a4da": "695cbfbb3e6322bdf5ab62e15e7113f137868f130742fb7f7b932ee3bbbf5f11",
+            "ch18-passage-fbeaa9f81503937b218e": "a688069731ccf15dc3ab955d9c5cf8c6875612887d6d5fe4f134092573624a0f",
+            "ch18-passage-e22e3eca65262507d893": "8006ee242024155b47033b6d0578c6ac0fa57afd266a987cde178c5e2b24c81a",
+            "ch18-passage-62a3459a0da5b4bef419": "8d3bab0f97ecd38c36ee8cf1843ecb019093df9a56ee93715a782d126c3ddbf8",
+            "ch18-passage-75f31209c506a6c8665d": "14e4bc6de537cf35cb4cad40c0f95f4c7fb1384497ceb6a70a02e12c08f861c8",
+            "ch18-passage-188341a1e823e37f956c": "52c683618e5db1a7beaf44ca982de8231d16b75b74bedf208a354c2ccaf62f80",
+            "ch18-passage-3113a154f40dc47ff71e": "a59c2641929a19540ad2297edd17f979a1cdfea7c8cc903f6dd082325ce35a19",
+            "ch18-passage-1050193ee7d4c5fb42b5": "5bd0b52fe3dc270acb5fc2c86d773871811bb8939f66fd2de642039fd0ca7786",
+            "ch18-passage-aeda954dbb4309ad4c63": "e4e8061a88d85a2d7a81c73a99cd67c68b68eb25dd3d3b8a0db2b6e457409f5b",
+            "ch18-passage-18d790cb2a7f00609ffb": "76ac86a80bb34da9159186cc07bd8c3411c31b8d3dca14621039de2c31ade2e1",
+            "ch18-passage-5b0fca1c4dd0457c396c": "dc85792e94e45c02fb12bbe1b8ebae944bd5fdde13c9c8683944eb4b8fd105ac",
+            "ch18-passage-3c4376068d35d89ccfcb": "c1b2fa64e510471d6ba2231a7c7292008bf2e7e593b65525a1e4398ee6813974",
+            "ch18-passage-ad1d159cddf14c41763f": "eb903bfd77f503e6f4b3067a5b94631559e62ad00838ef18634ecd3a1e8a7b59",
+            "ch18-passage-02d5af906570a6242bd2": "67d605e0f3252bebc84f6609d511ec957f3cb9d678b82bcc107e2dd86189db1e",
+            "ch18-passage-11ec16ec943cca86b579": "92caf360800a894abfa5103d66f5e655c3e47aad2803c5cbf43f7d23095dbc94",
+            "ch18-passage-75dcc3253b15aef4fdd0": "9bb81aa2b896a6a6478cac509b383a8ea3110e3d65b69992009addb9dad6499a",
+            "ch18-passage-c8d6109382ab956a5794": "8059935be7a0c79d48982d6a808d81ba23b8be3b6287cb573c5c6f3beea8114f",
+            "ch18-passage-349aab9ff02075c4c38b": "e35cdbffa51c8f2de7d04735f2c27e540f112204e0bea1b65325b269477f0c6b",
+            "ch18-passage-bbcf512a6ec7f2d14730": "49c63ac9503045c2c645dcbc03f2690276c2641b2dca4184767b098fe3d6d6f0"
+          }
+        }
+      },
+      "exact_common_paragraphs_all_chapters": 1737,
+      "changed_common_paragraphs_all_chapters": [],
+      "removed_ordinary_paragraph_ids": [
+        "ch12-passage-ea4d57b1e0b6319164a1",
+        "ch13-passage-8dd7e025669dd7f8169d"
+      ],
+      "added_ordinary_paragraph_ids": [
+        "ch12-passage-29672c8639eb82e7f582",
+        "ch12-passage-2fda0b1ebd026dc013ae",
+        "ch12-passage-4c0a8fcb124d35c4e8f3",
+        "ch12-passage-94aa463b505ca4493752",
+        "ch12-passage-e4cc832355625ca07c88",
+        "ch12-passage-f594c834fa2a6bbce0ac",
+        "ch13-passage-48a4a578dd523331e9b9",
+        "ch13-passage-add68cf7e378de6eabba",
+        "ch13-passage-bc3d4ea6453e425b1e51",
+        "ch13-passage-ca13c4abb6c03860b715"
+      ]
+    },
+    "atlas.html": {
+      "v22_final_normal": {
+        "path": "/tmp/qh-reader-third-flag-v22-20261118/normal-final/release/atlas.html",
+        "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+        "bytes": 11472088
+      },
+      "successor_diagnostic": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/native-build/release/atlas.html",
+        "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+        "bytes": 11472088
+      },
+      "page_identical": true,
+      "figures": 1,
+      "ordered_raw_figure_subtree_sha256": [
+        "a5c8d721f74568bd914055ad5f31cf1391aa9efb7c5b1e95edb4f725db015792"
+      ]
+    },
+    "reference.html": {
+      "v22_final_normal": {
+        "path": "/tmp/qh-reader-third-flag-v22-20261118/normal-final/release/reference.html",
+        "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+        "bytes": 5068537
+      },
+      "successor_diagnostic": {
+        "path": "/private/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/native-build/release/reference.html",
+        "sha256": "c4e65876d14c01b4928014ab80c8c68ca25b9d99a669c44755d042972ed328ff",
+        "bytes": 5068537
+      },
+      "page_identical": true,
+      "figures": 0,
+      "ordered_raw_figure_subtree_sha256": []
+    }
+  },
+  "diagnostic_original_to_new_addresses": {
+    "ch12-passage-ea4d57b1e0b6319164a1": {
+      "diagnostic_fallback": [
+        "ch12-rational-matrix-fields-and-the-full-curved-dual"
+      ],
+      "exact_successor": "ch12-passage-94aa463b505ca4493752"
+    },
+    "ch13-passage-8dd7e025669dd7f8169d": {
+      "diagnostic_fallback": [
+        "ch13-integrating-the-collision-diagram"
+      ],
+      "exact_successor": "ch13-passage-bc3d4ea6453e425b1e51"
+    }
+  },
+  "release_boundary": "New science was read at these precise paragraph positions on the ordinary native diagnostic. Its bookmark history uses prior fallback headings. The release technician must apply the two cited exact successor mappings to the actual v22 historical set, then perform normal/frozen release parity. Parent and approval data remain intact."
+}

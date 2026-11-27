@@ -1,0 +1,569 @@
+{
+  "edition": "d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7",
+  "editable_baseline": "/tmp/qh-reader-third-flag-v22-20261118/editable-source",
+  "supplied_v22_chapters_and_reference_retained": {
+    "chapters/04-factorization.md": "35bb0d0ad3dd2a8bbdeb406fb69efa6408b2f7dc5a24d4e182767f23dd324155",
+    "chapters/18-open-problems.md": "2d852ae29c825da85314486ed84cdd528ffc2d944783b19d8f2729eb05a72097",
+    "essay.md": "7beb2bb19763934fa50d2cf8eb415048cd73e7806fb79163e46e01c25795bb5b"
+  },
+  "preimage": {
+    "chapters/12-chiral-quantum-groups.md": "ee61293d233fbd42a3386c55d8c6c917c9035ba9c49496658f6d9b87d9e3a4b1",
+    "chapters/13-geometric-reconstruction.md": "df4c6af9231d8fb83fa76ffe7798acdc5ef311cedeea0c237a1a2517422d6679",
+    "reader-data/manifest.json": "30ba5e199cec1b3ffda7e90eb86d45ac09d68be550cede14635174f0580fadd5"
+  },
+  "edited": {
+    "chapters/12-chiral-quantum-groups.md": "76a299118a24beed77192fc8381249a43fc3a0eec5093cc6ad9972eaa39e6380",
+    "chapters/13-geometric-reconstruction.md": "916c6e85dca820fc1ab50e0bc86828604d371a001a1f9049de62a14a63b85ad6",
+    "reader-data/manifest.json": "b471fa94b4b33411ea288a1505aa15536b3d117b21fe63816cbb6588e4b447b1"
+  },
+  "index_offsets": [
+    {
+      "table": "terms",
+      "id": "term-contramodule",
+      "old": {
+        "start": 32892,
+        "end": 34558
+      },
+      "new": {
+        "start": 35200,
+        "end": 36866
+      }
+    },
+    {
+      "table": "terms",
+      "id": "term-weak-hopf-algebra",
+      "old": {
+        "start": 24947,
+        "end": 26100
+      },
+      "new": {
+        "start": 27454,
+        "end": 28607
+      }
+    },
+    {
+      "table": "theorems",
+      "id": "ch12-exceptional-torsion",
+      "old": {
+        "start": 36002,
+        "end": 37728
+      },
+      "new": {
+        "start": 38310,
+        "end": 40036
+      }
+    },
+    {
+      "table": "theorems",
+      "id": "ch13-ising-weak-hopf",
+      "old": {
+        "start": 26102,
+        "end": 27037
+      },
+      "new": {
+        "start": 28609,
+        "end": 29544
+      }
+    }
+  ],
+  "changed_authored_excerpts": [],
+  "hash_of_patch": "93e4f68c1fd3c96beac809b2a5b52e39a6b483ed99406939cb012cde1b69afc6",
+  "scientific_horizon": {
+    "path": "/private/tmp/astra62-post665-research-20261118/graph/cuts/20261118-160020418628-WIB/PINS.json",
+    "sha256": "cf751e48bdad3fd4b1260cca52cf5ec4264a5fe3bb230f4d5fa7ca4032a51fbd",
+    "intake": "/private/tmp/astra62-post665-research-20261118/intake/cuts/20261118T090020418628Z/INTAKE.json",
+    "intake_sha256": "c69eb0405383174d09cb11b6de341632f605ff65fa4d678df5969bec9757cb22"
+  },
+  "scientific": [
+    {
+      "id": "CCEX-1",
+      "domain_and_result": "Genuine exceptional direct image on the nonseparated local-isomorphism atlas is computed by an open-chart colimit. Its augmented exceptional Čech chain object codescends universally for the indicated base changes. A supplied global section provides an extra degeneracy.",
+      "limitations": "Finite admitted local-isomorphism charts; the point-stalk argument alone is insufficient for arbitrary Ind-objects.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/derived-ran-exchange/compact-codescent/PROOF.md",
+      "subject_sha256": "aa0927bb538dd30ecb071685c6d7bc5c5695f2eee8cb610d318b8f9504cb66ec",
+      "subject_lines_inclusive": [
+        [
+          10,
+          68
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_geometry",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/compact-codescent/CHECK.md",
+        "sha256": "b62b56b29e46d3b8a71dbe5fbe3876773a0ca69047dda37cca816c76d439bb12",
+        "bytes": 9434,
+        "lines": 32,
+        "frozen": "evidence/b62b56b29e46d3b8a71dbe5fbe3876773a0ca69047dda37cca816c76d439bb12/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          5,
+          10
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/compact-codescent/VERDICT.json",
+        "sha256": "249646b4381ac8fb4d78581f790c967e21f86eb987771431ed023934bbffe1d0",
+        "bytes": 8831,
+        "lines": 92,
+        "frozen": "evidence/249646b4381ac8fb4d78581f790c967e21f86eb987771431ed023934bbffe1d0/VERDICT.json"
+      },
+      "receipt_record_locator": "/0"
+    },
+    {
+      "id": "CCEX-2",
+      "domain_and_result": "Independent order-lift compact chains (7) identify naturally with compact cochains before finite-set realization. For each surjection the common-refinement roof (10) supplies the native closed support arrow covariantly, and multi-refinements give all-surjection coherence and the associative external product on supplied fields.",
+      "limitations": "Before the outer colimit on the declared field systems, including their global native order-change data and proper transfers.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/derived-ran-exchange/compact-codescent/PROOF.md",
+      "subject_sha256": "aa0927bb538dd30ecb071685c6d7bc5c5695f2eee8cb610d318b8f9504cb66ec",
+      "subject_lines_inclusive": [
+        [
+          30,
+          99
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_geometry",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/compact-codescent/CHECK.md",
+        "sha256": "b62b56b29e46d3b8a71dbe5fbe3876773a0ca69047dda37cca816c76d439bb12",
+        "bytes": 9434,
+        "lines": 32,
+        "frozen": "evidence/b62b56b29e46d3b8a71dbe5fbe3876773a0ca69047dda37cca816c76d439bb12/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          11,
+          18
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/compact-codescent/VERDICT.json",
+        "sha256": "249646b4381ac8fb4d78581f790c967e21f86eb987771431ed023934bbffe1d0",
+        "bytes": 8831,
+        "lines": 92,
+        "frozen": "evidence/249646b4381ac8fb4d78581f790c967e21f86eb987771431ed023934bbffe1d0/VERDICT.json"
+      },
+      "receipt_record_locator": "/1"
+    },
+    {
+      "id": "CCEX-3",
+      "domain_and_result": "The outer realization is equivalent to the independently defined structural compact-support Ran left adjoint, with relative derived coefficients.",
+      "limitations": "Usual finite-subset Ran extraordinary-descent category on the admitted analytic or regular-constructible site.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/derived-ran-exchange/compact-codescent/PROOF.md",
+      "subject_sha256": "aa0927bb538dd30ecb071685c6d7bc5c5695f2eee8cb610d318b8f9504cb66ec",
+      "subject_lines_inclusive": [
+        [
+          100,
+          110
+        ],
+        [
+          147,
+          157
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_geometry",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/compact-codescent/CHECK.md",
+        "sha256": "b62b56b29e46d3b8a71dbe5fbe3876773a0ca69047dda37cca816c76d439bb12",
+        "bytes": 9434,
+        "lines": 32,
+        "frozen": "evidence/b62b56b29e46d3b8a71dbe5fbe3876773a0ca69047dda37cca816c76d439bb12/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          11,
+          18
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/compact-codescent/VERDICT.json",
+        "sha256": "249646b4381ac8fb4d78581f790c967e21f86eb987771431ed023934bbffe1d0",
+        "bytes": 8831,
+        "lines": 92,
+        "frozen": "evidence/249646b4381ac8fb4d78581f790c967e21f86eb987771431ed023934bbffe1d0/VERDICT.json"
+      },
+      "receipt_record_locator": "/2"
+    },
+    {
+      "id": "CCEX-5",
+      "domain_and_result": "The compact roofs retain the two 13|2 quotient orders, noncentral contact and higher normal transfer and the 13|24 disjoint-pair square. The literal extra-sum-minus-direct branch has trace 2c on an actual compact radial class. The logarithmic mode and its odd Tor partner remain outside the compact image, with the original signed boundary.",
+      "limitations": "Finite noncentral field on G_m, B=T⊗^L_A T, and the verified first Eulerian summand. The compact test is the radial class with coefficient m.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/derived-ran-exchange/compact-codescent/PROOF.md",
+      "subject_sha256": "aa0927bb538dd30ecb071685c6d7bc5c5695f2eee8cb610d318b8f9504cb66ec",
+      "subject_lines_inclusive": [
+        [
+          126,
+          157
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_geometry",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/compact-codescent/CHECK.md",
+        "sha256": "b62b56b29e46d3b8a71dbe5fbe3876773a0ca69047dda37cca816c76d439bb12",
+        "bytes": 9434,
+        "lines": 32,
+        "frozen": "evidence/b62b56b29e46d3b8a71dbe5fbe3876773a0ca69047dda37cca816c76d439bb12/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          23,
+          27
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/compact-codescent/VERDICT.json",
+        "sha256": "249646b4381ac8fb4d78581f790c967e21f86eb987771431ed023934bbffe1d0",
+        "bytes": 8831,
+        "lines": 92,
+        "frozen": "evidence/249646b4381ac8fb4d78581f790c967e21f86eb987771431ed023934bbffe1d0/VERDICT.json"
+      },
+      "receipt_record_locator": "/4"
+    },
+    {
+      "id": "DRX-3",
+      "domain_and_result": "The canonical compact comparison cone has puncture values (m,−m), the odd copies eta(m,−m), signed Bockstein/trace maps and free T-ranks 20,40,20 in degrees −2,−1,0 for the rank-ten test. The singleton mapping spaces have distinct pi2.",
+      "limitations": "Canonical compact-to-ordinary map on the marked punctured curve over B=T⊕ηT. This uses a constant field family and nonflat coefficient base change. A separately defined compactly supported Čech construction was outside this comparison.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/derived-ran-exchange/PROOF.md",
+      "subject_sha256": "dd120cc7a8a720d174d9c8ecb34808348a19fc060abc6e90d12924b7791f0d93",
+      "subject_lines_inclusive": [
+        [
+          93,
+          128
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_geometry",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/CHECK.md",
+        "sha256": "6524158571f82ed89cfbe243682fc9da6043673e5a647a4e2ef71345d6eed51e",
+        "bytes": 11158,
+        "lines": 39,
+        "frozen": "evidence/6524158571f82ed89cfbe243682fc9da6043673e5a647a4e2ef71345d6eed51e/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          19,
+          24
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/VERDICT.json",
+        "sha256": "fcd338b698ddb51ab1605002070fb9059134873221a8586bbf768fdcf2349acf",
+        "bytes": 7132,
+        "lines": 74,
+        "frozen": "evidence/fcd338b698ddb51ab1605002070fb9059134873221a8586bbf768fdcf2349acf/VERDICT.json"
+      },
+      "receipt_record_locator": "/2"
+    },
+    {
+      "id": "DRX-4",
+      "domain_and_result": "Sheaf-level Eulerian projection, proper-diagonal latching and exact direct sums identify the whole first projected compact-to-ordinary cone with the singleton compactification cone. Both marked classes survive the outer Ran realization.",
+      "limitations": "Additive first summand of the global canonical comparison. Whether an independently defined compact-support Čech integral can represent the compact adjoint remains open here. A separately defined compactly supported Čech construction was outside this comparison.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/derived-ran-exchange/PROOF.md",
+      "subject_sha256": "dd120cc7a8a720d174d9c8ecb34808348a19fc060abc6e90d12924b7791f0d93",
+      "subject_lines_inclusive": [
+        [
+          129,
+          162
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_geometry",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/CHECK.md",
+        "sha256": "6524158571f82ed89cfbe243682fc9da6043673e5a647a4e2ef71345d6eed51e",
+        "bytes": 11158,
+        "lines": 39,
+        "frozen": "evidence/6524158571f82ed89cfbe243682fc9da6043673e5a647a4e2ef71345d6eed51e/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          25,
+          39
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/14-global-exchange/VERDICT.json",
+        "sha256": "fcd338b698ddb51ab1605002070fb9059134873221a8586bbf768fdcf2349acf",
+        "bytes": 7132,
+        "lines": 74,
+        "frozen": "evidence/fcd338b698ddb51ab1605002070fb9059134873221a8586bbf768fdcf2349acf/VERDICT.json"
+      },
+      "receipt_record_locator": "/3"
+    },
+    {
+      "id": "P665-RT1",
+      "domain_and_result": "The complete arity-two associated coefficient of the next divided quantum determinant has exactly the vacuum derivative components of (10), before normalizing.",
+      "limitations": "N>=2, every numerical level, every spectral coefficient of both signed Cauchy expansions. The proof includes occupied triple collision normal products.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/PROOF.md",
+      "subject_sha256": "13972c7ba9c90836f40e7d440ab6d6fd2ea42c0b296f21cd5e0feb543b9d1c4f",
+      "subject_lines_inclusive": [
+        [
+          16,
+          115
+        ],
+        [
+          132,
+          158
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_quantum",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/CHECK.md",
+        "sha256": "5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a",
+        "bytes": 9961,
+        "lines": 27,
+        "frozen": "evidence/5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          5,
+          14
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/VERDICT.json",
+        "sha256": "4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca",
+        "bytes": 5587,
+        "lines": 62,
+        "frozen": "evidence/4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca/VERDICT.json"
+      },
+      "receipt_record_locator": "/0"
+    },
+    {
+      "id": "P665-RT2",
+      "domain_and_result": "The arity-one residual is B_Q(S_N-S_N)=0 by affine PBW; the empty-word coefficient is zero. Both Cauchy determinants satisfy their native divided equations in unnormalized A_3 and therefore in normalized Abar_3.",
+      "limitations": "All ranks and levels; divided precision 3, i.e. parameter coefficient hbar² in (q-1)/hbar, not all orders. Both halves retain their actual column and level shifts.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/PROOF.md",
+      "subject_sha256": "13972c7ba9c90836f40e7d440ab6d6fd2ea42c0b296f21cd5e0feb543b9d1c4f",
+      "subject_lines_inclusive": [
+        [
+          117,
+          156
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_quantum",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/CHECK.md",
+        "sha256": "5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a",
+        "bytes": 9961,
+        "lines": 27,
+        "frozen": "evidence/5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          15,
+          20
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/VERDICT.json",
+        "sha256": "4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca",
+        "bytes": 5587,
+        "lines": 62,
+        "frozen": "evidence/4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca/VERDICT.json"
+      },
+      "receipt_record_locator": "/1"
+    },
+    {
+      "id": "P665-RT3",
+      "domain_and_result": "Each of the two auxiliary partial traces of each divided half and mixed RTT defect is zero in normalized Abar_3.",
+      "limitations": "Rank two only, any K. Uses the previously established full relation map Phi_2 and the new third-precision determinant. Leaves the traceless-traceless quartic relation open.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/PROOF.md",
+      "subject_sha256": "13972c7ba9c90836f40e7d440ab6d6fd2ea42c0b296f21cd5e0feb543b9d1c4f",
+      "subject_lines_inclusive": [
+        [
+          160,
+          162
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_quantum",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/CHECK.md",
+        "sha256": "5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a",
+        "bytes": 9961,
+        "lines": 27,
+        "frozen": "evidence/5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          21,
+          24
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/VERDICT.json",
+        "sha256": "4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca",
+        "bytes": 5587,
+        "lines": 62,
+        "frozen": "evidence/4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca/VERDICT.json"
+      },
+      "receipt_record_locator": "/2"
+    },
+    {
+      "id": "P665-RT4",
+      "domain_and_result": "The classical joint two-level coproduct of [(x-y)^(-m);b[-1]^2 1,c] has the independent S_L tensor c_R pole family outside the separately integrated product image.",
+      "limitations": "All N>=2, independent K_1,K_2, every m>=1. The left slot is a genuine weight-two, length-two composite. No change to the all-precision joint field-mode splitting or to separate-recipient limitations.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/PROOF.md",
+      "subject_sha256": "13972c7ba9c90836f40e7d440ab6d6fd2ea42c0b296f21cd5e0feb543b9d1c4f",
+      "subject_lines_inclusive": [
+        [
+          164,
+          166
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_quantum",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/CHECK.md",
+        "sha256": "5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a",
+        "bytes": 9961,
+        "lines": 27,
+        "frozen": "evidence/5e1c80d1e485be6583814e482270c54fa42599625e2aaecf0089d6bd18746c9a/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          25,
+          27
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/VERDICT.json",
+        "sha256": "4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca",
+        "bytes": 5587,
+        "lines": 62,
+        "frozen": "evidence/4845cbad01590b1b50c8d756fddfb7fe1a49064589f4f046d8f6b10d2b4548ca/VERDICT.json"
+      },
+      "receipt_record_locator": "/3"
+    },
+    {
+      "id": "P665-RT5",
+      "domain_and_result": "The arity-three initial coefficient of hbar^(-2)[W_f^b,W_g^b] has a well-defined normalized occupied vacuum-current diagonal residue -K(f(y)g(z)-f(z)g(y))/(3(y-z)^2).",
+      "limitations": "Every N>=2, b=e_{1N}, numerical K and arbitrary Laurent f,g. Original quotient before any state representation; W is divided and the hbar^2 term here is quartic undivided.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/traceless-next/PROOF.md",
+      "subject_sha256": "e8b8e5e9631d3aed03c30ede7411834c8b1eb421c79323b65bba132f1e5454e2",
+      "subject_lines_inclusive": [
+        [
+          3,
+          79
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_quantum",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/CHECK.md",
+        "sha256": "9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd",
+        "bytes": 13372,
+        "lines": 67,
+        "frozen": "evidence/9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          46
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/VERDICT.json",
+        "sha256": "1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80",
+        "bytes": 4640,
+        "lines": 47,
+        "frozen": "evidence/1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80/VERDICT.json"
+      },
+      "receipt_record_locator": "/0"
+    },
+    {
+      "id": "P665-RT6",
+      "domain_and_result": "At every nonzero level and every rank N>=2, each stipulated creation, annihilation and mixed RTT block has a nonzero divided defect modulo hbar^3. The prescribed map fails already at this precision, hence cannot exist in the specified hbar inverse limit at those levels.",
+      "limitations": "Three explicit extreme traceless coefficients [u^0 v^2], [p^0 q^(-2)] and [p^(-1)u^0]; includes all critical levels K=-N. Does not refute alternative lifts, actual fields/operators or the known rank-two divided-precision-two map.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/traceless-next/PROOF.md",
+      "subject_sha256": "e8b8e5e9631d3aed03c30ede7411834c8b1eb421c79323b65bba132f1e5454e2",
+      "subject_lines_inclusive": [
+        [
+          80,
+          94
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_quantum",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/CHECK.md",
+        "sha256": "9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd",
+        "bytes": 13372,
+        "lines": 67,
+        "frozen": "evidence/9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          3,
+          3
+        ],
+        [
+          47,
+          58
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/VERDICT.json",
+        "sha256": "1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80",
+        "bytes": 4640,
+        "lines": 47,
+        "frozen": "evidence/1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80/VERDICT.json"
+      },
+      "receipt_record_locator": "/1"
+    },
+    {
+      "id": "P665-RT7",
+      "domain_and_result": "At rank two and level zero the whole V_4 auxiliary summand of both half and mixed divided RTT relations vanishes modulo hbar^3, before vacuum normalization.",
+      "limitations": "Every Laurent coefficient of the highest-weight entry and its simultaneous SL_2 translates. The remaining V_2,V_0 traceless summands and higher precisions remain open at K=0.",
+      "subject_path": "/tmp/astra62-post665-research-20261118/12-rtt/traceless-next/LEVEL-ZERO.md",
+      "subject_sha256": "b0a968100aa14b19bf2d5b7807f367305aed756d2fee10534df568ba8c483d8a",
+      "subject_lines_inclusive": [
+        [
+          3,
+          69
+        ]
+      ],
+      "reviewer": "/root/astra62_rebuild_director/check_quantum",
+      "reviewer_report": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/CHECK.md",
+        "sha256": "9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd",
+        "bytes": 13372,
+        "lines": 67,
+        "frozen": "evidence/9b7e39f0a2cdab23d4f4ac1eaf80566efbb0bad6a4b645ec8cd300838824a2cd/CHECK.md"
+      },
+      "reviewer_report_lines_inclusive": [
+        [
+          3,
+          3
+        ],
+        [
+          59,
+          67
+        ]
+      ],
+      "receipt": {
+        "path": "/tmp/astra62-post665-research-20261118/checks/12-rtt/traceless-next/VERDICT.json",
+        "sha256": "1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80",
+        "bytes": 4640,
+        "lines": 47,
+        "frozen": "evidence/1a1ee8d9665d85f3bf79d0f9c64b5cd64c11232d1b5aadc43c3bb8d3293a9f80/VERDICT.json"
+      },
+      "receipt_record_locator": "/2"
+    }
+  ],
+  "native_public_preimages": {
+    "chapters/12-chiral-quantum-groups.md": {
+      "line": 290,
+      "section": "ch12-intrinsic-rtt-modes",
+      "old_bookmark": "ch12-passage-ea4d57b1e0b6319164a1",
+      "v21_physical_html_line": 3171
+    },
+    "chapters/13-geometric-reconstruction.md": {
+      "line": 245,
+      "section": "ch13-integrating-the-collision-diagram",
+      "old_bookmark": "ch13-passage-8dd7e025669dd7f8169d",
+      "v21_physical_html_line": 3254
+    }
+  },
+  "public_status": "Independent next candidate based on the approved v22 text. No public/canonical writes."
+}

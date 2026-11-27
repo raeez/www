@@ -1,0 +1,37 @@
+{
+  "decision": "PASS_CORRECTED_SCOPED_CONTENT_AND_CURRENT_EXACT_PARAGRAPHS",
+  "edition": "d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7",
+  "subject_record": "/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/RECORD.json",
+  "record_sha256": "effd971a44f5d9dc20f434c818707d6e28c6f4649d948c4247a531dba7187cfb",
+  "source_and_normal_render": "/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/SOURCE-AND-RENDER.json",
+  "source_and_normal_render_sha256": "899906eb629152e739508dd49e10b645f14224640468776c9427f3ebd8cf7a80",
+  "decision_prose": "/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/independent-native-first-reader/CONTENT-VERDICT.md",
+  "decision_prose_sha256": "f31a93832ac4a0f45f03ed0f8a267556e8fbc2d0b1d9e8949e4f12e99a457d22",
+  "durable_diagnostic_book": "/tmp/astra62-post665-research-20261118/reader-deltas/ega-12-13/versions/d85a6e6b60cd9e12694c25fdb0427e9954358fbdb82a9207b9a399dde144dae7/native-build/release/index.html",
+  "durable_diagnostic_sha256": "919142b26e254009ff2de0a7fdba51762650da19bcb6ded642a11d4735731446",
+  "v22_predecessor": "/tmp/qh-reader-third-flag-v22-20261118/normal/release/index.html",
+  "v22_predecessor_sha256": "50f45177661f9c145c1e104df8fae7c5bad56e0ce076f5b756a982db759e0e9f",
+  "current_paragraphs": {
+    "ch12-passage-94aa463b505ca4493752": "has ",
+    "ch12-passage-e4cc832355625ca07c88": "Does the rank-two",
+    "ch12-passage-4c0a8fcb124d35c4e8f3": "The first two use",
+    "ch13-passage-bc3d4ea6453e425b1e51": "Compact support gives two different",
+    "ch13-passage-add68cf7e378de6eabba": "There is nevertheless a compactly supported"
+  },
+  "diagnostic_historical_routes": {
+    "ch12-passage-ea4d57b1e0b6319164a1": {
+      "diagnostic_fallback": [
+        "ch12-rational-matrix-fields-and-the-full-curved-dual"
+      ],
+      "exact_successor": "ch12-passage-94aa463b505ca4493752"
+    },
+    "ch13-passage-8dd7e025669dd7f8169d": {
+      "diagnostic_fallback": [
+        "ch13-integrating-the-collision-diagram"
+      ],
+      "exact_successor": "ch13-passage-bc3d4ea6453e425b1e51"
+    }
+  },
+  "final_historical_parity": "pending separate v22-history successor; two broad fallbacks in current diagnostic",
+  "release_authority": "none"
+}

@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "sourceIdentity": "a9477a8a5e8ad7d2a6b653cf06415847809b2675b856df952442ca31089aa988",
+  "priorCommit": "12a06276b0d8d44301d9dac307410c33db45154a",
+  "files": {
+    "index.html": {
+      "sha256": "2b04856bfc2bb4349eececfc98c6d58348f2f88813d31725e7167292c8df85bc",
+      "bytes": 5192889
+    },
+    "reference.html": {
+      "sha256": "1054b707c975ad9a3a7604c38f07e19e641046da412c81cc4176fe15320de530",
+      "bytes": 5071331
+    },
+    "atlas.html": {
+      "sha256": "092ab0a455262e545a28cf6c4736d55a6780a0bf5b674e89c39a4bfc98598492",
+      "bytes": 11472088
+    },
+    "reader-index.js": {
+      "sha256": "225448624bc297c1daf8367a2b045faff323b1ced62462abfc7e1dd628aa9bca",
+      "bytes": 5988098
+    }
+  },
+  "searchUnits": 7129,
+  "searchUnitsByPage": {
+    "index.html": 3063,
+    "reference.html": 2812,
+    "atlas.html": 1254
+  },
+  "oldSearchUnits": 7091,
+  "historicLocatorsVerified": 8711,
+  "issuedV22Addresses": 4303,
+  "issuedV22Roles": {
+    "retained": 4301,
+    "changed": 2
+  },
+  "changedAddresses": [
+    {
+      "page": "index.html",
+      "id": "ch12-passage-ea4d57b1e0b6319164a1",
+      "role": "changed",
+      "targets": [
+        "ch12-passage-94aa463b505ca4493752"
+      ]
+    },
+    {
+      "page": "index.html",
+      "id": "ch13-passage-8dd7e025669dd7f8169d",
+      "role": "changed",
+      "targets": [
+        "ch13-passage-bc3d4ea6453e425b1e51"
+      ]
+    }
+  ]
+}
