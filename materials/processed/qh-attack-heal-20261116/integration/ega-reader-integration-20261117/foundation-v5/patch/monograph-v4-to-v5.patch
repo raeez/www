@@ -1,0 +1,266 @@
+--- a/compiler/quantum-holography-status/monograph.py
++++ b/compiler/quantum-holography-status/monograph.py
+@@ -60,6 +60,22 @@
+ REF_DEF = re.compile(r'^\s{0,3}\[([^\]]+)\]:\s*<?(\S+?)>?(?:\s+(?:"[^"]*"|\'[^\']*\'|\([^)]*\)))?\s*$')
+ ARXIV_RE = re.compile(r'arxiv\.org/(?:abs|html|pdf)/((?:math|hep-th|math-ph|alg-geom|q-alg)/\d{7}|\d{4}\.\d{4,5})(v\d+)?', re.I)
+ END_MARK = re.compile(r'(?:∎|□|\\qed|\\square\\\)|\\blacksquare\\\))\s*$')
++
++
++def number_ranges(numbers):
++    """[1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 15] -> '1–8, 12, 13, 15': a run of three or more consecutive numbers is written as
++    a range; every number of the list is shown, and no other."""
++    out, run = [], []
++    for n in numbers:
++        if run and n == run[-1] + 1:
++            run.append(n)
++            continue
++        if run:
++            out.append(f'{run[0]}–{run[-1]}' if len(run) >= 3 else ', '.join(map(str, run)))
++        run = [n]
++    if run:
++        out.append(f'{run[0]}–{run[-1]}' if len(run) >= 3 else ', '.join(map(str, run)))
++    return ', '.join(out)
+ 
+ 
+ def slugify(text):
+@@ -962,8 +978,26 @@
+         M_, B_, G_ = .06, 1.0, .26
+         units = 2 * M_ + len(parts) * B_ + (len(parts) - 1) * G_
+         U = 1000 / units
+-        P_, HB = 52, 40  # row pitch and box height, in tenths of a body size
+-
++
++        # Each box is as tall as its title needs where the map is narrowest (the sheet shows the map from 52 body sizes
++        # wide: a box is then about fifteen characters of its type wide), wrapped at words without hyphenation; each row
++        # is as tall as its tallest box. Heights are in tenths of a body size: a line of the box's type (0.833 x 1.22) is
++        # about 10.2, its padding and rule 6.5.
++        def lines(title, cap=15):
++            n, cur = 1, 0
++            for w in title.split():
++                if cur == 0:
++                    cur = len(w)
++                elif cur + 1 + len(w) <= cap:
++                    cur += 1 + len(w)
++                else:
++                    n, cur = n + 1, len(w)
++            return n
++        hbox = {cid: round(lines(self.by_id[cid]['title']) * 10.2 + 6.5) for cid in col}
++        rows_h = [max(hbox[cid] for cid in col if row[cid] == r) for r in range(nrows)]
++        GAP = 11
++        row_top = [sum(rows_h[:r]) + GAP * r for r in range(nrows)]
++
+         def left(i):
+             return (M_ + i * (B_ + G_)) * U
+ 
+@@ -973,14 +1007,16 @@
+         def cx(i):
+             return left(i) + B_ * U / 2
+ 
+-        def top(r):
+-            return r * P_
+-
+-        def mid(r):
+-            return r * P_ + HB / 2
++        def top(cid):
++            return row_top[row[cid]]
+ 
+-        chan = nrows * P_ + 6
+-        H = nrows * P_ + 6 + 6 * 4
++        def mid(cid):
++            return top(cid) + hbox[cid] / 2
++
++        def bot(cid):
++            return top(cid) + hbox[cid]
++
++        chan = row_top[-1] + rows_h[-1] + 8
+         edges = [(q, c['id']) for c in self.chapters for q in sorted(red.get(c['id'], ()), key=lambda x: self.by_id[x]['number'])]
+         plan = []
+         for a_, c_ in edges:
+@@ -1001,7 +1037,7 @@
+                 outs.setdefault(a_, []).append(c_)
+         lanes = {}
+         for kind, a_, c_, gk in plan:
+-            straight = kind == 'next' and row[a_] == row[c_] and len(ins[c_]) == 1 and len(outs[a_]) == 1
++            straight = (kind == 'next' and row[a_] == row[c_] and len(ins[c_]) == 1 and len(outs[a_]) == 1)
+             if gk is not None and not straight:
+                 lanes.setdefault(gk, []).append((a_, c_))
+ 
+@@ -1017,27 +1053,29 @@
+             return base + (k - (n - 1) / 2) * 8
+ 
+         longs = [e for e in plan if e[0] == 'long']
++        H = chan + 6 * len(longs) + 10
+         paths, tips = [], []
+         for kind, a_, c_, gk in plan:
+-            i, r, j, s_ = col[a_], row[a_], col[c_], row[c_]
++            i, j = col[a_], col[c_]
+             if kind == 'down':
+                 x = cx(i)
+-                d = f'M{x:.1f} {top(r) + HB:.1f}V{top(s_):.1f}'
+-                tips.append(('down', x, top(s_), a_, c_))
++                d = f'M{x:.1f} {bot(a_):.1f}V{top(c_):.1f}'
++                tips.append(('down', x, top(c_), a_, c_))
+             else:
+-                yin = spread(ins[c_], a_, mid(s_))
++                yin = spread(ins[c_], a_, mid(c_))
+                 if kind == 'long':
+                     yc = chan + longs.index((kind, a_, c_, gk)) * 6
+-                    d = (f'M{cx(i):.1f} {top(r) + HB:.1f}V{yc:.1f}H{lane_x(gk, a_, c_):.1f}V{yin:.1f}H{left(j):.1f}')
++                    d = f'M{cx(i):.1f} {bot(a_):.1f}V{yc:.1f}H{lane_x(gk, a_, c_):.1f}V{yin:.1f}H{left(j):.1f}'
+                 elif kind == 'skip':
+-                    yout = spread(outs[a_], c_, mid(r))
++                    yout = spread(outs[a_], c_, mid(a_))
+                     d = f'M{left(i):.1f} {yout:.1f}H{lane_x(gk, a_, c_):.1f}V{yin:.1f}H{left(j):.1f}'
+                 elif (a_, c_) in lanes.get(gk, []):
+-                    yout = spread(outs[a_], c_, mid(r))
++                    yout = spread(outs[a_], c_, mid(a_))
+                     d = f'M{right(i):.1f} {yout:.1f}H{lane_x(gk, a_, c_):.1f}V{yin:.1f}H{left(j):.1f}'
+                 else:
+-                    yin = mid(r)
+-                    d = f'M{right(i):.1f} {yin:.1f}H{left(j):.1f}'
++                    yin = min(mid(a_), mid(c_)) + abs(mid(a_) - mid(c_)) / 2 if hbox[a_] != hbox[c_] else mid(a_)
++                    yin = max(top(c_) + 6, min(yin, bot(c_) - 6))
++                    d = f'M{right(i):.1f} {max(top(a_) + 6, min(yin, bot(a_) - 6)):.1f}H{left(j):.1f}'
+                 tips.append(('right', left(j), yin, a_, c_))
+             paths.append(f'<path class="mg-bm-edge" data-from="{a_}" data-to="{c_}" d="{d}"/>')
+         tip_html = ''.join(f'<span class="mg-bm-tip is-{k}" data-from="{a_}" data-to="{c_}" style="left:{x / 10:.2f}%;top:{y / 10:.2f}em"></span>'
+@@ -1048,7 +1086,7 @@
+                 continue
+             i, r = col[c['id']], row[c['id']]
+             boxes.append(f'<a class="mg-bm-box" href="#{c["id"]}" data-ch="{c["id"]}" style="left:{left(i) / 10:.2f}%;'
+-                         f'width:{B_ * U / 10:.2f}%;top:{top(r) / 10:.2f}em;height:{HB / 10:.2f}em">'
++                         f'width:{B_ * U / 10:.2f}%;top:{top(c["id"]) / 10:.2f}em;min-height:{hbox[c["id"]] / 10:.2f}em">'
+                          f'<span class="mg-bm-no">{c["number"]}</span> <span class="mg-bm-title">{html.escape(c["title"])}</span></a>')
+         heads = ''.join(f'<li class="mg-bm-part" style="left:{left(i) / 10:.2f}%;width:{B_ * U / 10:.2f}%">'
+                         f'<a href="#{p["id"]}-title"><span class="mg-bm-partno">{html.escape(self.part_label(p))}</span> '
+@@ -1085,7 +1123,7 @@
+             unknown = [cid for cid in r.get('chapter_ids', []) if cid not in self.by_id]
+             if unknown:
+                 self.problems.append(f'reader manifest: route {r.get("id")} names unknown chapters {unknown}')
+-            nums = ', '.join(str(self.by_id[cid]['number']) for cid in chs)
++            nums = number_ranges([self.by_id[cid]['number'] for cid in chs])
+             items.append(f'<li class="mg-route"><a class="mg-route-name" href="#{chs[0] if chs else "contents"}" '
+                          f'data-route="{html.escape(r["id"])}" data-route-chapters="{" ".join(chs)}">{html.escape(r["title"])}</a> '
+                          f'<span class="mg-route-list">{html.escape(L.get("route_chapters", "Chapters {list}").replace("{list}", nums))}</span></li>')
+--- a/compiler/quantum-holography-status/monograph.css
++++ b/compiler/quantum-holography-status/monograph.css
+@@ -79,7 +79,7 @@
+ @media (prefers-reduced-motion: reduce) { [data-revealed] { animation: none; outline: 2px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 4px; } }
+ 
+ /* The front matter ---------------------------------------------------------------------------------------------- */
+-.mg-front { max-width: calc(var(--mg-frame) + 8rem); margin: 0 auto; padding: var(--s6) var(--gutter) var(--s4); }
++.mg-front { max-width: calc(76rem + 2 * var(--gutter)); margin: 0 auto; padding: var(--s6) var(--gutter) var(--s4); }
+ /* The title page uses the chapters' frame: the reading column, and the margin column with the book at a glance. */
+ .mg-front-frame { display: grid; grid-template-columns: minmax(0, var(--mg-measure)) var(--mg-gap) var(--mg-aside); align-items: start;
+                   max-width: var(--mg-frame); margin: 0 auto; }
+@@ -126,15 +126,15 @@
+ .mg-bm-tip { position: absolute; width: 0; height: 0; color: var(--ink-4); transition: color .15s, opacity .15s; }
+ .mg-bm-tip.is-right { transform: translate(-100%, -50%); border-left: 6px solid currentColor; border-top: 4px solid transparent; border-bottom: 4px solid transparent; }
+ .mg-bm-tip.is-down { transform: translate(-50%, -100%); border-top: 6px solid currentColor; border-left: 4px solid transparent; border-right: 4px solid transparent; }
+-.mg-bm-box { position: absolute; display: flex; align-items: flex-start; gap: .45em; padding: .35em .55em; border: 1.3px solid var(--rule);
++.mg-bm-box { position: absolute; display: flex; align-items: center; gap: .45em; padding: .35em .55em; border: 1.3px solid var(--rule);
+              border-radius: 6px; background: var(--paper); color: var(--ink); text-decoration: none; font-size: var(--text-sm);
+-             line-height: 1.22; overflow: hidden; transition: border-color .15s, opacity .15s; }
++             line-height: 1.22; transition: border-color .15s, opacity .15s; }
+ .mg-bm-box:hover, .mg-bm-box:focus-visible { border-color: var(--accent); }
+ .mg-bm-no { flex: none; color: var(--accent); font-variant-numeric: lining-nums tabular-nums; min-width: 1.2em; }
+-.mg-bm-title { min-width: 0; overflow-wrap: normal; hyphens: auto; text-wrap: pretty; }
++.mg-bm-title { min-width: 0; overflow-wrap: normal; hyphens: manual; -webkit-hyphens: manual; }
+ .mg-map-cap { margin-top: var(--s2); color: var(--ink-3); font-size: var(--text-sm); max-width: var(--mg-measure); }
+ .mg-map-cap:empty { display: none; }
+-@container (max-width: 860px) { .mg-bm-stage, .mg-map-h, .mg-map-cap { display: none; } }
++@container (max-width: 52em) { .mg-bm-stage, .mg-map-h, .mg-map-cap { display: none; } }
+ .mg-routes { margin: var(--s3) 0 0; }
+ .mg-routes-h { margin: 0 0 var(--s1); font-variant-caps: all-small-caps; letter-spacing: .06em; color: var(--ink-3); font-size: var(--text-sm); }
+ .mg-route-list-all { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
+@@ -175,7 +175,7 @@
+ .mg-post { margin: 0; }
+ .mg-post a { color: var(--accent); text-decoration: none; font-variant-numeric: lining-nums tabular-nums; padding: 0 .1rem; }
+ .mg-post a:hover { text-decoration: underline; }
+-.mg-marks { margin-top: var(--s4); padding-top: var(--s2); border-top: 1px solid var(--rule-soft); max-width: var(--mg-frame); }
++.mg-marks { margin: var(--s4) auto 0; padding-top: var(--s2); border-top: 1px solid var(--rule-soft); max-width: var(--mg-frame); }
+ .mg-marks-h { margin: 0 0 .4rem; font-variant-caps: all-small-caps; letter-spacing: .06em; color: var(--ink-3); font-size: var(--text-sm); }
+ .mg-marks-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem 1.4rem; }
+ .mg-marks-list li { display: inline-flex; align-items: center; gap: .4rem; }
+@@ -196,7 +196,7 @@
+ .mg-toc-ch + .mg-toc-ch { border-top: 1px solid var(--rule-soft); padding-top: var(--s2); }
+ .mg-toc-link { display: block; text-decoration: none; color: var(--ink); font-size: var(--text-h3); line-height: var(--lh-display); }
+ .mg-toc-link:hover .mg-toc-title { color: var(--accent); text-decoration: underline; text-decoration-thickness: .05em; text-underline-offset: .2em; }
+-.mg-toc-no { position: absolute; left: 0; width: 2.4rem; text-align: right; color: var(--accent); font-variant-numeric: oldstyle-nums proportional-nums; }
++.mg-toc-no { position: absolute; left: 0; width: 2.4rem; text-align: right; color: var(--accent); font-variant-numeric: lining-nums proportional-nums; }
+ .mg-toc-ch[data-unwritten] .mg-toc-link, .mg-toc-ch[data-unwritten] .mg-toc-no { color: var(--ink-3); }
+ .mg-toc-summary { margin: .3rem 0 0; color: var(--ink-2); font-size: var(--text-sm); max-width: var(--mg-measure); }
+ .mg-toc-uses { margin: .25rem 0 0; color: var(--ink-3); font-size: var(--text-sm); }
+@@ -248,7 +248,7 @@
+ .mg-ch-titleblock { position: relative; margin: var(--s2) 0 0; }
+ .mg-ch-title { margin: 0; font-weight: 400; font-size: var(--text-ch); line-height: var(--lh-display);
+                letter-spacing: -.008em; max-width: calc(var(--mg-measure) + 4rem); text-wrap: balance; }
+-.mg-ch-no { margin: 0 0 .05em; font-size: var(--text-ch-no); line-height: 1; color: var(--accent); font-variant-numeric: oldstyle-nums proportional-nums; }
++.mg-ch-no { margin: 0 0 .05em; font-size: var(--text-ch-no); line-height: 1; color: var(--accent); font-variant-numeric: lining-nums proportional-nums; }
+ 
+ .mg-ch-frame { display: grid; grid-template-columns: minmax(0, var(--mg-measure)) var(--mg-gap) var(--mg-aside); align-items: start; }
+ .mg-ch-open { grid-column: 1; grid-row: 1; }
+@@ -457,7 +457,7 @@
+ .mg-end-prev:hover .mg-end-title { color: var(--accent); }
+ .mg-end-dir { display: block; color: var(--ink-3); font-size: var(--text-sm); font-variant-caps: all-small-caps; letter-spacing: .07em; margin-bottom: .2rem; }
+ .mg-end-ch { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .55rem; align-items: baseline; }
+-.mg-end-no { color: var(--accent); font-variant-numeric: oldstyle-nums; }
++.mg-end-no { color: var(--accent); font-variant-numeric: lining-nums; }
+ .mg-end-next .mg-end-ch { font-size: var(--text-h3b); line-height: var(--lh-display); }
+ .mg-end-next .mg-end-no { font-size: 1.3em; }
+ .mg-end-prev .mg-end-ch { color: var(--ink-2); }
+@@ -477,7 +477,7 @@
+ .mg-gl-def p + p, .mg-ri-statement p + p { text-indent: 1.5em; }
+ .mg-gl-def p.mg-cont, .mg-ri-statement p.mg-cont { text-indent: 0; }
+ .mg-ri-ch { margin: var(--s4) 0 var(--s1); font-size: var(--text-h3); font-weight: 400; display: flex; gap: .55em; align-items: baseline; }
+-.mg-ri-no { color: var(--accent); font-variant-numeric: oldstyle-nums; }
++.mg-ri-no { color: var(--accent); font-variant-numeric: lining-nums; }
+ .mg-ri-ch a { color: var(--ink); text-decoration: none; }
+ .mg-ri-ch a:hover { color: var(--accent); text-decoration: underline; }
+ .mg-ri-entry { margin: 0 0 var(--s3); padding-left: 1rem; border-left: 2px solid var(--rule); hyphens: auto; }
+@@ -514,10 +514,15 @@
+                  padding: var(--s3) max(var(--gutter), calc(50% - var(--mg-frame) / 2)); background: var(--paper-3);
+                  border-bottom: 1px solid var(--rule); box-shadow: var(--shadow); font-size: var(--text-base); overscroll-behavior: contain; }
+ .reader-search[hidden] { display: none; }
+-.reader-search-field { display: flex; align-items: center; gap: .6rem; }
+-.reader-search-label { color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .06em; }
+-.reader-search-input { flex: 1; min-width: 0; font: inherit; padding: .45rem .7rem; border: 1px solid var(--rule); border-radius: 6px;
++.reader-search-field { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .6rem; }
++.reader-search-label { flex: 0 1 auto; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .06em; }
++.reader-search-input { flex: 1 1 14rem; min-width: 10rem; font: inherit; padding: .45rem .7rem; border: 1px solid var(--rule); border-radius: 6px;
+                        background: var(--paper); color: var(--ink); }
++.reader-search-close { flex: none; }
++@media (max-width: 640px) {
++  .reader-search-label { flex: 1 0 100%; }
++  .reader-search-input { flex: 1 1 0; min-width: 0; }
++}
+ .reader-search-input:focus { outline: 2px solid var(--focus); outline-offset: 1px; }
+ .reader-search-scopes { display: flex; flex-wrap: wrap; gap: .35rem; margin: .7rem 0 .2rem; }
+ .reader-scope { font: inherit; font-size: var(--text-sm); padding: 2px 10px; border: 1px solid var(--rule); border-radius: 999px; background: transparent;
+@@ -545,7 +550,8 @@
+ }
+ /* Up to a very wide window the bar gives its room to where the reader is: the previous and next links keep their
+    words and arrows and drop the neighbouring chapters' titles. */
+-@media (max-width: 1480px) { .reader-prev .reader-step-title, .reader-next .reader-step-title { display: none; } }
++@media (max-width: 1480px) { body:not(:has(main[data-reader-view='front'])) :is(.reader-prev, .reader-next) .reader-step-title { display: none; } }
++body:has(main[data-reader-view='front']) .reader-next { max-width: 42rem; }
+ /* Below that, the chapter's margin column moves above its text, as one band. */
+ @media (max-width: 1180px) {
+   .mg-ch-frame { grid-template-columns: minmax(0, 1fr); max-width: var(--mg-measure); }
+@@ -573,6 +579,7 @@
+   .mg-site { display: none; }
+   .reader-step-title { display: none; }
+   .reader-position-part, .reader-position-section { display: none; }
++  .reader-position-chapter::before { content: none !important; }
+ }
+ @media (max-width: 640px) {
+   .mg-front { padding-top: var(--s4); }
+@@ -592,6 +599,8 @@
+   .mg-dot.is-here { font-size: 12px; gap: 3px; }
+   .reader-step-label { display: none; }
+   .reader-contents-word { display: none; }
++  .reader-position-title { display: none; }
++  body:has(main[data-reader-on]) .mg-ch-pos { display: none; }
+   .reader-peek:not([hidden]) { left: 8px; right: 8px; width: auto; top: auto; bottom: 8px; max-height: 55vh; border-radius: 10px; }
+ }
+ @media (max-width: 480px) {

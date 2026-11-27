@@ -1,0 +1,33 @@
+{
+ "at": "2026-11-17T04:34:04Z",
+ "by": "website owner (foundation session 67e78388, on claude4)",
+ "what": "foundation v7 (supplied supplements in the reference) and the frontier comparisons of 17 November 2026, an exact Astra-max author handoff (WEBSITE-CONTENT-HANDOFF.json, FRONTIER-DELTA.md sha256 7e97fcdd2613a685f0f31d6ca328612a02fcf089163153a0e8260e22b24b71e9)",
+ "sealed_successor": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/monograph/v7",
+ "guard": {
+  "successor": "foundation v7: supplied supplements in the reference (the frontier comparisons of 17 November 2026)",
+  "patch": {
+   "path": "patch/monograph-v6-to-v7.patch",
+   "sha256": "ea0919807e92dae0834ddb3c84ee0e1789ffd948ae349ab818269409da406c08"
+  },
+  "before": {
+   "monograph.py": "605723ba68b64f091ec524b1c3af7f684900415dae8989f2bf9996d0db751656",
+   "monograph.css": "fc18010834409a891b5c7f68436d691f19c41509fc44315e0e6891ead716dcf9",
+   "status.py": "b0bf38e632fe337938e796d6271bdc6341eeade3aefd8d1f42369016639d3bdc"
+  },
+  "after": {
+   "monograph.py": "487bb1ab5269733851fe55544000225b53fbb25165a86c933cbc516252b6dc14",
+   "monograph.css": "4e7bc80d0832b1378b3ae98c4b1b173c85e6d2c2d5a7fd015b2f7f69c77cdb52",
+   "status.py": "6fa05e99f46649abd80ca34279eb2bc032df38adf968004bb66975162231904e"
+  },
+  "content": {
+   "supplements/frontier-comparisons-20261117.md": "7e97fcdd2613a685f0f31d6ca328612a02fcf089163153a0e8260e22b24b71e9",
+   "supplements/supplements.json": "13417e62f9bb647e290a0f3aef3ab5998f42b9cd63c1230ebf6f7b9ec915a45e"
+  },
+  "integration_before_check": {
+   "monograph.py": "605723ba68b64f091ec524b1c3af7f684900415dae8989f2bf9996d0db751656",
+   "monograph.css": "fc18010834409a891b5c7f68436d691f19c41509fc44315e0e6891ead716dcf9",
+   "status.py": "b0bf38e632fe337938e796d6271bdc6341eeade3aefd8d1f42369016639d3bdc"
+  }
+ },
+ "result": "integration compiler files at v7 after-hashes; supplement and registry installed in content/quantum-holography-status/supplements/"
+}

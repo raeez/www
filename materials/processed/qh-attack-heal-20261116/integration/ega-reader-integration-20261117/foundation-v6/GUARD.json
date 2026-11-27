@@ -1,0 +1,41 @@
+{
+ "schema": "foundation-monograph-guard/v6",
+ "made_utc": "2026-11-16T20:51:28Z",
+ "successor_of": {
+  "v5_delta": "f5ec90088ddc00e465cfa6f8dc6f15ed751cf3b106cbdb478106650a078f09a6",
+  "v5_freeze": "bdafa728fffccb0210d77d3eeecc6e61662e1eb615ae913207b03dc7eb99e1ba",
+  "v4_freeze": "041d1da5d1cc650616651044fe326ead841309eab8df4ad45aed1e5424de4cdc",
+  "v3_freeze": "881bf5fd308c1c27b9f23d64363c98654fed7e7e2db637dc4e190a313f5d801d",
+  "v2_freeze": "39e53f0498add48532a6f79f8d6e4974aa8c48d2cffc9d8c0b8bb148e1466495",
+  "v1_freeze": "8c2ab00c843b8dd54a2c914e0655f8668a179dc9b89dae8563180ab9ad50881e"
+ },
+ "delta": {
+  "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/monograph/v6/patch/monograph-v5-to-v6.patch",
+  "sha256": "89670f7c55324badd440778ee166ced8ae3b19b9dda3ece9cb8ebde00f0644ea",
+  "apply": "patch -p1 at the integration root, on installed v5; monograph.py and monograph.css only"
+ },
+ "applies_to_integration_now": {
+  "compiler/quantum-holography-status/monograph.py": "5f8ec6d788dad928dd931bf749a53181c7a20f77ae239baf935b60101f7dffa9",
+  "compiler/quantum-holography-status/monograph.css": "4193ccfaeab0465d3b4cba442e81760c3c39832fce83bab3786fb17157ed719b"
+ },
+ "result": {
+  "compiler/quantum-holography-status/monograph.py": "605723ba68b64f091ec524b1c3af7f684900415dae8989f2bf9996d0db751656",
+  "compiler/quantum-holography-status/monograph.css": "fc18010834409a891b5c7f68436d691f19c41509fc44315e0e6891ead716dcf9"
+ },
+ "inert_without_reader_data": {
+  "identical": true,
+  "page_sha256": "cf89f01b094b01b544c3ac85948feac21d382867c072683a7eb78568553231f4"
+ },
+ "candidate": {
+  "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/monograph/v6/out/book.html",
+  "sha256": "c254c63071fd3fe0cbb56945e92f40f666a9255d4d5a5f7e8d05c2d7da8819f0",
+  "bytes": 14693337,
+  "audit": "PASS",
+  "snapshot": "20261116T204404Z",
+  "inputs": "as v5/GUARD.json preview_inputs"
+ },
+ "evidence": {
+  "PROSE-RETENTION.json": "7eb4f449e4ad763e691e7531c71125215ea0c3a32caea11a490b18407bd562a3",
+  "FORMULA-RETENTION.json": "94364e6ae8518ea6b18bdd3cfe1d58610f71b1eee541389d2bcc2e1a9987c3f1"
+ }
+}

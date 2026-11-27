@@ -1,0 +1,85 @@
+{
+ "schema": "foundation-monograph-guard/v2",
+ "made_utc": "2026-11-16T20:02:13Z",
+ "successor_of": {
+  "version": "v1",
+  "patch_sha256": "19118f08fb665d4819058924dab6336d3725c12b20f553d66ed2ea225921e35f",
+  "freeze": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/monograph/FREEZE.json"
+ },
+ "delta": {
+  "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/monograph/v2/patch/monograph-v1-to-v2.patch",
+  "sha256": "2b60caf7536a49e4924effed69512283b0d21b1b35f85e7ba56f85f128958a6b",
+  "apply": "patch -p1 in the integration worktree root, on installed v1"
+ },
+ "applies_to_installed_v1": {
+  "compiler/quantum-holography-status/status.py": "198727b36250e150e5be2623593b1f655a1e6002bb55ea2968b3e5c9bb84610b",
+  "content/quantum-holography-status/page.json": "ac44a9254178df693da063b8b52b0f86233a62ba18c1f8ca277481f8f6197288",
+  "compiler/quantum-holography-status/monograph.py": "cf6abfa60dbc7214cd684e8cdb1eaa5e28317930e48fcf07a852c1470c0e9b53",
+  "compiler/quantum-holography-status/monograph.css": "7d58f2b91c9763b6251635ade47adcaf1472ee5c25891042c19f479d2b66f024"
+ },
+ "result": {
+  "compiler/quantum-holography-status/status.py": "198727b36250e150e5be2623593b1f655a1e6002bb55ea2968b3e5c9bb84610b",
+  "content/quantum-holography-status/page.json": "2cbfcfb6b4b95024d16548295c4f9ab3217e099f8744c52d1ebf9fcf6953a9b8",
+  "compiler/quantum-holography-status/monograph.py": "c0af80b668f48091ffd04e7d2de37f5cc46e6ac10ed399454fe80b4411496ac6",
+  "compiler/quantum-holography-status/monograph.css": "86aa0724f11a38ec1bb7558622c733f5dc14d94ca47fef1ffbcbadd53c1de9d8"
+ },
+ "unchanged_by_delta": [
+  "compiler/quantum-holography-status/status.py"
+ ],
+ "inert_without_reader_data": {
+  "identical": true,
+  "page_sha256": "cf89f01b094b01b544c3ac85948feac21d382867c072683a7eb78568553231f4"
+ },
+ "preview_inputs": {
+  "atlas.py": "fd65eec00267341eca5673f799d176ab70cc947ff537905e26db57d85244c9b5",
+  "atlas.css": "a358605c9befb63b451642bbc8c1f58dc2d0365f3d682e86fc1619c581a09ecf",
+  "atlas.js": "276565d774c4ec6125973907325751af0f72be0d4c95c132932b22655d6c0654",
+  "audit.py": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+  "status.js": "ddc7df31aae27343a5f5114f35f0d5a7f4ca4096682a74b77ef566be0ceb78bf",
+  "figures.py": "2b86921f9dea8a3dad4f25d8a33c2d8ba4b2784925702bee201e730810c1f90f",
+  "figures.css": "0c68828bcf65b3c63c4533e79e5b4af13150fe09bc1ea1a5757d576518381301",
+  "figures.js": "bce4e5493125523e7cc10b3fb868a1ebd5416fb38f5c1a83494020a9d7121793",
+  "reader.js": "698ca226bfc94ab95d717bcd5dae58fc4214bc0050363d785af97fd3bd2fcdbf",
+  "reader-data/manifest.json": "342bef123fe00c7702178b44df688fb4a764e212e172aaca6987b7d81bd14555",
+  "reader-data/diagram-records.json": "76f1a771965533daafdc9a032c513893e6c5ba9af2a3d24f28d041d1ef13a503"
+ },
+ "snapshot": {
+  "id": "20261116T195917Z",
+  "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/monograph/v2/snapshot/20261116T195917Z",
+  "chapters": {
+   "01-physical-questions.md": "ffc9b0956598092cc48136ba1935957de487de95caf14b0b8b59d44c829e0534",
+   "02-algebras-and-modules.md": "5ff537a2f178d0beb5d25f8e6bd0c72896a4e96fef95dc224c3f2cb768cdb6c9",
+   "03-local-fields.md": "37133eafd8ca20f3ef0c7224fa41555f35e8313ff840c1df967ed745a886a88c",
+   "04-factorization.md": "bb5908a5451d5871eff260713897d96e252b24b9da035a83d9c6831d5d237df6",
+   "05-bar-and-coherence.md": "609fdca3f5fbe85265e9b5c3d7dedb7e2b6e4c2d5e2051d3ca269bfd5e3d8e5e",
+   "06-duality-and-induction.md": "47a2a7f6b9f661b0548da01800e2a6804583cfd0d5bfb5ba3ef8ac6807ec0d79",
+   "07-actions-and-centres.md": "2797f8001c3f0367bade6859796ad62bdd020ad88972f9d64cda3861c2fb8457",
+   "08-completions.md": "97f36c39e2b58b000bb961527c4633468d218f684f98e5a4d2e6503c45da6bc9",
+   "09-mixed-boundaries.md": "ad8c80b93e9fb52eaf816e1b069ccfeb177f34c4d0030c12515b67ad64336174",
+   "10-analytic-sewing.md": "30cfdab275abeab355b85bf4c173fcbf96d26e552061bd8a856de908e357bdc9",
+   "11-states-and-lines.md": "901d818542624298880b5d6e8b9b299f51cb79a1c462e92bf869e185ee831db7",
+   "12-chiral-quantum-groups.md": "7e1e5d94e8dd10ed14b760c1ea5d0319f9fa864558caa3dcf6719a166c328336",
+   "13-geometric-reconstruction.md": "2320abb53ea868a1159096a8c7d2a260c5ee6f14bcc54a13b53c01ecc6f84f08",
+   "14-branes.md": "25a629fa0436d1fb3ee0683148d0dbb195393a8e2655665d446b7c38e2b3ec88",
+   "15-hall-and-compact.md": "8aec89cf338afe0cf7387a84583dfa6cc614dd6fb9861755596c1833652c2fe9",
+   "16-arithmetic.md": "9bf8bb818f11b6a0ec5f47776c0e4f587d892986c4dea56100002c199da62511",
+   "17-holographic-reconstruction.md": "203bc178a9c449a17721f1e94444c19e4880df176fd5cc6c60c2cb9fdbe291ae",
+   "18-open-problems.md": "1c041fc05a445d7b0f3f994246663d41a5f7de7b19566c405f5501c08a4520f3"
+  }
+ },
+ "candidate": {
+  "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/monograph/v2/out/book.html",
+  "sha256": "90d7d422ea5383d53e1eca5b8b8e52d11db4ecab61d9cba3b2384ac76f7d5e50",
+  "bytes": 14679227,
+  "audit": "PASS"
+ },
+ "diagram_gallery": {
+  "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/monograph/v2/out/diagram-gallery.html",
+  "sha256": "7a2095b26325188272426819a2779977e26ccdd582776e7f236b810a3c595fd0"
+ },
+ "evidence": {
+  "PROSE-RETENTION.json": "5c14639ab1ec9c6cabb741c9e8c9aeded95d590c6d5149bda8df01fdd315505e",
+  "DIAGRAMS.json": "f94f47749219df5e532281d537e4c45cfa409ca7aa5bad208d9e4544fa5f634f",
+  "WEIGHT.json": "025f1e0d5ea369aa487916cfb9da9b6ecd3a104257de37ebf12282da372fcf67"
+ }
+}

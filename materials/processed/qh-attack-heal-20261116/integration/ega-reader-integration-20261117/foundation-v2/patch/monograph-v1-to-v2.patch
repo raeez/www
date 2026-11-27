@@ -1,0 +1,781 @@
+--- a/content/quantum-holography-status/page.json
++++ b/content/quantum-holography-status/page.json
+@@ -125,7 +125,7 @@
+     "next": "Next",
+     "routes": "Routes through the book",
+     "route_chapters": "Chapters {list}",
+-    "map_caption": "Each arc joins a chapter to an earlier chapter recommended before it. The arcs record reading order, not mathematical implication; the brackets below group the chapters into the five parts.",
++    "map_caption": "Each part is a column and each chapter a box. A line runs from a chapter to a later chapter that draws on it directly; a prerequisite reached through another chapter is not drawn twice, and each chapter's own list names them all. The lines record reading order, not mathematical implication.",
+     "reference": "Atlas and reference",
+     "reader_js": {
+       "prerequisites": "Draws on",
+@@ -143,6 +143,11 @@
+     "kind_conjecture": "Conjecture",
+     "kind_heuristic": "Heuristic",
+     "kind_counterexample": "Counterexample",
+-    "kind_open": "Open problem"
++    "kind_open": "Open problem",
++    "glossary": "Glossary",
++    "glossary_note": "Each definition as its chapter gives it, with a link to its place in the chapter.",
++    "defined_in": "Defined in",
++    "results_index": "Index of results",
++    "results_index_note": "Each result of the book with its status and statement, linked to its place in the chapter."
+   }
+ }
+--- a/compiler/quantum-holography-status/monograph.py
++++ b/compiler/quantum-holography-status/monograph.py
+@@ -592,14 +592,16 @@
+         attr = f' class="{classes}"' if classes else ''
+         return f'<p{attr}>{self.inline(b["text"])}</p>'
+ 
+-    def render(self, blocks, section_no=None):  # noqa: C901
++    def render(self, blocks, section_no=None, envs=True):  # noqa: C901
++        """envs=False sets a copy (the glossary, the index of results, the introduction): its lead-ins stay bold
++        words, so that no second result block, anchor or tag is made for a statement the chapter already carries."""
+         out = []
+         i = 0
+         while i < len(blocks):
+             b = blocks[i]
+             t = b['t']
+             if t == 'p':
+-                lead = lead_in(b['text'])
++                lead = lead_in(b['text']) if envs else None
+                 if lead:
+                     span = [b]
+                     j = i + 1
+@@ -631,9 +633,13 @@
+                     continue
+                 out.append(self.para(b))
+             elif t == 'math':
+-                out.append(self.display(b))
++                out.append(self.display(b if envs else dict(b, id=None)))
+             elif t == 'h':
+                 level = min(6, b['level'] + 1)
++                if not envs:
++                    out.append(f'<h{level} class="mg-h{b["level"]}">{self.inline(b["text"])}</h{level}>')
++                    i += 1
++                    continue
+                 ident = b.get('id') or self.unique(f'{self.current}-{slugify(b["text"])}')
+                 if b.get('id'):
+                     self.claim(ident, self.current)
+@@ -647,10 +653,10 @@
+                     if len(item) == 1 and item[0]['t'] == 'p':
+                         items.append(f'<li>{self.inline(item[0]["text"])}</li>')
+                     else:
+-                        items.append('<li>' + self.render(item) + '</li>')
++                        items.append('<li>' + self.render(item, envs=envs) + '</li>')
+                 out.append(f'<{tag} class="mg-list"{start}>{"".join(items)}</{tag}>')
+             elif t == 'quote':
+-                out.append(f'<blockquote class="mg-quote">{self.render(b["blocks"])}</blockquote>')
++                out.append(f'<blockquote class="mg-quote">{self.render(b["blocks"], envs=envs)}</blockquote>')
+             elif t == 'table':
+                 head = ''.join(f'<th scope="col"{self.align(b, k)}>{self.inline(c)}</th>' for k, c in enumerate(b['head']))
+                 rows = ''.join('<tr>' + ''.join(f'<td{self.align(b, k)}>{self.inline(c)}</td>' for k, c in enumerate(r))
+@@ -779,10 +785,10 @@
+                       f'<span class="mg-ch-partname">{html.escape(p["title"])}</span></a>'
+                       f'<span class="mg-ch-pos">{html.escape(L.get("chapter_of", "Chapter {n} of {total}").replace("{n}", str(number)).replace("{total}", str(total)))}</span></p>')
+         head = (f'<header class="mg-ch-head">{kicker}'
+-                f'<h2 class="mg-ch-title" id="{cid}-h"><span class="mg-ch-no">{number}</span>'
+-                f'<span class="mg-ch-name">{html.escape(c["title"])}</span></h2></header>')
++                f'<div class="mg-ch-titleblock"><p class="mg-ch-no" aria-hidden="true">{number}</p>'
++                f'<h2 class="mg-ch-title" id="{cid}-h">{html.escape(c["title"])}</h2></div></header>')
+         prereq_items = ''.join(
+-            f'<li><a href="#{q}" data-ref="chapter"><span class="mg-pre-no">{self.by_id[q]["number"]}</span>'
++            f'<li><a href="#{q}" data-ref="chapter"><span class="mg-pre-no">{self.by_id[q]["number"]}</span> '
+             f'<span class="mg-pre-title">{html.escape(self.by_id[q]["title"])}</span></a></li>'
+             for q in c.get('prerequisites', []) if q in self.by_id)
+         prereq = (f'<div class="mg-aside-block mg-aside-pre"><p class="mg-aside-h" id="{cid}-pre-h">{html.escape(L.get("draws_on", "Draws on"))}</p>'
+@@ -817,11 +823,11 @@
+                 self.anchor_kind[sid] = 'section'
+                 no = f'{number}.{k}'
+                 title = self.inline(h['text'])
+-                toc_items.append(f'<li><a href="#{sid}" data-ref="section"><span class="mg-sec-no">{no}</span>'
++                toc_items.append(f'<li><a href="#{sid}" data-ref="section"><span class="mg-sec-no">{no}</span> '
+                                  f'<span class="mg-sec-title">{title}</span></a></li>')
+                 self.section_index.setdefault(cid, []).append((sid, no, title))
+                 body_parts.append(f'<section class="mg-sec" id="{sid}" data-section aria-labelledby="{sid}-h">'
+-                                  f'<h3 class="mg-sec-head" id="{sid}-h"><span class="mg-sec-no">{no}</span>'
++                                  f'<h3 class="mg-sec-head" id="{sid}-h"><span class="mg-sec-no">{no}</span> '
+                                   f'<span class="mg-sec-title">{title}</span></h3>{self.render(sblocks)}</section>')
+             body = ''.join(body_parts)
+             sections_toc = (f'<div class="mg-aside-block mg-aside-toc"><p class="mg-aside-h">{html.escape(L.get("in_chapter", "In this chapter"))}</p>'
+@@ -852,13 +858,13 @@
+             q = self.by_id[self.order[k - 1]]
+             links.append(f'<a class="mg-end-prev" rel="prev" href="#{q["id"]}"><span class="mg-end-dir">'
+                          f'{html.escape(L.get("previous", "Previous"))}</span><span class="mg-end-ch">'
+-                         f'<span class="mg-end-no">{q["number"]}</span><span class="mg-end-title">{html.escape(q["title"])}</span></span></a>')
++                         f'<span class="mg-end-no">{q["number"]}</span> <span class="mg-end-title">{html.escape(q["title"])}</span></span></a>')
+         if k + 1 < len(self.order):
+             q = self.by_id[self.order[k + 1]]
+             summary = f'<span class="mg-end-summary">{self.b.rich(q["summary"], terms=False)}</span>' if q.get('summary') else ''
+             links.append(f'<a class="mg-end-next" rel="next" href="#{q["id"]}"><span class="mg-end-dir">'
+                          f'{html.escape(L.get("next", "Next"))}</span><span class="mg-end-ch">'
+-                         f'<span class="mg-end-no">{q["number"]}</span><span class="mg-end-title">{html.escape(q["title"])}</span></span>'
++                         f'<span class="mg-end-no">{q["number"]}</span> <span class="mg-end-title">{html.escape(q["title"])}</span></span>'
+                          f'{summary}</a>')
+         else:
+             links.append(f'<a class="mg-end-next mg-end-ref" href="#contents"><span class="mg-end-dir">'
+@@ -906,59 +912,260 @@
+                     elif q == current:
+                         cls += ' is-out'
+                     else:
+-                        cls += ' is-quiet'
++                        continue  # the locator draws only this chapter's own arcs
+                 paths.append(f'<path class="{cls}" data-from="{q}" data-to="{c["id"]}" '
+                              f'd="M{x1:.1f} 100C{x1:.1f} {ctrl:.1f} {x2:.1f} {ctrl:.1f} {x2:.1f} 100"/>')
+         return ''.join(paths)
+ 
+-    def book_map(self):
+-        cols, template, centre, colno = self.columns()
++    def reduced_prerequisites(self):
++        """Each chapter's direct prerequisites: the ones not reached through another of its prerequisites. The same
++        reading order as the manifest's full lists, each relation drawn once."""
++        pre = {c['id']: {q for q in c.get('prerequisites', []) if q in self.by_id} for c in self.chapters}
++        memo = {}
++
++        def reach(c, path=()):
++            if c in memo:
++                return memo[c]
++            out = set()
++            for q in pre[c]:
++                if q not in path:
++                    out |= {q} | reach(q, path + (c,))
++            memo[c] = out
++            return out
++        return {c: {q for q in ps if not any(q in reach(o) for o in ps if o != q)} for c, ps in pre.items()}
++
++    def book_map(self):
++        """The book as one labelled figure: a column per part, a box per chapter with its number and title, and a line
++        from a chapter to each later chapter that draws on it directly. Lines run down a column or through the gutters
++        between columns, and a line that skips a part runs along the foot of the figure, so that no line crosses a box.
++        Positions are fractions of the figure's width and multiples of the type size, so the lines meet the boxes at
++        every width; below a width where the titles fit, the figure gives way to the contents, which lists the same."""
+         L = self.L
+-        nodes = []
+-        for c in self.chapters:
+-            if c['id'] not in colno:
+-                continue
+-            p = self.part_of.get(c['id'])
+-            nodes.append(f'<li class="mg-node-cell" style="grid-column:{colno[c["id"]]}">'
+-                         f'<a class="mg-node" href="#{c["id"]}" data-ch="{c["id"]}" data-part="{p["id"] if p else ""}" '
+-                         f'title="{html.escape(str(c["number"]) + " · " + c["title"])}">'
+-                         f'<span class="mg-node-no" aria-hidden="true">{c["number"]}</span>'
+-                         f'<span class="visually-hidden">{html.escape(self.chapter_label(c) + ": " + c["title"])}</span></a></li>')
+-        parts = []
+-        for p in self.parts:
+-            ids = [cid for cid in p.get('chapter_ids', []) if cid in colno]
+-            if not ids:
++        red = self.reduced_prerequisites()
++        parts = [p for p in self.parts if any(cid in self.by_id for cid in p.get('chapter_ids', []))]
++        col, row = {}, {}
++        for i, p in enumerate(parts):
++            for r, cid in enumerate([x for x in p['chapter_ids'] if x in self.by_id]):
++                col[cid], row[cid] = i, r
++        nrows = max(row.values()) + 1
++        M_, B_, G_ = .06, 1.0, .26
++        units = 2 * M_ + len(parts) * B_ + (len(parts) - 1) * G_
++        U = 1000 / units
++        P_, HB = 52, 40  # row pitch and box height, in tenths of a body size
++
++        def left(i):
++            return (M_ + i * (B_ + G_)) * U
++
++        def right(i):
++            return left(i) + B_ * U
++
++        def cx(i):
++            return left(i) + B_ * U / 2
++
++        def top(r):
++            return r * P_
++
++        def mid(r):
++            return r * P_ + HB / 2
++
++        chan = nrows * P_ + 6
++        H = nrows * P_ + 6 + 6 * 4
++        edges = [(q, c['id']) for c in self.chapters for q in sorted(red.get(c['id'], ()), key=lambda x: self.by_id[x]['number'])]
++        plan = []
++        for a_, c_ in edges:
++            i, r, j, s_ = col[a_], row[a_], col[c_], row[c_]
++            if i == j and s_ == r + 1:
++                plan.append(('down', a_, c_, None))
++            elif i == j:
++                plan.append(('skip', a_, c_, i - 1))
++            elif j == i + 1:
++                plan.append(('next', a_, c_, i))
++            else:
++                plan.append(('long', a_, c_, j - 1))
++        ins, outs = {}, {}
++        for kind, a_, c_, gk in plan:
++            if kind != 'down':
++                ins.setdefault(c_, []).append(a_)
++            if kind in ('skip', 'next'):
++                outs.setdefault(a_, []).append(c_)
++        lanes = {}
++        for kind, a_, c_, gk in plan:
++            straight = kind == 'next' and row[a_] == row[c_] and len(ins[c_]) == 1 and len(outs[a_]) == 1
++            if gk is not None and not straight:
++                lanes.setdefault(gk, []).append((a_, c_))
++
++        def lane_x(gk, a_, c_):
++            items = lanes[gk]
++            k, n = items.index((a_, c_)), len(items)
++            g0 = right(gk) if gk >= 0 else 0.0
++            g1 = left(gk + 1)
++            return g0 + (g1 - g0) * (k + 1) / (n + 1)
++
++        def spread(lst, x, base):
++            n, k = len(lst), lst.index(x)
++            return base + (k - (n - 1) / 2) * 8
++
++        longs = [e for e in plan if e[0] == 'long']
++        paths, tips = [], []
++        for kind, a_, c_, gk in plan:
++            i, r, j, s_ = col[a_], row[a_], col[c_], row[c_]
++            if kind == 'down':
++                x = cx(i)
++                d = f'M{x:.1f} {top(r) + HB:.1f}V{top(s_):.1f}'
++                tips.append(('down', x, top(s_), a_, c_))
++            else:
++                yin = spread(ins[c_], a_, mid(s_))
++                if kind == 'long':
++                    yc = chan + longs.index((kind, a_, c_, gk)) * 6
++                    d = (f'M{cx(i):.1f} {top(r) + HB:.1f}V{yc:.1f}H{lane_x(gk, a_, c_):.1f}V{yin:.1f}H{left(j):.1f}')
++                elif kind == 'skip':
++                    yout = spread(outs[a_], c_, mid(r))
++                    d = f'M{left(i):.1f} {yout:.1f}H{lane_x(gk, a_, c_):.1f}V{yin:.1f}H{left(j):.1f}'
++                elif (a_, c_) in lanes.get(gk, []):
++                    yout = spread(outs[a_], c_, mid(r))
++                    d = f'M{right(i):.1f} {yout:.1f}H{lane_x(gk, a_, c_):.1f}V{yin:.1f}H{left(j):.1f}'
++                else:
++                    yin = mid(r)
++                    d = f'M{right(i):.1f} {yin:.1f}H{left(j):.1f}'
++                tips.append(('right', left(j), yin, a_, c_))
++            paths.append(f'<path class="mg-bm-edge" data-from="{a_}" data-to="{c_}" d="{d}"/>')
++        tip_html = ''.join(f'<span class="mg-bm-tip is-{k}" data-from="{a_}" data-to="{c_}" style="left:{x / 10:.2f}%;top:{y / 10:.2f}em"></span>'
++                           for k, x, y, a_, c_ in tips)
++        boxes = []
++        for c in self.chapters:
++            if c['id'] not in col:
+                 continue
+-            parts.append(f'<li class="mg-band" style="grid-column:{colno[ids[0]]} / {colno[ids[-1]] + 1}">'
+-                         f'<a href="#{p["id"]}-title"><span class="mg-band-no">{ROMAN[self.part_no[p["id"]] - 1]}</span>'
+-                         f'<span class="mg-band-title">{html.escape(p["title"])}</span></a></li>')
+-        routes = []
++            i, r = col[c['id']], row[c['id']]
++            boxes.append(f'<a class="mg-bm-box" href="#{c["id"]}" data-ch="{c["id"]}" style="left:{left(i) / 10:.2f}%;'
++                         f'width:{B_ * U / 10:.2f}%;top:{top(r) / 10:.2f}em;height:{HB / 10:.2f}em">'
++                         f'<span class="mg-bm-no">{c["number"]}</span> <span class="mg-bm-title">{html.escape(c["title"])}</span></a>')
++        heads = ''.join(f'<li class="mg-bm-part" style="left:{left(i) / 10:.2f}%;width:{B_ * U / 10:.2f}%">'
++                        f'<a href="#{p["id"]}-title"><span class="mg-bm-partno">{html.escape(self.part_label(p))}</span> '
++                        f'<span class="mg-bm-parttitle">{html.escape(p["title"])}</span></a></li>' for i, p in enumerate(parts))
++        self.map_edges = edges
++        return (f'<figure class="mg-bookmap" aria-labelledby="mg-map-h mg-map-cap">'
++                f'<p class="mg-map-h" id="mg-map-h">{html.escape(L.get("map_title", "The chapters and their reading prerequisites"))}</p>'
++                f'<div class="mg-bm-stage"><ol class="mg-bm-parts">{heads}</ol>'
++                f'<div class="mg-bm-plot" style="height:{H / 10:.1f}em">'
++                f'<svg class="mg-bm-svg" viewBox="0 0 1000 {H}" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
++                f'{"".join(paths)}</svg>{tip_html}{"".join(boxes)}</div></div>'
++                f'<figcaption class="mg-map-cap" id="mg-map-cap">{html.escape(L.get("map_caption", ""))}</figcaption></figure>')
++
++    def routes(self):
++        L = self.L
++        items = []
+         for r in self.m.get('routes', []) or []:
+-            chs = [cid for cid in r.get('chapter_ids', []) if cid in colno]
+-            unknown = [cid for cid in r.get('chapter_ids', []) if cid not in colno]
++            chs = [cid for cid in r.get('chapter_ids', []) if cid in self.by_id]
++            unknown = [cid for cid in r.get('chapter_ids', []) if cid not in self.by_id]
+             if unknown:
+                 self.problems.append(f'reader manifest: route {r.get("id")} names unknown chapters {unknown}')
+-            cells = ''.join(f'<span class="mg-route-cell" style="grid-column:{colno[cid]}" data-ch="{cid}"></span>' for cid in chs)
+             nums = ', '.join(str(self.by_id[cid]['number']) for cid in chs)
+-            routes.append(f'<li class="mg-route" data-route-row="{html.escape(r["id"])}">'
+-                          f'<a class="mg-route-name" href="#{chs[0] if chs else "contents"}" data-route="{html.escape(r["id"])}" '
+-                          f'data-route-chapters="{" ".join(chs)}">{html.escape(r["title"])}</a>'
+-                          f'<span class="mg-route-list">{html.escape(L.get("route_chapters", "Chapters {list}").replace("{list}", nums))}</span>'
+-                          f'<span class="mg-route-cells" aria-hidden="true" style="grid-template-columns:{template}">{cells}</span></li>')
+-        routes_html = ''
+-        if routes:
+-            routes_html = (f'<div class="mg-routes"><p class="mg-routes-h" id="mg-routes-h">{html.escape(L.get("routes", "Routes through the book"))}</p>'
+-                           f'<ol class="mg-route-list-all" aria-labelledby="mg-routes-h">{"".join(routes)}</ol></div>')
+-        return (f'<figure class="mg-map" aria-labelledby="mg-map-h mg-map-cap">'
+-                f'<p class="mg-map-h" id="mg-map-h">{html.escape(L.get("map_title", "The chapters and their reading prerequisites"))}</p>'
+-                f'<div class="mg-map-plot" style="grid-template-columns:{template}">'
+-                f'<svg class="mg-map-arcs" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
+-                f'{self.arcs()}</svg>'
+-                f'<ol class="mg-nodes" style="grid-template-columns:{template}">{"".join(nodes)}</ol>'
+-                f'<ol class="mg-bands" style="grid-template-columns:{template}">{"".join(parts)}</ol></div>'
+-                f'{routes_html}'
+-                f'<figcaption class="mg-map-cap" id="mg-map-cap">{html.escape(L.get("map_caption", ""))}</figcaption></figure>')
++            items.append(f'<li class="mg-route"><a class="mg-route-name" href="#{chs[0] if chs else "contents"}" '
++                         f'data-route="{html.escape(r["id"])}" data-route-chapters="{" ".join(chs)}">{html.escape(r["title"])}</a> '
++                         f'<span class="mg-route-list">{html.escape(L.get("route_chapters", "Chapters {list}").replace("{list}", nums))}</span></li>')
++        if not items:
++            return ''
++        return (f'<div class="mg-routes"><p class="mg-routes-h" id="mg-routes-h">{html.escape(L.get("routes", "Routes through the book"))}</p>'
++                f'<ol class="mg-route-list-all" aria-labelledby="mg-routes-h">{"".join(items)}</ol></div>')
++
++    def introduction(self):
++        text = self.m.get('introduction')
++        if not text:
++            return ''
++        f = (self.path.parent / text).resolve() if isinstance(text, str) and text.endswith('.md') else None
++        if f is not None and f.exists():
++            text = f.read_text(encoding='utf-8')
++        text = re.sub(r'<!--.*?-->', '', text, flags=re.S)
++        self.current = 'front'
++        out = self.render(parse_blocks(text.splitlines()), envs=False)
++        out = re.sub(r'^<p>', '<p class="mg-lead">', out, count=1)
++        return f'<div class="mg-front-intro">{out}</div>'
++
++    def section_title(self, sid):
++        for cid, items in self.section_index.items():
++            for s_id, no, title in items:
++                if s_id == sid:
++                    return cid, no, title
++        return None
++
++    def where_link(self, chapter_id, section_id):
++        """'Chapter 4, 4.2 Title' linked to the section (or the chapter when the section is a subsection)."""
++        c = self.by_id.get(chapter_id)
++        st = self.section_title(section_id) if section_id else None
++        if st:
++            return (f'<a href="#{html.escape(section_id)}" data-ref="section">{html.escape(self.chapter_label(c))}, '
++                    f'<span class="mg-sec-no">{st[1]}</span> {st[2]}</a>')
++        target = section_id if section_id else (c['id'] if c else '')
++        self.pending_refs.append((target, 'glossary/index'))
++        return f'<a href="#{html.escape(target)}" data-ref="section">{html.escape(self.chapter_label(c)) if c else html.escape(target)}</a>'
++
++    def glossary(self):
++        """The author's glossary records (verbatim definitions), alphabetically, each linked to the section where the
++        chapter gives it. The entry carries the term's id (data-term); the chapter remains the definition's context."""
++        L = self.L
++        terms = sorted(self.terms.values(), key=lambda t: (t.get('label') or t.get('term') or '').lower())
++        if not terms:
++            return ''
++        entries = []
++        self.current = 'glossary'
++        for t in terms:
++            text = re.sub(r'\{#[A-Za-z][\w:.-]*\}', '', t.get('definition') or '')
++            body = self.render(parse_blocks(text.splitlines()), envs=False)
++            label = self.b.rich(t.get('label') or t.get('term'), terms=False)
++            if t['id'] in self.reference_ids:
++                # The former page already has this id; its old addresses keep it, and neither id is renamed here.
++                self.warnings.append(f'glossary: term id {t["id"]} is already an anchor of the former page; the entry is '
++                                     f'shown without that id until the author gives the term a distinct id')
++                ident = f'glossary-entry-{t["id"]}'
++                self.claim(ident, 'glossary')
++                id_attr = f' data-term-id="{html.escape(t["id"])}"'
++            else:
++                ident = t['id']
++                self.claim(ident, 'glossary')
++                self.anchor_kind[ident] = 'definition'
++                id_attr = f' id="{html.escape(ident)}"'
++            entries.append(f'<div class="mg-gl-entry"{id_attr} data-term role="group" aria-labelledby="{html.escape(ident)}-h">'
++                           f'<p class="mg-gl-head"><dfn class="mg-gl-term" id="{html.escape(ident)}-h" data-block-title>{label}</dfn> '
++                           f'<span class="mg-gl-where">{html.escape(L.get("defined_in", "Defined in"))} '
++                           f'{self.where_link(t.get("chapter_id"), t.get("definition_ref") or t.get("section_id"))}</span></p>'
++                           f'<div class="mg-gl-def">{body}</div></div>')
++        return (f'<section class="mg-glossary" id="glossary" data-reference aria-labelledby="glossary-h">'
++                f'<h2 class="mg-ref-h" id="glossary-h">{html.escape(L.get("glossary", "Glossary"))}</h2>'
++                f'<p class="mg-ref-note">{html.escape(L.get("glossary_note", ""))}</p>{"".join(entries)}</section>')
+ 
++    def results_index(self):
++        """The author's result records by chapter: each title linked to its block in the chapter, its section, its
++        status, and its statement as the record gives it (without repeating the title)."""
++        L = self.L
++        recs = list(self.theorems.values())
++        if not recs:
++            return ''
++        self.current = 'index'
++        out, last = [], None
++        for t in sorted(recs, key=lambda t: self.order.index(t['chapter_id']) if t.get('chapter_id') in self.order else 99):
++            c = self.by_id.get(t.get('chapter_id'))
++            if t.get('chapter_id') != last and c:
++                last = t['chapter_id']
++                out.append(f'<h3 class="mg-ri-ch"><span class="mg-ri-no">{c["number"]}</span> '
++                           f'<a href="#{c["id"]}" data-ref="chapter">{html.escape(c["title"])}</a></h3>')
++            text = t.get('statement_excerpt') or ''
++            lead = re.match(r'^\s*\*\*(.+?)\*\*\s*', text, re.S)
++            if lead and re.sub(r'[\W_]+', '', lead.group(1)).lower() == re.sub(r'[\W_]+', '', t.get('title', '')).lower():
++                text = text[lead.end():]
++            body = self.render(parse_blocks(text.splitlines()), envs=False)
++            kind = t.get('kind')
++            mk = self.mark(KIND_MARK[kind]) if kind in KIND_MARK else ''
++            anchor = t.get('rendered_anchor') or t.get('id')
++            self.pending_refs.append((anchor, 'index'))
++            out.append(f'<div class="mg-ri-entry mg-ri-{html.escape(kind or "")}" id="index-{html.escape(t["id"])}">'
++                       f'<p class="mg-ri-head">{mk}<a class="mg-ri-title" href="#{html.escape(anchor)}" data-ref="result">{self.b.rich(t.get("title", ""), terms=False)}</a> '
++                       f'<span class="mg-ri-status">{html.escape(t.get("status", ""))}</span> '
++                       f'<span class="mg-ri-where">{self.where_link(t.get("chapter_id"), t.get("context_ref") or t.get("section_id"))}</span></p>'
++                       f'<div class="mg-ri-statement">{body}</div></div>')
++        return (f'<section class="mg-results-index" id="results-index" data-reference aria-labelledby="results-index-h">'
++                f'<h2 class="mg-ref-h" id="results-index-h">{html.escape(L.get("results_index", "Index of results"))}</h2>'
++                f'<p class="mg-ref-note">{html.escape(L.get("results_index_note", ""))}</p>{"".join(out)}</section>')
++
+     def locator(self, current):
+         """The book's map in miniature at the head of a chapter: this chapter, the chapters it draws on and the later
+         chapters that draw on it. A picture only (its links are in the chapter's own list)."""
+@@ -982,21 +1189,26 @@
+                 f'<span class="mg-dots" style="grid-template-columns:{template}">{"".join(cells)}</span></div>{key}</div>')
+ 
+     def map_css(self):
+-        """Hover and focus on a chapter of the map light its arcs and the chapters they join; a route's name lights the
+-        route. Generated, since each rule names one chapter."""
++        """Hover and focus on a chapter of the map light the lines that join it and the chapters at their other ends; a
++        route's name lights the route's chapters. Generated, since each rule names one chapter."""
+         rules = []
++        edges = getattr(self, 'map_edges', [])
+         for c in self.chapters:
+             cid = c['id']
+-            near = c.get('prerequisites', []) + [d['id'] for d in self.chapters if cid in d.get('prerequisites', [])]
+-            sel_near = ','.join(f'[data-ch="{x}"]' for x in near) or '[data-ch="none"]'
+-            on = f'.mg-map:has(.mg-node[data-ch="{cid}"]:is(:hover,:focus-visible))'
+-            rules.append(f'{on} .mg-arc:is([data-from="{cid}"],[data-to="{cid}"]){{stroke:var(--accent);stroke-opacity:1;stroke-width:1.8}}')
+-            rules.append(f'{on} .mg-node:is({sel_near}){{border-color:var(--accent);color:var(--ink)}}')
++            near = [a for a, b in edges if b == cid] + [b for a, b in edges if a == cid]
++            on = f'.mg-bookmap:has(.mg-bm-box[data-ch="{cid}"]:is(:hover,:focus-visible))'
++            rules.append(f'{on} :is(.mg-bm-edge,.mg-bm-tip):not([data-from="{cid}"],[data-to="{cid}"]){{opacity:.18}}')
++            rules.append(f'{on} .mg-bm-edge:is([data-from="{cid}"],[data-to="{cid}"]){{stroke:var(--accent);stroke-width:2.2}}')
++            rules.append(f'{on} .mg-bm-tip:is([data-from="{cid}"],[data-to="{cid}"]){{color:var(--accent)}}')
++            if near:
++                sel = ','.join('[data-ch="' + x + '"]' for x in near)
++                rules.append(f'{on} .mg-bm-box:is({sel}){{border-color:var(--accent)}}')
+         for r in self.m.get('routes', []) or []:
+             chs = ','.join(f'[data-ch="{x}"]' for x in r.get('chapter_ids', []))
+             if chs:
+-                on = f'.mg-map:has(.mg-route-name[data-route="{r["id"]}"]:is(:hover,:focus-visible))'
+-                rules.append(f'{on} .mg-node:not({chs}){{opacity:.3}}')
++                on = f'.mg-front:has(.mg-route-name[data-route="{r["id"]}"]:is(:hover,:focus-visible))'
++                rules.append(f'{on} .mg-bm-box:not({chs}){{opacity:.28}}')
++                rules.append(f'{on} :is(.mg-bm-edge,.mg-bm-tip){{opacity:.25}}')
+         return '@supports selector(:has(*)){' + ''.join(rules) + '}'
+ 
+     def front(self):
+@@ -1013,7 +1225,7 @@
+                  f'<p class="mg-marks-note">{html.escape(L.get("marks_note", ""))}</p></div>')
+         return (f'<header class="mg-front" id="front" data-reader-front>'
+                 f'<div class="mg-front-title-block"><h1 class="mg-front-title">{self.b.rich(m["title"], terms=False)}</h1>'
+-                f'{sub}{audience}{byline}</div>{self.book_map()}{marks}</header>')
++                f'{sub}{audience}{byline}</div>{self.introduction()}{self.book_map()}{self.routes()}{marks}</header>')
+ 
+     def contents(self, reference):
+         L = self.L
+@@ -1035,7 +1247,7 @@
+                     + '</ol>') if secs else ''
+                 state = ' data-unwritten' if cid in self.missing_chapters else ''
+                 chs.append(f'<li class="mg-toc-ch"{state}><a class="mg-toc-link" href="#{cid}" data-chapter-link>'
+-                           f'<span class="mg-toc-no">{c["number"]}</span><span class="mg-toc-title">{html.escape(c["title"])}</span></a>'
++                           f'<span class="mg-toc-no">{c["number"]}</span> <span class="mg-toc-title">{html.escape(c["title"])}</span></a>'
+                            f'{summary}{uses}{sec_html}</li>')
+             parts.append(f'<li class="mg-toc-part" data-part="{p["id"]}"><p class="mg-toc-part-head">'
+                          f'<span class="mg-toc-part-no">{html.escape(self.part_label(p))}</span> '
+@@ -1058,13 +1270,20 @@
+         self.section_index = {}
+         self.pending_refs = []
+         self.pending_defs = []
++        self.reference_ids = set(re.findall(r'\sid="([^"]+)"', reference_html))
+         self.current = 'front'
+         self.load()
+         chapters = ''.join(self.chapter(c) for c in self.chapters)
++        glossary = self.glossary()
++        index = self.results_index()
++        if glossary:
++            reference_index = [('glossary', html.escape(self.L.get('glossary', 'Glossary')))] + list(reference_index)
++        if index:
++            reference_index = [('results-index', html.escape(self.L.get('results_index', 'Index of results')))] + list(reference_index)
+         self.current = 'front'
+         front = self.front()
+         toc = self.contents(reference_index)
+-        body = front + toc + chapters + reference_html
++        body = front + toc + chapters + index + glossary + reference_html
+         known = set(re.findall(r'\sid="([^"]+)"', body))
+ 
+         def kind_of(m):
+@@ -1126,7 +1345,8 @@
+ 
+     Node labels are page text at reading size, set over the edges, so no estimate of a formula's width is needed. Each
+     edge runs between the centres of its nodes, behind them, with its arrowhead (none for an undirected comparison)
+-    and its number at its middle; a construction also carries its literal label there. Under the drawing, as written:
++    and its number at its middle; a construction, drawn as a double line, also carries its literal label there. The
++    figure's chapter and section are data-figure-chapter and data-figure-section, outside the reader's own selectors. Under the drawing, as written:
+     the legend, the record's hypotheses, relations, equations and formulas, the witness, what is not asserted, and a
+     numbered list of the edges (ends, words, kind, status, hypotheses) and of the nodes (with their descriptions and
+     links to their definitions). The lists are also the diagram for a screen reader and on paper. Two orientations are
+@@ -1300,7 +1520,8 @@
+                 else:
+                     head = (f'<path class="mg-dg-head is-{kind}" d="M{tip[0]:.1f} {tip[1]:.1f}L{wing[0][0]:.1f} {wing[0][1]:.1f}'
+                             f'L{wing[1][0]:.1f} {wing[1][1]:.1f}Z"/>')
+-            paths.append(f'<path class="mg-dg-edge is-{kind}" data-edge="{html.escape(e["id"])}" d="{d}"/>{head}')
++            rail = f'<path class="mg-dg-rail" d="{d}"/>' if kind == 'construction' else ''
++            paths.append(f'<path class="mg-dg-edge is-{kind}" data-edge="{html.escape(e["id"])}" d="{d}"/>{rail}{head}')
+             bx, by = at(.4)
+             words = f'<span class="mg-dg-badge-words">{self.text(e.get("label"))}</span>' if kind == 'construction' and e.get('label') else ''
+             badges.append(f'<span class="mg-dg-badge is-{kind}" style="left:{100 * bx / width:.2f}%;top:{100 * by / height:.2f}%">'
+@@ -1422,10 +1643,12 @@
+             # A recurring guide: its full lists fold under the drawing (opened for print); its caption and legend stay.
+             lists = (f'<details class="mg-dg-more"><summary>{html.escape(L.get("guide_more", "The questions and their links"))}</summary>'
+                      f'{lists}</details>')
+-        attrs = (f' data-context-key="{html.escape(rec["context_key"])}"' if rec.get('context_key') else '')
++        # The context key is the author's identifier for the recurring guide; the drawing uses it and the page does not
++        # serve it (it carries a version tag).
++        attrs = ' data-context-guide' if rec.get('context_key') else ''
+         return (f'<figure class="mg-diagram" id="{html.escape(rid)}" data-figure="{html.escape(rid)}" data-figure-type="'
+-                f'{html.escape(rec.get("type", "authored_diagram"))}" data-chapter="{html.escape(rec.get("chapter_id", ""))}" '
+-                f'data-section="{html.escape(rec.get("section_id", ""))}"{attrs}>'
++                f'{html.escape(rec.get("type", "authored_diagram"))}" data-figure-chapter="{html.escape(rec.get("chapter_id", ""))}" '
++                f'data-figure-section="{html.escape(rec.get("section_id", ""))}"{attrs}>'
+                 f'<p class="mg-dg-title" data-block-title>{self.text(rec["title"])}</p>'
+                 f'<ul class="mg-dg-legend">{legend}</ul>'
+                 f'<div class="mg-dg-stage k{min(len(order), 6)}{" is-tall" if tall else ""}">'
+@@ -1440,6 +1663,8 @@
+ 
+     def __init__(self, book):
+         self.book = book
++        # The author's approved interface words for the figures (manifest figure_words), read by figures.render.
++        self.words = dict(book.m.get('figure_words') or {})
+ 
+     def rich(self, text, terms=False, **kw):
+         return self.book.b.rich(text, terms=False)
+--- a/compiler/quantum-holography-status/monograph.css
++++ b/compiler/quantum-holography-status/monograph.css
+@@ -50,7 +50,7 @@
+   font: inherit; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); border-radius: 4px; padding: 2px 8px; cursor: pointer; }
+ .reader-route-leave:hover, .reader-notice-close:hover, .reader-notice-action:hover, .reader-search-close:hover, .reader-peek-close:hover {
+   background: var(--paper-2); color: var(--ink); }
+-.reader-prev, .reader-next { flex: 0 1 auto; min-width: 0; max-width: 16rem; display: flex; align-items: baseline; gap: .4rem; padding: 6px 8px;
++.reader-prev, .reader-next { flex: 0 1 auto; min-width: 0; max-width: 26rem; display: flex; align-items: baseline; gap: .4rem; padding: 6px 8px;
+                              border-radius: 5px; white-space: nowrap; overflow: hidden; }
+ .reader-prev[hidden], .reader-next[hidden] { display: none; }
+ .reader-prev:hover, .reader-next:hover { background: var(--paper-2); }
+@@ -87,39 +87,46 @@
+ .mg-front-audience { margin: 0 0 var(--s1); color: var(--ink-2); }
+ .mg-front-byline { margin: 0; color: var(--ink-3); font-size: var(--text-sm); font-variant-caps: all-small-caps; letter-spacing: .06em; }
+ 
+-/* The map of the book: arcs above a row of chapters, the parts as brackets below, then the routes. */
+-.mg-map { margin: 0; }
+-.mg-map-plot { position: relative; display: grid; grid-template-rows: 8.5rem auto auto; }
+-.mg-map-arcs { grid-row: 1; grid-column: 1 / -1; width: 100%; height: 100%; overflow: visible; display: block; }
+-.mg-arc { fill: none; stroke: var(--ink-4); stroke-opacity: .55; stroke-width: 1.05; vector-effect: non-scaling-stroke;
+-          transition: stroke .15s, stroke-opacity .15s; }
+-.mg-nodes, .mg-bands, .mg-dots { grid-column: 1 / -1; display: grid; list-style: none; margin: 0; padding: 0; }
+-.mg-nodes { grid-row: 2; }
+-.mg-node-cell { display: flex; justify-content: center; }
+-.mg-node { display: grid; place-items: center; width: min(2.2rem, 100%); aspect-ratio: 1; margin-top: -1px; border: 1.5px solid var(--ink-3);
+-           border-radius: 50%; background: var(--paper); color: var(--ink-2); text-decoration: none; font-size: var(--text-sm);
+-           font-variant-numeric: lining-nums tabular-nums; line-height: 1; transition: border-color .15s, color .15s, opacity .15s; }
+-.mg-node:hover, .mg-node:focus-visible { border-color: var(--accent); background: var(--accent); color: var(--paper); }
+-.mg-bands { grid-row: 3; margin-top: .7rem; column-gap: 0; }
+-.mg-band { position: relative; padding: .55rem .35rem 0; border-top: 1.5px solid var(--ink-3); font-size: var(--text-sm);
+-           line-height: var(--lh-compact); text-align: center; }
+-.mg-band::before, .mg-band::after { content: ''; position: absolute; top: -1.5px; width: 1.5px; height: .45rem; background: var(--ink-3); }
+-.mg-band::before { left: 0; } .mg-band::after { right: 0; }
+-.mg-band a { display: block; color: var(--ink-2); text-decoration: none; }
+-.mg-band a:hover { color: var(--accent); }
+-.mg-band-no { display: block; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .08em; }
+-.mg-band-title { display: block; text-wrap: balance; }
+-.mg-routes { margin-top: var(--s4); }
++/* The map of the book: a column per part, a box per chapter (number and title), and a line from a chapter to each
++   later chapter that draws on it directly. Lines are quiet and thinner than the boxes' rules; one chapter under the
++   pointer or focus lights its own lines. Where the figure is too narrow for the titles, it gives way to the contents. */
++.mg-front-intro { max-width: var(--mg-measure); margin: 0 0 var(--s5); hyphens: auto; }
++.mg-front-intro p { margin: 0; text-wrap: pretty; }
++.mg-front-intro p + p { text-indent: 1.5em; }
++.mg-front-intro .mg-lead { margin-bottom: var(--s2); }
++.mg-front-intro .mg-lead + p { text-indent: 0; }
++.mg-bookmap { margin: 0 0 var(--s3); container-type: inline-size; }
++.mg-map-h { margin: 0 0 var(--s2); font-variant-caps: all-small-caps; letter-spacing: .06em; color: var(--ink-3); font-size: var(--text-sm); }
++.mg-bm-stage { position: relative; }
++.mg-bm-parts { position: relative; list-style: none; margin: 0 0 .6rem; padding: 0; height: 3.4em; }
++.mg-bm-part { position: absolute; top: 0; bottom: 0; display: flex; align-items: flex-end; padding-bottom: .35rem; border-bottom: 1.5px solid var(--ink-3);
++              font-size: var(--text-sm); line-height: var(--lh-compact); }
++.mg-bm-part a { color: var(--ink-2); text-decoration: none; overflow-wrap: normal; word-break: normal; hyphens: manual; }
++.mg-bm-part a:hover { color: var(--accent); }
++.mg-bm-partno { display: block; color: var(--ink-3); font-variant-caps: all-small-caps; letter-spacing: .08em; }
++.mg-bm-parttitle { display: block; text-wrap: balance; }
++.mg-bm-plot { position: relative; }
++.mg-bm-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
++.mg-bm-edge { fill: none; stroke: var(--ink-4); stroke-width: 1.15; vector-effect: non-scaling-stroke; stroke-linejoin: round; transition: stroke .15s, opacity .15s; }
++.mg-bm-tip { position: absolute; width: 0; height: 0; color: var(--ink-4); transition: color .15s, opacity .15s; }
++.mg-bm-tip.is-right { transform: translate(-100%, -50%); border-left: 6px solid currentColor; border-top: 4px solid transparent; border-bottom: 4px solid transparent; }
++.mg-bm-tip.is-down { transform: translate(-50%, -100%); border-top: 6px solid currentColor; border-left: 4px solid transparent; border-right: 4px solid transparent; }
++.mg-bm-box { position: absolute; display: flex; align-items: flex-start; gap: .45em; padding: .35em .55em; border: 1.3px solid var(--rule);
++             border-radius: 6px; background: var(--paper); color: var(--ink); text-decoration: none; font-size: var(--text-sm);
++             line-height: 1.22; overflow: hidden; transition: border-color .15s, opacity .15s; }
++.mg-bm-box:hover, .mg-bm-box:focus-visible { border-color: var(--accent); }
++.mg-bm-no { flex: none; color: var(--accent); font-variant-numeric: lining-nums tabular-nums; min-width: 1.2em; }
++.mg-bm-title { min-width: 0; overflow-wrap: normal; hyphens: auto; text-wrap: pretty; }
++.mg-map-cap { margin-top: var(--s2); color: var(--ink-3); font-size: var(--text-sm); max-width: var(--mg-measure); }
++.mg-map-cap:empty { display: none; }
++@container (max-width: 860px) { .mg-bm-stage, .mg-map-h, .mg-map-cap { display: none; } }
++.mg-routes { margin: var(--s3) 0 0; }
+ .mg-routes-h { margin: 0 0 var(--s1); font-variant-caps: all-small-caps; letter-spacing: .06em; color: var(--ink-3); font-size: var(--text-sm); }
+-.mg-route-list-all { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+-.mg-route { display: grid; grid-template-columns: auto 1fr; column-gap: 1rem; align-items: baseline; }
++.mg-route-list-all { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
++.mg-route { display: flex; flex-wrap: wrap; gap: 0 .8rem; align-items: baseline; }
+ .mg-route-name { font-style: italic; color: var(--ink); text-decoration: none; }
+ .mg-route-name:hover, .mg-route-name:focus-visible { color: var(--accent); text-decoration: underline; }
+ .mg-route-list { color: var(--ink-3); font-size: var(--text-sm); }
+-.mg-route-cells { grid-column: 1 / -1; display: grid; height: 5px; margin-top: .3rem; }
+-.mg-route-cell { height: 5px; background: var(--accent); opacity: .72; margin: 0 -1px; }
+-.mg-map-cap { margin-top: var(--s3); color: var(--ink-3); font-size: var(--text-sm); max-width: var(--mg-measure); }
+-.mg-map-cap:empty { display: none; }
+ 
+ /* The chapter's locator: the same map, quiet, with this chapter, what it draws on and what draws on it. */
+ .mg-locator { margin: 0; }
+@@ -129,7 +136,7 @@
+ .mg-locator .mg-arc { stroke-width: 1; }
+ .mg-locator .mg-arc.is-quiet { stroke-opacity: .16; }
+ .mg-locator .mg-arc.is-in { stroke: var(--accent); stroke-opacity: .95; stroke-width: 1.6; }
+-.mg-locator .mg-arc.is-out { stroke: var(--ink-3); stroke-opacity: .6; stroke-dasharray: 3 3; }
++.mg-locator .mg-arc.is-out { stroke: var(--ink-3); stroke-opacity: .7; stroke-dasharray: 1.2 3.2; stroke-linecap: round; }
+ .mg-dots { grid-row: 2; }
+ .mg-dot { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 12px; line-height: 1; color: var(--ink-4);
+           font-variant-numeric: lining-nums tabular-nums; }
+@@ -140,7 +147,6 @@
+ .mg-dot.is-here, .mg-dot.is-pre { color: var(--ink-2); }
+ .mg-dot.is-here span { color: var(--accent); font-weight: 600; }
+ 
+-.mg-map-h { margin: 0 0 var(--s2); font-variant-caps: all-small-caps; letter-spacing: .06em; color: var(--ink-3); font-size: var(--text-sm); }
+ .mg-locator-key { display: flex; flex-wrap: wrap; gap: .2rem 1.1rem; margin: .45rem 0 0; font-size: 12.5px; line-height: 1.3; color: var(--ink-3); }
+ .mg-key { display: inline-flex; align-items: center; gap: .4rem; }
+ .mg-key::before { content: ''; flex: none; border-radius: 50%; }
+@@ -221,11 +227,10 @@
+ .mg-ch-part:hover { color: var(--accent); }
+ .mg-ch-partno, .mg-ch-pos { font-variant-caps: all-small-caps; letter-spacing: .07em; }
+ .mg-ch-partno { color: var(--ink-3); margin-right: .3rem; }
+-.mg-ch-title { position: relative; margin: var(--s2) 0 0; font-weight: 400; font-size: var(--text-ch); line-height: var(--lh-display);
++.mg-ch-titleblock { position: relative; margin: var(--s2) 0 0; }
++.mg-ch-title { margin: 0; font-weight: 400; font-size: var(--text-ch); line-height: var(--lh-display);
+                letter-spacing: -.008em; max-width: calc(var(--mg-measure) + 4rem); text-wrap: balance; }
+-.mg-ch-no { display: block; font-size: var(--text-ch-no); line-height: 1; color: var(--accent); font-variant-numeric: oldstyle-nums proportional-nums;
+-            margin-bottom: .05em; }
+-.mg-ch-name { display: block; }
++.mg-ch-no { margin: 0 0 .05em; font-size: var(--text-ch-no); line-height: 1; color: var(--accent); font-variant-numeric: oldstyle-nums proportional-nums; }
+ 
+ .mg-ch-frame { display: grid; grid-template-columns: minmax(0, var(--mg-measure)) var(--mg-gap) var(--mg-aside); align-items: start; }
+ .mg-ch-open { grid-column: 1; grid-row: 1; }
+@@ -259,7 +264,7 @@
+ .mg-sec { margin-top: var(--s5); }
+ .mg-sec-head { position: relative; margin: 0 0 var(--s2); font-size: var(--text-h3b); font-weight: 600; line-height: var(--lh-display);
+                text-wrap: balance; hyphens: manual; }
+-.mg-sec-head .mg-sec-no { color: var(--accent); font-weight: 400; font-variant-numeric: lining-nums tabular-nums; margin-right: .55em; }
++.mg-sec-head .mg-sec-no { color: var(--accent); font-weight: 400; font-variant-numeric: lining-nums tabular-nums; margin-right: .25em; }
+ .mg-sec h4, .mg-sec h5 { margin: var(--s4) 0 var(--s1); font-size: var(--text-h3); font-weight: 400; font-style: italic; line-height: var(--lh-display); }
+ .mg-sec h4 + p, .mg-sec h5 + p, .mg-sec-head + p { text-indent: 0 !important; }
+ 
+@@ -330,8 +335,8 @@
+ /* An authored diagram: nodes are page text over the edges; each edge has its arrowhead (none when undirected) and its
+    number at its middle, and the lists under it state everything in full. One visual language per kind, never colour
+    alone: a defined map is a solid line with a solid head; a functor a solid line with an open chevron; a construction
+-   a long-dashed line whose label is written on it; an open comparison dashed in the open colour with a hollow head;
+-   a reading relation dotted and grey, navigation and never a map. */
++   a solid double line whose label is written on it; an open comparison, and only an open comparison, is dashed (in
++   the open colour, with a hollow head); a reading relation is dotted and grey, navigation and never a map. */
+ .mg-diagram { margin: 0; container-type: inline-size; --mg-bg: var(--paper); }
+ .mg-dg-title { margin: 0 0 .35rem; font-weight: 600; text-indent: 0 !important; }
+ .mg-dg-legend { list-style: none; margin: 0 0 var(--s2); padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1.2rem;
+@@ -341,7 +346,7 @@
+ .mg-dg-key.is-functor .mg-dg-sample { border-top-width: 1.5px; }
+ .mg-dg-key.is-functor .mg-dg-sample::after { content: ''; position: absolute; right: -1px; top: -4.6px; width: 6px; height: 6px;
+                                              border-top: 1.5px solid var(--ink-2); border-right: 1.5px solid var(--ink-2); transform: rotate(45deg); }
+-.mg-dg-key.is-construction .mg-dg-sample { border-top: 1.5px dashed var(--ink-2); }
++.mg-dg-key.is-construction .mg-dg-sample { border-top: 4.5px double var(--ink-2); }
+ .mg-dg-key.is-open_comparison .mg-dg-sample { border-top: 1.5px dashed var(--st-open); }
+ .mg-dg-key.is-reading_relation .mg-dg-sample { border-top: 2px dotted var(--ink-4); }
+ .mg-dg-key.is-equivalence .mg-dg-sample { border-top-width: 2.4px; border-color: var(--ink); }
+@@ -365,7 +370,8 @@
+ .mg-dg-edge { fill: none; stroke: var(--ink-2); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+ .mg-dg-head { fill: var(--ink-2); stroke: none; }
+ .mg-dg-head.is-functor { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+-.mg-dg-edge.is-construction { stroke-dasharray: 9 4; }
++.mg-dg-edge.is-construction { stroke-width: 4.6; }
++.mg-dg-rail { fill: none; stroke: var(--mg-bg); stroke-width: 1.8; vector-effect: non-scaling-stroke; }
+ .mg-dg-edge.is-equivalence { stroke: var(--ink); stroke-width: 2.4; }
+ .mg-dg-head.is-equivalence { fill: var(--ink); }
+ .mg-dg-edge.is-open_comparison { stroke: var(--st-open); stroke-dasharray: 6 5; }
+@@ -437,6 +443,33 @@
+ .mg-end-prev .mg-end-ch { color: var(--ink-2); }
+ .mg-end-summary { display: block; margin-top: .4rem; color: var(--ink-2); font-style: italic; }
+ 
++/* The glossary and the index of results: the author's records, each linked to its place in the chapters. */
++.mg-glossary, .mg-results-index { max-width: calc(var(--mg-measure) + 2 * var(--gutter)); margin: 0 auto; padding: var(--s5) var(--gutter) var(--s4); }
++.mg-ref-h { margin: 0 0 var(--s2); font-size: var(--text-h2); font-weight: 400; line-height: var(--lh-display); }
++.mg-ref-note { margin: 0 0 var(--s4); color: var(--ink-3); font-size: var(--text-sm); }
++.mg-ref-note:empty { display: none; }
++.mg-gl-entry { padding: var(--s2) 0 var(--s3); border-top: 1px solid var(--rule-soft); hyphens: auto; }
++.mg-gl-head { margin: 0 0 .35rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem 1rem; }
++.mg-gl-term { font-style: normal; font-weight: 600; font-size: var(--text-h3); }
++.mg-gl-where, .mg-ri-where { color: var(--ink-3); font-size: var(--text-sm); }
++.mg-gl-where a, .mg-ri-where a { color: var(--ink-2); }
++.mg-gl-def p, .mg-ri-statement p { margin: 0; text-wrap: pretty; }
++.mg-gl-def p + p, .mg-ri-statement p + p { text-indent: 1.5em; }
++.mg-gl-def p.mg-cont, .mg-ri-statement p.mg-cont { text-indent: 0; }
++.mg-ri-ch { margin: var(--s4) 0 var(--s1); font-size: var(--text-h3); font-weight: 400; display: flex; gap: .55em; align-items: baseline; }
++.mg-ri-no { color: var(--accent); font-variant-numeric: oldstyle-nums; }
++.mg-ri-ch a { color: var(--ink); text-decoration: none; }
++.mg-ri-ch a:hover { color: var(--accent); text-decoration: underline; }
++.mg-ri-entry { margin: 0 0 var(--s3); padding-left: 1rem; border-left: 2px solid var(--rule); hyphens: auto; }
++.mg-ri-theorem { border-left-color: var(--st-checked); }
++.mg-ri-conditional { border-left-color: var(--st-conditional); }
++.mg-ri-open { border-left: 2px dashed var(--st-open); }
++.mg-ri-head { margin: 0 0 .25rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem .7rem; }
++.mg-ri-head .mark { align-self: center; }
++.mg-ri-title { font-weight: 600; color: var(--ink); text-decoration: none; }
++.mg-ri-title:hover { color: var(--accent); text-decoration: underline; }
++.mg-ri-status { color: var(--ink-3); font-size: var(--text-sm); font-variant-caps: all-small-caps; letter-spacing: .05em; }
++
+ /* The reference volume: the former page, unchanged inside; its overview is one place of the reader. */
+ .mg-ref-overview { display: block; }
+ .essay .essay-byline { text-align: center; text-indent: 0; }
+@@ -487,7 +520,7 @@
+    column beside the text. */
+ @media (min-width: 1181px) {
+   .mg-ch-title { padding-left: 0; }
+-  .mg-ch-no { position: absolute; right: calc(100% + 1.1rem); top: .02em; font-size: var(--text-ch); line-height: var(--lh-display); margin: 0; }
++  .mg-ch-no { position: absolute; right: calc(100% + 1.1rem); top: 0; font-size: var(--text-ch); line-height: var(--lh-display); margin: 0; }
+   .mg-sec-head .mg-sec-no { position: absolute; right: calc(100% + 1rem); top: .08em; margin: 0; font-size: .82em; }
+   .mg-ch-text .mg-figure, .mg-ch-text .mg-display:has(math[style*='--fw']) { margin-right: calc(-1 * (var(--mg-gap) + var(--mg-aside))); }
+ }
+@@ -511,17 +544,12 @@
+ }
+ @media (max-width: 860px) {
+   .mg-site { display: none; }
+-  .mg-band-title { font-size: .92em; }
+   .reader-step-title { display: none; }
+   .reader-position-part, .reader-position-section { display: none; }
+ }
+ @media (max-width: 640px) {
+   .mg-front { padding-top: var(--s4); }
+   .mg-front-title { font-size: calc(var(--text-base) * 2.2); }
+-  .mg-map-plot { grid-template-rows: 5.5rem auto auto; }
+-  .mg-band-title { display: none; }
+-  .mg-band { padding-top: .4rem; }
+-  .mg-route { grid-template-columns: minmax(0, 1fr); }
+   .mg-ch-title { font-size: calc(var(--text-base) * 1.6); }
+   .mg-ch-no { font-size: calc(var(--text-base) * 2.4); }
+   .mg-ch-end { grid-template-columns: minmax(0, 1fr); }
+@@ -540,9 +568,6 @@
+   .reader-peek:not([hidden]) { left: 8px; right: 8px; width: auto; top: auto; bottom: 8px; max-height: 55vh; border-radius: 10px; }
+ }
+ @media (max-width: 480px) {
+-  .mg-node { width: 100%; max-width: 1.2rem; border-width: 1.2px; }
+-  .mg-node-no { display: none; }
+-  .mg-nodes { margin-top: -.3rem; }
+   .mg-toc-ch { padding-left: 2.4rem; }
+   .mg-toc-no { width: 1.8rem; }
+   .reader-search-toggle { padding: 4px 9px; }
+@@ -560,8 +585,8 @@
+   main[data-reader]:not([data-reader-view='reference']) > [data-reference] { display: none !important; }
+   .mg-front { padding: 0 0 6mm; max-width: none; }
+   .mg-front-title { font-size: 30pt; }
+-  .mg-map { break-inside: avoid; }
+-  .mg-map-plot { grid-template-rows: 30mm auto auto; }
++  .mg-bookmap { break-inside: avoid; }
++  .mg-bm-box { border-color: #999; }
+   .mg-toc { break-before: page; padding: 0; max-width: none; }
+   .mg-toc-part { break-inside: avoid; }
+   .mg-chapter { break-before: page; padding: 0; max-width: none; }

@@ -1,0 +1,134 @@
+--- a/compiler/quantum-holography-status/monograph.py
++++ b/compiler/quantum-holography-status/monograph.py
+@@ -981,8 +981,9 @@
+ 
+         # Each box is as tall as its title needs where the map is narrowest (the sheet shows the map from 52 body sizes
+         # wide: a box is then about fifteen characters of its type wide), wrapped at words without hyphenation; each row
+-        # is as tall as its tallest box. Heights are in tenths of a body size: a line of the box's type (0.833 x 1.22) is
+-        # about 10.2, its padding and rule 6.5.
++        # is as tall as its tallest box. Every length here is in tenths of the body size, the font size of the plot, the
++        # boxes and the arrowheads alike (only a box's words are set smaller): a line of the box's words (0.833 x 1.22)
++        # is about 10.2, the box's padding and rule about 7.5.
+         def lines(title, cap=15):
+             n, cur = 1, 0
+             for w in title.split():
+@@ -993,7 +994,7 @@
+                 else:
+                     n, cur = n + 1, len(w)
+             return n
+-        hbox = {cid: round(lines(self.by_id[cid]['title']) * 10.2 + 6.5) for cid in col}
++        hbox = {cid: round(lines(self.by_id[cid]['title']) * 10.2 + 7.5) for cid in col}
+         rows_h = [max(hbox[cid] for cid in col if row[cid] == r) for r in range(nrows)]
+         GAP = 11
+         row_top = [sum(rows_h[:r]) + GAP * r for r in range(nrows)]
+@@ -1016,7 +1017,9 @@
+         def bot(cid):
+             return top(cid) + hbox[cid]
+ 
+-        chan = row_top[-1] + rows_h[-1] + 8
++
++        def gap_y(k):  # the middle of the gap under row k
++            return row_top[k] + rows_h[k] + GAP / 2
+         edges = [(q, c['id']) for c in self.chapters for q in sorted(red.get(c['id'], ()), key=lambda x: self.by_id[x]['number'])]
+         plan = []
+         for a_, c_ in edges:
+@@ -1033,11 +1036,13 @@
+         for kind, a_, c_, gk in plan:
+             if kind != 'down':
+                 ins.setdefault(c_, []).append(a_)
+-            if kind in ('skip', 'next'):
++            if kind in ('skip', 'next', 'long'):
+                 outs.setdefault(a_, []).append(c_)
+         lanes = {}
+         for kind, a_, c_, gk in plan:
+             straight = (kind == 'next' and row[a_] == row[c_] and len(ins[c_]) == 1 and len(outs[a_]) == 1)
++            if kind == 'long':
++                lanes.setdefault(col[a_], []).append((a_, c_))  # the gutter to the right of the source
+             if gk is not None and not straight:
+                 lanes.setdefault(gk, []).append((a_, c_))
+ 
+@@ -1053,7 +1058,13 @@
+             return base + (k - (n - 1) / 2) * 8
+ 
+         longs = [e for e in plan if e[0] == 'long']
+-        H = chan + 6 * len(longs) + 10
++        crossing = {}
++        for kind, a_, c_, gk in longs:
++            s_, r_ = row[c_], row[a_]
++            k = s_ if s_ < r_ else s_ - 1  # the gap beside the target's row, on the source's side
++            k = min(max(k, 0), nrows - 2)
++            crossing.setdefault(k, []).append((a_, c_))
++        H = row_top[-1] + rows_h[-1] + 10
+         paths, tips = [], []
+         for kind, a_, c_, gk in plan:
+             i, j = col[a_], col[c_]
+@@ -1064,8 +1075,13 @@
+             else:
+                 yin = spread(ins[c_], a_, mid(c_))
+                 if kind == 'long':
+-                    yc = chan + longs.index((kind, a_, c_, gk)) * 6
+-                    d = f'M{cx(i):.1f} {bot(a_):.1f}V{yc:.1f}H{lane_x(gk, a_, c_):.1f}V{yin:.1f}H{left(j):.1f}'
++                    # Out of the source's right side, along its gutter to the gap between rows beside the target, across
++                    # the columns between them in that gap (where no box stands), then up or down the target's gutter.
++                    yout = spread(outs[a_], c_, mid(a_))
++                    k = next(k for k, es in crossing.items() if (a_, c_) in es)
++                    yg = gap_y(k) + (crossing[k].index((a_, c_)) - (len(crossing[k]) - 1) / 2) * 4
++                    d = (f'M{right(i):.1f} {yout:.1f}H{lane_x(i, a_, c_):.1f}V{yg:.1f}H{lane_x(gk, a_, c_):.1f}'
++                         f'V{yin:.1f}H{left(j):.1f}')
+                 elif kind == 'skip':
+                     yout = spread(outs[a_], c_, mid(a_))
+                     d = f'M{left(i):.1f} {yout:.1f}H{lane_x(gk, a_, c_):.1f}V{yin:.1f}H{left(j):.1f}'
+@@ -1088,13 +1104,14 @@
+             boxes.append(f'<a class="mg-bm-box" href="#{c["id"]}" data-ch="{c["id"]}" style="left:{left(i) / 10:.2f}%;'
+                          f'width:{B_ * U / 10:.2f}%;top:{top(c["id"]) / 10:.2f}em;min-height:{hbox[c["id"]] / 10:.2f}em">'
+                          f'<span class="mg-bm-no">{c["number"]}</span> <span class="mg-bm-title">{html.escape(c["title"])}</span></a>')
+-        heads = ''.join(f'<li class="mg-bm-part" style="left:{left(i) / 10:.2f}%;width:{B_ * U / 10:.2f}%">'
++        template = ' '.join([f'{M_:g}fr'] + [f'{B_:g}fr {G_:g}fr' if i < len(parts) - 1 else f'{B_:g}fr' for i in range(len(parts))] + [f'{M_:g}fr'])
++        heads = ''.join(f'<li class="mg-bm-part" style="grid-column:{2 + 2 * i}">'
+                         f'<a href="#{p["id"]}-title"><span class="mg-bm-partno">{html.escape(self.part_label(p))}</span> '
+                         f'<span class="mg-bm-parttitle">{html.escape(p["title"])}</span></a></li>' for i, p in enumerate(parts))
+         self.map_edges = edges
+         return (f'<figure class="mg-bookmap" aria-labelledby="mg-map-h mg-map-cap">'
+                 f'<p class="mg-map-h" id="mg-map-h">{html.escape(L.get("map_title", "The chapters and their reading prerequisites"))}</p>'
+-                f'<div class="mg-bm-stage"><ol class="mg-bm-parts">{heads}</ol>'
++                f'<div class="mg-bm-stage"><ol class="mg-bm-parts" style="grid-template-columns:{template}">{heads}</ol>'
+                 f'<div class="mg-bm-plot" style="height:{H / 10:.1f}em">'
+                 f'<svg class="mg-bm-svg" viewBox="0 0 1000 {H}" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
+                 f'{"".join(paths)}</svg>{tip_html}{"".join(boxes)}</div></div>'
+--- a/compiler/quantum-holography-status/monograph.css
++++ b/compiler/quantum-holography-status/monograph.css
+@@ -113,8 +113,8 @@
+ .mg-bookmap { margin: 0 0 var(--s3); container-type: inline-size; }
+ .mg-map-h { margin: 0 0 var(--s2); font-variant-caps: all-small-caps; letter-spacing: .06em; color: var(--ink-3); font-size: var(--text-sm); }
+ .mg-bm-stage { position: relative; }
+-.mg-bm-parts { position: relative; list-style: none; margin: 0 0 .6rem; padding: 0; height: 3.4em; }
+-.mg-bm-part { position: absolute; top: 0; bottom: 0; display: flex; align-items: flex-end; padding-bottom: .35rem; border-bottom: 1.5px solid var(--ink-3);
++.mg-bm-parts { display: grid; align-items: end; list-style: none; margin: 0 0 .6rem; padding: 0; }
++.mg-bm-part { display: flex; align-items: flex-end; height: 100%; padding-bottom: .35rem; border-bottom: 1.5px solid var(--ink-3);
+               font-size: var(--text-sm); line-height: var(--lh-compact); }
+ .mg-bm-part a { color: var(--ink-2); text-decoration: none; overflow-wrap: normal; word-break: normal; hyphens: manual; }
+ .mg-bm-part a:hover { color: var(--accent); }
+@@ -122,15 +122,16 @@
+ .mg-bm-parttitle { display: block; text-wrap: balance; }
+ .mg-bm-plot { position: relative; }
+ .mg-bm-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+-.mg-bm-edge { fill: none; stroke: var(--ink-4); stroke-width: 1.15; vector-effect: non-scaling-stroke; stroke-linejoin: round; transition: stroke .15s, opacity .15s; }
+-.mg-bm-tip { position: absolute; width: 0; height: 0; color: var(--ink-4); transition: color .15s, opacity .15s; }
+-.mg-bm-tip.is-right { transform: translate(-100%, -50%); border-left: 6px solid currentColor; border-top: 4px solid transparent; border-bottom: 4px solid transparent; }
+-.mg-bm-tip.is-down { transform: translate(-50%, -100%); border-top: 6px solid currentColor; border-left: 4px solid transparent; border-right: 4px solid transparent; }
+-.mg-bm-box { position: absolute; display: flex; align-items: center; gap: .45em; padding: .35em .55em; border: 1.3px solid var(--rule);
+-             border-radius: 6px; background: var(--paper); color: var(--ink); text-decoration: none; font-size: var(--text-sm);
+-             line-height: 1.22; transition: border-color .15s, opacity .15s; }
++.mg-bm-edge { fill: none; stroke: var(--ink-3); stroke-opacity: .8; stroke-width: 1.2; vector-effect: non-scaling-stroke; stroke-linejoin: round; transition: stroke .15s, opacity .15s; }
++.mg-bm-tip { position: absolute; width: 0; height: 0; color: var(--ink-3); transition: color .15s, opacity .15s; }
++.mg-bm-tip.is-right { transform: translate(-100%, -50%); border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
++.mg-bm-tip.is-down { transform: translate(-50%, -100%); border-top: 8px solid currentColor; border-left: 5px solid transparent; border-right: 5px solid transparent; }
++.mg-bm-box { position: absolute; display: flex; align-items: center; gap: .38em; padding: .3em .46em; border: 1.3px solid var(--rule);
++             border-radius: 6px; background: var(--paper); color: var(--ink); text-decoration: none; transition: border-color .15s, opacity .15s; }
++.mg-bm-no, .mg-bm-title { font-size: var(--text-sm); line-height: 1.22; }
+ .mg-bm-box:hover, .mg-bm-box:focus-visible { border-color: var(--accent); }
+ .mg-bm-no { flex: none; color: var(--accent); font-variant-numeric: lining-nums tabular-nums; min-width: 1.2em; }
++.mg-bookmap .mg-map-h { margin-bottom: var(--s3); }
+ .mg-bm-title { min-width: 0; overflow-wrap: normal; hyphens: manual; -webkit-hyphens: manual; }
+ .mg-map-cap { margin-top: var(--s2); color: var(--ink-3); font-size: var(--text-sm); max-width: var(--mg-measure); }
+ .mg-map-cap:empty { display: none; }

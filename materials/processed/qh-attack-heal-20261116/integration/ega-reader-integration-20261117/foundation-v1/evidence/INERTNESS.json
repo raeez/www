@@ -1,0 +1,13 @@
+{
+ "made_utc": "2026-11-16T19:46:29Z",
+ "statement": "Same integration content folder, no reader-data/: the unpatched producer (integration status.py 2114d75b..., page.json f0a6edc5...) and the patched producer write byte-identical pages.",
+ "unpatched_page_sha256": "cf89f01b094b01b544c3ac85948feac21d382867c072683a7eb78568553231f4",
+ "patched_page_sha256": "cf89f01b094b01b544c3ac85948feac21d382867c072683a7eb78568553231f4",
+ "identical": true,
+ "patched_inputs": {
+  "compiler/quantum-holography-status/status.py": "198727b36250e150e5be2623593b1f655a1e6002bb55ea2968b3e5c9bb84610b",
+  "compiler/quantum-holography-status/monograph.py": "cf6abfa60dbc7214cd684e8cdb1eaa5e28317930e48fcf07a852c1470c0e9b53",
+  "compiler/quantum-holography-status/monograph.css": "7d58f2b91c9763b6251635ade47adcaf1472ee5c25891042c19f479d2b66f024",
+  "content/quantum-holography-status/page.json": "ac44a9254178df693da063b8b52b0f86233a62ba18c1f8ca277481f8f6197288"
+ }
+}

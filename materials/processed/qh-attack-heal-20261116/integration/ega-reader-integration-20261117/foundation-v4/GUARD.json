@@ -1,0 +1,60 @@
+{
+ "schema": "foundation-monograph-guard/v4",
+ "made_utc": "2026-11-16T20:25:49Z",
+ "successor_of": {
+  "v3_delta": "96aba2aa533d0518d23f3baaedb933e1bb7031d45355fefa95b111340384b4da",
+  "v3_freeze": "881bf5fd308c1c27b9f23d64363c98654fed7e7e2db637dc4e190a313f5d801d",
+  "v2_freeze": "39e53f0498add48532a6f79f8d6e4974aa8c48d2cffc9d8c0b8bb148e1466495",
+  "v1_freeze": "8c2ab00c843b8dd54a2c914e0655f8668a179dc9b89dae8563180ab9ad50881e"
+ },
+ "delta": {
+  "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/monograph/v4/patch/monograph-v3-to-v4.patch",
+  "sha256": "ee0d4a684d051158fcd1d8ed0f123e90452a848f7f1349b9177a221924ccf6a2",
+  "apply": "patch -p1 at the integration root, on installed v3; status.py is not touched"
+ },
+ "applies_to": {
+  "sealed_v3": {
+   "compiler/quantum-holography-status/status.py": "b0bf38e632fe337938e796d6271bdc6341eeade3aefd8d1f42369016639d3bdc",
+   "content/quantum-holography-status/page.json": "6cd6f22a4773c9db4754dadcdf457b5ea535f2e8bd7142c472cb1852153780da",
+   "compiler/quantum-holography-status/monograph.py": "750a232a2273b00974863b6bdbf0d8810e4915e6be52378456f7d46b4aba5220",
+   "compiler/quantum-holography-status/monograph.css": "0d4ed082f853c9cd6c7592c3d5def9f5bf4c0ae8d8f6d67906b883acd182d85a"
+  },
+  "integration_now": {
+   "compiler/quantum-holography-status/status.py": "b0bf38e632fe337938e796d6271bdc6341eeade3aefd8d1f42369016639d3bdc",
+   "content/quantum-holography-status/page.json": "f473df73c96dcf9ce54060d6542949562793e5670e23ee98bacc17ed6243d1a1",
+   "compiler/quantum-holography-status/monograph.py": "750a232a2273b00974863b6bdbf0d8810e4915e6be52378456f7d46b4aba5220",
+   "compiler/quantum-holography-status/monograph.css": "0d4ed082f853c9cd6c7592c3d5def9f5bf4c0ae8d8f6d67906b883acd182d85a"
+  }
+ },
+ "result": {
+  "from_sealed_v3": {
+   "compiler/quantum-holography-status/status.py": "b0bf38e632fe337938e796d6271bdc6341eeade3aefd8d1f42369016639d3bdc",
+   "content/quantum-holography-status/page.json": "3f7dc4c258e5cc32b895129e955eceda1c15d6139f8ebf2443ecfc473c848b7d",
+   "compiler/quantum-holography-status/monograph.py": "9a7c44f39d178b3e9344aac4effe3765dc275b1f044ac7439294dcc8c9347b2f",
+   "compiler/quantum-holography-status/monograph.css": "d7b2a217dc4c9c5a3f2939c3e33e1a056012ee894d7701c1bfd8abb7e73b0dbc"
+  },
+  "from_integration_now": {
+   "compiler/quantum-holography-status/status.py": "b0bf38e632fe337938e796d6271bdc6341eeade3aefd8d1f42369016639d3bdc",
+   "content/quantum-holography-status/page.json": "ff3362520f7dd9a3217ed0a3b47e7e126fe5f11d075bc7820e30a2806f5a2e3c",
+   "compiler/quantum-holography-status/monograph.py": "9a7c44f39d178b3e9344aac4effe3765dc275b1f044ac7439294dcc8c9347b2f",
+   "compiler/quantum-holography-status/monograph.css": "d7b2a217dc4c9c5a3f2939c3e33e1a056012ee894d7701c1bfd8abb7e73b0dbc"
+  }
+ },
+ "note_page_json": "integration page.json differs from sealed v3 only by root publication metadata (site, slug); the delta keeps them and adds three interface words",
+ "inert_without_reader_data": {
+  "identical": true,
+  "page_sha256": "cf89f01b094b01b544c3ac85948feac21d382867c072683a7eb78568553231f4"
+ },
+ "candidate": {
+  "path": "/Users/raeez/www-worktrees/2026-11-16-qh-max-foundation/materials/processed/qh-attack-heal-20261116/foundation/monograph/v4/out/book.html",
+  "sha256": "4b275c452b88356bc9a04de4f7bcb685f22d2673e944ae286c286ef5d3d95d54",
+  "bytes": 14681878,
+  "audit": "PASS",
+  "snapshot": "20261116T201833Z",
+  "inputs": "as v3/GUARD.json preview_inputs"
+ },
+ "evidence": {
+  "PROSE-RETENTION.json": "3bf947874e09f9460ad188586bc102ed89e66cee2ccf6926a2d4e6aa8b8bb192",
+  "FORMULA-RETENTION.json": "46490a0f5da4b95f47e92c05baf9d9cf0a9d55b7f4e4d67e9f381e23ac356f56"
+ }
+}
