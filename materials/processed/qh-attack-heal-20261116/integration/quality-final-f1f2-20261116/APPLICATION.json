@@ -1,0 +1,35 @@
+{
+  "applied_utc": "2026-11-16T16:44:29.421434+00:00",
+  "patch_sha256": "2d617690107a50e3a0d6cb1b3b932e343e4eeac492f0526101ba21f01f368362",
+  "independent_review_sha256": "bee1b9ed5127710a3daf5ed899362de7f1dafb582af9f315e57e335863a8d324",
+  "all_before_after_guards_match": true,
+  "all_diff_hunks_read": true,
+  "separate_current_content_preserved": true,
+  "files": [
+    {
+      "path": "compiler/quantum-holography-status/status.py",
+      "before_sha256": "c7a924e6710bc51d7d8f56d5b2b78376e71941c8de0528b19469aa5152d91ce4",
+      "after_sha256": "2114d75b0c82b5bde8b1b4a5509935647734088c84d4640d88deda6e874c1d04",
+      "hunks": 20
+    },
+    {
+      "path": "compiler/quantum-holography-status/status.css",
+      "before_sha256": "b496f5f5bf323f6125b69f873055880c27ec2114cf7d5dbd96b778fa3fecd48d",
+      "after_sha256": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+      "hunks": 3
+    },
+    {
+      "path": "compiler/quantum-holography-status/status-print.css",
+      "before_sha256": "8373d792c454933efb93c865b4375fa25cd99a3b9e0fb71235c26c2f7cec746b",
+      "after_sha256": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+      "hunks": 1
+    },
+    {
+      "path": "compiler/quantum-holography-status/audit.py",
+      "before_sha256": "2e85772650b669e01bb4a15d84dda6dc351a07e8b0fb2b0ac8a0c905d0c3965c",
+      "after_sha256": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+      "hunks": 8
+    }
+  ],
+  "remaining": "combined build, final interaction script, updated quality probes, native visual review"
+}

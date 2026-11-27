@@ -1,0 +1,627 @@
+--- a/compiler/build-quantum-holography-status.py
++++ b/compiler/build-quantum-holography-status.py
+@@ -46,12 +46,18 @@
+     parser = argparse.ArgumentParser(description='Build and audit the quantum holography status page.')
+     parser.add_argument('--input', type=Path, default=CONTENT)
+     parser.add_argument('--output', type=Path, default=ROOT / 'quantum-holography-tracker.html')
+-    parser.add_argument('--audit-dir', type=Path, default=CONTENT / 'audit')
++    parser.add_argument('--audit-dir', type=Path, default=None, help='default: the audit folder inside --input')
+     parser.add_argument('--allow-draft', action='store_true', help='write the page although an audit fails')
+     parser.add_argument('--no-fonts', action='store_true', help='embed no fonts (faster, for layout work)')
+     args = parser.parse_args()
+ 
+-    page = json.loads((CONTENT / 'page.json').read_text(encoding='utf-8'))
++    # The input folder's page.json governs; the default folder's is used only when the input folder has none.
++    page_file = args.input / 'page.json'
++    page_fallback = not page_file.exists()
++    if page_fallback:
++        page_file = CONTENT / 'page.json'
++    page = json.loads(page_file.read_text(encoding='utf-8'))
++    audit_dir = args.audit_dir or args.input / 'audit'
+     text_fonts, math_font = {}, None
+     if not args.no_fonts:
+         for key, name in TEXT_FONTS.items():
+@@ -60,6 +66,8 @@
+                 text_fonts[key] = path
+         math_font = find('Garamond-Math.otf')
+     build = status.Build(args.input, page, text_fonts, math_font)
++    if page_fallback:
++        build.warnings.append('page.json not found in the input folder; the default page.json is used')
+     if not args.no_fonts and len(text_fonts) < len(TEXT_FONTS):
+         build.warnings.append('EB Garamond not found in TeX Live; the page falls back to system serif fonts')
+     if not args.no_fonts and math_font is None:
+@@ -68,16 +76,16 @@
+     result = audit.run(build, markup)
+     report = audit.text_report(result)
+ 
+-    args.audit_dir.mkdir(parents=True, exist_ok=True)
+-    (args.audit_dir / 'audit.json').write_text(json.dumps(result, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+-    (args.audit_dir / 'audit.txt').write_text(report, encoding='utf-8')
++    audit_dir.mkdir(parents=True, exist_ok=True)
++    (audit_dir / 'audit.json').write_text(json.dumps(result, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
++    (audit_dir / 'audit.txt').write_text(report, encoding='utf-8')
+     print(report, end='')
+ 
+     if not result['failures'] or args.allow_draft:
+         args.output.write_text(markup, encoding='utf-8')
+         print(f'wrote {args.output}')
+         return 0
+-    rejected = args.audit_dir / 'rejected.html'
++    rejected = audit_dir / 'rejected.html'
+     rejected.write_text(markup, encoding='utf-8')
+     print(f'audit failed; page written to {rejected}')
+     return 1
+--- a/compiler/quantum-holography-status/audit.py
++++ b/compiler/quantum-holography-status/audit.py
+@@ -6,10 +6,16 @@
+   - an in-page link whose target does not exist;
+   - reader-visible words that belong to project management rather than mathematics
+     (the golden rule): names of tools or models, record and file names, internal
+-    identifiers, workflow vocabulary.
++    identifiers, workflow vocabulary, process stage labels, percentages, raw TeX. The same rules
++    apply to the words of formulas (\text{}), to attribute values that a reader hears or sees
++    (aria-label, title, alt, placeholder, meta content) and to element ids, which appear in shared
++    addresses.
++Warnings (reported, not blocking): words that may be workflow residue and need the content owner's
++reading, and statements without an id (no link reaches the statement itself).
+ """
+ import html
+ import re
++from collections import Counter
+ 
+ from status import CELL_STATUSES, COLUMNS, STATEMENT_STATUSES, strip_tags
+ 
+@@ -25,22 +31,68 @@
+     (r'(?<![\w.])E[1-8](?![\w])', 'possible internal identifier (or E_n written without subscript)', 0),
+     (r'\bv\d\b|-v\d\b', 'version tag', 0),
+     (r'\.(md|json|tex|py|tsv|csv|log)\b', 'file name', 0),
+-    (r'/Users/|~/|\bengine/|\bprep/|\bchains/', 'path', 0),
++    (r'/Users/|~/[\w.-]|\b(?:engine|prep|chains|frontier|inscribe)/[\w.-]+(?:/|\.\w{1,4}\b)', 'path', 0),
+     (r'\b[a-z]{2,5}:(thm|prop|lem|def|cor|qn|eq|sec|rem|op|cc|hyp|mix|p|t):[\w-]+', 'LaTeX label', 0),
++    (r'\battack[- ]?heal\w*|\bswarms?\b', 'workflow vocabulary', re.I),
++    # Capitalised stage labels fail; the same words in lower case may be mathematics ("the s-wave 1", "phase 0")
++    # and are only warned about (WARN).
++    (r'(?<![\w-])(Wave|Phase|Session|Lane|Sprint|Round|Cycle)[- ]?[A-Z]?\d+\b', 'process stage label', 0),
++    (r'\d+(?:\.\d+)?\s?%|\bper ?cent\b', 'percentage', re.I),
++    (r'\b(version|revision)\s+\d+', 'version tag', re.I),
++    (r'(?<![\w.])G\d{2,3}(?![\w])', 'internal identifier', 0),
+ ]
++PERCENT = FORBIDDEN[11]
++WORDS = [FORBIDDEN[0], FORBIDDEN[1], FORBIDDEN[2], FORBIDDEN[9]]  # names and workflow words, for word-like tokens
+ 
++# Raw TeX delimiters left in reader text mean a formula was not set as mathematics.
++RAW_TEX = (r'\\[()\[\]]', 'raw TeX in reader text', 0)
++# TeX source in an attribute is read aloud or shown as code.
++TEX_IN_ATTRIBUTE = re.compile(r'\\[A-Za-z()\[\]{}]')
++# Element ids appear in shared addresses: no tool, workflow or path names and no stage numbers there either;
++# identifier shapes are only warned about, since ids also come from mathematics (r3, e2).
++ID_FORBIDDEN = WORDS + [(r'(wave|phase|session|lane|sprint|round|cycle)-?\d+|/', 'stage number or path in an id', re.I)]
++ID_WARN = [(r'(?<![a-z0-9])[tnbrpcg]\d{1,3}(?![a-z0-9])', 'identifier-like token in an id', re.I)]
++# TeX source: names and files only; ~ is a TeX tie and chains/cochains is mathematics.
++TEX_FORBIDDEN = [FORBIDDEN[0], FORBIDDEN[6], (r'/Users/|\b(?:engine|prep|frontier|inscribe)/[\w.-]+', 'path', 0)]
++
++# Possible workflow residue in reader text: reported for the content owner, not blocking.
++WARN = [
++    (r'\badopted\b', 'possible workflow vocabulary (adopted)', re.I),
++    (r'\bdrafts?\b', 'possible process vocabulary (draft)', re.I),
++    (r'\b(saved|stored|recorded)\s+(?:[\w-]+\s+){0,3}(certificates?|computations?|arithmetic|matrix|matrices)\b|\breplayed\b',
++     'reference to a stored artefact the reader cannot inspect', re.I),
++    (r'(?<![\w\\])[A-Za-z]_(?:\{[^}]*\}|[A-Za-z0-9])', 'possible formula outside TeX delimiters', 0),
++    (r'(?<![\w-])(wave|phase|session|lane|sprint|round|cycle)[- ]?\d+\b', 'possible process stage label', 0),
++]
++READER_ATTRIBUTES = re.compile(r'\s(aria-label|title|alt|placeholder|aria-description|aria-roledescription|aria-placeholder|aria-valuetext)="([^"]*)"')
++DATA_BLOCK = re.compile(r'<script\b[^>]*type="application/(?:ld\+)?json"[^>]*>(.*?)</script>', re.S)
++HASH = (r'(?<![\w-])[0-9a-f]{32,}(?![\w-])', 'hash', re.I)
++
+ ALLOWED_HOSTS_IN_HREF = ()  # no other host at all
+ 
+ 
+-def visible_text(markup):
++def visible_text(markup, spaced=False):
++    """The reader-visible body text with formulas removed. With spaced=True every tag boundary becomes a
++    space, so that words in adjacent elements (a status chip and a title) do not fuse."""
+     body = markup[markup.find('<body'):]
+     body = re.sub(r'<script\b.*?</script>', ' ', body, flags=re.S)
+     body = re.sub(r'<style\b.*?</style>', ' ', body, flags=re.S)
+     body = re.sub(r'<math\b.*?</math>', ' ', body, flags=re.S)
+     body = re.sub(r'<svg\b.*?</svg>', ' ', body, flags=re.S)
+-    return re.sub(r'\s+', ' ', strip_tags(body))
++    if spaced:
++        return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', body)).replace('\u00ad', ''))
++    return re.sub(r'\s+', ' ', strip_tags(body).replace('\u00ad', ''))
+ 
+ 
++def scan(text, patterns, label=''):
++    found = []
++    for pattern, why, flags in patterns:
++        for m in re.finditer(pattern, text, flags=flags):
++            ctx = text[max(0, m.start() - 50): m.end() + 50]
++            found.append(f'{why}{label}: "{m.group(0)}" in …{ctx}…')
++    return found
++
++
+ def run(build, markup):
+     failures = list(build.problems)
+     warnings = list(build.warnings)
+@@ -83,18 +135,50 @@
+     for m in re.finditer(r'(?:data-term|aria-controls|aria-describedby|data-row)="([^"]+)"', markup):
+         if m.group(1) not in ids:
+             failures.append(f'reference to missing id {m.group(1)}')
+-    dup = {i for i in re.findall(r'\sid="([^"]+)"', markup) if list(re.findall(r'\sid="([^"]+)"', markup)).count(i) > 1}
+-    for i in sorted(dup):
++    id_counts = Counter(re.findall(r'\sid="([^"]+)"', markup))
++    for i in sorted(k for k, n in id_counts.items() if n > 1):
+         failures.append(f'duplicate id {i}')
+ 
+-    # The golden rule, on what a reader sees.
+-    text = visible_text(markup)
++    # The golden rule, on what a reader sees: the text as written and with tag boundaries spaced, the
++    # words inside formulas, the attributes read aloud or shown, the metadata, and the ids.
+     flagged = []
+-    for pattern, why, flags in FORBIDDEN:
+-        for m in re.finditer(pattern, text, flags=flags):
+-            ctx = text[max(0, m.start() - 50): m.end() + 50]
+-            flagged.append(f'{why}: "{m.group(0)}" in …{ctx}…')
+-    failures.extend(flagged)
++    for text in (visible_text(markup), visible_text(markup, spaced=True)):
++        flagged += scan(text, FORBIDDEN + [RAW_TEX])
++    mtext = ' '.join(strip_tags(m) for m in re.findall(r'<mtext\b[^>]*>(.*?)</mtext>', markup, flags=re.S))
++    flagged += scan(mtext, [f for f in FORBIDDEN if f is not PERCENT], ' (in a formula)')
++    words = ' '.join(re.findall(r'<mi\b[^>]*>([^<]{3,})</mi>', markup))  # \operatorname{...}, \mathrm{...}
++    flagged += scan(html.unescape(words), WORDS, ' (in a formula)')
++    tex = ' '.join(re.findall(r'<annotation encoding="application/x-tex">(.*?)</annotation>', markup, flags=re.S))
++    flagged += scan(html.unescape(tex), TEX_FORBIDDEN, ' (in TeX source)')
++    svg_titles = ' '.join(t for svg in re.findall(r'<svg\b.*?</svg>', markup, flags=re.S) for t in re.findall(r'<title>(.*?)</title>', svg, flags=re.S))
++    flagged += scan(html.unescape(svg_titles), FORBIDDEN, ' (in an image title)')
++    for block in DATA_BLOCK.findall(markup):
++        flagged += scan(block, FORBIDDEN + [HASH], ' (in a data block)')
++    comments = re.findall(r'/\*.*?\*/', ' '.join(re.findall(r'<(?:style|script)\b[^>]*>(.*?)</(?:style|script)>', markup, flags=re.S)), flags=re.S)
++    comments += re.findall(r'<!--.*?-->', markup, flags=re.S)
++    flagged += scan(' '.join(comments), WORDS + [FORBIDDEN[6], FORBIDDEN[7], FORBIDDEN[10]], ' (in a comment)')
++    bare_markup = re.sub(r'<(script|style)\b.*?</\1>', ' ', markup, flags=re.S)
++    for name, value in READER_ATTRIBUTES.findall(bare_markup):
++        value = html.unescape(value)
++        flagged += scan(value, FORBIDDEN, f' (in {name})')
++        if TEX_IN_ATTRIBUTE.search(value):
++            flagged.append(f'TeX source in {name}: "{value[:120]}"')
++    for m in re.finditer(r'<meta\s+(?:name|property)="(description|author|og:title|og:description)"\s+content="([^"]*)"', markup):
++        flagged += scan(html.unescape(m.group(2)), FORBIDDEN, f' (in meta {m.group(1)})')
++    title = re.search(r'<title>(.*?)</title>', markup, flags=re.S)
++    if title:
++        flagged += scan(html.unescape(title.group(1)), FORBIDDEN, ' (in title)')
++    for i in id_counts:
++        flagged += scan(i, ID_FORBIDDEN, ' (in id)')
++    failures.extend(dict.fromkeys(flagged))
++    for w in dict.fromkeys(scan(visible_text(markup, spaced=True), WARN) + scan(mtext, [PERCENT], ' (in a formula)')
++                           + [x for i in id_counts for x in scan(i, ID_WARN, ' (in id)')]):
++        warnings.append(w)
++    anchorless = [strip_tags(s.get('title') or '') or (s.get('text') or '')[:80]
++                  for s in build.all_statements(c) if not (s.get('id') or '').strip()]
++    if anchorless:
++        warnings.append(f'{len(anchorless)} statements have no id, so no link reaches the statement itself '
++                        f'(listed in audit.json under statements_without_id); first: {anchorless[0][:80]}')
+ 
+     # Metadata carries no tool credit either.
+     head = re.sub(r'<(style|script)\b.*?</\1>', ' ', markup[:markup.find('</head>')], flags=re.S)
+@@ -120,6 +204,7 @@
+         'math': len(build.math.jobs),
+         'math_errors': len(build.math.errors),
+         'fonts': getattr(build, 'font_report', {}),
++        'statements_without_id': anchorless,
+     }
+ 
+ 
+--- a/compiler/quantum-holography-status/status-print.css
++++ b/compiler/quantum-holography-status/status-print.css
+@@ -92,9 +92,15 @@
+   .key { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8pt 18pt; }
+   .key-item { break-inside: avoid; }
+ 
++  /* Lists that run across pages print as block flow, not as grids: a fragmented grid container can lose an
++     unbreakable item from the printed page. */
++  .statements, .questions, .failures { display: block; }
++  .statements > * + * { margin-top: 8pt; }
++  .glossary, .key, .col-defs > dl { display: block !important; }
++  .key > * + *, .col-defs > dl > * + * { margin-top: 6pt; }
++
+   /* Statements: kept whole; the status stripe is a border so that it prints without background
+      graphics; the chips lose their tint and keep their colour and mark. */
+-  .statements { gap: 8pt; }
+   .statement, .principal .statement { padding: 8pt 10pt 7pt 11pt; background: none !important; box-shadow: none !important;
+                                       border: .6pt solid var(--rule); border-left: 2.4pt solid var(--st); border-radius: 2pt;
+                                       break-inside: avoid; page-break-inside: avoid; }
+@@ -153,7 +159,7 @@
+   .rows .statement[hidden] { display: block !important; }
+ 
+   /* Questions */
+-  .questions { gap: 16pt; }
++  .questions > * + * { margin-top: 16pt; }
+   .question { padding-top: .8em; }
+   .question:target > .question-head h3 { color: inherit; }
+   .question.compare { display: block; }
+@@ -164,6 +170,7 @@
+   .known > summary { padding: 7pt 0; break-after: avoid; }
+ 
+   /* Counterexamples */
++  .failures > * + * { margin-top: 14pt; }
+   .failure { break-inside: auto; }
+   .claim { break-after: avoid; page-break-after: avoid; }
+   .failure > .statement { margin-left: 10pt; }
+--- a/compiler/quantum-holography-status/status.css
++++ b/compiler/quantum-holography-status/status.css
+@@ -35,7 +35,7 @@
+   --st-open: #9a5a07;
+   --st-published: #4d5966;
+   --st-partial: #5f7a2a;
+-  --st-not-posed: #9b958d;
++  --st-not-posed: #857f77;
+   --st-refuted-form: #a13d2d;
+ 
+   --shadow: 0 1px 2px rgba(29, 27, 24, .06), 0 14px 40px -12px rgba(29, 27, 24, .28);
+@@ -57,7 +57,7 @@
+     --accent: #7fb9bd; --accent-soft: #1f3234; --focus: #9fd0d3;
+     --st-checked: #79c48f; --st-pending: #82b4e3; --st-conditional: #78c3c4; --st-conjecture: #b99be0;
+     --st-heuristic: #c4ab8c; --st-open: #e5a74e; --st-published: #a7b3bf; --st-partial: #b1cc72;
+-    --st-not-posed: #77716a; --st-refuted-form: #ec8a76;
++    --st-not-posed: #857f77; --st-refuted-form: #ec8a76;
+     --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 44px -10px rgba(0, 0, 0, .7);
+     --bar-bg: rgba(21, 20, 18, .92);
+     color-scheme: dark;
+@@ -70,7 +70,7 @@
+   --accent: #7fb9bd; --accent-soft: #1f3234; --focus: #9fd0d3;
+   --st-checked: #79c48f; --st-pending: #82b4e3; --st-conditional: #78c3c4; --st-conjecture: #b99be0;
+   --st-heuristic: #c4ab8c; --st-open: #e5a74e; --st-published: #a7b3bf; --st-partial: #b1cc72;
+-  --st-not-posed: #77716a; --st-refuted-form: #ec8a76;
++  --st-not-posed: #857f77; --st-refuted-form: #ec8a76;
+   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 44px -10px rgba(0, 0, 0, .7);
+   --bar-bg: rgba(21, 20, 18, .92);
+   color-scheme: dark;
+@@ -419,7 +419,7 @@
+ .claim-tag .mark { width: 12px; height: 12px; }
+ .claim-text { flex: 1 1 18rem; min-width: 0; font-style: italic; color: var(--ink-2); }
+ .failure > .statement { margin-left: clamp(0px, 2vw, 18px); }
+-@media print { .known > .statements { display: grid !important; } }
++@media print { .known > .statements { display: block !important; } }
+ .section-added { margin: .6em 0 0; }
+ 
+ /* ---------------------------------------------------------------------------------------------
+@@ -590,7 +590,8 @@
+ 
+ /* The count, then the results by part. */
+ .find-count { margin: 14px 0 0; font-size: var(--text-sm); color: var(--ink-3); font-variant-numeric: lining-nums tabular-nums; }
+-.find-count:empty { display: none; }
++/* Empty, the count stays rendered (visually hidden) so that its first message is announced. */
++.find-count:empty { position: absolute; width: 1px; height: 1px; margin: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+ .find-results { margin-top: 4px; }
+ .find-group { margin-top: 18px; }
+ .find-group-head { margin: 0 0 6px; font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+@@ -640,3 +641,22 @@
+   .find-link:hover { outline: 1px solid Highlight; }
+   .find mark { forced-color-adjust: none; background: Mark; color: MarkText; box-shadow: none; }
+ }
++
++/* ---------------------------------------------------------------------------------------------
++   The search opener in the bar, the card's close control, and the status filter's visible count
++   and empty-example note. The script shows the opener only when the search exists.
++   --------------------------------------------------------------------------------------------- */
++.find-open { flex: none; width: 34px; height: 34px; display: grid; place-items: center; padding: 0; border: 1px solid var(--rule);
++             background: transparent; border-radius: 50%; cursor: pointer; color: var(--ink-2); }
++.find-open:hover { background: var(--paper-2); }
++.find-open[hidden] { display: none; }
++.card-close { position: absolute; top: 6px; right: 6px; width: 32px; height: 32px; display: grid; place-items: center; padding: 0;
++              border: 0; border-radius: 50%; background: transparent; color: var(--ink-3); cursor: pointer; }
++.card-close:hover { background: var(--paper-2); color: var(--ink); }
++.card-inner { padding-right: 44px; }
++@media (max-width: 640px) { .card.sheet { bottom: calc(8px + env(safe-area-inset-bottom, 0px)); } }
++.row-tools .filter-count { flex-basis: 100%; margin: 0; font-size: var(--text-sm); color: var(--ink-3); }
++.row-tools .filter-count:empty { position: absolute; width: 1px; height: 1px; margin: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
++.filter-empty-note { margin: 0 0 14px; color: var(--ink-3); font-style: italic; }
++@media screen { details.row[data-filter-empty] > summary .row-name { color: var(--ink-3); } }
++@media print { .find-open, .card-close, .filter-count, .filter-empty-note { display: none !important; } }
+--- a/compiler/quantum-holography-status/status.py
++++ b/compiler/quantum-holography-status/status.py
+@@ -57,6 +57,10 @@
+           'stroke-linecap="round" stroke-linejoin="round"/>',
+     'chevron': '<path d="m5 6.5 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" '
+                'stroke-linecap="round" stroke-linejoin="round"/>',
++    'search': '<circle cx="6.8" cy="6.8" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/>'
++              '<path d="M10.2 10.2 13.8 13.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
++    'close': '<path d="M4.6 4.6 11.4 11.4M11.4 4.6 4.6 11.4" fill="none" stroke="currentColor" stroke-width="1.5" '
++             'stroke-linecap="round"/>',
+ }
+ 
+ 
+@@ -95,6 +99,11 @@
+         self.jobs.append({'tex': tex, 'display': display})
+         return f'\x00M{len(self.jobs) - 1}\x00'
+ 
++    def add_text(self, tex):
++        """A placeholder for the formula's rendered token text (no markup, no TeX), for attributes and titles."""
++        self.jobs.append({'tex': tex, 'display': False})
++        return f'\x00T{len(self.jobs) - 1}\x00'
++
+     def render(self):
+         if not self.jobs:
+             self.out = []
+@@ -106,14 +115,21 @@
+             if 'error' in row:
+                 self.errors.append({'tex': job['tex'], 'error': row['error']})
+ 
+-    def substitute(self, markup):
++    def substitute(self, markup, escape_text=True):
+         def one(m):
+-            i = int(m.group(1))
++            kind, i = m.group(1), int(m.group(2))
+             row = self.out[i]
++            if kind == 'T':
++                if 'html' not in row:
++                    text = self.jobs[i]['tex']
++                else:
++                    text = html.unescape(re.sub(r'<[^>]+>', '', re.sub(r'<annotation\b.*?</annotation>', '', row['html'], flags=re.S)))
++                text = ' '.join(text.split())
++                return html.escape(text, quote=True) if escape_text else text
+             if 'html' in row:
+                 return row['html']
+             return f'<code class="tex-error">{html.escape(self.jobs[i]["tex"])}</code>'
+-        return re.sub(r'\x00M(\d+)\x00', one, markup)
++        return re.sub(r'\x00([MT])(\d+)\x00', one, markup)
+ 
+ 
+ MATH_RE = re.compile(r'\\\((.+?)\\\)|\\\[(.+?)\\\]', re.S)
+@@ -141,13 +157,22 @@
+     def __init__(self, glossary):
+         self.by_form = {}
+         self.entries = []
++        self.problems = []
++        # An entry's own id is its anchor and is reserved first; anchors derived from terms avoid it.
++        explicit = ['term-' + ident(e['id']) for e in glossary if (e.get('id') or '').strip()]
++        for dup in sorted({t for t in explicit if explicit.count(t) > 1}):
++            self.problems.append(f'glossary: two entries have the id anchor {dup}')
++        taken = set(explicit)
+         for entry in glossary:
+-            tid = 'term-' + ident(entry['term'])
+-            base = tid
+-            n = 2
+-            while any(e['id'] == tid for e in self.entries):
+-                tid = f'{base}-{n}'
+-                n += 1
++            if (entry.get('id') or '').strip():
++                tid = 'term-' + ident(entry['id'])
++            else:
++                tid = base = 'term-' + ident(entry['term'])
++                n = 2
++                while tid in taken:
++                    tid = f'{base}-{n}'
++                    n += 1
++                taken.add(tid)
+             entry = dict(entry, id=tid)
+             self.entries.append(entry)
+             forms = set(entry.get('forms') or []) | {entry['term']}
+@@ -191,16 +216,17 @@
+ 
+     # Text -------------------------------------------------------------------------------
+ 
+-    def rich(self, text, seen=None, terms=True):
+-        """Plain text with TeX and *emphasis* to HTML; glossary terms attached once per block."""
++    def rich(self, text, seen=None, terms=True, markup=True):
++        """Plain text with TeX and *emphasis* to HTML; glossary terms attached once per block.
++        With markup=False only TeX is converted: asterisks and [links](...) stay as written."""
+         if text is None:
+             return ''
+-        text = unlink(text)
++        text = unlink(text) if markup else text
+         seen = set() if seen is None else seen
+         parts = []
+         pos = 0
+         for m in MATH_RE.finditer(text):
+-            parts.append(self.plain(text[pos:m.start()], seen, terms))
++            parts.append(self.plain(text[pos:m.start()], seen, terms, markup))
+             pos = m.end()
+             if m.group(1) is not None:
+                 tex = m.group(1).strip()
+@@ -218,14 +244,27 @@
+                     parts.append('<span class="math-inline">' + self.math.add(tex, False) + '</span>')
+             else:
+                 parts.append('<span class="math-display">' + self.math.add(m.group(2).strip(), True) + '</span>')
+-        parts.append(self.plain(text[pos:], seen, terms))
++        parts.append(self.plain(text[pos:], seen, terms, markup))
+         return ''.join(parts)
+ 
+-    def plain(self, text, seen, terms):
++    def text_form(self, text):
++        """Text for attributes and titles: each formula becomes its rendered token text after the TeX run
++        (never TeX source), and emphasis marks are dropped. The caller escapes the result."""
++        out, pos = [], 0
++        text = unlink(text or '')
++        for m in MATH_RE.finditer(text):
++            out.append(EMPH_RE.sub(r'\1', text[pos:m.start()]))
++            out.append(self.math.add_text((m.group(1) or m.group(2)).strip()))
++            pos = m.end()
++        out.append(EMPH_RE.sub(r'\1', text[pos:]))
++        return ''.join(out)
++
++    def plain(self, text, seen, terms, markup=True):
+         if '\\(' in text or '\\)' in text or '\\[' in text or '\\]' in text:
+             self.problems.append('unbalanced TeX delimiters in: ' + text[:120])
+         escaped = html.escape(text, quote=False)
+-        escaped = EMPH_RE.sub(r'<em>\1</em>', escaped)
++        if markup:
++            escaped = EMPH_RE.sub(r'<em>\1</em>', escaped)
+         if terms:
+             escaped = self.term_links.link(escaped, seen)
+         return escaped
+@@ -499,7 +538,7 @@
+             fid = 'f-' + ident(it.get('id') or str(i))
+             self.anchors.add(fid)
+             w = it.get('witness') or {}
+-            witness = self.statement(w, f'failure {i} witness', chip=not all_added) if w else ''
++            witness = self.statement(w, f'failure {i} witness', heading='h3', chip=not all_added) if w else ''
+             if not w:
+                 self.problems.append(f'failure {i}: no witness')
+             out.append(f'<div class="failure" id="{fid}"><p class="claim">'
+@@ -542,7 +581,7 @@
+                     st = 'not posed'
+                 colname = columns.get(cid, {}).get('name', cid)
+                 note = cell.get('note') or ''
+-                label = f'{r["name"]}, {colname}: {self.status_label(st)}'
++                label = f'{self.text_form(r["name"])}, {self.text_form(colname)}: {self.status_label(st)}'
+                 note_html = self.rich(note, terms=False)
+                 cells.append(
+                     f'<td class="cell cell-{slug(st)}" data-status="{st}">'
+@@ -553,7 +592,7 @@
+                     f'{html.escape(self.status_label(st))}</span> <span class="cell-note-where">'
+                     f'{html.escape(colname)}</span></p><p>{note_html}</p></div></td>')
+             short = r.get('short') or self.page.get('row_short', {}).get(r.get('id')) or r['name']
+-            rows.append(f'<tr><th scope="row"><a href="#{rid}" title="{html.escape(self.math_free(r["name"]))}">'
++            rows.append(f'<tr><th scope="row"><a href="#{rid}" title="{html.escape(self.text_form(r["name"]))}">'
+                         f'{self.rich(short, terms=False)}</a></th>'
+                         f'{"".join(cells)}</tr>')
+         col_notes = ''.join(
+@@ -576,7 +615,7 @@
+             rid = 'row-' + ident(r.get('id') or r['name'])
+             self.anchors.add(rid)
+             statements = r.get('statements', [])
+-            body = ''.join(self.statement(s, f'row {r.get("id")} statement {j}') for j, s in enumerate(statements))
++            body = ''.join(self.statement(s, f'row {r.get("id")} statement {j}', heading='h3') for j, s in enumerate(statements))
+             cells = []
+             for cid in COLUMNS:
+                 cell = (r.get('cells') or {}).get(cid)
+@@ -618,8 +657,12 @@
+     def open_problems(self, c):
+         L = self.page['labels']
+         groups = []
++        used = {'open', 'open-h'}  # the section's own anchors
+         for i, g in enumerate(c.get('open', [])):
+-            gid = 'open-' + ident(g.get('heading', str(i)))
++            gid = 'open-' + ident(g.get('id') or g.get('heading', str(i)))
++            if gid in used:
++                self.problems.append(f'open group {i}: anchor {gid} is already used on the page')
++            used.add(gid)
+             self.anchors.add(gid)
+             body = ''.join(self.statement(s, f'open {i}.{j}') for j, s in enumerate(g.get('statements', [])))
+             intro = f'<div class="prose group-intro">{self.paragraphs(g["intro"])}</div>' if g.get('intro') else ''
+@@ -637,11 +680,10 @@
+             block = ' '.join(block.split())
+             if not block:
+                 continue
+-            esc = html.escape(block, quote=False)
+-            if len(block) <= 32 and '=' in block:
+-                paras.append(f'<p class="essay-display">{esc}</p>')
++            if len(block) <= 32 and '=' in block and not MATH_RE.search(block):
++                paras.append(f'<p class="essay-display">{html.escape(block, quote=False)}</p>')
+             else:
+-                paras.append(f'<p>{esc}</p>')
++                paras.append(f'<p>{self.rich(block, terms=False, markup=False)}</p>')
+         lead_html = f'<p class="essay-lead">{self.rich(lead)}</p>' if (lead or '').strip() else ''
+         self.essay_title = title
+         return self.section('essay', L['essay'],
+@@ -669,7 +711,10 @@
+         self.content = c
+         essay_path = self.folder / 'essay.md'
+         essay_text = essay_path.read_text(encoding='utf-8') if essay_path.exists() else ''
++        if not essay_path.exists():
++            self.warnings.append('essay.md not found in the input folder; the page has no essay')
+         self.term_links = Terms(c.get('glossary', []))
++        self.problems.extend(self.term_links.problems)
+         L = self.page['labels']
+ 
+         cover = self.cover(c)
+@@ -703,6 +748,8 @@
+                 f'<div class="bar"><div class="bar-inner">'
+                 f'<a class="home" href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a>'
+                 f'<nav class="nav" aria-label="{html.escape(L["on_page"])}"><ul>{nav}</ul></nav>'
++                f'<button type="button" class="find-open" data-find-open hidden aria-label="{html.escape(L.get("find_open", "Search this page"))}" '
++                f'title="{html.escape(L.get("find_open", "Search this page"))}">{icon("search")}</button>'
+                 f'<button type="button" class="theme" aria-label="{html.escape(L["theme"])}" title="{html.escape(L["theme"])}">'
+                 f'{icon("theme")}</button></div></div>'
+                 f'<main id="main" tabindex="-1">{cover}{changes}{key}{principal}{decisive}{frontier}{examples}{failures}{open_}{essay}{terms}</main>'
+@@ -710,8 +757,12 @@
+                 f'<time datetime="{html.escape(c["as_of"])}">{html.escape(long_date(c["as_of"]))}</time></p>'
+                 f'<p><a href="{html.escape(self.page["home"])}">{html.escape(self.page["home_label"])}</a> · '
+                 f'<a href="#programme">{icon("up")}<span>{html.escape(L["top"])}</span></a></p></div></footer>'
+-                f'<div class="card" id="card" role="dialog" aria-modal="false" hidden><div class="card-inner"></div></div>')
++                f'<div class="card" id="card" role="dialog" aria-modal="false" hidden>'
++                f'<button type="button" class="card-close" aria-label="{html.escape(L.get("close", "Close"))}" '
++                f'title="{html.escape(L.get("close", "Close"))}">{icon("close")}</button><div class="card-inner"></div></div>')
+ 
++        title_form = self.text_form(c['title'])
++        description_form = self.text_form(c.get('subtitle', ''))
+         self.math.render()
+         body = self.math.substitute(body)
+         for err in self.math.errors:
+@@ -721,8 +772,8 @@
+         css = (HERE / 'status.css').read_text(encoding='utf-8') + '\n' + (HERE / 'status-print.css').read_text(encoding='utf-8')
+         js = (HERE / 'status.js').read_text(encoding='utf-8')
+         fonts = self.font_faces(body)
+-        title_text = strip_tags(self.math_free(c['title']))
+-        description = strip_tags(self.math_free(c.get('subtitle', '')))
++        title_text = strip_tags(self.math.substitute(title_form, escape_text=False))
++        description = strip_tags(self.math.substitute(description_form, escape_text=False))
+         head = (
+             '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+@@ -775,7 +826,7 @@
+     from fontTools import subset
+     from fontTools.ttLib import TTFont
+     chars = {c for c in chars if not c.isspace()} | {' ', ' '}
+-    font = TTFont(str(path))
++    font = TTFont(str(path), recalcTimestamp=False)  # keep the source font's date: the page is byte-reproducible
+     options = subset.Options()
+     options.layout_features = ['*']
+     options.flavor = 'woff'
+--- a/content/quantum-holography-status/README.md
++++ b/content/quantum-holography-status/README.md
+@@ -4,8 +4,9 @@
+ 
+     python3 compiler/build-quantum-holography-status.py
+ 
+-It reads this folder and writes `quantum-holography-tracker.html` at the repository root when every
+-audit passes; the audit report is written to `audit/audit.txt`. `--allow-draft` writes the page
++It reads this folder (or the folder given by `--input`, including its `page.json`) and writes
++`quantum-holography-tracker.html` at the repository root when every audit passes; the audit report is
++written to `audit/audit.txt` inside the input folder unless `--audit-dir` names another folder. `--allow-draft` writes the page
+ despite failures; `--no-fonts` skips font embedding for quick layout work. Requires Python 3 with
+ fontTools, Node (for the vendored Temml in `compiler/quantum-holography-tracker/vendor`), and the
+ TeX Live fonts EB Garamond and Garamond-Math (found with `kpsewhich`; both under the SIL Open Font
+@@ -15,7 +16,8 @@
+ 
+ - `content.json`: the words. Written by the content writer, not edited here except to replace it
+   whole with a newer settled version.
+-- `essay.md`: the essay, reproduced unchanged: a `# Title` line, then paragraphs separated by blank lines.
++- `essay.md`: the essay, reproduced unchanged: a `# Title` line, then paragraphs separated by blank lines;
++  TeX between `\(`…`\)` is set as mathematics, as in `content.json`.
+ - `page.json`: interface labels, status labels and page metadata (design).
+ 
+ ## content.json
+@@ -32,8 +34,8 @@
+   "decisive"?: {"heading", "intro", "questions": [{"id", "title", "question": STATEMENT, "why", "known": [STATEMENT, ...]}, ...]},
+   "frontier"?: {"heading", "intro", "questions": [{"id", "title", "question": STATEMENT, "why", "known": [STATEMENT, ...]}, ...]},
+   "failures"?: {"heading", "intro", "items": [{"id", "claim", "witness": STATEMENT}, ...]},
+-  "open": [{"heading", "intro", "statements": [STATEMENT, ...]}, ...],
+-  "glossary": [{"term", "forms": [...], "definition"}, ...],
++  "open": [{"id"?, "heading", "intro", "statements": [STATEMENT, ...]}, ...],
++  "glossary": [{"id"?, "term", "forms": [...], "definition"}, ...],
+   "essay_lead": ""
+ }
+ STATEMENT = {"status", "title", "text", "novelty", "antecedents", "cite", "source": [...], "id"?, "added"?}
+@@ -50,11 +52,18 @@
+ the address has one: the page links to no other host.
+ Text is plain, with TeX between `\(`…`\)` or `\[`…`\]` and `*emphasis*`. The `source` fields are for
+ tracing and are never rendered. Glossary `forms` are matched in the text, and the first use of each
+-term in a block opens its definition on hover, focus or tap.
++term in a block opens its definition on hover, focus or tap. An open-problem group's `id` gives its
++anchor (`#open-<id>`) and a glossary entry's `id` gives its anchor (`#term-<id>`); without one the anchor
++comes from the heading or the term, and changes when they are reworded.
+ 
+ ## Audit
+ 
+ The build fails on: an unknown status or a missing grid cell; a TeX error; any reference to another
+ host (no fonts, scripts, styles or images are fetched; a Content-Security-Policy forbids it); a broken
+ in-page link or duplicate id; and reader-visible words that name tools or models, files, internal
+-identifiers or workflow (the mathematics-only rule for reader-facing text).
++identifiers, workflow or process stages, or give percentages (the mathematics-only rule for
++reader-facing text). The same rule covers words inside formulas (`\text{}`), the attributes a reader
++hears or sees (aria-label, title, alt, placeholder, page metadata) and element ids; raw TeX delimiters
++in reader text or TeX in an attribute also fail. Warnings, which do not block, list words that may be
++workflow residue for the content writer to read, formulas written outside TeX delimiters, and
++statements without an `id` (no link reaches them).

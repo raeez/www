@@ -1,0 +1,21 @@
+{
+  "applied_utc": "2026-11-16T13:21:48.103344+00:00",
+  "scope": "Root integration of reviewed quality-lane build-input routing and public-output audit changes only. Full combined QA and visual acceptance remain pending.",
+  "manifest_sha256": "47bbb3e0b875a7b227c04d219d5165782b395f1f672ca0e70fe4108baa5b250a",
+  "files": [
+    {
+      "path": "compiler/build-quantum-holography-status.py",
+      "before_sha256": "c2592dea5bdff6379066a130334ec52e0db74d289a3eb7cf2470cf7d9e261886",
+      "after_sha256": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf"
+    },
+    {
+      "path": "compiler/quantum-holography-status/audit.py",
+      "before_sha256": "bf243cb97c5caae579ce4f9af59133d946c69ebd8bea74c52bf531154d9418c4",
+      "after_sha256": "2e85772650b669e01bb4a15d84dda6dc351a07e8b0fb2b0ac8a0c905d0c3965c"
+    }
+  ],
+  "all_guards_match": true,
+  "python_syntax": true,
+  "other_lane_changes_applied": false,
+  "publication": false
+}
