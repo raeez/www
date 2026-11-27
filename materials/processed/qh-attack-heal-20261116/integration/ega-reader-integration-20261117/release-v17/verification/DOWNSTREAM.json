@@ -1,0 +1,159 @@
+{
+  "schema": "qh-first-principles-downstream-build/1",
+  "status": "MECHANICAL_CHECKS_COMPLETE",
+  "source_audit_failures": [],
+  "math_formulas": 23041,
+  "math_errors": 0,
+  "commands": [
+    {
+      "step": "split",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-reference.py",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/build/combined.html",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/public",
+        "--book-name",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T00:00:25.256604+00:00",
+      "completed_utc": "2026-11-18T00:00:26.481867+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0641-20261118/accepted/build/split.log"
+    },
+    {
+      "step": "metadata",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/set_page_metadata.py",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/public"
+      ],
+      "started_utc": "2026-11-18T00:00:26.481931+00:00",
+      "completed_utc": "2026-11-18T00:00:26.616005+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0641-20261118/accepted/build/metadata.log"
+    },
+    {
+      "step": "index",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/reader-index.cjs",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/public/reader-index.js",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/public/index.html",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/public/reference.html",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/public/atlas.html"
+      ],
+      "started_utc": "2026-11-18T00:00:26.654754+00:00",
+      "completed_utc": "2026-11-18T00:00:47.176015+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0641-20261118/accepted/build/index.log"
+    },
+    {
+      "step": "public_check",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/tools/check_public.py",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/public",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/build/PUBLIC-FILES-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T00:00:47.176125+00:00",
+      "completed_utc": "2026-11-18T00:00:51.973275+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0641-20261118/accepted/build/public_check.log"
+    },
+    {
+      "step": "v14_consumer_check",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/release-v14/consumer/check.cjs",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/public",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/build/V14-CONSUMER-CHECK.json"
+      ],
+      "started_utc": "2026-11-18T00:00:51.973370+00:00",
+      "completed_utc": "2026-11-18T00:01:05.712098+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0641-20261118/accepted/build/v14_consumer_check.log"
+    },
+    {
+      "step": "split_checks",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/Users/raeez/www-worktrees/2026-11-16-qh-max-integration/materials/processed/qh-attack-heal-20261116/integration/ega-reader-integration-20261117/interaction-reader-delta4/tools/split-checks.cjs",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/public",
+        "index.html"
+      ],
+      "started_utc": "2026-11-18T00:01:05.712156+00:00",
+      "completed_utc": "2026-11-18T00:01:26.994375+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0641-20261118/accepted/build/split_checks.log"
+    },
+    {
+      "step": "reader_page",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/workspace/compiler/quantum-holography-status/tests/reader.test.cjs",
+        "--page",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/public/index.html"
+      ],
+      "started_utc": "2026-11-18T00:01:26.994449+00:00",
+      "completed_utc": "2026-11-18T00:02:21.651726+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0641-20261118/accepted/build/reader_page.log"
+    },
+    {
+      "step": "reader_fixtures",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "/private/tmp/qh-research-reader-0641-20261118/accepted/workspace/compiler/quantum-holography-status/tests/reader.test.cjs"
+      ],
+      "started_utc": "2026-11-18T00:02:21.651772+00:00",
+      "completed_utc": "2026-11-18T00:02:41.940713+00:00",
+      "exit_code": 0,
+      "log": "/private/tmp/qh-research-reader-0641-20261118/accepted/build/reader_fixtures.log"
+    }
+  ],
+  "heading_metadata": {
+    "path": "/private/tmp/qh-research-reader-0641-20261118/accepted/build/HEADING-METADATA.json",
+    "sha256": "5b77422c28e9ddb0f06267dd28f12775e6a7bdea662f9799c82a7481ec46af0c",
+    "bytes": 3265
+  },
+  "public_files": {
+    "index.html": {
+      "path": "/private/tmp/qh-research-reader-0641-20261118/accepted/public/index.html",
+      "sha256": "b55415efbdea06ca04f89207f8ca3b0709cae01db2e1f8553614198cdc579189",
+      "bytes": 4315756
+    },
+    "reference.html": {
+      "path": "/private/tmp/qh-research-reader-0641-20261118/accepted/public/reference.html",
+      "sha256": "12f933bf35024b8261512e40ff89294bf6e3b8c426feeae69e57522956a504d5",
+      "bytes": 4631408
+    },
+    "atlas.html": {
+      "path": "/private/tmp/qh-research-reader-0641-20261118/accepted/public/atlas.html",
+      "sha256": "9f343bb9c326a2dbdedc4bf4a688a554bc120e0b9730dee436e799b1a02e2a71",
+      "bytes": 11233590
+    },
+    "reader-index.js": {
+      "path": "/private/tmp/qh-research-reader-0641-20261118/accepted/public/reader-index.js",
+      "sha256": "b9753806578f0415306b29f5849b904724833cb427858557a55a966f3aa54f9a",
+      "bytes": 5810692
+    }
+  },
+  "bad_local_links": [],
+  "private_or_attribution_hit_count": 0,
+  "native_visual_qa": "PENDING",
+  "publication": "NOT_PERFORMED",
+  "release_candidate": false
+}

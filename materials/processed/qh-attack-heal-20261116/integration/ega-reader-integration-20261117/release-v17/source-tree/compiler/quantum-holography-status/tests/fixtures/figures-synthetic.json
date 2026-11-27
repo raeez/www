@@ -1,0 +1,481 @@
+{
+ "figures": [
+  {
+   "id": "fig-synthetic-gaussian",
+   "chapter_id": "ch01",
+   "section_id": "synthetic-section",
+   "type": "authored_formula",
+   "model": "gaussian-elimination",
+   "title": "Synthetic Gaussian title",
+   "caption": "Synthetic Gaussian caption.",
+   "equation_refs": [
+    "1.1",
+    "1.2"
+   ],
+   "equation_anchors": {
+    "1.1": "eq-synthetic-one",
+    "1.2": "eq-synthetic-two"
+   },
+   "parameters": {
+    "x": "real",
+    "a": "real",
+    "b": "positive real",
+    "c": "real",
+    "hbar": "positive real; default1"
+   },
+   "domain": "ab>c^2",
+   "outputs": {
+    "effective_stiffness": "a-c^2/b",
+    "normalization": "sqrt(2*pi*hbar/b)",
+    "conditional_mean": "-c*x/b",
+    "conditional_variance": "hbar/b",
+    "integrated_weight": "sqrt(2*pi*hbar/b)*exp(-(a-c^2/b)*x^2/(2*hbar))"
+   },
+   "permitted_controls": [
+    "a",
+    "b",
+    "c",
+    "x",
+    "hbar"
+   ],
+   "prohibited_inferences": [
+    "Synthetic prohibited inference"
+   ],
+   "controls": {
+    "a": {
+     "initial": 2,
+     "min": 0.25,
+     "max": 4,
+     "step": 0.05,
+     "label": "Synthetic label a"
+    },
+    "b": {
+     "initial": 1,
+     "min": 0.25,
+     "max": 4,
+     "step": 0.05,
+     "label": "Synthetic label b"
+    },
+    "c": {
+     "initial": 0.5,
+     "min": -2,
+     "max": 2,
+     "step": 0.05,
+     "label": "Synthetic label c"
+    },
+    "x": {
+     "initial": 1,
+     "min": -2,
+     "max": 2,
+     "step": 0.05,
+     "label": "Synthetic label x"
+    },
+    "hbar": {
+     "initial": 1,
+     "min": 0.25,
+     "max": 2,
+     "step": 0.05,
+     "label": "Synthetic label hbar"
+    }
+   },
+   "labels": {
+    "domain": "Synthetic domain label",
+    "effective_stiffness": "Synthetic stiffness label",
+    "normalization": "Synthetic normalization label",
+    "conditional_mean": "Synthetic mean label",
+    "conditional_variance": "Synthetic variance label",
+    "integrated_weight": "Synthetic weight label"
+   },
+   "validity": {
+    "rule": "b>0 and hbar>0 and a*b>c^2",
+    "on_invalid": "retain_previous_valid_state",
+    "message": "Synthetic validity message."
+   },
+   "profiles": [
+    {
+     "id": "synthetic-density",
+     "label": "Synthetic density label",
+     "variable": "y",
+     "formula": "sqrt(b/(2*pi*hbar))*exp(-b*(y+c*x/b)^2/(2*hbar))",
+     "integral_over_real_line": "1",
+     "caption": "Synthetic density caption: mean -cx/b and variance ħ/b; a b and 1/t stay as written."
+    },
+    {
+     "id": "synthetic-centred",
+     "label": "Synthetic centred label",
+     "variable": "u",
+     "formula": "exp(-b*u^2/(2*hbar))",
+     "integral_over_real_line": "sqrt(2*pi*hbar/b)",
+     "caption": "Synthetic centred caption."
+    },
+    {
+     "id": "synthetic-original",
+     "label": "Synthetic original label",
+     "variable": "y",
+     "formula": "exp(-(a*x^2/2+c*x*y+b*y^2/2)/hbar)",
+     "integral_over_real_line": "sqrt(2*pi*hbar/b)*exp(-(a-c^2/b)*x^2/(2*hbar))",
+     "caption": "Synthetic original caption."
+    }
+   ]
+  },
+  {
+   "id": "fig-synthetic-expansions",
+   "chapter_id": "ch01",
+   "section_id": "synthetic-section-two",
+   "type": "authored_formula",
+   "model": "two-expansions",
+   "title": "Synthetic expansions title",
+   "caption": "Synthetic expansions caption.",
+   "equation_refs": [
+    "1.5"
+   ],
+   "equation_anchors": {
+    "1.5": "eq-synthetic-five"
+   },
+   "domain": "z!=w",
+   "states": [
+    {
+     "id": "w-inside-z",
+     "condition": "|w|<|z|",
+     "series": "sum_(n>=0)(n+1)*w^n/z^(n+2)",
+     "label": "Synthetic inside label"
+    },
+    {
+     "id": "z-inside-w",
+     "condition": "|z|<|w|",
+     "series": "sum_(n>=0)(n+1)*z^n/w^(n+2)",
+     "label": "Synthetic outside label"
+    }
+   ],
+   "initial_state": "w-inside-z",
+   "prohibited_inferences": [
+    "Synthetic prohibited inference"
+   ],
+   "labels": {
+    "domain": "Synthetic region label",
+    "series": "Synthetic series label",
+    "pole": "Synthetic pole label",
+    "no_value": "Synthetic no-value label"
+   }
+  },
+  {
+   "id": "fig-synthetic-cohomology",
+   "chapter_id": "ch05",
+   "section_id": "synthetic-section-three",
+   "type": "authored_finite_states",
+   "model": "cohomology-jump",
+   "title": "Synthetic cohomology title",
+   "caption": "Synthetic cohomology caption.",
+   "parameters": {
+    "t": "synthetic parameter description"
+   },
+   "domain": "Synthetic complex domain sentence.",
+   "outputs": {
+    "differential": "diag(t,0)",
+    "H0": "kernel of diag(t,0)",
+    "H1": "cokernel of diag(t,0)",
+    "Euler_characteristic": "dim(H0)-dim(H1)"
+   },
+   "labels": {
+    "degree_zero": "Synthetic degree zero",
+    "degree_one": "Synthetic degree one",
+    "first_arrow": "u₁ ↦ t v₁",
+    "second_arrow": "u₂ ↦ 0",
+    "H0": "Synthetic H0 label",
+    "H1": "Synthetic H1 label",
+    "Euler_characteristic": "Synthetic Euler label",
+    "homotopy": "Synthetic contraction label"
+   },
+   "permitted_controls": [
+    "state"
+   ],
+   "initial_state": "zero",
+   "states": [
+    {
+     "id": "negative",
+     "label": "Synthetic t negative",
+     "t": -1,
+     "differential_matrix": [
+      [
+       -1,
+       0
+      ],
+      [
+       0,
+       0
+      ]
+     ],
+     "rank": 1,
+     "H0_dim": 1,
+     "H1_dim": 1,
+     "Euler_characteristic": 0,
+     "homotopy": "Synthetic contraction at minus one",
+     "surviving_basis": {
+      "H0": [
+       "u₂"
+      ],
+      "H1": [
+       "v₂"
+      ]
+     }
+    },
+    {
+     "id": "zero",
+     "label": "Synthetic t zero",
+     "t": 0,
+     "differential_matrix": [
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ]
+     ],
+     "rank": 0,
+     "H0_dim": 2,
+     "H1_dim": 2,
+     "Euler_characteristic": 0,
+     "homotopy": "Synthetic no contraction",
+     "surviving_basis": {
+      "H0": [
+       "u₁",
+       "u₂"
+      ],
+      "H1": [
+       "v₁",
+       "v₂"
+      ]
+     }
+    },
+    {
+     "id": "positive",
+     "label": "Synthetic t positive",
+     "t": 1,
+     "differential_matrix": [
+      [
+       1,
+       0
+      ],
+      [
+       0,
+       0
+      ]
+     ],
+     "rank": 1,
+     "H0_dim": 1,
+     "H1_dim": 1,
+     "Euler_characteristic": 0,
+     "homotopy": "Synthetic contraction at one",
+     "surviving_basis": {
+      "H0": [
+       "u₂"
+      ],
+      "H1": [
+       "v₂"
+      ]
+     }
+    }
+   ],
+   "equation_refs": [],
+   "equation_anchors": {
+    "synthetic-complex": "eq-synthetic-complex"
+   },
+   "prohibited_inferences": [
+    "Synthetic prohibited inference"
+   ]
+  },
+  {
+   "id": "fig-synthetic-infinite",
+   "chapter_id": "ch08",
+   "section_id": "synthetic-section-four",
+   "type": "authored_formula",
+   "model": "infinite-rank",
+   "title": "Synthetic infinite title",
+   "caption": "Synthetic infinite caption.",
+   "parameters": {
+    "N": "synthetic",
+    "i": "synthetic",
+    "j": "synthetic"
+   },
+   "domain": "Synthetic infinite domain sentence.",
+   "controls": {
+    "N": {
+     "initial": 3,
+     "min": 1,
+     "max": 8,
+     "step": 1,
+     "label": "Synthetic N label"
+    }
+   },
+   "permitted_controls": [
+    "N",
+    "state"
+   ],
+   "initial_state": "finite-truncation",
+   "labels": {
+    "finite": "Synthetic finite label",
+    "limit": "Synthetic limit label",
+    "rank": "Synthetic rank label",
+    "tensor_membership": "Synthetic tensor label",
+    "completion_membership": "Synthetic completion label",
+    "viewport": "Synthetic viewport label",
+    "convergence": "Synthetic convergence label"
+   },
+   "outputs": {
+    "finite_entry": "synthetic",
+    "limit_entry": "synthetic",
+    "finite_rank": "N",
+    "limit_rank": "infinite",
+    "viewport_size": 8
+   },
+   "states": [
+    {
+     "id": "finite-truncation",
+     "label": "Synthetic finite state",
+     "entry_rule": "i=j and i<N",
+     "rank": "N",
+     "algebraic_tensor_member": true,
+     "completion_member": true,
+     "explanation": "Synthetic finite explanation."
+    },
+    {
+     "id": "coordinatewise-limit",
+     "label": "Synthetic limit state",
+     "entry_rule": "i=j",
+     "rank": "infinite",
+     "algebraic_tensor_member": false,
+     "completion_member": true,
+     "explanation": "Synthetic limit explanation."
+    }
+   ],
+   "equation_refs": [],
+   "equation_anchors": {
+    "synthetic-map": "eq-synthetic-map"
+   },
+   "prohibited_inferences": [
+    "Synthetic prohibited inference"
+   ]
+  },
+  {
+   "id": "fig-synthetic-adjunction",
+   "chapter_id": "ch06",
+   "section_id": "synthetic-section-five",
+   "type": "authored_diagram",
+   "model": "adjunction-triangles",
+   "title": "Synthetic adjunction title",
+   "caption": "Synthetic adjunction caption.",
+   "domain": "Synthetic adjunction domain sentence.",
+   "parameters": {
+    "X": "synthetic",
+    "Y": "synthetic"
+   },
+   "labels": {
+    "F": "Synthetic left F",
+    "G": "Synthetic right G",
+    "eta": "Synthetic unit η: id_C → GF",
+    "epsilon": "Synthetic counit ε: FG → id_D",
+    "left_triangle": "Synthetic left triangle",
+    "right_triangle": "Synthetic right triangle"
+   },
+   "permitted_controls": [
+    "state"
+   ],
+   "initial_state": "left-triangle",
+   "states": [
+    {
+     "id": "left-triangle",
+     "label": "Synthetic left triangle",
+     "nodes": [
+      {
+       "id": "fx-start",
+       "label": "FX"
+      },
+      {
+       "id": "fgfx",
+       "label": "FGFX"
+      },
+      {
+       "id": "fx-end",
+       "label": "FX"
+      }
+     ],
+     "arrows": [
+      {
+       "from": "fx-start",
+       "to": "fgfx",
+       "label": "F(η_X)"
+      },
+      {
+       "from": "fgfx",
+       "to": "fx-end",
+       "label": "ε_FX"
+      },
+      {
+       "from": "fx-start",
+       "to": "fx-end",
+       "label": "id_FX"
+      }
+     ],
+     "equation": "ε_FX ∘ F(η_X) = id_FX",
+     "meaning": "Synthetic meaning of Synthetic left triangle."
+    },
+    {
+     "id": "right-triangle",
+     "label": "Synthetic right triangle",
+     "nodes": [
+      {
+       "id": "gy-start",
+       "label": "GY"
+      },
+      {
+       "id": "gfgy",
+       "label": "GFGY"
+      },
+      {
+       "id": "gy-end",
+       "label": "GY"
+      }
+     ],
+     "arrows": [
+      {
+       "from": "gy-start",
+       "to": "gfgy",
+       "label": "η_GY"
+      },
+      {
+       "from": "gfgy",
+       "to": "gy-end",
+       "label": "G(ε_Y)"
+      },
+      {
+       "from": "gy-start",
+       "to": "gy-end",
+       "label": "id_GY"
+      }
+     ],
+     "equation": "G(ε_Y) ∘ η_GY = id_GY",
+     "meaning": "Synthetic meaning of Synthetic right triangle."
+    }
+   ],
+   "properties": [
+    {
+     "hypothesis": "Synthetic hypothesis on η_X.",
+     "equivalent_statement": "Synthetic statement one.",
+     "explanation": "Synthetic explanation one."
+    },
+    {
+     "hypothesis": "Synthetic hypothesis on ε_Y.",
+     "equivalent_statement": "Synthetic statement two.",
+     "explanation": "Synthetic explanation two."
+    }
+   ],
+   "equation_refs": [],
+   "equation_anchors": {},
+   "prohibited_inferences": [
+    "Synthetic prohibited inference"
+   ]
+  }
+ ]
+}

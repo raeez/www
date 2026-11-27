@@ -1,0 +1,109 @@
+{
+  "cut": "20261118-064312-WIB",
+  "scientific_capture_utc": "2026-11-17T23:42:45+00:00",
+  "archive_created_utc": "2026-11-17T23:43:12+00:00",
+  "archive_created_wib": "2026-11-18T06:43:12+07:00",
+  "graph_baseline_wib": "2026-11-18T05:58:18+07:00",
+  "later_graph_wib_at_capture": "2026-11-18T06:41:38+07:00",
+  "files": [
+    {
+      "file": "ACTUAL-WORK.md",
+      "bytes": 27856,
+      "sha256": "9063ff1fa43f35b6c1f4624197ce392723774b6a4d505bf689dce688cbd50055"
+    },
+    {
+      "file": "COMPACT-FRONTIER.md",
+      "bytes": 6207,
+      "sha256": "9e37567127dabec2da15b2b22639d850203786ce9daa3fcedf9ad5142f23d19f"
+    },
+    {
+      "file": "DIFFICULTIES.md",
+      "bytes": 17054,
+      "sha256": "38d94d8255ad5e4c622495f8a0e76fdc55d0c9a1e4397b7612e23862f04f01e5"
+    },
+    {
+      "file": "EVIDENCE.md",
+      "bytes": 5239,
+      "sha256": "fd707e0efc639b07198075f68516e13ea76fd7160932d4f6ae841f6ac6f8e20d"
+    },
+    {
+      "file": "FULL-FRONTIER.md",
+      "bytes": 142444,
+      "sha256": "ee3cac2ff04afcd34a3ad634acf7c7232215baa885353c93ded6818b2ec4d9ff"
+    },
+    {
+      "file": "dossiers/CAP-AND-MERIDIAN.md",
+      "bytes": 10611,
+      "sha256": "961a4b3cb3a4689be1c4376fb928f803e370282f7ed518e3a879e247f6a2f5bf"
+    },
+    {
+      "file": "dossiers/COLLISION-COEFFICIENTS.md",
+      "bytes": 11263,
+      "sha256": "738d8d42b00ce28d6369e96989c608777ea954ca234fc9da1fd921c0cd4b4605"
+    },
+    {
+      "file": "dossiers/COLLISIONS-AND-SEWINGS.md",
+      "bytes": 9195,
+      "sha256": "5c2c04b536f960ceeeed62aa6c95418c6c1ae8c11497e71a00c1240fa64da42e"
+    },
+    {
+      "file": "dossiers/GAUGE-AND-COMPACT.md",
+      "bytes": 9725,
+      "sha256": "a7bba84d22f7f4401ad523ce206c1bf07bf1647183033a8d9d5c5c8553a068b7"
+    },
+    {
+      "file": "dossiers/MARKED-K3.md",
+      "bytes": 10743,
+      "sha256": "bfc6e0c9e4eb5cfbca7ed93d2bd639d4c5a5683f788078cf5a254b94c2fa3c76"
+    },
+    {
+      "file": "dossiers/MODULES-AND-FIELDS.md",
+      "bytes": 12735,
+      "sha256": "3ec8306083bba83e85a3a038c20c2916106810574fb7e525d6b7b1e025f158b4"
+    },
+    {
+      "file": "dossiers/POINTS-AND-ARITHMETIC.md",
+      "bytes": 13361,
+      "sha256": "0630abb89a2d9df4131b67f2777e36d01b54f8404b65ce2b046df10d45a1367f"
+    },
+    {
+      "file": "PROOF-SCOPE.json",
+      "bytes": 83560,
+      "sha256": "c1c6adeeeee958155a47df66b31a01141607acbf2595d6c3cd16512cd7d9ad65"
+    }
+  ],
+  "inputs": {
+    "register": "PROOF-SCOPE.json",
+    "register_sha256": "c1c6adeeeee958155a47df66b31a01141607acbf2595d6c3cd16512cd7d9ad65",
+    "named_public_proof_bodies": 59,
+    "dated_direct_review_records": 20,
+    "exact_auxiliary_inputs": 3
+  },
+  "validation": {
+    "visible_local_links_lines_and_anchors": 475,
+    "failures": [],
+    "registered_primary_review_and_auxiliary_hashes_verified": 82,
+    "baseline_full_and_compact_hashes_verified": 2,
+    "complex_K3_specialization_four_tensor_checks": {
+      "scalar_values": [
+        0,
+        -3,
+        2
+      ],
+      "ordered_dimensions": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "tuples_per_value": 160000
+    }
+  },
+  "open_scientific_comparisons": [
+    "Independent compact geometric genus-zero preparations and the marked boundary map",
+    "Full sourced physical meridian with lower-order propagation, phase and normalized state",
+    "Simultaneous interacting four-point irregular extension defect",
+    "Actual exceptional W4 quartic coefficient in the marked dg algebra",
+    "Full unbounded positive-current image, all-order mixed RTT relation and independently polarized W3 recipient"
+  ]
+}
