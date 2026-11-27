@@ -1,0 +1,237 @@
+--- a/compiler/quantum-holography-status/status.py
++++ b/compiler/quantum-holography-status/status.py
+@@ -401,36 +401,85 @@
+                 f'<p class="kicker">{html.escape(L["changes_kicker"])}</p>'
+                 f'<h2 id="changes-h" class="changes-title">{html.escape(label)}</h2>'
+                 f'{intro}<ol class="change-list">{"".join(lis)}</ol></aside>')
++
++    def status_mix(self, statements, prefix=''):
++        """Marks with counts for the statuses of a list of statements, in the fixed status order.
++
++        The counts are read with their status names by assistive technology; `prefix` names the list."""
++        tally = {}
++        for s in statements:
++            st = s.get('status') if s.get('status') in STATEMENT_STATUSES else 'open'
++            tally[st] = tally.get(st, 0) + 1
++        items = []
++        for st in STATEMENT_STATUSES:
++            if tally.get(st):
++                label = self.status_label(st)
++                items.append(f'<span class="mix-item mix-{slug(st)}" title="{html.escape(label)}">{mark(st)}'
++                             f'<span class="mix-n">{tally[st]}</span>'
++                             f'<span class="visually-hidden"> {html.escape(label)}</span></span>')
++        if not items:
++            return ''
++        lead = f'<span class="visually-hidden">{html.escape(prefix)}: </span>' if prefix else ''
++        return f'<span class="mix">{lead}{"".join(items)}</span>'
+ 
+     def frontier(self, c, key='frontier'):
++        """Question cards. The decisive questions are laid out for comparison: on a wide screen the
++        open question and why it matters stand beside what is established toward it, always shown.
++        Other question sections keep what is established behind a disclosure."""
+         fr = c.get(key) or {}
+         questions = fr.get('questions') or []
+         if not questions:
+             return ''
+         L = self.page['labels']
++        compare = key == 'decisive'
+         out = []
++        index = []
+         all_added = all(st.get('added') for q in questions for st in [q.get('question') or {}] + (q.get('known') or []))
+         for i, q in enumerate(questions):
+             qid = 'q-' + ident(q.get('id') or q.get('title') or str(i))
+             self.anchors.add(qid)
+             question = q.get('question') or {}
+-            body = self.statement(question, f'{key} {i} question', title_override='', chip=not all_added) if question else ''
++            card_title = (q.get('title') or '').strip()
++            own_title = (question.get('title') or '').strip()
++            # The question's own title is shown only where it says more than the card's title.
++            override = '' if not own_title or own_title == card_title else None
++            body = (self.statement(question, f'{key} {i} question', title_override=override, chip=not all_added)
++                    if question else '')
+             why = (f'<div class="question-why prose"><p class="question-why-label">{html.escape(L["why"])}</p>'
+                    f'{self.paragraphs(q["why"])}</div>') if q.get('why') else ''
+             known = q.get('known') or []
++            n = len(known)
++            count = L['statements_one'] if n == 1 else L['statements_many'].format(n=n)
++            mix = self.status_mix(known)  # the label is shown beside it
+             kn = ''
+             if known:
+                 inner = ''.join(self.statement(s, f'{key} {i} known {j}', chip=not all_added) for j, s in enumerate(known))
+-                n = len(known)
+-                count = L['statements_one'] if n == 1 else L['statements_many'].format(n=n)
+-                kn = (f'<details class="known"><summary><span>{html.escape(L["known"])}</span>'
+-                      f'<span class="row-count">{html.escape(count)}</span>{icon("chevron")}</summary>'
+-                      f'<div class="statements">{inner}</div></details>')
+-            out.append(f'<div class="question" id="{qid}"><p class="question-num">{i + 1}</p>'
+-                       f'<h3><a class="anchor" href="#{qid}">{self.rich(q.get("title", ""), terms=False)}</a></h3>'
+-                       f'{body}{why}{kn}</div>')
++                if compare:
++                    kn = (f'<div class="question-known"><p class="known-head"><span class="known-label">'
++                          f'{html.escape(L["known"])}</span><span class="row-count">{html.escape(count)}</span>{mix}</p>'
++                          f'<div class="statements">{inner}</div></div>')
++                else:
++                    kn = (f'<details class="known"><summary><span>{html.escape(L["known"])}</span>'
++                          f'<span class="row-count">{html.escape(count)}</span>{mix}{icon("chevron")}</summary>'
++                          f'<div class="statements">{inner}</div></details>')
++            title_html = self.rich(card_title, terms=False)
++            head = (f'<header class="question-head"><p class="question-num">{i + 1}</p>'
++                    f'<h3><a class="anchor" href="#{qid}">{title_html}</a></h3></header>')
++            if compare:
++                cls = 'question compare' + ('' if known else ' no-known')
++                out.append(f'<div class="{cls}" id="{qid}">{head}<div class="question-ask">{body}{why}</div>{kn}</div>')
++            else:
++                out.append(f'<div class="question" id="{qid}">{head}{body}{why}{kn}</div>')
++            index.append(f'<li><a href="#{qid}"><span class="q-index-num">{i + 1}</span>'
++                         f'<span class="q-index-title">{self.rich(card_title, terms=False)}</span>'
++                         f'{self.status_mix(known, L["known"]) if known else ""}</a></li>')
+         intro = f'<div class="section-intro prose">{self.paragraphs(fr["intro"])}</div>' if fr.get('intro') else ''
+-        return self.section(key, fr.get('heading') or L[key], intro + f'<div class="questions">{"".join(out)}</div>',
++        index_label = L.get('question_index', 'The questions')
++        nav = (f'<nav class="q-index" aria-label="{html.escape(index_label)}"><p class="q-index-label">'
++               f'{html.escape(index_label)}</p><ol>{"".join(index)}</ol></nav>') if len(questions) > 1 else ''
++        cls = 'questions compare' if compare else 'questions'
++        return self.section(key, fr.get('heading') or L[key], intro + nav + f'<div class="{cls}">{"".join(out)}</div>',
++                            cls=('wide decisive' if compare else 'question-section'),
+                             kicker=L[f'{key}_kicker'], added=all_added)
+ 
+     def failures(self, c):
+@@ -543,7 +592,7 @@
+                 f'<details class="row" id="{rid}"><summary><span class="row-num">{i + 1}</span>'
+                 f'<span class="row-name">{self.rich(r["name"], terms=False)}</span>'
+                 f'<span class="row-marks" aria-hidden="true">{marks}</span>'
+-                f'<span class="row-count">{html.escape(count)}</span>{icon("chevron")}</summary>'
++                f'<span class="row-count">{html.escape(count)}{self.status_mix(statements)}</span>{icon("chevron")}</summary>'
+                 f'<div class="row-body"><p class="row-summary">{self.rich(r.get("summary", ""))}</p>'
+                 f'<ul class="cell-lines" aria-label="{html.escape(L["by_column"])}">{"".join(cells)}</ul>'
+                 f'<div class="statements">{body}</div></div></details>')
+--- a/compiler/quantum-holography-status/status.css
++++ b/compiler/quantum-holography-status/status.css
+@@ -401,7 +401,7 @@
+                 font-variant-numeric: lining-nums; }
+ .question-num::before { content: 'Question '; }
+ .question h3 { font-size: calc(var(--text-base) * 1.34); font-weight: 400; line-height: 1.22; margin-bottom: .7em; }
+-.question > .statement { background: transparent; }
++.question > .statement, .question-ask > .statement { background: transparent; --surface: var(--paper); }
+ .question-why { margin: 1em 0 0; color: var(--ink-2); }
+ .question-why-label { margin: 0 0 .25em; font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-4); }
+ .known { margin-top: 1em; border-top: 1px solid var(--rule-soft); }
+@@ -422,3 +422,118 @@
+ .failure > .statement { margin-left: clamp(0px, 2vw, 18px); }
+ @media print { .known > .statements { display: grid !important; } }
+ .section-added { margin: .6em 0 0; }
++
++/* ---------------------------------------------------------------------------------------------
++   Reading hierarchy. Statement cards carry their status as a tinted label; long formulas scroll
++   inside their own box with a shadow at the edge that hides more; the decisive questions set the
++   open question beside what is established toward it; each question section opens with an index.
++   --------------------------------------------------------------------------------------------- */
++:root { --scroll-cue: rgba(29, 27, 24, .2); --index-hover: var(--paper-2); }
++@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) { --scroll-cue: rgba(0, 0, 0, .75); } }
++:root[data-theme='dark'] { --scroll-cue: rgba(0, 0, 0, .75); }
++
++/* The surface a formula scrolls over, so that its edge shadows blend with the card. */
++body { --surface: var(--paper); }
++.statement { --surface: var(--paper-3); }
++.st-open, .st-conjecture, .st-heuristic { --surface: var(--paper); }
++.card { --surface: var(--paper-3); }
++.gloss:target { --surface: var(--accent-soft); }
++
++/* Statement cards */
++.statement { padding: 18px 20px 16px 22px; }
++.statement-head { gap: 6px 10px; margin-bottom: .55em; }
++.status-chip { padding: 2px 9px 2px 7px; border-radius: 999px; line-height: 1.5;
++               background: color-mix(in srgb, var(--st) 11%, transparent); }
++.statement-title { margin-top: .15em; line-height: 1.24; }
++.statement-text { line-height: 1.6; }
++.statement-notes { border-top: 1px solid var(--rule-soft); padding-top: .6em; margin-top: .9em; }
++.principal .statement { padding: 22px 24px 20px 26px; }
++
++/* Long formulas */
++.math-display { margin: .75em 0; padding: .25em .1em; }
++.math-display, .math-long {
++  scrollbar-width: thin; scrollbar-color: var(--rule) transparent;
++  background:
++    linear-gradient(90deg, var(--surface) 35%, transparent) left center / 1.6em 100% no-repeat local,
++    linear-gradient(270deg, var(--surface) 35%, transparent) right center / 1.6em 100% no-repeat local,
++    radial-gradient(farthest-side at 0 50%, var(--scroll-cue), transparent) left center / .55em 100% no-repeat scroll,
++    radial-gradient(farthest-side at 100% 50%, var(--scroll-cue), transparent) right center / .55em 100% no-repeat scroll;
++}
++.math-display::-webkit-scrollbar, .math-long::-webkit-scrollbar { height: 6px; }
++.math-display::-webkit-scrollbar-thumb, .math-long::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
++.math-display:focus-visible, .math-long:focus-visible { outline-offset: 0; }
++
++/* Status counts: a mark and a number per status. */
++.mix { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px 9px; font-size: var(--text-xs); color: var(--ink-3);
++       font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
++.mix-item { display: inline-flex; align-items: center; gap: 3px; }
++.mix .mark { width: 11px; height: 11px; }
++.row-count { display: inline-flex; align-items: center; gap: 10px; }
++.row-count .mix { color: var(--ink-4); }
++
++/* Question index */
++.q-index { margin: 1.6em 0 clamp(28px, 4vw, 44px); border-top: 1px solid var(--rule); }
++.section.wide > .q-index { max-width: var(--measure); margin-left: auto; margin-right: auto; }
++.q-index-label { margin: .9em 0 .4em; font-size: var(--text-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-4); }
++.q-index ol { list-style: none; margin: 0; padding: 0; }
++.q-index li { border-bottom: 1px solid var(--rule-soft); }
++.q-index a { display: grid; grid-template-columns: 2em minmax(0, 1fr) auto; align-items: baseline; gap: 2px 12px;
++             padding: 7px 6px 7px 0; color: var(--ink); text-decoration: none; font-size: var(--text-sm); line-height: 1.32; }
++.q-index a:hover { background: var(--index-hover); }
++.q-index a:hover .q-index-title { color: var(--accent); }
++.q-index-num { color: var(--ink-4); text-align: right; font-variant-numeric: lining-nums tabular-nums; font-size: var(--text-xs); }
++.q-index .mix { justify-self: end; }
++
++/* Question cards */
++.question h3 { margin-bottom: .7em; }
++.question:target > .question-head h3 { color: var(--accent); }
++.known > summary { flex-wrap: wrap; }
++.known > summary .mix { color: var(--ink-4); }
++
++/* The decisive questions: the open question beside what is established toward it. */
++.section.decisive > .questions { max-width: var(--wide); margin-left: auto; margin-right: auto; }
++.question.compare { --qgap: clamp(28px, 3vw, 48px); display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; }
++.question-ask, .question-known { min-width: 0; }
++.question-known { margin-top: 1.1em; padding-top: .2em; }
++.known-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 0 0 .7em; }
++.known-label { font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-4); }
++.question-known .statements { gap: 12px; }
++@media (min-width: 1080px) {
++  .question.compare { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); column-gap: var(--qgap); }
++  .question.compare > .question-head { grid-column: 1 / -1; max-width: 46rem; }
++  .question.compare.no-known > .question-ask { grid-column: 1 / -1; max-width: var(--measure); }
++  .question-known { margin-top: 0; padding-left: calc(var(--qgap) / 2); margin-left: calc(var(--qgap) / -2);
++                    border-left: 1px solid var(--rule-soft); }
++  .question-known .statement { font-size: calc(var(--text-base) * .96); }
++}
++
++/* Statements by column in a row: column, then status and its scope. */
++.cell-lines { gap: 8px; padding: 12px 0; }
++.cell-col { line-height: 1.35; }
++
++/* Narrow screens */
++@media (max-width: 560px) {
++  .statement, .principal .statement { padding: 14px 14px 12px 16px; }
++  .q-index a { grid-template-columns: 1.6em minmax(0, 1fr); }
++  .q-index .mix { grid-column: 2; justify-self: start; }
++  .question h3 { font-size: calc(var(--text-base) * 1.2); }
++  .row-count { flex-wrap: wrap; gap: 2px 10px; }
++  .math-display math { font-size: .97em; }
++}
++
++/* Print: every part open, formulas unclipped, no screen surfaces. */
++@media print {
++  @page { margin: 16mm 15mm 18mm; }
++  :root { --text-base: 10.5pt; --gutter: 0; --scroll-cue: transparent; }
++  body { --surface: transparent; }
++  .section { padding-top: 20pt; }
++  .statement { background: none !important; border-color: #bbb; box-shadow: none !important; }
++  .status-chip { background: none; padding: 0; }
++  .math-display, .math-long { overflow: visible !important; background: none !important; max-width: none; }
++  .question-head, .q-index li, .known-head { break-inside: avoid; break-after: avoid; }
++  .q-index a:hover { background: none; }
++  .question-known { border: 0; padding: 0; margin: 1em 0 0; }
++  .question.compare { display: block; }
++}
++@media print { details.known::details-content, details.row::details-content, details.col-defs::details-content { content-visibility: visible; } }
++@media print { .col-defs > dl { display: grid !important; } }
