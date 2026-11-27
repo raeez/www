@@ -1,0 +1,117 @@
+# Main-thread local attacks, cycle 1, recorded before the first-wave attacker ledgers were read.
+# Evidence scripts are in ../scratch/; the page is ../baseline-build/baseline-nofonts.html.
+- id: A1-M-01
+  severity: 3
+  status: valid
+  lens: empty state / filter
+  target: baseline-src/status.js:349-369 applyFilter; status.css (no rule for [data-filter-empty])
+  claim: The Show filter states what it leaves out.
+  broken_step: After choosing a status, rows without such a statement are closed and get data-filter-empty, which no CSS or text uses; the only count is a visually hidden live region. A sighted reader sees 17 closed rows that look like the 3 open ones; opening one shows its summary and no statements, with no explanation.
+  evidence_type: failing_test
+  evidence_ref: "node scratch/probe-filter.cjs baseline-build/baseline-nofonts.html -> after Conditional: visible statements in rows 3, open rows 3, filter-empty rows 17, live text 'Showing 3 of 109 statements, in 3 of 20 examples.', live class visually-hidden"
+  files_read: [baseline-src/status.js, baseline-src/status.css]
+  tools_used: [jsdom 28.1.0]
+  confidence: high
+  blast_radius: hidden required content while a filter is on; readers can conclude an example has no statements
+  minimal_heal: status.js shows a visible count line with a Show-all control, and a per-row note with the same control in filter-empty rows; CSS proposal for both
+  residual: styling belongs to the foundation
+  deciding_evidence: jsdom test that a filter-empty row shows a visible note and that the control restores all statements
+- id: A1-M-02
+  severity: 3
+  status: valid
+  lens: deep linking
+  target: baseline-src/status.py:238-240 statement_id; baseline-src/status.js:914-926 go()
+  claim: Every statement can be linked and returned to.
+  broken_step: 98 of 281 statements have no id (6 principal, 81 in rows, 11 open problems). A search hit on one of them pushes the address of an ancestor (#row-…, #results, #open-…); Back/Forward and a shared link return to the ancestor, not the statement.
+  evidence_type: line_reference
+  evidence_ref: "content.json count (main thread): no id {principal: 6, row: 81, open: 11}; status.js:921-923 setHash(anchor.id, true) with anchor = el.parentNode.closest('[id]')"
+  files_read: [baseline-src/status.js, baseline-src/status.py, content.json]
+  tools_used: [python3]
+  confidence: high
+  blast_radius: imprecise history entries and shared links for a third of the statements
+  minimal_heal: status.js gives each statement without an id the anchor 's-' + ident(title) (exact port of status.py ident, verified identical for all 98, no collisions); proposal that status.py emit the same ids so links work without the script
+  residual: ids derived from titles change if a title changes
+  deciding_evidence: jsdom test that a search hit on an id-less statement gives the address that statement's anchor and that arrival at it reveals it
+- id: A1-M-03
+  severity: 3
+  status: valid
+  lens: unknown deep-link state
+  target: baseline-src/status.js:277-291 hashTarget/openTarget
+  claim: Arrival at an address the page does not have is handled explicitly.
+  broken_step: hashTarget() returns null and openTarget() returns silently. Readers following links into earlier editions land at the top with no explanation; examples are '#changes' and '#changes-h' (in the 13 November edition, absent now) and 4,330 ids of the 4-11 November long report (term-…, defn-…, heading slugs).
+  evidence_type: counterexample
+  evidence_ref: "git cat-file -p 11c3546:quantum-holography-tracker.html ids minus baseline ids -> changes, changes-h; published-ids-union.txt minus baseline-page-ids.txt -> 4330 (baseline-build/)"
+  files_read: [baseline-src/status.js]
+  tools_used: [git cat-file, comm]
+  confidence: high
+  blast_radius: silent failure of inbound links
+  minimal_heal: a dismissible notice naming the address, with a search for its words; a cancelable qh:unknown-anchor event first, for the atlas
+  residual: no semantic map from old anchors to new statements is supplied, and none is invented
+  deciding_evidence: jsdom test for #changes and a malformed escape
+- id: A1-M-04
+  severity: 3
+  status: valid
+  lens: atlas isolation
+  target: baseline-src/status.js:313-316, 346, 425-586, 1000-1007
+  claim: A component mounted in main keeps its own state.
+  broken_step: Page-level selectors are global. Inside an atlas mount, .filter[data-filter] chips would be bound as row status filters, [data-expand] buttons as Open all/Close all for the enclosing section, any .statement or .question would be indexed as search units; no event lets the atlas ask the page to reveal an anchor, and nothing tells it the search or filter state.
+  evidence_type: line_reference
+  evidence_ref: "status.js:346 all('.filter[data-filter]').filter(not .find); :313 all('[data-expand]'); :540 all('main .statement'); foundation CONTRACT.json plans section#atlas[data-atlas-mount] inside main"
+  files_read: [baseline-src/status.js, foundation CONTRACT.json]
+  tools_used: [read]
+  confidence: high
+  blast_radius: cross-component state corruption once the atlas lands
+  minimal_heal: exclude [data-atlas-mount] subtrees from page-level binding and indexing; qh:navigate, qh:state, qh:unknown-anchor events
+  residual: the atlas module does not exist yet; its conformance is the atlas owner's
+  deciding_evidence: jsdom test with a mock mount
+- id: A1-M-05
+  severity: 4
+  status: valid
+  lens: print-open behaviour
+  target: baseline-src/status.js:414-418
+  claim: After printing, every disclosure returns to the reader's state.
+  broken_step: A second beforeprint before afterprint overwrites the saved state with the all-open state; afterprint then leaves every disclosure open.
+  evidence_type: failing_test
+  evidence_ref: "node scratch/probe-print.cjs -> open before 0, open after restore 26 of 26"
+  files_read: [baseline-src/status.js]
+  tools_used: [jsdom 28.1.0]
+  confidence: high
+  blast_radius: lost disclosure state after repeated print previews
+  minimal_heal: keep the first saved state until afterprint
+  residual: none
+  deciding_evidence: jsdom test with two beforeprint events
+- id: A1-M-06
+  severity: 5
+  status: invalid
+  lens: large-page cost
+  target: baseline-src/status.js:1000-1013 markScrollers
+  claim: Measuring wide formulas on every toggle is costly.
+  broken_step: none found in a real browser. Headless Chrome 157, 1400x900, no fonts: Open all 1.3 ms, Close all 2.8 ms, resize 1.4 ms; the first-frame call takes 112.5 ms, which is the page's first layout forced early rather than added work (the long task would occur at first paint anyway).
+  evidence_type: other
+  evidence_ref: measure/baseline.json (node tools/measure.mjs baseline-build/baseline-nofonts.html chrome-profile baseline)
+  files_read: [baseline-src/status.js]
+  tools_used: [headless Chrome via tools/chrome.mjs]
+  confidence: medium
+  blast_radius: none at current size
+  minimal_heal: none required; scoping the toggle pass to the toggled disclosure is cheap if the code is touched
+  residual: first-layout cost of the page itself (about 120 ms) is a CSS matter (content-visibility), outside status.js
+  deciding_evidence: candidate measurement with fonts
+  evidence_status: "Chrome measurement obtained through raw CDP before the binding browser restriction reached this lane; preserved, not accepted evidence (RESTRICTION-BROWSER.md). Acceptance rests on jsdom and structural evidence."
+
+- id: A1-M-07
+  severity: 3
+  status: valid
+  lens: large-page cost
+  target: baseline-src/status.js:1000-1013 markScrollers (first animation frame and fonts.ready)
+  claim: The script adds little to start-up and does not prevent the page from skipping off-screen rendering.
+  broken_step: The first-frame pass reads scrollWidth/clientWidth of all 316 formula boxes, forcing a full layout before first paint. Measured in headless Chrome 157 (3 samples each, 1400x900, no fonts) - start-up long task with the pass 122/134/208 ms, without it 95/104/104 ms. With content-visibility:auto on the sections the long task stays 131-139 ms while the pass runs and drops to 98-99 ms without it, so the eager pass also cancels any off-screen skipping the stylesheet could add.
+  evidence_type: other
+  evidence_ref: measure/cv-baseline.json (node tools/cv-experiment.mjs baseline-build/baseline-nofonts.html chrome-profile)
+  files_read: [baseline-src/status.js]
+  tools_used: [headless Chrome via tools/chrome.mjs]
+  confidence: medium
+  blast_radius: grows with content (larger content and an atlas add boxes and layout)
+  minimal_heal: measure each box when it comes within 400px of the viewport (IntersectionObserver), re-measure near boxes on resize and font load; full pass only where IntersectionObserver is absent
+  residual: the remaining ~100 ms is parsing and style of a 1.8 MB document, outside the script
+  deciding_evidence: candidate measurement with and without content-visibility
+  evidence_status: "Chrome measurement obtained through raw CDP before the binding browser restriction reached this lane; preserved, not accepted evidence (RESTRICTION-BROWSER.md). Acceptance rests on jsdom and structural evidence."
