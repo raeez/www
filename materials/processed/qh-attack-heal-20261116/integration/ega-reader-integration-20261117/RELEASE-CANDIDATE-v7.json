@@ -1,0 +1,125 @@
+{
+ "at": "2026-11-16T21:14:26+00:00",
+ "owner": "website owner (foundation session 67e78388, claude5)",
+ "status": "RELEASE CANDIDATE v7: every automated check passes; native visual QA of v7 not yet captured; not cleared for publication until it is",
+ "supersedes": "RELEASE-CANDIDATE-v6.json",
+ "integration_inputs": {
+  "compiler": {
+   "atlas.css": "48cd985bc6ede3341d1b81e68b6189837f928bf86b90b5c275d43257df01ca02",
+   "atlas.js": "276565d774c4ec6125973907325751af0f72be0d4c95c132932b22655d6c0654",
+   "atlas.py": "084ff33187640ebc62a323c2f6e18dde70c1fc24ee513d6b7a27761ac86f0c0b",
+   "audit.py": "f84ad6589f7fcf9e4c6953aa426ef5eb9ee38d2ceeb0e21e1373002051f58fc6",
+   "figures.css": "1b0282aee209e596ea5ea0ce37c1c8174ad7ed312f2f59111c64f82755420d9a",
+   "figures.js": "bce4e5493125523e7cc10b3fb868a1ebd5416fb38f5c1a83494020a9d7121793",
+   "figures.py": "e7ff72dd01cceb5da0c4cd0702e9cb40ec24f2ee74e5692f864b6adc4d7f0bd9",
+   "monograph.css": "fc18010834409a891b5c7f68436d691f19c41509fc44315e0e6891ead716dcf9",
+   "monograph.py": "605723ba68b64f091ec524b1c3af7f684900415dae8989f2bf9996d0db751656",
+   "reader.js": "40ed4eb4fa623bb765c5e2b5249e0445969742b03614e878fb626462a810a0c9",
+   "status-print.css": "7c42df81d646a96fdb612e72d0431bd4c3d1fae51cb34f5248d41a54fc6a4f2c",
+   "status.css": "10a655eee317c8dd4724356356eb2ca4233f088e0cdfe11c965ef6303a41972e",
+   "status.js": "70c0663ab5bc95f67aa79bf7cb989e3d1d34ac2332d52a603349376dc003d8d5",
+   "status.py": "b0bf38e632fe337938e796d6271bdc6341eeade3aefd8d1f42369016639d3bdc",
+   "tests/atlas.test.cjs": "5570b7923f68aa98fe5bdfae81cf77ffaea1363375bdf31f4c280630d73694a2",
+   "tests/figures.test.cjs": "4b1946eb05825cf30454fa250cf30b1e8b1933e5131d565d71a46e4ba421c73c",
+   "tests/figures_page.py": "8ac23dc036107435dc8adba1fc2c5e0a7d79e9f75fbffe6e13614f66bf30a73a",
+   "tests/interaction.test.cjs": "8a92a7a42d023168bbbb45b6d6ad65d36389254461bbc267e5aa442d4967b279",
+   "tests/reader.test.cjs": "708ef3dd098fb7fe7845456ff9c46f8fbeabdac445ba616ab4528d2005aceac9",
+   "tests/test_atlas.py": "600d7d6995a2681420c84a8e289ac8969c9f2d6800212f63a1540c8aa4504fbe",
+   "tests/test_figures.py": "6ac1ef55c6fc807cba85e89f84398f717e0b31f32cfd8f68ecd0ea4c6bb10245"
+  },
+  "content": {
+   "content.json": "7e12095228112ccc3dc0cfd61ed196f9fff7db15dd1a1717d39c126c4f2693a6",
+   "atlas.json": "0cc0b188a5381fefebc1748df2554f426f924049b119331950206c61edefc379",
+   "essay.md": "142615668b9830627b7672bfee5af41b208bca491efcea9ba43b1e7a11fce516",
+   "page.json": "ff3362520f7dd9a3217ed0a3b47e7e126fe5f11d075bc7820e30a2806f5a2e3c",
+   "reader-data/manifest.json": "9493008a7dbb9f5f0e5394f44ea382757a0c58f42ceb037fcff6b61af417d5e3",
+   "chapters": {
+    "01-physical-questions.md": "ffc9b0956598092cc48136ba1935957de487de95caf14b0b8b59d44c829e0534",
+    "02-algebras-and-modules.md": "5ff537a2f178d0beb5d25f8e6bd0c72896a4e96fef95dc224c3f2cb768cdb6c9",
+    "03-local-fields.md": "37133eafd8ca20f3ef0c7224fa41555f35e8313ff840c1df967ed745a886a88c",
+    "04-factorization.md": "bb5908a5451d5871eff260713897d96e252b24b9da035a83d9c6831d5d237df6",
+    "05-bar-and-coherence.md": "609fdca3f5fbe85265e9b5c3d7dedb7e2b6e4c2d5e2051d3ca269bfd5e3d8e5e",
+    "06-duality-and-induction.md": "47a2a7f6b9f661b0548da01800e2a6804583cfd0d5bfb5ba3ef8ac6807ec0d79",
+    "07-actions-and-centres.md": "2797f8001c3f0367bade6859796ad62bdd020ad88972f9d64cda3861c2fb8457",
+    "08-completions.md": "97f36c39e2b58b000bb961527c4633468d218f684f98e5a4d2e6503c45da6bc9",
+    "09-mixed-boundaries.md": "ad8c80b93e9fb52eaf816e1b069ccfeb177f34c4d0030c12515b67ad64336174",
+    "10-analytic-sewing.md": "30cfdab275abeab355b85bf4c173fcbf96d26e552061bd8a856de908e357bdc9",
+    "11-states-and-lines.md": "901d818542624298880b5d6e8b9b299f51cb79a1c462e92bf869e185ee831db7",
+    "12-chiral-quantum-groups.md": "7e1e5d94e8dd10ed14b760c1ea5d0319f9fa864558caa3dcf6719a166c328336",
+    "13-geometric-reconstruction.md": "2320abb53ea868a1159096a8c7d2a260c5ee6f14bcc54a13b53c01ecc6f84f08",
+    "14-branes.md": "25a629fa0436d1fb3ee0683148d0dbb195393a8e2655665d446b7c38e2b3ec88",
+    "15-hall-and-compact.md": "8aec89cf338afe0cf7387a84583dfa6cc614dd6fb9861755596c1833652c2fe9",
+    "16-arithmetic.md": "9bf8bb818f11b6a0ec5f47776c0e4f587d892986c4dea56100002c199da62511",
+    "17-holographic-reconstruction.md": "203bc178a9c449a17721f1e94444c19e4880df176fd5cc6c60c2cb9fdbe291ae",
+    "18-open-problems.md": "1c041fc05a445d7b0f3f994246663d41a5f7de7b19566c405f5501c08a4520f3"
+   }
+  },
+  "build_script": "7419f94aecce0e344ac24d0a19b8f4aee3395fc4260c42b96575f138dad5a8bf"
+ },
+ "installed": {
+  "foundation": "v6 89670f7c\u2026",
+  "atlas": "G1-G3 a76ae286\u2026, C5 (atlas.py 084ff331\u2026)",
+  "reader": "delta 3 (reader.js 40ed4eb4\u2026, tests 708ef3dd\u2026)"
+ },
+ "combined": {
+  "path": "/tmp/qh-ega-root-native-20261117/release-v7/combined.html",
+  "sha256": "4720957973bf48c377a414d394869d7a87cf75e58419bc86ace9e6410f80644b",
+  "bytes": 14697665,
+  "build_audit": "PASS, 0 TeX errors"
+ },
+ "site": {
+  "index.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v7/index.html",
+   "sha256": "12f3e4289f3e571a972493a08726ceeb37191b5e310fea0f7915b7a0f7ade6f9",
+   "bytes": 3253828
+  },
+  "reference.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v7/reference.html",
+   "sha256": "b458ffbac8be5dd3f002acbab909d0dfd9c4a4284ca46a4d3f5c966fa65cc819",
+   "bytes": 3825480
+  },
+  "atlas.html": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v7/atlas.html",
+   "sha256": "0c1c7a55e7d6c1a971b2bd8f91993aba89edc5afedcbc11c8f4944ae99f20224",
+   "bytes": 9788803
+  },
+  "reader-index.js": {
+   "path": "/tmp/qh-ega-root-native-20261117/site/release-v7/reader-index.js",
+   "sha256": "38b0fdf446358fe9d58a9f9f3ef6e874745c736507ab99a68f4e451e46e6eeb8",
+   "bytes": 4726426
+  }
+ },
+ "canonical": {
+  "index.html": "https://momentum-sez.github.io/quantum-holography/",
+  "reference.html": "https://momentum-sez.github.io/quantum-holography/reference.html",
+  "atlas.html": "https://momentum-sez.github.io/quantum-holography/atlas.html"
+ },
+ "publication_checkout": {
+  "path": "/Users/raeez/www-worktrees/2026-11-17-qh-publication",
+  "staged_uncommitted": {
+   "index.html": "12f3e4289f3e571a972493a08726ceeb37191b5e310fea0f7915b7a0f7ade6f9",
+   "reference.html": "b458ffbac8be5dd3f002acbab909d0dfd9c4a4284ca46a4d3f5c966fa65cc819",
+   "atlas.html": "0c1c7a55e7d6c1a971b2bd8f91993aba89edc5afedcbc11c8f4944ae99f20224",
+   "reader-index.js": "38b0fdf446358fe9d58a9f9f3ef6e874745c736507ab99a68f4e451e46e6eeb8",
+   ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+ },
+ "checks": {
+  "split": "12 of 12",
+  "page": "19 of 19 on index.html",
+  "reader_tests": "70 of 70",
+  "index": "5,618 units",
+  "public": {
+   "private_or_attribution_hits": 0,
+   "local_href_src_unresolved": 0,
+   "external": "the canonical link of each page only",
+   "known": "2,444 reader-pages map entries for atlas.html are data-edge-id values (splitter pattern), not links"
+  }
+ },
+ "native_capture": {
+  "server": "http://127.0.0.1:8791/ (root's python server, pid 82874, serving /tmp/qh-ega-root-native-20261117/site)",
+  "book": "http://127.0.0.1:8791/release-v7/index.html",
+  "harness": "http://127.0.0.1:8791/check-release-v7.html?width=375&chapter=<id>",
+  "measure": "http://127.0.0.1:8791/measure-release-v7.html?width=<w>&page=<index|reference|atlas>&chapter=<id>"
+ }
+}
