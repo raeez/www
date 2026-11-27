@@ -1,0 +1,51 @@
+--- a/compiler/quantum-holography-status/tests/reader.test.cjs
++++ b/compiler/quantum-holography-status/tests/reader.test.cjs
+@@ -55,6 +55,7 @@
+     </header>
+     <div class="chapter-opening"><p>Opening paragraph of chapter ${k}, fixture text.</p></div>
+     ${sec(1, `First section of chapter ${k}`, `
++      ${k === 3 ? `<p>Now take</p><div class="math-display"><math display="block"><semantics><mrow><msup><mi>y</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">y^{3}</annotation></semantics></math></div><p>as the cubic that ends the opening sentence of chapter 3.</p>` : ''}
+       <p>Text of the first section of chapter ${k}, with the token sample${k}.${vacuum}</p>
+       <div data-env="definition" id="def-${c.id}"><p data-block-title><span class="env-label">Definition ${k}.1</span> (<dfn>fixture term ${k}</dfn>)</p><p>Defining words for fixture term ${k}.</p></div>
+       <p id="${c.id}-refs">A reference to <a href="#def-${other.id}">fixture term ${other.number}</a>, to <a href="#thm-${other.id}">Theorem ${other.number}.2</a>, to <a href="#eq-${c.id}">(${k}.1)</a> and to <a href="#${other.id}-s2">Section ${other.number}.2</a>.</p>
+@@ -194,8 +195,15 @@
+   el.dispatchEvent(e);
+   return e;
+ }
+-async function back(p) { p.w.history.back(); await sleep(80); }
+-async function forward(p) { p.w.history.forward(); await sleep(80); }
++/* History steps are asynchronous: wait until the address has changed (or a second has passed), then a moment more. */
++async function traverse(p, step) {
++  const before = p.w.location.href;
++  step();
++  for (let i = 0; i < 40 && p.w.location.href === before; i++) await sleep(25);
++  await sleep(60);
++}
++async function back(p) { await traverse(p, () => p.w.history.back()); }
++async function forward(p) { await traverse(p, () => p.w.history.forward()); }
+ async function type(p, text) {
+   const q = p.d.getElementById('reader-q');
+   const line = p.d.getElementById('reader-search-status');
+@@ -1120,6 +1128,22 @@
+   assert.ok(pas.querySelector('.reader-hit-where math'), 'the section title keeps its formula');
+   await type(p, 'zetanode');
+   assert.equal(text(hitLinks(p)[0].querySelector('.reader-hit-kind')), 'Figure');
++  noErrors(p);
++});
++
++test('narrow: a section that opens mid-sentence shows its opening through the formula to the end of the sentence', async () => {
++  const p = load();
++  await settle();
++  click($(p, '.reader-search-toggle'));
++  await type(p, 'First section of chapter 3');
++  const sec = hitLinks(p).find(a => a.getAttribute('href') === '#ch03-s1');
++  assert.ok(sec, 'the section is found');
++  const snip = sec.querySelector('.reader-hit-text');
++  assert.match(text(snip), /^Now take .*as the cubic that ends the opening sentence of chapter 3\./, text(snip));
++  assert.ok(snip.querySelector('math'), 'the formula is kept');
++  await type(p, 'First section of chapter 5');
++  const other = hitLinks(p).find(a => a.getAttribute('href') === '#ch05-s1');
++  assert.match(text(other.querySelector('.reader-hit-text')), /^Text of the first section of chapter 5, with the token sample5\.$/, 'a complete first sentence stands alone');
+   noErrors(p);
+ });
+ 

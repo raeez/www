@@ -1,0 +1,39 @@
+--- a/compiler/quantum-holography-status/reader.js
++++ b/compiler/quantum-holography-status/reader.js
+@@ -1917,6 +1917,26 @@
+   function rankSort(a, b) {
+     return b.exact - a.exact || b.own - a.own || b.tier - a.tier || b.kind - a.kind || b.score - a.score || a.order - b.order;
+   }
++  /* A place's opening as a reader meets it: its first paragraph, continued through the display formula and the
++     paragraph after it while its first sentence runs on (a paragraph that ends "Now take" before a formula); at most
++     three blocks, formulae kept. */
++  function openingOf(first) {
++    var box = element('div');
++    var b = first;
++    for (var k = 0; b && k < 3; k++) {
++      box.appendChild(cleanCopy(b));
++      var words = textOf(box, null, true);
++      var seen = textOf(box); /* a sentence may end inside its display formula */
++      if ((seen.length >= 40 && /[.?!]["”’)\]]*$/.test(seen)) || words.length >= 200) break;
++      b = blockAfter(b);
++    }
++    return box;
++  }
++  function blockAfter(b) {
++    var n = b.nextElementSibling;
++    if (!n || /^h[1-6]$/.test(n.localName) || n.matches(SECTION + ', ' + ENV + ', figure, nav, [data-chapter-end]')) return null;
++    return n.matches('p, blockquote, ' + DISPLAY) || n.querySelector(DISPLAY) ? n : null;
++  }
+   function hitLink(h, n, marks, terms) {
+     var u = h.unit;
+     var li = element('li', 'reader-hit');
+@@ -1952,7 +1972,8 @@
+     if (u.kind === 'chapter' || u.kind === 'section') {
+       /* a chapter or a section is shown with its first paragraph, as written */
+       var first = u.remote ? null : isChapter(u.el) ? firstParagraph(u.el) : isSection(u.el) ? firstParagraph(u.el) : /^h[1-6]$/.test(u.el.localName) ? firstParagraphAfter(u.el) : null;
+-      if (first) snip = snippetOf({ el: first, bodyEl: first, skip: null }, marks);
++      var opening = first ? openingOf(first) : null;
++      if (opening) snip = snippetOf({ el: opening, bodyEl: opening, skip: null }, marks);
+     } else if (u.kind !== 'heading') snip = snippetOf(u, marks);
+     if (snip) {
+       snip.id = ids + '-text';
